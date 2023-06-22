@@ -1,6 +1,7 @@
 import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/evouchers/enter_code_evoucher_purchase_usecase.dart';
 import 'package:domain/usecase/evouchers/enter_otp_for_evoucher_category_purchase_usecase.dart';
+import 'package:domain/usecase/evouchers/evoucher_by_category_usecase.dart';
 import 'package:domain/usecase/evouchers/select_account_usecase.dart';
 import 'package:domain/usecase/evouchers/select_region_amount_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_landing_page_usecase.dart';
@@ -30,4 +31,9 @@ final enterOtpForEVoucherCategoryPurchaseUseCaseUseCaseProvider =
 ///[EVoucherLandingPageUseCase] provider
 final landingPageUseCase = Provider.autoDispose<EVoucherLandingPageUseCase>(
   (ref) => EVoucherLandingPageUseCase(ref.read(eVoucherRepositoryProvider)),
+);
+
+///[EVoucherByCategoryPageUseCase] provider
+final eVoucherByCategoryPageUseCase = Provider.autoDispose<EVoucherByCategoryPageUseCase>(
+        (ref) => EVoucherByCategoryPageUseCase(ref.read(eVoucherRepositoryProvider)),
 );

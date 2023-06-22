@@ -32,7 +32,7 @@ final eVouchersDialogViewModelProvider = ChangeNotifierProvider.autoDispose<EVou
 ///e-vouchers category listing view model
 final eVouchersCategoryListingViewModelProvider =
     ChangeNotifierProvider.autoDispose<EVoucherCategoryListingPageViewModel>(
-        (ref) => EVoucherCategoryListingPageViewModel());
+        (ref) => EVoucherCategoryListingPageViewModel(ref.read(eVoucherByCategoryPageUseCase)));
 
 ///purchase e-vouchers view model
 final purchaseEVouchersViewModelProvider = ChangeNotifierProvider.autoDispose<PurchaseEVoucherPageViewModel>(

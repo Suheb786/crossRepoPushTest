@@ -5,7 +5,6 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/custom_bullet_with_title_widget.dart';
-import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/evoucher/evoucher_text_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';

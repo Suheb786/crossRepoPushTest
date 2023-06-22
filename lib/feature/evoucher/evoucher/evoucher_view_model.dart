@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/base_error.dart';
-import 'package:domain/error/network_error.dart';
+import 'package:domain/model/e_voucher/voucher_categories.dart';
+import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:domain/usecase/evouchers/evoucher_landing_page_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -16,32 +17,34 @@ class EvoucherViewModel extends BasePageViewModel {
 
   EVoucherLandingPageUseCase _eVoucherLandingPageUseCase;
 
+  ValueNotifier<bool> categoriesDisplayToggleNotifier =
+      ValueNotifier(true); // default true as showing categories
+
+  late VoucherCategories selectedVoucherCategories;
+
   /// ------------- voucher categories stream -----------------------
   PublishSubject<EVoucherLandingPageUseCaseParams> _voucherLandingPageRequestSubject = PublishSubject();
 
-  BehaviorSubject<Resource<bool>> _voucherCategoriesResponseSubject = BehaviorSubject();
+  BehaviorSubject<Resource<List<VoucherCategories>>> _voucherCategoriesResponseSubject = BehaviorSubject();
 
-  Stream<Resource<bool>> get voucherCategoriesResponseStream => _voucherCategoriesResponseSubject.stream;
+  Stream<Resource<List<VoucherCategories>>> get voucherCategoriesResponseStream =>
+      _voucherCategoriesResponseSubject.stream;
 
   /// ------------- my vouchers stream -----------------------
   BehaviorSubject<Resource<bool>> _myVoucherResponseSubject = BehaviorSubject();
 
   Stream<Resource<bool>> get myVoucherResponseStream => _myVoucherResponseSubject.stream;
 
-  /// ------------- voucher by category stream -----------------------
-  BehaviorSubject<Resource<bool>> _voucherByCategoryResponseSubject = BehaviorSubject();
+  /// ------------- voucher by Filter & Search stream -----------------------
+  BehaviorSubject<Resource<List<VoucherItem>>> _voucherByFilterAndSearchResponseSubject = BehaviorSubject();
 
-  Stream<Resource<bool>> get voucherByCategoryResponseStream => _voucherByCategoryResponseSubject.stream;
+  Stream<Resource<List<VoucherItem>>> get voucherByFilterAndSearchResponseStream =>
+      _voucherByFilterAndSearchResponseSubject.stream;
 
-  /// ------------- voucher by Filter stream -----------------------
-  BehaviorSubject<Resource<bool>> _voucherByFilterResponseSubject = BehaviorSubject();
-
-  Stream<Resource<bool>> get voucherByFilterResponseStream => _voucherByFilterResponseSubject.stream;
-
-  /// ------------- voucher by Search stream -----------------------
+  /*/// ------------- voucher by Search stream -----------------------
   BehaviorSubject<Resource<bool>> _voucherBySearchResponseSubject = BehaviorSubject();
 
-  Stream<Resource<bool>> get voucherBySearchResponseStream => _voucherBySearchResponseSubject.stream;
+  Stream<Resource<bool>> get voucherBySearchResponseStream => _voucherBySearchResponseSubject.stream;*/
 
   /// ------------- tabChange listener -----------------------
 
@@ -59,9 +62,9 @@ class EvoucherViewModel extends BasePageViewModel {
         case EVoucherLandingPageDataEnum.voucherDetails:
           listenToVoucherDetails(value);
           break;
-        case EVoucherLandingPageDataEnum.vouchersByCategory:
+        /*case EVoucherLandingPageDataEnum.vouchersByCategory:
           listenToVoucherByCategory(value);
-          break;
+          break;*/
         case EVoucherLandingPageDataEnum.voucherByFilter:
           listenToVoucherByFilter(value);
           break;
@@ -75,14 +78,16 @@ class EvoucherViewModel extends BasePageViewModel {
   }
 
   void listenToVoucherCategories(EVoucherLandingPageUseCaseParams value) {
-    RequestManager<bool>(value, createCall: () {
-      return _eVoucherLandingPageUseCase.execute(params: value) as Future<Either<BaseError, bool>>;
+    RequestManager<List<VoucherCategories>>(value, createCall: () {
+      return _eVoucherLandingPageUseCase.execute(params: value)
+          as Future<Either<BaseError, List<VoucherCategories>>>;
     }).asFlow().listen((event) {
       if (event.status == Status.SUCCESS) {
         // done...
       } else if (event.status == Status.ERROR) {
         showToastWithError(event.appError!);
       }
+      _voucherCategoriesResponseSubject.safeAdd(event);
       updateLoader();
     });
   }
@@ -128,28 +133,32 @@ class EvoucherViewModel extends BasePageViewModel {
   }
 
   void listenToVoucherByFilter(EVoucherLandingPageUseCaseParams value) {
-    RequestManager<bool>(value, createCall: () {
-      return _eVoucherLandingPageUseCase.execute(params: value) as Future<Either<BaseError, bool>>;
+    RequestManager<List<VoucherItem>>(value, createCall: () {
+      return _eVoucherLandingPageUseCase.execute(params: value)
+          as Future<Either<BaseError, List<VoucherItem>>>;
     }).asFlow().listen((event) {
       if (event.status == Status.SUCCESS) {
         // done...
       } else if (event.status == Status.ERROR) {
         showToastWithError(event.appError!);
       }
-
+      _voucherByFilterAndSearchResponseSubject.safeAdd(event);
       updateLoader();
     });
   }
 
   void listenToVoucherBySearch(EVoucherLandingPageUseCaseParams value) {
-    RequestManager<bool>(value, createCall: () {
-      return _eVoucherLandingPageUseCase.execute(params: value) as Future<Either<BaseError, bool>>;
+    RequestManager<List<VoucherItem>>(value, createCall: () {
+      return _eVoucherLandingPageUseCase.execute(params: value)
+          as Future<Either<BaseError, List<VoucherItem>>>;
     }).asFlow().listen((event) {
       if (event.status == Status.SUCCESS) {
         // done...
+        categoriesDisplayToggleNotifier.value = false;
       } else if (event.status == Status.ERROR) {
         showToastWithError(event.appError!);
       }
+      _voucherByFilterAndSearchResponseSubject.safeAdd(event);
       updateLoader();
     });
   }
@@ -169,15 +178,39 @@ class EvoucherViewModel extends BasePageViewModel {
     ));
   }
 
+  void toggleSearch(bool focus) {
+    if (buyVoucherSearchController.text.trim().isEmpty) {
+      categoriesDisplayToggleNotifier.value = true;
+    } else {
+      // call search api...
+      if (!focus) {
+        callSearchApi();
+      }
+    }
+  }
+
+  void callSearchApi() {
+    if (buyVoucherSearchController.text.trim().isEmpty) {
+      return;
+    }
+    _voucherLandingPageRequestSubject.safeAdd(EVoucherLandingPageUseCaseParams(
+        eVoucherLandingPageDataEnum: EVoucherLandingPageDataEnum.voucherBySearch,
+        searchText: buyVoucherSearchController.text.trim()));
+  }
+
+  void setSelectedCategory(VoucherCategories category) {
+    this.selectedVoucherCategories = category;
+  }
+
   @override
   void dispose() {
     _voucherLandingPageRequestSubject.close();
     _voucherCategoriesResponseSubject.close();
     _myVoucherResponseSubject.close();
-    _voucherByCategoryResponseSubject.close();
-    _voucherByFilterResponseSubject.close();
-    _voucherBySearchResponseSubject.close();
-    _voucherBySearchResponseSubject.close();
+    // _voucherByCategoryResponseSubject.close();
+    _voucherByFilterAndSearchResponseSubject.close();
+    // _voucherBySearchResponseSubject.close();
+    // _voucherBySearchResponseSubject.close();
     tabChangeNotifier.dispose();
     super.dispose();
   }

@@ -1,26 +1,28 @@
+import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:flutter/material.dart';
-import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class FavouriteBrandGridItemWidget extends StatelessWidget {
-  const FavouriteBrandGridItemWidget({Key? key}) : super(key: key);
+class VoucherSearchAndFilterWidget extends StatelessWidget {
+  List<VoucherItem> voucherItems;
+
+  VoucherSearchAndFilterWidget(this.voucherItems, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: 4,
+      itemCount: voucherItems.length,
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        return _buildItem();
+        return _buildItem(voucherItems[index]);
       },
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, crossAxisSpacing: 0.2, mainAxisSpacing: 0.2, childAspectRatio: 1.0),
     );
   }
 
-  Widget _buildItem() {
+  Widget _buildItem(VoucherItem voucherItem) {
     return Builder(builder: (context) {
       return Container(
         // width: double.infinity,
@@ -31,11 +33,14 @@ class FavouriteBrandGridItemWidget extends StatelessWidget {
               width: 155.5,
               height: 100,
               decoration: BoxDecoration(
-                color: Colors.yellow,
                 borderRadius: BorderRadius.all(Radius.circular(16)),
                 boxShadow: [
                   BoxShadow(color: Colors.black.withOpacity(0.1), offset: Offset(0, -0), blurRadius: 16.0),
                 ],
+                image: DecorationImage(
+                  image: NetworkImage(voucherItem.cardFaceImage),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             const SizedBox(height: 16),
@@ -44,7 +49,7 @@ class FavouriteBrandGridItemWidget extends StatelessWidget {
               child: Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Text(
-                    S.of(context).playStation,
+                    voucherItem.brand,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         color: AppColor.gray,
@@ -57,7 +62,7 @@ class FavouriteBrandGridItemWidget extends StatelessWidget {
               child: Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Text(
-                    S.of(context).favouriteBrandItemDescription,
+                    voucherItem.name,
                     maxLines: 2,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,

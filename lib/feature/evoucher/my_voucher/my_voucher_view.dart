@@ -7,14 +7,12 @@ import 'package:neo_bank/ui/molecules/dialog/card_settings/relationship_with_car
 import 'package:neo_bank/ui/molecules/evoucher/my_voucher_item_view.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../ui/molecules/app_divider.dart';
 import '../../../ui/molecules/app_keyboard_hide.dart';
 import '../../../ui/molecules/app_svg.dart';
-import '../../../ui/molecules/dialog/evouchers_dialog/evouchers_filter/evouchers_filter_dialog.dart';
 import '../evoucher/evoucher_view_model.dart';
 
 class MyVoucherView extends BasePageViewWidget<EvoucherViewModel> {

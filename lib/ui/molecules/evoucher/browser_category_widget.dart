@@ -1,3 +1,5 @@
+import 'package:domain/model/cliq/rejection_reason_inward_request/rejection_reason_inward.dart';
+import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -8,18 +10,21 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class BrowserByCategoryItemWidget extends StatelessWidget {
-  const BrowserByCategoryItemWidget({Key? key}) : super(key: key);
+  List<VoucherCategories> categories;
+  Function(VoucherCategories) onSelectCategory;
+
+  BrowserByCategoryItemWidget(this.categories, {required this.onSelectCategory, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      itemCount: 6,
+      itemCount: categories.length,
       shrinkWrap: true,
       physics: ScrollPhysics(),
       padding: const EdgeInsets.only(top: 24),
       itemBuilder: (context, index) {
         return Container(
-          child: _buildListItem(context),
+          child: _buildListItem(context, categories[index]),
         );
       },
       separatorBuilder: (BuildContext context, int index) {
@@ -31,10 +36,11 @@ class BrowserByCategoryItemWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildListItem(BuildContext context) {
+  Widget _buildListItem(BuildContext context, VoucherCategories category) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, RoutePaths.EVouchersListing);
+        onSelectCategory(category);
+
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -55,7 +61,7 @@ class BrowserByCategoryItemWidget extends StatelessWidget {
           const SizedBox(width: 16),
           Expanded(
             child: Text(
-              S.of(context).games,
+              category.bankCategory,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   color: AppColor.gray_black,

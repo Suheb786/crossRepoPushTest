@@ -8,7 +8,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/evouchers_filter_dialog.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import 'evoucher_view_model.dart';
 
@@ -48,9 +48,9 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
     );
 
     return PreferredSize(
-        preferredSize: Size(double.maxFinite, 85),
+        preferredSize: Size(double.maxFinite, 85.h),
         child: Padding(
-          padding: const EdgeInsets.only(top: 56.0),
+          padding: EdgeInsets.only(top: 52.0.h),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -59,7 +59,7 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
                   Navigator.pop(context);
                 },
                 child: Padding(
-                  padding: EdgeInsetsDirectional.only(start: 24.0),
+                  padding: EdgeInsetsDirectional.only(start: 24.0.w),
                   child: AppSvg.asset(AssetUtils.leftArrow,
                       matchTextDirection: true, color: Theme.of(context).colorScheme.secondary),
                 ),

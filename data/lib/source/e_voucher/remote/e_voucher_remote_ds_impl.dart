@@ -1,15 +1,16 @@
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
-import 'package:data/entity/remote/e_voucher/my_vouchers_request.dart';
-import 'package:data/entity/remote/e_voucher/voucher_by_category_request.dart';
-import 'package:data/entity/remote/e_voucher/voucher_by_filter_request.dart';
-import 'package:data/entity/remote/e_voucher/voucher_by_search_request.dart';
-import 'package:data/entity/remote/e_voucher/voucher_detail_request.dart';
+import 'package:data/entity/remote/e_voucher/my_voucher/my_voucher_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/my_voucher/my_vouchers_request.dart';
+import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_detail_request.dart';
+import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_category_request.dart';
+import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_filter_request.dart';
+import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_search_request.dart';
+import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_filter_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/e_voucher/e_voucher_data_source.dart';
-
 import 'package:retrofit/dio.dart';
 
 class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
@@ -26,7 +27,7 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getVoucherCategories() async {
+  Future<HttpResponse<MyVoucherResponseEntity>> getVoucherCategories() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getVoucherCategories(BaseRequest(baseData: baseData.toJson()));
   }
@@ -39,14 +40,14 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getVoucherItemsByCategory(String category) async {
+  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByCategory(String category) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService
         .getVoucherItemsByCategory(VoucherByCategoryRequest(Category: category, baseData: baseData.toJson()));
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getVoucherItemsByFilter(
+  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByFilter(
       String category, String region, String minValue, String maxValue) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getVoucherItemsByFilter(VoucherByFilterRequest(
@@ -59,7 +60,7 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getVoucherItemsBySearch(String searchText) async {
+  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsBySearch(String searchText) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService
         .getVoucherItemsBySearch(VoucherBySearchRequest(SearchText: searchText, baseData: baseData.toJson()));

@@ -22,8 +22,6 @@ class EVoucherLandingPageUseCase extends BaseUseCase<BaseError, EVoucherLandingP
         return _eVoucherRepository.getMyVouchers(params.pageNo!, params.fromDate!, params.toDate!);
       case EVoucherLandingPageDataEnum.voucherDetails:
         return _eVoucherRepository.getVoucherDetails(params.orderIdentifier!);
-      case EVoucherLandingPageDataEnum.vouchersByCategory:
-        return _eVoucherRepository.getVoucherItemsByCategory(params.category!);
       case EVoucherLandingPageDataEnum.voucherByFilter:
         return _eVoucherRepository.getVoucherItemsByFilter(
             params.category!, params.region!, params.minValue!, params.maxValue!);
@@ -91,12 +89,6 @@ class EVoucherLandingPageUseCaseParams extends Params {
         }
         return Right(true);
 
-      case EVoucherLandingPageDataEnum.vouchersByCategory:
-        if (category == null) {
-          return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.UI, cause: Exception()));
-        }
-        return Right(true);
-
       case EVoucherLandingPageDataEnum.voucherByFilter:
         if (region == null) {
           return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.UI, cause: Exception()));
@@ -122,7 +114,7 @@ enum EVoucherLandingPageDataEnum {
   voucherCategories,
   myVouchers,
   voucherDetails,
-  vouchersByCategory,
+  // vouchersByCategory,
   voucherByFilter,
   voucherBySearch,
 }

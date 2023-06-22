@@ -5594,7 +5594,7 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getVoucherCategories(
+  Future<HttpResponse<MyVoucherResponseEntity>> getVoucherCategories(
       BaseRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -5602,7 +5602,7 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
+        _setStreamType<HttpResponse<MyVoucherResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5614,13 +5614,13 @@ class _ApiService implements ApiService {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
+    final value = MyVoucherResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getVoucherItemsByCategory(
+  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByCategory(
       VoucherByCategoryRequest voucherByCategoryRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -5628,19 +5628,19 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(voucherByCategoryRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
+        _setStreamType<HttpResponse<VoucherFilterResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/Vouchers/GetItembyByCategory',
+              '/Vouchers/GetItemByCategory',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
+    final value = VoucherFilterResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -5698,7 +5698,7 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getVoucherItemsByFilter(
+  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByFilter(
       VoucherByFilterRequest voucherByFilterRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -5706,7 +5706,7 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(voucherByFilterRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
+        _setStreamType<HttpResponse<VoucherFilterResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5718,13 +5718,13 @@ class _ApiService implements ApiService {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
+    final value = VoucherFilterResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getVoucherItemsBySearch(
+  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsBySearch(
       VoucherBySearchRequest voucherBySearchRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -5732,7 +5732,7 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(voucherBySearchRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
+        _setStreamType<HttpResponse<VoucherFilterResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5744,7 +5744,7 @@ class _ApiService implements ApiService {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
+    final value = VoucherFilterResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

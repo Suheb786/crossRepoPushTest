@@ -7,7 +7,6 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel> {
