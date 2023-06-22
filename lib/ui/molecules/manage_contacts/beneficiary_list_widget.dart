@@ -41,7 +41,7 @@ class BeneficiaryListWidget extends StatelessWidget {
                           radius: 25.w,
                           backgroundColor: Theme.of(context).primaryColorDark,
                           child: Text(
-                            StringUtils.getFirstInitials(beneficiary?.fullName),
+                            StringUtils.getFirstInitials(beneficiary?.nickName),
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w700,
