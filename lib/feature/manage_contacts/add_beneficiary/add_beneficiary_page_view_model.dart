@@ -42,4 +42,10 @@ class AddBeneficiaryPageViewModel extends BasePageViewModel {
   void changeCurrentPage(int index) {
     _currentPageSubject.safeAdd(index);
   }
+
+  @override
+  void dispose() {
+    _currentPageSubject.close();
+    super.dispose();
+  }
 }
