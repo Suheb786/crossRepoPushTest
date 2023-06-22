@@ -135,12 +135,13 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         updateLoader();
-        _updateBeneficiaryResponse.safeAdd(event);
         if (event.status == Status.SUCCESS) {
           isUpdateProfile = true;
+          _nameEditableNotifierSubject.safeAdd(true);
         } else if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         }
+        _updateBeneficiaryResponse.safeAdd(event);
       });
     });
 
@@ -179,16 +180,15 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   }
 
   toggleNickName(BuildContext context) {
-    _nameEditableNotifierSubject.value = !_nameEditableNotifierSubject.value;
-    if (!_nameEditableNotifierSubject.value) {
+    if (_nameEditableNotifierSubject.value) {
       FocusScope.of(context).requestFocus(nickNameFocus);
+      _nameEditableNotifierSubject.safeAdd(false);
     } else {
       setNickNameReadOnly();
     }
   }
 
   setNickNameReadOnly() {
-    _nameEditableNotifierSubject.safeAdd(true);
     _updateBeneficiaryRequest.safeAdd(UpdateBeneficiaryUseCaseParams(
         beneficiaryId: argument.beneficiaryInformation.id ?? '',
         nickName: nickNameController.text,
@@ -197,6 +197,16 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
 
   @override
   void dispose() {
+    _deleteBeneficiaryRequest.close();
+    _deleteBeneficiaryResponse.close();
+    _updateBeneficiaryRequest.close();
+    _updateBeneficiaryResponse.close();
+    _uploadProfilePhotoRequest.close();
+    _uploadProfilePhotoResponse.close();
+    _selectedImageSubject.close();
+    _updateProfileImageRequestSubject.close();
+    _removeProfileImageRequestSubject.close();
+    _nameEditableNotifierSubject.close();
     super.dispose();
   }
 }

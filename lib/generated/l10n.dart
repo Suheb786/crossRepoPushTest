@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -17575,6 +17576,16 @@ class S {
     return Intl.message(
       'Oops! Contact not marked as favorite, please try again later',
       name: 'ContactMarkFavouriteFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Transactions`
+  String get viewTransactions {
+    return Intl.message(
+      'View Transactions',
+      name: 'viewTransactions',
       desc: '',
       args: [],
     );
