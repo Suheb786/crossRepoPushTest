@@ -2459,7 +2459,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "requestMoneyFeatureDisabled": MessageLookupByLibrary.simpleMessage(
             "عفوًا، إرسال الحوالات عبر خدمة\n  Cliq غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بنا على 06-5200100"),
         "requestMoneyFormateSample": MessageLookupByLibrary.simpleMessage(
-            "زوّدنابأي معلومة عندك عن حساب متلقي الطلب والباقي علينا. رح يتم الطلب من خالل كليك(CliQ). \n تأكد من إدخال المعلومة بالشكل الصحيح حسب  األمثلة التالية:"),
+            "زوّدنابأي معلومة عندك عن حساب متلقي الطلب والباقي علينا. رح يتم الطلب من خالل كليك(CliQ). \n تأكد من إدخال المعلومة بالشكل الصحيح حسب  األمثلة التالية:\n"),
         "requestMoneyFrom":
             MessageLookupByLibrary.simpleMessage("طلب أموال من"),
         "requestMoneyFromOtherBank": MessageLookupByLibrary.simpleMessage(
@@ -2635,7 +2635,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "أرسل وطلب ما يصل إلى 9 جهات اتصال مفضلة بسهولة. هل ترغب في إضافة جهة الاتصال هذه إلى المفضلة لديك؟"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("تحويل أموال"),
         "sendMoneyFormateSample": MessageLookupByLibrary.simpleMessage(
-            "زوّدنا بأي معلومة عندك عن حساب متلقي الحوالة والباقي علينا. إذا كان حساب متلقي الحوالة في بلينك رح نحوّل المبلغ على حسابه في بلينك، وغير هيك رح يتم التحويل من خالل كليك(CliQ)لحسابه البنكي. \nتأكد من إدخال المعلومة بالشكل الصحيح حسب األمثلة التالية:"),
+            "زوّدنا بأي معلومة عندك عن حساب متلقي الحوالة والباقي علينا. إذا كان حساب متلقي الحوالة في بلينك رح نحوّل المبلغ على حسابه في بلينك، وغير هيك رح يتم التحويل من خالل كليك(CliQ)لحسابه البنكي. \nتأكد من إدخال المعلومة بالشكل الصحيح حسب األمثلة التالية:\n"),
         "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "محاولتك لإرسال الأموال غير ناجحة"),
         "sendMoneyTo": MessageLookupByLibrary.simpleMessage("إرسال أموال إلى"),
