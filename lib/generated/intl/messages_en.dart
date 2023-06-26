@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -81,6 +82,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "accountBalance":
             MessageLookupByLibrary.simpleMessage("Account balance"),
+        "accountBlink":
+            MessageLookupByLibrary.simpleMessage("Account No. (Blink)"),
         "accountCard": MessageLookupByLibrary.simpleMessage("Account Card"),
         "accountClaimNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
@@ -232,6 +235,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "alias": MessageLookupByLibrary.simpleMessage("Alias"),
         "aliasAlreadyExist":
             MessageLookupByLibrary.simpleMessage("Alias already exist"),
+        "aliasCliq": MessageLookupByLibrary.simpleMessage("Alias (CliQ)"),
         "aliasHint": MessageLookupByLibrary.simpleMessage(
             "Alias must be a maximum of 10 alphanumeric characters"),
         "aliasMobileHint":
@@ -1552,6 +1556,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "iHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("I have an account"),
         "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
+        "ibanCliq": MessageLookupByLibrary.simpleMessage("IBAN (CliQ)"),
         "ibanCopied": MessageLookupByLibrary.simpleMessage("IBAN Copied"),
         "ibanMobileNoAlias":
             MessageLookupByLibrary.simpleMessage("IBAN / Mobile No. / ALIAS"),
@@ -1995,6 +2000,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "mobileNo": MessageLookupByLibrary.simpleMessage("Mobile No."),
         "mobileNoAliasHint":
             MessageLookupByLibrary.simpleMessage("00962000000000"),
+        "mobileNoCliq":
+            MessageLookupByLibrary.simpleMessage("Mobile No. (CliQ)"),
+        "mobileNoCliqorBlink":
+            MessageLookupByLibrary.simpleMessage("Mobile No. (CliQ or Blink)"),
         "mobileNoExist":
             MessageLookupByLibrary.simpleMessage("Mobile Number Exist"),
         "mobileNoRegisteredWithBlink": MessageLookupByLibrary.simpleMessage(
@@ -2540,6 +2549,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "requestMoney": MessageLookupByLibrary.simpleMessage("Request money"),
         "requestMoneyFeatureDisabled": MessageLookupByLibrary.simpleMessage(
             "Oops, the request to pay service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100."),
+        "requestMoneyFormateSample": MessageLookupByLibrary.simpleMessage(
+            "Request Money Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\nPlease be mindful of the formatting examples as follows:\n"),
         "requestMoneyFrom":
             MessageLookupByLibrary.simpleMessage("Request money from"),
         "requestMoneyFromOtherBank": MessageLookupByLibrary.simpleMessage(
@@ -2722,6 +2733,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendAndRequestFavouriteContacts": MessageLookupByLibrary.simpleMessage(
             "Send and request with ease up to 9 favourite contacts. Would you like to add this contact to your favourite?"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("Send Money"),
+        "sendMoneyFormateSample": MessageLookupByLibrary.simpleMessage(
+            "Please provide any account details you have for your contact,and we will take care of the rest. If the contact’s account is in Blink, we will send the money to Blink account, otherwise, we will send it via CliQ to his/her bank account.\n Please be mindful of the formatting examples as follows:\n"),
         "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "Your attempt to send money was unsuccessful."),
         "sendMoneyTo": MessageLookupByLibrary.simpleMessage("Send money to"),
