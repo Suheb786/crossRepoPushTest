@@ -52,18 +52,40 @@ class RJBookingConfirmedInAppWebViewPageView
                         useHybridComposition: true,
                         clearSessionCache: true,
                         cacheMode: AndroidCacheMode.LOAD_NO_CACHE,
+                        allowFileAccess: false,
+                        allowContentAccess: false,
+                        geolocationEnabled: false,
+                        mixedContentMode: AndroidMixedContentMode.MIXED_CONTENT_NEVER_ALLOW,
                       ),
-                      ios: IOSInAppWebViewOptions(allowsInlineMediaPlayback: true),
+                      ios: IOSInAppWebViewOptions(
+                        allowsInlineMediaPlayback: true,
+                      ),
                       crossPlatform: InAppWebViewOptions(
                         useShouldOverrideUrlLoading: true,
                         javaScriptEnabled: true,
+                        useOnLoadResource: true,
+                        clearCache: true,
+                        contentBlockers: [
+                          ContentBlocker(
+                            trigger: ContentBlockerTrigger(
+                              urlFilter: 'https://example.com/*',
+                              resourceType: [
+                                ContentBlockerTriggerResourceType.SCRIPT,
+                                ContentBlockerTriggerResourceType.IMAGE,
+                              ],
+                            ),
+                            action: ContentBlockerAction(
+                              type: ContentBlockerActionType.BLOCK,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     androidOnPermissionRequest: (controller, origin, resource) async {
                       return PermissionRequestResponse(
                           resources: resource, action: PermissionRequestResponseAction.GRANT);
                     },
-                    onLoadStart: (controller, url) {
+                    onLoadStart: (controller, url) async {
                       debugPrint('-----onload start ---->${url}');
                     },
                     onLoadStop: (controller, url) {
@@ -77,6 +99,28 @@ class RJBookingConfirmedInAppWebViewPageView
                             arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
                         debugPrint('------RJ DETAILS----');
                       }
+                    },
+                    shouldOverrideUrlLoading: (controller, navigationAction) async {
+                      if (!navigationAction.request.url.toString().startsWith('https://')) {
+                        // Redirect to HTTPS if the URL is not secure
+                        return NavigationActionPolicy.ALLOW;
+                      }
+                      return NavigationActionPolicy.ALLOW;
+                    },
+                    onLoadResource: (controller, resource) {
+                      if (!resource.url.toString().startsWith('https://')) {
+                        // Log or handle insecure resource loading
+                      }
+                    },
+                    onReceivedHttpAuthRequest: (controller, challenge) async {
+                      // Handle HTTP authentication requests
+                      return HttpAuthResponse(action: HttpAuthResponseAction.CANCEL);
+                    },
+                    onReceivedServerTrustAuthRequest: (controller, challenge) async {
+                      // Handle server trust authentication requests
+                      return ServerTrustAuthResponse(
+                        action: ServerTrustAuthResponseAction.CANCEL,
+                      );
                     },
                   ),
                   AppStreamBuilder<double>(
