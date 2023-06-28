@@ -197,8 +197,10 @@ import 'package:data/entity/remote/device_change/resend_otp_device_change_reques
 import 'package:data/entity/remote/device_change/send_otp_token_device_change_request_entity.dart';
 import 'package:data/entity/remote/device_change/send_otp_token_email_request_entity.dart';
 import 'package:data/entity/remote/device_change/verify_device_change_otp_request_entity.dart';
-import 'package:data/entity/remote/e_voucher/my_voucher/my_voucher_response_entity.dart';
-import 'package:data/entity/remote/e_voucher/my_voucher/my_vouchers_request.dart';
+import 'package:data/entity/remote/e_voucher/voucher_category/voucher_categories_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_details_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_history/voucher_history_list_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_history/voucher_history_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_category_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_filter_request.dart';
 import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_detail_request.dart';
@@ -303,7 +305,6 @@ import '../entity/remote/contact/add_beneficiary_response_entity.dart';
 import '../entity/remote/contact/add_contact_request.dart';
 import '../entity/remote/contact/remove_avatar_request.dart';
 import '../entity/remote/contact/send_otp_add_beneficiary_data_response_entity.dart';
-import '../entity/remote/contact/send_otp_add_beneficiary_entity.dart';
 import '../entity/remote/contact/update_avatar_request.dart';
 import '../entity/remote/contact/update_contact_request.dart';
 
@@ -1200,7 +1201,7 @@ abstract class ApiService {
 
   ///Voucher Categories
   @POST("/Vouchers/GetCategories")
-  Future<HttpResponse<MyVoucherResponseEntity>> getVoucherCategories(@Body() BaseRequest request);
+  Future<HttpResponse<VoucherCategoriesResponseEntity>> getVoucherCategories(@Body() BaseRequest request);
 
   ///Voucher Items By Category
   @POST("/Vouchers/GetItemByCategory")
@@ -1208,11 +1209,12 @@ abstract class ApiService {
 
   ///My Vouchers
   @POST("/Vouchers/GetMyVouchers")
-  Future<HttpResponse<ResponseEntity>> getMyVouchers(@Body() MyVouchersRequest myVouchersRequest);
+  Future<HttpResponse<VoucherHistoryListResponseEntity>> getMyVouchers(@Body() VoucherHistoryRequest
+  myVouchersRequest);
 
   ///Voucher Details
   @POST("/Vouchers/GetVoucherDetails")
-  Future<HttpResponse<ResponseEntity>> getVoucherDetails(@Body() VoucherDetailRequest voucherDetailRequest);
+  Future<HttpResponse<VoucherDetailsResponseEntity>> getVoucherDetails(@Body() VoucherDetailRequest voucherDetailRequest);
 
   ///Voucher Items By Filter
   @POST("/Vouchers/GetItemsByFilter")

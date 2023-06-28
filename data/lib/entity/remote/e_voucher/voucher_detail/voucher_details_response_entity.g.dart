@@ -1,21 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'my_voucher_response_entity.dart';
+part of 'voucher_details_response_entity.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-MyVoucherResponseEntity _$MyVoucherResponseEntityFromJson(
+VoucherDetailsResponseEntity _$VoucherDetailsResponseEntityFromJson(
         Map<String, dynamic> json) =>
-    MyVoucherResponseEntity(
+    VoucherDetailsResponseEntity(
       json['response'] == null
           ? null
           : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$MyVoucherResponseEntityToJson(
-        MyVoucherResponseEntity instance) =>
+Map<String, dynamic> _$VoucherDetailsResponseEntityToJson(
+        VoucherDetailsResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

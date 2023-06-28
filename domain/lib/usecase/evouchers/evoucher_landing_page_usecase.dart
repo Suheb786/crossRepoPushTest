@@ -19,7 +19,7 @@ class EVoucherLandingPageUseCase extends BaseUseCase<BaseError, EVoucherLandingP
       case EVoucherLandingPageDataEnum.voucherCategories:
         return _eVoucherRepository.getVoucherCategories();
       case EVoucherLandingPageDataEnum.myVouchers:
-        return _eVoucherRepository.getMyVouchers(params.pageNo!, params.fromDate!, params.toDate!);
+        return _eVoucherRepository.getMyVouchers(params.pageNo!, params.rangeOfMonths!);
       case EVoucherLandingPageDataEnum.voucherDetails:
         return _eVoucherRepository.getVoucherDetails(params.orderIdentifier!);
       case EVoucherLandingPageDataEnum.voucherByFilter:
@@ -36,8 +36,7 @@ class EVoucherLandingPageUseCaseParams extends Params {
 
   // my vouchers
   final String? pageNo;
-  final String? fromDate;
-  final String? toDate;
+  final int? rangeOfMonths;
 
   // voucherDetails
   final String? orderIdentifier;
@@ -56,8 +55,7 @@ class EVoucherLandingPageUseCaseParams extends Params {
   EVoucherLandingPageUseCaseParams(
       {required this.eVoucherLandingPageDataEnum,
       this.pageNo,
-      this.fromDate,
-      this.toDate,
+      this.rangeOfMonths,
       this.orderIdentifier,
       this.category,
       this.region,
@@ -75,12 +73,10 @@ class EVoucherLandingPageUseCaseParams extends Params {
         if (pageNo == null) {
           return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.UI, cause: Exception()));
         }
-        if (fromDate == null) {
+        if (rangeOfMonths == null) {
           return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.UI, cause: Exception()));
         }
-        if (toDate == null) {
-          return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.UI, cause: Exception()));
-        }
+
         return Right(true);
 
       case EVoucherLandingPageDataEnum.voucherDetails:

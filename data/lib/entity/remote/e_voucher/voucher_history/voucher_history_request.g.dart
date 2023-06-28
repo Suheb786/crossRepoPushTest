@@ -1,25 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'my_vouchers_request.dart';
+part of 'voucher_history_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-MyVouchersRequest _$MyVouchersRequestFromJson(Map<String, dynamic> json) =>
-    MyVouchersRequest(
+VoucherHistoryRequest _$VoucherHistoryRequestFromJson(
+        Map<String, dynamic> json) =>
+    VoucherHistoryRequest(
       PageNo: json['PageNo'] as String?,
-      FromDate: json['FromDate'] as String?,
-      ToDate: json['ToDate'] as String?,
+      rangeOfMonths: json['RangeOfMonths'] as int?,
       getToken: json['GetToken'] as bool? ?? true,
       baseData: json['baseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$MyVouchersRequestToJson(MyVouchersRequest instance) =>
+Map<String, dynamic> _$VoucherHistoryRequestToJson(
+        VoucherHistoryRequest instance) =>
     <String, dynamic>{
       'PageNo': instance.PageNo,
-      'FromDate': instance.FromDate,
-      'ToDate': instance.ToDate,
+      'RangeOfMonths': instance.rangeOfMonths,
       'GetToken': instance.getToken,
       'baseClass': instance.baseData,
     };

@@ -1871,6 +1871,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "kycStausError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "last30Day": MessageLookupByLibrary.simpleMessage("Last 30 days"),
+        "last_30_days": MessageLookupByLibrary.simpleMessage("Last 30 days"),
+        "last_60_days": MessageLookupByLibrary.simpleMessage("Last 60 days"),
+        "last_90_days": MessageLookupByLibrary.simpleMessage("Last 90 days"),
         "legalDocumentNo":
             MessageLookupByLibrary.simpleMessage("LEGAL DOCUMENT NO."),
         "lessThanPrimary": MessageLookupByLibrary.simpleMessage(

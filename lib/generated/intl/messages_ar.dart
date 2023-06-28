@@ -1815,6 +1815,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "kycStausError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-004)"),
         "last30Day": MessageLookupByLibrary.simpleMessage("آخر 30 يوم"),
+        "last_30_days": MessageLookupByLibrary.simpleMessage("آخر 30 يوم"),
+        "last_60_days": MessageLookupByLibrary.simpleMessage("آخر 60 يوم"),
+        "last_90_days": MessageLookupByLibrary.simpleMessage("آخر 90 يوم"),
         "legalDocumentNo":
             MessageLookupByLibrary.simpleMessage("رقم الوثيقة القانونية"),
         "lessThanPrimary": MessageLookupByLibrary.simpleMessage(

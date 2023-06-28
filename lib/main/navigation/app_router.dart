@@ -1,3 +1,4 @@
+import 'package:domain/model/e_voucher/voucher_by_date.dart';
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/payment/transfer_success_content.dart';
 import 'package:flutter/cupertino.dart';
@@ -657,7 +658,7 @@ class AppRouter {
 
       case RoutePaths.EvoucherDetail:
         return CupertinoPageRoute(
-            builder: (context) => EvoucherDetailPage(),
+            builder: (context) => EVoucherDetailPage(settings.arguments as String),
             settings: RouteSettings(name: RoutePaths.EvoucherDetail));
 
       case RoutePaths.PurchaseNowDetail:
@@ -889,10 +890,12 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => BeneficiaryContactDetailsPage(settings.arguments as dynamic),
             settings: RouteSettings(name: RoutePaths.BeneficiaryContactDetailsPage));
+
       case RoutePaths.PaymentActivityPage:
         return CupertinoPageRoute(
             builder: (context) => PaymentActivityPage(),
             settings: RouteSettings(name: RoutePaths.PaymentActivityPage));
+
       case RoutePaths.BeneficiaryTransactionHistoryList:
         return CupertinoPageRoute(
             builder: (context) => BeneficiaryTransactionHistoryListPage(settings.arguments as NavigationType),

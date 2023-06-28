@@ -19,7 +19,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
-          Navigator.pushNamed(context, RoutePaths.EvoucherDetail);
+          Navigator.pushNamed(context, RoutePaths.EvoucherDetail, arguments: '');
         }
       },
       child: Container(

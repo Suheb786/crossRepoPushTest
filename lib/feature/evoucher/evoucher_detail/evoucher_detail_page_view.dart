@@ -9,9 +9,9 @@ import 'package:neo_bank/ui/molecules/evoucher/evoucher_text_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-import 'evoucher_detail_model.dart';
+import 'evoucher_detail_page_view_model.dart';
 
-class EvoucherDetailView extends BasePageViewWidget<EvoucherDetailViewModel> {
+class EvoucherDetailView extends BasePageViewWidget<EVoucherDetailViewModel> {
   EvoucherDetailView(ProviderBase model) : super(model);
 
   @override
@@ -23,7 +23,7 @@ class EvoucherDetailView extends BasePageViewWidget<EvoucherDetailViewModel> {
             children: [
               Container(
                 height: 180,
-                color: Colors.yellow,
+                color: Theme.of(context).colorScheme.secondary,
               ),
               PositionedDirectional(
                 top: 47,

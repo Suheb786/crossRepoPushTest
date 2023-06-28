@@ -1,17 +1,20 @@
-import 'package:data/entity/remote/e_voucher/my_voucher/my_voucher_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_category/voucher_categories_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_filter_response_entity.dart';
 import 'package:retrofit/dio.dart';
 
-import '../../entity/remote/user/response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_detail_request.dart';
+import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_details_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_history/voucher_history_list_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_history/voucher_history_request.dart';
 
 abstract class EVoucherRemoteDS {
-  Future<HttpResponse<MyVoucherResponseEntity>> getVoucherCategories();
+  Future<HttpResponse<VoucherCategoriesResponseEntity>> getVoucherCategories();
 
   Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByCategory(String category);
 
-  Future<HttpResponse<ResponseEntity>> getMyVouchers(String pageNo, String fromDate, String toDate);
+  Future<HttpResponse<VoucherHistoryListResponseEntity>> getMyVouchers(String pageNo, int transactionPeriod);
 
-  Future<HttpResponse<ResponseEntity>> getVoucherDetails(String orderIdentifier);
+  Future<HttpResponse<VoucherDetailsResponseEntity>> getVoucherDetails(String orderIdentifier);
 
   Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByFilter(
       String category, String region, String minValue, String maxValue);

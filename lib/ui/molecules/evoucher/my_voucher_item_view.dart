@@ -1,27 +1,34 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:domain/model/e_voucher/voucher_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+import 'package:neo_bank/utils/time_utils.dart';
 
 class MyVoucherItemView extends StatelessWidget {
-  const MyVoucherItemView({
+  VoucherDetail data;
+
+  MyVoucherItemView(
+    this.data, {
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0) + const EdgeInsets.only(top: 16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2) + const EdgeInsets.only(top: 4),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.green),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20), color: AppColor.darkModerateLimeGreen),
               child: Text(
-                "Failed",
+                data.lineItems.first.status ?? '',
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: Theme.of(context).colorScheme.secondary,
@@ -33,12 +40,15 @@ class MyVoucherItemView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
+                height: 40,
+                width: 40,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: Image.asset(
-                  AssetUtils.playStationIcon,
-                  height: 40,
-                  width: 40,
+                child: CachedNetworkImage(
+                  imageUrl: data.cardImage ?? '',
+                  placeholder: (context, url) => Container(color: AppColor.brightBlue),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  fit: BoxFit.cover,
                 ),
               ),
               Expanded(
@@ -49,15 +59,18 @@ class MyVoucherItemView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 4),
-                        Text(S.of(context).myVoucherItemTitle,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: AppColor.gray_black,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600)),
+                        Text(
+                          data.lineItems.first.cardItemName ?? '',
+                          style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            color: AppColor.gray_black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                         const SizedBox(height: 4),
                         Text(
-                          "6:10PM",
+                          TimeUtils.getFormattedTimeForTransaction(data.creationDate.toString()),
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: AppColor.gray1,
@@ -73,7 +86,7 @@ class MyVoucherItemView extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "-5000",
+                      data.lineItems.first.value.toString(),
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           color: AppColor.dark_brown,
@@ -82,7 +95,7 @@ class MyVoucherItemView extends StatelessWidget {
                     ),
                     const SizedBox(width: 2),
                     Text(
-                      'JOD'.toUpperCase(),
+                      data.lineItems.first.currency ?? '',
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           color: AppColor.gray1,
@@ -94,6 +107,7 @@ class MyVoucherItemView extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 16),
         ],
       ),
     );

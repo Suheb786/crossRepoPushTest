@@ -1,10 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/base_error.dart';
+import 'package:domain/model/e_voucher/voucher_by_date.dart';
 import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:domain/usecase/evouchers/evoucher_landing_page_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/model/transaction_period.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -14,6 +17,8 @@ import 'package:rxdart/rxdart.dart';
 class EvoucherViewModel extends BasePageViewModel {
   TextEditingController myVoucherSearchController = TextEditingController();
   TextEditingController buyVoucherSearchController = TextEditingController();
+  final ScrollController scrollController = ScrollController();
+  bool isApiCalling = false;
 
   EVoucherLandingPageUseCase _eVoucherLandingPageUseCase;
 
@@ -31,9 +36,11 @@ class EvoucherViewModel extends BasePageViewModel {
       _voucherCategoriesResponseSubject.stream;
 
   /// ------------- my vouchers stream -----------------------
-  BehaviorSubject<Resource<bool>> _myVoucherResponseSubject = BehaviorSubject();
+  BehaviorSubject<Resource<List<VouchersByDate>>> _myVoucherResponseSubject = BehaviorSubject();
 
-  Stream<Resource<bool>> get myVoucherResponseStream => _myVoucherResponseSubject.stream;
+  Stream<Resource<List<VouchersByDate>>> get myVoucherResponseStream => _myVoucherResponseSubject.stream;
+
+  List<VouchersByDate> myVoucherHistoryList = [];
 
   /// ------------- voucher by Filter & Search stream -----------------------
   BehaviorSubject<Resource<List<VoucherItem>>> _voucherByFilterAndSearchResponseSubject = BehaviorSubject();
@@ -41,14 +48,12 @@ class EvoucherViewModel extends BasePageViewModel {
   Stream<Resource<List<VoucherItem>>> get voucherByFilterAndSearchResponseStream =>
       _voucherByFilterAndSearchResponseSubject.stream;
 
-  /*/// ------------- voucher by Search stream -----------------------
-  BehaviorSubject<Resource<bool>> _voucherBySearchResponseSubject = BehaviorSubject();
-
-  Stream<Resource<bool>> get voucherBySearchResponseStream => _voucherBySearchResponseSubject.stream;*/
-
   /// ------------- tabChange listener -----------------------
 
   ValueNotifier<int> tabChangeNotifier = ValueNotifier(0);
+
+  List<TransactionPeriod> transactionPeriods = [];
+  late int selectedTransactionHistoryPeriod;
 
   EvoucherViewModel(this._eVoucherLandingPageUseCase) {
     _voucherLandingPageRequestSubject.listen((value) {
@@ -73,7 +78,7 @@ class EvoucherViewModel extends BasePageViewModel {
           break;
       }
     });
-
+    getMoreScrollListener();
     getVoucherCategories();
   }
 
@@ -84,6 +89,7 @@ class EvoucherViewModel extends BasePageViewModel {
     }).asFlow().listen((event) {
       if (event.status == Status.SUCCESS) {
         // done...
+        addTransactionPeriod();
       } else if (event.status == Status.ERROR) {
         showToastWithError(event.appError!);
       }
@@ -93,15 +99,19 @@ class EvoucherViewModel extends BasePageViewModel {
   }
 
   void listenToMyVouchers(EVoucherLandingPageUseCaseParams value) {
-    RequestManager<bool>(value, createCall: () {
-      return _eVoucherLandingPageUseCase.execute(params: value) as Future<Either<BaseError, bool>>;
+    RequestManager<List<VouchersByDate>>(value, createCall: () {
+      return _eVoucherLandingPageUseCase.execute(params: value)
+          as Future<Either<BaseError, List<VouchersByDate>>>;
     }).asFlow().listen((event) {
       if (event.status == Status.SUCCESS) {
         // done...
-        getMyVouchers();
+        isApiCalling = false;
+        myVoucherHistoryList.addAll(event.data!);
       } else if (event.status == Status.ERROR) {
+        isApiCalling = false;
         showToastWithError(event.appError!);
       }
+      _myVoucherResponseSubject.safeAdd(event);
       updateLoader();
     });
   }
@@ -169,15 +179,6 @@ class EvoucherViewModel extends BasePageViewModel {
     ));
   }
 
-  void getMyVouchers() {
-    _voucherLandingPageRequestSubject.safeAdd(EVoucherLandingPageUseCaseParams(
-      eVoucherLandingPageDataEnum: EVoucherLandingPageDataEnum.myVouchers,
-      pageNo: '0',
-      fromDate: '2013-04-27 20:57:01',
-      toDate: '2013-04-28 20:57:01',
-    ));
-  }
-
   void toggleSearch(bool focus) {
     if (buyVoucherSearchController.text.trim().isEmpty) {
       categoriesDisplayToggleNotifier.value = true;
@@ -207,11 +208,60 @@ class EvoucherViewModel extends BasePageViewModel {
     _voucherLandingPageRequestSubject.close();
     _voucherCategoriesResponseSubject.close();
     _myVoucherResponseSubject.close();
-    // _voucherByCategoryResponseSubject.close();
     _voucherByFilterAndSearchResponseSubject.close();
-    // _voucherBySearchResponseSubject.close();
-    // _voucherBySearchResponseSubject.close();
     tabChangeNotifier.dispose();
+    scrollController.dispose();
     super.dispose();
+  }
+
+  void addTransactionPeriod() {
+    transactionPeriods.clear();
+    transactionPeriods.add(TransactionPeriod(dayPeriodString: S.current.last_30_days, dayPeriod: 30));
+    transactionPeriods.add(TransactionPeriod(dayPeriodString: S.current.last_60_days, dayPeriod: 60));
+    transactionPeriods.add(TransactionPeriod(dayPeriodString: S.current.last_90_days, dayPeriod: 90));
+
+    selectedTransactionHistoryPeriod = transactionPeriods.first.dayPeriod;
+    selectTransactionPeriodAndCallApi();
+  }
+
+  void selectTransactionPeriodAndCallApi() {
+    _voucherLandingPageRequestSubject.safeAdd(EVoucherLandingPageUseCaseParams(
+      eVoucherLandingPageDataEnum: EVoucherLandingPageDataEnum.myVouchers,
+      pageNo: '$pageNo',
+      rangeOfMonths: selectedTransactionHistoryPeriod,
+    ));
+  }
+
+  int pageNo = 1;
+  bool hasMoreData = true;
+
+  void getMoreScrollListener() {
+    if (scrollController.hasListeners) return;
+    scrollController.addListener(() {
+      // Don't call the API again
+      if (!hasMoreData) return;
+
+      // If is scrolled till the end
+      if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+        if (isApiCalling) return;
+        isApiCalling = true;
+        // Increment the Page no. for more data
+        pageNo++;
+
+        // Call the API for getting more data with
+        // incremented Page no.
+        if (pageNo > 1 /*&& searchTextList.isEmpty*/) {
+          debugPrint('Entered here--------> too');
+          selectTransactionPeriodAndCallApi();
+        }
+      }
+    });
+  }
+
+  void setSelectedTransactionPeriod(String value) {
+    selectedTransactionHistoryPeriod =
+        transactionPeriods.firstWhere((element) => element.dayPeriodString == value).dayPeriod;
+    myVoucherHistoryList = [];
+    _myVoucherResponseSubject.safeAdd(Resource.success(data: myVoucherHistoryList));
   }
 }

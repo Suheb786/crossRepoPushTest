@@ -5,6 +5,7 @@ import 'package:domain/usecase/evouchers/evoucher_by_category_usecase.dart';
 import 'package:domain/usecase/evouchers/select_account_usecase.dart';
 import 'package:domain/usecase/evouchers/select_region_amount_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_landing_page_usecase.dart';
+import 'package:domain/usecase/evouchers/evoucher_details_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[SelectRegionAmountUseCase] provider
@@ -29,11 +30,16 @@ final enterOtpForEVoucherCategoryPurchaseUseCaseUseCaseProvider =
 );
 
 ///[EVoucherLandingPageUseCase] provider
-final landingPageUseCase = Provider.autoDispose<EVoucherLandingPageUseCase>(
+final eVoucherLandingPageUseCase = Provider.autoDispose<EVoucherLandingPageUseCase>(
   (ref) => EVoucherLandingPageUseCase(ref.read(eVoucherRepositoryProvider)),
 );
 
 ///[EVoucherByCategoryPageUseCase] provider
 final eVoucherByCategoryPageUseCase = Provider.autoDispose<EVoucherByCategoryPageUseCase>(
         (ref) => EVoucherByCategoryPageUseCase(ref.read(eVoucherRepositoryProvider)),
+);
+
+///[EVoucherDetailsPageUseCase] provider
+final eVoucherDetailsPageUseCase = Provider.autoDispose<EVoucherDetailsPageUseCase>(
+        (ref) => EVoucherDetailsPageUseCase(ref.read(eVoucherRepositoryProvider)),
 );
