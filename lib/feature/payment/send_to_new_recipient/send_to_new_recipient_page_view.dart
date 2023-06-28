@@ -193,7 +193,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                 onTap: () async {
                                                                   InformationDialog.show(context,
                                                                       isSwipeToCancel: false,
-                                                                      title: S.of(context).numberFormatting,
+                                                                      title: S.of(context).contactInformation,
                                                                       descriptionWidget: Column(
                                                                         children: [
                                                                           Text(

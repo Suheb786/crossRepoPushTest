@@ -142,13 +142,14 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                           InformationDialog.show(context,
                                                               isSwipeToCancel: false,
                                                               title:
-                                                                  S.of(context).mobileNoRegisteredWithBlink,
+                                                                  S.of(context).contactInformation,
                                                               descriptionWidget: Column(
                                                                 children: [
                                                                   Text(
                                                                     S.of(context).requestMoneyFormateSample,
                                                                     style: TextStyle(
                                                                         fontFamily: StringUtils.appFont,
+                                                                        color: Theme.of(context).colorScheme.surface,
                                                                         fontSize: 14.t,
                                                                         fontWeight: FontWeight.w400),
                                                                   ),

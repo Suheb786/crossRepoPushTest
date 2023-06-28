@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -915,13 +914,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Drag & move the map to adjust the location"),
         "due": MessageLookupByLibrary.simpleMessage("Due"),
         "dueAmt": MessageLookupByLibrary.simpleMessage("Due Amount"),
-        "dummyAccountNo": MessageLookupByLibrary.simpleMessage("9911 1407 61"),
+        "dummyAccountNo": MessageLookupByLibrary.simpleMessage("9xxxxxxxxx"),
         "dummyAlias": MessageLookupByLibrary.simpleMessage("username1"),
         "dummyAmount": MessageLookupByLibrary.simpleMessage("659.570"),
         "dummyIBAN":
-            MessageLookupByLibrary.simpleMessage("ABC000012341234123819241213"),
-        "dummyMobileNo":
-            MessageLookupByLibrary.simpleMessage("00962 3320 8080"),
+            MessageLookupByLibrary.simpleMessage("ABC0000038363829727227184"),
+        "dummyMobileNo": MessageLookupByLibrary.simpleMessage("00962xxxxxxxxx"),
         "eVoucherDetailDescption": MessageLookupByLibrary.simpleMessage(
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo."),
         "eVoucherLandingDialogDescption": MessageLookupByLibrary.simpleMessage(
@@ -1965,6 +1963,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "manageCliqId": MessageLookupByLibrary.simpleMessage("Manage CliQ ID"),
         "manageCliqIdRoute":
             MessageLookupByLibrary.simpleMessage("Manage\nCliQ ID"),
+        "manageContactSendRequestSample": MessageLookupByLibrary.simpleMessage(
+            "Please provide any account details you have for your contact. Sending and requesting money is done either within Blink or via CliQ.\nPlease be mindful of the formatting examples as follows:\n\n"),
         "manageContacts":
             MessageLookupByLibrary.simpleMessage("Manage Contacts"),
         "manageContactsSettings":
@@ -2550,7 +2550,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "requestMoneyFeatureDisabled": MessageLookupByLibrary.simpleMessage(
             "Oops, the request to pay service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100."),
         "requestMoneyFormateSample": MessageLookupByLibrary.simpleMessage(
-            "Request Money Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\nPlease be mindful of the formatting examples as follows:\n"),
+            "Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\nPlease be mindful of the formatting examples as follows:\n\n"),
         "requestMoneyFrom":
             MessageLookupByLibrary.simpleMessage("Request money from"),
         "requestMoneyFromOtherBank": MessageLookupByLibrary.simpleMessage(
@@ -2734,7 +2734,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Send and request with ease up to 9 favourite contacts. Would you like to add this contact to your favourite?"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("Send Money"),
         "sendMoneyFormateSample": MessageLookupByLibrary.simpleMessage(
-            "Please provide any account details you have for your contact,and we will take care of the rest. If the contact’s account is in Blink, we will send the money to Blink account, otherwise, we will send it via CliQ to his/her bank account.\n Please be mindful of the formatting examples as follows:\n"),
+            "Please provide any account details you have for your contact,and we will take care of the rest. If the contact’s account is in Blink, we will send the money to Blink account, otherwise, we will send it via CliQ to his/her bank account. \nPlease be mindful of the formatting examples as follows:\n\n"),
         "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "Your attempt to send money was unsuccessful."),
         "sendMoneyTo": MessageLookupByLibrary.simpleMessage("Send money to"),

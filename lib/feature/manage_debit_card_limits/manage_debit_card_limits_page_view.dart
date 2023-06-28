@@ -45,7 +45,7 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                   num.parse(debitCardLimitResponse.data!.debitCardLimitContent!.limits![1].currentLimit!) > 0
                       ? true
                       : false;
-              model.isOnlinePurchase =
+              model.isOnlinePurchase = model.isOnlinePurchaseInitialValue =
                   num.parse(debitCardLimitResponse.data!.debitCardLimitContent!.limits![4].currentLimit!) > 0
                       ? true
                       : false;
