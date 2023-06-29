@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -17586,6 +17585,76 @@ class S {
     return Intl.message(
       'View Transactions',
       name: 'viewTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide any account details you have for your contact,and we will take care of the rest. If the contact’s account is in Blink, we will send the money to Blink account, otherwise, we will send it via CliQ to his/her bank account.\n Please be mindful of the formatting examples as follows:\n`
+  String get sendMoneyFormateSample {
+    return Intl.message(
+      'Please provide any account details you have for your contact,and we will take care of the rest. If the contact’s account is in Blink, we will send the money to Blink account, otherwise, we will send it via CliQ to his/her bank account.\n Please be mindful of the formatting examples as follows:\n',
+      name: 'sendMoneyFormateSample',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IBAN (CliQ)`
+  String get ibanCliq {
+    return Intl.message(
+      'IBAN (CliQ)',
+      name: 'ibanCliq',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account No. (Blink)`
+  String get accountBlink {
+    return Intl.message(
+      'Account No. (Blink)',
+      name: 'accountBlink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile No. (CliQ or Blink)`
+  String get mobileNoCliqorBlink {
+    return Intl.message(
+      'Mobile No. (CliQ or Blink)',
+      name: 'mobileNoCliqorBlink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alias (CliQ)`
+  String get aliasCliq {
+    return Intl.message(
+      'Alias (CliQ)',
+      name: 'aliasCliq',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request Money Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\nPlease be mindful of the formatting examples as follows:\n`
+  String get requestMoneyFormateSample {
+    return Intl.message(
+      'Request Money Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\nPlease be mindful of the formatting examples as follows:\n',
+      name: 'requestMoneyFormateSample',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile No. (CliQ)`
+  String get mobileNoCliq {
+    return Intl.message(
+      'Mobile No. (CliQ)',
+      name: 'mobileNoCliq',
       desc: '',
       args: [],
     );

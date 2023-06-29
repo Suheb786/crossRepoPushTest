@@ -146,26 +146,22 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                               descriptionWidget: Column(
                                                                 children: [
                                                                   Text(
-                                                                    S.of(context).samplesOfNoFormatting,
+                                                                    S.of(context).requestMoneyFormateSample,
                                                                     style: TextStyle(
                                                                         fontFamily: StringUtils.appFont,
                                                                         fontSize: 14.t,
                                                                         fontWeight: FontWeight.w400),
                                                                   ),
                                                                   NumberFormattingWidget(
-                                                                    title: S.of(context).iban,
+                                                                    title: S.of(context).ibanCliq,
                                                                     desc: S.of(context).dummyIBAN,
                                                                   ),
                                                                   NumberFormattingWidget(
-                                                                    title: S.of(context).accountNumber,
-                                                                    desc: S.of(context).dummyAccountNo,
-                                                                  ),
-                                                                  NumberFormattingWidget(
-                                                                    title: S.of(context).mobileNo,
+                                                                    title: S.of(context).mobileNoCliq,
                                                                     desc: S.of(context).dummyMobileNo,
                                                                   ),
                                                                   NumberFormattingWidget(
-                                                                    title: S.of(context).alias,
+                                                                    title: S.of(context).aliasCliq,
                                                                     desc: S.of(context).dummyAlias,
                                                                   )
                                                                 ],
