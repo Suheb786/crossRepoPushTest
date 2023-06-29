@@ -235,8 +235,8 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   }
 
   void checkSendMoney({required String iban, required String amount}) {
-    _checkSendMoneyRequest
-        .safeAdd(CheckSendMoneyUseCaseParams(toAccount: iban, toAmount: double.parse(amount)));
+    _checkSendMoneyRequest.safeAdd(
+        CheckSendMoneyUseCaseParams(toAccount: iban, toAmount: double.parse(amount), beneficiaryId: ''));
   }
 
   void sendToNewRecipient(BuildContext context) {

@@ -1050,27 +1050,21 @@ class MessageLookup extends MessageLookupByLibrary {
             "أدخل الرمز السري PIN الجديد وأكّد عليه"),
         "enterNewEmailAddress":
             MessageLookupByLibrary.simpleMessage("أدخل إيميلك الجديد"),
-        "enterNewMobileNo":
-            MessageLookupByLibrary.simpleMessage("أدخل رقم موبايلك الجديد"),
+        "enterNewMobileNo": MessageLookupByLibrary.simpleMessage("أدخل رقم موبايلك الجديد"),
         "enterOTPheaderwithVaiable": m1,
-        "enterOtpHeader": MessageLookupByLibrary.simpleMessage(
-            "أدخل الكود المكون من 6 خانات اللي وصلك على رقم"),
-        "enterPassword":
-            MessageLookupByLibrary.simpleMessage("لازم تدخّل كلمة المرور"),
-        "enterValidEmail":
-            MessageLookupByLibrary.simpleMessage("أدخل الإيميل الصحيح"),
-        "enterValidEmployeeStatus":
-            MessageLookupByLibrary.simpleMessage("اختارالوظيفة"),
-        "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
-            "رقم الموبايل اللي دخلته غير صحيح. حاول كمان مرة."),
-        "enterValidNature": MessageLookupByLibrary.simpleMessage(
-            "اختار طبيعة الاحتياجات الخاصة"),
-        "enterValidOtp": MessageLookupByLibrary.simpleMessage(
-            "يرجى إدخال كلمة مرور OTP الصحيحة "),
-        "enterValidPersonsName":
-            MessageLookupByLibrary.simpleMessage("أدخل اسم الشخص"),
-        "enterValidPersonsRole":
-            MessageLookupByLibrary.simpleMessage("أدخل وظيفته"),
+        "enterOtpHeader":
+            MessageLookupByLibrary.simpleMessage("أدخل الكود المكون من 6 خانات اللي وصلك على رقم"),
+        "enterPassword": MessageLookupByLibrary.simpleMessage("لازم تدخّل كلمة المرور"),
+        "enterValidEmail": MessageLookupByLibrary.simpleMessage("أدخل الإيميل الصحيح"),
+        "enterValidEmployeeStatus": MessageLookupByLibrary.simpleMessage("اختارالوظيفة"),
+        "enterValidIBANCLiQ": MessageLookupByLibrary.simpleMessage(
+            "عفوا!  ادخل رقم حساب IBAN  أو الاسم المستعار أو رقم الهاتف في كليك لطلب حوالة"),
+        "enterValidMobileNumber":
+            MessageLookupByLibrary.simpleMessage("رقم الموبايل اللي دخلته غير صحيح. حاول كمان مرة."),
+        "enterValidNature": MessageLookupByLibrary.simpleMessage("اختار طبيعة الاحتياجات الخاصة"),
+        "enterValidOtp": MessageLookupByLibrary.simpleMessage("يرجى إدخال كلمة مرور OTP الصحيحة "),
+        "enterValidPersonsName": MessageLookupByLibrary.simpleMessage("أدخل اسم الشخص"),
+        "enterValidPersonsRole": MessageLookupByLibrary.simpleMessage("أدخل وظيفته"),
         "enterValidRelationshipWithPEP":
             MessageLookupByLibrary.simpleMessage("أدخل طبيعة العلاقة مع PEP"),
         "enterValidSpouseName":
@@ -1494,28 +1488,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "howWouldLikeToPayPrePaidYourBills":
             MessageLookupByLibrary.simpleMessage(
                 "كيف ترغب ان تقوم بتسديد فواتيرك المدفوعة مسبقا"),
-        "howWouldLikeToPayYourBills": MessageLookupByLibrary.simpleMessage(
-            "كيف ترغب ان تقوم بتسديد فواتيرك"),
-        "howYouLikeToPayment":
-            MessageLookupByLibrary.simpleMessage("كيف تفضل ان تدفع"),
+        "howWouldLikeToPayYourBills": MessageLookupByLibrary.simpleMessage("كيف ترغب ان تقوم بتسديد فواتيرك"),
+        "howYouLikeToPayment": MessageLookupByLibrary.simpleMessage("كيف تفضل ان تدفع"),
         "iConfirmThatAllInfoAccurateFatca":
-            MessageLookupByLibrary.simpleMessage(
-                "أؤكد على أن جميع المعلومات المزودة دقيقة."),
+            MessageLookupByLibrary.simpleMessage("أؤكد على أن جميع المعلومات المزودة دقيقة."),
         "iConfirmThatMy": MessageLookupByLibrary.simpleMessage("أوكد على"),
         "iDNumber": MessageLookupByLibrary.simpleMessage("رقم الهوية"),
         "iHaveAnAccount": MessageLookupByLibrary.simpleMessage("عندي حساب"),
         "iban": MessageLookupByLibrary.simpleMessage("الأيبان"),
-        "ibanCliq":
-            MessageLookupByLibrary.simpleMessage("IBAN(تحويل من خالل كليك)"),
+        "ibanAccountNumberMobileNumberAlisInvalid": MessageLookupByLibrary.simpleMessage(
+            "Oops! IBAN/account number/ mobile number/Alias is invalid, use another one."),
+        "ibanCliq": MessageLookupByLibrary.simpleMessage("IBAN(تحويل من خالل كليك)"),
         "ibanCopied": MessageLookupByLibrary.simpleMessage("نسخ الأيبان"),
-        "ibanMobileNoAlias": MessageLookupByLibrary.simpleMessage(
-            "الأيبان/ رقم موبايل/ اسم مستعار"),
-        "ibanNotBlink": MessageLookupByLibrary.simpleMessage(
-            "رقم الأيبان غير موجود على Blink"),
-        "ibanNumber":
-            MessageLookupByLibrary.simpleMessage("84118220000022123444"),
-        "ibanOrMobile": MessageLookupByLibrary.simpleMessage(
-            "الأيبان/ رقم موبايل/ اسم مستعار"),
+        "ibanMobileNoAlias": MessageLookupByLibrary.simpleMessage("الأيبان/ رقم موبايل/ اسم مستعار"),
+        "ibanNotBlink": MessageLookupByLibrary.simpleMessage("رقم الأيبان غير موجود على Blink"),
+        "ibanNumber": MessageLookupByLibrary.simpleMessage("84118220000022123444"),
+        "ibanOrMobile": MessageLookupByLibrary.simpleMessage("الأيبان/ رقم موبايل/ اسم مستعار"),
         "ibanOrMobileOrAccount": MessageLookupByLibrary.simpleMessage(
             "الأيبان/ رقم الموبايل/ الحساب"),
         "ibanOrMobileRequest":
@@ -2866,25 +2854,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalUsedLimit":
             MessageLookupByLibrary.simpleMessage("السقف الإجمالي المستغل "),
         "towithspace": MessageLookupByLibrary.simpleMessage("الى"),
-        "transactionHistory":
-            MessageLookupByLibrary.simpleMessage("سجل الحركات"),
-        "transactionNotAllowed":
-            MessageLookupByLibrary.simpleMessage("الحركة غير مسموحة"),
-        "transactionPeriod":
-            MessageLookupByLibrary.simpleMessage("فترة الحركة"),
-        "transactionPurpose":
-            MessageLookupByLibrary.simpleMessage("سبب الحركة"),
+        "transactionHistory": MessageLookupByLibrary.simpleMessage("سجل الحركات"),
+        "transactionNotAllowed": MessageLookupByLibrary.simpleMessage("الحركة غير مسموحة"),
+        "transactionPeriod": MessageLookupByLibrary.simpleMessage("فترة الحركة"),
+        "transactionPurpose": MessageLookupByLibrary.simpleMessage("سبب الحركة"),
         "transactionType": MessageLookupByLibrary.simpleMessage("نوع الحركة"),
+        "transferCannotbeDone": MessageLookupByLibrary.simpleMessage(
+            "Transfer cannot be done,beneficiary details need an update."),
         "transferTypeNF": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-117)"),
         "transferTypeNFRTP": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-118)"),
-        "transictionHistory":
-            MessageLookupByLibrary.simpleMessage("الحوالات السابقة"),
-        "travelAndTransportation":
-            MessageLookupByLibrary.simpleMessage("السفر و التنقل"),
-        "treatyClaimRate": MessageLookupByLibrary.simpleMessage(
-            "معدل مطالبة الاتفاق الضريبي (%)"),
+        "transictionHistory": MessageLookupByLibrary.simpleMessage("الحوالات السابقة"),
+        "travelAndTransportation": MessageLookupByLibrary.simpleMessage("السفر و التنقل"),
+        "treatyClaimRate": MessageLookupByLibrary.simpleMessage("معدل مطالبة الاتفاق الضريبي (%)"),
         "tryAgainLater": MessageLookupByLibrary.simpleMessage(
             "في مشكلة بدفعتك، حاول كمان مرة. إذا بدك مساعدة، تواصل معنا."),
         "typeOfExpectedTransactions":

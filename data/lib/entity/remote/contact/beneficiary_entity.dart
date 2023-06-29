@@ -15,6 +15,8 @@ class BeneficiaryEntity extends BaseLayerDataTransformer<BeneficiaryEntity, Bene
   final String? profileImage;
   @JsonKey(name: "id")
   final String? id;
+  @JsonKey(name: "userId")
+  final String? userId;
   @JsonKey(name: "accountNo")
   final String? accountNo;
   @JsonKey(name: "beneficiaryIban")
@@ -54,6 +56,7 @@ class BeneficiaryEntity extends BaseLayerDataTransformer<BeneficiaryEntity, Bene
       this.iban = "",
       this.purpose = "",
       this.id = "",
+      this.userId = "",
       this.beneType = "",
       this.purposeType = "",
       this.detCustomerType = "",
@@ -74,6 +77,7 @@ class BeneficiaryEntity extends BaseLayerDataTransformer<BeneficiaryEntity, Bene
   Beneficiary transform() {
     return Beneficiary(
         id: this.id,
+        userId: this.userId,
         bankName: this.bankName ?? '',
         nickName: this.nickName,
         fullName: this.fullName,

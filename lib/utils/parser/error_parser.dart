@@ -1389,6 +1389,12 @@ class ErrorParser {
         return localisedHelper.removeAvatarFailure;
       case ErrorType.CONTACT_ADDING_FAVOURITE_FAILURE:
         return localisedHelper.ContactMarkFavouriteFailure;
+      case ErrorType.IBAN_ACCOUNTNUMBER_MOBILENUMBER_ALIAS_INVALID:
+        return localisedHelper.ibanAccountNumberMobileNumberAlisInvalid;
+      case ErrorType.PLEASE_ENTER_IBAN_CLIQ:
+        return localisedHelper.enterValidIBANCLiQ;
+      case ErrorType.TRANSFER_CANNOT_BE_DONE:
+        return localisedHelper.transferCannotbeDone;
 
       default:
         return "";

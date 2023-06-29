@@ -1084,27 +1084,21 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter new card PIN\nand confirm PIN"),
         "enterNewEmailAddress": MessageLookupByLibrary.simpleMessage(
             "Please enter your\nnew email"),
-        "enterNewMobileNo": MessageLookupByLibrary.simpleMessage(
-            "Please enter your\nnew mobile number"),
+        "enterNewMobileNo": MessageLookupByLibrary.simpleMessage("Please enter your\nnew mobile number"),
         "enterOTPheaderwithVaiable": m1,
-        "enterOtpHeader": MessageLookupByLibrary.simpleMessage(
-            "Enter the 6-digit code sent to"),
-        "enterPassword": MessageLookupByLibrary.simpleMessage(
-            "Password field cannot be empty"),
-        "enterValidEmail": MessageLookupByLibrary.simpleMessage(
-            "please enter valid email address"),
-        "enterValidEmployeeStatus": MessageLookupByLibrary.simpleMessage(
-            "Please select valid employee status"),
-        "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
-            "You entered an invalid mobile number. Please try again."),
-        "enterValidNature": MessageLookupByLibrary.simpleMessage(
-            "Please select nature of special needs"),
-        "enterValidOtp":
-            MessageLookupByLibrary.simpleMessage("Please enter valid otp"),
-        "enterValidPersonsName": MessageLookupByLibrary.simpleMessage(
-            "Please enter valid person’s name"),
-        "enterValidPersonsRole": MessageLookupByLibrary.simpleMessage(
-            "Please enter valid person’s role"),
+        "enterOtpHeader": MessageLookupByLibrary.simpleMessage("Enter the 6-digit code sent to"),
+        "enterPassword": MessageLookupByLibrary.simpleMessage("Password field cannot be empty"),
+        "enterValidEmail": MessageLookupByLibrary.simpleMessage("please enter valid email address"),
+        "enterValidEmployeeStatus":
+            MessageLookupByLibrary.simpleMessage("Please select valid employee status"),
+        "enterValidIBANCLiQ":
+            MessageLookupByLibrary.simpleMessage("Oops! please enter an IBAN and CliQ ID to request money."),
+        "enterValidMobileNumber":
+            MessageLookupByLibrary.simpleMessage("You entered an invalid mobile number. Please try again."),
+        "enterValidNature": MessageLookupByLibrary.simpleMessage("Please select nature of special needs"),
+        "enterValidOtp": MessageLookupByLibrary.simpleMessage("Please enter valid otp"),
+        "enterValidPersonsName": MessageLookupByLibrary.simpleMessage("Please enter valid person’s name"),
+        "enterValidPersonsRole": MessageLookupByLibrary.simpleMessage("Please enter valid person’s role"),
         "enterValidRelationshipWithPEP": MessageLookupByLibrary.simpleMessage(
             "Please enter valid relationship with PEP"),
         "enterValidSpouseName": MessageLookupByLibrary.simpleMessage(
@@ -1544,27 +1538,21 @@ class MessageLookup extends MessageLookupByLibrary {
                 "How would you like to\npay your prepaid bills?"),
         "howWouldLikeToPayYourBills": MessageLookupByLibrary.simpleMessage(
             "How would you like to\npay your bills?"),
-        "howYouLikeToPayment": MessageLookupByLibrary.simpleMessage(
-            "How would you like to\nmake the payment"),
+        "howYouLikeToPayment": MessageLookupByLibrary.simpleMessage("How would you like to\nmake the payment"),
         "iConfirmThatAllInfoAccurateFatca":
-            MessageLookupByLibrary.simpleMessage(
-                "I confirm that all information provided is accurate."),
-        "iConfirmThatMy":
-            MessageLookupByLibrary.simpleMessage("I confirm that my "),
+            MessageLookupByLibrary.simpleMessage("I confirm that all information provided is accurate."),
+        "iConfirmThatMy": MessageLookupByLibrary.simpleMessage("I confirm that my "),
         "iDNumber": MessageLookupByLibrary.simpleMessage("ID Number"),
-        "iHaveAnAccount":
-            MessageLookupByLibrary.simpleMessage("I have an account"),
+        "iHaveAnAccount": MessageLookupByLibrary.simpleMessage("I have an account"),
         "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
+        "ibanAccountNumberMobileNumberAlisInvalid": MessageLookupByLibrary.simpleMessage(
+            "Oops! IBAN/account number/ mobile number/Alias is invalid, use another one."),
         "ibanCliq": MessageLookupByLibrary.simpleMessage("IBAN (CliQ)"),
         "ibanCopied": MessageLookupByLibrary.simpleMessage("IBAN Copied"),
-        "ibanMobileNoAlias":
-            MessageLookupByLibrary.simpleMessage("IBAN / Mobile No. / ALIAS"),
-        "ibanNotBlink":
-            MessageLookupByLibrary.simpleMessage("IBAN is\nnot in Blink"),
-        "ibanNumber":
-            MessageLookupByLibrary.simpleMessage("84118220000022123444"),
-        "ibanOrMobile":
-            MessageLookupByLibrary.simpleMessage("IBAN / Mobile No. / ALIAS"),
+        "ibanMobileNoAlias": MessageLookupByLibrary.simpleMessage("IBAN / Mobile No. / ALIAS"),
+        "ibanNotBlink": MessageLookupByLibrary.simpleMessage("IBAN is\nnot in Blink"),
+        "ibanNumber": MessageLookupByLibrary.simpleMessage("84118220000022123444"),
+        "ibanOrMobile": MessageLookupByLibrary.simpleMessage("IBAN / Mobile No. / ALIAS"),
         "ibanOrMobileOrAccount":
             MessageLookupByLibrary.simpleMessage("IBAN / Mobile No. / Account"),
         "ibanOrMobileRequest":
@@ -2968,26 +2956,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalUsedLimit":
             MessageLookupByLibrary.simpleMessage("TOTAL USED LIMIT"),
         "towithspace": MessageLookupByLibrary.simpleMessage(" to "),
-        "transactionHistory":
-            MessageLookupByLibrary.simpleMessage("Transaction History"),
-        "transactionNotAllowed": MessageLookupByLibrary.simpleMessage(
-            "Your Trasaction is not Allowed"),
-        "transactionPeriod":
-            MessageLookupByLibrary.simpleMessage("Transaction Period"),
-        "transactionPurpose":
-            MessageLookupByLibrary.simpleMessage("Transaction Purpose"),
-        "transactionType":
-            MessageLookupByLibrary.simpleMessage("Transaction Type"),
+        "transactionHistory": MessageLookupByLibrary.simpleMessage("Transaction History"),
+        "transactionNotAllowed": MessageLookupByLibrary.simpleMessage("Your Trasaction is not Allowed"),
+        "transactionPeriod": MessageLookupByLibrary.simpleMessage("Transaction Period"),
+        "transactionPurpose": MessageLookupByLibrary.simpleMessage("Transaction Purpose"),
+        "transactionType": MessageLookupByLibrary.simpleMessage("Transaction Type"),
+        "transferCannotbeDone": MessageLookupByLibrary.simpleMessage(
+            "Transfer cannot be done, and beneficiary details need an update."),
         "transferTypeNF": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. "),
         "transferTypeNFRTP": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. "),
-        "transictionHistory":
-            MessageLookupByLibrary.simpleMessage("Transiction History"),
-        "travelAndTransportation":
-            MessageLookupByLibrary.simpleMessage("Travel and Transportation"),
-        "treatyClaimRate": MessageLookupByLibrary.simpleMessage(
-            "treaty identified to Claim Rate (%)"),
+        "transictionHistory": MessageLookupByLibrary.simpleMessage("Transiction History"),
+        "travelAndTransportation": MessageLookupByLibrary.simpleMessage("Travel and Transportation"),
+        "treatyClaimRate": MessageLookupByLibrary.simpleMessage("treaty identified to Claim Rate (%)"),
         "tryAgainLater": MessageLookupByLibrary.simpleMessage(
             "There was an issue with your payment, please try again. If you need help, contact Blink Engagement Team."),
         "typeOfExpectedTransactions": MessageLookupByLibrary.simpleMessage(

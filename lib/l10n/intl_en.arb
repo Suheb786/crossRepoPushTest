@@ -1787,5 +1787,8 @@
   "mobileNoCliqorBlink": "Mobile No. (CliQ or Blink)",
   "aliasCliq": "Alias (CliQ)",
   "requestMoneyFormateSample": "Request Money Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\nPlease be mindful of the formatting examples as follows:\n",
-  "mobileNoCliq": "Mobile No. (CliQ)"
+  "mobileNoCliq": "Mobile No. (CliQ)",
+  "ibanAccountNumberMobileNumberAlisInvalid": "Oops! IBAN/account number/ mobile number/Alias is invalid, use another one.",
+  "enterValidIBANCLiQ": "Oops! please enter an IBAN and CliQ ID to request money.",
+  "transferCannotbeDone": "Transfer cannot be done, and beneficiary details need an update."
 }

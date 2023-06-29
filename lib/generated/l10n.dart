@@ -17659,6 +17659,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Oops! IBAN/account number/ mobile number/Alias is invalid, use another one.`
+  String get ibanAccountNumberMobileNumberAlisInvalid {
+    return Intl.message(
+      'Oops! IBAN/account number/ mobile number/Alias is invalid, use another one.',
+      name: 'ibanAccountNumberMobileNumberAlisInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! please enter an IBAN and CliQ ID to request money.`
+  String get enterValidIBANCLiQ {
+    return Intl.message(
+      'Oops! please enter an IBAN and CliQ ID to request money.',
+      name: 'enterValidIBANCLiQ',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer cannot be done, and beneficiary details need an update.`
+  String get transferCannotbeDone {
+    return Intl.message(
+      'Transfer cannot be done, and beneficiary details need an update.',
+      name: 'transferCannotbeDone',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
