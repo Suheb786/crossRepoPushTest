@@ -166,6 +166,9 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _uploadProfilePhotoResponse.safeAdd(event.data!);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
       });
     });
 
@@ -244,10 +247,7 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
         isFriend: isFriend,
         purposeDetail: purposeDetailController.text,
         amount:
-        double.parse(ProviderScope
-            .containerOf(context)
-            .read(sendMoneyViewModelProvider)
-            .currentPinValue),
+            double.parse(ProviderScope.containerOf(context).read(sendMoneyViewModelProvider).currentPinValue),
         limit: limit,
         messageEnum: checkSendMoneyMessageEnum,
         recipientName: recipientNameController.text,
