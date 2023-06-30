@@ -204,8 +204,9 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                 fontFamily:
                                                                                     StringUtils.appFont,
                                                                                 fontSize: 14.t,
-                                                                                color: AppColor.veryDarkGray1
-                                                                                    .withOpacity(0.5),
+                                                                                color: Theme.of(context)
+                                                                                    .colorScheme
+                                                                                    .surface,
                                                                                 fontWeight: FontWeight.w400),
                                                                           ),
                                                                           NumberFormattingWidget(
