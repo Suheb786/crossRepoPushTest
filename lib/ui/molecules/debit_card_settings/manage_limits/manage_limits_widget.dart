@@ -99,6 +99,7 @@ class ManageLimitsWidget extends StatelessWidget {
                           child: FlutterSwitch(
                             value: isActive!,
                             onToggle: (value) {
+                              model.controller.clear();
                               onToggle?.call(value);
                               model.updateSwitchValue(value);
                             },

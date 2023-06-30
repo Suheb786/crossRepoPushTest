@@ -116,7 +116,6 @@ class EnterOtpViewModel extends BasePageViewModel {
     required String amount,
     required String recipientName,
     required String recipientAddress}) {
-    print('isFriend:--->$isFriend');
     _transferRequest.safeAdd(TransferUseCaseParams(
         limit: limit,
         otpCode: _otpSubject.value,

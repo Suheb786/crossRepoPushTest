@@ -77,7 +77,8 @@ class ActivityHomeViewModel extends BasePageViewModel {
       },
     );
 
-    getActivity();
+    //getActivity();
+    getRequestMoneyActivity(true, 30, "ALL");
   }
 
   PageController appSwiperController = PageController(viewportFraction: 0.8);

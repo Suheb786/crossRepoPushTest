@@ -7,6 +7,7 @@ import 'package:domain/model/forget_password/check_forget_password_response.dart
 import 'package:domain/repository/forget_password/forget_password_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
+import 'package:domain/utils/validator.dart';
 
 class CheckForgetPasswordUseCase
     extends BaseUseCase<NetworkError, CheckForgetPasswordUseCaseParams, CheckForgetPasswordResponse> {
@@ -31,15 +32,17 @@ class CheckForgetPasswordUseCaseParams extends Params {
 
   @override
   Either<AppError, bool> verify() {
-    if (email!.isEmpty) {
+    if ((email ?? '').isEmpty) {
       return Left(
           AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_VERIFY_EMAIL, cause: Exception()));
-    } else if (expiryDate!.isEmpty) {
-      return Left(
-          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_EXPIRY_DATE, cause: Exception()));
-    } else if (nationalId!.isEmpty) {
+    } else if (!Validator.validateEmail(email ?? '')) {
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_EMAIL, cause: Exception()));
+    } else if ((nationalId ?? '').isEmpty) {
       return Left(AppError(
           error: ErrorInfo(message: ''), type: ErrorType.EMPTY_VERIFY_NATIONAL_ID, cause: Exception()));
+    } else if ((expiryDate ?? '').isEmpty) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''), type: ErrorType.EMPTY_VERIFY_EXPIRY_DATE, cause: Exception()));
     }
     return Right(true);
   }

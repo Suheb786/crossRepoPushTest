@@ -1,4 +1,5 @@
 import 'package:domain/model/card/card_issuance_details.dart';
+import 'package:domain/usecase/apple_pay/push_antelop_cards_usecase.dart';
 import 'package:domain/usecase/card_delivery/cancel_debit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/freeze_debit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/remove_or_reapply_supp_debit_card_with_response_usecase.dart';
@@ -12,7 +13,6 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:domain/usecase/apple_pay/push_antelop_cards_usecase.dart';
 
 class DebitCardSettingsViewModel extends BasePageViewModel {
   final DebitCardSettingsArguments debitCardSettingsArguments;
@@ -123,8 +123,8 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
 
   List<String> debitCardcancellationReason = [
     "I don’t need my card anymore.",
-    "I'am dissatisfied with service.",
-    "There are too many declined trx’s"
+    "I am dissatisfied with the service.",
+    "There are too many declined transactions."
   ];
   List<String> debitCardcancellationReasonAr = [
     "عدم الحاجة الى البطاقة",

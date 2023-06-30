@@ -142,7 +142,7 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                                                         descriptionWidget: Column(
                                                           children: [
                                                             Text(
-                                                              S.of(context).contactInformationDetails,
+                                                              S.of(context).manageContactSendRequestSample,
                                                               style: TextStyle(
                                                                   fontFamily: StringUtils.appFont,
                                                                   fontSize: 14.t,
@@ -152,19 +152,19 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                                                               height: 16.h,
                                                             ),
                                                             NumberFormattingWidget(
-                                                              title: S.of(context).iban,
+                                                              title: S.of(context).ibanCliq,
                                                               desc: S.of(context).dummyIBAN,
                                                             ),
                                                             NumberFormattingWidget(
-                                                              title: S.of(context).accountNumber,
+                                                              title: S.of(context).accountBlink,
                                                               desc: S.of(context).dummyAccountNo,
                                                             ),
                                                             NumberFormattingWidget(
-                                                              title: S.of(context).mobileNo,
+                                                              title: S.of(context).mobileNoCliqorBlink,
                                                               desc: S.of(context).dummyMobileNo,
                                                             ),
                                                             NumberFormattingWidget(
-                                                              title: S.of(context).alias,
+                                                              title: S.of(context).aliasCliq,
                                                               desc: S.of(context).dummyAlias,
                                                             )
                                                           ],
