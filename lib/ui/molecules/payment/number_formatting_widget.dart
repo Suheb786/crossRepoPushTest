@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -32,10 +32,11 @@ class NumberFormattingWidget extends StatelessWidget {
               Text(
                 title,
                 style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    fontSize: 14.t,
-                    fontWeight: FontWeight.w400,
-                    color: AppColor.veryDarkGray1.withOpacity(0.5)),
+                  fontFamily: StringUtils.appFont,
+                  fontSize: 14.t,
+                  fontWeight: FontWeight.w400,
+                  color: Theme.of(context).colorScheme.surface,
+                ),
               ),
               SizedBox(height: 4.h),
               Text(
@@ -44,7 +45,7 @@ class NumberFormattingWidget extends StatelessWidget {
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w700,
-                    color: AppColor.veryDarkGray1),
+                    color: Theme.of(context).colorScheme.surface),
               ),
             ],
           ),

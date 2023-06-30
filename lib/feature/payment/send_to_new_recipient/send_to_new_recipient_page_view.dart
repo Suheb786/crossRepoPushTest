@@ -193,7 +193,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                 onTap: () async {
                                                                   InformationDialog.show(context,
                                                                       isSwipeToCancel: false,
-                                                                      title: S.of(context).numberFormatting,
+                                                                      title: S.of(context).contactInformation,
                                                                       descriptionWidget: Column(
                                                                         children: [
                                                                           Text(
@@ -204,8 +204,9 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                 fontFamily:
                                                                                     StringUtils.appFont,
                                                                                 fontSize: 14.t,
-                                                                                color: AppColor.veryDarkGray1
-                                                                                    .withOpacity(0.5),
+                                                                                color: Theme.of(context)
+                                                                                    .colorScheme
+                                                                                    .surface,
                                                                                 fontWeight: FontWeight.w400),
                                                                           ),
                                                                           NumberFormattingWidget(

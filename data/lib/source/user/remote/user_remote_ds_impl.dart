@@ -436,7 +436,8 @@ class UserRemoteDSImpl extends UserRemoteDS {
               : '',
       //version: '1.0.0',
       clear: clear,
-      version: baseData.appVersion,
+      version: '2.0.0',
+      // version: baseData.appVersion,
       baseData: baseData.toJson(),
     ));
   }

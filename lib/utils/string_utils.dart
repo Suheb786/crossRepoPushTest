@@ -1,5 +1,7 @@
+import 'package:domain/constants/enum/request_money_activity_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
+import 'package:neo_bank/generated/l10n.dart';
 
 class StringUtils {
   StringUtils._();
@@ -74,4 +76,19 @@ class StringUtils {
   }
 
   static String appFont = intl.Intl.getCurrentLocale() == 'en' ? "Montserrat" : 'Tajawal';
+}
+
+extension PaymentTransactionStatusEnumExt on RequestMoneyActivityStatusEnum {
+  String getPaymentTransactionStatus({required BuildContext context}) {
+    switch (this) {
+      case RequestMoneyActivityStatusEnum.CATEGORY_PENDING:
+        return S.of(context).pending;
+      case RequestMoneyActivityStatusEnum.CATEGORY_ACCEPTED:
+        return S.of(context).accepted;
+      case RequestMoneyActivityStatusEnum.CATEGORY_REJECTED:
+        return S.of(context).rejected;
+      default:
+        return S.of(context).accepted;
+    }
+  }
 }

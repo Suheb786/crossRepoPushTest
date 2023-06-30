@@ -50,14 +50,15 @@ class AddIDNumberForResetPasswordPageView
                             model.initialDate.toString());
                     ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider).nextPage();
                     // .next();
-                  } else if (data.status == Status.ERROR) {
-                    model.showToastWithError(data.appError!);
                   }
                 },
                 dataBuilder: (context, data) {
                   return GestureDetector(
                     onHorizontalDragEnd: (details) {
                       FocusScope.of(context).unfocus();
+                      model.emailKey.currentState!.isValid = true;
+                      model.nationalIdKey.currentState!.isValid = true;
+                      model.idExpiryDateKey.currentState!.isValid = true;
                       if (StringUtils.isDirectionRTL(context)) {
                         if (!details.primaryVelocity!.isNegative) {
                           model.addIdNumberForResetPassword();

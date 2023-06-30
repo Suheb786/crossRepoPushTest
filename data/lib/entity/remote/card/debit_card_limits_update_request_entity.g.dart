@@ -20,6 +20,7 @@ DebitCardSLimitsUpdateRequestEntity
           isOnlinePurchase: json['isOnlinePurchase'] as bool? ?? false,
           isContactLessPayments:
               json['isContactLessPayments'] as bool? ?? false,
+          updateEcom: json['updateEcom'] as bool?,
           baseData: json['baseClass'] as Map<String, dynamic>?,
         );
 
@@ -36,5 +37,6 @@ Map<String, dynamic> _$DebitCardSLimitsUpdateRequestEntityToJson(
       'isMerchantsPayments': instance.isMerchantsPayments,
       'isOnlinePurchase': instance.isOnlinePurchase,
       'isContactLessPayments': instance.isContactLessPayments,
+      'updateEcom': instance.updateEcom,
       'baseClass': instance.baseData,
     };
