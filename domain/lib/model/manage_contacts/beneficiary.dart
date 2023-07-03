@@ -1,5 +1,6 @@
 class Beneficiary {
   final String? id;
+  final String? userId;
 
   //final String? beneficiaryId;
   dynamic imageUrl;
@@ -22,6 +23,7 @@ class Beneficiary {
 
   Beneficiary(
       {this.id = "",
+      this.userId = "",
       this.imageUrl = "",
       this.nickName = "",
       this.fullName = "",

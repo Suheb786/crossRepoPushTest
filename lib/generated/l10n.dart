@@ -17670,21 +17670,51 @@ class S {
     );
   }
 
-  /// `Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n`
-  String get requestMoneyFormateSample {
-    return Intl.message(
-      'Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n',
-      name: 'requestMoneyFormateSample',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Mobile No. (CliQ)`
   String get mobileNoCliq {
     return Intl.message(
       'Mobile No. (CliQ)',
       name: 'mobileNoCliq',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! IBAN/account number/ mobile number/Alias is invalid, use another one.`
+  String get ibanAccountNumberMobileNumberAlisInvalid {
+    return Intl.message(
+      'Oops! IBAN/account number/ mobile number/Alias is invalid, use another one.',
+      name: 'ibanAccountNumberMobileNumberAlisInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! please enter an IBAN and CliQ ID to request money.`
+  String get enterValidIBANCLiQ {
+    return Intl.message(
+      'Oops! please enter an IBAN and CliQ ID to request money.',
+      name: 'enterValidIBANCLiQ',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Sending money failed, contact details need to be updated`
+  String get transferCannotbeDone {
+    return Intl.message(
+      'Oops! Sending money failed, contact details need to be updated',
+      name: 'transferCannotbeDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n`
+  String get requestMoneyFormateSample {
+    return Intl.message(
+      'Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n',
+      name: 'requestMoneyFormateSample',
       desc: '',
       args: [],
     );

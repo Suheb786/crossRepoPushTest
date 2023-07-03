@@ -609,7 +609,7 @@ abstract class ApiService {
   Future<HttpResponse<GetAccountByAliasContentResponseEntity>> getAccountByAlias(
       @Body() GetAccountByAliasRequestEntity getAccountByAliasRequestEntity);
 
-  @POST("/transfer/CheckSendMoneyV2")
+  @POST("/transfer/CheckSendMoneyV3")
   Future<HttpResponse<CheckSendMoneyResponseEntity>> checkSendMoney(
       @Body() CheckSendMoneyRequestEntity checkSendMoneyRequestEntity);
 

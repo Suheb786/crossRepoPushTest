@@ -882,6 +882,16 @@ class NetworkError extends BaseError {
           case "err-518":
             return AppError(cause: cause, error: error, type: ErrorType.CONTACT_ADDING_FAVOURITE_FAILURE);
 
+          case "err-519":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.IBAN_ACCOUNTNUMBER_MOBILENUMBER_ALIAS_INVALID);
+
+          case "err-520":
+            return AppError(cause: cause, error: error, type: ErrorType.PLEASE_ENTER_IBAN_CLIQ);
+
+          case "err-521":
+            return AppError(cause: cause, error: error, type: ErrorType.TRANSFER_CANNOT_BE_DONE);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
 

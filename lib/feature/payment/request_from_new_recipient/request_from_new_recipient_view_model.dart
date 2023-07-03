@@ -130,6 +130,9 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         _uploadProfilePhotoResponse.safeAdd(event.data!);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
       });
     });
 

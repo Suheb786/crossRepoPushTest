@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -1094,6 +1095,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "please enter valid email address"),
         "enterValidEmployeeStatus": MessageLookupByLibrary.simpleMessage(
             "Please select valid employee status"),
+        "enterValidIBANCLiQ": MessageLookupByLibrary.simpleMessage(
+            "Oops! please enter an IBAN and CliQ ID to request money."),
         "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
             "You entered an invalid mobile number. Please try again."),
         "enterValidNature": MessageLookupByLibrary.simpleMessage(
@@ -1554,6 +1557,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "iHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("I have an account"),
         "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
+        "ibanAccountNumberMobileNumberAlisInvalid":
+            MessageLookupByLibrary.simpleMessage(
+                "Oops! IBAN/account number/ mobile number/Alias is invalid, use another one."),
         "ibanCliq": MessageLookupByLibrary.simpleMessage("IBAN (CliQ)"),
         "ibanCopied": MessageLookupByLibrary.simpleMessage("IBAN Copied"),
         "ibanMobileNoAlias":
@@ -2972,26 +2978,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalUsedLimit":
             MessageLookupByLibrary.simpleMessage("TOTAL USED LIMIT"),
         "towithspace": MessageLookupByLibrary.simpleMessage(" to "),
-        "transactionHistory":
-            MessageLookupByLibrary.simpleMessage("Transaction History"),
-        "transactionNotAllowed": MessageLookupByLibrary.simpleMessage(
-            "Your Trasaction is not Allowed"),
-        "transactionPeriod":
-            MessageLookupByLibrary.simpleMessage("Transaction Period"),
-        "transactionPurpose":
-            MessageLookupByLibrary.simpleMessage("Transaction Purpose"),
-        "transactionType":
-            MessageLookupByLibrary.simpleMessage("Transaction Type"),
+        "transactionHistory": MessageLookupByLibrary.simpleMessage("Transaction History"),
+        "transactionNotAllowed": MessageLookupByLibrary.simpleMessage("Your Trasaction is not Allowed"),
+        "transactionPeriod": MessageLookupByLibrary.simpleMessage("Transaction Period"),
+        "transactionPurpose": MessageLookupByLibrary.simpleMessage("Transaction Purpose"),
+        "transactionType": MessageLookupByLibrary.simpleMessage("Transaction Type"),
+        "transferCannotbeDone": MessageLookupByLibrary.simpleMessage(
+            "Oops! Sending money failed, contact details need to be updated"),
         "transferTypeNF": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. "),
         "transferTypeNFRTP": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. "),
-        "transictionHistory":
-            MessageLookupByLibrary.simpleMessage("Transiction History"),
-        "travelAndTransportation":
-            MessageLookupByLibrary.simpleMessage("Travel and Transportation"),
-        "treatyClaimRate": MessageLookupByLibrary.simpleMessage(
-            "treaty identified to Claim Rate (%)"),
+        "transictionHistory": MessageLookupByLibrary.simpleMessage("Transiction History"),
+        "travelAndTransportation": MessageLookupByLibrary.simpleMessage("Travel and Transportation"),
+        "treatyClaimRate": MessageLookupByLibrary.simpleMessage("treaty identified to Claim Rate (%)"),
         "tryAgainLater": MessageLookupByLibrary.simpleMessage(
             "There was an issue with your payment, please try again. If you need help, contact Blink Engagement Team."),
         "typeOfExpectedTransactions": MessageLookupByLibrary.simpleMessage(

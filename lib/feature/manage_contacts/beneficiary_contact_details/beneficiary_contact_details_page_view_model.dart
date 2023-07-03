@@ -114,6 +114,8 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
         if (event.status == Status.SUCCESS) {
           isUpdateProfile = true;
           _uploadProfilePhotoResponse.safeAdd(event.data!);
+        } else if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
         }
       });
     });

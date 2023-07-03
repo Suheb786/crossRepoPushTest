@@ -1391,6 +1391,12 @@ class ErrorParser {
         return localisedHelper.ContactMarkFavouriteFailure;
       case ErrorType.EMPTY_VERIFY_NATIONAL_ID:
         return localisedHelper.pleaseFillMissingField;
+      case ErrorType.IBAN_ACCOUNTNUMBER_MOBILENUMBER_ALIAS_INVALID:
+        return localisedHelper.ibanAccountNumberMobileNumberAlisInvalid;
+      case ErrorType.PLEASE_ENTER_IBAN_CLIQ:
+        return localisedHelper.enterValidIBANCLiQ;
+      case ErrorType.TRANSFER_CANNOT_BE_DONE:
+        return localisedHelper.transferCannotbeDone;
 
       default:
         return "";

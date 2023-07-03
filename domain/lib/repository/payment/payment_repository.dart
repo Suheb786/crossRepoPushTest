@@ -15,7 +15,8 @@ abstract class PaymentRepository {
   Future<Either<NetworkError, GetAccountByAliasContentResponse>> getAccountByAlias(
       String value, String currency);
 
-  Future<Either<NetworkError, CheckSendMoneyResponse>> checkSendMoney(String toAccount, num toAmount);
+  Future<Either<NetworkError, CheckSendMoneyResponse>> checkSendMoney(
+      String toAccount, num toAmount, String beneficiaryId);
 
   Future<Either<NetworkError, TransferSuccessResponse>> transfer(
       {String beneficiaryId,
