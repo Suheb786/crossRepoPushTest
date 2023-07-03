@@ -14,6 +14,7 @@ import 'package:data/entity/remote/payment/qr/transfer_qr_request_entity.dart';
 import 'package:data/entity/remote/payment/qr/verify_qr_request_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
+import 'package:data/entity/remote/payment/return_payment_activity/get_rejection_reason_response_entity.dart';
 import 'package:data/entity/remote/payment/transfer_api_no_otp_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_api_verify_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_request_entity.dart';
@@ -27,7 +28,6 @@ import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/payment/payment_datasource.dart';
 import 'package:retrofit/dio.dart';
-import 'package:data/entity/remote/payment/return_payment_activity/get_rejection_reason_response_entity.dart';
 
 class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
   final ApiService _apiService;
@@ -45,10 +45,14 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
 
   @override
   Future<HttpResponse<CheckSendMoneyResponseEntity>> checkSendMoney(
-      {String? toAccount, num? toAmount}) async {
+      {String? toAccount, num? toAmount, String? beneficiaryId}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.checkSendMoney(CheckSendMoneyRequestEntity(
-        baseData: baseData.toJson(), toAccount: toAccount, toAmount: toAmount, getToken: true));
+        baseData: baseData.toJson(),
+        toAccount: toAccount,
+        toAmount: toAmount,
+        getToken: true,
+        beneficiaryId: beneficiaryId));
   }
 
   @override

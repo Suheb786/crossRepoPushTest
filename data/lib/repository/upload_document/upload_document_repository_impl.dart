@@ -3,6 +3,7 @@ import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/upload_document/upload_document_datasource.dart';
 import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/error/base_error.dart';
+import 'package:domain/error/local_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/upload_document/file_upload_response.dart';
 import 'package:domain/model/upload_document/save_upload_document_response.dart';
@@ -24,6 +25,9 @@ class UploadDocumentRepositoryImpl extends UploadDocumentRepository {
       return Right(imageList);
     } else if (type == DocumentTypeEnum.PICK_IMAGE) {
       var imageList = await _documentLocalDS.pickImage();
+      if (imageList.endsWith('.gif')) {
+        return Left(LocalError(message: '', localError: 1214, cause: Exception()));
+      }
       return Right(imageList);
     }
     return Right("");
