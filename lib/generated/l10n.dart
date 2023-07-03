@@ -17700,10 +17700,10 @@ class S {
     );
   }
 
-  /// `Transfer cannot be done, and beneficiary details need an update.`
+  /// `Oops! Sending money failed, contact details need to be updated`
   String get transferCannotbeDone {
     return Intl.message(
-      'Transfer cannot be done, and beneficiary details need an update.',
+      'Oops! Sending money failed, contact details need to be updated',
       name: 'transferCannotbeDone',
       desc: '',
       args: [],

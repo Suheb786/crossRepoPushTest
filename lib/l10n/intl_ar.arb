@@ -1744,9 +1744,9 @@
   "mobileNoCliqorBlink": "رقمالموبايل (بلينك أو كليك)",
   "aliasCliq": "االسم المستعار (كليك)",
   "mobileNoCliq": "رقم الموبايل (كليك)",
-  "ibanAccountNumberMobileNumberAlisInvalid": "Oops! IBAN/account number/ mobile number/Alias is invalid, use another one.",
-  "enterValidIBANCLiQ": "عفوا!  ادخل رقم حساب IBAN  أو الاسم المستعار أو رقم الهاتف في كليك لطلب حوالة",
-  "transferCannotbeDone": "Transfer cannot be done,beneficiary details need an update.",
+  "ibanAccountNumberMobileNumberAlisInvalid": "عفوا! رقم الحساب/ رقم الموبايل/ اسم المستعار (كليك) غير معرف، ادخل تعريف آخر",
+  "enterValidIBANCLiQ": "عفوا! ادخل رقم حساب IBAN أو اسم مستعار/رقم الموبايل في كليك لطلب حوالة",
+  "transferCannotbeDone": "عفوا! لا يمكن التحويل، لازم اتعدل تفاصيل صديقك المستفيد",
   "requestMoneyFormateSample": "زوّدنابأي معلومة عندك عن حساب متلقي الطلب والباقي علينا. رح يتم الطلب من خالل كليك(CliQ). \n\n تأكد من إدخال المعلومة بالشكل الصحيح حسب  األمثلة التالية:\n",
   "manageContactSendRequestSample": "زّودنا بأي معلومة عندك عن الحساب والباقي علينا. تحويل وطلب األموال رح يتم داخل بلينك أو من خالل كليك (CliQ(.\n\nتأكد من إدخال المعلومة بالشكل الصحيح حسب األمثلة التالية: "
 }
