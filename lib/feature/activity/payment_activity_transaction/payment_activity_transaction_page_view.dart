@@ -677,7 +677,10 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                               top: 4.h,
                                                                               bottom: 1.h),
                                                                           child: Text(
-                                                                            data.trxStatus.toString(),
+                                                                            data.trxStatus
+                                                                                    ?.getPaymentTransactionStatus(
+                                                                                        context: context) ??
+                                                                                '',
                                                                             style: TextStyle(
                                                                                 fontFamily:
                                                                                     StringUtils.appFont,
@@ -1357,7 +1360,10 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                               top: 4.h,
                                                                               bottom: 1.h),
                                                                           child: Text(
-                                                                            data.trxStatus.toString(),
+                                                                            data.trxStatus
+                                                                                    ?.getPaymentTransactionStatus(
+                                                                                        context: context) ??
+                                                                                '',
                                                                             style: TextStyle(
                                                                                 fontFamily:
                                                                                     StringUtils.appFont,

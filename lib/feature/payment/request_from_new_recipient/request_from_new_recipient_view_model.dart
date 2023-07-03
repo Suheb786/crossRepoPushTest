@@ -208,7 +208,7 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
         image: selectedProfile,
         purposeCode: purpose?.code ?? "",
         purposeDetailCode: purposeDetail?.strCode ?? "",
-        nickName: addNickNameController.text.isEmpty ? "" : addNickNameController.text,
+        nickName: addContact ? (addNickNameController.text.isEmpty ? "" : addNickNameController.text) : '',
         type: type,
         detCustomerType: detCustomerType,
         alias: ibanOrMobileController.text,

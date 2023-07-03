@@ -24,20 +24,23 @@ class DebitCardSLimitsUpdateRequestEntity {
   final bool? isOnlinePurchase;
   @JsonKey(name: "isContactLessPayments")
   final bool? isContactLessPayments;
+  @JsonKey(name: "updateEcom")
+  final bool? updateEcom;
   @JsonKey(name: "baseClass")
   final Map<String, dynamic>? baseData;
 
   DebitCardSLimitsUpdateRequestEntity(
-      {this.getToken= true,
-      this.tokenizedPan= "",
-      this.atmWithdrawal= 0,
-      this.merchantsPayments= 0,
-      this.onlinePurchase= 0,
-      this.contactLessPayments= 0,
-      this.isAtmWithdrawal= false,
-      this.isMerchantsPayments= false,
-      this.isOnlinePurchase= false,
-      this.isContactLessPayments= false,
+      {this.getToken = true,
+      this.tokenizedPan = "",
+      this.atmWithdrawal = 0,
+      this.merchantsPayments = 0,
+      this.onlinePurchase = 0,
+      this.contactLessPayments = 0,
+      this.isAtmWithdrawal = false,
+      this.isMerchantsPayments = false,
+      this.isOnlinePurchase = false,
+      this.isContactLessPayments = false,
+      this.updateEcom,
       this.baseData});
 
   factory DebitCardSLimitsUpdateRequestEntity.fromJson(Map<String, dynamic> json) =>

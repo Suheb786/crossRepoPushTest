@@ -171,9 +171,8 @@ import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/delete_contact_request.dart';
 import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
 import 'package:data/entity/remote/contact/search_contact_request.dart';
-import 'package:data/entity/remote/contact/update_beneficiary_request.dart';
-import 'package:data/entity/remote/contact/upload_beneficiary_image_request.dart';
 import 'package:data/entity/remote/contact/send_otp_add_beneficiary.dart';
+import 'package:data/entity/remote/contact/update_beneficiary_request.dart';
 import 'package:data/entity/remote/country/city_list/city_list_request_entity.dart';
 import 'package:data/entity/remote/country/city_list/city_list_response_entity.dart';
 import 'package:data/entity/remote/country/country_list/country_list_request_entity.dart';
@@ -296,7 +295,6 @@ import '../entity/remote/contact/add_beneficiary_response_entity.dart';
 import '../entity/remote/contact/add_contact_request.dart';
 import '../entity/remote/contact/remove_avatar_request.dart';
 import '../entity/remote/contact/send_otp_add_beneficiary_data_response_entity.dart';
-import '../entity/remote/contact/send_otp_add_beneficiary_entity.dart';
 import '../entity/remote/contact/update_avatar_request.dart';
 import '../entity/remote/contact/update_contact_request.dart';
 

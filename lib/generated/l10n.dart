@@ -11820,16 +11820,6 @@ class S {
     );
   }
 
-  /// `Pending`
-  String get pending {
-    return Intl.message(
-      'Pending',
-      name: 'pending',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Transaction Type`
   String get transactionType {
     return Intl.message(
@@ -15380,20 +15370,20 @@ class S {
     );
   }
 
-  /// `ABC000012341234123819241213`
+  /// `ABC0000038363829727227184`
   String get dummyIBAN {
     return Intl.message(
-      'ABC000012341234123819241213',
+      'ABC0000038363829727227184',
       name: 'dummyIBAN',
       desc: '',
       args: [],
     );
   }
 
-  /// `9911 1407 61`
+  /// `9xxxxxxxxx`
   String get dummyAccountNo {
     return Intl.message(
-      '9911 1407 61',
+      '9xxxxxxxxx',
       name: 'dummyAccountNo',
       desc: '',
       args: [],
@@ -15410,10 +15400,10 @@ class S {
     );
   }
 
-  /// `00962 3320 8080`
+  /// `00962xxxxxxxxx`
   String get dummyMobileNo {
     return Intl.message(
-      '00962 3320 8080',
+      '00962xxxxxxxxx',
       name: 'dummyMobileNo',
       desc: '',
       args: [],
@@ -17590,10 +17580,50 @@ class S {
     );
   }
 
-  /// `Please provide any account details you have for your contact,and we will take care of the rest. If the contact’s account is in Blink, we will send the money to Blink account, otherwise, we will send it via CliQ to his/her bank account.\n Please be mindful of the formatting examples as follows:\n`
+  /// `Oops! Please fill the missing field.`
+  String get pleaseFillMissingField {
+    return Intl.message(
+      'Oops! Please fill the missing field.',
+      name: 'pleaseFillMissingField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accepted`
+  String get accepted {
+    return Intl.message(
+      'Accepted',
+      name: 'accepted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rejected`
+  String get rejected {
+    return Intl.message(
+      'Rejected',
+      name: 'rejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pending`
+  String get pending {
+    return Intl.message(
+      'Pending',
+      name: 'pending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide any account details you have for your contact,and we will take care of the rest. If the contact’s account is in Blink, we will send the money to Blink account, otherwise, we will send it via CliQ to his/her bank account. \n\nPlease be mindful of the formatting examples as follows:\n\n`
   String get sendMoneyFormateSample {
     return Intl.message(
-      'Please provide any account details you have for your contact,and we will take care of the rest. If the contact’s account is in Blink, we will send the money to Blink account, otherwise, we will send it via CliQ to his/her bank account.\n Please be mindful of the formatting examples as follows:\n',
+      'Please provide any account details you have for your contact,and we will take care of the rest. If the contact’s account is in Blink, we will send the money to Blink account, otherwise, we will send it via CliQ to his/her bank account. \n\nPlease be mindful of the formatting examples as follows:\n\n',
       name: 'sendMoneyFormateSample',
       desc: '',
       args: [],
@@ -17640,10 +17670,10 @@ class S {
     );
   }
 
-  /// `Request Money Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\nPlease be mindful of the formatting examples as follows:\n`
+  /// `Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n`
   String get requestMoneyFormateSample {
     return Intl.message(
-      'Request Money Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\nPlease be mindful of the formatting examples as follows:\n',
+      'Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n',
       name: 'requestMoneyFormateSample',
       desc: '',
       args: [],
@@ -17655,6 +17685,16 @@ class S {
     return Intl.message(
       'Mobile No. (CliQ)',
       name: 'mobileNoCliq',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide any account details you have for your contact. Sending and requesting money is done either within Blink or via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n`
+  String get manageContactSendRequestSample {
+    return Intl.message(
+      'Please provide any account details you have for your contact. Sending and requesting money is done either within Blink or via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n',
+      name: 'manageContactSendRequestSample',
       desc: '',
       args: [],
     );

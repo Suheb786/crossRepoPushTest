@@ -169,7 +169,7 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                                                             CrossAxisAlignment.start,
                                                                         children: [
                                                                           Text(
-                                                                            S.current.account,
+                                                                            S.of(context).account,
                                                                             style: TextStyle(
                                                                                 fontFamily:
                                                                                     StringUtils.appFont,

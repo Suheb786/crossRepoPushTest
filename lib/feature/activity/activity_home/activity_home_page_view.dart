@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/activity/activity_home/activity_home_view_model.dart';
-import 'package:neo_bank/feature/activity/notification/notification_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity/payment_activity_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_activity_transaction_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -38,7 +37,7 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                   return GestureDetector(
                     onVerticalDragEnd: (details) {
                       if (details.primaryVelocity!.isNegative) {
-                        if (currentStep == 1) {
+                        if (currentStep == 0) {
                           Navigator.push(
                               context,
                               CustomRoute.createRoute(
@@ -90,7 +89,7 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                                             padding: EdgeInsetsDirectional.only(bottom: 20.0.h),
                                             child: AppSwiper(
                                               appSwiperController: model.appSwiperController,
-                                              pages: [NotificationPage(), PaymentActivityPage(), Container()],
+                                              pages: [PaymentActivityPage(), Container()],
                                               pageController: model.pageController,
                                               onIndexChanged: (index) {
                                                 model.updatePage(index);
@@ -101,7 +100,7 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                                           ),
                                           Visibility(
                                             visible:
-                                                currentStep == 1 && (paymentActivity?.data ?? []).isNotEmpty,
+                                                currentStep == 0 && (paymentActivity?.data ?? []).isNotEmpty,
                                             child: Positioned(
                                               bottom: 0,
                                               child: Column(
@@ -130,7 +129,7 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                                     padding: EdgeInsetsDirectional.only(top: 5.0.h),
                                     child: SmoothPageIndicator(
                                       controller: model.controller,
-                                      count: 2,
+                                      count: 1,
                                       effect: ScrollingDotsEffect(
                                         activeStrokeWidth: 2.6,
                                         activeDotScale: 1.3,

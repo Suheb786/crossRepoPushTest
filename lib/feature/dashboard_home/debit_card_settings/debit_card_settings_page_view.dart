@@ -88,6 +88,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                     color: AppColor.dark_gray_1),
               ),
             ),
+            ///Add to wallet button
             Platform.isIOS
                 ? AppStreamBuilder<bool>(
                     stream: antelopStepCompletedStream,
@@ -154,6 +155,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                       );
                     })
                 : Container(),
+            ///Push card success/error
             AppStreamBuilder<bool>(
                 stream: pushCardSuccessStream,
                 initialData: false,
@@ -203,6 +205,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                     child: SingleChildScrollView(
                       padding: EdgeInsets.symmetric(horizontal: 24.w),
                       child: Column(children: [
+                        ///Freeze/ Unfreeze
                         AppStreamBuilder<bool>(
                             stream: model.showDialogStream,
                             initialData: false,
@@ -311,6 +314,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                 },
                               );
                             }),
+                        ///Manage debit limit
                         SettingTile(
                           onTap: () {
                             Navigator.pushNamed(context, RoutePaths.manageDebitLimit,
@@ -323,6 +327,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                           title: S.of(context).manageCardLimits,
                           tileIcon: AssetUtils.settingBars,
                         ),
+                        ///Manage card pin
                         SettingTile(
                             onTap: () {
                               Navigator.pushNamed(context, RoutePaths.ManageCardPin,
@@ -339,6 +344,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                 PrimarySecondaryEnum.PRIMARY,
                             isNotify: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
                                 PrimarySecondaryEnum.SECONDARY),
+                        ///Report lost /stolen card
                         AppStreamBuilder<Resource<bool>>(
                             initialData: Resource.none(),
                             stream: model.reportStolenLostCardResponseStream,
@@ -381,6 +387,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                 // isNotify: true,
                               );
                             }),
+                        ///Report damaged card
                         AppStreamBuilder<Resource<bool>>(
                             initialData: Resource.none(),
                             stream: model.reportDamagedCardResponseStream,
@@ -423,6 +430,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                 // isNotify: true,
                               );
                             }),
+                        ///Cancel debit card
                         AppStreamBuilder<Resource<CardIssuanceDetails>>(
                             stream: model.removeOrReapplySuppDebitCardWithResponseStream,
                             initialData: Resource.none(),
