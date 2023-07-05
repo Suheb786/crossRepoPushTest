@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/manage_contacts/beneficiary_contact.dart';
+import 'package:domain/model/manage_contacts/beneficiary_transaction_history_response.dart';
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
 import 'package:domain/model/manage_contacts/send_otp_add_benificiary_response.dart';
 
@@ -88,4 +89,13 @@ abstract class ManageContactRepository {
 
   @override
   Future<Either<NetworkError, SendOtpAddBeneficiaryResponse>> sendOTPAddBeneficiary();
+
+  Future<Either<NetworkError, BeneficiaryTransactionHistoryResponse>> beneficiaryTransactionHistory({
+    required num filterDays,
+    required int pageNo,
+    required String beneficiaryId,
+    required String searchText,
+    required String transactionType,
+    required String totalRecords,
+  });
 }

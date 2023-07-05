@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -26,9 +27,7 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -17725,6 +17724,26 @@ class S {
     return Intl.message(
       'Please provide any account details you have for your contact. Sending and requesting money is done either within Blink or via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n',
       name: 'manageContactSendRequestSample',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Money received from`
+  String get moneyReceivedFrom {
+    return Intl.message(
+      'Money received from',
+      name: 'moneyReceivedFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Money sent to`
+  String get moneySentTo {
+    return Intl.message(
+      'Money sent to',
+      name: 'moneySentTo',
       desc: '',
       args: [],
     );

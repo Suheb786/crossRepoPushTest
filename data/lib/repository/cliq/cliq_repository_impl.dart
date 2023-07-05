@@ -472,21 +472,6 @@ class CliqRepositoryImpl extends CliqRepository {
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
 
-  @override
-  Future<Either<NetworkError, bool>> getTransactionHistory(
-      {required String? FilterDays,
-      required String? TransactionType,
-      required String? TotalRecords,
-      required bool? GetToken}) async {
-    final result = await safeApiCall(_cliqDataSource.getTransactionHistory(
-        FilterDays: FilterDays,
-        TransactionType: TransactionType,
-        TotalRecords: TotalRecords,
-        GetToken: GetToken));
-
-    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
-  }
-
   Future<Either<NetworkError, ApproveRTPOtp>> approveRTPRequestOtp() async {
     final result = await safeApiCall(_cliqDataSource.approveRTPRequestOtp(getToken: true));
     return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));

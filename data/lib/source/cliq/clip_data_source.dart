@@ -244,13 +244,6 @@ abstract class CliqDataSource {
     required bool GetToken,
   });
 
-  Future<HttpResponse<ResponseEntity>> getTransactionHistory({
-    required String? FilterDays,
-    required String? TransactionType,
-    required String? TotalRecords,
-    required bool? GetToken,
-  });
-
   Future<HttpResponse<ApproveRTPOtpResponseEntity>> approveRTPRequestOtp({
     required bool getToken,
   });
