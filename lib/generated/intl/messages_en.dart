@@ -115,6 +115,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
         "accountMobileNoAlias": MessageLookupByLibrary.simpleMessage(
             "IBAN / ACCOUNT NO. / MOBILE NO. / ALIAS"),
+        "accountMobileNoCliQ": MessageLookupByLibrary.simpleMessage(
+            "IBAN/ Alias/ Mobile No. (CliQ)"),
         "accountNo": MessageLookupByLibrary.simpleMessage("ACCOUNT NO."),
         "accountNoCopied":
             MessageLookupByLibrary.simpleMessage("Account No. Copied"),

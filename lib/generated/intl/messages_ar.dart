@@ -113,7 +113,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
         "accountMobileNoAlias": MessageLookupByLibrary.simpleMessage(
-            "الأيبان / رقم الحساب / رقم الجوال / الاسم المستعار"),
+            "الأيبان/ رقم الحساب/ رقم الموبايل/ الاسم المستعار"),
+        "accountMobileNoCliQ": MessageLookupByLibrary.simpleMessage(
+            "الأيبان/ الاسم المستعار/ رقم الموبايل (كليك)"),
         "accountNo": MessageLookupByLibrary.simpleMessage("رقم الحساب"),
         "accountNoCopied":
             MessageLookupByLibrary.simpleMessage("تم نسخ رقم الحساب"),
@@ -1961,8 +1963,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "mobileNumberUpdated":
             MessageLookupByLibrary.simpleMessage("تم تحديث رقم موبايلك بنجاح"),
         "moneyReceivedFrom":
-            MessageLookupByLibrary.simpleMessage("Money received from"),
-        "moneySentTo": MessageLookupByLibrary.simpleMessage("Money sent to"),
+            MessageLookupByLibrary.simpleMessage("أموال محولة من"),
+        "moneySentTo": MessageLookupByLibrary.simpleMessage("أموال مرسلة إلى"),
         "moneyThorError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "monthlyIncome": MessageLookupByLibrary.simpleMessage("الدخل الشهري"),
