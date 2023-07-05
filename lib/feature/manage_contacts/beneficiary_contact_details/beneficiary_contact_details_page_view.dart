@@ -438,6 +438,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                       context,
                       RoutePaths.RequestAmountFromContact,
                       arguments: Beneficiary(
+                        userId: model.argument.beneficiaryInformation.userId,
                         accountHolderName: model.argument.beneficiaryInformation.fullName,
                         accountNo: model.argument.beneficiaryInformation.accountNo,
                         bankName: model.argument.beneficiaryInformation.bankName,
@@ -508,6 +509,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                       context,
                       RoutePaths.SendAmountToContact,
                       arguments: Beneficiary(
+                        userId: model.argument.beneficiaryInformation.userId,
                         accountHolderName: model.argument.beneficiaryInformation.fullName,
                         accountNo: model.argument.beneficiaryInformation.accountNo,
                         bankName: model.argument.beneficiaryInformation.bankName,

@@ -1965,7 +1965,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/transfer/CheckSendMoneyV2',
+              '/transfer/CheckSendMoneyV3',
               queryParameters: queryParameters,
               data: _data,
             )

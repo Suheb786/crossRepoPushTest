@@ -32,9 +32,10 @@ class PaymentRepositoryImpl extends PaymentRepository {
   }
 
   @override
-  Future<Either<NetworkError, CheckSendMoneyResponse>> checkSendMoney(String toAccount, num toAmount) async {
+  Future<Either<NetworkError, CheckSendMoneyResponse>> checkSendMoney(
+      String toAccount, num toAmount, String beneficiaryId) async {
     final result = await safeApiCall(
-      paymentRemoteDs.checkSendMoney(toAccount: toAccount, toAmount: toAmount),
+      paymentRemoteDs.checkSendMoney(toAccount: toAccount, toAmount: toAmount, beneficiaryId: beneficiaryId),
     );
     return result!.fold(
       (l) => Left(l),

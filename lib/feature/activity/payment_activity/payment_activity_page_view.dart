@@ -267,7 +267,10 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                             borderRadius: BorderRadius.circular(100),
                                                           ),
                                                           child: Text(
-                                                            "${(activity.data?[index].trxStatus) ?? ""}",
+                                                            activity.data?[index].trxStatus
+                                                                    ?.getPaymentTransactionStatus(
+                                                                        context: context) ??
+                                                                '',
                                                             style: TextStyle(
                                                               color: Theme.of(context).colorScheme.secondary,
                                                               fontWeight: FontWeight.w600,

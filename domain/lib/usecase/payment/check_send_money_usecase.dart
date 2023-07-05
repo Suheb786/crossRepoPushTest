@@ -15,15 +15,16 @@ class CheckSendMoneyUseCase
   @override
   Future<Either<NetworkError, CheckSendMoneyResponse>> execute(
       {required CheckSendMoneyUseCaseParams params}) {
-    return _repository.checkSendMoney(params.toAccount, params.toAmount);
+    return _repository.checkSendMoney(params.toAccount, params.toAmount, params.beneficiaryId);
   }
 }
 
 class CheckSendMoneyUseCaseParams extends Params {
   final String toAccount;
   final num toAmount;
+  final String beneficiaryId;
 
-  CheckSendMoneyUseCaseParams({required this.toAccount, required this.toAmount});
+  CheckSendMoneyUseCaseParams({required this.toAccount, required this.toAmount, required this.beneficiaryId});
 
   @override
   Either<AppError, bool> verify() {

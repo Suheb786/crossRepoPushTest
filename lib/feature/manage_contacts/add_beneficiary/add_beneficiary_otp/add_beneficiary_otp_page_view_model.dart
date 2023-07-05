@@ -92,6 +92,12 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
       IBANAccountNoMobileNoAlias: provider.ibanOrMobileController.text,
       purpose: '',
       beneficiaryType: navigationType == NavigationType.REQUEST_MONEY ? 'RTP' : 'SM',
+      detCustomerType: navigationType == NavigationType.REQUEST_MONEY
+          ? provider.getAccountByAliasContentResponse.getAccountByAliasContent?.detCustomerType ?? ''
+          : '',
+      purposeType: navigationType == NavigationType.REQUEST_MONEY
+          ? provider.getAccountByAliasContentResponse.getAccountByAliasContent?.type ?? ''
+          : '',
       purposeDetail: provider.purposeDetail?.strCode ?? '',
       name: provider.nameController.text.trim(),
       fullName: navigationType == NavigationType.REQUEST_MONEY

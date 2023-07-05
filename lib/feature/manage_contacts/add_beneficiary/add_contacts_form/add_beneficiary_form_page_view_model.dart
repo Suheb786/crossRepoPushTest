@@ -152,7 +152,8 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
   }
 
   void checkSendMoney({required String iban}) {
-    _checkSendMoneyRequest.safeAdd(CheckSendMoneyUseCaseParams(toAccount: iban, toAmount: 0));
+    _checkSendMoneyRequest
+        .safeAdd(CheckSendMoneyUseCaseParams(toAccount: iban, toAmount: 0, beneficiaryId: ''));
   }
 
   void getAccountByAlias(String value, String currency) {

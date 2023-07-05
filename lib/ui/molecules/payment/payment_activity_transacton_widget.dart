@@ -108,7 +108,9 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                     color: getColor(content.data?[index].trxStatus),
                                                     borderRadius: BorderRadius.circular(100)),
                                                 child: Text(
-                                                  (content.data?[index].trxStatus ?? '').toString(),
+                                                  content.data?[index].trxStatus
+                                                          ?.getPaymentTransactionStatus(context: context) ??
+                                                      '',
                                                   style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
                                                       color: Theme.of(context).colorScheme.secondary,
@@ -191,7 +193,10 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                         color: getColor(content.data?[index].trxStatus),
                                                         borderRadius: BorderRadius.circular(100)),
                                                     child: Text(
-                                                      (content.data?[index].trxStatus ?? '').toString(),
+                                                      content.data?[index].trxStatus
+                                                              ?.getPaymentTransactionStatus(
+                                                                  context: context) ??
+                                                          '',
                                                       style: TextStyle(
                                                           fontFamily: StringUtils.appFont,
                                                           color: Theme.of(context).colorScheme.secondary,
@@ -369,7 +374,10 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                               color: getColor(content.data?[index].trxStatus),
                                                               borderRadius: BorderRadius.circular(100)),
                                                           child: Text(
-                                                            (content.data?[index].trxStatus ?? '').toString(),
+                                                            content.data?[index].trxStatus
+                                                                    ?.getPaymentTransactionStatus(
+                                                                        context: context) ??
+                                                                '',
                                                             style: TextStyle(
                                                                 fontFamily: StringUtils.appFont,
                                                                 color:
@@ -446,7 +454,10 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                           color: getColor(content.data?[index].trxStatus),
                                                           borderRadius: BorderRadius.circular(100)),
                                                       child: Text(
-                                                        (content.data?[index].trxStatus ?? '').toString(),
+                                                        content.data?[index].trxStatus
+                                                                ?.getPaymentTransactionStatus(
+                                                                    context: context) ??
+                                                            '',
                                                         style: TextStyle(
                                                             fontFamily: StringUtils.appFont,
                                                             color: Theme.of(context).colorScheme.secondary,
