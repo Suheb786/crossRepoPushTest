@@ -65,8 +65,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "aMM": MessageLookupByLibrary.simpleMessage("AMM"),
         "accept": MessageLookupByLibrary.simpleMessage("موافقة"),
         "acceptRequest": MessageLookupByLibrary.simpleMessage("موافقة على الطلب"),
+        "accepted": MessageLookupByLibrary.simpleMessage("نفذت"),
         "acceptedWorldWide": MessageLookupByLibrary.simpleMessage("مقبولة عالمياً بدون رسوم مخفية"),
-        "account": MessageLookupByLibrary.simpleMessage("Account"),
+        "account": MessageLookupByLibrary.simpleMessage("حساب"),
         "accountActivatedSuccessfully": MessageLookupByLibrary.simpleMessage("تم تفعيل الحساب بنجاح"),
         "accountActivityError":
             MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
@@ -667,11 +668,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "dragMap": MessageLookupByLibrary.simpleMessage("اسحب وحرك الخريطة لتضبط الموقع"),
         "due": MessageLookupByLibrary.simpleMessage("مستحقة"),
         "dueAmt": MessageLookupByLibrary.simpleMessage("المبلغ المستحق"),
-        "dummyAccountNo": MessageLookupByLibrary.simpleMessage("9911 1407 61"),
-        "dummyAlias": MessageLookupByLibrary.simpleMessage("اسم المستخدم 1"),
+        "dummyAccountNo": MessageLookupByLibrary.simpleMessage("9xxxxxxxxx"),
+        "dummyAlias": MessageLookupByLibrary.simpleMessage("username1"),
         "dummyAmount": MessageLookupByLibrary.simpleMessage("659.570"),
         "dummyIBAN": MessageLookupByLibrary.simpleMessage("ABC000012341234123819241213"),
-        "dummyMobileNo": MessageLookupByLibrary.simpleMessage("00962 3320 8080"),
+        "dummyMobileNo": MessageLookupByLibrary.simpleMessage("00962xxxxxxxxx"),
         "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
         "editCliqId": MessageLookupByLibrary.simpleMessage("تعديل حساب CliQ"),
         "editId": MessageLookupByLibrary.simpleMessage("تعديل نوع الحساب"),
@@ -773,6 +774,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterPassword": MessageLookupByLibrary.simpleMessage("لازم تدخّل كلمة المرور"),
         "enterValidEmail": MessageLookupByLibrary.simpleMessage("أدخل الإيميل الصحيح"),
         "enterValidEmployeeStatus": MessageLookupByLibrary.simpleMessage("اختارالوظيفة"),
+        "enterValidIBANCLiQ": MessageLookupByLibrary.simpleMessage(
+            "عفوا! ادخل رقم حساب IBAN أو اسم مستعار/رقم الموبايل في كليك لطلب حوالة"),
         "enterValidMobileNumber":
             MessageLookupByLibrary.simpleMessage("رقم الموبايل اللي دخلته غير صحيح. حاول كمان مرة."),
         "enterValidNature": MessageLookupByLibrary.simpleMessage("اختار طبيعة الاحتياجات الخاصة"),
@@ -1111,6 +1114,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "iDNumber": MessageLookupByLibrary.simpleMessage("رقم الهوية"),
         "iHaveAnAccount": MessageLookupByLibrary.simpleMessage("عندي حساب"),
         "iban": MessageLookupByLibrary.simpleMessage("الأيبان"),
+        "ibanAccountNumberMobileNumberAlisInvalid": MessageLookupByLibrary.simpleMessage(
+            "عفوا! رقم الحساب/ رقم الموبايل/ اسم المستعار (كليك) غير معرف، ادخل تعريف آخر"),
         "ibanCliq": MessageLookupByLibrary.simpleMessage("IBAN(تحويل من خالل كليك)"),
         "ibanCopied": MessageLookupByLibrary.simpleMessage("نسخ الأيبان"),
         "ibanMobileNoAlias": MessageLookupByLibrary.simpleMessage("الأيبان/ رقم موبايل/ اسم مستعار"),
@@ -1399,6 +1404,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "manageCardPin": MessageLookupByLibrary.simpleMessage("إدارة الرمز السري PIN للبطاقة"),
         "manageCliqId": MessageLookupByLibrary.simpleMessage("إدارة CliQ"),
         "manageCliqIdRoute": MessageLookupByLibrary.simpleMessage("ادارة حساب Cliq"),
+        "manageContactSendRequestSample": MessageLookupByLibrary.simpleMessage(
+            "زّودنا بأي معلومة عندك عن الحساب والباقي علينا. تحويل وطلب األموال رح يتم داخل بلينك أو من خالل كليك (CliQ(.\n\nتأكد من إدخال المعلومة بالشكل الصحيح حسب األمثلة التالية: "),
         "manageContacts": MessageLookupByLibrary.simpleMessage("إدارة المعارف"),
         "manageContactsSettings": MessageLookupByLibrary.simpleMessage("إدارة المعارف"),
         "manageMyBills": MessageLookupByLibrary.simpleMessage("إدارة الفواتير"),
@@ -1594,7 +1601,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "payBills": m8,
         "payFrom": MessageLookupByLibrary.simpleMessage("تسديد من"),
         "payMyBill": MessageLookupByLibrary.simpleMessage("تسديد فاتورتي"),
-        "payViaQR": MessageLookupByLibrary.simpleMessage("الدفع من خلال رمز الاستجابة السريع"),
+        "payViaQR": MessageLookupByLibrary.simpleMessage("تحويل أموال من خلال رمز الاستجابة السريع"),
         "payViaQRDesc":
             MessageLookupByLibrary.simpleMessage("ضع رمز الاستجابة السريعة داخل الإطار وأكد عملية الدفع"),
         "payYourBillswithBlink": MessageLookupByLibrary.simpleMessage("أدفع فواتيرك مع بلينك!"),
@@ -1610,7 +1617,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "paymentNotDone": MessageLookupByLibrary.simpleMessage("لم تتم عملية الدفع"),
         "paymentPeriod": MessageLookupByLibrary.simpleMessage("فترة الدفعة"),
         "payments": MessageLookupByLibrary.simpleMessage("دفعات"),
-        "pending": MessageLookupByLibrary.simpleMessage("في الانتظار"),
+        "pending": MessageLookupByLibrary.simpleMessage("قيد التنفيذ"),
         "pepDesc": MessageLookupByLibrary.simpleMessage(
             "\nالاشخاص السياسيون ممثلو المخاطر الأجانب (Foreign Politically Exposed Persons) :هم الأشخاص الذين يشغلون أو شغلوا وظيفة عامة عليا في دولـة أجنبيـة، مثل: رئيس دولة أو حكومة  أو المسؤولين القضائيين أو العسكريين، أو منصب حكومي رفيع المستوى أو كان سياسي بارز أو شخصية بارزة في حزب سياسي أو كبار التنفيذيين في الشركات المملوكة لدولة أجنبية ويشمل ذلك أقارب هؤلاء الاشخاص من الدرجة الأولى كحد أدنى أو شركائهم في العمل أو أي أشخاص يعملون بالنيابة عنهم أو يملكون تفاويض صادرة عنهم\n الاشخاص السياسيون ممثلو المخاطر المحليون (Local Politically Exposed Persons) الأشخاص الذين يشغلون أو شغلوا وظيفة عامة عليا في المملكة، مثل: رئيس حكومة أو وزير أو المسؤولين القضائيين أو العسكريين أو منصب حكومي رفيع المستوى أو كان سياسي بارز أو شخصية بارزة في حزب سياسي أو كبار التنفيذيين في الشركات المملوكة للدولة ويشمل ذلك أقارب هؤلاء الاشخاص من الدرجة الأولى كحد أدنى أو شركائهم في العمل أو أي أشخاص يعملون بالنيابة عنهم أو يملكون تفاويض صادرة عنهم."),
         "permanentAddress": MessageLookupByLibrary.simpleMessage("العنوان الدائم"),
@@ -1647,6 +1654,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل أحدث إيميل عندك. رح نتواصل معك قريباً!"),
         "pleaseEnterYourContactDetails": MessageLookupByLibrary.simpleMessage("أضف معلومات صديقك"),
         "pleaseEnterYourMobileNumber": MessageLookupByLibrary.simpleMessage("ادخل رقم موبايلك"),
+        "pleaseFillMissingField": MessageLookupByLibrary.simpleMessage("عفوا! يرجى إدخال المعلومة الناقصة"),
         "pleaseHelpUsImproveServices": MessageLookupByLibrary.simpleMessage(
             "ساعدنا لنطوّر خدماتنا: مساحة لادخال أي نص (اذا بالإمكان تطبيقها) "),
         "pleaseProvideInformationIfAppliesToYou":
@@ -1771,6 +1779,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-002)"),
         "reject": MessageLookupByLibrary.simpleMessage("رفض"),
         "rejectRequest": MessageLookupByLibrary.simpleMessage("رفض الطلب"),
+        "rejected": MessageLookupByLibrary.simpleMessage("مرفوضة"),
         "rejectedDueToExpiryDate":
             MessageLookupByLibrary.simpleMessage("تم رفض دفع الفاتوره بسبب انتهاء صلاحية الفاتورة"),
         "relationNull": MessageLookupByLibrary.simpleMessage(
@@ -1808,7 +1817,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "requestMoneyFeatureDisabled": MessageLookupByLibrary.simpleMessage(
             "عفوًا، إرسال الحوالات عبر خدمة\n  Cliq غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بنا على 06-5200100"),
         "requestMoneyFormateSample": MessageLookupByLibrary.simpleMessage(
-            "زوّدنابأي معلومة عندك عن حساب متلقي الطلب والباقي علينا. رح يتم الطلب من خالل كليك(CliQ). \n تأكد من إدخال المعلومة بالشكل الصحيح حسب  األمثلة التالية:\n"),
+            "زوّدنابأي معلومة عندك عن حساب متلقي الطلب والباقي علينا. رح يتم الطلب من خالل كليك(CliQ). \n\n تأكد من إدخال المعلومة بالشكل الصحيح حسب  األمثلة التالية:\n"),
         "requestMoneyFrom": MessageLookupByLibrary.simpleMessage("طلب أموال من"),
         "requestMoneyFromOtherBank": MessageLookupByLibrary.simpleMessage("طلب أموال من حساب في بنك آخر"),
         "requestMoneyFromOtherBankDesc": MessageLookupByLibrary.simpleMessage(
@@ -1833,7 +1842,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "requestToPayStatusError":
             MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "requestViaQR": MessageLookupByLibrary.simpleMessage("الطلب من خلال QR"),
+        "requestViaQR": MessageLookupByLibrary.simpleMessage("طلب أموال من خلال رمز الاستجابة السريع"),
         "requested": MessageLookupByLibrary.simpleMessage(" تم الطلب بنجاح"),
         "requestedFrom": MessageLookupByLibrary.simpleMessage("تم الطلب من"),
         "requestedMoneyVia": MessageLookupByLibrary.simpleMessage("طلب أموال من خلال"),
@@ -1946,7 +1955,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "أرسل وطلب ما يصل إلى 9 جهات اتصال مفضلة بسهولة. هل ترغب في إضافة جهة الاتصال هذه إلى المفضلة لديك؟"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("تحويل أموال"),
         "sendMoneyFormateSample": MessageLookupByLibrary.simpleMessage(
-            "زوّدنا بأي معلومة عندك عن حساب متلقي الحوالة والباقي علينا. إذا كان حساب متلقي الحوالة في بلينك رح نحوّل المبلغ على حسابه في بلينك، وغير هيك رح يتم التحويل من خالل كليك(CliQ)لحسابه البنكي. \nتأكد من إدخال المعلومة بالشكل الصحيح حسب األمثلة التالية:\n"),
+            "زوّدنا بأي معلومة عندك عن حساب متلقي الحوالة والباقي علينا. إذا كان حساب متلقي الحوالة في بلينك رح نحوّل المبلغ على حسابه في بلينك، وغير هيك رح يتم التحويل من خالل كليك(CliQ)لحسابه البنكي. \n\nتأكد من إدخال المعلومة بالشكل الصحيح حسب األمثلة التالية:\n"),
         "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage("محاولتك لإرسال الأموال غير ناجحة"),
         "sendMoneyTo": MessageLookupByLibrary.simpleMessage("إرسال أموال إلى"),
         "sendMoneyToFriendAndFamily": MessageLookupByLibrary.simpleMessage("حوّل الأموال لأصحابك وعيلتك"),
@@ -2123,6 +2132,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "transactionPeriod": MessageLookupByLibrary.simpleMessage("فترة الحركة"),
         "transactionPurpose": MessageLookupByLibrary.simpleMessage("سبب الحركة"),
         "transactionType": MessageLookupByLibrary.simpleMessage("نوع الحركة"),
+        "transferCannotbeDone":
+            MessageLookupByLibrary.simpleMessage("عفوا! لا يمكن التحويل، لازم اتعدل تفاصيل صديقك المستفيد"),
         "transferTypeNF": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-117)"),
         "transferTypeNFRTP": MessageLookupByLibrary.simpleMessage(
