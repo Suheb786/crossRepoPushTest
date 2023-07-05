@@ -1787,5 +1787,7 @@
   "mobileNoCliqorBlink": "Mobile No. (CliQ or Blink)",
   "aliasCliq": "Alias (CliQ)",
   "requestMoneyFormateSample": "Request Money Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\nPlease be mindful of the formatting examples as follows:\n",
-  "mobileNoCliq": "Mobile No. (CliQ)"
+  "mobileNoCliq": "Mobile No. (CliQ)",
+  "moneyReceivedFrom": "Money received from",
+  "moneySentTo": "Money sent to"
 }

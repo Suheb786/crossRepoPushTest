@@ -239,13 +239,6 @@ abstract class CliqRepository {
     required bool GetToken,
   });
 
-  Future<Either<NetworkError, bool>> getTransactionHistory({
-    required String? FilterDays,
-    required String? TransactionType,
-    required String? TotalRecords,
-    required bool? GetToken,
-  });
-
   Future<Either<NetworkError, ApproveRTPOtp>> approveRTPRequestOtp();
 
   Future<Either<NetworkError, RequestToPayResultOtp>> requestToPayResultOtp();
