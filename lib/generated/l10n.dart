@@ -17730,6 +17730,16 @@ class S {
     );
   }
 
+  /// `IBAN/ Alias/ Mobile No. (CliQ)`
+  String get accountMobileNoCliQ {
+    return Intl.message(
+      'IBAN/ Alias/ Mobile No. (CliQ)',
+      name: 'accountMobileNoCliQ',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Money received from`
   String get moneyReceivedFrom {
     return Intl.message(

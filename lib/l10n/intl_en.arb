@@ -1795,6 +1795,7 @@
   "transferCannotbeDone": "Oops! Sending money failed, contact details need to be updated",
   "requestMoneyFormateSample": "Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n",
   "manageContactSendRequestSample": "Please provide any account details you have for your contact. Sending and requesting money is done either within Blink or via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n",
+  "accountMobileNoCliQ": "IBAN/ Alias/ Mobile No. (CliQ)",
   "moneyReceivedFrom": "Money received from",
   "moneySentTo": "Money sent to"
 }
