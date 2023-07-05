@@ -22,6 +22,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../../ui/molecules/dialog/payment/purpose_detail_dialog/purpose_detail_dialog.dart';
 import '../../../../ui/molecules/dialog/payment/purpose_dialog/purpose_dialog.dart';
+import '../../../../utils/navgition_type.dart';
 import 'add_beneficiary_form_page_view_model.dart';
 
 class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPageViewModel> {
@@ -126,7 +127,9 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                                           SizedBox(height: 16.0.h),
                                           Focus(
                                             child: AppTextField(
-                                              labelText: S.current.accountMobileNoAlias,
+                                              labelText: model.navigationType == NavigationType.REQUEST_MONEY
+                                                  ? S.current.accountMobileNoCliQ.toUpperCase()
+                                                  : S.current.accountMobileNoAlias,
                                               hintText: S.current.pleaseEnter,
                                               controller: model.ibanOrMobileController,
                                               key: model.ibanORaccountORmobileORaliasKey,

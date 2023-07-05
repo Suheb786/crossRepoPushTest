@@ -107,23 +107,19 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-010)"),
         "accountInquiryWentWrong61": MessageLookupByLibrary.simpleMessage(
             "An error occurred while trying to get your account information. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
-        "accountIsLinkedToTheAliasButUnableToSetItToDefault":
-            MessageLookupByLibrary.simpleMessage(
-                "Account is linked to the alias, but unable to set it to default"),
-        "accountLinkedSuccessfully":
-            MessageLookupByLibrary.simpleMessage("Account Linked Successfully"),
+        "accountIsLinkedToTheAliasButUnableToSetItToDefault": MessageLookupByLibrary.simpleMessage(
+            "Account is linked to the alias, but unable to set it to default"),
+        "accountLinkedSuccessfully": MessageLookupByLibrary.simpleMessage("Account Linked Successfully"),
         "accountLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
-        "accountMobileNoAlias": MessageLookupByLibrary.simpleMessage(
-            "IBAN / ACCOUNT NO. / MOBILE NO. / ALIAS"),
+        "accountMobileNoAlias":
+            MessageLookupByLibrary.simpleMessage("IBAN / ACCOUNT NO. / MOBILE NO. / ALIAS"),
+        "accountMobileNoCliQ": MessageLookupByLibrary.simpleMessage("IBAN/ Alias/ Mobile No. (CliQ)"),
         "accountNo": MessageLookupByLibrary.simpleMessage("ACCOUNT NO."),
-        "accountNoCopied":
-            MessageLookupByLibrary.simpleMessage("Account No. Copied"),
-        "accountNotFound":
-            MessageLookupByLibrary.simpleMessage("Account Not Found"),
+        "accountNoCopied": MessageLookupByLibrary.simpleMessage("Account No. Copied"),
+        "accountNotFound": MessageLookupByLibrary.simpleMessage("Account Not Found"),
         "accountNumber": MessageLookupByLibrary.simpleMessage("Account No."),
-        "accountNumberOptional": MessageLookupByLibrary.simpleMessage(
-            "LIST OF ACCOUNT NUMBER (OPTIONAL)"),
+        "accountNumberOptional": MessageLookupByLibrary.simpleMessage("LIST OF ACCOUNT NUMBER (OPTIONAL)"),
         "accountOpeningDescription": MessageLookupByLibrary.simpleMessage(
             "Account opening is only available for Jordanians for now, but don’t worry we’re expanding into new countries, soon!"),
         "accountOpeningPurpose":
@@ -2969,14 +2965,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalAdditionalIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Total Additional Income"),
         "totalAmount": MessageLookupByLibrary.simpleMessage("Total Amount"),
-        "totalAnnualIncome":
-            MessageLookupByLibrary.simpleMessage("TOTAL ANNUAL INCOME"),
+        "totalAnnualIncome": MessageLookupByLibrary.simpleMessage("TOTAL ANNUAL INCOME"),
         "totalBalance": MessageLookupByLibrary.simpleMessage("Total Balance"),
         "totalDue": MessageLookupByLibrary.simpleMessage("Total Due"),
-        "totalUsedAmount":
-            MessageLookupByLibrary.simpleMessage("TOTAL USED AMOUNT"),
-        "totalUsedLimit":
-            MessageLookupByLibrary.simpleMessage("TOTAL USED LIMIT"),
+        "totalUsedAmount": MessageLookupByLibrary.simpleMessage("TOTAL USED AMOUNT"),
+        "totalUsedLimit": MessageLookupByLibrary.simpleMessage("TOTAL USED LIMIT"),
         "towithspace": MessageLookupByLibrary.simpleMessage(" to "),
         "transactionHistory": MessageLookupByLibrary.simpleMessage("Transaction History"),
         "transactionNotAllowed": MessageLookupByLibrary.simpleMessage("Your Trasaction is not Allowed"),
@@ -2994,11 +2987,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "treatyClaimRate": MessageLookupByLibrary.simpleMessage("treaty identified to Claim Rate (%)"),
         "tryAgainLater": MessageLookupByLibrary.simpleMessage(
             "There was an issue with your payment, please try again. If you need help, contact Blink Engagement Team."),
-        "typeOfExpectedTransactions": MessageLookupByLibrary.simpleMessage(
-            "Type of expected transactions"),
+        "typeOfExpectedTransactions": MessageLookupByLibrary.simpleMessage("Type of expected transactions"),
         "typeOfIncome": MessageLookupByLibrary.simpleMessage("Type of Income"),
-        "typeOfTransactions":
-            MessageLookupByLibrary.simpleMessage("TYPE OF TRANSACTIONS"),
+        "typeOfTransactions": MessageLookupByLibrary.simpleMessage("TYPE OF TRANSACTIONS"),
         "typeOfTransactionsSmall": m13,
         "unBlockPin": MessageLookupByLibrary.simpleMessage("Unblock PIN?"),
         "unBlockPinDescription": MessageLookupByLibrary.simpleMessage(
