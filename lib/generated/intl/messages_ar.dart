@@ -97,7 +97,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
         "accountMobileNoAlias":
-            MessageLookupByLibrary.simpleMessage("الأيبان / رقم الحساب / رقم الجوال / الاسم المستعار"),
+            MessageLookupByLibrary.simpleMessage("الأيبان/ رقم الحساب/ رقم الموبايل/ الاسم المستعار"),
+        "accountMobileNoCliQ":
+            MessageLookupByLibrary.simpleMessage("الأيبان/ الاسم المستعار/ رقم الموبايل (كليك)"),
         "accountNo": MessageLookupByLibrary.simpleMessage("رقم الحساب"),
         "accountNoCopied": MessageLookupByLibrary.simpleMessage("تم نسخ رقم الحساب"),
         "accountNotFound": MessageLookupByLibrary.simpleMessage("الحساب غير موجود"),

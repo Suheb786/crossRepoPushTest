@@ -135,14 +135,14 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                 padding: EdgeInsets.only(top: 16.0.h),
                                                 child: Focus(
                                                   child: AppTextField(
-                                                    labelText: S.of(context).accountMobileNoAlias,
+                                                    labelText:
+                                                        S.of(context).accountMobileNoCliQ.toUpperCase(),
                                                     labelIcon: () {
                                                       return InkWell(
                                                         onTap: () async {
                                                           InformationDialog.show(context,
                                                               isSwipeToCancel: false,
-                                                              title:
-                                                                  S.of(context).contactInformation,
+                                                              title: S.of(context).contactInformation,
                                                               descriptionWidget: Column(
                                                                 children: [
                                                                   Text(

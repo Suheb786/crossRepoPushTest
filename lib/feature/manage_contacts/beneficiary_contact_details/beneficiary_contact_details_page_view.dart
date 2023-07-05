@@ -287,7 +287,9 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
             height: 16.h,
           ),
           Text(
-            S.of(context).accountMobileNoAlias,
+            model.navigationType == NavigationType.REQUEST_MONEY
+                ? S.current.accountMobileNoCliQ.toUpperCase()
+                : S.of(context).accountMobileNoAlias,
             style: TextStyle(
                 fontSize: 12.t,
                 fontFamily: StringUtils.appFont,
