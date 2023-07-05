@@ -7,6 +7,8 @@ import 'package:data/entity/remote/contact/beneficiary_contact_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_contact_response_entity.dart';
 import 'package:data/entity/remote/contact/beneficiary_fav_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_mark_favorite_request.dart';
+import 'package:data/entity/remote/contact/beneficiary_transaction_history_request_entity.dart';
+import 'package:data/entity/remote/contact/beneficiary_transaction_history_response_entity.dart';
 import 'package:data/entity/remote/contact/contact_detail_request.dart';
 import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
@@ -257,5 +259,27 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
       beneType: beneType,
       baseData: baseData.toJson(),
     ));
+  }
+
+  @override
+  Future<HttpResponse<BeneficiaryTransactionHistoryResponseEntity>> beneficiaryTransactionHistory({
+    required num filterDays,
+    required int pageNo,
+    required String beneficiaryId,
+    required String searchText,
+    required String transactionType,
+    required String totalRecords,
+  }) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.beneficiaryTransactionHistory(BeneficiaryTransactionHistoryRequest(
+        beneficiaryId: beneficiaryId,
+        searchText: searchText,
+        filterDays: filterDays,
+        pageNo: pageNo,
+        transactionType: transactionType,
+        totalRecords: totalRecords,
+        getToken: true,
+        isFromMobile: true,
+        baseClass: baseData.toJson()));
   }
 }

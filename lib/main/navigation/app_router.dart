@@ -895,7 +895,8 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.PaymentActivityPage));
       case RoutePaths.BeneficiaryTransactionHistoryList:
         return CupertinoPageRoute(
-            builder: (context) => BeneficiaryTransactionHistoryListPage(settings.arguments as NavigationType),
+            builder: (context) => BeneficiaryTransactionHistoryListPage(
+                settings.arguments as BeneficiaryTransactionHistoryListPageArguments),
             settings: RouteSettings(name: RoutePaths.BeneficiaryTransactionHistoryList));
 
       default:

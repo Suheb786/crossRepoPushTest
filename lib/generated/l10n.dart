@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -17736,6 +17735,26 @@ class S {
     return Intl.message(
       'IBAN/ Alias/ Mobile No. (CliQ)',
       name: 'accountMobileNoCliQ',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Money received from`
+  String get moneyReceivedFrom {
+    return Intl.message(
+      'Money received from',
+      name: 'moneyReceivedFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Money sent to`
+  String get moneySentTo {
+    return Intl.message(
+      'Money sent to',
+      name: 'moneySentTo',
       desc: '',
       args: [],
     );

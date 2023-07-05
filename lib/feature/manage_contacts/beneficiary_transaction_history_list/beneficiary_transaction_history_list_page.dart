@@ -10,9 +10,9 @@ import 'beneficiary_transaction_history_list_page_view.dart';
 import 'beneficiary_transaction_history_list_page_view_model.dart';
 
 class BeneficiaryTransactionHistoryListPage extends BasePage<BeneficiaryTransactionHistoryListPageViewModel> {
-  NavigationType navigationType;
+  BeneficiaryTransactionHistoryListPageArguments arguments;
 
-  BeneficiaryTransactionHistoryListPage(this.navigationType);
+  BeneficiaryTransactionHistoryListPage(this.arguments);
 
   @override
   BeneficiaryTransactionHistoryListPageState createState() => BeneficiaryTransactionHistoryListPageState();
@@ -22,7 +22,7 @@ class BeneficiaryTransactionHistoryListPageState extends BaseStatefulPage<
     BeneficiaryTransactionHistoryListPageViewModel, BeneficiaryTransactionHistoryListPage> {
   @override
   ProviderBase provideBase() {
-    return beneficiaryTransactionHistoryListPageViewModelProvider;
+    return beneficiaryTransactionHistoryListPageViewModelProvider.call(widget.arguments);
   }
 
   @override
@@ -42,7 +42,7 @@ class BeneficiaryTransactionHistoryListPageState extends BaseStatefulPage<
                 style: TextStyle(
                     fontSize: 14.t,
                     fontWeight: FontWeight.w600,
-                    color: widget.navigationType == NavigationType.REQUEST_MONEY
+                    color: widget.arguments.navigationType == NavigationType.REQUEST_MONEY
                         ? Theme.of(context).colorScheme.surfaceVariant
                         : Theme.of(context).colorScheme.secondary),
               ),
@@ -58,7 +58,7 @@ class BeneficiaryTransactionHistoryListPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return widget.navigationType == NavigationType.REQUEST_MONEY
+    return widget.arguments.navigationType == NavigationType.REQUEST_MONEY
         ? Theme.of(context).canvasColor
         : Theme.of(context).primaryColor;
   }
@@ -67,4 +67,11 @@ class BeneficiaryTransactionHistoryListPageState extends BaseStatefulPage<
   Widget buildView(BuildContext context, BeneficiaryTransactionHistoryListPageViewModel model) {
     return BeneficiaryTransactionHistoryListPageView(provideBase());
   }
+}
+
+class BeneficiaryTransactionHistoryListPageArguments {
+  final NavigationType navigationType;
+  final String beneficiaryId;
+
+  BeneficiaryTransactionHistoryListPageArguments({required this.navigationType, required this.beneficiaryId});
 }

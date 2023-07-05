@@ -9,6 +9,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/manage_contacts/beneficiary_transaction_history_list/beneficiary_transaction_history_list_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
@@ -385,8 +386,11 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                 GestureDetector(
                   onTap: () {
                     ///TODO: Uncomment once api is integrated
-                    // Navigator.pushNamed(context, RoutePaths.BeneficiaryTransactionHistoryList,
-                    //     arguments: model.navigationType);
+                    Navigator.pushNamed(context, RoutePaths.BeneficiaryTransactionHistoryList,
+                        arguments: BeneficiaryTransactionHistoryListPageArguments(
+                          navigationType: model.argument.navigationType,
+                          beneficiaryId: model.argument.beneficiaryInformation.id ?? '',
+                        ));
                   },
                   child: Container(
                     height: 64.h,
