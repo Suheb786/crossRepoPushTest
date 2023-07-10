@@ -3,6 +3,10 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url 'http://mobile-sdk.idwise.ai/releases/'
+            allowInsecureProtocol = true
+        }
     }
 
     dependencies {
@@ -17,6 +21,10 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url 'http://mobile-sdk.idwise.ai/releases/'
+            allowInsecureProtocol = true
+        }
     }
 }
 
