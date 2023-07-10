@@ -1118,6 +1118,7 @@ class ErrorParser {
         return localisedHelper.noPrepaidCategoryFound;
       case ErrorType.INSUFFICIENT_FUNDS_BILL_CANNOT_BE_PAYED:
         return localisedHelper.insufficientFundsBillCannotBePaid;
+      //QR
       case ErrorType.QR_INVALID:
         return localisedHelper.qrInvalid;
       case ErrorType.QR_EXPIRED:
@@ -1128,6 +1129,9 @@ class ErrorParser {
         return localisedHelper.nickNameCanOnlyContainAlphanumerics;
       case ErrorType.QR_NOT_SCANNED:
         return localisedHelper.qrNotScanned;
+      case ErrorType.OOPS_YOU_CANNOT_SEND_MONEY_TO_YOUR_OWN_ACCOUNT:
+        return localisedHelper.oopsYouCantSendMoneyToYourOwnAccount;
+
       case ErrorType.BILLER_IS_ALREADY_EXIST_WITHIN_THE_SAME_BILLING_NO:
         return localisedHelper.billerAlreadyExistsMessage;
       case ErrorType.BILL_PAYMENT_SORRY_MESSAGE:

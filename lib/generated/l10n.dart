@@ -17729,6 +17729,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Oops! you cannot send money to your own account`
+  String get oopsYouCantSendMoneyToYourOwnAccount {
+    return Intl.message(
+      'Oops! you cannot send money to your own account',
+      name: 'oopsYouCantSendMoneyToYourOwnAccount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

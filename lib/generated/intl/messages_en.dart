@@ -2183,6 +2183,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Online Purchase"),
         "onlinePurchaseExceeded": MessageLookupByLibrary.simpleMessage(
             "Online purchase limit exceeded."),
+        "oopsYouCantSendMoneyToYourOwnAccount":
+            MessageLookupByLibrary.simpleMessage(
+                "Oops! you cannot send money to your own account"),
         "oopsYourCardIsNotActive": MessageLookupByLibrary.simpleMessage(
             "Oops! Your card is not active"),
         "oopscliqIDEnteredIsInvalid": MessageLookupByLibrary.simpleMessage(
@@ -2978,20 +2981,28 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalUsedLimit":
             MessageLookupByLibrary.simpleMessage("TOTAL USED LIMIT"),
         "towithspace": MessageLookupByLibrary.simpleMessage(" to "),
-        "transactionHistory": MessageLookupByLibrary.simpleMessage("Transaction History"),
-        "transactionNotAllowed": MessageLookupByLibrary.simpleMessage("Your Trasaction is not Allowed"),
-        "transactionPeriod": MessageLookupByLibrary.simpleMessage("Transaction Period"),
-        "transactionPurpose": MessageLookupByLibrary.simpleMessage("Transaction Purpose"),
-        "transactionType": MessageLookupByLibrary.simpleMessage("Transaction Type"),
+        "transactionHistory":
+            MessageLookupByLibrary.simpleMessage("Transaction History"),
+        "transactionNotAllowed": MessageLookupByLibrary.simpleMessage(
+            "Your Trasaction is not Allowed"),
+        "transactionPeriod":
+            MessageLookupByLibrary.simpleMessage("Transaction Period"),
+        "transactionPurpose":
+            MessageLookupByLibrary.simpleMessage("Transaction Purpose"),
+        "transactionType":
+            MessageLookupByLibrary.simpleMessage("Transaction Type"),
         "transferCannotbeDone": MessageLookupByLibrary.simpleMessage(
             "Oops! Sending money failed, contact details need to be updated"),
         "transferTypeNF": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. "),
         "transferTypeNFRTP": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. "),
-        "transictionHistory": MessageLookupByLibrary.simpleMessage("Transiction History"),
-        "travelAndTransportation": MessageLookupByLibrary.simpleMessage("Travel and Transportation"),
-        "treatyClaimRate": MessageLookupByLibrary.simpleMessage("treaty identified to Claim Rate (%)"),
+        "transictionHistory":
+            MessageLookupByLibrary.simpleMessage("Transiction History"),
+        "travelAndTransportation":
+            MessageLookupByLibrary.simpleMessage("Travel and Transportation"),
+        "treatyClaimRate": MessageLookupByLibrary.simpleMessage(
+            "treaty identified to Claim Rate (%)"),
         "tryAgainLater": MessageLookupByLibrary.simpleMessage(
             "There was an issue with your payment, please try again. If you need help, contact Blink Engagement Team."),
         "typeOfExpectedTransactions": MessageLookupByLibrary.simpleMessage(
