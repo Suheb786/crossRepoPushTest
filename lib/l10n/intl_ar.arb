@@ -1751,5 +1751,8 @@
   "mobileNoCliq": "رقم الموبايل (كليك)",
   "moneyReceivedFrom": "أموال محولة من",
   "moneySentTo": "أموال مرسلة إلى",
-  "accountMobileNoCliQ": "الأيبان/ الاسم المستعار/ رقم الموبايل (كليك)"
+  "accountMobileNoCliQ": "الأيبان/ الاسم المستعار/ رقم الموبايل (كليك)",
+  "home": "الشاشة الرئيسية",
+  "more": "المزيد",
+  "contactUs": "اتصل بنا"
 }

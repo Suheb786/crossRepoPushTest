@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
@@ -19,7 +18,7 @@ import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_t
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/dashboard/bottom_bar_widget.dart';
 import 'package:neo_bank/ui/molecules/dialog/apple_pay/add_other_card_to_apple_wallet_page_dialog/add_other_card_to_apple_wallet_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/apple_pay/apple_pay_landing_page_dialog/apple_pay_landing_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog.dart';
@@ -321,59 +320,26 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                           child: Padding(
                                                             padding:
                                                                 EdgeInsets.only(top: 35.0.h, bottom: 0.0.h),
-                                                            child: ConvexAppBar(
-                                                              elevation: 0,
-                                                              style: TabStyle.fixedCircle,
-                                                              backgroundColor:
-                                                                  Theme.of(context).colorScheme.secondary,
-                                                              items: [
-                                                                TabItem(
-                                                                    icon: AppSvg.asset(AssetUtils.house),
-                                                                    title: " "),
-                                                                TabItem(
-                                                                  icon: Container(
-                                                                    height: 80.0.h,
-                                                                    width: 80.0.w,
-                                                                    decoration: BoxDecoration(
-                                                                        color: Theme.of(context)
-                                                                            .primaryColorDark,
-                                                                        shape: BoxShape.circle),
-                                                                    child: Center(
-                                                                      child:
-                                                                          AppSvg.asset(AssetUtils.logoWhite),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                TabItem(
-                                                                    icon: Container(
-                                                                        child: AppSvg.asset(
-                                                                            AssetUtils.headphoneBlack)),
-                                                                    title: " "),
-                                                              ],
-                                                              initialActiveIndex: 1,
-                                                              onTap: (i) {
-                                                                switch (i) {
-                                                                  case 0:
-                                                                    model.moveToPage(0);
-                                                                    break;
-                                                                  case 1:
-                                                                    SettingsDialog.show(
-                                                                      context,
-                                                                    );
-                                                                    break;
-                                                                  case 2:
-                                                                    EngagementTeamDialog.show(context,
-                                                                        onDismissed: () {
-                                                                      Navigator.pop(context);
-                                                                    }, onSelected: (value) {
-                                                                      Navigator.pop(context);
-                                                                    });
-                                                                    break;
-                                                                }
+                                                            child: BottomBarWidget(
+                                                              onHomeTap: () {
+                                                                model.moveToPage(0);
+                                                              },
+                                                              onMoreTap: () {
+                                                                SettingsDialog.show(
+                                                                  context,
+                                                                );
+                                                              },
+                                                              onContactUsTap: () {
+                                                                EngagementTeamDialog.show(context,
+                                                                    onDismissed: () {
+                                                                  Navigator.pop(context);
+                                                                }, onSelected: (value) {
+                                                                  Navigator.pop(context);
+                                                                });
                                                               },
                                                             ),
                                                           ),
-                                                        )
+                                                        ),
                                                       ],
                                                     ),
                                                   ),

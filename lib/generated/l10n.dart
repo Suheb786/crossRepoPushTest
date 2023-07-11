@@ -17759,6 +17759,36 @@ class S {
       args: [],
     );
   }
+
+  /// `HOME`
+  String get home {
+    return Intl.message(
+      'HOME',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MORE`
+  String get more {
+    return Intl.message(
+      'MORE',
+      name: 'more',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CONTACT US`
+  String get contactUs {
+    return Intl.message(
+      'CONTACT US',
+      name: 'contactUs',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

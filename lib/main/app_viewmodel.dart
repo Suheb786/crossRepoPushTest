@@ -6,6 +6,7 @@ import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/usecase/app_flyer/init_app_flyer_sdk.dart';
 import 'package:domain/usecase/app_flyer/log_app_flyers_events.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
+
 //import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_view_model.dart';
@@ -143,7 +144,7 @@ class AppViewModel extends BaseViewModel {
                 fontFamily: StringUtils.appFont,
               ),
               displayMedium: TextStyle(
-                color: AppColor.very_dark_gray,
+                color: AppColor.very_dark_gray2,
                 fontFamily: StringUtils.appFont,
               ),
               displaySmall: TextStyle(
@@ -165,12 +166,7 @@ class AppViewModel extends BaseViewModel {
               titleMedium: TextStyle(
                 color: AppColor.very_dark_gray1,
                 fontFamily: StringUtils.appFont,
-              ))
-            ..apply(
-                // bodyColor: AppColor.brightBlue,
-                // displayColor: AppColor.brightBlue,
-                // decorationColor: AppColor.brightBlue,
-                ),
+              )),
           primaryTextTheme: _themeData.textTheme.copyWith(
             bodyLarge: TextStyle(color: AppColor.white, fontFamily: StringUtils.appFont),
           ),
