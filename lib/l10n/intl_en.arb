@@ -1797,5 +1797,8 @@
   "manageContactSendRequestSample": "Please provide any account details you have for your contact. Sending and requesting money is done either within Blink or via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n",
   "accountMobileNoCliQ": "IBAN/ Alias/ Mobile No. (CliQ)",
   "moneyReceivedFrom": "Money received from",
-  "moneySentTo": "Money sent to"
+  "moneySentTo": "Money sent to",
+  "home": "HOME",
+  "more": "MORE",
+  "contactUs": "CONTACT US"
 }

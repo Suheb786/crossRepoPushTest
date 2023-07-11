@@ -702,6 +702,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "The maximum contactless limit is 300 JOD daily"),
         "contactLessPayments":
             MessageLookupByLibrary.simpleMessage("Contactless Payment"),
+        "contactUs": MessageLookupByLibrary.simpleMessage("CONTACT US"),
         "contactlessAlreadyDone": MessageLookupByLibrary.simpleMessage(
             "A supplementary card with the same details already exists. Please check and try again."),
         "contactlessError": MessageLookupByLibrary.simpleMessage(
@@ -1530,6 +1531,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Hello! Here’s my blink CliQ details:\n\n"),
         "highInterestFeesAndCharges": MessageLookupByLibrary.simpleMessage(
             "High interest,fees,and charges"),
+        "home": MessageLookupByLibrary.simpleMessage("HOME"),
         "homeAddress": MessageLookupByLibrary.simpleMessage("HOME ADDRESS"),
         "homeAddressHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Home Address"),
@@ -2029,6 +2031,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "monthlyIncome": MessageLookupByLibrary.simpleMessage("MONTHLY INCOME"),
         "monthlyIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Monthly Income"),
+        "more": MessageLookupByLibrary.simpleMessage("MORE"),
         "motherName": MessageLookupByLibrary.simpleMessage("MOTHER’S NAME"),
         "motherNameHint":
             MessageLookupByLibrary.simpleMessage("Please enter mother\'s name"),
