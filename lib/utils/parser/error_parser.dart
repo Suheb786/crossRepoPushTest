@@ -1121,6 +1121,8 @@ class ErrorParser {
       //QR
       case ErrorType.QR_INVALID:
         return localisedHelper.qrInvalid;
+      case ErrorType.OOPS_THE_QR_CODE_IS_INVALID_PLEASE_TRY_AGAIN:
+        return localisedHelper.oopsTheQRisInvalid;
       case ErrorType.QR_EXPIRED:
         return localisedHelper.qrExpired;
       case ErrorType.ENTER_BILL_DETAILS:

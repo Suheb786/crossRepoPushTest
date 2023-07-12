@@ -725,7 +725,8 @@ class NetworkError extends BaseError {
             return AppError(cause: cause, error: error, type: ErrorType.QR_NOT_SCANNED);
 
           case "err-365":
-            return AppError(cause: cause, error: error, type: ErrorType.QR_INVALID);
+            return AppError(
+                cause: cause, error: error, type: ErrorType.OOPS_THE_QR_CODE_IS_INVALID_PLEASE_TRY_AGAIN);
 
           case "err-375":
             return AppError(

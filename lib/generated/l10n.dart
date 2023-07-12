@@ -17739,6 +17739,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Oops! The QR code is invalid. Please try again.`
+  String get oopsTheQRisInvalid {
+    return Intl.message(
+      'Oops! The QR code is invalid. Please try again.',
+      name: 'oopsTheQRisInvalid',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

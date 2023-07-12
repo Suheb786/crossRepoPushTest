@@ -2114,6 +2114,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الشراء أونلاين"),
         "onlinePurchaseExceeded":
             MessageLookupByLibrary.simpleMessage("تم تجاوز سقف الشراء أونلاين"),
+        "oopsTheQRisInvalid": MessageLookupByLibrary.simpleMessage(
+            "عفوا! رمز الاستجابة السريع QR غير صالح للاستخدام. حاول مرة أخرى"),
+        "oopsYouCantSendMoneyToYourOwnAccount":
+            MessageLookupByLibrary.simpleMessage(
+                "عفوا! ما بتقدر تحول لنفس حسابك"),
         "oopsYourCardIsNotActive":
             MessageLookupByLibrary.simpleMessage("بطاقتك غير فعالة"),
         "oopscliqIDEnteredIsInvalid": MessageLookupByLibrary.simpleMessage(
