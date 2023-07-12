@@ -2185,6 +2185,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Online purchase limit exceeded."),
         "oopsTheQRisInvalid": MessageLookupByLibrary.simpleMessage(
             "Oops! The QR code is invalid. Please try again."),
+        "oopsYouCanOnlyCreate5CliqIds": MessageLookupByLibrary.simpleMessage(
+            "Oops! You can only create 5 CliQ IDs"),
         "oopsYouCantSendMoneyToYourOwnAccount":
             MessageLookupByLibrary.simpleMessage(
                 "Oops! you cannot send money to your own account"),

@@ -17749,6 +17749,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Oops! You can only create 5 CliQ IDs`
+  String get oopsYouCanOnlyCreate5CliqIds {
+    return Intl.message(
+      'Oops! You can only create 5 CliQ IDs',
+      name: 'oopsYouCanOnlyCreate5CliqIds',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

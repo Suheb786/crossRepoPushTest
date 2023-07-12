@@ -1133,6 +1133,8 @@ class ErrorParser {
         return localisedHelper.qrNotScanned;
       case ErrorType.OOPS_YOU_CANNOT_SEND_MONEY_TO_YOUR_OWN_ACCOUNT:
         return localisedHelper.oopsYouCantSendMoneyToYourOwnAccount;
+      case ErrorType.OOPS_YOU_CAN_ONLY_CREATE_5_CLIQ_IDS:
+        return localisedHelper.oopsYouCanOnlyCreate5CliqIds;
 
       case ErrorType.BILLER_IS_ALREADY_EXIST_WITHIN_THE_SAME_BILLING_NO:
         return localisedHelper.billerAlreadyExistsMessage;

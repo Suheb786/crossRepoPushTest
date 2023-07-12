@@ -724,6 +724,9 @@ class NetworkError extends BaseError {
           case "err-364":
             return AppError(cause: cause, error: error, type: ErrorType.QR_NOT_SCANNED);
 
+          case "err-522":
+            return AppError(cause: cause, error: error, type: ErrorType.OOPS_YOU_CAN_ONLY_CREATE_5_CLIQ_IDS);
+
           case "err-365":
             return AppError(
                 cause: cause, error: error, type: ErrorType.OOPS_THE_QR_CODE_IS_INVALID_PLEASE_TRY_AGAIN);
