@@ -1,5 +1,7 @@
-import 'package:domain/model/manage_contacts/beneficiary.dart';
+import 'package:domain/model/manage_contacts/beneficiary_transaction_history_content.dart';
+import 'package:domain/model/manage_contacts/beneficiary_transaction_history_response.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -9,8 +11,10 @@ import 'package:neo_bank/ui/molecules/manage_contacts/beneficiary_transacton_his
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
+import 'package:neo_bank/utils/status.dart';
 
 import 'beneficiary_transaction_history_list_page_view_model.dart';
 
@@ -46,26 +50,54 @@ class BeneficiaryTransactionHistoryListPageView
         Row(
           children: [
             Expanded(
-              child: AppTextField(
-                labelText: '',
-                controller: model.contactSearchController,
-                textFieldBorderColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.3),
-                hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
-                textColor: Theme.of(context).primaryColorDark,
-                hintText: S.of(context).lookingFor,
-                onChanged: (value) {
-                  model.searchBeneficiary(value);
+              child: Focus(
+                onFocusChange: (hasChanged) {
+                  if (!hasChanged) {
+                    if (model.contactSearchController.text.isNotEmpty) {
+                      model.allDataList = [];
+                      model.pageNo = 1;
+                      model.getTransactions(
+                        beneficiaryId: model.arguments.beneficiaryId,
+                        filterDays: model.filterDay,
+                        searchText: model.contactSearchController.text,
+                      );
+                      //  model.contactSearchController.clear();
+                    }
+                  }
                 },
-                suffixIcon: (value, data) {
-                  return InkWell(
-                    onTap: () async {},
-                    child: Container(
-                        height: 16.h,
-                        width: 16.w,
-                        padding: EdgeInsetsDirectional.only(end: 8.w),
-                        child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
-                  );
-                },
+                child: AppTextField(
+                  labelText: '',
+                  controller: model.contactSearchController,
+                  textFieldBorderColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.3),
+                  hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
+                  textColor: Theme.of(context).primaryColorDark,
+                  hintText: S.of(context).lookingFor,
+                  inputType: TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'^[0-9]+.?[0-9]*'))
+                  ],
+                  onChanged: (value) {
+                    //   model.searchBeneficiary(value);
+                    if (model.contactSearchController.text.isEmpty) {
+                      model.pageNo = 1;
+                      model.allDataList = [];
+                      FocusManager.instance.primaryFocus?.unfocus();
+                      model.getTransactions(beneficiaryId: model.arguments.beneficiaryId);
+                    }
+                  },
+                  suffixIcon: (value, data) {
+                    return InkWell(
+                      onTap: () async {},
+                      child: Container(
+                          height: 16.h,
+                          width: 16.w,
+                          padding: EdgeInsetsDirectional.only(end: 8.w),
+                          child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
+                    );
+                  },
+                ),
               ),
             ),
             Padding(
@@ -77,9 +109,14 @@ class BeneficiaryTransactionHistoryListPageView
                       onDismissed: () => Navigator.pop(context),
                       onSelected: (value) {
                         Navigator.pop(context);
-                        // model.getTransactions(
-                        //     cardId: model.cardTransactionArguments.cardId!,
-                        //     noOfDays: model.getFilterDays(value));
+                        model.filterDay = model.getFilterDays(value);
+                        model.allDataList = [];
+                        model.pageNo = 1;
+                        model.getTransactions(
+                          beneficiaryId: model.arguments.beneficiaryId,
+                          filterDays: model.getFilterDays(value),
+                          searchText: model.contactSearchController.text,
+                        );
                       },
                     );
                   },
@@ -92,36 +129,75 @@ class BeneficiaryTransactionHistoryListPageView
   }
 
   listItem(context, BeneficiaryTransactionHistoryListPageViewModel model) {
-    return AppStreamBuilder<Resource<List<Beneficiary>>>(
+    return AppStreamBuilder<Resource<BeneficiaryTransactionHistoryResponse>>(
         stream: model.getBeneficiaryListStream,
         initialData: Resource.none(),
+        onData: (data) async {
+          if (data.status == Status.SUCCESS) {
+            ///LOG EVENT TO FIREBASE
+            await FireBaseLogUtil.fireBaseLog("beneficiary_transaction_history_success",
+                {"is_beneficiary_transaction_history_success": true});
+          } else if (data.status == Status.ERROR) {
+            ///LOG EVENT TO FIREBASE
+            await FireBaseLogUtil.fireBaseLog("beneficiary_transaction_history_failed",
+                {"is_beneficiary_transaction_history_failed": true});
+          }
+        },
         dataBuilder: (context, beneficiaryList) {
-          return Expanded(
-            child: Column(
-              children: [
-                Expanded(
-                  child: Card(
-                    child: SingleChildScrollView(
+          switch (beneficiaryList!.status) {
+            case Status.SUCCESS:
+              return (beneficiaryList.data?.beneficiaryTransactionHistoryContent ?? []).length > 0
+                  ? Expanded(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          ListView.builder(
-                            itemBuilder: (context, index) {
-                              ///send data from api response once updated
-                              return BeneficiaryTransactionWidget();
-                            },
-                            shrinkWrap: true,
-                            physics: ClampingScrollPhysics(),
-                            itemCount: 4,
-                          ),
+                          Expanded(
+                            child: Card(
+                              child: SingleChildScrollView(
+                                controller: model.listController,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    ListView.builder(
+                                      itemBuilder: (context, index) {
+                                        return BeneficiaryTransactionWidget(
+                                          content: beneficiaryList
+                                                  .data?.beneficiaryTransactionHistoryContent?[index] ??
+                                              BeneficiaryTransactionHistoryContent(),
+                                        );
+                                      },
+                                      shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount:
+                                          (beneficiaryList.data?.beneficiaryTransactionHistoryContent ?? [])
+                                              .length,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          )
                         ],
                       ),
-                    ),
+                    )
+                  : Expanded(
+                      child: Center(
+                        child: Text(
+                          S.of(context).noDataFound,
+                          style: TextStyle(color: Theme.of(context).primaryColorDark),
+                        ),
+                      ),
+                    );
+            case Status.ERROR:
+              return Expanded(
+                child: Center(
+                  child: Text(
+                    S.of(context).noDataFound,
                   ),
-                )
-              ],
-            ),
-          );
+                ),
+              );
+            default:
+              return Container();
+          }
         });
   }
 }

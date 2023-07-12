@@ -141,7 +141,6 @@ import 'package:data/entity/remote/cliq/edit_cliq_id_otp/edit_cliq_id_otp_respon
 import 'package:data/entity/remote/cliq/get_account_by_customer_id/get_account_by_customer_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_request_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
-import 'package:data/entity/remote/cliq/get_transaction_history/get_transaction_history_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_request_entity.dart';
@@ -166,6 +165,8 @@ import 'package:data/entity/remote/contact/beneficiary_contact_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_contact_response_entity.dart';
 import 'package:data/entity/remote/contact/beneficiary_fav_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_mark_favorite_request.dart';
+import 'package:data/entity/remote/contact/beneficiary_transaction_history_request_entity.dart';
+import 'package:data/entity/remote/contact/beneficiary_transaction_history_response_entity.dart';
 import 'package:data/entity/remote/contact/contact_detail_request.dart';
 import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/delete_contact_request.dart';
@@ -1101,11 +1102,6 @@ abstract class ApiService {
     @Body() ReturnRTPrequestRequestEntity request,
   );
 
-  @POST("/Cliq/GetTransactionHistory")
-  Future<HttpResponse<ResponseEntity>> getTransactionHistory(
-    @Body() GetTransactionHistoryRequestEntity request,
-  );
-
   @POST("/transfer/GetReturnPaymentReasons")
   Future<HttpResponse<GetRejectionReasonResponseEntity>> getRejectionReason(
     @Body() BaseRequest request,
@@ -1165,6 +1161,11 @@ abstract class ApiService {
   @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/SearchContact")
   Future<HttpResponse<BeneficiaryContactResponseEntity>> searchContact(
     @Body() SearchContactRequest request,
+  );
+
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/GetTransactionHistory")
+  Future<HttpResponse<BeneficiaryTransactionHistoryResponseEntity>> beneficiaryTransactionHistory(
+    @Body() BeneficiaryTransactionHistoryRequest request,
   );
 
   ///Add Contact

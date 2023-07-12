@@ -26,7 +26,6 @@ import 'package:data/entity/remote/cliq/edit_cliq_id_otp/edit_cliq_id_otp_respon
 import 'package:data/entity/remote/cliq/get_account_by_customer_id/get_account_by_customer_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_request_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
-import 'package:data/entity/remote/cliq/get_transaction_history/get_transaction_history_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_request_entity.dart';
@@ -530,21 +529,6 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
         BaseClass: baseData.toJson(),
       ),
     );
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> getTransactionHistory(
-      {required String? FilterDays,
-      required String? TransactionType,
-      required String? TotalRecords,
-      required bool? GetToken}) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getTransactionHistory(GetTransactionHistoryRequestEntity(
-        FilterDays: FilterDays,
-        TransactionType: TransactionType,
-        TotalRecords: TotalRecords,
-        GetToken: GetToken,
-        BaseClass: baseData.toJson()));
   }
 
   Future<HttpResponse<ApproveRTPOtpResponseEntity>> approveRTPRequestOtp({required bool getToken}) async {

@@ -1797,5 +1797,11 @@
   "manageContactSendRequestSample": "Please provide any account details you have for your contact. Sending and requesting money is done either within Blink or via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n",
   "oopsYouCantSendMoneyToYourOwnAccount": "Oops! you cannot send money to your own account",
   "oopsTheQRisInvalid": "Oops! The QR code is invalid. Please try again.",
-  "oopsYouCanOnlyCreate5CliqIds": "Oops! You can only create 5 CliQ IDs"
+  "oopsYouCanOnlyCreate5CliqIds": "Oops! You can only create 5 CliQ IDs",
+  "accountMobileNoCliQ": "IBAN/ Alias/ Mobile No. (CliQ)",
+  "moneyReceivedFrom": "Money received from",
+  "moneySentTo": "Money sent to",
+  "home": "HOME",
+  "more": "MORE",
+  "contactUs": "CONTACT US"
 }

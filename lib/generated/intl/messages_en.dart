@@ -116,6 +116,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
         "accountMobileNoAlias": MessageLookupByLibrary.simpleMessage(
             "IBAN / ACCOUNT NO. / MOBILE NO. / ALIAS"),
+        "accountMobileNoCliQ": MessageLookupByLibrary.simpleMessage(
+            "IBAN/ Alias/ Mobile No. (CliQ)"),
         "accountNo": MessageLookupByLibrary.simpleMessage("ACCOUNT NO."),
         "accountNoCopied":
             MessageLookupByLibrary.simpleMessage("Account No. Copied"),
@@ -701,6 +703,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "The maximum contactless limit is 300 JOD daily"),
         "contactLessPayments":
             MessageLookupByLibrary.simpleMessage("Contactless Payment"),
+        "contactUs": MessageLookupByLibrary.simpleMessage("CONTACT US"),
         "contactlessAlreadyDone": MessageLookupByLibrary.simpleMessage(
             "A supplementary card with the same details already exists. Please check and try again."),
         "contactlessError": MessageLookupByLibrary.simpleMessage(
@@ -1529,6 +1532,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Hello! Here’s my blink CliQ details:\n\n"),
         "highInterestFeesAndCharges": MessageLookupByLibrary.simpleMessage(
             "High interest,fees,and charges"),
+        "home": MessageLookupByLibrary.simpleMessage("HOME"),
         "homeAddress": MessageLookupByLibrary.simpleMessage("HOME ADDRESS"),
         "homeAddressHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Home Address"),
@@ -2020,11 +2024,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "mobileNumberHint": MessageLookupByLibrary.simpleMessage("00 000 0000"),
         "mobileNumberUpdated": MessageLookupByLibrary.simpleMessage(
             "Your mobile number has been updated successfully"),
+        "moneyReceivedFrom":
+            MessageLookupByLibrary.simpleMessage("Money received from"),
+        "moneySentTo": MessageLookupByLibrary.simpleMessage("Money sent to"),
         "moneyThorError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "monthlyIncome": MessageLookupByLibrary.simpleMessage("MONTHLY INCOME"),
         "monthlyIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Monthly Income"),
+        "more": MessageLookupByLibrary.simpleMessage("MORE"),
         "motherName": MessageLookupByLibrary.simpleMessage("MOTHER’S NAME"),
         "motherNameHint":
             MessageLookupByLibrary.simpleMessage("Please enter mother\'s name"),

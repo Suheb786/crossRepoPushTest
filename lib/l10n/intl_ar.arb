@@ -1751,5 +1751,11 @@
   "accountMobileNoCliQ": "الأيبان/ الاسم المستعار/ رقم الموبايل (كليك)",
   "oopsYouCantSendMoneyToYourOwnAccount": "عفوا! ما بتقدر تحول لنفس حسابك",
   "oopsTheQRisInvalid": "عفوا! رمز الاستجابة السريع QR غير صالح للاستخدام. حاول مرة أخرى",
-  "oopsYouCanOnlyCreate5CliqIds": "عفوا!ممكن تسجل 5 أسماء مستعارة/أرقام هواتف فقط على كليك "
+  "oopsYouCanOnlyCreate5CliqIds": "عفوا!ممكن تسجل 5 أسماء مستعارة/أرقام هواتف فقط على كليك ",
+  "mobileNoCliq": "رقم الموبايل (كليك)",
+  "moneyReceivedFrom": "أموال محولة من",
+  "moneySentTo": "أموال مرسلة إلى",
+  "home": "الشاشة الرئيسية",
+  "more": "المزيد",
+  "contactUs": "اتصل بنا"
 }

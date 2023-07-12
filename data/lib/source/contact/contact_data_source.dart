@@ -1,4 +1,5 @@
 import 'package:data/entity/remote/contact/beneficiary_contact_response_entity.dart';
+import 'package:data/entity/remote/contact/beneficiary_transaction_history_response_entity.dart';
 import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/retrofit.dart';
@@ -63,8 +64,6 @@ abstract class ContactRemoteDS {
 
   Future<HttpResponse<ResponseEntity>> deleteBeneficiary({String beneficiaryId, String? beneType});
 
-
-
   Future<HttpResponse<BeneficiaryContactResponseEntity>> beneficiaryContacts({
     required bool isFromMobile,
   });
@@ -90,4 +89,13 @@ abstract class ContactRemoteDS {
   });
 
   Future<HttpResponse<SendOtpAddBeneficiaryDataResponseEntity>> sendOTPAddBeneficiary();
+
+  Future<HttpResponse<BeneficiaryTransactionHistoryResponseEntity>> beneficiaryTransactionHistory({
+    required num filterDays,
+    required int pageNo,
+    required String beneficiaryId,
+    required String searchText,
+    required String transactionType,
+    required String totalRecords,
+  });
 }

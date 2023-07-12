@@ -115,6 +115,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
         "accountMobileNoAlias": MessageLookupByLibrary.simpleMessage(
             "الأيبان/ رقم الحساب/ رقم الموبايل/ الاسم المستعار"),
+        "accountMobileNoCliQ": MessageLookupByLibrary.simpleMessage(
+            "الأيبان/ الاسم المستعار/ رقم الموبايل (كليك)"),
         "accountNo": MessageLookupByLibrary.simpleMessage("رقم الحساب"),
         "accountNoCopied":
             MessageLookupByLibrary.simpleMessage("تم نسخ رقم الحساب"),
@@ -682,6 +684,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "الحد الأعلى للحركات الغير تلامسية هو ٣٠٠ دينار يوميا\n\n"),
         "contactLessPayments":
             MessageLookupByLibrary.simpleMessage("دفع بدون لمس"),
+        "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "contactlessAlreadyDone": MessageLookupByLibrary.simpleMessage(
             "البطاقة التابعة غير موجودة. تأكد وحاول كمان مرة."),
         "contactlessError": MessageLookupByLibrary.simpleMessage(
@@ -1485,6 +1488,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "مرحبًا! ها هي تفاصيل CliQ الوامضة:\n\n"),
         "highInterestFeesAndCharges":
             MessageLookupByLibrary.simpleMessage("فوائد ورسوم وتكاليف مرتفعة"),
+        "home": MessageLookupByLibrary.simpleMessage("الشاشة الرئيسية"),
         "homeAddress": MessageLookupByLibrary.simpleMessage("عنوان البيت"),
         "homeAddressHint": MessageLookupByLibrary.simpleMessage("أدخل عنوانك"),
         "homeAddressSmall": MessageLookupByLibrary.simpleMessage("عنوان البيت"),
@@ -1947,6 +1951,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "mobileNo": MessageLookupByLibrary.simpleMessage("رقم الموبايل."),
         "mobileNoAliasHint":
             MessageLookupByLibrary.simpleMessage("00962000000000"),
+        "mobileNoCliq":
+            MessageLookupByLibrary.simpleMessage("رقم الموبايل (كليك)"),
         "mobileNoCliqorBlink":
             MessageLookupByLibrary.simpleMessage("رقمالموبايل (بلينك أو كليك)"),
         "mobileNoExist": MessageLookupByLibrary.simpleMessage(
@@ -1959,11 +1965,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "mobileNumberHint": MessageLookupByLibrary.simpleMessage("00 000 0000"),
         "mobileNumberUpdated":
             MessageLookupByLibrary.simpleMessage("تم تحديث رقم موبايلك بنجاح"),
+        "moneyReceivedFrom":
+            MessageLookupByLibrary.simpleMessage("أموال محولة من"),
+        "moneySentTo": MessageLookupByLibrary.simpleMessage("أموال مرسلة إلى"),
         "moneyThorError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "monthlyIncome": MessageLookupByLibrary.simpleMessage("الدخل الشهري"),
         "monthlyIncomeSmall":
             MessageLookupByLibrary.simpleMessage("الدخل الشهري"),
+        "more": MessageLookupByLibrary.simpleMessage("المزيد"),
         "motherName": MessageLookupByLibrary.simpleMessage("اسم الأم"),
         "motherNameHint": MessageLookupByLibrary.simpleMessage("أدخل اسم الأم"),
         "mothersBirthplace":

@@ -26,9 +26,7 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -17755,6 +17753,66 @@ class S {
     return Intl.message(
       'Oops! You can only create 5 CliQ IDs',
       name: 'oopsYouCanOnlyCreate5CliqIds',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IBAN/ Alias/ Mobile No. (CliQ)`
+  String get accountMobileNoCliQ {
+    return Intl.message(
+      'IBAN/ Alias/ Mobile No. (CliQ)',
+      name: 'accountMobileNoCliQ',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Money received from`
+  String get moneyReceivedFrom {
+    return Intl.message(
+      'Money received from',
+      name: 'moneyReceivedFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Money sent to`
+  String get moneySentTo {
+    return Intl.message(
+      'Money sent to',
+      name: 'moneySentTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `HOME`
+  String get home {
+    return Intl.message(
+      'HOME',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MORE`
+  String get more {
+    return Intl.message(
+      'MORE',
+      name: 'more',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CONTACT US`
+  String get contactUs {
+    return Intl.message(
+      'CONTACT US',
+      name: 'contactUs',
       desc: '',
       args: [],
     );
