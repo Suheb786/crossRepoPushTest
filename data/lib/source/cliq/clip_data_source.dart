@@ -133,29 +133,6 @@ abstract class CliqDataSource {
     required bool getToken,
   });
 
-  Future<HttpResponse<ResponseEntity>> updateRTPCliqRequest({
-    required String msgId,
-    required String rejectReason,
-    required String rejectAddInfo,
-    required String dbtrBic,
-    required String dbtrAcct,
-    required String dbtrName,
-    required String dbtrIsIndvl,
-    required String cdtrBic,
-    required String cdtrAcct,
-    required String cdtrName,
-    required String cdtrIsIndvl,
-    required String rmtInf,
-    required String ctgyPurp,
-    required String amount,
-    required String curr,
-    required bool rtpStatus,
-    required String otPcode,
-    required String cdtrPstlAdr,
-    required String dbtrPstlAdr,
-    required bool getToken,
-  });
-
   Future<HttpResponse<ResponseEntity>> requestToPayResult({
     required String CustID,
     required String OrgnlMsgId,

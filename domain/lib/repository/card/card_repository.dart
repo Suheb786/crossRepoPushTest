@@ -22,14 +22,10 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, bool>> setCardPin(String currentPin, String cardNUmber);
 
-  Future<Either<NetworkError, bool>> confirmCardDelivery();
-
   Future<Either<NetworkError, GetTransactionsResponse>> getDebitCardTransactions({num? noOfDays});
 
   Future<Either<NetworkError, GetTransactionsResponse>> getCreditCardTransactions(
       {required String cardId, num? noOfDays});
-
-  Future<Either<NetworkError, bool>> confirmCreditCardDelivery({String? cardId, String? cardDigit});
 
   Future<Either<NetworkError, CardStatementResponse>> getDebitCardStatement(String monthYear);
 

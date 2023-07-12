@@ -56,22 +56,7 @@ abstract class PaymentRepository {
   Future<Either<NetworkError, PurposeResponse>> getPurpose(
       String toAccount, String transferType, String detCustomerType, String type);
 
-  Future<Either<NetworkError, PaymentActivityResponse>> getPaymentActivity({int? filterDays});
-
   Future<Either<NetworkError, bool>> payBackCreditCard({String? secureCode, String? payBackAmount});
-
-  Future<Either<NetworkError, TransferSuccessResponse>> transferAPINoOtp(
-      {String beneficiaryId,
-      String transferType,
-      String beneficiaryImage,
-      bool isFriend,
-      num toAmount,
-      num localEq,
-      String memo,
-      String toAccount,
-      String nickName,
-      String? detCustomerType,
-      String? type});
 
   Future<Either<NetworkError, GetRejectionReasonResponseModel>> getReturnRejectionReason({
     required bool GetToken,

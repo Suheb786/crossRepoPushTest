@@ -56,22 +56,7 @@ abstract class PaymentRemoteDs {
   Future<HttpResponse<PurposeResponseEntity>> getPurpose(
       String toAccount, String transferType, String detCustomerType, String type);
 
-  Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity({int? filterDays});
-
   Future<HttpResponse<ResponseEntity>> payBackCreditCard({String? secureCode, String? payBackAmount});
-
-  Future<HttpResponse<TransferSuccessResponseEntity>> transferAPINoOtp(
-      {String beneficiaryId,
-      String transferType,
-      String beneficiaryImage,
-      bool isFriend,
-      num toAmount,
-      num localEq,
-      String memo,
-      String toAccount,
-      String nickName,
-      String detCustomerType,
-      String type});
 
   Future<HttpResponse<QRResponseEntity>> generateQR({required String amount});
 

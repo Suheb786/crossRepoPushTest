@@ -67,10 +67,6 @@ abstract class BillPaymentRemoteDS {
     required RemovePrepaidBillerUseCaseParams params,
   });
 
-  Future<HttpResponse<ResponseEntity>> cliqRegisterCustomer();
-
-  Future<HttpResponse<ResponseEntity>> cliqRegisterAccount();
-
   Future<HttpResponse<ResponseEntity>> accountUpload();
 
   Future<HttpResponse<ValidateBillerOtpResponse>> validateBillerOtp({

@@ -17,6 +17,9 @@ class KeyHelper {
   static String CARD_DECRYPTION_KEY = "";
   static String PIN_BLOCK_KEY = "";
 
+  ///Credit Card
+  static String CREDIT_CARD_PIN_BLOCK_KEY = "";
+
   ///infobip audio service keys
   static String INFOBIP_APP_KEY = "";
   static String INFOBIP_APPLICATION_CODE = "";
@@ -35,6 +38,7 @@ class KeyHelper {
     IOS_BLINK_ID = mapContent['dynamicObject']['IOSKey'];
     INFOBIP_APP_KEY = mapContent['dynamicObject']['AppKey'];
     INFOBIP_APPLICATION_CODE = mapContent['dynamicObject']['ApplicationCode'];
+    CREDIT_CARD_PIN_BLOCK_KEY = mapContent['dynamicObject']['creditCardPinBlockKey'];
     InfobipUtilsConstants.FIREBASE_API_KEY = mapContent['dynamicObject']['FIREBASE_API_KEY'];
     InfobipUtilsConstants.FIREBASE_APPLICATION_ID = mapContent['dynamicObject']['FIREBASE_APPLICATION_ID'];
     InfobipUtilsConstants.FIREBASE_PROJECT_ID = mapContent['dynamicObject']['FIREBASE_PROJECT_ID'];
