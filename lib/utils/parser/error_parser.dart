@@ -990,7 +990,7 @@ class ErrorParser {
       case ErrorType.ERROR_GETTING_CARD_INFO_NET:
         return localisedHelper.errorInGetCardInfoNet;
       case ErrorType.ERROR_UPDATING_LIMITS:
-        return localisedHelper.errorUpdatingLimits;
+        return localisedHelper.oopsErrorWhileUpdatingCardLimit;
       case ErrorType.ERROR_UPDATING_CARD_STATUS_RULEENGINE:
         return localisedHelper.errorUpdatingCardStatusRuleEngine;
       case ErrorType.NO_DEBIT_CARD_FOUND:
@@ -1124,7 +1124,7 @@ class ErrorParser {
       case ErrorType.OOPS_THE_QR_CODE_IS_INVALID_PLEASE_TRY_AGAIN:
         return localisedHelper.oopsTheQRisInvalid;
       case ErrorType.QR_EXPIRED:
-        return localisedHelper.qrExpired;
+        return localisedHelper.oopsTheQRCodeIsExpired;
       case ErrorType.ENTER_BILL_DETAILS:
         return localisedHelper.enterBillDetails;
       case ErrorType.INVALID_NICK_NAME:
@@ -1405,7 +1405,8 @@ class ErrorParser {
         return localisedHelper.enterValidIBANCLiQ;
       case ErrorType.TRANSFER_CANNOT_BE_DONE:
         return localisedHelper.transferCannotbeDone;
-
+      case ErrorType.OOPS_YOU_HAVE_EXCEEDED_YOUR_DAILY_TRANSFER_LIMIT:
+        return localisedHelper.oopsYouHaveExceededYourDailyTransferLimit;
       default:
         return "";
     }

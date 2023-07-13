@@ -2191,6 +2191,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Online Purchase"),
         "onlinePurchaseExceeded": MessageLookupByLibrary.simpleMessage(
             "Online purchase limit exceeded."),
+        "oopsErrorWhileUpdatingCardLimit": MessageLookupByLibrary.simpleMessage(
+            "Oops! Something went wrong while updating limit, please try again later."),
+        "oopsTheQRCodeIsExpired": MessageLookupByLibrary.simpleMessage(
+            "Oops! The QR code is expired."),
         "oopsTheQRisInvalid": MessageLookupByLibrary.simpleMessage(
             "Oops! The QR code is invalid. Please try again."),
         "oopsYouCanOnlyCreate5CliqIds": MessageLookupByLibrary.simpleMessage(
@@ -2198,6 +2202,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "oopsYouCantSendMoneyToYourOwnAccount":
             MessageLookupByLibrary.simpleMessage(
                 "Oops! you cannot send money to your own account"),
+        "oopsYouHaveExceededYourDailyTransferLimit":
+            MessageLookupByLibrary.simpleMessage(
+                "Oops! You have exceeded your daily transfer limit."),
         "oopsYourCardIsNotActive": MessageLookupByLibrary.simpleMessage(
             "Oops! Your card is not active"),
         "oopscliqIDEnteredIsInvalid": MessageLookupByLibrary.simpleMessage(

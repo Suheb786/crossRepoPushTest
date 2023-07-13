@@ -1446,9 +1446,14 @@ class NetworkError extends BaseError {
           case "err-506":
             return AppError(
                 cause: cause, error: error, type: ErrorType.YOU_CANNOT_USE_YOUR_CLIQ_ID_TO_SEND_MONEY);
-          case "err-521":
+          case "err-600":
             return AppError(
                 cause: cause, error: error, type: ErrorType.OOPS_YOU_CANNOT_SEND_MONEY_TO_YOUR_OWN_ACCOUNT);
+
+          case "err-601":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.OOPS_YOU_HAVE_EXCEEDED_YOUR_DAILY_TRANSFER_LIMIT);
+
 
           default:
             return AppError(cause: cause, error: error, type: ErrorType.NETWORK);

@@ -26,7 +26,9 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -17813,6 +17815,36 @@ class S {
     return Intl.message(
       'CONTACT US',
       name: 'contactUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Something went wrong while updating limit, please try again later.`
+  String get oopsErrorWhileUpdatingCardLimit {
+    return Intl.message(
+      'Oops! Something went wrong while updating limit, please try again later.',
+      name: 'oopsErrorWhileUpdatingCardLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! You have exceeded your daily transfer limit.`
+  String get oopsYouHaveExceededYourDailyTransferLimit {
+    return Intl.message(
+      'Oops! You have exceeded your daily transfer limit.',
+      name: 'oopsYouHaveExceededYourDailyTransferLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! The QR code is expired.`
+  String get oopsTheQRCodeIsExpired {
+    return Intl.message(
+      'Oops! The QR code is expired.',
+      name: 'oopsTheQRCodeIsExpired',
       desc: '',
       args: [],
     );

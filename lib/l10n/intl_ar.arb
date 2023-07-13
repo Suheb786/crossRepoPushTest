@@ -1757,5 +1757,8 @@
   "moneySentTo": "أموال مرسلة إلى",
   "home": "الشاشة الرئيسية",
   "more": "المزيد",
-  "contactUs": "اتصل بنا"
+  "contactUs": "اتصل بنا",
+  "oopsErrorWhileUpdatingCardLimit": "عفوا! حصل خطأ خلال تعديل السقف، حاول مرة ثانية لاحقا",
+  "oopsYouHaveExceededYourDailyTransferLimit": "عفوا! لقد تجاوزت الحد اليومي للحوالات",
+  "oopsTheQRCodeIsExpired": "عفوا! انتهت صلاحية رمز الاستجابة السريع QR "
 }

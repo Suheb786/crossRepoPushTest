@@ -1803,5 +1803,8 @@
   "moneySentTo": "Money sent to",
   "home": "HOME",
   "more": "MORE",
-  "contactUs": "CONTACT US"
+  "contactUs": "CONTACT US",
+  "oopsErrorWhileUpdatingCardLimit": "Oops! Something went wrong while updating limit, please try again later.",
+  "oopsYouHaveExceededYourDailyTransferLimit": "Oops! You have exceeded your daily transfer limit.",
+  "oopsTheQRCodeIsExpired": "Oops! The QR code is expired."
 }

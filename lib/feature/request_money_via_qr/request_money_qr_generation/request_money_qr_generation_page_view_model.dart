@@ -20,7 +20,8 @@ class RequestMoneyQrGenerationPageViewModel extends BasePageViewModel {
   Stream<Resource<QrResponse>> get generateQRStream => _generateQRResponse.stream;
 
   void generateQR() {
-    _generateQRRequest.safeAdd(GenerateQRUseCaseParams(amount: currentPinValue));
+    _generateQRRequest
+        .safeAdd(GenerateQRUseCaseParams(amount: double.parse(currentPinValue).toStringAsFixed(3)));
   }
 
   ///---------------Generate QR----------------------///
