@@ -17730,6 +17730,36 @@ class S {
     );
   }
 
+  /// `Oops! you cannot send money to your own account`
+  String get oopsYouCantSendMoneyToYourOwnAccount {
+    return Intl.message(
+      'Oops! you cannot send money to your own account',
+      name: 'oopsYouCantSendMoneyToYourOwnAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! The QR code is invalid. Please try again.`
+  String get oopsTheQRisInvalid {
+    return Intl.message(
+      'Oops! The QR code is invalid. Please try again.',
+      name: 'oopsTheQRisInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! You can only create 5 CliQ IDs`
+  String get oopsYouCanOnlyCreate5CliqIds {
+    return Intl.message(
+      'Oops! You can only create 5 CliQ IDs',
+      name: 'oopsYouCanOnlyCreate5CliqIds',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `IBAN/ Alias/ Mobile No. (CliQ)`
   String get accountMobileNoCliQ {
     return Intl.message(
@@ -17785,6 +17815,36 @@ class S {
     return Intl.message(
       'CONTACT US',
       name: 'contactUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Something went wrong while updating limit, please try again later.`
+  String get oopsErrorWhileUpdatingCardLimit {
+    return Intl.message(
+      'Oops! Something went wrong while updating limit, please try again later.',
+      name: 'oopsErrorWhileUpdatingCardLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! You have exceeded your daily transfer limit.`
+  String get oopsYouHaveExceededYourDailyTransferLimit {
+    return Intl.message(
+      'Oops! You have exceeded your daily transfer limit.',
+      name: 'oopsYouHaveExceededYourDailyTransferLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! The QR code is expired.`
+  String get oopsTheQRCodeIsExpired {
+    return Intl.message(
+      'Oops! The QR code is expired.',
+      name: 'oopsTheQRCodeIsExpired',
       desc: '',
       args: [],
     );
