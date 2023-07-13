@@ -14,6 +14,7 @@ DashboardAccountEntity _$DashboardAccountEntityFromJson(
       accountNo: json['accountNo'] as String? ?? "",
       iban: json['iban'] as String? ?? "",
       cardNo: json['cardNo'] as String? ?? "",
+      status: json['status'] as String? ?? "",
     );
 
 Map<String, dynamic> _$DashboardAccountEntityToJson(
@@ -24,4 +25,5 @@ Map<String, dynamic> _$DashboardAccountEntityToJson(
       'accountNo': instance.accountNo,
       'iban': instance.iban,
       'cardNo': instance.cardNo,
+      'status': instance.status,
     };

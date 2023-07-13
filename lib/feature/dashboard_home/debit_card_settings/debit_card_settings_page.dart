@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/account_status_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,9 +37,11 @@ class DebitCardSettingsArguments {
   final DebitCard debitCard;
   final bool isPrimaryDebitCard;
   final bool debitCardRequestPhysicalCardEnabled;
+  final AccountStatusEnum accountStatusEnum;
 
   DebitCardSettingsArguments(
       {required this.debitCard,
       required this.isPrimaryDebitCard,
-      this.debitCardRequestPhysicalCardEnabled = false});
+      this.debitCardRequestPhysicalCardEnabled = false,
+      required this.accountStatusEnum});
 }

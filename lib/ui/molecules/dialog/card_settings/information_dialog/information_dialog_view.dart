@@ -15,6 +15,7 @@ class InformationDialogView extends StatelessWidget {
   final Widget descriptionWidget;
   final double? imageHight;
   final double? imageWidth;
+  final String? doneImage;
 
   const InformationDialogView(
       {this.onDismissed,
@@ -24,7 +25,8 @@ class InformationDialogView extends StatelessWidget {
       required this.descriptionWidget,
       this.isSwipeToCancel = true,
       this.imageHight = 40,
-      this.imageWidth = 40});
+      this.imageWidth = 40,
+      this.doneImage});
 
   @override
   Widget build(BuildContext context) {
@@ -85,8 +87,8 @@ class InformationDialogView extends StatelessWidget {
                           width: 57.w,
                           decoration: BoxDecoration(
                               shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyLarge!.color!),
-                          child:
-                              AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
+                          child: AppSvg.asset(doneImage != null ? doneImage! : AssetUtils.tick,
+                              color: Theme.of(context).colorScheme.secondary),
                         ),
                       ),
                       Padding(

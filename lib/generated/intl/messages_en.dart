@@ -100,6 +100,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "You cannot apply for a credit card when your account is inactive. Please call us on 06-5200100 to activate your account."),
         "accountDormantError": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is inactive. Call us on 06-5200100 to activate your account."),
+        "accountDormantStatusDesc": MessageLookupByLibrary.simpleMessage(
+            "Your have not used your account for a long time and it is now deactivated. Please call us on 06-5200100 to activate your account and enjoy countless benefits."),
+        "accountDormantTitle":
+            MessageLookupByLibrary.simpleMessage("Your account is inactive!"),
         "accountHolderName":
             MessageLookupByLibrary.simpleMessage("account holder name"),
         "accountInquiryWentWrong": MessageLookupByLibrary.simpleMessage(
@@ -480,6 +484,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Call scheduled!"),
         "callScheduledNote": MessageLookupByLibrary.simpleMessage(
             "Your account will be processed after the video call is completed."),
+        "callToActivate": MessageLookupByLibrary.simpleMessage(
+            "Call us on 06-5200100 to activate your account and get your debit card."),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cancelBooking": MessageLookupByLibrary.simpleMessage("Cancel Booking"),
@@ -911,6 +917,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "I don\'t need my card anymore"),
         "dormantAccountCCFailedTitle": MessageLookupByLibrary.simpleMessage(
             "Unfortunately, your credit card application has failed!"),
+        "dormantAccountPhysicalCardReq": MessageLookupByLibrary.simpleMessage(
+            "Oops! You cannot request your physical card as your account is inactive. Call us on 06-5200100 to activate your account."),
         "downloadStatement":
             MessageLookupByLibrary.simpleMessage("Download Statement"),
         "dragMap": MessageLookupByLibrary.simpleMessage(
@@ -3243,6 +3251,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("You are about to reject "),
         "youareabouttosend":
             MessageLookupByLibrary.simpleMessage("You are about to send "),
+        "yourAccountInactive":
+            MessageLookupByLibrary.simpleMessage("Your account is inactive"),
         "yourAddOtherCardFromCardSettings":
             MessageLookupByLibrary.simpleMessage(
                 "You can add your other cards from\nCard Settings."),

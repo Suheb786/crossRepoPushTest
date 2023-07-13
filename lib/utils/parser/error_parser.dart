@@ -1397,6 +1397,8 @@ class ErrorParser {
         return localisedHelper.enterValidIBANCLiQ;
       case ErrorType.TRANSFER_CANNOT_BE_DONE:
         return localisedHelper.transferCannotbeDone;
+      case ErrorType.ACCOUNT_DORMANT:
+        return localisedHelper.dormantAccountPhysicalCardReq;
 
       default:
         return "";

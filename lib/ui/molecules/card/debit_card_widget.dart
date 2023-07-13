@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:data/helper/antelop_helper.dart';
+import 'package:domain/constants/enum/account_status_enum.dart';
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
 import 'package:domain/model/apple_pay/get_all_card_data.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
@@ -28,13 +29,15 @@ class DebitCardWidget extends StatefulWidget {
   final bool isSmallDevice;
   final bool isPrimaryDebitCard;
   final bool isDebitCardRequestPhysicalCardEnabled;
+  final AccountStatusEnum accountStatusEnum;
 
   DebitCardWidget(
       {required this.key,
       required this.debitCard,
       this.isSmallDevice = false,
       required this.isPrimaryDebitCard,
-      this.isDebitCardRequestPhysicalCardEnabled = false});
+      this.isDebitCardRequestPhysicalCardEnabled = false,
+      required this.accountStatusEnum});
 
   FlipCardController? flipCardController = FlipCardController();
 
@@ -260,6 +263,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                       var result = await Navigator.pushNamed(
                                           context, RoutePaths.DebitCardSettings,
                                           arguments: DebitCardSettingsArguments(
+                                              accountStatusEnum: widget.accountStatusEnum,
                                               isPrimaryDebitCard: widget.isPrimaryDebitCard,
                                               debitCard: widget.debitCard,
                                               debitCardRequestPhysicalCardEnabled:
