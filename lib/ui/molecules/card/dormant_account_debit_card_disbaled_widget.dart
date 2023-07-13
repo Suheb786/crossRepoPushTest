@@ -78,7 +78,7 @@ class _DormantAccountDebitCardDisabledWidgetState extends State<DormantAccountDe
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.only(top: 4.0.h),
+                      padding: EdgeInsetsDirectional.only(top: 4.0.h,end: 24.w),
                       child: Text(
                         S.of(context).callToActivate,
                         style: TextStyle(

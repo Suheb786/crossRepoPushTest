@@ -16,7 +16,7 @@ class BottomBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 40.w, right: 40.w, top: 20.h, bottom: 20.h),
+      padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 20.h, bottom: 20.h),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.only(topLeft: Radius.circular(20.w), topRight: Radius.circular(20.w)),
           border: Border(
@@ -36,7 +36,7 @@ class BottomBarWidget extends StatelessWidget {
             label: S.of(context).home,
           ),
           SizedBox(
-            width: 55.w,
+            width: 40.w,
           ),
           BottomBarWidgetItem(
             onTap: () {
@@ -46,7 +46,7 @@ class BottomBarWidget extends StatelessWidget {
             label: S.of(context).more,
           ),
           SizedBox(
-            width: 35.w,
+            width: 40.w,
           ),
           BottomBarWidgetItem(
             onTap: () {

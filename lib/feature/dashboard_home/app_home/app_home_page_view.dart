@@ -370,7 +370,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                 alignment: Alignment.bottomCenter,
                                                                 child: Padding(
                                                                   padding: EdgeInsets.only(
-                                                                      top: 35.0.h, bottom: 0.0.h),
+                                                                      top: 24.0.h, bottom: 0.0.h),
                                                                   child: BottomBarWidget(
                                                                     onHomeTap: () {
                                                                       model.moveToPage(0);

@@ -148,7 +148,7 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 30.h),
+                          padding: EdgeInsets.only(top: 24.h),
                           child: Align(
                             alignment: Alignment.bottomCenter,
                             child: BottomBarWidget(
