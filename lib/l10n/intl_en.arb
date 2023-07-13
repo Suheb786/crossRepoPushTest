@@ -1795,10 +1795,16 @@
   "transferCannotbeDone": "Oops! Sending money failed, contact details need to be updated",
   "requestMoneyFormateSample": "Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n",
   "manageContactSendRequestSample": "Please provide any account details you have for your contact. Sending and requesting money is done either within Blink or via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n",
+  "oopsYouCantSendMoneyToYourOwnAccount": "Oops! you cannot send money to your own account",
+  "oopsTheQRisInvalid": "Oops! The QR code is invalid. Please try again.",
+  "oopsYouCanOnlyCreate5CliqIds": "Oops! You can only create 5 CliQ IDs",
   "accountMobileNoCliQ": "IBAN/ Alias/ Mobile No. (CliQ)",
   "moneyReceivedFrom": "Money received from",
   "moneySentTo": "Money sent to",
   "home": "HOME",
   "more": "MORE",
-  "contactUs": "CONTACT US"
+  "contactUs": "CONTACT US",
+  "oopsErrorWhileUpdatingCardLimit": "Oops! Something went wrong while updating limit, please try again later.",
+  "oopsYouHaveExceededYourDailyTransferLimit": "Oops! You have exceeded your daily transfer limit.",
+  "oopsTheQRCodeIsExpired": "Oops! The QR code is expired."
 }
