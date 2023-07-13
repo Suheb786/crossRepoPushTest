@@ -22,7 +22,6 @@ import 'package:domain/usecase/payment/send_amount_to_contact_usecase.dart';
 import 'package:domain/usecase/payment/send_money_failure_usecase.dart';
 import 'package:domain/usecase/payment/send_money_usecase.dart';
 import 'package:domain/usecase/payment/send_to_new_recipient_usecase.dart';
-import 'package:domain/usecase/payment/transfer_api_no_otp_usecase.dart';
 import 'package:domain/usecase/payment/transfer_qr_usecase.dart';
 import 'package:domain/usecase/payment/transfer_usecase.dart';
 import 'package:domain/usecase/payment/transfer_verify_usecase.dart';
@@ -113,11 +112,6 @@ final checkSendMoneyUseCaseProvider = Provider.autoDispose<CheckSendMoneyUseCase
 ///[TransferUseCase] provider
 final transferUseCaseProvider = Provider.autoDispose<TransferUseCase>(
   (ref) => TransferUseCase(ref.read(paymentRepositoryProvider)),
-);
-
-///[TransferApiNoOtpUseCase] provider
-final transferApiNoOtpUseCaseProvider = Provider.autoDispose<TransferApiNoOtpUseCase>(
-  (ref) => TransferApiNoOtpUseCase(ref.read(paymentRepositoryProvider)),
 );
 
 ///[TransferVerifyUseCase] provider

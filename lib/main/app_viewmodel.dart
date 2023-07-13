@@ -160,7 +160,7 @@ class AppViewModel extends BaseViewModel {
                 fontFamily: StringUtils.appFont,
               ),
               labelSmall: TextStyle(
-                color: AppColor.lightGrayishMagenta,
+                color: AppColor.dark_yellow1,
                 fontFamily: StringUtils.appFont,
               ),
               titleMedium: TextStyle(

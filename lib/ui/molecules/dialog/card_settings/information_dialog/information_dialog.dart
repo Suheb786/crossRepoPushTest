@@ -5,25 +5,30 @@ import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/in
 class InformationDialog {
   InformationDialog._();
 
-  static show(BuildContext mContext,
-      {Function? onDismissed,
-      Function? onSelected,
-      String? image,
-      bool? isSwipeToCancel,
-      double? imageHight,
-      double? imageWidth,
-      required String title,
-      required Widget descriptionWidget}) {
+  static show(
+    BuildContext mContext, {
+    Function? onDismissed,
+    Function? onSelected,
+    String? image,
+    bool? isSwipeToCancel,
+    double? imageHight,
+    double? imageWidth,
+    required String title,
+    required Widget descriptionWidget,
+    String? doneImage,
+  }) {
     AppDialog.show(mContext,
         isDismissible: false,
         builder: (context) => InformationDialogView(
-            onDismissed: onDismissed,
-            onSelected: onSelected,
-            isSwipeToCancel: isSwipeToCancel,
-            image: image,
-            imageHight: imageHight,
-            imageWidth: imageWidth,
-            title: title,
-            descriptionWidget: descriptionWidget));
+              onDismissed: onDismissed,
+              onSelected: onSelected,
+              isSwipeToCancel: isSwipeToCancel,
+              image: image,
+              imageHight: imageHight,
+              imageWidth: imageWidth,
+              title: title,
+              descriptionWidget: descriptionWidget,
+              doneImage: doneImage,
+            ));
   }
 }

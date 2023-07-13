@@ -1806,5 +1806,10 @@
   "contactUs": "CONTACT US",
   "oopsErrorWhileUpdatingCardLimit": "Oops! Something went wrong while updating limit, please try again later.",
   "oopsYouHaveExceededYourDailyTransferLimit": "Oops! You have exceeded your daily transfer limit.",
-  "oopsTheQRCodeIsExpired": "Oops! The QR code is expired."
+  "oopsTheQRCodeIsExpired": "Oops! The QR code is expired.",
+  "accountDormantTitle": "Your account is inactive!",
+  "accountDormantStatusDesc": "Your have not used your account for a long time and it is now deactivated. Please call us on 06-5200100 to activate your account and enjoy countless benefits.",
+  "dormantAccountPhysicalCardReq": "Oops! You cannot request your physical card as your account is inactive. Call us on 06-5200100 to activate your account.",
+  "yourAccountInactive": "Your account is inactive",
+  "callToActivate": "Call us on 06-5200100 to activate your account and get your debit card."
 }

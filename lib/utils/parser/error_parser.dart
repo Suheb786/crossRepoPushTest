@@ -1405,6 +1405,9 @@ class ErrorParser {
         return localisedHelper.enterValidIBANCLiQ;
       case ErrorType.TRANSFER_CANNOT_BE_DONE:
         return localisedHelper.transferCannotbeDone;
+      case ErrorType.ACCOUNT_DORMANT:
+        return localisedHelper.dormantAccountPhysicalCardReq;
+
       case ErrorType.OOPS_YOU_HAVE_EXCEEDED_YOUR_DAILY_TRANSFER_LIMIT:
         return localisedHelper.oopsYouHaveExceededYourDailyTransferLimit;
       default:

@@ -36,25 +36,6 @@ abstract class ManageContactRepository {
       String purposeParentDetails,
       String? OTPCode});
 
-  Future<Either<NetworkError, bool>> updateContact(
-      {String beneficiaryDetailId,
-      String nickName,
-      String fullName,
-      String emailAddress,
-      String userId,
-      String identifier,
-      String isFromMobile});
-
-  Future<Either<NetworkError, bool>> deleteContact(
-      {String beneficiaryDetailId,
-      String nickName,
-      String fullName,
-      String emailAddress,
-      String avatarImage,
-      bool isFav,
-      String userId,
-      String isFromMobile});
-
   Future<Either<NetworkError, bool>> updateAvatar(
       {String beneficiaryDetailId, String avatarImage, String beneType});
 
@@ -77,9 +58,6 @@ abstract class ManageContactRepository {
   Future<Either<NetworkError, BeneficiaryContact>> beneficiaryContacts({
     required bool isFromMobile,
   });
-
-  Future<Either<NetworkError, bool>> contactDetail(
-      {required String beneficiaryDetailId, required bool isFromMobile});
 
   Future<Either<NetworkError, BeneficiaryContact>> searchContact({
     required String searchText,

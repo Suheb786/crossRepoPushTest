@@ -36,8 +36,8 @@ final paymentActivityViewModelProvider = ChangeNotifierProvider.autoDispose<Paym
 
 final paymentActivityTransactionViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<PaymentActivityTransactionViewModel, PaymentActivityTransactionPageArgument>(
-  (ref, arg) => PaymentActivityTransactionViewModel(arg, ref.read(paymentActivityTransactionUseCaseProvider),
-      ref.read(requestMoneyActivityUseCaseProvider), ref.read(approveRTPOtpUseCaseProivder)),
+  (ref, arg) => PaymentActivityTransactionViewModel(
+      arg, ref.read(requestMoneyActivityUseCaseProvider), ref.read(approveRTPOtpUseCaseProivder)),
 );
 
 final returnPaymentTransactionSliderPageViewModelProvider =

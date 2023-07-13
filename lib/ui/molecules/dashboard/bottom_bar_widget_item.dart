@@ -17,22 +17,42 @@ class BottomBarWidgetItem extends StatelessWidget {
       onTap: () {
         onTap.call();
       },
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          AppSvg.asset(image, height: 32.h, width: 32.w),
-          SizedBox(
-            height: 8.h,
-          ),
-          Text(
-            label,
-            style: TextStyle(
-                color: Theme.of(context).textTheme.displayMedium?.color,
-                fontSize: 14.t,
-                fontWeight: FontWeight.w600,
-                fontFamily: StringUtils.appFont),
-          )
-        ],
+      child: Container(
+        width: 72.w,
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            AppSvg.asset(image, height: 32.h, width: 32.w),
+            SizedBox(
+              height: 8.h,
+            ),
+            StringUtils.isDirectionRTL(context)
+                ? Text(
+                    label,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    style: TextStyle(
+                        color: Theme.of(context).textTheme.displayMedium?.color,
+                        fontSize: 14.t,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: StringUtils.appFont),
+                  )
+                : FittedBox(
+                    child: Text(
+                      label,
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      style: TextStyle(
+                          color: Theme.of(context).textTheme.displayMedium?.color,
+                          fontSize: 14.t,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: StringUtils.appFont),
+                    ),
+                  )
+          ],
+        ),
       ),
     );
   }

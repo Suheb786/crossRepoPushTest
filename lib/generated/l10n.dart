@@ -17849,6 +17849,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Your account is inactive!`
+  String get accountDormantTitle {
+    return Intl.message(
+      'Your account is inactive!',
+      name: 'accountDormantTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your have not used your account for a long time and it is now deactivated. Please call us on 06-5200100 to activate your account and enjoy countless benefits.`
+  String get accountDormantStatusDesc {
+    return Intl.message(
+      'Your have not used your account for a long time and it is now deactivated. Please call us on 06-5200100 to activate your account and enjoy countless benefits.',
+      name: 'accountDormantStatusDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! You cannot request your physical card as your account is inactive. Call us on 06-5200100 to activate your account.`
+  String get dormantAccountPhysicalCardReq {
+    return Intl.message(
+      'Oops! You cannot request your physical card as your account is inactive. Call us on 06-5200100 to activate your account.',
+      name: 'dormantAccountPhysicalCardReq',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account is inactive`
+  String get yourAccountInactive {
+    return Intl.message(
+      'Your account is inactive',
+      name: 'yourAccountInactive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Call us on 06-5200100 to activate your account and get your debit card.`
+  String get callToActivate {
+    return Intl.message(
+      'Call us on 06-5200100 to activate your account and get your debit card.',
+      name: 'callToActivate',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

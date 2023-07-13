@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -100,6 +99,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "ما بتقدر تطلب بطاقة ائتمانية لأنه حسابك غير فعال، اتصل بنا على 5200100-06 ليتم تفعيل الحساب"),
         "accountDormantError": MessageLookupByLibrary.simpleMessage(
             "عفوا! حسابك غير فعال. اتصل بنا على ٠٦٥٢٠٠١٠٠ ليتم تفعيل الحساب"),
+        "accountDormantStatusDesc": MessageLookupByLibrary.simpleMessage(
+            "حسابك غير فعال لأنك ما استخدمته لفترة طويلة. اتصل بنا على 5200100-06 لحتى نفعلك حسابك وتقدر تستمتع بالمزايا والخدمات الي عم منقدمها."),
+        "accountDormantTitle":
+            MessageLookupByLibrary.simpleMessage("حسابك غير فعال"),
         "accountHolderName":
             MessageLookupByLibrary.simpleMessage("اسم صاحب الحساب"),
         "accountInquiryWentWrong": MessageLookupByLibrary.simpleMessage(
@@ -470,6 +473,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم تحديد موعد المكالمة"),
         "callScheduledNote": MessageLookupByLibrary.simpleMessage(
             "رح يتم معالجة حسابك بعد إنهاء المكالمة"),
+        "callToActivate": MessageLookupByLibrary.simpleMessage(
+            "اتصل بنا على 5200100-06 لحتى نفعلك حسابك وتقدر تطلب بطاقة الدفع المباشر ."),
         "camera": MessageLookupByLibrary.simpleMessage("كاميرا"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "cancelBooking": MessageLookupByLibrary.simpleMessage("الغاء الحجز"),
@@ -891,6 +896,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("بطلت محتاج بطاقتي "),
         "dormantAccountCCFailedTitle": MessageLookupByLibrary.simpleMessage(
             "لم تتم عملية طلبك للبطاقة الائتمانية بنجاح"),
+        "dormantAccountPhysicalCardReq": MessageLookupByLibrary.simpleMessage(
+            "عفوا! لا يمكنك طلب طباعة البطاقة لأنه حسابك غير فعال. اتصل بنا على 5200100-06"),
         "downloadStatement":
             MessageLookupByLibrary.simpleMessage("تنزيل كشف الحساب"),
         "dragMap": MessageLookupByLibrary.simpleMessage(
@@ -3149,6 +3156,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("انت على وشك ان ترفض"),
         "youareabouttosend":
             MessageLookupByLibrary.simpleMessage("انت على وشك ان ترسل"),
+        "yourAccountInactive":
+            MessageLookupByLibrary.simpleMessage("حسابك غير فعال"),
         "yourAddOtherCardFromCardSettings": MessageLookupByLibrary.simpleMessage(
             "بامكانك أضافة بطاقات بلينك الأخرى التابعة لك من خلال خدمة اعدادات البطاقة"),
         "yourApplicationInReview":
