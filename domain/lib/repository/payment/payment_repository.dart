@@ -13,7 +13,7 @@ import 'package:domain/model/qr/verify_qr_response.dart';
 
 abstract class PaymentRepository {
   Future<Either<NetworkError, GetAccountByAliasContentResponse>> getAccountByAlias(
-      String value, String currency);
+      String value, String currency, String? beneficiaryId);
 
   Future<Either<NetworkError, CheckSendMoneyResponse>> checkSendMoney(
       String toAccount, num toAmount, String beneficiaryId);

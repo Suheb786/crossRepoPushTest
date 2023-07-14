@@ -34,10 +34,14 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
 
   @override
   Future<HttpResponse<GetAccountByAliasContentResponseEntity>> getAccountByAlias(
-      String value, String currency) async {
+      String value, String currency, String? beneficiaryId) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.getAccountByAlias(GetAccountByAliasRequestEntity(
-        baseData: baseData.toJson(), value: value, currency: currency, getToken: true));
+        beneficiaryId: beneficiaryId,
+        baseData: baseData.toJson(),
+        value: value,
+        currency: currency,
+        getToken: true));
   }
 
   @override

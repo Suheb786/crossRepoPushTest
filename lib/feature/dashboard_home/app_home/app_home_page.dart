@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:data/helper/dynamic_link.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -38,37 +37,6 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
       }
     }
     super.didChangeAppLifecycleState(state);
-  }
-
-  @override
-  void onModelReady(AppHomeViewModel model) {
-    // model.initDynamicLinkRequestStream.listen((event) {
-    //   if (event.status == Status.SUCCESS) {
-    //     debugPrint('------>${event?.path}');
-    //     if (event != null ? event!.queryParameters.isNotEmpty : false) {
-    //       var accountTitle = event?.queryParameters['accountTitle'];
-    //       var accountNo = event?.queryParameters['accountNo'];
-    //       var requestAmt = event?.queryParameters['requestAmt'];
-    //       var dateTime = event?.queryParameters['dateTime'];
-    //       if ((accountNo ?? '').isNotEmpty) {
-    //         Navigator.pushNamed(context, RoutePaths.SendMoneyQrScanning,
-    //             arguments: SendMoneyQRScanningArguments(
-    //                 amount: requestAmt ?? '',
-    //                 accountHolderName: accountTitle ?? '',
-    //                 accountNo: accountNo ?? ''));
-    //       }
-    //     }
-    //   }
-    // });
-    DynamicLinksService().initDynamicLinkRequestStream.listen((event) {
-      if (event != null ? event.queryParameters.isNotEmpty : false) {
-        var requestId = event.queryParameters['requestId']?.replaceAll(' ', '+');
-
-        model.verifyQR(requestId: requestId ?? '');
-      }
-    });
-
-    super.onModelReady(model);
   }
 
   @override

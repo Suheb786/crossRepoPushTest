@@ -78,6 +78,8 @@ class DynamicLinksService {
       _initDynamicLinkRequestResponse.add(deepPendingLink);
       debugPrint("==========>Get Initial Path${deepPendingLink.path}");
       debugPrint("==========>Get Initial${deepPendingLink.queryParameters['accountNo']}");
+    } else {
+      _initDynamicLinkRequestResponse.add(Uri());
     }
     return deepLink ?? Uri();
   }

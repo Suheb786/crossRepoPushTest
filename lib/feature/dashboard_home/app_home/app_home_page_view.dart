@@ -52,8 +52,10 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
         dataBuilder: (context, currentStep) {
           return AppStreamBuilder<Resource<VerifyQrResponse>>(
               stream: model.verifyQRStream,
-              onData: (data) {
+              onData: (data) async {
                 if (data.status == Status.SUCCESS) {
+                  model.showPopUps();
+                  await Future.delayed(Duration(milliseconds: 500));
                   Navigator.pushNamed(context, RoutePaths.SendMoneyQrScanning,
                       arguments: SendMoneyQRScanningArguments(
                           source: 'Link',
@@ -61,6 +63,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                           amount: data.data?.qrContent?.amount ?? '',
                           accountHolderName: data.data?.qrContent?.accountHolderName ?? '',
                           accountNo: data.data?.qrContent?.toAccount ?? ''));
+                } else if (data.status == Status.ERROR) {
+                  model.showPopUps();
                 }
               },
               initialData: Resource.none(),

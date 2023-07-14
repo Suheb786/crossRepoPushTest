@@ -305,7 +305,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
             children: [
               Flexible(
                 child: Text(
-                  model.argument.beneficiaryInformation.accountNo!,
+                  model.argument.beneficiaryInformation.identifier ?? '',
                   style: TextStyle(
                       fontSize: 16.t,
                       fontFamily: StringUtils.appFont,
