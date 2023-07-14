@@ -62,7 +62,7 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
     // });
     DynamicLinksService().initDynamicLinkRequestStream.listen((event) {
       if (event != null ? event.queryParameters.isNotEmpty : false) {
-        var requestId = event.queryParameters['requestId'];
+        var requestId = event.queryParameters['requestId']?.replaceAll(' ', '+');
 
         model.verifyQR(requestId: requestId ?? '');
       }
