@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:data/helper/id_wise_helper.dart';
 import 'package:data/helper/shared_preference_helper.dart';
 import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/constants/error_types.dart';
@@ -366,7 +367,11 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                                         children: [
                                           AppPrimaryButton(
                                             onPressed: () {
-                                              Navigator.pushNamed(context, RoutePaths.Login);
+                                              //Navigator.pushNamed(context, RoutePaths.Login);
+
+                                              IdWiseHelper idWiseHelper = IdWiseHelper();
+                                              idWiseHelper.initializeIdWise();
+                                              idWiseHelper.startVerification('en');
                                             },
                                             text: S.of(context).loginWithEmail,
                                           ),
