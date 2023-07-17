@@ -27,14 +27,37 @@ class IdWiseHelper {
   final journeyDefinitionId = "dbf6803b-6f9a-450d-9631-998b64fe871b";
 
   void initializeIdWise() {
-    platformChannel.invokeMethod('initialize', {"clientID": clientId, "theme": ""});
+    platformChannel.invokeMethod('initialize', {"clientKey": clientId, "theme": "LIGHT"});
   }
 
   Future<IDWiseStatus> startVerification(String lang) async {
     var journeyResult = await platformChannel.invokeMethod('startJourney', {
-      "lang": lang,
+      "locale": lang,
       "referenceNo": "",
       "journeyDefinitionId": journeyDefinitionId,
+    });
+
+    platformChannel.setMethodCallHandler((handler) async {
+      switch (handler.method) {
+        case 'onJourneyStarted':
+          print("Method: onJourneyStarted, ${handler.arguments.toString()}");
+          break;
+        case 'onJourneyFinished':
+          print("Method: onJourneyFinished");
+          break;
+        case 'onJourneyCancelled':
+          print("Method: onJourneyCancelled,${handler.arguments.toString()}");
+          break;
+        case 'onJourneyResumed':
+          print("Method: onJourneyResumed, ${handler.arguments.toString()}");
+          break;
+        case 'onError':
+          print("Method: onError, ${handler.arguments.toString()}");
+          break;
+        default:
+          print('Unknown method from MethodChannel: ${handler.method}');
+          break;
+      }
     });
 
     int statusCode = int.parse(journeyResult['statusCode'].toString());

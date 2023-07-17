@@ -112,5 +112,9 @@
 	<true/>
 	<key>MinimumOSVersion</key>
 	<string>13.0</string>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
 </dict>
 </plist>
