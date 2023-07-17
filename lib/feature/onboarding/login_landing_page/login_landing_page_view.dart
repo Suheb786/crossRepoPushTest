@@ -366,12 +366,14 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                                         crossAxisAlignment: CrossAxisAlignment.stretch,
                                         children: [
                                           AppPrimaryButton(
-                                            onPressed: () {
+                                            onPressed: () async {
                                               //Navigator.pushNamed(context, RoutePaths.Login);
 
                                               IdWiseHelper idWiseHelper = IdWiseHelper();
                                               idWiseHelper.initializeIdWise();
-                                              idWiseHelper.startVerification('en');
+                                              var status = await idWiseHelper.startVerification('en');
+                                              debugPrint("STATUS : ${status.keys.first}");
+                                              debugPrint("TEXT :  ${status.values.first}");
                                             },
                                             text: S.of(context).loginWithEmail,
                                           ),
