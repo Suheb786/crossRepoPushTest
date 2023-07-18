@@ -67,25 +67,20 @@ class AppHomeViewModel extends BasePageViewModel {
   PublishSubject<InitDynamicLinkUseCaseParams> _initDynamicLinkRequestRequest = PublishSubject();
 
   final SwiperController pageController = SwiperController();
-  ScrollController scrollController = ScrollController();
+
   PageController appSwiperController = PageController(viewportFraction: 0.8);
 
-  PageController controller = PageController(viewportFraction: 0.8, keepPage: true, initialPage: 0);
   PublishSubject<int> _currentStep = PublishSubject();
 
   Stream<int> get currentStep => _currentStep.stream;
 
-  PublishSubject<PageController> _pageControllerSubject = PublishSubject();
-
+  ///Timeline Arguments
   PublishSubject<bool> _showTimeLineSubject = PublishSubject();
 
   Stream<bool> get showTimeLineStream => _showTimeLineSubject.stream;
 
-  Stream<PageController> get pageControllerStream => _pageControllerSubject.stream;
-
   BehaviorSubject<bool> _showRequestMoneyPopUpSubject = BehaviorSubject.seeded(false);
 
-  bool showBody = true;
   bool isShowBalenceUpdatedToast = false;
 
   CardType cardType = CardType.DEBIT;
@@ -96,36 +91,28 @@ class AppHomeViewModel extends BasePageViewModel {
 
   GetDashboardDataContent dashboardDataContent = GetDashboardDataContent();
 
-  /// Sent money popup request
-  PublishSubject<bool> _sentMoneyPopUpResponse = PublishSubject();
-
-  /// Sent money popup stream
-  Stream<bool> get getSentMoneyPopUpDataStream => _sentMoneyPopUpResponse.stream;
-
-  /// Sent money popup request
+  /// ------------------------------Request money pop-up------------------///
   PublishSubject<bool> _requestMoneyPopUpResponse = PublishSubject();
 
-  /// Sent money popup response
   PublishSubject<bool> _requestMoneyRequest = PublishSubject();
 
-  /// Sent money popup stream
   Stream<bool> get getRequestMoneyPopUpDataStream => _requestMoneyPopUpResponse.stream;
 
-  ///dashboard card data response
+  /// ------------------------------Request money pop-up------------------///
+
+  ///------------------------------dashboard card data response ------------------///
   BehaviorSubject<GetDashboardDataContent> _dashboardCardResponse =
       BehaviorSubject.seeded(GetDashboardDataContent());
 
-  ///dashboard card data response stream
   Stream<GetDashboardDataContent> get getDashboardCardDataStream => _dashboardCardResponse.stream;
 
-  ///get dashboard data request
   PublishSubject<GetDashboardDataUseCaseParams> _getDashboardDataRequest = PublishSubject();
 
-  ///get dashboard data response
   PublishSubject<Resource<GetDashboardDataResponse>> _getDashboardDataResponse = PublishSubject();
 
-  ///get dashboard data response stream
   Stream<Resource<GetDashboardDataResponse>> get getDashboardDataStream => _getDashboardDataResponse.stream;
+
+  ///------------------------------dashboard card data response ------------------///
 
   Size deviceSize = Size(0, 0);
 
@@ -390,7 +377,6 @@ class AppHomeViewModel extends BasePageViewModel {
             if (creditCard.isCreditDelivered ?? false) {
               pages.add(CreditCardWidget(
                 accountBalance: dashboardDataContent.account!.availableBalance,
-                isSmallDevice: isSmallDevices,
                 creditCard: creditCard,
                 isChangePinEnabled: dashboardDataContent.dashboardFeatures?.isPinChangeEnabled ?? true,
                 key: ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
@@ -479,15 +465,6 @@ class AppHomeViewModel extends BasePageViewModel {
                     cardTypeList.add(
                         TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
                 }
-                // if (creditCard.isCallPending ?? false) {
-                //   pages.add(CreditCardApplicationUnderReviewWidget(
-                //     isSmallDevices: isSmallDevices,
-                //   ));
-                //   cardTypeList.add(
-                //       TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-                // } else {
-                //
-                // }
               }
             }
           }
@@ -753,8 +730,6 @@ class AppHomeViewModel extends BasePageViewModel {
   }
 
   void updatePageControllerStream(int index) {
-    controller = PageController(initialPage: index, viewportFraction: 0.8, keepPage: true);
-    _pageControllerSubject.safeAdd(controller);
     _currentStep.safeAdd(index);
   }
 
@@ -891,7 +866,6 @@ class AppHomeViewModel extends BasePageViewModel {
   void dispose() {
     _currentStep.close();
     _showTimeLineSubject.close();
-    _pageControllerSubject.close();
     _getPlaceHolderRequest.close();
     _getPlaceHolderResponse.close();
     _showRequestMoneyPopUpSubject.close();

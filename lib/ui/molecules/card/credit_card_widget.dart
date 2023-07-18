@@ -26,14 +26,12 @@ import 'package:neo_bank/utils/time_utils.dart';
 class CreditCardWidget extends StatefulWidget {
   final Key key;
   final CreditCard creditCard;
-  final bool isSmallDevice;
   final String? accountBalance;
   final bool isChangePinEnabled;
 
   CreditCardWidget(
       {required this.key,
       required this.creditCard,
-      this.isSmallDevice = false,
       this.accountBalance = "",
       required this.isChangePinEnabled});
 
@@ -203,48 +201,107 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                             // fit: BoxFit.fill,
                             // height: widget.isSmallDevice ? 93 : 118,
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 24.0.w, top: 53.0.h, right: 11.0.w),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: StringUtils.isDirectionRTL(context)
-                                  ? [
-                                      InkWell(
-                                        onTap: () {
-                                          Navigator.pushNamed(context, RoutePaths.CreditCardPayBack,
-                                              arguments: CreditCardPayBackArguments(
-                                                  accountHolderName: widget.creditCard.name!,
-                                                  secureCode: widget.creditCard.cardCode!,
-                                                  accountBalance: widget.accountBalance!,
-                                                  minDuePayBackAmount:
-                                                      widget.creditCard.paymentDueAmount.toString(),
-                                                  totalMinDueAmount: widget.creditCard.usedBalance!));
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: Theme.of(context).textTheme.bodyLarge!.color!,
-                                            borderRadius: BorderRadius.circular(20),
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 25.0.w),
-                                            child: Text(
-                                              S.of(context).payBack,
-                                              style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                color: Theme.of(context).colorScheme.secondary,
-                                                fontSize: 14.0.t,
-                                                fontWeight: FontWeight.w600,
+                          FittedBox(
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 24.0.w, top: 53.0.h, right: 11.0.w),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: StringUtils.isDirectionRTL(context)
+                                    ? [
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.pushNamed(context, RoutePaths.CreditCardPayBack,
+                                                arguments: CreditCardPayBackArguments(
+                                                    accountHolderName: widget.creditCard.name!,
+                                                    secureCode: widget.creditCard.cardCode!,
+                                                    accountBalance: widget.accountBalance!,
+                                                    minDuePayBackAmount:
+                                                        widget.creditCard.paymentDueAmount.toString(),
+                                                    totalMinDueAmount: widget.creditCard.usedBalance!));
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Theme.of(context).textTheme.bodyLarge!.color!,
+                                              borderRadius: BorderRadius.circular(20),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 25.0.w),
+                                              child: Text(
+                                                S.of(context).payBack,
+                                                style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  color: Theme.of(context).colorScheme.secondary,
+                                                  fontSize: 14.0.t,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.end,
-                                        children: [
-                                          Row(
-                                            children: [
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  widget.creditCard.paymentDueAmount.toString(),
+                                                  style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      color: Theme.of(context).colorScheme.secondary,
+                                                      fontWeight: FontWeight.w700,
+                                                      fontSize: 20.0.t),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 5.0.w),
+                                                  child: Text(
+                                                    S.of(context).JOD,
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        color: Theme.of(context)
+                                                            .colorScheme
+                                                            .secondary
+                                                            .withOpacity(0.5),
+                                                        fontSize: 14.0.t,
+                                                        fontWeight: FontWeight.w700),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(top: 5.0.h),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    S.of(context).minDueBy,
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        color: AppColor.veryLightRed,
+                                                        fontWeight: FontWeight.w600,
+                                                        fontSize: 10.0.t),
+                                                  ),
+                                                  Text(
+                                                    widget.creditCard.nextPaymentDate!.isNotEmpty
+                                                        ? TimeUtils.getFormattedDateForCreditCard(
+                                                            widget.creditCard.nextPaymentDate!)
+                                                        : "-",
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        color: Theme.of(context).colorScheme.secondary,
+                                                        fontWeight: FontWeight.w600,
+                                                        fontSize: 10.0.t),
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ]
+                                    : [
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Row(children: [
                                               Text(
                                                 widget.creditCard.paymentDueAmount.toString(),
                                                 style: TextStyle(
@@ -267,125 +324,68 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                       fontWeight: FontWeight.w700),
                                                 ),
                                               )
-                                            ],
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(top: 5.0.h),
-                                            child: Row(
-                                              children: [
-                                                Text(
-                                                  S.of(context).minDueBy,
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      color: AppColor.veryLightRed,
-                                                      fontWeight: FontWeight.w600,
-                                                      fontSize: 10.0.t),
-                                                ),
-                                                Text(
-                                                  widget.creditCard.nextPaymentDate!.isNotEmpty
-                                                      ? TimeUtils.getFormattedDateForCreditCard(
-                                                          widget.creditCard.nextPaymentDate!)
-                                                      : "-",
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      color: Theme.of(context).colorScheme.secondary,
-                                                      fontWeight: FontWeight.w600,
-                                                      fontSize: 10.0.t),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ]
-                                  : [
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Row(children: [
-                                            Text(
-                                              widget.creditCard.paymentDueAmount.toString(),
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: Theme.of(context).colorScheme.secondary,
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 20.0.t),
-                                            ),
+                                            ]),
                                             Padding(
-                                              padding: EdgeInsets.only(left: 5.0.w),
-                                              child: Text(
-                                                S.of(context).JOD,
-                                                style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    color: Theme.of(context)
-                                                        .colorScheme
-                                                        .secondary
-                                                        .withOpacity(0.5),
-                                                    fontSize: 14.0.t,
-                                                    fontWeight: FontWeight.w700),
+                                              padding: EdgeInsets.only(top: 5.0.h),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    S.of(context).minDueBy,
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        color: AppColor.veryLightRed,
+                                                        fontWeight: FontWeight.w600,
+                                                        fontSize: 10.0.t),
+                                                  ),
+                                                  Text(
+                                                    widget.creditCard.nextPaymentDate!.isNotEmpty
+                                                        ? TimeUtils.getFormattedDateForCreditCard(
+                                                            widget.creditCard.nextPaymentDate!)
+                                                        : "-",
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        color: Theme.of(context).colorScheme.secondary,
+                                                        fontWeight: FontWeight.w600,
+                                                        fontSize: 10.0.t),
+                                                  ),
+                                                ],
                                               ),
                                             )
-                                          ]),
-                                          Padding(
-                                            padding: EdgeInsets.only(top: 5.0.h),
-                                            child: Row(
-                                              children: [
-                                                Text(
-                                                  S.of(context).minDueBy,
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      color: AppColor.veryLightRed,
-                                                      fontWeight: FontWeight.w600,
-                                                      fontSize: 10.0.t),
-                                                ),
-                                                Text(
-                                                  widget.creditCard.nextPaymentDate!.isNotEmpty
-                                                      ? TimeUtils.getFormattedDateForCreditCard(
-                                                          widget.creditCard.nextPaymentDate!)
-                                                      : "-",
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      color: Theme.of(context).colorScheme.secondary,
-                                                      fontWeight: FontWeight.w600,
-                                                      fontSize: 10.0.t),
-                                                ),
-                                              ],
+                                          ],
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.pushNamed(context, RoutePaths.CreditCardPayBack,
+                                                arguments: CreditCardPayBackArguments(
+                                                    accountHolderName: widget.creditCard.name!,
+                                                    secureCode: widget.creditCard.cardCode!,
+                                                    accountBalance: widget.accountBalance!,
+                                                    minDuePayBackAmount:
+                                                        widget.creditCard.paymentDueAmount.toString(),
+                                                    totalMinDueAmount: widget.creditCard.usedBalance!));
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Theme.of(context).textTheme.bodyLarge!.color!,
+                                              borderRadius: BorderRadius.circular(20),
                                             ),
-                                          )
-                                        ],
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          Navigator.pushNamed(context, RoutePaths.CreditCardPayBack,
-                                              arguments: CreditCardPayBackArguments(
-                                                  accountHolderName: widget.creditCard.name!,
-                                                  secureCode: widget.creditCard.cardCode!,
-                                                  accountBalance: widget.accountBalance!,
-                                                  minDuePayBackAmount:
-                                                      widget.creditCard.paymentDueAmount.toString(),
-                                                  totalMinDueAmount: widget.creditCard.usedBalance!));
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: Theme.of(context).textTheme.bodyLarge!.color!,
-                                            borderRadius: BorderRadius.circular(20),
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 25.0.w),
-                                            child: Text(
-                                              S.of(context).payBack,
-                                              style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                color: Theme.of(context).colorScheme.secondary,
-                                                fontSize: 14.0.t,
-                                                fontWeight: FontWeight.w600,
+                                            child: Padding(
+                                              padding:
+                                                  EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 25.0.w),
+                                              child: Text(
+                                                S.of(context).payBack,
+                                                style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  color: Theme.of(context).colorScheme.secondary,
+                                                  fontSize: 14.0.t,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      )
-                                    ],
+                                        )
+                                      ],
+                              ),
                             ),
                           ),
                           Padding(

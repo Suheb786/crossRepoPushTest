@@ -318,8 +318,8 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                 child: InkWell(
                     onTap: () {
                       Clipboard.setData(ClipboardData(
-                        text: model.argument.beneficiaryInformation.accountNo!,
-                      )).then((value) => Fluttertoast.showToast(msg: S.of(context).cardNumberCopied));
+                        text: model.argument.beneficiaryInformation.identifier ?? '',
+                      )).then((value) => Fluttertoast.showToast(msg: S.of(context).copied));
                     },
                     child: AppSvg.asset(AssetUtils.copy)),
               )

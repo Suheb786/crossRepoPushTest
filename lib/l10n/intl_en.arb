@@ -1716,7 +1716,6 @@
   "exceptionWhileExecutingReturnRtpRequestOtp": "Exception while executing Return RTP Request Otp",
   "exceptionWhileExecutingReturnRtpRequest": "Exception while executing Return RTP Request",
   "exceptionWhileExecutingRejectRtpRequestOtp": "Exception while executing Reject RTP Request Otp",
-  "enterOTPheaderwithVaiable": "Enter the 6-digit code sent to \n{variable}",
   "nickNameAlreadyExists": "Nickname is already stored as beneficiary",
   "reasonToreturn": "Reason to return",
   "oopsYourCardIsNotActive": "Oops! Your card is not active",
@@ -1811,5 +1810,6 @@
   "accountDormantStatusDesc": "Your have not used your account for a long time and it is now deactivated. Please call us on 06-5200100 to activate your account and enjoy countless benefits.",
   "dormantAccountPhysicalCardReq": "Oops! You cannot request your physical card as your account is inactive. Call us on 06-5200100 to activate your account.",
   "yourAccountInactive": "Your account is inactive",
-  "callToActivate": "Call us on 06-5200100 to activate your account and get your debit card."
+  "callToActivate": "Call us on 06-5200100 to activate your account and get your debit card.",
+  "copied": "Copied"
 }
