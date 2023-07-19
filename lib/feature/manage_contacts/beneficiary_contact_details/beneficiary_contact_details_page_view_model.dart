@@ -28,6 +28,17 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   TextEditingController nickNameController = TextEditingController();
   FocusNode nickNameFocus = FocusNode();
 
+  ///----------------------------- Beneficiary Name---------------------------------///
+  BehaviorSubject<String> _beneficiaryNameRequest = BehaviorSubject.seeded('');
+
+  Stream<String> get beneficiaryNameStream => _beneficiaryNameRequest.stream;
+
+  void addNickName({required String nickName}) {
+    _beneficiaryNameRequest.safeAdd(nickName);
+  }
+
+  ///-----------------------Beneficiary Name---------------------------///
+
   ///-----------------------------Delete Beneficiary---------------------------------///
   PublishSubject<DeleteBeneficiaryUseCaseParams> _deleteBeneficiaryRequest = PublishSubject();
   PublishSubject<Resource<bool>> _deleteBeneficiaryResponse = PublishSubject();
@@ -172,6 +183,8 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    addNickName(nickName: argument.beneficiaryInformation.nickName);
   }
 
   removeImage() {

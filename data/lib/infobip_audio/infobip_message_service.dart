@@ -137,7 +137,9 @@ class InfobipMessageService {
   Future<bool> saveUser({required UserData userData}) async {
     Installation installation = await InfobipMobilemessaging.getInstallation();
     installation.customAttributes = {'OneTimePassword': true};
-    InfobipMobilemessaging.saveInstallation(installation);
+    InfobipMobilemessaging.saveInstallation(installation).onError((error, stackTrace) {
+      debugPrint('Error ');
+    });
     UserData user = UserData(
       firstName: userData.firstName,
       lastName: userData.lastName,
