@@ -12,7 +12,6 @@ import 'package:neo_bank/ui/molecules/dialog/card_settings/relationship_with_car
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -121,7 +120,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                               width: 16,
                                               padding: EdgeInsetsDirectional.only(end: 8),
                                               child: AppSvg.asset(AssetUtils.downArrow,
-                                                  color: AppColor.dark_gray_1));
+                                                  color: Theme.of(context).colorScheme.surfaceTint));
                                         },
                                       ),
                                       SizedBox(
@@ -150,7 +149,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                               width: 16,
                                               padding: EdgeInsetsDirectional.only(end: 8),
                                               child: AppSvg.asset(AssetUtils.downArrow,
-                                                  color: AppColor.dark_gray_1));
+                                                  color: Theme.of(context).colorScheme.surfaceTint));
                                         },
                                       ),
                                       SizedBox(
@@ -172,7 +171,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                       S.of(context).backToCategory('Games'),
                                       style: TextStyle(
                                         fontFamily: StringUtils.appFont,
-                                        color: AppColor.brightBlue,
+                                        color: Theme.of(context).colorScheme.onSecondaryContainer,
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
                                       ),

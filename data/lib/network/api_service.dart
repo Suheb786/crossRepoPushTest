@@ -193,6 +193,15 @@ import 'package:data/entity/remote/device_change/resend_otp_device_change_reques
 import 'package:data/entity/remote/device_change/send_otp_token_device_change_request_entity.dart';
 import 'package:data/entity/remote/device_change/send_otp_token_email_request_entity.dart';
 import 'package:data/entity/remote/device_change/verify_device_change_otp_request_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_category/voucher_categories_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_details_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_history/voucher_history_list_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_history/voucher_history_request.dart';
+import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_category_request.dart';
+import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_filter_request.dart';
+import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_detail_request.dart';
+import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_search_request.dart';
+import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_filter_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
@@ -1116,6 +1125,34 @@ abstract class ApiService {
   Future<HttpResponse<BeneficiaryContactResponseEntity>> searchContact(
     @Body() SearchContactRequest request,
   );
+
+  // ---------------------------------------------- E-Vouchers ----------------------------------------------
+
+  ///Voucher Categories
+  @POST("/Vouchers/GetCategories")
+  Future<HttpResponse<VoucherCategoriesResponseEntity>> getVoucherCategories(@Body() BaseRequest request);
+
+  ///Voucher Items By Category
+  @POST("/Vouchers/GetItemByCategory")
+  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByCategory(@Body() VoucherByCategoryRequest voucherByCategoryRequest);
+
+  ///My Vouchers
+  @POST("/Vouchers/GetMyVouchers")
+  Future<HttpResponse<VoucherHistoryListResponseEntity>> getMyVouchers(@Body() VoucherHistoryRequest
+  myVouchersRequest);
+
+  ///Voucher Details
+  @POST("/Vouchers/GetVoucherDetails")
+  Future<HttpResponse<VoucherDetailsResponseEntity>> getVoucherDetails(@Body() VoucherDetailRequest voucherDetailRequest);
+
+  ///Voucher Items By Filter
+  @POST("/Vouchers/GetItemsByFilter")
+  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByFilter(@Body() VoucherByFilterRequest voucherByFilterRequest);
+
+  ///Voucher Items By Search
+  @POST("/Vouchers/GetItemsByFilter")
+  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsBySearch(@Body() VoucherBySearchRequest voucherBySearchRequest);
+
 
   @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/GetTransactionHistory")
   Future<HttpResponse<BeneficiaryTransactionHistoryResponseEntity>> beneficiaryTransactionHistory(

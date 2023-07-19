@@ -2,8 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/evouchers/evoucher_usecase.dart';
 import 'package:neo_bank/feature/evoucher/enter_code_evoucher_puchase/enter_code_evoucher_puchase_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page_view_model.dart';
-import 'package:neo_bank/feature/evoucher/evoucher_detail/evoucher_detail_model.dart';
-import 'package:neo_bank/feature/evoucher/evoucher_model.dart';
+import 'package:neo_bank/feature/evoucher/evoucher_detail/evoucher_detail_page_view_model.dart';
+import 'package:neo_bank/feature/evoucher/evoucher/evoucher_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/enter_otp_for_evoucher_category_puchase/enter_otp_for_evoucher_category_puchase_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_account/select_account_page_view_model.dart';
@@ -14,11 +14,11 @@ import 'package:neo_bank/feature/evoucher/share_voucher/share_voucher_page_view_
 import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/evouchers_filter_dialog_view_model.dart';
 
 final evoucherViewModelProvider = ChangeNotifierProvider.autoDispose<EvoucherViewModel>(
-  (ref) => EvoucherViewModel(),
+  (ref) => EvoucherViewModel(ref.read(eVoucherLandingPageUseCase)),
 );
 
-final evoucherDetailViewModelProvider = ChangeNotifierProvider.autoDispose<EvoucherDetailViewModel>(
-  (ref) => EvoucherDetailViewModel(),
+final evoucherDetailViewModelProvider = ChangeNotifierProvider.autoDispose<EVoucherDetailViewModel>(
+  (ref) => EVoucherDetailViewModel(ref.read(eVoucherDetailsPageUseCase)),
 );
 
 final purchaseNowDetailViewModelProvider = ChangeNotifierProvider.autoDispose<PurchaseNowDetailViewModel>(
@@ -32,7 +32,7 @@ final eVouchersDialogViewModelProvider = ChangeNotifierProvider.autoDispose<EVou
 ///e-vouchers category listing view model
 final eVouchersCategoryListingViewModelProvider =
     ChangeNotifierProvider.autoDispose<EVoucherCategoryListingPageViewModel>(
-        (ref) => EVoucherCategoryListingPageViewModel());
+        (ref) => EVoucherCategoryListingPageViewModel(ref.read(eVoucherByCategoryPageUseCase)));
 
 ///purchase e-vouchers view model
 final purchaseEVouchersViewModelProvider = ChangeNotifierProvider.autoDispose<PurchaseEVoucherPageViewModel>(

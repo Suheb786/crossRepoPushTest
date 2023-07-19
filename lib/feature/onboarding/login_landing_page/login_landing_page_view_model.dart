@@ -241,6 +241,8 @@ class LoginLandingPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+
   }
 
   @override

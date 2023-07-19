@@ -57,91 +57,93 @@ class AddBeneficiaryPageView extends BasePageViewWidget<AddBeneficiaryPageViewMo
               }),
           SizedBox(height: 36.0.h),
           Expanded(
-              child: AppStreamBuilder<int>(
-                  initialData: 0,
-                  stream: model.currentStep,
-                  dataBuilder: (context, currentPage) {
-                    return Column(
-                      children: [
-                        Text(
-                          S.current.addContact.toUpperCase(),
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              color: model.arguments.navigationType == NavigationType.SEND_MONEY
-                                  ? Theme.of(context).colorScheme.secondary
-                                  : Theme.of(context).colorScheme.shadow,
-                              fontSize: 10,
-                              fontWeight: FontWeight.w600),
+            child: AppStreamBuilder<int>(
+              initialData: 0,
+              stream: model.currentStep,
+              dataBuilder: (context, currentPage) {
+                return Column(
+                  children: [
+                    Text(
+                      S.current.addContact.toUpperCase(),
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          color: model.arguments.navigationType == NavigationType.SEND_MONEY
+                              ? Theme.of(context).colorScheme.secondary
+                              : Theme.of(context).colorScheme.shadow,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(height: 8.0.h),
+                    ShowUpAnimation(
+                      key: ValueKey(currentPage),
+                      delayStart: Duration(milliseconds: 50),
+                      animationDuration: Duration(milliseconds: 750),
+                      curve: Curves.easeInOut,
+                      direction: Direction.vertical,
+                      offset: 0.5,
+                      child: Text(
+                        StepTextHelper.addContact_IBAN(
+                          currentPage ?? 0,
+                          S.current.pleaseEnterYourContactDetails,
+                          S.of(context).enterOtpHeader,
                         ),
-                        SizedBox(height: 8.0.h),
-                        ShowUpAnimation(
-                          key: ValueKey(currentPage),
-                          delayStart: Duration(milliseconds: 50),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            color: model.arguments.navigationType == NavigationType.SEND_MONEY
+                                ? Theme.of(context).colorScheme.secondary
+                                : Theme.of(context).colorScheme.shadow,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                    Visibility(
+                      visible: currentPage == 1,
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 32.h),
+                        child: ShowUpAnimation(
+                          delayStart: Duration(milliseconds: 500),
                           animationDuration: Duration(milliseconds: 750),
-                          curve: Curves.easeInOut,
+                          curve: Curves.bounceIn,
                           direction: Direction.vertical,
                           offset: 0.5,
-                          child: Text(
-                            StepTextHelper.addContact_IBAN(
-                              currentPage ?? 0,
-                              S.current.pleaseEnterYourContactDetails,
-                              S.of(context).enterOtpHeader,
-                            ),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: model.arguments.navigationType == NavigationType.SEND_MONEY
-                                    ? Theme.of(context).colorScheme.secondary
-                                    : Theme.of(context).colorScheme.shadow,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                        Visibility(
-                          visible: currentPage == 1,
-                          child: Padding(
-                            padding: EdgeInsets.only(bottom: 32.h),
-                            child: ShowUpAnimation(
-                              delayStart: Duration(milliseconds: 500),
-                              animationDuration: Duration(milliseconds: 750),
-                              curve: Curves.bounceIn,
-                              direction: Direction.vertical,
-                              offset: 0.5,
-                              child: Directionality(
-                                textDirection: TextDirection.ltr,
-                                child: Text(
-                                  "${(ProviderScope.containerOf(context).read(addBeneficiaryFormPageViewModel).mobileCode.replaceAll('00', '+'))}" +
-                                      " ${ProviderScope.containerOf(context).read(addBeneficiaryFormPageViewModel).mobileNumber}",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontFamily: StringUtils.appFont,
-                                      color: model.arguments.navigationType == NavigationType.SEND_MONEY
-                                          ? Theme.of(context).colorScheme.secondary
-                                          : Theme.of(context).colorScheme.shadow,
-                                      fontSize: 20.t,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              ),
+                          child: Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: Text(
+                              "${(ProviderScope.containerOf(context).read(addBeneficiaryFormPageViewModel).mobileCode.replaceAll('00', '+'))}" +
+                                  " ${ProviderScope.containerOf(context).read(addBeneficiaryFormPageViewModel).mobileNumber}",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  color: model.arguments.navigationType == NavigationType.SEND_MONEY
+                                      ? Theme.of(context).colorScheme.secondary
+                                      : Theme.of(context).colorScheme.shadow,
+                                  fontSize: 20.t,
+                                  fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),
-                        Expanded(
-                          child: AppSwiper(
-                            pages: pages,
-                            appSwiperController: model.appSwiperController,
-                            pageController: model.pageController,
-                            onIndexChanged: (index) {
-                              model.updatePage(index);
-                            },
-                            currentStep: currentPage,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 50.h,
-                        )
-                      ],
-                    );
-                  })),
+                      ),
+                    ),
+                    Expanded(
+                      child: AppSwiper(
+                        pages: pages,
+                        appSwiperController: model.appSwiperController,
+                        pageController: model.pageController,
+                        onIndexChanged: (index) {
+                          model.updatePage(index);
+                        },
+                        currentStep: currentPage,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 50.h,
+                    )
+                  ],
+                );
+              },
+            ),
+          ),
         ],
       ),
     );

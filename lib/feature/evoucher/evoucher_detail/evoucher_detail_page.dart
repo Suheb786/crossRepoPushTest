@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
-import 'evoucher_detail_model.dart';
-import 'evoucher_detail_view.dart';
 
-class EvoucherDetailPage extends BasePage<EvoucherDetailViewModel> {
+import 'evoucher_detail_page_view_model.dart';
+import 'evoucher_detail_page_view.dart';
+
+class EVoucherDetailPage extends BasePage<EVoucherDetailViewModel> {
+  String orderIdentifier;
+
+  EVoucherDetailPage(this.orderIdentifier);
+
   @override
-  EvoucherDetailState createState() => EvoucherDetailState();
+  EVoucherDetailState createState() => EVoucherDetailState();
 }
 
-class EvoucherDetailState extends BaseStatefulPage<EvoucherDetailViewModel, EvoucherDetailPage> {
+class EVoucherDetailState extends BaseStatefulPage<EVoucherDetailViewModel, EVoucherDetailPage> {
   @override
   ProviderBase provideBase() {
     return evoucherDetailViewModelProvider;
@@ -22,7 +27,14 @@ class EvoucherDetailState extends BaseStatefulPage<EvoucherDetailViewModel, Evou
   }
 
   @override
-  Widget buildView(BuildContext context, EvoucherDetailViewModel model) {
+  void onModelReady(EVoucherDetailViewModel model) {
+    model.orderIdentifier = widget.orderIdentifier;
+    model.getSelectedVoucherAndCallDetailApi();
+    super.onModelReady(model);
+  }
+
+  @override
+  Widget buildView(BuildContext context, EVoucherDetailViewModel model) {
     return EvoucherDetailView(provideBase());
   }
 }

@@ -17570,6 +17570,56 @@ class S {
     );
   }
 
+  /// `History`
+  String get history {
+    return Intl.message(
+      'History',
+      name: 'history',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transaction Period`
+  String get transaction_period {
+    return Intl.message(
+      'Transaction Period',
+      name: 'transaction_period',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 30 days`
+  String get last_30_days {
+    return Intl.message(
+      'Last 30 days',
+      name: 'last_30_days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 60 days`
+  String get last_60_days {
+    return Intl.message(
+      'Last 60 days',
+      name: 'last_60_days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 90 days`
+  String get last_90_days {
+    return Intl.message(
+      'Last 90 days',
+      name: 'last_90_days',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `View Transactions`
   String get viewTransactions {
     return Intl.message(
