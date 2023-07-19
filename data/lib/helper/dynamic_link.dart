@@ -43,30 +43,12 @@ class DynamicLinksService {
 
     final ShortDynamicLink shortDynamicLink = await FirebaseDynamicLinks.instance.buildShortLink(parameters);
     final Uri shortUrl = shortDynamicLink.shortUrl;
-    //  final Uri longUrl = await parameters.buildUrl();
 
     return shortUrl.toString();
   }
 
   Future<Uri> initDynamicLinks() async {
     Uri? deepLink;
-    // FirebaseDynamicLinks.instance.onLink(onSuccess: (PendingDynamicLinkData? dynamicLink) async {
-    //   Uri? link = dynamicLink?.link;
-    //
-    //   debugPrint('-----Get On Link----${link}');
-    //
-    //   if (link != null) {
-    //     deepLink = link;
-    //     _initDynamicLinkRequestResponse.add(link);
-    //     debugPrint("----------Account Title${link.queryParameters['accountTitle']}");
-    //   }
-    // }, onError: (OnLinkErrorException e) async {
-    //   debugPrint("----------On Link Error Exception");
-    //   throw AppLocalException(
-    //     appLocalExceptionType: AppLocalExceptionType.NO_DATA_FOUND,
-    //   );
-    // });
-
     debugPrint('-----Anything----');
 
     final PendingDynamicLinkData? data = await FirebaseDynamicLinks.instance.getInitialLink();
@@ -82,5 +64,9 @@ class DynamicLinksService {
       _initDynamicLinkRequestResponse.add(Uri());
     }
     return deepLink ?? Uri();
+  }
+
+  Stream<PendingDynamicLinkData> onLink() {
+    return FirebaseDynamicLinks.instance.onLink;
   }
 }

@@ -6,19 +6,17 @@ import 'package:json_annotation/json_annotation.dart';
 part 'post_paid_bill_inquiry_list_entity.g.dart';
 
 @JsonSerializable()
-class PostPaidBillInquiryListListEntity extends BaseLayerDataTransformer<
-    PostPaidBillInquiryListListEntity, PostPaidBillInquiryListData> {
+class PostPaidBillInquiryListListEntity
+    extends BaseLayerDataTransformer<PostPaidBillInquiryListListEntity, PostPaidBillInquiryListData> {
   @JsonKey(name: "billInquiryResponses")
   List<PostPaidBillInquiryEntity>? billInquiryResponses;
 
   PostPaidBillInquiryListListEntity({this.billInquiryResponses});
 
-  factory PostPaidBillInquiryListListEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory PostPaidBillInquiryListListEntity.fromJson(Map<String, dynamic> json) =>
       _$PostPaidBillInquiryListListEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$PostPaidBillInquiryListListEntityToJson(this);
+  Map<String, dynamic> toJson() => _$PostPaidBillInquiryListListEntityToJson(this);
 
   @override
   PostPaidBillInquiryListListEntity restore(PostPaidBillInquiryListData data) {
@@ -28,7 +26,6 @@ class PostPaidBillInquiryListListEntity extends BaseLayerDataTransformer<
   @override
   PostPaidBillInquiryListData transform() {
     return PostPaidBillInquiryListData(
-        postPaidBillInquiryData:
-            this.billInquiryResponses?.map((e) => e.transform()).toList());
+        postPaidBillInquiryData: this.billInquiryResponses?.map((e) => e.transform()).toList());
   }
 }

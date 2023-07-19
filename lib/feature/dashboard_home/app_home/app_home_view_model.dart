@@ -702,29 +702,6 @@ class AppHomeViewModel extends BasePageViewModel {
     return 10.0;
   }
 
-  // double getSize(bool isActive, int i, int currentPage) {
-  //   if (isActive) {
-  //     return 13.0;
-  //   } else if (i == 0 && !isActive && currentPage > 1) {
-  //     return 5.0;
-  //   } else if (i == 0 && !isActive && currentPage == 1) {
-  //     return 5.0;
-  //   } else if (i == 3 && !isActive && currentPage == 2) {
-  //     return 5.0;
-  //   } else if (i == 3 && !isActive && currentPage < 2) {
-  //     return 5.0;
-  //   } else if (i == 1 && !isActive && currentPage == 3) {
-  //     return 10.0;
-  //   } else if (i == 2 && !isActive && currentPage == 0) {
-  //     return 10.0;
-  //   } else if (i == 1 && !isActive && currentPage == 2) {
-  //     return 10.0;
-  //   } else if (i == 2 && !isActive && currentPage == 1) {
-  //     return 10.0;
-  //   }
-  //   return 10.0;
-  // }
-
   void updatePage(int index) {
     _currentStep.safeAdd(index);
   }
@@ -754,10 +731,6 @@ class AppHomeViewModel extends BasePageViewModel {
     _getDashboardDataRequest.safeAdd(GetDashboardDataUseCaseParams());
   }
 
-  // void triggerSentMoneyPopup() {
-  //   _sentMoneyRequest.safeAdd(true);
-  // }
-
   ///request money timeline placeholder
   void triggerRequestMoneyPopup() {
     if (_showRequestMoneyPopUpSubject.value) {
@@ -780,6 +753,16 @@ class AppHomeViewModel extends BasePageViewModel {
 
   initDynamicLink() async {
     Uri uri = await DynamicLinksService().initDynamicLinks();
+    if (Platform.isIOS) {
+      DynamicLinksService().onLink().listen((event) {
+        verifyQRData(uri: event.link);
+      });
+    }
+
+    verifyQRData(uri: uri);
+  }
+
+  void verifyQRData({required Uri uri}) {
     if (uri.path.isNotEmpty && uri.queryParameters.isNotEmpty) {
       var requestId = uri.queryParameters['requestId']?.replaceAll(' ', '+');
       verifyQR(requestId: requestId ?? '');

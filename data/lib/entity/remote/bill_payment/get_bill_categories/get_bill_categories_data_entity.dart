@@ -6,8 +6,8 @@ import 'get_bill_categories_list_entity.dart';
 part 'get_bill_categories_data_entity.g.dart';
 
 @JsonSerializable()
-class GetBillCategoriesDataEntity extends BaseLayerDataTransformer<
-    GetBillCategoriesDataEntity, GetBillCategoriesData> {
+class GetBillCategoriesDataEntity
+    extends BaseLayerDataTransformer<GetBillCategoriesDataEntity, GetBillCategoriesData> {
   @JsonKey(name: "categoriesList")
   final List<GetBillCategoriesListEntity>? getBillCategoriesList;
 
@@ -28,7 +28,6 @@ class GetBillCategoriesDataEntity extends BaseLayerDataTransformer<
   @override
   GetBillCategoriesData transform() {
     return GetBillCategoriesData(
-        getBillCategoriesList:
-            this.getBillCategoriesList!.map((e) => e.transform()).toList());
+        getBillCategoriesList: this.getBillCategoriesList!.map((e) => e.transform()).toList());
   }
 }

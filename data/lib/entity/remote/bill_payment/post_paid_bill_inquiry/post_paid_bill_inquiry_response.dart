@@ -7,8 +7,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'post_paid_bill_inquiry_response.g.dart';
 
 @JsonSerializable()
-class PostPaidBillInquiryResponse extends BaseLayerDataTransformer<
-    PostPaidBillInquiryResponse, PostPaidBillInquiry> {
+class PostPaidBillInquiryResponse
+    extends BaseLayerDataTransformer<PostPaidBillInquiryResponse, PostPaidBillInquiry> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -27,11 +27,6 @@ class PostPaidBillInquiryResponse extends BaseLayerDataTransformer<
       content: PostPaidBillInquiryListListEntity.fromJson(
         this.response?.content ?? Map(),
       ).transform(),
-      /*statusModel: StatusEntity.fromJson(
-        this.status ?? Map(),
-      ).transform(),
-      requestDateTime: this.requestDateTime,
-      logId: this.logId,*/
     );
   }
 }

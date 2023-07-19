@@ -7,8 +7,8 @@ import 'package:domain/model/bill_payments/get_postpaid_biller_list/get_postpaid
 part 'get_postpaid_biller_list_entity_response.g.dart';
 
 @JsonSerializable()
-class GetPostpaidBillerListEntityResponse extends BaseLayerDataTransformer<
-    GetPostpaidBillerListEntityResponse, GetPostpaidBillerListModel> {
+class GetPostpaidBillerListEntityResponse
+    extends BaseLayerDataTransformer<GetPostpaidBillerListEntityResponse, GetPostpaidBillerListModel> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -16,24 +16,15 @@ class GetPostpaidBillerListEntityResponse extends BaseLayerDataTransformer<
     this.response,
   });
 
-  factory GetPostpaidBillerListEntityResponse.fromJson(
-          Map<String, dynamic> json) =>
+  factory GetPostpaidBillerListEntityResponse.fromJson(Map<String, dynamic> json) =>
       _$GetPostpaidBillerListEntityResponseFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$GetPostpaidBillerListEntityResponseToJson(this);
+  Map<String, dynamic> toJson() => _$GetPostpaidBillerListEntityResponseToJson(this);
 
   @override
   GetPostpaidBillerListModel transform() {
     return GetPostpaidBillerListModel(
-      getPostpaidBillerListContent:
-          GetPostpaidBillerListEntity.fromJson(this.response?.content)
-              .transform(),
-      /*statusModel: StatusEntity.fromJson(
-        this.status ?? Map(),
-      ).transform(),
-      requestDateTime: this.requestDateTime,
-      logId: this.logId,*/
+      getPostpaidBillerListContent: GetPostpaidBillerListEntity.fromJson(this.response?.content).transform(),
     );
   }
 }

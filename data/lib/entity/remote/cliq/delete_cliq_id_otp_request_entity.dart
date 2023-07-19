@@ -6,7 +6,6 @@ part "delete_cliq_id_otp_request_entity.g.dart";
 class DeleteCliqIdOtpRequestEntity {
   @JsonKey(name: "aliasId")
   final String? aliasId;
-
   @JsonKey(name: "GetToken")
   final bool? getToken;
   @JsonKey(name: "BaseClass")

@@ -22,6 +22,6 @@ class AddLinkAccountOtpResponseEntity
 
   @override
   AddLinkAccountOtp transform() {
-    return AddLinkAccountOtpEntity.fromJson(this.response!.content).transform();
+    return AddLinkAccountOtpEntity.fromJson(this.response?.content).transform();
   }
 }

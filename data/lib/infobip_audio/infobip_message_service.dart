@@ -39,6 +39,7 @@ class InfobipMessageService {
 
     InfobipMobilemessaging.on(LibraryEvent.tokenReceived, (String token) {
       debugPrint("--------Callback. TOKEN_RECEIVED event:------------");
+      debugPrint(token);
       debugPrint("--------Callback. TOKEN_RECEIVED event:------------");
 
       addLibraryEvent("Token Received");
