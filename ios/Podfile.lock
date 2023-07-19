@@ -243,6 +243,29 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleMLKit/ImageLabelingCustom (2.6.0):
+    - GoogleMLKit/MLKitCore
+    - MLKitImageLabelingCustom (~> 1.5.0)
+  - GoogleMLKit/MLKitCore (2.6.0):
+    - MLKitCommon (~> 5.0.0)
+  - GoogleMLKit/ObjectDetection (2.6.0):
+    - GoogleMLKit/MLKitCore
+    - MLKitObjectDetection (~> 1.5.0)
+  - GoogleMLKit/TextRecognition (2.6.0):
+    - GoogleMLKit/MLKitCore
+    - MLKitTextRecognition (~> 1.4.0-beta3)
+  - GoogleToolboxForMac/DebugUtils (2.3.2):
+    - GoogleToolboxForMac/Defines (= 2.3.2)
+  - GoogleToolboxForMac/Defines (2.3.2)
+  - GoogleToolboxForMac/Logger (2.3.2):
+    - GoogleToolboxForMac/Defines (= 2.3.2)
+  - "GoogleToolboxForMac/NSData+zlib (2.3.2)":
+    - GoogleToolboxForMac/Defines (= 2.3.2)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.3.2)":
+    - GoogleToolboxForMac/DebugUtils (= 2.3.2)
+    - GoogleToolboxForMac/Defines (= 2.3.2)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.3.2)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.3.2)"
   - GoogleUtilities/AppDelegateSwizzler (7.11.1):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -263,11 +286,18 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.11.1):
     - GoogleUtilities/Logger
+  - GoogleUtilitiesComponents (1.1.0):
+    - GoogleUtilities/Logger
+  - GTMSessionFetcher/Core (1.7.2)
   - http_certificate_pinning (1.0.3):
     - Alamofire (~> 4.7)
     - CryptoSwift
     - Flutter
   - IBGoogleWebRTC (1.0.36614)
+  - IDWise (4.1.6):
+    - GoogleMLKit/ImageLabelingCustom (~> 2.6.0)
+    - GoogleMLKit/ObjectDetection (~> 2.6.0)
+    - GoogleMLKit/TextRecognition (~> 2.6.0)
   - image_cropper (0.0.4):
     - Flutter
     - TOCropViewController (~> 2.6.1)
@@ -289,6 +319,51 @@ PODS:
     - Flutter
   - local_auth_ios (0.0.1):
     - Flutter
+  - MLImage (1.0.0-beta2)
+  - MLKitCommon (5.0.0):
+    - GoogleDataTransport (~> 9.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
+    - GoogleUtilities/UserDefaults (~> 7.0)
+    - GoogleUtilitiesComponents (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+    - Protobuf (~> 3.12)
+  - MLKitImageLabelingCommon (3.0.0):
+    - MLKitCommon (~> 5.0)
+    - MLKitVision (~> 3.0)
+  - MLKitImageLabelingCustom (1.5.0):
+    - MLKitCommon (~> 5.0)
+    - MLKitImageLabelingCommon (~> 3.0)
+    - MLKitVision (~> 3.0)
+    - MLKitVisionKit (~> 4.0)
+  - MLKitObjectDetection (1.5.0):
+    - MLKitCommon (~> 5.0)
+    - MLKitObjectDetectionCommon (~> 3.0)
+    - MLKitVision (~> 3.0)
+    - MLKitVisionKit (~> 4.0)
+  - MLKitObjectDetectionCommon (3.0.0):
+    - MLKitCommon (~> 5.0)
+    - MLKitVision (~> 3.0)
+  - MLKitTextRecognition (1.4.0-beta3):
+    - MLKitCommon (~> 5.0)
+    - MLKitTextRecognitionCommon (= 1.0.0-beta3)
+    - MLKitVision (~> 3.0)
+  - MLKitTextRecognitionCommon (1.0.0-beta3):
+    - MLKitCommon (~> 5.0)
+    - MLKitVision (~> 3.0)
+  - MLKitVision (3.0.0):
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - GTMSessionFetcher/Core (~> 1.1)
+    - MLImage (= 1.0.0-beta2)
+    - MLKitCommon (~> 5.0)
+    - Protobuf (~> 3.12)
+  - MLKitVisionKit (4.0.0):
+    - MLKitCommon (~> 5.0)
+    - MLKitImageLabelingCommon (~> 3.0)
+    - MLKitObjectDetectionCommon (~> 3.0)
+    - MLKitVision (~> 3.0)
   - MobileMessaging/Core (10.8.3)
   - MobileMessaging/Geofencing (10.8.3):
     - MobileMessaging/Core
@@ -312,6 +387,7 @@ PODS:
   - PromisesObjC (2.2.0)
   - PromisesSwift (2.2.0):
     - PromisesObjC (= 2.2.0)
+  - Protobuf (3.23.4)
   - qr_code_scanner (0.2.0):
     - Flutter
     - MTBBarcodeScanner
@@ -357,6 +433,7 @@ DEPENDENCIES:
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - geocoding_ios (from `.symlinks/plugins/geocoding_ios/ios`)
   - http_certificate_pinning (from `.symlinks/plugins/http_certificate_pinning/ios`)
+  - IDWise (= 4.1.6)
   - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - infobip_mobilemessaging (from `.symlinks/plugins/infobip_mobilemessaging/ios`)
@@ -375,6 +452,8 @@ DEPENDENCIES:
   - wakelock (from `.symlinks/plugins/wakelock/ios`)
 
 SPEC REPOS:
+  https://github.com/idwise/ios-sdk:
+    - IDWise
   trunk:
     - AFNetworking
     - AgoraIrisRTC_iOS
@@ -398,10 +477,24 @@ SPEC REPOS:
     - FirebaseSessions
     - GoogleAppMeasurement
     - GoogleDataTransport
+    - GoogleMLKit
+    - GoogleToolboxForMac
     - GoogleUtilities
+    - GoogleUtilitiesComponents
+    - GTMSessionFetcher
     - IBGoogleWebRTC
     - InfobipRTC
     - IOSSecuritySuite
+    - MLImage
+    - MLKitCommon
+    - MLKitImageLabelingCommon
+    - MLKitImageLabelingCustom
+    - MLKitObjectDetection
+    - MLKitObjectDetectionCommon
+    - MLKitTextRecognition
+    - MLKitTextRecognitionCommon
+    - MLKitVision
+    - MLKitVisionKit
     - MobileMessaging
     - MTBBarcodeScanner
     - nanopb
@@ -409,6 +502,7 @@ SPEC REPOS:
     - PPBlinkID
     - PromisesObjC
     - PromisesSwift
+    - Protobuf
     - SDWebImage
     - SwiftyGif
     - Toast
@@ -533,9 +627,14 @@ SPEC CHECKSUMS:
   geocoding_ios: a389ea40f6f548de6e63006a2e31bf66ff80769a
   GoogleAppMeasurement: 373bcbead1bb6a85be7a64d5d8f96284b762ea9c
   GoogleDataTransport: f0308f5905a745f94fb91fea9c6cbaf3831cb1bd
+  GoogleMLKit: 755661c46990a85e42278015f26400286d98ad95
+  GoogleToolboxForMac: 8bef7c7c5cf7291c687cf5354f39f9db6399ad34
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
+  GoogleUtilitiesComponents: 679b2c881db3b615a2777504623df6122dd20afe
+  GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
   http_certificate_pinning: 23157eae20c5887e49372b3cbe7a1d5863eb9bad
   IBGoogleWebRTC: 4dc0e8b0bf16bc473caff8797152af80385d3402
+  IDWise: 2f0418bd52b66b25a0313af1532c1c940f964cb2
   image_cropper: a3291c624a953049bc6a02e1f8c8ceb162a24b25
   image_picker_ios: 4a8aadfbb6dc30ad5141a2ce3832af9214a705b5
   infobip_mobilemessaging: f977d37faa86918df957da09c06e73cb95f7560a
@@ -544,6 +643,16 @@ SPEC CHECKSUMS:
   IOSSecuritySuite: 5914050f44040b5ae1e9ef811287d6979882f2dc
   iris_method_channel: 0617c689164d8154c020c50f63ca79f92b8a7b9d
   local_auth_ios: c6cf091ded637a88f24f86a8875d8b0f526e2605
+  MLImage: a454f9f8ecfd537783a12f9488f5be1a68820829
+  MLKitCommon: 3bc17c6f7d25ce3660f030350b46ae7ec9ebca6e
+  MLKitImageLabelingCommon: 9916b03956a3a647ebc7471a12b1eb0798ae84f8
+  MLKitImageLabelingCustom: 287ac59e5ff54b6dbca84c3cb82892a9272714d4
+  MLKitObjectDetection: f30cc178275e463e57ff4434b1450cc96fddccba
+  MLKitObjectDetectionCommon: 81d8ef93327005779a05fb6f2d74b0b0ef8840b1
+  MLKitTextRecognition: 8b0e0023a4babc66ca83d8b82864e57931164445
+  MLKitTextRecognitionCommon: 3e84602c928fe2b775fae81376f2136324cbd763
+  MLKitVision: e87dc3f2e456a6ab32361ebd985e078dd2746143
+  MLKitVisionKit: 68c122ceb9b2fe1a05ffe09341c750d566c77170
   MobileMessaging: 416b2c1ff7aaa4b691b06f176947e2fc7a7250fe
   MTBBarcodeScanner: f453b33c4b7dfe545d8c6484ed744d55671788cb
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
@@ -554,6 +663,7 @@ SPEC CHECKSUMS:
   PPBlinkID: c757baa64ed024141380a9a87048321215de9964
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   PromisesSwift: cf9eb58666a43bbe007302226e510b16c1e10959
+  Protobuf: c6bc59bbab3d38a71c67f62d7cb7ca8f8ea4eca1
   qr_code_scanner: bb67d64904c3b9658ada8c402e8b4d406d5d796e
   SDWebImage: 2aea163b50bfcb569a2726b6a754c54a4506fcf6
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
@@ -566,6 +676,6 @@ SPEC CHECKSUMS:
   url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
   wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
 
-PODFILE CHECKSUM: e7150298bdc7b2dfc097da04f0a61456330c9904
+PODFILE CHECKSUM: 9d5263a90f31067850df5e99967996961105c2ea
 
-COCOAPODS: 1.12.0
+COCOAPODS: 1.12.1
