@@ -27,7 +27,7 @@ class IdWiseHelper {
   final clientId =
       "QmFzaWMgWkdKbU5qZ3dNMkl0Tm1ZNVlTMDBOVEJrTFRrMk16RXRPVGs0WWpZMFptVTROekZpT2t4Sk4xTjNPR3hoUm5wNGFqUk5NbWRZVVVSek1rNWFhRlJDU0dObU9XTlhTakIwZGpaWlVWVT0=";
 
-  final journeyDefinitionId = "dbf6803b-6f9a-450d-9631-998b64fe871";
+  final journeyDefinitionId = "dbf6803b-6f9a-450d-9631-998b64fe871b";
 
   void initializeIdWise() {
     platformChannel.invokeMethod('initialize', {"clientKey": clientId, "theme": "LIGHT"});
@@ -39,38 +39,38 @@ class IdWiseHelper {
     platformChannel.setMethodCallHandler((handler) async {
       switch (handler.method) {
         case 'onJourneyStarted':
-          debugPrint("Method: onJourneyStarted, ${handler.arguments.toString()}");
+          debugPrint("Method: onJourneyStarted, Data: ${handler.arguments.toString()}");
           break;
         case 'onJourneyFinished':
-          debugPrint("Method: onJourneyFinished,${handler.arguments.toString()}");
+          debugPrint("Method: onJourneyFinished, Data: ${handler.arguments.toString()}");
           completer.complete({IDWiseStatus.COMPLETED: handler.arguments.toString()});
           break;
 
         case 'onJourneyCancelled':
-          debugPrint("Method: onJourneyCancelled,${handler.arguments.toString()}");
+          debugPrint("Method: onJourneyCancelled, Data: ${handler.arguments.toString()}");
           completer.complete({IDWiseStatus.CANCELLED: handler.arguments.toString()});
           break;
 
         case 'onJourneyResumed':
-          debugPrint("Method: onJourneyResumed, ${handler.arguments.toString()}");
+          debugPrint("Method: onJourneyResumed, Data: ${handler.arguments.toString()}");
           break;
 
         case 'onError':
-          debugPrint("Method: onError, ${handler.arguments.toString()}");
+          debugPrint("Method: onError, Data: ${handler.arguments.toString()}");
           completer.complete({IDWiseStatus.ERROR: handler.arguments.toString()});
           break;
 
         default:
-          debugPrint('Unknown method from MethodChannel: ${handler.method}');
+          debugPrint('Unknown method from MethodChannel: Data: ${handler.method}');
           completer.complete({IDWiseStatus.ERROR: handler.arguments.toString()});
           break;
       }
     });
 
     platformChannel.invokeMethod('startJourney', {
-      "journeyDefinitionId": "dbf6803b-6f9a-450d-9631-998b64fe871b",
+      "journeyDefinitionId": journeyDefinitionId,
       "referenceNo": null, //Put your reference number here
-      "locale": "en"
+      "locale": lang
     });
 
     return completer.future;
