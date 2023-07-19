@@ -26,7 +26,6 @@ import 'package:data/entity/remote/cliq/edit_cliq_id_otp/edit_cliq_id_otp_respon
 import 'package:data/entity/remote/cliq/get_account_by_customer_id/get_account_by_customer_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_request_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
-import 'package:data/entity/remote/cliq/get_transaction_history/get_transaction_history_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_request_entity.dart';
@@ -45,7 +44,6 @@ import 'package:data/entity/remote/cliq/suspend_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_request_entity.dart';
-import 'package:data/entity/remote/cliq/update_rtp_request_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
@@ -276,53 +274,6 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> updateRTPCliqRequest(
-      {required String msgId,
-      required String rejectReason,
-      required String rejectAddInfo,
-      required String dbtrBic,
-      required String dbtrAcct,
-      required String dbtrName,
-      required String dbtrIsIndvl,
-      required String cdtrBic,
-      required String cdtrAcct,
-      required String cdtrName,
-      required String cdtrIsIndvl,
-      required String rmtInf,
-      required String ctgyPurp,
-      required String amount,
-      required String curr,
-      required bool rtpStatus,
-      required String otPcode,
-      required String cdtrPstlAdr,
-      required String dbtrPstlAdr,
-      required bool getToken}) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.updateRTPCliqRequest(UpdateRtpRequestEntity(
-        msgId: msgId,
-        rejectReason: rejectReason,
-        rejectAddInfo: rejectAddInfo,
-        dbtrBic: dbtrBic,
-        dbtrAcct: dbtrAcct,
-        dbtrName: dbtrName,
-        dbtrIsIndvl: dbtrIsIndvl,
-        cdtrBic: cdtrBic,
-        cdtrAcct: cdtrAcct,
-        cdtrName: cdtrName,
-        cdtrIsIndvl: cdtrIsIndvl,
-        rmtInf: rmtInf,
-        ctgyPurp: ctgyPurp,
-        amount: amount,
-        curr: curr,
-        rtpStatus: rtpStatus,
-        otPcode: otPcode,
-        cdtrPstlAdr: cdtrPstlAdr,
-        dbtrPstlAdr: dbtrPstlAdr,
-        getToken: getToken,
-        baseData: baseData.toJson()));
-  }
-
-  @override
   Future<HttpResponse<EditCliqOtpResponseEntity>> editCliqIdOtp(
       {required String aliasId,
       required bool isAlias,
@@ -530,21 +481,6 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
         BaseClass: baseData.toJson(),
       ),
     );
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> getTransactionHistory(
-      {required String? FilterDays,
-      required String? TransactionType,
-      required String? TotalRecords,
-      required bool? GetToken}) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getTransactionHistory(GetTransactionHistoryRequestEntity(
-        FilterDays: FilterDays,
-        TransactionType: TransactionType,
-        TotalRecords: TotalRecords,
-        GetToken: GetToken,
-        BaseClass: baseData.toJson()));
   }
 
   Future<HttpResponse<ApproveRTPOtpResponseEntity>> approveRTPRequestOtp({required bool getToken}) async {

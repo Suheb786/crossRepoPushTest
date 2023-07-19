@@ -13,6 +13,7 @@ CheckSendMoneyRequestEntity _$CheckSendMoneyRequestEntityFromJson(
       toAccount: json['ToAccount'] as String? ?? '',
       toAmount: json['ToAmount'] as num? ?? 0,
       getToken: json['getToken'] as bool? ?? true,
+      beneficiaryId: json['BeneficiaryId'] as String? ?? '',
     );
 
 Map<String, dynamic> _$CheckSendMoneyRequestEntityToJson(
@@ -21,5 +22,6 @@ Map<String, dynamic> _$CheckSendMoneyRequestEntityToJson(
       'ToAccount': instance.toAccount,
       'ToAmount': instance.toAmount,
       'getToken': instance.getToken,
+      'BeneficiaryId': instance.beneficiaryId,
       'baseClass': instance.baseData,
     };

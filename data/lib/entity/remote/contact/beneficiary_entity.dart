@@ -15,6 +15,8 @@ class BeneficiaryEntity extends BaseLayerDataTransformer<BeneficiaryEntity, Bene
   final String? profileImage;
   @JsonKey(name: "id")
   final String? id;
+  @JsonKey(name: "userId")
+  final String? userId;
   @JsonKey(name: "accountNo")
   final String? accountNo;
   @JsonKey(name: "beneficiaryIban")
@@ -41,6 +43,8 @@ class BeneficiaryEntity extends BaseLayerDataTransformer<BeneficiaryEntity, Bene
   final num? limit;
   @JsonKey(name: "detCustomerType")
   final String? detCustomerType;
+  @JsonKey(name: "identifier")
+  final String? identifier;
 
   BeneficiaryEntity(
       {this.nickName = "",
@@ -54,12 +58,14 @@ class BeneficiaryEntity extends BaseLayerDataTransformer<BeneficiaryEntity, Bene
       this.iban = "",
       this.purpose = "",
       this.id = "",
+      this.userId = "",
       this.beneType = "",
       this.purposeType = "",
       this.detCustomerType = "",
       this.limit,
       this.purposeParent = "",
-      this.purposeParentDetails = ""});
+      this.purposeParentDetails = "",
+      this.identifier = ''});
 
   factory BeneficiaryEntity.fromJson(Map<String, dynamic> json) => _$BeneficiaryEntityFromJson(json);
 
@@ -74,6 +80,7 @@ class BeneficiaryEntity extends BaseLayerDataTransformer<BeneficiaryEntity, Bene
   Beneficiary transform() {
     return Beneficiary(
         id: this.id,
+        userId: this.userId,
         bankName: this.bankName ?? '',
         nickName: this.nickName,
         fullName: this.fullName,
@@ -90,6 +97,7 @@ class BeneficiaryEntity extends BaseLayerDataTransformer<BeneficiaryEntity, Bene
         beneType: this.beneType,
         limit: this.limit,
         purposeParent: this.purposeParent,
-        purposeParentDetails: this.purposeParentDetails);
+        purposeParentDetails: this.purposeParentDetails,
+        identifier: this.identifier ?? '');
   }
 }

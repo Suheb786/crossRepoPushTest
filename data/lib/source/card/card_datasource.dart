@@ -23,10 +23,6 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<ResponseEntity>> setCardPin(String pin, String cardNumber);
 
-  Future<HttpResponse<ResponseEntity>> confirmCardDelivery();
-
-  Future<HttpResponse<ResponseEntity>> confirmCreditCardDelivery({String? cardId, String? cardDigit});
-
   Future<HttpResponse<CardTransactionResponseEntity>> getDebitCardTransactions({num? noOfDays});
 
   Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
@@ -76,7 +72,8 @@ abstract class CardRemoteDs {
       bool? isMerchantsPayments,
       bool? isOnlinePurchase,
       String? tokenizedPan,
-      bool? isContactLessPayments});
+      bool? isContactLessPayments,
+      bool? updateEcom});
 
   Future<HttpResponse<ResponseEntity>> updateCreditCardLimits(
       {num? atmWithdrawal,

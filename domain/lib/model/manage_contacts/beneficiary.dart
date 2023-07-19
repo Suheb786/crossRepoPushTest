@@ -1,5 +1,6 @@
 class Beneficiary {
   final String? id;
+  final String? userId;
 
   //final String? beneficiaryId;
   dynamic imageUrl;
@@ -19,9 +20,11 @@ class Beneficiary {
   final String? purposeParent;
   final String? purposeParentDetails;
   final num? limit;
+  final String? identifier;
 
   Beneficiary(
       {this.id = "",
+      this.userId = "",
       this.imageUrl = "",
       this.nickName = "",
       this.fullName = "",
@@ -38,5 +41,6 @@ class Beneficiary {
       this.beneficiaryAddress = "",
       this.detCustomerType = "",
       this.purposeType = "",
-      this.beneType});
+      this.beneType,
+      this.identifier = ''});
 }

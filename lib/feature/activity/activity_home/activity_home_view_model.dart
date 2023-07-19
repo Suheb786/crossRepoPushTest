@@ -5,7 +5,6 @@ import 'package:domain/model/cliq/request_money_activity/request_money_activity_
 import 'package:domain/model/payment/payment_activity_content.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:domain/usecase/activity/notification_usecase.dart';
-import 'package:domain/usecase/activity/payment_activity_transaction_usecase.dart';
 import 'package:domain/usecase/manage_cliq/request_money_activity_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -77,7 +76,8 @@ class ActivityHomeViewModel extends BasePageViewModel {
       },
     );
 
-    getActivity();
+    //getActivity();
+    getRequestMoneyActivity(true, 30, "ALL");
   }
 
   PageController appSwiperController = PageController(viewportFraction: 0.8);
@@ -96,10 +96,6 @@ class ActivityHomeViewModel extends BasePageViewModel {
 
   NotificationUseCase _notificationUseCase;
   PublishSubject<PageController> _pageControllerSubject = PublishSubject();
-
-  ///payment activity transcation
-  BehaviorSubject<PaymentActivityTransactionUseCaseParams> _paymentActivityTransactionRequest =
-      BehaviorSubject();
 
   BehaviorSubject<Resource<PaymentActivityResponse>> _paymentActivityTransactionResponse = BehaviorSubject();
 
@@ -144,10 +140,6 @@ class ActivityHomeViewModel extends BasePageViewModel {
   void updatePageControllerStream(int index) {
     controller = PageController(initialPage: index, viewportFraction: 0.8, keepPage: true);
     _pageControllerSubject.safeAdd(controller);
-  }
-
-  void getPaymentActivity() {
-    _paymentActivityTransactionRequest.safeAdd(PaymentActivityTransactionUseCaseParams(filterDays: 180));
   }
 
   void getActivity() {

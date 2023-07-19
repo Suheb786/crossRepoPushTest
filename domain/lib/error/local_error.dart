@@ -27,6 +27,9 @@ class LocalError extends BaseError {
       case 1212:
         return AppError(error: error, cause: cause, type: ErrorType.DEVICE_NOT_COMPATIBLE);
 
+      case 1214:
+        return AppError(error: error, cause: cause, type: ErrorType.IMAGE_FORMAT_WRONG);
+
       default:
         return AppError(error: error, cause: cause, type: ErrorType.IOEXCEPTION);
     }

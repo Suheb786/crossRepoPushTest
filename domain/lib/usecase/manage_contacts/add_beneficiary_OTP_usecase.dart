@@ -42,7 +42,7 @@ class AddBeneficiaryOTPUseCaseParams extends Params {
 
   @override
   Either<AppError, bool> verify() {
-    if (Validator.isEmpty(name)) {
+    if (Validator.isEmpty(name.trim())) {
       return Left(
           AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.EMPTY_NICKNAME_VALUE));
     } else if (name.length > 50) {

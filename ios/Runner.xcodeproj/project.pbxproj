@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -245,6 +245,7 @@
 		};
 		3B06AD1E1E4923F5004D2608 /* Thin Binary */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -295,7 +296,7 @@
 		};
 		FA7789322A7E3AA020A11B45 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -404,7 +405,7 @@
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2306171;
+				CURRENT_PROJECT_VERSION = 2307141;
 				DEVELOPMENT_TEAM = 235F45XS77;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 235F45XS77;
 				ENABLE_BITCODE = NO;
@@ -546,7 +547,7 @@
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2306171;
+				CURRENT_PROJECT_VERSION = 2307141;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 235F45XS77;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 235F45XS77;
@@ -583,7 +584,7 @@
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2306171;
+				CURRENT_PROJECT_VERSION = 2307141;
 				DEVELOPMENT_TEAM = 235F45XS77;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 235F45XS77;
 				ENABLE_BITCODE = NO;

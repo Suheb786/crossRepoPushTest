@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/manage_contacts/beneficiary_contact.dart';
+import 'package:domain/model/manage_contacts/beneficiary_transaction_history_response.dart';
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
 import 'package:domain/model/manage_contacts/send_otp_add_benificiary_response.dart';
 
@@ -35,25 +36,6 @@ abstract class ManageContactRepository {
       String purposeParentDetails,
       String? OTPCode});
 
-  Future<Either<NetworkError, bool>> updateContact(
-      {String beneficiaryDetailId,
-      String nickName,
-      String fullName,
-      String emailAddress,
-      String userId,
-      String identifier,
-      String isFromMobile});
-
-  Future<Either<NetworkError, bool>> deleteContact(
-      {String beneficiaryDetailId,
-      String nickName,
-      String fullName,
-      String emailAddress,
-      String avatarImage,
-      bool isFav,
-      String userId,
-      String isFromMobile});
-
   Future<Either<NetworkError, bool>> updateAvatar(
       {String beneficiaryDetailId, String avatarImage, String beneType});
 
@@ -77,9 +59,6 @@ abstract class ManageContactRepository {
     required bool isFromMobile,
   });
 
-  Future<Either<NetworkError, bool>> contactDetail(
-      {required String beneficiaryDetailId, required bool isFromMobile});
-
   Future<Either<NetworkError, BeneficiaryContact>> searchContact({
     required String searchText,
     required bool isFromMobile,
@@ -88,4 +67,13 @@ abstract class ManageContactRepository {
 
   @override
   Future<Either<NetworkError, SendOtpAddBeneficiaryResponse>> sendOTPAddBeneficiary();
+
+  Future<Either<NetworkError, BeneficiaryTransactionHistoryResponse>> beneficiaryTransactionHistory({
+    required num filterDays,
+    required int pageNo,
+    required String beneficiaryId,
+    required String searchText,
+    required String transactionType,
+    required String totalRecords,
+  });
 }

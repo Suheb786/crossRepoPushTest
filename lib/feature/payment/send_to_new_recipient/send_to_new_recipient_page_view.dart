@@ -193,37 +193,39 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                 onTap: () async {
                                                                   InformationDialog.show(context,
                                                                       isSwipeToCancel: false,
-                                                                      title: S.of(context).numberFormatting,
+                                                                      title: S.of(context).contactInformation,
                                                                       descriptionWidget: Column(
                                                                         children: [
                                                                           Text(
                                                                             S
                                                                                 .of(context)
-                                                                                .samplesOfNoFormatting,
+                                                                                .sendMoneyFormateSample,
                                                                             style: TextStyle(
                                                                                 fontFamily:
                                                                                     StringUtils.appFont,
                                                                                 fontSize: 14.t,
-                                                                                color: AppColor.veryDarkGray1
-                                                                                    .withOpacity(0.5),
+                                                                                color: Theme.of(context)
+                                                                                    .colorScheme
+                                                                                    .surface,
                                                                                 fontWeight: FontWeight.w400),
                                                                           ),
                                                                           NumberFormattingWidget(
-                                                                            title: S.of(context).iban,
+                                                                            title: S.of(context).ibanCliq,
                                                                             desc: S.of(context).dummyIBAN,
                                                                           ),
                                                                           NumberFormattingWidget(
-                                                                            title:
-                                                                                S.of(context).accountNumber,
+                                                                            title: S.of(context).accountBlink,
                                                                             desc:
                                                                                 S.of(context).dummyAccountNo,
                                                                           ),
                                                                           NumberFormattingWidget(
-                                                                            title: S.of(context).mobileNo,
+                                                                            title: S
+                                                                                .of(context)
+                                                                                .mobileNoCliqorBlink,
                                                                             desc: S.of(context).dummyMobileNo,
                                                                           ),
                                                                           NumberFormattingWidget(
-                                                                            title: S.of(context).alias,
+                                                                            title: S.of(context).aliasCliq,
                                                                             desc: S.of(context).dummyAlias,
                                                                           )
                                                                         ],

@@ -33,7 +33,6 @@ import 'package:domain/usecase/manage_cliq/suspend_cliq_id_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/suspend_cliq_id_usecase.dart';
 import 'package:domain/usecase/manage_cliq/unlink_account_from_cliq_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/unlink_account_from_cliq_usecase.dart';
-import 'package:domain/usecase/manage_cliq/update_rtp_cliq_request_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[CliqIdTypeSelectionUseCase] provider
@@ -144,11 +143,6 @@ final requestToPayResultUseCaseProvider = Provider.autoDispose<RequestToPayResul
 ///[RequestMoneyActivityUseCase] provider
 final requestMoneyActivityUseCaseProvider = Provider.autoDispose<RequestMoneyActivityUseCase>(
   (ref) => RequestMoneyActivityUseCase(ref.read(cliqRepositoryProvider)),
-);
-
-///[UpdateRtpCliqRequestUsecase] provider
-final updateRtpCliqRequestUsecaseProvider = Provider.autoDispose<UpdateRtpCliqRequestUsecase>(
-  (ref) => UpdateRtpCliqRequestUsecase(ref.read(cliqRepositoryProvider)),
 );
 
 ///[ApproveRTPRequestUseCase] provider

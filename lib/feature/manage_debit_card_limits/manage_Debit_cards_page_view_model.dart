@@ -61,6 +61,8 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
   bool isOnlinePurchase = true;
   bool isContactLessPayments = false;
 
+  bool isOnlinePurchaseInitialValue = false;
+
   ManageDebitCardLimitsPageViewModel(this.cardLimitsArguments, this._debitCardLimitsUpdateUseCase,
       this._creditCardLimitsUpdateUseCase, this._debitCardLimitUseCase) {
     _debitCardLimitRequest.listen((value) {
@@ -154,6 +156,11 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
         onlinePurchase: onlinePurchase,
         merchantsPayments: merchantPayment,
         isOnlinePurchase: isOnlinePurchase,
+        updateEcom: isOnlinePurchaseInitialValue == isOnlinePurchase
+            ? onlinePurchaseValue == 0
+                ? false
+                : null
+            : isOnlinePurchase,
         isMerchantsPayments: isMerchantPayments,
         isContactLessPayments: isContactLessPayments,
         isAtmWithdrawal: isAtmWithdrawal,

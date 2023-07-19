@@ -159,4 +159,10 @@ class TimeUtils {
     final DateTime dateTime = DateFormat('dd-MM-yyyy').parse(date).toLocal();
     return DateFormat('dd MMMM').format(dateTime);
   }
+
+  static String getFormattedDateMonth(String date) {
+    DateTime dateTime = DateFormat('dd-MM-yyyy', 'en').parse(date).toLocal();
+    final DateFormat formatter = DateFormat('dd MMMM');
+    return formatter.format(dateTime);
+  }
 }

@@ -145,7 +145,7 @@ class AppViewModel extends BaseViewModel {
                 fontFamily: StringUtils.appFont,
               ),
               displayMedium: TextStyle(
-                color: AppColor.very_dark_gray,
+                color: AppColor.very_dark_gray2,
                 fontFamily: StringUtils.appFont,
               ),
               displaySmall: TextStyle(
@@ -161,18 +161,13 @@ class AppViewModel extends BaseViewModel {
                 fontFamily: StringUtils.appFont,
               ),
               labelSmall: TextStyle(
-                color: AppColor.lightGrayishMagenta,
+                color: AppColor.dark_yellow1,
                 fontFamily: StringUtils.appFont,
               ),
               titleMedium: TextStyle(
                 color: AppColor.very_dark_gray1,
                 fontFamily: StringUtils.appFont,
-              ))
-            ..apply(
-                // bodyColor: AppColor.brightBlue,
-                // displayColor: AppColor.brightBlue,
-                // decorationColor: AppColor.brightBlue,
-                ),
+              )),
           primaryTextTheme: _themeData.textTheme.copyWith(
             bodyLarge: TextStyle(color: AppColor.white, fontFamily: StringUtils.appFont),
           ),

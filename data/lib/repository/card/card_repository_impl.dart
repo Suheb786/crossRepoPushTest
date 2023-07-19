@@ -45,17 +45,6 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> confirmCardDelivery() async {
-    final result = await safeApiCall(
-      _remoteDs.confirmCardDelivery(),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
-    );
-  }
-
-  @override
   Future<Either<NetworkError, GetTransactionsResponse>> getDebitCardTransactions({num? noOfDays}) async {
     final result = await safeApiCall(
       _remoteDs.getDebitCardTransactions(noOfDays: noOfDays),
@@ -75,17 +64,6 @@ class CardRepositoryImpl extends CardRepository {
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.data.transform()),
-    );
-  }
-
-  @override
-  Future<Either<NetworkError, bool>> confirmCreditCardDelivery({String? cardId, String? cardDigit}) async {
-    final result = await safeApiCall(
-      _remoteDs.confirmCreditCardDelivery(cardId: cardId, cardDigit: cardDigit),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -251,17 +229,17 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> updateDebitCardLimits({
-    num? atmWithdrawal,
-    num? merchantsPayments,
-    num? onlinePurchase,
-    num? contactLessPayments,
-    bool? isAtmWithdrawal,
-    bool? isMerchantsPayments,
-    bool? isOnlinePurchase,
-    bool? isContactLessPayments,
-    String? tokenizedPan,
-  }) async {
+  Future<Either<NetworkError, bool>> updateDebitCardLimits(
+      {num? atmWithdrawal,
+      num? merchantsPayments,
+      num? onlinePurchase,
+      num? contactLessPayments,
+      bool? isAtmWithdrawal,
+      bool? isMerchantsPayments,
+      bool? isOnlinePurchase,
+      bool? isContactLessPayments,
+      String? tokenizedPan,
+      bool? updateEcom}) async {
     final result = await safeApiCall(
       _remoteDs.updateDebitCardLimits(
           atmWithdrawal: atmWithdrawal,
@@ -272,7 +250,8 @@ class CardRepositoryImpl extends CardRepository {
           isMerchantsPayments: isMerchantsPayments,
           isOnlinePurchase: isOnlinePurchase,
           isContactLessPayments: isContactLessPayments,
-          tokenizedPan: tokenizedPan),
+          tokenizedPan: tokenizedPan,
+          updateEcom: updateEcom),
     );
     return result!.fold(
       (l) => Left(l),

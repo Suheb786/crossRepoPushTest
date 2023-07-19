@@ -123,6 +123,8 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                                         ManageLimitsWidget(
                                                           onToggle: (value) {
                                                             model.isAtmWithdrawal = value;
+                                                            model.atmWithdrawalValue =
+                                                                model.atmWithdrawalInitialValue;
                                                             model.showSaveButton();
                                                           },
                                                           initialValue: creditCardLimitResponse
@@ -150,6 +152,8 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                                         ManageLimitsWidget(
                                                           onToggle: (value) {
                                                             model.isMerchantPayments = value;
+                                                            model.merchantPaymentValue =
+                                                                model.merchantPaymentInitialValue;
                                                             model.showSaveButton();
                                                           },
                                                           title: S.of(context).merchantPayments,
@@ -177,6 +181,8 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                                         ManageLimitsWidget(
                                                           onToggle: (value) {
                                                             model.isOnlinePurchase = value;
+                                                            model.onlinePurchaseValue =
+                                                                model.onlinePurchaseInitialValue;
                                                             model.showSaveButton();
                                                           },
                                                           title: S.of(context).onlinePurchase,
@@ -200,6 +206,8 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                                         ManageLimitsWidget(
                                                           onToggle: (value) {
                                                             model.isContactLessPayments = value;
+                                                            model.contactlessPaymentsValue =
+                                                                model.contactlessPaymentsInitialValue;
                                                             model.showSaveButton();
                                                           },
                                                           initialValue: creditCardLimitResponse

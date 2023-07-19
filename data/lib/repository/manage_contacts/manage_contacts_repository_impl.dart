@@ -4,6 +4,7 @@ import 'package:data/source/contact/contact_data_source.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/manage_contacts/add_beneficiary_response.dart';
 import 'package:domain/model/manage_contacts/beneficiary_contact.dart';
+import 'package:domain/model/manage_contacts/beneficiary_transaction_history_response.dart';
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
 import 'package:domain/model/manage_contacts/send_otp_add_benificiary_response.dart';
 import 'package:domain/repository/manage_contact/manage_contact_repository.dart';
@@ -71,18 +72,6 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> contactDetail(
-      {required String beneficiaryDetailId, required bool isFromMobile}) async {
-    final result = await safeApiCall(
-      _contactRemoteDS.contactDetail(beneficiaryDetailId: beneficiaryDetailId, isFromMobile: isFromMobile),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
-    );
-  }
-
-  @override
   Future<Either<NetworkError, BeneficiaryContact>> beneficiaryContacts({
     required bool isFromMobile,
   }) async {
@@ -129,58 +118,6 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.data.transform()),
-    );
-  }
-
-  @override
-  Future<Either<NetworkError, bool>> updateContact(
-      {String? beneficiaryDetailId,
-      String? nickName,
-      String? fullName,
-      String? emailAddress,
-      String? userId,
-      String? identifier,
-      String? isFromMobile}) async {
-    final result = await safeApiCall(
-      _contactRemoteDS.updateContact(
-          beneficiaryDetailId: beneficiaryDetailId!,
-          nickName: nickName!,
-          fullName: fullName!,
-          emailAddress: emailAddress!,
-          userId: userId!,
-          identifier: identifier!,
-          isFromMobile: isFromMobile!),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
-    );
-  }
-
-  @override
-  Future<Either<NetworkError, bool>> deleteContact(
-      {String? beneficiaryDetailId,
-      String? nickName,
-      String? fullName,
-      String? emailAddress,
-      String? avatarImage,
-      bool? isFav,
-      String? userId,
-      String? isFromMobile}) async {
-    final result = await safeApiCall(
-      _contactRemoteDS.deleteContact(
-          beneficiaryDetailId: beneficiaryDetailId!,
-          nickName: nickName!,
-          fullName: fullName!,
-          emailAddress: emailAddress!,
-          avatarImage: avatarImage!,
-          isFav: isFav!,
-          userId: userId!,
-          isFromMobile: isFromMobile!),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -272,5 +209,26 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
       (l) => Left(l),
       (r) => Right(r.data.transform()),
     );
+  }
+
+  @override
+  Future<Either<NetworkError, BeneficiaryTransactionHistoryResponse>> beneficiaryTransactionHistory({
+    required num filterDays,
+    required int pageNo,
+    required String beneficiaryId,
+    required String searchText,
+    required String transactionType,
+    required String totalRecords,
+  }) async {
+    final result = await safeApiCall(_contactRemoteDS.beneficiaryTransactionHistory(
+      filterDays: filterDays,
+      pageNo: pageNo,
+      beneficiaryId: beneficiaryId,
+      searchText: searchText,
+      transactionType: transactionType,
+      totalRecords: totalRecords,
+    ));
+
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
   }
 }

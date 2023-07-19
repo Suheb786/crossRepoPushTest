@@ -21,9 +21,9 @@ class PaymentRepositoryImpl extends PaymentRepository {
 
   @override
   Future<Either<NetworkError, GetAccountByAliasContentResponse>> getAccountByAlias(
-      String value, String currency) async {
+      String value, String currency, String? beneficiaryId) async {
     final result = await safeApiCall(
-      paymentRemoteDs.getAccountByAlias(value, currency),
+      paymentRemoteDs.getAccountByAlias(value, currency, beneficiaryId),
     );
     return result!.fold(
       (l) => Left(l),
@@ -32,9 +32,10 @@ class PaymentRepositoryImpl extends PaymentRepository {
   }
 
   @override
-  Future<Either<NetworkError, CheckSendMoneyResponse>> checkSendMoney(String toAccount, num toAmount) async {
+  Future<Either<NetworkError, CheckSendMoneyResponse>> checkSendMoney(
+      String toAccount, num toAmount, String beneficiaryId) async {
     final result = await safeApiCall(
-      paymentRemoteDs.checkSendMoney(toAccount: toAccount, toAmount: toAmount),
+      paymentRemoteDs.checkSendMoney(toAccount: toAccount, toAmount: toAmount, beneficiaryId: beneficiaryId),
     );
     return result!.fold(
       (l) => Left(l),
@@ -132,17 +133,6 @@ class PaymentRepositoryImpl extends PaymentRepository {
   }
 
   @override
-  Future<Either<NetworkError, PaymentActivityResponse>> getPaymentActivity({int? filterDays}) async {
-    final result = await safeApiCall(
-      paymentRemoteDs.getPaymentActivity(filterDays: filterDays),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
-    );
-  }
-
-  @override
   Future<Either<NetworkError, bool>> payBackCreditCard({String? secureCode, String? payBackAmount}) async {
     final result = await safeApiCall(
       paymentRemoteDs.payBackCreditCard(secureCode: secureCode, payBackAmount: payBackAmount),
@@ -150,39 +140,6 @@ class PaymentRepositoryImpl extends PaymentRepository {
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
-    );
-  }
-
-  @override
-  Future<Either<NetworkError, TransferSuccessResponse>> transferAPINoOtp(
-      {String? beneficiaryId,
-      String? transferType,
-      String? beneficiaryImage,
-      bool? isFriend,
-      num? toAmount,
-      num? localEq,
-      String? memo,
-      String? toAccount,
-      String? nickName,
-      String? detCustomerType,
-      String? type}) async {
-    final result = await safeApiCall(
-      paymentRemoteDs.transferAPINoOtp(
-          beneficiaryId: beneficiaryId!,
-          transferType: transferType!,
-          beneficiaryImage: beneficiaryImage!,
-          isFriend: isFriend!,
-          toAmount: toAmount!,
-          localEq: localEq!,
-          memo: memo!,
-          toAccount: toAccount!,
-          nickName: nickName!,
-          detCustomerType: detCustomerType!,
-          type: type!),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
     );
   }
 

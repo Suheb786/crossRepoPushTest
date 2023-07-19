@@ -72,6 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "aMM": MessageLookupByLibrary.simpleMessage("AMM"),
         "accept": MessageLookupByLibrary.simpleMessage("Accept"),
         "acceptRequest": MessageLookupByLibrary.simpleMessage("Accept Request"),
+        "accepted": MessageLookupByLibrary.simpleMessage("Accepted"),
         "acceptedWorldWide": MessageLookupByLibrary.simpleMessage(
             "Accepted worldwide with no hidden charges"),
         "account": MessageLookupByLibrary.simpleMessage("Account"),
@@ -81,6 +82,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "accountBalance":
             MessageLookupByLibrary.simpleMessage("Account balance"),
+        "accountBlink":
+            MessageLookupByLibrary.simpleMessage("Account No. (Blink)"),
         "accountCard": MessageLookupByLibrary.simpleMessage("Account Card"),
         "accountClaimNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
@@ -98,6 +101,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "You cannot apply for a credit card when your account is inactive. Please call us on 06-5200100 to activate your account."),
         "accountDormantError": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is inactive. Call us on 06-5200100 to activate your account."),
+        "accountDormantStatusDesc": MessageLookupByLibrary.simpleMessage(
+            "Your have not used your account for a long time and it is now deactivated. Please call us on 06-5200100 to activate your account and enjoy countless benefits."),
+        "accountDormantTitle":
+            MessageLookupByLibrary.simpleMessage("Your account is inactive!"),
         "accountHolderName":
             MessageLookupByLibrary.simpleMessage("account holder name"),
         "accountInquiryWentWrong": MessageLookupByLibrary.simpleMessage(
@@ -113,6 +120,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
         "accountMobileNoAlias": MessageLookupByLibrary.simpleMessage(
             "IBAN / ACCOUNT NO. / MOBILE NO. / ALIAS"),
+        "accountMobileNoCliQ": MessageLookupByLibrary.simpleMessage(
+            "IBAN/ Alias/ Mobile No. (CliQ)"),
         "accountNo": MessageLookupByLibrary.simpleMessage("ACCOUNT NO."),
         "accountNoCopied":
             MessageLookupByLibrary.simpleMessage("Account No. Copied"),
@@ -232,6 +241,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "alias": MessageLookupByLibrary.simpleMessage("Alias"),
         "aliasAlreadyExist":
             MessageLookupByLibrary.simpleMessage("Alias already exist"),
+        "aliasCliq": MessageLookupByLibrary.simpleMessage("Alias (CliQ)"),
         "aliasHint": MessageLookupByLibrary.simpleMessage(
             "Alias must be a maximum of 10 alphanumeric characters"),
         "aliasMobileHint":
@@ -475,6 +485,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Call scheduled!"),
         "callScheduledNote": MessageLookupByLibrary.simpleMessage(
             "Your account will be processed after the video call is completed."),
+        "callToActivate": MessageLookupByLibrary.simpleMessage(
+            "Call us on 06-5200100 to activate your account and get your debit card."),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cancelBooking": MessageLookupByLibrary.simpleMessage("Cancel Booking"),
@@ -697,6 +709,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "The maximum contactless limit is 300 JOD daily"),
         "contactLessPayments":
             MessageLookupByLibrary.simpleMessage("Contactless Payment"),
+        "contactUs": MessageLookupByLibrary.simpleMessage("CONTACT US"),
         "contactlessAlreadyDone": MessageLookupByLibrary.simpleMessage(
             "A supplementary card with the same details already exists. Please check and try again."),
         "contactlessError": MessageLookupByLibrary.simpleMessage(
@@ -905,19 +918,20 @@ class MessageLookup extends MessageLookupByLibrary {
             "I don\'t need my card anymore"),
         "dormantAccountCCFailedTitle": MessageLookupByLibrary.simpleMessage(
             "Unfortunately, your credit card application has failed!"),
+        "dormantAccountPhysicalCardReq": MessageLookupByLibrary.simpleMessage(
+            "Oops! You cannot request your physical card as your account is inactive. Call us on 06-5200100 to activate your account."),
         "downloadStatement":
             MessageLookupByLibrary.simpleMessage("Download Statement"),
         "dragMap": MessageLookupByLibrary.simpleMessage(
             "Drag & move the map to adjust the location"),
         "due": MessageLookupByLibrary.simpleMessage("Due"),
         "dueAmt": MessageLookupByLibrary.simpleMessage("Due Amount"),
-        "dummyAccountNo": MessageLookupByLibrary.simpleMessage("9911 1407 61"),
+        "dummyAccountNo": MessageLookupByLibrary.simpleMessage("9xxxxxxxxx"),
         "dummyAlias": MessageLookupByLibrary.simpleMessage("username1"),
         "dummyAmount": MessageLookupByLibrary.simpleMessage("659.570"),
         "dummyIBAN":
-            MessageLookupByLibrary.simpleMessage("ABC000012341234123819241213"),
-        "dummyMobileNo":
-            MessageLookupByLibrary.simpleMessage("00962 3320 8080"),
+            MessageLookupByLibrary.simpleMessage("ABC0000038363829727227184"),
+        "dummyMobileNo": MessageLookupByLibrary.simpleMessage("00962xxxxxxxxx"),
         "eVoucherDetailDescption": MessageLookupByLibrary.simpleMessage(
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo."),
         "eVoucherLandingDialogDescption": MessageLookupByLibrary.simpleMessage(
@@ -1092,6 +1106,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "please enter valid email address"),
         "enterValidEmployeeStatus": MessageLookupByLibrary.simpleMessage(
             "Please select valid employee status"),
+        "enterValidIBANCLiQ": MessageLookupByLibrary.simpleMessage(
+            "Oops! please enter an IBAN and CliQ ID to request money."),
         "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
             "You entered an invalid mobile number. Please try again."),
         "enterValidNature": MessageLookupByLibrary.simpleMessage(
@@ -1525,6 +1541,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "highInterestFeesAndCharges": MessageLookupByLibrary.simpleMessage(
             "High interest,fees,and charges"),
         "history": MessageLookupByLibrary.simpleMessage("History"),
+        "home": MessageLookupByLibrary.simpleMessage("HOME"),
         "homeAddress": MessageLookupByLibrary.simpleMessage("HOME ADDRESS"),
         "homeAddressHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Home Address"),
@@ -1553,6 +1570,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "iHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("I have an account"),
         "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
+        "ibanAccountNumberMobileNumberAlisInvalid":
+            MessageLookupByLibrary.simpleMessage(
+                "Oops! IBAN/account number/ mobile number/Alias is invalid, use another one."),
+        "ibanCliq": MessageLookupByLibrary.simpleMessage("IBAN (CliQ)"),
         "ibanCopied": MessageLookupByLibrary.simpleMessage("IBAN Copied"),
         "ibanMobileNoAlias":
             MessageLookupByLibrary.simpleMessage("IBAN / Mobile No. / ALIAS"),
@@ -1964,6 +1985,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "manageCliqId": MessageLookupByLibrary.simpleMessage("Manage CliQ ID"),
         "manageCliqIdRoute":
             MessageLookupByLibrary.simpleMessage("Manage\nCliQ ID"),
+        "manageContactSendRequestSample": MessageLookupByLibrary.simpleMessage(
+            "Please provide any account details you have for your contact. Sending and requesting money is done either within Blink or via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n"),
         "manageContacts":
             MessageLookupByLibrary.simpleMessage("Manage Contacts"),
         "manageContactsSettings":
@@ -1999,6 +2022,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "mobileNo": MessageLookupByLibrary.simpleMessage("Mobile No."),
         "mobileNoAliasHint":
             MessageLookupByLibrary.simpleMessage("00962000000000"),
+        "mobileNoCliq":
+            MessageLookupByLibrary.simpleMessage("Mobile No. (CliQ)"),
+        "mobileNoCliqorBlink":
+            MessageLookupByLibrary.simpleMessage("Mobile No. (CliQ or Blink)"),
         "mobileNoExist":
             MessageLookupByLibrary.simpleMessage("Mobile Number Exist"),
         "mobileNoRegisteredWithBlink": MessageLookupByLibrary.simpleMessage(
@@ -2009,11 +2036,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "mobileNumberHint": MessageLookupByLibrary.simpleMessage("00 000 0000"),
         "mobileNumberUpdated": MessageLookupByLibrary.simpleMessage(
             "Your mobile number has been updated successfully"),
+        "moneyReceivedFrom":
+            MessageLookupByLibrary.simpleMessage("Money received from"),
+        "moneySentTo": MessageLookupByLibrary.simpleMessage("Money sent to"),
         "moneyThorError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "monthlyIncome": MessageLookupByLibrary.simpleMessage("MONTHLY INCOME"),
         "monthlyIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Monthly Income"),
+        "more": MessageLookupByLibrary.simpleMessage("MORE"),
         "motherName": MessageLookupByLibrary.simpleMessage("MOTHER’S NAME"),
         "motherNameHint":
             MessageLookupByLibrary.simpleMessage("Please enter mother\'s name"),
@@ -2172,6 +2203,20 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Online Purchase"),
         "onlinePurchaseExceeded": MessageLookupByLibrary.simpleMessage(
             "Online purchase limit exceeded."),
+        "oopsErrorWhileUpdatingCardLimit": MessageLookupByLibrary.simpleMessage(
+            "Oops! Something went wrong while updating limit, please try again later."),
+        "oopsTheQRCodeIsExpired": MessageLookupByLibrary.simpleMessage(
+            "Oops! The QR code is expired."),
+        "oopsTheQRisInvalid": MessageLookupByLibrary.simpleMessage(
+            "Oops! The QR code is invalid. Please try again."),
+        "oopsYouCanOnlyCreate5CliqIds": MessageLookupByLibrary.simpleMessage(
+            "Oops! You can only create 5 CliQ IDs"),
+        "oopsYouCantSendMoneyToYourOwnAccount":
+            MessageLookupByLibrary.simpleMessage(
+                "Oops! you cannot send money to your own account"),
+        "oopsYouHaveExceededYourDailyTransferLimit":
+            MessageLookupByLibrary.simpleMessage(
+                "Oops! You have exceeded your daily transfer limit."),
         "oopsYourCardIsNotActive": MessageLookupByLibrary.simpleMessage(
             "Oops! Your card is not active"),
         "oopscliqIDEnteredIsInvalid": MessageLookupByLibrary.simpleMessage(
@@ -2308,6 +2353,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter your\ncontact details"),
         "pleaseEnterYourMobileNumber": MessageLookupByLibrary.simpleMessage(
             "Please enter your mobile number"),
+        "pleaseFillMissingField": MessageLookupByLibrary.simpleMessage(
+            "Oops! Please fill the missing field."),
         "pleaseHelpUsImproveServices": MessageLookupByLibrary.simpleMessage(
             "Please help us to improve our services: Free text (if this can be applied)"),
         "pleaseProvideInformationIfAppliesToYou":
@@ -2496,6 +2543,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "reject": MessageLookupByLibrary.simpleMessage("Reject"),
         "rejectRequest": MessageLookupByLibrary.simpleMessage("Reject Request"),
+        "rejected": MessageLookupByLibrary.simpleMessage("Rejected"),
         "rejectedDueToExpiryDate": MessageLookupByLibrary.simpleMessage(
             "Payment cannot be completed because the bill is expired."),
         "relationNull": MessageLookupByLibrary.simpleMessage(
@@ -2541,6 +2589,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "requestMoney": MessageLookupByLibrary.simpleMessage("Request money"),
         "requestMoneyFeatureDisabled": MessageLookupByLibrary.simpleMessage(
             "Oops, the request to pay service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100."),
+        "requestMoneyFormateSample": MessageLookupByLibrary.simpleMessage(
+            "Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n"),
         "requestMoneyFrom":
             MessageLookupByLibrary.simpleMessage("Request money from"),
         "requestMoneyFromOtherBank": MessageLookupByLibrary.simpleMessage(
@@ -2723,6 +2773,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendAndRequestFavouriteContacts": MessageLookupByLibrary.simpleMessage(
             "Send and request with ease up to 9 favourite contacts. Would you like to add this contact to your favourite?"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("Send Money"),
+        "sendMoneyFormateSample": MessageLookupByLibrary.simpleMessage(
+            "Please provide any account details you have for your contact,and we will take care of the rest. If the contact’s account is in Blink, we will send the money to Blink account, otherwise, we will send it via CliQ to his/her bank account. \n\nPlease be mindful of the formatting examples as follows:\n\n"),
         "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "Your attempt to send money was unsuccessful."),
         "sendMoneyTo": MessageLookupByLibrary.simpleMessage("Send money to"),
@@ -2972,6 +3024,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Transaction Type"),
         "transaction_period":
             MessageLookupByLibrary.simpleMessage("Transaction Period"),
+        "transferCannotbeDone": MessageLookupByLibrary.simpleMessage(
+            "Oops! Sending money failed, contact details need to be updated"),
         "transferTypeNF": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. "),
         "transferTypeNFRTP": MessageLookupByLibrary.simpleMessage(
@@ -3118,6 +3172,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("View card subscriptions"),
         "viewHistory": MessageLookupByLibrary.simpleMessage("View History"),
         "viewMyBills": MessageLookupByLibrary.simpleMessage("View my bills"),
+        "viewTransactions":
+            MessageLookupByLibrary.simpleMessage("View Transactions"),
         "viewVoucher": MessageLookupByLibrary.simpleMessage("View Voucher"),
         "viewVoucherDialogDescription": MessageLookupByLibrary.simpleMessage(
             "Your voucher is being processed. You’ll get notification when your voucher is ready to be used."),
@@ -3216,6 +3272,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("You are about to reject "),
         "youareabouttosend":
             MessageLookupByLibrary.simpleMessage("You are about to send "),
+        "yourAccountInactive":
+            MessageLookupByLibrary.simpleMessage("Your account is inactive"),
         "yourAddOtherCardFromCardSettings":
             MessageLookupByLibrary.simpleMessage(
                 "You can add your other cards from\nCard Settings."),

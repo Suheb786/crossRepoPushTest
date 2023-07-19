@@ -1,7 +1,6 @@
 import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/activity/activity_otp_validation_usecase.dart';
 import 'package:domain/usecase/activity/notification_usecase.dart';
-import 'package:domain/usecase/activity/payment_activity_transaction_usecase.dart';
 import 'package:domain/usecase/activity/payment_activity_usecase.dart';
 import 'package:domain/usecase/activity/reason_to_reject_validation_usecase.dart';
 import 'package:domain/usecase/activity/return_payment_OTP_usecase.dart';
@@ -16,10 +15,6 @@ final notificationUseCaseProvider = Provider.autoDispose<NotificationUseCase>(
 ///[PaymentActivityUseCase] provider
 final paymentActivityUseCaseProvider =
     Provider.autoDispose<PaymentActivityUseCase>((ref) => PaymentActivityUseCase());
-
-///[PaymentActivityTransactionUseCase] provider
-final paymentActivityTransactionUseCaseProvider = Provider.autoDispose<PaymentActivityTransactionUseCase>(
-    (ref) => PaymentActivityTransactionUseCase(ref.read(paymentRepositoryProvider)));
 
 ///[ReturnPaymentActivityTransactionUseCase] provider
 final returnPaymentActivityTransactionUseCaseProvider =

@@ -84,7 +84,6 @@ import 'package:data/entity/remote/card/change_credit_card_pin/change_credit_car
 import 'package:data/entity/remote/card/change_credit_card_pin/change_credit_card_pin_verify_request_entity.dart';
 import 'package:data/entity/remote/card/change_credit_card_pin/unblock_credit_card_pin_request_entity.dart';
 import 'package:data/entity/remote/card/change_debit_card_pin_request.dart';
-import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
 import 'package:data/entity/remote/card/credit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/credit_card_relationship/credit_card_relationship_response_entity.dart';
 import 'package:data/entity/remote/card/credit_card_statement_request.dart';
@@ -141,7 +140,6 @@ import 'package:data/entity/remote/cliq/edit_cliq_id_otp/edit_cliq_id_otp_respon
 import 'package:data/entity/remote/cliq/get_account_by_customer_id/get_account_by_customer_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_request_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
-import 'package:data/entity/remote/cliq/get_transaction_history/get_transaction_history_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_request_entity.dart';
@@ -160,20 +158,18 @@ import 'package:data/entity/remote/cliq/suspend_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_request_entity.dart';
-import 'package:data/entity/remote/cliq/update_rtp_request_entity.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_contact_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_contact_response_entity.dart';
 import 'package:data/entity/remote/contact/beneficiary_fav_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_mark_favorite_request.dart';
-import 'package:data/entity/remote/contact/contact_detail_request.dart';
+import 'package:data/entity/remote/contact/beneficiary_transaction_history_request_entity.dart';
+import 'package:data/entity/remote/contact/beneficiary_transaction_history_response_entity.dart';
 import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
-import 'package:data/entity/remote/contact/delete_contact_request.dart';
 import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
 import 'package:data/entity/remote/contact/search_contact_request.dart';
-import 'package:data/entity/remote/contact/update_beneficiary_request.dart';
-import 'package:data/entity/remote/contact/upload_beneficiary_image_request.dart';
 import 'package:data/entity/remote/contact/send_otp_add_beneficiary.dart';
+import 'package:data/entity/remote/contact/update_beneficiary_request.dart';
 import 'package:data/entity/remote/country/city_list/city_list_request_entity.dart';
 import 'package:data/entity/remote/country/city_list/city_list_response_entity.dart';
 import 'package:data/entity/remote/country/country_list/country_list_request_entity.dart';
@@ -227,7 +223,6 @@ import 'package:data/entity/remote/payment/check_send_money_response_entity.dart
 import 'package:data/entity/remote/payment/get_account_by_alias_content_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_request_entity.dart';
 import 'package:data/entity/remote/payment/pay_back_credit_card_request_entity.dart';
-import 'package:data/entity/remote/payment/payment_activity_request_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/payment/qr/generate_qr_request_entity.dart';
 import 'package:data/entity/remote/payment/qr/transfer_qr_request_entity.dart';
@@ -235,7 +230,6 @@ import 'package:data/entity/remote/payment/qr/verify_qr_request_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
 import 'package:data/entity/remote/payment/return_payment_activity/get_rejection_reason_response_entity.dart';
-import 'package:data/entity/remote/payment/transfer_api_no_otp_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_api_verify_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_success_response_entity.dart';
@@ -302,11 +296,9 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../entity/remote/contact/add_beneficiary_response_entity.dart';
-import '../entity/remote/contact/add_contact_request.dart';
 import '../entity/remote/contact/remove_avatar_request.dart';
 import '../entity/remote/contact/send_otp_add_beneficiary_data_response_entity.dart';
 import '../entity/remote/contact/update_avatar_request.dart';
-import '../entity/remote/contact/update_contact_request.dart';
 
 part 'api_service.g.dart';
 
@@ -485,13 +477,6 @@ abstract class ApiService {
   @POST("/CardTracking/SetCardPin")
   Future<HttpResponse<ResponseEntity>> setCardPin(@Body() SetCardPinRequest setCardPinRequest);
 
-  @POST("/CardTracking/ConfirmDelivery")
-  Future<HttpResponse<ResponseEntity>> confirmCardDelivery(@Body() BaseRequest cardIssuanceRequest);
-
-  @POST("/CardTracking/ConfirmCreditCardDelivery")
-  Future<HttpResponse<ResponseEntity>> confirmCreditCardDelivery(
-      @Body() ConfirmCreditCardDeliveryRequest cardIssuanceRequest);
-
   @POST("/auth/ChangeEmail")
   Future<HttpResponse<ResponseEntity>> changeEmail(@Body() ChangeEmailRequest changeEmailRequest);
 
@@ -515,34 +500,6 @@ abstract class ApiService {
   @POST("/auth/VerifyChangeMobile")
   Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeMobile(
       @Body() VerifyChangeMobileRequestEntity verifyChangeMobileRequestEntity);
-
-  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/ShowContactCard")
-  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(
-      @Body() BeneficiaryFavoriteRequest baseRequest);
-
-  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/AddContact")
-  Future<HttpResponse<AddBeneficiaryResponseEntity>> addBeneficiary(
-      @Body() AddBeneficiaryRequest addBeneficiaryRequest);
-
-  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/UpdateContact")
-  Future<HttpResponse<ResponseEntity>> updateBeneficiary(
-      @Body() UpdateBeneficiaryRequest updateBeneficiaryRequest);
-
-  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/RemoveContact")
-  Future<HttpResponse<ResponseEntity>> deleteBeneficiary(
-      @Body() DeleteBeneficiaryRequest deleteBeneficiaryRequest);
-
-  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/UpdateContactImage")
-  Future<HttpResponse<ResponseEntity>> updateContactImage(
-      @Body() UpdateAvatarRequest updateContactImageRequest);
-
-  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/RemoveContactImage")
-  Future<HttpResponse<ResponseEntity>> removeContactImage(
-      @Body() RemoveAvatarRequest removeContactImageRequest);
-
-  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/AddContactOtp")
-  Future<HttpResponse<SendOtpAddBeneficiaryDataResponseEntity>> sendOTPAddBeneficiary(
-      @Body() SendOTPAddBeneficiaryRequest sendOTPAddBeneficiaryRequest);
 
   @POST("/Dashboard/GetDashboardDataV4")
   Future<HttpResponse<DashboardDataResponseEntity>> getDashboardData(
@@ -619,7 +576,7 @@ abstract class ApiService {
   Future<HttpResponse<GetAccountByAliasContentResponseEntity>> getAccountByAlias(
       @Body() GetAccountByAliasRequestEntity getAccountByAliasRequestEntity);
 
-  @POST("/transfer/CheckSendMoneyV2")
+  @POST("/transfer/CheckSendMoneyV3")
   Future<HttpResponse<CheckSendMoneyResponseEntity>> checkSendMoney(
       @Body() CheckSendMoneyRequestEntity checkSendMoneyRequestEntity);
 
@@ -719,10 +676,6 @@ abstract class ApiService {
   @POST("/Auth/VerifyForgetPasswordOtp")
   Future<HttpResponse<VerifyForgetPasswordOtpResponseEntity>> verifyForgetPasswordOtp(
       @Body() VerifyForgetPasswordOtpRequestEntity verifyForgetPasswordOtpRequestEntity);
-
-  @POST("/transfer/PaymentActivityAPIV2")
-  Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity(
-      @Body() PaymentActivityRequestEntity paymentActivityRequestActivity);
 
   @POST("/Auth/ChangeMobileNumber")
   Future<HttpResponse<ResponseEntity>> changeMyNumber(
@@ -963,10 +916,6 @@ abstract class ApiService {
     @Body() BaseRequest request,
   );
 
-  @POST("/transfer/TransferAPINoOtp")
-  Future<HttpResponse<TransferSuccessResponseEntity>> transferAPINoOtp(
-      @Body() TransferApiNoOtpRequestEntity transferApiNoOtpRequestEntity);
-
   ///RJ
   @POST("/RJ/GetDestinations")
   Future<HttpResponse<DestinationResponseEntity>> getDestinations(
@@ -990,16 +939,6 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> rjOtpValidate(@Body() BaseRequest request);
 
   ///CLIQ
-
-  @POST("/Cliq/CliqRegisterCustomer")
-  Future<HttpResponse<ResponseEntity>> cliqRegisterCustomer(
-    @Body() BaseRequest request,
-  );
-
-  @POST("/Cliq/CliqRegisterAccount")
-  Future<HttpResponse<ResponseEntity>> cliqRegisterAccount(
-    @Body() BaseRequest request,
-  );
 
   @POST("/Cliq/ConfirmEditCliqID")
   Future<HttpResponse<EditCliqResponseEntity>> editCliqID(@Body() EditCliqIdRequestEntity request);
@@ -1039,9 +978,6 @@ abstract class ApiService {
   Future<HttpResponse<UnlinkAccountFromCliqIdOtpResponseEntity>> unLinkAccountFromCliqOtp(
     @Body() UnLinkAccountFromCliqOtpRequestEntity request,
   );
-
-  @POST("/Cliq/UpdateRTPRequest")
-  Future<HttpResponse<ResponseEntity>> updateRTPCliqRequest(@Body() UpdateRtpRequestEntity request);
 
   @POST("/Cliq/GetAlias")
   Future<HttpResponse<GetAliasResponseEntity>> getAlias(@Body() CliqGetAliasRequestEntity request);
@@ -1111,11 +1047,6 @@ abstract class ApiService {
     @Body() ReturnRTPrequestRequestEntity request,
   );
 
-  @POST("/Cliq/GetTransactionHistory")
-  Future<HttpResponse<ResponseEntity>> getTransactionHistory(
-    @Body() GetTransactionHistoryRequestEntity request,
-  );
-
   @POST("/transfer/GetReturnPaymentReasons")
   Future<HttpResponse<GetRejectionReasonResponseEntity>> getRejectionReason(
     @Body() BaseRequest request,
@@ -1131,6 +1062,14 @@ abstract class ApiService {
     @Body() RequestToPayResultOtpRequestEntity request,
   );
 
+  @POST("/transfer/GetRejectionReasons")
+  Future<HttpResponse<RejectionReasonResponseEntity>> getRejectionReasons(
+      @Body() RejectionReasonRequestEntity rejectionReasonRequestEntity);
+
+  @POST("/Cliq/GetCreditConfirmation")
+  Future<HttpResponse<CreditConfirmationResponseEntity>> getCreditConfirmation(
+      @Body() CreditConfirmationRequestEntity creditConfirmationRequestEntity);
+
   ///QR
   @POST("/Transfer/GenerateQR")
   Future<HttpResponse<QRResponseEntity>> generateQR(@Body() GenerateQRRequestEntity generateQRRequestEntity);
@@ -1142,20 +1081,35 @@ abstract class ApiService {
   Future<HttpResponse<QRTransferResponseEntity>> transferQR(
       @Body() TransferQRRequestEntity transferQRRequestEntity);
 
-  @POST("/transfer/GetRejectionReasons")
-  Future<HttpResponse<RejectionReasonResponseEntity>> getRejectionReasons(
-      @Body() RejectionReasonRequestEntity rejectionReasonRequestEntity);
-
-  @POST("/Cliq/GetCreditConfirmation")
-  Future<HttpResponse<CreditConfirmationResponseEntity>> getCreditConfirmation(
-      @Body() CreditConfirmationRequestEntity creditConfirmationRequestEntity);
-
   /// Manage Contacts
 
-  // @POST("/ManageContacts/UpdateFavorite")
-  // Future<HttpResponse<ResponseEntity>> updateFavorite(
-  //   @Body() UpdateFavoriteRequest request,
-  // );
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/ShowContactCard")
+  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(
+      @Body() BeneficiaryFavoriteRequest baseRequest);
+
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/AddContact")
+  Future<HttpResponse<AddBeneficiaryResponseEntity>> addBeneficiary(
+      @Body() AddBeneficiaryRequest addBeneficiaryRequest);
+
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/UpdateContact")
+  Future<HttpResponse<ResponseEntity>> updateBeneficiary(
+      @Body() UpdateBeneficiaryRequest updateBeneficiaryRequest);
+
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/RemoveContact")
+  Future<HttpResponse<ResponseEntity>> deleteBeneficiary(
+      @Body() DeleteBeneficiaryRequest deleteBeneficiaryRequest);
+
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/UpdateContactImage")
+  Future<HttpResponse<ResponseEntity>> updateContactImage(
+      @Body() UpdateAvatarRequest updateContactImageRequest);
+
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/RemoveContactImage")
+  Future<HttpResponse<ResponseEntity>> removeContactImage(
+      @Body() RemoveAvatarRequest removeContactImageRequest);
+
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/AddContactOtp")
+  Future<HttpResponse<SendOtpAddBeneficiaryDataResponseEntity>> sendOTPAddBeneficiary(
+      @Body() SendOTPAddBeneficiaryRequest sendOTPAddBeneficiaryRequest);
 
   @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/SearchListContact")
   Future<HttpResponse<BeneficiaryContactResponseEntity>> beneficiaryContacts(
@@ -1167,35 +1121,10 @@ abstract class ApiService {
     @Body() BeneficiaryMarkFavoriteRequest request,
   );
 
-  @POST("/ManageContacts/GetContactDetail")
-  Future<HttpResponse<ResponseEntity>> contactDetail(
-    @Body() ContactDetailRequest request,
-  );
-
   @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/SearchContact")
   Future<HttpResponse<BeneficiaryContactResponseEntity>> searchContact(
     @Body() SearchContactRequest request,
   );
-
-  ///Add Contact
-  @POST("/ManageContacts/AddContact")
-  Future<HttpResponse<ResponseEntity>> addContact(@Body() AddContactRequest addContactRequest);
-
-  ///update contact
-  @POST("/ManageContacts/UpdateContact")
-  Future<HttpResponse<ResponseEntity>> updateContact(@Body() UpdateContactRequest updateContactRequest);
-
-  ///delete contact
-  @POST("/ManageContacts/DeleteContact")
-  Future<HttpResponse<ResponseEntity>> deleteContact(@Body() DeleteContactRequest deleteContactRequest);
-
-  ///update avatar contact
-  @POST("/ManageContacts/UpdateAvatar")
-  Future<HttpResponse<ResponseEntity>> updateAvatar(@Body() UpdateAvatarRequest updateAvatarRequest);
-
-  ///Remove Avatar
-  @POST("/ManageContacts/RemoveAvatar")
-  Future<HttpResponse<ResponseEntity>> removeAvatar(@Body() RemoveAvatarRequest removeAvatarRequest);
 
   // ---------------------------------------------- E-Vouchers ----------------------------------------------
 
@@ -1225,4 +1154,8 @@ abstract class ApiService {
   Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsBySearch(@Body() VoucherBySearchRequest voucherBySearchRequest);
 
 
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/GetTransactionHistory")
+  Future<HttpResponse<BeneficiaryTransactionHistoryResponseEntity>> beneficiaryTransactionHistory(
+    @Body() BeneficiaryTransactionHistoryRequest request,
+  );
 }

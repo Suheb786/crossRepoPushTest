@@ -58,6 +58,12 @@ class DashboardFeaturesEntity
   @JsonKey(name: "blink-retail-app-manage-contacts")
   final bool? manageContactEnabled;
 
+  @JsonKey(name: "blink-retail-app-manage-contacts-History")
+  final bool? manageContactHistory;
+
+  @JsonKey(name: "blink-retail-app-E-vouchers")
+  final bool? eVouchers;
+
   DashboardFeaturesEntity(
       {this.blinkRetailAppBillPayment,
       this.blinkRetailAppBillPaymentPayPostpaid,
@@ -75,7 +81,9 @@ class DashboardFeaturesEntity
       this.blinkRetailAppRTP,
       this.rtpFeatureEnabled,
       this.returnPaymentFeatureEnabled,
-      this.manageContactEnabled});
+      this.manageContactEnabled,
+      this.manageContactHistory,
+      this.eVouchers});
 
   factory DashboardFeaturesEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardFeaturesEntityFromJson(json);
@@ -98,7 +106,7 @@ class DashboardFeaturesEntity
         isDebitCardRequestPhysicalCardEnabled: this.isDebitCardPhysicalCardRequestEnabled ?? false,
         blinkRetailAppBillPayment: this.blinkRetailAppBillPayment ?? false,
         appBillPaymentPostpaid: this.blinkRetailAppBillPaymentPayPostpaid ?? false,
-        appBillPaymentQrCode: this.paymentQRCode ?? false,
+        appBillPaymentQrCode: /*this.paymentQRCode ?? false*/true,
         appBillPaymentPrepaid: this.blinkRetailAppBillPaymentPayPrepaid ?? false,
         blinkRetailAppCliq: this.blinkRetailAppCliq ?? false,
         blinkRetailAppCliqAliasManagement: this.blinkRetailAppAliasManagement ?? false,
@@ -106,6 +114,8 @@ class DashboardFeaturesEntity
         blinkRetailAppCliqSendPayment: blinkRetailAppCliqSendPayment ?? false,
         rtpFeatureEnabled: rtpFeatureEnabled ?? false,
         returnPaymentFeatureEnabled: returnPaymentFeatureEnabled ?? false,
-        manageContactEnabled: this.manageContactEnabled ?? false);
+        manageContactEnabled: /*this.manageContactEnabled ?? false*/ true,
+        manageContactHistory: /*this.manageContactHistory ?? false*/ true,
+        eVouchers: this.eVouchers ?? false);
   }
 }

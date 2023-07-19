@@ -3,7 +3,7 @@ import 'package:domain/usecase/manage_contacts/add_beneficiary_OTP_usecase.dart'
 import 'package:domain/usecase/manage_contacts/add_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/beneficiary_contacts_usecase.dart';
 import 'package:domain/usecase/manage_contacts/beneficiary_mark_favorite_usecase.dart';
-import 'package:domain/usecase/manage_contacts/contact_detail_usecase.dart';
+import 'package:domain/usecase/manage_contacts/beneficiary_transaction_history_usecase.dart';
 import 'package:domain/usecase/manage_contacts/delete_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/get_contacts_usecase.dart';
 import 'package:domain/usecase/manage_contacts/manage_contact_otp_validation_usecase.dart';
@@ -66,11 +66,6 @@ final manageContactOtpValidationUseCaseProvider = Provider.autoDispose<DeleteCon
   (ref) => DeleteContactOtpValidationUsecase(),
 );
 
-///[ContactDetailUseCase] provider
-final contactDetailUseCaseProvider = Provider.autoDispose<ContactDetailUseCase>(
-  (ref) => ContactDetailUseCase(ref.read(manageContactRepositoryProvider)),
-);
-
 ///[BeneficiaryContactUseCaseProvider] provider
 final beneficiaryContactUseCaseProvider = Provider.autoDispose<BeneficiaryContactUseCase>(
   (ref) => BeneficiaryContactUseCase(ref.read(manageContactRepositoryProvider)),
@@ -84,4 +79,10 @@ final searchContactUseCaseProvider = Provider.autoDispose<SearchContactUseCase>(
 ///[BeneficiaryMarkFavoriteUseCase] provider
 final beneficiaryMarkFavoriteUseCase = Provider.autoDispose<BeneficiaryMarkFavoriteUseCase>(
   (ref) => BeneficiaryMarkFavoriteUseCase(ref.read(manageContactRepositoryProvider)),
+);
+
+///[BeneficiaryTransactionHistoryUseCase] provider
+final beneficiaryTransactionHistoryUseCaseProvider =
+    Provider.autoDispose<BeneficiaryTransactionHistoryUseCase>(
+  (ref) => BeneficiaryTransactionHistoryUseCase(ref.read(manageContactRepositoryProvider)),
 );

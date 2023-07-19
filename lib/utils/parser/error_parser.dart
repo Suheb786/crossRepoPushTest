@@ -398,9 +398,9 @@ class ErrorParser {
       case ErrorType.EMPTY_NICKNAME_VALUE:
         return localisedHelper.emptyNickName;
       case ErrorType.EMPTY_VERIFY_EMAIL:
-        return localisedHelper.emptyVerifyEmail;
+        return localisedHelper.pleaseFillMissingField;
       case ErrorType.EMPTY_VERIFY_EXPIRY_DATE:
-        return localisedHelper.emptyVerifyExpiryDate;
+        return localisedHelper.pleaseFillMissingField;
       case ErrorType.CHECK_PASSWORD_CRED_ERROR:
         return localisedHelper.checkForgetPasswordError;
       case ErrorType.ERROR_PROCESS_WHILE_LOAN_REQUEST:
@@ -990,7 +990,7 @@ class ErrorParser {
       case ErrorType.ERROR_GETTING_CARD_INFO_NET:
         return localisedHelper.errorInGetCardInfoNet;
       case ErrorType.ERROR_UPDATING_LIMITS:
-        return localisedHelper.errorUpdatingLimits;
+        return localisedHelper.oopsErrorWhileUpdatingCardLimit;
       case ErrorType.ERROR_UPDATING_CARD_STATUS_RULEENGINE:
         return localisedHelper.errorUpdatingCardStatusRuleEngine;
       case ErrorType.NO_DEBIT_CARD_FOUND:
@@ -1118,16 +1118,24 @@ class ErrorParser {
         return localisedHelper.noPrepaidCategoryFound;
       case ErrorType.INSUFFICIENT_FUNDS_BILL_CANNOT_BE_PAYED:
         return localisedHelper.insufficientFundsBillCannotBePaid;
+      //QR
       case ErrorType.QR_INVALID:
         return localisedHelper.qrInvalid;
+      case ErrorType.OOPS_THE_QR_CODE_IS_INVALID_PLEASE_TRY_AGAIN:
+        return localisedHelper.oopsTheQRisInvalid;
       case ErrorType.QR_EXPIRED:
-        return localisedHelper.qrExpired;
+        return localisedHelper.oopsTheQRCodeIsExpired;
       case ErrorType.ENTER_BILL_DETAILS:
         return localisedHelper.enterBillDetails;
       case ErrorType.INVALID_NICK_NAME:
         return localisedHelper.nickNameCanOnlyContainAlphanumerics;
       case ErrorType.QR_NOT_SCANNED:
         return localisedHelper.qrNotScanned;
+      case ErrorType.OOPS_YOU_CANNOT_SEND_MONEY_TO_YOUR_OWN_ACCOUNT:
+        return localisedHelper.oopsYouCantSendMoneyToYourOwnAccount;
+      case ErrorType.OOPS_YOU_CAN_ONLY_CREATE_5_CLIQ_IDS:
+        return localisedHelper.oopsYouCanOnlyCreate5CliqIds;
+
       case ErrorType.BILLER_IS_ALREADY_EXIST_WITHIN_THE_SAME_BILLING_NO:
         return localisedHelper.billerAlreadyExistsMessage;
       case ErrorType.BILL_PAYMENT_SORRY_MESSAGE:
@@ -1389,7 +1397,19 @@ class ErrorParser {
         return localisedHelper.removeAvatarFailure;
       case ErrorType.CONTACT_ADDING_FAVOURITE_FAILURE:
         return localisedHelper.ContactMarkFavouriteFailure;
+      case ErrorType.EMPTY_VERIFY_NATIONAL_ID:
+        return localisedHelper.pleaseFillMissingField;
+      case ErrorType.IBAN_ACCOUNTNUMBER_MOBILENUMBER_ALIAS_INVALID:
+        return localisedHelper.ibanAccountNumberMobileNumberAlisInvalid;
+      case ErrorType.PLEASE_ENTER_IBAN_CLIQ:
+        return localisedHelper.enterValidIBANCLiQ;
+      case ErrorType.TRANSFER_CANNOT_BE_DONE:
+        return localisedHelper.transferCannotbeDone;
+      case ErrorType.ACCOUNT_DORMANT:
+        return localisedHelper.dormantAccountPhysicalCardReq;
 
+      case ErrorType.OOPS_YOU_HAVE_EXCEEDED_YOUR_DAILY_TRANSFER_LIMIT:
+        return localisedHelper.oopsYouHaveExceededYourDailyTransferLimit;
       default:
         return "";
     }

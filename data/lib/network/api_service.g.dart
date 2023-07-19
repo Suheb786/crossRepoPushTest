@@ -1052,58 +1052,6 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> confirmCardDelivery(
-      BaseRequest cardIssuanceRequest) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(cardIssuanceRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/CardTracking/ConfirmDelivery',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> confirmCreditCardDelivery(
-      ConfirmCreditCardDeliveryRequest cardIssuanceRequest) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(cardIssuanceRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/CardTracking/ConfirmCreditCardDelivery',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
   Future<HttpResponse<ResponseEntity>> changeEmail(
       ChangeEmailRequest changeEmailRequest) async {
     const _extra = <String, dynamic>{};
@@ -1283,191 +1231,6 @@ class _ApiService implements ApiService {
                 )
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ProfileChangedSuccessResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(
-      BeneficiaryFavoriteRequest baseRequest) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(baseRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<GetBeneficiaryResponseEntity>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/ShowContactCard',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = GetBeneficiaryResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<AddBeneficiaryResponseEntity>> addBeneficiary(
-      AddBeneficiaryRequest addBeneficiaryRequest) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(addBeneficiaryRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<AddBeneficiaryResponseEntity>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/AddContact',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = AddBeneficiaryResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> updateBeneficiary(
-      UpdateBeneficiaryRequest updateBeneficiaryRequest) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(updateBeneficiaryRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/UpdateContact',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> deleteBeneficiary(
-      DeleteBeneficiaryRequest deleteBeneficiaryRequest) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(deleteBeneficiaryRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/RemoveContact',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> updateContactImage(
-      UpdateAvatarRequest updateContactImageRequest) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(updateContactImageRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/UpdateContactImage',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> removeContactImage(
-      RemoveAvatarRequest removeContactImageRequest) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(removeContactImageRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/RemoveContactImage',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<SendOtpAddBeneficiaryDataResponseEntity>>
-      sendOTPAddBeneficiary(
-          SendOTPAddBeneficiaryRequest sendOTPAddBeneficiaryRequest) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(sendOTPAddBeneficiaryRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<SendOtpAddBeneficiaryDataResponseEntity>>(
-            Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-                .compose(
-                  _dio.options,
-                  'http://10.6.13.2:2186/contactcenter/api/ManageContacts/AddContactOtp',
-                  queryParameters: queryParameters,
-                  data: _data,
-                )
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value =
-        SendOtpAddBeneficiaryDataResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -2014,7 +1777,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/transfer/CheckSendMoneyV2',
+              '/transfer/CheckSendMoneyV3',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -2675,32 +2438,6 @@ class _ApiService implements ApiService {
                 )
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = VerifyForgetPasswordOtpResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity(
-      PaymentActivityRequestEntity paymentActivityRequestActivity) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(paymentActivityRequestActivity.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<PaymentActivityResponseEntity>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/transfer/PaymentActivityAPIV2',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = PaymentActivityResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -4235,32 +3972,6 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<TransferSuccessResponseEntity>> transferAPINoOtp(
-      TransferApiNoOtpRequestEntity transferApiNoOtpRequestEntity) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(transferApiNoOtpRequestEntity.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<TransferSuccessResponseEntity>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/transfer/TransferAPINoOtp',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = TransferSuccessResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
   Future<HttpResponse<DestinationResponseEntity>> getDestinations(
       GetDestinationRequestEntity request) async {
     const _extra = <String, dynamic>{};
@@ -4407,58 +4118,6 @@ class _ApiService implements ApiService {
             .compose(
               _dio.options,
               '/RJ/MakeTicketPaymentOtp',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> cliqRegisterCustomer(
-      BaseRequest request) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(request.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/Cliq/CliqRegisterCustomer',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> cliqRegisterAccount(
-      BaseRequest request) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(request.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/Cliq/CliqRegisterAccount',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4727,32 +4386,6 @@ class _ApiService implements ApiService {
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value =
         UnlinkAccountFromCliqIdOtpResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> updateRTPCliqRequest(
-      UpdateRtpRequestEntity request) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(request.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/Cliq/UpdateRTPRequest',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -5125,32 +4758,6 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getTransactionHistory(
-      GetTransactionHistoryRequestEntity request) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(request.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/Cliq/GetTransactionHistory',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
   Future<HttpResponse<GetRejectionReasonResponseEntity>> getRejectionReason(
       BaseRequest request) async {
     const _extra = <String, dynamic>{};
@@ -5225,6 +4832,58 @@ class _ApiService implements ApiService {
                 )
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = RequestToPayResultOtpResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<RejectionReasonResponseEntity>> getRejectionReasons(
+      RejectionReasonRequestEntity rejectionReasonRequestEntity) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(rejectionReasonRequestEntity.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<RejectionReasonResponseEntity>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/transfer/GetRejectionReasons',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = RejectionReasonResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<CreditConfirmationResponseEntity>> getCreditConfirmation(
+      CreditConfirmationRequestEntity creditConfirmationRequestEntity) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(creditConfirmationRequestEntity.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CreditConfirmationResponseEntity>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/Cliq/GetCreditConfirmation',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = CreditConfirmationResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -5308,53 +4967,186 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<RejectionReasonResponseEntity>> getRejectionReasons(
-      RejectionReasonRequestEntity rejectionReasonRequestEntity) async {
+  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(
+      BeneficiaryFavoriteRequest baseRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(rejectionReasonRequestEntity.toJson());
+    _data.addAll(baseRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<RejectionReasonResponseEntity>>(Options(
+        _setStreamType<HttpResponse<GetBeneficiaryResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/transfer/GetRejectionReasons',
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/ShowContactCard',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = RejectionReasonResponseEntity.fromJson(_result.data!);
+    final value = GetBeneficiaryResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<CreditConfirmationResponseEntity>> getCreditConfirmation(
-      CreditConfirmationRequestEntity creditConfirmationRequestEntity) async {
+  Future<HttpResponse<AddBeneficiaryResponseEntity>> addBeneficiary(
+      AddBeneficiaryRequest addBeneficiaryRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(creditConfirmationRequestEntity.toJson());
+    _data.addAll(addBeneficiaryRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<CreditConfirmationResponseEntity>>(Options(
+        _setStreamType<HttpResponse<AddBeneficiaryResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/Cliq/GetCreditConfirmation',
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/AddContact',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = CreditConfirmationResponseEntity.fromJson(_result.data!);
+    final value = AddBeneficiaryResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> updateBeneficiary(
+      UpdateBeneficiaryRequest updateBeneficiaryRequest) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(updateBeneficiaryRequest.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/UpdateContact',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> deleteBeneficiary(
+      DeleteBeneficiaryRequest deleteBeneficiaryRequest) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(deleteBeneficiaryRequest.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/RemoveContact',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> updateContactImage(
+      UpdateAvatarRequest updateContactImageRequest) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(updateContactImageRequest.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/UpdateContactImage',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> removeContactImage(
+      RemoveAvatarRequest removeContactImageRequest) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(removeContactImageRequest.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/RemoveContactImage',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<SendOtpAddBeneficiaryDataResponseEntity>>
+      sendOTPAddBeneficiary(
+          SendOTPAddBeneficiaryRequest sendOTPAddBeneficiaryRequest) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(sendOTPAddBeneficiaryRequest.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<SendOtpAddBeneficiaryDataResponseEntity>>(
+            Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+                .compose(
+                  _dio.options,
+                  'http://10.6.13.2:2186/contactcenter/api/ManageContacts/AddContactOtp',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value =
+        SendOtpAddBeneficiaryDataResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -5412,32 +5204,6 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> contactDetail(
-      ContactDetailRequest request) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(request.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/ManageContacts/GetContactDetail',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
   Future<HttpResponse<BeneficiaryContactResponseEntity>> searchContact(
       SearchContactRequest request) async {
     const _extra = <String, dynamic>{};
@@ -5464,79 +5230,29 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> addContact(
-      AddContactRequest addContactRequest) async {
+  Future<HttpResponse<BeneficiaryTransactionHistoryResponseEntity>>
+      beneficiaryTransactionHistory(
+          BeneficiaryTransactionHistoryRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(addContactRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
+    _data.addAll(request.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<
+        HttpResponse<BeneficiaryTransactionHistoryResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/ManageContacts/AddContact',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> updateContact(
-      UpdateContactRequest updateContactRequest) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(updateContactRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/ManageContacts/UpdateContact',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> deleteContact(
-      DeleteContactRequest deleteContactRequest) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(deleteContactRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/ManageContacts/DeleteContact',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
+        .compose(
+          _dio.options,
+          'http://10.6.13.2:2186/contactcenter/api/ManageContacts/GetTransactionHistory',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value =
+        BeneficiaryTransactionHistoryResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

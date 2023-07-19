@@ -1321,17 +1321,27 @@ class SettingsDialogView extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                height: 41.45.h,
+                                height: 30.h,
                               ),
                               InkWell(
                                 onTap: () {
                                   Navigator.pop(context);
                                 },
-                                child: AppSvg.asset(AssetUtils.close,
-                                    color: Theme.of(context).colorScheme.secondary),
+                                child: Container(
+                                  padding: EdgeInsets.all(15),
+                                  height: 80.w,
+                                  width: 80.w,
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context).colorScheme.secondary,
+                                    border: Border.all(color: Theme.of(context).primaryColorDark, width: 12),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: AppSvg.asset(AssetUtils.close,
+                                      color: Theme.of(context).textTheme.bodyLarge?.color),
+                                ),
                               ),
                               SizedBox(
-                                height: 50.0.h,
+                                height: 24.0.h,
                               ),
                             ],
                           ),

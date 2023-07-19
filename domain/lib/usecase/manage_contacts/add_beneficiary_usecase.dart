@@ -26,7 +26,7 @@ class AddBeneficiaryUseCase
         userId: '',
         identifier: params.IBANAccountNoMobileNoAlias,
         isFromMobile: true,
-        detCustomerType: params.beneficiaryType,
+        detCustomerType: params.detCustomerType,
         alias: '',
         addressLine1: '',
         addressLine2: '',
@@ -36,7 +36,7 @@ class AddBeneficiaryUseCase
         IFSCCode: '',
         routingNo: '',
         sortCode: '',
-        purposeType: '',
+        purposeType: params.purposeType,
         purpose: params.purposeDetail,
         purposeDetails: '',
         purposeParent: '',
@@ -49,6 +49,8 @@ class AddContactIBANuseCaseParams extends Params {
   final String name;
   final String fullName;
   final String beneficiaryType;
+  final String detCustomerType;
+  final String purposeType;
   final String purpose;
   final String purposeDetail;
   final String IBANAccountNoMobileNoAlias;
@@ -58,6 +60,8 @@ class AddContactIBANuseCaseParams extends Params {
     required this.name,
     required this.fullName,
     required this.beneficiaryType,
+    required this.detCustomerType,
+    required this.purposeType,
     required this.purpose,
     required this.purposeDetail,
     required this.IBANAccountNoMobileNoAlias,

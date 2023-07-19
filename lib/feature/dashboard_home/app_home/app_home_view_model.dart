@@ -4,6 +4,8 @@ import 'dart:isolate';
 import 'dart:async';
 
 import 'package:card_swiper/card_swiper.dart';
+import 'package:data/helper/dynamic_link.dart';
+import 'package:domain/constants/enum/account_status_enum.dart';
 import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/constants/enum/credit_card_call_status_enum.dart';
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
@@ -36,6 +38,7 @@ import 'package:neo_bank/ui/molecules/card/credit_card_not_delivered_widget.dart
 import 'package:neo_bank/ui/molecules/card/credit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_error_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_widget.dart';
+import 'package:neo_bank/ui/molecules/card/dormant_account_debit_card_disbaled_widget.dart';
 import 'package:neo_bank/ui/molecules/card/get_credit_card_now_widget.dart';
 import 'package:neo_bank/ui/molecules/card/resume_credit_card_application_view.dart';
 import 'package:neo_bank/ui/molecules/card/rj_card_widget.dart';
@@ -59,11 +62,9 @@ class AppHomeViewModel extends BasePageViewModel {
   final GetAntelopCardsListUseCase _getAntelopCardsListUseCase;
 
   final InitDynamicLinkUseCase _initDynamicLinkUseCase;
+
+  ///Init Dynamic links
   PublishSubject<InitDynamicLinkUseCaseParams> _initDynamicLinkRequestRequest = PublishSubject();
-
-  PublishSubject<Resource<Uri>> _initDynamicLinkRequestResponse = PublishSubject();
-
-  Stream<Resource<Uri>> get initDynamicLinkRequestStream => _initDynamicLinkRequestResponse.stream;
 
   final SwiperController pageController = SwiperController();
   ScrollController scrollController = ScrollController();
@@ -213,6 +214,8 @@ class AppHomeViewModel extends BasePageViewModel {
 
   ///---------------Verify QR----------------------///
 
+  bool showPopUp = false;
+
   AppHomeViewModel(
       this._getDashboardDataUseCase,
       this._getPlaceholderUseCase,
@@ -254,38 +257,14 @@ class AppHomeViewModel extends BasePageViewModel {
           triggerRequestMoneyPopup();
 
           ///fetching antelop cards
-          //getAntelopCards();
-          // showApplePayPopUp(true);
-
-          ///fetching antelop cards
-          // showErrorState();
           initDynamicLink();
-          getCurrentUser();
-          // showToastWithError(event.appError!);
           timeLineArguments.placeholderData = timelinePlaceholderData;
-
-          ///show apple pay pop up button
-          if (!AppConstantsUtils.isApplePayPopUpShown) {
-            showApplePayPopUp(true);
-            AppConstantsUtils.isApplePayPopUpShown = true;
-          }
         } else if (event.status == Status.SUCCESS) {
-          ///fetching antelop cards
-          //getAntelopCards();
-          // showApplePayPopUp(true);
-
           ///fetching antelop cards
           triggerRequestMoneyPopup();
           initDynamicLink();
-          getCurrentUser();
           timelinePlaceholderData = event.data!.data!;
           timeLineArguments.placeholderData = event.data!.data;
-
-          ///show apple pay pop up button
-          if (!AppConstantsUtils.isApplePayPopUpShown) {
-            showApplePayPopUp(true);
-            AppConstantsUtils.isApplePayPopUpShown = true;
-          }
         }
       });
     });
@@ -329,11 +308,7 @@ class AppHomeViewModel extends BasePageViewModel {
     _initDynamicLinkRequestRequest.listen((value) {
       RequestManager(value, createCall: () => _initDynamicLinkUseCase.execute(params: value))
           .asFlow()
-          .listen((event) {
-        if (event.status == Status.SUCCESS) {
-          _initDynamicLinkRequestResponse.safeAdd(event);
-        }
-      });
+          .listen((event) {});
     });
 
     _currentUserRequestSubject.listen((value) {
@@ -366,6 +341,19 @@ class AppHomeViewModel extends BasePageViewModel {
     });
 
     getDashboardData();
+  }
+
+  showPopUps() {
+    if (!showPopUp) {
+      showPopUp = true;
+      getCurrentUser();
+
+      ///show apple pay pop up button
+      if (!AppConstantsUtils.isApplePayPopUpShown) {
+        showApplePayPopUp(true);
+        AppConstantsUtils.isApplePayPopUpShown = true;
+      }
+    }
   }
 
   void getDashboardPages(GetDashboardDataContent dashboardDataContent) {
@@ -539,27 +527,37 @@ class AppHomeViewModel extends BasePageViewModel {
         dashboardDataContent.debitCard!.forEach((debitCard) {
           if (debitCard.cardStatus == FreezeCardStatusEnum.L) {
             if (!(debitCard.isPINSet ?? true)) {
-              pages.add(ApplyDebitCardWidget(
-                debitRoutes: DebitRoutes.DASHBOARD,
-                isSmallDevice: isSmallDevices,
-                isPinSet: debitCard.isPINSet!,
-                cardHolderName: debitCard.accountTitle ?? '',
-                cardNo: debitCard.cardNumber ?? '',
-                primarySecondaryEnum: debitCard.primarySecondaryCard ?? PrimarySecondaryEnum.PRIMARY,
-              ));
+              if (dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.DORMANT) {
+                ///Dormant account widget
+                pages.add(DormantAccountDebitCardDisabledWidget());
+              } else {
+                pages.add(ApplyDebitCardWidget(
+                  debitRoutes: DebitRoutes.DASHBOARD,
+                  isSmallDevice: isSmallDevices,
+                  isPinSet: debitCard.isPINSet!,
+                  cardHolderName: debitCard.accountTitle ?? '',
+                  cardNo: debitCard.cardNumber ?? '',
+                  primarySecondaryEnum: debitCard.primarySecondaryCard ?? PrimarySecondaryEnum.PRIMARY,
+                ));
+              }
 
               ///adding cardType
               cardTypeList
                   .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
             } else {
-              pages.add(ApplyDebitCardWidget(
-                debitRoutes: DebitRoutes.DASHBOARD,
-                isSmallDevice: isSmallDevices,
-                isPinSet: true,
-                cardHolderName: debitCard.accountTitle ?? '',
-                cardNo: debitCard.cardNumber ?? '',
-                primarySecondaryEnum: debitCard.primarySecondaryCard ?? PrimarySecondaryEnum.PRIMARY,
-              ));
+              if (dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.DORMANT) {
+                ///Dormant account widget
+                pages.add(DormantAccountDebitCardDisabledWidget());
+              } else {
+                pages.add(ApplyDebitCardWidget(
+                  debitRoutes: DebitRoutes.DASHBOARD,
+                  isSmallDevice: isSmallDevices,
+                  isPinSet: true,
+                  cardHolderName: debitCard.accountTitle ?? '',
+                  cardNo: debitCard.cardNumber ?? '',
+                  primarySecondaryEnum: debitCard.primarySecondaryCard ?? PrimarySecondaryEnum.PRIMARY,
+                ));
+              }
 
               ///adding cardType
               cardTypeList
@@ -567,20 +565,27 @@ class AppHomeViewModel extends BasePageViewModel {
             }
           } else {
             if (!(debitCard.isPINSet ?? true)) {
-              pages.add(ApplyDebitCardWidget(
-                debitRoutes: DebitRoutes.DASHBOARD,
-                isSmallDevice: isSmallDevices,
-                isPinSet: debitCard.isPINSet!,
-                cardHolderName: debitCard.accountTitle ?? '',
-                cardNo: debitCard.cardNumber ?? '',
-                primarySecondaryEnum: debitCard.primarySecondaryCard ?? PrimarySecondaryEnum.PRIMARY,
-              ));
+              if (dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.DORMANT) {
+                ///Dormant account widget
+                pages.add(DormantAccountDebitCardDisabledWidget());
+              } else {
+                pages.add(ApplyDebitCardWidget(
+                  debitRoutes: DebitRoutes.DASHBOARD,
+                  isSmallDevice: isSmallDevices,
+                  isPinSet: debitCard.isPINSet!,
+                  cardHolderName: debitCard.accountTitle ?? '',
+                  cardNo: debitCard.cardNumber ?? '',
+                  primarySecondaryEnum: debitCard.primarySecondaryCard ?? PrimarySecondaryEnum.PRIMARY,
+                ));
+              }
 
               ///adding cardType
               cardTypeList
                   .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
             } else {
               pages.add(DebitCardWidget(
+                  accountStatusEnum:
+                      dashboardDataContent.account?.accountStatusEnum ?? AccountStatusEnum.NONE,
                   isPrimaryDebitCard: isPrimaryDebitCard,
                   isSmallDevice: isSmallDevices,
                   key: ValueKey('debit${debitCard.code}${debitCard.cvv}'),
@@ -608,12 +613,17 @@ class AppHomeViewModel extends BasePageViewModel {
           }
         });
       } else {
-        pages.add(ApplyDebitCardWidget(
-          debitRoutes: DebitRoutes.DASHBOARD,
-          isSmallDevice: isSmallDevices,
-          isPinSet: true,
-          primarySecondaryEnum: PrimarySecondaryEnum.PRIMARY,
-        ));
+        if (dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.DORMANT) {
+          ///Dormant account widget
+          pages.add(DormantAccountDebitCardDisabledWidget());
+        } else {
+          pages.add(ApplyDebitCardWidget(
+            debitRoutes: DebitRoutes.DASHBOARD,
+            isSmallDevice: isSmallDevices,
+            isPinSet: true,
+            primarySecondaryEnum: PrimarySecondaryEnum.PRIMARY,
+          ));
+        }
 
         ///adding cardType
         cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
@@ -793,8 +803,14 @@ class AppHomeViewModel extends BasePageViewModel {
     _showRequestMoneyPopUpSubject.safeAdd(value);
   }
 
-  initDynamicLink() {
-    _initDynamicLinkRequestRequest.safeAdd(InitDynamicLinkUseCaseParams());
+  initDynamicLink() async {
+    Uri uri = await DynamicLinksService().initDynamicLinks();
+    if (uri.path.isNotEmpty && uri.queryParameters.isNotEmpty) {
+      var requestId = uri.queryParameters['requestId']?.replaceAll(' ', '+');
+      verifyQR(requestId: requestId ?? '');
+    } else {
+      showPopUps();
+    }
   }
 
   ///--------------------Antelop Cards List-----------------///
@@ -844,6 +860,18 @@ class AppHomeViewModel extends BasePageViewModel {
   }
 
   ///--------------------Apple Pay PopUp -------------------///
+
+  ///--------------------Account dormant status -------------------///
+
+  PublishSubject<bool> _showAccountDormantStatusPopUpRequest = PublishSubject();
+
+  Stream<bool> get accountDormantStatusPopUpStream => _showAccountDormantStatusPopUpRequest.stream;
+
+  void showAccountDormantPopUp(bool value) {
+    _showAccountDormantStatusPopUpRequest.safeAdd(value);
+  }
+
+  ///--------------------Account dormant status -------------------///
 
   ///--------------------Add Another card To Apple Pay PopUp -------------------///
 

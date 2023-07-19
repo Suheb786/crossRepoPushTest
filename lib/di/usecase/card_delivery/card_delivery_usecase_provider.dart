@@ -3,8 +3,6 @@ import 'package:domain/usecase/card_delivery/apply_supplementary_debit_card_usec
 import 'package:domain/usecase/card_delivery/cancel_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/change_debit_card_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/change_debit_pin_verify_usecase.dart';
-import 'package:domain/usecase/card_delivery/confirm_card_delivery_usecase.dart';
-import 'package:domain/usecase/card_delivery/confirm_credit_card_delivery_usecase.dart';
 import 'package:domain/usecase/card_delivery/confirm_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/create_issuance_usecase.dart';
 import 'package:domain/usecase/card_delivery/create_pin_usecase.dart';
@@ -55,10 +53,6 @@ final confirmPinUseCaseProvider =
 final cardIssuanceCaseProvider =
     Provider.autoDispose<CardIssuanceUseCase>((ref) => CardIssuanceUseCase(ref.read(cardRepositoryProvider)));
 
-///[ConfirmCardDeliveryUseCase] provider
-final debitCardConfirmDeliveryCaseProvider = Provider.autoDispose<ConfirmCardDeliveryUseCase>(
-    (ref) => ConfirmCardDeliveryUseCase(ref.read(cardRepositoryProvider)));
-
 ///[GetDebitCardTransactionsUseCase] provider
 final debitCardTransactionUseCaseProvider = Provider.autoDispose<GetDebitCardTransactionsUseCase>(
     (ref) => GetDebitCardTransactionsUseCase(ref.read(cardRepositoryProvider)));
@@ -66,10 +60,6 @@ final debitCardTransactionUseCaseProvider = Provider.autoDispose<GetDebitCardTra
 ///[GetCreditCardTransactionsUseCase] provider
 final creditCardTransactionUseCaseProvider = Provider.autoDispose<GetCreditCardTransactionsUseCase>(
     (ref) => GetCreditCardTransactionsUseCase(ref.read(cardRepositoryProvider)));
-
-///[ConfirmCreditCardDeliveryUseCase] provider
-final confirmCreditCardDeliveryUseCaseProvider = Provider.autoDispose<ConfirmCreditCardDeliveryUseCase>(
-    (ref) => ConfirmCreditCardDeliveryUseCase(ref.read(cardRepositoryProvider)));
 
 ///[GetCardStatementUseCase] provider
 final cardStatementUseCaseProvider = Provider.autoDispose<GetCardStatementUseCase>(

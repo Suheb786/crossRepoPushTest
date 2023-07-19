@@ -21,8 +21,8 @@ void main() async {
   await runZonedGuarded(() async {
     HttpOverrides.global = AppHttpOverrides();
     await Firebase.initializeApp();
-    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
     if (kReleaseMode) {
+      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
       await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
     }
     FirebaseAnalytics analytics = FirebaseAnalytics.instance;

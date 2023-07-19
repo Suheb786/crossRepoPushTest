@@ -22,14 +22,10 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, bool>> setCardPin(String currentPin, String cardNUmber);
 
-  Future<Either<NetworkError, bool>> confirmCardDelivery();
-
   Future<Either<NetworkError, GetTransactionsResponse>> getDebitCardTransactions({num? noOfDays});
 
   Future<Either<NetworkError, GetTransactionsResponse>> getCreditCardTransactions(
       {required String cardId, num? noOfDays});
-
-  Future<Either<NetworkError, bool>> confirmCreditCardDelivery({String? cardId, String? cardDigit});
 
   Future<Either<NetworkError, CardStatementResponse>> getDebitCardStatement(String monthYear);
 
@@ -62,17 +58,17 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, bool>> unblockDebitCardPin({String status, required String pin});
 
-  Future<Either<NetworkError, bool>> updateDebitCardLimits({
-    num atmWithdrawal,
-    num merchantsPayments,
-    num onlinePurchase,
-    num contactLessPayments,
-    bool isAtmWithdrawal,
-    bool isMerchantsPayments,
-    bool isOnlinePurchase,
-    bool isContactLessPayments,
-    String? tokenizedPan,
-  });
+  Future<Either<NetworkError, bool>> updateDebitCardLimits(
+      {num atmWithdrawal,
+      num merchantsPayments,
+      num onlinePurchase,
+      num contactLessPayments,
+      bool isAtmWithdrawal,
+      bool isMerchantsPayments,
+      bool isOnlinePurchase,
+      bool isContactLessPayments,
+      String? tokenizedPan,
+      bool? updateEcom});
 
   Future<Either<NetworkError, bool>> updateCreditCardLimits(
       {num atmWithdrawal,
