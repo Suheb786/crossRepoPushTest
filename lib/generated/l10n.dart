@@ -17899,6 +17899,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Oops! Recipient name should be at least 2 parts and each part to be with a minimum of 3 characters.`
+  String get recipientNameValidation {
+    return Intl.message(
+      'Oops! Recipient name should be at least 2 parts and each part to be with a minimum of 3 characters.',
+      name: 'recipientNameValidation',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
