@@ -35,68 +35,44 @@ class IdWiseHelper {
 
   Future<Map<IDWiseStatus, String>> startVerification(String lang) async {
     Completer<Map<IDWiseStatus, String>> completer = Completer();
+
     platformChannel.setMethodCallHandler((handler) async {
       switch (handler.method) {
         case 'onJourneyStarted':
-          print("Method: onJourneyStarted, ${handler.arguments.toString()}");
+          debugPrint("Method: onJourneyStarted, ${handler.arguments.toString()}");
           break;
         case 'onJourneyFinished':
-          print("Method: onJourneyFinished,${handler.arguments.toString()}");
+          debugPrint("Method: onJourneyFinished,${handler.arguments.toString()}");
           completer.complete({IDWiseStatus.COMPLETED: handler.arguments.toString()});
           break;
 
         case 'onJourneyCancelled':
-          print("Method: onJourneyCancelled,${handler.arguments.toString()}");
+          debugPrint("Method: onJourneyCancelled,${handler.arguments.toString()}");
           completer.complete({IDWiseStatus.CANCELLED: handler.arguments.toString()});
           break;
 
         case 'onJourneyResumed':
-          print("Method: onJourneyResumed, ${handler.arguments.toString()}");
+          debugPrint("Method: onJourneyResumed, ${handler.arguments.toString()}");
           break;
 
         case 'onError':
-          print("Method: onError, ${handler.arguments.toString()}");
+          debugPrint("Method: onError, ${handler.arguments.toString()}");
           completer.complete({IDWiseStatus.ERROR: handler.arguments.toString()});
           break;
 
         default:
-          print('Unknown method from MethodChannel: ${handler.method}');
+          debugPrint('Unknown method from MethodChannel: ${handler.method}');
           completer.complete({IDWiseStatus.ERROR: handler.arguments.toString()});
           break;
       }
     });
 
     platformChannel.invokeMethod('startJourney', {
-      "locale": lang,
-      "referenceNo": "",
-      "journeyDefinitionId": journeyDefinitionId,
+      "journeyDefinitionId": "dbf6803b-6f9a-450d-9631-998b64fe871b",
+      "referenceNo": null, //Put your reference number here
+      "locale": "en"
     });
-
-    // int statusCode = int.parse(journeyResult['statusCode'].toString());
-    // debugPrint("CODE ----- ${statusCode.getIDWiseStatusFromCode().toString()}");
-    // debugPrint("DATA ----- ${journeyResult['status']}");
 
     return completer.future;
   }
-
-//  64476a7d6cc36a530ab19976
 }
-
-/*extension on int {
-  IDWiseStatus getIDWiseStatusFromCode() {
-    switch (this) {
-      case 0:
-        return IDWiseStatus.COMPLETED;
-      case 1:
-        return IDWiseStatus.CANCELLED;
-      case 2:
-        return IDWiseStatus.ERROR;
-      case 3:
-        return IDWiseStatus.STARTED;
-      case 4:
-        return IDWiseStatus.RESUMED;
-      default:
-        return IDWiseStatus.ERROR;
-    }
-  }
-}*/
