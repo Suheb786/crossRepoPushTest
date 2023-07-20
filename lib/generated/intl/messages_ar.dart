@@ -182,7 +182,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "هل ترغب باضافة بطاقاتك الأخرى لمحفظة أبل التابعة لك؟ بامكانك في أي وقت إضافة أي من بطاقاتك من خلال خدمة اعدادات البطاقة."),
         "addRecipientToContact":
-            MessageLookupByLibrary.simpleMessage("إضافة لقائمة المعارف Blink"),
+            MessageLookupByLibrary.simpleMessage("إضافة إلى قائمة أصدقائي"),
         "addRequestMoney": MessageLookupByLibrary.simpleMessage(
             "ما عندك معارف. رح يتم حفظ قائمة المعارف بمجرد ما تبعثلهم طلب الأموال."),
         "addSendContact": MessageLookupByLibrary.simpleMessage(
@@ -369,8 +369,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("العودة إلى تسجيل الدخول"),
         "backToManageCliq":
             MessageLookupByLibrary.simpleMessage("العودة الى ادارة حساب كليك"),
-        "backToPayments":
-            MessageLookupByLibrary.simpleMessage("العودة الى الفواتير"),
+        "backToPayments": MessageLookupByLibrary.simpleMessage("العودة"),
         "backToRegistration":
             MessageLookupByLibrary.simpleMessage("العودة إلى التسجيل"),
         "bankName": MessageLookupByLibrary.simpleMessage("اسم البنك"),
@@ -1570,7 +1569,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "identifierAlreadyExists": MessageLookupByLibrary.simpleMessage(
             "عفوا! رقم الحساب/ رقم الموبايل/ اسم المستعار (كليك) مسجل، ادخل تعريف آخر"),
         "imageFormatWrong": MessageLookupByLibrary.simpleMessage(
-            "PNG أو GPJ عفوأ! حمل صوره تكون"),
+            "عفوأ! حمل صوره تكون GPJ أو PNG"),
         "imageNotFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-080)"),
         "imageNull": MessageLookupByLibrary.simpleMessage(
