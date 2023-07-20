@@ -157,6 +157,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                         child: AppSvg.asset(AssetUtils.payViaQrIcon)),
                                     Text(
                                       S.of(context).payViaQR,
+                                      textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontWeight: FontWeight.w400,
@@ -222,6 +223,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                           child: AppSvg.asset(AssetUtils.requestViaQrIcon)),
                                       Text(
                                         S.of(context).requestViaQR,
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w400,

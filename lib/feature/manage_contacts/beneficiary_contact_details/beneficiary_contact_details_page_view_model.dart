@@ -166,6 +166,8 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
         if (event.status == Status.SUCCESS) {
           isUpdateProfile = true;
           _selectedImageSubject.safeAdd(selectedProfile);
+        } else if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
         }
       });
     });
@@ -180,6 +182,8 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
           selectedProfile = '';
           argument.beneficiaryInformation.image = '';
           _selectedImageSubject.safeAdd(selectedProfile);
+        } else if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
         }
       });
     });

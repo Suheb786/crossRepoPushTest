@@ -1570,7 +1570,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "identifierAlreadyExists": MessageLookupByLibrary.simpleMessage(
             "عفوا! رقم الحساب/ رقم الموبايل/ اسم المستعار (كليك) مسجل، ادخل تعريف آخر"),
         "imageFormatWrong": MessageLookupByLibrary.simpleMessage(
-            ".PNG أو .JPG عفوا! حمّل صورة تكون "),
+            "PNG أو GPJ عفوأ! حمل صوره تكون"),
         "imageNotFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-080)"),
         "imageNull": MessageLookupByLibrary.simpleMessage(
@@ -2201,7 +2201,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "payFrom": MessageLookupByLibrary.simpleMessage("تسديد من"),
         "payMyBill": MessageLookupByLibrary.simpleMessage("تسديد فاتورتي"),
         "payViaQR": MessageLookupByLibrary.simpleMessage(
-            "تحويل أموال من خلال رمز الاستجابة السريع"),
+            "تحويل أموال من خلال رمز الاستجابة السريع\nQR"),
         "payViaQRDesc": MessageLookupByLibrary.simpleMessage(
             "ضع رمز الاستجابة السريعة داخل الإطار وأكد عملية الدفع"),
         "payYourBillswithBlink":
@@ -2534,7 +2534,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "requestToPayStatusError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "requestViaQR": MessageLookupByLibrary.simpleMessage(
-            "طلب أموال من خلال رمز الاستجابة السريع"),
+            "طلب أموال من خلال رمز الاستجابة السريع\nQR"),
         "requested": MessageLookupByLibrary.simpleMessage(" تم الطلب بنجاح"),
         "requestedFrom": MessageLookupByLibrary.simpleMessage("تم الطلب من"),
         "requestedMoneyVia":
