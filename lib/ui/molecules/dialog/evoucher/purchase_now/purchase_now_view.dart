@@ -91,9 +91,9 @@ class PurchaseNowDialogView extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 32),
+                      const SizedBox(height: 32),
                       descriptionWidget,
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       InkWell(
                         onTap: () {
                           onSelected!.call();

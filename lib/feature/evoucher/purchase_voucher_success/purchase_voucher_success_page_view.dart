@@ -19,19 +19,16 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
-          Navigator.pushNamed(context, RoutePaths.EvoucherDetail);
+          Navigator.pushNamed(context, RoutePaths.EvoucherDetail, arguments: '');
         }
       },
       child: Container(
-          height: double.infinity,
-          width: double.infinity,
           color: Theme.of(context).primaryColor,
           padding: EdgeInsets.symmetric(horizontal: 24),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SingleChildScrollView(
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -60,9 +57,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -76,9 +71,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                                 fontSize: 32,
                                 color: Theme.of(context).colorScheme.secondary),
                           ),
-                          SizedBox(
-                            width: 4,
-                          ),
+                          const SizedBox(width: 4),
                           Padding(
                             padding: const EdgeInsetsDirectional.only(bottom: 4),
                             child: Text(
@@ -93,9 +86,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 4,
-                      ),
+                      const SizedBox(height: 4),
                       Text(
                         '(3.540 JOD)',
                         textAlign: TextAlign.center,
@@ -105,9 +96,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                             fontSize: 14,
                             color: Theme.of(context).colorScheme.secondary),
                       ),
-                      SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
                       Text(
                         S.of(context).purchasedFor,
                         textAlign: TextAlign.center,
@@ -117,13 +106,12 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                             fontSize: 24,
                             color: Theme.of(context).colorScheme.secondary),
                       ),
-                      SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
                       Container(
                         padding: EdgeInsets.all(24),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16), color: Theme.of(context).colorScheme.secondary),
+                            borderRadius: BorderRadius.circular(16),
+                            color: Theme.of(context).colorScheme.secondary),
                         child: Column(
                           children: [
                             ClipRRect(
@@ -146,9 +134,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                                   fontSize: 14,
                                   color: Theme.of(context).indicatorColor),
                             ),
-                            SizedBox(
-                              height: 2,
-                            ),
+                            const SizedBox(height: 2),
                             Text(
                               'PlayStation',
                               textAlign: TextAlign.center,
@@ -158,9 +144,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                                   fontSize: 12,
                                   color: Theme.of(context).indicatorColor),
                             ),
-                            SizedBox(
-                              height: 24,
-                            ),
+                            const SizedBox(height: 24),
                             AccountDetails(
                               title: 'Ref No.',
                               value: '984893922',
@@ -192,10 +176,11 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                                       TextSpan(
                                         text: "3:30PM",
                                         style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600,
-                                            color: AppColor.dark_gray_1),
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                          color: Theme.of(context).colorScheme.surfaceTint,
+                                        ),
                                       )
                                     ]),
                                   )
@@ -205,42 +190,32 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
                     ],
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    AnimatedButton(
-                      buttonText: S.of(context).swipeToProceed,
-                      textColor: Theme.of(context).colorScheme.secondary,
-                      borderColor: Theme.of(context).colorScheme.secondary,
+              ),
+              AnimatedButton(
+                buttonText: S.of(context).swipeToProceed,
+                textColor: Theme.of(context).colorScheme.secondary,
+                borderColor: Theme.of(context).colorScheme.secondary,
+              ),
+              const SizedBox(height: 6),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 32),
+                child: Center(
+                  child: Text(
+                    S.of(context).toViewVoucher,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.secondary,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12,
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 32,
-                      ),
-                      child: Center(
-                        child: Text(
-                          S.of(context).toViewVoucher,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.secondary,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 0),
+            ],
           )),
     );
   }

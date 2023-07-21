@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
-import 'package:neo_bank/feature/evoucher/buy_voucher/buy_evoucher_view.dart';
-import 'package:neo_bank/feature/evoucher/my_voucher/my_voucher_view.dart';
+import 'package:neo_bank/feature/evoucher/evoucher/buy_voucher/buy_evoucher_view.dart';
+import 'package:neo_bank/feature/evoucher/evoucher/my_voucher/my_voucher_view.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/evouchers_filter_dialog.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 
-import 'evoucher_model.dart';
+import 'evoucher_view_model.dart';
 
 class EvoucherPage extends BasePage<EvoucherViewModel> {
   @override
@@ -31,11 +31,26 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
   }
 
   @override
+  void onModelReady(EvoucherViewModel model) {
+    if (!_tabController.hasListeners) {
+      _tabController.addListener(() {
+        if (model.tabChangeNotifier.value != _tabController.index)
+          model.tabChangeNotifier.value = _tabController.index;
+      });
+    }
+    super.onModelReady(model);
+  }
+
+  @override
   PreferredSizeWidget? buildAppbar() {
+    final provider = ProviderScope.containerOf(context).read(
+      evoucherViewModelProvider,
+    );
+
     return PreferredSize(
-        preferredSize: Size(double.maxFinite, 85),
+        preferredSize: Size(double.maxFinite, 85.h),
         child: Padding(
-          padding: const EdgeInsets.only(top: 56.0),
+          padding: EdgeInsets.only(top: 52.0.h),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -44,7 +59,7 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
                   Navigator.pop(context);
                 },
                 child: Padding(
-                  padding: EdgeInsetsDirectional.only(start: 24.0),
+                  padding: EdgeInsetsDirectional.only(start: 24.0.w),
                   child: AppSvg.asset(AssetUtils.leftArrow,
                       matchTextDirection: true, color: Theme.of(context).colorScheme.secondary),
                 ),
@@ -52,22 +67,32 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
               Text(
                 S.of(context).eVouchers,
                 style: TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).colorScheme.secondary),
               ),
-              Padding(
-                padding: const EdgeInsetsDirectional.only(end: 18.0),
-                child: InkWell(
-                  onTap: () {
-                    EVouchersFilterDialog.show(context, title: S.of(context).filterVouchers,
-                        onSelected: (value) {
-                      Navigator.pop(context);
-                    }, onDismissed: () {
-                      Navigator.pop(context);
-                    });
-                  },
-                  child: AppSvg.asset(AssetUtils.filterMenu),
-                ),
-              )
+              ValueListenableBuilder<int>(
+                  valueListenable: provider.tabChangeNotifier,
+                  builder: (context, int value, Widget? child) {
+                    return Padding(
+                      padding: const EdgeInsetsDirectional.only(end: 18.0),
+                      child: AnimatedOpacity(
+                        opacity: value == 0 ? 1.0 : 0.0,
+                        duration: Duration(microseconds: 500),
+                        child: InkWell(
+                          onTap: () {
+                            EVouchersFilterDialog.show(context, title: S.of(context).filterVouchers,
+                                onSelected: (value) {
+                              Navigator.pop(context);
+                            }, onDismissed: () {
+                              Navigator.pop(context);
+                            });
+                          },
+                          child: AppSvg.asset(AssetUtils.filterMenu),
+                        ),
+                      ),
+                    );
+                  })
             ],
           ),
         ));
@@ -81,28 +106,20 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
   @override
   Widget buildView(BuildContext context, EvoucherViewModel model) {
     return Container(
-      margin: EdgeInsetsDirectional.only(top: 34),
+      margin: const EdgeInsetsDirectional.only(top: 34),
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
       child: Column(
         children: [
-          SizedBox(
-            height: 40,
-          ),
+          const SizedBox(height: 40),
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
             child: Align(
               alignment: AlignmentDirectional.centerStart,
               child: TabBar(
                 isScrollable: true,
-                indicatorColor: AppColor.brightRed,
-                labelColor: AppColor.darkBlack,
-                unselectedLabelColor: AppColor.gray4,
                 indicatorWeight: 10.0,
-                indicator: UnderlineTabIndicator(
-                  borderSide: BorderSide(width: 4.0, color: AppColor.brightRed),
-                ),
                 controller: _tabController,
                 tabs: [
                   Text(
@@ -112,7 +129,7 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
                   Padding(
                     padding: const EdgeInsetsDirectional.only(start: 2),
                     child: Text(
-                      S.of(context).myVouchers,
+                      S.of(context).history,
                       style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                     ),
                   )

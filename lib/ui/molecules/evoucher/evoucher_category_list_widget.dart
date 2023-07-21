@@ -1,12 +1,12 @@
+import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:flutter/material.dart';
-import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page_view_model.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class EVoucherCategoryListWidget extends StatelessWidget {
-  final CategoryModel? categoryModel;
+  final VoucherItem? categoryVoucher;
 
-  const EVoucherCategoryListWidget({Key? key, this.categoryModel}) : super(key: key);
+  const EVoucherCategoryListWidget({Key? key, this.categoryVoucher}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +28,10 @@ class EVoucherCategoryListWidget extends StatelessWidget {
                 color: Theme.of(context).primaryColor,
               ),
             ),
-            SizedBox(
-              width: 24,
-            ),
+            const SizedBox(width: 24),
             Flexible(
               child: Text(
-                categoryModel!.categoryName ?? '',
+                categoryVoucher?.name ?? '',
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     fontWeight: FontWeight.w600,

@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -1537,6 +1538,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Hello! Here’s my blink CliQ details:\n\n"),
         "highInterestFeesAndCharges": MessageLookupByLibrary.simpleMessage(
             "High interest,fees,and charges"),
+        "history": MessageLookupByLibrary.simpleMessage("History"),
         "home": MessageLookupByLibrary.simpleMessage("HOME"),
         "homeAddress": MessageLookupByLibrary.simpleMessage("HOME ADDRESS"),
         "homeAddressHint":
@@ -1888,6 +1890,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "kycStausError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "last30Day": MessageLookupByLibrary.simpleMessage("Last 30 days"),
+        "last_30_days": MessageLookupByLibrary.simpleMessage("Last 30 days"),
+        "last_60_days": MessageLookupByLibrary.simpleMessage("Last 60 days"),
+        "last_90_days": MessageLookupByLibrary.simpleMessage("Last 90 days"),
         "legalDocumentNo":
             MessageLookupByLibrary.simpleMessage("LEGAL DOCUMENT NO."),
         "lessThanPrimary": MessageLookupByLibrary.simpleMessage(
@@ -3017,6 +3022,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Transaction Purpose"),
         "transactionType":
             MessageLookupByLibrary.simpleMessage("Transaction Type"),
+        "transaction_period":
+            MessageLookupByLibrary.simpleMessage("Transaction Period"),
         "transferCannotbeDone": MessageLookupByLibrary.simpleMessage(
             "Oops! Sending money failed, contact details need to be updated"),
         "transferTypeNF": MessageLookupByLibrary.simpleMessage(
