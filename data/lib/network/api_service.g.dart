@@ -34,7 +34,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://rout-neprp.theblink.com:443/api/auth/CheckUserName',
+              'https://10.6.13.1:2186/api/auth/CheckUserName',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -60,7 +60,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://rout-neprp.theblink.com:443/api/auth/CheckUserNameMobile',
+              'https://10.6.13.1:2186/api/auth/CheckUserNameMobile',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -859,7 +859,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://rout-neprp.theblink.com:443/api/Country/GetAllowedCode',
+              'https://10.6.13.1:2186/api/Country/GetAllowedCode',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1803,7 +1803,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://mba-neprp.theblink.com:443/contactcenter/api/ContactCenter/TransferAPI',
+              'http://10.6.13.2:2186/contactcenter/api/ContactCenter/TransferAPI',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1829,7 +1829,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://mba-neprp.theblink.com:443/contactcenter/api/ContactCenter/RequestToPay',
+              'http://10.6.13.2:2186/contactcenter/api/ContactCenter/RequestToPay',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4982,7 +4982,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/ShowContactCard',
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/ShowContactCard',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5008,7 +5008,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/AddContact',
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/AddContact',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5034,7 +5034,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/UpdateContact',
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/UpdateContact',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5060,7 +5060,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/RemoveContact',
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/RemoveContact',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5086,7 +5086,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/UpdateContactImage',
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/UpdateContactImage',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5112,7 +5112,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/RemoveContactImage',
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/RemoveContactImage',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5140,7 +5140,7 @@ class _ApiService implements ApiService {
     )
                 .compose(
                   _dio.options,
-                  'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/AddContactOtp',
+                  'http://10.6.13.2:2186/contactcenter/api/ManageContacts/AddContactOtp',
                   queryParameters: queryParameters,
                   data: _data,
                 )
@@ -5167,7 +5167,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/SearchListContact',
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/SearchListContact',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5193,7 +5193,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/MarkFavorite',
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/MarkFavorite',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5219,7 +5219,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/SearchContact',
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/SearchContact',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5246,7 +5246,7 @@ class _ApiService implements ApiService {
     )
         .compose(
           _dio.options,
-          'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/GetTransactionHistory',
+          'http://10.6.13.2:2186/contactcenter/api/ManageContacts/GetTransactionHistory',
           queryParameters: queryParameters,
           data: _data,
         )
