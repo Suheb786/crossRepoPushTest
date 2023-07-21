@@ -84,7 +84,15 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                               FocusScope.of(context).unfocus();
                               if (StringUtils.isDirectionRTL(context)) {
                                 if (!details.primaryVelocity!.isNegative) {
-                                  model.validationUserInput(context);
+                                  if (model.ibanFieldValidated &&
+                                      model.ibanOrMobileController.text.isNotEmpty) {
+                                    model.validationUserInput(context);
+                                  } else if (!model.ibanFieldValidated &&
+                                      model.ibanOrMobileController.text.isEmpty) {
+                                    model.validationUserInput(context);
+                                  } else {
+                                    model.checkSendMoney(iban: model.ibanOrMobileController.text);
+                                  }
                                 } else {
                                   ProviderScope.containerOf(context)
                                       .read(addBeneficiaryViewModelProvider)
@@ -92,7 +100,15 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                                 }
                               } else {
                                 if (details.primaryVelocity!.isNegative) {
-                                  model.validationUserInput(context);
+                                  if (model.ibanFieldValidated &&
+                                      model.ibanOrMobileController.text.isNotEmpty) {
+                                    model.validationUserInput(context);
+                                  } else if (!model.ibanFieldValidated &&
+                                      model.ibanOrMobileController.text.isEmpty) {
+                                    model.validationUserInput(context);
+                                  } else {
+                                    model.checkSendMoney(iban: model.ibanOrMobileController.text);
+                                  }
                                 } else {
                                   ProviderScope.containerOf(context)
                                       .read(addBeneficiaryViewModelProvider)
@@ -134,6 +150,10 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                                               controller: model.ibanOrMobileController,
                                               key: model.ibanORaccountORmobileORaliasKey,
                                               onChanged: (value) {
+                                                if (value.isEmpty) {
+                                                  model.showNameVisibility('');
+                                                  model.ibanFieldValidated = false;
+                                                }
                                                 model.validate(value);
                                               },
                                               labelIcon: () {
@@ -203,7 +223,7 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                                               initialData: '',
                                               dataBuilder: (context, visibility) {
                                                 return Visibility(
-                                                  visible: visibility!.isNotEmpty,
+                                                  visible: (visibility ?? '').isNotEmpty,
                                                   child: Padding(
                                                       padding: EdgeInsets.symmetric(horizontal: 2),
                                                       child: Row(
@@ -222,7 +242,7 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                                                           ),
                                                           Expanded(
                                                             child: Text(
-                                                              visibility,
+                                                              visibility ?? '',
                                                               maxLines: 2,
                                                               textAlign: TextAlign.end,
                                                               style: TextStyle(

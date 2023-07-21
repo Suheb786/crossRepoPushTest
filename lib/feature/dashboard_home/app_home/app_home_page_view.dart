@@ -48,7 +48,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
       padding: EdgeInsets.only(top: 70.0.h),
       child: AppStreamBuilder<int>(
         stream: model.currentStep,
-        initialData: 1,
+        initialData: 0,
         dataBuilder: (context, currentStep) {
           return AppStreamBuilder<Resource<VerifyQrResponse>>(
               stream: model.verifyQRStream,

@@ -16940,16 +16940,6 @@ class S {
     );
   }
 
-  /// `Enter the 6-digit code sent to \n{variable}`
-  String enterOTPheaderwithVaiable(Object variable) {
-    return Intl.message(
-      'Enter the 6-digit code sent to \n$variable',
-      name: 'enterOTPheaderwithVaiable',
-      desc: '',
-      args: [variable],
-    );
-  }
-
   /// `Nickname is already stored as beneficiary`
   String get nickNameAlreadyExists {
     return Intl.message(
@@ -17945,6 +17935,26 @@ class S {
     return Intl.message(
       'Call us on 06-5200100 to activate your account and get your debit card.',
       name: 'callToActivate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Copied`
+  String get copied {
+    return Intl.message(
+      'Copied',
+      name: 'copied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Recipient name should be at least 2 parts and each part to be with a minimum of 3 characters.`
+  String get recipientNameValidation {
+    return Intl.message(
+      'Oops! Recipient name should be at least 2 parts and each part to be with a minimum of 3 characters.',
+      name: 'recipientNameValidation',
       desc: '',
       args: [],
     );

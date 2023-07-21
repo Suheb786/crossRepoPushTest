@@ -42,4 +42,21 @@ class Validator {
     }
     return false;
   }
+
+  static bool recipientNameValidationFailed({required String recipientName}) {
+    try {
+      List<String> splittedName = recipientName.split(" ");
+      if (splittedName.isEmpty) {
+        return true;
+      } else {
+        if (splittedName.length > 1) {
+          return splittedName.any((element) => element.trim().length < 3);
+        } else {
+          return true;
+        }
+      }
+    } catch (exception) {
+      return true;
+    }
+  }
 }

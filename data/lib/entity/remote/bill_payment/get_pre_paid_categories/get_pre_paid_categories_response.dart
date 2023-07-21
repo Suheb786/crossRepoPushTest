@@ -4,19 +4,17 @@ import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_c
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-
 part 'get_pre_paid_categories_response.g.dart';
 
 @JsonSerializable()
-class GetPrePaidCategoriesResponse extends BaseLayerDataTransformer<
-    GetPrePaidCategoriesResponse, GetPrePaidCategoriesModel> {
+class GetPrePaidCategoriesResponse
+    extends BaseLayerDataTransformer<GetPrePaidCategoriesResponse, GetPrePaidCategoriesModel> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
   GetPrePaidCategoriesResponse({
     this.response,
   });
-
 
   factory GetPrePaidCategoriesResponse.fromJson(Map<String, dynamic> json) =>
       _$GetPrePaidCategoriesResponseFromJson(json);
@@ -29,11 +27,6 @@ class GetPrePaidCategoriesResponse extends BaseLayerDataTransformer<
       content: GetPrePaidCategoriesListEntity.fromJson(
         this.response?.content ?? Map(),
       ).transform(),
-     /* statusModel: StatusEntity.fromJson(
-        this.status ?? Map(),
-      ).transform(),
-      requestDateTime: this.requestDateTime,
-      logId: this.logId,*/
     );
   }
 }
