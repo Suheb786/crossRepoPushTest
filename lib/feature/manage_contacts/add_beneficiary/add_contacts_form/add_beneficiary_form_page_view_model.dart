@@ -256,11 +256,15 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
         updateLoader();
         _checkSendMoneyResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          purpose = null;
+          purposeDetail = null;
           showErrorState();
           showToastWithError(event.appError!);
           showNameVisibility('');
           ibanFieldValidated = false;
         } else if (event.status == Status.SUCCESS) {
+          purpose = null;
+          purposeDetail = null;
           ibanFieldValidated = true;
           transferResponse = event.data!.checkSendMoneyContent!.transferResponse!;
           getPurpose(event.data!.checkSendMoneyContent!.transferResponse!.toAccount!, "TransferI", '', '');
@@ -281,6 +285,8 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
         updateLoader();
         _getAccountByAliasResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          purpose = null;
+          purposeDetail = null;
           showErrorState();
           showToastWithError(event.appError!);
           purposeList = [];
@@ -288,7 +294,11 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
           purposeController.clear();
           purposeDetailController.clear();
           showNameVisibility('');
+          ibanFieldValidated = false;
         } else if (event.status == Status.SUCCESS) {
+          purpose = null;
+          purposeDetail = null;
+          ibanFieldValidated = true;
           getAccountByAliasContentResponse = event.data!;
           getPurpose(
               event.data?.getAccountByAliasContent?.acciban ?? '',
