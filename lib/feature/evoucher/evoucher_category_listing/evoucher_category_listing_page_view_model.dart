@@ -44,11 +44,13 @@ class EVoucherCategoryListingPageViewModel extends BasePageViewModel {
   }
 
   void getVouchersByCategory() {
-    final provider = ProviderScope.containerOf(appLevelKey.currentContext!).read(
+    final provider =
+        ProviderScope.containerOf(appLevelKey.currentContext!).read(
       evoucherViewModelProvider,
     );
     selectedVoucherCategories = provider.selectedVoucherCategories;
-    _voucherByCategoryRequestSubject.safeAdd(EVoucherByCategoryPageUseCaseParams(
-        category: provider.selectedVoucherCategories.muneroCategories ?? ''));
+    _voucherByCategoryRequestSubject.safeAdd(
+        EVoucherByCategoryPageUseCaseParams(
+            category: provider.selectedVoucherCategories.categoryName ?? ''));
   }
 }

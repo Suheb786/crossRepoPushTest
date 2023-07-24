@@ -6,11 +6,11 @@ class VoucherItem {
   String giftCardInformation;
   String brand;
   String currency;
-  int fromValue;
-  int toValue;
+  num fromValue;
+  num toValue;
   String cardFaceImage;
   String cardFaceHash;
-  int productId;
+  num productId;
   List<String> categories;
   String discount;
   String countryCode;

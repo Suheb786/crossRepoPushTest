@@ -24,7 +24,11 @@ class EVoucherLandingPageUseCase extends BaseUseCase<BaseError, EVoucherLandingP
         return _eVoucherRepository.getVoucherDetails(params.orderIdentifier!);
       case EVoucherLandingPageDataEnum.voucherByFilter:
         return _eVoucherRepository.getVoucherItemsByFilter(
-            params.category!, params.region!, params.minValue!, params.maxValue!);
+            category: '',
+            region: '',
+            minValue: 0.0,
+            maxValue: 0.0,
+            searchText: '');
       case EVoucherLandingPageDataEnum.voucherBySearch:
         return _eVoucherRepository.getVoucherItemsBySearch(params.searchText!);
     }

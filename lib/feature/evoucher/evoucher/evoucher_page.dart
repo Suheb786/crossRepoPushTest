@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
 import 'package:neo_bank/feature/evoucher/evoucher/buy_voucher/buy_evoucher_view.dart';
-import 'package:neo_bank/feature/evoucher/evoucher/my_voucher/my_voucher_view.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/evouchers_filter_dialog.dart';
@@ -11,6 +10,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import 'evoucher_view_model.dart';
+import 'my_voucher_history/my_voucher_history_view.dart';
 
 class EvoucherPage extends BasePage<EvoucherViewModel> {
   @override
@@ -139,9 +139,10 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
           ),
           Expanded(
             child: Container(
-              child: TabBarView(
-                  controller: _tabController,
-                  children: [BuyEvoucherView(provideBase()), MyVoucherView(provideBase())]),
+              child: TabBarView(controller: _tabController, children: [
+                BuyEvoucherView(provideBase()),
+                MyVoucherHistoryView(provideBase())
+              ]),
             ),
           )
         ],

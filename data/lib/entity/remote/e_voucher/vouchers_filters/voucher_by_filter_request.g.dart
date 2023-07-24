@@ -9,10 +9,11 @@ part of 'voucher_by_filter_request.dart';
 VoucherByFilterRequest _$VoucherByFilterRequestFromJson(
         Map<String, dynamic> json) =>
     VoucherByFilterRequest(
-      MinValue: json['MINVALUE'] as String?,
-      Category: json['CATEGORY'] as String?,
-      MaxValue: json['MAXVALUE'] as String?,
-      Region: json['REGION'] as String?,
+      category: json['Category'] as String?,
+      region: json['Region'] as String?,
+      minValue: json['MinValue'] as num?,
+      maxValue: json['MaxValue'] as num?,
+      searchText: json['SearchText'] as String?,
       getToken: json['GetToken'] as bool? ?? true,
       baseData: json['baseClass'] as Map<String, dynamic>,
     );
@@ -20,10 +21,11 @@ VoucherByFilterRequest _$VoucherByFilterRequestFromJson(
 Map<String, dynamic> _$VoucherByFilterRequestToJson(
         VoucherByFilterRequest instance) =>
     <String, dynamic>{
-      'CATEGORY': instance.Category,
-      'REGION': instance.Region,
-      'MAXVALUE': instance.MaxValue,
-      'MINVALUE': instance.MinValue,
+      'Category': instance.category,
+      'Region': instance.region,
+      'MinValue': instance.minValue,
+      'MaxValue': instance.maxValue,
+      'SearchText': instance.searchText,
       'GetToken': instance.getToken,
       'baseClass': instance.baseData,
     };

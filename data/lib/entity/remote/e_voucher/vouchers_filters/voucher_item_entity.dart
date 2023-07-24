@@ -6,7 +6,7 @@ part 'voucher_item_entity.g.dart';
 
 @JsonSerializable()
 class VoucherItemEntity implements BaseLayerDataTransformer<VoucherItemEntity, VoucherItem> {
-  @JsonKey(name: "id")
+  @JsonKey(name: "id", defaultValue: '')
   String? id;
   @JsonKey(name: "name", defaultValue: '')
   String? name;
@@ -20,17 +20,17 @@ class VoucherItemEntity implements BaseLayerDataTransformer<VoucherItemEntity, V
   String? brand;
   @JsonKey(name: "currency", defaultValue: '')
   String? currency;
-  @JsonKey(name: "fromValue")
-  int? fromValue;
-  @JsonKey(name: "toValue")
-  int? toValue;
+  @JsonKey(name: "fromValue", defaultValue: 0.0)
+  num? fromValue;
+  @JsonKey(name: "toValue", defaultValue: 0.0)
+  num? toValue;
   @JsonKey(name: "cardFaceImage", defaultValue: '')
   String? cardFaceImage;
   @JsonKey(name: "cardFaceHash", defaultValue: '')
   String? cardFaceHash;
-  @JsonKey(name: "productId")
-  int? productId;
-  @JsonKey(name: "categories")
+  @JsonKey(name: "productId", defaultValue: 0.0)
+  num? productId;
+  @JsonKey(name: "categories", defaultValue: [])
   List<String>? categories;
   @JsonKey(name: "discount", defaultValue: '')
   String? discount;
@@ -74,11 +74,11 @@ class VoucherItemEntity implements BaseLayerDataTransformer<VoucherItemEntity, V
       giftCardInformation: this.giftCardInformation ?? '',
       brand: this.brand ?? '',
       currency: this.currency ?? '',
-      fromValue: this.fromValue ?? 0,
-      toValue: this.toValue ?? 0,
+      fromValue: this.fromValue ?? 0.0,
+      toValue: this.toValue ?? 0.0,
       cardFaceImage: this.cardFaceImage ?? '',
       cardFaceHash: this.cardFaceHash ?? '',
-      productId: this.productId ?? 0,
+      productId: this.productId ?? 0.0,
       categories: this.categories ?? [],
       discount: this.discount ?? '',
       countryCode: this.countryCode ?? '',

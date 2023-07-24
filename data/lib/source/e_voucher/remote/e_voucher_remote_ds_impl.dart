@@ -24,47 +24,60 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
   Future<HttpResponse<VoucherHistoryListResponseEntity>> getMyVouchers(
       String pageNo, int rangeOfMonths) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getMyVouchers(
-        VoucherHistoryRequest(PageNo: pageNo, rangeOfMonths: rangeOfMonths, baseData: baseData.toJson()));
+    return _apiService.getMyVouchers(VoucherHistoryRequest(
+        PageNo: pageNo,
+        rangeOfMonths: rangeOfMonths,
+        baseData: baseData.toJson()));
   }
 
   @override
-  Future<HttpResponse<VoucherCategoriesResponseEntity>> getVoucherCategories() async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getVoucherCategories(BaseRequest(baseData: baseData.toJson()));
-  }
-
-  @override
-  Future<HttpResponse<VoucherDetailsResponseEntity>> getVoucherDetails(String orderIdentifier) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getVoucherDetails(
-        VoucherDetailRequest(OrderIdentifier: orderIdentifier, baseData: baseData.toJson()));
-  }
-
-  @override
-  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByCategory(String category) async {
+  Future<HttpResponse<VoucherCategoriesResponseEntity>>
+      getVoucherCategories() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService
-        .getVoucherItemsByCategory(VoucherByCategoryRequest(Category: category, baseData: baseData.toJson()));
+        .getVoucherCategories(BaseRequest(baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<VoucherDetailsResponseEntity>> getVoucherDetails(
+      String orderIdentifier) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getVoucherDetails(VoucherDetailRequest(
+        OrderIdentifier: orderIdentifier, baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByCategory(
+      String category) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getVoucherItemsByCategory(VoucherByCategoryRequest(
+        Category: category, baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsBySearch(
+      String searchText) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getVoucherItemsBySearch(VoucherBySearchRequest(
+        SearchText: searchText, baseData: baseData.toJson()));
   }
 
   @override
   Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByFilter(
-      String category, String region, String minValue, String maxValue) async {
+      {required String category,
+      required String region,
+      required String searchText,
+      required num minValue,
+      required num maxValue}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+
     return _apiService.getVoucherItemsByFilter(VoucherByFilterRequest(
-      Category: category,
-      Region: region,
-      MinValue: minValue,
-      MaxValue: maxValue,
+      category: category,
+      region: region,
+      minValue: minValue,
+      maxValue: maxValue,
+      searchText: searchText,
       baseData: baseData.toJson(),
     ));
-  }
-
-  @override
-  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsBySearch(String searchText) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService
-        .getVoucherItemsBySearch(VoucherBySearchRequest(SearchText: searchText, baseData: baseData.toJson()));
   }
 }

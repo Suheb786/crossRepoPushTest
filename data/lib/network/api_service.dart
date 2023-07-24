@@ -194,12 +194,12 @@ import 'package:data/entity/remote/device_change/send_otp_token_device_change_re
 import 'package:data/entity/remote/device_change/send_otp_token_email_request_entity.dart';
 import 'package:data/entity/remote/device_change/verify_device_change_otp_request_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_category/voucher_categories_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_detail_request.dart';
 import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_details_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_history/voucher_history_list_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_history/voucher_history_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_category_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_filter_request.dart';
-import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_detail_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_search_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_filter_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
@@ -1111,7 +1111,8 @@ abstract class ApiService {
   Future<HttpResponse<SendOtpAddBeneficiaryDataResponseEntity>> sendOTPAddBeneficiary(
       @Body() SendOTPAddBeneficiaryRequest sendOTPAddBeneficiaryRequest);
 
-  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/SearchListContact")
+  @POST(
+      "${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/SearchListContact")
   Future<HttpResponse<BeneficiaryContactResponseEntity>> beneficiaryContacts(
     @Body() BeneficiaryContactRequest request,
   );
@@ -1121,7 +1122,8 @@ abstract class ApiService {
     @Body() BeneficiaryMarkFavoriteRequest request,
   );
 
-  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/SearchContact")
+  @POST(
+      "${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/SearchContact")
   Future<HttpResponse<BeneficiaryContactResponseEntity>> searchContact(
     @Body() SearchContactRequest request,
   );
@@ -1129,25 +1131,29 @@ abstract class ApiService {
   // ---------------------------------------------- E-Vouchers ----------------------------------------------
 
   ///Voucher Categories
-  @POST("/Vouchers/GetCategories")
-  Future<HttpResponse<VoucherCategoriesResponseEntity>> getVoucherCategories(@Body() BaseRequest request);
+  @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/GetCategories")
+  Future<HttpResponse<VoucherCategoriesResponseEntity>> getVoucherCategories(
+      @Body() BaseRequest request);
+
+  ///My History
+  @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/GetMyVouchers")
+  Future<HttpResponse<VoucherHistoryListResponseEntity>> getMyVouchers(
+      @Body() VoucherHistoryRequest myVouchersRequest);
+
+  ///Voucher Items By Filter
+  @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Vouchers/GetItemsByFilter")
+  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByFilter(
+      @Body() VoucherByFilterRequest voucherByFilterRequest);
 
   ///Voucher Items By Category
   @POST("/Vouchers/GetItemByCategory")
-  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByCategory(@Body() VoucherByCategoryRequest voucherByCategoryRequest);
-
-  ///My Vouchers
-  @POST("/Vouchers/GetMyVouchers")
-  Future<HttpResponse<VoucherHistoryListResponseEntity>> getMyVouchers(@Body() VoucherHistoryRequest
-  myVouchersRequest);
+  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByCategory(
+      @Body() VoucherByCategoryRequest voucherByCategoryRequest);
 
   ///Voucher Details
   @POST("/Vouchers/GetVoucherDetails")
-  Future<HttpResponse<VoucherDetailsResponseEntity>> getVoucherDetails(@Body() VoucherDetailRequest voucherDetailRequest);
-
-  ///Voucher Items By Filter
-  @POST("/Vouchers/GetItemsByFilter")
-  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByFilter(@Body() VoucherByFilterRequest voucherByFilterRequest);
+  Future<HttpResponse<VoucherDetailsResponseEntity>> getVoucherDetails(
+      @Body() VoucherDetailRequest voucherDetailRequest);
 
   ///Voucher Items By Search
   @POST("/Vouchers/GetItemsByFilter")

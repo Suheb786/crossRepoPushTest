@@ -46,9 +46,11 @@ class EVoucherCategoryListingPageState
 
             ///TODO:pass category name here
             Text(
-              provider.selectedVoucherCategories.bankCategory ?? '',
+              provider.selectedVoucherCategories.categoryName ?? '',
               style: TextStyle(
-                  fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).colorScheme.secondary),
             ),
             Padding(
               padding: EdgeInsetsDirectional.only(end: 18.0.w),
