@@ -13,7 +13,10 @@ abstract class EVoucherRemoteDS {
 
   Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByCategory(String category);
 
-  Future<HttpResponse<VoucherHistoryListResponseEntity>> getMyVouchers(String pageNo, int transactionPeriod);
+  Future<HttpResponse<VoucherHistoryListResponseEntity>> getMyVouchers(
+      {required int pageNo,
+      required int rangeOfMonths,
+      required String searchPhrase});
 
   Future<HttpResponse<VoucherDetailsResponseEntity>> getVoucherDetails(String orderIdentifier);
 

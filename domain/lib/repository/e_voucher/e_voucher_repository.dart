@@ -14,7 +14,10 @@ abstract class EVoucherRepository {
 
   Future<Either<NetworkError, List<VoucherItem>>> getVoucherItemsByCategory(String category);
 
-  Future<Either<NetworkError, List<VouchersByDate>>> getMyVouchers(String pageNo, int rangeOfMonths);
+  Future<Either<NetworkError, List<VouchersByDate>>> getMyVouchers(
+      {required int pageNo,
+      required int rangeOfMonths,
+      required String searchPhrase});
 
   Future<Either<NetworkError, VoucherDetail>> getVoucherDetails(String orderIdentifier);
 

@@ -1,6 +1,7 @@
 import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class VoucherSearchAndFilterWidget extends StatelessWidget {
@@ -18,24 +19,29 @@ class VoucherSearchAndFilterWidget extends StatelessWidget {
         return _buildItem(voucherItems[index]);
       },
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, crossAxisSpacing: 0.2, mainAxisSpacing: 0.2, childAspectRatio: 1.0),
+          crossAxisCount: 2,
+          crossAxisSpacing: 0.2,
+          mainAxisSpacing: 0.2,
+          childAspectRatio: 1),
     );
   }
 
   Widget _buildItem(VoucherItem voucherItem) {
     return Builder(builder: (context) {
       return Container(
-        // width: double.infinity,
         child: Column(
           children: [
             Container(
               padding: EdgeInsets.zero,
-              width: 155.5,
-              height: 100,
+              width: 155.5.w,
+              height: 100.h,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(16)),
+                borderRadius: BorderRadius.all(Radius.circular(16.w)),
                 boxShadow: [
-                  BoxShadow(color: Colors.black.withOpacity(0.1), offset: Offset(0, -0), blurRadius: 16.0),
+                  BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      offset: Offset(0, -0),
+                      blurRadius: 16.0),
                 ],
                 image: DecorationImage(
                   image: NetworkImage(voucherItem.cardFaceImage),
@@ -43,33 +49,38 @@ class VoucherSearchAndFilterWidget extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
-              child: Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: Text(
-                    voucherItem.brand,
-                    style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        color: AppColor.gray,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600),
-                  )),
+            SizedBox(height: 16.h),
+            Flexible(
+              child: Padding(
+                padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w),
+                child: Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: Text(
+                      voucherItem.brand,
+                      maxLines: 1,
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          color: AppColor.gray,
+                          fontSize: 12.t,
+                          fontWeight: FontWeight.w600),
+                    )),
+              ),
             ),
-            Padding(
-              padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
-              child: Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: Text(
-                    voucherItem.name,
-                    maxLines: 2,
-                    style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        color: AppColor.gray_black,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600),
-                  )),
+            Flexible(
+              child: Padding(
+                padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w),
+                child: Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: Text(
+                      voucherItem.name,
+                      maxLines: 2,
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          color: AppColor.gray_black,
+                          fontSize: 14.t,
+                          fontWeight: FontWeight.w600),
+                    )),
+              ),
             ),
           ],
         ),

@@ -7,6 +7,8 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/evouchers_filter_dialog.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import 'evoucher_view_model.dart';
@@ -36,6 +38,10 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
       _tabController.addListener(() {
         if (model.tabChangeNotifier.value != _tabController.index)
           model.tabChangeNotifier.value = _tabController.index;
+        model.voucherItemFilterResponseSubject
+            .safeAdd(Resource.success(data: model.filterList));
+        model.voucherCategoriesResponseSubject
+            .safeAdd(Resource.success(data: model.categoriesList));
       });
     }
     super.onModelReady(model);

@@ -24,11 +24,12 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
   @override
   Widget build(BuildContext context, model) {
     return AppKeyBoardHide(
-      child: ListView(
+      child: SingleChildScrollView(
+          child: Column(
         children: [
-          const SizedBox(height: 32),
+          SizedBox(height: 32.h),
           Padding(
-            padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
+            padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w),
             child: Focus(
               child: AppTextField(
                 labelText: "",
@@ -62,7 +63,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
               },
             ),
           ),
-          const SizedBox(height: 32),
+          SizedBox(height: 32.h),
           ValueListenableBuilder<bool>(
               valueListenable: model.categoriesDisplayToggleNotifier,
               builder: (context, bool isShowingCategories, child) {
@@ -80,7 +81,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                                           alignment:
                                               AlignmentDirectional.topStart,
                                           text: S.of(context).browserByCatgy,
-                                          textSize: 14,
+                                          textSize: 14.t,
                                           textWeight: FontWeight.w600,
                                           textColor: Theme.of(context)
                                               .colorScheme
@@ -88,10 +89,10 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                                         ),
                                         Padding(
                                           padding: EdgeInsetsDirectional.only(
-                                              start: 24.0,
-                                              end: 24,
-                                              bottom: 48,
-                                              top: 0),
+                                              start: 24.0.w,
+                                              end: 24.w,
+                                              bottom: 48.h,
+                                              top: 0.h),
                                           child: BrowserByCategoryItemWidget(
                                             categoryData!.data!,
                                             onSelectCategory: (category) {
@@ -104,7 +105,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                                         ),
                                       ],
                                     )
-                                  : Text("NO DATA FOUND");
+                                  : Text(S.of(context).noDataFound);
                             default:
                               return Container();
                           }
@@ -121,14 +122,27 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                           switch (voucherItems?.status) {
                             case Status.SUCCESS:
                               if ((voucherItems?.data ?? []).isNotEmpty) {
+                                print(voucherItems?.data!.first.id);
                                 return Padding(
                                   padding: EdgeInsetsDirectional.only(
-                                      start: 24.0, end: 24, bottom: 48, top: 0),
+                                      start: 24.0.w,
+                                      end: 24.w,
+                                      bottom: 48.h,
+                                      top: 0.h),
                                   child: VoucherSearchAndFilterWidget(
                                       voucherItems!.data!),
                                 );
                               } else {
-                                return Text("NO DATA FOUND");
+                                return Expanded(
+                                  child: Center(
+                                    child: Text(
+                                      S.of(context).noDataFound,
+                                      style: TextStyle(
+                                          color: Theme.of(context)
+                                              .primaryColorDark),
+                                    ),
+                                  ),
+                                );
                               }
                             default:
                               return Container();
@@ -202,7 +216,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
             },
           ),*/
         ],
-      ),
+      )),
     );
   }
 }

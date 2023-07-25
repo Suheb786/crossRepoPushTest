@@ -19,7 +19,10 @@ class EVoucherLandingPageUseCase extends BaseUseCase<BaseError, EVoucherLandingP
       case EVoucherLandingPageDataEnum.voucherCategories:
         return _eVoucherRepository.getVoucherCategories();
       case EVoucherLandingPageDataEnum.myVouchers:
-        return _eVoucherRepository.getMyVouchers(params.pageNo!, params.rangeOfMonths!);
+        return _eVoucherRepository.getMyVouchers(
+            pageNo: params.pageNo!,
+            rangeOfMonths: params.rangeOfMonths!,
+            searchPhrase: "");
       case EVoucherLandingPageDataEnum.voucherDetails:
         return _eVoucherRepository.getVoucherDetails(params.orderIdentifier!);
       case EVoucherLandingPageDataEnum.voucherByFilter:
@@ -39,7 +42,7 @@ class EVoucherLandingPageUseCaseParams extends Params {
   final EVoucherLandingPageDataEnum eVoucherLandingPageDataEnum;
 
   // my vouchers
-  final String? pageNo;
+  final int? pageNo;
   final int? rangeOfMonths;
 
   // voucherDetails

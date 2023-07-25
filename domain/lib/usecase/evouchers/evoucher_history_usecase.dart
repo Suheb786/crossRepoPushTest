@@ -16,16 +16,21 @@ class EVoucherHistoryUseCase extends BaseUseCase<BaseError,
   Future<Either<BaseError, List<VouchersByDate>>> execute(
       {required EVoucherHistoryUseCaseParams params}) {
     return _eVoucherRepository.getMyVouchers(
-        params.pageNo, params.rangeOfMonths);
+        pageNo: params.pageNo,
+        rangeOfMonths: params.rangeOfMonths,
+        searchPhrase: params.searchPhrase);
   }
 }
 
 class EVoucherHistoryUseCaseParams extends Params {
-  String pageNo;
+  int pageNo;
+  String searchPhrase;
   int rangeOfMonths;
 
   EVoucherHistoryUseCaseParams(
-      {required this.pageNo, required this.rangeOfMonths});
+      {required this.pageNo,
+      required this.rangeOfMonths,
+      required this.searchPhrase});
 
   @override
   Either<AppError, bool> verify() {

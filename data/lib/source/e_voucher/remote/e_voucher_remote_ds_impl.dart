@@ -28,10 +28,15 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
 
   @override
   Future<HttpResponse<VoucherHistoryListResponseEntity>> getMyVouchers(
-      String pageNo, int rangeOfMonths) async {
+      {required int pageNo,
+      required int rangeOfMonths,
+      required String searchPhrase}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getMyVouchers(
-        VoucherHistoryRequest(PageNo: pageNo, rangeOfMonths: rangeOfMonths, baseData: baseData.toJson()));
+    return _apiService.getMyVouchers(VoucherHistoryRequest(
+        pageNo: pageNo,
+        searchPhrase: searchPhrase,
+        rangeOfMonths: rangeOfMonths,
+        baseData: baseData.toJson()));
   }
 
   @override

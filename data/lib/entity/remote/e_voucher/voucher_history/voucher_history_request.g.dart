@@ -9,7 +9,8 @@ part of 'voucher_history_request.dart';
 VoucherHistoryRequest _$VoucherHistoryRequestFromJson(
         Map<String, dynamic> json) =>
     VoucherHistoryRequest(
-      PageNo: json['PageNo'] as String?,
+      pageNo: json['PageNo'] as int?,
+      searchPhrase: json['searchPhrase'] as String?,
       rangeOfMonths: json['RangeOfMonths'] as int?,
       getToken: json['GetToken'] as bool? ?? true,
       baseData: json['baseClass'] as Map<String, dynamic>,
@@ -18,7 +19,8 @@ VoucherHistoryRequest _$VoucherHistoryRequestFromJson(
 Map<String, dynamic> _$VoucherHistoryRequestToJson(
         VoucherHistoryRequest instance) =>
     <String, dynamic>{
-      'PageNo': instance.PageNo,
+      'PageNo': instance.pageNo,
+      'searchPhrase': instance.searchPhrase,
       'RangeOfMonths': instance.rangeOfMonths,
       'GetToken': instance.getToken,
       'baseClass': instance.baseData,

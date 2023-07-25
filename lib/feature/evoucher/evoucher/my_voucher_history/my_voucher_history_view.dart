@@ -32,26 +32,55 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
           Row(
             children: [
               Expanded(
-                child: AppTextField(
-                  labelText: "",
-                  controller: model.myVoucherSearchController,
-                  hintText: S.of(context).eVoucherSearchLabel,
-                  containerPadding:
-                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-                  onChanged: (value) {
-                    // model.searchBillName(value);
+                child: Focus(
+                  onFocusChange: (focus) {
+                    if (!focus) {
+                      if (model
+                          .myVoucherHistorySearchController.text.isNotEmpty) {
+                        model.myVoucherHistoryList = [];
+                        model.pageNo = 1;
+
+                        model.getVoucherHistory(
+                            pageNo: model.pageNo,
+                            rangeOfMonths: model.filterDay,
+                            searchPhrase: model
+                                .myVoucherHistorySearchController.text
+                                .trim());
+                      }
+                    }
                   },
-                  suffixIcon: (value, data) {
-                    return InkWell(
-                      onTap: () async {},
-                      child: Container(
-                          height: 16.0.h,
-                          width: 16.0.w,
-                          padding: EdgeInsets.all(6),
-                          child: AppSvg.asset(AssetUtils.search,
-                              color: Theme.of(context).primaryColorDark)),
-                    );
-                  },
+                  child: AppTextField(
+                    labelText: "",
+                    controller: model.myVoucherHistorySearchController,
+                    hintText: S.of(context).eVoucherSearchLabel,
+                    containerPadding:
+                        EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                    onChanged: (value) {
+                      // model.searchBillName(value);
+                      if (model.myVoucherHistorySearchController.text.isEmpty) {
+                        model.myVoucherHistoryList = [];
+                        model.pageNo = 1;
+                        FocusManager.instance.primaryFocus?.unfocus();
+                        model.getVoucherHistory(
+                            pageNo: model.pageNo,
+                            rangeOfMonths: model.filterDay,
+                            searchPhrase: model
+                                .myVoucherHistorySearchController.text
+                                .trim());
+                      }
+                    },
+                    suffixIcon: (value, data) {
+                      return InkWell(
+                        onTap: () async {},
+                        child: Container(
+                            height: 16.0.h,
+                            width: 16.0.w,
+                            padding: EdgeInsets.all(6),
+                            child: AppSvg.asset(AssetUtils.search,
+                                color: Theme.of(context).primaryColorDark)),
+                      );
+                    },
+                  ),
                 ),
               ),
               SizedBox(width: 24.w),
@@ -81,8 +110,8 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
                       model.pageNo = 1;
 
                       model.getVoucherHistory(
-                        model.pageNo.toString(),
-                        model.getFilterDays(value),
+                        pageNo: model.pageNo,
+                        rangeOfMonths: model.getFilterDays(value),
                       );
                     },
                   );
@@ -171,7 +200,15 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
                       //      itemCount: model.myVoucherHistoryList.length,
                       itemCount: (voucherHistory?.data ?? []).length,
                     )
-                  : Text("NO DATA FOUND");
+                  : Expanded(
+                      child: Center(
+                        child: Text(
+                          S.of(context).noDataFound,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColorDark),
+                        ),
+                      ),
+                    );
 
             default:
               return Container();
