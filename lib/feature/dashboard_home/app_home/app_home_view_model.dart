@@ -1,7 +1,6 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:isolate';
-
-import 'dart:async';
 
 import 'package:card_swiper/card_swiper.dart';
 import 'package:data/helper/dynamic_link.dart';
@@ -17,9 +16,9 @@ import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_con
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/model/dashboard/get_placeholder/get_placeholder_response.dart';
 import 'package:domain/model/dashboard/get_placeholder/placeholder_data.dart';
-import 'package:domain/usecase/apple_pay/get_antelop_cards_list_usecase.dart';
 import 'package:domain/model/qr/verify_qr_response.dart';
 import 'package:domain/model/user/user.dart';
+import 'package:domain/usecase/apple_pay/get_antelop_cards_list_usecase.dart';
 import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
 import 'package:domain/usecase/dashboard/get_placeholder_usecase.dart';
 import 'package:domain/usecase/dynamic_link/init_dynamic_link_usecase.dart';
@@ -754,7 +753,7 @@ class AppHomeViewModel extends BasePageViewModel {
   initDynamicLink() async {
     Uri uri = await DynamicLinksService().initDynamicLinks();
     if (Platform.isIOS) {
-      DynamicLinksService().onLink().listen((event) {
+      DynamicLinksService().onLink().distinct().listen((event) {
         verifyQRData(uri: event.link);
       });
     }

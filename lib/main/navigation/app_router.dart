@@ -556,7 +556,7 @@ class AppRouter {
 
       case RoutePaths.SendMoneyQrScanning:
         return CupertinoPageRoute(
-            builder: (context) => SendMoneyQrScanningPage(settings.arguments as SendMoneyQRScanningArguments),
+            builder: (context) => SendMoneyQRScanningPage(settings.arguments as SendMoneyQRScanningArguments),
             settings: RouteSettings(name: RoutePaths.SendMoneyQrScanning));
 
       case RoutePaths.SendMoneyQrScanningSuccess:

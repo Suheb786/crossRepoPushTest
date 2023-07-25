@@ -39,10 +39,6 @@ class EnterOtpBillPaymentsPageState
   void initState() {
     super.initState();
     listenForCode();
-
-    SmsAutoFill().getAppSignature.then((signature) {
-      print('inside signature---->$signature');
-    });
   }
 
   @override
@@ -52,7 +48,6 @@ class EnterOtpBillPaymentsPageState
 
   @override
   void dispose() {
-    print('inside dispose');
     super.dispose();
     cancel();
   }

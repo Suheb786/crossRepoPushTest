@@ -1068,6 +1068,11 @@ abstract class ApiService {
   @POST("/Transfer/VerifyQR")
   Future<HttpResponse<VerifyQRResponseEntity>> verifyQR(@Body() VerifyQRRequestEntity verifyQRRequestEntity);
 
+  @POST("/Transfer/GenerateQROTP")
+  Future<HttpResponse<ResponseEntity>> qrScanOTP(
+    @Body() BaseRequest request,
+  );
+
   @POST("/Transfer/TransferQR")
   Future<HttpResponse<QRTransferResponseEntity>> transferQR(
       @Body() TransferQRRequestEntity transferQRRequestEntity);

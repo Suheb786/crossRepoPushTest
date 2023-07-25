@@ -20,6 +20,7 @@ class App extends ConsumerWidget {
       providerBase: appViewModel,
       onModelReady: (model) {
         _appViewModel = ref.watch(appViewModel);
+        model.getAppSignature();
       },
       builder: (context, appModel, child) {
         return ThemeProvider(
@@ -29,19 +30,6 @@ class App extends ConsumerWidget {
               SizeHelperUtil.setWidthHeight(constraints);
               return MaterialApp(
                   navigatorKey: appLevelKey,
-                  // builder: (context, widget) => ResponsiveWrapper.builder(
-                  //       ClampingScrollWrapper.builder(context, widget!),
-                  //       maxWidth: 1400,
-                  //       minWidth: 320,
-                  //       defaultScale: true,
-                  //       breakpoints: [
-                  //         ResponsiveBreakpoint.resize(320, name: MOBILE),
-                  //         ResponsiveBreakpoint.autoScale(800, name: TABLET),
-                  //         ResponsiveBreakpoint.autoScale(1000, name: TABLET),
-                  //         ResponsiveBreakpoint.resize(1200, name: DESKTOP),
-                  //         ResponsiveBreakpoint.autoScale(2460, name: "4K"),
-                  //       ],
-                  //     ),
                   builder: DevicePreview.appBuilder,
                   localizationsDelegates: [
                     S.delegate,

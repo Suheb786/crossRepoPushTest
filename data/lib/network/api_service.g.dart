@@ -34,7 +34,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://10.6.13.1:2186/api/auth/CheckUserName',
+              'https://rout-neprp.theblink.com:443/api/auth/CheckUserName',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -60,7 +60,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://10.6.13.1:2186/api/auth/CheckUserNameMobile',
+              'https://rout-neprp.theblink.com:443/api/auth/CheckUserNameMobile',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -859,7 +859,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://10.6.13.1:2186/api/Country/GetAllowedCode',
+              'https://rout-neprp.theblink.com:443/api/Country/GetAllowedCode',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1803,7 +1803,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ContactCenter/TransferAPI',
+              'https://mba-neprp.theblink.com:443/contactcenter/api/ContactCenter/TransferAPI',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1829,7 +1829,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ContactCenter/RequestToPay',
+              'https://mba-neprp.theblink.com:443/contactcenter/api/ContactCenter/RequestToPay',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4941,6 +4941,31 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<HttpResponse<ResponseEntity>> qrScanOTP(BaseRequest request) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/Transfer/GenerateQROTP',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
   Future<HttpResponse<QRTransferResponseEntity>> transferQR(
       TransferQRRequestEntity transferQRRequestEntity) async {
     const _extra = <String, dynamic>{};
@@ -4982,7 +5007,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/ShowContactCard',
+              'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/ShowContactCard',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5008,7 +5033,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/AddContact',
+              'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/AddContact',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5034,7 +5059,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/UpdateContact',
+              'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/UpdateContact',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5060,7 +5085,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/RemoveContact',
+              'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/RemoveContact',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5086,7 +5111,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/UpdateContactImage',
+              'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/UpdateContactImage',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5112,7 +5137,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/RemoveContactImage',
+              'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/RemoveContactImage',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5140,7 +5165,7 @@ class _ApiService implements ApiService {
     )
                 .compose(
                   _dio.options,
-                  'http://10.6.13.2:2186/contactcenter/api/ManageContacts/AddContactOtp',
+                  'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/AddContactOtp',
                   queryParameters: queryParameters,
                   data: _data,
                 )
@@ -5167,7 +5192,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/SearchListContact',
+              'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/SearchListContact',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5193,7 +5218,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/MarkFavorite',
+              'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/MarkFavorite',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5219,7 +5244,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/SearchContact',
+              'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/SearchContact',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5246,7 +5271,7 @@ class _ApiService implements ApiService {
     )
         .compose(
           _dio.options,
-          'http://10.6.13.2:2186/contactcenter/api/ManageContacts/GetTransactionHistory',
+          'https://mba-neprp.theblink.com:443/contactcenter/api/ManageContacts/GetTransactionHistory',
           queryParameters: queryParameters,
           data: _data,
         )

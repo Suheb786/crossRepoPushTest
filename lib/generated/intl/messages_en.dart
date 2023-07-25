@@ -1104,7 +1104,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterValidEmployeeStatus": MessageLookupByLibrary.simpleMessage(
             "Please select valid employee status"),
         "enterValidIBANCLiQ": MessageLookupByLibrary.simpleMessage(
-            "Oops! please enter an IBAN and CliQ ID to request money."),
+            "Oops! please enter an IBAN or CliQ ID to request money."),
         "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
             "You entered an invalid mobile number. Please try again."),
         "enterValidNature": MessageLookupByLibrary.simpleMessage(

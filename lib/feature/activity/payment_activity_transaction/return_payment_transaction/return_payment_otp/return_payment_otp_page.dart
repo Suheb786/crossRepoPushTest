@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/activity/activity_modules.dart';
@@ -52,10 +51,6 @@ class ReturnPaymentOtpPageState extends BaseStatefulPage<ReturnPaymentOtpPageVie
   void initState() {
     super.initState();
     listenForCode();
-
-    SmsAutoFill().getAppSignature.then((signature) {
-      print('inside signature---->$signature');
-    });
   }
 
   @override

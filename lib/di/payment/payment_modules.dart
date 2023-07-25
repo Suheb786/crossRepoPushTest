@@ -46,9 +46,6 @@ import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_
 import 'package:neo_bank/feature/prepaid_bill/how_much_like__to_pay_prepaid_bills/how_much_like_to_pay_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/how_much_like__to_pay_prepaid_bills/how_much_like_to_pay_prepaid_bills_page_view_model.dart';
 import 'package:neo_bank/feature/prepaid_bill/pay_my_prepaid_bills/pay_my_prepaid_bills_page_view_model.dart';
-
-// import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page.dart';
-// import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page_view_model.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page_view_model.dart';
 import 'package:neo_bank/feature/request_money_via_qr/qr_screen/qr_screen_page.dart';
@@ -56,7 +53,8 @@ import 'package:neo_bank/feature/request_money_via_qr/qr_screen/qr_screen_page_v
 import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page.dart';
 import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page_view_model.dart';
 import 'package:neo_bank/feature/send_money_via_qr/qr_scanning_screen/qr_scanning_screen_page_view_model.dart';
-import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
+import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/qr_scan_account_selection/qr_scan_account_selection_page_view_model.dart';
+import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/qr_scan_otp/qr_scan_otp_page_view_model.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page_view_model.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_via_qr_success/send_money_via_qr_success_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_via_qr_success/send_money_via_qr_success_page_view_model.dart';
@@ -211,9 +209,18 @@ final qrScreenViewModelProvider = ChangeNotifierProvider.autoDispose
         (ref, args) => QrScreenPageViewModel(args, ref.read(createDynamicLinkUseCaseProvider)));
 
 ///send money qr scanning view model provider
-final sendMoneyQrScanningViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<SendMoneyQrScanningPageViewModel, SendMoneyQRScanningArguments>(
-        (ref, args) => SendMoneyQrScanningPageViewModel(args, ref.read(transferQRUseCaseProvider)));
+final sendMoneyQrScanningViewModelProvider =
+    ChangeNotifierProvider.autoDispose<SendMoneyQRScanningPageViewModel>(
+        (ref) => SendMoneyQRScanningPageViewModel());
+
+///qr scan account selection
+final qrScanAccountSelectionViewModelProvider =
+    ChangeNotifierProvider.autoDispose<QRScanAccountSelectionPageViewModel>(
+        (ref) => QRScanAccountSelectionPageViewModel(ref.read(qrScanOTPUseCaseProvider)));
+
+///qr scan account selection
+final qrScanOTPViewModelProvider = ChangeNotifierProvider.autoDispose<QRScanOTPPageViewModel>(
+    (ref) => QRScanOTPPageViewModel(ref.read(qrScanOTPUseCaseProvider), ref.read(transferQRUseCaseProvider)));
 
 ///send money qr success view model provider
 final sendMoneyQrSuccessViewModelProvider = ChangeNotifierProvider.autoDispose
