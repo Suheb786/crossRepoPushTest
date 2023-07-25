@@ -2,6 +2,7 @@ import 'package:data/entity/remote/e_voucher/voucher_category/voucher_categories
 import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_details_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_history/voucher_history_list_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_filter_response_entity.dart';
+import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/place_order_usecase.dart';
 import 'package:retrofit/dio.dart';
@@ -25,15 +26,15 @@ abstract class EVoucherRemoteDS {
 
   Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsBySearch(String searchText);
 
-  Future<HttpResponse<bool>> placeOrder({
+  Future<HttpResponse<ResponseEntity>> placeOrder({
     required PlaceOrderUseCaseParams params,
   });
 
-  Future<HttpResponse<bool>> getSettlementAmount({
+  Future<HttpResponse<ResponseEntity>> getSettlementAmount({
     required GetSettlementAmountUseCaseParams params,
   });
 
-  Future<HttpResponse<bool>> eVoucherOtp({
+  Future<HttpResponse<ResponseEntity>> eVoucherOtp({
     required EVoucherUsecaseParams params,
   });
 }

@@ -5,32 +5,21 @@ part 'get_settlement_amount_request_entity.g.dart';
 
 @JsonSerializable()
 class GetSettlementAmountRequestEntity {
-  @JsonKey(name: "Denomination")
-  final String? Denomination;
-  @JsonKey(name: "exchangeRate")
-  final String? exchangeRate;
-  @JsonKey(name: "reconcilationCurrency")
-  final String? reconcilationCurrency;
-  @JsonKey(name: "Discount")
-  final String? Discount;
-  @JsonKey(name: "VoucherName")
-  final String? VoucherName;
-  @JsonKey(name: "VoucherCategory")
-  final String? VoucherCategory;
-  @JsonKey(name: "AccountNo")
-  final String? AccountNo;
+  @JsonKey(name: "Amount")
+  final String? Amount;
+  @JsonKey(name: "FromCurrency")
+  final String? FromCurrency;
+  @JsonKey(name: "ToCurrency")
+  final String? ToCurrency;
+
   @JsonKey(name: "GetToken")
   final bool? GetToken;
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> BaseClass;
   GetSettlementAmountRequestEntity({
-    required this.Denomination,
-    required this.exchangeRate,
-    required this.reconcilationCurrency,
-    required this.Discount,
-    required this.VoucherName,
-    required this.VoucherCategory,
-    required this.AccountNo,
+    required this.Amount,
+    required this.FromCurrency,
+    required this.ToCurrency,
     required this.GetToken,
     required this.BaseClass,
   });

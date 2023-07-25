@@ -9,13 +9,9 @@ part of 'get_settlement_amount_request_entity.dart';
 GetSettlementAmountRequestEntity _$GetSettlementAmountRequestEntityFromJson(
         Map<String, dynamic> json) =>
     GetSettlementAmountRequestEntity(
-      Denomination: json['Denomination'] as String?,
-      exchangeRate: json['exchangeRate'] as String?,
-      reconcilationCurrency: json['reconcilationCurrency'] as String?,
-      Discount: json['Discount'] as String?,
-      VoucherName: json['VoucherName'] as String?,
-      VoucherCategory: json['VoucherCategory'] as String?,
-      AccountNo: json['AccountNo'] as String?,
+      Amount: json['Amount'] as String?,
+      FromCurrency: json['FromCurrency'] as String?,
+      ToCurrency: json['ToCurrency'] as String?,
       GetToken: json['GetToken'] as bool?,
       BaseClass: json['BaseClass'] as Map<String, dynamic>,
     );
@@ -23,13 +19,9 @@ GetSettlementAmountRequestEntity _$GetSettlementAmountRequestEntityFromJson(
 Map<String, dynamic> _$GetSettlementAmountRequestEntityToJson(
         GetSettlementAmountRequestEntity instance) =>
     <String, dynamic>{
-      'Denomination': instance.Denomination,
-      'exchangeRate': instance.exchangeRate,
-      'reconcilationCurrency': instance.reconcilationCurrency,
-      'Discount': instance.Discount,
-      'VoucherName': instance.VoucherName,
-      'VoucherCategory': instance.VoucherCategory,
-      'AccountNo': instance.AccountNo,
+      'Amount': instance.Amount,
+      'FromCurrency': instance.FromCurrency,
+      'ToCurrency': instance.ToCurrency,
       'GetToken': instance.GetToken,
       'BaseClass': instance.BaseClass,
     };

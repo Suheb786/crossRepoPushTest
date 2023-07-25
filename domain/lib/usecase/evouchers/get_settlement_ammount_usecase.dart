@@ -18,23 +18,16 @@ class GetSettlementAmountUseCase extends BaseUseCase<BaseError, GetSettlementAmo
 }
 
 class GetSettlementAmountUseCaseParams extends Params {
-  final String? Denomination;
-  final String? exchangeRate;
-  final String? reconcilationCurrency;
-  final String? Discount;
-  final String? VoucherName;
-  final String? VoucherCategory;
-  final String? AccountNo;
+  final String? Amount;
+  final String? FromCurrency;
+  final String? ToCurrency;
+
   final bool? GetToken;
   GetSettlementAmountUseCaseParams({
-    this.Denomination,
-    this.exchangeRate,
-    this.reconcilationCurrency,
-    this.Discount,
-    this.VoucherName,
-    this.VoucherCategory,
-    this.AccountNo,
-    this.GetToken,
+    required this.Amount,
+    required this.FromCurrency,
+    required this.ToCurrency,
+    required this.GetToken,
   });
 
   @override

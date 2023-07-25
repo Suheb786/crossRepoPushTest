@@ -12,6 +12,7 @@ import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_categor
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_filter_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_search_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_filter_response_entity.dart';
+import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/e_voucher/e_voucher_data_source.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
@@ -80,7 +81,7 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
   }
 
   @override
-  Future<HttpResponse<bool>> placeOrder({required PlaceOrderUseCaseParams params}) async {
+  Future<HttpResponse<ResponseEntity>> placeOrder({required PlaceOrderUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.placeOrder(PlaceOrderRequestEntity(
       Denomination: params.Denomination,
@@ -96,23 +97,19 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
   }
 
   @override
-  Future<HttpResponse<bool>> getSettlementAmount({required GetSettlementAmountUseCaseParams params}) async {
+  Future<HttpResponse<ResponseEntity>> getSettlementAmount({required GetSettlementAmountUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getSettlementAmount(GetSettlementAmountRequestEntity(
-      Denomination: params.Denomination,
-      exchangeRate: params.exchangeRate,
-      reconcilationCurrency: params.reconcilationCurrency,
-      Discount: params.Discount,
-      VoucherName: params.VoucherName,
-      VoucherCategory: params.VoucherCategory,
-      AccountNo: params.AccountNo,
+      Amount: params.Amount,
+      FromCurrency: params.FromCurrency,
+      ToCurrency: params.ToCurrency,
       GetToken: true,
       BaseClass: baseData.toJson(),
     ));
   }
 
   @override
-  Future<HttpResponse<bool>> eVoucherOtp({required EVoucherUsecaseParams params}) async {
+  Future<HttpResponse<ResponseEntity>> eVoucherOtp({required EVoucherUsecaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.eVoucherOtp(BaseRequest(baseData: baseData.toJson()));
   }

@@ -1163,11 +1163,11 @@ abstract class ApiService {
   );
 
   @POST("/Voucher/PlaceOrder")
-  Future<HttpResponse<bool>> placeOrder(@Body() PlaceOrderRequestEntity request);
+  Future<HttpResponse<ResponseEntity>> placeOrder(@Body() PlaceOrderRequestEntity request);
 
   @POST("/Voucher/GetSettlementAmount")
-  Future<HttpResponse<bool>> getSettlementAmount(@Body() GetSettlementAmountRequestEntity request);
+  Future<HttpResponse<ResponseEntity>> getSettlementAmount(@Body() GetSettlementAmountRequestEntity request);
 
   @POST("/Voucher/EVoucherOtp")
-  Future<HttpResponse<bool>> eVoucherOtp(@Body() BaseRequest request);
+  Future<HttpResponse<ResponseEntity>> eVoucherOtp(@Body() BaseRequest request);
 }
