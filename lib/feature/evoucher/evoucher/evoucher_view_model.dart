@@ -78,7 +78,7 @@ class EvoucherViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         updateLoader();
-        _voucherCategoriesResponseSubject.safeAdd(event);
+        voucherCategoriesResponseSubject.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
           //   getVoucherHistory(pageNo.toString(), 3);
@@ -86,7 +86,8 @@ class EvoucherViewModel extends BasePageViewModel {
         }
         if (event.status == Status.SUCCESS) {
           print("event.status==Status.SUCCESS");
-          getVoucherHistory(pageNo.toString(), filterDay);
+          categoriesList = event.data ?? [];
+          //   getVoucherHistory(pageNo.toString(), filterDay);
         }
       });
     });
@@ -94,15 +95,16 @@ class EvoucherViewModel extends BasePageViewModel {
     _voucherCategoriesRequestSubject.safeAdd(EVoucherCategoriesUseCaseParams());
   }
 
+  List<VoucherCategories> categoriesList = [];
   PublishSubject<EVoucherCategoriesUseCaseParams>
       _voucherCategoriesRequestSubject = PublishSubject();
 
   PublishSubject<Resource<List<VoucherCategories>>>
-      _voucherCategoriesResponseSubject = PublishSubject();
+      voucherCategoriesResponseSubject = PublishSubject();
 
   Stream<Resource<List<VoucherCategories>>>
       get voucherCategoriesResponseStream =>
-          _voucherCategoriesResponseSubject.stream;
+          voucherCategoriesResponseSubject.stream;
 
   /// ------------- voucher History  -------------------------------------------
 
@@ -207,14 +209,15 @@ class EvoucherViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         updateLoader();
-        _voucherItemFilterResponseSubject.safeAdd(event);
+        voucherItemFilterResponseSubject.safeAdd(event);
+        categoriesDisplayToggleNotifier.value = false;
         if (event.status == Status.ERROR) {
           showErrorState();
 
           showToastWithError(event.appError!);
         }
         if (event.status == Status.SUCCESS) {
-          categoriesDisplayToggleNotifier.value = false;
+          filterList = event.data ?? [];
         }
       });
     });
@@ -234,14 +237,15 @@ class EvoucherViewModel extends BasePageViewModel {
         searchText: searchText));
   }
 
+  List<VoucherItem> filterList = [];
   PublishSubject<EVoucherItemFilterUseCaseParams>
       _voucherItemFilterRequestSubject = PublishSubject();
 
-  PublishSubject<Resource<List<VoucherItem>>>
-      _voucherItemFilterResponseSubject = PublishSubject();
+  PublishSubject<Resource<List<VoucherItem>>> voucherItemFilterResponseSubject =
+      PublishSubject();
 
   Stream<Resource<List<VoucherItem>>> get voucherItemFilterResponseStream =>
-      _voucherItemFilterResponseSubject.stream;
+      voucherItemFilterResponseSubject.stream;
 
   ///---------------------Filter option for date-------------------------------------
 
@@ -360,7 +364,10 @@ class EvoucherViewModel extends BasePageViewModel {
 
   void toggleSearch(bool focus) {
     if (buyVoucherSearchController.text.trim().isEmpty) {
+      print("hello1");
       categoriesDisplayToggleNotifier.value = true;
+      voucherCategoriesResponseSubject
+          .safeAdd(Resource.success(data: categoriesList));
     } else {
       // call search api...
       if (!focus) {
@@ -391,7 +398,7 @@ class EvoucherViewModel extends BasePageViewModel {
   @override
   void dispose() {
     _voucherCategoriesRequestSubject.close();
-    _voucherCategoriesResponseSubject.close();
+    voucherCategoriesResponseSubject.close();
     _myVoucherResponseSubject.close();
     _voucherByFilterAndSearchResponseSubject.close();
     tabChangeNotifier.dispose();

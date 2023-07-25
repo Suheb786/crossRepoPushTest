@@ -37,6 +37,7 @@ class BrowserByCategoryItemWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         onSelectCategory(category);
+        print("category.categoryIcon===>${category.categoryIcon}");
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

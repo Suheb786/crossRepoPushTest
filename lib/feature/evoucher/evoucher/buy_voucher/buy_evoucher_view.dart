@@ -23,10 +23,12 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
 
   @override
   Widget build(BuildContext context, model) {
+    print("AppKeyBoardHide1 ");
     return AppKeyBoardHide(
-      child: ListView(
+      child: SingleChildScrollView(
+          child: Column(
         children: [
-          const SizedBox(height: 32),
+          SizedBox(height: 32.h),
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
             child: Focus(
@@ -38,20 +40,21 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                     Theme.of(context).inputDecorationTheme.hintStyle?.color,
                 containerPadding:
                     EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-                onChanged: (value) {
-                  if (model.buyVoucherSearchController.text.isEmpty) {
+                    onChanged: (value) {
+                      if (model.buyVoucherSearchController.text.isEmpty) {
+                        print("hello2");
                     model.toggleSearch(true);
                   }
-                },
-                suffixIcon: (value, data) {
-                  return InkWell(
-                    onTap: () async {
-                      FocusScope.of(context).unfocus();
                     },
-                    child: Container(
-                        height: 16.0.h,
-                        width: 16.0.w,
-                        padding: const EdgeInsets.all(6),
+                    suffixIcon: (value, data) {
+                      return InkWell(
+                        onTap: () async {
+                          FocusScope.of(context).unfocus();
+                        },
+                        child: Container(
+                            height: 16.0.h,
+                            width: 16.0.w,
+                            padding: const EdgeInsets.all(6),
                         child: AppSvg.asset(AssetUtils.search,
                             color: Theme.of(context).primaryColorDark)),
                   );
@@ -62,7 +65,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
               },
             ),
           ),
-          const SizedBox(height: 32),
+          SizedBox(height: 32.h),
           ValueListenableBuilder<bool>(
               valueListenable: model.categoriesDisplayToggleNotifier,
               builder: (context, bool isShowingCategories, child) {
@@ -74,26 +77,26 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                           switch (categoryData?.status) {
                             case Status.SUCCESS:
                               return (categoryData?.data ?? []).isNotEmpty
-                                  ? Column(
-                                      children: [
-                                        EVoucherTextWidget(
-                                          alignment:
-                                              AlignmentDirectional.topStart,
-                                          text: S.of(context).browserByCatgy,
-                                          textSize: 14,
-                                          textWeight: FontWeight.w600,
-                                          textColor: Theme.of(context)
-                                              .colorScheme
-                                              .shadow,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsetsDirectional.only(
-                                              start: 24.0,
-                                              end: 24,
-                                              bottom: 48,
-                                              top: 0),
-                                          child: BrowserByCategoryItemWidget(
-                                            categoryData!.data!,
+                                ? Column(
+                              children: [
+                                EVoucherTextWidget(
+                                  alignment:
+                                  AlignmentDirectional.topStart,
+                                  text: S.of(context).browserByCatgy,
+                                  textSize: 14,
+                                  textWeight: FontWeight.w600,
+                                  textColor: Theme.of(context)
+                                      .colorScheme
+                                      .shadow,
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.only(
+                                      start: 24.0,
+                                      end: 24,
+                                      bottom: 48,
+                                      top: 0),
+                                  child: BrowserByCategoryItemWidget(
+                                    categoryData!.data!,
                                             onSelectCategory: (category) {
                                               model.setSelectedCategory(
                                                   category);
@@ -104,50 +107,60 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                                         ),
                                       ],
                                     )
-                                  : Text("NO DATA FOUND");
+                                  : Text(S.of(context).noDataFound);
                             default:
-                              return Container();
-                          }
+                            return Container();
+                        }
 
-                          if (categoryData?.status != Status.SUCCESS) {
-                            return const SizedBox();
-                          }
-                        },
-                      )
-                    : AppStreamBuilder<Resource<List<VoucherItem>>>(
-                        initialData: Resource.none(),
-                        stream: model.voucherItemFilterResponseStream,
-                        dataBuilder: (context, voucherItems) {
-                          switch (voucherItems?.status) {
-                            case Status.SUCCESS:
-                              if ((voucherItems?.data ?? []).isNotEmpty) {
+                        if (categoryData?.status != Status.SUCCESS) {
+                          return const SizedBox();
+                        }
+                      },
+                    )
+                        : AppStreamBuilder<Resource<List<VoucherItem>>>(
+                      initialData: Resource.none(),
+                      stream: model.voucherItemFilterResponseStream,
+                      dataBuilder: (context, voucherItems) {
+                        switch (voucherItems?.status) {
+                          case Status.SUCCESS:
+                            if ((voucherItems?.data ?? []).isNotEmpty) {
+                              print(voucherItems?.data!.first.id);
                                 return Padding(
                                   padding: EdgeInsetsDirectional.only(
-                                      start: 24.0, end: 24, bottom: 48, top: 0),
+                                      start: 24.0.w,
+                                      end: 24.w,
+                                      bottom: 48.h,
+                                      top: 0.h),
                                   child: VoucherSearchAndFilterWidget(
                                       voucherItems!.data!),
                                 );
                               } else {
-                                return Text("NO DATA FOUND");
+                                print("AppKeyBoardHide12");
+                                return Align(
+                                  alignment: Alignment.center,
+                                  child: Container(
+                                      color: Colors.red,
+                                      child: Text("NO DATA FOUND")),
+                                );
                               }
                             default:
-                              return Container();
-                          }
-                          if (voucherItems?.status != Status.SUCCESS) {
-                            return const SizedBox();
-                          }
-                          return Padding(
-                            padding: EdgeInsetsDirectional.only(
-                                start: 24.0, end: 24, bottom: 48, top: 0),
-                            child: VoucherSearchAndFilterWidget(
-                                voucherItems!.data!),
-                          );
-                        },
-                      );
+                            return Container();
+                        }
+                        if (voucherItems?.status != Status.SUCCESS) {
+                          return const SizedBox();
+                        }
+                        return Padding(
+                          padding: EdgeInsetsDirectional.only(
+                              start: 24.0, end: 24, bottom: 48, top: 0),
+                          child: VoucherSearchAndFilterWidget(
+                              voucherItems!.data!),
+                        );
+                      },
+                    );
 
-                ;
-              }),
-          /* ValueListenableBuilder<bool>(
+                    ;
+                  }),
+              /* ValueListenableBuilder<bool>(
             valueListenable: model.categoriesDisplayToggleNotifier,
             builder: (context, bool isShowingCategories, child) {
               return isShowingCategories
@@ -202,7 +215,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
             },
           ),*/
         ],
-      ),
+      )),
     );
   }
 }

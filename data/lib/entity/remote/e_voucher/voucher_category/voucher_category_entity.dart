@@ -1,6 +1,7 @@
 import 'package:data/entity/local/base/image_utils.dart';
 import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
+import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'voucher_category_entity.g.dart';
@@ -56,7 +57,9 @@ class VoucherCategoryEntity implements BaseLayerDataTransformer<VoucherCategoryE
   VoucherCategories transform() {
     return VoucherCategories(
       id: this.id ?? 0.0,
-      categoryName: this.categoryName ?? '',
+      categoryName: Intl.getCurrentLocale() == 'en'
+          ? this.categoryName ?? ''
+          : this.categoryNameAr ?? '',
       createdDate: this.createdDate ?? '',
       createdBy: this.createdBy ?? '',
       updatedDate: this.updatedDate ?? '',
