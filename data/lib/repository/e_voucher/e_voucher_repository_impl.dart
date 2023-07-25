@@ -7,6 +7,9 @@ import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:domain/model/e_voucher/voucher_detail.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:domain/repository/e_voucher/e_voucher_repository.dart';
+import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
+import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
+import 'package:domain/usecase/evouchers/place_order_usecase.dart';
 
 class EVoucherRepositoryImpl extends EVoucherRepository {
   final EVoucherRemoteDS _eVoucherRemoteDS;
@@ -14,10 +17,8 @@ class EVoucherRepositoryImpl extends EVoucherRepository {
   EVoucherRepositoryImpl(this._eVoucherRemoteDS);
 
   @override
-  Future<Either<NetworkError, List<VouchersByDate>>> getMyVouchers(
-      String pageNo, int rangeOfMonths) async {
-    final result = await safeApiCall(
-        _eVoucherRemoteDS.getMyVouchers(pageNo, rangeOfMonths));
+  Future<Either<NetworkError, List<VouchersByDate>>> getMyVouchers(String pageNo, int rangeOfMonths) async {
+    final result = await safeApiCall(_eVoucherRemoteDS.getMyVouchers(pageNo, rangeOfMonths));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.data.transform()),
@@ -25,8 +26,7 @@ class EVoucherRepositoryImpl extends EVoucherRepository {
   }
 
   @override
-  Future<Either<NetworkError, List<VoucherCategories>>>
-      getVoucherCategories() async {
+  Future<Either<NetworkError, List<VoucherCategories>>> getVoucherCategories() async {
     final result = await safeApiCall(_eVoucherRemoteDS.getVoucherCategories());
     return result!.fold(
       (l) => Left(l),
@@ -35,10 +35,8 @@ class EVoucherRepositoryImpl extends EVoucherRepository {
   }
 
   @override
-  Future<Either<NetworkError, VoucherDetail>> getVoucherDetails(
-      String orderIdentifier) async {
-    final result =
-        await safeApiCall(_eVoucherRemoteDS.getVoucherDetails(orderIdentifier));
+  Future<Either<NetworkError, VoucherDetail>> getVoucherDetails(String orderIdentifier) async {
+    final result = await safeApiCall(_eVoucherRemoteDS.getVoucherDetails(orderIdentifier));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.data.transform()),
@@ -46,10 +44,8 @@ class EVoucherRepositoryImpl extends EVoucherRepository {
   }
 
   @override
-  Future<Either<NetworkError, List<VoucherItem>>> getVoucherItemsByCategory(
-      String category) async {
-    final result = await safeApiCall(
-        _eVoucherRemoteDS.getVoucherItemsByCategory(category));
+  Future<Either<NetworkError, List<VoucherItem>>> getVoucherItemsByCategory(String category) async {
+    final result = await safeApiCall(_eVoucherRemoteDS.getVoucherItemsByCategory(category));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.data.transform()),
@@ -77,13 +73,33 @@ class EVoucherRepositoryImpl extends EVoucherRepository {
   }
 
   @override
-  Future<Either<NetworkError, List<VoucherItem>>> getVoucherItemsBySearch(
-      String searchText) async {
-    final result = await safeApiCall(
-        _eVoucherRemoteDS.getVoucherItemsBySearch(searchText));
+  Future<Either<NetworkError, List<VoucherItem>>> getVoucherItemsBySearch(String searchText) async {
+    final result = await safeApiCall(_eVoucherRemoteDS.getVoucherItemsBySearch(searchText));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.data.transform()),
     );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> placeOrder({required PlaceOrderUseCaseParams params}) async {
+    final result = await safeApiCall(_eVoucherRemoteDS.placeOrder(params: params));
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> getSettlementAmount(
+      {required GetSettlementAmountUseCaseParams params}) async {
+    final result = await safeApiCall(_eVoucherRemoteDS.getSettlementAmount(params: params));
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> eVoucherOtp({required EVoucherUsecaseParams params}) async {
+    final result = await safeApiCall(_eVoucherRemoteDS.eVoucherOtp(params: params));
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
 }

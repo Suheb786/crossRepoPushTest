@@ -294,12 +294,12 @@ import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-
+import 'package:data/entity/remote/e_voucher/get_settlement_amount/get_settlement_amount_request_entity.dart';
 import '../entity/remote/contact/add_beneficiary_response_entity.dart';
 import '../entity/remote/contact/remove_avatar_request.dart';
 import '../entity/remote/contact/send_otp_add_beneficiary_data_response_entity.dart';
 import '../entity/remote/contact/update_avatar_request.dart';
-
+import '../entity/remote/e_voucher/place_order/place_order_request_entity.dart';
 part 'api_service.g.dart';
 
 //flutter pub run build_runner build
@@ -1111,8 +1111,7 @@ abstract class ApiService {
   Future<HttpResponse<SendOtpAddBeneficiaryDataResponseEntity>> sendOTPAddBeneficiary(
       @Body() SendOTPAddBeneficiaryRequest sendOTPAddBeneficiaryRequest);
 
-  @POST(
-      "${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/SearchListContact")
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/SearchListContact")
   Future<HttpResponse<BeneficiaryContactResponseEntity>> beneficiaryContacts(
     @Body() BeneficiaryContactRequest request,
   );
@@ -1122,8 +1121,7 @@ abstract class ApiService {
     @Body() BeneficiaryMarkFavoriteRequest request,
   );
 
-  @POST(
-      "${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/SearchContact")
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/SearchContact")
   Future<HttpResponse<BeneficiaryContactResponseEntity>> searchContact(
     @Body() SearchContactRequest request,
   );
@@ -1132,8 +1130,7 @@ abstract class ApiService {
 
   ///Voucher Categories
   @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/GetCategories")
-  Future<HttpResponse<VoucherCategoriesResponseEntity>> getVoucherCategories(
-      @Body() BaseRequest request);
+  Future<HttpResponse<VoucherCategoriesResponseEntity>> getVoucherCategories(@Body() BaseRequest request);
 
   ///My History
   @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/GetMyVouchers")
@@ -1157,11 +1154,20 @@ abstract class ApiService {
 
   ///Voucher Items By Search
   @POST("/Vouchers/GetItemsByFilter")
-  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsBySearch(@Body() VoucherBySearchRequest voucherBySearchRequest);
-
+  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsBySearch(
+      @Body() VoucherBySearchRequest voucherBySearchRequest);
 
   @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/GetTransactionHistory")
   Future<HttpResponse<BeneficiaryTransactionHistoryResponseEntity>> beneficiaryTransactionHistory(
     @Body() BeneficiaryTransactionHistoryRequest request,
   );
+
+  @POST("/Voucher/PlaceOrder")
+  Future<HttpResponse<bool>> placeOrder(@Body() PlaceOrderRequestEntity request);
+
+  @POST("/Voucher/GetSettlementAmount")
+  Future<HttpResponse<bool>> getSettlementAmount(@Body() GetSettlementAmountRequestEntity request);
+
+  @POST("/Voucher/EVoucherOtp")
+  Future<HttpResponse<bool>> eVoucherOtp(@Body() BaseRequest request);
 }
