@@ -1069,7 +1069,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterValidEmployeeStatus":
             MessageLookupByLibrary.simpleMessage("اختارالوظيفة"),
         "enterValidIBANCLiQ": MessageLookupByLibrary.simpleMessage(
-            "عفوا! ادخل رقم حساب IBAN أو اسم مستعار/رقم الموبايل في كليك لطلب حوالة"),
+            "عفوا!  ادخل رقم حساب IBAN  أو الاسم المستعار أو رقم الهاتف في كليك لطلب حوالة"),
         "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
             "رقم الموبايل اللي دخلته غير صحيح. حاول كمان مرة."),
         "enterValidNature": MessageLookupByLibrary.simpleMessage(

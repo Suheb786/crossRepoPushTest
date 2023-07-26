@@ -337,7 +337,6 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                     Navigator.pushNamed(context, RoutePaths.SendAmountToContactSuccess,
                         arguments: data.data!.transferSuccessContent);
                   } else if (data.status == Status.ERROR) {
-                    print('Error type--->${data.appError?.type}');
                     ///LOG EVENT TO FIREBASE
                     await FireBaseLogUtil.fireBaseLog(
                         "send_money_to_saved_beneficiary_failure", {"is_money_sent": false});

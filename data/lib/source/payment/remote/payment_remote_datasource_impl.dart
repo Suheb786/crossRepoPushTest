@@ -166,13 +166,17 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
 
   @override
   Future<HttpResponse<QRTransferResponseEntity>> transferQR(
-      {required String requestId, required String toAmount, required String toAccount}) async {
+      {required String requestId,
+      required String toAmount,
+      required String toAccount,
+      required String otp}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.transferQR(TransferQRRequestEntity(
         baseData: baseData.toJson(),
         getToken: true,
         qrRequestId: requestId,
         toAccount: toAccount,
+        otp: otp,
         toAmount: toAmount));
   }
 
@@ -189,5 +193,11 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
       {required bool getToken}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.getRejectionReason(BaseRequest(baseData: baseData.toJson(), getToken: getToken));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> qrScanOTP() async {
+    BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
+    return _apiService.qrScanOTP(BaseRequest(baseData: baseData.toJson(), getToken: true));
   }
 }

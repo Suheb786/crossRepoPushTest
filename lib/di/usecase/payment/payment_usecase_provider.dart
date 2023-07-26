@@ -27,6 +27,7 @@ import 'package:domain/usecase/payment/transfer_usecase.dart';
 import 'package:domain/usecase/payment/transfer_verify_usecase.dart';
 import 'package:domain/usecase/payment/verify_qr_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:domain/usecase/payment/qr_scan_otp_usecase.dart';
 
 ///[<AddSendMoneyContactUseCase>] provider
 final addSendMoneyContactUseCaseProvider = Provider.autoDispose<AddSendMoneyContactUseCase>(
@@ -146,6 +147,10 @@ final generateQRUseCaseProvider = Provider.autoDispose<GenerateQRUseCase>(
 final transferQRUseCaseProvider = Provider.autoDispose<TransferQRUseCase>(
   (ref) => TransferQRUseCase(ref.read(paymentRepositoryProvider)),
 );
+
+///[QRScanOTPUseCase] provider
+final qrScanOTPUseCaseProvider =
+    Provider.autoDispose<QRScanOTPUseCase>((ref) => QRScanOTPUseCase(ref.read(paymentRepositoryProvider)));
 
 ///[VerifyQRUseCase] provider
 final verifyQRUseCaseProvider = Provider.autoDispose<VerifyQRUseCase>(

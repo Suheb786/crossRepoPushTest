@@ -44,9 +44,13 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                 stream: model.addcontactIBANStream,
                 onData: (value) {
                   if (value.status == Status.SUCCESS) {
-                    model.mobileNumber = value.data!.sendOTPAddBeneficiary!.mobileNumber!;
-                    model.mobileCode = value.data!.sendOTPAddBeneficiary!.mobileCode!;
+                    model.mobileNumber = value.data?.sendOTPAddBeneficiary?.mobileNumber ?? '';
+                    model.mobileCode = value.data?.sendOTPAddBeneficiary?.mobileCode ?? '';
                     ProviderScope.containerOf(context).read(addBeneficiaryViewModelProvider).nextPage();
+                    ProviderScope.containerOf(context)
+                        .read(addBeneficiaryotpPageViewModel)
+                        .otpController
+                        .clear();
                   }
                 },
                 dataBuilder: (context, validate) {
@@ -84,35 +88,21 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                               FocusScope.of(context).unfocus();
                               if (StringUtils.isDirectionRTL(context)) {
                                 if (!details.primaryVelocity!.isNegative) {
-                                  if (model.ibanFieldValidated &&
+                                  if (!model.ibanFieldValidated &&
                                       model.ibanOrMobileController.text.isNotEmpty) {
-                                    model.validationUserInput(context);
-                                  } else if (!model.ibanFieldValidated &&
-                                      model.ibanOrMobileController.text.isEmpty) {
-                                    model.validationUserInput(context);
+                                    model.callAPIforRequestAndSendMoney();
                                   } else {
-                                    model.checkSendMoney(iban: model.ibanOrMobileController.text);
+                                    model.validationUserInput(context);
                                   }
-                                } else {
-                                  ProviderScope.containerOf(context)
-                                      .read(addBeneficiaryViewModelProvider)
-                                      .previousPage();
                                 }
                               } else {
                                 if (details.primaryVelocity!.isNegative) {
-                                  if (model.ibanFieldValidated &&
+                                  if (!model.ibanFieldValidated &&
                                       model.ibanOrMobileController.text.isNotEmpty) {
-                                    model.validationUserInput(context);
-                                  } else if (!model.ibanFieldValidated &&
-                                      model.ibanOrMobileController.text.isEmpty) {
-                                    model.validationUserInput(context);
+                                    model.callAPIforRequestAndSendMoney();
                                   } else {
-                                    model.checkSendMoney(iban: model.ibanOrMobileController.text);
+                                    model.validationUserInput(context);
                                   }
-                                } else {
-                                  ProviderScope.containerOf(context)
-                                      .read(addBeneficiaryViewModelProvider)
-                                      .previousPage();
                                 }
                               }
                             }
