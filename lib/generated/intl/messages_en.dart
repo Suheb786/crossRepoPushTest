@@ -938,7 +938,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "You can now purchase and redeem e-vouchers from your favorite online & offline stores, locally and internationally."),
         "eVoucherSearchLabel":
             MessageLookupByLibrary.simpleMessage("What are you looking for?"),
-        "eVouchers": MessageLookupByLibrary.simpleMessage("eVouchers"),
+        "eVouchers": MessageLookupByLibrary.simpleMessage("E-Vouchers"),
         "eVouchersAreHere":
             MessageLookupByLibrary.simpleMessage("e-Vouchers are here!"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
@@ -2172,6 +2172,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "You are Not Allowed to Login Please contact our engagement team"),
         "notAllowedToOpenAccount": MessageLookupByLibrary.simpleMessage(
             "You cannot proceed with this request. Please contact our Engagement Team on 06-5200100 for more information."),
+        "notEnoughAmountToPurchase": MessageLookupByLibrary.simpleMessage(
+            "Not enough amount to purchase"),
         "notRegisteredBank": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-059)"),
         "notSetUpCountryRestrictionYet": MessageLookupByLibrary.simpleMessage(

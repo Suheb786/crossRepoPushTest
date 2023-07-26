@@ -7,19 +7,19 @@ import 'package:domain/usecase/base/base_usecase.dart';
 
 import '../base/params.dart';
 
-class EVoucherOtpUseCase extends BaseUseCase<NetworkError, EVoucherUsecaseParams, bool> {
+class EVoucherOtpUseCase extends BaseUseCase<NetworkError, EVoucherUsecaseOTPParams, bool> {
   final EVoucherRepository _eVoucherRepository;
   EVoucherOtpUseCase(this._eVoucherRepository);
 
   @override
-  Future<Either<NetworkError, bool>> execute({required EVoucherUsecaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required EVoucherUsecaseOTPParams params}) {
     return _eVoucherRepository.eVoucherOtp(params: params);
   }
 }
 
-class EVoucherUsecaseParams extends Params {
+class EVoucherUsecaseOTPParams extends Params {
   final bool? GetToken;
-  EVoucherUsecaseParams({
+  EVoucherUsecaseOTPParams({
     required this.GetToken,
   });
 

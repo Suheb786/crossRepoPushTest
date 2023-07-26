@@ -18,13 +18,9 @@ class EVoucherRepositoryImpl extends EVoucherRepository {
 
   @override
   Future<Either<NetworkError, List<VouchersByDate>>> getMyVouchers(
-      {required int pageNo,
-      required int rangeOfMonths,
-      required String searchPhrase}) async {
+      {required int pageNo, required int rangeOfMonths, required String searchPhrase}) async {
     final result = await safeApiCall(_eVoucherRemoteDS.getMyVouchers(
-        pageNo: pageNo,
-        rangeOfMonths: rangeOfMonths,
-        searchPhrase: searchPhrase));
+        pageNo: pageNo, rangeOfMonths: rangeOfMonths, searchPhrase: searchPhrase));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.data.transform()),
@@ -104,7 +100,7 @@ class EVoucherRepositoryImpl extends EVoucherRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> eVoucherOtp({required EVoucherUsecaseParams params}) async {
+  Future<Either<NetworkError, bool>> eVoucherOtp({required EVoucherUsecaseOTPParams params}) async {
     final result = await safeApiCall(_eVoucherRemoteDS.eVoucherOtp(params: params));
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }

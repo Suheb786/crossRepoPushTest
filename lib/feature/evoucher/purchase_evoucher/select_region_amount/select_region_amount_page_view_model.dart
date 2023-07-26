@@ -1,5 +1,6 @@
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
+import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
 import 'package:domain/usecase/evouchers/select_region_amount_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -10,11 +11,11 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 
 class SelectRegionAmountPageViewModel extends BasePageViewModel {
+  final GetSettlementAmountUseCase getSettlementAmountUseCase;
+
   final PurchaseEVoucherPageArgument argument;
-  final EVoucherOtpUseCase eVoucherOtpUseCase;
   final SelectRegionAmountUseCase _selectRegionAmountUseCase;
   List<VoucherItem> voucherItems = [];
   List<String> voucherCountries = [];
@@ -35,19 +36,18 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get selectRegionAmountStream => _selectRegionAmountResponse.stream;
 
-  /// otp suject
-  PublishSubject<EVoucherUsecaseParams> _evoucherOtpRequest = PublishSubject();
-
-  PublishSubject<Resource<bool>> _evoucherOtpResponse = PublishSubject();
-
-  Stream<Resource<bool>> get evoucherOtpStream => _evoucherOtpResponse.stream;
+  ///get settlement amount
+  PublishSubject<GetSettlementAmountUseCaseParams> _getSettlementAmountRequest = PublishSubject();
+  PublishSubject<Resource<bool>> _getSettlementAmountResponse = PublishSubject();
+  Stream<Resource<bool>> get getSettlementAmountStream => _getSettlementAmountResponse.stream;
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  SelectRegionAmountPageViewModel(this._selectRegionAmountUseCase, this.argument, this.eVoucherOtpUseCase) {
+  SelectRegionAmountPageViewModel(
+      this._selectRegionAmountUseCase, this.argument, this.getSettlementAmountUseCase) {
     _selectRegionAmountRequest.listen((value) {
       RequestManager(value, createCall: () => _selectRegionAmountUseCase.execute(params: value))
           .asFlow()
@@ -61,14 +61,15 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
       });
     });
 
-    _evoucherOtpRequest.listen((value) {
-      RequestManager(value, createCall: () => eVoucherOtpUseCase.execute(params: value))
+
+    _getSettlementAmountRequest.listen((value) {
+      RequestManager(value, createCall: () => getSettlementAmountUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
-        _evoucherOtpResponse.safeAdd(event);
+        _getSettlementAmountResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
-          getError(event);
+          // getError(event);
           showErrorState();
         }
       });
@@ -134,8 +135,9 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
     voucherValue.addAll(prices.toList());
   }
 
-  void getOTP(){
-    
+  void getSettlementAmmount(String? Amount, String? FromCurrency, String? ToCurrency) {
+    _getSettlementAmountRequest.safeAdd(GetSettlementAmountUseCaseParams(
+        Amount: Amount, FromCurrency: FromCurrency, ToCurrency: ToCurrency, GetToken: true));
   }
 
   @override

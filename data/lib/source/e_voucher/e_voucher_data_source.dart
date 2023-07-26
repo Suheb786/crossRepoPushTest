@@ -14,9 +14,7 @@ abstract class EVoucherRemoteDS {
   Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByCategory(String category);
 
   Future<HttpResponse<VoucherHistoryListResponseEntity>> getMyVouchers(
-      {required int pageNo,
-      required int rangeOfMonths,
-      required String searchPhrase});
+      {required int pageNo, required int rangeOfMonths, required String searchPhrase});
 
   Future<HttpResponse<VoucherDetailsResponseEntity>> getVoucherDetails(String orderIdentifier);
 
@@ -38,6 +36,6 @@ abstract class EVoucherRemoteDS {
   });
 
   Future<HttpResponse<ResponseEntity>> eVoucherOtp({
-    required EVoucherUsecaseParams params,
+    required EVoucherUsecaseOTPParams params,
   });
 }

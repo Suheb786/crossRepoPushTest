@@ -28,9 +28,7 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
 
   @override
   Future<HttpResponse<VoucherHistoryListResponseEntity>> getMyVouchers(
-      {required int pageNo,
-      required int rangeOfMonths,
-      required String searchPhrase}) async {
+      {required int pageNo, required int rangeOfMonths, required String searchPhrase}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getMyVouchers(VoucherHistoryRequest(
         pageNo: pageNo,
@@ -102,7 +100,8 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getSettlementAmount({required GetSettlementAmountUseCaseParams params}) async {
+  Future<HttpResponse<ResponseEntity>> getSettlementAmount(
+      {required GetSettlementAmountUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getSettlementAmount(GetSettlementAmountRequestEntity(
       Amount: params.Amount,
@@ -114,7 +113,7 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> eVoucherOtp({required EVoucherUsecaseParams params}) async {
+  Future<HttpResponse<ResponseEntity>> eVoucherOtp({required EVoucherUsecaseOTPParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.eVoucherOtp(BaseRequest(baseData: baseData.toJson()));
   }

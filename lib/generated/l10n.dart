@@ -13210,10 +13210,10 @@ class S {
     );
   }
 
-  /// `eVouchers`
+  /// `E-Vouchers`
   String get eVouchers {
     return Intl.message(
-      'eVouchers',
+      'E-Vouchers',
       name: 'eVouchers',
       desc: '',
       args: [],
@@ -17955,6 +17955,16 @@ class S {
     return Intl.message(
       'What are you looking for?',
       name: 'whatAreYouLookingFor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not enough amount to purchase`
+  String get notEnoughAmountToPurchase {
+    return Intl.message(
+      'Not enough amount to purchase',
+      name: 'notEnoughAmountToPurchase',
       desc: '',
       args: [],
     );

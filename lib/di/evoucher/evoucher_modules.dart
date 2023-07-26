@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/di/usecase/dashboard/dashboard_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/evouchers/evoucher_usecase.dart';
 import 'package:neo_bank/feature/evoucher/enter_code_evoucher_puchase/enter_code_evoucher_puchase_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/evoucher/evoucher_view_model.dart';
@@ -47,14 +48,18 @@ final purchaseEVouchersViewModelProvider = ChangeNotifierProvider.autoDispose
 
 ///select region amount view model
 final selectAmountRegionViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<SelectRegionAmountPageViewModel, PurchaseEVoucherPageArgument>((ref, args) =>
-        SelectRegionAmountPageViewModel(
-            ref.read(selectRegionAmountUseCaseProvider), args, ref.read(eVoucherOtpCaseProvider)));
+    .family<SelectRegionAmountPageViewModel, PurchaseEVoucherPageArgument>(
+        (ref, args) => SelectRegionAmountPageViewModel(
+              ref.read(selectRegionAmountUseCaseProvider),
+              args,
+              ref.read(getSettlementAmountUseCaseProvider),
+            ));
 
 ///select  account view model
 final selectAccountViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<SelectAccountPageViewModel, PurchaseEVoucherPageArgument>(
-        (ref, arg) => SelectAccountPageViewModel(ref.read(selectAccountUseCaseProvider), arg));
+    .family<SelectAccountPageViewModel, PurchaseEVoucherPageArgument>((ref, arg) =>
+        SelectAccountPageViewModel(ref.read(selectAccountUseCaseProvider), arg,
+            ref.read(getDashboardDataUseCaseProvider), ref.read(eVoucherOtpCaseProvider)));
 
 ///enter otp for category evoucher purchase view model
 final enterOtpForEVoucherCategoryPurchaseViewModelProvider = ChangeNotifierProvider.autoDispose

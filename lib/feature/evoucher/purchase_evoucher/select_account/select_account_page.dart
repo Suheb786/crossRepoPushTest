@@ -10,6 +10,7 @@ import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_account/selec
 
 class SelectAccountPage extends BasePage<SelectAccountPageViewModel> {
   final PurchaseEVoucherPageArgument argument;
+
   SelectAccountPage({
     required this.argument,
   });
@@ -40,7 +41,14 @@ class SelectAccountPageState extends BaseStatefulPage<SelectAccountPageViewModel
 
   @override
   Widget buildView(BuildContext context, SelectAccountPageViewModel model) {
-    return SelectAccountPageView(provideBase());
+    return SelectAccountPageView(
+      provideBase(),
+    );
+  }
+
+  @override
+  void onModelReady(SelectAccountPageViewModel model) {
+    model.getDashboardData();
   }
 
   @override

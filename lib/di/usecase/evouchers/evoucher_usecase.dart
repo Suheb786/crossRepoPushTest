@@ -18,9 +18,9 @@ final selectRegionAmountUseCaseProvider = Provider.autoDispose<SelectRegionAmoun
   (ref) => SelectRegionAmountUseCase(),
 );
 
-///[SelectAccountUseCase] provider
-final selectAccountUseCaseProvider = Provider.autoDispose<SelectAccountUseCase>(
-  (ref) => SelectAccountUseCase(),
+///[GetSettlementValidationUseCase] provider
+final selectAccountUseCaseProvider = Provider.autoDispose<GetSettlementValidationUseCase>(
+  (ref) => GetSettlementValidationUseCase(),
 );
 
 ///[EnterCodeEVoucherPurchaseUseCase] provider

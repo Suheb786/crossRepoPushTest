@@ -15,9 +15,7 @@ abstract class EVoucherRepository {
   Future<Either<NetworkError, List<VoucherItem>>> getVoucherItemsByCategory(String category);
 
   Future<Either<NetworkError, List<VouchersByDate>>> getMyVouchers(
-      {required int pageNo,
-      required int rangeOfMonths,
-      required String searchPhrase});
+      {required int pageNo, required int rangeOfMonths, required String searchPhrase});
 
   Future<Either<NetworkError, VoucherDetail>> getVoucherDetails(String orderIdentifier);
 
@@ -39,6 +37,6 @@ abstract class EVoucherRepository {
   });
 
   Future<Either<NetworkError, bool>> eVoucherOtp({
-    required EVoucherUsecaseParams params,
+    required EVoucherUsecaseOTPParams params,
   });
 }

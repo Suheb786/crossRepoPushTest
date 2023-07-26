@@ -13,6 +13,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -36,6 +37,9 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                 initialData: Resource.none(),
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
+                    model.getSettlementAmmount(model.argument.selectedItem.fromValue.toString(),
+                        model.argument.selectedItem.currency, model.argument.selectedItem.currency);
+
                     ProviderScope.containerOf(context)
                         .read(purchaseEVouchersViewModelProvider(model.argument))
                         .nextPage();
@@ -163,6 +167,20 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                               ),
                               Column(
                                 children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.only(top: 12.0.h, bottom: 23.h),
+                                    child: AppStreamBuilder<bool>(
+                                        stream: model.showButtonStream,
+                                        initialData: false,
+                                        dataBuilder: (context, isValid) {
+                                          return Visibility(
+                                            visible: isValid!,
+                                            child: AnimatedButton(
+                                              buttonText: S.of(context).swipeToProceed,
+                                            ),
+                                          );
+                                        }),
+                                  ),
                                   InkWell(
                                     onTap: () {
                                       Navigator.pop(context);
@@ -176,20 +194,6 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.only(top: 12.0),
-                                    child: AppStreamBuilder<bool>(
-                                        stream: model.showButtonStream,
-                                        initialData: false,
-                                        dataBuilder: (context, isValid) {
-                                          return Visibility(
-                                            visible: isValid!,
-                                            child: AnimatedButton(
-                                              buttonText: S.of(context).swipeToProceed,
-                                            ),
-                                          );
-                                        }),
                                   ),
                                 ],
                               ),

@@ -36,7 +36,7 @@ class EnterOtpForEVoucherCategoryPurchasePageView
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  Navigator.pushReplacementNamed(context, RoutePaths.EVouchersPurchaseSuccess);
+                  Navigator.pushNamed(context, RoutePaths.EVouchersPurchaseSuccess);
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -48,7 +48,7 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                             .read(purchaseEVouchersViewModelProvider(model.argument))
                             .appSwiperController
                             .page ==
-                        1.0) {
+                        2.0) {
                       FocusScope.of(context).unfocus();
                       if (StringUtils.isDirectionRTL(context)) {
                         if (!details.primaryVelocity!.isNegative) {
@@ -106,7 +106,10 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                                     return currentTimeRemaining == null
                                         ? TextButton(
                                             onPressed: () {
-                                              ///TODO:call resend otp
+                                              ProviderScope.containerOf(context)
+                                                  .read(selectAccountViewModelProvider.call(model.argument))
+                                                  .getOTP();
+
                                             },
                                             child: Text(
                                               S.of(context).resendCode,
