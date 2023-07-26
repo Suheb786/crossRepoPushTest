@@ -34,7 +34,7 @@ class SelectRegionAmountPageState
     model.voucherItems.clear();
     model.voucherItems.addAll(widget.argument.voucherItems);
     model.selectedItem = widget.argument.selectedItem;
-    model.getUniqueCountriesFromEntries();
+    model.getRegionFromVoucherIds();
   }
 
   @override

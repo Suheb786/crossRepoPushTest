@@ -47,8 +47,9 @@ final purchaseEVouchersViewModelProvider = ChangeNotifierProvider.autoDispose
 
 ///select region amount view model
 final selectAmountRegionViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<SelectRegionAmountPageViewModel, PurchaseEVoucherPageArgument>(
-        (ref, args) => SelectRegionAmountPageViewModel(ref.read(selectRegionAmountUseCaseProvider), args));
+    .family<SelectRegionAmountPageViewModel, PurchaseEVoucherPageArgument>((ref, args) =>
+        SelectRegionAmountPageViewModel(
+            ref.read(selectRegionAmountUseCaseProvider), args, ref.read(eVoucherOtpCaseProvider)));
 
 ///select  account view model
 final selectAccountViewModelProvider = ChangeNotifierProvider.autoDispose

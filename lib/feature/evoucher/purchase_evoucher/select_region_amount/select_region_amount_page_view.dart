@@ -36,10 +36,10 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                 initialData: Resource.none(),
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
-                  } else if (data.status == Status.ERROR) {
                     ProviderScope.containerOf(context)
                         .read(purchaseEVouchersViewModelProvider(model.argument))
                         .nextPage();
+                  } else if (data.status == Status.ERROR) {
                     model.showToastWithError(data.appError!);
                   }
                 },
@@ -113,7 +113,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                           }, onSelected: (value) {
                                             Navigator.pop(context);
                                             model.selectedRegionController.text = value;
-                                            model.getVoucherPrices();
+                                            model.getVoucherValue();
                                             model.validate();
                                           });
                                         },
@@ -136,7 +136,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                         onPressed: () {
                                           RelationshipWithCardHolderDialog.show(context,
                                               title: S.of(context).minPrice,
-                                              relationSHipWithCardHolder: model.voucherPrices,
+                                              relationSHipWithCardHolder: model.voucherValue,
                                               onDismissed: () {
                                             Navigator.pop(context);
                                           }, onSelected: (value) {
@@ -161,8 +161,6 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                   ),
                                 ),
                               ),
-
-                              ///TODO:make dynamic text
                               Column(
                                 children: [
                                   InkWell(
@@ -195,10 +193,6 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                   ),
                                 ],
                               ),
-                              // SizedBox(
-                              //   height:
-                              //       MediaQuery.of(context).viewInsets.bottom,
-                              // ),
                             ],
                           )),
                     ),

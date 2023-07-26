@@ -10,48 +10,16 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 
 class SelectRegionAmountPageViewModel extends BasePageViewModel {
   final PurchaseEVoucherPageArgument argument;
-
+  final EVoucherOtpUseCase eVoucherOtpUseCase;
   final SelectRegionAmountUseCase _selectRegionAmountUseCase;
-
   List<VoucherItem> voucherItems = [];
-  late VoucherItem selectedItem;
   List<String> voucherCountries = [];
-  List<String> voucherPrices = [];
-
-  void getUniqueCountriesFromEntries() {
-    List<VoucherItem> vouchersWithSameProductId =
-        voucherItems.where((items) => items.productId == selectedItem.productId).toList();
-
-    Set<String> countries = Set<String>();
-    for (var value in vouchersWithSameProductId) {
-      countries.add(value.countryCode);
-    }
-    voucherCountries.clear();
-    voucherCountries.add('All Region');
-    voucherCountries.addAll(countries.toList());
-  }
-
-  void getVoucherPrices() {
-    // model.amountController.text
-    List<VoucherItem> vouchersWithSameProductIdAndCountry = voucherItems
-        .where((items) =>
-            items.productId == selectedItem.productId &&
-            (selectedRegionController.text == 'All Region'
-                ? true
-                : items.countryCode == selectedRegionController.text))
-        .toList();
-
-    Set<String> prices = Set<String>();
-    for (var value in vouchersWithSameProductIdAndCountry) {
-      prices.add(value.fromValue.toString());
-    }
-
-    voucherPrices.clear();
-    voucherPrices.addAll(prices.toList());
-  }
+  List<String> voucherValue = [];
+  late VoucherItem selectedItem;
 
   ///controllers and keys
   final TextEditingController selectedRegionController = TextEditingController();
@@ -67,18 +35,38 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get selectRegionAmountStream => _selectRegionAmountResponse.stream;
 
+  /// otp suject
+  PublishSubject<EVoucherUsecaseParams> _evoucherOtpRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _evoucherOtpResponse = PublishSubject();
+
+  Stream<Resource<bool>> get evoucherOtpStream => _evoucherOtpResponse.stream;
+
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  SelectRegionAmountPageViewModel(this._selectRegionAmountUseCase, this.argument) {
+  SelectRegionAmountPageViewModel(this._selectRegionAmountUseCase, this.argument, this.eVoucherOtpUseCase) {
     _selectRegionAmountRequest.listen((value) {
       RequestManager(value, createCall: () => _selectRegionAmountUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
         _selectRegionAmountResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          getError(event);
+          showErrorState();
+        }
+      });
+    });
+
+    _evoucherOtpRequest.listen((value) {
+      RequestManager(value, createCall: () => eVoucherOtpUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _evoucherOtpResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           getError(event);
           showErrorState();
@@ -111,6 +99,43 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
     } else {
       _showButtonSubject.safeAdd(false);
     }
+  }
+
+  void getRegionFromVoucherIds() {
+    List<VoucherItem> vouchersWithSameProductId =
+        voucherItems.where((items) => items.productId == selectedItem.productId).toList();
+
+    Set<String> countries = Set<String>();
+
+    for (var value in vouchersWithSameProductId) {
+      countries.add(value.countryCode);
+    }
+
+    voucherCountries.clear();
+    voucherCountries.add('All Region');
+    voucherCountries.addAll(countries.toList());
+  }
+
+  void getVoucherValue() {
+    List<VoucherItem> vouchersWithSameProductIdAndCountry = voucherItems
+        .where((items) =>
+            items.productId == selectedItem.productId &&
+            (selectedRegionController.text == 'All Region'
+                ? true
+                : items.countryCode == selectedRegionController.text))
+        .toList();
+
+    Set<String> prices = Set<String>();
+    for (var value in vouchersWithSameProductIdAndCountry) {
+      prices.add(value.fromValue.toString() + " " + "JOD");
+    }
+
+    voucherValue.clear();
+    voucherValue.addAll(prices.toList());
+  }
+
+  void getOTP(){
+    
   }
 
   @override
