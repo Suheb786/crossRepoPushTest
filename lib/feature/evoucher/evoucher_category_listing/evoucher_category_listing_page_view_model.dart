@@ -32,6 +32,8 @@ class EVoucherCategoryListingPageViewModel extends BasePageViewModel {
 
   late VoucherCategories selectedVoucherCategories;
 
+  List<VoucherItem> voucherItems = [];
+
   EVoucherCategoryListingPageViewModel(
     this._eVoucherByCategoryPageUseCase,
   ) {
@@ -40,6 +42,7 @@ class EVoucherCategoryListingPageViewModel extends BasePageViewModel {
         return _eVoucherByCategoryPageUseCase.execute(params: value);
       }).asFlow().listen((event) {
         if (event.status == Status.SUCCESS) {
+          // initial api data...
           voucherItems.clear();
           voucherItems.addAll(event.data ?? []);
         } else if (event.status == Status.ERROR) {
@@ -52,11 +55,6 @@ class EVoucherCategoryListingPageViewModel extends BasePageViewModel {
 
     getVouchersByCategory();
   }
-
-  List<VoucherItem> voucherItems = [];
-
-  BehaviorSubject<String> searchSubject = BehaviorSubject.seeded("");
-
 
   void getVouchersByCategory() {
     final provider = ProviderScope.containerOf(appLevelKey.currentContext!).read(
@@ -81,22 +79,19 @@ class EVoucherCategoryListingPageViewModel extends BasePageViewModel {
   //   debugPrint(" Filter Voucher item :::: $filteredItems");
   // }
 
-  List<VoucherItem> searchName(List<VoucherItem> list, String nameToSearch) {
-    List<VoucherItem> filteredList = [];
+  void searchName() {
+    if (categorayListController.text.trim().isEmpty) return;
 
-    for (var item in list) {
-      if (item.name.contains(nameToSearch.toLowerCase())) {
-        filteredList.add(item);
-      }
-    }
+    List<VoucherItem> searchedItems =
+        voucherItems.where((element) => element.name.toLowerCase() == categorayListController.text.trim()).toList();
 
-    return filteredList;
+    _voucherByCategoryResponseSubject.safeAdd(Resource.success(data: searchedItems));
   }
 
   void toggleSearch({required List<VoucherItem> list}) {
     String nameToSearch = categorayListController.text;
 
-    List<VoucherItem> filteredItems = searchName(list, nameToSearch);
-    debugPrint("filter items in list ::::::::::::: $filteredItems");
+    // List<VoucherItem> filteredItems = searchName(list, nameToSearch);
+    // debugPrint("filter items in list ::::::::::::: $filteredItems");
   }
 }

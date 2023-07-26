@@ -45,9 +45,7 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
                       hintTextColor: Theme.of(context).inputDecorationTheme.hintStyle?.color,
                       containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                       onChanged: (value) {
-                        if (model.categorayListController.text.isEmpty) {
-                          model.toggleSearch(list: voucherItems?.data ?? []);
-                        }
+                        model.searchName();
                       },
                       suffixIcon: (value, data) {
                         return InkWell(
@@ -65,6 +63,9 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
                     );
                   }),
               onFocusChange: (focus) {
+                // if(!focus){
+                //   model.searchName();
+                // }
                 // model.toggleSearch(focus);
               },
             ),
