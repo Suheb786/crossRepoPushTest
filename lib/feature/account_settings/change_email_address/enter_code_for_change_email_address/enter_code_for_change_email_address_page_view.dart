@@ -64,7 +64,6 @@ class EnterCodeForChangeEmailAddressPageView
                           ProviderScope.containerOf(context)
                               .read(changeEmailAddressViewModelProvider)
                               .previousPage();
-                          // .previous(animation: true);
                         }
                       } else {
                         if (details.primaryVelocity!.isNegative) {
@@ -77,7 +76,6 @@ class EnterCodeForChangeEmailAddressPageView
                           ProviderScope.containerOf(context)
                               .read(changeEmailAddressViewModelProvider)
                               .previousPage();
-                          // .previous(animation: true);
                         }
                       }
                     }

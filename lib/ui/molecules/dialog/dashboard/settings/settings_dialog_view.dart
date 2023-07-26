@@ -341,8 +341,8 @@ class SettingsDialogView extends StatelessWidget {
                                       AppConstantsUtils.isApplePayPopUpShown = false;
                                       AntelopHelper.walletDisconnect();
                                     }
-                                    Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
-                                        ModalRoute.withName(RoutePaths.Splash));
+                                    Navigator.pushNamedAndRemoveUntil(
+                                        context, RoutePaths.OnBoarding, (route) => false);
                                   }
                                 },
                                 dataBuilder: (context, data) {
@@ -586,8 +586,8 @@ class SettingsDialogView extends StatelessWidget {
                                       AppConstantsUtils.isApplePayPopUpShown = false;
                                       AntelopHelper.walletDisconnect();
                                     }
-                                    Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
-                                        ModalRoute.withName(RoutePaths.Splash));
+                                    Navigator.pushNamedAndRemoveUntil(
+                                        context, RoutePaths.OnBoarding, (route) => false);
                                   }
                                 },
                                 dataBuilder: (context, data) {
@@ -892,8 +892,8 @@ class SettingsDialogView extends StatelessWidget {
                                         AppConstantsUtils.isApplePayPopUpShown = false;
                                         AntelopHelper.walletDisconnect();
                                       }
-                                      Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
-                                          ModalRoute.withName(RoutePaths.Splash));
+                                      Navigator.pushNamedAndRemoveUntil(
+                                          context, RoutePaths.OnBoarding, (route) => false);
                                     }
                                   },
                                   dataBuilder: (context, data) {
@@ -1229,8 +1229,8 @@ class SettingsDialogView extends StatelessWidget {
                                         AppConstantsUtils.isApplePayPopUpShown = false;
                                         AntelopHelper.walletDisconnect();
                                       }
-                                      Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
-                                          ModalRoute.withName(RoutePaths.Splash));
+                                      Navigator.pushNamedAndRemoveUntil(
+                                          context, RoutePaths.OnBoarding, (route) => false);
                                     }
                                   },
                                   dataBuilder: (context, data) {

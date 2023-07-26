@@ -549,13 +549,14 @@ import AntelopSDK
     
     override func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         MobileMessaging.didReceiveRemoteNotification(userInfo, fetchCompletionHandler: {result in
-            completionHandler(result);
+            return 
         })
         guard !AntelopAppDelegate.shared.didReceiveRemoteNotification(userInfo, fetchCompletionHandler: { result in
             completionHandler(result)
         }) else {
             return
         }
+        completionHandler(.noData)
     }
     
     override func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {

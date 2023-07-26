@@ -156,9 +156,12 @@ class PaymentRepositoryImpl extends PaymentRepository {
 
   @override
   Future<Either<NetworkError, QRTransferResponse>> transferQR(
-      {required String requestId, required String toAmount, required String toAccount}) async {
+      {required String requestId,
+      required String toAmount,
+      required String toAccount,
+      required String otp}) async {
     final result = await safeApiCall(
-      paymentRemoteDs.transferQR(requestId: requestId, toAmount: toAmount, toAccount: toAccount),
+      paymentRemoteDs.transferQR(requestId: requestId, toAmount: toAmount, toAccount: toAccount, otp: otp),
     );
     return result!.fold(
       (l) => Left(l),
@@ -183,5 +186,16 @@ class PaymentRepositoryImpl extends PaymentRepository {
       {required bool GetToken}) async {
     final result = await safeApiCall(paymentRemoteDs.getReturnRejectionReason(getToken: GetToken));
     return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> qrScanOTP() async {
+    final result = await safeApiCall(
+      paymentRemoteDs.qrScanOTP(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
   }
 }

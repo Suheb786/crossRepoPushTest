@@ -56,10 +56,6 @@ class OtpForCliqIdListPageState extends BaseStatefulPage<OtpForCliqIdListPageVie
   void initState() {
     super.initState();
     listenForCode();
-
-    SmsAutoFill().getAppSignature.then((signature) {
-      debugPrint('inside signature---->$signature');
-    });
   }
 
   @override

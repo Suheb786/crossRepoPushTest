@@ -18,7 +18,7 @@ class GetAccountByAliasUseCase
   Future<Either<NetworkError, GetAccountByAliasContentResponse>> execute(
       {required GetAccountByAliasUseCaseParams params}) {
     return _repository.getAccountByAlias(
-        params.value ?? '', params.currency ?? '', params.beneficiaryId ?? '');
+        params.value ?? '', params.currency ?? '', params.beneficiaryId);
   }
 }
 

@@ -17730,10 +17730,10 @@ class S {
     );
   }
 
-  /// `Oops! please enter an IBAN and CliQ ID to request money.`
+  /// `Oops! please enter an IBAN or CliQ ID to request money.`
   String get enterValidIBANCLiQ {
     return Intl.message(
-      'Oops! please enter an IBAN and CliQ ID to request money.',
+      'Oops! please enter an IBAN or CliQ ID to request money.',
       name: 'enterValidIBANCLiQ',
       desc: '',
       args: [],
