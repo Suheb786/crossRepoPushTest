@@ -86,7 +86,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                         height: 16,
                                       ),
                                       Text(
-                                        model.argument.name,
+                                        model.argument.selectedItem.name,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontFamily: StringUtils.appFont,
@@ -107,12 +107,13 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                         onPressed: () {
                                           RelationshipWithCardHolderDialog.show(context,
                                               title: S.of(context).preferredRegion,
-                                              relationSHipWithCardHolder: model.preferredRegionList,
+                                              relationSHipWithCardHolder: model.voucherCountries,
                                               onDismissed: () {
                                             Navigator.pop(context);
                                           }, onSelected: (value) {
                                             Navigator.pop(context);
                                             model.selectedRegionController.text = value;
+                                            model.getVoucherPrices();
                                             model.validate();
                                           });
                                         },
@@ -125,9 +126,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                                   color: Theme.of(context).colorScheme.surfaceTint));
                                         },
                                       ),
-                                      SizedBox(
-                                        height: 16,
-                                      ),
+                                      const SizedBox(height: 16),
                                       AppTextField(
                                         labelText: S.of(context).value.toUpperCase(),
                                         hintText: S.of(context).pleaseSelect,
@@ -137,7 +136,8 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                         onPressed: () {
                                           RelationshipWithCardHolderDialog.show(context,
                                               title: S.of(context).minPrice,
-                                              relationSHipWithCardHolder: model.priceList, onDismissed: () {
+                                              relationSHipWithCardHolder: model.voucherPrices,
+                                              onDismissed: () {
                                             Navigator.pop(context);
                                           }, onSelected: (value) {
                                             Navigator.pop(context);

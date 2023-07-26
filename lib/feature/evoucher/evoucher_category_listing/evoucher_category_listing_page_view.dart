@@ -74,8 +74,7 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
                         onTap: () => Navigator.pushNamed(context, RoutePaths.EVouchersPurchase,
                             arguments: PurchaseEVoucherPageArgument(
                                 voucherItems: model.voucherItems,
-                                name:
-                                    "${categoryVouchers?.data?[index].name} // ${categoryVouchers?.data?[index].countryCode}")),
+                                selectedItem: categoryVouchers!.data![index])),
                         categoryVoucher: categoryVouchers!.data![index],
                       );
                     },

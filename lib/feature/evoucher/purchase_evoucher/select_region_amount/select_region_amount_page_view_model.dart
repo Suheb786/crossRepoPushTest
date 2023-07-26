@@ -16,41 +16,41 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
 
   final SelectRegionAmountUseCase _selectRegionAmountUseCase;
 
-  List<String> preferredRegionList = [
-    'All Region',
-    'Jordan',
-    'United Kingdom',
-    'Bahrain',
-    'India',
-    'Australia',
-    'United States Of America'
-  ];
+  List<VoucherItem> voucherItems = [];
+  late VoucherItem selectedItem;
+  List<String> voucherCountries = [];
+  List<String> voucherPrices = [];
 
-  List<String> priceList = [
-    '0 JOD',
-    '5 JOD',
-    '10 JOD',
-    '15 JOD',
-    '20 JOD',
-    '25 JOD',
-    '30 JOD',
-    '35 JOD',
-    '45 JOD',
-    '50 JOD'
-  ];
+  void getUniqueCountriesFromEntries() {
+    List<VoucherItem> vouchersWithSameProductId =
+        voucherItems.where((items) => items.productId == selectedItem.productId).toList();
 
-  List<VoucherItem> voucherItem = [];
+    Set<String> countries = Set<String>();
+    for (var value in vouchersWithSameProductId) {
+      countries.add(value.countryCode);
+    }
+    voucherCountries.clear();
+    voucherCountries.add('All Region');
+    voucherCountries.addAll(countries.toList());
+  }
 
-  List<String> getUniqueCountriesFromEntries() {
-    // List<VoucherItem> voucherItem = argument.voucherItems;
-
-    List<String> countries = voucherItem
-        .where((items) => voucherItem.any((element) => items.id == voucherItem))
-        .map((entry) => entry.countryCode)
-        .toSet()
+  void getVoucherPrices() {
+    // model.amountController.text
+    List<VoucherItem> vouchersWithSameProductIdAndCountry = voucherItems
+        .where((items) =>
+            items.productId == selectedItem.productId &&
+            (selectedRegionController.text == 'All Region'
+                ? true
+                : items.countryCode == selectedRegionController.text))
         .toList();
-    print("countries list are  ::::  $countries");
-    return countries;
+
+    Set<String> prices = Set<String>();
+    for (var value in vouchersWithSameProductIdAndCountry) {
+      prices.add(value.fromValue.toString());
+    }
+
+    voucherPrices.clear();
+    voucherPrices.addAll(prices.toList());
   }
 
   ///controllers and keys

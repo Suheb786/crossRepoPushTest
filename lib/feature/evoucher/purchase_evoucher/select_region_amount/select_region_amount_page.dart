@@ -31,8 +31,9 @@ class SelectRegionAmountPageState
 
   @override
   void onModelReady(SelectRegionAmountPageViewModel model) {
-    model.voucherItem.clear();
-    model.voucherItem.addAll(widget.argument.voucherItems);
+    model.voucherItems.clear();
+    model.voucherItems.addAll(widget.argument.voucherItems);
+    model.selectedItem = widget.argument.selectedItem;
     model.getUniqueCountriesFromEntries();
   }
 

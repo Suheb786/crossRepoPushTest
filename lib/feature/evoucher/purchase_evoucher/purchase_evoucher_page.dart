@@ -32,9 +32,9 @@ class PurchaseEVoucherPageState
 
 class PurchaseEVoucherPageArgument {
   List<VoucherItem> voucherItems;
-  final String name;
+  final VoucherItem selectedItem;
   PurchaseEVoucherPageArgument({
     required this.voucherItems,
-    required this.name,
+    required this.selectedItem,
   });
 }
