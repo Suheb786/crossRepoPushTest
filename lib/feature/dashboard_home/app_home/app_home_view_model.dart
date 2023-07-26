@@ -750,11 +750,19 @@ class AppHomeViewModel extends BasePageViewModel {
     _showRequestMoneyPopUpSubject.safeAdd(value);
   }
 
+  bool isLinkOpened = false;
+
   initDynamicLink() async {
+    isLinkOpened = false;
+    print('Called------times');
     Uri uri = await DynamicLinksService().initDynamicLinks();
+    print('Called------times---1');
     if (Platform.isIOS) {
-      DynamicLinksService().onLink().distinct().listen((event) {
-        verifyQRData(uri: event.link);
+      DynamicLinksService().onLink().distinct().listen((event) async {
+        print('Called------times---2====${event.link}');
+        if (!isLinkOpened) {
+          verifyQRData(uri: event.link);
+        }
       });
     }
 
@@ -763,6 +771,7 @@ class AppHomeViewModel extends BasePageViewModel {
 
   void verifyQRData({required Uri uri}) {
     if (uri.path.isNotEmpty && uri.queryParameters.isNotEmpty) {
+      isLinkOpened = true;
       var requestId = uri.queryParameters['requestId']?.replaceAll(' ', '+');
       verifyQR(requestId: requestId ?? '');
     } else {
@@ -851,6 +860,9 @@ class AppHomeViewModel extends BasePageViewModel {
     _getPlaceHolderRequest.close();
     _getPlaceHolderResponse.close();
     _showRequestMoneyPopUpSubject.close();
+    _verifyQRRequest.close();
+    _verifyQRResponse.close();
+
     if (timer != null) {
       timer?.cancel();
     }
