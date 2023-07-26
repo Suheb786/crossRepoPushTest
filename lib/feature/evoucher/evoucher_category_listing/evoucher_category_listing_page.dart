@@ -12,10 +12,8 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 class EVoucherCategoryListingPage extends BasePage<EVoucherCategoryListingPageViewModel> {
-  final EVoucherCatagoryListArgument argument;
-  EVoucherCategoryListingPage({
-    required this.argument,
-  });
+  // final CategoryListArgument categoryListArgument;
+
   @override
   EVoucherCategoryListingPageState createState() => EVoucherCategoryListingPageState();
 }
@@ -24,7 +22,7 @@ class EVoucherCategoryListingPageState
     extends BaseStatefulPage<EVoucherCategoryListingPageViewModel, EVoucherCategoryListingPage> {
   @override
   ProviderBase provideBase() {
-    return eVouchersCategoryListingViewModelProvider.call(widget.argument);
+    return eVouchersCategoryListingViewModelProvider;
   }
 
   @override
@@ -84,10 +82,9 @@ class EVoucherCategoryListingPageState
   }
 }
 
-class EVoucherCatagoryListArgument {
-  final String name;
-
-  EVoucherCatagoryListArgument({
-    required this.name,
-  });
-}
+// class CategoryListArgument {
+//   final List<VoucherCategories> list;
+//   CategoryListArgument(
+//     this.list,
+//   );
+// }

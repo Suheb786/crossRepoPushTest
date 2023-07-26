@@ -9,7 +9,11 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../purchase_evoucher_page.dart';
+
 class SelectAccountPageViewModel extends BasePageViewModel {
+  final PurchaseEVoucherPageArgument argument;
+
   final SelectAccountUseCase _selectAccountUseCase;
 
   ///controllers and keys
@@ -28,7 +32,7 @@ class SelectAccountPageViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  SelectAccountPageViewModel(this._selectAccountUseCase) {
+  SelectAccountPageViewModel(this._selectAccountUseCase, this.argument) {
     _selectAccountRequest.listen((value) {
       RequestManager(value, createCall: () => _selectAccountUseCase.execute(params: value))
           .asFlow()

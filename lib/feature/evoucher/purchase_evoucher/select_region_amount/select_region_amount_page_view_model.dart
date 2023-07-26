@@ -2,6 +2,7 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/usecase/evouchers/select_region_amount_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -10,6 +11,8 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SelectRegionAmountPageViewModel extends BasePageViewModel {
+  final PurchaseEVoucherPageArgument argument;
+
   final SelectRegionAmountUseCase _selectRegionAmountUseCase;
 
   List<String> preferredRegionList = [
@@ -54,7 +57,7 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  SelectRegionAmountPageViewModel(this._selectRegionAmountUseCase) {
+  SelectRegionAmountPageViewModel(this._selectRegionAmountUseCase, this.argument) {
     _selectRegionAmountRequest.listen((value) {
       RequestManager(value, createCall: () => _selectRegionAmountUseCase.execute(params: value))
           .asFlow()

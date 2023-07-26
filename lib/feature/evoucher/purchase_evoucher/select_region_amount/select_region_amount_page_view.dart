@@ -36,8 +36,10 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                 initialData: Resource.none(),
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
-                    ProviderScope.containerOf(context).read(purchaseEVouchersViewModelProvider).nextPage();
                   } else if (data.status == Status.ERROR) {
+                    ProviderScope.containerOf(context)
+                        .read(purchaseEVouchersViewModelProvider(model.argument))
+                        .nextPage();
                     model.showToastWithError(data.appError!);
                   }
                 },
@@ -45,7 +47,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                   return GestureDetector(
                     onHorizontalDragEnd: (details) {
                       if (ProviderScope.containerOf(context)
-                              .read(purchaseEVouchersViewModelProvider)
+                              .read(purchaseEVouchersViewModelProvider(model.argument))
                               .appSwiperController
                               .page ==
                           0.0) {
@@ -84,7 +86,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                         height: 16,
                                       ),
                                       Text(
-                                        'PlayStation',
+                                        model.argument.name,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontFamily: StringUtils.appFont,

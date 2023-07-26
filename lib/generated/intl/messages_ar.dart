@@ -3102,6 +3102,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "wentWrongWhileLogin": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06   (Err-014)"),
         "wereBornInUS": MessageLookupByLibrary.simpleMessage("مولود بأمريكا؟"),
+        "whatAreYouLookingFor":
+            MessageLookupByLibrary.simpleMessage("What are you looking for?"),
         "whatIsPEP": MessageLookupByLibrary.simpleMessage("شو يعني PEP؟"),
         "whatIsTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
             "شو يعني المطالبة بمزايا الاتفاق الضريبي؟"),

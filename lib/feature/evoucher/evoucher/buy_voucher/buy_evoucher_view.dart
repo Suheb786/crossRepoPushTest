@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher/evoucher_view_model.dart';
-import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -94,8 +93,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                                                 onSelectCategory: (category, index) {
                                                   model.setSelectedCategory(category);
                                                   Navigator.pushNamed(context, RoutePaths.EVouchersListing,
-                                                      arguments: EVoucherCatagoryListArgument(
-                                                          name: voucherItem?.data?[index].id ?? ""));
+                                                     );
                                                 },
                                               ),
                                             ),

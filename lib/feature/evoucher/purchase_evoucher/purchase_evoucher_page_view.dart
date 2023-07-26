@@ -14,17 +14,16 @@ import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 class PurchaseEVoucherPageView extends BasePageViewWidget<PurchaseEVoucherPageViewModel> {
-  final pages = [
-    SelectRegionAmountPage(),
-    // SelectAccountPage(),
-    EnterOtpForEVoucherCategoryPurchasePage(),
-    Visibility(visible: false, child: BaseCardPage())
-  ];
-
   PurchaseEVoucherPageView(ProviderBase model) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
+    final pages = [
+      SelectRegionAmountPage(model.argument),
+      // SelectAccountPage(),
+      EnterOtpForEVoucherCategoryPurchasePage(model.argument),
+      Visibility(visible: false, child: BaseCardPage())
+    ];
     return Container(
       color: Theme.of(context).primaryColor,
       padding: EdgeInsets.only(top: 56),

@@ -1,10 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
+import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
+
 class PurchaseEVoucherPageViewModel extends BasePageViewModel {
+  final PurchaseEVoucherPageArgument argument;
+  PurchaseEVoucherPageViewModel(
+    this.argument,
+  );
+
   final SwiperController pageController = SwiperController();
 
   PageController appSwiperController = PageController(viewportFraction: 0.90);

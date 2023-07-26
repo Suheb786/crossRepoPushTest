@@ -45,7 +45,7 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (ProviderScope.containerOf(context)
-                            .read(purchaseEVouchersViewModelProvider)
+                            .read(purchaseEVouchersViewModelProvider(model.argument))
                             .appSwiperController
                             .page ==
                         1.0) {
@@ -55,7 +55,7 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                           model.validateOtp();
                         } else {
                           ProviderScope.containerOf(context)
-                              .read(purchaseEVouchersViewModelProvider)
+                              .read(purchaseEVouchersViewModelProvider(model.argument))
                               .previousPage();
                           // .previous(animation: true);
                         }
@@ -64,7 +64,7 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                           model.validateOtp();
                         } else {
                           ProviderScope.containerOf(context)
-                              .read(purchaseEVouchersViewModelProvider)
+                              .read(purchaseEVouchersViewModelProvider(model.argument))
                               .previousPage();
                           // .previous(animation: true);
                         }

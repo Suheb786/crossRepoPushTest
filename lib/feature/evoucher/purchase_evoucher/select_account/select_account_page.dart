@@ -1,11 +1,19 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_account/select_account_page_view.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_account/select_account_page_view_model.dart';
 
 class SelectAccountPage extends BasePage<SelectAccountPageViewModel> {
+  final PurchaseEVoucherPageArgument argument;
+  SelectAccountPage({
+    required this.argument,
+  });
+
   @override
   SelectAccountPageState createState() => SelectAccountPageState();
 }
@@ -16,7 +24,7 @@ class SelectAccountPageState extends BaseStatefulPage<SelectAccountPageViewModel
 
   @override
   ProviderBase provideBase() {
-    return selectAccountViewModelProvider;
+    return selectAccountViewModelProvider.call(widget.argument);
   }
 
   @override

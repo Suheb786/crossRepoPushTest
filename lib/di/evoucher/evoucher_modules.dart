@@ -2,10 +2,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/evouchers/evoucher_usecase.dart';
 import 'package:neo_bank/feature/evoucher/enter_code_evoucher_puchase/enter_code_evoucher_puchase_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/evoucher/evoucher_view_model.dart';
-import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_detail/evoucher_detail_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/enter_otp_for_evoucher_category_puchase/enter_otp_for_evoucher_category_puchase_page_view_model.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_account/select_account_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_region_amount/select_region_amount_page_view_model.dart';
@@ -34,28 +34,32 @@ final eVouchersDialogViewModelProvider = ChangeNotifierProvider.autoDispose<EVou
     (ref) => EVouchersFilterDialogViewModel());
 
 ///e-vouchers category listing view model
-final eVouchersCategoryListingViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<EVoucherCategoryListingPageViewModel, EVoucherCatagoryListArgument>(
-        (ref, args) => EVoucherCategoryListingPageViewModel(ref.read(eVoucherByCategoryPageUseCase), args, ));
+final eVouchersCategoryListingViewModelProvider =
+    ChangeNotifierProvider.autoDispose<EVoucherCategoryListingPageViewModel>((
+  ref,
+) =>
+        EVoucherCategoryListingPageViewModel(ref.read(eVoucherByCategoryPageUseCase)));
 
 ///purchase e-vouchers view model
-final purchaseEVouchersViewModelProvider = ChangeNotifierProvider.autoDispose<PurchaseEVoucherPageViewModel>(
-    (ref) => PurchaseEVoucherPageViewModel());
+final purchaseEVouchersViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<PurchaseEVoucherPageViewModel, PurchaseEVoucherPageArgument>(
+        (ref, args) => PurchaseEVoucherPageViewModel(args));
 
 ///select region amount view model
-final selectAmountRegionViewModelProvider =
-    ChangeNotifierProvider.autoDispose<SelectRegionAmountPageViewModel>(
-        (ref) => SelectRegionAmountPageViewModel(ref.read(selectRegionAmountUseCaseProvider)));
+final selectAmountRegionViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<SelectRegionAmountPageViewModel, PurchaseEVoucherPageArgument>(
+        (ref, args) => SelectRegionAmountPageViewModel(ref.read(selectRegionAmountUseCaseProvider), args));
 
 ///select  account view model
-final selectAccountViewModelProvider = ChangeNotifierProvider.autoDispose<SelectAccountPageViewModel>(
-    (ref) => SelectAccountPageViewModel(ref.read(selectAccountUseCaseProvider)));
+final selectAccountViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<SelectAccountPageViewModel, PurchaseEVoucherPageArgument>(
+        (ref, arg) => SelectAccountPageViewModel(ref.read(selectAccountUseCaseProvider), arg));
 
 ///enter otp for category evoucher purchase view model
-final enterOtpForEVoucherCategoryPurchaseViewModelProvider =
-    ChangeNotifierProvider.autoDispose<EnterOtpForEVoucherCategoryPurchasePageViewModel>((ref) =>
+final enterOtpForEVoucherCategoryPurchaseViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<EnterOtpForEVoucherCategoryPurchasePageViewModel, PurchaseEVoucherPageArgument>((ref, arg) =>
         EnterOtpForEVoucherCategoryPurchasePageViewModel(
-            ref.read(enterOtpForEVoucherCategoryPurchaseUseCaseUseCaseProvider)));
+            ref.read(enterOtpForEVoucherCategoryPurchaseUseCaseUseCaseProvider), arg));
 
 ///purchase voucher success view model
 final purchaseVoucherViewModelProvider =

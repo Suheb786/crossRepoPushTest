@@ -673,13 +673,13 @@ class AppRouter {
 
       case RoutePaths.EVouchersListing:
         return CupertinoPageRoute(
-            builder: (context) =>
-                EVoucherCategoryListingPage(argument: settings.arguments as EVoucherCatagoryListArgument),
+            builder: (context) => EVoucherCategoryListingPage(),
             settings: RouteSettings(name: RoutePaths.EVouchersListing));
 
       case RoutePaths.EVouchersPurchase:
         return CupertinoPageRoute(
-            builder: (context) => PurchaseEVoucherPage(),
+            builder: (context) =>
+                PurchaseEVoucherPage(argument: settings.arguments as PurchaseEVoucherPageArgument),
             settings: RouteSettings(name: RoutePaths.EVouchersPurchase));
 
       case RoutePaths.EVouchersPurchaseSuccess:

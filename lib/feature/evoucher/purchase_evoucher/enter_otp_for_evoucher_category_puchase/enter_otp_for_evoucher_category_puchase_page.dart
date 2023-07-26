@@ -7,8 +7,14 @@ import 'package:neo_bank/feature/evoucher/purchase_evoucher/enter_otp_for_evouch
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/enter_otp_for_evoucher_category_puchase/enter_otp_for_evoucher_category_puchase_page_view_model.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
+import '../purchase_evoucher_page.dart';
+
 class EnterOtpForEVoucherCategoryPurchasePage
     extends BasePage<EnterOtpForEVoucherCategoryPurchasePageViewModel> {
+  final PurchaseEVoucherPageArgument argument;
+
+  EnterOtpForEVoucherCategoryPurchasePage(this.argument);
+
   @override
   EnterOtpForEVoucherCategoryPurchasePageState createState() =>
       EnterOtpForEVoucherCategoryPurchasePageState();
@@ -21,7 +27,7 @@ class EnterOtpForEVoucherCategoryPurchasePageState extends BaseStatefulPage<
 
   @override
   ProviderBase provideBase() {
-    return enterOtpForEVoucherCategoryPurchaseViewModelProvider;
+    return enterOtpForEVoucherCategoryPurchaseViewModelProvider.call(widget.argument);
   }
 
   @override

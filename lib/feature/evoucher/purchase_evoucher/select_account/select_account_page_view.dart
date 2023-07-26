@@ -48,7 +48,7 @@ class SelectAccountPageView extends BasePageViewWidget<SelectAccountPageViewMode
                   return GestureDetector(
                     onHorizontalDragEnd: (details) {
                       if (ProviderScope.containerOf(context)
-                              .read(purchaseEVouchersViewModelProvider)
+                              .read(purchaseEVouchersViewModelProvider(model.argument))
                               .appSwiperController
                               .page ==
                           1.0) {
@@ -58,7 +58,7 @@ class SelectAccountPageView extends BasePageViewWidget<SelectAccountPageViewMode
                             model.validateFields();
                           } else {
                             ProviderScope.containerOf(context)
-                                .read(purchaseEVouchersViewModelProvider)
+                                .read(purchaseEVouchersViewModelProvider(model.argument))
                                 .previousPage();
                           }
                         } else {
@@ -66,7 +66,7 @@ class SelectAccountPageView extends BasePageViewWidget<SelectAccountPageViewMode
                             model.validateFields();
                           } else {
                             ProviderScope.containerOf(context)
-                                .read(purchaseEVouchersViewModelProvider)
+                                .read(purchaseEVouchersViewModelProvider(model.argument))
                                 .previousPage();
                           }
                         }
@@ -100,7 +100,8 @@ class SelectAccountPageView extends BasePageViewWidget<SelectAccountPageViewMode
                                       height: 16,
                                       width: 16,
                                       padding: EdgeInsetsDirectional.only(end: 8),
-                                      child: AppSvg.asset(AssetUtils.downArrow, color: Theme.of(context).colorScheme.surfaceTint));
+                                      child: AppSvg.asset(AssetUtils.downArrow,
+                                          color: Theme.of(context).colorScheme.surfaceTint));
                                 },
                               ),
                               Spacer(),
