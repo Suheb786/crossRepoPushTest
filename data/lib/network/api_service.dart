@@ -1162,12 +1162,12 @@ abstract class ApiService {
     @Body() BeneficiaryTransactionHistoryRequest request,
   );
 
-  @POST("/Voucher/PlaceOrder")
+  @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/PlaceOrder")
   Future<HttpResponse<ResponseEntity>> placeOrder(@Body() PlaceOrderRequestEntity request);
 
-  @POST("/Voucher/GetSettlementAmount")
+  @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/GetSettlementAmount")
   Future<HttpResponse<ResponseEntity>> getSettlementAmount(@Body() GetSettlementAmountRequestEntity request);
 
-  @POST("/Voucher/EVoucherOtp")
+  @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/EVoucherOtp")
   Future<HttpResponse<ResponseEntity>> eVoucherOtp(@Body() BaseRequest request);
 }

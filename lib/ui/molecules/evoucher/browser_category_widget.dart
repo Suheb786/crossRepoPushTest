@@ -6,11 +6,9 @@ import 'package:neo_bank/utils/string_utils.dart';
 
 class BrowserByCategoryItemWidget extends StatelessWidget {
   List<VoucherCategories> categories;
-  Function(VoucherCategories) onSelectCategory;
+  Function(VoucherCategories, int) onSelectCategory;
 
-  BrowserByCategoryItemWidget(this.categories,
-      {required this.onSelectCategory, Key? key})
-      : super(key: key);
+  BrowserByCategoryItemWidget(this.categories, {required this.onSelectCategory, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class BrowserByCategoryItemWidget extends StatelessWidget {
       padding: const EdgeInsets.only(top: 24),
       itemBuilder: (context, index) {
         return Container(
-          child: _buildListItem(context, categories[index]),
+          child: _buildListItem(context, categories[index], index),
         );
       },
       separatorBuilder: (BuildContext context, int index) {
@@ -33,10 +31,14 @@ class BrowserByCategoryItemWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildListItem(BuildContext context, VoucherCategories category) {
+  Widget _buildListItem(BuildContext context, VoucherCategories category, int index) {
     return InkWell(
       onTap: () {
-        onSelectCategory(category);
+        onSelectCategory(
+          category,
+          index,
+        );
+
         print("category.categoryIcon===>${category.categoryIcon}");
       },
       child: Row(

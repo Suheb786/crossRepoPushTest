@@ -1,6 +1,6 @@
 class VoucherCategories {
   final num? id;
-  final String? categoryName;
+  final String categoryName;
   final String? createdDate;
   final String? createdBy;
   final String? updatedDate;
@@ -10,7 +10,7 @@ class VoucherCategories {
 
   VoucherCategories({
     this.id,
-    this.categoryName,
+    required this.categoryName,
     this.createdDate,
     this.createdBy,
     this.updatedDate,

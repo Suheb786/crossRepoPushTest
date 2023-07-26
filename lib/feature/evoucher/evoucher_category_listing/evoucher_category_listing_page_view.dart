@@ -32,6 +32,7 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
             return ListView.separated(
               itemBuilder: (context, index) {
                 return EVoucherCategoryListWidget(
+                  name: model.argument.name,
                   categoryVoucher: categoryVouchers!.data![index],
                 );
               },

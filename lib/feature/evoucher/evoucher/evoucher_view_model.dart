@@ -17,8 +17,9 @@ import 'package:neo_bank/utils/time_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class EvoucherViewModel extends BasePageViewModel {
-  TextEditingController myVoucherHistorySearchController =
-      TextEditingController();
+  String name = "";
+
+  TextEditingController myVoucherHistorySearchController = TextEditingController();
   TextEditingController buyVoucherSearchController = TextEditingController();
   final ScrollController scrollController = ScrollController();
   bool isApiCalling = false;
@@ -29,19 +30,15 @@ class EvoucherViewModel extends BasePageViewModel {
   late VoucherCategories selectedVoucherCategories;
 
   /// ------------- my vouchers stream -----------------------
-  BehaviorSubject<Resource<List<VouchersByDate>>> _myVoucherResponseSubject =
-      BehaviorSubject();
+  BehaviorSubject<Resource<List<VouchersByDate>>> _myVoucherResponseSubject = BehaviorSubject();
 
-  Stream<Resource<List<VouchersByDate>>> get myVoucherResponseStream =>
-      _myVoucherResponseSubject.stream;
+  Stream<Resource<List<VouchersByDate>>> get myVoucherResponseStream => _myVoucherResponseSubject.stream;
 
   /// ------------- voucher by Filter & Search stream -----------------------
-  BehaviorSubject<Resource<List<VoucherItem>>>
-      _voucherByFilterAndSearchResponseSubject = BehaviorSubject();
+  BehaviorSubject<Resource<List<VoucherItem>>> _voucherByFilterAndSearchResponseSubject = BehaviorSubject();
 
-  Stream<Resource<List<VoucherItem>>>
-      get voucherByFilterAndSearchResponseStream =>
-          _voucherByFilterAndSearchResponseSubject.stream;
+  Stream<Resource<List<VoucherItem>>> get voucherByFilterAndSearchResponseStream =>
+      _voucherByFilterAndSearchResponseSubject.stream;
 
   /// ------------- tabChange listener -----------------------
 
@@ -73,9 +70,7 @@ class EvoucherViewModel extends BasePageViewModel {
 
   void getVoucherCategories() {
     _voucherCategoriesRequestSubject.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  eVoucherCategoriesUseCase.execute(params: value))
+      RequestManager(value, createCall: () => eVoucherCategoriesUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -97,22 +92,18 @@ class EvoucherViewModel extends BasePageViewModel {
   }
 
   List<VoucherCategories> categoriesList = [];
-  BehaviorSubject<EVoucherCategoriesUseCaseParams>
-      _voucherCategoriesRequestSubject = BehaviorSubject();
+  BehaviorSubject<EVoucherCategoriesUseCaseParams> _voucherCategoriesRequestSubject = BehaviorSubject();
 
-  BehaviorSubject<Resource<List<VoucherCategories>>>
-      voucherCategoriesResponseSubject = BehaviorSubject();
+  BehaviorSubject<Resource<List<VoucherCategories>>> voucherCategoriesResponseSubject = BehaviorSubject();
 
-  Stream<Resource<List<VoucherCategories>>>
-      get voucherCategoriesResponseStream =>
-          voucherCategoriesResponseSubject.stream;
+  Stream<Resource<List<VoucherCategories>>> get voucherCategoriesResponseStream =>
+      voucherCategoriesResponseSubject.stream;
 
   /// ------------- voucher History  -------------------------------------------
 
   void getVoucherHistorySubject() {
     _voucherHistoryRequestSubject.listen((value) {
-      RequestManager(value,
-              createCall: () => eVoucherHistoryUseCase.execute(params: value))
+      RequestManager(value, createCall: () => eVoucherHistoryUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -129,11 +120,10 @@ class EvoucherViewModel extends BasePageViewModel {
             hasMoreData = true;
             isApiCalling = false;
             var list = event.data ?? [];
-            if (myVoucherHistoryList == null || myVoucherHistoryList.isEmpty) {
+            if (myVoucherHistoryList.isEmpty) {
               myVoucherHistoryList.addAll(list);
             } else {
-              if (TimeUtils.getFormattedDateMonth(
-                      myVoucherHistoryList.last.date ?? "") ==
+              if (TimeUtils.getFormattedDateMonth(myVoucherHistoryList.last.date ?? "") ==
                   TimeUtils.getFormattedDateMonth(list.first.date ?? "")) {
                 myVoucherHistoryList.last.data.addAll(list.first.data ?? []);
               } else {
@@ -142,15 +132,13 @@ class EvoucherViewModel extends BasePageViewModel {
             }
             myVoucherHistoryList = myVoucherHistoryList.toSet().toList();
 
-            _voucherHistoryResponseSubject
-                .safeAdd(Resource.success(data: myVoucherHistoryList));
+            _voucherHistoryResponseSubject.safeAdd(Resource.success(data: myVoucherHistoryList));
           } else {
             hasMoreData = false;
             isApiCalling = true;
             //   pageNo--;
             if (pageNo == 1 && (event.data ?? []).isEmpty) {
-              _voucherHistoryResponseSubject
-                  .safeAdd(Resource.success(data: myVoucherHistoryList));
+              _voucherHistoryResponseSubject.safeAdd(Resource.success(data: myVoucherHistoryList));
             }
           }
         }
@@ -158,21 +146,14 @@ class EvoucherViewModel extends BasePageViewModel {
     });
   }
 
-  getVoucherHistory(
-      {required int pageNo,
-      required int rangeOfMonths,
-      String searchPhrase = ''}) {
+  getVoucherHistory({required int pageNo, required int rangeOfMonths, String searchPhrase = ''}) {
     _voucherHistoryRequestSubject.safeAdd(EVoucherHistoryUseCaseParams(
-        pageNo: pageNo,
-        rangeOfMonths: rangeOfMonths,
-        searchPhrase: searchPhrase));
+        pageNo: pageNo, rangeOfMonths: rangeOfMonths, searchPhrase: searchPhrase));
   }
 
-  BehaviorSubject<EVoucherHistoryUseCaseParams> _voucherHistoryRequestSubject =
-      BehaviorSubject();
+  BehaviorSubject<EVoucherHistoryUseCaseParams> _voucherHistoryRequestSubject = BehaviorSubject();
 
-  BehaviorSubject<Resource<List<VouchersByDate>>>
-      _voucherHistoryResponseSubject = BehaviorSubject();
+  BehaviorSubject<Resource<List<VouchersByDate>>> _voucherHistoryResponseSubject = BehaviorSubject();
 
   Stream<Resource<List<VouchersByDate>>> get voucherHistoryResponseStream =>
       _voucherHistoryResponseSubject.stream;
@@ -187,8 +168,7 @@ class EvoucherViewModel extends BasePageViewModel {
       if (!hasMoreData) return;
 
       // If is scrolled till the end
-      if (scrollController.position.pixels ==
-          scrollController.position.maxScrollExtent) {
+      if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
         if (isApiCalling) return;
         isApiCalling = true;
         // Increment the Page no. for more data
@@ -212,9 +192,7 @@ class EvoucherViewModel extends BasePageViewModel {
 
   void getVoucherItemFilterSubject() {
     _voucherItemFilterRequestSubject.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  eVoucherItemFilterUseCase.execute(params: value))
+      RequestManager(value, createCall: () => eVoucherItemFilterUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -239,19 +217,13 @@ class EvoucherViewModel extends BasePageViewModel {
       required num minValue,
       required String searchText}) {
     _voucherItemFilterRequestSubject.safeAdd(EVoucherItemFilterUseCaseParams(
-        category: category,
-        region: region,
-        maxValue: maxValue,
-        minValue: minValue,
-        searchText: searchText));
+        category: category, region: region, maxValue: maxValue, minValue: minValue, searchText: searchText));
   }
 
   List<VoucherItem> filterList = [];
-  PublishSubject<EVoucherItemFilterUseCaseParams>
-      _voucherItemFilterRequestSubject = PublishSubject();
+  PublishSubject<EVoucherItemFilterUseCaseParams> _voucherItemFilterRequestSubject = PublishSubject();
 
-  PublishSubject<Resource<List<VoucherItem>>> voucherItemFilterResponseSubject =
-      PublishSubject();
+  PublishSubject<Resource<List<VoucherItem>>> voucherItemFilterResponseSubject = PublishSubject();
 
   Stream<Resource<List<VoucherItem>>> get voucherItemFilterResponseStream =>
       voucherItemFilterResponseSubject.stream;
@@ -374,8 +346,7 @@ class EvoucherViewModel extends BasePageViewModel {
   void toggleSearch(bool focus) {
     if (buyVoucherSearchController.text.trim().isEmpty) {
       categoriesDisplayToggleNotifier.value = true;
-      voucherCategoriesResponseSubject
-          .safeAdd(Resource.success(data: categoriesList));
+      voucherCategoriesResponseSubject.safeAdd(Resource.success(data: categoriesList));
     } else {
       // call search api...
       if (!focus) {
@@ -394,8 +365,7 @@ class EvoucherViewModel extends BasePageViewModel {
       return;
     }
     _voucherCategoriesRequestSubject.safeAdd(EVoucherLandingPageUseCaseParams(
-        eVoucherLandingPageDataEnum:
-            EVoucherLandingPageDataEnum.voucherBySearch,
+        eVoucherLandingPageDataEnum: EVoucherLandingPageDataEnum.voucherBySearch,
         searchText: buyVoucherSearchController.text.trim()));
   }
 
@@ -416,12 +386,9 @@ class EvoucherViewModel extends BasePageViewModel {
 
   void addTransactionPeriod() {
     transactionPeriods.clear();
-    transactionPeriods.add(TransactionPeriod(
-        dayPeriodString: S.current.last_30_days, dayPeriod: 30));
-    transactionPeriods.add(TransactionPeriod(
-        dayPeriodString: S.current.last_60_days, dayPeriod: 60));
-    transactionPeriods.add(TransactionPeriod(
-        dayPeriodString: S.current.last_90_days, dayPeriod: 90));
+    transactionPeriods.add(TransactionPeriod(dayPeriodString: S.current.last_30_days, dayPeriod: 30));
+    transactionPeriods.add(TransactionPeriod(dayPeriodString: S.current.last_60_days, dayPeriod: 60));
+    transactionPeriods.add(TransactionPeriod(dayPeriodString: S.current.last_90_days, dayPeriod: 90));
 
     selectedTransactionHistoryPeriod = transactionPeriods.first.dayPeriod;
     selectTransactionPeriodAndCallApi();
@@ -436,11 +403,9 @@ class EvoucherViewModel extends BasePageViewModel {
   }
 
   void setSelectedTransactionPeriod(String value) {
-    selectedTransactionHistoryPeriod = transactionPeriods
-        .firstWhere((element) => element.dayPeriodString == value)
-        .dayPeriod;
+    selectedTransactionHistoryPeriod =
+        transactionPeriods.firstWhere((element) => element.dayPeriodString == value).dayPeriod;
     myVoucherHistoryList = [];
-    _myVoucherResponseSubject
-        .safeAdd(Resource.success(data: myVoucherHistoryList));
+    _myVoucherResponseSubject.safeAdd(Resource.success(data: myVoucherHistoryList));
   }
 }

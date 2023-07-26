@@ -1,5 +1,7 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page_view.dart';
@@ -10,6 +12,10 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 class EVoucherCategoryListingPage extends BasePage<EVoucherCategoryListingPageViewModel> {
+  final EVoucherCatagoryListArgument argument;
+  EVoucherCategoryListingPage({
+    required this.argument,
+  });
   @override
   EVoucherCategoryListingPageState createState() => EVoucherCategoryListingPageState();
 }
@@ -18,7 +24,7 @@ class EVoucherCategoryListingPageState
     extends BaseStatefulPage<EVoucherCategoryListingPageViewModel, EVoucherCategoryListingPage> {
   @override
   ProviderBase provideBase() {
-    return eVouchersCategoryListingViewModelProvider;
+    return eVouchersCategoryListingViewModelProvider.call(widget.argument);
   }
 
   @override
@@ -48,9 +54,7 @@ class EVoucherCategoryListingPageState
             Text(
               provider.selectedVoucherCategories.categoryName ?? '',
               style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: Theme.of(context).colorScheme.secondary),
+                  fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
             ),
             Padding(
               padding: EdgeInsetsDirectional.only(end: 18.0.w),
@@ -78,4 +82,12 @@ class EVoucherCategoryListingPageState
   Widget buildView(BuildContext context, EVoucherCategoryListingPageViewModel model) {
     return EVoucherCategoryListingPageView(provideBase());
   }
+}
+
+class EVoucherCatagoryListArgument {
+  final String name;
+
+  EVoucherCatagoryListArgument({
+    required this.name,
+  });
 }

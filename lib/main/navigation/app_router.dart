@@ -1,4 +1,3 @@
-import 'package:domain/model/e_voucher/voucher_by_date.dart';
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/payment/transfer_success_content.dart';
 import 'package:flutter/cupertino.dart';
@@ -674,7 +673,8 @@ class AppRouter {
 
       case RoutePaths.EVouchersListing:
         return CupertinoPageRoute(
-            builder: (context) => EVoucherCategoryListingPage(),
+            builder: (context) =>
+                EVoucherCategoryListingPage(argument: settings.arguments as EVoucherCatagoryListArgument),
             settings: RouteSettings(name: RoutePaths.EVouchersListing));
 
       case RoutePaths.EVouchersPurchase:

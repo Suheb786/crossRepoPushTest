@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher/evoucher_view_model.dart';
+import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -35,10 +36,8 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                 labelText: "",
                 controller: model.buyVoucherSearchController,
                 hintText: S.of(context).eVoucherSearchLabel,
-                hintTextColor:
-                    Theme.of(context).inputDecorationTheme.hintStyle?.color,
-                containerPadding:
-                    EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                hintTextColor: Theme.of(context).inputDecorationTheme.hintStyle?.color,
+                containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                 onChanged: (value) {
                   if (model.buyVoucherSearchController.text.isEmpty) {
                     model.toggleSearch(true);
@@ -53,8 +52,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                         height: 16.0.h,
                         width: 16.0.w,
                         padding: const EdgeInsets.all(6),
-                        child: AppSvg.asset(AssetUtils.search,
-                            color: Theme.of(context).primaryColorDark)),
+                        child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
                   );
                 },
               ),
@@ -68,53 +66,52 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
               valueListenable: model.categoriesDisplayToggleNotifier,
               builder: (context, bool isShowingCategories, child) {
                 return isShowingCategories
-                    ? AppStreamBuilder<Resource<List<VoucherCategories>>>(
+                    ? AppStreamBuilder<Resource<List<VoucherItem>>>(
                         initialData: Resource.none(),
-                        stream: model.voucherCategoriesResponseStream,
-                        dataBuilder: (context, categoryData) {
-                          switch (categoryData?.status) {
-                            case Status.SUCCESS:
-                              return (categoryData?.data ?? []).isNotEmpty
-                                  ? Column(
-                                      children: [
-                                        EVoucherTextWidget(
-                                          alignment:
-                                              AlignmentDirectional.topStart,
-                                          text: S.of(context).browserByCatgy,
-                                          textSize: 14.t,
-                                          textWeight: FontWeight.w600,
-                                          textColor: Theme.of(context)
-                                              .colorScheme
-                                              .shadow,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsetsDirectional.only(
-                                              start: 24.0.w,
-                                              end: 24.w,
-                                              bottom: 48.h,
-                                              top: 0.h),
-                                          child: BrowserByCategoryItemWidget(
-                                            categoryData!.data!,
-                                            onSelectCategory: (category) {
-                                              model.setSelectedCategory(
-                                                  category);
-                                              Navigator.pushNamed(context,
-                                                  RoutePaths.EVouchersListing);
-                                            },
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  : Text(S.of(context).noDataFound);
-                            default:
-                              return Container();
-                          }
+                        stream: model.voucherItemFilterResponseStream,
+                        dataBuilder: (context, voucherItem) {
+                          return AppStreamBuilder<Resource<List<VoucherCategories>>>(
+                            initialData: Resource.none(),
+                            stream: model.voucherCategoriesResponseStream,
+                            dataBuilder: (context, categoryData) {
+                              switch (categoryData?.status) {
+                                case Status.SUCCESS:
+                                  return (categoryData?.data ?? []).isNotEmpty
+                                      ? Column(
+                                          children: [
+                                            EVoucherTextWidget(
+                                              alignment: AlignmentDirectional.topStart,
+                                              text: S.of(context).browserByCatgy,
+                                              textSize: 14.t,
+                                              textWeight: FontWeight.w600,
+                                              textColor: Theme.of(context).colorScheme.shadow,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional.only(
+                                                  start: 24.0.w, end: 24.w, bottom: 48.h, top: 0.h),
+                                              child: BrowserByCategoryItemWidget(
+                                                categoryData!.data!,
+                                                onSelectCategory: (category, index) {
+                                                  model.setSelectedCategory(category);
+                                                  Navigator.pushNamed(context, RoutePaths.EVouchersListing,
+                                                      arguments: EVoucherCatagoryListArgument(
+                                                          name: voucherItem?.data?[index].id ?? ""));
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      : Text(S.of(context).noDataFound);
+                                default:
+                                  return Container();
+                              }
 
-                          if (categoryData?.status != Status.SUCCESS) {
-                            return const SizedBox();
-                          }
-                        },
-                      )
+                              if (categoryData?.status != Status.SUCCESS) {
+                                return const SizedBox();
+                              }
+                            },
+                          );
+                        })
                     : AppStreamBuilder<Resource<List<VoucherItem>>>(
                         initialData: Resource.none(),
                         stream: model.voucherItemFilterResponseStream,
@@ -125,21 +122,15 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                                 print(voucherItems?.data!.first.id);
                                 return Padding(
                                   padding: EdgeInsetsDirectional.only(
-                                      start: 24.0.w,
-                                      end: 24.w,
-                                      bottom: 48.h,
-                                      top: 0.h),
-                                  child: VoucherSearchAndFilterWidget(
-                                      voucherItems!.data!),
+                                      start: 24.0.w, end: 24.w, bottom: 48.h, top: 0.h),
+                                  child: VoucherSearchAndFilterWidget(voucherItems!.data!),
                                 );
                               } else {
                                 return Expanded(
                                   child: Center(
                                     child: Text(
                                       S.of(context).noDataFound,
-                                      style: TextStyle(
-                                          color: Theme.of(context)
-                                              .primaryColorDark),
+                                      style: TextStyle(color: Theme.of(context).primaryColorDark),
                                     ),
                                   ),
                                 );
@@ -151,10 +142,8 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                             return const SizedBox();
                           }
                           return Padding(
-                            padding: EdgeInsetsDirectional.only(
-                                start: 24.0, end: 24, bottom: 48, top: 0),
-                            child: VoucherSearchAndFilterWidget(
-                                voucherItems!.data!),
+                            padding: EdgeInsetsDirectional.only(start: 24.0, end: 24, bottom: 48, top: 0),
+                            child: VoucherSearchAndFilterWidget(voucherItems!.data!),
                           );
                         },
                       );

@@ -5429,7 +5429,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/Voucher/PlaceOrder',
+              'http://10.6.13.2:2186/Voucher/api/Voucher/PlaceOrder',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5455,7 +5455,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/Voucher/GetSettlementAmount',
+              'http://10.6.13.2:2186/Voucher/api/Voucher/GetSettlementAmount',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5480,7 +5480,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/Voucher/EVoucherOtp',
+              'http://10.6.13.2:2186/Voucher/api/Voucher/EVoucherOtp',
               queryParameters: queryParameters,
               data: _data,
             )
