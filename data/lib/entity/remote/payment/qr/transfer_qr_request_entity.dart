@@ -12,7 +12,7 @@ class TransferQRRequestEntity {
   final String? toAmount;
   @JsonKey(name: "toAccount")
   final String? toAccount;
-  @JsonKey(name: "otp")
+  @JsonKey(name: "OtpCode")
   final String? otp;
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic>? baseData;
