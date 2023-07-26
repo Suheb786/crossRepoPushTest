@@ -34,40 +34,29 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
           Padding(
             padding: EdgeInsetsDirectional.all(16),
             child: Focus(
-              child: AppStreamBuilder<Resource<List<VoucherItem>>>(
-                  initialData: Resource.none(),
-                  stream: model.voucherByCategoryResponseStream,
-                  dataBuilder: (context, voucherItems) {
-                    return AppTextField(
-                      labelText: "",
-                      controller: model.categorayListController,
-                      hintText: S.of(context).eVoucherSearchLabel,
-                      hintTextColor: Theme.of(context).inputDecorationTheme.hintStyle?.color,
-                      containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-                      onChanged: (value) {
-                        model.searchName();
-                      },
-                      suffixIcon: (value, data) {
-                        return InkWell(
-                          onTap: () async {
-                            FocusScope.of(context).unfocus();
-                          },
-                          child: Container(
-                              height: 16.0.h,
-                              width: 16.0.w,
-                              padding: const EdgeInsets.all(6),
-                              child:
-                                  AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
-                        );
-                      },
-                    );
-                  }),
-              onFocusChange: (focus) {
-                // if(!focus){
-                //   model.searchName();
-                // }
-                // model.toggleSearch(focus);
-              },
+              child: AppTextField(
+                labelText: "",
+                controller: model.categorayListController,
+                hintText: S.of(context).eVoucherSearchLabel,
+                hintTextColor: Theme.of(context).inputDecorationTheme.hintStyle?.color,
+                containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                onChanged: (value) {
+                  model.searchItems();
+                },
+                suffixIcon: (value, data) {
+                  return InkWell(
+                    onTap: () async {
+                      FocusScope.of(context).unfocus();
+                    },
+                    child: Container(
+                        height: 16.0.h,
+                        width: 16.0.w,
+                        padding: const EdgeInsets.all(6),
+                        child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
+                  );
+                },
+              ),
+              onFocusChange: (focus) {},
             ),
           ),
           Expanded(
@@ -78,12 +67,15 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
                   if (categoryVouchers?.status != Status.SUCCESS) {
                     return const SizedBox();
                   }
+
                   return ListView.separated(
                     itemBuilder: (context, index) {
                       return EVoucherCategoryListWidget(
                         onTap: () => Navigator.pushNamed(context, RoutePaths.EVouchersPurchase,
                             arguments: PurchaseEVoucherPageArgument(
-                                name: categoryVouchers?.data?[index].name ?? "")),
+                                voucherItems: model.voucherItems,
+                                name:
+                                    "${categoryVouchers?.data?[index].name} // ${categoryVouchers?.data?[index].countryCode}")),
                         categoryVoucher: categoryVouchers!.data![index],
                       );
                     },

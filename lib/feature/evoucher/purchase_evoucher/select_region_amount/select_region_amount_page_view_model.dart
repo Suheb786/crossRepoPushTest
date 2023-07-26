@@ -1,4 +1,5 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:domain/usecase/evouchers/select_region_amount_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -37,6 +38,20 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
     '45 JOD',
     '50 JOD'
   ];
+
+  List<VoucherItem> voucherItem = [];
+
+  List<String> getUniqueCountriesFromEntries() {
+    // List<VoucherItem> voucherItem = argument.voucherItems;
+
+    List<String> countries = voucherItem
+        .where((items) => voucherItem.any((element) => items.id == voucherItem))
+        .map((entry) => entry.countryCode)
+        .toSet()
+        .toList();
+    print("countries list are  ::::  $countries");
+    return countries;
+  }
 
   ///controllers and keys
   final TextEditingController selectedRegionController = TextEditingController();

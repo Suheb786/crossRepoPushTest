@@ -65,33 +65,16 @@ class EVoucherCategoryListingPageViewModel extends BasePageViewModel {
         EVoucherByCategoryPageUseCaseParams(category: provider.selectedVoucherCategories.categoryName ?? ''));
   }
 
-  // List<VoucherItem> searchName(List<VoucherItem> list, String nameToSearch) {
-  //   List<VoucherItem> filteredList =
-  //       list.where((voucherItem) => voucherItem.name.contains(nameToSearch.toLowerCase())).toList();
-  //   return filteredList;
-  // }
+  void searchItems() {
+    if (categorayListController.text.trim().isEmpty) {
+      _voucherByCategoryResponseSubject.safeAdd(Resource.success(data: voucherItems));
+      return;
+    }
 
-  // void toggleSearch({required List<VoucherItem> list}) {
-  //   List<VoucherItem> items = List.from(list);
-  //   String nameToSearch = categorayListController.text;
-
-  //   List<VoucherItem> filteredItems = searchName(items, nameToSearch);
-  //   debugPrint(" Filter Voucher item :::: $filteredItems");
-  // }
-
-  void searchName() {
-    if (categorayListController.text.trim().isEmpty) return;
-
-    List<VoucherItem> searchedItems =
-        voucherItems.where((element) => element.name.toLowerCase() == categorayListController.text.trim()).toList();
+    List<VoucherItem> searchedItems = voucherItems
+        .where((element) => element.name.toLowerCase().contains(categorayListController.text.trim()))
+        .toList();
 
     _voucherByCategoryResponseSubject.safeAdd(Resource.success(data: searchedItems));
-  }
-
-  void toggleSearch({required List<VoucherItem> list}) {
-    String nameToSearch = categorayListController.text;
-
-    // List<VoucherItem> filteredItems = searchName(list, nameToSearch);
-    // debugPrint("filter items in list ::::::::::::: $filteredItems");
   }
 }
