@@ -76,3 +76,12 @@ class IdWiseHelper {
     return completer.future;
   }
 }
+
+
+/// TO USE THIS LIBRARY
+///
+/// IdWiseHelper idWiseHelper = IdWiseHelper();
+/// idWiseHelper.initializeIdWise();
+/// var status = await idWiseHelper.startVerification('en');
+/// debugPrint("STATUS : ${status.keys.first}");
+/// debugPrint("TEXT :  ${status.values.first}");
