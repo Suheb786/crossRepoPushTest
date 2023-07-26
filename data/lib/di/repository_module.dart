@@ -14,6 +14,7 @@ import 'package:data/repository/country/country_repository_impl.dart';
 import 'package:data/repository/dashboard/dashboard_repository_impl.dart';
 import 'package:data/repository/device_change/device_change_repository_impl.dart';
 import 'package:data/repository/dynamic_link/dynamic_link_repository_impl.dart';
+import 'package:data/repository/e_voucher/e_voucher_repository_impl.dart';
 import 'package:data/repository/enter_address/home_address_dialog_repository_impl.dart';
 import 'package:data/repository/fatca_crs/fatca_crs_repository_impl.dart';
 import 'package:data/repository/forget_password/forget_password_repository_impl.dart';
@@ -44,6 +45,7 @@ import 'package:domain/repository/cliq/cliq_repository.dart';
 import 'package:domain/repository/country/country_repository.dart';
 import 'package:domain/repository/dashboard/dashboard_repository.dart';
 import 'package:domain/repository/dynamic_link/dynamic_link_repository.dart';
+import 'package:domain/repository/e_voucher/e_voucher_repository.dart';
 import 'package:domain/repository/enter_address/home_address_dialog_repository.dart';
 import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
 import 'package:domain/repository/forget_password/forget_password_repository.dart';
@@ -130,6 +132,10 @@ var accountSettingRepositoryProvider = Provider<AccountSettingsRepository>(
 var manageContactRepositoryProvider = Provider<ManageContactRepository>(
     (ref) => ManageContactsRepositoryImpl(ref.read(contactsDataSourceProvider)));
 
+// inject [ManageContactRepository] provider
+// var eVoucherRepositoryProvider = Provider<ManageContactRepository>(
+//         (ref) => ManageContactsRepositoryImpl(ref.read(contactsDataSourceProvider)));
+
 /// inject [ManageContactRepository] provider
 var dashboardRepositoryProvider =
     Provider<DashboardRepository>((ref) => DashboardRepositoryImpl(ref.read(dashboardDataSourceProvider)));
@@ -172,7 +178,7 @@ var applePayRepositoryProvider =
 
 /// inject [BillPaymentRepository] provider
 var billPaymentRepoProvider = Provider<BillPaymentRepository>(
-      (ref) => BillPaymentRepositoryImpl(ref.read(billPaymentDSProvider)),
+  (ref) => BillPaymentRepositoryImpl(ref.read(billPaymentDSProvider)),
 );
 
 /// inject [RJRepository] provider
@@ -180,6 +186,10 @@ var rjRepositoryProvider = Provider<RJRepository>((ref) => RJRepositoryImpl(ref.
 
 var dynamicLinkRepositoryProvider = Provider<DynamicLinkRepository>(
     (ref) => DynamicLinkRepositoryImpl(ref.read(dynamicLinkDataSourceImplProvider)));
+
+/// inject [EVoucherRepository] provider
+var eVoucherRepositoryProvider =
+    Provider<EVoucherRepository>((ref) => EVoucherRepositoryImpl(ref.read(eVoucherDataSourceProvider)));
 
 /// inject [CliqRepository] provider
 var cliqRepositoryProvider =

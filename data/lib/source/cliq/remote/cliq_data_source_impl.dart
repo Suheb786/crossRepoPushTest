@@ -44,7 +44,6 @@ import 'package:data/entity/remote/cliq/suspend_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_request_entity.dart';
-import 'package:data/entity/remote/cliq/update_rtp_request_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
@@ -272,53 +271,6 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.unLinkAccountFromCliqOtp(UnLinkAccountFromCliqOtpRequestEntity(
         aliasId: aliasId, accountId: accountId, getToken: getToken, baseClass: baseData.toJson()));
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> updateRTPCliqRequest(
-      {required String msgId,
-      required String rejectReason,
-      required String rejectAddInfo,
-      required String dbtrBic,
-      required String dbtrAcct,
-      required String dbtrName,
-      required String dbtrIsIndvl,
-      required String cdtrBic,
-      required String cdtrAcct,
-      required String cdtrName,
-      required String cdtrIsIndvl,
-      required String rmtInf,
-      required String ctgyPurp,
-      required String amount,
-      required String curr,
-      required bool rtpStatus,
-      required String otPcode,
-      required String cdtrPstlAdr,
-      required String dbtrPstlAdr,
-      required bool getToken}) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.updateRTPCliqRequest(UpdateRtpRequestEntity(
-        msgId: msgId,
-        rejectReason: rejectReason,
-        rejectAddInfo: rejectAddInfo,
-        dbtrBic: dbtrBic,
-        dbtrAcct: dbtrAcct,
-        dbtrName: dbtrName,
-        dbtrIsIndvl: dbtrIsIndvl,
-        cdtrBic: cdtrBic,
-        cdtrAcct: cdtrAcct,
-        cdtrName: cdtrName,
-        cdtrIsIndvl: cdtrIsIndvl,
-        rmtInf: rmtInf,
-        ctgyPurp: ctgyPurp,
-        amount: amount,
-        curr: curr,
-        rtpStatus: rtpStatus,
-        otPcode: otPcode,
-        cdtrPstlAdr: cdtrPstlAdr,
-        dbtrPstlAdr: dbtrPstlAdr,
-        getToken: getToken,
-        baseData: baseData.toJson()));
   }
 
   @override

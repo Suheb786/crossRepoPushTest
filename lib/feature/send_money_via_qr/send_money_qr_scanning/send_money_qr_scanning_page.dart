@@ -6,40 +6,40 @@ import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page_view.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page_view_model.dart';
 
-class SendMoneyQrScanningPage extends BasePage<SendMoneyQrScanningPageViewModel> {
+class SendMoneyQRScanningPage extends BasePage<SendMoneyQRScanningPageViewModel> {
   final SendMoneyQRScanningArguments arguments;
 
-  SendMoneyQrScanningPage(this.arguments);
+  SendMoneyQRScanningPage(this.arguments);
 
   @override
-  SendMoneyQrScanningPageState createState() => SendMoneyQrScanningPageState();
+  SendMoneyQRScanningPageState createState() => SendMoneyQRScanningPageState();
 }
 
-class SendMoneyQrScanningPageState extends BaseStatefulPage<SendMoneyQrScanningPageViewModel, SendMoneyQrScanningPage> {
+class SendMoneyQRScanningPageState
+    extends BaseStatefulPage<SendMoneyQRScanningPageViewModel, SendMoneyQRScanningPage> {
   @override
   ProviderBase provideBase() {
-    return sendMoneyQrScanningViewModelProvider.call(widget.arguments);
+    return sendMoneyQrScanningViewModelProvider;
   }
 
   @override
-  Future<void> onModelReady(SendMoneyQrScanningPageViewModel model) async {
+  Widget buildView(BuildContext context, SendMoneyQRScanningPageViewModel model) {
+    return SendMoneyQRScanningPageView(provideBase());
+  }
+
+  @override
+  Future<void> onModelReady(SendMoneyQRScanningPageViewModel model) async {
+    model.arguments = widget.arguments;
+
     ///LOG EVENT TO FIREBASE
     await FirebaseAnalytics.instance.logEvent(
       name: "payment_summary_viewed",
-      parameters: {"is_payment_summary_viewed": true.toString(), "source": getViewModel().arguments.source},
+      parameters: {
+        "is_payment_summary_viewed": true.toString(),
+        "source": getViewModel().arguments?.source ?? ''
+      },
     );
-
     super.onModelReady(model);
-  }
-
-  @override
-  Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
-  }
-
-  @override
-  Widget buildView(BuildContext context, SendMoneyQrScanningPageViewModel model) {
-    return SendMoneyQrScanningPageView(provideBase());
   }
 }
 

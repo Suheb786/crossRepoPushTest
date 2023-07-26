@@ -7,15 +7,12 @@ import 'package:data/entity/remote/payment/check_send_money_response_entity.dart
 import 'package:data/entity/remote/payment/get_account_by_alias_content_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_request_entity.dart';
 import 'package:data/entity/remote/payment/pay_back_credit_card_request_entity.dart';
-import 'package:data/entity/remote/payment/payment_activity_request_entity.dart';
-import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/payment/qr/generate_qr_request_entity.dart';
 import 'package:data/entity/remote/payment/qr/transfer_qr_request_entity.dart';
 import 'package:data/entity/remote/payment/qr/verify_qr_request_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
 import 'package:data/entity/remote/payment/return_payment_activity/get_rejection_reason_response_entity.dart';
-import 'package:data/entity/remote/payment/transfer_api_no_otp_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_api_verify_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_success_response_entity.dart';
@@ -37,10 +34,14 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
 
   @override
   Future<HttpResponse<GetAccountByAliasContentResponseEntity>> getAccountByAlias(
-      String value, String currency) async {
+      String value, String currency, String? beneficiaryId) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.getAccountByAlias(GetAccountByAliasRequestEntity(
-        baseData: baseData.toJson(), value: value, currency: currency, getToken: true));
+        beneficiaryId: beneficiaryId,
+        baseData: baseData.toJson(),
+        value: value,
+        currency: currency,
+        getToken: true));
   }
 
   @override
@@ -150,47 +151,10 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
   }
 
   @override
-  Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity({int? filterDays}) async {
-    BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
-    return _apiService.getPaymentActivity(
-        PaymentActivityRequestEntity(baseData: baseData.toJson(), getToken: true, filterDays: filterDays));
-  }
-
-  @override
   Future<HttpResponse<ResponseEntity>> payBackCreditCard({String? secureCode, String? payBackAmount}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.payBackCreditCard(PayBackCreditCardRequestEntity(
         baseData: baseData.toJson(), getToken: true, payBackAmount: payBackAmount, secureCode: secureCode));
-  }
-
-  @override
-  Future<HttpResponse<TransferSuccessResponseEntity>> transferAPINoOtp(
-      {String? beneficiaryId,
-      String? transferType,
-      String? beneficiaryImage,
-      bool? isFriend,
-      num? toAmount,
-      num? localEq,
-      String? memo,
-      String? toAccount,
-      String? nickName,
-      String? detCustomerType,
-      String? type}) async {
-    BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
-    return _apiService.transferAPINoOtp(TransferApiNoOtpRequestEntity(
-        baseData: baseData.toJson(),
-        toAmount: toAmount!,
-        toAccount: toAccount!,
-        beneficiaryId: beneficiaryId,
-        beneficiaryImage: (beneficiaryImage!.isNotEmpty) ? ImageUtils.convertToBase64(beneficiaryImage) : '',
-        isFriend: isFriend!,
-        localEq: localEq!,
-        memo: memo!,
-        nickName: nickName,
-        transferType: transferType!,
-        getToken: true,
-        detCustomerType: detCustomerType,
-        type: type));
   }
 
   @override
@@ -202,13 +166,17 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
 
   @override
   Future<HttpResponse<QRTransferResponseEntity>> transferQR(
-      {required String requestId, required String toAmount, required String toAccount}) async {
+      {required String requestId,
+      required String toAmount,
+      required String toAccount,
+      required String otp}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.transferQR(TransferQRRequestEntity(
         baseData: baseData.toJson(),
         getToken: true,
         qrRequestId: requestId,
         toAccount: toAccount,
+        otp: otp,
         toAmount: toAmount));
   }
 
@@ -225,5 +193,11 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
       {required bool getToken}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.getRejectionReason(BaseRequest(baseData: baseData.toJson(), getToken: getToken));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> qrScanOTP() async {
+    BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
+    return _apiService.qrScanOTP(BaseRequest(baseData: baseData.toJson(), getToken: true));
   }
 }

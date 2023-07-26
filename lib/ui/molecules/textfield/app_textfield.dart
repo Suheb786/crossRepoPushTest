@@ -221,9 +221,9 @@ class AppTextFieldState extends State<AppTextField> {
                             fillColor: widget.filledColor,
                             hintStyle: TextStyle(
                               color: widget.hintTextColor ??
-                                  Theme.of(context).inputDecorationTheme.hintStyle!.color,
-                              fontSize: widget.fontSize ?? 14.0.t,
-                              fontWeight: FontWeight.w600,
+                                  Theme.of(context).inputDecorationTheme.hintStyle?.color,
+                              fontSize: widget.fontSize ?? Theme.of(context).inputDecorationTheme.hintStyle?.fontSize,
+                              fontWeight: Theme.of(context).inputDecorationTheme.hintStyle?.fontWeight,
                               fontFamily: StringUtils.appFont,
                             ),
                             suffixIcon: widget.suffixIcon?.call(isValid, widget.controller!.text),

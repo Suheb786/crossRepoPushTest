@@ -28,6 +28,17 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   TextEditingController nickNameController = TextEditingController();
   FocusNode nickNameFocus = FocusNode();
 
+  ///----------------------------- Beneficiary Name---------------------------------///
+  BehaviorSubject<String> _beneficiaryNameRequest = BehaviorSubject.seeded('');
+
+  Stream<String> get beneficiaryNameStream => _beneficiaryNameRequest.stream;
+
+  void addNickName({required String nickName}) {
+    _beneficiaryNameRequest.safeAdd(nickName);
+  }
+
+  ///-----------------------Beneficiary Name---------------------------///
+
   ///-----------------------------Delete Beneficiary---------------------------------///
   PublishSubject<DeleteBeneficiaryUseCaseParams> _deleteBeneficiaryRequest = PublishSubject();
   PublishSubject<Resource<bool>> _deleteBeneficiaryResponse = PublishSubject();
@@ -155,6 +166,8 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
         if (event.status == Status.SUCCESS) {
           isUpdateProfile = true;
           _selectedImageSubject.safeAdd(selectedProfile);
+        } else if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
         }
       });
     });
@@ -169,9 +182,13 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
           selectedProfile = '';
           argument.beneficiaryInformation.image = '';
           _selectedImageSubject.safeAdd(selectedProfile);
+        } else if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
         }
       });
     });
+
+    addNickName(nickName: argument.beneficiaryInformation.nickName);
   }
 
   removeImage() {

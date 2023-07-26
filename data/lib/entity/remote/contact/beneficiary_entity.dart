@@ -43,6 +43,8 @@ class BeneficiaryEntity extends BaseLayerDataTransformer<BeneficiaryEntity, Bene
   final num? limit;
   @JsonKey(name: "detCustomerType")
   final String? detCustomerType;
+  @JsonKey(name: "identifier")
+  final String? identifier;
 
   BeneficiaryEntity(
       {this.nickName = "",
@@ -62,7 +64,8 @@ class BeneficiaryEntity extends BaseLayerDataTransformer<BeneficiaryEntity, Bene
       this.detCustomerType = "",
       this.limit,
       this.purposeParent = "",
-      this.purposeParentDetails = ""});
+      this.purposeParentDetails = "",
+      this.identifier = ''});
 
   factory BeneficiaryEntity.fromJson(Map<String, dynamic> json) => _$BeneficiaryEntityFromJson(json);
 
@@ -94,6 +97,7 @@ class BeneficiaryEntity extends BaseLayerDataTransformer<BeneficiaryEntity, Bene
         beneType: this.beneType,
         limit: this.limit,
         purposeParent: this.purposeParent,
-        purposeParentDetails: this.purposeParentDetails);
+        purposeParentDetails: this.purposeParentDetails,
+        identifier: this.identifier ?? '');
   }
 }

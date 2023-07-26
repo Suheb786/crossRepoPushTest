@@ -52,7 +52,7 @@ class AppColor {
   static const dark_violet_2 = const Color(0xff481EAF);
   static const dark_violet_3 = const Color(0xff4a22b0);
   static const dark_violet_4 = const Color(0xff412098);
-  static const dark_gray_1 = const Color(0xff8b8b8b);
+  static const dark_gray_1 = const Color(0xff8b8b8b); // Theme.of(context).colorScheme.surfaceTint
   static const very_light_violet1 = const Color(0xffa389e6);
   static const very_dark_violet = const Color(0xff272331);
   static const mostly_desaturated_dark_violet = const Color(0xff8270af);
@@ -64,7 +64,7 @@ class AppColor {
   static const light_gray = const Color(0xffb5b5b5);
 
   static const light_gray1 = const Color(0xfff2f2f2);
-  static const gray_black = const Color(0xff101010);
+  static const gray_black = const Color(0xff101010);  // Theme.of(context).colorScheme.shadow
   static const light_blue = const Color(0xff572BCC);
   static const light_blue1 = const Color(0xff4639FF);
   static const soft_red = const Color(0xffED7863);
@@ -80,17 +80,17 @@ class AppColor {
   static const dark_grayish_blue = const Color(0xff9A99A2);
   static const pure_blue = const Color(0xff007AFF);
   static const very_dark_blue1 = const Color(0xff29136F);
-  static const white_gray = const Color(0xffDDDDDD);
+  static const white_gray = const Color(0xffDDDDDD); // Theme.of(context).colorScheme.inverseSurface
   static const skyblue = const Color(0xff3CB4E5);
 
   /// --------- NEW COLOR SCHEME
   static const white = const Color(0xffffffff); // Theme.of(context).colorScheme.secondary
-  static const black = const Color(0xff000000);
-  static const brightRed = const Color(0xffE53E51);
-  static const verySoftRed = const Color(0xffF68D98);
-  static const vividYellow = const Color(0xffFFE816);
-  static const brightBlue = const Color(0xff3CB4E5); // Theme.of(context).textTheme.bodyLarge!.color
-  static const veryLightGray = const Color(0xffFBFBFB);
+  static const black = const Color(0xff000000); // Theme.of(context).colorScheme.shadow
+  static const brightRed = const Color(0xffE53E51); // Theme.of(context).primaryColor
+  static const verySoftRed = const Color(0xffF68D98); // Theme.of(context).primaryColorLight
+  static const vividYellow = const Color(0xffFFE816); // Theme.of(context).canvasColor
+  static const brightBlue = const Color(0xff3CB4E5); // Theme.of(context).colorScheme.onSecondaryContainer
+  static const veryLightGray = const Color(0xffFBFBFB); //
   static const lightGray = const Color(0xffF5F5F5);
   static const verLightGray4 = const Color(0xffBCBCBC);
   static const veryLightGray1 = const Color(0xffE8E8E8);
@@ -102,7 +102,7 @@ class AppColor {
   static const whiteGrey = const Color(0xffDDDDDD);
   static const gray1 = const Color(0xffB5B5B5);
   static const strongRed = const Color(0xffD82A3E);
-  static const very_dark_gray_black = const Color(0xff101010);
+  static const very_dark_gray_black = const Color(0xff101010); // Theme.of(context).inputDecorationTheme.hintStyle?.color
   static const lightGrayishMagenta = const Color(0xffECE8EC); // Theme.of(context).textTheme.labelSmall!.color
   static const gray_2 = const Color(0xffB5B5B5); // Theme.of(context).textTheme.labelLarge!.color
   static const darkGray = const Color(0xff979797); // Theme.of(context).textTheme.labelMedium!.color
@@ -112,11 +112,14 @@ class AppColor {
   static const softRed = const Color(0xfff25769);
   static const paleYellow = const Color(0xfffff59a);
   static const verySoftRedCard = const Color(0xffEF8793);
-  static const gray5 = const Color(0xff8B8B8B);
+  static const gray5 = const Color(0xff8B8B8B); // Theme.of(context).colorScheme.inversePrimary
   static const darkBlack = const Color(0xff140828);
   static const sky_blue_mid = const Color(0xff3CB4E5);
   static const softRed1 = const Color(0xffE74E5F);
   static const rj_gray = const Color(0xff95979A);
   static const dark_Grayish_Blue = const Color(0xffA6A9AC);
   static const light_gray_4 = const Color(0xffCFCFCF);
+  static const card_shadow_color = const Color(0x14000000);
+  static const very_dark_gray2 = const Color(0xff090909);
+  static const dark_yellow1 = const Color(0xff80740B);
 }

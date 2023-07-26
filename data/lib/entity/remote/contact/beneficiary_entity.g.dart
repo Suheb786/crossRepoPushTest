@@ -26,6 +26,7 @@ BeneficiaryEntity _$BeneficiaryEntityFromJson(Map<String, dynamic> json) =>
       limit: json['limit'] as num?,
       purposeParent: json['purposeParent'] as String? ?? "",
       purposeParentDetails: json['purposeParentDetails'] as String? ?? "",
+      identifier: json['identifier'] as String? ?? '',
     );
 
 Map<String, dynamic> _$BeneficiaryEntityToJson(BeneficiaryEntity instance) =>
@@ -48,4 +49,5 @@ Map<String, dynamic> _$BeneficiaryEntityToJson(BeneficiaryEntity instance) =>
       'purposeParentDetails': instance.purposeParentDetails,
       'limit': instance.limit,
       'detCustomerType': instance.detCustomerType,
+      'identifier': instance.identifier,
     };

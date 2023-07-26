@@ -14,9 +14,6 @@ import 'package:tuple/tuple.dart';
 class EncryptDecryptHelper {
   EncryptDecryptHelper._();
 
-  static String encryptKey = '0123456789ABCDEFFEDCBA98765432100123456789ABCDEF';
-  static String pinBlockKey = '6B29CBFE4C46F7D5EFE30229580E2A16';
-
   static String decryptCard({required String cardNo}) {
     try {
       final List<int> decrypted;
@@ -31,7 +28,10 @@ class EncryptDecryptHelper {
   static String encryptCard({required String cardNo}) {
     try {
       final List<int> encrypted;
-      DES3 desECB = DES3(key: hex.decode(encryptKey), mode: DESMode.ECB, paddingType: DESPaddingType.PKCS5);
+      DES3 desECB = DES3(
+          key: hex.decode(KeyHelper.CARD_DECRYPTION_KEY),
+          mode: DESMode.ECB,
+          paddingType: DESPaddingType.PKCS5);
       encrypted = desECB.encrypt(cardNo.codeUnits);
       return base64.encode(encrypted);
     } catch (e) {
@@ -63,7 +63,7 @@ class EncryptDecryptHelper {
       String blockPart2 = cardNo.substring(3, cardNo.length - 1).padLeft(16, '0');
       String finalBlock =
           (int.tryParse(blockPart1, radix: 16)! ^ int.tryParse(blockPart2, radix: 16)!).toRadixString(16);
-      DES3 desECB = DES3(key: hex.decode(pinBlockKey), mode: DESMode.ECB);
+      DES3 desECB = DES3(key: hex.decode(KeyHelper.CREDIT_CARD_PIN_BLOCK_KEY), mode: DESMode.ECB);
       encrypted = desECB.encrypt(hex.decode(finalBlock.padLeft(16, '0')));
       return hex.encode(encrypted).substring(0, 16).toUpperCase();
     } catch (e) {
@@ -86,21 +86,16 @@ class EncryptDecryptHelper {
       debugPrint('Encrypted key ' + dataPair.item1.toString());
       debugPrint('data ==>');
       debugPrint('Encrypted request ' + dataPair.item2.toString());
-    } catch (e) {
-      //print("Error in encryptRequest " + e.toString());
-    }
+    } catch (e) {}
     return data;
   }
 
   ///AES encryption
   static Tuple2<String, String> _finalDataEncrypt(String data) {
     String randomKey = _generateRandomKey();
-    Uint8List random = encrypt.Key.fromBase64(base64Encode(utf8.encode(randomKey)))
-        .bytes; //encrypt.Key.fromLength(16).bytes;
+    Uint8List random = encrypt.Key.fromBase64(base64Encode(utf8.encode(randomKey))).bytes;
     var key = encrypt.Key(random);
     var iv = encrypt.IV(random);
-    // print("Key Length " + key.bytes.length.toString());
-    // print("IV Length " + iv.bytes.length.toString());
 
     String encryptedKey = _encryptPublicKey(key);
     String encryptedData = _encryptRequestData(key, iv, data);
@@ -108,14 +103,12 @@ class EncryptDecryptHelper {
   }
 
   static String _generateRandomKey() {
-    /// TODO::: NEED TO ASK FROM BACKEND
     const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
 
     Random _rnd = Random();
     var randomKey = String.fromCharCodes(
         Iterable.generate(16, (value) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 
-    /// TODO::: CONFIRM LENGTH
     return randomKey.toString().length > 16 ? randomKey.toString().substring(0, 16) : randomKey.toString();
   }
 

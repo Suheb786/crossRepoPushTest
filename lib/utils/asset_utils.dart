@@ -174,6 +174,7 @@ class AssetUtils {
   static const String cliqLogoSvg = svg + "cliqLogoSvg.svg";
   static const String blueStar = svg + "blue_star.svg";
   static const String editNickName = svg + "edit_nickname.svg";
+  static const String e_voucher = svg + "e_voucher.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -339,4 +340,9 @@ class AssetUtils {
   static const String starRedIcon = svg + "star_red.svg";
   static const String starYellowIcon = svg + "star_yellow.svg";
   static const String starBlueBorder = svg + "star_blue_border.svg";
+
+  ///dashboard
+  static const String contactUs = svg + "contact_us.svg";
+  static const String homeOutlineButton = svg + "home_outlined.svg";
+  static const String blinkLogo1 = svg + "blink_logo1.svg";
 }

@@ -23,10 +23,6 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<ResponseEntity>> setCardPin(String pin, String cardNumber);
 
-  Future<HttpResponse<ResponseEntity>> confirmCardDelivery();
-
-  Future<HttpResponse<ResponseEntity>> confirmCreditCardDelivery({String? cardId, String? cardDigit});
-
   Future<HttpResponse<CardTransactionResponseEntity>> getDebitCardTransactions({num? noOfDays});
 
   Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(

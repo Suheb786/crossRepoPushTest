@@ -50,8 +50,6 @@ class EnterOtpForMobileNumberCliqPageState
   void initState() {
     super.initState();
     listenForCode();
-
-    SmsAutoFill().getAppSignature.then((signature) {});
   }
 
   @override

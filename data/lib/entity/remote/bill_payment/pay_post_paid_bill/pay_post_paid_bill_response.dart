@@ -26,11 +26,6 @@ class PayPostPaidBillResponse extends BaseLayerDataTransformer<PayPostPaidBillRe
       content: PayPostPaidBillListEntity.fromJson(
         this.response?.content ?? Map(),
       ).transform(),
-      /*statusModel: StatusEntity.fromJson(
-      this.status ?? Map(),
-    ).transform(),
-    requestDateTime: this.requestDateTime,
-    logId: this.logId,*/
     );
   }
 }

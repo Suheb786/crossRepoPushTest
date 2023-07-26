@@ -1,11 +1,14 @@
 import 'dart:io';
 
 import 'package:data/helper/antelop_helper.dart';
+import 'package:domain/constants/enum/account_status_enum.dart';
 import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
 import 'package:domain/constants/enum/primary_secondary_enum.dart';
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/apple_pay/get_all_card_data.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/card/card_issuance_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -50,9 +53,6 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
           if (details.primaryVelocity! > sensitivity) {
             Navigator.pop(context, model.willPop());
           } else if (details.primaryVelocity! < -sensitivity) {}
-          // if (!details.primaryVelocity!.isNegative) {
-          //   Navigator.pop(context, model.willPop());
-          // }
         },
         child: Column(
           children: [
@@ -88,6 +88,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                     color: AppColor.dark_gray_1),
               ),
             ),
+
             ///Add to wallet button
             Platform.isIOS
                 ? AppStreamBuilder<bool>(
@@ -155,6 +156,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                       );
                     })
                 : Container(),
+
             ///Push card success/error
             AppStreamBuilder<bool>(
                 stream: pushCardSuccessStream,
@@ -196,7 +198,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                 }),
             Expanded(
                 child: Container(
-                  decoration: BoxDecoration(
+              decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.secondary,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
               child: Column(
@@ -251,7 +253,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                         ),
                                       ],
                                     ), onSelected: () {
-                                      Navigator.pop(context);
+                                  Navigator.pop(context);
                                   model.freezeCard(
                                       status: 'WM',
                                       tokenizedPan: model.debitCardSettingsArguments.debitCard.code!);
@@ -314,6 +316,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                 },
                               );
                             }),
+
                         ///Manage debit limit
                         SettingTile(
                           onTap: () {
@@ -327,6 +330,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                           title: S.of(context).manageCardLimits,
                           tileIcon: AssetUtils.settingBars,
                         ),
+
                         ///Manage card pin
                         SettingTile(
                             onTap: () {
@@ -344,6 +348,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                 PrimarySecondaryEnum.PRIMARY,
                             isNotify: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
                                 PrimarySecondaryEnum.SECONDARY),
+
                         ///Report lost /stolen card
                         AppStreamBuilder<Resource<bool>>(
                             initialData: Resource.none(),
@@ -387,6 +392,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                 // isNotify: true,
                               );
                             }),
+
                         ///Report damaged card
                         AppStreamBuilder<Resource<bool>>(
                             initialData: Resource.none(),
@@ -430,6 +436,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                 // isNotify: true,
                               );
                             }),
+
                         ///Cancel debit card
                         AppStreamBuilder<Resource<CardIssuanceDetails>>(
                             stream: model.removeOrReapplySuppDebitCardWithResponseStream,
@@ -519,6 +526,8 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                     );
                                   });
                             }),
+
+                        ///Request Physical Debit card
                         AppStreamBuilder<Resource<bool>>(
                             initialData: Resource.none(),
                             stream: model.requestPhysicalDebitCardResponseStream,
@@ -533,25 +542,33 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                             dataBuilder: (context, requestPhysicalDataResponse) {
                               return SettingTile(
                                 onTap: () {
-                                  InformationDialog.show(context,
-                                      image: AssetUtils.cardIcon,
-                                      title: S.of(context).requestPhysicalCard,
-                                      descriptionWidget: Text(
-                                        S.of(context).requestPhysicalCardDec,
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400,
-                                            color: AppColor.gray_black),
-                                      ), onSelected: () {
-                                    Navigator.pop(context);
-                                    if (!(model.debitCardSettingsArguments.debitCard
-                                            .isPhysicalDebitCardRequested ??
-                                        false)) {
-                                      model.requestPhysicalDebitCard();
-                                    }
-                                  }, onDismissed: () {
-                                    Navigator.pop(context);
-                                  });
+                                  if (model.debitCardSettingsArguments.accountStatusEnum ==
+                                      AccountStatusEnum.DORMANT) {
+                                    model.showToastWithError(AppError(
+                                        cause: Exception(),
+                                        error: ErrorInfo(message: ''),
+                                        type: ErrorType.ACCOUNT_DORMANT));
+                                  } else {
+                                    InformationDialog.show(context,
+                                        image: AssetUtils.cardIcon,
+                                        title: S.of(context).requestPhysicalCard,
+                                        descriptionWidget: Text(
+                                          S.of(context).requestPhysicalCardDec,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w400,
+                                              color: AppColor.gray_black),
+                                        ), onSelected: () {
+                                      Navigator.pop(context);
+                                      if (!(model.debitCardSettingsArguments.debitCard
+                                              .isPhysicalDebitCardRequested ??
+                                          false)) {
+                                        model.requestPhysicalDebitCard();
+                                      }
+                                    }, onDismissed: () {
+                                      Navigator.pop(context);
+                                    });
+                                  }
                                 },
                                 isEnabled:
                                     (model.debitCardSettingsArguments.debitCardRequestPhysicalCardEnabled ==

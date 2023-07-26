@@ -37,10 +37,6 @@ class DcEnterOtpPageState extends BaseStatefulPage<DcEnterOtpViewModel, DcEnterO
   void initState() {
     super.initState();
     listenForCode();
-
-    SmsAutoFill().getAppSignature.then((signature) {
-      print('inside signature---->$signature');
-    });
   }
 
   @override

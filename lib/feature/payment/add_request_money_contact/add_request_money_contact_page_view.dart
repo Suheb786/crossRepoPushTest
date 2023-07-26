@@ -121,6 +121,7 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                             )),
                         (beneficiaries ?? []).length > 0
                             ? Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Directionality(
                                     textDirection: TextDirection.ltr,
@@ -147,7 +148,7 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.only(bottom: 29.0.h),
+                                    padding: EdgeInsetsDirectional.only(bottom: 14.0.h),
                                     child: Visibility(
                                       visible: (ProviderScope.containerOf(context)
                                               .read(appHomeViewModelProvider)

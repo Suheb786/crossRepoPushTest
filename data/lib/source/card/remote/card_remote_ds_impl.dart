@@ -15,7 +15,6 @@ import 'package:data/entity/remote/card/change_credit_card_pin/change_credit_car
 import 'package:data/entity/remote/card/change_credit_card_pin/change_credit_card_pin_verify_request_entity.dart';
 import 'package:data/entity/remote/card/change_credit_card_pin/unblock_credit_card_pin_request_entity.dart';
 import 'package:data/entity/remote/card/change_debit_card_pin_request.dart';
-import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
 import 'package:data/entity/remote/card/credit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/credit_card_relationship/credit_card_relationship_response_entity.dart';
 import 'package:data/entity/remote/card/credit_card_statement_request.dart';
@@ -79,23 +78,6 @@ class CardRemoteDsImpl extends CardRemoteDs {
         baseData: baseData.toJson(),
         getToken: true,
         pinCode: EncryptDecryptHelper.generateBlockPin(cardNo: cardNumber, pinCode: pin)));
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> confirmCardDelivery() async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.confirmCardDelivery(BaseRequest(baseData: baseData.toJson(), getToken: true));
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> confirmCreditCardDelivery({String? cardId, String? cardDigit}) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.confirmCreditCardDelivery(ConfirmCreditCardDeliveryRequest(
-        cardId: cardId,
-        // accountId: '1',
-        cardDigit: cardDigit,
-        baseData: baseData.toJson(),
-        getToken: true));
   }
 
   @override

@@ -98,9 +98,6 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                                                   FilteringTextInputFormatter.allow(
                                                       RegExp(r'^\d+\.?\d{0,3}')),
                                                 ],
-                                                /* inputFormatters: [
-                                                  FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
-                                                ], */
                                                 onChanged: (value) {
                                                   if (value != ".") {
                                                     ProviderScope.containerOf(context)

@@ -34,9 +34,7 @@ class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, Cliq
             style: TextStyle(
               fontSize: 14.t,
               fontWeight: FontWeight.w600,
-              color: Theme
-                  .of(context)
-                  .colorScheme.secondary,
+              color: Theme.of(context).colorScheme.secondary,
               fontFamily: StringUtils.appFont,
             ),
           ),
@@ -50,9 +48,7 @@ class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, Cliq
             },
             child: Padding(
               padding: EdgeInsetsDirectional.only(end: 24.0.w),
-              child: Icon(Icons.add, color: Theme
-                  .of(context)
-                  .colorScheme.secondary),
+              child: Icon(Icons.add, color: Theme.of(context).colorScheme.secondary),
             ),
           ),
         ],

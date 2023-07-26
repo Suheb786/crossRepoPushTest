@@ -27,6 +27,8 @@ import 'package:data/source/dashboard/dashboard_datasource.dart';
 import 'package:data/source/dashboard/remote/dashboard_remote_ds_impl.dart';
 import 'package:data/source/device_change/device_change_flow_datasource.dart';
 import 'package:data/source/device_change/remote/device_change_flow_ds_impl.dart';
+import 'package:data/source/e_voucher/e_voucher_data_source.dart';
+import 'package:data/source/e_voucher/remote/e_voucher_remote_ds_impl.dart';
 import 'package:data/source/fatca_crs/fatca_crs_datasource.dart';
 import 'package:data/source/fatca_crs/remote/fatca_crs_remote_ds_impl.dart';
 import 'package:data/source/forget_password/forget_password_datasource.dart';
@@ -147,6 +149,10 @@ var accountSettingDataSourceProvider = Provider<AccountSettingsRemoteDs>(
 ///Manage Contacts remote DS
 var contactsDataSourceProvider = Provider<ContactRemoteDS>(
     (ref) => ContactRemoteDsImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+/// EVoucher remote DS
+var eVoucherDataSourceProvider = Provider<EVoucherRemoteDS>(
+    (ref) => EVoucherRemoteDSImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
 
 ///Dashboard remote DS
 var dashboardDataSourceProvider = Provider<DashboardRemoteDs>(

@@ -43,6 +43,7 @@ BeneficiaryFavoriteContactEntity _$BeneficiaryFavoriteContactEntityFromJson(
       purposeType: json['purposeType'] as String?,
       detCustomerType: json['detCustomerType'] as String?,
       isFavorite: json['isFavorite'] as bool?,
+      identifier: json['identifier'] as String?,
     );
 
 Map<String, dynamic> _$BeneficiaryFavoriteContactEntityToJson(
@@ -82,4 +83,5 @@ Map<String, dynamic> _$BeneficiaryFavoriteContactEntityToJson(
       'purposeType': instance.purposeType,
       'detCustomerType': instance.detCustomerType,
       'isFavorite': instance.isFavorite,
+      'identifier': instance.identifier,
     };

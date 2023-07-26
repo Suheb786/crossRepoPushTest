@@ -289,6 +289,9 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
       case ErrorType.EMPTY_RECIPIENT_NAME:
         recipientNameKey.currentState!.isValid = false;
         break;
+      case ErrorType.RECIPIENT_NAME_VALIDATION:
+        recipientNameKey.currentState!.isValid = false;
+        break;
       case ErrorType.EMPTY_RECIPIENT_ADDRESS:
         recipientAddressKey.currentState!.isValid = false;
         break;

@@ -16940,16 +16940,6 @@ class S {
     );
   }
 
-  /// `Enter the 6-digit code sent to \n{variable}`
-  String enterOTPheaderwithVaiable(Object variable) {
-    return Intl.message(
-      'Enter the 6-digit code sent to \n$variable',
-      name: 'enterOTPheaderwithVaiable',
-      desc: '',
-      args: [variable],
-    );
-  }
-
   /// `Nickname is already stored as beneficiary`
   String get nickNameAlreadyExists {
     return Intl.message(
@@ -17570,6 +17560,56 @@ class S {
     );
   }
 
+  /// `History`
+  String get history {
+    return Intl.message(
+      'History',
+      name: 'history',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transaction Period`
+  String get transaction_period {
+    return Intl.message(
+      'Transaction Period',
+      name: 'transaction_period',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 30 days`
+  String get last_30_days {
+    return Intl.message(
+      'Last 30 days',
+      name: 'last_30_days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 60 days`
+  String get last_60_days {
+    return Intl.message(
+      'Last 60 days',
+      name: 'last_60_days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 90 days`
+  String get last_90_days {
+    return Intl.message(
+      'Last 90 days',
+      name: 'last_90_days',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `View Transactions`
   String get viewTransactions {
     return Intl.message(
@@ -17690,10 +17730,10 @@ class S {
     );
   }
 
-  /// `Oops! please enter an IBAN and CliQ ID to request money.`
+  /// `Oops! please enter an IBAN or CliQ ID to request money.`
   String get enterValidIBANCLiQ {
     return Intl.message(
-      'Oops! please enter an IBAN and CliQ ID to request money.',
+      'Oops! please enter an IBAN or CliQ ID to request money.',
       name: 'enterValidIBANCLiQ',
       desc: '',
       args: [],
@@ -17730,6 +17770,36 @@ class S {
     );
   }
 
+  /// `Oops! you cannot send money to your own account`
+  String get oopsYouCantSendMoneyToYourOwnAccount {
+    return Intl.message(
+      'Oops! you cannot send money to your own account',
+      name: 'oopsYouCantSendMoneyToYourOwnAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! The QR code is invalid. Please try again.`
+  String get oopsTheQRisInvalid {
+    return Intl.message(
+      'Oops! The QR code is invalid. Please try again.',
+      name: 'oopsTheQRisInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! You can only create 5 CliQ IDs`
+  String get oopsYouCanOnlyCreate5CliqIds {
+    return Intl.message(
+      'Oops! You can only create 5 CliQ IDs',
+      name: 'oopsYouCanOnlyCreate5CliqIds',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `IBAN/ Alias/ Mobile No. (CliQ)`
   String get accountMobileNoCliQ {
     return Intl.message(
@@ -17755,6 +17825,136 @@ class S {
     return Intl.message(
       'Money sent to',
       name: 'moneySentTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `HOME`
+  String get home {
+    return Intl.message(
+      'HOME',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MORE`
+  String get more {
+    return Intl.message(
+      'MORE',
+      name: 'more',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CONTACT US`
+  String get contactUs {
+    return Intl.message(
+      'CONTACT US',
+      name: 'contactUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Something went wrong while updating limit, please try again later.`
+  String get oopsErrorWhileUpdatingCardLimit {
+    return Intl.message(
+      'Oops! Something went wrong while updating limit, please try again later.',
+      name: 'oopsErrorWhileUpdatingCardLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! You have exceeded your daily transfer limit.`
+  String get oopsYouHaveExceededYourDailyTransferLimit {
+    return Intl.message(
+      'Oops! You have exceeded your daily transfer limit.',
+      name: 'oopsYouHaveExceededYourDailyTransferLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! The QR code is expired.`
+  String get oopsTheQRCodeIsExpired {
+    return Intl.message(
+      'Oops! The QR code is expired.',
+      name: 'oopsTheQRCodeIsExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account is inactive!`
+  String get accountDormantTitle {
+    return Intl.message(
+      'Your account is inactive!',
+      name: 'accountDormantTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your have not used your account for a long time and it is now deactivated. Please call us on 06-5200100 to activate your account and enjoy countless benefits.`
+  String get accountDormantStatusDesc {
+    return Intl.message(
+      'Your have not used your account for a long time and it is now deactivated. Please call us on 06-5200100 to activate your account and enjoy countless benefits.',
+      name: 'accountDormantStatusDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! You cannot request your physical card as your account is inactive. Call us on 06-5200100 to activate your account.`
+  String get dormantAccountPhysicalCardReq {
+    return Intl.message(
+      'Oops! You cannot request your physical card as your account is inactive. Call us on 06-5200100 to activate your account.',
+      name: 'dormantAccountPhysicalCardReq',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account is inactive`
+  String get yourAccountInactive {
+    return Intl.message(
+      'Your account is inactive',
+      name: 'yourAccountInactive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Call us on 06-5200100 to activate your account and get your debit card.`
+  String get callToActivate {
+    return Intl.message(
+      'Call us on 06-5200100 to activate your account and get your debit card.',
+      name: 'callToActivate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Copied`
+  String get copied {
+    return Intl.message(
+      'Copied',
+      name: 'copied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Recipient name should be at least 2 parts and each part to be with a minimum of 3 characters.`
+  String get recipientNameValidation {
+    return Intl.message(
+      'Oops! Recipient name should be at least 2 parts and each part to be with a minimum of 3 characters.',
+      name: 'recipientNameValidation',
       desc: '',
       args: [],
     );

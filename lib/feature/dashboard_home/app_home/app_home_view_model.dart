@@ -1,9 +1,10 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:isolate';
 
-import 'dart:async';
-
 import 'package:card_swiper/card_swiper.dart';
+import 'package:data/helper/dynamic_link.dart';
+import 'package:domain/constants/enum/account_status_enum.dart';
 import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/constants/enum/credit_card_call_status_enum.dart';
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
@@ -15,9 +16,9 @@ import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_con
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/model/dashboard/get_placeholder/get_placeholder_response.dart';
 import 'package:domain/model/dashboard/get_placeholder/placeholder_data.dart';
-import 'package:domain/usecase/apple_pay/get_antelop_cards_list_usecase.dart';
 import 'package:domain/model/qr/verify_qr_response.dart';
 import 'package:domain/model/user/user.dart';
+import 'package:domain/usecase/apple_pay/get_antelop_cards_list_usecase.dart';
 import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
 import 'package:domain/usecase/dashboard/get_placeholder_usecase.dart';
 import 'package:domain/usecase/dynamic_link/init_dynamic_link_usecase.dart';
@@ -36,6 +37,7 @@ import 'package:neo_bank/ui/molecules/card/credit_card_not_delivered_widget.dart
 import 'package:neo_bank/ui/molecules/card/credit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_error_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_widget.dart';
+import 'package:neo_bank/ui/molecules/card/dormant_account_debit_card_disbaled_widget.dart';
 import 'package:neo_bank/ui/molecules/card/get_credit_card_now_widget.dart';
 import 'package:neo_bank/ui/molecules/card/resume_credit_card_application_view.dart';
 import 'package:neo_bank/ui/molecules/card/rj_card_widget.dart';
@@ -59,32 +61,25 @@ class AppHomeViewModel extends BasePageViewModel {
   final GetAntelopCardsListUseCase _getAntelopCardsListUseCase;
 
   final InitDynamicLinkUseCase _initDynamicLinkUseCase;
+
+  ///Init Dynamic links
   PublishSubject<InitDynamicLinkUseCaseParams> _initDynamicLinkRequestRequest = PublishSubject();
 
-  PublishSubject<Resource<Uri>> _initDynamicLinkRequestResponse = PublishSubject();
-
-  Stream<Resource<Uri>> get initDynamicLinkRequestStream => _initDynamicLinkRequestResponse.stream;
-
   final SwiperController pageController = SwiperController();
-  ScrollController scrollController = ScrollController();
+
   PageController appSwiperController = PageController(viewportFraction: 0.8);
 
-  PageController controller = PageController(viewportFraction: 0.8, keepPage: true, initialPage: 0);
   PublishSubject<int> _currentStep = PublishSubject();
 
   Stream<int> get currentStep => _currentStep.stream;
 
-  PublishSubject<PageController> _pageControllerSubject = PublishSubject();
-
+  ///Timeline Arguments
   PublishSubject<bool> _showTimeLineSubject = PublishSubject();
 
   Stream<bool> get showTimeLineStream => _showTimeLineSubject.stream;
 
-  Stream<PageController> get pageControllerStream => _pageControllerSubject.stream;
-
   BehaviorSubject<bool> _showRequestMoneyPopUpSubject = BehaviorSubject.seeded(false);
 
-  bool showBody = true;
   bool isShowBalenceUpdatedToast = false;
 
   CardType cardType = CardType.DEBIT;
@@ -95,36 +90,28 @@ class AppHomeViewModel extends BasePageViewModel {
 
   GetDashboardDataContent dashboardDataContent = GetDashboardDataContent();
 
-  /// Sent money popup request
-  PublishSubject<bool> _sentMoneyPopUpResponse = PublishSubject();
-
-  /// Sent money popup stream
-  Stream<bool> get getSentMoneyPopUpDataStream => _sentMoneyPopUpResponse.stream;
-
-  /// Sent money popup request
+  /// ------------------------------Request money pop-up------------------///
   PublishSubject<bool> _requestMoneyPopUpResponse = PublishSubject();
 
-  /// Sent money popup response
   PublishSubject<bool> _requestMoneyRequest = PublishSubject();
 
-  /// Sent money popup stream
   Stream<bool> get getRequestMoneyPopUpDataStream => _requestMoneyPopUpResponse.stream;
 
-  ///dashboard card data response
+  /// ------------------------------Request money pop-up------------------///
+
+  ///------------------------------dashboard card data response ------------------///
   BehaviorSubject<GetDashboardDataContent> _dashboardCardResponse =
       BehaviorSubject.seeded(GetDashboardDataContent());
 
-  ///dashboard card data response stream
   Stream<GetDashboardDataContent> get getDashboardCardDataStream => _dashboardCardResponse.stream;
 
-  ///get dashboard data request
   PublishSubject<GetDashboardDataUseCaseParams> _getDashboardDataRequest = PublishSubject();
 
-  ///get dashboard data response
   PublishSubject<Resource<GetDashboardDataResponse>> _getDashboardDataResponse = PublishSubject();
 
-  ///get dashboard data response stream
   Stream<Resource<GetDashboardDataResponse>> get getDashboardDataStream => _getDashboardDataResponse.stream;
+
+  ///------------------------------dashboard card data response ------------------///
 
   Size deviceSize = Size(0, 0);
 
@@ -213,6 +200,8 @@ class AppHomeViewModel extends BasePageViewModel {
 
   ///---------------Verify QR----------------------///
 
+  bool showPopUp = false;
+
   AppHomeViewModel(
       this._getDashboardDataUseCase,
       this._getPlaceholderUseCase,
@@ -254,38 +243,14 @@ class AppHomeViewModel extends BasePageViewModel {
           triggerRequestMoneyPopup();
 
           ///fetching antelop cards
-          //getAntelopCards();
-          // showApplePayPopUp(true);
-
-          ///fetching antelop cards
-          // showErrorState();
           initDynamicLink();
-          getCurrentUser();
-          // showToastWithError(event.appError!);
           timeLineArguments.placeholderData = timelinePlaceholderData;
-
-          ///show apple pay pop up button
-          if (!AppConstantsUtils.isApplePayPopUpShown) {
-            showApplePayPopUp(true);
-            AppConstantsUtils.isApplePayPopUpShown = true;
-          }
         } else if (event.status == Status.SUCCESS) {
-          ///fetching antelop cards
-          //getAntelopCards();
-          // showApplePayPopUp(true);
-
           ///fetching antelop cards
           triggerRequestMoneyPopup();
           initDynamicLink();
-          getCurrentUser();
           timelinePlaceholderData = event.data!.data!;
           timeLineArguments.placeholderData = event.data!.data;
-
-          ///show apple pay pop up button
-          if (!AppConstantsUtils.isApplePayPopUpShown) {
-            showApplePayPopUp(true);
-            AppConstantsUtils.isApplePayPopUpShown = true;
-          }
         }
       });
     });
@@ -329,11 +294,7 @@ class AppHomeViewModel extends BasePageViewModel {
     _initDynamicLinkRequestRequest.listen((value) {
       RequestManager(value, createCall: () => _initDynamicLinkUseCase.execute(params: value))
           .asFlow()
-          .listen((event) {
-        if (event.status == Status.SUCCESS) {
-          _initDynamicLinkRequestResponse.safeAdd(event);
-        }
-      });
+          .listen((event) {});
     });
 
     _currentUserRequestSubject.listen((value) {
@@ -366,6 +327,19 @@ class AppHomeViewModel extends BasePageViewModel {
     });
 
     getDashboardData();
+  }
+
+  showPopUps() {
+    if (!showPopUp) {
+      showPopUp = true;
+      getCurrentUser();
+
+      ///show apple pay pop up button
+      if (!AppConstantsUtils.isApplePayPopUpShown) {
+        showApplePayPopUp(true);
+        AppConstantsUtils.isApplePayPopUpShown = true;
+      }
+    }
   }
 
   void getDashboardPages(GetDashboardDataContent dashboardDataContent) {
@@ -402,7 +376,6 @@ class AppHomeViewModel extends BasePageViewModel {
             if (creditCard.isCreditDelivered ?? false) {
               pages.add(CreditCardWidget(
                 accountBalance: dashboardDataContent.account!.availableBalance,
-                isSmallDevice: isSmallDevices,
                 creditCard: creditCard,
                 isChangePinEnabled: dashboardDataContent.dashboardFeatures?.isPinChangeEnabled ?? true,
                 key: ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
@@ -491,15 +464,6 @@ class AppHomeViewModel extends BasePageViewModel {
                     cardTypeList.add(
                         TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
                 }
-                // if (creditCard.isCallPending ?? false) {
-                //   pages.add(CreditCardApplicationUnderReviewWidget(
-                //     isSmallDevices: isSmallDevices,
-                //   ));
-                //   cardTypeList.add(
-                //       TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-                // } else {
-                //
-                // }
               }
             }
           }
@@ -539,27 +503,37 @@ class AppHomeViewModel extends BasePageViewModel {
         dashboardDataContent.debitCard!.forEach((debitCard) {
           if (debitCard.cardStatus == FreezeCardStatusEnum.L) {
             if (!(debitCard.isPINSet ?? true)) {
-              pages.add(ApplyDebitCardWidget(
-                debitRoutes: DebitRoutes.DASHBOARD,
-                isSmallDevice: isSmallDevices,
-                isPinSet: debitCard.isPINSet!,
-                cardHolderName: debitCard.accountTitle ?? '',
-                cardNo: debitCard.cardNumber ?? '',
-                primarySecondaryEnum: debitCard.primarySecondaryCard ?? PrimarySecondaryEnum.PRIMARY,
-              ));
+              if (dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.DORMANT) {
+                ///Dormant account widget
+                pages.add(DormantAccountDebitCardDisabledWidget());
+              } else {
+                pages.add(ApplyDebitCardWidget(
+                  debitRoutes: DebitRoutes.DASHBOARD,
+                  isSmallDevice: isSmallDevices,
+                  isPinSet: debitCard.isPINSet!,
+                  cardHolderName: debitCard.accountTitle ?? '',
+                  cardNo: debitCard.cardNumber ?? '',
+                  primarySecondaryEnum: debitCard.primarySecondaryCard ?? PrimarySecondaryEnum.PRIMARY,
+                ));
+              }
 
               ///adding cardType
               cardTypeList
                   .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
             } else {
-              pages.add(ApplyDebitCardWidget(
-                debitRoutes: DebitRoutes.DASHBOARD,
-                isSmallDevice: isSmallDevices,
-                isPinSet: true,
-                cardHolderName: debitCard.accountTitle ?? '',
-                cardNo: debitCard.cardNumber ?? '',
-                primarySecondaryEnum: debitCard.primarySecondaryCard ?? PrimarySecondaryEnum.PRIMARY,
-              ));
+              if (dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.DORMANT) {
+                ///Dormant account widget
+                pages.add(DormantAccountDebitCardDisabledWidget());
+              } else {
+                pages.add(ApplyDebitCardWidget(
+                  debitRoutes: DebitRoutes.DASHBOARD,
+                  isSmallDevice: isSmallDevices,
+                  isPinSet: true,
+                  cardHolderName: debitCard.accountTitle ?? '',
+                  cardNo: debitCard.cardNumber ?? '',
+                  primarySecondaryEnum: debitCard.primarySecondaryCard ?? PrimarySecondaryEnum.PRIMARY,
+                ));
+              }
 
               ///adding cardType
               cardTypeList
@@ -567,20 +541,27 @@ class AppHomeViewModel extends BasePageViewModel {
             }
           } else {
             if (!(debitCard.isPINSet ?? true)) {
-              pages.add(ApplyDebitCardWidget(
-                debitRoutes: DebitRoutes.DASHBOARD,
-                isSmallDevice: isSmallDevices,
-                isPinSet: debitCard.isPINSet!,
-                cardHolderName: debitCard.accountTitle ?? '',
-                cardNo: debitCard.cardNumber ?? '',
-                primarySecondaryEnum: debitCard.primarySecondaryCard ?? PrimarySecondaryEnum.PRIMARY,
-              ));
+              if (dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.DORMANT) {
+                ///Dormant account widget
+                pages.add(DormantAccountDebitCardDisabledWidget());
+              } else {
+                pages.add(ApplyDebitCardWidget(
+                  debitRoutes: DebitRoutes.DASHBOARD,
+                  isSmallDevice: isSmallDevices,
+                  isPinSet: debitCard.isPINSet!,
+                  cardHolderName: debitCard.accountTitle ?? '',
+                  cardNo: debitCard.cardNumber ?? '',
+                  primarySecondaryEnum: debitCard.primarySecondaryCard ?? PrimarySecondaryEnum.PRIMARY,
+                ));
+              }
 
               ///adding cardType
               cardTypeList
                   .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
             } else {
               pages.add(DebitCardWidget(
+                  accountStatusEnum:
+                      dashboardDataContent.account?.accountStatusEnum ?? AccountStatusEnum.NONE,
                   isPrimaryDebitCard: isPrimaryDebitCard,
                   isSmallDevice: isSmallDevices,
                   key: ValueKey('debit${debitCard.code}${debitCard.cvv}'),
@@ -608,12 +589,17 @@ class AppHomeViewModel extends BasePageViewModel {
           }
         });
       } else {
-        pages.add(ApplyDebitCardWidget(
-          debitRoutes: DebitRoutes.DASHBOARD,
-          isSmallDevice: isSmallDevices,
-          isPinSet: true,
-          primarySecondaryEnum: PrimarySecondaryEnum.PRIMARY,
-        ));
+        if (dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.DORMANT) {
+          ///Dormant account widget
+          pages.add(DormantAccountDebitCardDisabledWidget());
+        } else {
+          pages.add(ApplyDebitCardWidget(
+            debitRoutes: DebitRoutes.DASHBOARD,
+            isSmallDevice: isSmallDevices,
+            isPinSet: true,
+            primarySecondaryEnum: PrimarySecondaryEnum.PRIMARY,
+          ));
+        }
 
         ///adding cardType
         cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
@@ -715,36 +701,11 @@ class AppHomeViewModel extends BasePageViewModel {
     return 10.0;
   }
 
-  // double getSize(bool isActive, int i, int currentPage) {
-  //   if (isActive) {
-  //     return 13.0;
-  //   } else if (i == 0 && !isActive && currentPage > 1) {
-  //     return 5.0;
-  //   } else if (i == 0 && !isActive && currentPage == 1) {
-  //     return 5.0;
-  //   } else if (i == 3 && !isActive && currentPage == 2) {
-  //     return 5.0;
-  //   } else if (i == 3 && !isActive && currentPage < 2) {
-  //     return 5.0;
-  //   } else if (i == 1 && !isActive && currentPage == 3) {
-  //     return 10.0;
-  //   } else if (i == 2 && !isActive && currentPage == 0) {
-  //     return 10.0;
-  //   } else if (i == 1 && !isActive && currentPage == 2) {
-  //     return 10.0;
-  //   } else if (i == 2 && !isActive && currentPage == 1) {
-  //     return 10.0;
-  //   }
-  //   return 10.0;
-  // }
-
   void updatePage(int index) {
     _currentStep.safeAdd(index);
   }
 
   void updatePageControllerStream(int index) {
-    controller = PageController(initialPage: index, viewportFraction: 0.8, keepPage: true);
-    _pageControllerSubject.safeAdd(controller);
     _currentStep.safeAdd(index);
   }
 
@@ -769,10 +730,6 @@ class AppHomeViewModel extends BasePageViewModel {
     _getDashboardDataRequest.safeAdd(GetDashboardDataUseCaseParams());
   }
 
-  // void triggerSentMoneyPopup() {
-  //   _sentMoneyRequest.safeAdd(true);
-  // }
-
   ///request money timeline placeholder
   void triggerRequestMoneyPopup() {
     if (_showRequestMoneyPopUpSubject.value) {
@@ -793,8 +750,33 @@ class AppHomeViewModel extends BasePageViewModel {
     _showRequestMoneyPopUpSubject.safeAdd(value);
   }
 
-  initDynamicLink() {
-    _initDynamicLinkRequestRequest.safeAdd(InitDynamicLinkUseCaseParams());
+  bool isLinkOpened = false;
+
+  initDynamicLink() async {
+    isLinkOpened = false;
+    print('Called------times');
+    Uri uri = await DynamicLinksService().initDynamicLinks();
+    print('Called------times---1');
+    if (Platform.isIOS) {
+      DynamicLinksService().onLink().distinct().listen((event) async {
+        print('Called------times---2====${event.link}');
+        if (!isLinkOpened) {
+          verifyQRData(uri: event.link);
+        }
+      });
+    }
+
+    verifyQRData(uri: uri);
+  }
+
+  void verifyQRData({required Uri uri}) {
+    if (uri.path.isNotEmpty && uri.queryParameters.isNotEmpty) {
+      isLinkOpened = true;
+      var requestId = uri.queryParameters['requestId']?.replaceAll(' ', '+');
+      verifyQR(requestId: requestId ?? '');
+    } else {
+      showPopUps();
+    }
   }
 
   ///--------------------Antelop Cards List-----------------///
@@ -845,6 +827,18 @@ class AppHomeViewModel extends BasePageViewModel {
 
   ///--------------------Apple Pay PopUp -------------------///
 
+  ///--------------------Account dormant status -------------------///
+
+  PublishSubject<bool> _showAccountDormantStatusPopUpRequest = PublishSubject();
+
+  Stream<bool> get accountDormantStatusPopUpStream => _showAccountDormantStatusPopUpRequest.stream;
+
+  void showAccountDormantPopUp(bool value) {
+    _showAccountDormantStatusPopUpRequest.safeAdd(value);
+  }
+
+  ///--------------------Account dormant status -------------------///
+
   ///--------------------Add Another card To Apple Pay PopUp -------------------///
 
   PublishSubject<bool> _showAddAnotherCardToApplePayPopUpRequest = PublishSubject();
@@ -863,10 +857,12 @@ class AppHomeViewModel extends BasePageViewModel {
   void dispose() {
     _currentStep.close();
     _showTimeLineSubject.close();
-    _pageControllerSubject.close();
     _getPlaceHolderRequest.close();
     _getPlaceHolderResponse.close();
     _showRequestMoneyPopUpSubject.close();
+    _verifyQRRequest.close();
+    _verifyQRResponse.close();
+
     if (timer != null) {
       timer?.cancel();
     }

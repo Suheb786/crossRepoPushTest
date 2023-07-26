@@ -42,6 +42,7 @@ class BeneficiaryOtherContactEntity
   final String? purposeType;
   final String? detCustomerType;
   final bool? isFavorite;
+  final String? identifier;
 
   BeneficiaryOtherContactEntity(
       {this.id,
@@ -77,7 +78,8 @@ class BeneficiaryOtherContactEntity
       this.limit,
       this.purposeType,
       this.detCustomerType,
-      this.isFavorite});
+      this.isFavorite,
+      this.identifier});
 
   factory BeneficiaryOtherContactEntity.fromJson(Map<String, dynamic> json) =>
       _$BeneficiaryOtherContactEntityFromJson(json);
@@ -120,6 +122,7 @@ class BeneficiaryOtherContactEntity
         limit: this.limit,
         purposeType: this.purposeType,
         detCustomerType: this.detCustomerType,
-        isFavorite: this.isFavorite);
+        isFavorite: this.isFavorite,
+        identifier: this.identifier ?? '');
   }
 }

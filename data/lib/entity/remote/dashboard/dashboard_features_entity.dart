@@ -106,7 +106,7 @@ class DashboardFeaturesEntity
         isDebitCardRequestPhysicalCardEnabled: this.isDebitCardPhysicalCardRequestEnabled ?? false,
         blinkRetailAppBillPayment: this.blinkRetailAppBillPayment ?? false,
         appBillPaymentPostpaid: this.blinkRetailAppBillPaymentPayPostpaid ?? false,
-        appBillPaymentQrCode: this.paymentQRCode ?? false,
+        appBillPaymentQrCode: /*this.paymentQRCode ?? false*/true,
         appBillPaymentPrepaid: this.blinkRetailAppBillPaymentPayPrepaid ?? false,
         blinkRetailAppCliq: this.blinkRetailAppCliq ?? false,
         blinkRetailAppCliqAliasManagement: this.blinkRetailAppAliasManagement ?? false,

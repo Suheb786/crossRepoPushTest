@@ -56,7 +56,6 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                           ProviderScope.containerOf(context)
                               .read(paymentToNewRecipientViewModelProvider)
                               .nextPage();
-                          // .next();
                         }
                       },
                       dataBuilder: (context, transferVerified) {
@@ -112,7 +111,6 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                       ProviderScope.containerOf(context)
                                           .read(paymentToNewRecipientViewModelProvider)
                                           .nextPage();
-                                      // .next();
                                     } else {
                                       model.verifyTransfer(
                                           amount: ProviderScope.containerOf(context)
@@ -143,10 +141,20 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                       FocusScope.of(context).unfocus();
                                       if (StringUtils.isDirectionRTL(context)) {
                                         if (!details.primaryVelocity!.isNegative) {
+                                          model.ibanOrMobileKey.currentState?.isValid = true;
+                                          model.recipientNameKey.currentState?.isValid = true;
+                                          model.recipientAddressKey.currentState?.isValid = true;
+                                          model.purposeKey.currentState?.isValid = true;
+                                          model.purposeDetailKey.currentState?.isValid = true;
                                           model.sendToNewRecipient(context);
                                         }
                                       } else {
                                         if (details.primaryVelocity!.isNegative) {
+                                          model.ibanOrMobileKey.currentState?.isValid = true;
+                                          model.recipientNameKey.currentState?.isValid = true;
+                                          model.recipientAddressKey.currentState?.isValid = true;
+                                          model.purposeKey.currentState?.isValid = true;
+                                          model.purposeDetailKey.currentState?.isValid = true;
                                           model.sendToNewRecipient(context);
                                         }
                                       }

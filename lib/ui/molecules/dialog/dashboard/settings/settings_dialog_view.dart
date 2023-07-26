@@ -341,8 +341,8 @@ class SettingsDialogView extends StatelessWidget {
                                       AppConstantsUtils.isApplePayPopUpShown = false;
                                       AntelopHelper.walletDisconnect();
                                     }
-                                    Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
-                                        ModalRoute.withName(RoutePaths.Splash));
+                                    Navigator.pushNamedAndRemoveUntil(
+                                        context, RoutePaths.OnBoarding, (route) => false);
                                   }
                                 },
                                 dataBuilder: (context, data) {
@@ -586,8 +586,8 @@ class SettingsDialogView extends StatelessWidget {
                                       AppConstantsUtils.isApplePayPopUpShown = false;
                                       AntelopHelper.walletDisconnect();
                                     }
-                                    Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
-                                        ModalRoute.withName(RoutePaths.Splash));
+                                    Navigator.pushNamedAndRemoveUntil(
+                                        context, RoutePaths.OnBoarding, (route) => false);
                                   }
                                 },
                                 dataBuilder: (context, data) {
@@ -892,8 +892,8 @@ class SettingsDialogView extends StatelessWidget {
                                         AppConstantsUtils.isApplePayPopUpShown = false;
                                         AntelopHelper.walletDisconnect();
                                       }
-                                      Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
-                                          ModalRoute.withName(RoutePaths.Splash));
+                                      Navigator.pushNamedAndRemoveUntil(
+                                          context, RoutePaths.OnBoarding, (route) => false);
                                     }
                                   },
                                   dataBuilder: (context, data) {
@@ -1098,6 +1098,53 @@ class SettingsDialogView extends StatelessWidget {
                                 ),
                               ),
 
+                              ///EVOUCHER
+                              InkWell(
+                                onTap: onClick
+                                    ? () {
+                                        Navigator.pushNamed(context, RoutePaths.Evoucher);
+                                      }
+                                    : () {},
+                                child: Container(
+                                  height: 174.0.h,
+                                  width: 112.0.w,
+                                  decoration: BoxDecoration(
+                                      color: currentStep == 3
+                                          ? Theme.of(context).textTheme.bodyLarge!.color!
+                                          : Theme.of(context).colorScheme.secondary,
+                                      borderRadius: BorderRadius.circular(8)),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                          height: 64.0.h,
+                                          width: 64.0.w,
+                                          padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                          margin: EdgeInsets.only(bottom: 16.0.h),
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                          child: AppSvg.asset(AssetUtils.e_voucher,
+                                              color: currentStep == 3
+                                                  ? Theme.of(context).colorScheme.secondary
+                                                  : Theme.of(context).primaryColorDark)),
+                                      Text(
+                                        S.of(context).eVouchers,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontWeight: FontWeight.w600,
+                                            color: currentStep == 3
+                                                ? Theme.of(context).colorScheme.secondary
+                                                : Theme.of(context).primaryColorDark,
+                                            fontSize: 12.0.t),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+
                               ///Profile settings
                               InkWell(
                                   onTap: onClick
@@ -1109,7 +1156,7 @@ class SettingsDialogView extends StatelessWidget {
                                     height: 174.0.h,
                                     width: 112.0.w,
                                     decoration: BoxDecoration(
-                                        color: currentStep == 3
+                                        color: currentStep == 4
                                             ? Theme.of(context).textTheme.bodyLarge!.color!
                                             : Theme.of(context).colorScheme.secondary,
                                         borderRadius: BorderRadius.circular(8)),
@@ -1140,7 +1187,7 @@ class SettingsDialogView extends StatelessWidget {
                                                                   fontFamily: StringUtils.appFont,
                                                                   fontWeight: FontWeight.w700,
                                                                   fontSize: 18.0.t,
-                                                                  color: currentStep == 3
+                                                                  color: currentStep == 4
                                                                       ? Theme.of(context)
                                                                           .colorScheme
                                                                           .secondary
@@ -1162,7 +1209,7 @@ class SettingsDialogView extends StatelessWidget {
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
                                               fontWeight: FontWeight.w600,
-                                              color: currentStep == 3
+                                              color: currentStep == 4
                                                   ? Theme.of(context).colorScheme.secondary
                                                   : Theme.of(context).primaryColorDark,
                                               fontSize: 12.0.t),
@@ -1182,8 +1229,8 @@ class SettingsDialogView extends StatelessWidget {
                                         AppConstantsUtils.isApplePayPopUpShown = false;
                                         AntelopHelper.walletDisconnect();
                                       }
-                                      Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
-                                          ModalRoute.withName(RoutePaths.Splash));
+                                      Navigator.pushNamedAndRemoveUntil(
+                                          context, RoutePaths.OnBoarding, (route) => false);
                                     }
                                   },
                                   dataBuilder: (context, data) {
@@ -1197,7 +1244,7 @@ class SettingsDialogView extends StatelessWidget {
                                         height: 174.0.h,
                                         width: 112.0.w,
                                         decoration: BoxDecoration(
-                                            color: currentStep == 4
+                                            color: currentStep == 5
                                                 ? Theme.of(context).textTheme.bodyLarge!.color!
                                                 : Theme.of(context).colorScheme.secondary,
                                             borderRadius: BorderRadius.circular(8)),
@@ -1215,7 +1262,7 @@ class SettingsDialogView extends StatelessWidget {
                                                     shape: BoxShape.circle,
                                                     border: Border.all(color: AppColor.whiteGrey, width: 1)),
                                                 child: AppSvg.asset(AssetUtils.logout,
-                                                    color: currentStep == 4
+                                                    color: currentStep == 5
                                                         ? Theme.of(context).colorScheme.secondary
                                                         : Theme.of(context).primaryColorDark)),
                                             Text(
@@ -1224,7 +1271,7 @@ class SettingsDialogView extends StatelessWidget {
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   fontWeight: FontWeight.w600,
-                                                  color: currentStep == 4
+                                                  color: currentStep == 5
                                                       ? Theme.of(context).colorScheme.secondary
                                                       : Theme.of(context).primaryColorDark,
                                                   fontSize: 12.0.t),
@@ -1274,17 +1321,27 @@ class SettingsDialogView extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                height: 41.45.h,
+                                height: 30.h,
                               ),
                               InkWell(
                                 onTap: () {
                                   Navigator.pop(context);
                                 },
-                                child: AppSvg.asset(AssetUtils.close,
-                                    color: Theme.of(context).colorScheme.secondary),
+                                child: Container(
+                                  padding: EdgeInsets.all(15),
+                                  height: 80.w,
+                                  width: 80.w,
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context).colorScheme.secondary,
+                                    border: Border.all(color: Theme.of(context).primaryColorDark, width: 12),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: AppSvg.asset(AssetUtils.close,
+                                      color: Theme.of(context).textTheme.bodyLarge?.color),
+                                ),
                               ),
                               SizedBox(
-                                height: 50.0.h,
+                                height: 24.0.h,
                               ),
                             ],
                           ),

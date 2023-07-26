@@ -13,9 +13,11 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 GlobalKey<NavigatorState> appLevelKey = GlobalKey(debugLabel: 'app-key');
 
@@ -88,9 +90,9 @@ class AppViewModel extends BaseViewModel {
           inputDecorationTheme: InputDecorationTheme(
               hintStyle: TextStyle(
                 fontFamily: StringUtils.appFont,
-                color: AppColor.gray1,
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
+                color: AppColor.very_dark_gray_black,
+                fontSize: 14.t,
+                fontWeight: FontWeight.w600,
                 fontStyle: FontStyle.normal,
               ),
               filled: false,
@@ -143,7 +145,7 @@ class AppViewModel extends BaseViewModel {
                 fontFamily: StringUtils.appFont,
               ),
               displayMedium: TextStyle(
-                color: AppColor.very_dark_gray,
+                color: AppColor.very_dark_gray2,
                 fontFamily: StringUtils.appFont,
               ),
               displaySmall: TextStyle(
@@ -159,18 +161,13 @@ class AppViewModel extends BaseViewModel {
                 fontFamily: StringUtils.appFont,
               ),
               labelSmall: TextStyle(
-                color: AppColor.lightGrayishMagenta,
+                color: AppColor.dark_yellow1,
                 fontFamily: StringUtils.appFont,
               ),
               titleMedium: TextStyle(
                 color: AppColor.very_dark_gray1,
                 fontFamily: StringUtils.appFont,
-              ))
-            ..apply(
-                // bodyColor: AppColor.brightBlue,
-                // displayColor: AppColor.brightBlue,
-                // decorationColor: AppColor.brightBlue,
-                ),
+              )),
           primaryTextTheme: _themeData.textTheme.copyWith(
             bodyLarge: TextStyle(color: AppColor.white, fontFamily: StringUtils.appFont),
           ),
@@ -186,6 +183,15 @@ class AppViewModel extends BaseViewModel {
           highlightColor: Colors.transparent,
           dividerColor: AppColor.lightGrayishBlue,
           canvasColor: AppColor.vividYellow,
+          tabBarTheme: TabBarTheme(
+            labelColor: AppColor.darkBlack,
+            unselectedLabelColor: AppColor.gray4,
+            indicatorColor: AppColor.brightRed,
+            indicator: UnderlineTabIndicator(
+              borderSide: BorderSide(width: 4.0, color: AppColor.brightRed),
+            ),
+          ),
+
           /*colorScheme: ColorScheme.fromSwatch(accentColor: AppColor.white)
                 .copyWith(background: AppColor.lightGray)
                 .copyWith(error: AppColor.vivid_red)*/
@@ -347,6 +353,10 @@ class AppViewModel extends BaseViewModel {
     _receivePort.close();
     _isolate?.kill();
     super.dispose();
+  }
+
+  Future<void> getAppSignature() async {
+    AppConstantsDomain.APP_SIGNATURE = await SmsAutoFill().getAppSignature;
   }
 }
 

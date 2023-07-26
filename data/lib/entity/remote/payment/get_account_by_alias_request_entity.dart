@@ -10,10 +10,18 @@ class GetAccountByAliasRequestEntity {
   final String? currency;
   @JsonKey(name: "getToken")
   final bool getToken;
+  @JsonKey(name: "BeneficiaryId")
+  final String? beneficiaryId;
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  GetAccountByAliasRequestEntity({required this.baseData, this.value, this.currency, this.getToken= true});
+  GetAccountByAliasRequestEntity({
+    required this.baseData,
+    this.value,
+    this.currency,
+    this.getToken = true,
+    required this.beneficiaryId,
+  });
 
   factory GetAccountByAliasRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$GetAccountByAliasRequestEntityFromJson(json);

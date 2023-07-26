@@ -33,6 +33,7 @@ class BeneficiaryFavoriteContact {
   final String? purposeType;
   final String? detCustomerType;
   final bool? isFavorite;
+  final String? identifier;
 
   BeneficiaryFavoriteContact(
       {this.id,
@@ -68,5 +69,6 @@ class BeneficiaryFavoriteContact {
       this.limit,
       this.purposeType,
       this.detCustomerType,
-      this.isFavorite});
+      this.isFavorite,
+      this.identifier});
 }

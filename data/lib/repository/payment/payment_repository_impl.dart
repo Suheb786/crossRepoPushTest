@@ -21,9 +21,9 @@ class PaymentRepositoryImpl extends PaymentRepository {
 
   @override
   Future<Either<NetworkError, GetAccountByAliasContentResponse>> getAccountByAlias(
-      String value, String currency) async {
+      String value, String currency, String? beneficiaryId) async {
     final result = await safeApiCall(
-      paymentRemoteDs.getAccountByAlias(value, currency),
+      paymentRemoteDs.getAccountByAlias(value, currency, beneficiaryId),
     );
     return result!.fold(
       (l) => Left(l),
@@ -133,17 +133,6 @@ class PaymentRepositoryImpl extends PaymentRepository {
   }
 
   @override
-  Future<Either<NetworkError, PaymentActivityResponse>> getPaymentActivity({int? filterDays}) async {
-    final result = await safeApiCall(
-      paymentRemoteDs.getPaymentActivity(filterDays: filterDays),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
-    );
-  }
-
-  @override
   Future<Either<NetworkError, bool>> payBackCreditCard({String? secureCode, String? payBackAmount}) async {
     final result = await safeApiCall(
       paymentRemoteDs.payBackCreditCard(secureCode: secureCode, payBackAmount: payBackAmount),
@@ -151,39 +140,6 @@ class PaymentRepositoryImpl extends PaymentRepository {
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
-    );
-  }
-
-  @override
-  Future<Either<NetworkError, TransferSuccessResponse>> transferAPINoOtp(
-      {String? beneficiaryId,
-      String? transferType,
-      String? beneficiaryImage,
-      bool? isFriend,
-      num? toAmount,
-      num? localEq,
-      String? memo,
-      String? toAccount,
-      String? nickName,
-      String? detCustomerType,
-      String? type}) async {
-    final result = await safeApiCall(
-      paymentRemoteDs.transferAPINoOtp(
-          beneficiaryId: beneficiaryId!,
-          transferType: transferType!,
-          beneficiaryImage: beneficiaryImage!,
-          isFriend: isFriend!,
-          toAmount: toAmount!,
-          localEq: localEq!,
-          memo: memo!,
-          toAccount: toAccount!,
-          nickName: nickName!,
-          detCustomerType: detCustomerType!,
-          type: type!),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
     );
   }
 
@@ -200,9 +156,12 @@ class PaymentRepositoryImpl extends PaymentRepository {
 
   @override
   Future<Either<NetworkError, QRTransferResponse>> transferQR(
-      {required String requestId, required String toAmount, required String toAccount}) async {
+      {required String requestId,
+      required String toAmount,
+      required String toAccount,
+      required String otp}) async {
     final result = await safeApiCall(
-      paymentRemoteDs.transferQR(requestId: requestId, toAmount: toAmount, toAccount: toAccount),
+      paymentRemoteDs.transferQR(requestId: requestId, toAmount: toAmount, toAccount: toAccount, otp: otp),
     );
     return result!.fold(
       (l) => Left(l),
@@ -227,5 +186,16 @@ class PaymentRepositoryImpl extends PaymentRepository {
       {required bool GetToken}) async {
     final result = await safeApiCall(paymentRemoteDs.getReturnRejectionReason(getToken: GetToken));
     return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> qrScanOTP() async {
+    final result = await safeApiCall(
+      paymentRemoteDs.qrScanOTP(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
   }
 }

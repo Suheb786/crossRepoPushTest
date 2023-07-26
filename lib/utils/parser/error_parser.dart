@@ -757,8 +757,6 @@ class ErrorParser {
         return localisedHelper.deviceIsRequired;
       case ErrorType.UNAUTHORIZED_USER:
         return localisedHelper.sessionTimeout;
-
-      ///error parsing
       case ErrorType.MODEL_NOT_CORRECT:
         return localisedHelper.errorModelNotCorrect;
       case ErrorType.UNAUTHORIZE:
@@ -990,7 +988,7 @@ class ErrorParser {
       case ErrorType.ERROR_GETTING_CARD_INFO_NET:
         return localisedHelper.errorInGetCardInfoNet;
       case ErrorType.ERROR_UPDATING_LIMITS:
-        return localisedHelper.errorUpdatingLimits;
+        return localisedHelper.oopsErrorWhileUpdatingCardLimit;
       case ErrorType.ERROR_UPDATING_CARD_STATUS_RULEENGINE:
         return localisedHelper.errorUpdatingCardStatusRuleEngine;
       case ErrorType.NO_DEBIT_CARD_FOUND:
@@ -1118,16 +1116,23 @@ class ErrorParser {
         return localisedHelper.noPrepaidCategoryFound;
       case ErrorType.INSUFFICIENT_FUNDS_BILL_CANNOT_BE_PAYED:
         return localisedHelper.insufficientFundsBillCannotBePaid;
+      //QR
       case ErrorType.QR_INVALID:
         return localisedHelper.qrInvalid;
+      case ErrorType.OOPS_THE_QR_CODE_IS_INVALID_PLEASE_TRY_AGAIN:
+        return localisedHelper.oopsTheQRisInvalid;
       case ErrorType.QR_EXPIRED:
-        return localisedHelper.qrExpired;
+        return localisedHelper.oopsTheQRCodeIsExpired;
       case ErrorType.ENTER_BILL_DETAILS:
         return localisedHelper.enterBillDetails;
       case ErrorType.INVALID_NICK_NAME:
         return localisedHelper.nickNameCanOnlyContainAlphanumerics;
       case ErrorType.QR_NOT_SCANNED:
         return localisedHelper.qrNotScanned;
+      case ErrorType.OOPS_YOU_CANNOT_SEND_MONEY_TO_YOUR_OWN_ACCOUNT:
+        return localisedHelper.oopsYouCantSendMoneyToYourOwnAccount;
+      case ErrorType.OOPS_YOU_CAN_ONLY_CREATE_5_CLIQ_IDS:
+        return localisedHelper.oopsYouCanOnlyCreate5CliqIds;
       case ErrorType.BILLER_IS_ALREADY_EXIST_WITHIN_THE_SAME_BILLING_NO:
         return localisedHelper.billerAlreadyExistsMessage;
       case ErrorType.BILL_PAYMENT_SORRY_MESSAGE:
@@ -1172,111 +1177,76 @@ class ErrorParser {
         return localisedHelper.selectAtLeastOneBill;
       case ErrorType.DORMANT_ACCOUNT:
         return localisedHelper.accountDormant;
-
       case ErrorType.ERROR_WHILE_GETTING_ALIAS:
         return localisedHelper.errorWhileGettingAlias;
-
       case ErrorType.ERROR_WHILE_GETTING_ACCOUNT_BY_ALIAS:
         return localisedHelper.errorWhileGettingAccountByAlias;
-
       case ErrorType.ERROR_WHILE_CREATING_AN_ALIAS:
         return localisedHelper.errorWhileCreatingAnAlias;
-
       case ErrorType.ERROR_WHILE_LINKING_ACCOUNT:
         return localisedHelper.errorWhileLinkingAccount;
-
       case ErrorType.ERROR_WHILE_EDITING_AN_ALIAS:
         return localisedHelper.errorWhileEditingAnAlias;
-
       case ErrorType.ERROR_WHILE_TRYING_TO_SUSPEND_AN_ALIAS:
         return localisedHelper.errorWhileTryingTosuspandAnAlias;
-
       case ErrorType.ERROR_WHILE_RE_ACTIVATING_AN_ALIAS:
         return localisedHelper.errorWhileReActivatingAnAlias;
-
       case ErrorType.ERROR_WHILE_DELETING_AN_ALIAS:
         return localisedHelper.errorWhileDeletingAnAlias;
-
       case ErrorType.ERROR_WHILE_CHANGING_TO_DEFAULT_ACCOUNT:
         return localisedHelper.errorWhileChangingToDefaultAccount;
-
       case ErrorType.ERROR_WHILE_UN_LINKING_ACCOUNT:
         return localisedHelper.errorWhileUnLinkingAccount;
-
       case ErrorType.ERROR_WHILE_REQUESTING_MONEY:
         return localisedHelper.errorWhileRequestingMoney;
-
       case ErrorType.ERROR_WHILE_REQUESTING_MONEY_ACTIVITY:
         return localisedHelper.errorWhileRequestingMoneyActivity;
-
       case ErrorType.ERROR_WHILE_UPDATING_RTP_REQUEST:
         return localisedHelper.errorWhileUpdatingRTPRequest;
-
       case ErrorType.ERROR_WHILE_SENDING_MONEY_TO_CLIQ_IBAN:
         return localisedHelper.errorWhileSendingMoneyToCliqIBAN;
-
       case ErrorType.ERROR_WHILE_GETTING_ACCOUNT_BY_CUSTOMER_ID:
         return localisedHelper.errorWhileGettingAccountByCustomerID;
-
       case ErrorType.ERROR_WHILE_GETTING_ACCOUNT_BY_CUSTOMER_ID:
         return localisedHelper.errorWhileGettingAccountByCustomerId;
-
       case ErrorType.ERROR_WHILE_SUBMITTING_OUTWARD_PAYMENT:
         return localisedHelper.errorWhileSubmittingOutwardPayment;
-
       case ErrorType.ERROR_ON_APPROVE_RTP_REQUEST:
         return localisedHelper.errorOnApproveRtpRequest;
-
       case ErrorType.ACCOUNT_IS_LINKED_TO_THE_ALIAS_BUT_UNABLE_TO_SET_IT_TO_DEFAULT:
         return localisedHelper.accountIsLinkedToTheAliasButUnableToSetItToDefault;
-
       case ErrorType.ERROR_ON_REQUEST_TO_PAY_RESULT:
         return localisedHelper.errorOnRequestToPayResult;
-
       case ErrorType.CUSTOMER_OF_INVALID_ALIAS:
         return localisedHelper.customerOfInvalidAlias;
-
       case ErrorType.INVALID_IBAN:
         return localisedHelper.invalidIban;
-
       case ErrorType.INVALID_ALIAS:
         return localisedHelper.invalidAlias;
-
       case ErrorType.INVALID_MOBILE_NUMBER:
         return localisedHelper.invalidMobileNo;
-
       case ErrorType.SERVICE_NOT_AVAILABLE:
         return localisedHelper.serviceIsNotavaliable;
-
       case ErrorType.INVALID_ALIAS_VALUE:
         return localisedHelper.invalidAliasValue;
-
       case ErrorType.PLEASE_ADD_LINK_ACCOUNT:
         return localisedHelper.pleaseAddLinkAccount;
-
       case ErrorType.EMPTY_RECIPIENT_NAME:
         return localisedHelper.emptyRecipientName;
-
       case ErrorType.EMPTY_RECIPIENT_ADDRESS:
         return localisedHelper.emptyRecipientAddress;
-
       case ErrorType.DORMANT_ACCOUNT:
         return localisedHelper.accountDormant;
-
       case ErrorType.NICKNAME_VALUE_EXCEEDS:
         return localisedHelper.nickNameValueExceeds;
-
       case ErrorType.REJECT_REASON_TYPE:
         return localisedHelper.pleaseSelectReasonToReject;
-
       case ErrorType.PLEASE_SELECT_REASON_TO_RETURN:
         return localisedHelper.pleaseSelectReasonToReturn;
       case ErrorType.INVALID_ALIAS_LENGTH:
         return localisedHelper.aliasShouldBeThreeChar;
-
       case ErrorType.INVALID_ALIAS_LENGTH:
         return localisedHelper.aliasShouldBeThreeChar;
-
       case ErrorType.ERROR_WHILE_GENERATING_QR_CODE:
         return localisedHelper.errorWhileGeneratingQrCode;
       case ErrorType.ERROR_WHILE_SENDING_QR_PAYMENT:
@@ -1287,10 +1257,8 @@ class ErrorParser {
         return localisedHelper.nicknameLengthShouldNotBeGreaterThan50;
       case ErrorType.ALIAS_ALREADY_EXIST:
         return localisedHelper.aliasAlreadyExist;
-
       case ErrorType.EXCEPTION_EXECUTING_GET_REJECTION_REASONS:
         return localisedHelper.exceptionExecutingGetRejectionReasons;
-
       case ErrorType.EXCEPTION_WHILE_EXECUTING_GET_RETURN_PAYMENT_REASONS:
         return localisedHelper.exceptionExecutingGetPaymentReasons;
       case ErrorType.ERROR_WHILE_GETTING_TRANSACTION_HISTORY_LIST:
@@ -1317,7 +1285,6 @@ class ErrorParser {
         return localisedHelper.accountClosed;
       case ErrorType.ERROR_WHILE_GETTING_GET_CREDIT_CONFIRMATION:
         return localisedHelper.errorWhileGettingGetCreditConfirmation;
-
       case ErrorType.MSGID_NOT_FOUND_IN_THE_TRANSACTION_HISTORY_LIST:
         return localisedHelper.msgIdNotFoundInTransactionHistory;
       case ErrorType.EXCEPTION_WHILE_EXECUTING_GET_CREDIT_CONFIRMATION:
@@ -1338,24 +1305,18 @@ class ErrorParser {
         return localisedHelper.contactLessLimitmaxLimit;
       case ErrorType.YOU_CANNOT_SEND_MONEY_TO_YOUR_OWN_ACCOUNT:
         return localisedHelper.youCannotSendMoneyToYourOwnAccount;
-
       case ErrorType.YOU_EITHER_CHANGE_PIN_OR_UNBLOCKED:
         return localisedHelper.youEitherChangePinOrUnBlocked;
-
       case ErrorType.OOPS_YOUR_CARD_IS_NOT_ACTIVE:
         return localisedHelper.oopsYourCardIsNotActive;
       case ErrorType.PLEASE_ENTER_CONTACT_NAME:
         return localisedHelper.pleaseEnterContactName;
-
       case ErrorType.PLEASE_ENTER_IBAN_ACCOUNT_MOBILE_ALIAS:
         return localisedHelper.pleaseEnterAValidaccountMobileNoAlias;
-
       case ErrorType.FATCA_ELIGIBLE:
         return localisedHelper.fatcaEligible;
-
       case ErrorType.ACCOUNT_DORMANT_ERROR:
         return localisedHelper.accountDormantError;
-
       case ErrorType.CLIQ_ID_IS_SUSPENDED:
         return localisedHelper.cliqIDisSuspended;
       case ErrorType.YOU_CANNOT_USE_YOUR_CLIQ_ID_TO_REQUEST_MONEY:
@@ -1370,7 +1331,6 @@ class ErrorParser {
         return localisedHelper.cliqIdAlreadyExists;
       case ErrorType.CREDIT_CONTACTLESS_PAYMENT_EXCEEDED:
         return localisedHelper.creditContactlessLimitExceeded;
-
       case ErrorType.FAVOURITE_CONTACT_LIMIT_EXCEEDED:
         return localisedHelper.favouriteContactLimitExceeded;
       case ErrorType.NICKNAME_ALREADY_EXISTM:
@@ -1397,7 +1357,12 @@ class ErrorParser {
         return localisedHelper.enterValidIBANCLiQ;
       case ErrorType.TRANSFER_CANNOT_BE_DONE:
         return localisedHelper.transferCannotbeDone;
-
+      case ErrorType.ACCOUNT_DORMANT:
+        return localisedHelper.dormantAccountPhysicalCardReq;
+      case ErrorType.OOPS_YOU_HAVE_EXCEEDED_YOUR_DAILY_TRANSFER_LIMIT:
+        return localisedHelper.oopsYouHaveExceededYourDailyTransferLimit;
+      case ErrorType.RECIPIENT_NAME_VALIDATION:
+        return localisedHelper.recipientNameValidation;
       default:
         return "";
     }

@@ -4,7 +4,6 @@ import 'dart:ui';
 import 'package:domain/constants/enum/request_money_activity_enum.dart';
 import 'package:domain/model/cliq/approve_rtp_otp/approve_rtp_otp.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
-import 'package:domain/usecase/activity/payment_activity_transaction_usecase.dart';
 import 'package:domain/usecase/manage_cliq/approve_rtp_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/request_money_activity_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -20,11 +19,6 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
   final PaymentActivityTransactionPageArgument paymentActivityTransactionPageArgument;
 
   ///---------------------------------------------------------------------------///
-  /// payment activity subject holder
-  PublishSubject<PaymentActivityTransactionUseCaseParams> _paymentActivityTransactionRequest =
-      PublishSubject();
-
-  PublishSubject<Resource<PaymentActivityResponse>> _paymentActivityTransactionResponse = PublishSubject();
 
   ///payment period
   BehaviorSubject<String> _paymentPeriodResponse = BehaviorSubject();
@@ -41,10 +35,9 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
   ///transaction type
   BehaviorSubject<String> _transactionTypeResponse = BehaviorSubject();
 
-  PaymentActivityTransactionUseCase _useCase;
   final ApproveRTPOtpUseCase _approveRTPOtpUseCase;
 
-  PaymentActivityTransactionViewModel(this.paymentActivityTransactionPageArgument, this._useCase,
+  PaymentActivityTransactionViewModel(this.paymentActivityTransactionPageArgument,
       this._requestMoneyActivityUseCase, this._approveRTPOtpUseCase) {
     _requestMoneyActivityRequest.listen(
       (value) {
@@ -69,16 +62,6 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
       },
     );
 
-    _paymentActivityTransactionRequest.listen((value) {
-      RequestManager(value, createCall: () => _useCase.execute(params: value)).asFlow().listen((event) {
-        updateLoader();
-        _paymentActivityTransactionResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showToastWithError(event.appError!);
-        }
-      });
-    });
-
     getRequestMoneyActivity(true, 30, "All");
 
     _approveRTPOtpRequest.listen(
@@ -99,13 +82,8 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
 
   @override
   void dispose() {
-    _paymentActivityTransactionResponse.close();
-    _paymentActivityTransactionRequest.close();
     super.dispose();
   }
-
-  Stream<Resource<PaymentActivityResponse>> get paymentActivityTransactionResponse =>
-      _paymentActivityTransactionResponse.stream;
 
   Stream<String> get transactionTypeResponseStream => _transactionTypeResponse.stream;
 
@@ -118,11 +96,6 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
   void getRequestMoneyActivity(bool getToken, int FilterDays, String TransactionType) {
     _requestMoneyActivityRequest.safeAdd(RequestMoneyActivityParams(
         getToken: getToken, FilterDays: FilterDays, TransactionType: TransactionType));
-  }
-
-  void getPaymentActivity(int filterDays) {
-    _paymentActivityTransactionRequest
-        .safeAdd(PaymentActivityTransactionUseCaseParams(filterDays: filterDays));
   }
 
   int filterDays = 30;

@@ -20,6 +20,7 @@ class Beneficiary {
   final String? purposeParent;
   final String? purposeParentDetails;
   final num? limit;
+  final String? identifier;
 
   Beneficiary(
       {this.id = "",
@@ -40,5 +41,6 @@ class Beneficiary {
       this.beneficiaryAddress = "",
       this.detCustomerType = "",
       this.purposeType = "",
-      this.beneType});
+      this.beneType,
+      this.identifier = ''});
 }
