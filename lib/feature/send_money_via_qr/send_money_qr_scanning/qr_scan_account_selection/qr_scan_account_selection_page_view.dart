@@ -125,18 +125,18 @@ class QRScanAccountSelectionPageView extends BasePageViewWidget<QRScanAccountSel
                                 child: Column(
                                   children: [
                                     SizedBox(
-                                      height: 38,
+                                      height: 38.h,
                                     ),
                                     Text(
                                       S.of(context).amount,
                                       style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         fontWeight: FontWeight.w400,
-                                        fontSize: 10,
+                                        fontSize: 10.t,
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(top: 4),
+                                      padding: EdgeInsets.only(top: 4.h),
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
@@ -150,17 +150,17 @@ class QRScanAccountSelectionPageView extends BasePageViewWidget<QRScanAccountSel
                                             style: TextStyle(
                                               fontFamily: StringUtils.appFont,
                                               fontWeight: FontWeight.w700,
-                                              fontSize: 24,
+                                              fontSize: 24.t,
                                             ),
                                           ),
                                           Padding(
-                                            padding: EdgeInsetsDirectional.only(start: 4.0, top: 2),
+                                            padding: EdgeInsetsDirectional.only(start: 4.0.w, top: 2.h),
                                             child: Text(
                                               S.of(context).JOD,
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   fontWeight: FontWeight.w700,
-                                                  fontSize: 14,
+                                                  fontSize: 14.t,
                                                   color: AppColor.verLightGray4),
                                             ),
                                           ),
@@ -168,7 +168,7 @@ class QRScanAccountSelectionPageView extends BasePageViewWidget<QRScanAccountSel
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.only(top: 32, start: 24, end: 24),
+                                      padding: EdgeInsetsDirectional.only(top: 32.h, start: 24.w, end: 24.w),
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
@@ -177,11 +177,11 @@ class QRScanAccountSelectionPageView extends BasePageViewWidget<QRScanAccountSel
                                             style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w400,
-                                                fontSize: 12,
+                                                fontSize: 12.t,
                                                 color: AppColor.dark_gray_1),
                                           ),
                                           Padding(
-                                            padding: EdgeInsetsDirectional.only(start: 4.0),
+                                            padding: EdgeInsetsDirectional.only(start: 4.0.w),
                                             child: Text(
                                               ProviderScope.containerOf(context)
                                                       .read(sendMoneyQrScanningViewModelProvider)
@@ -191,7 +191,7 @@ class QRScanAccountSelectionPageView extends BasePageViewWidget<QRScanAccountSel
                                               style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w600,
-                                                fontSize: 12,
+                                                fontSize: 12.t,
                                               ),
                                             ),
                                           ),
@@ -199,7 +199,7 @@ class QRScanAccountSelectionPageView extends BasePageViewWidget<QRScanAccountSel
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.only(start: 24, top: 32, end: 24),
+                                      padding: EdgeInsetsDirectional.only(start: 24.w, top: 32.h, end: 24.w),
                                       child: AppTextField(
                                         labelText: S.of(context).payFrom.toUpperCase(),
                                         hintText: S.of(context).pleaseSelect,
@@ -225,9 +225,9 @@ class QRScanAccountSelectionPageView extends BasePageViewWidget<QRScanAccountSel
                                         },
                                         suffixIcon: (isValid, value) {
                                           return Container(
-                                              height: 16,
-                                              width: 16,
-                                              padding: EdgeInsets.symmetric(horizontal: 7),
+                                              height: 16.h,
+                                              width: 16.w,
+                                              padding: EdgeInsets.symmetric(horizontal: 7.w),
                                               child: AppSvg.asset(AssetUtils.downArrow,
                                                   color: Theme.of(context).primaryColorDark));
                                         },

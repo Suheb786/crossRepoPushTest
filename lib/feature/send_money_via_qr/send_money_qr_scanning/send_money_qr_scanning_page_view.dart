@@ -39,8 +39,6 @@ class SendMoneyQRScanningPageView extends BasePageViewWidget<SendMoneyQRScanning
                   alignment: AlignmentDirectional.centerStart,
                   child: InkWell(
                     onTap: () async {
-                      Navigator.pop(context);
-
                       ///LOG EVENT TO FIREBASE
                       await FirebaseAnalytics.instance.logEvent(name: "payment_cancelled", parameters: {
                         "is_payment_cancelled": true.toString(),
