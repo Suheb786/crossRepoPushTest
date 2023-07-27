@@ -55,7 +55,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                     child: Container(
                         height: 16.0.h,
                         width: 16.0.w,
-                        padding: const EdgeInsets.all(6),
+                        padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 6.w),
                         child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
                   );
                 },
@@ -112,10 +112,6 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                             default:
                               return Container();
                           }
-
-                          if (categoryData?.status != Status.SUCCESS) {
-                            return const SizedBox();
-                          }
                         },
                       )
                     : AppStreamBuilder<Resource<List<VoucherItem>>>(
@@ -151,8 +147,6 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                           }
                         },
                       );
-
-                ;
               }),
         ],
       )),

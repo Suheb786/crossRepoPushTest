@@ -11,7 +11,7 @@ class CategoriesFilterDialogViewModel extends BasePageViewModel {
 
   Stream<int> get currentIndexStream => _currentSelectIndex.stream;
   List<VoucherCategories> allCategories = [
-    ///TODO Generate this String for arb file
+    ///TODO Generate this String for arb file for All Categories
     VoucherCategories(id: 0, categoryName: "All Categories")
   ];
 

@@ -2,6 +2,7 @@ import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class BrowserByCategoryItemWidget extends StatelessWidget {
@@ -16,7 +17,7 @@ class BrowserByCategoryItemWidget extends StatelessWidget {
       itemCount: categories.length,
       shrinkWrap: true,
       physics: ScrollPhysics(),
-      padding: const EdgeInsets.only(top: 24),
+      padding: EdgeInsets.only(top: 24.h),
       itemBuilder: (context, index) {
         return Container(
           child: _buildListItem(context, categories[index], index),
@@ -24,7 +25,7 @@ class BrowserByCategoryItemWidget extends StatelessWidget {
       },
       separatorBuilder: (BuildContext context, int index) {
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          padding: EdgeInsets.symmetric(vertical: 16.h),
           child: AppDivider(),
         );
       },
@@ -45,11 +46,11 @@ class BrowserByCategoryItemWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: 48,
-            height: 48,
+            width: 48.w,
+            height: 48.h,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(48),
-              border: Border.all(color: AppColor.gray1, width: 1),
+              borderRadius: BorderRadius.circular(48.w),
+              border: Border.all(color: AppColor.gray1, width: 1.w),
             ),
             alignment: Alignment.center,
             child:
@@ -59,14 +60,14 @@ class BrowserByCategoryItemWidget extends StatelessWidget {
               //   fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(width: 16),
+          SizedBox(width: 16.w),
           Expanded(
             child: Text(
               category.categoryName ?? '',
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
-                  color: AppColor.gray_black,
-                  fontSize: 14,
+                  color: Theme.of(context).colorScheme.shadow,
+                  fontSize: 14.t,
                   fontWeight: FontWeight.w600),
             ),
           )

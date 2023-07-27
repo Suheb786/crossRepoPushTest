@@ -30,6 +30,7 @@ class EVoucherFilterValidationUseCaseParams extends Params {
 
   @override
   Either<AppError, bool> verify() {
+    ///TODO Validation Msg for Filter Dialog
     if (category.isEmpty) {
       return Left(
           AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_IBAN_MOBILE, cause: Exception()));
@@ -40,6 +41,8 @@ class EVoucherFilterValidationUseCaseParams extends Params {
       return Left(AppError(
           error: ErrorInfo(message: ''), type: ErrorType.EMPTY_RECIPIENT_ADDRESS, cause: Exception()));
     } else if (maxValue.isEmpty) {
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_PURPOSE, cause: Exception()));
+    } else if (double.parse(maxValue) >= double.parse(minValue)) {
       return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_PURPOSE, cause: Exception()));
     }
     return Right(true);

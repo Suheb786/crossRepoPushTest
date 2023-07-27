@@ -107,6 +107,7 @@ class EVouchersFilterDialogViewModel extends BasePageViewModel {
   }
 
   void getError(Resource<bool> event) {
+    ///TODO Validation State Handling
     switch (event.appError!.type) {
       case ErrorType.EMPTY_IBAN_MOBILE:
         categoryKey.currentState!.isValid = false;

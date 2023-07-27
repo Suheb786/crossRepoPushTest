@@ -5,10 +5,10 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
-class MyVoucherItemView extends StatelessWidget {
+class MyVoucherHistoryWidget extends StatelessWidget {
   VoucherDetail data;
 
-  MyVoucherItemView(
+  MyVoucherHistoryWidget(
     this.data, {
     Key? key,
   }) : super(key: key);
@@ -47,9 +47,9 @@ class MyVoucherItemView extends StatelessWidget {
                     BoxDecoration(borderRadius: BorderRadius.circular(8.w)),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 child: CachedNetworkImage(
-                  imageUrl: data.cardImage ?? '',
-                  placeholder: (context, url) => Container(
-                      color: Theme.of(context).colorScheme.secondaryContainer),
+                  imageUrl: data.cardImage,
+                  placeholder: (context, url) =>
+                      Container(color: Theme.of(context).colorScheme.secondaryContainer),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                   fit: BoxFit.cover,
                 ),
@@ -92,7 +92,7 @@ class MyVoucherItemView extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "-" + data.lineItems.first.value.toString(),
+                      "- " + data.lineItems.first.value.toString(),
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           color: Theme.of(context).colorScheme.scrim,

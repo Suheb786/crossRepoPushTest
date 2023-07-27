@@ -8,7 +8,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog.dart';
-import 'package:neo_bank/ui/molecules/evoucher/my_voucher_item_view.dart';
+import 'package:neo_bank/ui/molecules/evoucher/my_voucher_history_widget_view.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -26,26 +26,23 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
     return AppKeyBoardHide(
       child: ListView(
         controller: model.scrollController,
-        padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
+        padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w),
         children: [
-          const SizedBox(height: 32),
+          SizedBox(height: 32.h),
           Row(
             children: [
               Expanded(
                 child: Focus(
                   onFocusChange: (focus) {
                     if (!focus) {
-                      if (model
-                          .myVoucherHistorySearchController.text.isNotEmpty) {
+                      if (model.myVoucherHistorySearchController.text.isNotEmpty) {
                         model.myVoucherHistoryList = [];
                         model.pageNo = 1;
 
                         model.getVoucherHistory(
                             pageNo: model.pageNo,
                             rangeOfMonths: model.filterDay,
-                            searchPhrase: model
-                                .myVoucherHistorySearchController.text
-                                .trim());
+                            searchPhrase: model.myVoucherHistorySearchController.text.trim());
                       }
                     }
                   },
@@ -53,8 +50,7 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
                     labelText: "",
                     controller: model.myVoucherHistorySearchController,
                     hintText: S.of(context).eVoucherSearchLabel,
-                    containerPadding:
-                        EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                    containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                     onChanged: (value) {
                       // model.searchBillName(value);
                       if (model.myVoucherHistorySearchController.text.isEmpty) {
@@ -64,9 +60,7 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
                         model.getVoucherHistory(
                             pageNo: model.pageNo,
                             rangeOfMonths: model.filterDay,
-                            searchPhrase: model
-                                .myVoucherHistorySearchController.text
-                                .trim());
+                            searchPhrase: model.myVoucherHistorySearchController.text.trim());
                       }
                     },
                     suffixIcon: (value, data) {
@@ -75,9 +69,9 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
                         child: Container(
                             height: 16.0.h,
                             width: 16.0.w,
-                            padding: EdgeInsets.all(6),
-                            child: AppSvg.asset(AssetUtils.search,
-                                color: Theme.of(context).primaryColorDark)),
+                            padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 6.w),
+                            child:
+                                AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
                       );
                     },
                   ),
@@ -119,15 +113,15 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
                 child: AppSvg.asset(
                   AssetUtils.filter,
                   color: Theme.of(context).colorScheme.shadow,
-                  height: 24,
-                  width: 24,
+                  height: 24.h,
+                  width: 24.w,
                 ),
               )
             ],
           ),
-          const SizedBox(height: 32),
+          SizedBox(height: 32.h),
           getMyVouchers(model),
-          const SizedBox(height: 32),
+          SizedBox(height: 32.h),
         ],
       ),
     );
@@ -151,16 +145,15 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
                           children: [
                             Container(
                               child: Text(
-                                TimeUtils.convertDateTimeToDateForVoucher(
-                                    voucherHistory?.data?[index].date ?? ''),
+                                TimeUtils.getFormattedDateMonth(voucherHistory?.data?[index].date ?? ''),
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     color: Theme.of(context).colorScheme.shadow,
-                                    fontSize: 14,
+                                    fontSize: 14.t,
                                     fontWeight: FontWeight.w600),
                               ),
                             ), //title
-                            const SizedBox(height: 16),
+                            SizedBox(height: 16.h),
                             Card(
                               color: Theme.of(context).colorScheme.secondary,
                               elevation: 16,
@@ -174,23 +167,21 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
                                       Navigator.pushNamed(context, RoutePaths.EvoucherDetail,
                                           arguments: voucherHistory?.data?[index].data[childIndex].id);
                                     },
-                                    child: MyVoucherItemView(
+                                    child: MyVoucherHistoryWidget(
                                         (voucherHistory?.data?[index].data ?? [])[childIndex]),
                                   );
                                 },
                                 separatorBuilder: (context, index) {
                                   return const SizedBox();
                                 },
-                                itemCount:
-                                    (voucherHistory?.data?[index].data ?? [])
-                                        .length,
+                                itemCount: (voucherHistory?.data?[index].data ?? []).length,
                               ),
                             ),
                           ],
                         );
                       },
                       separatorBuilder: (context, index) {
-                        return const SizedBox(height: 32);
+                        return SizedBox(height: 32.h);
                       },
                       //      itemCount: model.myVoucherHistoryList.length,
                       itemCount: (voucherHistory?.data ?? []).length,

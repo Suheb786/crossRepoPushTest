@@ -1776,5 +1776,13 @@
   "validUntil": "Valid Until",
   "currentAccount": "Current Account",
   "allRegion": "All Region",
-  "allCategories": "All Categories"
+  "allCategories": "All Categories",
+  "buyVouchers": "Buy Vouchers",
+  "myVouchers": "My Vouchers",
+  "filterVouchers": "Filter Vouchers",
+  "resetFilter": "Reset Filter",
+  "minPrice": "Min. Price",
+  "maxPrice": "Max. Price",
+  "category": "Category",
+  "preferredRegion": "Preferred Region"
 }

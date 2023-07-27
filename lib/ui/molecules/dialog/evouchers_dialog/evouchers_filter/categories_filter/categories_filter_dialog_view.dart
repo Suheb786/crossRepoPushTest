@@ -75,7 +75,7 @@ class CategoriesFilterDialogView extends StatelessWidget {
                                 height: 64.h,
                                 width: double.infinity,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(16),
+                                  borderRadius: BorderRadius.circular(16.w),
                                   color: Theme.of(context).canvasColor,
                                 ),
                               ),
