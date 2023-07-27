@@ -1,10 +1,8 @@
-import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_now/purchase_now_detail_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/custom_bullet_with_title_widget.dart';
 import 'package:neo_bank/ui/molecules/evoucher/evoucher_text_widget.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -12,7 +10,6 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../ui/molecules/button/app_primary_button.dart';
-import '../purchase_evoucher_without_region/purchase_evoucher_without_region_page.dart';
 
 class PurchaseNowDetailView extends BasePageViewWidget<PurchaseNowDetailViewModel> {
   PurchaseNowDetailView(ProviderBase model) : super(model);
@@ -56,7 +53,9 @@ class PurchaseNowDetailView extends BasePageViewWidget<PurchaseNowDetailViewMode
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
-            child: PageDetail(),
+            child: PageDetail(
+              model: model,
+            ),
           ),
         ),
       ],
@@ -65,7 +64,9 @@ class PurchaseNowDetailView extends BasePageViewWidget<PurchaseNowDetailViewMode
 }
 
 class PageDetail extends StatelessWidget {
-  const PageDetail({
+  PurchaseNowDetailViewModel model;
+  PageDetail({
+    required this.model,
     Key? key,
   }) : super(key: key);
 
@@ -170,7 +171,9 @@ class PageDetail extends StatelessWidget {
           ),
         ),
         SizedBox(height: 24),
-        PurchaseNowBtn(),
+        PurchaseNowBtn(
+          model: model,
+        ),
         SizedBox(height: 50.h),
       ],
     );
@@ -178,7 +181,9 @@ class PageDetail extends StatelessWidget {
 }
 
 class PurchaseNowBtn extends StatelessWidget {
-  const PurchaseNowBtn({
+  PurchaseNowDetailViewModel model;
+  PurchaseNowBtn({
+    required this.model,
     Key? key,
   }) : super(key: key);
 
@@ -201,58 +206,63 @@ class PurchaseNowBtn extends StatelessWidget {
           // }, onDismissed: () {
           //   Navigator.pop(context);
           // }, price: S.of(context).amt, subTitle: S.of(context).purchaseNowSubTitle);
-          Navigator.pushNamed(context, RoutePaths.PurchaseEVoucherWithoutRegionPage,
-              arguments: PurchaseEVoucherWithoutRegionPageArgument(
-                  voucherItems: [
-                    VoucherItem(
-                        id: "2323",
-                        name: "Playstation",
-                        usageInstructions: "usageInstructions",
-                        termsAndConditions: "termsAndConditions",
-                        giftCardInformation: "giftCardInformation",
-                        brand: "brand",
-                        currency: "JOD",
-                        fromValue: 1.22,
-                        toValue: 200,
-                        cardFaceImage: "fdasf",
-                        cardFaceHash: "",
-                        productId: 123,
-                        categories: ["", "to", "toma"],
-                        discount: "discount",
-                        countryCode: "JD"),
-                    VoucherItem(
-                        id: "2323",
-                        name: "Playstation",
-                        usageInstructions: "usageInstructions",
-                        termsAndConditions: "termsAndConditions",
-                        giftCardInformation: "giftCardInformation",
-                        brand: "brand",
-                        currency: "JOD",
-                        fromValue: 1.22,
-                        toValue: 200,
-                        cardFaceImage: "fdasf",
-                        cardFaceHash: "",
-                        productId: 123,
-                        categories: ["", "to", "toma"],
-                        discount: "discount",
-                        countryCode: "JD")
-                  ],
-                  selectedItem: VoucherItem(
-                      id: "2323",
-                      name: "Playstation",
-                      usageInstructions: "usageInstructions",
-                      termsAndConditions: "termsAndConditions",
-                      giftCardInformation: "giftCardInformation",
-                      brand: "brand",
-                      currency: "JOD",
-                      fromValue: 1.22,
-                      toValue: 200,
-                      cardFaceImage: "fdasf",
-                      cardFaceHash: "",
-                      productId: 123,
-                      categories: ["", "to", "toma"],
-                      discount: "discount",
-                      countryCode: "JD")));
+          // model.getSettlementAmmount(
+          //     Amount: model.argument.Amount,
+          //     FromCurrency: model.argument.FromCurrency,
+          //     ToCurrency: model.argument.ToCurrency);
+
+          // Navigator.pushNamed(context, RoutePaths.PurchaseEVoucherWithoutRegionPage,
+          //     arguments: PurchaseEVoucherWithoutRegionPageArgument(
+          //         voucherItems: [
+          //           VoucherItem(
+          //               id: "2323",
+          //               name: "Playstation",
+          //               usageInstructions: "usageInstructions",
+          //               termsAndConditions: "termsAndConditions",
+          //               giftCardInformation: "giftCardInformation",
+          //               brand: "brand",
+          //               currency: "JOD",
+          //               fromValue: 1.22,
+          //               toValue: 200,
+          //               cardFaceImage: "fdasf",
+          //               cardFaceHash: "",
+          //               productId: 123,
+          //               categories: ["", "to", "toma"],
+          //               discount: "discount",
+          //               countryCode: "JD"),
+          //           VoucherItem(
+          //               id: "2323",
+          //               name: "Playstation",
+          //               usageInstructions: "usageInstructions",
+          //               termsAndConditions: "termsAndConditions",
+          //               giftCardInformation: "giftCardInformation",
+          //               brand: "brand",
+          //               currency: "JOD",
+          //               fromValue: 1.22,
+          //               toValue: 200,
+          //               cardFaceImage: "fdasf",
+          //               cardFaceHash: "",
+          //               productId: 123,
+          //               categories: ["", "to", "toma"],
+          //               discount: "discount",
+          //               countryCode: "JD")
+          //         ],
+          //         selectedItem: VoucherItem(
+          //             id: "2323",
+          //             name: "Playstation",
+          //             usageInstructions: "usageInstructions",
+          //             termsAndConditions: "termsAndConditions",
+          //             giftCardInformation: "giftCardInformation",
+          //             brand: "brand",
+          //             currency: "JOD",
+          //             fromValue: 1.22,
+          //             toValue: 200,
+          //             cardFaceImage: "fdasf",
+          //             cardFaceHash: "",
+          //             productId: 123,
+          //             categories: ["", "to", "toma"],
+          //             discount: "discount",
+          //             countryCode: "JD")));
         },
         text: S.of(context).purchaseNow,
       ),

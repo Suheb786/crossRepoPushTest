@@ -663,7 +663,7 @@ class AppRouter {
 
       case RoutePaths.PurchaseNowDetail:
         return CupertinoPageRoute(
-            builder: (context) => PurchaseNowDetailPage(),
+            builder: (context) => PurchaseNowDetailPage(settings.arguments as PurchaseNowArgument),
             settings: RouteSettings(name: RoutePaths.PurchaseNowDetail));
       case RoutePaths.PurchaseEVoucherWithoutRegionPage:
         return CupertinoPageRoute(
@@ -679,7 +679,7 @@ class AppRouter {
 
       case RoutePaths.EVouchersListing:
         return CupertinoPageRoute(
-            builder: (context) => EVoucherCategoryListingPage(),
+            builder: (context) => EVoucherCategoryListingPage(settings.arguments as CategoryListArgument),
             settings: RouteSettings(name: RoutePaths.EVouchersListing));
 
       case RoutePaths.EVouchersPurchase:

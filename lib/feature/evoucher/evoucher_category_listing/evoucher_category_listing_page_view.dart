@@ -62,7 +62,7 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
           Expanded(
             child: AppStreamBuilder<Resource<List<VoucherItem>>>(
                 initialData: Resource.none(),
-                stream: model.voucherByCategoryResponseStream,
+                stream: model.voucherItemFilterResponseStream,
                 dataBuilder: (context, categoryVouchers) {
                   switch (categoryVouchers?.status) {
                     case Status.SUCCESS:
@@ -83,7 +83,13 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
                               },
                               itemCount: categoryVouchers?.data?.length ?? 0,
                             )
-                          : Expanded(child: Center(child: Text(S.current.noDataFound)));
+                          : Padding(
+                              padding: EdgeInsets.all(10),
+                              child: Text(
+                                S.of(context).noDataFound,
+                                style: TextStyle(color: Theme.of(context).primaryColorDark),
+                              ),
+                            );
 
                     default:
                       return SizedBox();

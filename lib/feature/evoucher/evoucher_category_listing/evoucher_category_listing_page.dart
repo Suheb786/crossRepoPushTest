@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,7 +13,9 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 class EVoucherCategoryListingPage extends BasePage<EVoucherCategoryListingPageViewModel> {
-  // final CategoryListArgument categoryListArgument;
+  final CategoryListArgument categoryListArgument;
+
+  EVoucherCategoryListingPage(this.categoryListArgument);
 
   @override
   EVoucherCategoryListingPageState createState() => EVoucherCategoryListingPageState();
@@ -22,7 +25,7 @@ class EVoucherCategoryListingPageState
     extends BaseStatefulPage<EVoucherCategoryListingPageViewModel, EVoucherCategoryListingPage> {
   @override
   ProviderBase provideBase() {
-    return eVouchersCategoryListingViewModelProvider;
+    return eVouchersCategoryListingViewModelProvider.call(widget.categoryListArgument);
   }
 
   @override
@@ -82,9 +85,9 @@ class EVoucherCategoryListingPageState
   }
 }
 
-// class CategoryListArgument {
-//   final List<VoucherCategories> list;
-//   CategoryListArgument(
-//     this.list,
-//   );
-// }
+class CategoryListArgument {
+  final num id;
+  CategoryListArgument({
+    required this.id,
+  });
+}

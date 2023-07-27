@@ -253,6 +253,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تلميح للاسم المستعار: "),
         "aliasShouldBeThreeChar": MessageLookupByLibrary.simpleMessage(
             "يجب أن يتكون الاسم المستعار من 3 إلى 10 أحرف أبجدية رقمية"),
+        "allCategories": MessageLookupByLibrary.simpleMessage("All Categories"),
         "allRegion": MessageLookupByLibrary.simpleMessage("All Region"),
         "allTime": MessageLookupByLibrary.simpleMessage("كل الأوقات"),
         "allTransaction": MessageLookupByLibrary.simpleMessage("كل الحركات"),
