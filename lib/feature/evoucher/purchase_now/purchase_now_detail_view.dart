@@ -3,12 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_now/purchase_now_detail_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/custom_bullet_with_title_widget.dart';
-import 'package:neo_bank/ui/molecules/dialog/evoucher/purchase_now/purchase_now_dialog.dart';
 import 'package:neo_bank/ui/molecules/evoucher/evoucher_text_widget.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../ui/molecules/button/app_primary_button.dart';
@@ -55,7 +53,9 @@ class PurchaseNowDetailView extends BasePageViewWidget<PurchaseNowDetailViewMode
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
-            child: PageDetail(),
+            child: PageDetail(
+              model: model,
+            ),
           ),
         ),
       ],
@@ -64,7 +64,9 @@ class PurchaseNowDetailView extends BasePageViewWidget<PurchaseNowDetailViewMode
 }
 
 class PageDetail extends StatelessWidget {
-  const PageDetail({
+  PurchaseNowDetailViewModel model;
+  PageDetail({
+    required this.model,
     Key? key,
   }) : super(key: key);
 
@@ -76,31 +78,31 @@ class PageDetail extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const SizedBox(height: 40),
+                SizedBox(height: 40.h),
                 EVoucherTextWidget(
                   alignment: AlignmentDirectional.topStart,
                   text: S.of(context).buyVoucherDetailTitle,
-                  textSize: 12,
+                  textSize: 12.t,
                   textWeight: FontWeight.w600,
                   textColor: Theme.of(context).colorScheme.inversePrimary,
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
                 EVoucherTextWidget(
                   alignment: AlignmentDirectional.topStart,
                   text: S.of(context).buyVoucherDetailSubTitle,
-                  textSize: 20,
+                  textSize: 20.t,
                   textWeight: FontWeight.w600,
                   textColor: Theme.of(context).colorScheme.shadow,
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
                 EVoucherTextWidget(
                   alignment: AlignmentDirectional.topStart,
                   text: S.of(context).buyVoucherDetailSubSubTitle,
-                  textSize: 14,
+                  textSize: 14.t,
                   textWeight: FontWeight.w400,
                   textColor: Theme.of(context).colorScheme.shadow,
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: 24.h),
                 Padding(
                   padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
                   child: Container(
@@ -113,7 +115,7 @@ class PageDetail extends StatelessWidget {
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: Theme.of(context).colorScheme.onSecondaryContainer,
-                              fontSize: 24,
+                              fontSize: 24.t,
                               fontWeight: FontWeight.w700),
                         ),
                         Padding(
@@ -123,7 +125,7 @@ class PageDetail extends StatelessWidget {
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 color: AppColor.verLightGray4,
-                                fontSize: 14,
+                                fontSize: 14.t,
                                 fontWeight: FontWeight.w700),
                           ),
                         ),
@@ -131,7 +133,7 @@ class PageDetail extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16.h),
                 EVoucherTextWidget(
                   alignment: AlignmentDirectional.topStart,
                   text: S.of(context).termsAndConditionsSetting,
@@ -140,25 +142,25 @@ class PageDetail extends StatelessWidget {
                   textColor: Theme.of(context).colorScheme.shadow,
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.only(start: 24.0, end: 24, top: 16),
+                  padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.w, top: 16.h),
                   child: Column(
                     children: [
                       CustomBulletWithTitle(
                         title:
                             'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. ',
-                        fontSize: 14,
+                        fontSize: 14.t,
                         lineHeight: 1.5,
                       ),
                       CustomBulletWithTitle(
                         title:
                             'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.  ',
-                        fontSize: 14,
+                        fontSize: 14.t,
                         lineHeight: 1.5,
                       ),
                       CustomBulletWithTitle(
                         title:
                             'Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.',
-                        fontSize: 14,
+                        fontSize: 14.t,
                         lineHeight: 1.5,
                       ),
                     ],
@@ -168,16 +170,20 @@ class PageDetail extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 24),
-        PurchaseNowBtn(),
-        const SizedBox(height: 50),
+        SizedBox(height: 24),
+        PurchaseNowBtn(
+          model: model,
+        ),
+        SizedBox(height: 50.h),
       ],
     );
   }
 }
 
 class PurchaseNowBtn extends StatelessWidget {
-  const PurchaseNowBtn({
+  PurchaseNowDetailViewModel model;
+  PurchaseNowBtn({
+    required this.model,
     Key? key,
   }) : super(key: key);
 
@@ -188,18 +194,75 @@ class PurchaseNowBtn extends StatelessWidget {
       child: AppPrimaryButton(
         isDisabled: false,
         onPressed: () {
-          PurchaseNowDialog.show(context,
-              image: AssetUtils.processing_voucher_icon,
-              title: S.of(context).purchaseNowTitle,
-              descriptionWidget: Text(
-                S.of(context).viewVoucherDialogDescription,
-                style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w400),
-              ), onSelected: () {
-            Navigator.pop(context);
-            Navigator.pushNamed(context, RoutePaths.EnterCodeEVoucherPurchase);
-          }, onDismissed: () {
-            Navigator.pop(context);
-          }, price: S.of(context).amt, subTitle: S.of(context).purchaseNowSubTitle);
+          // PurchaseNowDialog.show(context,
+          //     image: AssetUtils.processing_voucher_icon,
+          //     title: S.of(context).purchaseNowTitle,
+          //     descriptionWidget: Text(
+          //       S.of(context).viewVoucherDialogDescription,
+          //       style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w400),
+          //     ), onSelected: () {
+          //   Navigator.pop(context);
+          //   Navigator.pushNamed(context, RoutePaths.EnterCodeEVoucherPurchase);
+          // }, onDismissed: () {
+          //   Navigator.pop(context);
+          // }, price: S.of(context).amt, subTitle: S.of(context).purchaseNowSubTitle);
+          // model.getSettlementAmmount(
+          //     Amount: model.argument.Amount,
+          //     FromCurrency: model.argument.FromCurrency,
+          //     ToCurrency: model.argument.ToCurrency);
+
+          // Navigator.pushNamed(context, RoutePaths.PurchaseEVoucherWithoutRegionPage,
+          //     arguments: PurchaseEVoucherWithoutRegionPageArgument(
+          //         voucherItems: [
+          //           VoucherItem(
+          //               id: "2323",
+          //               name: "Playstation",
+          //               usageInstructions: "usageInstructions",
+          //               termsAndConditions: "termsAndConditions",
+          //               giftCardInformation: "giftCardInformation",
+          //               brand: "brand",
+          //               currency: "JOD",
+          //               fromValue: 1.22,
+          //               toValue: 200,
+          //               cardFaceImage: "fdasf",
+          //               cardFaceHash: "",
+          //               productId: 123,
+          //               categories: ["", "to", "toma"],
+          //               discount: "discount",
+          //               countryCode: "JD"),
+          //           VoucherItem(
+          //               id: "2323",
+          //               name: "Playstation",
+          //               usageInstructions: "usageInstructions",
+          //               termsAndConditions: "termsAndConditions",
+          //               giftCardInformation: "giftCardInformation",
+          //               brand: "brand",
+          //               currency: "JOD",
+          //               fromValue: 1.22,
+          //               toValue: 200,
+          //               cardFaceImage: "fdasf",
+          //               cardFaceHash: "",
+          //               productId: 123,
+          //               categories: ["", "to", "toma"],
+          //               discount: "discount",
+          //               countryCode: "JD")
+          //         ],
+          //         selectedItem: VoucherItem(
+          //             id: "2323",
+          //             name: "Playstation",
+          //             usageInstructions: "usageInstructions",
+          //             termsAndConditions: "termsAndConditions",
+          //             giftCardInformation: "giftCardInformation",
+          //             brand: "brand",
+          //             currency: "JOD",
+          //             fromValue: 1.22,
+          //             toValue: 200,
+          //             cardFaceImage: "fdasf",
+          //             cardFaceHash: "",
+          //             productId: 123,
+          //             categories: ["", "to", "toma"],
+          //             discount: "discount",
+          //             countryCode: "JD")));
         },
         text: S.of(context).purchaseNow,
       ),

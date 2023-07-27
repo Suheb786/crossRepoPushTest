@@ -1,4 +1,3 @@
-import 'package:domain/model/e_voucher/voucher_by_date.dart';
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/payment/transfer_success_content.dart';
 import 'package:flutter/cupertino.dart';
@@ -150,6 +149,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 
 import '../../feature/evoucher/evoucher/evoucher_page.dart';
+import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page.dart';
 import '../../feature/rj/rj_book_flight/rj_book_flight_page.dart';
 
 class AppRouter {
@@ -663,8 +663,13 @@ class AppRouter {
 
       case RoutePaths.PurchaseNowDetail:
         return CupertinoPageRoute(
-            builder: (context) => PurchaseNowDetailPage(),
+            builder: (context) => PurchaseNowDetailPage(settings.arguments as PurchaseNowArgument),
             settings: RouteSettings(name: RoutePaths.PurchaseNowDetail));
+      case RoutePaths.PurchaseEVoucherWithoutRegionPage:
+        return CupertinoPageRoute(
+            builder: (context) => PurchaseEVoucherWithoutRegionPage(
+                argument: settings.arguments as PurchaseEVoucherWithoutRegionPageArgument),
+            settings: RouteSettings(name: RoutePaths.PurchaseEVoucherWithoutRegionPage));
 
       case RoutePaths.SupplementaryDebitCardPinSet:
         return CupertinoPageRoute(
@@ -674,17 +679,19 @@ class AppRouter {
 
       case RoutePaths.EVouchersListing:
         return CupertinoPageRoute(
-            builder: (context) => EVoucherCategoryListingPage(),
+            builder: (context) => EVoucherCategoryListingPage(settings.arguments as CategoryListArgument),
             settings: RouteSettings(name: RoutePaths.EVouchersListing));
 
       case RoutePaths.EVouchersPurchase:
         return CupertinoPageRoute(
-            builder: (context) => PurchaseEVoucherPage(),
+            builder: (context) =>
+                PurchaseEVoucherPage(argument: settings.arguments as PurchaseEVoucherPageArgument),
             settings: RouteSettings(name: RoutePaths.EVouchersPurchase));
 
       case RoutePaths.EVouchersPurchaseSuccess:
         return CupertinoPageRoute(
-            builder: (context) => PurchaseVoucherSuccessPage(),
+            builder: (context) =>
+                PurchaseVoucherSuccessPage(argument: settings.arguments as PurchaseVoucherSuccessArgument),
             settings: RouteSettings(name: RoutePaths.EVouchersPurchaseSuccess));
 
       case RoutePaths.ShareVoucher:

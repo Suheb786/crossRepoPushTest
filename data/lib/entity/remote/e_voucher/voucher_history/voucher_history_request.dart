@@ -5,7 +5,10 @@ part 'voucher_history_request.g.dart';
 @JsonSerializable()
 class VoucherHistoryRequest {
   @JsonKey(name: "PageNo")
-  final String? PageNo;
+  final int? pageNo;
+
+  @JsonKey(name: "searchPhrase")
+  final String? searchPhrase;
 
   @JsonKey(name: "RangeOfMonths")
   final int? rangeOfMonths;
@@ -17,7 +20,8 @@ class VoucherHistoryRequest {
   final Map<String, dynamic> baseData;
 
   VoucherHistoryRequest({
-    this.PageNo,
+    this.pageNo,
+    this.searchPhrase,
     this.rangeOfMonths,
     this.getToken = true,
     required this.baseData,

@@ -1343,7 +1343,7 @@
   "toViewVoucher": "to View Voucher",
   "viewVoucher": "View Voucher",
   "shareVoucher": "Share Voucher",
-  "eVouchers": "eVouchers",
+  "eVouchers": "E-Vouchers",
   "buyVouchers": "Buy Vouchers",
   "myVouchers": "My Vouchers",
   "games": "Games",
@@ -1816,6 +1816,12 @@
   "dormantAccountPhysicalCardReq": "Oops! You cannot request your physical card as your account is inactive. Call us on 06-5200100 to activate your account.",
   "yourAccountInactive": "Your account is inactive",
   "callToActivate": "Call us on 06-5200100 to activate your account and get your debit card.",
+  "whatAreYouLookingFor": "What are you looking for?",
+  "notEnoughAmountToPurchase": "You have insufficient balance in your account",
+  "validUntil": "Valid Until",
+  "currentAccount": "Current Account",
+  "allRegion": "All Region",
+  "allCategories": "All Categories",
   "copied": "Copied",
   "recipientNameValidation": "Oops! Recipient name should be at least 2 parts and each part to be with a minimum of 3 characters."
 }

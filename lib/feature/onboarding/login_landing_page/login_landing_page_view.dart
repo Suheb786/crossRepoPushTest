@@ -366,6 +366,18 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                                         children: [
                                           AppPrimaryButton(
                                             onPressed: () {
+                                              //
+                                              // EVouchersFilterDialog.show(context,
+                                              //     title: S.of(context).filterVouchers,
+                                              //      onSelected: (value) {
+                                              //
+                                              //
+                                              //
+                                              //       Navigator.pop(context);
+                                              //     }, onDismissed: () {
+                                              //       Navigator.pop(context);
+                                              //     });
+
                                               Navigator.pushNamed(context, RoutePaths.Login);
                                             },
                                             text: S.of(context).loginWithEmail,

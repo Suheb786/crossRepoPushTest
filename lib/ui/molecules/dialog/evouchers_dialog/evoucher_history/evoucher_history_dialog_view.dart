@@ -5,7 +5,7 @@ import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/dialog/card_settings/relationship_with_cardholder/relationship_with_cardholder_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/relationship_with_cardholder/region_filter_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evoucher_history/evoucher_history_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/evouchers_filter_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';

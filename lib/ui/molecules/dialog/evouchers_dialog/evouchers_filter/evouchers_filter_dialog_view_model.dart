@@ -1,6 +1,17 @@
+import 'package:domain/constants/enum/evoucher_filter_option_enum.dart';
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/e_voucher/voucher_region_by_categories.dart';
+import 'package:domain/usecase/evouchers/evoucher_filter_validation_usecase.dart';
+import 'package:domain/usecase/evouchers/evoucher_min_max_value_usecase.dart';
+import 'package:domain/usecase/evouchers/evoucher_region_by_categories_usecase.dart';
+import 'package:domain/usecase/evouchers/voucher_min_max_value.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/request_manager.dart';
+import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class EVouchersFilterDialogViewModel extends BasePageViewModel {
@@ -17,29 +28,164 @@ class EVouchersFilterDialogViewModel extends BasePageViewModel {
   TextEditingController maxPriceController = new TextEditingController();
   GlobalKey<AppTextFieldState> maxPriceKey = GlobalKey(debugLabel: "maxPrice");
 
-  List<String> categoryList = ['All Categories', 'Shopping', 'Games', 'Music', 'Dance', 'Surfing'];
-  List<String> preferredRegionList = [
-    'All Region',
-    'Jordan',
-    'United Kingdom',
-    'Bahrain',
-    'India',
-    'Australia',
-    'United States Of America'
-  ];
+  final EVoucherRegionByCategoriesUseCase eVoucherRegionByCategoriesUseCase;
+  final EVoucherFilterValidationUseCase eVoucherFilterValidationUseCase;
+  final EVoucherMinMaxValueUseCase eVoucherMinMaxValueUseCase;
 
-  List<String> minMaxPriceList = [
-    '0 JOD',
-    '5 JOD',
-    '10 JOD',
-    '15 JOD',
-    '20 JOD',
-    '25 JOD',
-    '30 JOD',
-    '35 JOD',
-    '45 JOD',
-    '50 JOD'
-  ];
+  EVouchersFilterDialogViewModel(this.eVoucherRegionByCategoriesUseCase, this.eVoucherFilterValidationUseCase,
+      this.eVoucherMinMaxValueUseCase) {
+    getRegionByCategoriesSubject();
+    getFilterValidationSubject();
+    getMinMaxValueSubject();
+  }
+
+  /// Region By Categories
+
+  // List<VoucherRegionByCategories> regionByCategoriesList = [];
+  PublishSubject<EVoucherRegionByCategoriesUseCaseParams> _voucherRegionByCategoriesRequestSubject =
+      PublishSubject();
+
+  PublishSubject<Resource<List<VoucherRegionByCategories>>> _voucherRegionByCategoriesResponseSubject =
+      PublishSubject();
+
+  Stream<Resource<List<VoucherRegionByCategories>>> get voucherRegionByCategoriesResponseStream =>
+      _voucherRegionByCategoriesResponseSubject.stream;
+
+  getRegionByCategoriesSubject() {
+    _voucherRegionByCategoriesRequestSubject.listen((value) {
+      RequestManager(value, createCall: () => eVoucherRegionByCategoriesUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _voucherRegionByCategoriesResponseSubject.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+
+          showToastWithError(event.appError!);
+        }
+        if (event.status == Status.SUCCESS) {
+          //  regionByCategoriesList = event.data ?? [];
+        }
+      });
+    });
+  }
+
+  getRegionByCategories(String categoryId) {
+    _voucherRegionByCategoriesRequestSubject
+        .safeAdd(EVoucherRegionByCategoriesUseCaseParams(category: categoryId));
+  }
+
+  /// Filter Validation
+  // FilterSelectedData filterSelectedData=FilterSelectedData(categryId: "", region: "", minValue: "", maxValue: "");
+  PublishSubject<EVoucherFilterValidationUseCaseParams> _eVoucherFilterValidationRequest = PublishSubject();
+  PublishSubject<Resource<bool>> _eVoucherFilterValidationResponse = PublishSubject();
+
+  Stream<Resource<bool>> get eVoucherFilterValidationResponseStream =>
+      _eVoucherFilterValidationResponse.stream;
+
+  getFilterValidationSubject() {
+    _eVoucherFilterValidationRequest.listen((value) {
+      RequestManager(value, createCall: () => eVoucherFilterValidationUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _eVoucherFilterValidationResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          getError(event);
+
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+  }
+
+  getFilterValidated() {
+    _eVoucherFilterValidationRequest.safeAdd(EVoucherFilterValidationUseCaseParams(
+        category: categoryController.text.trim(),
+        region: preferredRegionController.text.trim(),
+        minValue: minPriceController.text.trim(),
+        maxValue: maxPriceController.text.trim()));
+  }
+
+  void getError(Resource<bool> event) {
+    ///TODO Validation State Handling
+    switch (event.appError!.type) {
+      case ErrorType.EMPTY_IBAN_MOBILE:
+        categoryKey.currentState!.isValid = false;
+        break;
+      case ErrorType.EMPTY_RECIPIENT_NAME:
+        preferredRegionKey.currentState!.isValid = false;
+        break;
+      case ErrorType.EMPTY_RECIPIENT_ADDRESS:
+        minPriceKey.currentState!.isValid = false;
+        break;
+      case ErrorType.EMPTY_PURPOSE:
+        maxPriceKey.currentState!.isValid = false;
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  /// Filter Min & Max Value
+
+  PublishSubject<EVoucherMinMaxValueUseCaseParams> _voucherMinMaxValueRequestSubject = PublishSubject();
+
+  PublishSubject<Resource<VoucherMinMaxValue>> _voucherMinMaxValueResponseSubject = PublishSubject();
+
+  Stream<Resource<VoucherMinMaxValue>> get voucherMinMaxResponseStream =>
+      _voucherMinMaxValueResponseSubject.stream;
+
+  getMinMaxValueSubject() {
+    _voucherMinMaxValueRequestSubject.listen((value) {
+      RequestManager(value, createCall: () => eVoucherMinMaxValueUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _voucherMinMaxValueResponseSubject.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+
+          showToastWithError(event.appError!);
+        }
+        if (event.status == Status.SUCCESS) {
+          rangeList.clear();
+
+          generateListForMinMax(event.data?.minRange ?? 0.0, event.data?.maxRange ?? 0.0);
+
+          //  regionByCategoriesList = event.data ?? [];
+        }
+      });
+    });
+  }
+
+  getMinMaxValue(String categoryId, String region) {
+    _voucherMinMaxValueRequestSubject
+        .safeAdd(EVoucherMinMaxValueUseCaseParams(category: categoryId, region: region));
+  }
+
+  String categryId = "";
+  String region = "";
+
+  generateListForMinMax(num minRange, num maxRange) {
+    rangeList.add(minRange.ceil().toString());
+
+    if (maxRange <= 50 && maxRange > -1) {
+      int result = (maxRange / 5).ceil();
+
+      for (int i = 0; i < result; i++) {
+        rangeList.add("${(i + 1) * 5}");
+      }
+    } else if (maxRange > 50) {
+      int result = (maxRange / 10).ceil();
+
+      for (int i = 0; i < result; i++) {
+        rangeList.add("${(i + 1) * 10}");
+      }
+    }
+  }
+
+  List<String> rangeList = [];
 
   /// button subject
   BehaviorSubject<bool> _showResetButtonSubject = BehaviorSubject.seeded(false);
@@ -68,4 +214,19 @@ class EVouchersFilterDialogViewModel extends BasePageViewModel {
   void dispose() {
     super.dispose();
   }
+}
+
+class FilterSelectedData {
+  String categryId;
+  String region;
+  String minValue;
+  String maxValue;
+  EvoucherFilterOption filterOption;
+
+  FilterSelectedData(
+      {required this.categryId,
+      required this.region,
+      required this.minValue,
+      required this.maxValue,
+      required this.filterOption});
 }
