@@ -5,6 +5,7 @@ import 'package:domain/usecase/evouchers/select_region_amount_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -14,12 +15,13 @@ import 'package:rxdart/rxdart.dart';
 
 class SelectRegionAmountPageViewModel extends BasePageViewModel {
   final GetSettlementAmountUseCase getSettlementAmountUseCase;
-
   final PurchaseEVoucherPageArgument argument;
   final SelectRegionAmountUseCase _selectRegionAmountUseCase;
+
   List<VoucherItem> voucherItems = [];
   List<String> voucherCountries = [];
   List<String> voucherValue = [];
+
   late VoucherItem selectedItem;
 
   ///controllers and keys
@@ -31,9 +33,7 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
 
   ///select region amount request
   PublishSubject<SelectRegionAmountUseCaseParams> _selectRegionAmountRequest = PublishSubject();
-
   PublishSubject<Resource<bool>> _selectRegionAmountResponse = PublishSubject();
-
   Stream<Resource<bool>> get selectRegionAmountStream => _selectRegionAmountResponse.stream;
 
   ///get settlement amount
@@ -43,7 +43,6 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
-
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   SelectRegionAmountPageViewModel(
@@ -68,7 +67,6 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
         updateLoader();
         _getSettlementAmountResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
-          // getError(event);
           showErrorState();
         }
       });
@@ -120,7 +118,7 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
     List<VoucherItem> vouchersWithSameProductIdAndCountry = voucherItems
         .where((items) =>
             items.productId == selectedItem.productId &&
-            (selectedRegionController.text == 'All Region'
+            (selectedRegionController.text == S.current.allRegion
                 ? true
                 : items.countryCode == selectedRegionController.text))
         .toList();

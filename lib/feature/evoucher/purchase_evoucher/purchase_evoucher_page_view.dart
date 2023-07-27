@@ -15,6 +15,8 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
+import '../../../di/dashboard/dashboard_modules.dart';
+
 class PurchaseEVoucherPageView extends BasePageViewWidget<PurchaseEVoucherPageViewModel> {
   PurchaseEVoucherPageView(ProviderBase model) : super(model);
 
@@ -29,11 +31,11 @@ class PurchaseEVoucherPageView extends BasePageViewWidget<PurchaseEVoucherPageVi
     ];
     return Container(
       color: Theme.of(context).primaryColor,
-      padding: EdgeInsets.only(top: 56),
+      padding: EdgeInsetsDirectional.only(top: 56.h),
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24),
+            padding: EdgeInsets.symmetric(horizontal: 24.h),
             child: AppStreamBuilder<int>(
               initialData: 0,
               stream: model.currentPageStream,
@@ -56,7 +58,7 @@ class PurchaseEVoucherPageView extends BasePageViewWidget<PurchaseEVoucherPageVi
           ),
           Expanded(
               child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 36),
+            padding: EdgeInsets.symmetric(vertical: 36.h),
             child: AppStreamBuilder<int>(
               stream: model.currentPageStream,
               initialData: 0,
@@ -68,7 +70,7 @@ class PurchaseEVoucherPageView extends BasePageViewWidget<PurchaseEVoucherPageVi
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           color: Theme.of(context).colorScheme.secondary,
-                          fontSize: 10,
+                          fontSize: 10.t,
                           fontWeight: FontWeight.w600),
                     ),
                     Padding(
@@ -92,7 +94,7 @@ class PurchaseEVoucherPageView extends BasePageViewWidget<PurchaseEVoucherPageVi
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: Theme.of(context).colorScheme.secondary,
-                              fontSize: 20,
+                              fontSize: 20.t,
                               fontWeight: FontWeight.w600),
                         ),
                       ),
@@ -108,12 +110,13 @@ class PurchaseEVoucherPageView extends BasePageViewWidget<PurchaseEVoucherPageVi
                           direction: Direction.vertical,
                           offset: 0.5,
                           child: Text(
-                            "+962 79 322 8080",
+                            "${(ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode?.replaceAll('00', '+'))}" +
+                                " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber}",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 color: Theme.of(context).colorScheme.secondary,
-                                fontSize: 20,
+                                fontSize: 20.t,
                                 fontWeight: FontWeight.w600),
                           ),
                         ),

@@ -73,7 +73,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                     child: Card(
                       margin: EdgeInsets.zero,
                       child: Container(
-                          padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                          padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -84,8 +84,8 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(8),
                                         child: Container(
-                                          height: 72,
-                                          width: 72,
+                                          height: 72.h,
+                                          width: 72.w,
                                           child: CachedNetworkImage(
                                             imageUrl: model.argument.selectedItem.cardFaceImage,
                                             placeholder: (context, url) =>
@@ -96,7 +96,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                         ),
                                       ),
                                       SizedBox(
-                                        height: 16,
+                                        height: 16.h,
                                       ),
                                       Text(
                                         model.argument.selectedItem.name,
@@ -104,12 +104,12 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                         style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           color: Theme.of(context).indicatorColor,
-                                          fontSize: 14,
+                                          fontSize: 14.t,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
                                       SizedBox(
-                                        height: 32,
+                                        height: 32.h,
                                       ),
                                       AppTextField(
                                         labelText: S.of(context).region.toUpperCase(),
@@ -132,14 +132,14 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                         },
                                         suffixIcon: (value, data) {
                                           return Container(
-                                              height: 16,
-                                              width: 16,
+                                              height: 16.h,
+                                              width: 16.h,
                                               padding: EdgeInsetsDirectional.only(end: 8),
                                               child: AppSvg.asset(AssetUtils.downArrow,
                                                   color: Theme.of(context).colorScheme.surfaceTint));
                                         },
                                       ),
-                                      const SizedBox(height: 16),
+                                      SizedBox(height: 16.h),
                                       AppTextField(
                                         labelText: S.of(context).value.toUpperCase(),
                                         hintText: S.of(context).pleaseSelect,
@@ -160,15 +160,15 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                         },
                                         suffixIcon: (value, data) {
                                           return Container(
-                                              height: 16,
-                                              width: 16,
+                                              height: 16.h,
+                                              width: 16.h,
                                               padding: EdgeInsetsDirectional.only(end: 8),
                                               child: AppSvg.asset(AssetUtils.downArrow,
                                                   color: Theme.of(context).colorScheme.surfaceTint));
                                         },
                                       ),
                                       SizedBox(
-                                        height: 16,
+                                        height: 16.h,
                                       ),
                                     ],
                                   ),
@@ -195,11 +195,11 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                       Navigator.pop(context);
                                     },
                                     child: Text(
-                                      S.of(context).backToCategory('Games'),
+                                      S.of(context).backToCategory(S.current.games),
                                       style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         color: Theme.of(context).colorScheme.onSecondaryContainer,
-                                        fontSize: 14,
+                                        fontSize: 14.t,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),

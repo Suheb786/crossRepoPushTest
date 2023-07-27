@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -49,8 +50,6 @@ class EnterOtpForEVoucherCategoryPurchasePageView
 
                   Navigator.pushNamed(context, RoutePaths.EVouchersPurchaseSuccess,
                       arguments: PurchaseVoucherSuccessArgument(selectedItem: model.argument.selectedItem));
-
-                  print("Go to Placce Order");
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -71,7 +70,6 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                           ProviderScope.containerOf(context)
                               .read(purchaseEVouchersViewModelProvider(model.argument))
                               .previousPage();
-                          // .previous(animation: true);
                         }
                       } else {
                         if (details.primaryVelocity!.isNegative) {
@@ -80,7 +78,6 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                           ProviderScope.containerOf(context)
                               .read(purchaseEVouchersViewModelProvider(model.argument))
                               .previousPage();
-                          // .previous(animation: true);
                         }
                       }
                     }
@@ -114,7 +111,7 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                                   endTime: model.endTime,
                                   textStyle: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      fontSize: 16,
+                                      fontSize: 16.t,
                                       color: Theme.of(context).textTheme.bodyMedium!.color!),
                                   widgetBuilder: (context, currentTimeRemaining) {
                                     return currentTimeRemaining == null
@@ -126,7 +123,7 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                                               S.of(context).resendCode,
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
-                                                  fontSize: 14,
+                                                  fontSize: 14.t,
                                                   fontWeight: FontWeight.w600,
                                                   color: Theme.of(context).textTheme.bodyLarge!.color!),
                                             ))
@@ -135,7 +132,7 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                                                 '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                             style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
-                                                fontSize: 14,
+                                                fontSize: 14.t,
                                                 fontWeight: FontWeight.w600,
                                                 color: Theme.of(context).textTheme.bodyLarge!.color!),
                                           );

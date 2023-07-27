@@ -17,8 +17,9 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
   final PurchaseEVoucherPageArgument argument;
   final PlaceOrderUseCase placeOrderUseCase;
   final EVoucherOtpUseCase eVoucherOtpUseCase;
-
   final EnterOtpForEVoucherCategoryPurchaseUseCase _enterOtpForEVoucherPurchaseCategoryUseCase;
+
+  TextEditingController otpController = TextEditingController();
 
   ///countdown controller
   late CountdownTimerController countDownController;
@@ -30,8 +31,6 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
     notifyListeners();
     listenForSmsCode();
   }
-
-  TextEditingController otpController = TextEditingController();
 
   /// make otp suject
   PublishSubject<EVoucherUsecaseOTPParams> _evoucherOtpRequest = PublishSubject();
@@ -45,18 +44,13 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
 
   ///enter otp request subject holder
   PublishSubject<EnterOtpForEVoucherCategoryPurchaseUseCaseParams> _validateOtpRequest = PublishSubject();
-
-  ///enter otp response holder
   PublishSubject<Resource<bool>> _validateOtpResponse = PublishSubject();
-
-  ///enter otp stream
   Stream<Resource<bool>> get enterOtpStream => _validateOtpResponse.stream;
-
-  /// button subject
-  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
   BehaviorSubject<String> _otpSubject = BehaviorSubject.seeded("");
 
+  /// button subject
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   EnterOtpForEVoucherCategoryPurchasePageViewModel(this._enterOtpForEVoucherPurchaseCategoryUseCase,
@@ -79,7 +73,7 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
         value,
         createCall: () => placeOrderUseCase.execute(params: value),
       ).asFlow().listen((event) {
-        // updateLoader();
+        updateLoader();
         _placeOrderResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -92,7 +86,6 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
           .listen((event) {
         _evoucherOtpResponse.safeAdd(event);
         updateLoader();
-
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);

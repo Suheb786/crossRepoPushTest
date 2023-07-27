@@ -89,13 +89,13 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(8),
                                       child: Container(
-                                        height: 72,
-                                        width: 72,
+                                        height: 72.h,
+                                        width: 72.h,
                                         color: Theme.of(context).primaryColor,
                                       ),
                                     ),
                                     SizedBox(
-                                      height: 16,
+                                      height: 16.h,
                                     ),
                                     Text(
                                       model.argument.selectedItem.name,
@@ -103,7 +103,7 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                                       style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         color: Theme.of(context).indicatorColor,
-                                        fontSize: 14,
+                                        fontSize: 14.t,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -119,7 +119,7 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                                           style: TextStyle(
                                             fontFamily: StringUtils.appFont,
                                             color: Theme.of(context).indicatorColor,
-                                            fontSize: 24,
+                                            fontSize: 24.t,
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
@@ -132,7 +132,7 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                                           style: TextStyle(
                                             fontFamily: StringUtils.appFont,
                                             color: Theme.of(context).colorScheme.tertiaryContainer,
-                                            fontSize: 14,
+                                            fontSize: 14.t,
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
@@ -306,7 +306,7 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                                       style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         color: Theme.of(context).colorScheme.onSecondaryContainer,
-                                        fontSize: 14,
+                                        fontSize: 14.t,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),

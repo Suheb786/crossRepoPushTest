@@ -17989,6 +17989,16 @@ class S {
       args: [],
     );
   }
+
+  /// `All Region`
+  String get allRegion {
+    return Intl.message(
+      'All Region',
+      name: 'allRegion',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

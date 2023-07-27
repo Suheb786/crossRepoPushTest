@@ -1820,5 +1820,6 @@
   "whatAreYouLookingFor": "What are you looking for?",
   "notEnoughAmountToPurchase": "You have insufficient balance in your account",
   "validUntil": "Valid Until",
-  "currentAccount": "Current Account"
+  "currentAccount": "Current Account",
+  "allRegion": "All Region"
 }

@@ -46,7 +46,6 @@ class EVoucherCategoryListingPageViewModel extends BasePageViewModel {
         if (event.status == Status.SUCCESS) {
           voucherItems.clear();
           voucherItems.addAll(event.data ?? []);
-          // searchListToggleNotifier.value = false;
         } else if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
           getError(event);
@@ -70,16 +69,12 @@ class EVoucherCategoryListingPageViewModel extends BasePageViewModel {
 
   void searchItems() {
     if (categorayListController.text.trim().isEmpty) {
-      // searchListToggleNotifier.value = true;
       _voucherByCategoryResponseSubject.safeAdd(Resource.success(data: voucherItems));
       return;
     }
-
     List<VoucherItem> searchedItems = voucherItems
         .where((element) => element.name.toLowerCase().contains(categorayListController.text.trim()))
         .toList();
-    // searchListToggleNotifier.value = true;
-
     _voucherByCategoryResponseSubject.safeAdd(Resource.success(data: searchedItems));
   }
 

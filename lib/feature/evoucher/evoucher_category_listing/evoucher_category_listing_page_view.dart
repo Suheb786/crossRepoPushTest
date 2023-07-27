@@ -25,7 +25,7 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
     return Container(
       height: double.infinity,
       width: double.infinity,
-      padding: const EdgeInsetsDirectional.only(start: 24, end: 24, top: 40),
+      padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 40.h),
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
@@ -50,7 +50,7 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
                     },
                     child: Container(
                         height: 16.0.h,
-                        width: 16.0.w,
+                        width: 16.0.h,
                         padding: const EdgeInsets.all(6),
                         child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
                   );
@@ -83,7 +83,7 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
                               },
                               itemCount: categoryVouchers?.data?.length ?? 0,
                             )
-                          : Expanded(child: Center(child: Text("No item found")));
+                          : Expanded(child: Center(child: Text(S.current.noDataFound)));
 
                     default:
                       return SizedBox();

@@ -11,6 +11,7 @@ import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -49,8 +50,6 @@ class OtpPurchaseEvoucherWithoutRegionPageView
 
                   Navigator.pushNamed(context, RoutePaths.EVouchersPurchaseSuccess,
                       arguments: PurchaseVoucherSuccessArgument(selectedItem: model.argument.selectedItem));
-
-                  print("Go to Placce Order");
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -71,7 +70,6 @@ class OtpPurchaseEvoucherWithoutRegionPageView
                           ProviderScope.containerOf(context)
                               .read(purchaseEVoucherWithoutRegionPageViewModel(model.argument))
                               .previousPage();
-                          // .previous(animation: true);
                         }
                       } else {
                         if (details.primaryVelocity!.isNegative) {
@@ -80,7 +78,6 @@ class OtpPurchaseEvoucherWithoutRegionPageView
                           ProviderScope.containerOf(context)
                               .read(purchaseEVoucherWithoutRegionPageViewModel(model.argument))
                               .previousPage();
-                          // .previous(animation: true);
                         }
                       }
                     }
@@ -114,7 +111,7 @@ class OtpPurchaseEvoucherWithoutRegionPageView
                                   endTime: model.endTime,
                                   textStyle: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      fontSize: 16,
+                                      fontSize: 16.t,
                                       color: Theme.of(context).textTheme.bodyMedium!.color!),
                                   widgetBuilder: (context, currentTimeRemaining) {
                                     return currentTimeRemaining == null
@@ -142,7 +139,7 @@ class OtpPurchaseEvoucherWithoutRegionPageView
                                   },
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(top: 16.0),
+                                  padding: EdgeInsets.only(top: 16.0.h),
                                   child: AppStreamBuilder<bool>(
                                       stream: model.showButtonStream,
                                       initialData: false,

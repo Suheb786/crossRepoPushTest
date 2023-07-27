@@ -13,13 +13,13 @@ import 'package:sms_autofill/sms_autofill.dart';
 
 import '../purchase_evoucher_without_region_page.dart';
 
-
 class OtpPurchaseEvoucherWithoutRegionPageViewModel extends BasePageViewModel {
   final PurchaseEVoucherWithoutRegionPageArgument argument;
   final PlaceOrderUseCase placeOrderUseCase;
   final EVoucherOtpUseCase eVoucherOtpUseCase;
-
   final EnterOtpForEVoucherCategoryPurchaseUseCase _enterOtpForEVoucherPurchaseCategoryUseCase;
+
+  TextEditingController otpController = TextEditingController();
 
   ///countdown controller
   late CountdownTimerController countDownController;
@@ -31,8 +31,6 @@ class OtpPurchaseEvoucherWithoutRegionPageViewModel extends BasePageViewModel {
     notifyListeners();
     listenForSmsCode();
   }
-
-  TextEditingController otpController = TextEditingController();
 
   /// make otp suject
   PublishSubject<EVoucherUsecaseOTPParams> _evoucherOtpRequest = PublishSubject();
@@ -46,18 +44,12 @@ class OtpPurchaseEvoucherWithoutRegionPageViewModel extends BasePageViewModel {
 
   ///enter otp request subject holder
   PublishSubject<EnterOtpForEVoucherCategoryPurchaseUseCaseParams> _validateOtpRequest = PublishSubject();
-
-  ///enter otp response holder
   PublishSubject<Resource<bool>> _validateOtpResponse = PublishSubject();
-
-  ///enter otp stream
   Stream<Resource<bool>> get enterOtpStream => _validateOtpResponse.stream;
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
-
   BehaviorSubject<String> _otpSubject = BehaviorSubject.seeded("");
-
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   OtpPurchaseEvoucherWithoutRegionPageViewModel(this._enterOtpForEVoucherPurchaseCategoryUseCase,

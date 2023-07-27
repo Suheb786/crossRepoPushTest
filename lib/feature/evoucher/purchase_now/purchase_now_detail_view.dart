@@ -8,6 +8,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/custom_bullet_with_title_widget.dart';
 import 'package:neo_bank/ui/molecules/evoucher/evoucher_text_widget.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../ui/molecules/button/app_primary_button.dart';
@@ -76,31 +77,31 @@ class PageDetail extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const SizedBox(height: 40),
+                SizedBox(height: 40.h),
                 EVoucherTextWidget(
                   alignment: AlignmentDirectional.topStart,
                   text: S.of(context).buyVoucherDetailTitle,
-                  textSize: 12,
+                  textSize: 12.t,
                   textWeight: FontWeight.w600,
                   textColor: Theme.of(context).colorScheme.inversePrimary,
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
                 EVoucherTextWidget(
                   alignment: AlignmentDirectional.topStart,
                   text: S.of(context).buyVoucherDetailSubTitle,
-                  textSize: 20,
+                  textSize: 20.t,
                   textWeight: FontWeight.w600,
                   textColor: Theme.of(context).colorScheme.shadow,
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
                 EVoucherTextWidget(
                   alignment: AlignmentDirectional.topStart,
                   text: S.of(context).buyVoucherDetailSubSubTitle,
-                  textSize: 14,
+                  textSize: 14.t,
                   textWeight: FontWeight.w400,
                   textColor: Theme.of(context).colorScheme.shadow,
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: 24.h),
                 Padding(
                   padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
                   child: Container(
@@ -113,7 +114,7 @@ class PageDetail extends StatelessWidget {
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: Theme.of(context).colorScheme.onSecondaryContainer,
-                              fontSize: 24,
+                              fontSize: 24.t,
                               fontWeight: FontWeight.w700),
                         ),
                         Padding(
@@ -123,7 +124,7 @@ class PageDetail extends StatelessWidget {
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 color: AppColor.verLightGray4,
-                                fontSize: 14,
+                                fontSize: 14.t,
                                 fontWeight: FontWeight.w700),
                           ),
                         ),
@@ -131,7 +132,7 @@ class PageDetail extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16.h),
                 EVoucherTextWidget(
                   alignment: AlignmentDirectional.topStart,
                   text: S.of(context).termsAndConditionsSetting,
@@ -140,25 +141,25 @@ class PageDetail extends StatelessWidget {
                   textColor: Theme.of(context).colorScheme.shadow,
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.only(start: 24.0, end: 24, top: 16),
+                  padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.w, top: 16.h),
                   child: Column(
                     children: [
                       CustomBulletWithTitle(
                         title:
                             'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. ',
-                        fontSize: 14,
+                        fontSize: 14.t,
                         lineHeight: 1.5,
                       ),
                       CustomBulletWithTitle(
                         title:
                             'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.  ',
-                        fontSize: 14,
+                        fontSize: 14.t,
                         lineHeight: 1.5,
                       ),
                       CustomBulletWithTitle(
                         title:
                             'Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.',
-                        fontSize: 14,
+                        fontSize: 14.t,
                         lineHeight: 1.5,
                       ),
                     ],
@@ -168,9 +169,9 @@ class PageDetail extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 24),
+        SizedBox(height: 24),
         PurchaseNowBtn(),
-        const SizedBox(height: 50),
+        SizedBox(height: 50.h),
       ],
     );
   }

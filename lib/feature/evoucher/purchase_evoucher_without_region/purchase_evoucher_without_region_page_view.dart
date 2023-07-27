@@ -8,6 +8,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 import '../../../base/base_page.dart';
+import '../../../di/dashboard/dashboard_modules.dart';
 import '../../../generated/l10n.dart';
 import '../../../ui/molecules/pager/app_swiper.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
@@ -67,7 +68,7 @@ class PurchaseEVoucherWithoutRegionPageView
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           color: Theme.of(context).colorScheme.secondary,
-                          fontSize: 10,
+                          fontSize: 10.t,
                           fontWeight: FontWeight.w600),
                     ),
                     Padding(
@@ -90,7 +91,7 @@ class PurchaseEVoucherWithoutRegionPageView
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: Theme.of(context).colorScheme.secondary,
-                              fontSize: 20,
+                              fontSize: 20.t,
                               fontWeight: FontWeight.w600),
                         ),
                       ),
@@ -98,7 +99,7 @@ class PurchaseEVoucherWithoutRegionPageView
                     Visibility(
                       visible: currentStep == 1,
                       child: Padding(
-                        padding: EdgeInsets.only(bottom: 32),
+                        padding: EdgeInsets.only(bottom: 32.h),
                         child: ShowUpAnimation(
                           delayStart: Duration(milliseconds: 500),
                           animationDuration: Duration(milliseconds: 750),
@@ -106,12 +107,13 @@ class PurchaseEVoucherWithoutRegionPageView
                           direction: Direction.vertical,
                           offset: 0.5,
                           child: Text(
-                            "+962 79 322 8080",
+                            "${(ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode?.replaceAll('00', '+'))}" +
+                                " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber}",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 color: Theme.of(context).colorScheme.secondary,
-                                fontSize: 20,
+                                fontSize: 20.t,
                                 fontWeight: FontWeight.w600),
                           ),
                         ),
