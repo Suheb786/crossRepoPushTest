@@ -13210,20 +13210,20 @@ class S {
     );
   }
 
-  /// `E-Vouchers`
+  /// `E-vouchers`
   String get eVouchers {
     return Intl.message(
-      'E-Vouchers',
+      'E-vouchers',
       name: 'eVouchers',
       desc: '',
       args: [],
     );
   }
 
-  /// `Buy Vouchers`
+  /// `Buy E-vouchers`
   String get buyVouchers {
     return Intl.message(
-      'Buy Vouchers',
+      'Buy E-vouchers',
       name: 'buyVouchers',
       desc: '',
       args: [],

@@ -20,7 +20,11 @@ class VoucherSearchAndFilterWidget extends StatelessWidget {
         return _buildItem(voucherItems[index]);
       },
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, crossAxisSpacing: 0.2, mainAxisSpacing: 0.2, childAspectRatio: 1),
+          mainAxisExtent: 176.h,
+          crossAxisCount: 2,
+          crossAxisSpacing: 0.2,
+          mainAxisSpacing: 40.h,
+          childAspectRatio: 1),
     );
   }
 
@@ -48,7 +52,7 @@ class VoucherSearchAndFilterWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 16.h),
+              SizedBox(height: 12.h),
               Flexible(
                 child: Padding(
                   padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w),

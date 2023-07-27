@@ -1,7 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class EVoucherCategoryListWidget extends StatelessWidget {
@@ -25,7 +25,6 @@ class EVoucherCategoryListWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            ///TODO:use category image here
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Container(
@@ -35,18 +34,18 @@ class EVoucherCategoryListWidget extends StatelessWidget {
                   imageUrl: imageUrl,
                   placeholder: (context, url) => Container(color: Theme.of(context).primaryColor),
                   errorWidget: (context, url, error) => Icon(Icons.error),
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
               ),
             ),
-            const SizedBox(width: 24),
+            SizedBox(width: 24.w),
             Flexible(
               child: Text(
                 categoryVoucher?.name ?? "",
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     fontWeight: FontWeight.w600,
-                    fontSize: 14,
+                    fontSize: 14.t,
                     color: Theme.of(context).indicatorColor),
               ),
             )
