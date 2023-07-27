@@ -10,7 +10,6 @@ class UnLinkAccountFromCliqOtpRequestEntity {
   final String? aliasId;
   @JsonKey(name: "AccountId")
   final String? accountId;
-
   @JsonKey(name: "GetToken")
   final bool? getToken;
   @JsonKey(name: "BaseClass")

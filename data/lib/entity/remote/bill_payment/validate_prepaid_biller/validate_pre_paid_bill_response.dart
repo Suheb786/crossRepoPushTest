@@ -16,9 +16,6 @@ class ValidatePrePaidBillResponse
     this.response,
   });
 
-
-
-
   factory ValidatePrePaidBillResponse.fromJson(Map<String, dynamic> json) =>
       _$ValidatePrePaidBillResponseFromJson(json);
 
@@ -30,11 +27,6 @@ class ValidatePrePaidBillResponse
       content: ValidatePrePaidBillEntity.fromJson(
         this.response?.content ?? Map(),
       ).transform(),
-      /*statusModel: StatusEntity.fromJson(
-        this.status ?? Map(),
-      ).transform(),
-      requestDateTime: this.requestDateTime,
-      logId: this.logId,*/
     );
   }
 }

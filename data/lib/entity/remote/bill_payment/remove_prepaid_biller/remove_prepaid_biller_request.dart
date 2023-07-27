@@ -6,7 +6,6 @@ part 'remove_prepaid_biller_request.g.dart';
 class RemovePrepaidBillerRequest {
   @JsonKey(name: "registrationID")
   final String? registrationID;
-
   @JsonKey(name: "GetToken")
   final bool? getToken;
   @JsonKey(name: "BaseClass")

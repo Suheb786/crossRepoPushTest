@@ -109,6 +109,8 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
     _showNameVisibilityRequest.safeAdd(value);
   }
 
+  bool ibanFieldValidated = false;
+
   void getPurpose(String toAccount, String transferType, String detCustomerType, String type) {
     _getPurposeRequest.safeAdd(GetPurposeUseCaseParams(
         toAccount: toAccount, transferType: transferType, type: type, detCustomerType: detCustomerType));
@@ -136,14 +138,26 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
             : transferResponse.name ?? ''));
   }
 
-  void getError(Resource<bool> event) {
+  void getError(Resource<SendOtpAddBeneficiaryResponse> event) {
     switch (event.appError?.type) {
-      case ErrorType.PLEASE_ENTER_CONTACT_NAME:
+      case ErrorType.EMPTY_NICKNAME_VALUE:
         nameKey.currentState!.isValid = false;
         break;
 
-      case ErrorType.INVALID_IBAN:
+      case ErrorType.NICKNAME_LENGTH_SHOULD_NOT_BE_GREATER_THAN_50:
+        nameKey.currentState!.isValid = false;
+        break;
+
+      case ErrorType.PLEASE_ENTER_IBAN_ACCOUNT_MOBILE_ALIAS:
         ibanORaccountORmobileORaliasKey.currentState!.isValid = false;
+        break;
+
+      case ErrorType.EMPTY_PURPOSE:
+        purposeKey.currentState!.isValid = false;
+        break;
+
+      case ErrorType.EMPTY_PURPOSE_DETAIL:
+        purposeDetailKey.currentState!.isValid = false;
         break;
 
       default:
@@ -205,6 +219,7 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
             if (event.status == Status.ERROR) {
               showErrorState();
               showToastWithError(event.appError!);
+              getError(event);
             }
           },
         );
@@ -223,16 +238,12 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
           showNameVisibility('');
         } else if (event.status == Status.SUCCESS) {
           purposeList.clear();
-          purposeList.addAll(event.data!.content!.transferPurposeResponse!.purposes!);
+          purposeList.addAll(event.data?.content?.transferPurposeResponse?.purposes ?? []);
 
           if (navigationType == NavigationType.REQUEST_MONEY) {
-            showNameVisibility(getAccountByAliasContentResponse.getAccountByAliasContent!.name ?? '');
+            showNameVisibility(getAccountByAliasContentResponse.getAccountByAliasContent?.name ?? '');
           } else {
-            if (transferResponse.messageEnum == CheckSendMoneyMessageEnum.IBAN_FROM_CliQ) {
-              showNameVisibility('');
-            } else {
-              showNameVisibility(transferResponse.name!);
-            }
+            showNameVisibility(transferResponse.name ?? '');
           }
         }
       });
@@ -245,10 +256,16 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
         updateLoader();
         _checkSendMoneyResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          purpose = null;
+          purposeDetail = null;
           showErrorState();
           showToastWithError(event.appError!);
           showNameVisibility('');
+          ibanFieldValidated = false;
         } else if (event.status == Status.SUCCESS) {
+          purpose = null;
+          purposeDetail = null;
+          ibanFieldValidated = true;
           transferResponse = event.data!.checkSendMoneyContent!.transferResponse!;
           getPurpose(event.data!.checkSendMoneyContent!.transferResponse!.toAccount!, "TransferI", '', '');
 
@@ -268,6 +285,8 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
         updateLoader();
         _getAccountByAliasResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          purpose = null;
+          purposeDetail = null;
           showErrorState();
           showToastWithError(event.appError!);
           purposeList = [];
@@ -275,7 +294,11 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
           purposeController.clear();
           purposeDetailController.clear();
           showNameVisibility('');
+          ibanFieldValidated = false;
         } else if (event.status == Status.SUCCESS) {
+          purpose = null;
+          purposeDetail = null;
+          ibanFieldValidated = true;
           getAccountByAliasContentResponse = event.data!;
           getPurpose(
               event.data?.getAccountByAliasContent?.acciban ?? '',

@@ -112,18 +112,22 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                                 children: [
                                   image!.isEmpty
                                       ? model.argument.beneficiaryInformation.image.isEmpty
-                                          ? CircleAvatar(
-                                              backgroundColor: Theme.of(context).colorScheme.shadow,
-                                              radius: 48.w,
-                                              child: Text(
-                                                StringUtils.getFirstInitials(
-                                                    model.argument.beneficiaryInformation.nickName),
-                                                style: TextStyle(
-                                                  color: AppColor.white,
-                                                  fontSize: 22.t,
-                                                  fontWeight: FontWeight.w700,
-                                                ),
-                                              ))
+                                          ? AppStreamBuilder<String>(
+                                              stream: model.beneficiaryNameStream,
+                                              initialData: '',
+                                              dataBuilder: (context, nickNameResponse) {
+                                                return CircleAvatar(
+                                                    backgroundColor: Theme.of(context).colorScheme.shadow,
+                                                    radius: 48.w,
+                                                    child: Text(
+                                                      StringUtils.getFirstInitials(nickNameResponse),
+                                                      style: TextStyle(
+                                                        color: AppColor.white,
+                                                        fontSize: 22.t,
+                                                        fontWeight: FontWeight.w700,
+                                                      ),
+                                                    ));
+                                              })
                                           : CircleAvatar(
                                               radius: 48.w,
                                               backgroundImage: Image.memory(
@@ -183,6 +187,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
+                  model.addNickName(nickName: model.nickNameController.text);
                   model.showSuccessTitleandDescriptionToast(
                       ToastwithTitleandDescription(title: '', description: S.of(context).nickNameUpdated));
                 }
@@ -318,8 +323,8 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                 child: InkWell(
                     onTap: () {
                       Clipboard.setData(ClipboardData(
-                        text: model.argument.beneficiaryInformation.accountNo!,
-                      )).then((value) => Fluttertoast.showToast(msg: S.of(context).cardNumberCopied));
+                        text: model.argument.beneficiaryInformation.identifier ?? '',
+                      )).then((value) => Fluttertoast.showToast(msg: S.of(context).copied));
                     },
                     child: AppSvg.asset(AssetUtils.copy)),
               )

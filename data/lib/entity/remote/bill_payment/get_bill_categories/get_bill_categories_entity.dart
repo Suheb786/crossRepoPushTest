@@ -7,16 +7,13 @@ import 'get_bill_categories_data_entity.dart';
 part 'get_bill_categories_entity.g.dart';
 
 @JsonSerializable()
-class GetBillCategoriesEntity extends BaseLayerDataTransformer<
-    GetBillCategoriesEntity, GetBillCategories> {
+class GetBillCategoriesEntity extends BaseLayerDataTransformer<GetBillCategoriesEntity, GetBillCategories> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
   GetBillCategoriesEntity({
     this.response,
   });
-
-
 
   factory GetBillCategoriesEntity.fromJson(Map<String, dynamic> json) =>
       _$GetBillCategoriesEntityFromJson(json);
@@ -29,7 +26,7 @@ class GetBillCategoriesEntity extends BaseLayerDataTransformer<
       getBillCategoriesData: GetBillCategoriesDataEntity.fromJson(
         this.response?.content ?? Map<String, dynamic>(),
       ).transform(),
-     /* statusModel: StatusEntity.fromJson(
+      /* statusModel: StatusEntity.fromJson(
         this.status ?? Map(),
       ).transform(),
       requestDateTime: this.requestDateTime,

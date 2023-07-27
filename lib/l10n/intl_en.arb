@@ -1716,7 +1716,6 @@
   "exceptionWhileExecutingReturnRtpRequestOtp": "Exception while executing Return RTP Request Otp",
   "exceptionWhileExecutingReturnRtpRequest": "Exception while executing Return RTP Request",
   "exceptionWhileExecutingRejectRtpRequestOtp": "Exception while executing Reject RTP Request Otp",
-  "enterOTPheaderwithVaiable": "Enter the 6-digit code sent to \n{variable}",
   "nickNameAlreadyExists": "Nickname is already stored as beneficiary",
   "reasonToreturn": "Reason to return",
   "oopsYourCardIsNotActive": "Oops! Your card is not active",
@@ -1796,7 +1795,7 @@
   "aliasCliq": "Alias (CliQ)",
   "mobileNoCliq": "Mobile No. (CliQ)",
   "ibanAccountNumberMobileNumberAlisInvalid": "Oops! IBAN/account number/ mobile number/Alias is invalid, use another one.",
-  "enterValidIBANCLiQ": "Oops! please enter an IBAN and CliQ ID to request money.",
+  "enterValidIBANCLiQ": "Oops! please enter an IBAN or CliQ ID to request money.",
   "transferCannotbeDone": "Oops! Sending money failed, contact details need to be updated",
   "requestMoneyFormateSample": "Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n",
   "manageContactSendRequestSample": "Please provide any account details you have for your contact. Sending and requesting money is done either within Blink or via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n",
@@ -1822,5 +1821,7 @@
   "validUntil": "Valid Until",
   "currentAccount": "Current Account",
   "allRegion": "All Region",
-  "allCategories": "All Categories"
+  "allCategories": "All Categories",
+  "copied": "Copied",
+  "recipientNameValidation": "Oops! Recipient name should be at least 2 parts and each part to be with a minimum of 3 characters."
 }

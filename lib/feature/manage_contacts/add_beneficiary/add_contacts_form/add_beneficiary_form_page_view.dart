@@ -44,9 +44,13 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                 stream: model.addcontactIBANStream,
                 onData: (value) {
                   if (value.status == Status.SUCCESS) {
-                    model.mobileNumber = value.data!.sendOTPAddBeneficiary!.mobileNumber!;
-                    model.mobileCode = value.data!.sendOTPAddBeneficiary!.mobileCode!;
+                    model.mobileNumber = value.data?.sendOTPAddBeneficiary?.mobileNumber ?? '';
+                    model.mobileCode = value.data?.sendOTPAddBeneficiary?.mobileCode ?? '';
                     ProviderScope.containerOf(context).read(addBeneficiaryViewModelProvider).nextPage();
+                    ProviderScope.containerOf(context)
+                        .read(addBeneficiaryotpPageViewModel)
+                        .otpController
+                        .clear();
                   }
                 },
                 dataBuilder: (context, validate) {
@@ -84,19 +88,21 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                               FocusScope.of(context).unfocus();
                               if (StringUtils.isDirectionRTL(context)) {
                                 if (!details.primaryVelocity!.isNegative) {
-                                  model.validationUserInput(context);
-                                } else {
-                                  ProviderScope.containerOf(context)
-                                      .read(addBeneficiaryViewModelProvider)
-                                      .previousPage();
+                                  if (!model.ibanFieldValidated &&
+                                      model.ibanOrMobileController.text.isNotEmpty) {
+                                    model.callAPIforRequestAndSendMoney();
+                                  } else {
+                                    model.validationUserInput(context);
+                                  }
                                 }
                               } else {
                                 if (details.primaryVelocity!.isNegative) {
-                                  model.validationUserInput(context);
-                                } else {
-                                  ProviderScope.containerOf(context)
-                                      .read(addBeneficiaryViewModelProvider)
-                                      .previousPage();
+                                  if (!model.ibanFieldValidated &&
+                                      model.ibanOrMobileController.text.isNotEmpty) {
+                                    model.callAPIforRequestAndSendMoney();
+                                  } else {
+                                    model.validationUserInput(context);
+                                  }
                                 }
                               }
                             }
@@ -134,6 +140,10 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                                               controller: model.ibanOrMobileController,
                                               key: model.ibanORaccountORmobileORaliasKey,
                                               onChanged: (value) {
+                                                if (value.isEmpty) {
+                                                  model.showNameVisibility('');
+                                                  model.ibanFieldValidated = false;
+                                                }
                                                 model.validate(value);
                                               },
                                               labelIcon: () {
@@ -203,7 +213,7 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                                               initialData: '',
                                               dataBuilder: (context, visibility) {
                                                 return Visibility(
-                                                  visible: visibility!.isNotEmpty,
+                                                  visible: (visibility ?? '').isNotEmpty,
                                                   child: Padding(
                                                       padding: EdgeInsets.symmetric(horizontal: 2),
                                                       child: Row(
@@ -222,7 +232,7 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                                                           ),
                                                           Expanded(
                                                             child: Text(
-                                                              visibility,
+                                                              visibility ?? '',
                                                               maxLines: 2,
                                                               textAlign: TextAlign.end,
                                                               style: TextStyle(

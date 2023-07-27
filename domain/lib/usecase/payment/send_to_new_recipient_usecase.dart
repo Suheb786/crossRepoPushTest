@@ -6,6 +6,7 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
+import 'package:domain/utils/validator.dart';
 
 class SendToNewRecipientUseCase extends BaseUseCase<NetworkError, SendToNewRecipientUseCaseParams, bool> {
   @override
@@ -46,6 +47,10 @@ class SendToNewRecipientUseCaseParams extends Params {
     } else if (messageEnum == CheckSendMoneyMessageEnum.IBAN_FROM_CliQ && (recipientName ?? "").isEmpty) {
       return Left(
           AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_RECIPIENT_NAME, cause: Exception()));
+    } else if (messageEnum == CheckSendMoneyMessageEnum.IBAN_FROM_CliQ &&
+        Validator.recipientNameValidationFailed(recipientName: recipientName ?? '')) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''), type: ErrorType.RECIPIENT_NAME_VALIDATION, cause: Exception()));
     } else if (messageEnum == CheckSendMoneyMessageEnum.IBAN_FROM_CliQ && (recipientAddress ?? "").isEmpty) {
       return Left(AppError(
           error: ErrorInfo(message: ''), type: ErrorType.EMPTY_RECIPIENT_ADDRESS, cause: Exception()));

@@ -35,10 +35,12 @@ class ApiInterceptor extends InterceptorsWrapper {
 
     options.headers.putIfAbsent("suspendToken", () => AppConstants.IS_BACKGROUND_API_IN_PROGRESS);
     options.headers.putIfAbsent("Lang", () => AppConstantsDomain.SELECTED_LANGUAGE);
-    print('Lang--->${AppConstantsDomain.SELECTED_LANGUAGE}');
+    options.headers.putIfAbsent("appSignature", () => AppConstantsDomain.APP_SIGNATURE);
+    debugPrint('Lang--->${AppConstantsDomain.SELECTED_LANGUAGE}');
+    debugPrint('App Signature--->${AppConstantsDomain.APP_SIGNATURE}');
 
-    print('authToken--->$authToken');
-    print('suspended Token  --->${AppConstants.IS_BACKGROUND_API_IN_PROGRESS}');
+    debugPrint('authToken--->$authToken');
+    debugPrint('suspended Token  --->${AppConstants.IS_BACKGROUND_API_IN_PROGRESS}');
 
     if (options.data != null) {
       options.data = _encryptRequest(options.data);
@@ -53,68 +55,7 @@ class ApiInterceptor extends InterceptorsWrapper {
 
     String pinBlock =
         EncryptDecryptHelper.generateBlockPinForCreditCard(cardNo: '4082230006238493', pinCode: '5678');
-    print('pinBlock------>$pinBlock');
-
-    ///TODO:: UNCOMMENT BELOW BLOCK FOR SSL PINNING
-/*
-    try {
-      // skip verification if already verified, performance
-      if (verifiedURLs.contains(options.baseUrl)) {
-        return handler.next(options);
-      }
-      // iOS bug: Alamofire is failing to return parallel requests for certificate validation
-      if (Platform.isIOS && secure != null) {
-        await secure;
-      }
-
-      List<String> _allowedSHAFingerprints = [];
-
-      if (options.baseUrl == NetworkProperties.BASE_CHANNEL_URL) {
-        _allowedSHAFingerprints.add(
-            "AC:A5:99:D8:DD:74:7A:96:C5:41:AA:1F:2F:4C:53:98:52:39:8B:81:4B:DF:1C:95:F9:5F:D7:D4:D9:C9:66:7D");
-      } else if (options.baseUrl == NetworkProperties.BASE_ROUTER_URL) {
-        _allowedSHAFingerprints.add(
-            "22:DE:99:9C:72:77:FE:8D:2D:B2:53:30:6D:7A:42:7A:19:B9:14:A1:AC:FE:81:D7:BB:20:D0:F0:34:A7:63:E5");
-      }
-
-      secure = HttpCertificatePinning.check(
-        serverURL: options.baseUrl,
-        headerHttp: options.headers.map((a, b) => MapEntry(a, b.toString())),
-        sha: SHA.SHA256,
-        allowedSHAFingerprints: _allowedSHAFingerprints,
-        timeout: 0,
-      );
-
-      secure?.whenComplete(() => secure = null);
-      final secureString = await secure ?? '';
-
-      if (secureString.contains('CONNECTION_SECURE')) {
-        verifiedURLs.add(options.baseUrl);
-        return handler.next(options);
-      } else {
-        handler.reject(
-          DioError(
-            requestOptions: options,
-            error: CertificateNotVerifiedException(),
-          ),
-        );
-      }
-    } on Exception catch (e) {
-      dynamic error;
-
-      if (e is PlatformException && e.code == 'CONNECTION_NOT_SECURE') {
-        error = const CertificateNotVerifiedException();
-      } else {
-        error = CertificateCouldNotBeVerifiedException(e);
-      }
-
-      handler.reject(
-        DioError(
-          requestOptions: options,
-          error: error,
-        ),
-      );
-    }*/
+    debugPrint('pinBlock------>$pinBlock');
 
     return handler.next(options);
   }

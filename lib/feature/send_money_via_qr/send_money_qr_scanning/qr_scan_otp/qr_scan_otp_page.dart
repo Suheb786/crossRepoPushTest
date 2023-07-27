@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
-import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_model.dart';
-import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_view.dart';
+import 'package:neo_bank/di/payment/payment_modules.dart';
+import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/qr_scan_otp/qr_scan_otp_page_view.dart';
+import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/qr_scan_otp/qr_scan_otp_page_view_model.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-class ValidateOtpPage extends BasePage<ValidateOtpViewModel> {
+class QRScanOTPPage extends BasePage<QRScanOTPPageViewModel> {
   @override
-  ValidateOtpPageState createState() => ValidateOtpPageState();
+  QRScanOTPPageState createState() => QRScanOTPPageState();
 }
 
-class ValidateOtpPageState extends BaseStatefulPage<ValidateOtpViewModel, ValidateOtpPage>
+class QRScanOTPPageState extends BaseStatefulPage<QRScanOTPPageViewModel, QRScanOTPPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin, CodeAutoFill {
-  ValidateOtpPageState() : super(subscribeVisibilityEvents: true);
+  QRScanOTPPageState() : super(subscribeVisibilityEvents: true);
 
   @override
   ProviderBase provideBase() {
-    return validateOtpViewModelProvider;
+    return qrScanOTPViewModelProvider;
   }
 
   @override
@@ -28,7 +28,7 @@ class ValidateOtpPageState extends BaseStatefulPage<ValidateOtpViewModel, Valida
   }
 
   @override
-  void onModelReady(ValidateOtpViewModel model) {
+  void onModelReady(QRScanOTPPageViewModel model) {
     model.countDownController = CountdownTimerController(endTime: model.endTime);
   }
 
@@ -37,15 +37,9 @@ class ValidateOtpPageState extends BaseStatefulPage<ValidateOtpViewModel, Valida
     return Colors.transparent;
   }
 
-  // @override
-  // void onFocusLost() {
-  //   getViewModel().countDownController.disposeTimer();
-  //   super.onFocusLost();
-  // }
-
   @override
-  Widget buildView(BuildContext context, ValidateOtpViewModel model) {
-    return ValidateOtpPageView(provideBase());
+  Widget buildView(BuildContext context, QRScanOTPPageViewModel model) {
+    return QRScanOTPPageView(provideBase());
   }
 
   @override
@@ -59,7 +53,7 @@ class ValidateOtpPageState extends BaseStatefulPage<ValidateOtpViewModel, Valida
 
   @override
   void codeUpdated() {
-    getViewModel().otpController.text = code!;
+    getViewModel().otpController.text = code ?? '';
   }
 
   @override

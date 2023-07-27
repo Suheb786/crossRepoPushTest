@@ -19,7 +19,6 @@ class ReturnRTPrequestRequestEntity {
   final String? Currency;
   @JsonKey(name: "Amount")
   final double? Amount;
-
   @JsonKey(name: "RtrnReason")
   final String? RtrnReason;
   @JsonKey(name: "RtrnAddInfo")

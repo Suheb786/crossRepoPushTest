@@ -22,6 +22,6 @@ class ApproveRTPOtpResponseEntity
 
   @override
   ApproveRTPOtp transform() {
-    return ApproveRTPOtpEntity.fromJson(this.response!.content).transform();
+    return ApproveRTPOtpEntity.fromJson(this.response?.content).transform();
   }
 }

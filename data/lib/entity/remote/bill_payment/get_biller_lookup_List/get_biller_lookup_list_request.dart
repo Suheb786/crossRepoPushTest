@@ -7,20 +7,17 @@ class GetBillerLookupListRequest {
   @JsonKey(name: "categoryName")
   String? categoryName;
 
-  // @JsonKey(name: "categoryNameAr")
-  // String? categoryNameAr;
-
   @JsonKey(name: "Type")
   String? type;
 
   @JsonKey(name: "GetToken")
   final bool? getToken;
+
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
   GetBillerLookupListRequest({
     this.categoryName,
-    // this.categoryNameAr,
     this.type,
     this.getToken,
     required this.baseData,

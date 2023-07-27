@@ -17,6 +17,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 GlobalKey<NavigatorState> appLevelKey = GlobalKey(debugLabel: 'app-key');
 
@@ -354,6 +355,10 @@ class AppViewModel extends BaseViewModel {
     _receivePort.close();
     _isolate?.kill();
     super.dispose();
+  }
+
+  Future<void> getAppSignature() async {
+    AppConstantsDomain.APP_SIGNATURE = await SmsAutoFill().getAppSignature;
   }
 }
 

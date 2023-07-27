@@ -37,10 +37,6 @@ class EnterOtpPageState extends BaseStatefulPage<EnterOtpViewModel, EnterOtpPage
   void initState() {
     super.initState();
     listenForCode();
-
-    SmsAutoFill().getAppSignature.then((signature) {
-      print('inside signature---->$signature');
-    });
   }
 
   @override
@@ -50,7 +46,6 @@ class EnterOtpPageState extends BaseStatefulPage<EnterOtpViewModel, EnterOtpPage
 
   @override
   void dispose() {
-    print('inside dispose');
     super.dispose();
     cancel();
   }
