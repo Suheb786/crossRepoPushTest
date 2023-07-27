@@ -38,10 +38,8 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
       _tabController.addListener(() {
         if (model.tabChangeNotifier.value != _tabController.index)
           model.tabChangeNotifier.value = _tabController.index;
-        model.voucherItemFilterResponseSubject
-            .safeAdd(Resource.success(data: model.filterList));
-        model.voucherCategoriesResponseSubject
-            .safeAdd(Resource.success(data: model.categoriesList));
+        model.voucherItemFilterResponseSubject.safeAdd(Resource.success(data: model.filterList));
+        model.voucherCategoriesResponseSubject.safeAdd(Resource.success(data: model.categoriesList));
       });
     }
     super.onModelReady(model);
@@ -87,8 +85,17 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
                         duration: Duration(microseconds: 500),
                         child: InkWell(
                           onTap: () {
-                            EVouchersFilterDialog.show(context, title: S.of(context).filterVouchers,
-                                onSelected: (value) {
+                            EVouchersFilterDialog.show(context,
+                                title: S.of(context).filterVouchers,
+                                categoriesList: provider.categoriesList, onSelected: (value) {
+                              provider.evoucherFilterOption = value.filterOption;
+                              provider.getVoucherItemFilter(
+                                  category: value.categryId,
+                                  region: value.region,
+                                  maxValue: double.parse(value.maxValue),
+                                  minValue: double.parse(value.minValue),
+                                  searchText: "");
+
                               Navigator.pop(context);
                             }, onDismissed: () {
                               Navigator.pop(context);
@@ -145,10 +152,9 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
           ),
           Expanded(
             child: Container(
-              child: TabBarView(controller: _tabController, children: [
-                BuyEvoucherView(provideBase()),
-                MyVoucherHistoryView(provideBase())
-              ]),
+              child: TabBarView(
+                  controller: _tabController,
+                  children: [BuyEvoucherView(provideBase()), MyVoucherHistoryView(provideBase())]),
             ),
           )
         ],

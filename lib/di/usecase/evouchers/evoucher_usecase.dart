@@ -4,15 +4,17 @@ import 'package:domain/usecase/evouchers/enter_otp_for_evoucher_category_purchas
 import 'package:domain/usecase/evouchers/evoucher_by_category_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_categories_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_details_usecase.dart';
+import 'package:domain/usecase/evouchers/evoucher_filter_validation_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_history_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_item_filter_usecase.dart';
+import 'package:domain/usecase/evouchers/evoucher_min_max_value_usecase.dart';
+import 'package:domain/usecase/evouchers/evoucher_region_by_categories_usecase.dart';
 import 'package:domain/usecase/evouchers/select_account_usecase.dart';
 import 'package:domain/usecase/evouchers/select_region_amount_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[SelectRegionAmountUseCase] provider
-final selectRegionAmountUseCaseProvider =
-    Provider.autoDispose<SelectRegionAmountUseCase>(
+final selectRegionAmountUseCaseProvider = Provider.autoDispose<SelectRegionAmountUseCase>(
   (ref) => SelectRegionAmountUseCase(),
 );
 
@@ -40,25 +42,36 @@ final eVoucherCategoriesUseCaseProvider =
 );
 
 ///[EVoucherHistoryUseCase] provider
-final eVoucherHistoryUseCaseProvider =
-    Provider.autoDispose<EVoucherHistoryUseCase>(
+final eVoucherHistoryUseCaseProvider = Provider.autoDispose<EVoucherHistoryUseCase>(
   (ref) => EVoucherHistoryUseCase(ref.read(eVoucherRepositoryProvider)),
 );
 
 ///[EVoucherItemFilterUseCase] provider
-final eVoucherItemFilterUseCaseProvider =
-    Provider.autoDispose<EVoucherItemFilterUseCase>(
+final eVoucherItemFilterUseCaseProvider = Provider.autoDispose<EVoucherItemFilterUseCase>(
   (ref) => EVoucherItemFilterUseCase(ref.read(eVoucherRepositoryProvider)),
 );
 
+///[EVoucherRegionByCategoriesUseCase] provider
+final eVoucherRegionByCategoriesUseCaseProvider = Provider.autoDispose<EVoucherRegionByCategoriesUseCase>(
+  (ref) => EVoucherRegionByCategoriesUseCase(ref.read(eVoucherRepositoryProvider)),
+);
+
+///[EVoucherFilterValidationUseCase] provider
+final eVoucherFilterValidationUseCaseProvider = Provider.autoDispose<EVoucherFilterValidationUseCase>(
+  (ref) => EVoucherFilterValidationUseCase(),
+);
+
+///[EVoucherMinMaxValueUseCase] provider
+final eVoucherMinMaxValueUseCaseProvider = Provider.autoDispose<EVoucherMinMaxValueUseCase>(
+  (ref) => EVoucherMinMaxValueUseCase(ref.read(eVoucherRepositoryProvider)),
+);
+
 ///[EVoucherByCategoryPageUseCase] provider
-final eVoucherByCategoryPageUseCase =
-    Provider.autoDispose<EVoucherByCategoryPageUseCase>(
+final eVoucherByCategoryPageUseCase = Provider.autoDispose<EVoucherByCategoryPageUseCase>(
   (ref) => EVoucherByCategoryPageUseCase(ref.read(eVoucherRepositoryProvider)),
 );
 
 ///[EVoucherDetailsPageUseCase] provider
-final eVoucherDetailsPageUseCase =
-    Provider.autoDispose<EVoucherDetailsPageUseCase>(
+final eVoucherDetailsPageUseCase = Provider.autoDispose<EVoucherDetailsPageUseCase>(
   (ref) => EVoucherDetailsPageUseCase(ref.read(eVoucherRepositoryProvider)),
 );

@@ -1,13 +1,12 @@
+import 'package:domain/constants/enum/evoucher_filter_option_enum.dart';
 import 'package:domain/model/e_voucher/voucher_by_date.dart';
 import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:domain/usecase/evouchers/evoucher_categories_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_history_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_item_filter_usecase.dart';
-import 'package:domain/usecase/evouchers/evoucher_landing_page_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/model/transaction_period.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -17,8 +16,7 @@ import 'package:neo_bank/utils/time_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class EvoucherViewModel extends BasePageViewModel {
-  TextEditingController myVoucherHistorySearchController =
-      TextEditingController();
+  TextEditingController myVoucherHistorySearchController = TextEditingController();
   TextEditingController buyVoucherSearchController = TextEditingController();
   final ScrollController scrollController = ScrollController();
   bool isApiCalling = false;
@@ -29,19 +27,15 @@ class EvoucherViewModel extends BasePageViewModel {
   late VoucherCategories selectedVoucherCategories;
 
   /// ------------- my vouchers stream -----------------------
-  BehaviorSubject<Resource<List<VouchersByDate>>> _myVoucherResponseSubject =
-      BehaviorSubject();
+  BehaviorSubject<Resource<List<VouchersByDate>>> _myVoucherResponseSubject = BehaviorSubject();
 
-  Stream<Resource<List<VouchersByDate>>> get myVoucherResponseStream =>
-      _myVoucherResponseSubject.stream;
+  Stream<Resource<List<VouchersByDate>>> get myVoucherResponseStream => _myVoucherResponseSubject.stream;
 
   /// ------------- voucher by Filter & Search stream -----------------------
-  BehaviorSubject<Resource<List<VoucherItem>>>
-      _voucherByFilterAndSearchResponseSubject = BehaviorSubject();
+  BehaviorSubject<Resource<List<VoucherItem>>> _voucherByFilterAndSearchResponseSubject = BehaviorSubject();
 
-  Stream<Resource<List<VoucherItem>>>
-      get voucherByFilterAndSearchResponseStream =>
-          _voucherByFilterAndSearchResponseSubject.stream;
+  Stream<Resource<List<VoucherItem>>> get voucherByFilterAndSearchResponseStream =>
+      _voucherByFilterAndSearchResponseSubject.stream;
 
   /// ------------- tabChange listener -----------------------
 
@@ -73,20 +67,17 @@ class EvoucherViewModel extends BasePageViewModel {
 
   void getVoucherCategories() {
     _voucherCategoriesRequestSubject.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  eVoucherCategoriesUseCase.execute(params: value))
+      RequestManager(value, createCall: () => eVoucherCategoriesUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
         voucherCategoriesResponseSubject.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
-          //   getVoucherHistory(pageNo.toString(), 3);
+
           showToastWithError(event.appError!);
         }
         if (event.status == Status.SUCCESS) {
-          print("event.status==Status.SUCCESS");
           categoriesList = event.data ?? [];
           getVoucherHistory(pageNo: pageNo, rangeOfMonths: filterDay);
         }
@@ -97,22 +88,18 @@ class EvoucherViewModel extends BasePageViewModel {
   }
 
   List<VoucherCategories> categoriesList = [];
-  BehaviorSubject<EVoucherCategoriesUseCaseParams>
-      _voucherCategoriesRequestSubject = BehaviorSubject();
+  BehaviorSubject<EVoucherCategoriesUseCaseParams> _voucherCategoriesRequestSubject = BehaviorSubject();
 
-  BehaviorSubject<Resource<List<VoucherCategories>>>
-      voucherCategoriesResponseSubject = BehaviorSubject();
+  BehaviorSubject<Resource<List<VoucherCategories>>> voucherCategoriesResponseSubject = BehaviorSubject();
 
-  Stream<Resource<List<VoucherCategories>>>
-      get voucherCategoriesResponseStream =>
-          voucherCategoriesResponseSubject.stream;
+  Stream<Resource<List<VoucherCategories>>> get voucherCategoriesResponseStream =>
+      voucherCategoriesResponseSubject.stream;
 
   /// ------------- voucher History  -------------------------------------------
 
   void getVoucherHistorySubject() {
     _voucherHistoryRequestSubject.listen((value) {
-      RequestManager(value,
-              createCall: () => eVoucherHistoryUseCase.execute(params: value))
+      RequestManager(value, createCall: () => eVoucherHistoryUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -132,8 +119,7 @@ class EvoucherViewModel extends BasePageViewModel {
             if (myVoucherHistoryList == null || myVoucherHistoryList.isEmpty) {
               myVoucherHistoryList.addAll(list);
             } else {
-              if (TimeUtils.getFormattedDateMonth(
-                      myVoucherHistoryList.last.date ?? "") ==
+              if (TimeUtils.getFormattedDateMonth(myVoucherHistoryList.last.date ?? "") ==
                   TimeUtils.getFormattedDateMonth(list.first.date ?? "")) {
                 myVoucherHistoryList.last.data.addAll(list.first.data ?? []);
               } else {
@@ -149,8 +135,7 @@ class EvoucherViewModel extends BasePageViewModel {
             isApiCalling = true;
             //   pageNo--;
             if (pageNo == 1 && (event.data ?? []).isEmpty) {
-              _voucherHistoryResponseSubject
-                  .safeAdd(Resource.success(data: myVoucherHistoryList));
+              _voucherHistoryResponseSubject.safeAdd(Resource.success(data: myVoucherHistoryList));
             }
           }
         }
@@ -158,21 +143,14 @@ class EvoucherViewModel extends BasePageViewModel {
     });
   }
 
-  getVoucherHistory(
-      {required int pageNo,
-      required int rangeOfMonths,
-      String searchPhrase = ''}) {
+  getVoucherHistory({required int pageNo, required int rangeOfMonths, String searchPhrase = ''}) {
     _voucherHistoryRequestSubject.safeAdd(EVoucherHistoryUseCaseParams(
-        pageNo: pageNo,
-        rangeOfMonths: rangeOfMonths,
-        searchPhrase: searchPhrase));
+        pageNo: pageNo, rangeOfMonths: rangeOfMonths, searchPhrase: searchPhrase));
   }
 
-  BehaviorSubject<EVoucherHistoryUseCaseParams> _voucherHistoryRequestSubject =
-      BehaviorSubject();
+  BehaviorSubject<EVoucherHistoryUseCaseParams> _voucherHistoryRequestSubject = BehaviorSubject();
 
-  BehaviorSubject<Resource<List<VouchersByDate>>>
-      _voucherHistoryResponseSubject = BehaviorSubject();
+  BehaviorSubject<Resource<List<VouchersByDate>>> _voucherHistoryResponseSubject = BehaviorSubject();
 
   Stream<Resource<List<VouchersByDate>>> get voucherHistoryResponseStream =>
       _voucherHistoryResponseSubject.stream;
@@ -212,9 +190,7 @@ class EvoucherViewModel extends BasePageViewModel {
 
   void getVoucherItemFilterSubject() {
     _voucherItemFilterRequestSubject.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  eVoucherItemFilterUseCase.execute(params: value))
+      RequestManager(value, createCall: () => eVoucherItemFilterUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -239,19 +215,15 @@ class EvoucherViewModel extends BasePageViewModel {
       required num minValue,
       required String searchText}) {
     _voucherItemFilterRequestSubject.safeAdd(EVoucherItemFilterUseCaseParams(
-        category: category,
-        region: region,
-        maxValue: maxValue,
-        minValue: minValue,
-        searchText: searchText));
+        category: category, region: region, maxValue: maxValue, minValue: minValue, searchText: searchText));
   }
 
-  List<VoucherItem> filterList = [];
-  PublishSubject<EVoucherItemFilterUseCaseParams>
-      _voucherItemFilterRequestSubject = PublishSubject();
+  EvoucherFilterOption evoucherFilterOption = EvoucherFilterOption.FROM_SEARCH_FILTER;
 
-  PublishSubject<Resource<List<VoucherItem>>> voucherItemFilterResponseSubject =
-      PublishSubject();
+  List<VoucherItem> filterList = [];
+  PublishSubject<EVoucherItemFilterUseCaseParams> _voucherItemFilterRequestSubject = PublishSubject();
+
+  PublishSubject<Resource<List<VoucherItem>>> voucherItemFilterResponseSubject = PublishSubject();
 
   Stream<Resource<List<VoucherItem>>> get voucherItemFilterResponseStream =>
       voucherItemFilterResponseSubject.stream;
@@ -279,98 +251,6 @@ class EvoucherViewModel extends BasePageViewModel {
     }
   }
 
-  // void listenToVoucherCategories(EVoucherCategoriesUseCaseParams value) {
-  //   RequestManager<List<VoucherCategories>>(value, createCall: () {
-  //     return _eVoucherCategoriesUseCase.execute(params: value)
-  //         as Future<Either<BaseError, List<VoucherCategories>>>;
-  //   }).asFlow().listen((event) {
-  //     if (event.status == Status.SUCCESS) {
-  //       // done...
-  //       addTransactionPeriod();
-  //     } else if (event.status == Status.ERROR) {
-  //       showToastWithError(event.appError!);
-  //     }
-  //     _voucherCategoriesResponseSubject.safeAdd(event);
-  //     updateLoader();
-  //   });
-  // }
-
-  // void listenToMyVouchers(EVoucherLandingPageUseCaseParams value) {
-  //   RequestManager<List<VouchersByDate>>(value, createCall: () {
-  //     return _eVoucherCategoriesUseCase.execute(params: value)
-  //         as Future<Either<BaseError, List<VouchersByDate>>>;
-  //   }).asFlow().listen((event) {
-  //     if (event.status == Status.SUCCESS) {
-  //       // done...
-  //       isApiCalling = false;
-  //       myVoucherHistoryList.addAll(event.data!);
-  //     } else if (event.status == Status.ERROR) {
-  //       isApiCalling = false;
-  //       showToastWithError(event.appError!);
-  //     }
-  //     _myVoucherResponseSubject.safeAdd(event);
-  //     updateLoader();
-  //   });
-  // }
-  //
-  // void listenToVoucherDetails(EVoucherLandingPageUseCaseParams value) {
-  //   RequestManager<bool>(value, createCall: () {
-  //     return _eVoucherCategoriesUseCase.execute(params: value) as Future<Either<BaseError, bool>>;
-  //   }).asFlow().listen((event) {
-  //     if (event.status == Status.SUCCESS) {
-  //       // done...
-  //     } else if (event.status == Status.ERROR) {
-  //       showToastWithError(event.appError!);
-  //     }
-  //     updateLoader();
-  //   });
-  // }
-  //
-  // void listenToVoucherByCategory(EVoucherLandingPageUseCaseParams value) {
-  //   RequestManager<bool>(value, createCall: () {
-  //     return _eVoucherCategoriesUseCase.execute(params: value) as Future<Either<BaseError, bool>>;
-  //   }).asFlow().listen((event) {
-  //     if (event.status == Status.SUCCESS) {
-  //       // done...
-  //     } else {
-  //       if (event.status == Status.ERROR) showToastWithError(event.appError!);
-  //     }
-  //     updateLoader();
-  //   });
-  // }
-  //
-  // void listenToVoucherByFilter(EVoucherLandingPageUseCaseParams value) {
-  //   RequestManager<List<VoucherItem>>(value, createCall: () {
-  //     return _eVoucherCategoriesUseCase.execute(params: value)
-  //         as Future<Either<BaseError, List<VoucherItem>>>;
-  //   }).asFlow().listen((event) {
-  //     if (event.status == Status.SUCCESS) {
-  //       // done...
-  //     } else if (event.status == Status.ERROR) {
-  //       showToastWithError(event.appError!);
-  //     }
-  //     _voucherByFilterAndSearchResponseSubject.safeAdd(event);
-  //     updateLoader();
-  //   });
-  // }
-  //
-  // void listenToVoucherBySearch(EVoucherLandingPageUseCaseParams value) {
-  //   RequestManager<List<VoucherItem>>(value, createCall: () {
-  //     return _eVoucherCategoriesUseCase.execute(params: value)
-  //         as Future<Either<BaseError, List<VoucherItem>>>;
-  //   }).asFlow().listen((event) {
-  //     _voucherByFilterAndSearchResponseSubject.safeAdd(event);
-  //     updateLoader();
-  //     if (event.status == Status.SUCCESS) {
-  //       // done...
-  //       categoriesDisplayToggleNotifier.value = false;
-  //     } else if (event.status == Status.ERROR) {
-  //       showToastWithError(event.appError!);
-  //     }
-  //
-  //   });
-  // }
-
   void toggleSearch(bool focus) {
     if (buyVoucherSearchController.text.trim().isEmpty) {
       categoriesDisplayToggleNotifier.value = true;
@@ -389,16 +269,6 @@ class EvoucherViewModel extends BasePageViewModel {
     }
   }
 
-  void callSearchApi() {
-    if (buyVoucherSearchController.text.trim().isEmpty) {
-      return;
-    }
-    _voucherCategoriesRequestSubject.safeAdd(EVoucherLandingPageUseCaseParams(
-        eVoucherLandingPageDataEnum:
-            EVoucherLandingPageDataEnum.voucherBySearch,
-        searchText: buyVoucherSearchController.text.trim()));
-  }
-
   void setSelectedCategory(VoucherCategories category) {
     this.selectedVoucherCategories = category;
   }
@@ -414,33 +284,5 @@ class EvoucherViewModel extends BasePageViewModel {
     super.dispose();
   }
 
-  void addTransactionPeriod() {
-    transactionPeriods.clear();
-    transactionPeriods.add(TransactionPeriod(
-        dayPeriodString: S.current.last_30_days, dayPeriod: 30));
-    transactionPeriods.add(TransactionPeriod(
-        dayPeriodString: S.current.last_60_days, dayPeriod: 60));
-    transactionPeriods.add(TransactionPeriod(
-        dayPeriodString: S.current.last_90_days, dayPeriod: 90));
 
-    selectedTransactionHistoryPeriod = transactionPeriods.first.dayPeriod;
-    selectTransactionPeriodAndCallApi();
-  }
-
-  void selectTransactionPeriodAndCallApi() {
-    _voucherCategoriesRequestSubject.safeAdd(EVoucherLandingPageUseCaseParams(
-      eVoucherLandingPageDataEnum: EVoucherLandingPageDataEnum.myVouchers,
-      pageNo: pageNo,
-      rangeOfMonths: selectedTransactionHistoryPeriod,
-    ));
-  }
-
-  void setSelectedTransactionPeriod(String value) {
-    selectedTransactionHistoryPeriod = transactionPeriods
-        .firstWhere((element) => element.dayPeriodString == value)
-        .dayPeriod;
-    myVoucherHistoryList = [];
-    _myVoucherResponseSubject
-        .safeAdd(Resource.success(data: myVoucherHistoryList));
-  }
 }

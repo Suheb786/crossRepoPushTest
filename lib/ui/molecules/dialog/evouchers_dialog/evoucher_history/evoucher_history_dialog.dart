@@ -8,9 +8,8 @@ class EVouchersHistoryFilterDialog {
   static show(BuildContext mContext, {Function? onDismissed, Function(String)? onSelected, String? title}) {
     AppDialog.show(mContext,
         builder: (context) => EVouchersFilterDialogView(
-          onDismissed: onDismissed,
-          title: title,
-          onSelected: onSelected,
-        ));
+              onDismissed: onDismissed,
+              title: title,
+            ));
   }
 }

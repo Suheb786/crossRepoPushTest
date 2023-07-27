@@ -6,7 +6,9 @@ import 'package:domain/model/e_voucher/voucher_by_date.dart';
 import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:domain/model/e_voucher/voucher_detail.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
+import 'package:domain/model/e_voucher/voucher_region_by_categories.dart';
 import 'package:domain/repository/e_voucher/e_voucher_repository.dart';
+import 'package:domain/usecase/evouchers/voucher_min_max_value.dart';
 
 class EVoucherRepositoryImpl extends EVoucherRepository {
   final EVoucherRemoteDS _eVoucherRemoteDS;
@@ -81,10 +83,28 @@ class EVoucherRepositoryImpl extends EVoucherRepository {
   }
 
   @override
-  Future<Either<NetworkError, List<VoucherItem>>> getVoucherItemsBySearch(
-      String searchText) async {
-    final result = await safeApiCall(
-        _eVoucherRemoteDS.getVoucherItemsBySearch(searchText));
+  Future<Either<NetworkError, List<VoucherItem>>> getVoucherItemsBySearch(String searchText) async {
+    final result = await safeApiCall(_eVoucherRemoteDS.getVoucherItemsBySearch(searchText));
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, List<VoucherRegionByCategories>>> getRegionsByCategories(
+      String category) async {
+    final result = await safeApiCall(_eVoucherRemoteDS.getRegionsByCategories(category: category));
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, VoucherMinMaxValue>> getMinMaxRange(
+      {required String category, required String region}) async {
+    final result = await safeApiCall(_eVoucherRemoteDS.getMinMaxRange(category: category, region: region));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.data.transform()),

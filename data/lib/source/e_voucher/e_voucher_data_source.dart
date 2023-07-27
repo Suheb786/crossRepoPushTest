@@ -1,22 +1,21 @@
 import 'package:data/entity/remote/e_voucher/voucher_category/voucher_categories_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_details_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_history/voucher_history_list_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_min_max_value/voucher_min_max_value_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_region_by_categories/voucher_region_by_categories_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_filter_response_entity.dart';
 import 'package:retrofit/dio.dart';
 
 abstract class EVoucherRemoteDS {
   Future<HttpResponse<VoucherCategoriesResponseEntity>> getVoucherCategories();
 
-  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByCategory(
-      String category);
+  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByCategory(String category);
 
   Future<HttpResponse<VoucherHistoryListResponseEntity>> getMyVouchers(
-      {required int pageNo,
-      required int rangeOfMonths,
+      {required int pageNo, required int rangeOfMonths,
       required String searchPhrase});
 
-  Future<HttpResponse<VoucherDetailsResponseEntity>> getVoucherDetails(
-      String orderIdentifier);
+  Future<HttpResponse<VoucherDetailsResponseEntity>> getVoucherDetails(String orderIdentifier);
 
   Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByFilter(
       {required String category,
@@ -25,6 +24,14 @@ abstract class EVoucherRemoteDS {
       required num minValue,
       required num maxValue});
 
-  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsBySearch(
-      String searchText);
+  Future<HttpResponse<VoucherRegionByCategoriesResponseEntity>> getRegionsByCategories({
+    required String category,
+  });
+
+  Future<HttpResponse<VoucherMinMaxValueResponseEntity>> getMinMaxRange({
+    required String category,
+    required String region,
+  });
+
+  Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsBySearch(String searchText);
 }
