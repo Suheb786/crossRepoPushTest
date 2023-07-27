@@ -55,7 +55,6 @@ class VoucherCategoryEntity implements BaseLayerDataTransformer<VoucherCategoryE
 
   @override
   VoucherCategories transform() {
-    print("Base64 =====> ${this.categoryIcon}");
     return VoucherCategories(
       id: this.id ?? 0.0,
       categoryName: Intl.getCurrentLocale() == 'en' ? this.categoryName ?? '' : this.categoryNameAr ?? '',

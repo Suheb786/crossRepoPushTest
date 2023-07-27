@@ -11,7 +11,7 @@ class RegionFilterDialogViewModel extends BasePageViewModel {
 
   Stream<int> get currentIndexStream => _currentSelectIndex.stream;
   List<VoucherRegionByCategories> allRegion = [
-    ///TODO Generate this String for arb file
+    ///TODO Generate this String for arb file All Region
     VoucherRegionByCategories(countryName: "All Region")
   ];
 

@@ -1,6 +1,5 @@
 import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:flutter/material.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -63,7 +62,7 @@ class VoucherSearchAndFilterWidget extends StatelessWidget {
                         maxLines: 1,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            color: AppColor.gray,
+                            color: Theme.of(context).colorScheme.inversePrimary,
                             fontSize: 12.t,
                             fontWeight: FontWeight.w600),
                       )),
@@ -79,7 +78,7 @@ class VoucherSearchAndFilterWidget extends StatelessWidget {
                         maxLines: 2,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            color: AppColor.gray_black,
+                            color: Theme.of(context).colorScheme.shadow,
                             fontSize: 14.t,
                             fontWeight: FontWeight.w600),
                       )),

@@ -1771,5 +1771,13 @@
   "dormantAccountPhysicalCardReq": "عفوا! لا يمكنك طلب طباعة البطاقة لأنه حسابك غير فعال. اتصل بنا على 5200100-06 ليتم تفعيل الحساب",
   "yourAccountInactive": "حسابك غير فعال",
   "callToActivate": "اتصل بنا على 5200100-06 لحتى نفعلك حسابك وتقدر تطلب بطاقة الدفع المباشر .",
-  "allCategories": "All Categories"
+  "allCategories": "All Categories",
+  "buyVouchers": "Buy Vouchers",
+  "myVouchers": "My Vouchers",
+  "filterVouchers": "Filter Vouchers",
+  "resetFilter": "Reset Filter",
+  "minPrice": "Min. Price",
+  "maxPrice": "Max. Price",
+  "category": "Category",
+  "preferredRegion": "Preferred Region"
 }
