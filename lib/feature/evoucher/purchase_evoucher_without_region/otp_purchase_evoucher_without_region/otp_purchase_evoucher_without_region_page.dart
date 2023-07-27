@@ -3,31 +3,29 @@ import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/enter_otp_for_evoucher_category_puchase/enter_otp_for_evoucher_category_puchase_page_view.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/enter_otp_for_evoucher_category_puchase/enter_otp_for_evoucher_category_puchase_page_view_model.dart';
 import 'package:sms_autofill/sms_autofill.dart';
+import '../purchase_evoucher_without_region_page.dart';
+import 'otp_purchase_evoucher_without_region_page_view.dart';
+import 'otp_purchase_evoucher_without_region_page_view_model.dart';
 
-import '../purchase_evoucher_page.dart';
+class PurchaseEVoucherWithoutRegionPage extends BasePage<OtpPurchaseEvoucherWithoutRegionPageViewModel> {
+  final PurchaseEVoucherWithoutRegionPageArgument argument;
 
-class EnterOtpForEVoucherCategoryPurchasePage
-    extends BasePage<EnterOtpForEVoucherCategoryPurchasePageViewModel> {
-  final PurchaseEVoucherPageArgument argument;
-
-  EnterOtpForEVoucherCategoryPurchasePage(this.argument);
+  PurchaseEVoucherWithoutRegionPage(this.argument);
 
   @override
   EnterOtpForEVoucherCategoryPurchasePageState createState() =>
       EnterOtpForEVoucherCategoryPurchasePageState();
 }
 
-class EnterOtpForEVoucherCategoryPurchasePageState extends BaseStatefulPage<
-        EnterOtpForEVoucherCategoryPurchasePageViewModel, EnterOtpForEVoucherCategoryPurchasePage>
+class EnterOtpForEVoucherCategoryPurchasePageState
+    extends BaseStatefulPage<OtpPurchaseEvoucherWithoutRegionPageViewModel, PurchaseEVoucherWithoutRegionPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin, CodeAutoFill {
   EnterOtpForEVoucherCategoryPurchasePageState() : super(subscribeVisibilityEvents: true);
 
   @override
   ProviderBase provideBase() {
-    return enterOtpForEVoucherCategoryPurchaseViewModelProvider.call(widget.argument);
+    return otpPurchaseEvoucherWithoutRegionPageViewModelProvider.call(widget.argument);
   }
 
   @override
@@ -37,7 +35,7 @@ class EnterOtpForEVoucherCategoryPurchasePageState extends BaseStatefulPage<
   }
 
   @override
-  void onModelReady(EnterOtpForEVoucherCategoryPurchasePageViewModel model) {
+  void onModelReady(OtpPurchaseEvoucherWithoutRegionPageViewModel model) {
     model.countDownController = CountdownTimerController(endTime: model.endTime);
   }
 
@@ -47,8 +45,8 @@ class EnterOtpForEVoucherCategoryPurchasePageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(BuildContext context, EnterOtpForEVoucherCategoryPurchasePageViewModel model) {
-    return EnterOtpForEVoucherCategoryPurchasePageView(provideBase());
+  Widget buildView(BuildContext context, OtpPurchaseEvoucherWithoutRegionPageViewModel model) {
+    return OtpPurchaseEvoucherWithoutRegionPageView(provideBase());
   }
 
   @override

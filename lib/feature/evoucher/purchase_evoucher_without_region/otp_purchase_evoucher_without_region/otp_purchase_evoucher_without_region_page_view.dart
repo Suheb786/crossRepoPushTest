@@ -4,7 +4,6 @@ import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/enter_otp_for_evoucher_category_puchase/enter_otp_for_evoucher_category_puchase_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_voucher_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -16,10 +15,11 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../../main/navigation/route_paths.dart';
+import 'otp_purchase_evoucher_without_region_page_view_model.dart';
 
-class EnterOtpForEVoucherCategoryPurchasePageView
-    extends BasePageViewWidget<EnterOtpForEVoucherCategoryPurchasePageViewModel> {
-  EnterOtpForEVoucherCategoryPurchasePageView(ProviderBase model) : super(model);
+class OtpPurchaseEvoucherWithoutRegionPageView
+    extends BasePageViewWidget<OtpPurchaseEvoucherWithoutRegionPageViewModel> {
+  OtpPurchaseEvoucherWithoutRegionPageView(ProviderBase model) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
@@ -59,7 +59,7 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (ProviderScope.containerOf(context)
-                            .read(purchaseEVouchersViewModelProvider(model.argument))
+                            .read(purchaseEVoucherWithoutRegionPageViewModel(model.argument))
                             .appSwiperController
                             .page ==
                         2.0) {
@@ -69,7 +69,7 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                           model.validateOtp();
                         } else {
                           ProviderScope.containerOf(context)
-                              .read(purchaseEVouchersViewModelProvider(model.argument))
+                              .read(purchaseEVoucherWithoutRegionPageViewModel(model.argument))
                               .previousPage();
                           // .previous(animation: true);
                         }
@@ -78,7 +78,7 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                           model.validateOtp();
                         } else {
                           ProviderScope.containerOf(context)
-                              .read(purchaseEVouchersViewModelProvider(model.argument))
+                              .read(purchaseEVoucherWithoutRegionPageViewModel(model.argument))
                               .previousPage();
                           // .previous(animation: true);
                         }

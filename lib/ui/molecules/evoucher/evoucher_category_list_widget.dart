@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -6,8 +7,10 @@ import 'package:neo_bank/utils/string_utils.dart';
 class EVoucherCategoryListWidget extends StatelessWidget {
   final VoucherItem? categoryVoucher;
   final Function()? onTap;
+  final String imageUrl;
 
   const EVoucherCategoryListWidget({
+    required this.imageUrl,
     Key? key,
     this.categoryVoucher,
     this.onTap,
@@ -28,7 +31,12 @@ class EVoucherCategoryListWidget extends StatelessWidget {
               child: Container(
                 height: 56,
                 width: 56,
-                color: Theme.of(context).primaryColor,
+                child: CachedNetworkImage(
+                  imageUrl: imageUrl,
+                  placeholder: (context, url) => Container(color: Theme.of(context).primaryColor),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             const SizedBox(width: 24),

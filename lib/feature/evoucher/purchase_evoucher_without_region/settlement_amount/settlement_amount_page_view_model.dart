@@ -1,21 +1,19 @@
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/select_account_usecase.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../purchase_evoucher_page.dart';
 
-class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
+import '../purchase_evoucher_without_region_page.dart';
+
+class SettlementAmountPageViewModel extends BasePageViewModel {
   final EVoucherOtpUseCase eVoucherOtpUseCase;
 
-  final PurchaseEVoucherPageArgument argument;
+  final PurchaseEVoucherWithoutRegionPageArgument argument;
   final GetSettlementValidationUseCase _selectAccountUseCase;
 
   /// check Subject
@@ -42,7 +40,7 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  EvoucherSettlementAccountPageViewModel(this._selectAccountUseCase, this.argument, this.eVoucherOtpUseCase) {
+  SettlementAmountPageViewModel(this._selectAccountUseCase, this.argument, this.eVoucherOtpUseCase) {
     _selectAccountRequest.listen((value) {
       RequestManager(value, createCall: () => _selectAccountUseCase.execute(params: value))
           .asFlow()
@@ -88,15 +86,10 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
     notifyListeners();
   }
 
-  validateFields(BuildContext context) {
+  validateFields() {
     _selectAccountRequest.safeAdd(GetSettlementValidationUseCaseParams(
         isChecked: _isCheckedRequest.value,
-        totalAmountString: ProviderScope.containerOf(context)
-                .read(appHomeViewModelProvider)
-                .dashboardDataContent
-                .account
-                ?.availableBalance ??
-            "",
+        totalAmountString: "20",
         itemValueString: argument.selectedItem.fromValue));
   }
 

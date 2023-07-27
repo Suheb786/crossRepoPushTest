@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:neo_bank/di/usecase/dashboard/dashboard_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/evouchers/evoucher_usecase.dart';
 import 'package:neo_bank/feature/evoucher/enter_code_evoucher_puchase/enter_code_evoucher_puchase_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/evoucher/evoucher_view_model.dart';
@@ -15,6 +14,11 @@ import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_vouc
 import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_voucher_success_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/share_voucher/share_voucher_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/evouchers_filter_dialog_view_model.dart';
+
+import '../../feature/evoucher/purchase_evoucher_without_region/otp_purchase_evoucher_without_region/otp_purchase_evoucher_without_region_page_view_model.dart';
+import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page.dart';
+import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page_view_model.dart';
+import '../../feature/evoucher/purchase_evoucher_without_region/settlement_amount/settlement_amount_page_view_model.dart';
 
 final evoucherViewModelProvider = ChangeNotifierProvider.autoDispose<EvoucherViewModel>(
   (ref) => EvoucherViewModel(
@@ -47,6 +51,11 @@ final purchaseEVouchersViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<PurchaseEVoucherPageViewModel, PurchaseEVoucherPageArgument>(
         (ref, args) => PurchaseEVoucherPageViewModel(args));
 
+///PurchaseEVoucherWithoutRegionPageViewModel
+final purchaseEVoucherWithoutRegionPageViewModel = ChangeNotifierProvider.autoDispose
+    .family<PurchaseEVoucherWithoutRegionPageViewModel, PurchaseEVoucherWithoutRegionPageArgument>(
+        (ref, args) => PurchaseEVoucherWithoutRegionPageViewModel(args));
+
 ///select region amount view model
 final selectAmountRegionViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<SelectRegionAmountPageViewModel, PurchaseEVoucherPageArgument>(
@@ -56,11 +65,17 @@ final selectAmountRegionViewModelProvider = ChangeNotifierProvider.autoDispose
               ref.read(getSettlementAmountUseCaseProvider),
             ));
 
-///select  account view model
+///settlement
 final evoucherSettlementAccountViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<EvoucherSettlementAccountPageViewModel, PurchaseEVoucherPageArgument>((ref, arg) =>
-        EvoucherSettlementAccountPageViewModel(ref.read(selectAccountUseCaseProvider), arg,
-            ref.read(getDashboardDataUseCaseProvider), ref.read(eVoucherOtpCaseProvider)));
+        EvoucherSettlementAccountPageViewModel(
+            ref.read(selectAccountUseCaseProvider), arg, ref.read(eVoucherOtpCaseProvider)));
+
+///settlement account
+final settlementAccountViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<SettlementAmountPageViewModel, PurchaseEVoucherWithoutRegionPageArgument>((ref, arg) =>
+        SettlementAmountPageViewModel(
+            ref.read(selectAccountUseCaseProvider), arg, ref.read(eVoucherOtpCaseProvider)));
 
 ///enter otp for category evoucher purchase view model
 final enterOtpForEVoucherCategoryPurchaseViewModelProvider = ChangeNotifierProvider.autoDispose
@@ -68,7 +83,17 @@ final enterOtpForEVoucherCategoryPurchaseViewModelProvider = ChangeNotifierProvi
         EnterOtpForEVoucherCategoryPurchasePageViewModel(
             ref.read(enterOtpForEVoucherCategoryPurchaseUseCaseUseCaseProvider),
             arg,
-            ref.read(placeOrderUseCaseProvider)));
+            ref.read(placeOrderUseCaseProvider),
+            ref.read(eVoucherOtpCaseProvider)));
+
+///otpPurchaseEvoucherWithoutRegionPageViewModelProvider
+final otpPurchaseEvoucherWithoutRegionPageViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<OtpPurchaseEvoucherWithoutRegionPageViewModel, PurchaseEVoucherWithoutRegionPageArgument>((ref, arg) =>
+        OtpPurchaseEvoucherWithoutRegionPageViewModel(
+            ref.read(enterOtpForEVoucherCategoryPurchaseUseCaseUseCaseProvider),
+            arg,
+            ref.read(placeOrderUseCaseProvider),
+            ref.read(eVoucherOtpCaseProvider)));
 
 ///purchase voucher success view model
 final purchaseVoucherViewModelProvider = ChangeNotifierProvider.autoDispose

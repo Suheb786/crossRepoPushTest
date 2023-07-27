@@ -127,14 +127,18 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
 
     Set<String> prices = Set<String>();
     for (var value in vouchersWithSameProductIdAndCountry) {
-      prices.add(value.fromValue.toString() + " " + "JOD");
+      prices.add(value.fromValue.toString() + " " + value.currency);
     }
 
     voucherValue.clear();
     voucherValue.addAll(prices.toList());
   }
 
-  void getSettlementAmmount(String? Amount, String? FromCurrency, String? ToCurrency) {
+  void getSettlementAmmount({
+    required String? Amount,
+    required String? FromCurrency,
+    required String? ToCurrency,
+  }) {
     _getSettlementAmountRequest.safeAdd(GetSettlementAmountUseCaseParams(
         Amount: Amount, FromCurrency: FromCurrency, ToCurrency: ToCurrency, GetToken: true));
   }

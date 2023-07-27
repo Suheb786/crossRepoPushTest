@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/evoucher_settlement_select_account/evoucher_settlement_account_page_view_model.dart.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher_without_region/settlement_amount/settlement_amount_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -17,8 +17,8 @@ import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../../ui/molecules/app_svg.dart';
 
-class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettlementAccountPageViewModel> {
-  EvoucherSettlementAccountPageView(
+class SettlementAmountPageView extends BasePageViewWidget<SettlementAmountPageViewModel> {
+  SettlementAmountPageView(
     ProviderBase model,
   ) : super(model);
 
@@ -40,7 +40,7 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
                     ProviderScope.containerOf(context)
-                        .read(purchaseEVouchersViewModelProvider(model.argument))
+                        .read(purchaseEVoucherWithoutRegionPageViewModel(model.argument))
                         .nextPage();
 
                     model.getOTP();
@@ -52,25 +52,25 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                   return GestureDetector(
                     onHorizontalDragEnd: (details) {
                       if (ProviderScope.containerOf(context)
-                              .read(purchaseEVouchersViewModelProvider(model.argument))
+                              .read(purchaseEVoucherWithoutRegionPageViewModel(model.argument))
                               .appSwiperController
                               .page ==
                           1.0) {
                         FocusScope.of(context).unfocus();
                         if (StringUtils.isDirectionRTL(context)) {
                           if (!details.primaryVelocity!.isNegative) {
-                            model.validateFields(context);
+                            model.validateFields();
                           } else {
                             ProviderScope.containerOf(context)
-                                .read(purchaseEVouchersViewModelProvider(model.argument))
+                                .read(purchaseEVoucherWithoutRegionPageViewModel(model.argument))
                                 .previousPage();
                           }
                         } else {
                           if (details.primaryVelocity!.isNegative) {
-                            model.validateFields(context);
+                            model.validateFields();
                           } else {
                             ProviderScope.containerOf(context)
-                                .read(purchaseEVouchersViewModelProvider(model.argument))
+                                .read(purchaseEVoucherWithoutRegionPageViewModel(model.argument))
                                 .previousPage();
                           }
                         }

@@ -48,10 +48,5 @@ class EvoucherSettlementAccountPageState
   }
 
   @override
-  void onModelReady(EvoucherSettlementAccountPageViewModel model) {
-    model.getDashboardData();
-  }
-
-  @override
   bool get wantKeepAlive => true;
 }

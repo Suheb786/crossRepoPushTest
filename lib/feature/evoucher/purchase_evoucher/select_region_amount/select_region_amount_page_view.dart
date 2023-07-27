@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -37,8 +38,10 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                 initialData: Resource.none(),
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
-                    model.getSettlementAmmount(model.argument.selectedItem.fromValue.toString(),
-                        model.argument.selectedItem.currency, model.argument.selectedItem.currency);
+                    model.getSettlementAmmount(
+                        Amount: model.argument.selectedItem.fromValue.toString(),
+                        FromCurrency: model.argument.selectedItem.currency,
+                        ToCurrency: S.current.JOD);
 
                     ProviderScope.containerOf(context)
                         .read(purchaseEVouchersViewModelProvider(model.argument))
@@ -83,7 +86,13 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                         child: Container(
                                           height: 72,
                                           width: 72,
-                                          color: Theme.of(context).primaryColor,
+                                          child: CachedNetworkImage(
+                                            imageUrl: model.argument.selectedItem.cardFaceImage,
+                                            placeholder: (context, url) =>
+                                                Container(color: Theme.of(context).primaryColor),
+                                            errorWidget: (context, url, error) => Icon(Icons.error),
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                       SizedBox(

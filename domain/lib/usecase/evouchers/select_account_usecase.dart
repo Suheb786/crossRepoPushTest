@@ -19,12 +19,12 @@ class GetSettlementValidationUseCase
 class GetSettlementValidationUseCaseParams extends Params {
   String totalAmountString;
   num itemValueString;
-  int totalAmount = 0;
+  double totalAmount = 0;
   bool isChecked;
 
   GetSettlementValidationUseCaseParams(
       {required this.totalAmountString, required this.itemValueString, required this.isChecked}) {
-    totalAmount = int.parse(totalAmountString);
+    totalAmount = double.parse(totalAmountString);
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -5,13 +6,12 @@ import 'package:neo_bank/feature/evoucher/purchase_now/purchase_now_detail_model
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/custom_bullet_with_title_widget.dart';
-import 'package:neo_bank/ui/molecules/dialog/evoucher/purchase_now/purchase_now_dialog.dart';
 import 'package:neo_bank/ui/molecules/evoucher/evoucher_text_widget.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../ui/molecules/button/app_primary_button.dart';
+import '../purchase_evoucher_without_region/purchase_evoucher_without_region_page.dart';
 
 class PurchaseNowDetailView extends BasePageViewWidget<PurchaseNowDetailViewModel> {
   PurchaseNowDetailView(ProviderBase model) : super(model);
@@ -188,18 +188,70 @@ class PurchaseNowBtn extends StatelessWidget {
       child: AppPrimaryButton(
         isDisabled: false,
         onPressed: () {
-          PurchaseNowDialog.show(context,
-              image: AssetUtils.processing_voucher_icon,
-              title: S.of(context).purchaseNowTitle,
-              descriptionWidget: Text(
-                S.of(context).viewVoucherDialogDescription,
-                style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w400),
-              ), onSelected: () {
-            Navigator.pop(context);
-            Navigator.pushNamed(context, RoutePaths.EnterCodeEVoucherPurchase);
-          }, onDismissed: () {
-            Navigator.pop(context);
-          }, price: S.of(context).amt, subTitle: S.of(context).purchaseNowSubTitle);
+          // PurchaseNowDialog.show(context,
+          //     image: AssetUtils.processing_voucher_icon,
+          //     title: S.of(context).purchaseNowTitle,
+          //     descriptionWidget: Text(
+          //       S.of(context).viewVoucherDialogDescription,
+          //       style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w400),
+          //     ), onSelected: () {
+          //   Navigator.pop(context);
+          //   Navigator.pushNamed(context, RoutePaths.EnterCodeEVoucherPurchase);
+          // }, onDismissed: () {
+          //   Navigator.pop(context);
+          // }, price: S.of(context).amt, subTitle: S.of(context).purchaseNowSubTitle);
+          Navigator.pushNamed(context, RoutePaths.PurchaseEVoucherWithoutRegionPage,
+              arguments: PurchaseEVoucherWithoutRegionPageArgument(
+                  voucherItems: [
+                    VoucherItem(
+                        id: "2323",
+                        name: "Playstation",
+                        usageInstructions: "usageInstructions",
+                        termsAndConditions: "termsAndConditions",
+                        giftCardInformation: "giftCardInformation",
+                        brand: "brand",
+                        currency: "JOD",
+                        fromValue: 1.22,
+                        toValue: 200,
+                        cardFaceImage: "fdasf",
+                        cardFaceHash: "",
+                        productId: 123,
+                        categories: ["", "to", "toma"],
+                        discount: "discount",
+                        countryCode: "JD"),
+                    VoucherItem(
+                        id: "2323",
+                        name: "Playstation",
+                        usageInstructions: "usageInstructions",
+                        termsAndConditions: "termsAndConditions",
+                        giftCardInformation: "giftCardInformation",
+                        brand: "brand",
+                        currency: "JOD",
+                        fromValue: 1.22,
+                        toValue: 200,
+                        cardFaceImage: "fdasf",
+                        cardFaceHash: "",
+                        productId: 123,
+                        categories: ["", "to", "toma"],
+                        discount: "discount",
+                        countryCode: "JD")
+                  ],
+                  selectedItem: VoucherItem(
+                      id: "2323",
+                      name: "Playstation",
+                      usageInstructions: "usageInstructions",
+                      termsAndConditions: "termsAndConditions",
+                      giftCardInformation: "giftCardInformation",
+                      brand: "brand",
+                      currency: "JOD",
+                      fromValue: 1.22,
+                      toValue: 200,
+                      cardFaceImage: "fdasf",
+                      cardFaceHash: "",
+                      productId: 123,
+                      categories: ["", "to", "toma"],
+                      discount: "discount",
+                      countryCode: "JD")));
         },
         text: S.of(context).purchaseNow,
       ),

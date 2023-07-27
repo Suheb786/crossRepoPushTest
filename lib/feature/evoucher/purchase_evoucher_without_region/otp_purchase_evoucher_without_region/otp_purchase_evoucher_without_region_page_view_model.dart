@@ -11,10 +11,11 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-import '../purchase_evoucher_page.dart';
+import '../purchase_evoucher_without_region_page.dart';
 
-class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel {
-  final PurchaseEVoucherPageArgument argument;
+
+class OtpPurchaseEvoucherWithoutRegionPageViewModel extends BasePageViewModel {
+  final PurchaseEVoucherWithoutRegionPageArgument argument;
   final PlaceOrderUseCase placeOrderUseCase;
   final EVoucherOtpUseCase eVoucherOtpUseCase;
 
@@ -59,7 +60,7 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  EnterOtpForEVoucherCategoryPurchasePageViewModel(this._enterOtpForEVoucherPurchaseCategoryUseCase,
+  OtpPurchaseEvoucherWithoutRegionPageViewModel(this._enterOtpForEVoucherPurchaseCategoryUseCase,
       this.argument, this.placeOrderUseCase, this.eVoucherOtpUseCase) {
     _validateOtpRequest.listen((value) {
       RequestManager(value,

@@ -149,6 +149,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 
 import '../../feature/evoucher/evoucher/evoucher_page.dart';
+import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page.dart';
 import '../../feature/rj/rj_book_flight/rj_book_flight_page.dart';
 
 class AppRouter {
@@ -664,6 +665,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => PurchaseNowDetailPage(),
             settings: RouteSettings(name: RoutePaths.PurchaseNowDetail));
+      case RoutePaths.PurchaseEVoucherWithoutRegionPage:
+        return CupertinoPageRoute(
+            builder: (context) => PurchaseEVoucherWithoutRegionPage(
+                argument: settings.arguments as PurchaseEVoucherWithoutRegionPageArgument),
+            settings: RouteSettings(name: RoutePaths.PurchaseEVoucherWithoutRegionPage));
 
       case RoutePaths.SupplementaryDebitCardPinSet:
         return CupertinoPageRoute(
