@@ -4,17 +4,20 @@ part 'voucher_by_filter_request.g.dart';
 
 @JsonSerializable()
 class VoucherByFilterRequest {
-  @JsonKey(name: "CATEGORY")
-  final String? Category;
+  @JsonKey(name: "Category")
+  final String? category;
 
-  @JsonKey(name: "REGION")
-  final String? Region;
+  @JsonKey(name: "Region")
+  final String? region;
 
-  @JsonKey(name: "MAXVALUE")
-  final String? MaxValue;
+  @JsonKey(name: "MinValue")
+  final num? minValue;
 
-  @JsonKey(name: "MINVALUE")
-  final String? MinValue;
+  @JsonKey(name: "MaxValue")
+  final num? maxValue;
+
+  @JsonKey(name: "SearchText")
+  final String? searchText;
 
   @JsonKey(name: "GetToken")
   final bool getToken;
@@ -23,10 +26,11 @@ class VoucherByFilterRequest {
   final Map<String, dynamic> baseData;
 
   VoucherByFilterRequest({
-    this.MinValue,
-    this.Category,
-    this.MaxValue,
-    this.Region,
+    this.category,
+    this.region,
+    this.minValue,
+    this.maxValue,
+    this.searchText,
     this.getToken = true,
     required this.baseData,
   });

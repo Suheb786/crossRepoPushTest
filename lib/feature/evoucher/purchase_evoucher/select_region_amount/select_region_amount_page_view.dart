@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -13,6 +14,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -36,7 +38,14 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                 initialData: Resource.none(),
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
-                    ProviderScope.containerOf(context).read(purchaseEVouchersViewModelProvider).nextPage();
+                    model.getSettlementAmmount(
+                        Amount: model.argument.selectedItem.fromValue.toString(),
+                        FromCurrency: model.argument.selectedItem.currency,
+                        ToCurrency: S.current.JOD);
+
+                    ProviderScope.containerOf(context)
+                        .read(purchaseEVouchersViewModelProvider(model.argument))
+                        .nextPage();
                   } else if (data.status == Status.ERROR) {
                     model.showToastWithError(data.appError!);
                   }
@@ -45,7 +54,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                   return GestureDetector(
                     onHorizontalDragEnd: (details) {
                       if (ProviderScope.containerOf(context)
-                              .read(purchaseEVouchersViewModelProvider)
+                              .read(purchaseEVouchersViewModelProvider(model.argument))
                               .appSwiperController
                               .page ==
                           0.0) {
@@ -64,7 +73,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                     child: Card(
                       margin: EdgeInsets.zero,
                       child: Container(
-                          padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                          padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -75,26 +84,32 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(8),
                                         child: Container(
-                                          height: 72,
-                                          width: 72,
-                                          color: Theme.of(context).primaryColor,
+                                          height: 72.h,
+                                          width: 72.w,
+                                          child: CachedNetworkImage(
+                                            imageUrl: model.argument.selectedItem.cardFaceImage,
+                                            placeholder: (context, url) =>
+                                                Container(color: Theme.of(context).primaryColor),
+                                            errorWidget: (context, url, error) => Icon(Icons.error),
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                       SizedBox(
-                                        height: 16,
+                                        height: 16.h,
                                       ),
                                       Text(
-                                        'PlayStation',
+                                        model.argument.selectedItem.name,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           color: Theme.of(context).indicatorColor,
-                                          fontSize: 14,
+                                          fontSize: 14.t,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
                                       SizedBox(
-                                        height: 32,
+                                        height: 32.h,
                                       ),
                                       AppTextField(
                                         labelText: S.of(context).region.toUpperCase(),
@@ -105,27 +120,26 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                         onPressed: () {
                                           RelationshipWithCardHolderDialog.show(context,
                                               title: S.of(context).preferredRegion,
-                                              relationSHipWithCardHolder: model.preferredRegionList,
+                                              relationSHipWithCardHolder: model.voucherCountries,
                                               onDismissed: () {
                                             Navigator.pop(context);
                                           }, onSelected: (value) {
                                             Navigator.pop(context);
                                             model.selectedRegionController.text = value;
+                                            model.getVoucherValue();
                                             model.validate();
                                           });
                                         },
                                         suffixIcon: (value, data) {
                                           return Container(
-                                              height: 16,
-                                              width: 16,
+                                              height: 16.h,
+                                              width: 16.h,
                                               padding: EdgeInsetsDirectional.only(end: 8),
                                               child: AppSvg.asset(AssetUtils.downArrow,
                                                   color: Theme.of(context).colorScheme.surfaceTint));
                                         },
                                       ),
-                                      SizedBox(
-                                        height: 16,
-                                      ),
+                                      SizedBox(height: 16.h),
                                       AppTextField(
                                         labelText: S.of(context).value.toUpperCase(),
                                         hintText: S.of(context).pleaseSelect,
@@ -135,7 +149,8 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                         onPressed: () {
                                           RelationshipWithCardHolderDialog.show(context,
                                               title: S.of(context).minPrice,
-                                              relationSHipWithCardHolder: model.priceList, onDismissed: () {
+                                              relationSHipWithCardHolder: model.voucherValue,
+                                              onDismissed: () {
                                             Navigator.pop(context);
                                           }, onSelected: (value) {
                                             Navigator.pop(context);
@@ -145,40 +160,24 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                         },
                                         suffixIcon: (value, data) {
                                           return Container(
-                                              height: 16,
-                                              width: 16,
+                                              height: 16.h,
+                                              width: 16.h,
                                               padding: EdgeInsetsDirectional.only(end: 8),
                                               child: AppSvg.asset(AssetUtils.downArrow,
                                                   color: Theme.of(context).colorScheme.surfaceTint));
                                         },
                                       ),
                                       SizedBox(
-                                        height: 16,
+                                        height: 16.h,
                                       ),
                                     ],
                                   ),
                                 ),
                               ),
-
-                              ///TODO:make dynamic text
                               Column(
                                 children: [
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text(
-                                      S.of(context).backToCategory('Games'),
-                                      style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        color: Theme.of(context).colorScheme.onSecondaryContainer,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.only(top: 12.0),
+                                    padding: EdgeInsetsDirectional.only(top: 12.0.h, bottom: 23.h),
                                     child: AppStreamBuilder<bool>(
                                         stream: model.showButtonStream,
                                         initialData: false,
@@ -191,12 +190,22 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                           );
                                         }),
                                   ),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text(
+                                      S.of(context).backToCategory(S.current.games),
+                                      style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: Theme.of(context).colorScheme.onSecondaryContainer,
+                                        fontSize: 14.t,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
-                              // SizedBox(
-                              //   height:
-                              //       MediaQuery.of(context).viewInsets.bottom,
-                              // ),
                             ],
                           )),
                     ),

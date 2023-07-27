@@ -59,6 +59,8 @@ class AppViewModel extends BaseViewModel {
               onSecondaryContainer: AppColor.brightBlue,
               background: AppColor.lightGray,
               error: AppColor.vivid_red,
+              secondaryContainer: AppColor.darkModerateLimeGreen,
+              onTertiaryContainer: AppColor.dark_orange,
               onSurface: AppColor.rj_gray,
               surfaceVariant: AppColor.veryDarkGray2,
               surface: AppColor.veryDarkGray1,

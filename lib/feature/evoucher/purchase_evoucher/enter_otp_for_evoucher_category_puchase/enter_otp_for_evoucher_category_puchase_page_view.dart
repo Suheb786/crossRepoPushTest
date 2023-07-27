@@ -5,15 +5,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/enter_otp_for_evoucher_category_puchase/enter_otp_for_evoucher_category_puchase_page_view_model.dart';
+import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_voucher_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../../main/navigation/route_paths.dart';
 
 class EnterOtpForEVoucherCategoryPurchasePageView
     extends BasePageViewWidget<EnterOtpForEVoucherCategoryPurchasePageViewModel> {
@@ -36,7 +39,17 @@ class EnterOtpForEVoucherCategoryPurchasePageView
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  Navigator.pushReplacementNamed(context, RoutePaths.EVouchersPurchaseSuccess);
+                  model.placeOrder(
+                      exchangeRate: "exchangeRate",
+                      Denomination: "Denomination",
+                      reconcilationCurrency: "reconcilationCurrency",
+                      Discount: "Discount",
+                      VoucherName: "VoucherName",
+                      VoucherCategory: "VoucherCategory",
+                      AccountNo: "AccountNo");
+
+                  Navigator.pushNamed(context, RoutePaths.EVouchersPurchaseSuccess,
+                      arguments: PurchaseVoucherSuccessArgument(selectedItem: model.argument.selectedItem));
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -45,28 +58,26 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (ProviderScope.containerOf(context)
-                            .read(purchaseEVouchersViewModelProvider)
+                            .read(purchaseEVouchersViewModelProvider(model.argument))
                             .appSwiperController
                             .page ==
-                        1.0) {
+                        2.0) {
                       FocusScope.of(context).unfocus();
                       if (StringUtils.isDirectionRTL(context)) {
                         if (!details.primaryVelocity!.isNegative) {
                           model.validateOtp();
                         } else {
                           ProviderScope.containerOf(context)
-                              .read(purchaseEVouchersViewModelProvider)
+                              .read(purchaseEVouchersViewModelProvider(model.argument))
                               .previousPage();
-                          // .previous(animation: true);
                         }
                       } else {
                         if (details.primaryVelocity!.isNegative) {
                           model.validateOtp();
                         } else {
                           ProviderScope.containerOf(context)
-                              .read(purchaseEVouchersViewModelProvider)
+                              .read(purchaseEVouchersViewModelProvider(model.argument))
                               .previousPage();
-                          // .previous(animation: true);
                         }
                       }
                     }
@@ -100,19 +111,19 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                                   endTime: model.endTime,
                                   textStyle: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      fontSize: 16,
+                                      fontSize: 16.t,
                                       color: Theme.of(context).textTheme.bodyMedium!.color!),
                                   widgetBuilder: (context, currentTimeRemaining) {
                                     return currentTimeRemaining == null
                                         ? TextButton(
                                             onPressed: () {
-                                              ///TODO:call resend otp
+                                              model.makeOTPRequest();
                                             },
                                             child: Text(
                                               S.of(context).resendCode,
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
-                                                  fontSize: 14,
+                                                  fontSize: 14.t,
                                                   fontWeight: FontWeight.w600,
                                                   color: Theme.of(context).textTheme.bodyLarge!.color!),
                                             ))
@@ -121,7 +132,7 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                                                 '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                             style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
-                                                fontSize: 14,
+                                                fontSize: 14.t,
                                                 fontWeight: FontWeight.w600,
                                                 color: Theme.of(context).textTheme.bodyLarge!.color!),
                                           );

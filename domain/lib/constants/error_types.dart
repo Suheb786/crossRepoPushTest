@@ -659,6 +659,7 @@ enum ErrorType {
   SELECT_REGION,
   SELECT_AMOUNT,
   SELECT_ACCOUNT,
+  NOTE_ENOUGH_AMOUNT,
 
   //bill payments
   ENTER_BILL_DETAILS,

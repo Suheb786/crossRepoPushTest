@@ -9,17 +9,25 @@ part of 'voucher_category_entity.dart';
 VoucherCategoryEntity _$VoucherCategoryEntityFromJson(
         Map<String, dynamic> json) =>
     VoucherCategoryEntity(
-      bankCategory: json['bankCategory'] as String? ?? '',
-      bankCategoryAr: json['bankCategoryAr'] as String? ?? '',
-      bankCategoryIcon: json['bankCategoryIcon'] as String? ?? '',
-      muneroCategories: json['muneroCategories'] as String? ?? '',
+      id: json['id'] as num? ?? 0.0,
+      categoryName: json['categoryName'] as String? ?? '',
+      createdDate: json['createdDate'] as String? ?? '',
+      createdBy: json['createdBy'] as String? ?? '',
+      updatedDate: json['updatedDate'] as String? ?? '',
+      updatedBy: json['updatedBy'] as String? ?? '',
+      categoryNameAr: json['categoryNameAr'] as String? ?? '',
+      categoryIcon: json['categoryIcon'] ?? '',
     );
 
 Map<String, dynamic> _$VoucherCategoryEntityToJson(
         VoucherCategoryEntity instance) =>
     <String, dynamic>{
-      'bankCategory': instance.bankCategory,
-      'bankCategoryAr': instance.bankCategoryAr,
-      'bankCategoryIcon': instance.bankCategoryIcon,
-      'muneroCategories': instance.muneroCategories,
+      'id': instance.id,
+      'categoryName': instance.categoryName,
+      'createdDate': instance.createdDate,
+      'createdBy': instance.createdBy,
+      'updatedDate': instance.updatedDate,
+      'updatedBy': instance.updatedBy,
+      'categoryNameAr': instance.categoryNameAr,
+      'categoryIcon': instance.categoryIcon,
     };

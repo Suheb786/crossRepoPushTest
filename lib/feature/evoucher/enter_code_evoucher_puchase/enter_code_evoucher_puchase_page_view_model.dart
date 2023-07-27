@@ -46,6 +46,7 @@ class EnterCodeEVoucherPurchasePageViewModel extends BasePageViewModel {
         _enterCodeEVoucherPurchaseResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
+          showToastWithError(event.appError!);
         }
       });
     });

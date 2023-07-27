@@ -13210,10 +13210,10 @@ class S {
     );
   }
 
-  /// `eVouchers`
+  /// `E-Vouchers`
   String get eVouchers {
     return Intl.message(
-      'eVouchers',
+      'E-Vouchers',
       name: 'eVouchers',
       desc: '',
       args: [],
@@ -17935,6 +17935,66 @@ class S {
     return Intl.message(
       'Call us on 06-5200100 to activate your account and get your debit card.',
       name: 'callToActivate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What are you looking for?`
+  String get whatAreYouLookingFor {
+    return Intl.message(
+      'What are you looking for?',
+      name: 'whatAreYouLookingFor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have insufficient balance in your account`
+  String get notEnoughAmountToPurchase {
+    return Intl.message(
+      'You have insufficient balance in your account',
+      name: 'notEnoughAmountToPurchase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Valid Until`
+  String get validUntil {
+    return Intl.message(
+      'Valid Until',
+      name: 'validUntil',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current Account`
+  String get currentAccount {
+    return Intl.message(
+      'Current Account',
+      name: 'currentAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Region`
+  String get allRegion {
+    return Intl.message(
+      'All Region',
+      name: 'allRegion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Categories`
+  String get allCategories {
+    return Intl.message(
+      'All Categories',
+      name: 'allCategories',
       desc: '',
       args: [],
     );
