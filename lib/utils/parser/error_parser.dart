@@ -143,6 +143,8 @@ class ErrorParser {
         return localisedHelper.invalidPermanentAddress;
       case ErrorType.INVALID_COUNTRY:
         return localisedHelper.invalidCountry;
+      case ErrorType.NOTE_ENOUGH_AMOUNT:
+        return localisedHelper.notEnoughAmountToPurchase;
       case ErrorType.INVALID_STATE:
         return localisedHelper.invalidState;
       case ErrorType.INVALID_CITY:

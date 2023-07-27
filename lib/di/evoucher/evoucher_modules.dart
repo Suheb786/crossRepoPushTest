@@ -8,9 +8,10 @@ import 'package:neo_bank/feature/evoucher/evoucher_detail/evoucher_detail_page_v
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/enter_otp_for_evoucher_category_puchase/enter_otp_for_evoucher_category_puchase_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page_view_model.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_account/select_account_page_view_model.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/evoucher_settlement_select_account/evoucher_settlement_account_page_view_model.dart.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_region_amount/select_region_amount_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_now/purchase_now_detail_model.dart';
+import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_voucher_success_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_voucher_success_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/share_voucher/share_voucher_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/evouchers_filter_dialog_view_model.dart';
@@ -56,21 +57,23 @@ final selectAmountRegionViewModelProvider = ChangeNotifierProvider.autoDispose
             ));
 
 ///select  account view model
-final selectAccountViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<SelectAccountPageViewModel, PurchaseEVoucherPageArgument>((ref, arg) =>
-        SelectAccountPageViewModel(ref.read(selectAccountUseCaseProvider), arg,
+final evoucherSettlementAccountViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<EvoucherSettlementAccountPageViewModel, PurchaseEVoucherPageArgument>((ref, arg) =>
+        EvoucherSettlementAccountPageViewModel(ref.read(selectAccountUseCaseProvider), arg,
             ref.read(getDashboardDataUseCaseProvider), ref.read(eVoucherOtpCaseProvider)));
 
 ///enter otp for category evoucher purchase view model
 final enterOtpForEVoucherCategoryPurchaseViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<EnterOtpForEVoucherCategoryPurchasePageViewModel, PurchaseEVoucherPageArgument>((ref, arg) =>
         EnterOtpForEVoucherCategoryPurchasePageViewModel(
-            ref.read(enterOtpForEVoucherCategoryPurchaseUseCaseUseCaseProvider), arg));
+            ref.read(enterOtpForEVoucherCategoryPurchaseUseCaseUseCaseProvider),
+            arg,
+            ref.read(placeOrderUseCaseProvider)));
 
 ///purchase voucher success view model
-final purchaseVoucherViewModelProvider =
-    ChangeNotifierProvider.autoDispose<PurchaseVoucherSuccessPageViewModel>(
-        (ref) => PurchaseVoucherSuccessPageViewModel());
+final purchaseVoucherViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<PurchaseVoucherSuccessPageViewModel, PurchaseVoucherSuccessArgument>(
+        (ref, arg) => PurchaseVoucherSuccessPageViewModel(arg));
 
 ///share voucher view model
 final shareVoucherViewModelProvider =

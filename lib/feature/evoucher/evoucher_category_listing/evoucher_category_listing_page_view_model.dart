@@ -21,6 +21,8 @@ class EVoucherCategoryListingPageViewModel extends BasePageViewModel {
   EVoucherByCategoryPageUseCase _eVoucherByCategoryPageUseCase;
   TextEditingController categorayListController = TextEditingController();
 
+  ValueNotifier<bool> searchListToggleNotifier = ValueNotifier(true);
+
   /// ------------- voucher categories stream -----------------------
   PublishSubject<EVoucherByCategoryPageUseCaseParams> _voucherByCategoryRequestSubject = PublishSubject();
 
@@ -42,11 +44,12 @@ class EVoucherCategoryListingPageViewModel extends BasePageViewModel {
         return _eVoucherByCategoryPageUseCase.execute(params: value);
       }).asFlow().listen((event) {
         if (event.status == Status.SUCCESS) {
-          // initial api data...
           voucherItems.clear();
           voucherItems.addAll(event.data ?? []);
+          // searchListToggleNotifier.value = false;
         } else if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
+          getError(event);
         }
         _voucherByCategoryResponseSubject.safeAdd(event);
         updateLoader();
@@ -67,6 +70,7 @@ class EVoucherCategoryListingPageViewModel extends BasePageViewModel {
 
   void searchItems() {
     if (categorayListController.text.trim().isEmpty) {
+      // searchListToggleNotifier.value = true;
       _voucherByCategoryResponseSubject.safeAdd(Resource.success(data: voucherItems));
       return;
     }
@@ -74,7 +78,14 @@ class EVoucherCategoryListingPageViewModel extends BasePageViewModel {
     List<VoucherItem> searchedItems = voucherItems
         .where((element) => element.name.toLowerCase().contains(categorayListController.text.trim()))
         .toList();
+    // searchListToggleNotifier.value = true;
 
     _voucherByCategoryResponseSubject.safeAdd(Resource.success(data: searchedItems));
+  }
+
+  getError(Resource<List<VoucherItem>> event) {
+    if (categorayListController.text.trim().isEmpty) {
+      _voucherByCategoryResponseSubject.safeAdd(Resource.error(data: event.appError));
+    }
   }
 }

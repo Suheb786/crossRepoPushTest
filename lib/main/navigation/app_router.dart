@@ -684,7 +684,8 @@ class AppRouter {
 
       case RoutePaths.EVouchersPurchaseSuccess:
         return CupertinoPageRoute(
-            builder: (context) => PurchaseVoucherSuccessPage(),
+            builder: (context) =>
+                PurchaseVoucherSuccessPage(argument: settings.arguments as PurchaseVoucherSuccessArgument),
             settings: RouteSettings(name: RoutePaths.EVouchersPurchaseSuccess));
 
       case RoutePaths.ShareVoucher:

@@ -59,32 +59,38 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
               onFocusChange: (focus) {},
             ),
           ),
-          Expanded(
-            child: AppStreamBuilder<Resource<List<VoucherItem>>>(
-                initialData: Resource.none(),
-                stream: model.voucherByCategoryResponseStream,
-                dataBuilder: (context, categoryVouchers) {
-                  if (categoryVouchers?.status != Status.SUCCESS) {
-                    return const SizedBox();
-                  }
+          ValueListenableBuilder<bool>(
+              valueListenable: model.searchListToggleNotifier,
+              builder: (context, bool isSearcheItemAvailable, child) {
+                return isSearcheItemAvailable
+                    ? Expanded(
+                        child: AppStreamBuilder<Resource<List<VoucherItem>>>(
+                            initialData: Resource.none(),
+                            stream: model.voucherByCategoryResponseStream,
+                            dataBuilder: (context, categoryVouchers) {
+                              if (categoryVouchers?.status != Status.SUCCESS) {
+                                return const SizedBox();
+                              }
 
-                  return ListView.separated(
-                    itemBuilder: (context, index) {
-                      return EVoucherCategoryListWidget(
-                        onTap: () => Navigator.pushNamed(context, RoutePaths.EVouchersPurchase,
-                            arguments: PurchaseEVoucherPageArgument(
-                                voucherItems: model.voucherItems,
-                                selectedItem: categoryVouchers!.data![index])),
-                        categoryVoucher: categoryVouchers!.data![index],
-                      );
-                    },
-                    separatorBuilder: (context, int) {
-                      return AppDivider();
-                    },
-                    itemCount: categoryVouchers?.data?.length ?? 0,
-                  );
-                }),
-          ),
+                              return ListView.separated(
+                                itemBuilder: (context, index) {
+                                  return EVoucherCategoryListWidget(
+                                    onTap: () => Navigator.pushNamed(context, RoutePaths.EVouchersPurchase,
+                                        arguments: PurchaseEVoucherPageArgument(
+                                            voucherItems: model.voucherItems,
+                                            selectedItem: categoryVouchers!.data![index])),
+                                    categoryVoucher: categoryVouchers!.data![index],
+                                  );
+                                },
+                                separatorBuilder: (context, int) {
+                                  return AppDivider();
+                                },
+                                itemCount: categoryVouchers?.data?.length ?? 0,
+                              );
+                            }),
+                      )
+                    : Text(S.current.noDataFound);
+              }),
         ],
       ),
     );

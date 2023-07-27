@@ -1772,5 +1772,7 @@
   "yourAccountInactive": "حسابك غير فعال",
   "callToActivate": "اتصل بنا على 5200100-06 لحتى نفعلك حسابك وتقدر تطلب بطاقة الدفع المباشر .",
   "whatAreYouLookingFor": "What are you looking for?",
-  "notEnoughAmountToPurchase" :"Not enough amount to purchase"
+  "notEnoughAmountToPurchase": "You have insufficient balance in your account",
+  "validUntil": "Valid Until",
+  "currentAccount": "Current Account"
 }

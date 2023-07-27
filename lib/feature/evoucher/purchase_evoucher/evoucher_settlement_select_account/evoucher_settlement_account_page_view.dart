@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_account/select_account_page_view_model.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/evoucher_settlement_select_account/evoucher_settlement_account_page_view_model.dart.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -17,8 +17,8 @@ import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../../ui/molecules/app_svg.dart';
 
-class SelectAccountPageView extends BasePageViewWidget<SelectAccountPageViewModel> {
-  SelectAccountPageView(
+class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettlementAccountPageViewModel> {
+  EvoucherSettlementAccountPageView(
     ProviderBase model,
   ) : super(model);
 
@@ -178,7 +178,7 @@ class SelectAccountPageView extends BasePageViewWidget<SelectAccountPageViewMode
                                                             Row(
                                                               children: [
                                                                 Text(
-                                                                  "Current Account",
+                                                                  S.current.currentAccount,
                                                                   textAlign: TextAlign.center,
                                                                   style: TextStyle(
                                                                     fontFamily: StringUtils.appFont,
@@ -228,21 +228,51 @@ class SelectAccountPageView extends BasePageViewWidget<SelectAccountPageViewMode
                                                         );
                                                       }),
                                                 ),
-                                                Container(
-                                                  height: 40.h,
-                                                  width: 40.h,
-                                                  decoration: BoxDecoration(
-                                                      color: Theme.of(context).canvasColor,
-                                                      border: Border.all(
-                                                        color: Theme.of(context).indicatorColor,
-                                                      ),
-                                                      borderRadius: BorderRadius.circular(100)),
-                                                  child: AppSvg.asset(AssetUtils.check,
-                                                      color: Theme.of(context).indicatorColor,
-                                                      height: 16.h,
-                                                      fit: BoxFit.scaleDown,
-                                                      width: 16.h),
-                                                )
+                                                AppStreamBuilder<bool>(
+                                                    stream: model.isCheckedStream,
+                                                    initialData: false,
+                                                    dataBuilder: (context, isChecked) {
+                                                      return isChecked!
+                                                          ? GestureDetector(
+                                                              onTap: () {
+                                                                model.check(false);
+                                                                model.validate();
+                                                              },
+                                                              child: Container(
+                                                                height: 40.h,
+                                                                width: 40.h,
+                                                                decoration: BoxDecoration(
+                                                                    color: Theme.of(context).canvasColor,
+                                                                    border: Border.all(
+                                                                      color: Theme.of(context).indicatorColor,
+                                                                    ),
+                                                                    borderRadius: BorderRadius.circular(100)),
+                                                                child: AppSvg.asset(AssetUtils.check,
+                                                                    color: Theme.of(context).indicatorColor,
+                                                                    height: 16.h,
+                                                                    fit: BoxFit.scaleDown,
+                                                                    width: 16.h),
+                                                              ),
+                                                            )
+                                                          : GestureDetector(
+                                                              onTap: () {
+                                                                model.check(true);
+                                                                model.validate();
+                                                              },
+                                                              child: Container(
+                                                                height: 40.h,
+                                                                width: 40.h,
+                                                                decoration: BoxDecoration(
+                                                                    color: Theme.of(context)
+                                                                        .colorScheme
+                                                                        .secondary,
+                                                                    border: Border.all(
+                                                                      color: Theme.of(context).indicatorColor,
+                                                                    ),
+                                                                    borderRadius: BorderRadius.circular(100)),
+                                                              ),
+                                                            );
+                                                    })
                                               ],
                                             ),
                                           ),
@@ -256,11 +286,16 @@ class SelectAccountPageView extends BasePageViewWidget<SelectAccountPageViewMode
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.only(top: 12.0.h, bottom: 23.h),
-                                    child: Visibility(
-                                      visible: true,
-                                      child: AnimatedButton(
-                                        buttonText: S.of(context).swipeToProceed,
-                                      ),
+                                    child: AppStreamBuilder<bool>(
+                                      stream: model.showButtonStream,
+                                      initialData: false,
+                                      dataBuilder: (context, isValid) {
+                                        return Visibility(
+                                            visible: isValid!,
+                                            child: AnimatedButton(
+                                              buttonText: S.of(context).swipeToProceed,
+                                            ));
+                                      },
                                     ),
                                   ),
                                   InkWell(

@@ -5,8 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/enter_otp_for_evoucher_category_puchase/enter_otp_for_evoucher_category_puchase_page_view_model.dart';
+import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_voucher_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -14,6 +14,8 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../../main/navigation/route_paths.dart';
 
 class EnterOtpForEVoucherCategoryPurchasePageView
     extends BasePageViewWidget<EnterOtpForEVoucherCategoryPurchasePageViewModel> {
@@ -36,7 +38,19 @@ class EnterOtpForEVoucherCategoryPurchasePageView
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  Navigator.pushNamed(context, RoutePaths.EVouchersPurchaseSuccess);
+                  model.placeOrder(
+                      exchangeRate: "exchangeRate",
+                      Denomination: "Denomination",
+                      reconcilationCurrency: "reconcilationCurrency",
+                      Discount: "Discount",
+                      VoucherName: "VoucherName",
+                      VoucherCategory: "VoucherCategory",
+                      AccountNo: "AccountNo");
+
+                  Navigator.pushNamed(context, RoutePaths.EVouchersPurchaseSuccess,
+                      arguments: PurchaseVoucherSuccessArgument(selectedItem: model.argument.selectedItem));
+
+                  print("Go to Placce Order");
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -107,9 +121,10 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                                         ? TextButton(
                                             onPressed: () {
                                               ProviderScope.containerOf(context)
-                                                  .read(selectAccountViewModelProvider.call(model.argument))
+                                                  .read(evoucherSettlementAccountViewModelProvider
+                                                      .call(model.argument))
                                                   .getOTP();
-
+                                              model.updateTime();
                                             },
                                             child: Text(
                                               S.of(context).resendCode,

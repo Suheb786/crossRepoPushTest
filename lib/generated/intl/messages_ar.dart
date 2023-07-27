@@ -780,6 +780,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عذرا، لا يمكننك التقدم لطلب البطاقة الائتمانية."),
         "cridUpdateError":
             MessageLookupByLibrary.simpleMessage("خطأ في تحديث الشهادة"),
+        "currentAccount":
+            MessageLookupByLibrary.simpleMessage("Current Account"),
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("كلمة المرور الحالية"),
         "currentPasswordIncorrect": MessageLookupByLibrary.simpleMessage(
@@ -2106,7 +2108,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "notAllowedToOpenAccount": MessageLookupByLibrary.simpleMessage(
             "ما رح تقدر تكمّل طلبك. تواصل معنا على 5200100-06 لتعرف أكتر."),
         "notEnoughAmountToPurchase": MessageLookupByLibrary.simpleMessage(
-            "Not enough amount to purchase"),
+            "You have insufficient balance in your account"),
         "notRegisteredBank": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06  (Err-059)"),
         "notSetUpCountryRestrictionYet": MessageLookupByLibrary.simpleMessage(
@@ -3021,6 +3023,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("معرف رسالة Vkey مطلوبة"),
         "vKeyTransactionFailed":
             MessageLookupByLibrary.simpleMessage("فشل حركة Vkey"),
+        "validUntil": MessageLookupByLibrary.simpleMessage("Valid Until"),
         "verificationCallEnded":
             MessageLookupByLibrary.simpleMessage("انتهت مكالمة التحقق"),
         "verificationCallEndedDesc": MessageLookupByLibrary.simpleMessage(

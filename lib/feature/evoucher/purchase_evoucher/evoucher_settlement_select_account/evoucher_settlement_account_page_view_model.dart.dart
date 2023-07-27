@@ -11,16 +11,17 @@ import 'package:rxdart/rxdart.dart';
 
 import '../purchase_evoucher_page.dart';
 
-class SelectAccountPageViewModel extends BasePageViewModel {
+class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
   final EVoucherOtpUseCase eVoucherOtpUseCase;
 
   final GetDashboardDataUseCase getDashboardDataUseCase;
   final PurchaseEVoucherPageArgument argument;
   final GetSettlementValidationUseCase _selectAccountUseCase;
 
-  ///controllers and keys
-  // final TextEditingController accountController = TextEditingController();
-  // final GlobalKey<AppTextFieldState> accountKey = GlobalKey(debugLabel: "account");
+  /// check Subject
+  BehaviorSubject<bool> _isCheckedRequest = BehaviorSubject.seeded(true);
+
+  Stream<bool> get isCheckedStream => _isCheckedRequest.stream;
 
   /// otp suject
   PublishSubject<EVoucherUsecaseOTPParams> _evoucherOtpRequest = PublishSubject();
@@ -50,7 +51,7 @@ class SelectAccountPageViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  SelectAccountPageViewModel(
+  EvoucherSettlementAccountPageViewModel(
       this._selectAccountUseCase, this.argument, this.getDashboardDataUseCase, this.eVoucherOtpUseCase) {
     _selectAccountRequest.listen((value) {
       RequestManager(value, createCall: () => _selectAccountUseCase.execute(params: value))
@@ -60,6 +61,7 @@ class SelectAccountPageViewModel extends BasePageViewModel {
         _selectAccountResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           // getError(event);
+
           showErrorState();
         }
       });
@@ -98,9 +100,13 @@ class SelectAccountPageViewModel extends BasePageViewModel {
     _evoucherOtpRequest.safeAdd(EVoucherUsecaseOTPParams(GetToken: true));
   }
 
+  void check(bool value) {
+    _isCheckedRequest.safeAdd(value);
+  }
+
   // void getError(Resource<bool> event) {
   //   switch (event.appError!.type) {
-  //     case ErrorType.SELECT_ACCOUNT:
+  //     case ErrorType.NOTE_ENOUGH_AMOUNT:
   //       accountKey.currentState!.isValid = false;
   //       break;
   //     default:
@@ -109,9 +115,27 @@ class SelectAccountPageViewModel extends BasePageViewModel {
   // }
 
   void validateFields() {
-    _selectAccountRequest
-        .safeAdd(GetSettlementValidationUseCaseParams(currentAmmount: "22", availableAmount: '20'));
+    _selectAccountRequest.safeAdd(GetSettlementValidationUseCaseParams(
+        isChecked: _isCheckedRequest.value,
+        totalAmountString: "20",
+        itemValueString: argument.selectedItem.fromValue));
   }
+
+  void validate() {
+    if (_isCheckedRequest.value == true) {
+      _showButtonSubject.safeAdd(true);
+    } else {
+      _showButtonSubject.safeAdd(false);
+    }
+  }
+
+  // void validate() {
+  //   if (selectedRegionController.text.isNotEmpty && amountController.text.isNotEmpty) {
+  //     _showButtonSubject.safeAdd(true);
+  //   } else {
+  //     _showButtonSubject.safeAdd(false);
+  //   }
+  // }
 
   @override
   void dispose() {

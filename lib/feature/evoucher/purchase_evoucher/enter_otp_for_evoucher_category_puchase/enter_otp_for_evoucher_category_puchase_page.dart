@@ -39,6 +39,7 @@ class EnterOtpForEVoucherCategoryPurchasePageState extends BaseStatefulPage<
   @override
   void onModelReady(EnterOtpForEVoucherCategoryPurchasePageViewModel model) {
     model.countDownController = CountdownTimerController(endTime: model.endTime);
+    model.otpController.clear();
   }
 
   @override

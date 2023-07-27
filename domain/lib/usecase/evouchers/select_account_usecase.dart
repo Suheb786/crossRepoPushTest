@@ -17,21 +17,26 @@ class GetSettlementValidationUseCase
 }
 
 class GetSettlementValidationUseCaseParams extends Params {
-  String currentAmmount;
-  String availableAmount;
+  String totalAmountString;
+  num itemValueString;
+  int totalAmount = 0;
+  bool isChecked;
 
-  GetSettlementValidationUseCaseParams({required this.currentAmmount, required this.availableAmount});
+  GetSettlementValidationUseCaseParams(
+      {required this.totalAmountString, required this.itemValueString, required this.isChecked}) {
+    totalAmount = int.parse(totalAmountString);
+  }
 
   @override
   Either<AppError, bool> verify() {
-    if (currentAmmount.isEmpty) {
+    if (totalAmount < itemValueString) {
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.NOTE_ENOUGH_AMOUNT, cause: Exception()));
+    }
+    if (isChecked == false) {
       return Left(
           AppError(error: ErrorInfo(message: ''), type: ErrorType.SELECT_ACCOUNT, cause: Exception()));
     }
-    // if (currentAmmount! > availableAmount!) {
-    //   return Left(
-    //       AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.NOTE_ENOUGH_AMOUNT));
-    // }
 
     return Right(true);
   }

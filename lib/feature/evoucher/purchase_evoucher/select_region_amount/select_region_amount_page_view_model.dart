@@ -61,7 +61,6 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
       });
     });
 
-
     _getSettlementAmountRequest.listen((value) {
       RequestManager(value, createCall: () => getSettlementAmountUseCase.execute(params: value))
           .asFlow()

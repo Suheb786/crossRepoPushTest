@@ -3,12 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_voucher_success_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/account_ready/account_details.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/extension/string_casing_extension.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherSuccessPageViewModel> {
@@ -18,9 +19,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
   Widget build(BuildContext context, PurchaseVoucherSuccessPageViewModel model) {
     return GestureDetector(
       onHorizontalDragEnd: (details) {
-        if (details.primaryVelocity!.isNegative) {
-          Navigator.pushNamed(context, RoutePaths.EvoucherDetail, arguments: '');
-        }
+        if (details.primaryVelocity!.isNegative) {}
       },
       child: Container(
           color: Theme.of(context).primaryColor,
@@ -60,10 +59,10 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                       const SizedBox(height: 24),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                        // crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            '4.99',
+                            model.argument.selectedItem.fromValue.toString(),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
@@ -73,9 +72,9 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                           ),
                           const SizedBox(width: 4),
                           Padding(
-                            padding: const EdgeInsetsDirectional.only(bottom: 4),
+                            padding: const EdgeInsetsDirectional.only(top: 8),
                             child: Text(
-                              'USD',
+                              model.argument.selectedItem.currency,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
@@ -85,26 +84,6 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                             ),
                           ),
                         ],
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        '(3.540 JOD)',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14,
-                            color: Theme.of(context).colorScheme.secondary),
-                      ),
-                      const SizedBox(height: 24),
-                      Text(
-                        S.of(context).purchasedFor,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 24,
-                            color: Theme.of(context).colorScheme.secondary),
                       ),
                       const SizedBox(height: 24),
                       Container(
@@ -126,7 +105,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                               height: 16,
                             ),
                             Text(
-                              'PlayStation Voucher Lorem Ipsum',
+                              model.argument.selectedItem.name,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
@@ -136,7 +115,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                             ),
                             const SizedBox(height: 2),
                             Text(
-                              'PlayStation',
+                              model.argument.selectedItem.brand,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
@@ -146,7 +125,19 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                             ),
                             const SizedBox(height: 24),
                             AccountDetails(
-                              title: 'Ref No.',
+                              title: S.current.refNo,
+                              value: '984893922',
+                              showIcon: false,
+                            ),
+                            SizedBox(height: 16.h),
+                            AccountDetails(
+                              title: S.current.amount.toCapitalized(),
+                              value: '984893922',
+                              showIcon: false,
+                            ),
+                            SizedBox(height: 16.h),
+                            AccountDetails(
+                              title: S.current.validUntil,
                               value: '984893922',
                               showIcon: false,
                             ),

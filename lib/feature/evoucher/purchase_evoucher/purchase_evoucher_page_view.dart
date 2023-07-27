@@ -4,7 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/enter_otp_for_evoucher_category_puchase/enter_otp_for_evoucher_category_puchase_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page_view_model.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_account/select_account_page.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/evoucher_settlement_select_account/evoucher_settlement_account_page.dart';
+
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_region_amount/select_region_amount_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
@@ -21,7 +22,7 @@ class PurchaseEVoucherPageView extends BasePageViewWidget<PurchaseEVoucherPageVi
   Widget build(BuildContext context, model) {
     final pages = [
       SelectRegionAmountPage(model.argument),
-      SelectAccountPage(
+      EvoucherSettlementAccountPage(
         argument: model.argument,
       ),
       EnterOtpForEVoucherCategoryPurchasePage(model.argument),
@@ -71,7 +72,8 @@ class PurchaseEVoucherPageView extends BasePageViewWidget<PurchaseEVoucherPageVi
                           fontWeight: FontWeight.w600),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.only(top: 8.0, bottom: 8.0, start: 24, end: 24),
+                      padding: EdgeInsetsDirectional.only(
+                          top: 8.0.h, bottom: currentStep == 2 ? 0.0 : 8.0.h, start: 24.h, end: 24.h),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),

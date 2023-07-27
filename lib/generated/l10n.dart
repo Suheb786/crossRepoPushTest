@@ -17960,11 +17960,31 @@ class S {
     );
   }
 
-  /// `Not enough amount to purchase`
+  /// `You have insufficient balance in your account`
   String get notEnoughAmountToPurchase {
     return Intl.message(
-      'Not enough amount to purchase',
+      'You have insufficient balance in your account',
       name: 'notEnoughAmountToPurchase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Valid Until`
+  String get validUntil {
+    return Intl.message(
+      'Valid Until',
+      name: 'validUntil',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current Account`
+  String get currentAccount {
+    return Intl.message(
+      'Current Account',
+      name: 'currentAccount',
       desc: '',
       args: [],
     );

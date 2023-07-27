@@ -800,6 +800,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Unfortunately, we are unable to start your credit card application."),
         "cridUpdateError":
             MessageLookupByLibrary.simpleMessage("Error in crif update"),
+        "currentAccount":
+            MessageLookupByLibrary.simpleMessage("Current Account"),
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("CURRENT PASSWORD"),
         "currentPasswordIncorrect": MessageLookupByLibrary.simpleMessage(
@@ -2173,7 +2175,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "notAllowedToOpenAccount": MessageLookupByLibrary.simpleMessage(
             "You cannot proceed with this request. Please contact our Engagement Team on 06-5200100 for more information."),
         "notEnoughAmountToPurchase": MessageLookupByLibrary.simpleMessage(
-            "Not enough amount to purchase"),
+            "You have insufficient balance in your account"),
         "notRegisteredBank": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-059)"),
         "notSetUpCountryRestrictionYet": MessageLookupByLibrary.simpleMessage(
@@ -3126,6 +3128,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Vkey Message Id is Required"),
         "vKeyTransactionFailed":
             MessageLookupByLibrary.simpleMessage("Vkey transaction failed"),
+        "validUntil": MessageLookupByLibrary.simpleMessage("Valid Until"),
         "value": MessageLookupByLibrary.simpleMessage("VALUE"),
         "verificationCallEnded": MessageLookupByLibrary.simpleMessage(
             "Verification call\nhas ended"),
