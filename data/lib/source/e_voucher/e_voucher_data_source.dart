@@ -1,6 +1,8 @@
 import 'package:data/entity/remote/e_voucher/voucher_category/voucher_categories_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_details_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_history/voucher_history_list_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_min_max_value/voucher_min_max_value_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_region_by_categories/voucher_region_by_categories_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_filter_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
@@ -37,5 +39,13 @@ abstract class EVoucherRemoteDS {
 
   Future<HttpResponse<ResponseEntity>> eVoucherOtp({
     required EVoucherUsecaseOTPParams params,
+  });
+  Future<HttpResponse<VoucherRegionByCategoriesResponseEntity>> getRegionsByCategories({
+    required String category,
+  });
+
+  Future<HttpResponse<VoucherMinMaxValueResponseEntity>> getMinMaxRange({
+    required String category,
+    required String region,
   });
 }

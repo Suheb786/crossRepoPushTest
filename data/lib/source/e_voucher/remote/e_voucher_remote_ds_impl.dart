@@ -8,6 +8,10 @@ import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_detail_reque
 import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_details_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_history/voucher_history_list_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_history/voucher_history_request.dart';
+import 'package:data/entity/remote/e_voucher/voucher_min_max_value/voucher_min_max_value_request.dart';
+import 'package:data/entity/remote/e_voucher/voucher_min_max_value/voucher_min_max_value_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_region_by_categories/voucher_region_by_categories_request.dart';
+import 'package:data/entity/remote/e_voucher/voucher_region_by_categories/voucher_region_by_categories_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_category_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_filter_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_search_request.dart';
@@ -87,15 +91,24 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
   Future<HttpResponse<ResponseEntity>> placeOrder({required PlaceOrderUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.placeOrder(PlaceOrderRequestEntity(
-      Denomination: params.Denomination,
-      exchangeRate: params.exchangeRate,
-      reconcilationCurrency: params.reconcilationCurrency,
-      Discount: params.Discount,
-      VoucherName: params.VoucherName,
-      VoucherCategory: params.VoucherCategory,
-      AccountNo: params.AccountNo,
-      GetToken: true,
-      BaseClass: baseData.toJson(),
+        Denomination: params.Denomination,
+        exchangeRate: params.exchangeRate,
+        reconcilationCurrency: params.reconcilationCurrency,
+        Discount: params.Discount,
+        VoucherName: params.VoucherName,
+        VoucherCategory: params.VoucherCategory,
+        AccountNo: params.AccountNo,
+        GetToken: true,
+        BaseClass: baseData.toJson()));
+  }
+
+  Future<HttpResponse<VoucherRegionByCategoriesResponseEntity>> getRegionsByCategories(
+      {required String category}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+
+    return _apiService.getRegionsByCategories(VoucherRegionByCategoriesRequest(
+      category: category,
+      baseData: baseData.toJson(),
     ));
   }
 
@@ -116,5 +129,16 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
   Future<HttpResponse<ResponseEntity>> eVoucherOtp({required EVoucherUsecaseOTPParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.eVoucherOtp(BaseRequest(baseData: baseData.toJson()));
+  }
+
+  Future<HttpResponse<VoucherMinMaxValueResponseEntity>> getMinMaxRange(
+      {required String category, required String region}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+
+    return _apiService.getMinMaxRange(VoucherMinMaxValueRequest(
+      category: category,
+      region: region,
+      baseData: baseData.toJson(),
+    ));
   }
 }

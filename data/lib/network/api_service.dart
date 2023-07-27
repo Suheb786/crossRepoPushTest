@@ -198,6 +198,10 @@ import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_detail_reque
 import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_details_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_history/voucher_history_list_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_history/voucher_history_request.dart';
+import 'package:data/entity/remote/e_voucher/voucher_min_max_value/voucher_min_max_value_request.dart';
+import 'package:data/entity/remote/e_voucher/voucher_min_max_value/voucher_min_max_value_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_region_by_categories/voucher_region_by_categories_request.dart';
+import 'package:data/entity/remote/e_voucher/voucher_region_by_categories/voucher_region_by_categories_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_category_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_filter_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_search_request.dart';
@@ -1138,9 +1142,19 @@ abstract class ApiService {
       @Body() VoucherHistoryRequest myVouchersRequest);
 
   ///Voucher Items By Filter
-  @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Vouchers/GetItemsByFilter")
+  @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/GetItemsByFilter")
   Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByFilter(
       @Body() VoucherByFilterRequest voucherByFilterRequest);
+
+  ///Voucher Country Region  By Categories
+  @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/GetRegionsByCategories")
+  Future<HttpResponse<VoucherRegionByCategoriesResponseEntity>> getRegionsByCategories(
+      @Body() VoucherRegionByCategoriesRequest voucherRegionByCategoriesRequest);
+
+  ///Voucher minimum and maximum value
+  @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/GetMinMaxRange")
+  Future<HttpResponse<VoucherMinMaxValueResponseEntity>> getMinMaxRange(
+      @Body() VoucherMinMaxValueRequest voucherMinMaxValueRequest);
 
   ///Voucher Items By Category
   @POST("/Vouchers/GetItemByCategory")

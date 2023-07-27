@@ -146,7 +146,6 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
                       primary: false,
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
-                        var element = model.myVoucherHistoryList![index];
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -172,15 +171,11 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
                                 itemBuilder: (context, childIndex) {
                                   return GestureDetector(
                                     onTap: () {
-                                      Navigator.pushNamed(
-                                          context, RoutePaths.EvoucherDetail,
-                                          arguments: voucherHistory
-                                              ?.data?[index]
-                                              .data[childIndex]
-                                              .id);
+                                      Navigator.pushNamed(context, RoutePaths.EvoucherDetail,
+                                          arguments: voucherHistory?.data?[index].data[childIndex].id);
                                     },
                                     child: MyVoucherItemView(
-                                        element.data[childIndex]),
+                                        (voucherHistory?.data?[index].data ?? [])[childIndex]),
                                   );
                                 },
                                 separatorBuilder: (context, index) {
@@ -200,13 +195,10 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
                       //      itemCount: model.myVoucherHistoryList.length,
                       itemCount: (voucherHistory?.data ?? []).length,
                     )
-                  : Expanded(
-                      child: Center(
-                        child: Text(
-                          S.of(context).noDataFound,
-                          style: TextStyle(
-                              color: Theme.of(context).primaryColorDark),
-                        ),
+                  : Center(
+                      child: Text(
+                        S.of(context).noDataFound,
+                        style: TextStyle(color: Theme.of(context).primaryColorDark),
                       ),
                     );
 

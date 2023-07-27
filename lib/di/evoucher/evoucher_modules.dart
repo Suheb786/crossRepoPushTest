@@ -13,38 +13,50 @@ import 'package:neo_bank/feature/evoucher/purchase_now/purchase_now_detail_model
 import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_voucher_success_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_voucher_success_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/share_voucher/share_voucher_page_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/categories_filter/categories_filter_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/evouchers_filter_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/region_filter/region_filter_dialog_view_model.dart';
 
+import '../../feature/evoucher/evoucher_category_listing/evoucher_category_listing_page.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/otp_purchase_evoucher_without_region/otp_purchase_evoucher_without_region_page_view_model.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page_view_model.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/settlement_amount/settlement_amount_page_view_model.dart';
+import '../../feature/evoucher/purchase_now/purchase_now_page.dart';
 
 final evoucherViewModelProvider = ChangeNotifierProvider.autoDispose<EvoucherViewModel>(
   (ref) => EvoucherViewModel(
-      eVoucherCategoriesUseCase: ref.read(eVoucherCategoriesUseCaseProvider),
-      eVoucherHistoryUseCase: ref.read(eVoucherHistoryUseCaseProvider),
-      eVoucherItemFilterUseCase: ref.read(eVoucherItemFilterUseCaseProvider)),
+    eVoucherCategoriesUseCase: ref.read(eVoucherCategoriesUseCaseProvider),
+    eVoucherHistoryUseCase: ref.read(eVoucherHistoryUseCaseProvider),
+    eVoucherItemFilterUseCase: ref.read(eVoucherItemFilterUseCaseProvider),
+  ),
 );
 
 final evoucherDetailViewModelProvider = ChangeNotifierProvider.autoDispose<EVoucherDetailViewModel>(
   (ref) => EVoucherDetailViewModel(ref.read(eVoucherDetailsPageUseCase)),
 );
 
-final purchaseNowDetailViewModelProvider = ChangeNotifierProvider.autoDispose<PurchaseNowDetailViewModel>(
-  (ref) => PurchaseNowDetailViewModel(),
+final purchaseNowDetailViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<PurchaseNowDetailViewModel, PurchaseNowArgument>(
+  (ref, args) => PurchaseNowDetailViewModel(ref.read(getSettlementAmountUseCaseProvider), args),
 );
 
 ///e-vouchers filter dialog
 final eVouchersDialogViewModelProvider = ChangeNotifierProvider.autoDispose<EVouchersFilterDialogViewModel>(
-    (ref) => EVouchersFilterDialogViewModel());
+    (ref) => EVouchersFilterDialogViewModel(
+          ref.read(eVoucherRegionByCategoriesUseCaseProvider),
+          ref.read(eVoucherFilterValidationUseCaseProvider),
+          ref.read(eVoucherMinMaxValueUseCaseProvider),
+        ));
 
 ///e-vouchers category listing view model
-final eVouchersCategoryListingViewModelProvider =
-    ChangeNotifierProvider.autoDispose<EVoucherCategoryListingPageViewModel>((
-  ref,
-) =>
-        EVoucherCategoryListingPageViewModel(ref.read(eVoucherByCategoryPageUseCase)));
+final eVouchersCategoryListingViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<EVoucherCategoryListingPageViewModel, CategoryListArgument>(
+        (ref, arg) => EVoucherCategoryListingPageViewModel(
+              arg,
+              ref.read(eVoucherByCategoryPageUseCase),
+              ref.read(eVoucherItemFilterUseCaseProvider),
+            ));
 
 ///purchase e-vouchers view model
 final purchaseEVouchersViewModelProvider = ChangeNotifierProvider.autoDispose
@@ -77,6 +89,15 @@ final settlementAccountViewModelProvider = ChangeNotifierProvider.autoDispose
         SettlementAmountPageViewModel(
             ref.read(selectAccountUseCaseProvider), arg, ref.read(eVoucherOtpCaseProvider)));
 
+///e-vouchers categories dialog
+final categoriesFilterDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<CategoriesFilterDialogViewModel>(
+        (ref) => CategoriesFilterDialogViewModel());
+
+///e-vouchers region by categories dialog
+final regionFilterDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<RegionFilterDialogViewModel>((ref) => RegionFilterDialogViewModel());
+
 ///enter otp for category evoucher purchase view model
 final enterOtpForEVoucherCategoryPurchaseViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<EnterOtpForEVoucherCategoryPurchasePageViewModel, PurchaseEVoucherPageArgument>((ref, arg) =>
@@ -88,8 +109,8 @@ final enterOtpForEVoucherCategoryPurchaseViewModelProvider = ChangeNotifierProvi
 
 ///otpPurchaseEvoucherWithoutRegionPageViewModelProvider
 final otpPurchaseEvoucherWithoutRegionPageViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<OtpPurchaseEvoucherWithoutRegionPageViewModel, PurchaseEVoucherWithoutRegionPageArgument>((ref, arg) =>
-        OtpPurchaseEvoucherWithoutRegionPageViewModel(
+    .family<OtpPurchaseEvoucherWithoutRegionPageViewModel, PurchaseEVoucherWithoutRegionPageArgument>(
+        (ref, arg) => OtpPurchaseEvoucherWithoutRegionPageViewModel(
             ref.read(enterOtpForEVoucherCategoryPurchaseUseCaseUseCaseProvider),
             arg,
             ref.read(placeOrderUseCaseProvider),

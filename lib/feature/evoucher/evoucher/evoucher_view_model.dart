@@ -1,13 +1,12 @@
+import 'package:domain/constants/enum/evoucher_filter_option_enum.dart';
 import 'package:domain/model/e_voucher/voucher_by_date.dart';
 import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:domain/usecase/evouchers/evoucher_categories_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_history_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_item_filter_usecase.dart';
-import 'package:domain/usecase/evouchers/evoucher_landing_page_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/model/transaction_period.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -17,8 +16,6 @@ import 'package:neo_bank/utils/time_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class EvoucherViewModel extends BasePageViewModel {
-  String name = "";
-
   TextEditingController myVoucherHistorySearchController = TextEditingController();
   TextEditingController buyVoucherSearchController = TextEditingController();
   final ScrollController scrollController = ScrollController();
@@ -77,11 +74,10 @@ class EvoucherViewModel extends BasePageViewModel {
         voucherCategoriesResponseSubject.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
-          //   getVoucherHistory(pageNo.toString(), 3);
+
           showToastWithError(event.appError!);
         }
         if (event.status == Status.SUCCESS) {
-          print("event.status==Status.SUCCESS");
           categoriesList = event.data ?? [];
           getVoucherHistory(pageNo: pageNo, rangeOfMonths: filterDay);
         }
@@ -220,6 +216,8 @@ class EvoucherViewModel extends BasePageViewModel {
         category: category, region: region, maxValue: maxValue, minValue: minValue, searchText: searchText));
   }
 
+  EvoucherFilterOption evoucherFilterOption = EvoucherFilterOption.FROM_SEARCH_FILTER;
+
   List<VoucherItem> filterList = [];
   PublishSubject<EVoucherItemFilterUseCaseParams> _voucherItemFilterRequestSubject = PublishSubject();
 
@@ -251,98 +249,6 @@ class EvoucherViewModel extends BasePageViewModel {
     }
   }
 
-  // void listenToVoucherCategories(EVoucherCategoriesUseCaseParams value) {
-  //   RequestManager<List<VoucherCategories>>(value, createCall: () {
-  //     return _eVoucherCategoriesUseCase.execute(params: value)
-  //         as Future<Either<BaseError, List<VoucherCategories>>>;
-  //   }).asFlow().listen((event) {
-  //     if (event.status == Status.SUCCESS) {
-  //       // done...
-  //       addTransactionPeriod();
-  //     } else if (event.status == Status.ERROR) {
-  //       showToastWithError(event.appError!);
-  //     }
-  //     _voucherCategoriesResponseSubject.safeAdd(event);
-  //     updateLoader();
-  //   });
-  // }
-
-  // void listenToMyVouchers(EVoucherLandingPageUseCaseParams value) {
-  //   RequestManager<List<VouchersByDate>>(value, createCall: () {
-  //     return _eVoucherCategoriesUseCase.execute(params: value)
-  //         as Future<Either<BaseError, List<VouchersByDate>>>;
-  //   }).asFlow().listen((event) {
-  //     if (event.status == Status.SUCCESS) {
-  //       // done...
-  //       isApiCalling = false;
-  //       myVoucherHistoryList.addAll(event.data!);
-  //     } else if (event.status == Status.ERROR) {
-  //       isApiCalling = false;
-  //       showToastWithError(event.appError!);
-  //     }
-  //     _myVoucherResponseSubject.safeAdd(event);
-  //     updateLoader();
-  //   });
-  // }
-  //
-  // void listenToVoucherDetails(EVoucherLandingPageUseCaseParams value) {
-  //   RequestManager<bool>(value, createCall: () {
-  //     return _eVoucherCategoriesUseCase.execute(params: value) as Future<Either<BaseError, bool>>;
-  //   }).asFlow().listen((event) {
-  //     if (event.status == Status.SUCCESS) {
-  //       // done...
-  //     } else if (event.status == Status.ERROR) {
-  //       showToastWithError(event.appError!);
-  //     }
-  //     updateLoader();
-  //   });
-  // }
-  //
-  // void listenToVoucherByCategory(EVoucherLandingPageUseCaseParams value) {
-  //   RequestManager<bool>(value, createCall: () {
-  //     return _eVoucherCategoriesUseCase.execute(params: value) as Future<Either<BaseError, bool>>;
-  //   }).asFlow().listen((event) {
-  //     if (event.status == Status.SUCCESS) {
-  //       // done...
-  //     } else {
-  //       if (event.status == Status.ERROR) showToastWithError(event.appError!);
-  //     }
-  //     updateLoader();
-  //   });
-  // }
-  //
-  // void listenToVoucherByFilter(EVoucherLandingPageUseCaseParams value) {
-  //   RequestManager<List<VoucherItem>>(value, createCall: () {
-  //     return _eVoucherCategoriesUseCase.execute(params: value)
-  //         as Future<Either<BaseError, List<VoucherItem>>>;
-  //   }).asFlow().listen((event) {
-  //     if (event.status == Status.SUCCESS) {
-  //       // done...
-  //     } else if (event.status == Status.ERROR) {
-  //       showToastWithError(event.appError!);
-  //     }
-  //     _voucherByFilterAndSearchResponseSubject.safeAdd(event);
-  //     updateLoader();
-  //   });
-  // }
-  //
-  // void listenToVoucherBySearch(EVoucherLandingPageUseCaseParams value) {
-  //   RequestManager<List<VoucherItem>>(value, createCall: () {
-  //     return _eVoucherCategoriesUseCase.execute(params: value)
-  //         as Future<Either<BaseError, List<VoucherItem>>>;
-  //   }).asFlow().listen((event) {
-  //     _voucherByFilterAndSearchResponseSubject.safeAdd(event);
-  //     updateLoader();
-  //     if (event.status == Status.SUCCESS) {
-  //       // done...
-  //       categoriesDisplayToggleNotifier.value = false;
-  //     } else if (event.status == Status.ERROR) {
-  //       showToastWithError(event.appError!);
-  //     }
-  //
-  //   });
-  // }
-
   void toggleSearch(bool focus) {
     if (buyVoucherSearchController.text.trim().isEmpty) {
       categoriesDisplayToggleNotifier.value = true;
@@ -351,22 +257,13 @@ class EvoucherViewModel extends BasePageViewModel {
       // call search api...
       if (!focus) {
         getVoucherItemFilter(
-            category: '',
+            category: "1",
             region: '',
             maxValue: 0.0,
             minValue: 0.0,
             searchText: buyVoucherSearchController.text.trim());
       }
     }
-  }
-
-  void callSearchApi() {
-    if (buyVoucherSearchController.text.trim().isEmpty) {
-      return;
-    }
-    _voucherCategoriesRequestSubject.safeAdd(EVoucherLandingPageUseCaseParams(
-        eVoucherLandingPageDataEnum: EVoucherLandingPageDataEnum.voucherBySearch,
-        searchText: buyVoucherSearchController.text.trim()));
   }
 
   void setSelectedCategory(VoucherCategories category) {
@@ -382,30 +279,5 @@ class EvoucherViewModel extends BasePageViewModel {
     tabChangeNotifier.dispose();
     scrollController.dispose();
     super.dispose();
-  }
-
-  void addTransactionPeriod() {
-    transactionPeriods.clear();
-    transactionPeriods.add(TransactionPeriod(dayPeriodString: S.current.last_30_days, dayPeriod: 30));
-    transactionPeriods.add(TransactionPeriod(dayPeriodString: S.current.last_60_days, dayPeriod: 60));
-    transactionPeriods.add(TransactionPeriod(dayPeriodString: S.current.last_90_days, dayPeriod: 90));
-
-    selectedTransactionHistoryPeriod = transactionPeriods.first.dayPeriod;
-    selectTransactionPeriodAndCallApi();
-  }
-
-  void selectTransactionPeriodAndCallApi() {
-    _voucherCategoriesRequestSubject.safeAdd(EVoucherLandingPageUseCaseParams(
-      eVoucherLandingPageDataEnum: EVoucherLandingPageDataEnum.myVouchers,
-      pageNo: pageNo,
-      rangeOfMonths: selectedTransactionHistoryPeriod,
-    ));
-  }
-
-  void setSelectedTransactionPeriod(String value) {
-    selectedTransactionHistoryPeriod =
-        transactionPeriods.firstWhere((element) => element.dayPeriodString == value).dayPeriod;
-    myVoucherHistoryList = [];
-    _myVoucherResponseSubject.safeAdd(Resource.success(data: myVoucherHistoryList));
   }
 }

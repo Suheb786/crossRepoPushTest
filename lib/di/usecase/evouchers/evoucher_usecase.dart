@@ -5,10 +5,13 @@ import 'package:domain/usecase/evouchers/enter_otp_for_evoucher_category_purchas
 import 'package:domain/usecase/evouchers/evoucher_by_category_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_categories_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_details_usecase.dart';
+import 'package:domain/usecase/evouchers/evoucher_filter_validation_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_history_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_item_filter_usecase.dart';
 import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
 import 'package:domain/usecase/evouchers/place_order_usecase.dart';
+import 'package:domain/usecase/evouchers/evoucher_min_max_value_usecase.dart';
+import 'package:domain/usecase/evouchers/evoucher_region_by_categories_usecase.dart';
 import 'package:domain/usecase/evouchers/select_account_usecase.dart';
 import 'package:domain/usecase/evouchers/select_region_amount_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -47,6 +50,21 @@ final eVoucherHistoryUseCaseProvider = Provider.autoDispose<EVoucherHistoryUseCa
 ///[EVoucherItemFilterUseCase] provider
 final eVoucherItemFilterUseCaseProvider = Provider.autoDispose<EVoucherItemFilterUseCase>(
   (ref) => EVoucherItemFilterUseCase(ref.read(eVoucherRepositoryProvider)),
+);
+
+///[EVoucherRegionByCategoriesUseCase] provider
+final eVoucherRegionByCategoriesUseCaseProvider = Provider.autoDispose<EVoucherRegionByCategoriesUseCase>(
+  (ref) => EVoucherRegionByCategoriesUseCase(ref.read(eVoucherRepositoryProvider)),
+);
+
+///[EVoucherFilterValidationUseCase] provider
+final eVoucherFilterValidationUseCaseProvider = Provider.autoDispose<EVoucherFilterValidationUseCase>(
+  (ref) => EVoucherFilterValidationUseCase(),
+);
+
+///[EVoucherMinMaxValueUseCase] provider
+final eVoucherMinMaxValueUseCaseProvider = Provider.autoDispose<EVoucherMinMaxValueUseCase>(
+  (ref) => EVoucherMinMaxValueUseCase(ref.read(eVoucherRepositoryProvider)),
 );
 
 ///[EVoucherByCategoryPageUseCase] provider
