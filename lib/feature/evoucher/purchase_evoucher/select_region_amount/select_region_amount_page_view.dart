@@ -89,7 +89,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                             placeholder: (context, url) =>
                                                 Container(color: Theme.of(context).primaryColor),
                                             errorWidget: (context, url, error) => Icon(Icons.error),
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.fill,
                                           ),
                                         ),
                                       ),

@@ -34,15 +34,18 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
   ///select region amount request
   PublishSubject<SelectRegionAmountUseCaseParams> _selectRegionAmountRequest = PublishSubject();
   PublishSubject<Resource<bool>> _selectRegionAmountResponse = PublishSubject();
+
   Stream<Resource<bool>> get selectRegionAmountStream => _selectRegionAmountResponse.stream;
 
   ///get settlement amount
   PublishSubject<GetSettlementAmountUseCaseParams> _getSettlementAmountRequest = PublishSubject();
   PublishSubject<Resource<bool>> _getSettlementAmountResponse = PublishSubject();
+
   Stream<Resource<bool>> get getSettlementAmountStream => _getSettlementAmountResponse.stream;
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   SelectRegionAmountPageViewModel(

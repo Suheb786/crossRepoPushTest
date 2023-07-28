@@ -13,7 +13,7 @@ TransferQRRequestEntity _$TransferQRRequestEntityFromJson(
       toAccount: json['toAccount'] as String?,
       qrRequestId: json['QrRequestId'] as String?,
       getToken: json['GetToken'] as bool? ?? true,
-      otp: json['otp'] as String? ?? '',
+      otp: json['OtpCode'] as String? ?? '',
       baseData: json['BaseClass'] as Map<String, dynamic>?,
     );
 
@@ -24,6 +24,6 @@ Map<String, dynamic> _$TransferQRRequestEntityToJson(
       'GetToken': instance.getToken,
       'ToAmount': instance.toAmount,
       'toAccount': instance.toAccount,
-      'otp': instance.otp,
+      'OtpCode': instance.otp,
       'BaseClass': instance.baseData,
     };

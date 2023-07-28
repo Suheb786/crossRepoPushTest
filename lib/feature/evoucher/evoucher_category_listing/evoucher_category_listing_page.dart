@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -49,12 +50,12 @@ class EVoucherCategoryListingPageState
                     matchTextDirection: true, color: Theme.of(context).colorScheme.secondary),
               ),
             ),
-
-            ///TODO:pass category name here
             Text(
               provider.selectedVoucherCategories.categoryName,
               style: TextStyle(
-                  fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+                  fontSize: 14.t,
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).colorScheme.secondary),
             ),
             Padding(
               padding: EdgeInsetsDirectional.only(end: 18.0.w),
@@ -86,6 +87,7 @@ class EVoucherCategoryListingPageState
 
 class CategoryListArgument {
   final num id;
+
   CategoryListArgument({
     required this.id,
   });

@@ -753,20 +753,17 @@ class AppHomeViewModel extends BasePageViewModel {
   bool isLinkOpened = false;
 
   initDynamicLink() async {
-    isLinkOpened = false;
-    print('Called------times');
     Uri uri = await DynamicLinksService().initDynamicLinks();
-    print('Called------times---1');
-    if (Platform.isIOS) {
-      DynamicLinksService().onLink().distinct().listen((event) async {
-        print('Called------times---2====${event.link}');
-        if (!isLinkOpened) {
-          verifyQRData(uri: event.link);
-        }
-      });
-    }
-
     verifyQRData(uri: uri);
+  }
+
+  onResumeDynamicLink() {
+    isLinkOpened = false;
+    DynamicLinksService().onLink().distinct().listen((event) async {
+      if (!isLinkOpened) {
+        verifyQRData(uri: event.link);
+      }
+    });
   }
 
   void verifyQRData({required Uri uri}) {

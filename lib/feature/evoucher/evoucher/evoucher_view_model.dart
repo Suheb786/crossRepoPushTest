@@ -254,10 +254,10 @@ class EvoucherViewModel extends BasePageViewModel {
       categoriesDisplayToggleNotifier.value = true;
       voucherCategoriesResponseSubject.safeAdd(Resource.success(data: categoriesList));
     } else {
-      // call search api...
+      /// call search api...
       if (!focus) {
         getVoucherItemFilter(
-            category: "1",
+            category: "",
             region: '',
             maxValue: 0.0,
             minValue: 0.0,

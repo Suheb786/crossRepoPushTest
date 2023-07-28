@@ -52,7 +52,6 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
                     hintText: S.of(context).eVoucherSearchLabel,
                     containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                     onChanged: (value) {
-                      // model.searchBillName(value);
                       if (model.myVoucherHistorySearchController.text.isEmpty) {
                         model.myVoucherHistoryList = [];
                         model.pageNo = 1;
@@ -80,20 +79,6 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
               SizedBox(width: 24.w),
               InkWell(
                 onTap: () {
-                  // RelationshipWithCardHolderDialog.show(context,
-                  //     title: S.of(context).transaction_period,
-                  //     relationSHipWithCardHolder: List<String>.generate(
-                  //         model.transactionPeriods.length,
-                  //         (counter) => model.transactionPeriods[counter]
-                  //             .dayPeriodString), onDismissed: () {
-                  //   Navigator.pop(context);
-                  // }, onSelected: (value) {
-                  //   model.setSelectedTransactionPeriod(value);
-                  //
-                  //   model.selectTransactionPeriodAndCallApi();
-                  //   Navigator.pop(context);
-                  // });
-
                   FilterTransactionDialog.show(
                     context,
                     onDismissed: () => Navigator.pop(context),
@@ -183,7 +168,6 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
                       separatorBuilder: (context, index) {
                         return SizedBox(height: 32.h);
                       },
-                      //      itemCount: model.myVoucherHistoryList.length,
                       itemCount: (voucherHistory?.data ?? []).length,
                     )
                   : Center(

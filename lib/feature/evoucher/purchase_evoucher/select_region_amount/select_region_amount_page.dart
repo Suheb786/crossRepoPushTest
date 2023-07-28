@@ -10,6 +10,7 @@ class SelectRegionAmountPage extends BasePage<SelectRegionAmountPageViewModel> {
   final PurchaseEVoucherPageArgument argument;
 
   SelectRegionAmountPage(this.argument);
+
   @override
   SelectRegionAmountPageState createState() => SelectRegionAmountPageState();
 }

@@ -4,7 +4,11 @@ import 'package:domain/model/profile_settings/get_profile_info/profile_info_resp
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:domain/usecase/account_setting/get_profile_info/get_profile_info_usecase.dart';
 import 'package:domain/usecase/user/logout_usecase.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
+import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog_view.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -22,6 +26,10 @@ class SettingsDialogViewModel extends BasePageViewModel {
   PublishSubject<int> _currentStep = PublishSubject();
 
   Stream<int> get currentStep => _currentStep.stream;
+
+  List<PagesWidget> pages = [];
+
+  List<PagesWidget> showPages = [];
 
   /// get profile info  request
   PublishSubject<GetProfileInfoUseCaseParams> _getProfileInfoRequest = PublishSubject();
@@ -96,6 +104,66 @@ class SettingsDialogViewModel extends BasePageViewModel {
 
   void updateOnClickValue(bool) {
     _onClickSubject.safeAdd(bool);
+  }
+
+  void updateShowPages({required BuildContext context, required List<PagesWidget> pages}) {
+    int index = 0;
+    showPages.clear();
+    pages.forEach((currentPage) {
+      var element = PagesWidget(key: currentPage.key, child: currentPage.child, index: index);
+      if (element.key == 'CLIQ') {
+        if ((ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .dashboardDataContent
+                .dashboardFeatures
+                ?.blinkRetailAppCliqAliasManagement ??
+            false)) {
+          index = index + 1;
+          showPages.add(element);
+        }
+      } else if (element.key == 'MANAGE_CONTACTS') {
+        if ((ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .dashboardDataContent
+                .dashboardFeatures
+                ?.manageContactEnabled ??
+            false)) {
+          index = index + 1;
+          showPages.add(element);
+        }
+      } else if (element.key == 'E-VOUCHERS') {
+        if ((ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .dashboardDataContent
+                .dashboardFeatures
+                ?.eVouchers ??
+            false)) {
+          index = index + 1;
+          showPages.add(element);
+        }
+      } else {
+        index = index + 1;
+        showPages.add(element);
+      }
+    });
+  }
+
+  String getKeyByIndex(int index) {
+    String key = '';
+    showPages.forEach((element) {
+      if (element.index == index) {
+        key = element.key;
+      }
+    });
+    return key;
+  }
+
+  BehaviorSubject<List<PagesWidget>> _currentPages = BehaviorSubject.seeded([]);
+
+  Stream<List<PagesWidget>> get currentPages => _currentPages.stream;
+
+  void getCurrentPages(List<PagesWidget> pages) {
+    _currentPages.safeAdd(pages);
   }
 
   @override

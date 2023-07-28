@@ -178,6 +178,7 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
   void updatePurpose(Purpose value) {
     purposeController.text = value.labelEn!;
     purpose = value;
+    purposeDetail = null;
   }
 
   void updatePurposeDetail(PurposeDetail value) {

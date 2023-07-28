@@ -10,6 +10,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 import 'evoucher_view_model.dart';
 import 'my_voucher_history/my_voucher_history_view.dart';
@@ -138,7 +139,9 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
               alignment: AlignmentDirectional.centerStart,
               child: TabBar(
                 isScrollable: true,
-                indicatorWeight: 10.0,
+                indicatorWeight: 8.0.h,
+                indicatorSize: TabBarIndicatorSize.label,
+                unselectedLabelColor: Theme.of(context).colorScheme.onInverseSurface,
                 controller: _tabController,
                 indicator: UnderlineTabIndicator(
                     borderSide: BorderSide(
@@ -149,13 +152,15 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
                 tabs: [
                   Text(
                     S.of(context).buyVouchers,
-                    style: TextStyle(fontSize: 14.t, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                        fontSize: 14.t, fontWeight: FontWeight.w600, fontFamily: StringUtils.appFont),
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.only(start: 2.w),
                     child: Text(
                       S.of(context).history,
-                      style: TextStyle(fontSize: 14.t, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontSize: 14.t, fontWeight: FontWeight.w600, fontFamily: StringUtils.appFont),
                     ),
                   )
                 ],

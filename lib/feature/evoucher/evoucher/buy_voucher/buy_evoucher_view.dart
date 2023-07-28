@@ -18,6 +18,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../evoucher_category_listing/evoucher_category_listing_page.dart';
 import '../../purchase_now/purchase_now_page.dart';
@@ -131,14 +132,15 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                                       RoutePaths.PurchaseNowDetail,
                                       arguments: PurchaseNowArgument(selectedVoucherItem: voucherItems),
                                     );
-                                    print("voucherItems-->${voucherItems.name}");
                                   }),
                                 );
                               } else {
                                 return Center(
                                   child: Text(
                                     S.of(context).noDataFound,
-                                    style: TextStyle(color: Theme.of(context).primaryColorDark),
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: Theme.of(context).primaryColorDark),
                                   ),
                                 );
                               }
