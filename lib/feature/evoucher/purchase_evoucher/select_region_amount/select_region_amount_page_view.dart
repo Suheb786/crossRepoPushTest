@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/relationship_with_cardholder/relationship_with_cardholder_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/region_filter/region_filter_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -46,9 +47,6 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                         Amount: model.argument.selectedItem.fromValue.toString(),
                         FromCurrency: model.argument.selectedItem.currency,
                         ToCurrency: "JOD");
-                    // ProviderScope.containerOf(context)
-                    //     .read(purchaseEVouchersViewModelProvider(model.argument))
-                    //     .nextPage();
                   } else if (data.status == Status.ERROR) {
                     model.showToastWithError(data.appError!);
                   }
@@ -66,7 +64,6 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                           ProviderScope.containerOf(context)
                               .read(purchaseEVouchersViewModelProvider(model.argument))
                               .nextPage();
-                          // print("${data.data?.content}:::: this is settlement ammount");
                         }
                       },
                       dataBuilder: (context, settlementAmmount) {
@@ -137,14 +134,17 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                               controller: model.selectedRegionController,
                                               key: model.selectedRegionKey,
                                               onPressed: () {
-                                                RelationshipWithCardHolderDialog.show(context,
+                                                RegionFilterDialog.show(context,
                                                     title: S.of(context).preferredRegion,
-                                                    relationSHipWithCardHolder: model.voucherCountries,
+                                                    regionByCategoriesList: model.voucherCountries,
                                                     onDismissed: () {
                                                   Navigator.pop(context);
                                                 }, onSelected: (value) {
                                                   Navigator.pop(context);
-                                                  model.selectedRegionController.text = value;
+                                                  model.selectedRegion = value;
+                                                  model.selectedRegionController.text =
+                                                      value.countryName ?? '';
+                                                  model.amountController.clear();
                                                   model.getVoucherValue();
                                                   model.validate();
                                                 });

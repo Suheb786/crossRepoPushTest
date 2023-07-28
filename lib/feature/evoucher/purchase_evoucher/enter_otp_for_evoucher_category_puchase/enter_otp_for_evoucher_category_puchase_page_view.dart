@@ -36,7 +36,6 @@ class EnterOtpForEVoucherCategoryPurchasePageView
             child: AppStreamBuilder<Resource<PlaceOrder>>(
                 initialData: Resource.none(),
                 stream: model.placeOrderStream,
-                
                 dataBuilder: (context, placeOrderData) {
                   return AppStreamBuilder<Resource<bool>>(
                     stream: model.enterOtpStream,
