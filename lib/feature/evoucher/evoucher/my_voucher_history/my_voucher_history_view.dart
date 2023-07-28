@@ -121,7 +121,7 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
         stream: model.getvoucherDetiailsStream,
         onData: (value) {
           if (value.status == Status.SUCCESS) {
-            Navigator.popAndPushNamed(context, RoutePaths.EvoucherDetail,
+            Navigator.pushNamed(context, RoutePaths.EvoucherDetail,
                 arguments: EvoucherDetailPageArgument(
                     selectedVoucherData: value.data, voucherDetail: model.historyData));
           }
