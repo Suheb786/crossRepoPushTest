@@ -943,6 +943,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "eVouchers": MessageLookupByLibrary.simpleMessage("E-vouchers"),
         "eVouchersAreHere":
             MessageLookupByLibrary.simpleMessage("e-Vouchers are here!"),
+        "eVouchersSettings": MessageLookupByLibrary.simpleMessage("eVouchers"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "editCliqId": MessageLookupByLibrary.simpleMessage("EDIT CLIQ ID"),
         "editId": MessageLookupByLibrary.simpleMessage("Edit ID"),

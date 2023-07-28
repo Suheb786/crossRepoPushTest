@@ -18019,6 +18019,16 @@ class S {
       args: [],
     );
   }
+
+  /// `eVouchers`
+  String get eVouchersSettings {
+    return Intl.message(
+      'eVouchers',
+      name: 'eVouchersSettings',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

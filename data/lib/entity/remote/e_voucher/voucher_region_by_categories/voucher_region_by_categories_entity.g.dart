@@ -6,7 +6,8 @@ part of 'voucher_region_by_categories_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-VoucherRegionByCategoriesEntity _$VoucherRegionByCategoriesEntityFromJson(Map<String, dynamic> json) =>
+VoucherRegionByCategoriesEntity _$VoucherRegionByCategoriesEntityFromJson(
+        Map<String, dynamic> json) =>
     VoucherRegionByCategoriesEntity(
       isoCode3: json['isoCode3'] as String? ?? '',
       isoCode: json['isoCode'] as String? ?? '',
@@ -14,7 +15,8 @@ VoucherRegionByCategoriesEntity _$VoucherRegionByCategoriesEntityFromJson(Map<St
       countryNameAR: json['countryNameAR'] as String? ?? '',
     );
 
-Map<String, dynamic> _$VoucherRegionByCategoriesEntityToJson(VoucherRegionByCategoriesEntity instance) =>
+Map<String, dynamic> _$VoucherRegionByCategoriesEntityToJson(
+        VoucherRegionByCategoriesEntity instance) =>
     <String, dynamic>{
       'isoCode3': instance.isoCode3,
       'isoCode': instance.isoCode,
