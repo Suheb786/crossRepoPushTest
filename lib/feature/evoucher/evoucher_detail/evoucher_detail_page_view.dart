@@ -25,39 +25,35 @@ class EvoucherDetailView extends BasePageViewWidget<EVoucherDetailViewModel> {
     return Stack(
       children: [
         Container(
+          height: 180,
+          width: double.infinity,
+          color: Colors.transparent,
           child: Stack(
+            alignment: AlignmentDirectional.centerStart,
             children: [
               Container(
-                height: 180,
-                color: Theme.of(context).colorScheme.secondary,
+                width: double.infinity,
+                child: CachedNetworkImage(
+                  imageUrl: model.argument.selectedVoucherData?.cardFaceImage ?? "",
+                  placeholder: (context, url) => Container(color: Theme.of(context).primaryColor),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  fit: BoxFit.fill,
+                ),
               ),
-              PositionedDirectional(
-                top: 47,
-                start: 24,
-                child: Stack(
-                  alignment: AlignmentDirectional.centerStart,
-                  children: [
-                    Container(
-                      child: CachedNetworkImage(
-                        imageUrl: model.argument.selectedVoucherData?.cardFaceImage ?? "",
-                        placeholder: (context, url) => Container(color: Theme.of(context).primaryColor),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () => Navigator.pop(context),
-                      child: Container(
-                        height: 56.h,
-                        width: 56.h,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: Theme.of(context).colorScheme.secondary),
-                        child:
-                            Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSecondaryContainer),
-                      ),
-                    )
-                  ],
+              Positioned.directional(
+                textDirection: Directionality.of(context),
+                top: 47.h,
+                start: 33.w,
+                child: GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: Container(
+                    height: 56.h,
+                    width: 56.h,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: Theme.of(context).colorScheme.secondary),
+                    child: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSecondaryContainer),
+                  ),
                 ),
               )
             ],
@@ -68,7 +64,7 @@ class EvoucherDetailView extends BasePageViewWidget<EVoucherDetailViewModel> {
           child: Container(
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
+                color: Colors.white,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
             child: PageDetail(
               model: model,
