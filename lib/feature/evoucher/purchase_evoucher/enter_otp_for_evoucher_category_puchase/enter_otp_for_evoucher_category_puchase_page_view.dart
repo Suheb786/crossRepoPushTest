@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/model/e_voucher/e_voucher_otp.dart';
 import 'package:domain/model/e_voucher/place_order.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
@@ -42,32 +43,6 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
                         // model.placeOrder(
-                        //   sourceAccount: ProviderScope.containerOf(context)
-                        //           .read(appHomeViewModelProvider)
-                        //           .dashboardDataContent
-                        //           .account
-                        //           ?.accountNo ??
-                        //       "",
-                        //   sourceCurrency: "JOD",
-                        //   cardItemId: model.argument.selectedItem.id,
-                        //   exchangeRate: double.parse(model.argument.selectedItem.discount),
-                        //   voucherCurrency: model.argument.selectedItem.currency,
-                        //   reconciliationCurrency: "JOD",
-                        //   equivalentAmount:
-                        //       "${ProviderScope.containerOf(context).read(selectAmountRegionViewModelProvider(model.argument)).settlementAmount}",
-                        //   denomination: 1,
-                        //   discount: model.argument.selectedItem.discount,
-                        //   categories: model.argument.selectedItem.name,
-                        //   voucherName: model.argument.selectedItem.name,
-                        //   productId: model.argument.selectedItem.productId.toString(),
-                        //   productName: model.argument.selectedItem.name,
-                        //   otpCode: ProviderScope.containerOf(context)
-                        //       .read(evoucherSettlementAccountViewModelProvider(model.argument))
-                        //       .mobileCode,
-                        //   getToken: true,
-                        // );
-                        print("${model.argument.selectedItem.exchangeRate} ::::::: exhnage rate");
-                        // model.placeOrder(
                         //     sourceAccount: ProviderScope.containerOf(context)
                         //         .read(appHomeViewModelProvider)
                         //         .dashboardDataContent
@@ -90,6 +65,8 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                         //     productName: "",
                         //     otpCode: model.otpController.text,
                         //     getToken: true);
+                      } else if (data.status == Status.ERROR) {
+                        model.showToastWithError(data.appError!);
                       }
                     },
                     dataBuilder: (context, isOtpVerified) {
@@ -143,39 +120,50 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                                   ),
                                   Column(
                                     children: [
-                                      CountdownTimer(
-                                        controller: model.countDownController,
-                                        onEnd: () {},
-                                        endTime: model.endTime,
-                                        textStyle: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            fontSize: 16.t,
-                                            color: Theme.of(context).textTheme.bodyMedium!.color!),
-                                        widgetBuilder: (context, currentTimeRemaining) {
-                                          return currentTimeRemaining == null
-                                              ? TextButton(
-                                                  onPressed: () {
-                                                    model.makeOTPRequest();
-                                                  },
-                                                  child: Text(
-                                                    S.of(context).resendCode,
-                                                    style: TextStyle(
-                                                        fontFamily: StringUtils.appFont,
-                                                        fontSize: 14.t,
-                                                        fontWeight: FontWeight.w600,
-                                                        color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                                  ))
-                                              : Text(
-                                                  S.of(context).resendIn(
-                                                      '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      fontSize: 14.t,
-                                                      fontWeight: FontWeight.w600,
-                                                      color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                                );
-                                        },
-                                      ),
+                                      AppStreamBuilder<Resource<EVoucherOTP>>(
+                                          stream: model.evoucherOtpStream,
+                                          initialData: Resource.none(),
+                                          dataBuilder: (context, otpSnapshot) {
+                                            return CountdownTimer(
+                                              controller: model.countDownController,
+                                              onEnd: () {},
+                                              endTime: model.endTime,
+                                              textStyle: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontSize: 16.t,
+                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                              widgetBuilder: (context, currentTimeRemaining) {
+                                                return currentTimeRemaining == null
+                                                    ? TextButton(
+                                                        onPressed: () {
+                                                          model.makeOTPRequest();
+                                                        },
+                                                        child: Text(
+                                                          S.of(context).resendCode,
+                                                          style: TextStyle(
+                                                              fontFamily: StringUtils.appFont,
+                                                              fontSize: 14.t,
+                                                              fontWeight: FontWeight.w600,
+                                                              color: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyLarge!
+                                                                  .color!),
+                                                        ))
+                                                    : Text(
+                                                        S.of(context).resendIn(
+                                                            '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                                        style: TextStyle(
+                                                            fontFamily: StringUtils.appFont,
+                                                            fontSize: 14.t,
+                                                            fontWeight: FontWeight.w600,
+                                                            color: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyLarge!
+                                                                .color!),
+                                                      );
+                                              },
+                                            );
+                                          }),
                                       Padding(
                                         padding: EdgeInsets.only(top: 16.0),
                                         child: AppStreamBuilder<bool>(

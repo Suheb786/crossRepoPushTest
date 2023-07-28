@@ -1,3 +1,4 @@
+import 'package:domain/model/e_voucher/e_voucher_otp.dart';
 import 'package:domain/model/e_voucher/place_order.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/enter_otp_for_evoucher_category_purchase_usecase.dart';
@@ -33,10 +34,12 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
     listenForSmsCode();
   }
 
-  /// make otp suject
+  /// otp suject
   PublishSubject<EVoucherUsecaseOTPParams> _evoucherOtpRequest = PublishSubject();
-  PublishSubject<Resource<bool>> _evoucherOtpResponse = PublishSubject();
-  Stream<Resource<bool>> get evoucherOtpStream => _evoucherOtpResponse.stream;
+
+  PublishSubject<Resource<EVoucherOTP>> _evoucherOtpResponse = PublishSubject();
+
+  Stream<Resource<EVoucherOTP>> get evoucherOtpStream => _evoucherOtpResponse.stream;
 
   ///place order
   PublishSubject<PlaceOrderUseCaseParams> _placeOrderRequest = PublishSubject();
@@ -82,20 +85,20 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
         }
       });
     });
-    // _evoucherOtpRequest.listen((value) {
-    //   RequestManager(value, createCall: () => eVoucherOtpUseCase.execute(params: value))
-    //       .asFlow()
-    //       .listen((event) {
-    //     _evoucherOtpResponse.safeAdd(event);
-    //     updateLoader();
-    //     if (event.status == Status.ERROR) {
-    //       showErrorState();
-    //       showToastWithError(event.appError!);
-    //     } else if (event.status == Status.SUCCESS) {
-    //       updateTime();
-    //     }
-    //   });
-    // });
+    _evoucherOtpRequest.listen((value) {
+      RequestManager(value, createCall: () => eVoucherOtpUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _evoucherOtpResponse.safeAdd(event);
+        updateLoader();
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          updateTime();
+        }
+      });
+    });
   }
 
   void makeOTPRequest() {
