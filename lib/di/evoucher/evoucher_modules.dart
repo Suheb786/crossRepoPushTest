@@ -18,6 +18,7 @@ import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/e
 import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/region_filter/region_filter_dialog_view_model.dart';
 
 import '../../feature/evoucher/evoucher_category_listing/evoucher_category_listing_page.dart';
+import '../../feature/evoucher/evoucher_detail/evoucher_detail_page.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/otp_purchase_evoucher_without_region/otp_purchase_evoucher_without_region_page_view_model.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page_view_model.dart';
@@ -26,14 +27,16 @@ import '../../feature/evoucher/purchase_now/purchase_now_page.dart';
 
 final evoucherViewModelProvider = ChangeNotifierProvider.autoDispose<EvoucherViewModel>(
   (ref) => EvoucherViewModel(
+    getVoucherDetailsUseCase: ref.read(getVoucherDetailsUseCase),
     eVoucherCategoriesUseCase: ref.read(eVoucherCategoriesUseCaseProvider),
     eVoucherHistoryUseCase: ref.read(eVoucherHistoryUseCaseProvider),
     eVoucherItemFilterUseCase: ref.read(eVoucherItemFilterUseCaseProvider),
   ),
 );
 
-final evoucherDetailViewModelProvider = ChangeNotifierProvider.autoDispose<EVoucherDetailViewModel>(
-  (ref) => EVoucherDetailViewModel(ref.read(eVoucherDetailsPageUseCase)),
+final evoucherDetailViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<EVoucherDetailViewModel, EvoucherDetailPageArgument>(
+  (ref, arg) => EVoucherDetailViewModel(ref.read(eVoucherDetailsPageUseCase), arg),
 );
 
 final purchaseNowDetailViewModelProvider =

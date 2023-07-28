@@ -4,6 +4,7 @@ import 'package:data/source/e_voucher/e_voucher_data_source.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/e_voucher/e_voucher_otp.dart';
 import 'package:domain/model/e_voucher/get_settlement_amount.dart';
+import 'package:domain/model/e_voucher/get_voucher_details.dart';
 import 'package:domain/model/e_voucher/place_order.dart';
 import 'package:domain/model/e_voucher/voucher_by_date.dart';
 import 'package:domain/model/e_voucher/voucher_categories.dart';
@@ -13,6 +14,7 @@ import 'package:domain/model/e_voucher/voucher_region_by_categories.dart';
 import 'package:domain/repository/e_voucher/e_voucher_repository.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
+import 'package:domain/usecase/evouchers/get_voucher_details_usecase.dart';
 import 'package:domain/usecase/evouchers/place_order_usecase.dart';
 import 'package:domain/usecase/evouchers/voucher_min_max_value.dart';
 
@@ -127,6 +129,13 @@ class EVoucherRepositoryImpl extends EVoucherRepository {
   @override
   Future<Either<NetworkError, EVoucherOTP>> eVoucherOtp({required EVoucherUsecaseOTPParams params}) async {
     final result = await safeApiCall(_eVoucherRemoteDS.eVoucherOtp(params: params));
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
+  }
+
+  @override
+  Future<Either<NetworkError, GetVoucherDetails>> getVoucherDetailsApi(
+      {required GetVoucherDetailsUseCaseParams params}) async {
+    final result = await safeApiCall(_eVoucherRemoteDS.getVoucherDetailsApi(params: params));
     return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
   }
 }

@@ -18089,6 +18089,26 @@ class S {
       args: [],
     );
   }
+
+  /// `eVouchers`
+  String get eVouchersSettings {
+    return Intl.message(
+      'eVouchers',
+      name: 'eVouchersSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E-voucher under processing`
+  String get evoucherUnderProcessing {
+    return Intl.message(
+      'E-voucher under processing',
+      name: 'evoucherUnderProcessing',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

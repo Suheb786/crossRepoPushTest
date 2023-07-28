@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -944,6 +945,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "eVouchers": MessageLookupByLibrary.simpleMessage("E-vouchers"),
         "eVouchersAreHere":
             MessageLookupByLibrary.simpleMessage("e-Vouchers are here!"),
+        "eVouchersSettings": MessageLookupByLibrary.simpleMessage("eVouchers"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "editCliqId": MessageLookupByLibrary.simpleMessage("EDIT CLIQ ID"),
         "editId": MessageLookupByLibrary.simpleMessage("Edit ID"),
@@ -1307,6 +1309,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "establishCallError": MessageLookupByLibrary.simpleMessage(
             "Error occurred while establish call"),
         "estimatedTime": m1,
+        "evoucherUnderProcessing":
+            MessageLookupByLibrary.simpleMessage("E-voucher under processing"),
         "exceptionExecutingGetPaymentReasons":
             MessageLookupByLibrary.simpleMessage(
                 "Exception while executing Get Return Payment Reasons"),

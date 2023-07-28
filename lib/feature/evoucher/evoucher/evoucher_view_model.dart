@@ -1,10 +1,13 @@
 import 'package:domain/constants/enum/evoucher_filter_option_enum.dart';
+import 'package:domain/model/e_voucher/get_voucher_details.dart';
 import 'package:domain/model/e_voucher/voucher_by_date.dart';
 import 'package:domain/model/e_voucher/voucher_categories.dart';
+import 'package:domain/model/e_voucher/voucher_detail.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:domain/usecase/evouchers/evoucher_categories_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_history_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_item_filter_usecase.dart';
+import 'package:domain/usecase/evouchers/get_voucher_details_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/model/transaction_period.dart';
@@ -16,40 +19,60 @@ import 'package:neo_bank/utils/time_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class EvoucherViewModel extends BasePageViewModel {
-  TextEditingController myVoucherHistorySearchController = TextEditingController();
   TextEditingController buyVoucherSearchController = TextEditingController();
-  final ScrollController scrollController = ScrollController();
-  bool isApiCalling = false;
-
   ValueNotifier<bool> categoriesDisplayToggleNotifier =
       ValueNotifier(true); // default true as showing categories
 
+  List<VoucherCategories> categoriesList = [];
+  EVoucherCategoriesUseCase eVoucherCategoriesUseCase;
+  EVoucherHistoryUseCase eVoucherHistoryUseCase;
+  EVoucherItemFilterUseCase eVoucherItemFilterUseCase;
+  EvoucherFilterOption evoucherFilterOption = EvoucherFilterOption.FROM_SEARCH_FILTER;
+
+  ///---------------------Filter option for date-------------------------------------
+
+  int filterDay = 6; //Last 6 month
+
+  List<VoucherItem> filterList = [];
+  late GetVoucherDetails? getSelectedVoucher;
+  final GetVoucherDetailUseCase getVoucherDetailsUseCase;
+  bool hasMoreData = true;
+  bool isApiCalling = false;
+  List<VouchersByDate> myVoucherHistoryList = [];
+  TextEditingController myVoucherHistorySearchController = TextEditingController();
+  int pageNo = 1;
+  final ScrollController scrollController = ScrollController();
+  late int selectedTransactionHistoryPeriod;
   late VoucherCategories selectedVoucherCategories;
 
-  /// ------------- my vouchers stream -----------------------
-  BehaviorSubject<Resource<List<VouchersByDate>>> _myVoucherResponseSubject = BehaviorSubject();
-
-  Stream<Resource<List<VouchersByDate>>> get myVoucherResponseStream => _myVoucherResponseSubject.stream;
-
-  /// ------------- voucher by Filter & Search stream -----------------------
-  BehaviorSubject<Resource<List<VoucherItem>>> _voucherByFilterAndSearchResponseSubject = BehaviorSubject();
-
-  Stream<Resource<List<VoucherItem>>> get voucherByFilterAndSearchResponseStream =>
-      _voucherByFilterAndSearchResponseSubject.stream;
+  late VoucherDetail historyData;
 
   /// ------------- tabChange listener -----------------------
 
   ValueNotifier<int> tabChangeNotifier = ValueNotifier(0);
 
   List<TransactionPeriod> transactionPeriods = [];
-  late int selectedTransactionHistoryPeriod;
+  BehaviorSubject<Resource<List<VoucherCategories>>> voucherCategoriesResponseSubject = BehaviorSubject();
+  PublishSubject<Resource<List<VoucherItem>>> voucherItemFilterResponseSubject = PublishSubject();
 
-  List<VouchersByDate> myVoucherHistoryList = [];
-  EVoucherCategoriesUseCase eVoucherCategoriesUseCase;
-  EVoucherHistoryUseCase eVoucherHistoryUseCase;
-  EVoucherItemFilterUseCase eVoucherItemFilterUseCase;
+  /// get voucher details subjects ----
+  BehaviorSubject<GetVoucherDetailsUseCaseParams> _getvoucherDetailsRequest = BehaviorSubject();
+
+  BehaviorSubject<Resource<GetVoucherDetails>> _getvoucherDetailsResponse = BehaviorSubject();
+
+  /// ------------- my vouchers stream -----------------------
+  BehaviorSubject<Resource<List<VouchersByDate>>> _myVoucherResponseSubject = BehaviorSubject();
+
+  /// ------------- voucher by Filter & Search stream -----------------------
+  BehaviorSubject<Resource<List<VoucherItem>>> _voucherByFilterAndSearchResponseSubject = BehaviorSubject();
+
+  BehaviorSubject<EVoucherCategoriesUseCaseParams> _voucherCategoriesRequestSubject = BehaviorSubject();
+  BehaviorSubject<EVoucherHistoryUseCaseParams> _voucherHistoryRequestSubject = BehaviorSubject();
+  BehaviorSubject<Resource<List<VouchersByDate>>> _voucherHistoryResponseSubject = BehaviorSubject();
+  PublishSubject<EVoucherItemFilterUseCaseParams> _voucherItemFilterRequestSubject = PublishSubject();
 
   EvoucherViewModel({
+    required this.getVoucherDetailsUseCase,
     required this.eVoucherCategoriesUseCase,
     required this.eVoucherHistoryUseCase,
     required this.eVoucherItemFilterUseCase,
@@ -61,6 +84,46 @@ class EvoucherViewModel extends BasePageViewModel {
     getMoreScrollListener();
 
     getVoucherItemFilterSubject();
+
+    listenGetVoucherDetials();
+  }
+
+  @override
+  void dispose() {
+    _voucherCategoriesRequestSubject.close();
+    voucherCategoriesResponseSubject.close();
+    _myVoucherResponseSubject.close();
+    _voucherByFilterAndSearchResponseSubject.close();
+    tabChangeNotifier.dispose();
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  Stream<Resource<GetVoucherDetails>> get getvoucherDetiailsStream => _getvoucherDetailsResponse.stream;
+
+  Stream<Resource<List<VouchersByDate>>> get myVoucherResponseStream => _myVoucherResponseSubject.stream;
+
+  Stream<Resource<List<VoucherItem>>> get voucherByFilterAndSearchResponseStream =>
+      _voucherByFilterAndSearchResponseSubject.stream;
+
+  listenGetVoucherDetials() {
+    _getvoucherDetailsRequest.listen((value) {
+      RequestManager(value, createCall: () => getVoucherDetailsUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getvoucherDetailsResponse.safeAdd(event);
+        categoriesDisplayToggleNotifier.value = false;
+        if (event.status == Status.ERROR) {
+          showErrorState();
+
+          showToastWithError(event.appError!);
+        }
+        if (event.status == Status.SUCCESS) {
+          getSelectedVoucher = event.data;
+        }
+      });
+    });
   }
 
   /// ------------- voucher categories stream -------------------------------------------
@@ -86,11 +149,6 @@ class EvoucherViewModel extends BasePageViewModel {
 
     _voucherCategoriesRequestSubject.safeAdd(EVoucherCategoriesUseCaseParams());
   }
-
-  List<VoucherCategories> categoriesList = [];
-  BehaviorSubject<EVoucherCategoriesUseCaseParams> _voucherCategoriesRequestSubject = BehaviorSubject();
-
-  BehaviorSubject<Resource<List<VoucherCategories>>> voucherCategoriesResponseSubject = BehaviorSubject();
 
   Stream<Resource<List<VoucherCategories>>> get voucherCategoriesResponseStream =>
       voucherCategoriesResponseSubject.stream;
@@ -147,15 +205,8 @@ class EvoucherViewModel extends BasePageViewModel {
         pageNo: pageNo, rangeOfMonths: rangeOfMonths, searchPhrase: searchPhrase));
   }
 
-  BehaviorSubject<EVoucherHistoryUseCaseParams> _voucherHistoryRequestSubject = BehaviorSubject();
-
-  BehaviorSubject<Resource<List<VouchersByDate>>> _voucherHistoryResponseSubject = BehaviorSubject();
-
   Stream<Resource<List<VouchersByDate>>> get voucherHistoryResponseStream =>
       _voucherHistoryResponseSubject.stream;
-
-  int pageNo = 1;
-  bool hasMoreData = true;
 
   void getMoreScrollListener() {
     if (scrollController.hasListeners) return;
@@ -206,6 +257,10 @@ class EvoucherViewModel extends BasePageViewModel {
     });
   }
 
+  void getVoucherDetailCall({required String? OrderIdentifier}) {
+    _getvoucherDetailsRequest.safeAdd(GetVoucherDetailsUseCaseParams(OrderIdentifier: OrderIdentifier));
+  }
+
   void getVoucherItemFilter(
       {required String category,
       required String region,
@@ -216,19 +271,8 @@ class EvoucherViewModel extends BasePageViewModel {
         category: category, region: region, maxValue: maxValue, minValue: minValue, searchText: searchText));
   }
 
-  EvoucherFilterOption evoucherFilterOption = EvoucherFilterOption.FROM_SEARCH_FILTER;
-
-  List<VoucherItem> filterList = [];
-  PublishSubject<EVoucherItemFilterUseCaseParams> _voucherItemFilterRequestSubject = PublishSubject();
-
-  PublishSubject<Resource<List<VoucherItem>>> voucherItemFilterResponseSubject = PublishSubject();
-
   Stream<Resource<List<VoucherItem>>> get voucherItemFilterResponseStream =>
       voucherItemFilterResponseSubject.stream;
-
-  ///---------------------Filter option for date-------------------------------------
-
-  int filterDay = 6; //Last 6 month
 
   int getFilterDays(String value) {
     switch (value) {
@@ -268,16 +312,5 @@ class EvoucherViewModel extends BasePageViewModel {
 
   void setSelectedCategory(VoucherCategories category) {
     this.selectedVoucherCategories = category;
-  }
-
-  @override
-  void dispose() {
-    _voucherCategoriesRequestSubject.close();
-    voucherCategoriesResponseSubject.close();
-    _myVoucherResponseSubject.close();
-    _voucherByFilterAndSearchResponseSubject.close();
-    tabChangeNotifier.dispose();
-    scrollController.dispose();
-    super.dispose();
   }
 }

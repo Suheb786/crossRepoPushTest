@@ -1,5 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -8,7 +11,10 @@ import 'package:neo_bank/ui/molecules/custom_bullet_with_title_widget.dart';
 import 'package:neo_bank/ui/molecules/evoucher/evoucher_text_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 
+import '../../../ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
+import '../../../utils/string_utils.dart';
 import 'evoucher_detail_page_view_model.dart';
 
 class EvoucherDetailView extends BasePageViewWidget<EVoucherDetailViewModel> {
@@ -28,17 +34,30 @@ class EvoucherDetailView extends BasePageViewWidget<EVoucherDetailViewModel> {
               PositionedDirectional(
                 top: 47,
                 start: 24,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(40),
-                  child: Container(
-                    color: Theme.of(context).colorScheme.secondary,
-                    width: 56,
-                    height: 56,
-                    child: IconButton(
-                      icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSecondaryContainer),
-                      onPressed: () => Navigator.of(context).pop(),
+                child: Stack(
+                  alignment: AlignmentDirectional.centerStart,
+                  children: [
+                    Container(
+                      child: CachedNetworkImage(
+                        imageUrl: model.argument.selectedVoucherData?.cardFaceImage ?? "",
+                        placeholder: (context, url) => Container(color: Theme.of(context).primaryColor),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
+                    GestureDetector(
+                      onTap: () => Navigator.pop(context),
+                      child: Container(
+                        height: 56.h,
+                        width: 56.h,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: Theme.of(context).colorScheme.secondary),
+                        child:
+                            Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSecondaryContainer),
+                      ),
+                    )
+                  ],
                 ),
               )
             ],
@@ -51,7 +70,9 @@ class EvoucherDetailView extends BasePageViewWidget<EVoucherDetailViewModel> {
             decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
-            child: PageDetail(),
+            child: PageDetail(
+              model: model,
+            ),
           ),
         ),
       ],
@@ -60,8 +81,10 @@ class EvoucherDetailView extends BasePageViewWidget<EVoucherDetailViewModel> {
 }
 
 class PageDetail extends StatelessWidget {
-  const PageDetail({
+  EVoucherDetailViewModel model;
+  PageDetail({
     Key? key,
+    required this.model,
   }) : super(key: key);
 
   @override
@@ -71,41 +94,32 @@ class PageDetail extends StatelessWidget {
         Expanded(
           child: SingleChildScrollView(
             child: Column(
-              mainAxisSize: MainAxisSize.max,
               children: [
-                SizedBox(
-                  height: 40,
-                ),
+                SizedBox(height: 40.h),
                 EVoucherTextWidget(
                   alignment: AlignmentDirectional.topStart,
-                  text: S.of(context).buyVoucherDetailTitle,
-                  textSize: 12,
+                  text: model.argument.selectedVoucherData?.brand ?? "",
+                  textSize: 12.t,
                   textWeight: FontWeight.w600,
                   textColor: Theme.of(context).colorScheme.inversePrimary,
                 ),
-                SizedBox(
-                  height: 4,
-                ),
+                SizedBox(height: 8.h),
                 EVoucherTextWidget(
                   alignment: AlignmentDirectional.topStart,
-                  text: S.of(context).buyVoucherDetailSubTitle,
-                  textSize: 20,
+                  text: model.argument.selectedVoucherData?.name ?? "",
+                  textSize: 20.t,
                   textWeight: FontWeight.w600,
                   textColor: Theme.of(context).colorScheme.shadow,
                 ),
-                SizedBox(
-                  height: 8,
-                ),
+                SizedBox(height: 8.h),
                 EVoucherTextWidget(
                   alignment: AlignmentDirectional.topStart,
-                  text: S.of(context).buyVoucherDetailSubSubTitle,
-                  textSize: 14,
+                  text: S.of(context).validUntil + " " + "--",
+                  textSize: 14.t,
                   textWeight: FontWeight.w400,
                   textColor: Theme.of(context).colorScheme.shadow,
                 ),
-                SizedBox(
-                  height: 24,
-                ),
+                SizedBox(height: 24.h),
                 Padding(
                   padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
                   child: Container(
@@ -114,25 +128,29 @@ class PageDetail extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          S.of(context).amt,
+                          model.argument.selectedVoucherData?.fromValue.toString() ?? "",
                           style: TextStyle(
-                              color: Theme.of(context).colorScheme.onSecondaryContainer, fontSize: 24, fontWeight: FontWeight.w700),
+                              fontFamily: StringUtils.appFont,
+                              color: Theme.of(context).colorScheme.onSecondaryContainer,
+                              fontSize: 24.t,
+                              fontWeight: FontWeight.w700),
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.only(start: 8.0, bottom: 4),
                           child: Text(
                             S.of(context).JOD,
                             style: TextStyle(
-                                color: AppColor.verLightGray4, fontSize: 14, fontWeight: FontWeight.w700),
+                                fontFamily: StringUtils.appFont,
+                                color: AppColor.verLightGray4,
+                                fontSize: 14.t,
+                                fontWeight: FontWeight.w700),
                           ),
                         ),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 16,
-                ),
+                SizedBox(height: 16.h),
                 EVoucherTextWidget(
                   alignment: AlignmentDirectional.topStart,
                   text: S.of(context).termsAndConditionsSetting,
@@ -141,27 +159,24 @@ class PageDetail extends StatelessWidget {
                   textColor: Theme.of(context).colorScheme.shadow,
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.only(start: 24.0, end: 24, top: 16),
+                  padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.w, top: 16.h),
                   child: Column(
                     children: [
                       CustomBulletWithTitle(
-                        title:
-                            'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. ',
-                        fontSize: 14,
+                        title: model.argument.selectedVoucherData?.termsAndConditions ?? "",
+                        fontSize: 14.t,
                         lineHeight: 1.5,
                       ),
-                      CustomBulletWithTitle(
-                        title:
-                            'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.  ',
-                        fontSize: 14,
-                        lineHeight: 1.5,
-                      ),
-                      CustomBulletWithTitle(
-                        title:
-                            'Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.',
-                        fontSize: 14,
-                        lineHeight: 1.5,
-                      ),
+                      // CustomBulletWithTitle(
+                      //   title: "",
+                      //   fontSize: 14.t,
+                      //   lineHeight: 1.5,
+                      // ),
+                      // CustomBulletWithTitle(
+                      //   title: "",
+                      //   fontSize: 14.t,
+                      //   lineHeight: 1.5,
+                      // ),
                     ],
                   ),
                 ),
@@ -169,21 +184,21 @@ class PageDetail extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(
-          height: 24,
+        SizedBox(height: 24),
+        ViewVoucherBtb(
+          model: model,
         ),
-        ViewVoucherBtb(),
-        const SizedBox(
-          height: 40,
-        ),
+        SizedBox(height: 50.h),
       ],
     );
   }
 }
 
 class ViewVoucherBtb extends StatelessWidget {
-  const ViewVoucherBtb({
+  EVoucherDetailViewModel model;
+  ViewVoucherBtb({
     Key? key,
+    required this.model,
   }) : super(key: key);
 
   @override
@@ -192,18 +207,25 @@ class ViewVoucherBtb extends StatelessWidget {
       padding: const EdgeInsetsDirectional.only(start: 24.0, end: 24.0),
       child: GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, RoutePaths.ShareVoucher);
-          /*InformationDialog.show(context,
-              image: AssetUtils.processing_voucher_icon,
-              title: S.of(context).processingVoucher,
-              descriptionWidget: Text(
-                S.of(context).viewVoucherDialogDescription,
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-              ), onSelected: () {
-            Navigator.pop(context);
-          }, onDismissed: () {
-            Navigator.pop(context);
-          });*/
+          // Navigator.pushNamed(context, RoutePaths.ShareVoucher);
+
+          if (model.argument.voucherDetail?.lineItems.first.status?.trim() == "success") {
+            Navigator.popAndPushNamed(context, RoutePaths.ShareVoucher);
+          } else {
+            InformationDialog.show(context,
+                image: AssetUtils.processing_voucher_icon,
+                imageHight: 40.h,
+                imageWidth: 40.w,
+                title: S.of(context).evoucherUnderProcessing,
+                descriptionWidget: Text(
+                  S.of(context).viewVoucherDialogDescription,
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                ), onSelected: () {
+              Navigator.pop(context);
+            }, onDismissed: () {
+              Navigator.pop(context);
+            });
+          }
         },
         child: Container(
           height: 56,

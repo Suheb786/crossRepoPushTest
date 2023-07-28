@@ -2,6 +2,7 @@ import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/e_voucher/get_settlement_amount/get_settlement_amount_request_entity.dart';
+import 'package:data/entity/remote/e_voucher/get_voucher_details/get_voucher_details_request_entity.dart';
 import 'package:data/entity/remote/e_voucher/place_order/place_order_request_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_category/voucher_categories_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_detail_request.dart';
@@ -16,16 +17,17 @@ import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_categor
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_filter_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_search_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_filter_response_entity.dart';
-import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/e_voucher/e_voucher_data_source.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
+import 'package:domain/usecase/evouchers/get_voucher_details_usecase.dart';
 import 'package:domain/usecase/evouchers/place_order_usecase.dart';
 import 'package:retrofit/dio.dart';
 
 import '../../../entity/remote/e_voucher/e_voucher_otp/e_voucher_otp_response_entity.dart';
 import '../../../entity/remote/e_voucher/get_settlement_amount/get_settlement_amount_response_entity.dart';
+import '../../../entity/remote/e_voucher/get_voucher_details/get_voucher_details_response_entity.dart';
 import '../../../entity/remote/e_voucher/place_order/place_order_response_entity.dart';
 
 class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
@@ -138,7 +140,8 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
   }
 
   @override
-  Future<HttpResponse<EVoucherOtpResponseEntity>> eVoucherOtp({required EVoucherUsecaseOTPParams params}) async {
+  Future<HttpResponse<EVoucherOtpResponseEntity>> eVoucherOtp(
+      {required EVoucherUsecaseOTPParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.eVoucherOtp(BaseRequest(baseData: baseData.toJson()));
   }
@@ -152,5 +155,14 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
       region: region,
       baseData: baseData.toJson(),
     ));
+  }
+
+  @override
+  Future<HttpResponse<GetVoucherDetailResponseEntity>> getVoucherDetailsApi(
+      {required GetVoucherDetailsUseCaseParams params}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getVoucherDetailsApi(
+      GetVoucherDetailsRequestEntity(baseData: baseData.toJson(), OrderIdentifier: params.OrderIdentifier),
+    );
   }
 }

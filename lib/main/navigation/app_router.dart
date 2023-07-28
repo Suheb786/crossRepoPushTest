@@ -657,7 +657,8 @@ class AppRouter {
 
       case RoutePaths.EvoucherDetail:
         return CupertinoPageRoute(
-            builder: (context) => EVoucherDetailPage(settings.arguments as String),
+            builder: (context) =>
+                EVoucherDetailPage(argument: settings.arguments as EvoucherDetailPageArgument),
             settings: RouteSettings(name: RoutePaths.EvoucherDetail));
 
       case RoutePaths.PurchaseNowDetail:
