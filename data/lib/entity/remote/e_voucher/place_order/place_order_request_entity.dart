@@ -5,35 +5,35 @@ part 'place_order_request_entity.g.dart';
 @JsonSerializable()
 class PlaceOrderRequestEntity {
   @JsonKey(name: "sourceAccount", defaultValue: "")
-  String sourceAccount;
+  final String? sourceAccount;
   @JsonKey(name: "sourceCurrency", defaultValue: "")
-  String sourceCurrency;
+  final String? sourceCurrency;
   @JsonKey(name: "cardItemId", defaultValue: "")
-  String cardItemId;
+  final String? cardItemId;
   @JsonKey(name: "exchangeRate", defaultValue: 0.0)
-  double exchangeRate;
+  final double? exchangeRate;
   @JsonKey(name: "VoucherCurrency", defaultValue: "")
-  String voucherCurrency;
+  final String? voucherCurrency;
   @JsonKey(name: "reconciliationCurrency", defaultValue: "")
-  String reconciliationCurrency;
+  final String? reconciliationCurrency;
   @JsonKey(name: "EquivalentAmount", defaultValue: "0.0")
-  String equivalentAmount;
+  final String? equivalentAmount;
   @JsonKey(name: "Denomination", defaultValue: 0)
-  int denomination;
+  final int? denomination;
   @JsonKey(name: "Discount", defaultValue: "")
-  String discount;
+  final String? discount;
   @JsonKey(name: "Categories", defaultValue: "")
-  String categories;
+  final String? categories;
   @JsonKey(name: "VoucherName", defaultValue: "")
-  String voucherName;
+  final String? voucherName;
   @JsonKey(name: "ProductId", defaultValue: "")
-  String productId;
+  final String? productId;
   @JsonKey(name: "ProductName", defaultValue: "")
-  String productName;
+  final String? productName;
   @JsonKey(name: "OtpCode", defaultValue: "")
-  String otpCode;
+  final String? otpCode;
   @JsonKey(name: "GetToken", defaultValue: false)
-  bool getToken;
+  final bool? getToken;
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> BaseClass;
   PlaceOrderRequestEntity({

@@ -19,21 +19,21 @@ class PlaceOrderUseCase extends BaseUseCase<NetworkError, PlaceOrderUseCaseParam
 }
 
 class PlaceOrderUseCaseParams extends Params {
-  final String sourceAccount;
-  final String sourceCurrency;
-  final String cardItemId;
-  final double exchangeRate;
-  final String voucherCurrency;
-  final String reconciliationCurrency;
-  final String equivalentAmount;
-  final int denomination;
-  final String discount;
-  final String categories;
-  final String voucherName;
-  final String productId;
-  final String productName;
-  final String otpCode;
-  final bool getToken;
+  final String? sourceAccount;
+  final String? sourceCurrency;
+  final String? cardItemId;
+  final double? exchangeRate;
+  final String? voucherCurrency;
+  final String? reconciliationCurrency;
+  final String? equivalentAmount;
+  final int? denomination;
+  final String? discount;
+  final String? categories;
+  final String? voucherName;
+  final String? productId;
+  final String? productName;
+  final String? otpCode;
+  final bool? getToken;
 
   PlaceOrderUseCaseParams({
     required this.sourceAccount,
