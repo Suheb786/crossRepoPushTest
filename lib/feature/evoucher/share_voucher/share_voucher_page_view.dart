@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/evoucher/share_voucher/share_voucher_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -53,7 +52,8 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                                 Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1)),
                         width: double.infinity,
                         child: InAppWebView(
-                          initialUrlRequest: URLRequest(url: Uri.parse("https://d.giftlov.io/hjGcbwxv")),
+                          initialUrlRequest: URLRequest(
+                              url: Uri.parse(model.argument?.voucherDetail?.lineItems.first.claimURL ?? "")),
                           // onWebViewCreated: (controller) {
                           //   model.webViewController = controller;
                           // },

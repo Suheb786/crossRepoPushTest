@@ -696,7 +696,8 @@ class AppRouter {
 
       case RoutePaths.ShareVoucher:
         return CupertinoPageRoute(
-            builder: (context) => ShareVoucherPage(), settings: RouteSettings(name: RoutePaths.ShareVoucher));
+            builder: (context) => ShareVoucherPage(settings.arguments as ShareVoucherPageArgument),
+            settings: RouteSettings(name: RoutePaths.ShareVoucher));
 
       case RoutePaths.EnterCodeEVoucherPurchase:
         return CupertinoPageRoute(

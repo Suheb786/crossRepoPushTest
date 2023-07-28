@@ -164,11 +164,11 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
                                       itemBuilder: (context, childIndex) {
                                         return GestureDetector(
                                           onTap: () {
-                                            model.historyData = voucherHistory!.data![index].data[childIndex] ;
+                                            model.historyData = voucherHistory!.data![index].data[childIndex];
 
                                             model.getVoucherDetailCall(
-                                                OrderIdentifier: voucherHistory
-                                                    .data?[index].data[index].lineItems[index].cardItemId);
+                                                OrderIdentifier: voucherHistory.data?[index].data[childIndex]
+                                                    .lineItems.first.cardItemId);
                                           },
                                           child: MyVoucherHistoryWidget(
                                               (voucherHistory?.data?[index].data ?? [])[childIndex]),

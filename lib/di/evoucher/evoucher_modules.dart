@@ -24,6 +24,7 @@ import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evouche
 import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page_view_model.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/settlement_amount/settlement_amount_page_view_model.dart';
 import '../../feature/evoucher/purchase_now/purchase_now_page.dart';
+import '../../feature/evoucher/share_voucher/share_voucher_page.dart';
 
 final evoucherViewModelProvider = ChangeNotifierProvider.autoDispose<EvoucherViewModel>(
   (ref) => EvoucherViewModel(
@@ -124,8 +125,9 @@ final purchaseVoucherViewModelProvider = ChangeNotifierProvider.autoDispose
         (ref, arg) => PurchaseVoucherSuccessPageViewModel(arg));
 
 ///share voucher view model
-final shareVoucherViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ShareVoucherPageViewModel>((ref) => ShareVoucherPageViewModel());
+final shareVoucherViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<ShareVoucherPageViewModel, ShareVoucherPageArgument>(
+        (ref, arg) => ShareVoucherPageViewModel(arg));
 
 ///enter code evoucher purchase view model
 final enterCodeEVoucherPurchaseViewModelProvider =

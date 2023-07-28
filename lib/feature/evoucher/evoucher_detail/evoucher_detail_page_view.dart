@@ -15,6 +15,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import '../../../utils/string_utils.dart';
+import '../share_voucher/share_voucher_page.dart';
 import 'evoucher_detail_page_view_model.dart';
 
 class EvoucherDetailView extends BasePageViewWidget<EVoucherDetailViewModel> {
@@ -124,7 +125,7 @@ class PageDetail extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          model.argument.selectedVoucherData?.fromValue.toString() ?? "",
+                          model.argument.selectedVoucherData?.fromValue.toStringAsFixed(3) ?? "",
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: Theme.of(context).colorScheme.onSecondaryContainer,
@@ -134,7 +135,7 @@ class PageDetail extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsetsDirectional.only(start: 8.0, bottom: 4),
                           child: Text(
-                            S.of(context).JOD,
+                            model.argument.selectedVoucherData?.currency ?? "",
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 color: AppColor.verLightGray4,
@@ -239,7 +240,8 @@ class ViewVoucherBtb extends StatelessWidget {
                 padding: const EdgeInsetsDirectional.only(end: 24.0),
                 child: InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, RoutePaths.ShareVoucher);
+                      Navigator.pushNamed(context, RoutePaths.ShareVoucher,
+                          arguments: ShareVoucherPageArgument(model.argument.voucherDetail));
                     },
                     child: AppSvg.asset(AssetUtils.view_voucher_icon)),
               )
