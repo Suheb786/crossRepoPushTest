@@ -55,7 +55,7 @@ LineItemEntity _$LineItemEntityFromJson(Map<String, dynamic> json) =>
       lineNumber: json['lineNumber'] as int,
       cardItemId: json['cardItemId'] as String,
       cardItemName: json['cardItemName'] as String?,
-      value: json['value'] as int,
+      value: (json['value'] as num).toDouble(),
       currency: json['currency'] as String,
       certificateGenerationKey: json['certificateGenerationKey'] as String,
       status: json['status'] as String,

@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
+
 part 'place_order_request_entity.g.dart';
 
 @JsonSerializable()
@@ -36,6 +37,7 @@ class PlaceOrderRequestEntity {
   final bool? getToken;
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> BaseClass;
+
   PlaceOrderRequestEntity({
     required this.sourceAccount,
     required this.sourceCurrency,

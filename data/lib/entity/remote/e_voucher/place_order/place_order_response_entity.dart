@@ -3,6 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:domain/model/e_voucher/place_order.dart';
 
 import '../../user/response_entity.dart';
+
 part 'place_order_response_entity.g.dart';
 
 @JsonSerializable()
@@ -19,7 +20,9 @@ class PlaceOrderResponseEntity extends BaseLayerDataTransformer<PlaceOrderRespon
 
   @override
   PlaceOrder transform() {
-    return PlaceOrderContentEntity.fromJson(response?.content as Map<String, dynamic>).transform();
+    return response?.content != null
+        ? PlaceOrderContentEntity.fromJson(response?.content as Map<String, dynamic>).transform()
+        : PlaceOrder();
   }
 }
 
@@ -96,7 +99,7 @@ class LineItemEntity extends BaseLayerDataTransformer<LineItemEntity, LineItem> 
   String? cardItemName;
 
   @JsonKey(name: 'value')
-  int value;
+  double value;
 
   @JsonKey(name: 'currency')
   String currency;

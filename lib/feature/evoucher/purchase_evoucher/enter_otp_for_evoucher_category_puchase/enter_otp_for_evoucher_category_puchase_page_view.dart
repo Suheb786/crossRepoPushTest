@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/enter_otp_for_evoucher_category_puchase/enter_otp_for_evoucher_category_puchase_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -41,55 +42,35 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                     initialData: Resource.none(),
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
-                        // model.placeOrder(
-                        //   sourceAccount: ProviderScope.containerOf(context)
-                        //           .read(appHomeViewModelProvider)
-                        //           .dashboardDataContent
-                        //           .account
-                        //           ?.accountNo ??
-                        //       "",
-                        //   sourceCurrency: "JOD",
-                        //   cardItemId: model.argument.selectedItem.id,
-                        //   exchangeRate: double.parse(model.argument.selectedItem.discount),
-                        //   voucherCurrency: model.argument.selectedItem.currency,
-                        //   reconciliationCurrency: "JOD",
-                        //   equivalentAmount:
-                        //       "${ProviderScope.containerOf(context).read(selectAmountRegionViewModelProvider(model.argument)).settlementAmount}",
-                        //   denomination: 1,
-                        //   discount: model.argument.selectedItem.discount,
-                        //   categories: model.argument.selectedItem.name,
-                        //   voucherName: model.argument.selectedItem.name,
-                        //   productId: model.argument.selectedItem.productId.toString(),
-                        //   productName: model.argument.selectedItem.name,
-                        //   otpCode: ProviderScope.containerOf(context)
-                        //       .read(evoucherSettlementAccountViewModelProvider(model.argument))
-                        //       .mobileCode,
-                        //   getToken: true,
-                        // );
-                        print("${model.argument.selectedItem.exchangeRate} ::::::: exhnage rate");
-                        // model.placeOrder(
-                        //     sourceAccount: ProviderScope.containerOf(context)
-                        //         .read(appHomeViewModelProvider)
-                        //         .dashboardDataContent
-                        //         .account
-                        //         ?.iban,
-                        //     sourceCurrency: "JOD",
-                        //     cardItemId: model.argument.selectedItem.id,
-                        //     exchangeRate: double.parse(model.argument.selectedItem.exchangeRate),
-                        //     voucherCurrency: model.argument.selectedItem.currency,
-                        //     reconciliationCurrency: model.argument.selectedItem.reconciliationCurrency,
-                        //     equivalentAmount: ProviderScope.containerOf(context)
-                        //         .read(selectAmountRegionViewModelProvider(model.argument))
-                        //         .settlementAmount
-                        //         .toString(),
-                        //     denomination: int.tryParse(model.argument.selectedItem.fromValue.toString()),
-                        //     discount: model.argument.selectedItem.discount,
-                        //     categories: "",
-                        //     voucherName: model.argument.selectedItem.name,
-                        //     productId: model.argument.selectedItem.productId,
-                        //     productName: "",
-                        //     otpCode: model.otpController.text,
-                        //     getToken: true);
+                        model.placeOrder(
+                            sourceAccount: ProviderScope.containerOf(context)
+                                .read(appHomeViewModelProvider)
+                                .dashboardDataContent
+                                .account
+                                ?.iban,
+                            sourceCurrency: "JOD",
+                            cardItemId: model.argument.selectedItem.id,
+                            exchangeRate: double.parse(model.argument.selectedItem.exchangeRate),
+                            voucherCurrency: model.argument.selectedItem.currency,
+                            reconciliationCurrency: model.argument.selectedItem.reconciliationCurrency,
+                            equivalentAmount: ProviderScope.containerOf(context)
+                                .read(selectAmountRegionViewModelProvider(model.argument))
+                                .settlementAmount
+                                .toString(),
+                            denomination: double.parse(ProviderScope.containerOf(context)
+                                    .read(selectAmountRegionViewModelProvider(model.argument))
+                                    .amountController
+                                    .text
+                                    .split(' ')
+                                    .first)
+                                .toInt(),
+                            discount: model.argument.selectedItem.discount.replaceAll('%', ''),
+                            categories: model.argument.selectedItem.categories.join(','),
+                            voucherName: model.argument.selectedItem.name,
+                            productId: model.argument.selectedItem.productId.toString(),
+                            productName: "",
+                            otpCode: model.otpController.text,
+                            getToken: true);
                       }
                     },
                     dataBuilder: (context, isOtpVerified) {

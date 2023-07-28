@@ -1789,5 +1789,7 @@
   "selectValue": "Select Value",
   "back": "Back",
   "selectRegionFirst": "Select region first",
-  "eVouchersSettings": "eVouchers"
+  "eVouchersSettings": "eVouchers",
+  "region": "REGION",
+  "value": "VALUE"
 }

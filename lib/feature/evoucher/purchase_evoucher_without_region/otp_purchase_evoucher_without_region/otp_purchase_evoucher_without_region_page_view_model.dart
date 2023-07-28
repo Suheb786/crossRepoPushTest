@@ -35,21 +35,25 @@ class OtpPurchaseEvoucherWithoutRegionPageViewModel extends BasePageViewModel {
   /// make otp suject
   PublishSubject<EVoucherUsecaseOTPParams> _evoucherOtpRequest = PublishSubject();
   PublishSubject<Resource<bool>> _evoucherOtpResponse = PublishSubject();
+
   Stream<Resource<bool>> get evoucherOtpStream => _evoucherOtpResponse.stream;
 
   ///place order
   PublishSubject<PlaceOrderUseCaseParams> _placeOrderRequest = PublishSubject();
   PublishSubject<Resource<bool>> _placeOrderResponse = PublishSubject();
+
   Stream<Resource<bool>> get placeOrderStream => _validateOtpResponse.stream;
 
   ///enter otp request subject holder
   PublishSubject<EnterOtpForEVoucherCategoryPurchaseUseCaseParams> _validateOtpRequest = PublishSubject();
   PublishSubject<Resource<bool>> _validateOtpResponse = PublishSubject();
+
   Stream<Resource<bool>> get enterOtpStream => _validateOtpResponse.stream;
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
   BehaviorSubject<String> _otpSubject = BehaviorSubject.seeded("");
+
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   OtpPurchaseEvoucherWithoutRegionPageViewModel(this._enterOtpForEVoucherPurchaseCategoryUseCase,

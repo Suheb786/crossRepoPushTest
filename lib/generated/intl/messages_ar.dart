@@ -2460,6 +2460,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "referenceNumberSmall":
             MessageLookupByLibrary.simpleMessage("رقم المرجع"),
         "refno": MessageLookupByLibrary.simpleMessage("رقم المرجع"),
+        "region": MessageLookupByLibrary.simpleMessage("REGION"),
         "registerInterestError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "registerViaEmail":
@@ -3036,6 +3037,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "vKeyTransactionFailed":
             MessageLookupByLibrary.simpleMessage("فشل حركة Vkey"),
         "validUntil": MessageLookupByLibrary.simpleMessage("Valid Until"),
+        "value": MessageLookupByLibrary.simpleMessage("VALUE"),
         "verificationCallEnded":
             MessageLookupByLibrary.simpleMessage("انتهت مكالمة التحقق"),
         "verificationCallEndedDesc": MessageLookupByLibrary.simpleMessage(

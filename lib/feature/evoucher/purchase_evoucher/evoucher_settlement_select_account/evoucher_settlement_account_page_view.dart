@@ -158,6 +158,9 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                                                     ),
                                                   ],
                                                 ),
+                                                SizedBox(
+                                                  height: 32.h,
+                                                ),
                                                 Column(
                                                   children: [
                                                     Row(
@@ -325,7 +328,7 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                                                   initialData: false,
                                                   dataBuilder: (context, isValid) {
                                                     return Visibility(
-                                                        visible: isValid!,
+                                                        visible: true,
                                                         child: AnimatedButton(
                                                           buttonText: S.of(context).swipeToProceed,
                                                         ));

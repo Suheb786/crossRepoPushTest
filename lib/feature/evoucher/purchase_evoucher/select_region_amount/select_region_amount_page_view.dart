@@ -44,8 +44,8 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
                     model.getSettlementAmmount(
-                        Amount: model.argument.selectedItem.fromValue.toString(),
-                        FromCurrency: model.argument.selectedItem.currency,
+                        Amount: model.amountController.text.split(' ').first,
+                        FromCurrency: model.amountController.text.split(' ').last,
                         ToCurrency: "JOD");
                   } else if (data.status == Status.ERROR) {
                     model.showToastWithError(data.appError!);

@@ -24,6 +24,7 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
   ///get settlement amount
 
   BehaviorSubject<double> _getSettlementAmountResponse = BehaviorSubject();
+
   Stream<double> get getSettlementAmountStream => _getSettlementAmountResponse.stream;
 
   getSettleValue(double value) {
@@ -56,7 +57,6 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
 
   String mobileCode = "";
   String mobileNumber = "";
-  
 
   EvoucherSettlementAccountPageViewModel(
       this._selectAccountUseCase, this.argument, this.eVoucherOtpUseCase, this.getSettlementAmountUseCase) {
@@ -125,7 +125,7 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
                 .account
                 ?.availableBalance ??
             "",
-        itemValueString: argument.selectedItem.fromValue));
+        itemValueString: _getSettlementAmountResponse.value));
   }
 
   void validate() {

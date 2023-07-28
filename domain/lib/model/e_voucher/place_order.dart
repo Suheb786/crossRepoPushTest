@@ -1,52 +1,53 @@
 class PlaceOrder {
-  String id;
-  String customerName;
-  String deliveryChannel;
+  String? id;
+  String? customerName;
+  String? deliveryChannel;
   String? emailAddress;
   String? smsMobileNumber;
-  String referenceNo;
-  String creationDate;
-  String placementDate;
-  List<LineItem> lineItems;
+  String? referenceNo;
+  String? creationDate;
+  String? placementDate;
+  List<LineItem>? lineItems;
+
   PlaceOrder({
-    required this.id,
-    required this.customerName,
-    required this.deliveryChannel,
-    required this.emailAddress,
-    required this.smsMobileNumber,
-    required this.referenceNo,
-    required this.creationDate,
-    required this.placementDate,
-    required this.lineItems,
+    this.id = '',
+    this.customerName = '',
+    this.deliveryChannel = '',
+    this.emailAddress = '',
+    this.smsMobileNumber = '',
+    this.referenceNo = '',
+    this.creationDate = '',
+    this.placementDate = '',
+    this.lineItems,
   });
 }
 
 class LineItem {
-  int lineNumber;
-  String cardItemId;
+  int? lineNumber;
+  String? cardItemId;
   String? cardItemName;
-  int value;
-  String currency;
-  String certificateGenerationKey;
-  String status;
-  String claimURL;
-  String settlementCurrency;
-  double exchangeRate;
-  double settlementPrice;
-  double netPrice;
+  double? value;
+  String? currency;
+  String? certificateGenerationKey;
+  String? status;
+  String? claimURL;
+  String? settlementCurrency;
+  double? exchangeRate;
+  double? settlementPrice;
+  double? netPrice;
 
   LineItem({
-    required this.lineNumber,
-    required this.cardItemId,
-    required this.cardItemName,
-    required this.value,
-    required this.currency,
-    required this.certificateGenerationKey,
-    required this.status,
-    required this.claimURL,
-    required this.settlementCurrency,
-    required this.exchangeRate,
-    required this.settlementPrice,
-    required this.netPrice,
+    this.lineNumber = 0,
+    this.cardItemId = '',
+    this.cardItemName = '',
+    this.value = 0.0,
+    this.currency = '',
+    this.certificateGenerationKey = '',
+    this.status = '',
+    this.claimURL = '',
+    this.settlementCurrency = '',
+    this.exchangeRate = 0.0,
+    this.settlementPrice = 0.0,
+    this.netPrice = 0.0,
   });
 }
