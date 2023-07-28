@@ -103,7 +103,7 @@ class SettlementAmountPageViewModel extends BasePageViewModel {
                 .account
                 ?.availableBalance ??
             "",
-        itemValueString: argument.selectedItem.fromValue));
+        itemValueString: argument.settlementAmount));
   }
 
   void validate() {

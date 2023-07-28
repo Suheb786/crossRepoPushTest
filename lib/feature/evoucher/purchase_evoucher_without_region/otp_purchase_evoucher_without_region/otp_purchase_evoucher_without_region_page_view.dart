@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -39,37 +40,41 @@ class OtpPurchaseEvoucherWithoutRegionPageView
             child: AppStreamBuilder<Resource<PlaceOrder>>(
                 initialData: Resource.none(),
                 stream: model.placeOrderStream,
-                onData: (value) => Navigator.pushNamed(context, RoutePaths.EVouchersPurchaseSuccess,
-                    arguments: PurchaseVoucherSuccessArgument(selectedItem: model.argument.selectedItem)),
+                onData: (value) {
+                  if (value.status == Status.SUCCESS) {
+                    Navigator.pushNamed(context, RoutePaths.EVouchersPurchaseSuccess,
+                        arguments: PurchaseVoucherSuccessArgument(
+                            selectedItem: model.argument.selectedItem,
+                            placeOrder: value.data,
+                            settlementAmount: (model.argument.settlementAmount).toString()));
+                  }
+                },
                 dataBuilder: (context, snapshot) {
                   return AppStreamBuilder<Resource<bool>>(
                     stream: model.enterOtpStream,
                     initialData: Resource.none(),
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
-                        // model.placeOrder(
-                        //     sourceAccount: ProviderScope.containerOf(context)
-                        //         .read(appHomeViewModelProvider)
-                        //         .dashboardDataContent
-                        //         .account
-                        //         ?.iban,
-                        //     sourceCurrency: "JOD",
-                        //     cardItemId: model.argument.selectedItem.id,
-                        //     exchangeRate: double.parse(model.argument.selectedItem.exchangeRate),
-                        //     voucherCurrency: model.argument.selectedItem.currency,
-                        //     reconciliationCurrency: model.argument.selectedItem.reconciliationCurrency,
-                        //     equivalentAmount: ProviderScope.containerOf(context)
-                        //         .read(selectAmountRegionViewModelProvider(model.argument))
-                        //         .settlementAmount
-                        //         .toString(),
-                        //     denomination: int.tryParse(model.argument.selectedItem.fromValue.toString()),
-                        //     discount: model.argument.selectedItem.discount,
-                        //     categories: "",
-                        //     voucherName: model.argument.selectedItem.name,
-                        //     productId: model.argument.selectedItem.productId,
-                        //     productName: "",
-                        //     otpCode: model.otpController.text,
-                        //     getToken: true);
+                        model.placeOrder(
+                            sourceAccount: ProviderScope.containerOf(context)
+                                .read(appHomeViewModelProvider)
+                                .dashboardDataContent
+                                .account
+                                ?.iban,
+                            sourceCurrency: "JOD",
+                            cardItemId: model.argument.selectedItem.id,
+                            exchangeRate: double.parse(model.argument.selectedItem.exchangeRate),
+                            voucherCurrency: model.argument.selectedItem.currency,
+                            reconciliationCurrency: model.argument.selectedItem.reconciliationCurrency,
+                            equivalentAmount: model.argument.settlementAmount.toString(),
+                            denomination: model.argument.selectedItem.fromValue.toInt(),
+                            discount: model.argument.selectedItem.discount.replaceAll('%', ''),
+                            categories: model.argument.selectedItem.categories.join(','),
+                            voucherName: model.argument.selectedItem.name,
+                            productId: model.argument.selectedItem.productId.toString(),
+                            productName: "",
+                            otpCode: model.otpController.text,
+                            getToken: true);
                       } else if (data.status == Status.ERROR) {
                         model.showToastWithError(data.appError!);
                       }

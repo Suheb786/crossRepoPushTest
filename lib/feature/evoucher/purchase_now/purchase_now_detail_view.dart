@@ -27,42 +27,36 @@ class PurchaseNowDetailView extends BasePageViewWidget<PurchaseNowDetailViewMode
       children: [
         Container(
           height: 180,
-          color: Colors.yellow,
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
+          width: double.infinity,
+          color: Colors.transparent,
+          child: Stack(
+            alignment: AlignmentDirectional.centerStart,
             children: [
-              const SizedBox(width: 24),
-              Positioned.directional(
-                textDirection: Directionality.of(context),
-                top: 47,
-                start: 33,
-                child: Stack(
-                  alignment: AlignmentDirectional.centerStart,
-                  children: [
-                    Container(
-                      child: CachedNetworkImage(
-                        imageUrl: model.argument.selectedVoucherItem.cardFaceImage,
-                        placeholder: (context, url) => Container(color: Theme.of(context).primaryColor),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () => Navigator.pop(context),
-                      child: Container(
-                        height: 56.h,
-                        width: 56.h,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: Theme.of(context).colorScheme.secondary),
-                        child:
-                            Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSecondaryContainer),
-                      ),
-                    )
-                  ],
+              Container(
+                width: double.infinity,
+                child: CachedNetworkImage(
+                  imageUrl: model.argument.selectedVoucherItem.cardFaceImage,
+                  placeholder: (context, url) => Container(color: Theme.of(context).primaryColor),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  fit: BoxFit.fill,
                 ),
               ),
-              const SizedBox(width: 24),
+              Positioned.directional(
+                textDirection: Directionality.of(context),
+                top: 47.h,
+                start: 33.w,
+                child: GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: Container(
+                    height: 56.h,
+                    width: 56.h,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: Theme.of(context).colorScheme.secondary),
+                    child: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSecondaryContainer),
+                  ),
+                ),
+              )
             ],
           ),
         ),
@@ -85,6 +79,7 @@ class PurchaseNowDetailView extends BasePageViewWidget<PurchaseNowDetailViewMode
 
 class PageDetail extends StatelessWidget {
   PurchaseNowDetailViewModel model;
+
   PageDetail({
     required this.model,
     Key? key,
@@ -99,6 +94,7 @@ class PageDetail extends StatelessWidget {
           if (d.status == Status.SUCCESS) {
             Navigator.pushNamed(context, RoutePaths.PurchaseEVoucherWithoutRegionPage,
                 arguments: PurchaseEVoucherWithoutRegionPageArgument(
+                  settlementAmount: d.data?.content ?? 0.0,
                   selectedItem: model.argument.selectedVoucherItem,
                 ));
           }
@@ -143,7 +139,8 @@ class PageDetail extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                model.argument.selectedVoucherItem.fromValue.toString(),
+                                num.parse(model.argument.selectedVoucherItem.fromValue.toString())
+                                    .toStringAsFixed(3),
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     color: Theme.of(context).colorScheme.onSecondaryContainer,
@@ -153,7 +150,7 @@ class PageDetail extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsetsDirectional.only(start: 8.0, bottom: 4),
                                 child: Text(
-                                  S.of(context).JOD,
+                                  model.argument.selectedVoucherItem.currency,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       color: AppColor.verLightGray4,
@@ -182,16 +179,6 @@ class PageDetail extends StatelessWidget {
                               fontSize: 14.t,
                               lineHeight: 1.5,
                             ),
-                            // CustomBulletWithTitle(
-                            //   title: "",
-                            //   fontSize: 14.t,
-                            //   lineHeight: 1.5,
-                            // ),
-                            // CustomBulletWithTitle(
-                            //   title: "",
-                            //   fontSize: 14.t,
-                            //   lineHeight: 1.5,
-                            // ),
                           ],
                         ),
                       ),
@@ -212,6 +199,7 @@ class PageDetail extends StatelessWidget {
 
 class PurchaseNowBtn extends StatelessWidget {
   PurchaseNowDetailViewModel model;
+
   PurchaseNowBtn({
     required this.model,
     Key? key,
@@ -228,76 +216,6 @@ class PurchaseNowBtn extends StatelessWidget {
               Amount: model.argument.selectedVoucherItem.fromValue.toString(),
               FromCurrency: model.argument.selectedVoucherItem.currency,
               ToCurrency: "JOD");
-
-          // PurchaseNowDialog.show(context,
-          //     image: AssetUtils.processing_voucher_icon,
-          //     title: S.of(context).purchaseNowTitle,
-          //     descriptionWidget: Text(
-          //       S.of(context).viewVoucherDialogDescription,
-          //       style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w400),
-          //     ), onSelected: () {
-          //   Navigator.pop(context);
-          //   Navigator.pushNamed(context, RoutePaths.EnterCodeEVoucherPurchase);
-          // }, onDismissed: () {
-          //   Navigator.pop(context);
-          // }, price: S.of(context).amt, subTitle: S.of(context).purchaseNowSubTitle);
-          // model.getSettlementAmmount(
-          //     Amount: model.argument.Amount,
-          //     FromCurrency: model.argument.FromCurrency,
-          //     ToCurrency: model.argument.ToCurrency);
-
-          // Navigator.pushNamed(context, RoutePaths.PurchaseEVoucherWithoutRegionPage,
-          //     arguments: PurchaseEVoucherWithoutRegionPageArgument(
-          //         voucherItems: [
-          //           VoucherItem(
-          //               id: "2323",
-          //               name: "Playstation",
-          //               usageInstructions: "usageInstructions",
-          //               termsAndConditions: "termsAndConditions",
-          //               giftCardInformation: "giftCardInformation",
-          //               brand: "brand",
-          //               currency: "JOD",
-          //               fromValue: 1.22,
-          //               toValue: 200,
-          //               cardFaceImage: "fdasf",
-          //               cardFaceHash: "",
-          //               productId: 123,
-          //               categories: ["", "to", "toma"],
-          //               discount: "discount",
-          //               countryCode: "JD"),
-          //           VoucherItem(
-          //               id: "2323",
-          //               name: "Playstation",
-          //               usageInstructions: "usageInstructions",
-          //               termsAndConditions: "termsAndConditions",
-          //               giftCardInformation: "giftCardInformation",
-          //               brand: "brand",
-          //               currency: "JOD",
-          //               fromValue: 1.22,
-          //               toValue: 200,
-          //               cardFaceImage: "fdasf",
-          //               cardFaceHash: "",
-          //               productId: 123,
-          //               categories: ["", "to", "toma"],
-          //               discount: "discount",
-          //               countryCode: "JD")
-          //         ],
-          //         selectedItem: VoucherItem(
-          //             id: "2323",
-          //             name: "Playstation",
-          //             usageInstructions: "usageInstructions",
-          //             termsAndConditions: "termsAndConditions",
-          //             giftCardInformation: "giftCardInformation",
-          //             brand: "brand",
-          //             currency: "JOD",
-          //             fromValue: 1.22,
-          //             toValue: 200,
-          //             cardFaceImage: "fdasf",
-          //             cardFaceHash: "",
-          //             productId: 123,
-          //             categories: ["", "to", "toma"],
-          //             discount: "discount",
-          //             countryCode: "JD")));
         },
         text: S.of(context).purchaseNow,
       ),

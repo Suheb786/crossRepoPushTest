@@ -9,9 +9,11 @@ import '../../../di/evoucher/evoucher_modules.dart';
 
 class PurchaseEVoucherWithoutRegionPage extends BasePage<PurchaseEVoucherWithoutRegionPageViewModel> {
   final PurchaseEVoucherWithoutRegionPageArgument argument;
+
   PurchaseEVoucherWithoutRegionPage({
     required this.argument,
   });
+
   @override
   PurchaseEVoucherWithoutRegionPageState createState() => PurchaseEVoucherWithoutRegionPageState();
 }
@@ -30,10 +32,8 @@ class PurchaseEVoucherWithoutRegionPageState
 }
 
 class PurchaseEVoucherWithoutRegionPageArgument {
-
   final VoucherItem selectedItem;
-  PurchaseEVoucherWithoutRegionPageArgument({
-  
-    required this.selectedItem,
-  });
+  final double settlementAmount;
+
+  PurchaseEVoucherWithoutRegionPageArgument({required this.selectedItem, required this.settlementAmount});
 }

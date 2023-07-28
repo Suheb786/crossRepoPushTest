@@ -12,6 +12,7 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SelectRegionAmountPageViewModel extends BasePageViewModel {
@@ -118,7 +119,7 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
     }
   }
 
-  void getRegionFromVoucherIds() {
+  void getRegionFromVoucherIds(BuildContext context) {
     List<VoucherItem> vouchersWithSameProductId =
         voucherItems.where((items) => items.productId == selectedItem.productId).toList();
 
@@ -126,7 +127,9 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
 
     for (var value in vouchersWithSameProductId) {
       countries.add(VoucherRegionByCategories(
-          countryName: value.countryCode.countryName,
+          countryName: StringUtils.isDirectionRTL(context)
+              ? value.countryCode.countryNameAR
+              : value.countryCode.countryName,
           countryNameAR: value.countryCode.countryNameAR,
           isoCode: value.countryCode.isoCode));
     }

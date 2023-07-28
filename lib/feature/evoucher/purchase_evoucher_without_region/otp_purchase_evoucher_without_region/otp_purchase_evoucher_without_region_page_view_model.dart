@@ -44,6 +44,7 @@ class OtpPurchaseEvoucherWithoutRegionPageViewModel extends BasePageViewModel {
   ///place order
   PublishSubject<PlaceOrderUseCaseParams> _placeOrderRequest = PublishSubject();
   PublishSubject<Resource<PlaceOrder>> _placeOrderResponse = PublishSubject();
+
   Stream<Resource<PlaceOrder>> get placeOrderStream => _placeOrderResponse.stream;
 
   ///enter otp request subject holder

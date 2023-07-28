@@ -87,9 +87,7 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                     Padding(
                       padding: EdgeInsets.only(top: 36),
                       child: InkWell(
-                        onTap: () {
-                          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.EVoucherMainPage));
-                        },
+                        onTap: () {},
                         child: InkWell(
                           onTap: () {
                             Navigator.pop(context);

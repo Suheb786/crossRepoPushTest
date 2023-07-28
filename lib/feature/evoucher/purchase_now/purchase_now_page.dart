@@ -10,6 +10,7 @@ class PurchaseNowDetailPage extends BasePage<PurchaseNowDetailViewModel> {
   final PurchaseNowArgument argument;
 
   PurchaseNowDetailPage(this.argument);
+
   @override
   EvoucherDetailState createState() => EvoucherDetailState();
 }

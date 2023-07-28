@@ -39,9 +39,13 @@ class SettlementAmountPageView extends BasePageViewWidget<SettlementAmountPageVi
               child: AppStreamBuilder<Resource<EVoucherOTP>>(
                   initialData: Resource.none(),
                   stream: model.evoucherOtpStream,
-                  onData: (value) => ProviderScope.containerOf(context)
-                      .read(purchaseEVoucherWithoutRegionPageViewModel(model.argument))
-                      .nextPage(),
+                  onData: (value) {
+                    if (value.status == Status.SUCCESS) {
+                      ProviderScope.containerOf(context)
+                          .read(purchaseEVoucherWithoutRegionPageViewModel(model.argument))
+                          .nextPage();
+                    }
+                  },
                   dataBuilder: (context, snapshot) {
                     return AppStreamBuilder<Resource<bool>>(
                       stream: model.selectAccountStream,
@@ -125,7 +129,7 @@ class SettlementAmountPageView extends BasePageViewWidget<SettlementAmountPageVi
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                model.argument.selectedItem.fromValue.toString(),
+                                                model.argument.settlementAmount.toString(),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
@@ -148,6 +152,9 @@ class SettlementAmountPageView extends BasePageViewWidget<SettlementAmountPageVi
                                                 ),
                                               ),
                                             ],
+                                          ),
+                                          SizedBox(
+                                            height: 32.h,
                                           ),
                                           Column(
                                             children: [
@@ -308,7 +315,7 @@ class SettlementAmountPageView extends BasePageViewWidget<SettlementAmountPageVi
                                             initialData: false,
                                             dataBuilder: (context, isValid) {
                                               return Visibility(
-                                                  visible: isValid!,
+                                                  visible: true,
                                                   child: AnimatedButton(
                                                     buttonText: S.of(context).swipeToProceed,
                                                   ));
