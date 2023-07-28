@@ -1,3 +1,4 @@
+import 'package:domain/model/e_voucher/place_order.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/enter_otp_for_evoucher_category_purchase_usecase.dart';
 import 'package:domain/usecase/evouchers/place_order_usecase.dart';
@@ -39,8 +40,8 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
 
   ///place order
   PublishSubject<PlaceOrderUseCaseParams> _placeOrderRequest = PublishSubject();
-  PublishSubject<Resource<bool>> _placeOrderResponse = PublishSubject();
-  Stream<Resource<bool>> get placeOrderStream => _validateOtpResponse.stream;
+  PublishSubject<Resource<PlaceOrder>> _placeOrderResponse = PublishSubject();
+  Stream<Resource<PlaceOrder>> get placeOrderStream => _placeOrderResponse.stream;
 
   ///enter otp request subject holder
   PublishSubject<EnterOtpForEVoucherCategoryPurchaseUseCaseParams> _validateOtpRequest = PublishSubject();
@@ -77,23 +78,24 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
         _placeOrderResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
-        }
-      });
-    });
-    _evoucherOtpRequest.listen((value) {
-      RequestManager(value, createCall: () => eVoucherOtpUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        _evoucherOtpResponse.safeAdd(event);
-        updateLoader();
-        if (event.status == Status.ERROR) {
-          showErrorState();
           showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {
-          updateTime();
         }
       });
     });
+    // _evoucherOtpRequest.listen((value) {
+    //   RequestManager(value, createCall: () => eVoucherOtpUseCase.execute(params: value))
+    //       .asFlow()
+    //       .listen((event) {
+    //     _evoucherOtpResponse.safeAdd(event);
+    //     updateLoader();
+    //     if (event.status == Status.ERROR) {
+    //       showErrorState();
+    //       showToastWithError(event.appError!);
+    //     } else if (event.status == Status.SUCCESS) {
+    //       updateTime();
+    //     }
+    //   });
+    // });
   }
 
   void makeOTPRequest() {

@@ -1,4 +1,5 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/e_voucher/get_settlement_amount.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
 import 'package:domain/usecase/evouchers/select_region_amount_usecase.dart';
@@ -39,9 +40,8 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
 
   ///get settlement amount
   PublishSubject<GetSettlementAmountUseCaseParams> _getSettlementAmountRequest = PublishSubject();
-  PublishSubject<Resource<bool>> _getSettlementAmountResponse = PublishSubject();
-
-  Stream<Resource<bool>> get getSettlementAmountStream => _getSettlementAmountResponse.stream;
+  PublishSubject<Resource<GetSettlementAmount>> _getSettlementAmountResponse = PublishSubject();
+  Stream<Resource<GetSettlementAmount>> get getSettlementAmountStream => _getSettlementAmountResponse.stream;
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -71,9 +71,23 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
         _getSettlementAmountResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          settlementAmount = event.data?.content ?? 0.0;
         }
       });
     });
+  }
+
+  double settlementAmount = 0;
+
+  void getSettlementAmmount({
+    required String? Amount,
+    required String? FromCurrency,
+    required String? ToCurrency,
+  }) {
+    _getSettlementAmountRequest.safeAdd(GetSettlementAmountUseCaseParams(
+        Amount: Amount, FromCurrency: FromCurrency, ToCurrency: ToCurrency, GetToken: true));
   }
 
   void getError(Resource<bool> event) {
@@ -117,23 +131,6 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
     voucherCountries.addAll(countries.toList());
   }
 
-  // void getVoucherValue() {
-  //   List<VoucherItem> vouchersWithSameProductIdAndCountry = voucherItems
-  //       .where((items) =>
-  //           items.productId == selectedItem.productId &&
-  //           (selectedRegionController.text == S.current.allRegion
-  //               ? true
-  //               : items.countryCode == selectedRegionController.text))
-  //       .toList();
-
-  //   Set<String> prices = Set<String>();
-  //   for (var value in vouchersWithSameProductIdAndCountry) {
-  //     prices.add(value.fromValue.toString() + " " + value.currency);
-  //   }
-
-  //   voucherValue.clear();
-  //   voucherValue.addAll(prices.toList());
-  // }
   void getVoucherValue() {
     List<VoucherItem> vouchersWithSameProductIdAndCountry = voucherItems
         .where((items) =>

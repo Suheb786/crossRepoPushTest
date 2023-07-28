@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:domain/model/e_voucher/get_settlement_amount.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -41,181 +42,202 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                 initialData: Resource.none(),
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
-                    ProviderScope.containerOf(context)
-                        .read(purchaseEVouchersViewModelProvider(model.argument))
-                        .nextPage();
+                    model.getSettlementAmmount(
+                        Amount: model.argument.selectedItem.fromValue.toString(),
+                        FromCurrency: model.argument.selectedItem.currency,
+                        ToCurrency: "JOD");
+                    // ProviderScope.containerOf(context)
+                    //     .read(purchaseEVouchersViewModelProvider(model.argument))
+                    //     .nextPage();
                   } else if (data.status == Status.ERROR) {
                     model.showToastWithError(data.appError!);
                   }
                 },
                 dataBuilder: (context, data) {
-                  return GestureDetector(
-                    onHorizontalDragEnd: (details) {
-                      if (ProviderScope.containerOf(context)
+                  return AppStreamBuilder<Resource<GetSettlementAmount>>(
+                      initialData: Resource.none(),
+                      stream: model.getSettlementAmountStream,
+                      onData: (data) {
+                        if (data.status == Status.SUCCESS) {
+                          ProviderScope.containerOf(context)
+                              .read(evoucherSettlementAccountViewModelProvider(model.argument))
+                              .getSettleValue(data.data?.content ?? 0.0);
+
+                          ProviderScope.containerOf(context)
                               .read(purchaseEVouchersViewModelProvider(model.argument))
-                              .appSwiperController
-                              .page ==
-                          0.0) {
-                        FocusScope.of(context).unfocus();
-                        if (StringUtils.isDirectionRTL(context)) {
-                          if (!details.primaryVelocity!.isNegative) {
-                            model.validateFields();
-                          }
-                        } else {
-                          if (details.primaryVelocity!.isNegative) {
-                            model.validateFields();
-                          }
+                              .nextPage();
+                          // print("${data.data?.content}:::: this is settlement ammount");
                         }
-                      }
-                    },
-                    child: Card(
-                      margin: EdgeInsets.zero,
-                      child: Container(
-                          padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(8),
-                                        child: Container(
-                                          height: 72.h,
-                                          width: 72.w,
-                                          child: CachedNetworkImage(
-                                            imageUrl: model.argument.selectedItem.cardFaceImage,
-                                            placeholder: (context, url) =>
-                                                Container(color: Theme.of(context).primaryColor),
-                                            errorWidget: (context, url, error) => Icon(Icons.error),
-                                            fit: BoxFit.fill,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 16.h,
-                                      ),
-                                      Text(
-                                        model.argument.selectedItem.name,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: Theme.of(context).indicatorColor,
-                                          fontSize: 14.t,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 32.h,
-                                      ),
-                                      AppTextField(
-                                        labelText: S.of(context).region.toUpperCase(),
-                                        hintText: S.of(context).pleaseSelect,
-                                        readOnly: true,
-                                        controller: model.selectedRegionController,
-                                        key: model.selectedRegionKey,
-                                        onPressed: () {
-                                          RelationshipWithCardHolderDialog.show(context,
-                                              title: S.of(context).preferredRegion,
-                                              relationSHipWithCardHolder: model.voucherCountries,
-                                              onDismissed: () {
-                                            Navigator.pop(context);
-                                          }, onSelected: (value) {
-                                            Navigator.pop(context);
-                                            model.selectedRegionController.text = value;
-                                            model.getVoucherValue();
-                                            model.validate();
-                                          });
-                                        },
-                                        suffixIcon: (value, data) {
-                                          return Container(
-                                              height: 16.h,
-                                              width: 16.h,
-                                              padding: EdgeInsetsDirectional.only(end: 8),
-                                              child: AppSvg.asset(AssetUtils.downArrow,
-                                                  color: Theme.of(context).colorScheme.surfaceTint));
-                                        },
-                                      ),
-                                      SizedBox(height: 16.h),
-                                      AppTextField(
-                                        labelText: S.of(context).value.toUpperCase(),
-                                        hintText: S.of(context).pleaseSelect,
-                                        readOnly: true,
-                                        controller: model.amountController,
-                                        key: model.amountKey,
-                                        onPressed: () {
-                                          if (model.selectedRegionController.text != "") {
-                                            RelationshipWithCardHolderDialog.show(context,
-                                                title: S.of(context).minPrice,
-                                                relationSHipWithCardHolder: model.voucherValue,
-                                                onDismissed: () {
-                                              Navigator.pop(context);
-                                            }, onSelected: (value) {
-                                              Navigator.pop(context);
-                                              model.amountController.text = value;
-                                              model.validate();
-                                            });
-                                          } else if (model.selectedRegionController.text == "") {
-                                            model.selectedRegionKey.currentState!.isValid = false;
-                                            model.showToastWithError(AppError(
-                                                error: ErrorInfo(message: ''),
-                                                type: ErrorType.SELECT_REGION_FIRST,
-                                                cause: Exception()));
-                                          }
-                                        },
-                                        suffixIcon: (value, data) {
-                                          return Container(
-                                              height: 16.h,
-                                              width: 16.h,
-                                              padding: EdgeInsetsDirectional.only(end: 8),
-                                              child: AppSvg.asset(AssetUtils.downArrow,
-                                                  color: Theme.of(context).colorScheme.surfaceTint));
-                                        },
-                                      ),
-                                      SizedBox(
-                                        height: 16.h,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Column(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.only(top: 12.0.h, bottom: 23.h),
-                                    child: AppStreamBuilder<bool>(
-                                        stream: model.showButtonStream,
-                                        initialData: false,
-                                        dataBuilder: (context, isValid) {
-                                          return Visibility(
-                                            visible: isValid!,
-                                            child: AnimatedButton(
-                                              buttonText: S.of(context).swipeToProceed,
+                      },
+                      dataBuilder: (context, settlementAmmount) {
+                        return GestureDetector(
+                          onHorizontalDragEnd: (details) {
+                            if (ProviderScope.containerOf(context)
+                                    .read(purchaseEVouchersViewModelProvider(model.argument))
+                                    .appSwiperController
+                                    .page ==
+                                0.0) {
+                              FocusScope.of(context).unfocus();
+                              if (StringUtils.isDirectionRTL(context)) {
+                                if (!details.primaryVelocity!.isNegative) {
+                                  model.validateFields();
+                                }
+                              } else {
+                                if (details.primaryVelocity!.isNegative) {
+                                  model.validateFields();
+                                }
+                              }
+                            }
+                          },
+                          child: Card(
+                            margin: EdgeInsets.zero,
+                            child: Container(
+                                padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius: BorderRadius.circular(8),
+                                              child: Container(
+                                                height: 72.h,
+                                                width: 72.w,
+                                                child: CachedNetworkImage(
+                                                  imageUrl: model.argument.selectedItem.cardFaceImage,
+                                                  placeholder: (context, url) =>
+                                                      Container(color: Theme.of(context).primaryColor),
+                                                  errorWidget: (context, url, error) => Icon(Icons.error),
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              ),
                                             ),
-                                          );
-                                        }),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text(
-                                      S.of(context).back,
-                                      style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        color: Theme.of(context).colorScheme.onSecondaryContainer,
-                                        fontSize: 14.t,
-                                        fontWeight: FontWeight.w500,
+                                            SizedBox(
+                                              height: 16.h,
+                                            ),
+                                            Text(
+                                              model.argument.selectedItem.name,
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                color: Theme.of(context).indicatorColor,
+                                                fontSize: 14.t,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 32.h,
+                                            ),
+                                            AppTextField(
+                                              labelText: S.of(context).region.toUpperCase(),
+                                              hintText: S.of(context).pleaseSelect,
+                                              readOnly: true,
+                                              controller: model.selectedRegionController,
+                                              key: model.selectedRegionKey,
+                                              onPressed: () {
+                                                RelationshipWithCardHolderDialog.show(context,
+                                                    title: S.of(context).preferredRegion,
+                                                    relationSHipWithCardHolder: model.voucherCountries,
+                                                    onDismissed: () {
+                                                  Navigator.pop(context);
+                                                }, onSelected: (value) {
+                                                  Navigator.pop(context);
+                                                  model.selectedRegionController.text = value;
+                                                  model.getVoucherValue();
+                                                  model.validate();
+                                                });
+                                              },
+                                              suffixIcon: (value, data) {
+                                                return Container(
+                                                    height: 16.h,
+                                                    width: 16.h,
+                                                    padding: EdgeInsetsDirectional.only(end: 8),
+                                                    child: AppSvg.asset(AssetUtils.downArrow,
+                                                        color: Theme.of(context).colorScheme.surfaceTint));
+                                              },
+                                            ),
+                                            SizedBox(height: 16.h),
+                                            AppTextField(
+                                              labelText: S.of(context).value.toUpperCase(),
+                                              hintText: S.of(context).pleaseSelect,
+                                              readOnly: true,
+                                              controller: model.amountController,
+                                              key: model.amountKey,
+                                              onPressed: () {
+                                                if (model.selectedRegionController.text != "") {
+                                                  RelationshipWithCardHolderDialog.show(context,
+                                                      title: S.of(context).minPrice,
+                                                      relationSHipWithCardHolder: model.voucherValue,
+                                                      onDismissed: () {
+                                                    Navigator.pop(context);
+                                                  }, onSelected: (value) {
+                                                    Navigator.pop(context);
+                                                    model.amountController.text = value;
+                                                    model.validate();
+                                                  });
+                                                } else if (model.selectedRegionController.text == "") {
+                                                  model.selectedRegionKey.currentState!.isValid = false;
+                                                  model.showToastWithError(AppError(
+                                                      error: ErrorInfo(message: ''),
+                                                      type: ErrorType.SELECT_REGION_FIRST,
+                                                      cause: Exception()));
+                                                }
+                                              },
+                                              suffixIcon: (value, data) {
+                                                return Container(
+                                                    height: 16.h,
+                                                    width: 16.h,
+                                                    padding: EdgeInsetsDirectional.only(end: 8),
+                                                    child: AppSvg.asset(AssetUtils.downArrow,
+                                                        color: Theme.of(context).colorScheme.surfaceTint));
+                                              },
+                                            ),
+                                            SizedBox(
+                                              height: 16.h,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
-                    ),
-                  );
+                                    Column(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsetsDirectional.only(top: 12.0.h, bottom: 23.h),
+                                          child: AppStreamBuilder<bool>(
+                                              stream: model.showButtonStream,
+                                              initialData: false,
+                                              dataBuilder: (context, isValid) {
+                                                return Visibility(
+                                                  visible: isValid!,
+                                                  child: AnimatedButton(
+                                                    buttonText: S.of(context).swipeToProceed,
+                                                  ),
+                                                );
+                                              }),
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text(
+                                            S.of(context).back,
+                                            style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              color: Theme.of(context).colorScheme.onSecondaryContainer,
+                                              fontSize: 14.t,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )),
+                          ),
+                        );
+                      });
                 },
               ),
             );

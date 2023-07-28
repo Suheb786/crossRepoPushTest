@@ -1,4 +1,4 @@
-import 'package:domain/model/e_voucher/get_settlement_amount.dart';
+import 'package:domain/model/e_voucher/e_voucher_otp.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
 import 'package:domain/usecase/evouchers/select_account_usecase.dart';
@@ -12,7 +12,6 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../../../generated/l10n.dart';
 import '../purchase_evoucher_page.dart';
 
 class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
@@ -23,9 +22,13 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
   final GetSettlementValidationUseCase _selectAccountUseCase;
 
   ///get settlement amount
-  PublishSubject<GetSettlementAmountUseCaseParams> _getSettlementAmountRequest = PublishSubject();
-  PublishSubject<Resource<GetSettlementAmount>> _getSettlementAmountResponse = PublishSubject();
-  Stream<Resource<GetSettlementAmount>> get getSettlementAmountStream => _getSettlementAmountResponse.stream;
+
+  BehaviorSubject<double> _getSettlementAmountResponse = BehaviorSubject();
+  Stream<double> get getSettlementAmountStream => _getSettlementAmountResponse.stream;
+
+  getSettleValue(double value) {
+    _getSettlementAmountResponse.safeAdd(value);
+  }
 
   /// check Subject
   BehaviorSubject<bool> _isCheckedRequest = BehaviorSubject.seeded(true);
@@ -35,9 +38,9 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
   /// otp suject
   PublishSubject<EVoucherUsecaseOTPParams> _evoucherOtpRequest = PublishSubject();
 
-  PublishSubject<Resource<bool>> _evoucherOtpResponse = PublishSubject();
+  PublishSubject<Resource<EVoucherOTP>> _evoucherOtpResponse = PublishSubject();
 
-  Stream<Resource<bool>> get evoucherOtpStream => _evoucherOtpResponse.stream;
+  Stream<Resource<EVoucherOTP>> get evoucherOtpStream => _evoucherOtpResponse.stream;
 
   ///select region amount request
   PublishSubject<GetSettlementValidationUseCaseParams> _selectAccountRequest = PublishSubject();
@@ -51,20 +54,11 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
+  String mobileCode = "";
+  String mobileNumber = "";
+
   EvoucherSettlementAccountPageViewModel(
       this._selectAccountUseCase, this.argument, this.eVoucherOtpUseCase, this.getSettlementAmountUseCase) {
-    _getSettlementAmountRequest.listen((value) {
-      RequestManager(value, createCall: () => getSettlementAmountUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _getSettlementAmountResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showErrorState();
-          showToastWithError(event.appError!);
-        }
-      });
-    });
     _selectAccountRequest.listen((value) {
       RequestManager(value, createCall: () => _selectAccountUseCase.execute(params: value))
           .asFlow()
@@ -88,25 +82,23 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
           showErrorState();
           showToastWithError(event.appError!);
           if (event.status == Status.SUCCESS) {
+            mobileCode = event.data?.mobileCode ?? "";
+            mobileNumber = event.data?.mobileNumber ?? "";
             updateTime();
           }
         }
       });
     });
-    getSettlementAmmount(
-        Amount: argument.selectedItem.fromValue.toString(),
-        FromCurrency: argument.selectedItem.currency,
-        ToCurrency: S.current.JOD);
   }
 
-  void getSettlementAmmount({
-    required String? Amount,
-    required String? FromCurrency,
-    required String? ToCurrency,
-  }) {
-    _getSettlementAmountRequest.safeAdd(GetSettlementAmountUseCaseParams(
-        Amount: Amount, FromCurrency: FromCurrency, ToCurrency: ToCurrency, GetToken: true));
-  }
+  // void getSettlementAmmount({
+  //   required String? Amount,
+  //   required String? FromCurrency,
+  //   required String? ToCurrency,
+  // }) {
+  //   _getSettlementAmountRequest.safeAdd(GetSettlementAmountUseCaseParams(
+  //       Amount: Amount, FromCurrency: FromCurrency, ToCurrency: ToCurrency, GetToken: true));
+  // }
 
   void getOTP() {
     _evoucherOtpRequest.safeAdd(EVoucherUsecaseOTPParams(GetToken: true));

@@ -8,7 +8,9 @@ import 'package:domain/model/e_voucher/voucher_region_by_categories.dart';
 import 'package:domain/usecase/evouchers/voucher_min_max_value.dart';
 
 import '../../error/network_error.dart';
+import '../../model/e_voucher/e_voucher_otp.dart';
 import '../../model/e_voucher/get_settlement_amount.dart';
+import '../../model/e_voucher/place_order.dart';
 import '../../model/e_voucher/voucher_by_date.dart';
 import '../../model/e_voucher/voucher_categories.dart';
 
@@ -31,7 +33,7 @@ abstract class EVoucherRepository {
 
   Future<Either<NetworkError, List<VoucherItem>>> getVoucherItemsBySearch(String searchText);
 
-  Future<Either<NetworkError, bool>> placeOrder({
+  Future<Either<NetworkError, PlaceOrder>> placeOrder({
     required PlaceOrderUseCaseParams params,
   });
 
@@ -39,7 +41,7 @@ abstract class EVoucherRepository {
     required GetSettlementAmountUseCaseParams params,
   });
 
-  Future<Either<NetworkError, bool>> eVoucherOtp({
+  Future<Either<NetworkError, EVoucherOTP>> eVoucherOtp({
     required EVoucherUsecaseOTPParams params,
   });
   Future<Either<NetworkError, List<VoucherRegionByCategories>>> getRegionsByCategories(String category);

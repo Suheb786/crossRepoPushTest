@@ -304,7 +304,9 @@ import '../entity/remote/contact/add_beneficiary_response_entity.dart';
 import '../entity/remote/contact/remove_avatar_request.dart';
 import '../entity/remote/contact/send_otp_add_beneficiary_data_response_entity.dart';
 import '../entity/remote/contact/update_avatar_request.dart';
+import '../entity/remote/e_voucher/e_voucher_otp/e_voucher_otp_response_entity.dart';
 import '../entity/remote/e_voucher/place_order/place_order_request_entity.dart';
+import '../entity/remote/e_voucher/place_order/place_order_response_entity.dart';
 part 'api_service.g.dart';
 
 //flutter pub run build_runner build
@@ -1183,11 +1185,11 @@ abstract class ApiService {
   );
 
   @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/PlaceOrder")
-  Future<HttpResponse<ResponseEntity>> placeOrder(@Body() PlaceOrderRequestEntity request);
+  Future<HttpResponse<PlaceOrderResponseEntity>> placeOrder(@Body() PlaceOrderRequestEntity request);
 
   @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/GetSettlementAmount")
   Future<HttpResponse<GetSettlementAmountResponseEntity>> getSettlementAmount(@Body() GetSettlementAmountRequestEntity request);
 
   @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/EVoucherOtp")
-  Future<HttpResponse<ResponseEntity>> eVoucherOtp(@Body() BaseRequest request);
+  Future<HttpResponse<EVoucherOtpResponseEntity>> eVoucherOtp(@Body() BaseRequest request);
 }

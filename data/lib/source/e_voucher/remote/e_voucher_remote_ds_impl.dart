@@ -24,7 +24,9 @@ import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
 import 'package:domain/usecase/evouchers/place_order_usecase.dart';
 import 'package:retrofit/dio.dart';
 
+import '../../../entity/remote/e_voucher/e_voucher_otp/e_voucher_otp_response_entity.dart';
 import '../../../entity/remote/e_voucher/get_settlement_amount/get_settlement_amount_response_entity.dart';
+import '../../../entity/remote/e_voucher/place_order/place_order_response_entity.dart';
 
 class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
   final ApiService _apiService;
@@ -90,7 +92,7 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> placeOrder({required PlaceOrderUseCaseParams params}) async {
+  Future<HttpResponse<PlaceOrderResponseEntity>> placeOrder({required PlaceOrderUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.placeOrder(PlaceOrderRequestEntity(
       sourceAccount: params.sourceAccount,
@@ -136,7 +138,7 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> eVoucherOtp({required EVoucherUsecaseOTPParams params}) async {
+  Future<HttpResponse<EVoucherOtpResponseEntity>> eVoucherOtp({required EVoucherUsecaseOTPParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.eVoucherOtp(BaseRequest(baseData: baseData.toJson()));
   }

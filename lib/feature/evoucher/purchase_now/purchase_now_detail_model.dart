@@ -29,6 +29,7 @@ class PurchaseNowDetailViewModel extends BasePageViewModel {
         _getSettlementAmountResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
+          showToastWithError(event.appError!);
         }
       });
     });

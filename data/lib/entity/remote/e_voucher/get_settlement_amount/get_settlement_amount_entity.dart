@@ -6,11 +6,11 @@ part 'get_settlement_amount_entity.g.dart';
 @JsonSerializable()
 class GetSettlementAmountEntity
     extends BaseLayerDataTransformer<GetSettlementAmountEntity, GetSettlementAmount> {
-  @JsonKey(name: "Amount")
-  final double? Amount;
+  @JsonKey(name: "content")
+  final double? content;
 
   GetSettlementAmountEntity({
-    required this.Amount,
+    required this.content,
   });
 
   Map<String, dynamic> toJson() => _$GetSettlementAmountEntityToJson(this);
@@ -19,6 +19,6 @@ class GetSettlementAmountEntity
 
   @override
   GetSettlementAmount transform() {
-    return GetSettlementAmount(content: this.Amount);
+    return GetSettlementAmount(content: this.content);
   }
 }

@@ -1,4 +1,3 @@
-import 'package:data/entity/remote/e_voucher/get_settlement_amount/get_settlement_amount_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:domain/model/e_voucher/get_settlement_amount.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
@@ -20,6 +19,6 @@ class GetSettlementAmountResponseEntity
 
   @override
   GetSettlementAmount transform() {
-    return GetSettlementAmountEntity.fromJson(this.response?.content as Map<String, dynamic>).transform();
+    return GetSettlementAmount(content: this.response?.content);
   }
 }
