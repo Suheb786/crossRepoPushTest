@@ -207,7 +207,8 @@ class ViewVoucherBtb extends StatelessWidget {
           // Navigator.pushNamed(context, RoutePaths.ShareVoucher);
 
           if (model.argument.voucherDetail?.lineItems.first.status?.trim() == "success") {
-            Navigator.popAndPushNamed(context, RoutePaths.ShareVoucher);
+               Navigator.pushNamed(context, RoutePaths.ShareVoucher,
+                arguments: ShareVoucherPageArgument(model.argument.voucherDetail));
           } else {
             InformationDialog.show(context,
                 image: AssetUtils.processing_voucher_icon,
@@ -240,8 +241,7 @@ class ViewVoucherBtb extends StatelessWidget {
                 padding: const EdgeInsetsDirectional.only(end: 24.0),
                 child: InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, RoutePaths.ShareVoucher,
-                          arguments: ShareVoucherPageArgument(model.argument.voucherDetail));
+               
                     },
                     child: AppSvg.asset(AssetUtils.view_voucher_icon)),
               )
