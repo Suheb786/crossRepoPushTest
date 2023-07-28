@@ -75,6 +75,7 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
         } else if (event.status == Status.SUCCESS) {}
       });
     });
+
     this._placeOrderRequest.listen((value) {
       RequestManager(
         value,
@@ -88,6 +89,7 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
         }
       });
     });
+
     _evoucherOtpRequest.listen((value) {
       RequestManager(value, createCall: () => eVoucherOtpUseCase.execute(params: value))
           .asFlow()

@@ -32,9 +32,9 @@ class LineItem {
   String? status;
   String? claimURL;
   String? settlementCurrency;
-  double? exchangeRate;
-  double? settlementPrice;
-  double? netPrice;
+  String? exchangeRate;
+  String? settlementPrice;
+  String? netPrice;
 
   LineItem({
     this.lineNumber = 0,
@@ -46,8 +46,8 @@ class LineItem {
     this.status = '',
     this.claimURL = '',
     this.settlementCurrency = '',
-    this.exchangeRate = 0.0,
-    this.settlementPrice = 0.0,
-    this.netPrice = 0.0,
+    this.exchangeRate = "0.0",
+    this.settlementPrice = "0.0",
+    this.netPrice = "0.0",
   });
 }

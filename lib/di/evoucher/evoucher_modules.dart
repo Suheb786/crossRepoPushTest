@@ -79,8 +79,8 @@ final selectAmountRegionViewModelProvider = ChangeNotifierProvider.autoDispose
 ///settlement
 final evoucherSettlementAccountViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<EvoucherSettlementAccountPageViewModel, PurchaseEVoucherPageArgument>((ref, arg) =>
-        EvoucherSettlementAccountPageViewModel(ref.read(selectAccountUseCaseProvider), arg,
-            ref.read(eVoucherOtpCaseProvider), ref.read(getSettlementAmountUseCaseProvider)));
+        EvoucherSettlementAccountPageViewModel(
+            ref.read(selectAccountUseCaseProvider), arg, ref.read(eVoucherOtpCaseProvider)));
 
 ///settlement account
 final settlementAccountViewModelProvider = ChangeNotifierProvider.autoDispose

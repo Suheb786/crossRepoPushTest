@@ -1,5 +1,4 @@
 import 'package:animated_widgets/animated_widgets.dart';
-import 'package:domain/model/e_voucher/e_voucher_otp.dart';
 import 'package:domain/model/e_voucher/place_order.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
@@ -8,7 +7,9 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/enter_otp_for_evoucher_category_puchase/enter_otp_for_evoucher_category_puchase_page_view_model.dart';
+import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_voucher_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -37,6 +38,18 @@ class EnterOtpForEVoucherCategoryPurchasePageView
             child: AppStreamBuilder<Resource<PlaceOrder>>(
                 initialData: Resource.none(),
                 stream: model.placeOrderStream,
+                onData: (data) {
+                  if (data.status == Status.SUCCESS) {
+                    Navigator.pushNamed(context, RoutePaths.EVouchersPurchaseSuccess,
+                        arguments: PurchaseVoucherSuccessArgument(
+                            placeOrder: data.data,
+                            settlementAmount: ProviderScope.containerOf(context)
+                                .read(selectAmountRegionViewModelProvider(model.argument))
+                                .settlementAmount
+                                .toString(),
+                            selectedItem: model.argument.selectedItem));
+                  }
+                },
                 dataBuilder: (context, placeOrderData) {
                   return AppStreamBuilder<Resource<bool>>(
                     stream: model.enterOtpStream,
@@ -58,13 +71,7 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                                 .read(selectAmountRegionViewModelProvider(model.argument))
                                 .settlementAmount
                                 .toString(),
-                            denomination: double.parse(ProviderScope.containerOf(context)
-                                    .read(selectAmountRegionViewModelProvider(model.argument))
-                                    .amountController
-                                    .text
-                                    .split(' ')
-                                    .first)
-                                .toInt(),
+                            denomination: model.argument.selectedItem.fromValue.toInt(),
                             discount: model.argument.selectedItem.discount.replaceAll('%', ''),
                             categories: model.argument.selectedItem.categories.join(','),
                             voucherName: model.argument.selectedItem.name,

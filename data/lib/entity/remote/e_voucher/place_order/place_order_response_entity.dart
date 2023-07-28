@@ -117,13 +117,13 @@ class LineItemEntity extends BaseLayerDataTransformer<LineItemEntity, LineItem> 
   String settlementCurrency;
 
   @JsonKey(name: 'exchangeRate')
-  double exchangeRate;
+  String exchangeRate;
 
   @JsonKey(name: 'settlementPrice')
-  double settlementPrice;
+  String settlementPrice;
 
   @JsonKey(name: 'netPrice')
-  double netPrice;
+  String netPrice;
 
   LineItemEntity({
     required this.lineNumber,

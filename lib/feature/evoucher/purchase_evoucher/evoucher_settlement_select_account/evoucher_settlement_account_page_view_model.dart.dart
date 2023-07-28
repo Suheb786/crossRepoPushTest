@@ -16,7 +16,6 @@ import '../purchase_evoucher_page.dart';
 
 class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
   final EVoucherOtpUseCase eVoucherOtpUseCase;
-  final GetSettlementAmountUseCase getSettlementAmountUseCase;
 
   final PurchaseEVoucherPageArgument argument;
   final GetSettlementValidationUseCase _selectAccountUseCase;
@@ -59,7 +58,7 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
   String mobileNumber = "";
 
   EvoucherSettlementAccountPageViewModel(
-      this._selectAccountUseCase, this.argument, this.eVoucherOtpUseCase, this.getSettlementAmountUseCase) {
+      this._selectAccountUseCase, this.argument, this.eVoucherOtpUseCase) {
     _selectAccountRequest.listen((value) {
       RequestManager(value, createCall: () => _selectAccountUseCase.execute(params: value))
           .asFlow()
@@ -91,15 +90,6 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
       });
     });
   }
-
-  // void getSettlementAmmount({
-  //   required String? Amount,
-  //   required String? FromCurrency,
-  //   required String? ToCurrency,
-  // }) {
-  //   _getSettlementAmountRequest.safeAdd(GetSettlementAmountUseCaseParams(
-  //       Amount: Amount, FromCurrency: FromCurrency, ToCurrency: ToCurrency, GetToken: true));
-  // }
 
   void getOTP() {
     _evoucherOtpRequest.safeAdd(EVoucherUsecaseOTPParams(GetToken: true));

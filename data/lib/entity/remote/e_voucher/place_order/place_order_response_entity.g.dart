@@ -61,9 +61,9 @@ LineItemEntity _$LineItemEntityFromJson(Map<String, dynamic> json) =>
       status: json['status'] as String,
       claimURL: json['claimURL'] as String,
       settlementCurrency: json['settlementCurrency'] as String,
-      exchangeRate: (json['exchangeRate'] as num).toDouble(),
-      settlementPrice: (json['settlementPrice'] as num).toDouble(),
-      netPrice: (json['netPrice'] as num).toDouble(),
+      exchangeRate: json['exchangeRate'] as String,
+      settlementPrice: json['settlementPrice'] as String,
+      netPrice: json['netPrice'] as String,
     );
 
 Map<String, dynamic> _$LineItemEntityToJson(LineItemEntity instance) =>
