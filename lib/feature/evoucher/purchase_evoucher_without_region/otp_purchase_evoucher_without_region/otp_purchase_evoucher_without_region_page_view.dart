@@ -39,15 +39,6 @@ class OtpPurchaseEvoucherWithoutRegionPageView
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  model.placeOrder(
-                      exchangeRate: "exchangeRate",
-                      Denomination: "Denomination",
-                      reconcilationCurrency: "reconcilationCurrency",
-                      Discount: "Discount",
-                      VoucherName: "VoucherName",
-                      VoucherCategory: "VoucherCategory",
-                      AccountNo: "AccountNo");
-
                   Navigator.pushNamed(context, RoutePaths.EVouchersPurchaseSuccess,
                       arguments: PurchaseVoucherSuccessArgument(selectedItem: model.argument.selectedItem));
                 } else if (data.status == Status.ERROR) {

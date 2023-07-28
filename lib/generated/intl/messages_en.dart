@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -363,6 +364,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "avatarUpdateFailure": MessageLookupByLibrary.simpleMessage(
             "Oops! Image cannot be uploaded, please try again later"),
         "awesome": MessageLookupByLibrary.simpleMessage("Awesome!"),
+        "back": MessageLookupByLibrary.simpleMessage("Back"),
         "backToCardSettings":
             MessageLookupByLibrary.simpleMessage("Back to Card Settings"),
         "backToCategory": m13,
@@ -2771,8 +2773,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectReasonToReject": MessageLookupByLibrary.simpleMessage(
             "Select the reason\nto reject"),
         "selectRegion": MessageLookupByLibrary.simpleMessage("Select Region"),
+        "selectRegionFirst":
+            MessageLookupByLibrary.simpleMessage("Select region first"),
         "selectTheReasonToReturn": MessageLookupByLibrary.simpleMessage(
             "Select the reason\nto return"),
+        "selectValue": MessageLookupByLibrary.simpleMessage("Select Value"),
         "selfieCheck": MessageLookupByLibrary.simpleMessage("Selfie Check!"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),

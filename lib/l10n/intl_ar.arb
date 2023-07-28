@@ -1786,5 +1786,8 @@
   "preferredRegion": "Preferred Region",
   "copied": "نسخ",
   "recipientNameValidation": "عفوا! يجب أن يكون اسم المستلم من مقطعين وكل مقطع من 3 خانات على الأقل",
+  "selectValue": "Select Value",
+  "back": "Back",
+  "selectRegionFirst": "Select region first",
   "eVouchersSettings": "eVouchers"
 }

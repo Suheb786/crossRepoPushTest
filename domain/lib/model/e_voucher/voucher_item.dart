@@ -1,3 +1,5 @@
+import 'package:domain/model/e_voucher/country_code.dart';
+
 class VoucherItem {
   String id;
   String name;
@@ -13,7 +15,7 @@ class VoucherItem {
   num productId;
   List<String> categories;
   String discount;
-  String countryCode;
+  CountryCode countryCode;
 
   VoucherItem({
     required this.id,

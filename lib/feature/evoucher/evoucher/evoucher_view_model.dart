@@ -119,9 +119,9 @@ class EvoucherViewModel extends BasePageViewModel {
             if (myVoucherHistoryList.isEmpty) {
               myVoucherHistoryList.addAll(list);
             } else {
-              if (TimeUtils.getFormattedDateMonth(myVoucherHistoryList.last.date ?? "") ==
-                  TimeUtils.getFormattedDateMonth(list.first.date ?? "")) {
-                myVoucherHistoryList.last.data.addAll(list.first.data ?? []);
+              if (TimeUtils.getFormattedDateMonth(myVoucherHistoryList.last.date) ==
+                  TimeUtils.getFormattedDateMonth(list.first.date)) {
+                myVoucherHistoryList.last.data.addAll(list.first.data);
               } else {
                 myVoucherHistoryList.addAll(list);
               }

@@ -6,13 +6,16 @@ import 'package:domain/repository/e_voucher/e_voucher_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetSettlementAmountUseCase extends BaseUseCase<BaseError, GetSettlementAmountUseCaseParams, bool> {
+import '../../model/e_voucher/get_settlement_amount.dart';
+
+class GetSettlementAmountUseCase
+    extends BaseUseCase<BaseError, GetSettlementAmountUseCaseParams, GetSettlementAmount> {
   final EVoucherRepository _eVoucherRepository;
 
   GetSettlementAmountUseCase(this._eVoucherRepository);
 
   @override
-  Future<Either<BaseError, bool>> execute({required GetSettlementAmountUseCaseParams params}) {
+  Future<Either<BaseError, GetSettlementAmount>> execute({required GetSettlementAmountUseCaseParams params}) {
     return _eVoucherRepository.getSettlementAmount(params: params);
   }
 }

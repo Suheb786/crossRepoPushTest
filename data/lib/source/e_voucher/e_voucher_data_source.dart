@@ -10,6 +10,8 @@ import 'package:domain/usecase/evouchers/place_order_usecase.dart';
 import 'package:retrofit/dio.dart';
 import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
 
+import '../../entity/remote/e_voucher/get_settlement_amount/get_settlement_amount_response_entity.dart';
+
 abstract class EVoucherRemoteDS {
   Future<HttpResponse<VoucherCategoriesResponseEntity>> getVoucherCategories();
 
@@ -33,7 +35,7 @@ abstract class EVoucherRemoteDS {
     required PlaceOrderUseCaseParams params,
   });
 
-  Future<HttpResponse<ResponseEntity>> getSettlementAmount({
+  Future<HttpResponse<GetSettlementAmountResponseEntity>> getSettlementAmount({
     required GetSettlementAmountUseCaseParams params,
   });
 

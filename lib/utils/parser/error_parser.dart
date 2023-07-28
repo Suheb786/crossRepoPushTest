@@ -1081,6 +1081,10 @@ class ErrorParser {
         return localisedHelper.selectAccount;
       case ErrorType.SELECT_AMOUNT:
         return localisedHelper.selectAMount;
+      case ErrorType.SELECT_VALUE:
+        return localisedHelper.selectValue;
+      case ErrorType.SELECT_REGION_FIRST:
+        return localisedHelper.selectRegionFirst;
       case ErrorType.SELECT_REGION:
         return localisedHelper.selectRegion;
       case ErrorType.CANNOT_APPLY_CC_INSUFFICIENT_FUNDS:

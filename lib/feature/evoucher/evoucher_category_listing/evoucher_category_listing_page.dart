@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -50,7 +51,7 @@ class EVoucherCategoryListingPageState
               ),
             ),
             Text(
-              provider.selectedVoucherCategories.categoryName ?? '',
+              provider.selectedVoucherCategories.categoryName,
               style: TextStyle(
                   fontSize: 14.t,
                   fontWeight: FontWeight.w600,
