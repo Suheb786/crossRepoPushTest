@@ -3101,6 +3101,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "viewMyBills": MessageLookupByLibrary.simpleMessage("عرض الفواتير"),
         "viewTransactions":
             MessageLookupByLibrary.simpleMessage("الحوالات السابقة"),
+        "viewVoucher": MessageLookupByLibrary.simpleMessage("View E-Voucher"),
         "visaPlatinumCard": MessageLookupByLibrary.simpleMessage(
             "بطاقة فيزا الائتمانية البلاتينية"),
         "voiceCall": MessageLookupByLibrary.simpleMessage("مكالمة صوتية"),

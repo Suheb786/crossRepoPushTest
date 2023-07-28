@@ -3194,7 +3194,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "viewMyBills": MessageLookupByLibrary.simpleMessage("View my bills"),
         "viewTransactions":
             MessageLookupByLibrary.simpleMessage("View Transactions"),
-        "viewVoucher": MessageLookupByLibrary.simpleMessage("View Voucher"),
+        "viewVoucher": MessageLookupByLibrary.simpleMessage("View E-Voucher"),
         "viewVoucherDialogDescription": MessageLookupByLibrary.simpleMessage(
             "Your voucher is being processed. You’ll get notification when your voucher is ready to be used."),
         "visaPlatinumCard":

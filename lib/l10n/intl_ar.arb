@@ -1798,5 +1798,8 @@
   "allCategories": "جميع الفئات ",
  "eVouchersSettings": "eVouchers",
   "region": "REGION",
-  "value": "VALUE"
+  "value": "VALUE",
+  "selectRegionFirst": "Select region first",
+  "eVouchersSettings": "eVouchers",
+  "viewVoucher": "View E-Voucher"
 }

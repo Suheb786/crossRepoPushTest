@@ -7,7 +7,10 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+import 'package:flutter_inappwebview/src/in_app_webview/in_app_webview.dart';
+import 'package:flutter_inappwebview/src/types.dart';
 
 class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel> {
   ShareVoucherPageView(ProviderBase model) : super(model);
@@ -36,7 +39,7 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
             Expanded(
               child: Container(
                 height: double.infinity,
-                padding: EdgeInsets.all(24),
+                padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w, vertical: 48.h),
                 decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.secondary,
                     borderRadius:
@@ -44,15 +47,17 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                 child: Column(
                   children: [
                     Container(
-                      // height: MediaQuery.of(context).size.height / 2.1,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1)),
-                      width: double.infinity,
-                      child: Image.asset(
-                        AssetUtils.shareVoucher,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                        height: MediaQuery.of(context).size.height / 1.7,
+                        decoration: BoxDecoration(
+                            border:
+                                Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1)),
+                        width: double.infinity,
+                        child: InAppWebView(
+                          initialUrlRequest: URLRequest(url: Uri.parse("https://d.giftlov.io/hjGcbwxv")),
+                          // onWebViewCreated: (controller) {
+                          //   model.webViewController = controller;
+                          // },
+                        )),
                     InkWell(
                       onTap: () async {},
                       child: Padding(
@@ -80,17 +85,23 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 24),
+                      padding: EdgeInsets.only(top: 36),
                       child: InkWell(
-                        onTap: () {},
-                        child: Container(
-                          height: 57,
-                          width: 57,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyLarge!.color!),
-                          child: Center(
-                            child:
-                                AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
+                        onTap: () {
+                          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.EVoucherMainPage));
+                        },
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            S.of(context).back,
+                            style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              color: Theme.of(context).colorScheme.onSecondaryContainer,
+                              fontSize: 14.t,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ),
