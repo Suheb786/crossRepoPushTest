@@ -13010,66 +13010,6 @@ class S {
     );
   }
 
-  /// `Category`
-  String get category {
-    return Intl.message(
-      'Category',
-      name: 'category',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Preferred Region`
-  String get preferredRegion {
-    return Intl.message(
-      'Preferred Region',
-      name: 'preferredRegion',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Min. Price`
-  String get minPrice {
-    return Intl.message(
-      'Min. Price',
-      name: 'minPrice',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Max. Price`
-  String get maxPrice {
-    return Intl.message(
-      'Max. Price',
-      name: 'maxPrice',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Filter Vouchers`
-  String get filterVouchers {
-    return Intl.message(
-      'Filter Vouchers',
-      name: 'filterVouchers',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Reset Filter`
-  String get resetFilter {
-    return Intl.message(
-      'Reset Filter',
-      name: 'resetFilter',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Select your preferred\nregion and amount`
   String get selectPreferredRegionAmount {
     return Intl.message(
@@ -13210,26 +13150,6 @@ class S {
     );
   }
 
-  /// `E-vouchers`
-  String get eVouchers {
-    return Intl.message(
-      'E-vouchers',
-      name: 'eVouchers',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Buy E-vouchers`
-  String get buyVouchers {
-    return Intl.message(
-      'Buy E-vouchers',
-      name: 'buyVouchers',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `My Vouchers`
   String get myVouchers {
     return Intl.message(
@@ -13340,16 +13260,6 @@ class S {
     );
   }
 
-  /// `Browse by Category`
-  String get browserByCatgy {
-    return Intl.message(
-      'Browse by Category',
-      name: 'browserByCatgy',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `PlayStation`
   String get playStation {
     return Intl.message(
@@ -13425,16 +13335,6 @@ class S {
     return Intl.message(
       'You can now purchase and redeem e-vouchers from your favorite online & offline stores, locally and internationally.',
       name: 'eVoucherLandingDialogDescption',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `What are you looking for?`
-  String get eVoucherSearchLabel {
-    return Intl.message(
-      'What are you looking for?',
-      name: 'eVoucherSearchLabel',
       desc: '',
       args: [],
     );
@@ -17560,16 +17460,6 @@ class S {
     );
   }
 
-  /// `History`
-  String get history {
-    return Intl.message(
-      'History',
-      name: 'history',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Transaction Period`
   String get transaction_period {
     return Intl.message(
@@ -17940,16 +17830,6 @@ class S {
     );
   }
 
-  /// `What are you looking for?`
-  String get whatAreYouLookingFor {
-    return Intl.message(
-      'What are you looking for?',
-      name: 'whatAreYouLookingFor',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `You have insufficient balance in your account`
   String get notEnoughAmountToPurchase {
     return Intl.message(
@@ -17975,26 +17855,6 @@ class S {
     return Intl.message(
       'Current Account',
       name: 'currentAccount',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `All Region`
-  String get allRegion {
-    return Intl.message(
-      'All Region',
-      name: 'allRegion',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `All Categories`
-  String get allCategories {
-    return Intl.message(
-      'All Categories',
-      name: 'allCategories',
       desc: '',
       args: [],
     );
@@ -18050,11 +17910,181 @@ class S {
     );
   }
 
-  /// `eVouchers`
-  String get eVouchersSettings {
+  /// `E-vouchers`
+  String get eVouchers {
     return Intl.message(
-      'eVouchers',
-      name: 'eVouchersSettings',
+      'E-vouchers',
+      name: 'eVouchers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get category {
+    return Intl.message(
+      'Category',
+      name: 'category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preferred Region`
+  String get preferredRegion {
+    return Intl.message(
+      'Preferred Region',
+      name: 'preferredRegion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Min. Value`
+  String get minPrice {
+    return Intl.message(
+      'Min. Value',
+      name: 'minPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Max. Value`
+  String get maxPrice {
+    return Intl.message(
+      'Max. Value',
+      name: 'maxPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter E-vouchers`
+  String get filterVouchers {
+    return Intl.message(
+      'Filter E-vouchers',
+      name: 'filterVouchers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buy E-vouchers`
+  String get buyVouchers {
+    return Intl.message(
+      'Buy E-vouchers',
+      name: 'buyVouchers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `History`
+  String get history {
+    return Intl.message(
+      'History',
+      name: 'history',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What are you looking for?`
+  String get eVoucherSearchLabel {
+    return Intl.message(
+      'What are you looking for?',
+      name: 'eVoucherSearchLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Browse by Category`
+  String get browserByCatgy {
+    return Intl.message(
+      'Browse by Category',
+      name: 'browserByCatgy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset Filter`
+  String get resetFilter {
+    return Intl.message(
+      'Reset Filter',
+      name: 'resetFilter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Category`
+  String get selectCategory {
+    return Intl.message(
+      'Select Category',
+      name: 'selectCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select min value`
+  String get selectMinValue {
+    return Intl.message(
+      'Select min value',
+      name: 'selectMinValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select max value`
+  String get selectMaxvalue {
+    return Intl.message(
+      'Select max value',
+      name: 'selectMaxvalue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Max value should be greater than min value`
+  String get maxValueGreaterThanMin {
+    return Intl.message(
+      'Max value should be greater than min value',
+      name: 'maxValueGreaterThanMin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select category first`
+  String get selectCategoryFirst {
+    return Intl.message(
+      'Please select category first',
+      name: 'selectCategoryFirst',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Region`
+  String get allRegion {
+    return Intl.message(
+      'All Region',
+      name: 'allRegion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Categories`
+  String get allCategories {
+    return Intl.message(
+      'All Categories',
+      name: 'allCategories',
       desc: '',
       args: [],
     );

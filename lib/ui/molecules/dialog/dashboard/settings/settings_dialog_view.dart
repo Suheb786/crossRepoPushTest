@@ -123,7 +123,7 @@ class SettingsDialogView extends StatelessWidget {
                         key: 'E-VOUCHERS',
                         child: SettingsMenuWidget(
                           model: model,
-                          title: S.of(context).eVouchersSettings,
+                          title: S.of(context).eVouchers,
                           image: AssetUtils.e_voucher,
                           mKey: 'E-VOUCHERS',
                           onTap: () {
