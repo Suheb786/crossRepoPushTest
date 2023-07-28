@@ -25,6 +25,7 @@ import 'package:neo_bank/ui/molecules/dialog/apple_pay/apple_pay_landing_page_di
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/efawateer_landing_page_dialog/efawateer_landing_page_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/evoucher/evoucher_landing_page_dialog/evoucher_landing_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/rj/rj_dashbord_dialog/rj_dashboard_dialog.dart';
 import 'package:neo_bank/ui/molecules/pager/dashboard_swiper.dart';
@@ -74,6 +75,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                     initialData: Resource.none(),
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
+                        ///RJ Pop up
                         if (!(data.data?.isRJPopUPClicked ?? false) &&
                             (model.dashboardDataContent.dashboardFeatures?.isRJFeatureEnabled ?? true)) {
                           RjDialog.show(
@@ -96,6 +98,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                             ),
                           );
                         }
+
+                        ///Efawateer pop up
                         if (!(data.data?.isEfawateerPopUPClicked ?? false) &&
                             (model.dashboardDataContent.dashboardFeatures?.blinkRetailAppBillPayment ??
                                 true)) {
@@ -113,10 +117,24 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                 Navigator.pop(context);
                                 data.data?.isEfawateerPopUPClicked = true;
                                 model.saveCurrentUserData(user: data.data!);
-                                // SettingsDialog.show(context);
                                 Navigator.pushNamed(context, RoutePaths.PaymentHome,
                                     arguments: NavigationType.REQUEST_MONEY);
                               });
+                        }
+
+                        ///e-voucher pop up
+                        if (!(data.data?.isEVoucherPopUPClicked ?? false) &&
+                            (model.dashboardDataContent.dashboardFeatures?.eVouchers ?? true)) {
+                          EvoucherDialog.show(context, isSwipeToCancel: true, onDismissed: () {
+                            Navigator.pop(context);
+                            data.data?.isEVoucherPopUPClicked = true;
+                            model.saveCurrentUserData(user: data.data!);
+                          }, onSelected: () {
+                            Navigator.pop(context);
+                            data.data?.isEVoucherPopUPClicked = true;
+                            model.saveCurrentUserData(user: data.data!);
+                            Navigator.pushNamed(context, RoutePaths.Evoucher);
+                          });
                         }
 
                         ///Show account status pop up
@@ -164,12 +182,6 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                       stream: model.applePayPopUpStream,
                                       initialData: false,
                                       onData: (value) {
-                                        debugPrint('Apple Pay Pop up----->$value');
-                                        debugPrint('Platform IOS----->${Platform.isIOS}');
-                                        debugPrint(
-                                            'Apple Pay Feature Enabled----->${AppConstantsUtils.isApplePayFeatureEnabled}');
-                                        debugPrint('isAllCardInApplePay----->$isAllCardsInApplePay');
-
                                         if (value &&
                                             Platform.isIOS &&
                                             AppConstantsUtils.isApplePayFeatureEnabled &&

@@ -113,7 +113,6 @@ class RoutePaths {
   static const String PurchaseEVoucherWithoutRegionPage = "/purchaseEVoucherWithoutRegionPage";
 
   static const String EnterCodeEVoucherPurchase = "/enterCodeEVoucherPurchase";
-  static const String EVoucherMainPage = "/eVoucherMainPage";
   static const String SelectedCardForApplePayPage = "/selectedCardForApplePayPage";
   static const String ApplePaySuccessAndErrorPage = "/applePaySuccessAndErrorPage";
   static const String applePayLauncherPage = "/ApplePayLauncherPage";

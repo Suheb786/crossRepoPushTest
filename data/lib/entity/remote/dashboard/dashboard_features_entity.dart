@@ -116,6 +116,6 @@ class DashboardFeaturesEntity
         returnPaymentFeatureEnabled: returnPaymentFeatureEnabled ?? false,
         manageContactEnabled: this.manageContactEnabled ?? false,
         manageContactHistory: this.manageContactHistory ?? false,
-        eVouchers: this.eVouchers ?? false);
+        eVouchers: /*this.eVouchers ?? false*/true);
   }
 }
