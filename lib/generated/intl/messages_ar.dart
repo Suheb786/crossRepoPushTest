@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -363,7 +362,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "avatarUpdateFailure": MessageLookupByLibrary.simpleMessage(
             "عفوا! لا يمكن تحميل الصورة، حاول مرة ثانية لاحقا"),
         "awesome": MessageLookupByLibrary.simpleMessage("ممتاز!"),
-        "back": MessageLookupByLibrary.simpleMessage("Back"),
+        "back": MessageLookupByLibrary.simpleMessage("الرجوع"),
         "backToCardSettings":
             MessageLookupByLibrary.simpleMessage("العودة لإعدادات البطاقة"),
         "backToContact": MessageLookupByLibrary.simpleMessage("الرجوع"),
@@ -920,7 +919,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "eVoucherSearchLabel": MessageLookupByLibrary.simpleMessage("ابحث هنا"),
         "eVouchers":
             MessageLookupByLibrary.simpleMessage("القسائم الإلكترونية"),
-        "eVouchersSettings": MessageLookupByLibrary.simpleMessage("eVouchers"),
         "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
         "editCliqId": MessageLookupByLibrary.simpleMessage("تعديل حساب CliQ"),
         "editId": MessageLookupByLibrary.simpleMessage("تعديل نوع الحساب"),
@@ -1275,8 +1273,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "establishCallError":
             MessageLookupByLibrary.simpleMessage("خطأ خلال بدء المكالمة"),
         "estimatedTime": m1,
-        "evoucherUnderProcessing":
-            MessageLookupByLibrary.simpleMessage("E-voucher under processing"),
+        "evoucherUnderProcessing": MessageLookupByLibrary.simpleMessage(
+            "القسيمة الإلكترونية قيد الإنتظار"),
         "exceptionExecutingGetPaymentReasons":
             MessageLookupByLibrary.simpleMessage(
                 "خطأ اثناء تنفيذ الحصول على اسباب اعادة الحوالة"),
@@ -2706,10 +2704,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectReasonToReject":
             MessageLookupByLibrary.simpleMessage("اختيار سبب الرفض"),
         "selectRegionFirst":
-            MessageLookupByLibrary.simpleMessage("Select region first"),
+            MessageLookupByLibrary.simpleMessage("حدد المنطقة أولاً"),
         "selectTheReasonToReturn":
             MessageLookupByLibrary.simpleMessage("أختر  سبب ارجاع الدفعة"),
-        "selectValue": MessageLookupByLibrary.simpleMessage("Select Value"),
+        "selectValue": MessageLookupByLibrary.simpleMessage("اختار القيمة"),
         "selfieCheck": MessageLookupByLibrary.simpleMessage("صورة سيلفي"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-015)"),
@@ -3108,7 +3106,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "viewMyBills": MessageLookupByLibrary.simpleMessage("عرض الفواتير"),
         "viewTransactions":
             MessageLookupByLibrary.simpleMessage("الحوالات السابقة"),
-        "viewVoucher": MessageLookupByLibrary.simpleMessage("View E-Voucher"),
+        "viewVoucher":
+            MessageLookupByLibrary.simpleMessage("عرض القسيمة الإلكترونية"),
+        "viewVoucherDialogDescription": MessageLookupByLibrary.simpleMessage(
+            "القسيمة الإلكترونية قيد الإنتظار، رح نخبرك لما تكون جاهزة  للاستخدام."),
         "visaPlatinumCard": MessageLookupByLibrary.simpleMessage(
             "بطاقة فيزا الائتمانية البلاتينية"),
         "voiceCall": MessageLookupByLibrary.simpleMessage("مكالمة صوتية"),

@@ -1802,10 +1802,6 @@
   "howWouldLikeToPay": "كيف تريد أن\nقم بالدفع",
   "purchaseNow": "شراء الآن",
   "toViewVoucher": "لعرض القسيمة",
-  "selectValue": "Select Value",
-  "back": "Back",
-  "selectRegionFirst": "Select region first",
-  "eVouchersSettings": "eVouchers",
-  "viewVoucher": "View E-Voucher",
-  "evoucherUnderProcessing": "E-voucher under processing"
+  "evoucherUnderProcessing": "القسيمة الإلكترونية قيد الإنتظار",
+  "viewVoucherDialogDescription": "القسيمة الإلكترونية قيد الإنتظار، رح نخبرك لما تكون جاهزة  للاستخدام."
 }
