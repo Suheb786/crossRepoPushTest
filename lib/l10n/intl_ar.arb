@@ -1789,5 +1789,6 @@
   "selectValue": "Select Value",
   "back": "Back",
   "selectRegionFirst": "Select region first",
-  "eVouchersSettings": "eVouchers"
+  "eVouchersSettings": "eVouchers",
+  "viewVoucher": "View E-Voucher"
 }

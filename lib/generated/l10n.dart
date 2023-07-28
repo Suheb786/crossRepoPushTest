@@ -13190,10 +13190,10 @@ class S {
     );
   }
 
-  /// `View Voucher`
+  /// `View E-Voucher`
   String get viewVoucher {
     return Intl.message(
-      'View Voucher',
+      'View E-Voucher',
       name: 'viewVoucher',
       desc: '',
       args: [],
