@@ -25,6 +25,8 @@ VoucherItemEntity _$VoucherItemEntityFromJson(Map<String, dynamic> json) =>
               .toList() ??
           [],
       discount: json['discount'] as String? ?? '',
+      exchangeRate: json['exchangeRate'] as String? ?? '',
+      reconciliationCurrency: json['reconciliationCurrency'] as String? ?? '',
       countryCode: json['countryCode'] as Map<String, dynamic>,
     );
 
@@ -44,5 +46,7 @@ Map<String, dynamic> _$VoucherItemEntityToJson(VoucherItemEntity instance) =>
       'productId': instance.productId,
       'categories': instance.categories,
       'discount': instance.discount,
+      'reconciliationCurrency': instance.reconciliationCurrency,
+      'exchangeRate': instance.exchangeRate,
       'countryCode': instance.countryCode,
     };

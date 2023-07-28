@@ -101,6 +101,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                                               Navigator.pushNamed(
                                                 context,
                                                 RoutePaths.EVouchersListing,
+                                                
                                                 arguments: CategoryListArgument(
                                                     id: categoryData.data?[index].id ?? 0.0),
                                               );

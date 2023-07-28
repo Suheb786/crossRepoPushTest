@@ -56,6 +56,7 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
 
   String mobileCode = "";
   String mobileNumber = "";
+  
 
   EvoucherSettlementAccountPageViewModel(
       this._selectAccountUseCase, this.argument, this.eVoucherOtpUseCase, this.getSettlementAmountUseCase) {

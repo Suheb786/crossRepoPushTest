@@ -1,21 +1,23 @@
 import 'package:domain/model/e_voucher/country_code.dart';
 
 class VoucherItem {
-  String id;
-  String name;
-  String usageInstructions;
-  String termsAndConditions;
-  String giftCardInformation;
-  String brand;
-  String currency;
-  num fromValue;
-  num toValue;
-  String cardFaceImage;
-  String cardFaceHash;
-  num productId;
-  List<String> categories;
-  String discount;
-  CountryCode countryCode;
+  final String id;
+  final String name;
+  final String usageInstructions;
+  final String termsAndConditions;
+  final String giftCardInformation;
+  final String brand;
+  final String currency;
+  final num fromValue;
+  final num toValue;
+  final String cardFaceImage;
+  final String cardFaceHash;
+  final num productId;
+  final List<String> categories;
+  final String discount;
+  final CountryCode countryCode;
+  final String reconciliationCurrency;
+  final String exchangeRate;
 
   VoucherItem({
     required this.id,
@@ -33,5 +35,7 @@ class VoucherItem {
     required this.categories,
     required this.discount,
     required this.countryCode,
+    required this.exchangeRate,
+    required this.reconciliationCurrency,
   });
 }
