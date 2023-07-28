@@ -10,6 +10,7 @@ class ShareVoucherPage extends BasePage<ShareVoucherPageViewModel> {
   final ShareVoucherPageArgument argument;
 
   ShareVoucherPage(this.argument);
+
   @override
   ShareVoucherPageState createState() => ShareVoucherPageState();
 }
