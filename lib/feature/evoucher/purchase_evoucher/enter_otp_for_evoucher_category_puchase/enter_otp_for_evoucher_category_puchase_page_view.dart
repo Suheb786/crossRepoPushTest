@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/model/e_voucher/e_voucher_otp.dart';
 import 'package:domain/model/e_voucher/place_order.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';

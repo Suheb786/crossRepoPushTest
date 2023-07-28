@@ -102,14 +102,14 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                                                 ClipRRect(
                                                   borderRadius: BorderRadius.circular(8),
                                                   child: Container(
-                                                    height: 56,
-                                                    width: 56,
+                                                    height: 72.h,
+                                                    width: 72.w,
                                                     child: CachedNetworkImage(
                                                       imageUrl: model.argument.selectedItem.cardFaceImage,
                                                       placeholder: (context, url) =>
                                                           Container(color: Theme.of(context).primaryColor),
                                                       errorWidget: (context, url, error) => Icon(Icons.error),
-                                                      fit: BoxFit.cover,
+                                                      fit: BoxFit.fill,
                                                     ),
                                                   ),
                                                 ),
