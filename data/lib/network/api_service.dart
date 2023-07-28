@@ -193,6 +193,7 @@ import 'package:data/entity/remote/device_change/resend_otp_device_change_reques
 import 'package:data/entity/remote/device_change/send_otp_token_device_change_request_entity.dart';
 import 'package:data/entity/remote/device_change/send_otp_token_email_request_entity.dart';
 import 'package:data/entity/remote/device_change/verify_device_change_otp_request_entity.dart';
+import 'package:data/entity/remote/e_voucher/get_settlement_amount/get_settlement_amount_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_category/voucher_categories_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_detail_request.dart';
 import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_details_response_entity.dart';
@@ -1185,7 +1186,7 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> placeOrder(@Body() PlaceOrderRequestEntity request);
 
   @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/GetSettlementAmount")
-  Future<HttpResponse<ResponseEntity>> getSettlementAmount(@Body() GetSettlementAmountRequestEntity request);
+  Future<HttpResponse<GetSettlementAmountResponseEntity>> getSettlementAmount(@Body() GetSettlementAmountRequestEntity request);
 
   @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/EVoucherOtp")
   Future<HttpResponse<ResponseEntity>> eVoucherOtp(@Body() BaseRequest request);

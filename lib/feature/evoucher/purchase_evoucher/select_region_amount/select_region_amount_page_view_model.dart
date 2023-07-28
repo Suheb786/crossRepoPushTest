@@ -109,7 +109,7 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
     Set<String> countries = Set<String>();
 
     for (var value in vouchersWithSameProductId) {
-      countries.add(value.countryCode);
+      countries.add(value.countryCode.countryName ?? "");
     }
 
     voucherCountries.clear();
@@ -117,6 +117,23 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
     voucherCountries.addAll(countries.toList());
   }
 
+  // void getVoucherValue() {
+  //   List<VoucherItem> vouchersWithSameProductIdAndCountry = voucherItems
+  //       .where((items) =>
+  //           items.productId == selectedItem.productId &&
+  //           (selectedRegionController.text == S.current.allRegion
+  //               ? true
+  //               : items.countryCode == selectedRegionController.text))
+  //       .toList();
+
+  //   Set<String> prices = Set<String>();
+  //   for (var value in vouchersWithSameProductIdAndCountry) {
+  //     prices.add(value.fromValue.toString() + " " + value.currency);
+  //   }
+
+  //   voucherValue.clear();
+  //   voucherValue.addAll(prices.toList());
+  // }
   void getVoucherValue() {
     List<VoucherItem> vouchersWithSameProductIdAndCountry = voucherItems
         .where((items) =>
@@ -126,22 +143,20 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
                 : items.countryCode == selectedRegionController.text))
         .toList();
 
-    Set<String> prices = Set<String>();
+    List<String> prices = [];
     for (var value in vouchersWithSameProductIdAndCountry) {
       prices.add(value.fromValue.toString() + " " + value.currency);
     }
 
-    voucherValue.clear();
-    voucherValue.addAll(prices.toList());
-  }
+    // Sort the list of prices as numbers in ascending order
+    prices.sort((a, b) {
+      double aValue = double.tryParse(a.split(" ")[0]) ?? 0;
+      double bValue = double.tryParse(b.split(" ")[0]) ?? 0;
+      return aValue.compareTo(bValue);
+    });
 
-  void getSettlementAmmount({
-    required String? Amount,
-    required String? FromCurrency,
-    required String? ToCurrency,
-  }) {
-    _getSettlementAmountRequest.safeAdd(GetSettlementAmountUseCaseParams(
-        Amount: Amount, FromCurrency: FromCurrency, ToCurrency: ToCurrency, GetToken: true));
+    voucherValue.clear();
+    voucherValue.addAll(prices);
   }
 
   @override

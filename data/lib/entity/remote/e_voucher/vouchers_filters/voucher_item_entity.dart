@@ -1,7 +1,8 @@
+import 'package:data/entity/remote/e_voucher/vouchers_filters/country_code_entity.dart';
+import 'package:domain/model/e_voucher/country_code.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
-
 part 'voucher_item_entity.g.dart';
 
 @JsonSerializable()
@@ -34,8 +35,8 @@ class VoucherItemEntity implements BaseLayerDataTransformer<VoucherItemEntity, V
   List<String>? categories;
   @JsonKey(name: "discount", defaultValue: '')
   String? discount;
-  @JsonKey(name: "countryCode", defaultValue: '')
-  String? countryCode;
+  @JsonKey(name: "countryCode")
+  Map<String, dynamic> countryCode;
 
   VoucherItemEntity({
     this.id,
@@ -52,7 +53,7 @@ class VoucherItemEntity implements BaseLayerDataTransformer<VoucherItemEntity, V
     this.productId,
     this.categories,
     this.discount,
-    this.countryCode,
+    required this.countryCode,
   });
 
   factory VoucherItemEntity.fromJson(Map<String, dynamic> json) => _$VoucherItemEntityFromJson(json);
@@ -67,21 +68,20 @@ class VoucherItemEntity implements BaseLayerDataTransformer<VoucherItemEntity, V
   @override
   VoucherItem transform() {
     return VoucherItem(
-      id: this.id ?? '',
-      name: this.name ?? '',
-      usageInstructions: this.usageInstructions ?? '',
-      termsAndConditions: this.termsAndConditions ?? '',
-      giftCardInformation: this.giftCardInformation ?? '',
-      brand: this.brand ?? '',
-      currency: this.currency ?? '',
-      fromValue: this.fromValue ?? 0.0,
-      toValue: this.toValue ?? 0.0,
-      cardFaceImage: this.cardFaceImage ?? '',
-      cardFaceHash: this.cardFaceHash ?? '',
-      productId: this.productId ?? 0.0,
-      categories: this.categories ?? [],
-      discount: this.discount ?? '',
-      countryCode: this.countryCode ?? '',
-    );
+        id: this.id ?? '',
+        name: this.name ?? '',
+        usageInstructions: this.usageInstructions ?? '',
+        termsAndConditions: this.termsAndConditions ?? '',
+        giftCardInformation: this.giftCardInformation ?? '',
+        brand: this.brand ?? '',
+        currency: this.currency ?? '',
+        fromValue: this.fromValue ?? 0.0,
+        toValue: this.toValue ?? 0.0,
+        cardFaceImage: this.cardFaceImage ?? '',
+        cardFaceHash: this.cardFaceHash ?? '',
+        productId: this.productId ?? 0.0,
+        categories: this.categories ?? [],
+        discount: this.discount ?? '',
+        countryCode: CountryCodeEntity.fromJson(countryCode).transform());
   }
 }

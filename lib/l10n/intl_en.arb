@@ -1824,5 +1824,8 @@
   "allCategories": "All Categories",
   "copied": "Copied",
   "recipientNameValidation": "Oops! Recipient name should be at least 2 parts and each part to be with a minimum of 3 characters.",
+  "selectValue": "Select Value",
+  "back": "Back",
+  "selectRegionFirst": "Select region first",
   "eVouchersSettings": "eVouchers"
 }

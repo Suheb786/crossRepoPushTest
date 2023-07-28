@@ -657,8 +657,11 @@ enum ErrorType {
 
   ///EVouchers
   SELECT_REGION,
+    SELECT_REGION_FIRST,
   SELECT_AMOUNT,
+  SELECT_VALUE,
   SELECT_ACCOUNT,
+  
   NOTE_ENOUGH_AMOUNT,
 
   //bill payments
