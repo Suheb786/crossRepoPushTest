@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -945,7 +944,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "eVouchers": MessageLookupByLibrary.simpleMessage("E-vouchers"),
         "eVouchersAreHere":
             MessageLookupByLibrary.simpleMessage("e-Vouchers are here!"),
-        "eVouchersSettings": MessageLookupByLibrary.simpleMessage("eVouchers"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "editCliqId": MessageLookupByLibrary.simpleMessage("EDIT CLIQ ID"),
         "editId": MessageLookupByLibrary.simpleMessage("Edit ID"),
@@ -1398,7 +1396,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fewMoreQuestions": MessageLookupByLibrary.simpleMessage(
             "Almost there, just a few\nmore questions"),
         "filterVouchers":
-            MessageLookupByLibrary.simpleMessage("Filter Vouchers"),
+            MessageLookupByLibrary.simpleMessage("Filter E-vouchers"),
         "financialServices":
             MessageLookupByLibrary.simpleMessage("Financial Services"),
         "findOutMore": MessageLookupByLibrary.simpleMessage("Find out more"),
@@ -1999,7 +1997,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Manage my bills"),
         "manageSettlement":
             MessageLookupByLibrary.simpleMessage("Manage settlement"),
-        "maxPrice": MessageLookupByLibrary.simpleMessage("Max. Price"),
+        "maxPrice": MessageLookupByLibrary.simpleMessage("Max. Value"),
+        "maxValueGreaterThanMin": MessageLookupByLibrary.simpleMessage(
+            "Max value should be greater than min value"),
         "maximumAccountOpeningExceed": MessageLookupByLibrary.simpleMessage(
             "You have reached the maximum number of accounts permitted. Unfortunately, you cannot open a new account."),
         "maximumAgeOfUser":
@@ -2012,7 +2012,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Merchant Payments"),
         "minDue": MessageLookupByLibrary.simpleMessage("Min. Due"),
         "minDueBy": MessageLookupByLibrary.simpleMessage("MIN. DUE BY "),
-        "minPrice": MessageLookupByLibrary.simpleMessage("Min. Price"),
+        "minPrice": MessageLookupByLibrary.simpleMessage("Min. Value"),
         "minimumSettlement":
             MessageLookupByLibrary.simpleMessage("MINIMUM SETTLEMENT"),
         "minimumSettlements":
@@ -2748,6 +2748,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select any Option"),
         "selectAtLeastOneBill":
             MessageLookupByLibrary.simpleMessage("Select at least one bill"),
+        "selectCategory":
+            MessageLookupByLibrary.simpleMessage("Select Category"),
+        "selectCategoryFirst": MessageLookupByLibrary.simpleMessage(
+            "Please select category first"),
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
             "Hello! Which country\nare you from?"),
         "selectCreditLimitSettings": MessageLookupByLibrary.simpleMessage(
@@ -2758,6 +2762,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select from Library"),
         "selectFutureDate":
             MessageLookupByLibrary.simpleMessage("Please select future date"),
+        "selectMaxvalue":
+            MessageLookupByLibrary.simpleMessage("Select max value"),
+        "selectMinValue":
+            MessageLookupByLibrary.simpleMessage("Select min value"),
         "selectMinimumSettlement":
             MessageLookupByLibrary.simpleMessage("Select Minimum Settlement"),
         "selectNewPercentage": MessageLookupByLibrary.simpleMessage(
@@ -3223,8 +3231,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-014)"),
         "wereBornInUS":
             MessageLookupByLibrary.simpleMessage("Were you born in the U.S.?"),
-        "whatAreYouLookingFor":
-            MessageLookupByLibrary.simpleMessage("What are you looking for?"),
         "whatIsPEP": MessageLookupByLibrary.simpleMessage("What is P.E.P?"),
         "whatIsTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
             "What is Claim of Tax Treaty Benefits?"),

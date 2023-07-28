@@ -1369,6 +1369,16 @@ class ErrorParser {
         return localisedHelper.oopsYouHaveExceededYourDailyTransferLimit;
       case ErrorType.RECIPIENT_NAME_VALIDATION:
         return localisedHelper.recipientNameValidation;
+      case ErrorType.SELECT_CATEGORY:
+        return localisedHelper.selectCategory;
+      case ErrorType.SELECT_MIN_VALUE:
+        return localisedHelper.selectMinValue;
+      case ErrorType.SELECT_MAX_VALUE:
+        return localisedHelper.selectMaxvalue;
+      case ErrorType.MAX_VALUE_SHOULD_BE_GREATER_THAN_MIN:
+        return localisedHelper.maxValueGreaterThanMin;
+      case ErrorType.SELECT_CATEGORY_FIRST:
+        return localisedHelper.selectCategoryFirst;
       default:
         return "";
     }

@@ -80,29 +80,32 @@ class MyVoucherHistoryWidget extends StatelessWidget {
                       ],
                     )),
               ),
-              Container(
-                margin: EdgeInsetsDirectional.only(start: 17.w, top: 4.h),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      "- " + data.lineItems.first.value.toString(),
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          color: Theme.of(context).colorScheme.scrim,
-                          fontSize: 14.t,
-                          fontWeight: FontWeight.w700),
-                    ),
-                    SizedBox(width: 2.w),
-                    Text(
-                      data.lineItems.first.currency ?? '',
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          color: Theme.of(context).colorScheme.onInverseSurface,
-                          fontSize: 10.t,
-                          fontWeight: FontWeight.w600),
-                    )
-                  ],
+              Directionality(
+                textDirection: TextDirection.ltr,
+                child: Container(
+                  margin: EdgeInsetsDirectional.only(start: 17.w, top: 4.h),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "- " + data.lineItems.first.value.toString(),
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            color: Theme.of(context).colorScheme.scrim,
+                            fontSize: 14.t,
+                            fontWeight: FontWeight.w700),
+                      ),
+                      SizedBox(width: 2.w),
+                      Text(
+                        data.lineItems.first.currency ?? '',
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            color: Theme.of(context).colorScheme.onInverseSurface,
+                            fontSize: 10.t,
+                            fontWeight: FontWeight.w600),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],
