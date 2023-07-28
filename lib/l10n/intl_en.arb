@@ -1343,8 +1343,8 @@
   "toViewVoucher": "to View Voucher",
   "viewVoucher": "View Voucher",
   "shareVoucher": "Share Voucher",
-  "eVouchers": "E-Vouchers",
-  "buyVouchers": "Buy Vouchers",
+  "eVouchers": "E-vouchers",
+  "buyVouchers": "Buy E-vouchers",
   "myVouchers": "My Vouchers",
   "games": "Games",
   "amt": "3,540",
@@ -1823,5 +1823,6 @@
   "allRegion": "All Region",
   "allCategories": "All Categories",
   "copied": "Copied",
-  "recipientNameValidation": "Oops! Recipient name should be at least 2 parts and each part to be with a minimum of 3 characters."
+  "recipientNameValidation": "Oops! Recipient name should be at least 2 parts and each part to be with a minimum of 3 characters.",
+  "eVouchersSettings": "eVouchers"
 }

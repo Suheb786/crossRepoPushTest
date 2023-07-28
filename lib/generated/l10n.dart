@@ -13210,20 +13210,20 @@ class S {
     );
   }
 
-  /// `E-Vouchers`
+  /// `E-vouchers`
   String get eVouchers {
     return Intl.message(
-      'E-Vouchers',
+      'E-vouchers',
       name: 'eVouchers',
       desc: '',
       args: [],
     );
   }
 
-  /// `Buy Vouchers`
+  /// `Buy E-vouchers`
   String get buyVouchers {
     return Intl.message(
-      'Buy Vouchers',
+      'Buy E-vouchers',
       name: 'buyVouchers',
       desc: '',
       args: [],
@@ -18015,6 +18015,16 @@ class S {
     return Intl.message(
       'Oops! Recipient name should be at least 2 parts and each part to be with a minimum of 3 characters.',
       name: 'recipientNameValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `eVouchers`
+  String get eVouchersSettings {
+    return Intl.message(
+      'eVouchers',
+      name: 'eVouchersSettings',
       desc: '',
       args: [],
     );

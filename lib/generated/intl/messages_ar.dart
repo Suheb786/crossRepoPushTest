@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -914,6 +913,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dummyIBAN":
             MessageLookupByLibrary.simpleMessage("ABC000012341234123819241213"),
         "dummyMobileNo": MessageLookupByLibrary.simpleMessage("00962xxxxxxxxx"),
+        "eVouchersSettings": MessageLookupByLibrary.simpleMessage("eVouchers"),
         "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
         "editCliqId": MessageLookupByLibrary.simpleMessage("تعديل حساب CliQ"),
         "editId": MessageLookupByLibrary.simpleMessage("تعديل نوع الحساب"),
@@ -1075,7 +1075,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterValidEmployeeStatus":
             MessageLookupByLibrary.simpleMessage("اختارالوظيفة"),
         "enterValidIBANCLiQ": MessageLookupByLibrary.simpleMessage(
-            "عفوا!  ادخل رقم حساب IBAN  أو الاسم المستعار أو رقم الهاتف في كليك لطلب حوالة"),
+            "عفوا! ادخل رقم حساب IBAN أو اسم مستعار/رقم الموبايل في كليك لطلب حوالة"),
         "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
             "رقم الموبايل اللي دخلته غير صحيح. حاول كمان مرة."),
         "enterValidNature": MessageLookupByLibrary.simpleMessage(

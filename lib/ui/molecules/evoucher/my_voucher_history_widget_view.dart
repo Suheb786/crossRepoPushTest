@@ -16,15 +16,13 @@ class MyVoucherHistoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24.0.w) +
-          EdgeInsets.only(top: 16.0.h),
+      padding: EdgeInsets.symmetric(horizontal: 24.0.w) + EdgeInsets.only(top: 16.0.h),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h) +
-                  EdgeInsets.only(top: 4.h),
+              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h) + EdgeInsets.only(top: 4.h),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.w),
                   color: Theme.of(context).colorScheme.secondaryContainer),
@@ -43,8 +41,7 @@ class MyVoucherHistoryWidget extends StatelessWidget {
               Container(
                 height: 40.h,
                 width: 40.w,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(8.w)),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.w)),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 child: CachedNetworkImage(
                   imageUrl: data.cardImage,
@@ -73,13 +70,10 @@ class MyVoucherHistoryWidget extends StatelessWidget {
                         ),
                         SizedBox(height: 4.h),
                         Text(
-                          TimeUtils.getFormattedTimeForTransaction(
-                              data.creationDate.toString()),
+                          TimeUtils.getFormattedTimeForTransaction(data.creationDate.toString()),
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onInverseSurface,
+                              color: Theme.of(context).colorScheme.onInverseSurface,
                               fontSize: 12.t,
                               fontWeight: FontWeight.w600),
                         ),

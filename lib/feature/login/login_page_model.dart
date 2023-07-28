@@ -51,7 +51,7 @@ class LoginViewModel extends BasePageViewModel {
   ///---------------------Login Request Response ---------------------///
 
   ///--------------------- Button Visibility ---------------------///
-  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(kDebugMode ? false : true);
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
@@ -135,11 +135,6 @@ class LoginViewModel extends BasePageViewModel {
         }
       });
     });
-
-    if (kDebugMode) {
-      emailController.text = 'onboard@g.com';
-      passwordController.text = 'Amta@123';
-    }
   }
 
   @override

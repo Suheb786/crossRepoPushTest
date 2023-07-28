@@ -92,9 +92,9 @@ class AppViewModel extends BaseViewModel {
           inputDecorationTheme: InputDecorationTheme(
               hintStyle: TextStyle(
                 fontFamily: StringUtils.appFont,
-                color: AppColor.very_dark_gray_black,
-                fontSize: 14.t,
-                fontWeight: FontWeight.w600,
+                color: AppColor.gray1,
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
                 fontStyle: FontStyle.normal,
               ),
               filled: false,

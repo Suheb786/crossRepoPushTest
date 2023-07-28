@@ -54,7 +54,6 @@ final eVouchersCategoryListingViewModelProvider = ChangeNotifierProvider.autoDis
     .family<EVoucherCategoryListingPageViewModel, CategoryListArgument>(
         (ref, arg) => EVoucherCategoryListingPageViewModel(
               arg,
-              ref.read(eVoucherByCategoryPageUseCase),
               ref.read(eVoucherItemFilterUseCaseProvider),
             ));
 

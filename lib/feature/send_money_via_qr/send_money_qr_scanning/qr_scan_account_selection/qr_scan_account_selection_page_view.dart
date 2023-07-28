@@ -63,6 +63,7 @@ class QRScanAccountSelectionPageView extends BasePageViewWidget<QRScanAccountSel
                             if (StringUtils.isDirectionRTL(context)) {
                               if (!details.primaryVelocity!.isNegative) {
                                 if (model.payFromController.text.isEmpty) {
+                                  model.showErrorState();
                                   model.showToastWithError(AppError(
                                       cause: Exception(),
                                       error: ErrorInfo(message: ''),
@@ -78,6 +79,7 @@ class QRScanAccountSelectionPageView extends BasePageViewWidget<QRScanAccountSel
                                             .arguments
                                             ?.amount ??
                                         '')) {
+                                  model.showErrorState();
                                   model.showToastWithError(AppError(
                                       cause: Exception(),
                                       error: ErrorInfo(message: ''),
