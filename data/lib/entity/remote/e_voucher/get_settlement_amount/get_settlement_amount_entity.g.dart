@@ -9,7 +9,7 @@ part of 'get_settlement_amount_entity.dart';
 GetSettlementAmountEntity _$GetSettlementAmountEntityFromJson(
         Map<String, dynamic> json) =>
     GetSettlementAmountEntity(
-      Amount: json['Amount'] as String?,
+      Amount: (json['Amount'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$GetSettlementAmountEntityToJson(

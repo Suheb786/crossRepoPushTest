@@ -115,23 +115,39 @@ class OtpPurchaseEvoucherWithoutRegionPageViewModel extends BasePageViewModel {
     }
   }
 
-  void placeOrder(
-      {required String exchangeRate,
-      required String Denomination,
-      required String reconcilationCurrency,
-      required String Discount,
-      required String VoucherName,
-      required String VoucherCategory,
-      required String AccountNo}) {
+  void placeOrder({
+    required String sourceAccount,
+    required String sourceCurrency,
+    required String cardItemId,
+    required double exchangeRate,
+    required String voucherCurrency,
+    required String reconciliationCurrency,
+    required String equivalentAmount,
+    required int denomination,
+    required String discount,
+    required String categories,
+    required String voucherName,
+    required String productId,
+    required String productName,
+    required String otpCode,
+    required bool getToken,
+  }) {
     _placeOrderRequest.safeAdd(PlaceOrderUseCaseParams(
-      Denomination: Denomination,
+      sourceAccount: sourceAccount,
+      sourceCurrency: sourceCurrency,
+      cardItemId: cardItemId,
       exchangeRate: exchangeRate,
-      reconcilationCurrency: reconcilationCurrency,
-      Discount: Discount,
-      VoucherName: VoucherName,
-      VoucherCategory: VoucherCategory,
-      AccountNo: AccountNo,
-      GetToken: true,
+      voucherCurrency: voucherCurrency,
+      reconciliationCurrency: reconciliationCurrency,
+      equivalentAmount: equivalentAmount,
+      denomination: denomination,
+      discount: discount,
+      categories: categories,
+      voucherName: voucherName,
+      productId: productId,
+      productName: productName,
+      otpCode: otpCode,
+      getToken: true,
     ));
   }
 

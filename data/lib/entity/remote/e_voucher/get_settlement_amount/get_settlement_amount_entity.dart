@@ -7,7 +7,7 @@ part 'get_settlement_amount_entity.g.dart';
 class GetSettlementAmountEntity
     extends BaseLayerDataTransformer<GetSettlementAmountEntity, GetSettlementAmount> {
   @JsonKey(name: "Amount")
-  final String? Amount;
+  final double? Amount;
 
   GetSettlementAmountEntity({
     required this.Amount,
@@ -19,6 +19,6 @@ class GetSettlementAmountEntity
 
   @override
   GetSettlementAmount transform() {
-    return GetSettlementAmount(amount: this.Amount);
+    return GetSettlementAmount(content: this.Amount);
   }
 }

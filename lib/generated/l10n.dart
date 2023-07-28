@@ -18019,6 +18019,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Select Value`
+  String get selectValue {
+    return Intl.message(
+      'Select Value',
+      name: 'selectValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back`
+  String get back {
+    return Intl.message(
+      'Back',
+      name: 'back',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select region first`
+  String get selectRegionFirst {
+    return Intl.message(
+      'Select region first',
+      name: 'selectRegionFirst',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -5333,27 +5333,31 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<VoucherRegionByCategoriesResponseEntity>> getRegionsByCategories(
-      VoucherRegionByCategoriesRequest voucherRegionByCategoriesRequest) async {
+  Future<HttpResponse<VoucherRegionByCategoriesResponseEntity>>
+      getRegionsByCategories(
+          VoucherRegionByCategoriesRequest
+              voucherRegionByCategoriesRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(voucherRegionByCategoriesRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<VoucherRegionByCategoriesResponseEntity>>(Options(
+        _setStreamType<HttpResponse<VoucherRegionByCategoriesResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              'http://10.6.13.2:2186/Voucher/api/Voucher/GetRegionsByCategories',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = VoucherRegionByCategoriesResponseEntity.fromJson(_result.data!);
+                .compose(
+                  _dio.options,
+                  'http://10.6.13.2:2186/Voucher/api/Voucher/GetRegionsByCategories',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value =
+        VoucherRegionByCategoriesResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -5366,8 +5370,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(voucherMinMaxValueRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<VoucherMinMaxValueResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<VoucherMinMaxValueResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5392,8 +5396,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(voucherByCategoryRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<VoucherFilterResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<VoucherFilterResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5517,7 +5521,7 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getSettlementAmount(
+  Future<HttpResponse<GetSettlementAmountResponseEntity>> getSettlementAmount(
       GetSettlementAmountRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -5525,7 +5529,7 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
+        _setStreamType<HttpResponse<GetSettlementAmountResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5537,7 +5541,7 @@ class _ApiService implements ApiService {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
+    final value = GetSettlementAmountResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

@@ -1,5 +1,8 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -38,11 +41,6 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                 initialData: Resource.none(),
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
-                    model.getSettlementAmmount(
-                        Amount: model.argument.selectedItem.fromValue.toString(),
-                        FromCurrency: model.argument.selectedItem.currency,
-                        ToCurrency: S.current.JOD);
-
                     ProviderScope.containerOf(context)
                         .read(purchaseEVouchersViewModelProvider(model.argument))
                         .nextPage();
@@ -147,16 +145,24 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                         controller: model.amountController,
                                         key: model.amountKey,
                                         onPressed: () {
-                                          RelationshipWithCardHolderDialog.show(context,
-                                              title: S.of(context).minPrice,
-                                              relationSHipWithCardHolder: model.voucherValue,
-                                              onDismissed: () {
-                                            Navigator.pop(context);
-                                          }, onSelected: (value) {
-                                            Navigator.pop(context);
-                                            model.amountController.text = value;
-                                            model.validate();
-                                          });
+                                          if (model.selectedRegionController.text != "") {
+                                            RelationshipWithCardHolderDialog.show(context,
+                                                title: S.of(context).minPrice,
+                                                relationSHipWithCardHolder: model.voucherValue,
+                                                onDismissed: () {
+                                              Navigator.pop(context);
+                                            }, onSelected: (value) {
+                                              Navigator.pop(context);
+                                              model.amountController.text = value;
+                                              model.validate();
+                                            });
+                                          } else if (model.selectedRegionController.text == "") {
+                                            model.selectedRegionKey.currentState!.isValid = false;
+                                            model.showToastWithError(AppError(
+                                                error: ErrorInfo(message: ''),
+                                                type: ErrorType.SELECT_REGION_FIRST,
+                                                cause: Exception()));
+                                          }
                                         },
                                         suffixIcon: (value, data) {
                                           return Container(
@@ -195,7 +201,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                       Navigator.pop(context);
                                     },
                                     child: Text(
-                                      S.of(context).backToCategory(S.current.games),
+                                      S.of(context).back,
                                       style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         color: Theme.of(context).colorScheme.onSecondaryContainer,

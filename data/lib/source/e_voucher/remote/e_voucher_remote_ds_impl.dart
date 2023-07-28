@@ -24,6 +24,8 @@ import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
 import 'package:domain/usecase/evouchers/place_order_usecase.dart';
 import 'package:retrofit/dio.dart';
 
+import '../../../entity/remote/e_voucher/get_settlement_amount/get_settlement_amount_response_entity.dart';
+
 class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
   final ApiService _apiService;
   final DeviceInfoHelper _deviceInfoHelper;
@@ -91,15 +93,23 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
   Future<HttpResponse<ResponseEntity>> placeOrder({required PlaceOrderUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.placeOrder(PlaceOrderRequestEntity(
-        Denomination: params.Denomination,
-        exchangeRate: params.exchangeRate,
-        reconcilationCurrency: params.reconcilationCurrency,
-        Discount: params.Discount,
-        VoucherName: params.VoucherName,
-        VoucherCategory: params.VoucherCategory,
-        AccountNo: params.AccountNo,
-        GetToken: true,
-        BaseClass: baseData.toJson()));
+      sourceAccount: params.sourceAccount,
+      sourceCurrency: params.sourceCurrency,
+      cardItemId: params.cardItemId,
+      exchangeRate: params.exchangeRate,
+      voucherCurrency: params.voucherCurrency,
+      reconciliationCurrency: params.reconciliationCurrency,
+      equivalentAmount: params.equivalentAmount,
+      denomination: params.denomination,
+      discount: params.discount,
+      categories: params.categories,
+      voucherName: params.voucherName,
+      productId: params.productId,
+      productName: params.productName,
+      otpCode: params.otpCode,
+      getToken: params.getToken,
+      BaseClass: baseData.toJson(),
+    ));
   }
 
   Future<HttpResponse<VoucherRegionByCategoriesResponseEntity>> getRegionsByCategories(
@@ -113,7 +123,7 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getSettlementAmount(
+  Future<HttpResponse<GetSettlementAmountResponseEntity>> getSettlementAmount(
       {required GetSettlementAmountUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getSettlementAmount(GetSettlementAmountRequestEntity(

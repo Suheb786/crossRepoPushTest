@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/e_voucher/e_voucher_data_source.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/e_voucher/get_settlement_amount.dart';
 import 'package:domain/model/e_voucher/voucher_by_date.dart';
 import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:domain/model/e_voucher/voucher_detail.dart';
@@ -12,6 +13,8 @@ import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
 import 'package:domain/usecase/evouchers/place_order_usecase.dart';
 import 'package:domain/usecase/evouchers/voucher_min_max_value.dart';
+
+import '../../entity/remote/e_voucher/get_settlement_amount/get_settlement_amount_response_entity.dart';
 
 class EVoucherRepositoryImpl extends EVoucherRepository {
   final EVoucherRemoteDS _eVoucherRemoteDS;
@@ -101,7 +104,7 @@ class EVoucherRepositoryImpl extends EVoucherRepository {
     final result = await safeApiCall(_eVoucherRemoteDS.getMinMaxRange(category: category, region: region));
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.data.transform()),
+      (r) => Right(r.data.transform() ),
     );
   }
 
@@ -115,10 +118,10 @@ class EVoucherRepositoryImpl extends EVoucherRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> getSettlementAmount(
+  Future<Either<NetworkError, GetSettlementAmount>> getSettlementAmount(
       {required GetSettlementAmountUseCaseParams params}) async {
     final result = await safeApiCall(_eVoucherRemoteDS.getSettlementAmount(params: params));
-    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform() ));
   }
 
   @override

@@ -18,23 +18,38 @@ class PlaceOrderUseCase extends BaseUseCase<NetworkError, PlaceOrderUseCaseParam
 }
 
 class PlaceOrderUseCaseParams extends Params {
-  final String Denomination;
-  final String exchangeRate;
-  final String reconcilationCurrency;
-  final String Discount;
-  final String VoucherName;
-  final String VoucherCategory;
-  final String AccountNo;
-  final bool GetToken;
+  final String sourceAccount;
+  final String sourceCurrency;
+  final String cardItemId;
+  final double exchangeRate;
+  final String voucherCurrency;
+  final String reconciliationCurrency;
+  final String equivalentAmount;
+  final int denomination;
+  final String discount;
+  final String categories;
+  final String voucherName;
+  final String productId;
+  final String productName;
+  final String otpCode;
+  final bool getToken;
+
   PlaceOrderUseCaseParams({
-    required this.Denomination,
+    required this.sourceAccount,
+    required this.sourceCurrency,
+    required this.cardItemId,
     required this.exchangeRate,
-    required this.reconcilationCurrency,
-    required this.Discount,
-    required this.VoucherName,
-    required this.VoucherCategory,
-    required this.AccountNo,
-    required this.GetToken,
+    required this.voucherCurrency,
+    required this.reconciliationCurrency,
+    required this.equivalentAmount,
+    required this.denomination,
+    required this.discount,
+    required this.categories,
+    required this.voucherName,
+    required this.productId,
+    required this.productName,
+    required this.otpCode,
+    required this.getToken,
   });
 
   @override
