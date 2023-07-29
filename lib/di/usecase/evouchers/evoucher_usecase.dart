@@ -9,6 +9,7 @@ import 'package:domain/usecase/evouchers/evoucher_filter_validation_usecase.dart
 import 'package:domain/usecase/evouchers/evoucher_history_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_item_filter_usecase.dart';
 import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
+import 'package:domain/usecase/evouchers/get_voucher_details_usecase.dart';
 import 'package:domain/usecase/evouchers/place_order_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_min_max_value_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_region_by_categories_usecase.dart';
@@ -90,4 +91,9 @@ final placeOrderUseCaseProvider = Provider.autoDispose<PlaceOrderUseCase>(
 ///[EVoucherOtpUseCase] provider
 final eVoucherOtpCaseProvider = Provider.autoDispose<EVoucherOtpUseCase>(
   (ref) => EVoucherOtpUseCase(ref.read(eVoucherRepositoryProvider)),
+);
+
+///[GetVoucherDetailsUseCase] provider
+final getVoucherDetailsUseCase = Provider.autoDispose<GetVoucherDetailUseCase>(
+  (ref) => GetVoucherDetailUseCase(ref.read(eVoucherRepositoryProvider)),
 );

@@ -1,10 +1,10 @@
+import 'package:domain/model/e_voucher/get_voucher_details.dart';
 import 'package:domain/model/e_voucher/voucher_by_date.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher/evoucher_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog.dart';
@@ -17,6 +17,9 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
+
+import '../../../../main/navigation/route_paths.dart';
+import '../../evoucher_detail/evoucher_detail_page.dart';
 
 class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
   MyVoucherHistoryView(ProviderBase model) : super(model);
@@ -105,81 +108,97 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
             ],
           ),
           SizedBox(height: 32.h),
-          getMyVouchers(model),
+          getMyVouchers(model, context),
           SizedBox(height: 32.h),
         ],
       ),
     );
   }
 
-  Widget getMyVouchers(EvoucherViewModel model) {
-    return AppStreamBuilder<Resource<List<VouchersByDate>>>(
+  Widget getMyVouchers(EvoucherViewModel model, BuildContext context) {
+    return AppStreamBuilder<Resource<GetVoucherDetails>>(
         initialData: Resource.none(),
-        stream: model.voucherHistoryResponseStream,
-        dataBuilder: (context, voucherHistory) {
-          switch (voucherHistory?.status) {
-            case Status.SUCCESS:
-              return (voucherHistory?.data ?? []).isNotEmpty
-                  ? ListView.separated(
-                      shrinkWrap: true,
-                      primary: false,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: Text(
-                                TimeUtils.getFormattedDateMonth(voucherHistory?.data?[index].date ?? ''),
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    color: Theme.of(context).colorScheme.shadow,
-                                    fontSize: 14.t,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ), //title
-                            SizedBox(height: 16.h),
-                            Card(
-                              color: Theme.of(context).colorScheme.secondary,
-                              elevation: 16,
-                              child: ListView.separated(
-                                shrinkWrap: true,
-                                primary: false,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemBuilder: (context, childIndex) {
-                                  return GestureDetector(
-                                    onTap: () {
-                                      Navigator.pushNamed(context, RoutePaths.EvoucherDetail,
-                                          arguments: voucherHistory?.data?[index].data[childIndex].id);
-                                    },
-                                    child: MyVoucherHistoryWidget(
-                                        (voucherHistory?.data?[index].data ?? [])[childIndex]),
-                                  );
-                                },
-                                separatorBuilder: (context, index) {
-                                  return const SizedBox();
-                                },
-                                itemCount: (voucherHistory?.data?[index].data ?? []).length,
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                      separatorBuilder: (context, index) {
-                        return SizedBox(height: 32.h);
-                      },
-                      itemCount: (voucherHistory?.data ?? []).length,
-                    )
-                  : Center(
-                      child: Text(
-                        S.of(context).noDataFound,
-                        style: TextStyle(color: Theme.of(context).primaryColorDark),
-                      ),
-                    );
-
-            default:
-              return Container();
+        stream: model.getvoucherDetiailsStream,
+        onData: (value) {
+          if (value.status == Status.SUCCESS) {
+            Navigator.pushNamed(context, RoutePaths.EvoucherDetail,
+                arguments: EvoucherDetailPageArgument(
+                    selectedVoucherData: value.data, voucherDetail: model.historyData));
           }
+        },
+        dataBuilder: (context, voucherDetails) {
+          return AppStreamBuilder<Resource<List<VouchersByDate>>>(
+              initialData: Resource.none(),
+              stream: model.voucherHistoryResponseStream,
+              dataBuilder: (context, voucherHistory) {
+                switch (voucherHistory?.status) {
+                  case Status.SUCCESS:
+                    return (voucherHistory?.data ?? []).isNotEmpty
+                        ? ListView.separated(
+                            shrinkWrap: true,
+                            primary: false,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    child: Text(
+                                      TimeUtils.getFormattedDateMonth(
+                                          voucherHistory?.data?[index].date ?? ''),
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: Theme.of(context).colorScheme.shadow,
+                                          fontSize: 14.t,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ), //title
+                                  SizedBox(height: 16.h),
+                                  Card(
+                                    color: Theme.of(context).colorScheme.secondary,
+                                    elevation: 16,
+                                    child: ListView.separated(
+                                      shrinkWrap: true,
+                                      primary: false,
+                                      physics: const NeverScrollableScrollPhysics(),
+                                      itemBuilder: (context, childIndex) {
+                                        return GestureDetector(
+                                          onTap: () {
+                                            model.historyData = voucherHistory!.data![index].data[childIndex];
+
+                                            model.getVoucherDetailCall(
+                                                OrderIdentifier: voucherHistory.data?[index].data[childIndex]
+                                                    .lineItems.first.cardItemId);
+                                          },
+                                          child: MyVoucherHistoryWidget(
+                                              (voucherHistory?.data?[index].data ?? [])[childIndex]),
+                                        );
+                                      },
+                                      separatorBuilder: (context, index) {
+                                        return const SizedBox();
+                                      },
+                                      itemCount: (voucherHistory?.data?[index].data ?? []).length,
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                            separatorBuilder: (context, index) {
+                              return SizedBox(height: 32.h);
+                            },
+                            itemCount: (voucherHistory?.data ?? []).length,
+                          )
+                        : Center(
+                            child: Text(
+                              S.of(context).noDataFound,
+                              style: TextStyle(color: Theme.of(context).primaryColorDark),
+                            ),
+                          );
+
+                  default:
+                    return Container();
+                }
+              });
         });
   }
 }

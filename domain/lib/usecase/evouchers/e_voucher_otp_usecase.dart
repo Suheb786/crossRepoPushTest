@@ -5,14 +5,15 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/repository/e_voucher/e_voucher_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 
+import '../../model/e_voucher/e_voucher_otp.dart';
 import '../base/params.dart';
 
-class EVoucherOtpUseCase extends BaseUseCase<NetworkError, EVoucherUsecaseOTPParams, bool> {
+class EVoucherOtpUseCase extends BaseUseCase<NetworkError, EVoucherUsecaseOTPParams, EVoucherOTP> {
   final EVoucherRepository _eVoucherRepository;
   EVoucherOtpUseCase(this._eVoucherRepository);
 
   @override
-  Future<Either<NetworkError, bool>> execute({required EVoucherUsecaseOTPParams params}) {
+  Future<Either<NetworkError, EVoucherOTP>> execute({required EVoucherUsecaseOTPParams params}) {
     return _eVoucherRepository.eVoucherOtp(params: params);
   }
 }

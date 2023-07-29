@@ -1,8 +1,8 @@
 import 'package:data/entity/remote/e_voucher/vouchers_filters/country_code_entity.dart';
-import 'package:domain/model/e_voucher/country_code.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 part 'voucher_item_entity.g.dart';
 
 @JsonSerializable()
@@ -31,10 +31,17 @@ class VoucherItemEntity implements BaseLayerDataTransformer<VoucherItemEntity, V
   String? cardFaceHash;
   @JsonKey(name: "productId", defaultValue: 0.0)
   num? productId;
+
   @JsonKey(name: "categories", defaultValue: [])
   List<String>? categories;
+
   @JsonKey(name: "discount", defaultValue: '')
   String? discount;
+  @JsonKey(name: "reconciliationCurrency", defaultValue: '')
+  String? reconciliationCurrency;
+  @JsonKey(name: "exchangeRate", defaultValue: '')
+  String? exchangeRate;
+
   @JsonKey(name: "countryCode")
   Map<String, dynamic> countryCode;
 
@@ -53,6 +60,8 @@ class VoucherItemEntity implements BaseLayerDataTransformer<VoucherItemEntity, V
     this.productId,
     this.categories,
     this.discount,
+    this.exchangeRate,
+    this.reconciliationCurrency,
     required this.countryCode,
   });
 
@@ -82,6 +91,8 @@ class VoucherItemEntity implements BaseLayerDataTransformer<VoucherItemEntity, V
         productId: this.productId ?? 0.0,
         categories: this.categories ?? [],
         discount: this.discount ?? '',
+        exchangeRate: this.exchangeRate ?? "",
+        reconciliationCurrency: this.reconciliationCurrency ?? "",
         countryCode: CountryCodeEntity.fromJson(countryCode).transform());
   }
 }

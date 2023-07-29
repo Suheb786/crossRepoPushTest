@@ -99,25 +99,28 @@ class PurchaseEVoucherPageView extends BasePageViewWidget<PurchaseEVoucherPageVi
                         ),
                       ),
                     ),
-                    Visibility(
-                      visible: currentStep == 2,
-                      child: Padding(
-                        padding: EdgeInsets.only(bottom: 32),
-                        child: ShowUpAnimation(
-                          delayStart: Duration(milliseconds: 500),
-                          animationDuration: Duration(milliseconds: 750),
-                          curve: Curves.bounceIn,
-                          direction: Direction.vertical,
-                          offset: 0.5,
-                          child: Text(
-                            "${(ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode?.replaceAll('00', '+'))}" +
-                                " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber}",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).colorScheme.secondary,
-                                fontSize: 20.t,
-                                fontWeight: FontWeight.w600),
+                    Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: Visibility(
+                        visible: currentStep == 2,
+                        child: Padding(
+                          padding: EdgeInsets.only(bottom: 32),
+                          child: ShowUpAnimation(
+                            delayStart: Duration(milliseconds: 500),
+                            animationDuration: Duration(milliseconds: 750),
+                            curve: Curves.bounceIn,
+                            direction: Direction.vertical,
+                            offset: 0.5,
+                            child: Text(
+                              "${(ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode?.replaceAll('00', '+'))}" +
+                                  " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber}",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  color: Theme.of(context).colorScheme.secondary,
+                                  fontSize: 20.t,
+                                  fontWeight: FontWeight.w600),
+                            ),
                           ),
                         ),
                       ),

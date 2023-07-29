@@ -1,4 +1,7 @@
 import 'package:domain/constants/enum/evoucher_filter_option_enum.dart';
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:domain/model/e_voucher/voucher_region_by_categories.dart';
 import 'package:domain/usecase/evouchers/voucher_min_max_value.dart';
@@ -139,7 +142,11 @@ class EVouchersFilterDialogView extends StatelessWidget {
                                     key: model.preferredRegionKey,
                                     onPressed: () {
                                       if (model.categoryController.text.isEmpty) {
-                                        model.getFilterValidated();
+                                        model.categoryKey.currentState!.isValid = false;
+                                        model.showToastWithError(AppError(
+                                            cause: Exception(),
+                                            error: ErrorInfo(message: ''),
+                                            type: ErrorType.SELECT_CATEGORY_FIRST));
                                       } else if (regionByCategories?.status == Status.SUCCESS) {
                                         if ((regionByCategories?.data ?? []).isNotEmpty) {
                                           RegionFilterDialog.show(context,
@@ -181,9 +188,18 @@ class EVouchersFilterDialogView extends StatelessWidget {
                                     controller: model.minPriceController,
                                     key: model.minPriceKey,
                                     onPressed: () {
-                                      if (model.preferredRegionController.text.isEmpty ||
-                                          model.categoryController.text.isEmpty) {
-                                        model.getFilterValidated();
+                                      if (model.categoryController.text.isEmpty) {
+                                        model.categoryKey.currentState!.isValid = false;
+                                        model.showToastWithError(AppError(
+                                            cause: Exception(),
+                                            error: ErrorInfo(message: ''),
+                                            type: ErrorType.SELECT_CATEGORY_FIRST));
+                                      } else if (model.preferredRegionController.text.isEmpty) {
+                                        model.preferredRegionKey.currentState!.isValid = false;
+                                        model.showToastWithError(AppError(
+                                            cause: Exception(),
+                                            error: ErrorInfo(message: ''),
+                                            type: ErrorType.SELECT_REGION_FIRST));
                                       } else if (voucherMinMaxResponse?.status == Status.SUCCESS) {
                                         RelationshipWithCardHolderDialog.show(context,
                                             title: S.of(context).minPrice,
@@ -220,9 +236,18 @@ class EVouchersFilterDialogView extends StatelessWidget {
                                     controller: model.maxPriceController,
                                     key: model.maxPriceKey,
                                     onPressed: () {
-                                      if (model.preferredRegionController.text.isEmpty ||
-                                          model.categoryController.text.isEmpty) {
-                                        model.getFilterValidated();
+                                      if (model.categoryController.text.isEmpty) {
+                                        model.categoryKey.currentState!.isValid = false;
+                                        model.showToastWithError(AppError(
+                                            cause: Exception(),
+                                            error: ErrorInfo(message: ''),
+                                            type: ErrorType.SELECT_CATEGORY_FIRST));
+                                      } else if (model.preferredRegionController.text.isEmpty) {
+                                        model.preferredRegionKey.currentState!.isValid = false;
+                                        model.showToastWithError(AppError(
+                                            cause: Exception(),
+                                            error: ErrorInfo(message: ''),
+                                            type: ErrorType.SELECT_REGION_FIRST));
                                       } else if (voucherMinMaxResponse?.status == Status.SUCCESS) {
                                         RelationshipWithCardHolderDialog.show(context,
                                             title: S.of(context).maxPrice,

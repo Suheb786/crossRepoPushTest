@@ -1,30 +1,33 @@
-import 'package:domain/model/e_voucher/country_code.dart';
-
-class VoucherItem {
+class GetVoucherDetails {
   final String id;
   final String name;
   final String usageInstructions;
   final String termsAndConditions;
-  final String giftCardInformation;
+  final String? giftCardInformation; // nullable but required parameter
   final String brand;
   final String currency;
-  final num fromValue;
-  final num toValue;
+  final double fromValue;
+  final double toValue;
   final String cardFaceImage;
   final String cardFaceHash;
-  final num productId;
+  final double productId;
   final List<String> categories;
   final String discount;
-  final CountryCode countryCode;
+  final String countryCode;
+  final String activationFees;
+  final String fulfillmentFees;
+  final String shippingFees;
+  final String customizationFees;
+  final String refundFees;
+  final String otherFees;
   final String reconciliationCurrency;
   final String exchangeRate;
 
-  VoucherItem({
+  GetVoucherDetails({
     required this.id,
     required this.name,
     required this.usageInstructions,
     required this.termsAndConditions,
-    required this.giftCardInformation,
     required this.brand,
     required this.currency,
     required this.fromValue,
@@ -35,7 +38,14 @@ class VoucherItem {
     required this.categories,
     required this.discount,
     required this.countryCode,
-    required this.exchangeRate,
+    required this.activationFees,
+    required this.fulfillmentFees,
+    required this.shippingFees,
+    required this.customizationFees,
+    required this.refundFees,
+    required this.otherFees,
     required this.reconciliationCurrency,
+    required this.exchangeRate,
+   required this.giftCardInformation,
   });
 }

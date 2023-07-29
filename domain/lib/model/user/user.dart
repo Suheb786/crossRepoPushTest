@@ -23,6 +23,7 @@ class User {
   bool? allCardsAddedToAppleWallet;
   bool? isRJPopUPClicked;
   bool? isEfawateerPopUPClicked;
+  bool? isEVoucherPopUPClicked;
 
   User(
       {this.token,
@@ -48,7 +49,8 @@ class User {
       this.applePay,
       this.allCardsAddedToAppleWallet,
       this.isRJPopUPClicked,
-      this.isEfawateerPopUPClicked});
+      this.isEfawateerPopUPClicked,
+      this.isEVoucherPopUPClicked});
 
   String get profileName => "${firstName?[0] ?? ""} ${lastName?[0] ?? ""}";
 
@@ -76,6 +78,7 @@ class User {
         selectedLanguage: json["selectedLanguage"],
         isRJPopUPClicked: json["isRJPopUPClicked"],
         isEfawateerPopUPClicked: json["isEfawateerPopUPClicked"],
+        isEVoucherPopUPClicked: json["isEVoucherPopUPClicked"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -101,6 +104,7 @@ class User {
         "selectedLanguage": selectedLanguage,
         "allCardsAddedToAppleWallet": allCardsAddedToAppleWallet,
         "isRJPopUPClicked": isRJPopUPClicked,
-        "isEfawateerPopUPClicked": isEfawateerPopUPClicked
+        "isEfawateerPopUPClicked": isEfawateerPopUPClicked,
+        "isEVoucherPopUPClicked": isEVoucherPopUPClicked,
       };
 }

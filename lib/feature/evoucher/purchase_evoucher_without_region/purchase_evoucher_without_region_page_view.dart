@@ -44,8 +44,8 @@ class PurchaseEVoucherWithoutRegionPageView
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                      activeSize: Size(MediaQuery.of(context).size.width / 3.7, 5),
-                      size: Size(MediaQuery.of(context).size.width / 3.7, 5),
+                      activeSize: Size(MediaQuery.of(context).size.width / 2.4, 5),
+                      size: Size(MediaQuery.of(context).size.width / 2.4, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1.w),
                       activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       activeColor: Theme.of(context).colorScheme.secondary,
@@ -56,7 +56,7 @@ class PurchaseEVoucherWithoutRegionPageView
           ),
           Expanded(
               child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 36),
+            padding: EdgeInsets.symmetric(vertical: 36.h),
             child: AppStreamBuilder<int>(
               stream: model.currentPageStream,
               initialData: 0,
@@ -96,25 +96,28 @@ class PurchaseEVoucherWithoutRegionPageView
                         ),
                       ),
                     ),
-                    Visibility(
-                      visible: currentStep == 1,
-                      child: Padding(
-                        padding: EdgeInsets.only(bottom: 32.h),
-                        child: ShowUpAnimation(
-                          delayStart: Duration(milliseconds: 500),
-                          animationDuration: Duration(milliseconds: 750),
-                          curve: Curves.bounceIn,
-                          direction: Direction.vertical,
-                          offset: 0.5,
-                          child: Text(
-                            "${(ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode?.replaceAll('00', '+'))}" +
-                                " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber}",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).colorScheme.secondary,
-                                fontSize: 20.t,
-                                fontWeight: FontWeight.w600),
+                    Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: Visibility(
+                        visible: currentStep == 1,
+                        child: Padding(
+                          padding: EdgeInsets.only(bottom: 32.h),
+                          child: ShowUpAnimation(
+                            delayStart: Duration(milliseconds: 500),
+                            animationDuration: Duration(milliseconds: 750),
+                            curve: Curves.bounceIn,
+                            direction: Direction.vertical,
+                            offset: 0.5,
+                            child: Text(
+                              "${(ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode?.replaceAll('00', '+'))}" +
+                                  " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber}",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  color: Theme.of(context).colorScheme.secondary,
+                                  fontSize: 20.t,
+                                  fontWeight: FontWeight.w600),
+                            ),
                           ),
                         ),
                       ),

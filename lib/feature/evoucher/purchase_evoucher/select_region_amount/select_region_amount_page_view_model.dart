@@ -1,16 +1,18 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/e_voucher/get_settlement_amount.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
+import 'package:domain/model/e_voucher/voucher_region_by_categories.dart';
 import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
 import 'package:domain/usecase/evouchers/select_region_amount_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page.dart';
-import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SelectRegionAmountPageViewModel extends BasePageViewModel {
@@ -19,10 +21,11 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
   final SelectRegionAmountUseCase _selectRegionAmountUseCase;
 
   List<VoucherItem> voucherItems = [];
-  List<String> voucherCountries = [];
+  List<VoucherRegionByCategories> voucherCountries = [];
   List<String> voucherValue = [];
 
   late VoucherItem selectedItem;
+  late VoucherRegionByCategories selectedRegion;
 
   ///controllers and keys
   final TextEditingController selectedRegionController = TextEditingController();
@@ -39,9 +42,9 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
 
   ///get settlement amount
   PublishSubject<GetSettlementAmountUseCaseParams> _getSettlementAmountRequest = PublishSubject();
-  PublishSubject<Resource<bool>> _getSettlementAmountResponse = PublishSubject();
+  PublishSubject<Resource<GetSettlementAmount>> _getSettlementAmountResponse = PublishSubject();
 
-  Stream<Resource<bool>> get getSettlementAmountStream => _getSettlementAmountResponse.stream;
+  Stream<Resource<GetSettlementAmount>> get getSettlementAmountStream => _getSettlementAmountResponse.stream;
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -71,9 +74,23 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
         _getSettlementAmountResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          settlementAmount = event.data?.content ?? 0.0;
         }
       });
     });
+  }
+
+  double settlementAmount = 0;
+
+  void getSettlementAmmount({
+    required String? Amount,
+    required String? FromCurrency,
+    required String? ToCurrency,
+  }) {
+    _getSettlementAmountRequest.safeAdd(GetSettlementAmountUseCaseParams(
+        Amount: Amount, FromCurrency: FromCurrency, ToCurrency: ToCurrency, GetToken: true));
   }
 
   void getError(Resource<bool> event) {
@@ -102,53 +119,44 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
     }
   }
 
-  void getRegionFromVoucherIds() {
+  void getRegionFromVoucherIds(BuildContext context) {
     List<VoucherItem> vouchersWithSameProductId =
         voucherItems.where((items) => items.productId == selectedItem.productId).toList();
 
-    Set<String> countries = Set<String>();
+    Set<VoucherRegionByCategories> countries = Set<VoucherRegionByCategories>();
 
     for (var value in vouchersWithSameProductId) {
-      countries.add(value.countryCode.countryName ?? "");
+      countries.add(VoucherRegionByCategories(
+          countryName: StringUtils.isDirectionRTL(context)
+              ? value.countryCode.countryNameAR
+              : value.countryCode.countryName,
+          countryNameAR: value.countryCode.countryNameAR,
+          isoCode: value.countryCode.isoCode));
     }
 
     voucherCountries.clear();
-    voucherCountries.add('All Region');
     voucherCountries.addAll(countries.toList());
   }
 
-  // void getVoucherValue() {
-  //   List<VoucherItem> vouchersWithSameProductIdAndCountry = voucherItems
-  //       .where((items) =>
-  //           items.productId == selectedItem.productId &&
-  //           (selectedRegionController.text == S.current.allRegion
-  //               ? true
-  //               : items.countryCode == selectedRegionController.text))
-  //       .toList();
-
-  //   Set<String> prices = Set<String>();
-  //   for (var value in vouchersWithSameProductIdAndCountry) {
-  //     prices.add(value.fromValue.toString() + " " + value.currency);
-  //   }
-
-  //   voucherValue.clear();
-  //   voucherValue.addAll(prices.toList());
-  // }
   void getVoucherValue() {
-    List<VoucherItem> vouchersWithSameProductIdAndCountry = voucherItems
-        .where((items) =>
-            items.productId == selectedItem.productId &&
-            (selectedRegionController.text == S.current.allRegion
-                ? true
-                : items.countryCode == selectedRegionController.text))
-        .toList();
+    List<VoucherItem> vouchersWithSameProductIdAndCountry = [];
+    if (selectedRegion.isoCode == null) {
+      vouchersWithSameProductIdAndCountry =
+          voucherItems.where((items) => items.productId == selectedItem.productId).toList();
+    } else {
+      vouchersWithSameProductIdAndCountry = voucherItems
+          .where((items) =>
+              items.productId == selectedItem.productId &&
+              items.countryCode.isoCode == selectedRegion.isoCode)
+          .toList();
+    }
 
     List<String> prices = [];
     for (var value in vouchersWithSameProductIdAndCountry) {
       prices.add(value.fromValue.toString() + " " + value.currency);
     }
 
-    // Sort the list of prices as numbers in ascending order
+    /// Sort the list of prices as numbers in ascending order
     prices.sort((a, b) {
       double aValue = double.tryParse(a.split(" ")[0]) ?? 0;
       double bValue = double.tryParse(b.split(" ")[0]) ?? 0;

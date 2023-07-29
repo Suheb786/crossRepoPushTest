@@ -9,11 +9,11 @@ part of 'get_settlement_amount_entity.dart';
 GetSettlementAmountEntity _$GetSettlementAmountEntityFromJson(
         Map<String, dynamic> json) =>
     GetSettlementAmountEntity(
-      Amount: (json['Amount'] as num?)?.toDouble(),
+      content: (json['content'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$GetSettlementAmountEntityToJson(
         GetSettlementAmountEntity instance) =>
     <String, dynamic>{
-      'Amount': instance.Amount,
+      'content': instance.content,
     };

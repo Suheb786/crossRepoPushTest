@@ -1,5 +1,8 @@
+import 'package:domain/model/e_voucher/e_voucher_otp.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/select_account_usecase.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -7,7 +10,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
-
+import '../../../../di/dashboard/dashboard_modules.dart';
 import '../purchase_evoucher_without_region_page.dart';
 
 class SettlementAmountPageViewModel extends BasePageViewModel {
@@ -24,9 +27,9 @@ class SettlementAmountPageViewModel extends BasePageViewModel {
   /// otp suject
   PublishSubject<EVoucherUsecaseOTPParams> _evoucherOtpRequest = PublishSubject();
 
-  PublishSubject<Resource<bool>> _evoucherOtpResponse = PublishSubject();
+  PublishSubject<Resource<EVoucherOTP>> _evoucherOtpResponse = PublishSubject();
 
-  Stream<Resource<bool>> get evoucherOtpStream => _evoucherOtpResponse.stream;
+  Stream<Resource<EVoucherOTP>> get evoucherOtpStream => _evoucherOtpResponse.stream;
 
   ///select region amount request
   PublishSubject<GetSettlementValidationUseCaseParams> _selectAccountRequest = PublishSubject();
@@ -64,12 +67,17 @@ class SettlementAmountPageViewModel extends BasePageViewModel {
           showErrorState();
           showToastWithError(event.appError!);
           if (event.status == Status.SUCCESS) {
+            mobileCode = event.data?.mobileCode ?? "";
+            mobileNumber = event.data?.mobileNumber ?? "";
             updateTime();
           }
         }
       });
     });
   }
+
+  String mobileCode = "";
+  String mobileNumber = "";
 
   void getOTP() {
     _evoucherOtpRequest.safeAdd(EVoucherUsecaseOTPParams(GetToken: true));
@@ -86,11 +94,16 @@ class SettlementAmountPageViewModel extends BasePageViewModel {
     notifyListeners();
   }
 
-  validateFields() {
+  validateFields(BuildContext context) {
     _selectAccountRequest.safeAdd(GetSettlementValidationUseCaseParams(
         isChecked: _isCheckedRequest.value,
-        totalAmountString: "20",
-        itemValueString: argument.selectedItem.fromValue));
+        totalAmountString: ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .dashboardDataContent
+                .account
+                ?.availableBalance ??
+            "",
+        itemValueString: argument.settlementAmount));
   }
 
   void validate() {

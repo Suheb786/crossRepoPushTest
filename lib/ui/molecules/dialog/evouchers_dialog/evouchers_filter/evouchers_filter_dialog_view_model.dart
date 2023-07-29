@@ -40,8 +40,6 @@ class EVouchersFilterDialogViewModel extends BasePageViewModel {
   }
 
   /// Region By Categories
-
-  // List<VoucherRegionByCategories> regionByCategoriesList = [];
   PublishSubject<EVoucherRegionByCategoriesUseCaseParams> _voucherRegionByCategoriesRequestSubject =
       PublishSubject();
 
@@ -63,9 +61,7 @@ class EVouchersFilterDialogViewModel extends BasePageViewModel {
 
           showToastWithError(event.appError!);
         }
-        if (event.status == Status.SUCCESS) {
-          //  regionByCategoriesList = event.data ?? [];
-        }
+        if (event.status == Status.SUCCESS) {}
       });
     });
   }
@@ -91,7 +87,6 @@ class EVouchersFilterDialogViewModel extends BasePageViewModel {
         _eVoucherFilterValidationResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           getError(event);
-
           showToastWithError(event.appError!);
         }
       });
@@ -107,18 +102,21 @@ class EVouchersFilterDialogViewModel extends BasePageViewModel {
   }
 
   void getError(Resource<bool> event) {
-    ///TODO Validation State Handling
     switch (event.appError!.type) {
-      case ErrorType.EMPTY_IBAN_MOBILE:
+      case ErrorType.SELECT_CATEGORY:
         categoryKey.currentState!.isValid = false;
         break;
-      case ErrorType.EMPTY_RECIPIENT_NAME:
+      case ErrorType.SELECT_REGION:
         preferredRegionKey.currentState!.isValid = false;
         break;
-      case ErrorType.EMPTY_RECIPIENT_ADDRESS:
+      case ErrorType.SELECT_MIN_VALUE:
         minPriceKey.currentState!.isValid = false;
         break;
-      case ErrorType.EMPTY_PURPOSE:
+      case ErrorType.SELECT_MAX_VALUE:
+        maxPriceKey.currentState!.isValid = false;
+        break;
+      case ErrorType.MAX_VALUE_SHOULD_BE_GREATER_THAN_MIN:
+        minPriceKey.currentState!.isValid = false;
         maxPriceKey.currentState!.isValid = false;
         break;
 

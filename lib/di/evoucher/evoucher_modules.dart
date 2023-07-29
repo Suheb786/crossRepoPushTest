@@ -18,22 +18,26 @@ import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/e
 import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/region_filter/region_filter_dialog_view_model.dart';
 
 import '../../feature/evoucher/evoucher_category_listing/evoucher_category_listing_page.dart';
+import '../../feature/evoucher/evoucher_detail/evoucher_detail_page.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/otp_purchase_evoucher_without_region/otp_purchase_evoucher_without_region_page_view_model.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page_view_model.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/settlement_amount/settlement_amount_page_view_model.dart';
 import '../../feature/evoucher/purchase_now/purchase_now_page.dart';
+import '../../feature/evoucher/share_voucher/share_voucher_page.dart';
 
 final evoucherViewModelProvider = ChangeNotifierProvider.autoDispose<EvoucherViewModel>(
   (ref) => EvoucherViewModel(
+    getVoucherDetailsUseCase: ref.read(getVoucherDetailsUseCase),
     eVoucherCategoriesUseCase: ref.read(eVoucherCategoriesUseCaseProvider),
     eVoucherHistoryUseCase: ref.read(eVoucherHistoryUseCaseProvider),
     eVoucherItemFilterUseCase: ref.read(eVoucherItemFilterUseCaseProvider),
   ),
 );
 
-final evoucherDetailViewModelProvider = ChangeNotifierProvider.autoDispose<EVoucherDetailViewModel>(
-  (ref) => EVoucherDetailViewModel(ref.read(eVoucherDetailsPageUseCase)),
+final evoucherDetailViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<EVoucherDetailViewModel, EvoucherDetailPageArgument>(
+  (ref, arg) => EVoucherDetailViewModel(ref.read(eVoucherDetailsPageUseCase), arg),
 );
 
 final purchaseNowDetailViewModelProvider =
@@ -79,8 +83,8 @@ final selectAmountRegionViewModelProvider = ChangeNotifierProvider.autoDispose
 ///settlement
 final evoucherSettlementAccountViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<EvoucherSettlementAccountPageViewModel, PurchaseEVoucherPageArgument>((ref, arg) =>
-        EvoucherSettlementAccountPageViewModel(ref.read(selectAccountUseCaseProvider), arg,
-            ref.read(eVoucherOtpCaseProvider), ref.read(getSettlementAmountUseCaseProvider)));
+        EvoucherSettlementAccountPageViewModel(
+            ref.read(selectAccountUseCaseProvider), arg, ref.read(eVoucherOtpCaseProvider)));
 
 ///settlement account
 final settlementAccountViewModelProvider = ChangeNotifierProvider.autoDispose
@@ -121,8 +125,9 @@ final purchaseVoucherViewModelProvider = ChangeNotifierProvider.autoDispose
         (ref, arg) => PurchaseVoucherSuccessPageViewModel(arg));
 
 ///share voucher view model
-final shareVoucherViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ShareVoucherPageViewModel>((ref) => ShareVoucherPageViewModel());
+final shareVoucherViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<ShareVoucherPageViewModel, ShareVoucherPageArgument>(
+        (ref, arg) => ShareVoucherPageViewModel(arg));
 
 ///enter code evoucher purchase view model
 final enterCodeEVoucherPurchaseViewModelProvider =

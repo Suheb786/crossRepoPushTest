@@ -54,7 +54,6 @@ import 'package:neo_bank/feature/dc_setting_card_delivery/dc_setting_card_delive
 import 'package:neo_bank/feature/dc_setting_card_delivery/dc_setting_card_ready/dc_setting_card_ready_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page.dart';
-import 'package:neo_bank/feature/evoucher/e_voucher_main_page.dart';
 import 'package:neo_bank/feature/evoucher/enter_code_evoucher_puchase/enter_code_evoucher_puchase_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_detail/evoucher_detail_page.dart';
@@ -658,7 +657,8 @@ class AppRouter {
 
       case RoutePaths.EvoucherDetail:
         return CupertinoPageRoute(
-            builder: (context) => EVoucherDetailPage(settings.arguments as String),
+            builder: (context) =>
+                EVoucherDetailPage(argument: settings.arguments as EvoucherDetailPageArgument),
             settings: RouteSettings(name: RoutePaths.EvoucherDetail));
 
       case RoutePaths.PurchaseNowDetail:
@@ -696,12 +696,8 @@ class AppRouter {
 
       case RoutePaths.ShareVoucher:
         return CupertinoPageRoute(
-            builder: (context) => ShareVoucherPage(), settings: RouteSettings(name: RoutePaths.ShareVoucher));
-
-      case RoutePaths.EVoucherMainPage:
-        return CupertinoPageRoute(
-            builder: (context) => EVoucherMainPage(),
-            settings: RouteSettings(name: RoutePaths.EVoucherMainPage));
+            builder: (context) => ShareVoucherPage(settings.arguments as ShareVoucherPageArgument),
+            settings: RouteSettings(name: RoutePaths.ShareVoucher));
 
       case RoutePaths.EnterCodeEVoucherPurchase:
         return CupertinoPageRoute(

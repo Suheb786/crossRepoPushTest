@@ -1,3 +1,5 @@
+import 'package:domain/model/e_voucher/e_voucher_otp.dart';
+import 'package:domain/model/e_voucher/place_order.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/enter_otp_for_evoucher_category_purchase_usecase.dart';
 import 'package:domain/usecase/evouchers/place_order_usecase.dart';
@@ -32,24 +34,29 @@ class OtpPurchaseEvoucherWithoutRegionPageViewModel extends BasePageViewModel {
     listenForSmsCode();
   }
 
-  /// make otp suject
+  /// otp suject
   PublishSubject<EVoucherUsecaseOTPParams> _evoucherOtpRequest = PublishSubject();
-  PublishSubject<Resource<bool>> _evoucherOtpResponse = PublishSubject();
-  Stream<Resource<bool>> get evoucherOtpStream => _evoucherOtpResponse.stream;
+
+  PublishSubject<Resource<EVoucherOTP>> _evoucherOtpResponse = PublishSubject();
+
+  Stream<Resource<EVoucherOTP>> get evoucherOtpStream => _evoucherOtpResponse.stream;
 
   ///place order
   PublishSubject<PlaceOrderUseCaseParams> _placeOrderRequest = PublishSubject();
-  PublishSubject<Resource<bool>> _placeOrderResponse = PublishSubject();
-  Stream<Resource<bool>> get placeOrderStream => _validateOtpResponse.stream;
+  PublishSubject<Resource<PlaceOrder>> _placeOrderResponse = PublishSubject();
+
+  Stream<Resource<PlaceOrder>> get placeOrderStream => _placeOrderResponse.stream;
 
   ///enter otp request subject holder
   PublishSubject<EnterOtpForEVoucherCategoryPurchaseUseCaseParams> _validateOtpRequest = PublishSubject();
   PublishSubject<Resource<bool>> _validateOtpResponse = PublishSubject();
+
   Stream<Resource<bool>> get enterOtpStream => _validateOtpResponse.stream;
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
   BehaviorSubject<String> _otpSubject = BehaviorSubject.seeded("");
+
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   OtpPurchaseEvoucherWithoutRegionPageViewModel(this._enterOtpForEVoucherPurchaseCategoryUseCase,
@@ -72,10 +79,11 @@ class OtpPurchaseEvoucherWithoutRegionPageViewModel extends BasePageViewModel {
         value,
         createCall: () => placeOrderUseCase.execute(params: value),
       ).asFlow().listen((event) {
-        // updateLoader();
+        updateLoader();
         _placeOrderResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
+          showToastWithError(event.appError!);
         }
       });
     });
@@ -85,7 +93,6 @@ class OtpPurchaseEvoucherWithoutRegionPageViewModel extends BasePageViewModel {
           .listen((event) {
         _evoucherOtpResponse.safeAdd(event);
         updateLoader();
-
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
@@ -116,21 +123,21 @@ class OtpPurchaseEvoucherWithoutRegionPageViewModel extends BasePageViewModel {
   }
 
   void placeOrder({
-    required String sourceAccount,
-    required String sourceCurrency,
-    required String cardItemId,
-    required double exchangeRate,
-    required String voucherCurrency,
-    required String reconciliationCurrency,
-    required String equivalentAmount,
-    required int denomination,
-    required String discount,
-    required String categories,
-    required String voucherName,
-    required String productId,
-    required String productName,
-    required String otpCode,
-    required bool getToken,
+    required String? sourceAccount,
+    required String? sourceCurrency,
+    required String? cardItemId,
+    required double? exchangeRate,
+    required String? voucherCurrency,
+    required String? reconciliationCurrency,
+    required String? equivalentAmount,
+    required int? denomination,
+    required String? discount,
+    required String? categories,
+    required String? voucherName,
+    required String? productId,
+    required String? productName,
+    required String? otpCode,
+    required bool? getToken,
   }) {
     _placeOrderRequest.safeAdd(PlaceOrderUseCaseParams(
       sourceAccount: sourceAccount,

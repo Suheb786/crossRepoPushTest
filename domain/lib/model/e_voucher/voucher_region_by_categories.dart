@@ -10,4 +10,12 @@ class VoucherRegionByCategories {
     this.countryName,
     this.countryNameAR,
   });
+
+  @override
+  bool operator ==(other) {
+    return (other is VoucherRegionByCategories) && other.isoCode == isoCode;
+  }
+
+  @override
+  int get hashCode => isoCode.hashCode;
 }

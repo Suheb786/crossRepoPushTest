@@ -6,21 +6,13 @@ import 'evoucher_landing_dialog_view.dart';
 class EvoucherDialog {
   EvoucherDialog._();
 
-  static show(BuildContext mContext,
-      {Function? onDismissed,
-      Function? onSelected,
-      String? image,
-      bool? isSwipeToCancel,
-      required String title,
-      required Widget descriptionWidget}) {
+  static show(BuildContext mContext, {Function? onDismissed, Function? onSelected, bool? isSwipeToCancel}) {
     AppDialog.show(mContext,
         isDismissible: false,
         builder: (context) => EvoucherLandingDialogView(
-            onDismissed: onDismissed,
-            onSelected: onSelected,
-            isSwipeToCancel: isSwipeToCancel,
-            image: image,
-            title: title,
-            descriptionWidget: descriptionWidget));
+              onDismissed: onDismissed,
+              onSelected: onSelected,
+              isSwipeToCancel: isSwipeToCancel,
+            ));
   }
 }

@@ -55,15 +55,15 @@ LineItemEntity _$LineItemEntityFromJson(Map<String, dynamic> json) =>
       lineNumber: json['lineNumber'] as int,
       cardItemId: json['cardItemId'] as String,
       cardItemName: json['cardItemName'] as String?,
-      value: json['value'] as int,
+      value: (json['value'] as num).toDouble(),
       currency: json['currency'] as String,
       certificateGenerationKey: json['certificateGenerationKey'] as String,
       status: json['status'] as String,
       claimURL: json['claimURL'] as String,
       settlementCurrency: json['settlementCurrency'] as String,
-      exchangeRate: (json['exchangeRate'] as num).toDouble(),
-      settlementPrice: (json['settlementPrice'] as num).toDouble(),
-      netPrice: (json['netPrice'] as num).toDouble(),
+      exchangeRate: json['exchangeRate'] as String,
+      settlementPrice: json['settlementPrice'] as String,
+      netPrice: json['netPrice'] as String,
     );
 
 Map<String, dynamic> _$LineItemEntityToJson(LineItemEntity instance) =>

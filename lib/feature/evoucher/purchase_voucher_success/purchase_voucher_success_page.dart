@@ -1,3 +1,4 @@
+import 'package:domain/model/e_voucher/place_order.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,6 +11,7 @@ class PurchaseVoucherSuccessPage extends BasePage<PurchaseVoucherSuccessPageView
   final PurchaseVoucherSuccessArgument argument;
 
   PurchaseVoucherSuccessPage({required this.argument});
+
   @override
   PurchaseVoucherSuccessPageState createState() => PurchaseVoucherSuccessPageState();
 }
@@ -29,6 +31,8 @@ class PurchaseVoucherSuccessPageState
 
 class PurchaseVoucherSuccessArgument {
   final VoucherItem selectedItem;
+  final String? settlementAmount;
+  final PlaceOrder? placeOrder;
 
-  PurchaseVoucherSuccessArgument({required this.selectedItem});
+  PurchaseVoucherSuccessArgument({required this.selectedItem, this.placeOrder, this.settlementAmount});
 }

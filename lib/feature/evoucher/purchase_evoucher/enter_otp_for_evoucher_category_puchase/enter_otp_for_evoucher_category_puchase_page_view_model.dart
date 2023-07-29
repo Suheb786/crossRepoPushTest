@@ -1,3 +1,6 @@
+import 'package:domain/model/e_voucher/e_voucher_otp.dart';
+import 'package:domain/model/e_voucher/place_order.dart';
+import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/enter_otp_for_evoucher_category_purchase_usecase.dart';
 import 'package:domain/usecase/evouchers/place_order_usecase.dart';
@@ -35,22 +38,26 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
   /// make otp suject
   PublishSubject<EVoucherUsecaseOTPParams> _evoucherOtpRequest = PublishSubject();
   PublishSubject<Resource<bool>> _evoucherOtpResponse = PublishSubject();
+
   Stream<Resource<bool>> get evoucherOtpStream => _evoucherOtpResponse.stream;
 
   ///place order
   PublishSubject<PlaceOrderUseCaseParams> _placeOrderRequest = PublishSubject();
-  PublishSubject<Resource<bool>> _placeOrderResponse = PublishSubject();
-  Stream<Resource<bool>> get placeOrderStream => _validateOtpResponse.stream;
+  PublishSubject<Resource<PlaceOrder>> _placeOrderResponse = PublishSubject();
+
+  Stream<Resource<PlaceOrder>> get placeOrderStream => _placeOrderResponse.stream;
 
   ///enter otp request subject holder
   PublishSubject<EnterOtpForEVoucherCategoryPurchaseUseCaseParams> _validateOtpRequest = PublishSubject();
   PublishSubject<Resource<bool>> _validateOtpResponse = PublishSubject();
+
   Stream<Resource<bool>> get enterOtpStream => _validateOtpResponse.stream;
 
   BehaviorSubject<String> _otpSubject = BehaviorSubject.seeded("");
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   EnterOtpForEVoucherCategoryPurchasePageViewModel(this._enterOtpForEVoucherPurchaseCategoryUseCase,
@@ -68,6 +75,7 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
         } else if (event.status == Status.SUCCESS) {}
       });
     });
+
     this._placeOrderRequest.listen((value) {
       RequestManager(
         value,
@@ -77,9 +85,11 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
         _placeOrderResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
+          showToastWithError(event.appError!);
         }
       });
     });
+
     _evoucherOtpRequest.listen((value) {
       RequestManager(value, createCall: () => eVoucherOtpUseCase.execute(params: value))
           .asFlow()
@@ -116,21 +126,21 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
   }
 
   void placeOrder({
-    required String sourceAccount,
-    required String sourceCurrency,
-    required String cardItemId,
-    required double exchangeRate,
-    required String voucherCurrency,
-    required String reconciliationCurrency,
-    required String equivalentAmount,
-    required int denomination,
-    required String discount,
-    required String categories,
-    required String voucherName,
-    required String productId,
-    required String productName,
-    required String otpCode,
-    required bool getToken,
+    required String? sourceAccount,
+    required String? sourceCurrency,
+    required String? cardItemId,
+    required double? exchangeRate,
+    required String? voucherCurrency,
+    required String? reconciliationCurrency,
+    required String? equivalentAmount,
+    required int? denomination,
+    required String? discount,
+    required String? categories,
+    required String? voucherName,
+    required String? productId,
+    required String? productName,
+    required String? otpCode,
+    required bool? getToken,
   }) {
     _placeOrderRequest.safeAdd(PlaceOrderUseCaseParams(
       sourceAccount: sourceAccount,
@@ -158,7 +168,6 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
 
   @override
   void dispose() {
-    otpController.clear();
     _validateOtpRequest.close();
     _validateOtpResponse.close();
     countDownController.disposeTimer();

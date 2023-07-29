@@ -17,5 +17,5 @@ class NetworkProperties {
 //   static const String BASE_CHANNEL_URL = "https://mba-neprp.theblink.com:443/api";
 //   static const String BASE_ROUTER_URL = "https://rout-neprp.theblink.com:443/api";
 //   static const String BASE_BENEFICIARY_URL = "https://mba-neprp.theblink.com:443/contactcenter/api";
-//   static const String BASE_EV0UCHER_URL = "https://mba-neprp.theblink.com:443/contactcenter/api";
+//   static const String BASE_EV0UCHER_URL = "https://mba-neprp.theblink.com:443/Voucher/api";
 }

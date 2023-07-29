@@ -18,7 +18,6 @@ class EVoucherFilterValidationUseCaseParams extends Params {
   String category;
   String region;
   String minValue;
-
   String maxValue;
 
   EVoucherFilterValidationUseCaseParams({
@@ -30,20 +29,22 @@ class EVoucherFilterValidationUseCaseParams extends Params {
 
   @override
   Either<AppError, bool> verify() {
-    ///TODO Validation Msg for Filter Dialog
     if (category.isEmpty) {
       return Left(
-          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_IBAN_MOBILE, cause: Exception()));
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.SELECT_CATEGORY, cause: Exception()));
     } else if (region.isEmpty) {
-      return Left(
-          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_RECIPIENT_NAME, cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.SELECT_REGION, cause: Exception()));
     } else if (minValue.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''), type: ErrorType.EMPTY_RECIPIENT_ADDRESS, cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.SELECT_MIN_VALUE, cause: Exception()));
     } else if (maxValue.isEmpty) {
-      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_PURPOSE, cause: Exception()));
-    } else if (double.parse(maxValue) >= double.parse(minValue)) {
-      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_PURPOSE, cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.SELECT_MAX_VALUE, cause: Exception()));
+    } else if (double.parse(minValue) > double.parse(maxValue)) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.MAX_VALUE_SHOULD_BE_GREATER_THAN_MIN,
+          cause: Exception()));
     }
     return Right(true);
   }

@@ -165,4 +165,9 @@ class TimeUtils {
     final DateFormat formatter = DateFormat('dd MMMM');
     return formatter.format(dateTime);
   }
+
+  static String convertDateTimeToDMY(String date) {
+    final DateTime dateTime = DateTime.parse(date).toLocal();
+    return DateFormat('dd MMM yyyy').format(dateTime);
+  }
 }

@@ -20,7 +20,7 @@ class EVoucherTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.w),
+      padding: EdgeInsetsDirectional.only(start: 24.0.w),
       child: Align(
           alignment: this.alignment,
           child: Text(
