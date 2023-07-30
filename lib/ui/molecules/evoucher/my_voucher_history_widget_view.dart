@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:domain/model/e_voucher/voucher_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
@@ -97,7 +98,8 @@ class MyVoucherHistoryWidget extends StatelessWidget {
                       ),
                       SizedBox(width: 2.w),
                       Text(
-                        data.lineItems.first.currency ?? '',
+                        //  data.lineItems.first.currency ?? '',
+                        S.of(context).JOD,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             color: Theme.of(context).colorScheme.onInverseSurface,
