@@ -29,13 +29,14 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
           final provider = ProviderScope.containerOf(context).read(
             evoucherViewModelProvider,
           );
-          provider.getVoucherHistorySubject();
+
           Navigator.pushNamedAndRemoveUntil(
             context,
             RoutePaths.Evoucher,
             (route) => route.settings.name == RoutePaths.AppHome,
             arguments: EvoucherPageArguments(EvoucherLandingPageNavigationType.PURCHASE_BY_CATEGORY),
           );
+          // provider.getVoucherCategories();
         }
       },
       child: Container(

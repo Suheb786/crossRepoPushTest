@@ -77,7 +77,7 @@ class EvoucherViewModel extends BasePageViewModel {
     required this.eVoucherHistoryUseCase,
     required this.eVoucherItemFilterUseCase,
   }) {
-    getVoucherCategories();
+  //  getVoucherCategories();
 
     getVoucherHistorySubject();
 

@@ -262,11 +262,11 @@ class EVouchersFilterDialogView extends StatelessWidget {
                                     },
                                     suffixIcon: (value, data) {
                                       return Container(
-                                          height: 16,
-                                          width: 16,
-                                          padding: EdgeInsetsDirectional.only(end: 8),
+                                          height: 16.h,
+                                          width: 16.w,
+                                          padding: EdgeInsetsDirectional.only(end: 8.w),
                                           child: AppSvg.asset(AssetUtils.downArrow,
-                                              color: AppColor.dark_gray_1));
+                                              color: Theme.of(context).colorScheme.surfaceTint));
                                     },
                                   );
                                 }),
@@ -329,16 +329,24 @@ class EVouchersFilterDialogView extends StatelessWidget {
                                                 color: Theme.of(context).colorScheme.secondary),
                                           ),
                                         ),
-                                        Padding(
-                                          padding: EdgeInsetsDirectional.only(top: 8.0.h, bottom: 16.h),
-                                          child: Center(
-                                            child: Text(
-                                              S.of(context).swipeDownToCancel,
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  fontSize: 10.t,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Theme.of(context).colorScheme.surfaceTint),
+                                        GestureDetector(
+                                          onVerticalDragEnd: (details) {
+                                            if (details.primaryVelocity! > 0) {
+                                              onDismissed?.call();
+                                            }
+                                          },
+                                          behavior: HitTestBehavior.translucent,
+                                          child: Padding(
+                                            padding: EdgeInsetsDirectional.only(top: 8.0.h, bottom: 16.h),
+                                            child: Center(
+                                              child: Text(
+                                                S.of(context).swipeDownToCancel,
+                                                style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
+                                                    fontSize: 10.t,
+                                                    fontWeight: FontWeight.w400,
+                                                    color: Theme.of(context).colorScheme.surfaceTint),
+                                              ),
                                             ),
                                           ),
                                         ),

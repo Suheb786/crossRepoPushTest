@@ -50,6 +50,8 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
         model.voucherCategoriesResponseSubject.safeAdd(Resource.success(data: model.categoriesList));
       });
     }
+
+    model.getVoucherCategories();
     super.onModelReady(model);
   }
 

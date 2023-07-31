@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:domain/constants/enum/evoucher_history_status_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -206,8 +206,8 @@ class ViewVoucherBtb extends StatelessWidget {
         onTap: () {
           // Navigator.pushNamed(context, RoutePaths.ShareVoucher);
 
-          if (model.argument.voucherDetail?.lineItems.first.status?.trim() == "success") {
-               Navigator.pushNamed(context, RoutePaths.ShareVoucher,
+          if (model.argument.voucherDetail?.lineItems.first.status == EvoucherHistoryStatusEnum.SUCCESS) {
+            Navigator.pushNamed(context, RoutePaths.ShareVoucher,
                 arguments: ShareVoucherPageArgument(model.argument.voucherDetail));
           } else {
             InformationDialog.show(context,
