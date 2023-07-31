@@ -144,7 +144,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                             AccountDetails(
                               title: S.current.amount.toCapitalized(),
                               value:
-                                  "${model.argument.placeOrder?.lineItems?.first.value ?? 0.0} ${model.argument.placeOrder?.lineItems?.first.currency ?? ""}",
+                                  "${model.argument.placeOrder?.lineItems?.first.value?.toStringAsFixed(3) ?? 0.0} ${model.argument.placeOrder?.lineItems?.first.currency ?? ""}",
                               showIcon: false,
                             ),
                             SizedBox(height: 16.h),
