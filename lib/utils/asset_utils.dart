@@ -177,69 +177,27 @@ class AssetUtils {
   static const String e_voucher = svg + "e_voucher.svg";
 
   /// DRAWABLES
-  static const String splashLogo = drawable + "splash.png";
-  static const String loginCard = drawable + "login_card.png";
-  static const String complete = drawable + "complete.png";
-  static const String location = drawable + "location.png";
-  static const String locationBlack = drawable + "location_black.png";
-  static const String marker = drawable + "marker.png";
-  static const String card = drawable + "card.png";
-  static const String infinite = drawable + "infinite.png";
-  static const String male = drawable + "male.png";
-  static const String female = drawable + "female.png";
-  static const String circle = drawable + "circle.webp";
-  static const String visa = drawable + "visa.png";
-  static const String contactLess = drawable + "contact_less.png";
-  static const String cardLogo = drawable + "card_logo.png";
-  static const String jordan_flag = drawable + "jordan_flag.png";
-  static const String blink = drawable + "blink.png";
-  static const String welcome = drawable + "welcome.png";
   static const String line = drawable + "line.png";
   static const String line_gray = drawable + "line_gray.png";
   static const String line_white = svg + "zigZag_white_line.svg";
   static const String line_black_white = drawable + "line_black_white.png";
   static const String zigzagRed = drawable + "zigzag_red.png";
-  static const String ellipseRed = drawable + "ellipse_red.png";
-  static const String ellipseWhite = drawable + "ellipse_white.png";
-  static const String progress1 = drawable + "progress_1.png";
-  static const String progress2 = drawable + "progress_2.png";
-  static const String progress1a = drawable + "progress1a.png";
-  static const String progress2a = drawable + "progress2a.png";
   static const String zigzagBackground = drawable + "zigzag_background.png";
-  static const String creditCard = drawable + "credit_card.png";
-  static const String ellipseYellow = drawable + "ellipse_yellow.png";
-  static const String debitCard = drawable + "debit_card.png";
   static const String refresh = drawable + "refresh.png";
-  static const String requestedOffer = drawable + "requested_offer.png";
   static const String creditCardNotDelivered = drawable + "card_not_delivered_bg.png";
-
-  //static const String sentOffer = drawable + "sent_offer.png";
-  static const String placeholder = drawable + "placeholder.png";
-  static const String swigglePng = drawable + "swiggle.png";
-  static const String blinkMarkerPng = drawable + "blink_marker.png";
   static const String birdPng = drawable + "bird_png.png";
   static const String dummyProfile = drawable + "dummy_profile.png";
-  static const String image = drawable + "image.png";
-  static const String statementPicture = drawable + "statement_picture.png";
   static const String zigzagWhite = drawable + "zigzag_white.png";
   static const String zigzagDebit = drawable + "zig_zag_debit.png";
   static const String credit = drawable + "credit.png";
-  static const String newOutfit = drawable + "newOutfit.png";
-  static const String anghamiPlus = drawable + "anghami_plus.png";
-  static const String creditStatement = drawable + "credit-statement.png";
   static const String debitBlurWidget = drawable + "debit_blur_widget.png";
   static const String creditBlurCard = drawable + "credit_blur_card.png";
-  static const String qr = drawable + "qr.png";
   static const String viewSubscription = drawable + "view_subscription.png";
-
-  ///voucher static image
-  static const String shareVoucher = drawable + "share_voucher.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";
   static const String loaderAnimation = _animation + "Blink_Loader.json";
   static const String swipeDownAnimation = _animation + "Swipe_Down.json";
-  static const String swipeUpAnimation = _animation + "Swipe_Up.json";
   static const String loaderAnimation1 = _animation + "BlinkLoader_50p.json";
 
   ///Evoucher svg
@@ -283,8 +241,6 @@ class AssetUtils {
   ///Rj PNG Images
 
   static const String flight = drawable + "flight.png";
-  static const String RjCardBg = drawable + "rj_card_bg.png";
-  static const String RjCardDescriptionLogo = drawable + "rj_card_description_logo.png";
   static const String EconomySeat = drawable + "economy_seat.png";
   static const String BusinessSeat = drawable + "business_icon.png";
   static const String BigSearchIcon = drawable + "big_search_icon.png";
