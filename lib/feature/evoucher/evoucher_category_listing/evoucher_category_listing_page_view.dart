@@ -63,7 +63,6 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
             child: AppStreamBuilder<Resource<List<VoucherItem>>>(
                 initialData: Resource.none(),
                 stream: model.voucherItemFilterResponseStream,
-                
                 dataBuilder: (context, categoryVouchers) {
                   switch (categoryVouchers?.status) {
                     case Status.SUCCESS:

@@ -6,8 +6,7 @@ part of 'save_id_info_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SaveIdInfoRequest _$SaveIdInfoRequestFromJson(Map<String, dynamic> json) =>
-    SaveIdInfoRequest(
+SaveIdInfoRequest _$SaveIdInfoRequestFromJson(Map<String, dynamic> json) => SaveIdInfoRequest(
       id: json['id'] as String?,
       type: json['type'] as String?,
       fullName: json['FullName'] as String?,
@@ -38,8 +37,7 @@ SaveIdInfoRequest _$SaveIdInfoRequestFromJson(Map<String, dynamic> json) =>
       placeOfBirth: json['PlaceOfBirth'] as String?,
     );
 
-Map<String, dynamic> _$SaveIdInfoRequestToJson(SaveIdInfoRequest instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$SaveIdInfoRequestToJson(SaveIdInfoRequest instance) => <String, dynamic>{
       'id': instance.id,
       'type': instance.type,
       'FullName': instance.fullName,

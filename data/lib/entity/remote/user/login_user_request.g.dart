@@ -6,8 +6,7 @@ part of 'login_user_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-LoginUserRequest _$LoginUserRequestFromJson(Map<String, dynamic> json) =>
-    LoginUserRequest(
+LoginUserRequest _$LoginUserRequestFromJson(Map<String, dynamic> json) => LoginUserRequest(
       userName: json['userName'] as String? ?? "",
       password: json['password'] as String? ?? "",
       baseData: json['baseClass'] as Map<String, dynamic>,
@@ -17,8 +16,7 @@ LoginUserRequest _$LoginUserRequestFromJson(Map<String, dynamic> json) =>
       fireBaseToken: json['fireBaseToken'] as String? ?? "",
     );
 
-Map<String, dynamic> _$LoginUserRequestToJson(LoginUserRequest instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$LoginUserRequestToJson(LoginUserRequest instance) => <String, dynamic>{
       'uniqueId': instance.uniqueId,
       'getToken': instance.getToken,
       'platform': instance.platform,

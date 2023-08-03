@@ -6,8 +6,7 @@ part of 'ahwal_info_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AhwalInfoEntity _$AhwalInfoEntityFromJson(Map<String, dynamic> json) =>
-    AhwalInfoEntity(
+AhwalInfoEntity _$AhwalInfoEntityFromJson(Map<String, dynamic> json) => AhwalInfoEntity(
       firstNameAr: json['firstNameAr'] as String?,
       secNameAr: json['secNameAr'] as String?,
       thirdNameAr: json['thirdNameAr'] as String?,
@@ -20,8 +19,7 @@ AhwalInfoEntity _$AhwalInfoEntityFromJson(Map<String, dynamic> json) =>
       thirdNameEn: json['thirdNameEn'] as String?,
     );
 
-Map<String, dynamic> _$AhwalInfoEntityToJson(AhwalInfoEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$AhwalInfoEntityToJson(AhwalInfoEntity instance) => <String, dynamic>{
       'firstNameAr': instance.firstNameAr,
       'secNameAr': instance.secNameAr,
       'thirdNameAr': instance.thirdNameAr,

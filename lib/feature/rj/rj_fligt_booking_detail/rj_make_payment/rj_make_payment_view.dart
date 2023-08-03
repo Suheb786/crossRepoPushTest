@@ -217,7 +217,6 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                         ),
                                         AppStreamBuilder<bool>(
                                           initialData: false,
-
                                           stream: model.showButtonSubjectStream,
                                           dataBuilder: (BuildContext context, data) {
                                             return Visibility(

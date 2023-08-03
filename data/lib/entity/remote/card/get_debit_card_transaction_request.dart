@@ -14,7 +14,7 @@ class GetDebitCardTransactionRequest {
   final Map<String, dynamic> baseData;
 
   GetDebitCardTransactionRequest(
-      {required this.baseData, this.noOfDays= 90, this.getToken= true, this.isDebit= true});
+      {required this.baseData, this.noOfDays = 90, this.getToken = true, this.isDebit = true});
 
   factory GetDebitCardTransactionRequest.fromJson(Map<String, dynamic> json) =>
       _$GetDebitCardTransactionRequestFromJson(json);

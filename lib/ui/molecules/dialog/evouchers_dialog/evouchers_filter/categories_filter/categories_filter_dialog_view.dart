@@ -101,7 +101,7 @@ class CategoriesFilterDialogView extends StatelessWidget {
                                         childCount: model.allCategories.length,
                                         builder: (BuildContext context, int index) {
                                           return ListScrollWheelListWidget(
-                                            label: model.allCategories[index].categoryName ?? '',
+                                            label: model.allCategories[index].categoryName,
                                             textColor: currentIndex == index
                                                 ? Theme.of(context).primaryColorDark
                                                 : AppColor.dark_gray_1,

@@ -1,4 +1,3 @@
-import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_detail_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_history/voucher_by_date_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:domain/model/e_voucher/voucher_by_date.dart';

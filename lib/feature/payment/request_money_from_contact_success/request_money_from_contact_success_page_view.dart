@@ -38,7 +38,8 @@ class RequestAmountFromContactSuccessPageView
               Stack(
                 alignment: Alignment.center,
                 children: [
-                  Image.asset(AssetUtils.line, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4)),
+                  Image.asset(AssetUtils.line,
+                      color: Theme.of(context).colorScheme.secondary.withOpacity(0.4)),
                   Align(
                     alignment: Alignment.center,
                     child: Container(
@@ -47,8 +48,9 @@ class RequestAmountFromContactSuccessPageView
                         shape: BoxShape.circle,
                         color: Theme.of(context).primaryColor,
                       ),
-                      child:
-                          Center(child: AppSvg.asset(AssetUtils.right, color: Theme.of(context).colorScheme.secondary)),
+                      child: Center(
+                          child:
+                              AppSvg.asset(AssetUtils.right, color: Theme.of(context).colorScheme.secondary)),
                     ),
                   ),
                 ],

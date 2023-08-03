@@ -6,8 +6,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'get_pre_paid_categories_list_entity.g.dart';
 
 @JsonSerializable()
-class GetPrePaidCategoriesListEntity extends BaseLayerDataTransformer<
-    GetPrePaidCategoriesListEntity, GetPrePaidCategoriesModelContent> {
+class GetPrePaidCategoriesListEntity
+    extends BaseLayerDataTransformer<GetPrePaidCategoriesListEntity, GetPrePaidCategoriesModelContent> {
   @JsonKey(name: "categories")
   List<GetPrePaidCategoriesEntity>? getPrePaidCategoriesEntity;
 
@@ -19,15 +19,13 @@ class GetPrePaidCategoriesListEntity extends BaseLayerDataTransformer<
   Map<String, dynamic> toJson() => _$GetPrePaidCategoriesListEntityToJson(this);
 
   @override
-  GetPrePaidCategoriesListEntity restore(
-      GetPrePaidCategoriesModelContent data) {
+  GetPrePaidCategoriesListEntity restore(GetPrePaidCategoriesModelContent data) {
     return GetPrePaidCategoriesListEntity();
   }
 
   @override
   GetPrePaidCategoriesModelContent transform() {
     return GetPrePaidCategoriesModelContent(
-        getPrepaidBillerListModelData:
-        this.getPrePaidCategoriesEntity?.map((e) => e.transform()).toList());
+        getPrepaidBillerListModelData: this.getPrePaidCategoriesEntity?.map((e) => e.transform()).toList());
   }
 }

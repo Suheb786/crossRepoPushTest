@@ -4,5 +4,5 @@ class PayPostPaidBillList {
   final String? message;
   final List<BillerList>? billerList;
 
-  PayPostPaidBillList({this.message,this.billerList});
+  PayPostPaidBillList({this.message, this.billerList});
 }

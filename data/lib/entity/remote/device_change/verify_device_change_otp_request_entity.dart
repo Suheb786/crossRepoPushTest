@@ -17,10 +17,10 @@ class VerifyDeviceChangeOtpRequestEntity {
 
   VerifyDeviceChangeOtpRequestEntity(
       {required this.baseData,
-      this.getToken= true,
-      this.type= "DeviceChange",
-      this.otp= "",
-      this.fireBaseToken= ""});
+      this.getToken = true,
+      this.type = "DeviceChange",
+      this.otp = "",
+      this.fireBaseToken = ""});
 
   factory VerifyDeviceChangeOtpRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$VerifyDeviceChangeOtpRequestEntityFromJson(json);

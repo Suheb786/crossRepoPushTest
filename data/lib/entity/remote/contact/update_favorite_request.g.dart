@@ -6,9 +6,7 @@ part of 'update_favorite_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UpdateFavoriteRequest _$UpdateFavoriteRequestFromJson(
-        Map<String, dynamic> json) =>
-    UpdateFavoriteRequest(
+UpdateFavoriteRequest _$UpdateFavoriteRequestFromJson(Map<String, dynamic> json) => UpdateFavoriteRequest(
       beneficiaryDetailId: json['BeneficiaryDetailId'] as String?,
       isSendMoneyFav: json['IsSendMoneyFav'] as bool?,
       isRequestMoneyFav: json['IsRequestMoneyFav'] as bool?,
@@ -18,9 +16,7 @@ UpdateFavoriteRequest _$UpdateFavoriteRequestFromJson(
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$UpdateFavoriteRequestToJson(
-        UpdateFavoriteRequest instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$UpdateFavoriteRequestToJson(UpdateFavoriteRequest instance) => <String, dynamic>{
       'BeneficiaryDetailId': instance.beneficiaryDetailId,
       'IsSendMoneyFav': instance.isSendMoneyFav,
       'IsRequestMoneyFav': instance.isRequestMoneyFav,

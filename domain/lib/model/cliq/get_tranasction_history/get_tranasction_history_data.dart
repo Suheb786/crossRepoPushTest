@@ -38,6 +38,7 @@ class GetTransactionHistoryData {
   final bool? returnStatus;
   final String? returnDate;
   final bool? isFullReturn;
+
   GetTransactionHistoryData({
     required this.msgID,
     required this.trxType,

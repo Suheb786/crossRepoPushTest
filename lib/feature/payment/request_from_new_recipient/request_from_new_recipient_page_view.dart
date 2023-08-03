@@ -149,7 +149,9 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                                     S.of(context).requestMoneyFormateSample,
                                                                     style: TextStyle(
                                                                         fontFamily: StringUtils.appFont,
-                                                                        color: Theme.of(context).colorScheme.surface,
+                                                                        color: Theme.of(context)
+                                                                            .colorScheme
+                                                                            .surface,
                                                                         fontSize: 14.t,
                                                                         fontWeight: FontWeight.w400),
                                                                   ),

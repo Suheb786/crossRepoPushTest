@@ -27,6 +27,7 @@ class ReturnPaymentOtpPageViewModel extends BasePageViewModel {
   ///--------------------------final-valiables-------------------------------------///
 
   final GlobalKey<AppTextFieldState> otpKey = GlobalKey();
+
   // final AddContactIbanOTPuseCase addContactIbanOTPuseCase;
 
   ///--------------------------controllers-------------------------------------///
@@ -77,8 +78,7 @@ class ReturnPaymentOtpPageViewModel extends BasePageViewModel {
   PublishSubject<ReturnPaymentOTPUseCaseParams> _returnPaymentOtpValidationRequest = PublishSubject();
   PublishSubject<Resource<bool>> _returnPaymentOtpValidationResponse = PublishSubject();
 
-  ReturnPaymentOtpPageViewModel(
-      this._returnPaymentOTPUseCase, this._returnRTPrequestUsecase) {
+  ReturnPaymentOtpPageViewModel(this._returnPaymentOTPUseCase, this._returnRTPrequestUsecase) {
     _returnPaymentOtpValidationRequest.listen((value) {
       RequestManager(value, createCall: () => _returnPaymentOTPUseCase.execute(params: value))
           .asFlow()
@@ -104,6 +104,7 @@ class ReturnPaymentOtpPageViewModel extends BasePageViewModel {
       });
     });
   }
+
   Stream<Resource<bool>> get returnPaymentOtpValidationStream => _returnPaymentOtpValidationResponse.stream;
 
   ///--------------------------otp-subject-------------------------------------///
@@ -113,6 +114,7 @@ class ReturnPaymentOtpPageViewModel extends BasePageViewModel {
   ///--------------------------animated-button-subject-------------------------------------///
 
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+
   Stream<bool> get showButtonSubjectStream => _showButtonSubject.stream;
 
   ///--------------------------public-override-methods-------------------------------------///
@@ -162,5 +164,4 @@ class ReturnPaymentOtpPageViewModel extends BasePageViewModel {
   }
 
   ///--------------------------public-constructor-------------------------------------///
-
 }

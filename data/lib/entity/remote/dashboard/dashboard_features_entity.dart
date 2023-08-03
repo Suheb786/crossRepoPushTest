@@ -106,7 +106,7 @@ class DashboardFeaturesEntity
         isDebitCardRequestPhysicalCardEnabled: this.isDebitCardPhysicalCardRequestEnabled ?? false,
         blinkRetailAppBillPayment: this.blinkRetailAppBillPayment ?? false,
         appBillPaymentPostpaid: this.blinkRetailAppBillPaymentPayPostpaid ?? false,
-        appBillPaymentQrCode: /*this.paymentQRCode ?? false*/false,
+        appBillPaymentQrCode: /*this.paymentQRCode ?? false*/ false,
         appBillPaymentPrepaid: this.blinkRetailAppBillPaymentPayPrepaid ?? false,
         blinkRetailAppCliq: this.blinkRetailAppCliq ?? false,
         blinkRetailAppCliqAliasManagement: this.blinkRetailAppAliasManagement ?? false,
@@ -116,6 +116,6 @@ class DashboardFeaturesEntity
         returnPaymentFeatureEnabled: returnPaymentFeatureEnabled ?? false,
         manageContactEnabled: /*this.manageContactEnabled ?? false*/ true,
         manageContactHistory: /*this.manageContactHistory ?? false*/ true,
-        eVouchers: /*this.eVouchers ?? false*/true);
+        eVouchers: /*this.eVouchers ?? false*/ true);
   }
 }

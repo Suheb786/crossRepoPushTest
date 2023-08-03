@@ -13,6 +13,7 @@ class OtpForEditAliasAndMobileNoPage extends BasePage<OtpForEditAliasAndMobileNo
   final OtpForEditAliasAndMobileNoPageArguments _arguments;
 
   OtpForEditAliasAndMobileNoPage(this._arguments);
+
   @override
   OtpForEditAliasAndMobileNoPageState createState() => OtpForEditAliasAndMobileNoPageState();
 }

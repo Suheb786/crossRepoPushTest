@@ -64,7 +64,7 @@ class AppColor {
   static const light_gray = const Color(0xffb5b5b5);
 
   static const light_gray1 = const Color(0xfff2f2f2);
-  static const gray_black = const Color(0xff101010);  // Theme.of(context).colorScheme.shadow
+  static const gray_black = const Color(0xff101010); // Theme.of(context).colorScheme.shadow
   static const light_blue = const Color(0xff572BCC);
   static const light_blue1 = const Color(0xff4639FF);
   static const soft_red = const Color(0xffED7863);
@@ -102,7 +102,8 @@ class AppColor {
   static const whiteGrey = const Color(0xffDDDDDD);
   static const gray1 = const Color(0xffB5B5B5);
   static const strongRed = const Color(0xffD82A3E);
-  static const very_dark_gray_black = const Color(0xff101010); // Theme.of(context).inputDecorationTheme.hintStyle?.color
+  static const very_dark_gray_black =
+      const Color(0xff101010); // Theme.of(context).inputDecorationTheme.hintStyle?.color
   static const lightGrayishMagenta = const Color(0xffECE8EC); // Theme.of(context).textTheme.labelSmall!.color
   static const gray_2 = const Color(0xffB5B5B5); // Theme.of(context).textTheme.labelLarge!.color
   static const darkGray = const Color(0xff979797); // Theme.of(context).textTheme.labelMedium!.color

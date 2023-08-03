@@ -12,6 +12,7 @@ import 'package:domain/usecase/payment/get_account_by_alias_usecase.dart';
 import 'package:domain/usecase/payment/get_purpose_usecase.dart';
 import 'package:domain/usecase/payment/get_rejection_reason_usecase.dart';
 import 'package:domain/usecase/payment/pay_back_credit_card_usecase.dart';
+import 'package:domain/usecase/payment/qr_scan_otp_usecase.dart';
 import 'package:domain/usecase/payment/request_amount_from_contact_usecase.dart';
 import 'package:domain/usecase/payment/request_from_new_recipient_usecase.dart';
 import 'package:domain/usecase/payment/request_money_failure_usecase.dart';
@@ -27,7 +28,6 @@ import 'package:domain/usecase/payment/transfer_usecase.dart';
 import 'package:domain/usecase/payment/transfer_verify_usecase.dart';
 import 'package:domain/usecase/payment/verify_qr_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:domain/usecase/payment/qr_scan_otp_usecase.dart';
 
 ///[<AddSendMoneyContactUseCase>] provider
 final addSendMoneyContactUseCaseProvider = Provider.autoDispose<AddSendMoneyContactUseCase>(

@@ -5,8 +5,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'validate_pre_paid_bill_entity.g.dart';
 
 @JsonSerializable()
-class ValidatePrePaidBillEntity extends BaseLayerDataTransformer<
-    ValidatePrePaidBillEntity, ValidatePrePaidBillData> {
+class ValidatePrePaidBillEntity
+    extends BaseLayerDataTransformer<ValidatePrePaidBillEntity, ValidatePrePaidBillData> {
   @JsonKey(name: "success")
   dynamic success;
   @JsonKey(name: "message")

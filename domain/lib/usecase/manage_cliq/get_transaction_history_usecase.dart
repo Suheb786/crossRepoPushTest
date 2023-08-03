@@ -8,6 +8,7 @@ class GetTransactionHistoryUseCaseParams extends Params {
   final String? TransactionType;
   final String? TotalRecords;
   final bool? GetToken;
+
   GetTransactionHistoryUseCaseParams({
     required this.FilterDays,
     required this.TransactionType,

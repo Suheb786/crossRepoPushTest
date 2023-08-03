@@ -1803,5 +1803,8 @@
   "purchaseNow": "شراء الآن",
   "toViewVoucher": "لعرض القسيمة",
   "evoucherUnderProcessing": "القسيمة الإلكترونية قيد الإنتظار",
-  "viewVoucherDialogDescription": "القسيمة الإلكترونية قيد الإنتظار، رح نخبرك لما تكون جاهزة  للاستخدام."
+  "viewVoucherDialogDescription": "القسيمة الإلكترونية قيد الإنتظار، رح نخبرك لما تكون جاهزة  للاستخدام.",
+  "eVouchersAreHere": "القسائم الإلكترونية صارت متاحة!",
+  "unavailable": "غير متوفر",
+  "eVoucherLandingDialogDescption": "صار بإمكانك تشتري القسائم الإلكترونية من مختلف المتاجر المحلية والدولية المفضلة لديك. "
 }

@@ -10,6 +10,7 @@ class EditCliqOtpUseCase extends BaseUseCase<NetworkError, EditCliqOtpUseCasePar
   final CliqRepository _cliqRepository;
 
   EditCliqOtpUseCase(this._cliqRepository);
+
   @override
   Future<Either<NetworkError, EditCliqOtp>> execute({required EditCliqOtpUseCaseParams params}) {
     return _cliqRepository.editCliqIdOtp(

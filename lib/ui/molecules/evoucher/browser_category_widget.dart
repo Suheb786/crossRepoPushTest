@@ -63,7 +63,7 @@ class BrowserByCategoryItemWidget extends StatelessWidget {
           SizedBox(width: 16.w),
           Expanded(
             child: Text(
-              category.categoryName ?? '',
+              category.categoryName,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   color: Theme.of(context).colorScheme.shadow,

@@ -63,12 +63,12 @@ class CountryResidenceEntity
       this.streetName,
       this.createdOn,
       this.isActive,
-      this.residentCountryName= "",
-      this.residentCountryNameAr= '',
-      this.perResidentCountryName= "",
-      this.perResidentCountryNameAr= '',
-      this.perResidentCityName= "",
-      this.perResidentCityNameAr= ''});
+      this.residentCountryName = "",
+      this.residentCountryNameAr = '',
+      this.perResidentCountryName = "",
+      this.perResidentCountryNameAr = '',
+      this.perResidentCityName = "",
+      this.perResidentCityNameAr = ''});
 
   factory CountryResidenceEntity.fromJson(Map<String, dynamic> json) =>
       _$CountryResidenceEntityFromJson(json);

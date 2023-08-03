@@ -123,9 +123,9 @@ class EmploymentStatusDialogView extends StatelessWidget {
                             height: 57.h,
                             width: 57.w,
                             decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Theme.of(context).textTheme.bodyLarge!.color!),
-                            child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
+                                shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyLarge!.color!),
+                            child:
+                                AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
                         Padding(

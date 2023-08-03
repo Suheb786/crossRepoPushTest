@@ -1,6 +1,5 @@
 import 'package:data/entity/remote/payment/check_send_money_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_content_response_entity.dart';
-import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
 import 'package:data/entity/remote/payment/return_payment_activity/get_rejection_reason_response_entity.dart';
 import 'package:data/entity/remote/payment/transfer_success_response_entity.dart';

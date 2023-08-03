@@ -6,16 +6,12 @@ part of 'suspend_cliq_id_otp_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SuspendCliqIdOtpResponseEntity _$SuspendCliqIdOtpResponseEntityFromJson(
-        Map<String, dynamic> json) =>
+SuspendCliqIdOtpResponseEntity _$SuspendCliqIdOtpResponseEntityFromJson(Map<String, dynamic> json) =>
     SuspendCliqIdOtpResponseEntity(
-      json['response'] == null
-          ? null
-          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+      json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$SuspendCliqIdOtpResponseEntityToJson(
-        SuspendCliqIdOtpResponseEntity instance) =>
+Map<String, dynamic> _$SuspendCliqIdOtpResponseEntityToJson(SuspendCliqIdOtpResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

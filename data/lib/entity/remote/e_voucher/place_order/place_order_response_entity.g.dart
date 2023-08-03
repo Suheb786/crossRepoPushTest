@@ -6,22 +6,16 @@ part of 'place_order_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PlaceOrderResponseEntity _$PlaceOrderResponseEntityFromJson(
-        Map<String, dynamic> json) =>
+PlaceOrderResponseEntity _$PlaceOrderResponseEntityFromJson(Map<String, dynamic> json) =>
     PlaceOrderResponseEntity(
-      json['response'] == null
-          ? null
-          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+      json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$PlaceOrderResponseEntityToJson(
-        PlaceOrderResponseEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$PlaceOrderResponseEntityToJson(PlaceOrderResponseEntity instance) => <String, dynamic>{
       'response': instance.response,
     };
 
-PlaceOrderContentEntity _$PlaceOrderContentEntityFromJson(
-        Map<String, dynamic> json) =>
+PlaceOrderContentEntity _$PlaceOrderContentEntityFromJson(Map<String, dynamic> json) =>
     PlaceOrderContentEntity(
       id: json['id'] as String,
       customerName: json['customerName'] as String,
@@ -36,9 +30,7 @@ PlaceOrderContentEntity _$PlaceOrderContentEntityFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$PlaceOrderContentEntityToJson(
-        PlaceOrderContentEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$PlaceOrderContentEntityToJson(PlaceOrderContentEntity instance) => <String, dynamic>{
       'id': instance.id,
       'customerName': instance.customerName,
       'deliveryChannel': instance.deliveryChannel,
@@ -50,8 +42,7 @@ Map<String, dynamic> _$PlaceOrderContentEntityToJson(
       'lineItems': instance.lineItems,
     };
 
-LineItemEntity _$LineItemEntityFromJson(Map<String, dynamic> json) =>
-    LineItemEntity(
+LineItemEntity _$LineItemEntityFromJson(Map<String, dynamic> json) => LineItemEntity(
       lineNumber: json['lineNumber'] as int,
       cardItemId: json['cardItemId'] as String,
       cardItemName: json['cardItemName'] as String?,
@@ -66,8 +57,7 @@ LineItemEntity _$LineItemEntityFromJson(Map<String, dynamic> json) =>
       netPrice: json['netPrice'] as String,
     );
 
-Map<String, dynamic> _$LineItemEntityToJson(LineItemEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$LineItemEntityToJson(LineItemEntity instance) => <String, dynamic>{
       'lineNumber': instance.lineNumber,
       'cardItemId': instance.cardItemId,
       'cardItemName': instance.cardItemName,

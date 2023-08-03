@@ -131,15 +131,11 @@ class LinkAccountPageView extends BasePageViewWidget<LinkAccountPageViewModel> {
                                                           child: SingleChildScrollView(
                                                             //   physics: ClampingScrollPhysics(),
                                                             controller: model.controller,
-                                                            child:
-                                                                AppStreamBuilder<
-                                                                        Resource<
-                                                                            List<GetAccountByCustomerId>>>(
-                                                                    stream:
-                                                                        model.getAccountByCustomerIdStream,
+                                                            child: AppStreamBuilder<
+                                                                    Resource<List<GetAccountByCustomerId>>>(
+                                                                stream: model.getAccountByCustomerIdStream,
                                                                 onData: (getAccountByCustomerIdResponse) {
-                                                                      if (getAccountByCustomerIdResponse
-                                                                              .status ==
+                                                                  if (getAccountByCustomerIdResponse.status ==
                                                                       Status.SUCCESS) {
                                                                     LinkAccountDialog.show(context,
                                                                         label: S.of(context).addLinkAccount,

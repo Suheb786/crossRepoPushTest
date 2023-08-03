@@ -6,8 +6,7 @@ part of 'suspend_cliq_id_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SuspendCliqIdRequestEntity _$SuspendCliqIdRequestEntityFromJson(
-        Map<String, dynamic> json) =>
+SuspendCliqIdRequestEntity _$SuspendCliqIdRequestEntityFromJson(Map<String, dynamic> json) =>
     SuspendCliqIdRequestEntity(
       aliasId: json['aliasId'] as String?,
       otpCode: json['OtpCode'] as String?,
@@ -15,8 +14,7 @@ SuspendCliqIdRequestEntity _$SuspendCliqIdRequestEntityFromJson(
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$SuspendCliqIdRequestEntityToJson(
-        SuspendCliqIdRequestEntity instance) =>
+Map<String, dynamic> _$SuspendCliqIdRequestEntityToJson(SuspendCliqIdRequestEntity instance) =>
     <String, dynamic>{
       'aliasId': instance.aliasId,
       'OtpCode': instance.otpCode,

@@ -3,8 +3,8 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/e_voucher/voucher_categories.dart';
+import 'package:domain/model/e_voucher/voucher_min_max_value.dart';
 import 'package:domain/model/e_voucher/voucher_region_by_categories.dart';
-import 'package:domain/usecase/evouchers/voucher_min_max_value.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
@@ -18,7 +18,6 @@ import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/r
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -112,9 +111,10 @@ class EVouchersFilterDialogView extends StatelessWidget {
                                   Navigator.pop(context);
                                 }, onSelected: (value) {
                                   Navigator.pop(context);
-                                  model.categoryController.text = value.categoryName ?? '';
-                                  model.getRegionByCategories(value.id == 0 ? "" : value.id.toString());
-                                  model.categryId = value.id.toString();
+                                  model.categoryController.text = value.categoryName;
+                                  model.categryId = value.id == 0 ? "" : value.id.toString();
+                                  model.getRegionByCategories(model.categryId);
+
                                   model.showResetFilterButton();
                                 });
                               },
@@ -123,7 +123,8 @@ class EVouchersFilterDialogView extends StatelessWidget {
                                     height: 16.h,
                                     width: 16.w,
                                     padding: EdgeInsetsDirectional.only(end: 8.w),
-                                    child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
+                                    child: AppSvg.asset(AssetUtils.downArrow,
+                                        color: Theme.of(context).colorScheme.surfaceTint));
                               },
                             ),
                             SizedBox(
@@ -170,7 +171,7 @@ class EVouchersFilterDialogView extends StatelessWidget {
                                           width: 16.w,
                                           padding: EdgeInsetsDirectional.only(end: 8.w),
                                           child: AppSvg.asset(AssetUtils.downArrow,
-                                              color: AppColor.dark_gray_1));
+                                              color: Theme.of(context).colorScheme.surfaceTint));
                                     },
                                   );
                                 }),
@@ -218,7 +219,7 @@ class EVouchersFilterDialogView extends StatelessWidget {
                                           width: 16.w,
                                           padding: EdgeInsetsDirectional.only(end: 8.w),
                                           child: AppSvg.asset(AssetUtils.downArrow,
-                                              color: AppColor.dark_gray_1));
+                                              color: Theme.of(context).colorScheme.surfaceTint));
                                     },
                                   );
                                 }),
@@ -262,11 +263,11 @@ class EVouchersFilterDialogView extends StatelessWidget {
                                     },
                                     suffixIcon: (value, data) {
                                       return Container(
-                                          height: 16,
-                                          width: 16,
-                                          padding: EdgeInsetsDirectional.only(end: 8),
+                                          height: 16.h,
+                                          width: 16.w,
+                                          padding: EdgeInsetsDirectional.only(end: 8.w),
                                           child: AppSvg.asset(AssetUtils.downArrow,
-                                              color: AppColor.dark_gray_1));
+                                              color: Theme.of(context).colorScheme.surfaceTint));
                                     },
                                   );
                                 }),
@@ -311,7 +312,7 @@ class EVouchersFilterDialogView extends StatelessWidget {
                                 },
                                 dataBuilder: (context, validationStatus) {
                                   return Container(
-                                    color: AppColor.white.withOpacity(0),
+                                    color: Theme.of(context).dialogBackgroundColor.withOpacity(0),
                                     child: Column(
                                       children: <Widget>[
                                         InkWell(
@@ -329,16 +330,24 @@ class EVouchersFilterDialogView extends StatelessWidget {
                                                 color: Theme.of(context).colorScheme.secondary),
                                           ),
                                         ),
-                                        Padding(
-                                          padding: EdgeInsetsDirectional.only(top: 8.0.h, bottom: 16.h),
-                                          child: Center(
-                                            child: Text(
-                                              S.of(context).swipeDownToCancel,
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  fontSize: 10.t,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Theme.of(context).colorScheme.surfaceTint),
+                                        GestureDetector(
+                                          onVerticalDragEnd: (details) {
+                                            if (details.primaryVelocity! > 0) {
+                                              onDismissed?.call();
+                                            }
+                                          },
+                                          behavior: HitTestBehavior.translucent,
+                                          child: Padding(
+                                            padding: EdgeInsetsDirectional.only(top: 8.0.h, bottom: 16.h),
+                                            child: Center(
+                                              child: Text(
+                                                S.of(context).swipeDownToCancel,
+                                                style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
+                                                    fontSize: 10.t,
+                                                    fontWeight: FontWeight.w400,
+                                                    color: Theme.of(context).colorScheme.surfaceTint),
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -362,12 +371,13 @@ class EVouchersFilterDialogView extends StatelessWidget {
     showTopSnackBar(
         Overlay.of(context),
         Material(
-          color: AppColor.white.withOpacity(0),
+          color: Theme.of(context).dialogBackgroundColor.withOpacity(0),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.0.w),
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 16.0.h),
-              decoration: BoxDecoration(color: AppColor.dark_brown, borderRadius: BorderRadius.circular(16)),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.scrim, borderRadius: BorderRadius.circular(16.w)),
               child: Row(
                 children: [
                   Expanded(
@@ -378,7 +388,7 @@ class EVouchersFilterDialogView extends StatelessWidget {
                           S.of(context).error,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              color: AppColor.light_grayish_violet,
+                              color: Theme.of(context).colorScheme.onTertiary,
                               fontWeight: FontWeight.w400,
                               fontSize: 10.0.t),
                         ),

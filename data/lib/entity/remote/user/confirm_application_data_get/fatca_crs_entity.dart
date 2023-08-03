@@ -134,8 +134,8 @@ class FatcaCrsEntity implements BaseLayerDataTransformer<FatcaCrsEntity, FatcaCr
       this.taxResidenceCountry,
       this.deactivatedDate,
       this.signatureId,
-      this.isActive= false,
-      this.relationshipWithPEPName= "",
+      this.isActive = false,
+      this.relationshipWithPEPName = "",
       this.relationshipWithPEPNameAr});
 
   factory FatcaCrsEntity.fromJson(Map<String, dynamic> json) => _$FatcaCrsEntityFromJson(json);

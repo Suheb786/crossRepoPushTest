@@ -193,6 +193,7 @@ import 'package:data/entity/remote/device_change/resend_otp_device_change_reques
 import 'package:data/entity/remote/device_change/send_otp_token_device_change_request_entity.dart';
 import 'package:data/entity/remote/device_change/send_otp_token_email_request_entity.dart';
 import 'package:data/entity/remote/device_change/verify_device_change_otp_request_entity.dart';
+import 'package:data/entity/remote/e_voucher/get_settlement_amount/get_settlement_amount_request_entity.dart';
 import 'package:data/entity/remote/e_voucher/get_settlement_amount/get_settlement_amount_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_category/voucher_categories_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_detail_request.dart';
@@ -299,7 +300,7 @@ import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:data/entity/remote/e_voucher/get_settlement_amount/get_settlement_amount_request_entity.dart';
+
 import '../entity/remote/contact/add_beneficiary_response_entity.dart';
 import '../entity/remote/contact/remove_avatar_request.dart';
 import '../entity/remote/contact/send_otp_add_beneficiary_data_response_entity.dart';
@@ -309,6 +310,7 @@ import '../entity/remote/e_voucher/get_voucher_details/get_voucher_details_reque
 import '../entity/remote/e_voucher/get_voucher_details/get_voucher_details_response_entity.dart';
 import '../entity/remote/e_voucher/place_order/place_order_request_entity.dart';
 import '../entity/remote/e_voucher/place_order/place_order_response_entity.dart';
+
 part 'api_service.g.dart';
 
 //flutter pub run build_runner build

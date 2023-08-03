@@ -6,16 +6,12 @@ part of 'check_existing_call_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CheckExistingCallResponseEntity _$CheckExistingCallResponseEntityFromJson(
-        Map<String, dynamic> json) =>
+CheckExistingCallResponseEntity _$CheckExistingCallResponseEntityFromJson(Map<String, dynamic> json) =>
     CheckExistingCallResponseEntity(
-      json['response'] == null
-          ? null
-          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+      json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$CheckExistingCallResponseEntityToJson(
-        CheckExistingCallResponseEntity instance) =>
+Map<String, dynamic> _$CheckExistingCallResponseEntityToJson(CheckExistingCallResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

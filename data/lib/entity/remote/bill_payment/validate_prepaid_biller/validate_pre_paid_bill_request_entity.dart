@@ -23,7 +23,6 @@ class ValidatePrePaidBillRequestEntity {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-
   ValidatePrePaidBillRequestEntity({
     this.billerCode,
     this.amount,
@@ -36,10 +35,8 @@ class ValidatePrePaidBillRequestEntity {
     required this.baseData,
   });
 
-  factory ValidatePrePaidBillRequestEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory ValidatePrePaidBillRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$ValidatePrePaidBillRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$ValidatePrePaidBillRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$ValidatePrePaidBillRequestEntityToJson(this);
 }

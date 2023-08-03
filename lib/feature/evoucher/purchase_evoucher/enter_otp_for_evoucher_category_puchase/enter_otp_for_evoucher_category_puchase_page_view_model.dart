@@ -1,6 +1,4 @@
-import 'package:domain/model/e_voucher/e_voucher_otp.dart';
 import 'package:domain/model/e_voucher/place_order.dart';
-import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/enter_otp_for_evoucher_category_purchase_usecase.dart';
 import 'package:domain/usecase/evouchers/place_order_usecase.dart';

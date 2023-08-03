@@ -6,8 +6,7 @@ part of 'get_settlement_amount_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetSettlementAmountRequestEntity _$GetSettlementAmountRequestEntityFromJson(
-        Map<String, dynamic> json) =>
+GetSettlementAmountRequestEntity _$GetSettlementAmountRequestEntityFromJson(Map<String, dynamic> json) =>
     GetSettlementAmountRequestEntity(
       Amount: json['Amount'] as String?,
       FromCurrency: json['FromCurrency'] as String?,
@@ -16,8 +15,7 @@ GetSettlementAmountRequestEntity _$GetSettlementAmountRequestEntityFromJson(
       BaseClass: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$GetSettlementAmountRequestEntityToJson(
-        GetSettlementAmountRequestEntity instance) =>
+Map<String, dynamic> _$GetSettlementAmountRequestEntityToJson(GetSettlementAmountRequestEntity instance) =>
     <String, dynamic>{
       'Amount': instance.Amount,
       'FromCurrency': instance.FromCurrency,

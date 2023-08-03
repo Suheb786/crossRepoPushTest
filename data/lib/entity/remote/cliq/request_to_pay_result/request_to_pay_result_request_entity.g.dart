@@ -6,8 +6,7 @@ part of 'request_to_pay_result_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RequestToPayResultRequestEntity _$RequestToPayResultRequestEntityFromJson(
-        Map<String, dynamic> json) =>
+RequestToPayResultRequestEntity _$RequestToPayResultRequestEntityFromJson(Map<String, dynamic> json) =>
     RequestToPayResultRequestEntity(
       CustID: json['CustID'] as String,
       OrgnlMsgId: json['OrgnlMsgId'] as String,
@@ -19,8 +18,7 @@ RequestToPayResultRequestEntity _$RequestToPayResultRequestEntityFromJson(
       BaseClass: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$RequestToPayResultRequestEntityToJson(
-        RequestToPayResultRequestEntity instance) =>
+Map<String, dynamic> _$RequestToPayResultRequestEntityToJson(RequestToPayResultRequestEntity instance) =>
     <String, dynamic>{
       'CustID': instance.CustID,
       'OrgnlMsgId': instance.OrgnlMsgId,

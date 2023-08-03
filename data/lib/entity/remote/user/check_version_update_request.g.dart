@@ -6,8 +6,7 @@ part of 'check_version_update_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CheckVersionUpdateRequest _$CheckVersionUpdateRequestFromJson(
-        Map<String, dynamic> json) =>
+CheckVersionUpdateRequest _$CheckVersionUpdateRequestFromJson(Map<String, dynamic> json) =>
     CheckVersionUpdateRequest(
       uniqueId: json['UniqueId'] as String?,
       platform: json['Platform'] as String?,
@@ -17,8 +16,7 @@ CheckVersionUpdateRequest _$CheckVersionUpdateRequestFromJson(
       baseData: json['baseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$CheckVersionUpdateRequestToJson(
-        CheckVersionUpdateRequest instance) =>
+Map<String, dynamic> _$CheckVersionUpdateRequestToJson(CheckVersionUpdateRequest instance) =>
     <String, dynamic>{
       'UniqueId': instance.uniqueId,
       'Platform': instance.platform,

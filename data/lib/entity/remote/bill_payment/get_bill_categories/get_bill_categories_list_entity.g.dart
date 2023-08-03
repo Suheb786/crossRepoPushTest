@@ -6,16 +6,14 @@ part of 'get_bill_categories_list_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetBillCategoriesListEntity _$GetBillCategoriesListEntityFromJson(
-        Map<String, dynamic> json) =>
+GetBillCategoriesListEntity _$GetBillCategoriesListEntityFromJson(Map<String, dynamic> json) =>
     GetBillCategoriesListEntity(
       categoryName: json['categoryName'] as String?,
       iconCode: json['iconCode'],
       categoryNameAr: json['categoryNameAr'] as String?,
     );
 
-Map<String, dynamic> _$GetBillCategoriesListEntityToJson(
-        GetBillCategoriesListEntity instance) =>
+Map<String, dynamic> _$GetBillCategoriesListEntityToJson(GetBillCategoriesListEntity instance) =>
     <String, dynamic>{
       'categoryName': instance.categoryName,
       'iconCode': instance.iconCode,

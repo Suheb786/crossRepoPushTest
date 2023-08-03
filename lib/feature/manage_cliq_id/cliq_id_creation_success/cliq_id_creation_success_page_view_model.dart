@@ -10,12 +10,10 @@ class CliqIdCreationSuccessPageViewModel extends BasePageViewModel {
   CliqIdCreationSuccessPageViewModel(this.arguments);
 
   void shareFiles(
-    BuildContext context,
- {
+    BuildContext context, {
     required String s1,
     required String s2,
-  }
-  ) async {
+  }) async {
     // final box = context.findRenderObject() as RenderBox?;
     await Share.share(
       S.of(context).hereMyCliqDetails + '${s1}' + S.of(context).getYourBlinkAccountTodayBlinkNow + "\n$s2",

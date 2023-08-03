@@ -6,8 +6,7 @@ part of 'account_list_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AccountListEntity _$AccountListEntityFromJson(Map<String, dynamic> json) =>
-    AccountListEntity(
+AccountListEntity _$AccountListEntityFromJson(Map<String, dynamic> json) => AccountListEntity(
       recordId: json['recordId'] as String? ?? '',
       acciban: json['acciban'] as String? ?? '',
       bic: json['bic'] as String? ?? '',
@@ -18,8 +17,7 @@ AccountListEntity _$AccountListEntityFromJson(Map<String, dynamic> json) =>
       isDefault: json['isDefault'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$AccountListEntityToJson(AccountListEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$AccountListEntityToJson(AccountListEntity instance) => <String, dynamic>{
       'recordId': instance.recordId,
       'acciban': instance.acciban,
       'bic': instance.bic,

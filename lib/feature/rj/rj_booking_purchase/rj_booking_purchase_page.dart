@@ -34,5 +34,6 @@ class RjBookingPurchasePageState
 
 class RjBookingPurchasePageArgument {
   int amount;
+
   RjBookingPurchasePageArgument(this.amount);
 }

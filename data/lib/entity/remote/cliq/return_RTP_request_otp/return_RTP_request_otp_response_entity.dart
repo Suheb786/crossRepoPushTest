@@ -13,6 +13,7 @@ class ReturnRTPrequestOTPResponseEntity
     extends BaseLayerDataTransformer<ApproveRTPOtpResponseEntity, ReturnRTPRequestOTP> {
   @JsonKey(name: "response")
   final ResponseEntity response;
+
   ReturnRTPrequestOTPResponseEntity({
     required this.response,
   });

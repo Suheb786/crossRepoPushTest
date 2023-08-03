@@ -1454,7 +1454,6 @@ class NetworkError extends BaseError {
             return AppError(
                 cause: cause, error: error, type: ErrorType.OOPS_YOU_HAVE_EXCEEDED_YOUR_DAILY_TRANSFER_LIMIT);
 
-
           default:
             return AppError(cause: cause, error: error, type: ErrorType.NETWORK);
         }
