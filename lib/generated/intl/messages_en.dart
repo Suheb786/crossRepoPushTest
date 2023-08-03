@@ -50,8 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
 
-  static Map<String, Function> _notInlinedMessages(_) =>
-      <String, Function>{
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "AccountIsLinkedToTheAlias": MessageLookupByLibrary.simpleMessage(
             "Account is linked to the alias, but unable to set it to default"),
         "ContactMarkFavouriteFailure": MessageLookupByLibrary.simpleMessage(
@@ -745,7 +744,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "eVoucherLandingDialogDescption": MessageLookupByLibrary.simpleMessage(
             "You can now purchase and redeem e-vouchers from your favorite online & offline stores, locally and internationally."),
         "eVoucherSearchLabel": MessageLookupByLibrary.simpleMessage("What are you looking for?"),
-        "eVouchers": MessageLookupByLibrary.simpleMessage("eVouchers"),
+        "eVouchers": MessageLookupByLibrary.simpleMessage("E-vouchers"),
         "eVouchersAreHere": MessageLookupByLibrary.simpleMessage("e-Vouchers are here!"),
         "eVouchersSettings": MessageLookupByLibrary.simpleMessage("eVouchers"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),

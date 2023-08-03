@@ -17909,10 +17909,10 @@ class S {
     );
   }
 
-  /// `eVouchers`
+  /// `E-vouchers`
   String get eVouchers {
     return Intl.message(
-      'eVouchers',
+      'E-vouchers',
       name: 'eVouchers',
       desc: '',
       args: [],
@@ -18132,10 +18132,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
-
   @override
   Future<S> load(Locale locale) => S.load(locale);
-
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 
