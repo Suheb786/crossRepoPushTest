@@ -6,13 +6,15 @@ part of 'change_email_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ChangeEmailRequest _$ChangeEmailRequestFromJson(Map<String, dynamic> json) => ChangeEmailRequest(
+ChangeEmailRequest _$ChangeEmailRequestFromJson(Map<String, dynamic> json) =>
+    ChangeEmailRequest(
       email: json['EmailId'] as String? ?? "",
       getToken: json['GetToken'] as bool? ?? true,
       baseData: json['baseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$ChangeEmailRequestToJson(ChangeEmailRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$ChangeEmailRequestToJson(ChangeEmailRequest instance) =>
+    <String, dynamic>{
       'EmailId': instance.email,
       'GetToken': instance.getToken,
       'baseClass': instance.baseData,

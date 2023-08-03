@@ -6,7 +6,9 @@ part of 'account_details_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AccountDetailsEntity _$AccountDetailsEntityFromJson(Map<String, dynamic> json) => AccountDetailsEntity(
+AccountDetailsEntity _$AccountDetailsEntityFromJson(
+        Map<String, dynamic> json) =>
+    AccountDetailsEntity(
       createBy: json['createBy'] as String?,
       ourBranchID: json['ourBranchID'] as String?,
       clientID: json['clientID'] as String?,
@@ -52,7 +54,9 @@ AccountDetailsEntity _$AccountDetailsEntityFromJson(Map<String, dynamic> json) =
       idType: json['idType'],
     );
 
-Map<String, dynamic> _$AccountDetailsEntityToJson(AccountDetailsEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$AccountDetailsEntityToJson(
+        AccountDetailsEntity instance) =>
+    <String, dynamic>{
       'createBy': instance.createBy,
       'ourBranchID': instance.ourBranchID,
       'clientID': instance.clientID,

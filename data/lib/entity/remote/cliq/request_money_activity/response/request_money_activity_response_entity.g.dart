@@ -6,9 +6,12 @@ part of 'request_money_activity_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RequestMoneyActivityResponseEntity _$RequestMoneyActivityResponseEntityFromJson(Map<String, dynamic> json) =>
+RequestMoneyActivityResponseEntity _$RequestMoneyActivityResponseEntityFromJson(
+        Map<String, dynamic> json) =>
     RequestMoneyActivityResponseEntity(
-      json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+      json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$RequestMoneyActivityResponseEntityToJson(

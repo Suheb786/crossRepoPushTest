@@ -6,7 +6,8 @@ part of 'profile_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ProfileEntity _$ProfileEntityFromJson(Map<String, dynamic> json) => ProfileEntity(
+ProfileEntity _$ProfileEntityFromJson(Map<String, dynamic> json) =>
+    ProfileEntity(
       email: json['email'] as String? ?? "",
       mobileNumber: json['mobileNumber'] as String? ?? "",
       biometric: json['biometric'] as bool? ?? false,
@@ -15,7 +16,8 @@ ProfileEntity _$ProfileEntityFromJson(Map<String, dynamic> json) => ProfileEntit
       mobileCode: json['mobileCode'] as String? ?? "",
     );
 
-Map<String, dynamic> _$ProfileEntityToJson(ProfileEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$ProfileEntityToJson(ProfileEntity instance) =>
+    <String, dynamic>{
       'email': instance.email,
       'mobileNumber': instance.mobileNumber,
       'biometric': instance.biometric,

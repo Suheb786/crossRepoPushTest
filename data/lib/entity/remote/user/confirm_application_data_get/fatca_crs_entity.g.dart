@@ -6,7 +6,8 @@ part of 'fatca_crs_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-FatcaCrsEntity _$FatcaCrsEntityFromJson(Map<String, dynamic> json) => FatcaCrsEntity(
+FatcaCrsEntity _$FatcaCrsEntityFromJson(Map<String, dynamic> json) =>
+    FatcaCrsEntity(
       id: json['id'] as int?,
       userId: json['userId'] as String?,
       companyId: json['companyId'] as int?,
@@ -42,7 +43,9 @@ FatcaCrsEntity _$FatcaCrsEntityFromJson(Map<String, dynamic> json) => FatcaCrsEn
       exemptPayeeCode: json['exemptPayeeCode'],
       socialSecurityNo: json['socialSecurityNo'],
       createBy: json['createBy'] as String?,
-      createTime: json['createTime'] == null ? null : DateTime.parse(json['createTime'] as String),
+      createTime: json['createTime'] == null
+          ? null
+          : DateTime.parse(json['createTime'] as String),
       createTerminal: json['createTerminal'] as String?,
       taxResidenceCountry: json['taxResidenceCountry'] as String?,
       deactivatedDate: json['deactivatedDate'],
@@ -52,7 +55,8 @@ FatcaCrsEntity _$FatcaCrsEntityFromJson(Map<String, dynamic> json) => FatcaCrsEn
       relationshipWithPEPNameAr: json['relationshipWithPEPNameAr'] as String?,
     );
 
-Map<String, dynamic> _$FatcaCrsEntityToJson(FatcaCrsEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$FatcaCrsEntityToJson(FatcaCrsEntity instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,
       'companyId': instance.companyId,

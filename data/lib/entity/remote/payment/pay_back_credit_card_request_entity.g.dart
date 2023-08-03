@@ -6,7 +6,8 @@ part of 'pay_back_credit_card_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PayBackCreditCardRequestEntity _$PayBackCreditCardRequestEntityFromJson(Map<String, dynamic> json) =>
+PayBackCreditCardRequestEntity _$PayBackCreditCardRequestEntityFromJson(
+        Map<String, dynamic> json) =>
     PayBackCreditCardRequestEntity(
       payBackAmount: json['PayBackAmount'] as String? ?? "",
       secureCode: json['SecureCode'] as String? ?? "",
@@ -14,7 +15,8 @@ PayBackCreditCardRequestEntity _$PayBackCreditCardRequestEntityFromJson(Map<Stri
       baseData: json['BaseClass'] as Map<String, dynamic>?,
     );
 
-Map<String, dynamic> _$PayBackCreditCardRequestEntityToJson(PayBackCreditCardRequestEntity instance) =>
+Map<String, dynamic> _$PayBackCreditCardRequestEntityToJson(
+        PayBackCreditCardRequestEntity instance) =>
     <String, dynamic>{
       'SecureCode': instance.secureCode,
       'PayBackAmount': instance.payBackAmount,

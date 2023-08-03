@@ -6,14 +6,16 @@ part of 'unblock_debit_card_pin_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UnblockDebitCardPinRequest _$UnblockDebitCardPinRequestFromJson(Map<String, dynamic> json) =>
+UnblockDebitCardPinRequest _$UnblockDebitCardPinRequestFromJson(
+        Map<String, dynamic> json) =>
     UnblockDebitCardPinRequest(
       baseData: json['baseClass'] as Map<String, dynamic>,
       getToken: json['getToken'] as bool? ?? true,
       tokenizedPan: json['TokenizedPan'] as String?,
     );
 
-Map<String, dynamic> _$UnblockDebitCardPinRequestToJson(UnblockDebitCardPinRequest instance) =>
+Map<String, dynamic> _$UnblockDebitCardPinRequestToJson(
+        UnblockDebitCardPinRequest instance) =>
     <String, dynamic>{
       'TokenizedPan': instance.tokenizedPan,
       'getToken': instance.getToken,

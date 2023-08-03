@@ -6,12 +6,16 @@ part of 'request_call_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RequestCallResponseEntity _$RequestCallResponseEntityFromJson(Map<String, dynamic> json) =>
+RequestCallResponseEntity _$RequestCallResponseEntityFromJson(
+        Map<String, dynamic> json) =>
     RequestCallResponseEntity(
-      json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+      json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$RequestCallResponseEntityToJson(RequestCallResponseEntity instance) =>
+Map<String, dynamic> _$RequestCallResponseEntityToJson(
+        RequestCallResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

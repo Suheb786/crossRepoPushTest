@@ -6,14 +6,16 @@ part of 'get_biller_categories_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetBillerCategoriesRequestEntity _$GetBillerCategoriesRequestEntityFromJson(Map<String, dynamic> json) =>
+GetBillerCategoriesRequestEntity _$GetBillerCategoriesRequestEntityFromJson(
+        Map<String, dynamic> json) =>
     GetBillerCategoriesRequestEntity(
       type: json['Type'] as String,
       getToken: json['GetToken'] as bool? ?? true,
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$GetBillerCategoriesRequestEntityToJson(GetBillerCategoriesRequestEntity instance) =>
+Map<String, dynamic> _$GetBillerCategoriesRequestEntityToJson(
+        GetBillerCategoriesRequestEntity instance) =>
     <String, dynamic>{
       'Type': instance.type,
       'GetToken': instance.getToken,

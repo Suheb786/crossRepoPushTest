@@ -6,13 +6,16 @@ part of 'get_allowed_country_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetAllowedCountryResponseEntity _$GetAllowedCountryResponseEntityFromJson(Map<String, dynamic> json) =>
+GetAllowedCountryResponseEntity _$GetAllowedCountryResponseEntityFromJson(
+        Map<String, dynamic> json) =>
     GetAllowedCountryResponseEntity(
-      response:
-          json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+      response: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$GetAllowedCountryResponseEntityToJson(GetAllowedCountryResponseEntity instance) =>
+Map<String, dynamic> _$GetAllowedCountryResponseEntityToJson(
+        GetAllowedCountryResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

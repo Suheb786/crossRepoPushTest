@@ -6,7 +6,8 @@ part of 'credit_card_call_status_update_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CreditCardCallStatusUpdateRequest _$CreditCardCallStatusUpdateRequestFromJson(Map<String, dynamic> json) =>
+CreditCardCallStatusUpdateRequest _$CreditCardCallStatusUpdateRequestFromJson(
+        Map<String, dynamic> json) =>
     CreditCardCallStatusUpdateRequest(
       baseData: json['baseClass'] as Map<String, dynamic>,
       getToken: json['GetToken'] as bool? ?? false,
@@ -14,7 +15,8 @@ CreditCardCallStatusUpdateRequest _$CreditCardCallStatusUpdateRequestFromJson(Ma
       status: json['Status'] as String?,
     );
 
-Map<String, dynamic> _$CreditCardCallStatusUpdateRequestToJson(CreditCardCallStatusUpdateRequest instance) =>
+Map<String, dynamic> _$CreditCardCallStatusUpdateRequestToJson(
+        CreditCardCallStatusUpdateRequest instance) =>
     <String, dynamic>{
       'GetToken': instance.getToken,
       'CardId': instance.cardId,

@@ -6,7 +6,8 @@ part of 'pay_post_paid_bill_list_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PayPostPaidBillListEntity _$PayPostPaidBillListEntityFromJson(Map<String, dynamic> json) =>
+PayPostPaidBillListEntity _$PayPostPaidBillListEntityFromJson(
+        Map<String, dynamic> json) =>
     PayPostPaidBillListEntity(
       billerListEntity: (json['paidBills'] as List<dynamic>?)
           ?.map((e) => BillerListEntity.fromJson(e as Map<String, dynamic>))
@@ -14,7 +15,8 @@ PayPostPaidBillListEntity _$PayPostPaidBillListEntityFromJson(Map<String, dynami
       message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$PayPostPaidBillListEntityToJson(PayPostPaidBillListEntity instance) =>
+Map<String, dynamic> _$PayPostPaidBillListEntityToJson(
+        PayPostPaidBillListEntity instance) =>
     <String, dynamic>{
       'paidBills': instance.billerListEntity,
       'message': instance.message,

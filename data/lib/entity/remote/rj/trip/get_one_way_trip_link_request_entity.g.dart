@@ -6,7 +6,8 @@ part of 'get_one_way_trip_link_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetOneWayTripLinkRequestEntity _$GetOneWayTripLinkRequestEntityFromJson(Map<String, dynamic> json) =>
+GetOneWayTripLinkRequestEntity _$GetOneWayTripLinkRequestEntityFromJson(
+        Map<String, dynamic> json) =>
     GetOneWayTripLinkRequestEntity(
       baseData: json['baseClass'] as Map<String, dynamic>,
       getToken: json['GetToken'] as bool? ?? true,
@@ -23,7 +24,8 @@ GetOneWayTripLinkRequestEntity _$GetOneWayTripLinkRequestEntityFromJson(Map<Stri
       youths: json['Youths'] as String?,
     );
 
-Map<String, dynamic> _$GetOneWayTripLinkRequestEntityToJson(GetOneWayTripLinkRequestEntity instance) =>
+Map<String, dynamic> _$GetOneWayTripLinkRequestEntityToJson(
+        GetOneWayTripLinkRequestEntity instance) =>
     <String, dynamic>{
       'Language': instance.language,
       'Org': instance.org,

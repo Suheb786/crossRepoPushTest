@@ -6,12 +6,14 @@ part of 'get_settlement_amount_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetSettlementAmountEntity _$GetSettlementAmountEntityFromJson(Map<String, dynamic> json) =>
+GetSettlementAmountEntity _$GetSettlementAmountEntityFromJson(
+        Map<String, dynamic> json) =>
     GetSettlementAmountEntity(
       content: (json['content'] as num?)?.toDouble(),
     );
 
-Map<String, dynamic> _$GetSettlementAmountEntityToJson(GetSettlementAmountEntity instance) =>
+Map<String, dynamic> _$GetSettlementAmountEntityToJson(
+        GetSettlementAmountEntity instance) =>
     <String, dynamic>{
       'content': instance.content,
     };
