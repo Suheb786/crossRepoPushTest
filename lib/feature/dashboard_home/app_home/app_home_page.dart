@@ -14,7 +14,7 @@ class AppHomePage extends BasePage<AppHomeViewModel> {
 }
 
 class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
-    with AutomaticKeepAliveClientMixin, WidgetsBindingObserver {
+    with AutomaticKeepAliveClientMixin, WidgetsBindingObserver, TickerProviderStateMixin {
   @override
   ProviderBase provideBase() {
     return appHomeViewModelProvider;
@@ -63,6 +63,10 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
   @override
   Widget buildView(BuildContext context, AppHomeViewModel model) {
     model.deviceSize = MediaQuery.of(context).size;
+    model.translateSidewaysController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
 
     return AppHomePageView(provideBase());
   }

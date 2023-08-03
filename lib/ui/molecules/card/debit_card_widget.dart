@@ -55,6 +55,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
           controller: widget.flipCardController,
           flipOnTouch: false,
           direction: FlipDirection.HORIZONTAL,
+          speed: 2000,
           front: Container(
             color: Theme.of(context).colorScheme.secondary,
             child: Stack(

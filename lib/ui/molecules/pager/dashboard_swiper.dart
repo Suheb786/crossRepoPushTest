@@ -2,13 +2,15 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+import 'dart:math' as math;
 
 class DashboardSwiper extends StatefulWidget {
   final List? pages;
   final int? currentStep;
   final SwiperController? pageController;
   final Function(int)? onIndexChanged;
-  PageController? appSwiperController;
+  PageController appSwiperController;
+  AnimationController? translateSidewaysController;
 
   DashboardSwiper(
       {Key? key,
@@ -16,7 +18,8 @@ class DashboardSwiper extends StatefulWidget {
       this.currentStep,
       this.pageController,
       this.onIndexChanged,
-      required this.appSwiperController})
+      required this.appSwiperController,
+      required this.translateSidewaysController})
       : super(key: key);
 
   @override
@@ -52,7 +55,7 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
 
   Widget carouselView(int index) {
     return AnimatedBuilder(
-      animation: widget.appSwiperController!,
+      animation: widget.appSwiperController,
       builder: (context, child) {
         double value = 0.0;
         // if (widget.appSwiperController!.position.haveDimensions) {
@@ -61,11 +64,39 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
         // } else {
         //     value = (index * 0.018).clamp(-1, 1);
         // }
-        return Transform(
-          // angle: pi * value,
-          transform:
-              StringUtils.isDirectionRTL(context) ? Matrix4.skewX(value * 1.5) : Matrix4.skewX(-value * 1.5),
-          child: widget.pages![index],
+        return Transform.translate(
+          offset: widget.currentStep == index
+              ? const Offset(0, 0)
+              : widget.currentStep! < index
+                  ? Offset(widget.translateSidewaysController!.value * 100, 0)
+                  : Offset(widget.translateSidewaysController!.value * 100, 0),
+          child: AnimatedBuilder(
+            animation: widget.appSwiperController,
+            child: widget.pages![index],
+            builder: (context, child) {
+              double value = 0;
+
+              ///Checking if pageController is ready to use
+              if (widget.appSwiperController.position.hasContentDimensions) {
+                ///For current page value = 0, so rotation and translation value is zero
+                value = index.toDouble() - (widget.appSwiperController.page ?? 0);
+                value = (value * 0.012);
+              }
+
+              ///Tilted semicircle
+              return Transform.rotate(
+                angle: (math.pi * value),
+                child: Transform.translate(
+                  offset: Offset(0, value.abs() * 500),
+                  child: AnimatedOpacity(
+                    opacity: index == widget.currentStep ? 1 : 0.5,
+                    duration: const Duration(milliseconds: 400),
+                    child: child!,
+                  ),
+                ),
+              );
+            },
+          ),
         );
       },
     );

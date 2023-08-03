@@ -202,6 +202,10 @@ class AppHomeViewModel extends BasePageViewModel {
 
   bool showPopUp = false;
 
+  ///--------------- Animations ----------------------///
+
+  late AnimationController translateSidewaysController;
+
   AppHomeViewModel(
       this._getDashboardDataUseCase,
       this._getPlaceholderUseCase,
@@ -859,6 +863,7 @@ class AppHomeViewModel extends BasePageViewModel {
     _showRequestMoneyPopUpSubject.close();
     _verifyQRRequest.close();
     _verifyQRResponse.close();
+    translateSidewaysController.dispose();
 
     if (timer != null) {
       timer?.cancel();

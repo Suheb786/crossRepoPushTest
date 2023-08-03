@@ -352,6 +352,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                                   null) {
                                                                                 return SizedBox();
                                                                               }
+
+                                                                              // return getPageController(model);
                                                                               return DashboardSwiper(
                                                                                 pages: pagesList,
                                                                                 appSwiperController:
@@ -365,6 +367,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                                           index);
                                                                                 },
                                                                                 currentStep: currentStep,
+                                                                                translateSidewaysController: model
+                                                                                    .translateSidewaysController,
                                                                               );
                                                                             });
                                                                       }),
