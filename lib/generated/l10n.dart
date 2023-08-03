@@ -18100,10 +18100,10 @@ class S {
     );
   }
 
-  /// `Oops! Transaction failed; your account is inactive. Call us on 065200100 to activate your account.`
+  /// `Oops! Transaction failed; your account is inactive. Call us on 06-5200100 to activate your account.`
   String get dormantAccountTransactionFailed {
     return Intl.message(
-      'Oops! Transaction failed; your account is inactive. Call us on 065200100 to activate your account.',
+      'Oops! Transaction failed; your account is inactive. Call us on 06-5200100 to activate your account.',
       name: 'dormantAccountTransactionFailed',
       desc: '',
       args: [],
