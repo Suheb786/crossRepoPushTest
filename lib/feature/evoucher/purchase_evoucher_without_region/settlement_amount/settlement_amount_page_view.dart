@@ -129,7 +129,7 @@ class SettlementAmountPageView extends BasePageViewWidget<SettlementAmountPageVi
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                model.argument.settlementAmount.toString(),
+                                                model.argument.settlementAmount.toStringAsFixed(3),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   fontFamily: StringUtils.appFont,

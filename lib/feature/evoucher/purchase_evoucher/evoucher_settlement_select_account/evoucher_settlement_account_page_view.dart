@@ -133,7 +133,7 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                   children: [
                                                     Text(
-                                                      "$getSettlementAmount",
+                                                      "${getSettlementAmount?.toStringAsFixed(3)}",
                                                       textAlign: TextAlign.center,
                                                       style: TextStyle(
                                                         fontFamily: StringUtils.appFont,

@@ -153,7 +153,7 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
 
     List<String> prices = [];
     for (var value in vouchersWithSameProductIdAndCountry) {
-      prices.add(value.fromValue.toString() + " " + value.currency);
+      prices.add(value.fromValue.toStringAsFixed(3) + " " + value.currency);
     }
 
     /// Sort the list of prices as numbers in ascending order

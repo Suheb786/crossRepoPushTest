@@ -1183,6 +1183,8 @@ class ErrorParser {
         return localisedHelper.selectAtLeastOneBill;
       case ErrorType.DORMANT_ACCOUNT:
         return localisedHelper.accountDormant;
+      case ErrorType.DORMANT_ACCOUNT_TRANSACTION_FAILED:
+        return localisedHelper.dormantAccountTransactionFailed;
       case ErrorType.ERROR_WHILE_GETTING_ALIAS:
         return localisedHelper.errorWhileGettingAlias;
       case ErrorType.ERROR_WHILE_GETTING_ACCOUNT_BY_ALIAS:
