@@ -13,7 +13,7 @@ class UnblockDebitCardPinRequest {
 
   UnblockDebitCardPinRequest({
     required this.baseData,
-    this.getToken= true,
+    this.getToken = true,
     this.tokenizedPan,
   });
 

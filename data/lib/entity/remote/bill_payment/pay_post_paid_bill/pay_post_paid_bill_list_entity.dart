@@ -7,15 +7,14 @@ import 'biller_list_entity.dart';
 part 'pay_post_paid_bill_list_entity.g.dart';
 
 @JsonSerializable()
-class PayPostPaidBillListEntity extends BaseLayerDataTransformer<
-    PayPostPaidBillListEntity, PayPostPaidBillList> {
+class PayPostPaidBillListEntity
+    extends BaseLayerDataTransformer<PayPostPaidBillListEntity, PayPostPaidBillList> {
   @JsonKey(name: "paidBills")
   List<BillerListEntity>? billerListEntity;
   @JsonKey(name: "message")
   String? message;
 
-
-  PayPostPaidBillListEntity({this.billerListEntity,this.message});
+  PayPostPaidBillListEntity({this.billerListEntity, this.message});
 
   factory PayPostPaidBillListEntity.fromJson(Map<String, dynamic> json) =>
       _$PayPostPaidBillListEntityFromJson(json);
@@ -30,7 +29,6 @@ class PayPostPaidBillListEntity extends BaseLayerDataTransformer<
   @override
   PayPostPaidBillList transform() {
     return PayPostPaidBillList(
-        message: this.message,
-        billerList: this.billerListEntity?.map((e) => e.transform()).toList());
+        message: this.message, billerList: this.billerListEntity?.map((e) => e.transform()).toList());
   }
 }

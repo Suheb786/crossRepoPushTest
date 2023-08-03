@@ -105,8 +105,10 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                         fontFamily: StringUtils.appFont,
                                                         fontWeight: FontWeight.w600,
                                                         fontSize: 10.0.t,
-                                                        color:
-                                                            Theme.of(context).colorScheme.secondary.withOpacity(0.4))),
+                                                        color: Theme.of(context)
+                                                            .colorScheme
+                                                            .secondary
+                                                            .withOpacity(0.4))),
                                               ),
                                               SizedBox(width: 10.0.w),
                                               InkWell(
@@ -134,7 +136,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                 fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 10.0.t,
-                                                color: Theme.of(context).colorScheme.secondary.withOpacity(0.4)),
+                                                color:
+                                                    Theme.of(context).colorScheme.secondary.withOpacity(0.4)),
                                           ),
                                         ),
                                       ],

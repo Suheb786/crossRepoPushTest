@@ -6,8 +6,7 @@ part of 'approve_RTP_request_request_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ApproveRTPRequestReqestEntity _$ApproveRTPRequestReqestEntityFromJson(
-        Map<String, dynamic> json) =>
+ApproveRTPRequestReqestEntity _$ApproveRTPRequestReqestEntityFromJson(Map<String, dynamic> json) =>
     ApproveRTPRequestReqestEntity(
       dbtrName: json['dbtrName'] as String,
       dbtrPstlAdr: json['dbtrPstlAdr'] as String,
@@ -35,8 +34,7 @@ ApproveRTPRequestReqestEntity _$ApproveRTPRequestReqestEntityFromJson(
       dbtrAcct: json['dbtrAcct'] as String,
     );
 
-Map<String, dynamic> _$ApproveRTPRequestReqestEntityToJson(
-        ApproveRTPRequestReqestEntity instance) =>
+Map<String, dynamic> _$ApproveRTPRequestReqestEntityToJson(ApproveRTPRequestReqestEntity instance) =>
     <String, dynamic>{
       'custID': instance.custID,
       'dbtrAcct': instance.dbtrAcct,

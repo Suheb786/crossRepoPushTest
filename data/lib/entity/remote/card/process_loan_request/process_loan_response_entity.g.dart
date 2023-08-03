@@ -6,16 +6,13 @@ part of 'process_loan_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ProcessLoanResponseEntity _$ProcessLoanResponseEntityFromJson(
-        Map<String, dynamic> json) =>
+ProcessLoanResponseEntity _$ProcessLoanResponseEntityFromJson(Map<String, dynamic> json) =>
     ProcessLoanResponseEntity(
-      response: json['response'] == null
-          ? null
-          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+      response:
+          json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$ProcessLoanResponseEntityToJson(
-        ProcessLoanResponseEntity instance) =>
+Map<String, dynamic> _$ProcessLoanResponseEntityToJson(ProcessLoanResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

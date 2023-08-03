@@ -15,6 +15,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 
 import 'evoucher_view_model.dart';
 import 'my_voucher_history/my_voucher_history_view.dart';
+
 class EvoucherPage extends BasePage<EvoucherViewModel> {
   EvoucherPageArguments arguments;
 

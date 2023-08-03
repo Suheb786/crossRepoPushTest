@@ -6,8 +6,7 @@ part of 'get_combo_values_data_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetComboValuesDataEntity _$GetComboValuesDataEntityFromJson(
-        Map<String, dynamic> json) =>
+GetComboValuesDataEntity _$GetComboValuesDataEntityFromJson(Map<String, dynamic> json) =>
     GetComboValuesDataEntity(
       id: json['id'] as int?,
       type: json['type'] as String?,
@@ -19,9 +18,7 @@ GetComboValuesDataEntity _$GetComboValuesDataEntityFromJson(
       orderNo: json['orderNo'] as int?,
     );
 
-Map<String, dynamic> _$GetComboValuesDataEntityToJson(
-        GetComboValuesDataEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$GetComboValuesDataEntityToJson(GetComboValuesDataEntity instance) => <String, dynamic>{
       'id': instance.id,
       'type': instance.type,
       'intCode': instance.intCode,

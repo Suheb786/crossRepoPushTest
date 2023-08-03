@@ -79,6 +79,7 @@ class EvoucherDetailView extends BasePageViewWidget<EVoucherDetailViewModel> {
 
 class PageDetail extends StatelessWidget {
   EVoucherDetailViewModel model;
+
   PageDetail({
     Key? key,
     required this.model,
@@ -193,6 +194,7 @@ class PageDetail extends StatelessWidget {
 
 class ViewVoucherBtb extends StatelessWidget {
   EVoucherDetailViewModel model;
+
   ViewVoucherBtb({
     Key? key,
     required this.model,
@@ -239,11 +241,7 @@ class ViewVoucherBtb extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.only(end: 24.0),
-                child: InkWell(
-                    onTap: () {
-               
-                    },
-                    child: AppSvg.asset(AssetUtils.view_voucher_icon)),
+                child: InkWell(onTap: () {}, child: AppSvg.asset(AssetUtils.view_voucher_icon)),
               )
             ],
           ),

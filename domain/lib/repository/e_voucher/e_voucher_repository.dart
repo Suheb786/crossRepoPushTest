@@ -2,11 +2,11 @@ import 'package:dartz/dartz.dart';
 import 'package:domain/model/e_voucher/get_voucher_details.dart';
 import 'package:domain/model/e_voucher/voucher_detail.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
+import 'package:domain/model/e_voucher/voucher_min_max_value.dart';
 import 'package:domain/model/e_voucher/voucher_region_by_categories.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
 import 'package:domain/usecase/evouchers/place_order_usecase.dart';
-import 'package:domain/usecase/evouchers/voucher_min_max_value.dart';
 
 import '../../error/network_error.dart';
 import '../../model/e_voucher/e_voucher_otp.dart';
@@ -49,6 +49,7 @@ abstract class EVoucherRepository {
   Future<Either<NetworkError, EVoucherOTP>> eVoucherOtp({
     required EVoucherUsecaseOTPParams params,
   });
+
   Future<Either<NetworkError, List<VoucherRegionByCategories>>> getRegionsByCategories(String category);
 
   Future<Either<NetworkError, VoucherMinMaxValue>> getMinMaxRange({

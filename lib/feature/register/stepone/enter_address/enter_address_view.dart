@@ -160,12 +160,12 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                   visible: false,
                                                   child: InkWell(
                                                       child: Container(
-                                                        height: 20,
-                                                        width: 16,
-                                                        padding: EdgeInsetsDirectional.only(start: 4, top: 2),
-                                                        child: AppSvg.asset(AssetUtils.location_marker,
-                                                            color: Theme.of(context).primaryColorDark),
-                                                      )),
+                                                    height: 20,
+                                                    width: 16,
+                                                    padding: EdgeInsetsDirectional.only(start: 4, top: 2),
+                                                    child: AppSvg.asset(AssetUtils.location_marker,
+                                                        color: Theme.of(context).primaryColorDark),
+                                                  )),
                                                 ),
                                               ),
                                               SizedBox(

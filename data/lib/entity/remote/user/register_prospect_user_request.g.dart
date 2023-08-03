@@ -6,8 +6,7 @@ part of 'register_prospect_user_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RegisterProspectUserRequest _$RegisterProspectUserRequestFromJson(
-        Map<String, dynamic> json) =>
+RegisterProspectUserRequest _$RegisterProspectUserRequestFromJson(Map<String, dynamic> json) =>
     RegisterProspectUserRequest(
       countryName: json['countryName'] as String?,
       languageCode: json['languageCode'] as String?,
@@ -26,8 +25,7 @@ RegisterProspectUserRequest _$RegisterProspectUserRequestFromJson(
       baseData: json['baseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$RegisterProspectUserRequestToJson(
-        RegisterProspectUserRequest instance) =>
+Map<String, dynamic> _$RegisterProspectUserRequestToJson(RegisterProspectUserRequest instance) =>
     <String, dynamic>{
       'countryName': instance.countryName,
       'languageCode': instance.languageCode,

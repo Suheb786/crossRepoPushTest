@@ -6,15 +6,13 @@ part of 'get_customer_doc_id_content_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetCustomerDocIdContentEntity _$GetCustomerDocIdContentEntityFromJson(
-        Map<String, dynamic> json) =>
+GetCustomerDocIdContentEntity _$GetCustomerDocIdContentEntityFromJson(Map<String, dynamic> json) =>
     GetCustomerDocIdContentEntity(
       proofOfAddress: json['proofOfAddress'] as String? ?? "",
       proofOfIncome: json['proofOfIncome'] as String? ?? "",
     );
 
-Map<String, dynamic> _$GetCustomerDocIdContentEntityToJson(
-        GetCustomerDocIdContentEntity instance) =>
+Map<String, dynamic> _$GetCustomerDocIdContentEntityToJson(GetCustomerDocIdContentEntity instance) =>
     <String, dynamic>{
       'proofOfIncome': instance.proofOfIncome,
       'proofOfAddress': instance.proofOfAddress,

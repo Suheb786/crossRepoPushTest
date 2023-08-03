@@ -10,6 +10,7 @@ class CreateCliqIdOtpUseCase extends BaseUseCase<NetworkError, CreateCliqIdOtpPa
   final CliqRepository _cliqRepository;
 
   CreateCliqIdOtpUseCase(this._cliqRepository);
+
   @override
   Future<Either<NetworkError, CreateCliqOtp>> execute({required CreateCliqIdOtpParams params}) {
     return _cliqRepository.createCliqIdOtp(

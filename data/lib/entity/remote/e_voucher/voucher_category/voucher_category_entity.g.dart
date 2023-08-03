@@ -6,9 +6,7 @@ part of 'voucher_category_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-VoucherCategoryEntity _$VoucherCategoryEntityFromJson(
-        Map<String, dynamic> json) =>
-    VoucherCategoryEntity(
+VoucherCategoryEntity _$VoucherCategoryEntityFromJson(Map<String, dynamic> json) => VoucherCategoryEntity(
       id: json['id'] as num? ?? 0.0,
       categoryName: json['categoryName'] as String? ?? '',
       createdDate: json['createdDate'] as String? ?? '',
@@ -19,9 +17,7 @@ VoucherCategoryEntity _$VoucherCategoryEntityFromJson(
       categoryIcon: json['categoryIcon'] ?? '',
     );
 
-Map<String, dynamic> _$VoucherCategoryEntityToJson(
-        VoucherCategoryEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$VoucherCategoryEntityToJson(VoucherCategoryEntity instance) => <String, dynamic>{
       'id': instance.id,
       'categoryName': instance.categoryName,
       'createdDate': instance.createdDate,

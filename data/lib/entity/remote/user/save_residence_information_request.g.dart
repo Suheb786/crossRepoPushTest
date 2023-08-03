@@ -6,8 +6,7 @@ part of 'save_residence_information_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SaveResidenceInformationRequest _$SaveResidenceInformationRequestFromJson(
-        Map<String, dynamic> json) =>
+SaveResidenceInformationRequest _$SaveResidenceInformationRequestFromJson(Map<String, dynamic> json) =>
     SaveResidenceInformationRequest(
       residantCountry: json['residantCountry'] as String? ?? "",
       buildingName: json['BuildingName'] as String? ?? "",
@@ -20,8 +19,7 @@ SaveResidenceInformationRequest _$SaveResidenceInformationRequestFromJson(
       baseData: json['baseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$SaveResidenceInformationRequestToJson(
-        SaveResidenceInformationRequest instance) =>
+Map<String, dynamic> _$SaveResidenceInformationRequestToJson(SaveResidenceInformationRequest instance) =>
     <String, dynamic>{
       'residantCountry': instance.residantCountry,
       'BuildingName': instance.buildingName,

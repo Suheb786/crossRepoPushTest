@@ -9,7 +9,6 @@ import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
 class EnterNewPinForCardUseCase extends BaseUseCase<BaseError, EnterNewPinForCardUseCaseParams, bool> {
-
   @override
   Future<Either<BaseError, bool>> execute({required EnterNewPinForCardUseCaseParams params}) {
     return Future.value(Right(true));

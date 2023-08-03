@@ -6,8 +6,7 @@ part of 'post_paid_bill_inquiry_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PostPaidBillInquiryEntity _$PostPaidBillInquiryEntityFromJson(
-        Map<String, dynamic> json) =>
+PostPaidBillInquiryEntity _$PostPaidBillInquiryEntityFromJson(Map<String, dynamic> json) =>
     PostPaidBillInquiryEntity(
       serviceType: json['serviceType'] as String?,
       billerCode: json['billerCode'] as String?,
@@ -24,8 +23,7 @@ PostPaidBillInquiryEntity _$PostPaidBillInquiryEntityFromJson(
       inqRefNo: json['inqRefNo'],
     );
 
-Map<String, dynamic> _$PostPaidBillInquiryEntityToJson(
-        PostPaidBillInquiryEntity instance) =>
+Map<String, dynamic> _$PostPaidBillInquiryEntityToJson(PostPaidBillInquiryEntity instance) =>
     <String, dynamic>{
       'billerCode': instance.billerCode,
       'billingNo': instance.billingNo,

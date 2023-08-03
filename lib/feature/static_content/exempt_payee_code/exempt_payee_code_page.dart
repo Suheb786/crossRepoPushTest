@@ -38,8 +38,8 @@ class ExemptPayeeCodePageState extends BaseStatefulPage<ExemptPayeeCodePageViewM
             ),
             Text(
               S.of(context).exemptPayeeCode,
-              style:
-                  TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+              style: TextStyle(
+                  fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
             ),
             Padding(
               padding: const EdgeInsetsDirectional.only(end: 18.0),

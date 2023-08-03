@@ -6,8 +6,7 @@ part of 'dashboard_card_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DashboardCardEntity _$DashboardCardEntityFromJson(Map<String, dynamic> json) =>
-    DashboardCardEntity(
+DashboardCardEntity _$DashboardCardEntityFromJson(Map<String, dynamic> json) => DashboardCardEntity(
       name: json['name'] as String? ?? "",
       availableBalance: json['availableBalance'] as num? ?? 0.0,
       minDue: json['minDue'] as num? ?? 0.0,
@@ -36,9 +35,7 @@ DashboardCardEntity _$DashboardCardEntityFromJson(Map<String, dynamic> json) =>
       parentId: json['parentId'] as String? ?? "",
     );
 
-Map<String, dynamic> _$DashboardCardEntityToJson(
-        DashboardCardEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$DashboardCardEntityToJson(DashboardCardEntity instance) => <String, dynamic>{
       'name': instance.name,
       'availableBalance': instance.availableBalance,
       'minDue': instance.minDue,

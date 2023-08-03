@@ -6,15 +6,11 @@ part of 'change_default_account_otp_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ChangeDefaultAccountOtpResponseEntity
-    _$ChangeDefaultAccountOtpResponseEntityFromJson(
-            Map<String, dynamic> json) =>
-        ChangeDefaultAccountOtpResponseEntity(
-          json['response'] == null
-              ? null
-              : ResponseEntity.fromJson(
-                  json['response'] as Map<String, dynamic>),
-        );
+ChangeDefaultAccountOtpResponseEntity _$ChangeDefaultAccountOtpResponseEntityFromJson(
+        Map<String, dynamic> json) =>
+    ChangeDefaultAccountOtpResponseEntity(
+      json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$ChangeDefaultAccountOtpResponseEntityToJson(
         ChangeDefaultAccountOtpResponseEntity instance) =>

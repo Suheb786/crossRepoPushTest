@@ -25,7 +25,6 @@ class EVoucherCategoryListWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-     
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Container(

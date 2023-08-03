@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/src/in_app_webview/in_app_webview.dart';
+import 'package:flutter_inappwebview/src/types.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/evoucher/share_voucher/share_voucher_page_view_model.dart';
@@ -8,8 +10,6 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:flutter_inappwebview/src/in_app_webview/in_app_webview.dart';
-import 'package:flutter_inappwebview/src/types.dart';
 
 class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel> {
   ShareVoucherPageView(ProviderBase model) : super(model);

@@ -6,8 +6,7 @@ part of 'get_postpaid_biller_list_entity_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetPostpaidBillerListEntityData _$GetPostpaidBillerListEntityDataFromJson(
-        Map<String, dynamic> json) =>
+GetPostpaidBillerListEntityData _$GetPostpaidBillerListEntityDataFromJson(Map<String, dynamic> json) =>
     GetPostpaidBillerListEntityData(
       joebppsNo: json['joebppsNo'] as String?,
       customerId: json['customerId'] as String?,
@@ -29,8 +28,7 @@ GetPostpaidBillerListEntityData _$GetPostpaidBillerListEntityDataFromJson(
       iconCode: json['iconCode'],
     );
 
-Map<String, dynamic> _$GetPostpaidBillerListEntityDataToJson(
-        GetPostpaidBillerListEntityData instance) =>
+Map<String, dynamic> _$GetPostpaidBillerListEntityDataToJson(GetPostpaidBillerListEntityData instance) =>
     <String, dynamic>{
       'joebppsNo': instance.joebppsNo,
       'customerId': instance.customerId,

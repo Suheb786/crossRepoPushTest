@@ -6,9 +6,7 @@ part of 'dashboard_account_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DashboardAccountEntity _$DashboardAccountEntityFromJson(
-        Map<String, dynamic> json) =>
-    DashboardAccountEntity(
+DashboardAccountEntity _$DashboardAccountEntityFromJson(Map<String, dynamic> json) => DashboardAccountEntity(
       accountTitle: json['accountTitle'] as String? ?? "",
       availableBalance: json['availableBalance'] as num? ?? 0.0,
       accountNo: json['accountNo'] as String? ?? "",
@@ -17,9 +15,7 @@ DashboardAccountEntity _$DashboardAccountEntityFromJson(
       status: json['status'] as String? ?? "",
     );
 
-Map<String, dynamic> _$DashboardAccountEntityToJson(
-        DashboardAccountEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$DashboardAccountEntityToJson(DashboardAccountEntity instance) => <String, dynamic>{
       'accountTitle': instance.accountTitle,
       'availableBalance': instance.availableBalance,
       'accountNo': instance.accountNo,

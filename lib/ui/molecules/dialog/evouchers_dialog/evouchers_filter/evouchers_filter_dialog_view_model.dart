@@ -1,10 +1,10 @@
 import 'package:domain/constants/enum/evoucher_filter_option_enum.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/e_voucher/voucher_min_max_value.dart';
 import 'package:domain/model/e_voucher/voucher_region_by_categories.dart';
 import 'package:domain/usecase/evouchers/evoucher_filter_validation_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_min_max_value_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_region_by_categories_usecase.dart';
-import 'package:domain/usecase/evouchers/voucher_min_max_value.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';

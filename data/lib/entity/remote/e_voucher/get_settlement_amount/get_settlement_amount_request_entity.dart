@@ -16,6 +16,7 @@ class GetSettlementAmountRequestEntity {
   final bool? GetToken;
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> BaseClass;
+
   GetSettlementAmountRequestEntity({
     required this.Amount,
     required this.FromCurrency,
@@ -25,6 +26,7 @@ class GetSettlementAmountRequestEntity {
   });
 
   Map<String, dynamic> toJson() => _$GetSettlementAmountRequestEntityToJson(this);
+
   factory GetSettlementAmountRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$GetSettlementAmountRequestEntityFromJson(json);
 }

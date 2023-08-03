@@ -6,8 +6,7 @@ part of 'set_fatca_w8_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SetFatcaW8RequestEntity _$SetFatcaW8RequestEntityFromJson(
-        Map<String, dynamic> json) =>
+SetFatcaW8RequestEntity _$SetFatcaW8RequestEntityFromJson(Map<String, dynamic> json) =>
     SetFatcaW8RequestEntity(
       nameIncomeTAXReturn: json['NameIncomeTAXReturn'] as String?,
       dateOfBirth: json['DateOfBirth'] as String?,
@@ -19,8 +18,7 @@ SetFatcaW8RequestEntity _$SetFatcaW8RequestEntityFromJson(
       postCode: json['PostCode'] as String?,
       isDifferentMailingAddress: json['DifferentMailingAddress'] as bool?,
       mailingAddressLine: json['MailingAddressLine'] as String?,
-      differentMailingCountryIsoCode:
-          json['DifferentMailingCountry'] as String?,
+      differentMailingCountryIsoCode: json['DifferentMailingCountry'] as String?,
       differentMailingStateID: json['DifferentMailingState'] as String?,
       differentMailingCityId: json['DifferentMailingCity'] as String?,
       differentMailingPostCode: json['DifferentMailingPostCode'] as String?,
@@ -29,8 +27,7 @@ SetFatcaW8RequestEntity _$SetFatcaW8RequestEntityFromJson(
       foreignTaxPayerTin: json['ForeignTaxPayerTin'] as String?,
       referenceNumber: json['ReferenceNumber'] as String?,
       isClaimedTaxTreatBenefits: json['ClaimTaxTreatBenefits'] as bool?,
-      beneficialOwnerResidentIsoCode:
-          json['BeneficialOwnerResident'] as String?,
+      beneficialOwnerResidentIsoCode: json['BeneficialOwnerResident'] as String?,
       provisionOrClaim: json['ProvisionOrClaim'] as String?,
       treatyClaimRate: json['TreatyClaimRate'] as String?,
       typeOfIncome: json['TypeOfIncome'] as String?,
@@ -40,9 +37,7 @@ SetFatcaW8RequestEntity _$SetFatcaW8RequestEntityFromJson(
       baseData: json['baseClass'] as Map<String, dynamic>?,
     );
 
-Map<String, dynamic> _$SetFatcaW8RequestEntityToJson(
-        SetFatcaW8RequestEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$SetFatcaW8RequestEntityToJson(SetFatcaW8RequestEntity instance) => <String, dynamic>{
       'NameIncomeTAXReturn': instance.nameIncomeTAXReturn,
       'DateOfBirth': instance.dateOfBirth,
       'CitizenShipCountry': instance.citizenShipCountry,

@@ -48,6 +48,7 @@ abstract class EVoucherRemoteDS {
   Future<HttpResponse<EVoucherOtpResponseEntity>> eVoucherOtp({
     required EVoucherUsecaseOTPParams params,
   });
+
   Future<HttpResponse<VoucherRegionByCategoriesResponseEntity>> getRegionsByCategories({
     required String category,
   });

@@ -11,6 +11,7 @@ class ConfirmCreateCliqIdUseCase
   final CliqRepository _cliqRepository;
 
   ConfirmCreateCliqIdUseCase(this._cliqRepository);
+
   @override
   Future<Either<NetworkError, ConfirmCreateCliqId>> execute({required ConfirmCreateCliqIdParams params}) {
     return _cliqRepository.confirmCreateCLidID(

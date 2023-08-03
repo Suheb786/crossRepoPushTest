@@ -19,11 +19,11 @@ class GetCardInProcessRequestEntity {
 
   GetCardInProcessRequestEntity(
       {required this.baseData,
-      this.getToken= true,
-      this.minimumSettlement= "",
-      this.loanValueId= 0,
-      this.nickName= "",
-      this.creditLimit= 0});
+      this.getToken = true,
+      this.minimumSettlement = "",
+      this.loanValueId = 0,
+      this.nickName = "",
+      this.creditLimit = 0});
 
   factory GetCardInProcessRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCardInProcessRequestEntityFromJson(json);

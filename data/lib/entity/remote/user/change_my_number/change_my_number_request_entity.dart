@@ -13,7 +13,7 @@ class ChangeMyNumberRequestEntity {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  ChangeMyNumberRequestEntity({required this.baseData, this.getToken= true, this.mobileNo, this.mobileCode});
+  ChangeMyNumberRequestEntity({required this.baseData, this.getToken = true, this.mobileNo, this.mobileCode});
 
   factory ChangeMyNumberRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$ChangeMyNumberRequestEntityFromJson(json);

@@ -6,14 +6,13 @@ part of 'get_credit_card_relationship_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetCreditCardRelationshipRequestEntity
-    _$GetCreditCardRelationshipRequestEntityFromJson(
-            Map<String, dynamic> json) =>
-        GetCreditCardRelationshipRequestEntity(
-          cardId: json['CardId'] as String?,
-          getToken: json['GetToken'] as bool? ?? false,
-          baseData: json['BaseClass'] as Map<String, dynamic>,
-        );
+GetCreditCardRelationshipRequestEntity _$GetCreditCardRelationshipRequestEntityFromJson(
+        Map<String, dynamic> json) =>
+    GetCreditCardRelationshipRequestEntity(
+      cardId: json['CardId'] as String?,
+      getToken: json['GetToken'] as bool? ?? false,
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$GetCreditCardRelationshipRequestEntityToJson(
         GetCreditCardRelationshipRequestEntity instance) =>

@@ -16,7 +16,7 @@ class ChangeDebitCardPinRequest {
   final Map<String, dynamic> baseData;
 
   ChangeDebitCardPinRequest(
-      {required this.baseData, this.getToken= true, required this.pinCode, this.tokenizedPan, this.otp});
+      {required this.baseData, this.getToken = true, required this.pinCode, this.tokenizedPan, this.otp});
 
   factory ChangeDebitCardPinRequest.fromJson(Map<String, dynamic> json) =>
       _$ChangeDebitCardPinRequestFromJson(json);

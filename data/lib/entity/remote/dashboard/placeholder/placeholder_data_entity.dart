@@ -16,7 +16,8 @@ class PlaceholderDataEntity implements BaseLayerDataTransformer<PlaceholderDataE
   @JsonKey(name: "image")
   final String? image;
 
-  PlaceholderDataEntity({this.placeholderId= 0, this.locationName= "", this.status= false, this.image= ""});
+  PlaceholderDataEntity(
+      {this.placeholderId = 0, this.locationName = "", this.status = false, this.image = ""});
 
   factory PlaceholderDataEntity.fromJson(Map<String, dynamic> json) => _$PlaceholderDataEntityFromJson(json);
 

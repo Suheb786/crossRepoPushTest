@@ -17,7 +17,8 @@ class CityDataEntity implements BaseLayerDataTransformer<CityDataEntity, CityDat
   @JsonKey(name: "name")
   final String? cityName;
 
-  CityDataEntity({this.createTime, this.countryID= "", this.stateID= "", this.cityName= "", this.cityID= ""});
+  CityDataEntity(
+      {this.createTime, this.countryID = "", this.stateID = "", this.cityName = "", this.cityID = ""});
 
   factory CityDataEntity.fromJson(Map<String, dynamic> json) => _$CityDataEntityFromJson(json);
 

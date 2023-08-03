@@ -306,13 +306,13 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
     );
   }
 
-  // void _shareDetails(BuildContext context, PostPaidBillsSuccessPageViewModel model) {
-  //   Share.share(
-  //     ShareInfo.savedMultipleBillsPostPaidSuccess(
-  //       context,
-  //       paidBillsList: model.arguments.billerSuccessDetailsList ?? [],
-  //     ),
-  //     subject: S.of(context).billDetails,
-  //   );
-  // }
+// void _shareDetails(BuildContext context, PostPaidBillsSuccessPageViewModel model) {
+//   Share.share(
+//     ShareInfo.savedMultipleBillsPostPaidSuccess(
+//       context,
+//       paidBillsList: model.arguments.billerSuccessDetailsList ?? [],
+//     ),
+//     subject: S.of(context).billDetails,
+//   );
+// }
 }
