@@ -18100,6 +18100,36 @@ class S {
     );
   }
 
+  /// `Oops! Transaction failed; your account is inactive. Call us on 065200100 to activate your account.`
+  String get dormantAccountTransactionFailed {
+    return Intl.message(
+      'Oops! Transaction failed; your account is inactive. Call us on 065200100 to activate your account.',
+      name: 'dormantAccountTransactionFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `When you freeze your card, your card cannot be used for any transaction including direct debit on your card such as your online subscriptions directly linked to your card, for example: Netflix, Careem, OSN, etc.`
+  String get whenYouFreezeYourCard {
+    return Intl.message(
+      'When you freeze your card, your card cannot be used for any transaction including direct debit on your card such as your online subscriptions directly linked to your card, for example: Netflix, Careem, OSN, etc.',
+      name: 'whenYouFreezeYourCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can unfreeze and activate your card anytime from the app.`
+  String get youCanUnFreeze {
+    return Intl.message(
+      'You can unfreeze and activate your card anytime from the app.',
+      name: 'youCanUnFreeze',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Unavailable`
   String get unavailable {
     return Intl.message(
