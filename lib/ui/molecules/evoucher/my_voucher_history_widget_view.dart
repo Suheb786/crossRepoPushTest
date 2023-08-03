@@ -147,7 +147,7 @@ extension EvoucherTransactionHistoryStatusExt on EvoucherHistoryStatusEnum {
       case EvoucherHistoryStatusEnum.SUCCESS:
         return S.of(context).success.toCapitalized();
       case EvoucherHistoryStatusEnum.UNAVAILABLE:
-        return "Unavailable";
+        return S.of(context).unavailable;
 
       default:
         return "";

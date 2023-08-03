@@ -18,7 +18,8 @@ class EVoucherHistoryUseCase extends BaseUseCase<BaseError,
     return _eVoucherRepository.getMyVouchers(
         pageNo: params.pageNo,
         rangeOfMonths: params.rangeOfMonths,
-        searchPhrase: params.searchPhrase);
+        searchPhrase: params.searchPhrase,
+        totalRecord: params.totalRecord);
   }
 }
 
@@ -26,11 +27,13 @@ class EVoucherHistoryUseCaseParams extends Params {
   int pageNo;
   String searchPhrase;
   int rangeOfMonths;
+  int totalRecord;
 
   EVoucherHistoryUseCaseParams(
       {required this.pageNo,
       required this.rangeOfMonths,
-      required this.searchPhrase});
+      required this.searchPhrase,
+      required this.totalRecord});
 
   @override
   Either<AppError, bool> verify() {

@@ -45,7 +45,7 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
                         model.getVoucherHistory(
                             pageNo: model.pageNo,
                             rangeOfMonths: model.filterDay,
-                            searchPhrase: model.myVoucherHistorySearchController.text.trim());
+                            searchPhrase: model.myVoucherHistorySearchController.text);
                       }
                     }
                   },
@@ -62,7 +62,7 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
                         model.getVoucherHistory(
                             pageNo: model.pageNo,
                             rangeOfMonths: model.filterDay,
-                            searchPhrase: model.myVoucherHistorySearchController.text.trim());
+                            searchPhrase: model.myVoucherHistorySearchController.text);
                       }
                     },
                     suffixIcon: (value, data) {
@@ -144,7 +144,7 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
                                 children: [
                                   Container(
                                     child: Text(
-                                      TimeUtils.getFormattedDateMonth(
+                                      TimeUtils.convertDateTimeToDateMonth(
                                           voucherHistory?.data?[index].date ?? ''),
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,

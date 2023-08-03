@@ -36,7 +36,10 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
             (route) => route.settings.name == RoutePaths.AppHome,
             arguments: EvoucherPageArguments(EvoucherLandingPageNavigationType.PURCHASE_BY_CATEGORY),
           );
-          // provider.getVoucherCategories();
+
+          provider.tabChangeNotifier.value = 1;
+          provider.myVoucherHistoryList = [];
+          provider.getVoucherCategories();
         }
       },
       child: Container(

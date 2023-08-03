@@ -41,17 +41,16 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
   void onModelReady(EvoucherViewModel model) {
     if (widget.arguments.navigationType == EvoucherLandingPageNavigationType.PURCHASE_BY_CATEGORY) {
       _tabController.index = 1;
-    }
-    if (!_tabController.hasListeners) {
-      _tabController.addListener(() {
-        if (model.tabChangeNotifier.value != _tabController.index)
-          model.tabChangeNotifier.value = _tabController.index;
-        model.voucherItemFilterResponseSubject.safeAdd(Resource.success(data: model.filterList));
-        model.voucherCategoriesResponseSubject.safeAdd(Resource.success(data: model.categoriesList));
-      });
+      //  model.tabChangeNotifier.value =1;
     }
 
-    model.getVoucherCategories();
+    _tabController.addListener(() {
+      if (model.tabChangeNotifier.value != _tabController.index)
+        model.tabChangeNotifier.value = _tabController.index;
+      model.voucherItemFilterResponseSubject.safeAdd(Resource.success(data: model.filterList));
+      model.voucherCategoriesResponseSubject.safeAdd(Resource.success(data: model.categoriesList));
+    });
+
     super.onModelReady(model);
   }
 
@@ -65,6 +64,7 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
         preferredSize: Size(double.maxFinite, 85.h),
         child: GestureDetector(
           onVerticalDragEnd: (details) {
+            provider.buyVoucherSearchController.clear();
             Navigator.pop(context);
           },
           behavior: HitTestBehavior.translucent,
@@ -75,6 +75,7 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
               children: [
                 InkWell(
                   onTap: () {
+                    provider.buyVoucherSearchController.clear();
                     Navigator.pop(context);
                   },
                   child: Padding(
@@ -100,21 +101,22 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
                           duration: Duration(microseconds: 500),
                           child: InkWell(
                             onTap: () {
-                              EVouchersFilterDialog.show(context,
-                                  title: S.of(context).filterVouchers,
-                                  categoriesList: provider.categoriesList, onSelected: (value) {
-                                    provider.evoucherFilterOption = value.filterOption;
-                                    provider.getVoucherItemFilter(
-                                        category: value.categryId,
-                                        region: value.region,
-                                        maxValue: double.parse(value.maxValue),
-                                        minValue: double.parse(value.minValue),
-                                        searchText: "");
+                              if (provider.categoriesList.isNotEmpty)
+                                EVouchersFilterDialog.show(context,
+                                    title: S.of(context).filterVouchers,
+                                    categoriesList: provider.categoriesList, onSelected: (value) {
+                                  provider.evoucherFilterOption = value.filterOption;
+                                  provider.getVoucherItemFilter(
+                                      category: value.categryId,
+                                      region: value.region,
+                                      maxValue: double.parse(value.maxValue),
+                                      minValue: double.parse(value.minValue),
+                                      searchText: provider.buyVoucherSearchController.text);
 
-                                    Navigator.pop(context);
-                                  }, onDismissed: () {
-                                    Navigator.pop(context);
-                                  });
+                                  Navigator.pop(context);
+                                }, onDismissed: () {
+                                  Navigator.pop(context);
+                                });
                             },
                             child: AppSvg.asset(AssetUtils.filterMenu),
                           ),

@@ -25,9 +25,12 @@ class EVoucherRepositoryImpl extends EVoucherRepository {
 
   @override
   Future<Either<NetworkError, List<VouchersByDate>>> getMyVouchers(
-      {required int pageNo, required int rangeOfMonths, required String searchPhrase}) async {
+      {required int pageNo,
+      required int rangeOfMonths,
+      required String searchPhrase,
+      required int totalRecord}) async {
     final result = await safeApiCall(_eVoucherRemoteDS.getMyVouchers(
-        pageNo: pageNo, rangeOfMonths: rangeOfMonths, searchPhrase: searchPhrase));
+        pageNo: pageNo, rangeOfMonths: rangeOfMonths, searchPhrase: searchPhrase, totalRecord: totalRecord));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.data.transform()),

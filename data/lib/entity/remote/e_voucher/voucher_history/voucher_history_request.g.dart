@@ -14,6 +14,7 @@ VoucherHistoryRequest _$VoucherHistoryRequestFromJson(
       rangeOfMonths: json['RangeOfMonths'] as int?,
       getToken: json['GetToken'] as bool? ?? true,
       baseData: json['baseClass'] as Map<String, dynamic>,
+      totalRecord: json['TotalRecord'] as int?,
     );
 
 Map<String, dynamic> _$VoucherHistoryRequestToJson(
@@ -22,6 +23,7 @@ Map<String, dynamic> _$VoucherHistoryRequestToJson(
       'PageNo': instance.pageNo,
       'searchPhrase': instance.searchPhrase,
       'RangeOfMonths': instance.rangeOfMonths,
+      'TotalRecord': instance.totalRecord,
       'GetToken': instance.getToken,
       'baseClass': instance.baseData,
     };

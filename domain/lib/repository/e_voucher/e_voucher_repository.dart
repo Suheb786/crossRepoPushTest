@@ -2,10 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:domain/model/e_voucher/get_voucher_details.dart';
 import 'package:domain/model/e_voucher/voucher_detail.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
+import 'package:domain/model/e_voucher/voucher_region_by_categories.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
 import 'package:domain/usecase/evouchers/place_order_usecase.dart';
-import 'package:domain/model/e_voucher/voucher_region_by_categories.dart';
 import 'package:domain/usecase/evouchers/voucher_min_max_value.dart';
 
 import '../../error/network_error.dart';
@@ -22,7 +22,10 @@ abstract class EVoucherRepository {
   Future<Either<NetworkError, List<VoucherItem>>> getVoucherItemsByCategory(String category);
 
   Future<Either<NetworkError, List<VouchersByDate>>> getMyVouchers(
-      {required int pageNo, required int rangeOfMonths, required String searchPhrase});
+      {required int pageNo,
+      required int rangeOfMonths,
+      required String searchPhrase,
+      required int totalRecord});
 
   Future<Either<NetworkError, VoucherDetail>> getVoucherDetails(String orderIdentifier);
 
