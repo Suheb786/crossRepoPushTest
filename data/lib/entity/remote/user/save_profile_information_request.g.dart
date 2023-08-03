@@ -6,7 +6,8 @@ part of 'save_profile_information_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SaveProfileInformationRequest _$SaveProfileInformationRequestFromJson(Map<String, dynamic> json) =>
+SaveProfileInformationRequest _$SaveProfileInformationRequestFromJson(
+        Map<String, dynamic> json) =>
     SaveProfileInformationRequest(
       married: json['Married'] as bool?,
       specialPerson: json['SpecialPerson'] as bool?,
@@ -20,7 +21,8 @@ SaveProfileInformationRequest _$SaveProfileInformationRequestFromJson(Map<String
       baseData: json['baseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$SaveProfileInformationRequestToJson(SaveProfileInformationRequest instance) =>
+Map<String, dynamic> _$SaveProfileInformationRequestToJson(
+        SaveProfileInformationRequest instance) =>
     <String, dynamic>{
       'Married': instance.married,
       'SpecialPerson': instance.specialPerson,

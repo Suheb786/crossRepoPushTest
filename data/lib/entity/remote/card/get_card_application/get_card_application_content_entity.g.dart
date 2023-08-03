@@ -6,7 +6,8 @@ part of 'get_card_application_content_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetCardApplicationContentEntity _$GetCardApplicationContentEntityFromJson(Map<String, dynamic> json) =>
+GetCardApplicationContentEntity _$GetCardApplicationContentEntityFromJson(
+        Map<String, dynamic> json) =>
     GetCardApplicationContentEntity(
       cardId: json['cardId'] as String? ?? "",
       loanValueId: json['loanValueId'] as num? ?? 0,
@@ -22,7 +23,8 @@ GetCardApplicationContentEntity _$GetCardApplicationContentEntityFromJson(Map<St
       aramexError: json['aramexError'] as int? ?? 0,
     );
 
-Map<String, dynamic> _$GetCardApplicationContentEntityToJson(GetCardApplicationContentEntity instance) =>
+Map<String, dynamic> _$GetCardApplicationContentEntityToJson(
+        GetCardApplicationContentEntity instance) =>
     <String, dynamic>{
       'cardId': instance.cardId,
       'loanValueId': instance.loanValueId,

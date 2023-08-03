@@ -6,7 +6,8 @@ part of 'pay_prepaid_bill_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PayPrePaidRequest _$PayPrePaidRequestFromJson(Map<String, dynamic> json) => PayPrePaidRequest(
+PayPrePaidRequest _$PayPrePaidRequestFromJson(Map<String, dynamic> json) =>
+    PayPrePaidRequest(
       billerCode: json['billerCode'] as String?,
       billerName: json['billerName'] as String?,
       billingNumber: json['billingNumber'] as String?,
@@ -28,7 +29,8 @@ PayPrePaidRequest _$PayPrePaidRequestFromJson(Map<String, dynamic> json) => PayP
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$PayPrePaidRequestToJson(PayPrePaidRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$PayPrePaidRequestToJson(PayPrePaidRequest instance) =>
+    <String, dynamic>{
       'billerCode': instance.billerCode,
       'billerName': instance.billerName,
       'billingNumber': instance.billingNumber,

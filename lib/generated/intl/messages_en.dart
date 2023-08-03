@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -925,7 +924,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dormantAccountPhysicalCardReq": MessageLookupByLibrary.simpleMessage(
             "Oops! You cannot request your physical card as your account is inactive. Call us on 06-5200100 to activate your account."),
         "dormantAccountTransactionFailed": MessageLookupByLibrary.simpleMessage(
-            "Oops! Transaction failed; your account is inactive. Call us on 065200100 to activate your account."),
+            "Oops! Transaction failed; your account is inactive. Call us on 06-5200100 to activate your account."),
         "downloadStatement":
             MessageLookupByLibrary.simpleMessage("Download Statement"),
         "dragMap": MessageLookupByLibrary.simpleMessage(

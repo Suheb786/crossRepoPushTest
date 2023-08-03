@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -906,7 +905,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dormantAccountPhysicalCardReq": MessageLookupByLibrary.simpleMessage(
             "عفوا! لا يمكنك طلب طباعة البطاقة لأنه حسابك غير فعال. اتصل بنا على 5200100-06 ليتم تفعيل الحساب"),
         "dormantAccountTransactionFailed": MessageLookupByLibrary.simpleMessage(
-            "عفوا! لم تتم العملية بنجاح لأنه حسابك غير فعال. اتصل بنا على 065200100 ليتم تفعيل الحساب"),
+            "عفوا! لم تتم العملية بنجاح لأنه حسابك غير فعال. اتصل بنا على 5200100-06 ليتم تفعيل الحساب"),
         "downloadStatement":
             MessageLookupByLibrary.simpleMessage("تنزيل كشف الحساب"),
         "dragMap": MessageLookupByLibrary.simpleMessage(
@@ -3191,7 +3190,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCanPayAllYourBillsNow": MessageLookupByLibrary.simpleMessage(
             "يمكنك الآن دفع جميع فواتيرك من خلال بلينك، بخطوات بسيطة \"\nادفع أول دفعة اليوم!"),
         "youCanUnFreeze": MessageLookupByLibrary.simpleMessage(
-            ".بتقدر تفك تجميد بطاقتك وتفعلها بأي وقت من داخل التطبيق * "),
+            ".بتقدر تفك تجميد بطاقتك وتفعلها بأي وقت من داخل التطبيق"),
         "youCannotSendMoneyToYourOwnAccount":
             MessageLookupByLibrary.simpleMessage(
                 "عفوا! ما بتقدر تحول لنفس حسابك"),

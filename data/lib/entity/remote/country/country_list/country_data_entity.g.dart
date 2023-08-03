@@ -6,7 +6,8 @@ part of 'country_data_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CountryDataEntity _$CountryDataEntityFromJson(Map<String, dynamic> json) => CountryDataEntity(
+CountryDataEntity _$CountryDataEntityFromJson(Map<String, dynamic> json) =>
+    CountryDataEntity(
       isoCode3: json['isoCode3'] as String?,
       isoCode: json['isoCode'] as String?,
       phoneCode: json['phoneCode'] as String?,
@@ -22,7 +23,8 @@ CountryDataEntity _$CountryDataEntityFromJson(Map<String, dynamic> json) => Coun
       countryNameAR: json['countryNameAR'] as String?,
     );
 
-Map<String, dynamic> _$CountryDataEntityToJson(CountryDataEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$CountryDataEntityToJson(CountryDataEntity instance) =>
+    <String, dynamic>{
       'isoCode3': instance.isoCode3,
       'isoCode': instance.isoCode,
       'phoneCode': instance.phoneCode,

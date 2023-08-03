@@ -6,7 +6,8 @@ part of 'save_job_info_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SaveJobInfoRequest _$SaveJobInfoRequestFromJson(Map<String, dynamic> json) => SaveJobInfoRequest(
+SaveJobInfoRequest _$SaveJobInfoRequestFromJson(Map<String, dynamic> json) =>
+    SaveJobInfoRequest(
       employeeName: json['EmployeeName'] as String?,
       occupation: json['Occupation'] as String?,
       annualIncome: json['AnnualIncome'] as String?,
@@ -22,7 +23,8 @@ SaveJobInfoRequest _$SaveJobInfoRequestFromJson(Map<String, dynamic> json) => Sa
       baseData: json['baseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$SaveJobInfoRequestToJson(SaveJobInfoRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$SaveJobInfoRequestToJson(SaveJobInfoRequest instance) =>
+    <String, dynamic>{
       'EmployeeName': instance.employeeName,
       'Occupation': instance.occupation,
       'BusinessType': instance.businessType,

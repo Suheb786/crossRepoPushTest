@@ -6,7 +6,8 @@ part of 'request_to_pay_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RequestToPayRequestEntity _$RequestToPayRequestEntityFromJson(Map<String, dynamic> json) =>
+RequestToPayRequestEntity _$RequestToPayRequestEntityFromJson(
+        Map<String, dynamic> json) =>
     RequestToPayRequestEntity(
       ctgyPurp: json['CtgyPurp'] as String?,
       amount: json['Amount'] as num?,
@@ -27,7 +28,8 @@ RequestToPayRequestEntity _$RequestToPayRequestEntityFromJson(Map<String, dynami
       alias: json['Alias'] as String? ?? "",
     );
 
-Map<String, dynamic> _$RequestToPayRequestEntityToJson(RequestToPayRequestEntity instance) =>
+Map<String, dynamic> _$RequestToPayRequestEntityToJson(
+        RequestToPayRequestEntity instance) =>
     <String, dynamic>{
       'DbtrSurname': instance.dbtrSurname,
       'Alias': instance.alias,

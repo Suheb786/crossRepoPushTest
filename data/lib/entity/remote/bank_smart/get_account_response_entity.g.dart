@@ -6,12 +6,16 @@ part of 'get_account_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetAccountResponseEntity _$GetAccountResponseEntityFromJson(Map<String, dynamic> json) =>
+GetAccountResponseEntity _$GetAccountResponseEntityFromJson(
+        Map<String, dynamic> json) =>
     GetAccountResponseEntity(
-      response:
-          json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+      response: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$GetAccountResponseEntityToJson(GetAccountResponseEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$GetAccountResponseEntityToJson(
+        GetAccountResponseEntity instance) =>
+    <String, dynamic>{
       'response': instance.response,
     };

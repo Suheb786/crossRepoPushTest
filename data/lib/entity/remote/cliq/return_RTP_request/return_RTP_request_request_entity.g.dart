@@ -6,7 +6,8 @@ part of 'return_RTP_request_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ReturnRTPrequestRequestEntity _$ReturnRTPrequestRequestEntityFromJson(Map<String, dynamic> json) =>
+ReturnRTPrequestRequestEntity _$ReturnRTPrequestRequestEntityFromJson(
+        Map<String, dynamic> json) =>
     ReturnRTPrequestRequestEntity(
       CustID: json['CustID'] as String?,
       MessageID: json['MessageID'] as String?,
@@ -25,7 +26,8 @@ ReturnRTPrequestRequestEntity _$ReturnRTPrequestRequestEntityFromJson(Map<String
       BaseClass: json['BaseClass'] as Map<String, dynamic>?,
     );
 
-Map<String, dynamic> _$ReturnRTPrequestRequestEntityToJson(ReturnRTPrequestRequestEntity instance) =>
+Map<String, dynamic> _$ReturnRTPrequestRequestEntityToJson(
+        ReturnRTPrequestRequestEntity instance) =>
     <String, dynamic>{
       'CustID': instance.CustID,
       'MessageID': instance.MessageID,

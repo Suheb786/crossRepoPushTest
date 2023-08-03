@@ -6,7 +6,8 @@ part of 'get_debit_card_transaction_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetDebitCardTransactionRequest _$GetDebitCardTransactionRequestFromJson(Map<String, dynamic> json) =>
+GetDebitCardTransactionRequest _$GetDebitCardTransactionRequestFromJson(
+        Map<String, dynamic> json) =>
     GetDebitCardTransactionRequest(
       baseData: json['BaseClass'] as Map<String, dynamic>,
       noOfDays: json['NoOfDays'] as num? ?? 90,
@@ -14,7 +15,8 @@ GetDebitCardTransactionRequest _$GetDebitCardTransactionRequestFromJson(Map<Stri
       isDebit: json['IsDebit'] as bool? ?? true,
     );
 
-Map<String, dynamic> _$GetDebitCardTransactionRequestToJson(GetDebitCardTransactionRequest instance) =>
+Map<String, dynamic> _$GetDebitCardTransactionRequestToJson(
+        GetDebitCardTransactionRequest instance) =>
     <String, dynamic>{
       'IsDebit': instance.isDebit,
       'NoOfDays': instance.noOfDays,

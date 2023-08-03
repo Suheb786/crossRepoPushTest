@@ -6,13 +6,16 @@ part of 'country_list_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CountryListRequestEntity _$CountryListRequestEntityFromJson(Map<String, dynamic> json) =>
+CountryListRequestEntity _$CountryListRequestEntityFromJson(
+        Map<String, dynamic> json) =>
     CountryListRequestEntity(
       baseData: json['baseClass'] as Map<String, dynamic>,
       getToken: json['GetToken'] as bool? ?? true,
     );
 
-Map<String, dynamic> _$CountryListRequestEntityToJson(CountryListRequestEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$CountryListRequestEntityToJson(
+        CountryListRequestEntity instance) =>
+    <String, dynamic>{
       'GetToken': instance.getToken,
       'baseClass': instance.baseData,
     };

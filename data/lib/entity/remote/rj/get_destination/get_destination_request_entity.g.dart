@@ -6,7 +6,8 @@ part of 'get_destination_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetDestinationRequestEntity _$GetDestinationRequestEntityFromJson(Map<String, dynamic> json) =>
+GetDestinationRequestEntity _$GetDestinationRequestEntityFromJson(
+        Map<String, dynamic> json) =>
     GetDestinationRequestEntity(
       baseData: json['baseClass'] as Map<String, dynamic>,
       getToken: json['GetToken'] as bool? ?? true,
@@ -15,7 +16,8 @@ GetDestinationRequestEntity _$GetDestinationRequestEntityFromJson(Map<String, dy
       service: json['Service'] as String?,
     );
 
-Map<String, dynamic> _$GetDestinationRequestEntityToJson(GetDestinationRequestEntity instance) =>
+Map<String, dynamic> _$GetDestinationRequestEntityToJson(
+        GetDestinationRequestEntity instance) =>
     <String, dynamic>{
       'Language': instance.language,
       'Service': instance.service,

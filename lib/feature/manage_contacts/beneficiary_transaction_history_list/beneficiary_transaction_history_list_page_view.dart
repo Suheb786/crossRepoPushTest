@@ -72,9 +72,7 @@ class BeneficiaryTransactionHistoryListPageView
                   hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
                   textColor: Theme.of(context).primaryColorDark,
                   hintText: S.of(context).lookingFor,
-                  inputType: TextInputType.numberWithOptions(
-                    decimal: true,
-                  ),
+                  inputType: TextInputType.numberWithOptions(decimal: true, signed: true),
                   inputFormatters: <TextInputFormatter>[
                     FilteringTextInputFormatter.allow(RegExp(r'^[0-9]+.?[0-9]*'))
                   ],
