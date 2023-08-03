@@ -11,7 +11,7 @@ class SetCardPinRequest {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  SetCardPinRequest({required this.baseData, this.getToken= true, this.pinCode});
+  SetCardPinRequest({required this.baseData, this.getToken = true, this.pinCode});
 
   factory SetCardPinRequest.fromJson(Map<String, dynamic> json) => _$SetCardPinRequestFromJson(json);
 

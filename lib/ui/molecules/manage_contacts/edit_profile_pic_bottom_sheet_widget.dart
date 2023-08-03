@@ -15,8 +15,7 @@ class EditProfilePicBottomSheetSelectionWidget {
     required Function()? onTakePhoto,
     required String? title,
   }) async {
-    return
-     Platform.isAndroid
+    return Platform.isAndroid
         ? showModalBottomSheet(
             context: context,
             builder: (context) {
@@ -28,8 +27,7 @@ class EditProfilePicBottomSheetSelectionWidget {
                 title: title,
               );
             })
-        :
-         EditProfileiosBottomSheet.show(context,
+        : EditProfileiosBottomSheet.show(context,
             title: title,
             onRemovePhoto: onRemovePhoto,
             onSelectFromLibrary: onSelectFromLibrary,

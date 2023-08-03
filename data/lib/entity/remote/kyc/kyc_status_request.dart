@@ -9,7 +9,7 @@ class KYCStatusRequest {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  KYCStatusRequest({required this.baseData, this.getToken= true});
+  KYCStatusRequest({required this.baseData, this.getToken = true});
 
   factory KYCStatusRequest.fromJson(Map<String, dynamic> json) => _$KYCStatusRequestFromJson(json);
 

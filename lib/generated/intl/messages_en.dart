@@ -3082,6 +3082,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777."),
         "unauthorize": MessageLookupByLibrary.simpleMessage(
             "Oops! We are unable to authorize you. User might not be registered or something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-u)"),
+        "unavailable": MessageLookupByLibrary.simpleMessage("Unavailable"),
         "unblockCardPin":
             MessageLookupByLibrary.simpleMessage("Unblock card PIN"),
         "unblockCreditCardPinError": MessageLookupByLibrary.simpleMessage(

@@ -9,7 +9,7 @@ class GetPlaceholderRequestEntity {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  GetPlaceholderRequestEntity({required this.baseData, this.placeholderId= 0});
+  GetPlaceholderRequestEntity({required this.baseData, this.placeholderId = 0});
 
   factory GetPlaceholderRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$GetPlaceholderRequestEntityFromJson(json);

@@ -6,8 +6,7 @@ part of 'add_new_prepaid_biller_entity_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AddNewPrepaidBillerEntityRequest _$AddNewPrepaidBillerEntityRequestFromJson(
-        Map<String, dynamic> json) =>
+AddNewPrepaidBillerEntityRequest _$AddNewPrepaidBillerEntityRequestFromJson(Map<String, dynamic> json) =>
     AddNewPrepaidBillerEntityRequest(
       prepaidCategoryType: json['prepaidCategoryType'] as String?,
       prepaidCategoryCode: json['prepaidCategoryCode'] as String?,
@@ -23,8 +22,7 @@ AddNewPrepaidBillerEntityRequest _$AddNewPrepaidBillerEntityRequestFromJson(
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$AddNewPrepaidBillerEntityRequestToJson(
-        AddNewPrepaidBillerEntityRequest instance) =>
+Map<String, dynamic> _$AddNewPrepaidBillerEntityRequestToJson(AddNewPrepaidBillerEntityRequest instance) =>
     <String, dynamic>{
       'prepaidCategoryType': instance.prepaidCategoryType,
       'prepaidCategoryCode': instance.prepaidCategoryCode,

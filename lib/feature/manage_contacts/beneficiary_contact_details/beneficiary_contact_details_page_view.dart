@@ -27,7 +27,6 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:riverpod/src/framework.dart';
 
 import 'beneficiary_contact_details_page_view_model.dart';
 

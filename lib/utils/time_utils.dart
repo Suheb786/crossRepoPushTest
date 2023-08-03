@@ -155,8 +155,8 @@ class TimeUtils {
     return DateFormat('dd MMMM yyyy').format(dateTime);
   }
 
-  static String convertDateTimeToDateForVoucher(String date) {
-    final DateTime dateTime = DateFormat('dd-MM-yyyy').parse(date).toLocal();
+  static String convertDateTimeToDateMonth(String date) {
+    final DateTime dateTime = DateFormat('MM/dd/yyyy', "en").parse(date).toLocal();
     return DateFormat('dd MMMM').format(dateTime);
   }
 

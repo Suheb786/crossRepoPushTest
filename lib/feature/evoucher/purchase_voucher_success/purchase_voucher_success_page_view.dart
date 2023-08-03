@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:domain/constants/enum/evoucher_landing_page_navigation_type_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
+import 'package:neo_bank/feature/evoucher/evoucher/evoucher_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_voucher_success_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -23,8 +26,20 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
+          final provider = ProviderScope.containerOf(context).read(
+            evoucherViewModelProvider,
+          );
+
           Navigator.pushNamedAndRemoveUntil(
-              context, RoutePaths.Evoucher, (route) => route.settings.name == RoutePaths.AppHome);
+            context,
+            RoutePaths.Evoucher,
+            (route) => route.settings.name == RoutePaths.AppHome,
+            arguments: EvoucherPageArguments(EvoucherLandingPageNavigationType.PURCHASE_BY_CATEGORY),
+          );
+
+          provider.tabChangeNotifier.value = 1;
+          provider.myVoucherHistoryList = [];
+          provider.getVoucherCategories();
         }
       },
       child: Container(

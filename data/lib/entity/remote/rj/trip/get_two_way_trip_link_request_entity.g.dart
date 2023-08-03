@@ -6,8 +6,7 @@ part of 'get_two_way_trip_link_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetTwoWayTripLinkRequestEntity _$GetTwoWayTripLinkRequestEntityFromJson(
-        Map<String, dynamic> json) =>
+GetTwoWayTripLinkRequestEntity _$GetTwoWayTripLinkRequestEntityFromJson(Map<String, dynamic> json) =>
     GetTwoWayTripLinkRequestEntity(
       baseData: json['baseClass'] as Map<String, dynamic>,
       getToken: json['GetToken'] as bool? ?? true,
@@ -25,8 +24,7 @@ GetTwoWayTripLinkRequestEntity _$GetTwoWayTripLinkRequestEntityFromJson(
       youths: json['Youths'] as String?,
     );
 
-Map<String, dynamic> _$GetTwoWayTripLinkRequestEntityToJson(
-        GetTwoWayTripLinkRequestEntity instance) =>
+Map<String, dynamic> _$GetTwoWayTripLinkRequestEntityToJson(GetTwoWayTripLinkRequestEntity instance) =>
     <String, dynamic>{
       'Language': instance.language,
       'Org': instance.org,

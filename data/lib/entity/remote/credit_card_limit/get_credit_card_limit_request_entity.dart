@@ -11,7 +11,7 @@ class CreditCardLimitRequestEntity {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic>? baseData;
 
-  CreditCardLimitRequestEntity({this.getToken= true, this.baseData, this.secureCode= ""});
+  CreditCardLimitRequestEntity({this.getToken = true, this.baseData, this.secureCode = ""});
 
   factory CreditCardLimitRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$CreditCardLimitRequestEntityFromJson(json);

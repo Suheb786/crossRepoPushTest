@@ -6,8 +6,7 @@ part of 'response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ResponseEntity _$ResponseEntityFromJson(Map<String, dynamic> json) =>
-    ResponseEntity(
+ResponseEntity _$ResponseEntityFromJson(Map<String, dynamic> json) => ResponseEntity(
       code: json['code'] as int?,
       content: json['content'],
       exceptionMessage: json['exceptionMessage'] as String?,
@@ -16,8 +15,7 @@ ResponseEntity _$ResponseEntityFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
     );
 
-Map<String, dynamic> _$ResponseEntityToJson(ResponseEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ResponseEntityToJson(ResponseEntity instance) => <String, dynamic>{
       'code': instance.code,
       'message': instance.message,
       'token': instance.token,

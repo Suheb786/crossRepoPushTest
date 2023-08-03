@@ -28,9 +28,9 @@ class SaveProfileInformationRequest {
   SaveProfileInformationRequest(
       {this.married,
       this.specialPerson,
-      this.employmentStatus= "",
-      this.spauseName= "",
-      this.natureSP= "",
+      this.employmentStatus = "",
+      this.spauseName = "",
+      this.natureSP = "",
       this.additionalNationality,
       this.isAdditionalNational,
       this.isEmployed,

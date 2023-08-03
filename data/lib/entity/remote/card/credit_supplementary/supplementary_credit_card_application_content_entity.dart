@@ -27,15 +27,15 @@ class SupplementaryCreditCardApplicationContentEntity extends BaseLayerDataTrans
   final int? aramexError;
 
   SupplementaryCreditCardApplicationContentEntity(
-      {this.createdDate= "",
-      this.primaryCardId= "",
-      this.supCardId= "",
-      this.step1= false,
-      this.issueCardDate= "",
-      this.step2= false,
-      this.step3= false,
-      this.contactLessError= 0,
-      this.aramexError= 0});
+      {this.createdDate = "",
+      this.primaryCardId = "",
+      this.supCardId = "",
+      this.step1 = false,
+      this.issueCardDate = "",
+      this.step2 = false,
+      this.step3 = false,
+      this.contactLessError = 0,
+      this.aramexError = 0});
 
   factory SupplementaryCreditCardApplicationContentEntity.fromJson(Map<String, dynamic> json) =>
       _$SupplementaryCreditCardApplicationContentEntityFromJson(json);

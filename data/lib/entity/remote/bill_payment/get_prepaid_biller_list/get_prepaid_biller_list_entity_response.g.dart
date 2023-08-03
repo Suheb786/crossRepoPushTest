@@ -6,12 +6,10 @@ part of 'get_prepaid_biller_list_entity_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetPrepaidBillerListEntityResponse _$GetPrepaidBillerListEntityResponseFromJson(
-        Map<String, dynamic> json) =>
+GetPrepaidBillerListEntityResponse _$GetPrepaidBillerListEntityResponseFromJson(Map<String, dynamic> json) =>
     GetPrepaidBillerListEntityResponse(
-      response: json['response'] == null
-          ? null
-          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+      response:
+          json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$GetPrepaidBillerListEntityResponseToJson(

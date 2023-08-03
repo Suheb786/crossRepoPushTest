@@ -6,8 +6,7 @@ part of 'get_voucher_details_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetVoucherDetailsEntity _$GetVoucherDetailsEntityFromJson(
-        Map<String, dynamic> json) =>
+GetVoucherDetailsEntity _$GetVoucherDetailsEntityFromJson(Map<String, dynamic> json) =>
     GetVoucherDetailsEntity(
       id: json['id'] as String?,
       name: json['name'] as String?,
@@ -21,9 +20,7 @@ GetVoucherDetailsEntity _$GetVoucherDetailsEntityFromJson(
       cardFaceImage: json['cardFaceImage'] as String?,
       cardFaceHash: json['cardFaceHash'] as String?,
       productId: (json['productId'] as num?)?.toDouble(),
-      categories: (json['categories'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
+      categories: (json['categories'] as List<dynamic>?)?.map((e) => e as String).toList(),
       discount: json['discount'] as String?,
       countryCode: json['countryCode'] as String?,
       activationFees: json['activationFees'] as String?,
@@ -36,9 +33,7 @@ GetVoucherDetailsEntity _$GetVoucherDetailsEntityFromJson(
       exchangeRate: json['exchangeRate'] as String?,
     );
 
-Map<String, dynamic> _$GetVoucherDetailsEntityToJson(
-        GetVoucherDetailsEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$GetVoucherDetailsEntityToJson(GetVoucherDetailsEntity instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'usageInstructions': instance.usageInstructions,

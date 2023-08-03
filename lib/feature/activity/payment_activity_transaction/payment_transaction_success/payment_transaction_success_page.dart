@@ -9,6 +9,7 @@ class PaymentTransationSuccessPage extends BasePage<PaymentTransationSuccessPage
   final PaymentTransationSuccessArgument paymentTransationSuccessArgument;
 
   PaymentTransationSuccessPage(this.paymentTransationSuccessArgument);
+
   @override
   State<StatefulWidget> createState() => PaymentTransationSuccessPageState();
 }

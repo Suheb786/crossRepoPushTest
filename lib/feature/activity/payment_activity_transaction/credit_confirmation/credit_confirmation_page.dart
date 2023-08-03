@@ -10,6 +10,7 @@ class CreditConfirmationPaymentActivityPage extends BasePage<CreditConfirmationP
   final CreditConfirmationArgument creditConfirmationArgument;
 
   CreditConfirmationPaymentActivityPage(this.creditConfirmationArgument);
+
   @override
   CreditConfirmationPaymentActivityPageState createState() => CreditConfirmationPaymentActivityPageState();
 }

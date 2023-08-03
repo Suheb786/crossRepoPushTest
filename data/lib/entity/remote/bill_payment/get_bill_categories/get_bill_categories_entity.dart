@@ -1,7 +1,8 @@
 import 'package:data/entity/remote/user/response_entity.dart';
+import 'package:domain/model/bill_payments/get_bill_categories/get_bill_categories.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:domain/model/bill_payments/get_bill_categories/get_bill_categories.dart';
+
 import 'get_bill_categories_data_entity.dart';
 
 part 'get_bill_categories_entity.g.dart';

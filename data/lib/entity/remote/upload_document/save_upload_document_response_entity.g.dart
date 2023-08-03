@@ -6,16 +6,13 @@ part of 'save_upload_document_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SaveUploadDocumentResponseEntity _$SaveUploadDocumentResponseEntityFromJson(
-        Map<String, dynamic> json) =>
+SaveUploadDocumentResponseEntity _$SaveUploadDocumentResponseEntityFromJson(Map<String, dynamic> json) =>
     SaveUploadDocumentResponseEntity(
-      response: json['response'] == null
-          ? null
-          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+      response:
+          json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$SaveUploadDocumentResponseEntityToJson(
-        SaveUploadDocumentResponseEntity instance) =>
+Map<String, dynamic> _$SaveUploadDocumentResponseEntityToJson(SaveUploadDocumentResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

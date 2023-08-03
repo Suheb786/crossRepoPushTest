@@ -7,17 +7,11 @@ import 'select_service_dialog_view.dart';
 class SelectServiceDialog {
   SelectServiceDialog._();
 
-  static show(BuildContext mContext, List<BillerService> billerService,
-      String billerCodeString,
-      {Function? onDismissed,
-      required Function(BillerService) onSelected,
-      String? title}) {
+  static show(BuildContext mContext, List<BillerService> billerService, String billerCodeString,
+      {Function? onDismissed, required Function(BillerService) onSelected, String? title}) {
     AppDialog.show(mContext,
         isDismissible: false,
         builder: (context) => SelectServiceDialogView(
-            onDismissed: onDismissed,
-            onSelected: onSelected,
-            title: title,
-            billerService: billerService));
+            onDismissed: onDismissed, onSelected: onSelected, title: title, billerService: billerService));
   }
 }

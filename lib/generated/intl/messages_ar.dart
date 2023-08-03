@@ -919,9 +919,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "dummyIBAN":
             MessageLookupByLibrary.simpleMessage("ABC000012341234123819241213"),
         "dummyMobileNo": MessageLookupByLibrary.simpleMessage("00962xxxxxxxxx"),
+        "eVoucherLandingDialogDescption": MessageLookupByLibrary.simpleMessage(
+            "صار بإمكانك تشتري القسائم الإلكترونية من مختلف المتاجر المحلية والدولية المفضلة لديك. "),
         "eVoucherSearchLabel": MessageLookupByLibrary.simpleMessage("ابحث هنا"),
         "eVouchers":
             MessageLookupByLibrary.simpleMessage("القسائم الإلكترونية"),
+        "eVouchersAreHere": MessageLookupByLibrary.simpleMessage(
+            "القسائم الإلكترونية صارت متاحة!"),
         "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
         "editCliqId": MessageLookupByLibrary.simpleMessage("تعديل حساب CliQ"),
         "editId": MessageLookupByLibrary.simpleMessage("تعديل نوع الحساب"),
@@ -2993,6 +2997,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "عملينا العزيز، ما قدرنا نتحقق من رقم هويتك الشخصية. حاول امسح الهوية كمان مرة أو تواصل مع مركز خدمات الزبائن على 06-5200100"),
         "unauthorize": MessageLookupByLibrary.simpleMessage(
             "عفواً! مش قادرين نتعرف عليك. المشترك غير مسجل او صار خلل. حاول كمان مرة بعدين أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06   (Err-u)"),
+        "unavailable": MessageLookupByLibrary.simpleMessage("غير متوفر"),
         "unblockCardPin": MessageLookupByLibrary.simpleMessage(
             "فك حظر الرمز السري PIN على البطاقة"),
         "unblockCreditCardPinError": MessageLookupByLibrary.simpleMessage(

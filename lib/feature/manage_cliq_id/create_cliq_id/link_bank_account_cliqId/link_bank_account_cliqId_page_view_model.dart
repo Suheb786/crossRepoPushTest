@@ -132,5 +132,4 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
   Stream<bool> get isSelectedStream => _isSelectedRequest.stream;
 
   ///-------------------Get Account By Customer ID----------------///
-
 }

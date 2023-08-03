@@ -154,9 +154,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
         prepaidCategoryType: confirmBillModel.addNewBillDetailsData.isPrepaidCategoryListEmpty == false
             ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
             : "",
-        billingNumberRequired: AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
-            ? true
-            : false,
+        billingNumberRequired: AppConstantsUtils.SELECTED_BILLING_NUMBER != "" ? true : false,
         CardId: "",
         isCreditCardPayment: false));
   }

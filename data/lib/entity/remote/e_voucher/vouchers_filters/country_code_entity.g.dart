@@ -6,8 +6,7 @@ part of 'country_code_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CountryCodeEntity _$CountryCodeEntityFromJson(Map<String, dynamic> json) =>
-    CountryCodeEntity(
+CountryCodeEntity _$CountryCodeEntityFromJson(Map<String, dynamic> json) => CountryCodeEntity(
       isoCode3: json['isoCode3'] as String? ?? '',
       score: json['score'] as int? ?? 0,
       isoCode: json['isoCode'] as String? ?? '',
@@ -17,8 +16,7 @@ CountryCodeEntity _$CountryCodeEntityFromJson(Map<String, dynamic> json) =>
       nationality: json['nationality'] as String? ?? '',
       gfxCode: json['gfxCode'] as String? ?? '',
       gfxIntCode: json['gfxIntCode'] as String? ?? '',
-      isRestrictedNationality:
-          json['isRestrictedNationality'] as bool? ?? false,
+      isRestrictedNationality: json['isRestrictedNationality'] as bool? ?? false,
       isGccCountry: json['isGccCountry'] as bool? ?? false,
       isMobileAllowed: json['isMobileAllowed'] as bool? ?? false,
       crossAllowed: json['crossAllowed'] as bool? ?? false,
@@ -33,8 +31,7 @@ CountryCodeEntity _$CountryCodeEntityFromJson(Map<String, dynamic> json) =>
       countryNameAR: json['countryNameAR'] as String? ?? '',
     );
 
-Map<String, dynamic> _$CountryCodeEntityToJson(CountryCodeEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$CountryCodeEntityToJson(CountryCodeEntity instance) => <String, dynamic>{
       'isoCode3': instance.isoCode3,
       'score': instance.score,
       'isoCode': instance.isoCode,

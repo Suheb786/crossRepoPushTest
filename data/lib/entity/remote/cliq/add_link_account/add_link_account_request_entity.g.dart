@@ -6,8 +6,7 @@ part of 'add_link_account_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AddLinkAccountRequestEntity _$AddLinkAccountRequestEntityFromJson(
-        Map<String, dynamic> json) =>
+AddLinkAccountRequestEntity _$AddLinkAccountRequestEntityFromJson(Map<String, dynamic> json) =>
     AddLinkAccountRequestEntity(
       aliasId: json['AliasId'] as String,
       linkType: json['LinkType'] as String,
@@ -19,8 +18,7 @@ AddLinkAccountRequestEntity _$AddLinkAccountRequestEntityFromJson(
       baseClass: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$AddLinkAccountRequestEntityToJson(
-        AddLinkAccountRequestEntity instance) =>
+Map<String, dynamic> _$AddLinkAccountRequestEntityToJson(AddLinkAccountRequestEntity instance) =>
     <String, dynamic>{
       'AliasId': instance.aliasId,
       'LinkType': instance.linkType,

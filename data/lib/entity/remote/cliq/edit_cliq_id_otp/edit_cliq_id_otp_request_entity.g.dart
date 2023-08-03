@@ -6,8 +6,7 @@ part of 'edit_cliq_id_otp_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-EditCliqOtpRequestEntity _$EditCliqOtpRequestEntityFromJson(
-        Map<String, dynamic> json) =>
+EditCliqOtpRequestEntity _$EditCliqOtpRequestEntityFromJson(Map<String, dynamic> json) =>
     EditCliqOtpRequestEntity(
       aliasId: json['aliasId'] as String?,
       isAlias: json['isAlias'] as bool?,
@@ -16,9 +15,7 @@ EditCliqOtpRequestEntity _$EditCliqOtpRequestEntityFromJson(
       baseClass: json['baseClass'] as Map<String, dynamic>?,
     );
 
-Map<String, dynamic> _$EditCliqOtpRequestEntityToJson(
-        EditCliqOtpRequestEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$EditCliqOtpRequestEntityToJson(EditCliqOtpRequestEntity instance) => <String, dynamic>{
       'aliasId': instance.aliasId,
       'isAlias': instance.isAlias,
       'aliasValue': instance.aliasValue,

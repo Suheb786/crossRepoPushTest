@@ -13,8 +13,8 @@ class FreezeCreditCardRequestEntity {
 
   FreezeCreditCardRequestEntity({
     required this.baseData,
-    this.getToken= true,
-    this.cardId= "",
+    this.getToken = true,
+    this.cardId = "",
   });
 
   factory FreezeCreditCardRequestEntity.fromJson(Map<String, dynamic> json) =>

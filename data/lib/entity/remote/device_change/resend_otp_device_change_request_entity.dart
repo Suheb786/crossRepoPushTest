@@ -13,8 +13,8 @@ class ResendOtpDeviceChangeRequestEntity {
 
   ResendOtpDeviceChangeRequestEntity({
     required this.baseData,
-    this.getToken= true,
-    this.type= "DeviceChange",
+    this.getToken = true,
+    this.type = "DeviceChange",
   });
 
   factory ResendOtpDeviceChangeRequestEntity.fromJson(Map<String, dynamic> json) =>

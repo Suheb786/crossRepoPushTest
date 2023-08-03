@@ -6,8 +6,7 @@ part of 'dc_change_mobile_number_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DcChangeMobileNumberRequestEntity _$DcChangeMobileNumberRequestEntityFromJson(
-        Map<String, dynamic> json) =>
+DcChangeMobileNumberRequestEntity _$DcChangeMobileNumberRequestEntityFromJson(Map<String, dynamic> json) =>
     DcChangeMobileNumberRequestEntity(
       baseData: json['BaseClass'] as Map<String, dynamic>,
       getToken: json['GetToken'] as bool? ?? true,
@@ -17,8 +16,7 @@ DcChangeMobileNumberRequestEntity _$DcChangeMobileNumberRequestEntityFromJson(
       tokenizedPan: json['TokenizedPan'] as String?,
     );
 
-Map<String, dynamic> _$DcChangeMobileNumberRequestEntityToJson(
-        DcChangeMobileNumberRequestEntity instance) =>
+Map<String, dynamic> _$DcChangeMobileNumberRequestEntityToJson(DcChangeMobileNumberRequestEntity instance) =>
     <String, dynamic>{
       'MobileCode': instance.mobileCode,
       'MobileNumber': instance.mobileNumber,

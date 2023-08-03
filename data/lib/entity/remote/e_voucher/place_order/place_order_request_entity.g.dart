@@ -6,8 +6,7 @@ part of 'place_order_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PlaceOrderRequestEntity _$PlaceOrderRequestEntityFromJson(
-        Map<String, dynamic> json) =>
+PlaceOrderRequestEntity _$PlaceOrderRequestEntityFromJson(Map<String, dynamic> json) =>
     PlaceOrderRequestEntity(
       sourceAccount: json['sourceAccount'] as String? ?? '',
       sourceCurrency: json['sourceCurrency'] as String? ?? '',
@@ -27,9 +26,7 @@ PlaceOrderRequestEntity _$PlaceOrderRequestEntityFromJson(
       BaseClass: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$PlaceOrderRequestEntityToJson(
-        PlaceOrderRequestEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$PlaceOrderRequestEntityToJson(PlaceOrderRequestEntity instance) => <String, dynamic>{
       'sourceAccount': instance.sourceAccount,
       'sourceCurrency': instance.sourceCurrency,
       'cardItemId': instance.cardItemId,

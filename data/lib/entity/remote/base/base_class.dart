@@ -31,13 +31,13 @@ class BaseClassEntity {
       {this.ip,
       this.deviceID,
       channelType,
-      this.latitude= "0.0",
-      this.longitude= "0.0",
+      this.latitude = "0.0",
+      this.longitude = "0.0",
       platform,
       this.browser,
       this.mobileModel,
       this.appVersion,
-      this.vKeySessionId= ""}) {
+      this.vKeySessionId = ""}) {
     this.platform = Platform.isAndroid
         ? "A"
         : Platform.isIOS

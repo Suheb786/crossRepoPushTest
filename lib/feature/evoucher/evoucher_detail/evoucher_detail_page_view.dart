@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:domain/constants/enum/evoucher_history_status_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -79,6 +79,7 @@ class EvoucherDetailView extends BasePageViewWidget<EVoucherDetailViewModel> {
 
 class PageDetail extends StatelessWidget {
   EVoucherDetailViewModel model;
+
   PageDetail({
     Key? key,
     required this.model,
@@ -193,6 +194,7 @@ class PageDetail extends StatelessWidget {
 
 class ViewVoucherBtb extends StatelessWidget {
   EVoucherDetailViewModel model;
+
   ViewVoucherBtb({
     Key? key,
     required this.model,
@@ -206,8 +208,8 @@ class ViewVoucherBtb extends StatelessWidget {
         onTap: () {
           // Navigator.pushNamed(context, RoutePaths.ShareVoucher);
 
-          if (model.argument.voucherDetail?.lineItems.first.status?.trim() == "success") {
-               Navigator.pushNamed(context, RoutePaths.ShareVoucher,
+          if (model.argument.voucherDetail?.lineItems.first.status == EvoucherHistoryStatusEnum.SUCCESS) {
+            Navigator.pushNamed(context, RoutePaths.ShareVoucher,
                 arguments: ShareVoucherPageArgument(model.argument.voucherDetail));
           } else {
             InformationDialog.show(context,
@@ -239,11 +241,7 @@ class ViewVoucherBtb extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.only(end: 24.0),
-                child: InkWell(
-                    onTap: () {
-               
-                    },
-                    child: AppSvg.asset(AssetUtils.view_voucher_icon)),
+                child: InkWell(onTap: () {}, child: AppSvg.asset(AssetUtils.view_voucher_icon)),
               )
             ],
           ),

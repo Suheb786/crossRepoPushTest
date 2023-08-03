@@ -22,6 +22,7 @@ class GetVoucherDetailUseCase
 
 class GetVoucherDetailsUseCaseParams extends Params {
   final String? OrderIdentifier;
+
   GetVoucherDetailsUseCaseParams({
     required this.OrderIdentifier,
   });

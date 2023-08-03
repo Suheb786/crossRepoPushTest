@@ -1832,8 +1832,10 @@
   "allRegion": "All Region",
   "allCategories": "All Categories",
   "eVouchersSettings": "eVouchers",
-  "evoucherUnderProcessing": "E-voucher under processing",
+
   "dormantAccountTransactionFailed": "Oops! Transaction failed; your account is inactive. Call us on 065200100 to activate your account.",
   "whenYouFreezeYourCard": "When you freeze your card, your card cannot be used for any transaction including direct debit on your card such as your online subscriptions directly linked to your card, for example: Netflix, Careem, OSN, etc.",
-  "youCanUnFreeze": "You can unfreeze and activate your card anytime from the app."
+  "youCanUnFreeze": "You can unfreeze and activate your card anytime from the app.",
+  "unavailable": "Unavailable",
+  "evoucherUnderProcessing": "E-voucher under processing"
 }

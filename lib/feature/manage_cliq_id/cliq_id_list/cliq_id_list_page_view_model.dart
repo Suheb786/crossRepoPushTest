@@ -1,6 +1,11 @@
 import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
 import 'package:domain/constants/enum/cliq_alias_type_enum.dart';
+import 'package:domain/model/cliq/change_default_account/change_default_account_otp.dart';
+import 'package:domain/model/cliq/delete_cliq_id/delete_cliq_id_otp.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
+import 'package:domain/model/cliq/re_activate_cliq_id/re_activate_cliq_id_otp.dart';
+import 'package:domain/model/cliq/suspend_cliq_id/suspend_cliq_id_otp.dart';
+import 'package:domain/model/cliq/unlink_cliq_id/unlink_cliq_id_otp.dart';
 import 'package:domain/usecase/manage_cliq/change_default_account_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/delete_cliq_id_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/get_alias_usecase.dart';
@@ -15,11 +20,6 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:domain/model/cliq/suspend_cliq_id/suspend_cliq_id_otp.dart';
-import 'package:domain/model/cliq/delete_cliq_id/delete_cliq_id_otp.dart';
-import 'package:domain/model/cliq/re_activate_cliq_id/re_activate_cliq_id_otp.dart';
-import 'package:domain/model/cliq/unlink_cliq_id/unlink_cliq_id_otp.dart';
-import 'package:domain/model/cliq/change_default_account/change_default_account_otp.dart';
 
 class CliqIdListPageViewModel extends BasePageViewModel {
   String accountId = '';

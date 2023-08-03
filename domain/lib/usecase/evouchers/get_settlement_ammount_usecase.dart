@@ -26,6 +26,7 @@ class GetSettlementAmountUseCaseParams extends Params {
   final String? ToCurrency;
 
   final bool? GetToken;
+
   GetSettlementAmountUseCaseParams({
     required this.Amount,
     required this.FromCurrency,

@@ -46,6 +46,6 @@ class GetVoucherDetails {
     required this.otherFees,
     required this.reconciliationCurrency,
     required this.exchangeRate,
-   required this.giftCardInformation,
+    required this.giftCardInformation,
   });
 }

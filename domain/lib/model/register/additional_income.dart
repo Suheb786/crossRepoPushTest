@@ -3,5 +3,5 @@ class AdditionalIncome {
   final String? typeAr;
   bool isSelected;
 
-  AdditionalIncome({this.type= "", this.isSelected= false, this.typeAr = ''});
+  AdditionalIncome({this.type = "", this.isSelected = false, this.typeAr = ''});
 }

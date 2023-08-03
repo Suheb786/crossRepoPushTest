@@ -84,7 +84,7 @@ class FatcaCrsInfo {
       this.createTime,
       this.createTerminal,
       this.taxResidenceCountry,
-      this.isActive= false,
+      this.isActive = false,
       this.signatureId,
       this.deactivatedDate});
 }

@@ -1,4 +1,5 @@
 import 'add_new_postpaid_biller_model_data.dart';
+
 class AddNewPostpaidBillerModel {
   final AddNewPostpaidBillerModelData? addNewPostpaidBillerModelData;
   final dynamic requestDateTime;

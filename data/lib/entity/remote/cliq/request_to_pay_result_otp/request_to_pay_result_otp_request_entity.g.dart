@@ -6,8 +6,7 @@ part of 'request_to_pay_result_otp_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RequestToPayResultOtpRequestEntity _$RequestToPayResultOtpRequestEntityFromJson(
-        Map<String, dynamic> json) =>
+RequestToPayResultOtpRequestEntity _$RequestToPayResultOtpRequestEntityFromJson(Map<String, dynamic> json) =>
     RequestToPayResultOtpRequestEntity(
       getToken: json['GetToken'] as bool,
       baseClass: json['BaseClass'] as Map<String, dynamic>,
