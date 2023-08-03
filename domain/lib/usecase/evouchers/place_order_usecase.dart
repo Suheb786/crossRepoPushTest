@@ -10,6 +10,7 @@ import '../base/params.dart';
 
 class PlaceOrderUseCase extends BaseUseCase<NetworkError, PlaceOrderUseCaseParams, PlaceOrder> {
   final EVoucherRepository _eVoucherRepository;
+
   PlaceOrderUseCase(this._eVoucherRepository);
 
   @override

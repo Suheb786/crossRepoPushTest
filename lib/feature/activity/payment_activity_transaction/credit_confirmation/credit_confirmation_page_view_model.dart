@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cross_file/cross_file.dart';
 import 'package:domain/model/cliq/credit_confirmation/credit_confirmation.dart';
 import 'package:domain/usecase/manage_cliq/credit_confirmation_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,7 +12,6 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:cross_file/cross_file.dart';
 
 class CreditConfirmationPaymentActivityViewModel extends BasePageViewModel {
   final CreditConfirmationArgument creditConfirmationArgument;

@@ -5,10 +5,9 @@ class PayPrePaid {
   String? logId;
   PaidBillContent? content;
 
-
   PayPrePaid({
     this.requestDateTime,
     this.logId,
-     this.content,
+    this.content,
   });
 }

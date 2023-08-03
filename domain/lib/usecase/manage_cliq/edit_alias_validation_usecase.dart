@@ -5,7 +5,6 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
-
 import 'package:domain/utils/validator.dart';
 
 class EditAliasValidationUseCase extends BaseUseCase<NetworkError, EditAliasValidationUseCaseParams, bool> {

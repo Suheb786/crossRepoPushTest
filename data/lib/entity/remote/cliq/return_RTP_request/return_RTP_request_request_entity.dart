@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'return_RTP_request_request_entity.g.dart';
 
 @JsonSerializable()
@@ -33,6 +34,7 @@ class ReturnRTPrequestRequestEntity {
   final bool? GetToken;
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic>? BaseClass;
+
   ReturnRTPrequestRequestEntity({
     required this.CustID,
     required this.MessageID,

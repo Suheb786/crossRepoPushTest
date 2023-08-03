@@ -6,8 +6,8 @@ import 'package:domain/repository/e_voucher/e_voucher_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class EVoucherCategoriesUseCase extends BaseUseCase<BaseError,
-    EVoucherCategoriesUseCaseParams, List<VoucherCategories>> {
+class EVoucherCategoriesUseCase
+    extends BaseUseCase<BaseError, EVoucherCategoriesUseCaseParams, List<VoucherCategories>> {
   EVoucherRepository _eVoucherRepository;
 
   EVoucherCategoriesUseCase(this._eVoucherRepository);

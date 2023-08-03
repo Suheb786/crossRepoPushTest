@@ -1,4 +1,3 @@
-
 class PrepaidCategories {
   String? catCode;
   String? shortDescriptionAr;
@@ -7,11 +6,6 @@ class PrepaidCategories {
   String? descriptionAr;
   String? type;
 
-  PrepaidCategories(
-      this.catCode,
-      this.shortDescriptionAr,
-      this.shortDescriptionEn,
-      this.descriptionEn,
-      this.descriptionAr,
-      this.type);
+  PrepaidCategories(this.catCode, this.shortDescriptionAr, this.shortDescriptionEn, this.descriptionEn,
+      this.descriptionAr, this.type);
 }

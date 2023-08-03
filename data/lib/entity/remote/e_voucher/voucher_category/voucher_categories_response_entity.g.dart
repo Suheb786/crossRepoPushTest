@@ -6,16 +6,12 @@ part of 'voucher_categories_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-VoucherCategoriesResponseEntity _$VoucherCategoriesResponseEntityFromJson(
-        Map<String, dynamic> json) =>
+VoucherCategoriesResponseEntity _$VoucherCategoriesResponseEntityFromJson(Map<String, dynamic> json) =>
     VoucherCategoriesResponseEntity(
-      json['response'] == null
-          ? null
-          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+      json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$VoucherCategoriesResponseEntityToJson(
-        VoucherCategoriesResponseEntity instance) =>
+Map<String, dynamic> _$VoucherCategoriesResponseEntityToJson(VoucherCategoriesResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

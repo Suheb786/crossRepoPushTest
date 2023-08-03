@@ -6,9 +6,7 @@ part of 'job_details_content_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-JobDetailContentEntity _$JobDetailContentEntityFromJson(
-        Map<String, dynamic> json) =>
-    JobDetailContentEntity(
+JobDetailContentEntity _$JobDetailContentEntityFromJson(Map<String, dynamic> json) => JobDetailContentEntity(
       id: json['id'] as int?,
       userId: json['userId'] as String?,
       profession: json['profession'] as String?,
@@ -19,9 +17,7 @@ JobDetailContentEntity _$JobDetailContentEntityFromJson(
       employerCity: json['employerCity'] as String?,
       employerCityAr: json['employerCityAr'] as String?,
       employerContact: json['employerContact'] as String?,
-      createdOn: json['createdOn'] == null
-          ? null
-          : DateTime.parse(json['createdOn'] as String),
+      createdOn: json['createdOn'] == null ? null : DateTime.parse(json['createdOn'] as String),
       additionalIncome: json['additionalIncome'] as bool?,
       isActive: json['isActive'] as bool?,
       occupation: json['occupation'] as String?,
@@ -32,9 +28,7 @@ JobDetailContentEntity _$JobDetailContentEntityFromJson(
       employeeCityId: json['employeeCityId'] as String?,
     );
 
-Map<String, dynamic> _$JobDetailContentEntityToJson(
-        JobDetailContentEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$JobDetailContentEntityToJson(JobDetailContentEntity instance) => <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,
       'profession': instance.profession,

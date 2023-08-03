@@ -11,7 +11,7 @@ class ChangeCreditCardPinVerifyRequestEntity {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic>? baseData;
 
-  ChangeCreditCardPinVerifyRequestEntity({this.getToken= true, this.baseData, this.cardCode= ""});
+  ChangeCreditCardPinVerifyRequestEntity({this.getToken = true, this.baseData, this.cardCode = ""});
 
   factory ChangeCreditCardPinVerifyRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$ChangeCreditCardPinVerifyRequestEntityFromJson(json);

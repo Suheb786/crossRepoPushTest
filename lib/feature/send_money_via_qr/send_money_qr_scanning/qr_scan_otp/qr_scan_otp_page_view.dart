@@ -4,6 +4,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/qr_scan_otp/qr_scan_otp_page_view_model.dart';
@@ -18,7 +19,6 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 
 class QRScanOTPPageView extends BasePageViewWidget<QRScanOTPPageViewModel> {
   QRScanOTPPageView(ProviderBase model) : super(model);

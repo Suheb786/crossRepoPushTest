@@ -15,7 +15,6 @@ class RTPConfirmationDialog {
       required String cdtrAcct,
       required String cdtrDpText,
       required String cdtrName,
-
       required Widget actionWidget,
       required Widget description,
       required Widget listOfDetails,
@@ -32,7 +31,6 @@ class RTPConfirmationDialog {
               cdtrAcct: cdtrAcct,
               cdtrDpText: cdtrDpText,
               cdtrName: cdtrName,
-
               onAccepted: onAccepted,
               onDismiss: onDismiss,
               onRejected: onRejected,

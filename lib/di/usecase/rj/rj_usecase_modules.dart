@@ -9,7 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[GetDestinationUseCase] provider
 final getDestinationUseCaseProvider = Provider.autoDispose<GetDestinationUseCase>(
-      (ref) => GetDestinationUseCase(ref.read(rjRepositoryProvider)),
+  (ref) => GetDestinationUseCase(ref.read(rjRepositoryProvider)),
 );
 
 ///[GetOneWayTripLinkUseCase] provider

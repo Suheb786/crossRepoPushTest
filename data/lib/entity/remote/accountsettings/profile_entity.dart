@@ -21,12 +21,12 @@ class ProfileEntity extends BaseLayerDataTransformer<ProfileEntity, ProfileInfoC
   final String? mobileCode;
 
   ProfileEntity(
-      {this.email= "",
-      this.mobileNumber= "",
-      this.biometric= false,
-      this.fullName= "",
-      this.profileImage= "",
-      this.mobileCode= ""});
+      {this.email = "",
+      this.mobileNumber = "",
+      this.biometric = false,
+      this.fullName = "",
+      this.profileImage = "",
+      this.mobileCode = ""});
 
   factory ProfileEntity.fromJson(Map<String, dynamic> json) => _$ProfileEntityFromJson(json);
 

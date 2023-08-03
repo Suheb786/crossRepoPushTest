@@ -6,8 +6,7 @@ part of 'add_new_postpaid_biller_entity_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AddNewPostpaidBillerEntityRequest _$AddNewPostpaidBillerEntityRequestFromJson(
-        Map<String, dynamic> json) =>
+AddNewPostpaidBillerEntityRequest _$AddNewPostpaidBillerEntityRequestFromJson(Map<String, dynamic> json) =>
     AddNewPostpaidBillerEntityRequest(
       serviceType: json['serviceType'] as String?,
       billerCode: json['billerCode'] as String?,
@@ -17,8 +16,7 @@ AddNewPostpaidBillerEntityRequest _$AddNewPostpaidBillerEntityRequestFromJson(
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$AddNewPostpaidBillerEntityRequestToJson(
-        AddNewPostpaidBillerEntityRequest instance) =>
+Map<String, dynamic> _$AddNewPostpaidBillerEntityRequestToJson(AddNewPostpaidBillerEntityRequest instance) =>
     <String, dynamic>{
       'serviceType': instance.serviceType,
       'billerCode': instance.billerCode,

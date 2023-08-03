@@ -14,7 +14,7 @@ class CreditCardCallStatusUpdateRequest {
   final Map<String, dynamic> baseData;
 
   CreditCardCallStatusUpdateRequest(
-      {required this.baseData, this.getToken= false, this.cardId= "", this.status});
+      {required this.baseData, this.getToken = false, this.cardId = "", this.status});
 
   factory CreditCardCallStatusUpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$CreditCardCallStatusUpdateRequestFromJson(json);

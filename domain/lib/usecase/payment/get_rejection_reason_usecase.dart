@@ -9,6 +9,7 @@ import 'package:domain/usecase/base/params.dart';
 class GetRejectionReasonUseCase
     extends BaseUseCase<NetworkError, GetRejectionReasonUseCaseParams, GetRejectionReasonResponseModel> {
   final PaymentRepository _paymentRepository;
+
   GetRejectionReasonUseCase(this._paymentRepository);
 
   @override

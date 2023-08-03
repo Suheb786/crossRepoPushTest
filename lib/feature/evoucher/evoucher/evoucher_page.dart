@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/evoucher_landing_page_navigation_type_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -16,6 +17,10 @@ import 'evoucher_view_model.dart';
 import 'my_voucher_history/my_voucher_history_view.dart';
 
 class EvoucherPage extends BasePage<EvoucherViewModel> {
+  EvoucherPageArguments arguments;
+
+  EvoucherPage(this.arguments);
+
   @override
   EvoucherState createState() => EvoucherState();
 }
@@ -35,14 +40,18 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
 
   @override
   void onModelReady(EvoucherViewModel model) {
-    if (!_tabController.hasListeners) {
-      _tabController.addListener(() {
-        if (model.tabChangeNotifier.value != _tabController.index)
-          model.tabChangeNotifier.value = _tabController.index;
-        model.voucherItemFilterResponseSubject.safeAdd(Resource.success(data: model.filterList));
-        model.voucherCategoriesResponseSubject.safeAdd(Resource.success(data: model.categoriesList));
-      });
+    if (widget.arguments.navigationType == EvoucherLandingPageNavigationType.PURCHASE_BY_CATEGORY) {
+      _tabController.index = 1;
+      //  model.tabChangeNotifier.value =1;
     }
+
+    _tabController.addListener(() {
+      if (model.tabChangeNotifier.value != _tabController.index)
+        model.tabChangeNotifier.value = _tabController.index;
+      model.voucherItemFilterResponseSubject.safeAdd(Resource.success(data: model.filterList));
+      model.voucherCategoriesResponseSubject.safeAdd(Resource.success(data: model.categoriesList));
+    });
+
     super.onModelReady(model);
   }
 
@@ -56,6 +65,7 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
         preferredSize: Size(double.maxFinite, 85.h),
         child: GestureDetector(
           onVerticalDragEnd: (details) {
+            provider.buyVoucherSearchController.clear();
             Navigator.pop(context);
           },
           behavior: HitTestBehavior.translucent,
@@ -66,6 +76,7 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
               children: [
                 InkWell(
                   onTap: () {
+                    provider.buyVoucherSearchController.clear();
                     Navigator.pop(context);
                   },
                   child: Padding(
@@ -91,21 +102,22 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
                           duration: Duration(microseconds: 500),
                           child: InkWell(
                             onTap: () {
-                              EVouchersFilterDialog.show(context,
-                                  title: S.of(context).filterVouchers,
-                                  categoriesList: provider.categoriesList, onSelected: (value) {
-                                provider.evoucherFilterOption = value.filterOption;
-                                provider.getVoucherItemFilter(
-                                    category: value.categryId,
-                                    region: value.region,
-                                    maxValue: double.parse(value.maxValue),
-                                    minValue: double.parse(value.minValue),
-                                    searchText: "");
+                              if (provider.categoriesList.isNotEmpty)
+                                EVouchersFilterDialog.show(context,
+                                    title: S.of(context).filterVouchers,
+                                    categoriesList: provider.categoriesList, onSelected: (value) {
+                                  provider.evoucherFilterOption = value.filterOption;
+                                  provider.getVoucherItemFilter(
+                                      category: value.categryId,
+                                      region: value.region,
+                                      maxValue: double.parse(value.maxValue),
+                                      minValue: double.parse(value.minValue),
+                                      searchText: provider.buyVoucherSearchController.text);
 
-                                Navigator.pop(context);
-                              }, onDismissed: () {
-                                Navigator.pop(context);
-                              });
+                                  Navigator.pop(context);
+                                }, onDismissed: () {
+                                  Navigator.pop(context);
+                                });
                             },
                             child: AppSvg.asset(AssetUtils.filterMenu),
                           ),
@@ -178,4 +190,10 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
       ),
     );
   }
+}
+
+class EvoucherPageArguments {
+  EvoucherLandingPageNavigationType navigationType;
+
+  EvoucherPageArguments(this.navigationType);
 }

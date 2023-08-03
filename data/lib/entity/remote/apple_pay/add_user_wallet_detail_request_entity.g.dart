@@ -6,8 +6,7 @@ part of 'add_user_wallet_detail_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AddUserWalletDetailRequestEntity _$AddUserWalletDetailRequestEntityFromJson(
-        Map<String, dynamic> json) =>
+AddUserWalletDetailRequestEntity _$AddUserWalletDetailRequestEntityFromJson(Map<String, dynamic> json) =>
     AddUserWalletDetailRequestEntity(
       getToken: json['GetToken'] as bool? ?? true,
       walletId: json['WalletId'] as String? ?? "",
@@ -15,8 +14,7 @@ AddUserWalletDetailRequestEntity _$AddUserWalletDetailRequestEntityFromJson(
       baseData: json['baseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$AddUserWalletDetailRequestEntityToJson(
-        AddUserWalletDetailRequestEntity instance) =>
+Map<String, dynamic> _$AddUserWalletDetailRequestEntityToJson(AddUserWalletDetailRequestEntity instance) =>
     <String, dynamic>{
       'GetToken': instance.getToken,
       'WalletId': instance.walletId,

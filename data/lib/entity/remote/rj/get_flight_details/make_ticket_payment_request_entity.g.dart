@@ -6,8 +6,7 @@ part of 'make_ticket_payment_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-MakeTicketPaymentRequestEntity _$MakeTicketPaymentRequestEntityFromJson(
-        Map<String, dynamic> json) =>
+MakeTicketPaymentRequestEntity _$MakeTicketPaymentRequestEntityFromJson(Map<String, dynamic> json) =>
     MakeTicketPaymentRequestEntity(
       baseData: json['baseClass'] as Map<String, dynamic>,
       getToken: json['GetToken'] as bool? ?? true,
@@ -17,8 +16,7 @@ MakeTicketPaymentRequestEntity _$MakeTicketPaymentRequestEntityFromJson(
       otpCode: json['OtpCode'] as String?,
     );
 
-Map<String, dynamic> _$MakeTicketPaymentRequestEntityToJson(
-        MakeTicketPaymentRequestEntity instance) =>
+Map<String, dynamic> _$MakeTicketPaymentRequestEntityToJson(MakeTicketPaymentRequestEntity instance) =>
     <String, dynamic>{
       'AccountNo': instance.accountNo,
       'Amount': instance.amount,

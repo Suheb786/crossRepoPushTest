@@ -78,7 +78,7 @@ class EvoucherViewModel extends BasePageViewModel {
     required this.eVoucherItemFilterUseCase,
   }) {
     getVoucherCategories();
-
+    getVoucherCategoriesSubject();
     getVoucherHistorySubject();
 
     getMoreScrollListener();
@@ -128,7 +128,7 @@ class EvoucherViewModel extends BasePageViewModel {
 
   /// ------------- voucher categories stream -------------------------------------------
 
-  void getVoucherCategories() {
+  void getVoucherCategoriesSubject() {
     _voucherCategoriesRequestSubject.listen((value) {
       RequestManager(value, createCall: () => eVoucherCategoriesUseCase.execute(params: value))
           .asFlow()
@@ -146,7 +146,9 @@ class EvoucherViewModel extends BasePageViewModel {
         }
       });
     });
+  }
 
+  getVoucherCategories() {
     _voucherCategoriesRequestSubject.safeAdd(EVoucherCategoriesUseCaseParams());
   }
 
@@ -177,9 +179,13 @@ class EvoucherViewModel extends BasePageViewModel {
             if (myVoucherHistoryList.isEmpty) {
               myVoucherHistoryList.addAll(list);
             } else {
-              if (TimeUtils.getFormattedDateMonth(myVoucherHistoryList.last.date) ==
-                  TimeUtils.getFormattedDateMonth(list.first.date)) {
-                myVoucherHistoryList.last.data.addAll(list.first.data);
+              if (TimeUtils.convertDateTimeToDateMonth(myVoucherHistoryList.last.date) ==
+                  TimeUtils.convertDateTimeToDateMonth(list.first.date)) {
+                myVoucherHistoryList.first.data.addAll(list.first.data);
+                if (list.length > 1) {
+                  list..removeAt(0);
+                  myVoucherHistoryList.addAll(list);
+                }
               } else {
                 myVoucherHistoryList.addAll(list);
               }
@@ -200,9 +206,14 @@ class EvoucherViewModel extends BasePageViewModel {
     });
   }
 
-  getVoucherHistory({required int pageNo, required int rangeOfMonths, String searchPhrase = ''}) {
+  getVoucherHistory({
+    required int pageNo,
+    required int rangeOfMonths,
+    String searchPhrase = '',
+    int totalRecord = 10,
+  }) {
     _voucherHistoryRequestSubject.safeAdd(EVoucherHistoryUseCaseParams(
-        pageNo: pageNo, rangeOfMonths: rangeOfMonths, searchPhrase: searchPhrase));
+        pageNo: pageNo, rangeOfMonths: rangeOfMonths, searchPhrase: searchPhrase, totalRecord: totalRecord));
   }
 
   Stream<Resource<List<VouchersByDate>>> get voucherHistoryResponseStream =>
@@ -226,9 +237,7 @@ class EvoucherViewModel extends BasePageViewModel {
         if (pageNo > 1 /*&& searchTextList.isEmpty*/) {
           debugPrint('Entered here--------> too');
           getVoucherHistory(
-              pageNo: pageNo,
-              rangeOfMonths: filterDay,
-              searchPhrase: myVoucherHistorySearchController.text.trim());
+              pageNo: pageNo, rangeOfMonths: filterDay, searchPhrase: myVoucherHistorySearchController.text);
           // selectTransactionPeriodAndCallApi();
         }
       }
@@ -305,7 +314,7 @@ class EvoucherViewModel extends BasePageViewModel {
             region: '',
             maxValue: 0.0,
             minValue: 0.0,
-            searchText: buyVoucherSearchController.text.trim());
+            searchText: buyVoucherSearchController.text);
       }
     }
   }

@@ -11,7 +11,7 @@ class RequestVideoCallRequest {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  RequestVideoCallRequest({this.gender= "", required this.baseData, this.type= "ONBOARD"});
+  RequestVideoCallRequest({this.gender = "", required this.baseData, this.type = "ONBOARD"});
 
   factory RequestVideoCallRequest.fromJson(Map<String, dynamic> json) =>
       _$RequestVideoCallRequestFromJson(json);

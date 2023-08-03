@@ -1,5 +1,5 @@
 class CheckOtherNationalityResponseContent {
   final bool? status;
 
-  CheckOtherNationalityResponseContent({this.status= false});
+  CheckOtherNationalityResponseContent({this.status = false});
 }

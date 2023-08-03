@@ -6,8 +6,7 @@ part of 'upload_beneficiary_image_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UploadBeneficiaryImageRequest _$UploadBeneficiaryImageRequestFromJson(
-        Map<String, dynamic> json) =>
+UploadBeneficiaryImageRequest _$UploadBeneficiaryImageRequestFromJson(Map<String, dynamic> json) =>
     UploadBeneficiaryImageRequest(
       beneficiaryID: json['BeneficiaryID'] as String,
       image: json['Image'] as String,
@@ -15,8 +14,7 @@ UploadBeneficiaryImageRequest _$UploadBeneficiaryImageRequestFromJson(
       baseData: json['baseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$UploadBeneficiaryImageRequestToJson(
-        UploadBeneficiaryImageRequest instance) =>
+Map<String, dynamic> _$UploadBeneficiaryImageRequestToJson(UploadBeneficiaryImageRequest instance) =>
     <String, dynamic>{
       'BeneficiaryID': instance.beneficiaryID,
       'Image': instance.image,

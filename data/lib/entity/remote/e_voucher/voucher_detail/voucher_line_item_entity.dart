@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/evoucher_history_status_enum.dart';
 import 'package:domain/model/e_voucher/voucher_line_item.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -52,7 +53,7 @@ class VoucherLineItemEntity implements BaseLayerDataTransformer<VoucherLineItemE
       lineNumber: this.lineNumber,
       cardItemId: this.cardItemId,
       value: this.value,
-      status: this.status,
+      status: this.status?.fromEvoucherHistoryStatusEnum(),
       claimURL: this.claimURL,
       cardItemName: this.cardItemName,
       currency: this.currency,

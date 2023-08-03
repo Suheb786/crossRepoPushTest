@@ -6,15 +6,13 @@ part of 'request_card_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RequestCardRequest _$RequestCardRequestFromJson(Map<String, dynamic> json) =>
-    RequestCardRequest(
+RequestCardRequest _$RequestCardRequestFromJson(Map<String, dynamic> json) => RequestCardRequest(
       baseData: json['BaseClass'] as Map<String, dynamic>,
       getToken: json['GetToken'] as bool? ?? true,
       cardId: json['CardId'] as String? ?? "",
     );
 
-Map<String, dynamic> _$RequestCardRequestToJson(RequestCardRequest instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$RequestCardRequestToJson(RequestCardRequest instance) => <String, dynamic>{
       'CardId': instance.cardId,
       'GetToken': instance.getToken,
       'BaseClass': instance.baseData,

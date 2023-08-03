@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/base_error.dart';
+import 'package:domain/model/e_voucher/voucher_min_max_value.dart';
 import 'package:domain/repository/e_voucher/e_voucher_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
-import 'package:domain/usecase/evouchers/voucher_min_max_value.dart';
 
 class EVoucherMinMaxValueUseCase
     extends BaseUseCase<BaseError, EVoucherMinMaxValueUseCaseParams, VoucherMinMaxValue> {

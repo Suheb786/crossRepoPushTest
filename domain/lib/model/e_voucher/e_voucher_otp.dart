@@ -2,6 +2,7 @@
 class EVoucherOTP {
   final String? mobileCode;
   final String? mobileNumber;
+
   EVoucherOTP({
     required this.mobileCode,
     required this.mobileNumber,

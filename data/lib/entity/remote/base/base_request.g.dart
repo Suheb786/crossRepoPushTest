@@ -11,8 +11,7 @@ BaseRequest _$BaseRequestFromJson(Map<String, dynamic> json) => BaseRequest(
       baseData: json['baseClass'] as Map<String, dynamic>?,
     );
 
-Map<String, dynamic> _$BaseRequestToJson(BaseRequest instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$BaseRequestToJson(BaseRequest instance) => <String, dynamic>{
       'GetToken': instance.getToken,
       'baseClass': instance.baseData,
     };

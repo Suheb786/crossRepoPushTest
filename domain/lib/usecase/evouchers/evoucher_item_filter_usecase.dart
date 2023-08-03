@@ -6,15 +6,14 @@ import 'package:domain/repository/e_voucher/e_voucher_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class EVoucherItemFilterUseCase extends BaseUseCase<BaseError,
-    EVoucherItemFilterUseCaseParams, List<VoucherItem>> {
+class EVoucherItemFilterUseCase
+    extends BaseUseCase<BaseError, EVoucherItemFilterUseCaseParams, List<VoucherItem>> {
   EVoucherRepository _eVoucherRepository;
 
   EVoucherItemFilterUseCase(this._eVoucherRepository);
 
   @override
-  Future<Either<BaseError, List<VoucherItem>>> execute(
-      {required EVoucherItemFilterUseCaseParams params}) {
+  Future<Either<BaseError, List<VoucherItem>>> execute({required EVoucherItemFilterUseCaseParams params}) {
     return _eVoucherRepository.getVoucherItemsByFilter(
         category: params.category,
         region: params.region,

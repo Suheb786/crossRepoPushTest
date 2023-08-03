@@ -11,7 +11,7 @@ class CheckUserEmailRequest {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  CheckUserEmailRequest({this.channelId= "01", required this.content, required this.baseData});
+  CheckUserEmailRequest({this.channelId = "01", required this.content, required this.baseData});
 
   factory CheckUserEmailRequest.fromJson(Map<String, dynamic> json) => _$CheckUserEmailRequestFromJson(json);
 

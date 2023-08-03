@@ -82,7 +82,7 @@ class SupplementaryCreditCardRequestEntity {
     this.optionalData2,
     this.relationship,
     this.sameLimit,
-    this.getToken= false,
+    this.getToken = false,
     required this.baseData,
   });
 

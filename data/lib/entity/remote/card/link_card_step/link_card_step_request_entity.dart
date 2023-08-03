@@ -14,7 +14,7 @@ class LinkCardStepRequestEntity {
   final Map<String, dynamic> baseData;
 
   LinkCardStepRequestEntity(
-      {required this.baseData, this.getToken= true, this.cardId= "", this.accountNumber= ""});
+      {required this.baseData, this.getToken = true, this.cardId = "", this.accountNumber = ""});
 
   factory LinkCardStepRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$LinkCardStepRequestEntityFromJson(json);

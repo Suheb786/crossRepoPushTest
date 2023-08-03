@@ -6,8 +6,7 @@ part of 'validate_pre_paid_bill_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ValidatePrePaidBillEntity _$ValidatePrePaidBillEntityFromJson(
-        Map<String, dynamic> json) =>
+ValidatePrePaidBillEntity _$ValidatePrePaidBillEntityFromJson(Map<String, dynamic> json) =>
     ValidatePrePaidBillEntity(
       success: json['success'],
       message: json['message'],
@@ -19,8 +18,7 @@ ValidatePrePaidBillEntity _$ValidatePrePaidBillEntityFromJson(
       validationCode: json['validationCode'],
     );
 
-Map<String, dynamic> _$ValidatePrePaidBillEntityToJson(
-        ValidatePrePaidBillEntity instance) =>
+Map<String, dynamic> _$ValidatePrePaidBillEntityToJson(ValidatePrePaidBillEntity instance) =>
     <String, dynamic>{
       'success': instance.success,
       'message': instance.message,

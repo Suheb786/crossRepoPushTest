@@ -6,8 +6,7 @@ part of 'base_class.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BaseClassEntity _$BaseClassEntityFromJson(Map<String, dynamic> json) =>
-    BaseClassEntity(
+BaseClassEntity _$BaseClassEntityFromJson(Map<String, dynamic> json) => BaseClassEntity(
       ip: json['IP'] as String?,
       deviceID: json['DeviceID'] as String?,
       channelType: json['ChannelType'],
@@ -20,8 +19,7 @@ BaseClassEntity _$BaseClassEntityFromJson(Map<String, dynamic> json) =>
       vKeySessionId: json['VkeySessionId'] as String? ?? "",
     );
 
-Map<String, dynamic> _$BaseClassEntityToJson(BaseClassEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$BaseClassEntityToJson(BaseClassEntity instance) => <String, dynamic>{
       'IP': instance.ip,
       'DeviceID': instance.deviceID,
       'ChannelType': instance.channelType,

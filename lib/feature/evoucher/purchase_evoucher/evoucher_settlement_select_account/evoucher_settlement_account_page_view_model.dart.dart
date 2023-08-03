@@ -1,6 +1,5 @@
 import 'package:domain/model/e_voucher/e_voucher_otp.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
-import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
 import 'package:domain/usecase/evouchers/select_account_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -57,8 +56,7 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
   String mobileCode = "";
   String mobileNumber = "";
 
-  EvoucherSettlementAccountPageViewModel(
-      this._selectAccountUseCase, this.argument, this.eVoucherOtpUseCase) {
+  EvoucherSettlementAccountPageViewModel(this._selectAccountUseCase, this.argument, this.eVoucherOtpUseCase) {
     _selectAccountRequest.listen((value) {
       RequestManager(value, createCall: () => _selectAccountUseCase.execute(params: value))
           .asFlow()
