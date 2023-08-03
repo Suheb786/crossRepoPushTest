@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -923,6 +924,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Unfortunately, your credit card application has failed!"),
         "dormantAccountPhysicalCardReq": MessageLookupByLibrary.simpleMessage(
             "Oops! You cannot request your physical card as your account is inactive. Call us on 06-5200100 to activate your account."),
+        "dormantAccountTransactionFailed": MessageLookupByLibrary.simpleMessage(
+            "Oops! Transaction failed; your account is inactive. Call us on 065200100 to activate your account."),
         "downloadStatement":
             MessageLookupByLibrary.simpleMessage("Download Statement"),
         "dragMap": MessageLookupByLibrary.simpleMessage(
@@ -3245,6 +3248,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "What’s your email and mobile number?"),
         "whenAcceptingCreationOfYourCliqId": MessageLookupByLibrary.simpleMessage(
             "When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ."),
+        "whenYouFreezeYourCard": MessageLookupByLibrary.simpleMessage(
+            "When you freeze your card, your card cannot be used for any transaction including direct debit on your card such as your online subscriptions directly linked to your card, for example: Netflix, Careem, OSN, etc."),
         "whereDoYouCurrentlyLive": MessageLookupByLibrary.simpleMessage(
             "Where do you \ncurrently live?"),
         "whichTaxPayerAreYou":
@@ -3271,6 +3276,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "You cannot request money from your own account"),
         "youCanPayAllYourBillsNow": MessageLookupByLibrary.simpleMessage(
             "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! "),
+        "youCanUnFreeze": MessageLookupByLibrary.simpleMessage(
+            "You can unfreeze and activate your card anytime from the app."),
         "youCannotSendMoneyToYourOwnAccount":
             MessageLookupByLibrary.simpleMessage(
                 "You cannot send money to your own account."),
