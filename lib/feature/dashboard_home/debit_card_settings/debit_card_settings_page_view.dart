@@ -230,7 +230,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                         Padding(
                                           padding: EdgeInsets.symmetric(horizontal: 24.w),
                                           child: CustomBulletWithTitle(
-                                            title: S.of(context).cardcantBeUsedForTransactions,
+                                            title: S.of(context).whenYouFreezeYourCard,
                                             fontSize: 14.t,
                                             lineHeight: 1.7,
                                           ),
@@ -238,19 +238,19 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                         Padding(
                                           padding: EdgeInsets.symmetric(horizontal: 24.w),
                                           child: CustomBulletWithTitle(
-                                            title: S.of(context).directDebitsWontBeMade,
+                                            title: S.of(context).youCanUnFreeze,
                                             fontSize: 14.t,
                                             lineHeight: 1.7,
                                           ),
                                         ),
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(horizontal: 24.w),
-                                          child: CustomBulletWithTitle(
-                                            title: S.of(context).freezeAndActiveAtAnyTime,
-                                            fontSize: 14.t,
-                                            lineHeight: 1.7,
-                                          ),
-                                        ),
+                                        // Padding(
+                                        //   padding: EdgeInsets.symmetric(horizontal: 24.w),
+                                        //   child: CustomBulletWithTitle(
+                                        //     title: S.of(context).freezeAndActiveAtAnyTime,
+                                        //     fontSize: 14.t,
+                                        //     lineHeight: 1.7,
+                                        //   ),
+                                        // ),
                                       ],
                                     ), onSelected: () {
                                   Navigator.pop(context);
