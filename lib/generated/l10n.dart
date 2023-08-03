@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -27,7 +26,9 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -18099,26 +18100,6 @@ class S {
     );
   }
 
-  /// `Unavailable`
-  String get unavailable {
-    return Intl.message(
-      'Unavailable',
-      name: 'unavailable',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `E-voucher under processing`
-  String get evoucherUnderProcessing {
-    return Intl.message(
-      'E-voucher under processing',
-      name: 'evoucherUnderProcessing',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Oops! Transaction failed; your account is inactive. Call us on 065200100 to activate your account.`
   String get dormantAccountTransactionFailed {
     return Intl.message(
@@ -18144,6 +18125,26 @@ class S {
     return Intl.message(
       'You can unfreeze and activate your card anytime from the app.',
       name: 'youCanUnFreeze',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unavailable`
+  String get unavailable {
+    return Intl.message(
+      'Unavailable',
+      name: 'unavailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E-voucher under processing`
+  String get evoucherUnderProcessing {
+    return Intl.message(
+      'E-voucher under processing',
+      name: 'evoucherUnderProcessing',
       desc: '',
       args: [],
     );
