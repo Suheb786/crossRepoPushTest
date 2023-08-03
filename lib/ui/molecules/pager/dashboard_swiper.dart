@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'dart:math' as math;
 
+import '../../../feature/dashboard_home/app_home/app_home_view_model.dart';
+
 class DashboardSwiper extends StatefulWidget {
   final List? pages;
   final int? currentStep;
@@ -11,16 +13,9 @@ class DashboardSwiper extends StatefulWidget {
   final Function(int)? onIndexChanged;
   PageController appSwiperController;
   AnimationController? translateSidewaysController;
+  AppHomeViewModel model;
 
-  DashboardSwiper(
-      {Key? key,
-      this.pages,
-      this.currentStep,
-      this.pageController,
-      this.onIndexChanged,
-      required this.appSwiperController,
-      required this.translateSidewaysController})
-      : super(key: key);
+  DashboardSwiper({Key? key, this.pages, this.currentStep, this.pageController, this.onIndexChanged, required this.appSwiperController, required this.translateSidewaysController, required this.model}) : super(key: key);
 
   @override
   _DashboardSwiperState createState() => _DashboardSwiperState();
@@ -39,17 +34,20 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 16 / 8,
-      child: PageView.builder(
-          itemCount: widget.pages!.length,
-          onPageChanged: (i) {
-            widget.onIndexChanged!.call(i);
-          },
-          controller: widget.appSwiperController,
-          itemBuilder: (context, index) {
-            return carouselView(index);
-          }),
+    return Padding(
+      padding: EdgeInsets.only(bottom: widget.model.timelinePage ? widget.model.constBottomBarHeight : 0),
+      child: AspectRatio(
+        aspectRatio: 16 / 8,
+        child: PageView.builder(
+            itemCount: widget.pages!.length,
+            onPageChanged: (i) {
+              widget.onIndexChanged!.call(i);
+            },
+            controller: widget.appSwiperController,
+            itemBuilder: (context, index) {
+              return carouselView(index);
+            }),
+      ),
     );
   }
 

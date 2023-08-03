@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page_view.dart';
+import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page_view_new.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
 
 class AppHomePage extends BasePage<AppHomeViewModel> {
@@ -46,6 +47,7 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+
     super.dispose();
   }
 
@@ -63,12 +65,42 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
   @override
   Widget buildView(BuildContext context, AppHomeViewModel model) {
     model.deviceSize = MediaQuery.of(context).size;
+    // model.controller = ScrollController();
+
+    model.translateSettingsUpController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+    model.animation = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(
+      CurvedAnimation(
+        parent: model.translateSettingsUpController,
+        curve: Curves.easeInOut,
+        reverseCurve: Curves.easeInOut,
+      ),
+    );
+
+    model.scaleAnimationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+      lowerBound: 1,
+      upperBound: 2,
+    );
+
     model.translateSidewaysController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 500),
     );
 
-    return AppHomePageView(provideBase());
+    model.translateTimelineDownController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 450),
+      reverseDuration: const Duration(milliseconds: 400),
+    );
+
+    return AppHomePageViewNew(provideBase());
   }
 
   @override

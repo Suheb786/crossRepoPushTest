@@ -44,6 +44,7 @@ import 'package:neo_bank/ui/molecules/card/rj_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/verify_credit_card_videocall_widget.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/navigation_transitions.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/screen_size_utils.dart';
@@ -205,6 +206,37 @@ class AppHomeViewModel extends BasePageViewModel {
   ///--------------- Animations ----------------------///
 
   late AnimationController translateSidewaysController;
+  late AnimationController scaleAnimationController;
+  late AnimationController translateTimelineDownController;
+  late AnimationController translateSettingsUpController;
+  late Animation<double> animation;
+
+  ///--------------- Pages ----------------------///
+
+  bool timelinePage = false;
+  bool showPayBackView = false;
+  bool settings = false;
+  bool transactionPage = false;
+  int pageViewIndex = 0;
+
+  // this is to toggle heights ....
+  double constBottomBarHeight = 130;
+
+  bool get myAccount {
+    return pageViewIndex == 0;
+  }
+
+  bool get myCreditCard {
+    return pageViewIndex == 1;
+  }
+
+  bool get myDebitCard {
+    return pageViewIndex == 2;
+  }
+
+  ///--------------- Some Other params that i will name later on  ----------------------///
+  late DebitCard selectedDebitCard;
+  late CreditCard selectedCreditCard;
 
   AppHomeViewModel(
       this._getDashboardDataUseCase,
@@ -383,6 +415,9 @@ class AppHomeViewModel extends BasePageViewModel {
                 creditCard: creditCard,
                 isChangePinEnabled: dashboardDataContent.dashboardFeatures?.isPinChangeEnabled ?? true,
                 key: ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
+                onPayBackClick: () {
+                  selectedCreditCard = creditCard;
+                },
               ));
 
               ///time line list  arguments set
@@ -564,15 +599,19 @@ class AppHomeViewModel extends BasePageViewModel {
                   .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
             } else {
               pages.add(DebitCardWidget(
-                  accountStatusEnum:
-                      dashboardDataContent.account?.accountStatusEnum ?? AccountStatusEnum.NONE,
-                  isPrimaryDebitCard: isPrimaryDebitCard,
-                  isSmallDevice: isSmallDevices,
-                  key: ValueKey('debit${debitCard.code}${debitCard.cvv}'),
-                  debitCard: debitCard,
-                  isDebitCardRequestPhysicalCardEnabled:
-                      dashboardDataContent.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled ??
-                          false));
+                accountStatusEnum: dashboardDataContent.account?.accountStatusEnum ?? AccountStatusEnum.NONE,
+                isPrimaryDebitCard: isPrimaryDebitCard,
+                isSmallDevice: isSmallDevices,
+                key: ValueKey('debit${debitCard.code}${debitCard.cvv}'),
+                debitCard: debitCard,
+                isDebitCardRequestPhysicalCardEnabled:
+                    dashboardDataContent.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled ?? false,
+                onSettingsClick: () {
+                  /// showing settings page....
+                  selectedDebitCard = debitCard;
+                  showSettingPage(true);
+                },
+              ));
 
               ///time line list arguments set
               timeLineListArguments.add(TimeLineListArguments(
@@ -864,12 +903,140 @@ class AppHomeViewModel extends BasePageViewModel {
     _verifyQRRequest.close();
     _verifyQRResponse.close();
     translateSidewaysController.dispose();
+    translateSettingsUpController.dispose();
+    scaleAnimationController.dispose();
+
+    translateTimelineDownController.dispose();
+
+    // controller?.dispose();
 
     if (timer != null) {
       timer?.cancel();
     }
 
     super.dispose();
+  }
+
+  ///--------------- Animation methods... ----------------------///
+  double bottomNavbarHeight = 130;
+
+  /// SETTINGS PAGE ANIMATIONS AND TRANSITIONS....
+  showSettingPage(bool value) {
+    if (value) {
+      Future.delayed(
+        const Duration(milliseconds: 300),
+        () {
+          changeBottomNavbarHeight(0);
+        },
+      );
+      animateForwardSettingsPage();
+    } else {
+      changeBottomNavbarHeight(constBottomBarHeight);
+      animateReverseSettingsPage();
+    }
+
+    settings = value;
+    notifyListeners();
+  }
+
+  animateForwardSettingsPage() {
+    translateSidewaysController.forward();
+    translateSettingsUpController.forward();
+  }
+
+  animateReverseSettingsPage() {
+    translateSidewaysController.reverse();
+    translateSettingsUpController.reverse();
+  }
+
+  changeBottomNavbarHeight(double value) {
+    bottomNavbarHeight = value;
+    notifyListeners();
+  }
+
+  /// PAYBACK PAGE ANIMATIONS AND TRANSITIONS....
+  goToPayBackView(bool value) {
+    if (value) {
+      Future.delayed(
+        const Duration(milliseconds: 300),
+        () {
+          changeBottomNavbarHeight(0);
+        },
+      );
+      animateForwardSettingsPage();
+    } else {
+      changeBottomNavbarHeight(constBottomBarHeight);
+      animateReverseSettingsPage();
+    }
+
+    showPayBackView = value;
+    notifyListeners();
+  }
+
+  animateForwardTimelinePage() {
+    translateTimelineDownController.forward();
+    translateSidewaysController.forward();
+  }
+
+  animateReverseTimelinePage() {
+    translateTimelineDownController.reverse();
+    translateSidewaysController.reverse();
+  }
+
+  /// TIMELINE PAGE ANIMATIONS AND TRANSITIONS....
+
+  showTimeline(bool value) {
+    if (value) {
+      Future.delayed(
+        const Duration(milliseconds: 500),
+        () {
+          bottomNavbarHeight = 0;
+          timelineGlitchAnimation();
+
+          notifyListeners();
+        },
+      );
+      animateForwardTimelinePage();
+    } else {
+      Future.delayed(
+        const Duration(milliseconds: 500),
+        () {
+          bottomNavbarHeight = constBottomBarHeight;
+          notifyListeners();
+        },
+      );
+
+      animateReverseTimelinePage();
+    }
+    timelinePage = value;
+    notifyListeners();
+  }
+
+  timelineGlitchAnimation() {
+    /* controller!
+        .animateTo(30, duration: const Duration(milliseconds: 400), curve: Curves.easeIn)
+        .then((value) {
+      controller!.animateTo(-30, duration: const Duration(milliseconds: 500), curve: Curves.easeInBack);
+    });*/
+  }
+
+  goToTransactionPage(BuildContext context) {
+    animateForwardTransactionPage();
+    Navigator.of(context).push(slideBottomToTop(nextPage: const SizedBox()));
+  }
+
+  animateForwardTransactionPage() {
+    transactionPage = true;
+    notifyListeners();
+    translateSettingsUpController.forward();
+    scaleAnimationController.forward();
+  }
+
+  animateReverseTransactionPage() {
+    transactionPage = false;
+    notifyListeners();
+    translateSettingsUpController.reverse();
+    scaleAnimationController.reverse();
   }
 }
 

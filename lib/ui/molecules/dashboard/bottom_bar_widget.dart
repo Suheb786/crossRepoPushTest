@@ -26,7 +26,8 @@ class BottomBarWidget extends StatelessWidget {
             bottom: BorderSide(color: Theme.of(context).colorScheme.background, width: 1),
           )),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
         children: [
           BottomBarWidgetItem(
             onTap: () {
@@ -38,6 +39,7 @@ class BottomBarWidget extends StatelessWidget {
           SizedBox(
             width: 40.w,
           ),
+          // Spacer(),
           BottomBarWidgetItem(
             onTap: () {
               onMoreTap.call();
@@ -48,6 +50,7 @@ class BottomBarWidget extends StatelessWidget {
           SizedBox(
             width: 40.w,
           ),
+          // Spacer(),
           BottomBarWidgetItem(
             onTap: () {
               onContactUsTap.call();
