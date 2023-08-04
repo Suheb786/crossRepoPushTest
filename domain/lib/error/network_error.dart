@@ -716,8 +716,6 @@ class NetworkError extends BaseError {
             return AppError(
                 cause: cause, error: error, type: ErrorType.INSUFFICIENT_FUNDS_BILL_CANNOT_BE_PAYED);
 
-//QR
-
           case "err-363":
             return AppError(cause: cause, error: error, type: ErrorType.QR_EXPIRED);
 

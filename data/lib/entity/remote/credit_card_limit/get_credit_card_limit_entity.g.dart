@@ -6,7 +6,8 @@ part of 'get_credit_card_limit_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetCreditCardLimitEntity _$GetCreditCardLimitEntityFromJson(Map<String, dynamic> json) =>
+GetCreditCardLimitEntity _$GetCreditCardLimitEntityFromJson(
+        Map<String, dynamic> json) =>
     GetCreditCardLimitEntity(
       isATM: json['isATM'] as bool? ?? false,
       atmCurrentLimit: json['atmCurrentLimit'] as String? ?? "0",
@@ -15,14 +16,18 @@ GetCreditCardLimitEntity _$GetCreditCardLimitEntityFromJson(Map<String, dynamic>
       merchantCurrentLimit: json['marchantCurrentLimit'] as String? ?? "0",
       merchantMAXLimit: json['marchantMAXLimit'] as String? ?? "0",
       isOnlinePurchase: json['isOnlinePurchase'] as bool? ?? false,
-      onlinePurchaseCurrentLimit: json['onlinePurchaseCurrentLimit'] as String? ?? "0",
+      onlinePurchaseCurrentLimit:
+          json['onlinePurchaseCurrentLimit'] as String? ?? "0",
       onlinePurchaseMAXLimit: json['onlinePurchaseMAXLimit'] as String? ?? "0",
       isContactLess: json['isContactLess'] as bool? ?? false,
-      contactLessCurrentLimit: json['contactLessCurrentLimit'] as String? ?? '0',
+      contactLessCurrentLimit:
+          json['contactLessCurrentLimit'] as String? ?? '0',
       contactLessMaxLimit: json['contactLessMaxLimit'] as String? ?? '0',
     );
 
-Map<String, dynamic> _$GetCreditCardLimitEntityToJson(GetCreditCardLimitEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$GetCreditCardLimitEntityToJson(
+        GetCreditCardLimitEntity instance) =>
+    <String, dynamic>{
       'isATM': instance.isATM,
       'atmCurrentLimit': instance.atmCurrentLimit,
       'atmmaxLimit': instance.atmMaxLimit,

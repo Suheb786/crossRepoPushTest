@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/evoucher_settlement_select_account/evoucher_settlement_account_page_view_model.dart.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_region_amount/select_region_amount_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -58,11 +59,14 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
                           ProviderScope.containerOf(context)
-                              .read(evoucherSettlementAccountViewModelProvider(model.argument))
-                              .getSettleValue(data.data?.content ?? 0.0);
+                              .read(evoucherSettlementAccountViewModelProvider)
+                              .setVoucherInformation(SelectedVoucherInformation(
+                                  settlementValue: data.data?.content ?? 0.0,
+                                  voucherFaceImage: model.selectedItem.cardFaceImage,
+                                  voucherName: model.selectedItem.name));
 
                           ProviderScope.containerOf(context)
-                              .read(purchaseEVouchersViewModelProvider(model.argument))
+                              .read(purchaseEVouchersViewModelProvider)
                               .nextPage();
                         }
                       },
@@ -70,7 +74,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                         return GestureDetector(
                           onHorizontalDragEnd: (details) {
                             if (ProviderScope.containerOf(context)
-                                    .read(purchaseEVouchersViewModelProvider(model.argument))
+                                    .read(purchaseEVouchersViewModelProvider)
                                     .appSwiperController
                                     .page ==
                                 0.0) {
@@ -103,7 +107,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                                 height: 72.h,
                                                 width: 72.w,
                                                 child: CachedNetworkImage(
-                                                  imageUrl: model.argument.selectedItem.cardFaceImage,
+                                                  imageUrl: model.voucherItems.first.cardFaceImage,
                                                   placeholder: (context, url) =>
                                                       Container(color: Theme.of(context).primaryColor),
                                                   errorWidget: (context, url, error) => Icon(Icons.error),
@@ -115,7 +119,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                               height: 16.h,
                                             ),
                                             Text(
-                                              model.argument.selectedItem.name,
+                                              model.voucherItems.first.brand,
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
@@ -136,6 +140,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                               onPressed: () {
                                                 RegionFilterDialog.show(context,
                                                     title: S.of(context).preferredRegion,
+                                                    isFromPurchaseFlow: true,
                                                     regionByCategoriesList: model.voucherCountries,
                                                     onDismissed: () {
                                                   Navigator.pop(context);

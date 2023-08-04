@@ -6,7 +6,8 @@ part of 'remove_customer_billing_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RemoveCustomerBillingRequest _$RemoveCustomerBillingRequestFromJson(Map<String, dynamic> json) =>
+RemoveCustomerBillingRequest _$RemoveCustomerBillingRequestFromJson(
+        Map<String, dynamic> json) =>
     RemoveCustomerBillingRequest(
       billerCode: json['billerCode'] as String?,
       billingNo: json['billingNo'] as String?,
@@ -15,7 +16,8 @@ RemoveCustomerBillingRequest _$RemoveCustomerBillingRequestFromJson(Map<String, 
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$RemoveCustomerBillingRequestToJson(RemoveCustomerBillingRequest instance) =>
+Map<String, dynamic> _$RemoveCustomerBillingRequestToJson(
+        RemoveCustomerBillingRequest instance) =>
     <String, dynamic>{
       'billerCode': instance.billerCode,
       'billingNo': instance.billingNo,

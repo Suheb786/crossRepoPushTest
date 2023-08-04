@@ -62,9 +62,8 @@ final eVouchersCategoryListingViewModelProvider = ChangeNotifierProvider.autoDis
             ));
 
 ///purchase e-vouchers view model
-final purchaseEVouchersViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<PurchaseEVoucherPageViewModel, PurchaseEVoucherPageArgument>(
-        (ref, args) => PurchaseEVoucherPageViewModel(args));
+final purchaseEVouchersViewModelProvider = ChangeNotifierProvider.autoDispose<PurchaseEVoucherPageViewModel>(
+    (ref) => PurchaseEVoucherPageViewModel());
 
 ///PurchaseEVoucherWithoutRegionPageViewModel
 final purchaseEVoucherWithoutRegionPageViewModel = ChangeNotifierProvider.autoDispose
@@ -72,19 +71,18 @@ final purchaseEVoucherWithoutRegionPageViewModel = ChangeNotifierProvider.autoDi
         (ref, args) => PurchaseEVoucherWithoutRegionPageViewModel(args));
 
 ///select region amount view model
-final selectAmountRegionViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<SelectRegionAmountPageViewModel, PurchaseEVoucherPageArgument>(
-        (ref, args) => SelectRegionAmountPageViewModel(
+final selectAmountRegionViewModelProvider =
+    ChangeNotifierProvider.autoDispose<SelectRegionAmountPageViewModel>(
+        (ref) => SelectRegionAmountPageViewModel(
               ref.read(selectRegionAmountUseCaseProvider),
-              args,
               ref.read(getSettlementAmountUseCaseProvider),
             ));
 
 ///settlement
-final evoucherSettlementAccountViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<EvoucherSettlementAccountPageViewModel, PurchaseEVoucherPageArgument>((ref, arg) =>
+final evoucherSettlementAccountViewModelProvider =
+    ChangeNotifierProvider.autoDispose<EvoucherSettlementAccountPageViewModel>((ref) =>
         EvoucherSettlementAccountPageViewModel(
-            ref.read(selectAccountUseCaseProvider), arg, ref.read(eVoucherOtpCaseProvider)));
+            ref.read(selectAccountUseCaseProvider), ref.read(eVoucherOtpCaseProvider)));
 
 ///settlement account
 final settlementAccountViewModelProvider = ChangeNotifierProvider.autoDispose
@@ -102,11 +100,10 @@ final regionFilterDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<RegionFilterDialogViewModel>((ref) => RegionFilterDialogViewModel());
 
 ///enter otp for category evoucher purchase view model
-final enterOtpForEVoucherCategoryPurchaseViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<EnterOtpForEVoucherCategoryPurchasePageViewModel, PurchaseEVoucherPageArgument>((ref, arg) =>
+final enterOtpForEVoucherCategoryPurchaseViewModelProvider =
+    ChangeNotifierProvider.autoDispose<EnterOtpForEVoucherCategoryPurchasePageViewModel>((ref) =>
         EnterOtpForEVoucherCategoryPurchasePageViewModel(
             ref.read(enterOtpForEVoucherCategoryPurchaseUseCaseUseCaseProvider),
-            arg,
             ref.read(placeOrderUseCaseProvider),
             ref.read(eVoucherOtpCaseProvider)));
 

@@ -6,7 +6,8 @@ part of 'get_account_by_alias_content_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetAccountByAliasContentEntity _$GetAccountByAliasContentEntityFromJson(Map<String, dynamic> json) =>
+GetAccountByAliasContentEntity _$GetAccountByAliasContentEntityFromJson(
+        Map<String, dynamic> json) =>
     GetAccountByAliasContentEntity(
       acciban: json['acciban'] as String?,
       bic: json['bic'] as String?,
@@ -22,7 +23,8 @@ GetAccountByAliasContentEntity _$GetAccountByAliasContentEntityFromJson(Map<Stri
       detCustomerType: json['detCustomerType'] as String?,
     );
 
-Map<String, dynamic> _$GetAccountByAliasContentEntityToJson(GetAccountByAliasContentEntity instance) =>
+Map<String, dynamic> _$GetAccountByAliasContentEntityToJson(
+        GetAccountByAliasContentEntity instance) =>
     <String, dynamic>{
       'acciban': instance.acciban,
       'bic': instance.bic,

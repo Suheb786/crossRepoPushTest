@@ -6,7 +6,8 @@ part of 'paid_bill_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PaidBillEntity _$PaidBillEntityFromJson(Map<String, dynamic> json) => PaidBillEntity(
+PaidBillEntity _$PaidBillEntityFromJson(Map<String, dynamic> json) =>
+    PaidBillEntity(
       billName: json['billerName'] as String?,
       billerNameAR: json['billerNameAR'] as String?,
       totalAmount: json['totalAmount'] as String?,
@@ -17,7 +18,8 @@ PaidBillEntity _$PaidBillEntityFromJson(Map<String, dynamic> json) => PaidBillEn
       isPaid: json['isPaid'] as bool?,
     );
 
-Map<String, dynamic> _$PaidBillEntityToJson(PaidBillEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$PaidBillEntityToJson(PaidBillEntity instance) =>
+    <String, dynamic>{
       'billerName': instance.billName,
       'billerNameAR': instance.billerNameAR,
       'totalAmount': instance.totalAmount,

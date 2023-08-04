@@ -6,7 +6,8 @@ part of 'request_money_activity_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RequestMoneyActivityRequestEntity _$RequestMoneyActivityRequestEntityFromJson(Map<String, dynamic> json) =>
+RequestMoneyActivityRequestEntity _$RequestMoneyActivityRequestEntityFromJson(
+        Map<String, dynamic> json) =>
     RequestMoneyActivityRequestEntity(
       FilterDays: json['FilterDays'] as int,
       TransactionType: json['TransactionType'] as String,
@@ -15,7 +16,8 @@ RequestMoneyActivityRequestEntity _$RequestMoneyActivityRequestEntityFromJson(Ma
       baseClass: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$RequestMoneyActivityRequestEntityToJson(RequestMoneyActivityRequestEntity instance) =>
+Map<String, dynamic> _$RequestMoneyActivityRequestEntityToJson(
+        RequestMoneyActivityRequestEntity instance) =>
     <String, dynamic>{
       'FilterDays': instance.FilterDays,
       'TransactionType': instance.TransactionType,

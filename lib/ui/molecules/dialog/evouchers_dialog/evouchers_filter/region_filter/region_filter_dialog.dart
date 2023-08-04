@@ -11,13 +11,16 @@ class RegionFilterDialog {
       {Function? onDismissed,
       Function(VoucherRegionByCategories)? onSelected,
       required String title,
+      required bool isFromPurchaseFlow,
       required final List<VoucherRegionByCategories> regionByCategoriesList}) {
     AppDialog.show(mContext,
         isDismissible: true,
         builder: (context) => RegionFilterDialogView(
-            onDismissed: onDismissed,
-            onSelected: onSelected,
-            regionByCategoriesList: regionByCategoriesList,
-            title: title));
+              onDismissed: onDismissed,
+              onSelected: onSelected,
+              regionByCategoriesList: regionByCategoriesList,
+              title: title,
+              isFromPurchaseFlow: isFromPurchaseFlow,
+            ));
   }
 }

@@ -11,7 +11,17 @@ class RegionFilterDialogViewModel extends BasePageViewModel {
   PublishSubject<int> _currentSelectIndex = PublishSubject();
 
   Stream<int> get currentIndexStream => _currentSelectIndex.stream;
-  List<VoucherRegionByCategories> allRegion = [VoucherRegionByCategories(countryName: S.current.allRegion)];
+
+  void addRegionsData({required List<VoucherRegionByCategories> regions, required bool isFromPurchase}) {
+    if (isFromPurchase) {
+      allRegion = regions;
+    } else {
+      allRegion.add(VoucherRegionByCategories(countryName: S.current.allRegion));
+      allRegion.addAll(regions);
+    }
+  }
+
+  List<VoucherRegionByCategories> allRegion = [];
 
   RegionFilterDialogViewModel();
 

@@ -6,7 +6,8 @@ part of 'destination_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DestinationEntity _$DestinationEntityFromJson(Map<String, dynamic> json) => DestinationEntity(
+DestinationEntity _$DestinationEntityFromJson(Map<String, dynamic> json) =>
+    DestinationEntity(
       name: json['name'] as String?,
       code: json['code'] as String?,
       countryName: json['countryName'] as String?,
@@ -14,7 +15,8 @@ DestinationEntity _$DestinationEntityFromJson(Map<String, dynamic> json) => Dest
       airportName: json['airportName'] as String?,
     );
 
-Map<String, dynamic> _$DestinationEntityToJson(DestinationEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$DestinationEntityToJson(DestinationEntity instance) =>
+    <String, dynamic>{
       'name': instance.name,
       'code': instance.code,
       'countryName': instance.countryName,

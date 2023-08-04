@@ -6,14 +6,16 @@ part of 'suspend_cliq_id_otp_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SuspendCliqIdOtpRequestEntity _$SuspendCliqIdOtpRequestEntityFromJson(Map<String, dynamic> json) =>
+SuspendCliqIdOtpRequestEntity _$SuspendCliqIdOtpRequestEntityFromJson(
+        Map<String, dynamic> json) =>
     SuspendCliqIdOtpRequestEntity(
       aliasId: json['aliasId'] as String?,
       getToken: json['GetToken'] as bool?,
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$SuspendCliqIdOtpRequestEntityToJson(SuspendCliqIdOtpRequestEntity instance) =>
+Map<String, dynamic> _$SuspendCliqIdOtpRequestEntityToJson(
+        SuspendCliqIdOtpRequestEntity instance) =>
     <String, dynamic>{
       'aliasId': instance.aliasId,
       'GetToken': instance.getToken,

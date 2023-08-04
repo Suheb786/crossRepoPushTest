@@ -6,19 +6,19 @@ part of 'beneficiary_transaction_history_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BeneficiaryTransactionHistoryRequest _$BeneficiaryTransactionHistoryRequestFromJson(
-        Map<String, dynamic> json) =>
-    BeneficiaryTransactionHistoryRequest(
-      beneficiaryId: json['BeneficiaryId'] as String,
-      filterDays: json['FilterDays'] as num,
-      pageNo: json['PageNo'] as int,
-      transactionType: json['TransactionType'] as String,
-      searchText: json['searchText'] as String,
-      totalRecords: json['TotalRecords'] as String,
-      isFromMobile: json['IsFromMobile'] as bool,
-      getToken: json['GetToken'] as bool,
-      baseClass: json['BaseClass'] as Map<String, dynamic>?,
-    );
+BeneficiaryTransactionHistoryRequest
+    _$BeneficiaryTransactionHistoryRequestFromJson(Map<String, dynamic> json) =>
+        BeneficiaryTransactionHistoryRequest(
+          beneficiaryId: json['BeneficiaryId'] as String,
+          filterDays: json['FilterDays'] as num,
+          pageNo: json['PageNo'] as int,
+          transactionType: json['TransactionType'] as String,
+          searchText: json['searchText'] as String,
+          totalRecords: json['TotalRecords'] as String,
+          isFromMobile: json['IsFromMobile'] as bool,
+          getToken: json['GetToken'] as bool,
+          baseClass: json['BaseClass'] as Map<String, dynamic>?,
+        );
 
 Map<String, dynamic> _$BeneficiaryTransactionHistoryRequestToJson(
         BeneficiaryTransactionHistoryRequest instance) =>

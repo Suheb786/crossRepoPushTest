@@ -6,7 +6,8 @@ part of 'remove_avatar_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RemoveAvatarRequest _$RemoveAvatarRequestFromJson(Map<String, dynamic> json) => RemoveAvatarRequest(
+RemoveAvatarRequest _$RemoveAvatarRequestFromJson(Map<String, dynamic> json) =>
+    RemoveAvatarRequest(
       beneficiaryDetailId: json['BeneficiaryDetailId'] as String?,
       userId: json['UserId'] as String? ?? '',
       isFromMobile: json['IsFromMobile'] as bool? ?? true,
@@ -16,7 +17,9 @@ RemoveAvatarRequest _$RemoveAvatarRequestFromJson(Map<String, dynamic> json) => 
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$RemoveAvatarRequestToJson(RemoveAvatarRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$RemoveAvatarRequestToJson(
+        RemoveAvatarRequest instance) =>
+    <String, dynamic>{
       'BeneficiaryDetailId': instance.beneficiaryDetailId,
       'UserId': instance.userId,
       'IsFromMobile': instance.isFromMobile,

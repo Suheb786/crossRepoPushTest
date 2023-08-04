@@ -6,14 +6,16 @@ part of 'beneficiary_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BeneficiaryResponseEntity _$BeneficiaryResponseEntityFromJson(Map<String, dynamic> json) =>
+BeneficiaryResponseEntity _$BeneficiaryResponseEntityFromJson(
+        Map<String, dynamic> json) =>
     BeneficiaryResponseEntity(
       beneficiaryList: (json['content'] as List<dynamic>?)
           ?.map((e) => BeneficiaryEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$BeneficiaryResponseEntityToJson(BeneficiaryResponseEntity instance) =>
+Map<String, dynamic> _$BeneficiaryResponseEntityToJson(
+        BeneficiaryResponseEntity instance) =>
     <String, dynamic>{
       'content': instance.beneficiaryList,
     };

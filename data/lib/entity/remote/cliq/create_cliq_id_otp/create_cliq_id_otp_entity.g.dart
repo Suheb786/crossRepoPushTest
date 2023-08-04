@@ -6,12 +6,15 @@ part of 'create_cliq_id_otp_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CreateCliqOtpEntity _$CreateCliqOtpEntityFromJson(Map<String, dynamic> json) => CreateCliqOtpEntity(
+CreateCliqOtpEntity _$CreateCliqOtpEntityFromJson(Map<String, dynamic> json) =>
+    CreateCliqOtpEntity(
       mobileCode: json['mobileCode'] as String? ?? '',
       mobileNumber: json['mobileNumber'] as String? ?? '',
     );
 
-Map<String, dynamic> _$CreateCliqOtpEntityToJson(CreateCliqOtpEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$CreateCliqOtpEntityToJson(
+        CreateCliqOtpEntity instance) =>
+    <String, dynamic>{
       'mobileCode': instance.mobileCode,
       'mobileNumber': instance.mobileNumber,
     };

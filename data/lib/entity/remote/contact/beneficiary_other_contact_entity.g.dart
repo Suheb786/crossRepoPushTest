@@ -6,7 +6,8 @@ part of 'beneficiary_other_contact_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BeneficiaryOtherContactEntity _$BeneficiaryOtherContactEntityFromJson(Map<String, dynamic> json) =>
+BeneficiaryOtherContactEntity _$BeneficiaryOtherContactEntityFromJson(
+        Map<String, dynamic> json) =>
     BeneficiaryOtherContactEntity(
       id: json['id'] as String?,
       userId: json['userId'] as String?,
@@ -45,7 +46,8 @@ BeneficiaryOtherContactEntity _$BeneficiaryOtherContactEntityFromJson(Map<String
       identifier: json['identifier'] as String?,
     );
 
-Map<String, dynamic> _$BeneficiaryOtherContactEntityToJson(BeneficiaryOtherContactEntity instance) =>
+Map<String, dynamic> _$BeneficiaryOtherContactEntityToJson(
+        BeneficiaryOtherContactEntity instance) =>
     <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,

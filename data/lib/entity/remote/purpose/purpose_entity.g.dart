@@ -6,7 +6,8 @@ part of 'purpose_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PurposeEntity _$PurposeEntityFromJson(Map<String, dynamic> json) => PurposeEntity(
+PurposeEntity _$PurposeEntityFromJson(Map<String, dynamic> json) =>
+    PurposeEntity(
       code: json['code'] as String?,
       labelEn: json['labelEN'] as String?,
       labelAr: json['labelAR'] as String?,
@@ -15,7 +16,8 @@ PurposeEntity _$PurposeEntityFromJson(Map<String, dynamic> json) => PurposeEntit
           .toList(),
     );
 
-Map<String, dynamic> _$PurposeEntityToJson(PurposeEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$PurposeEntityToJson(PurposeEntity instance) =>
+    <String, dynamic>{
       'code': instance.code,
       'labelEN': instance.labelEn,
       'labelAR': instance.labelAr,

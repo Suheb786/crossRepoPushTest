@@ -6,7 +6,8 @@ part of 'request_to_pay_content_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RequestToPayContentEntity _$RequestToPayContentEntityFromJson(Map<String, dynamic> json) =>
+RequestToPayContentEntity _$RequestToPayContentEntityFromJson(
+        Map<String, dynamic> json) =>
     RequestToPayContentEntity(
       custID: json['custID'] as String?,
       senderName: json['senderName'] as String?,
@@ -35,7 +36,8 @@ RequestToPayContentEntity _$RequestToPayContentEntityFromJson(Map<String, dynami
       payRefNo: json['payRefNo'] as String?,
     );
 
-Map<String, dynamic> _$RequestToPayContentEntityToJson(RequestToPayContentEntity instance) =>
+Map<String, dynamic> _$RequestToPayContentEntityToJson(
+        RequestToPayContentEntity instance) =>
     <String, dynamic>{
       'custID': instance.custID,
       'senderName': instance.senderName,

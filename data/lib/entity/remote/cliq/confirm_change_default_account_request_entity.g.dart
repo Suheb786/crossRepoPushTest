@@ -6,15 +6,16 @@ part of 'confirm_change_default_account_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ConfirmChangeDefaultAccountRequestEntity _$ConfirmChangeDefaultAccountRequestEntityFromJson(
-        Map<String, dynamic> json) =>
-    ConfirmChangeDefaultAccountRequestEntity(
-      aliasId: json['AliasId'] as String,
-      acc: json['Acc'] as String,
-      otpCode: json['OtpCode'] as String,
-      getToken: json['GetToken'] as bool,
-      baseClass: json['BaseClass'] as Map<String, dynamic>,
-    );
+ConfirmChangeDefaultAccountRequestEntity
+    _$ConfirmChangeDefaultAccountRequestEntityFromJson(
+            Map<String, dynamic> json) =>
+        ConfirmChangeDefaultAccountRequestEntity(
+          aliasId: json['AliasId'] as String,
+          acc: json['Acc'] as String,
+          otpCode: json['OtpCode'] as String,
+          getToken: json['GetToken'] as bool,
+          baseClass: json['BaseClass'] as Map<String, dynamic>,
+        );
 
 Map<String, dynamic> _$ConfirmChangeDefaultAccountRequestEntityToJson(
         ConfirmChangeDefaultAccountRequestEntity instance) =>

@@ -6,7 +6,8 @@ part of 'beneficiary_search_contact_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BeneficiarySearchContactEntity _$BeneficiarySearchContactEntityFromJson(Map<String, dynamic> json) =>
+BeneficiarySearchContactEntity _$BeneficiarySearchContactEntityFromJson(
+        Map<String, dynamic> json) =>
     BeneficiarySearchContactEntity(
       id: json['id'] as String? ?? '',
       userId: json['userId'] as String? ?? '',
@@ -27,7 +28,8 @@ BeneficiarySearchContactEntity _$BeneficiarySearchContactEntityFromJson(Map<Stri
       addressLine2: json['addressLine2'] as String? ?? '',
       addressLine3: json['addressLine3'] as String? ?? '',
       addressLine4: json['addressLine4'] as String? ?? '',
-      beneficiaryAccountCurrency: json['beneficiaryAccountCurrency'] as String? ?? '',
+      beneficiaryAccountCurrency:
+          json['beneficiaryAccountCurrency'] as String? ?? '',
       routingNo: json['routingNo'] as String? ?? '',
       ifscCode: json['ifscCode'] as String? ?? '',
       beneficiaryIban: json['beneficiaryIban'] as String? ?? '',
@@ -44,7 +46,8 @@ BeneficiarySearchContactEntity _$BeneficiarySearchContactEntityFromJson(Map<Stri
       isFavorite: json['isFavorite'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$BeneficiarySearchContactEntityToJson(BeneficiarySearchContactEntity instance) =>
+Map<String, dynamic> _$BeneficiarySearchContactEntityToJson(
+        BeneficiarySearchContactEntity instance) =>
     <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,

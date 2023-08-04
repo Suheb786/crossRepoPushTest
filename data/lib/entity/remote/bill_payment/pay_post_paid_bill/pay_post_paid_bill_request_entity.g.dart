@@ -6,7 +6,8 @@ part of 'pay_post_paid_bill_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PayPostPaidBillRequestEntity _$PayPostPaidBillRequestEntityFromJson(Map<String, dynamic> json) =>
+PayPostPaidBillRequestEntity _$PayPostPaidBillRequestEntityFromJson(
+        Map<String, dynamic> json) =>
     PayPostPaidBillRequestEntity(
       billerList: json['billList'],
       accountNo: json['accountNo'] as String?,
@@ -22,7 +23,8 @@ PayPostPaidBillRequestEntity _$PayPostPaidBillRequestEntityFromJson(Map<String, 
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$PayPostPaidBillRequestEntityToJson(PayPostPaidBillRequestEntity instance) =>
+Map<String, dynamic> _$PayPostPaidBillRequestEntityToJson(
+        PayPostPaidBillRequestEntity instance) =>
     <String, dynamic>{
       'billList': instance.billerList,
       'accountNo': instance.accountNo,

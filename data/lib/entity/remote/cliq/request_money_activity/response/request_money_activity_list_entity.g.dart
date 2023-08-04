@@ -6,7 +6,8 @@ part of 'request_money_activity_list_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RequestMoneyActivityListEntity _$RequestMoneyActivityListEntityFromJson(Map<String, dynamic> json) =>
+RequestMoneyActivityListEntity _$RequestMoneyActivityListEntityFromJson(
+        Map<String, dynamic> json) =>
     RequestMoneyActivityListEntity(
       rmtInf: json['rmtInf'] as String? ?? '',
       msgID: json['msgID'] as String? ?? '',
@@ -56,7 +57,8 @@ RequestMoneyActivityListEntity _$RequestMoneyActivityListEntityFromJson(Map<Stri
       activityDate: json['activityDate'] as String? ?? '',
     );
 
-Map<String, dynamic> _$RequestMoneyActivityListEntityToJson(RequestMoneyActivityListEntity instance) =>
+Map<String, dynamic> _$RequestMoneyActivityListEntityToJson(
+        RequestMoneyActivityListEntity instance) =>
     <String, dynamic>{
       'rmtInf': instance.rmtInf,
       'msgID': instance.msgID,

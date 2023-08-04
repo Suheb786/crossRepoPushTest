@@ -6,14 +6,16 @@ part of 'remove_prepaid_biller_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RemovePrepaidBillerRequest _$RemovePrepaidBillerRequestFromJson(Map<String, dynamic> json) =>
+RemovePrepaidBillerRequest _$RemovePrepaidBillerRequestFromJson(
+        Map<String, dynamic> json) =>
     RemovePrepaidBillerRequest(
       registrationID: json['registrationID'] as String?,
       getToken: json['GetToken'] as bool?,
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$RemovePrepaidBillerRequestToJson(RemovePrepaidBillerRequest instance) =>
+Map<String, dynamic> _$RemovePrepaidBillerRequestToJson(
+        RemovePrepaidBillerRequest instance) =>
     <String, dynamic>{
       'registrationID': instance.registrationID,
       'GetToken': instance.getToken,

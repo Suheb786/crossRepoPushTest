@@ -22,11 +22,9 @@ class PurchaseEVoucherPageView extends BasePageViewWidget<PurchaseEVoucherPageVi
   @override
   Widget build(BuildContext context, model) {
     final pages = [
-      SelectRegionAmountPage(model.argument),
-      EvoucherSettlementAccountPage(
-        argument: model.argument,
-      ),
-      EnterOtpForEVoucherCategoryPurchasePage(model.argument),
+      SelectRegionAmountPage(),
+      EvoucherSettlementAccountPage(),
+      EnterOtpForEVoucherCategoryPurchasePage(),
     ];
     return Container(
       color: Theme.of(context).primaryColor,

@@ -21,9 +21,14 @@ class RegionFilterDialogView extends StatelessWidget {
   final Function(VoucherRegionByCategories)? onSelected;
   final List<VoucherRegionByCategories> regionByCategoriesList;
   final String title;
+  final bool isFromPurchaseFlow;
 
   const RegionFilterDialogView(
-      {this.onDismissed, this.onSelected, required this.title, required this.regionByCategoriesList});
+      {this.onDismissed,
+      this.onSelected,
+      required this.title,
+      required this.regionByCategoriesList,
+      required this.isFromPurchaseFlow});
 
   ProviderBase providerBase() {
     return regionFilterDialogViewModelProvider;
@@ -33,7 +38,7 @@ class RegionFilterDialogView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseWidget<RegionFilterDialogViewModel>(
         onModelReady: (RegionFilterDialogViewModel model) {
-          model.allRegion.addAll(regionByCategoriesList);
+          model.addRegionsData(regions: regionByCategoriesList, isFromPurchase: isFromPurchaseFlow);
         },
         builder: (context, model, child) {
           return GestureDetector(

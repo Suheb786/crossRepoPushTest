@@ -6,7 +6,8 @@ part of 'validate_biller_otp_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ValidateBillerOtpRequest _$ValidateBillerOtpRequestFromJson(Map<String, dynamic> json) =>
+ValidateBillerOtpRequest _$ValidateBillerOtpRequestFromJson(
+        Map<String, dynamic> json) =>
     ValidateBillerOtpRequest(
       billerType: json['BillerType'] as String?,
       billerName: json['BillerName'] as String?,
@@ -18,7 +19,9 @@ ValidateBillerOtpRequest _$ValidateBillerOtpRequestFromJson(Map<String, dynamic>
       baseData: json['baseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$ValidateBillerOtpRequestToJson(ValidateBillerOtpRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$ValidateBillerOtpRequestToJson(
+        ValidateBillerOtpRequest instance) =>
+    <String, dynamic>{
       'BillerType': instance.billerType,
       'BillerName': instance.billerName,
       'Amount': instance.amount,

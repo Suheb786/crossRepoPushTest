@@ -6,7 +6,8 @@ part of 'confirm_create_cliq_id_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ConfirmCreateCliqIdEntity _$ConfirmCreateCliqIdEntityFromJson(Map<String, dynamic> json) =>
+ConfirmCreateCliqIdEntity _$ConfirmCreateCliqIdEntityFromJson(
+        Map<String, dynamic> json) =>
     ConfirmCreateCliqIdEntity(
       transferType: json['transferType'] as String? ?? '',
       cliqType: json['cliqType'] as String? ?? '',
@@ -27,7 +28,8 @@ ConfirmCreateCliqIdEntity _$ConfirmCreateCliqIdEntityFromJson(Map<String, dynami
       currencyCode: json['currencyCode'] as String? ?? '',
     );
 
-Map<String, dynamic> _$ConfirmCreateCliqIdEntityToJson(ConfirmCreateCliqIdEntity instance) =>
+Map<String, dynamic> _$ConfirmCreateCliqIdEntityToJson(
+        ConfirmCreateCliqIdEntity instance) =>
     <String, dynamic>{
       'transferType': instance.transferType,
       'cliqType': instance.cliqType,

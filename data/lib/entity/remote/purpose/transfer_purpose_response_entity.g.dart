@@ -6,14 +6,16 @@ part of 'transfer_purpose_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-TransferPurposeResponseEntity _$TransferPurposeResponseEntityFromJson(Map<String, dynamic> json) =>
+TransferPurposeResponseEntity _$TransferPurposeResponseEntityFromJson(
+        Map<String, dynamic> json) =>
     TransferPurposeResponseEntity(
       purposes: (json['purposes'] as List<dynamic>?)
           ?.map((e) => PurposeEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$TransferPurposeResponseEntityToJson(TransferPurposeResponseEntity instance) =>
+Map<String, dynamic> _$TransferPurposeResponseEntityToJson(
+        TransferPurposeResponseEntity instance) =>
     <String, dynamic>{
       'purposes': instance.purposes,
     };

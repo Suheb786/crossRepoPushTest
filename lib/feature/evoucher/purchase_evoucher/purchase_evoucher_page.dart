@@ -21,7 +21,13 @@ class PurchaseEVoucherPageState
     extends BaseStatefulPage<PurchaseEVoucherPageViewModel, PurchaseEVoucherPage> {
   @override
   ProviderBase provideBase() {
-    return purchaseEVouchersViewModelProvider.call(widget.argument);
+    return purchaseEVouchersViewModelProvider;
+  }
+
+  @override
+  void onModelReady(PurchaseEVoucherPageViewModel model) {
+    super.onModelReady(model);
+    model.voucherItems = widget.argument.voucherItems;
   }
 
   @override
@@ -32,10 +38,6 @@ class PurchaseEVoucherPageState
 
 class PurchaseEVoucherPageArgument {
   List<VoucherItem> voucherItems;
-  final VoucherItem selectedItem;
 
-  PurchaseEVoucherPageArgument({
-    required this.voucherItems,
-    required this.selectedItem,
-  });
+  PurchaseEVoucherPageArgument({required this.voucherItems});
 }

@@ -170,8 +170,6 @@ class EvoucherViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
           _voucherHistoryResponseSubject.safeAdd(event);
         } else if (event.status == Status.SUCCESS) {
-          // done...
-
           if ((event.data ?? []).isNotEmpty) {
             hasMoreData = true;
             isApiCalling = false;
@@ -181,7 +179,7 @@ class EvoucherViewModel extends BasePageViewModel {
             } else {
               if (TimeUtils.convertDateTimeToDateMonth(myVoucherHistoryList.last.date) ==
                   TimeUtils.convertDateTimeToDateMonth(list.first.date)) {
-                myVoucherHistoryList.first.data.addAll(list.first.data);
+                myVoucherHistoryList.last.data.addAll(list.first.data);
                 if (list.length > 1) {
                   list..removeAt(0);
                   myVoucherHistoryList.addAll(list);
@@ -196,7 +194,6 @@ class EvoucherViewModel extends BasePageViewModel {
           } else {
             hasMoreData = false;
             isApiCalling = true;
-            //   pageNo--;
             if (pageNo == 1 && (event.data ?? []).isEmpty) {
               _voucherHistoryResponseSubject.safeAdd(Resource.success(data: myVoucherHistoryList));
             }

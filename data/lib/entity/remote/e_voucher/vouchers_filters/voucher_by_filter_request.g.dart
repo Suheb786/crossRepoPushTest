@@ -6,7 +6,9 @@ part of 'voucher_by_filter_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-VoucherByFilterRequest _$VoucherByFilterRequestFromJson(Map<String, dynamic> json) => VoucherByFilterRequest(
+VoucherByFilterRequest _$VoucherByFilterRequestFromJson(
+        Map<String, dynamic> json) =>
+    VoucherByFilterRequest(
       category: json['Category'] as String?,
       region: json['Region'] as String?,
       minValue: json['MinValue'] as num?,
@@ -16,7 +18,9 @@ VoucherByFilterRequest _$VoucherByFilterRequestFromJson(Map<String, dynamic> jso
       baseData: json['baseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$VoucherByFilterRequestToJson(VoucherByFilterRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$VoucherByFilterRequestToJson(
+        VoucherByFilterRequest instance) =>
+    <String, dynamic>{
       'Category': instance.category,
       'Region': instance.region,
       'MinValue': instance.minValue,

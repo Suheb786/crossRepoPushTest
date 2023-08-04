@@ -151,6 +151,7 @@ class EVouchersFilterDialogView extends StatelessWidget {
                                       } else if (regionByCategories?.status == Status.SUCCESS) {
                                         if ((regionByCategories?.data ?? []).isNotEmpty) {
                                           RegionFilterDialog.show(context,
+                                              isFromPurchaseFlow: false,
                                               title: S.of(context).preferredRegion,
                                               regionByCategoriesList: regionByCategories?.data ?? [],
                                               onDismissed: () {

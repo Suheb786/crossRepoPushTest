@@ -44,10 +44,12 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                         arguments: PurchaseVoucherSuccessArgument(
                             placeOrder: data.data,
                             settlementAmount: ProviderScope.containerOf(context)
-                                .read(selectAmountRegionViewModelProvider(model.argument))
+                                .read(selectAmountRegionViewModelProvider)
                                 .settlementAmount
                                 .toString(),
-                            selectedItem: model.argument.selectedItem));
+                            selectedItem: ProviderScope.containerOf(context)
+                                .read(selectAmountRegionViewModelProvider)
+                                .selectedItem));
                   }
                 },
                 dataBuilder: (context, placeOrderData) {
@@ -56,6 +58,9 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                     initialData: Resource.none(),
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
+                        var item = ProviderScope.containerOf(context)
+                            .read(selectAmountRegionViewModelProvider)
+                            .selectedItem;
                         model.placeOrder(
                             sourceAccount: ProviderScope.containerOf(context)
                                 .read(appHomeViewModelProvider)
@@ -63,19 +68,19 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                                 .account
                                 ?.iban,
                             sourceCurrency: "JOD",
-                            cardItemId: model.argument.selectedItem.id,
-                            exchangeRate: double.parse(model.argument.selectedItem.exchangeRate),
-                            voucherCurrency: model.argument.selectedItem.currency,
-                            reconciliationCurrency: model.argument.selectedItem.reconciliationCurrency,
+                            cardItemId: item.id,
+                            exchangeRate: double.parse(item.exchangeRate),
+                            voucherCurrency: item.currency,
+                            reconciliationCurrency: item.reconciliationCurrency,
                             equivalentAmount: ProviderScope.containerOf(context)
-                                .read(selectAmountRegionViewModelProvider(model.argument))
+                                .read(selectAmountRegionViewModelProvider)
                                 .settlementAmount
                                 .toString(),
-                            denomination: model.argument.selectedItem.fromValue.toInt(),
-                            discount: model.argument.selectedItem.discount.replaceAll('%', ''),
-                            categories: model.argument.selectedItem.categories.join(','),
-                            voucherName: model.argument.selectedItem.name,
-                            productId: model.argument.selectedItem.productId.toString(),
+                            denomination: item.fromValue.toInt(),
+                            discount: item.discount.replaceAll('%', ''),
+                            categories: item.categories.join(','),
+                            voucherName: item.name,
+                            productId: item.productId.toString(),
                             productName: "",
                             otpCode: model.otpController.text,
                             getToken: true);
@@ -85,7 +90,7 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                       return GestureDetector(
                         onHorizontalDragEnd: (details) {
                           if (ProviderScope.containerOf(context)
-                                  .read(purchaseEVouchersViewModelProvider(model.argument))
+                                  .read(purchaseEVouchersViewModelProvider)
                                   .appSwiperController
                                   .page ==
                               2.0) {
@@ -95,7 +100,7 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                                 model.validateOtp();
                               } else {
                                 ProviderScope.containerOf(context)
-                                    .read(purchaseEVouchersViewModelProvider(model.argument))
+                                    .read(purchaseEVouchersViewModelProvider)
                                     .previousPage();
                               }
                             } else {
@@ -103,7 +108,7 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                                 model.validateOtp();
                               } else {
                                 ProviderScope.containerOf(context)
-                                    .read(purchaseEVouchersViewModelProvider(model.argument))
+                                    .read(purchaseEVouchersViewModelProvider)
                                     .previousPage();
                               }
                             }

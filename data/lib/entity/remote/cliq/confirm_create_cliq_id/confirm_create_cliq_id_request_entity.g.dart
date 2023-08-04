@@ -6,7 +6,8 @@ part of 'confirm_create_cliq_id_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ConfirmCreateCliqIdRequestEntity _$ConfirmCreateCliqIdRequestEntityFromJson(Map<String, dynamic> json) =>
+ConfirmCreateCliqIdRequestEntity _$ConfirmCreateCliqIdRequestEntityFromJson(
+        Map<String, dynamic> json) =>
     ConfirmCreateCliqIdRequestEntity(
       accountNumber: json['accountNumber'] as String?,
       isAlias: json['isAlias'] as bool?,
@@ -17,7 +18,8 @@ ConfirmCreateCliqIdRequestEntity _$ConfirmCreateCliqIdRequestEntityFromJson(Map<
       baseClass: json['baseClass'] as Map<String, dynamic>?,
     );
 
-Map<String, dynamic> _$ConfirmCreateCliqIdRequestEntityToJson(ConfirmCreateCliqIdRequestEntity instance) =>
+Map<String, dynamic> _$ConfirmCreateCliqIdRequestEntityToJson(
+        ConfirmCreateCliqIdRequestEntity instance) =>
     <String, dynamic>{
       'accountNumber': instance.accountNumber,
       'isAlias': instance.isAlias,

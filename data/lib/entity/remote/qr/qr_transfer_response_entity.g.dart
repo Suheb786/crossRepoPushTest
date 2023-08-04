@@ -6,12 +6,16 @@ part of 'qr_transfer_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-QRTransferResponseEntity _$QRTransferResponseEntityFromJson(Map<String, dynamic> json) =>
+QRTransferResponseEntity _$QRTransferResponseEntityFromJson(
+        Map<String, dynamic> json) =>
     QRTransferResponseEntity(
-      response:
-          json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+      response: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$QRTransferResponseEntityToJson(QRTransferResponseEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$QRTransferResponseEntityToJson(
+        QRTransferResponseEntity instance) =>
+    <String, dynamic>{
       'response': instance.response,
     };

@@ -6,7 +6,8 @@ part of 'check_send_money_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CheckSendMoneyRequestEntity _$CheckSendMoneyRequestEntityFromJson(Map<String, dynamic> json) =>
+CheckSendMoneyRequestEntity _$CheckSendMoneyRequestEntityFromJson(
+        Map<String, dynamic> json) =>
     CheckSendMoneyRequestEntity(
       baseData: json['baseClass'] as Map<String, dynamic>,
       toAccount: json['ToAccount'] as String? ?? '',
@@ -15,7 +16,8 @@ CheckSendMoneyRequestEntity _$CheckSendMoneyRequestEntityFromJson(Map<String, dy
       beneficiaryId: json['BeneficiaryId'] as String? ?? '',
     );
 
-Map<String, dynamic> _$CheckSendMoneyRequestEntityToJson(CheckSendMoneyRequestEntity instance) =>
+Map<String, dynamic> _$CheckSendMoneyRequestEntityToJson(
+        CheckSendMoneyRequestEntity instance) =>
     <String, dynamic>{
       'ToAccount': instance.toAccount,
       'ToAmount': instance.toAmount,

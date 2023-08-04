@@ -6,7 +6,8 @@ part of 'biller_list_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BillerListEntity _$BillerListEntityFromJson(Map<String, dynamic> json) => BillerListEntity(
+BillerListEntity _$BillerListEntityFromJson(Map<String, dynamic> json) =>
+    BillerListEntity(
       billerName: json['billerName'] as String?,
       billerNameAR: json['billerNameAR'] as String?,
       totalAmount: json['totalAmount'] as String?,
@@ -16,7 +17,8 @@ BillerListEntity _$BillerListEntityFromJson(Map<String, dynamic> json) => Biller
       statusDescription: json['statusDescription'] as String?,
     )..fee = json['fee'] as String?;
 
-Map<String, dynamic> _$BillerListEntityToJson(BillerListEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$BillerListEntityToJson(BillerListEntity instance) =>
+    <String, dynamic>{
       'billerName': instance.billerName,
       'billerNameAR': instance.billerNameAR,
       'totalAmount': instance.totalAmount,

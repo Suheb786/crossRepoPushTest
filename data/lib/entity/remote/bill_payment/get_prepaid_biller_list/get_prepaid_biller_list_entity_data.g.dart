@@ -6,7 +6,8 @@ part of 'get_prepaid_biller_list_entity_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetPrepaidBillerListEntityData _$GetPrepaidBillerListEntityDataFromJson(Map<String, dynamic> json) =>
+GetPrepaidBillerListEntityData _$GetPrepaidBillerListEntityDataFromJson(
+        Map<String, dynamic> json) =>
     GetPrepaidBillerListEntityData(
       billingNumber: json['billingNo'] as String?,
       billerCode: json['billerCode'] as String?,
@@ -25,7 +26,8 @@ GetPrepaidBillerListEntityData _$GetPrepaidBillerListEntityDataFromJson(Map<Stri
       rimNo: json['rimNo'] as String?,
     );
 
-Map<String, dynamic> _$GetPrepaidBillerListEntityDataToJson(GetPrepaidBillerListEntityData instance) =>
+Map<String, dynamic> _$GetPrepaidBillerListEntityDataToJson(
+        GetPrepaidBillerListEntityData instance) =>
     <String, dynamic>{
       'billingNo': instance.billingNumber,
       'billerCode': instance.billerCode,

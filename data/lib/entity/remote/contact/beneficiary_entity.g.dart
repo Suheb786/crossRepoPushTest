@@ -6,7 +6,8 @@ part of 'beneficiary_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BeneficiaryEntity _$BeneficiaryEntityFromJson(Map<String, dynamic> json) => BeneficiaryEntity(
+BeneficiaryEntity _$BeneficiaryEntityFromJson(Map<String, dynamic> json) =>
+    BeneficiaryEntity(
       nickName: json['nickName'] as String? ?? "",
       fullName: json['fullName'] as String? ?? "",
       profileImage: json['image'] as String? ?? "",
@@ -28,7 +29,8 @@ BeneficiaryEntity _$BeneficiaryEntityFromJson(Map<String, dynamic> json) => Bene
       identifier: json['identifier'] as String? ?? '',
     );
 
-Map<String, dynamic> _$BeneficiaryEntityToJson(BeneficiaryEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$BeneficiaryEntityToJson(BeneficiaryEntity instance) =>
+    <String, dynamic>{
       'nickName': instance.nickName,
       'fullName': instance.fullName,
       'image': instance.profileImage,

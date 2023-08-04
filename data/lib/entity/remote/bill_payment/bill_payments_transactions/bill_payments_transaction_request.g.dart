@@ -6,7 +6,8 @@ part of 'bill_payments_transaction_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BillPaymentsTransactionRequest _$BillPaymentsTransactionRequestFromJson(Map<String, dynamic> json) =>
+BillPaymentsTransactionRequest _$BillPaymentsTransactionRequestFromJson(
+        Map<String, dynamic> json) =>
     BillPaymentsTransactionRequest(
       pageSize: json['PageSize'] as num?,
       pageNo: json['PageNo'] as num?,
@@ -16,7 +17,8 @@ BillPaymentsTransactionRequest _$BillPaymentsTransactionRequestFromJson(Map<Stri
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$BillPaymentsTransactionRequestToJson(BillPaymentsTransactionRequest instance) =>
+Map<String, dynamic> _$BillPaymentsTransactionRequestToJson(
+        BillPaymentsTransactionRequest instance) =>
     <String, dynamic>{
       'PageSize': instance.pageSize,
       'PageNo': instance.pageNo,

@@ -6,7 +6,8 @@ part of 'qr_transfer_content_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-QRTransferContentEntity _$QRTransferContentEntityFromJson(Map<String, dynamic> json) =>
+QRTransferContentEntity _$QRTransferContentEntityFromJson(
+        Map<String, dynamic> json) =>
     QRTransferContentEntity(
       transferDate: json['transferDate'] as String?,
       name: json['name'] as String?,
@@ -15,7 +16,9 @@ QRTransferContentEntity _$QRTransferContentEntityFromJson(Map<String, dynamic> j
       reference: json['reference'] as String?,
     );
 
-Map<String, dynamic> _$QRTransferContentEntityToJson(QRTransferContentEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$QRTransferContentEntityToJson(
+        QRTransferContentEntity instance) =>
+    <String, dynamic>{
       'iban': instance.iban,
       'transferDate': instance.transferDate,
       'name': instance.name,

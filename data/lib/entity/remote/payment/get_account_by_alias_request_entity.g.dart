@@ -6,7 +6,8 @@ part of 'get_account_by_alias_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetAccountByAliasRequestEntity _$GetAccountByAliasRequestEntityFromJson(Map<String, dynamic> json) =>
+GetAccountByAliasRequestEntity _$GetAccountByAliasRequestEntityFromJson(
+        Map<String, dynamic> json) =>
     GetAccountByAliasRequestEntity(
       baseData: json['baseClass'] as Map<String, dynamic>,
       value: json['Value'] as String?,
@@ -15,7 +16,8 @@ GetAccountByAliasRequestEntity _$GetAccountByAliasRequestEntityFromJson(Map<Stri
       beneficiaryId: json['BeneficiaryId'] as String?,
     );
 
-Map<String, dynamic> _$GetAccountByAliasRequestEntityToJson(GetAccountByAliasRequestEntity instance) =>
+Map<String, dynamic> _$GetAccountByAliasRequestEntityToJson(
+        GetAccountByAliasRequestEntity instance) =>
     <String, dynamic>{
       'Value': instance.value,
       'Currency': instance.currency,
