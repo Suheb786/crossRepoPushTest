@@ -278,7 +278,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                         return DashboardSwiper(
                                                                           pages: pagesList,
                                                                           appSwiperController: model.appSwiperController,
-                                                                          pageController: model.pageController,
+                                                                          // pageController: model.pageController,
                                                                           onIndexChanged: (index) {
                                                                             model.updatePage(index);
                                                                             model.updatePageControllerStream(index);
