@@ -27,7 +27,7 @@ class DebitCardDeliveredPageState extends BaseStatefulPage<CardTransactionViewMo
 
   @override
   void onModelReady(CardTransactionViewModel model) {
-    model.getTransactions(cardId: model.cardTransactionArguments.cardId!, noOfDays: 180);
+    // model.getTransactions(cardId: model.cardTransactionArguments.cardId!, noOfDays: 180);
   }
 
   @override

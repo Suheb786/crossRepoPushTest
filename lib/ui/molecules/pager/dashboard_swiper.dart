@@ -40,7 +40,7 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
       child: AspectRatio(
         aspectRatio: 16 / 8,
         child: PageView.builder(
-          physics: widget.model.settings || widget.model.timelinePage ? const NeverScrollableScrollPhysics() : const ClampingScrollPhysics(),
+            physics: widget.model.settings || widget.model.timelinePage ? const NeverScrollableScrollPhysics() : const ClampingScrollPhysics(),
             itemCount: widget.pages!.length,
             onPageChanged: (i) {
               widget.onIndexChanged!.call(i);
@@ -59,19 +59,12 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
       child: AnimatedBuilder(
         animation: widget.translateSidewaysController!,
         builder: (context, child) {
-          double value = 0.0;
-          // if (widget.appSwiperController!.position.haveDimensions) {
-          value = index.toDouble() - (widget.currentStep ?? 0);
-          value = (value * 0.018).clamp(-1, 1);
-          // } else {
-          //     value = (index * 0.018).clamp(-1, 1);
-          // }
           return Transform.translate(
             offset: widget.currentStep == index
                 ? const Offset(0, 0)
                 : widget.currentStep! < index
                     ? Offset(widget.translateSidewaysController!.value * 100, 0)
-                    : Offset(widget.translateSidewaysController!.value * 100, 0),
+                    : Offset(-widget.translateSidewaysController!.value * 100, 0),
             child: AnimatedBuilder(
               animation: widget.appSwiperController,
               child: widget.pages![index],

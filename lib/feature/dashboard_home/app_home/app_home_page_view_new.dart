@@ -467,7 +467,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                       builder: (context, child) {
                                                                         return Transform.translate(
                                                                           //offset: Offset(0, model.animation.value* (-MediaQuery.of(context).size.height*0.65)),
-                                                                          offset: Offset(0, model.animation.value * (-(MediaQuery.of(context).size.height * 0.7))),
+                                                                          offset: Offset(0, (model.animation.value * (-(MediaQuery.of(context).size.height * 0.7)))),
                                                                           child: Transform.scale(
                                                                             scale: model.scaleAnimationController.value,
                                                                             child: child,
