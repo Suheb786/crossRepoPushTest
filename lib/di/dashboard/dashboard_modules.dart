@@ -198,3 +198,9 @@ final convertPurchaseToInstallmentsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<ConvertPurchaseToInstallmentsPageViewModel>(
   (ref) => ConvertPurchaseToInstallmentsPageViewModel(),
 );
+
+/// animated dashboard design viewmodel
+final animatedLayoutViewModelProvider =
+ChangeNotifierProvider.autoDispose<ConvertPurchaseToInstallmentsPageViewModel>(
+        (ref) => ConvertPurchaseToInstallmentsPageViewModel(),
+);

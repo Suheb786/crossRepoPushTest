@@ -5,7 +5,6 @@ import 'package:neo_bank/utils/string_utils.dart';
 import 'dart:math' as math;
 
 import '../../../feature/dashboard_home/app_home/app_home_view_model.dart';
-import '../../../feature/dashboard_home/app_home/widgets/my_account_card.dart';
 
 class DashboardSwiper extends StatefulWidget {
   final List? pages;

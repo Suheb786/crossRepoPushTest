@@ -1,4 +1,3 @@
-import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';

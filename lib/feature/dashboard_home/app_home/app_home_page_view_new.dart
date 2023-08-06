@@ -2,32 +2,24 @@ import 'dart:io';
 
 import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/enum/account_status_enum.dart';
-import 'package:domain/constants/enum/card_type.dart';
-import 'dart:math' as math;
-import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/model/qr/verify_qr_response.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/apple_pay/selected_card_for_apple_pay/selected_card_for_apple_pay_page.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/widgets/app_home_page_widgets.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/widgets/custom_svg_image.dart';
-import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
-import 'package:neo_bank/ui/molecules/dashboard/bottom_bar_widget.dart';
 import 'package:neo_bank/ui/molecules/dialog/apple_pay/add_other_card_to_apple_wallet_page_dialog/add_other_card_to_apple_wallet_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/apple_pay/apple_pay_landing_page_dialog/apple_pay_landing_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
-import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/efawateer_landing_page_dialog/efawateer_landing_page_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/evoucher/evoucher_landing_page_dialog/evoucher_landing_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
@@ -173,7 +165,11 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                     stream: model.applePayPopUpStream,
                                     initialData: false,
                                     onData: (value) {
-                                      if (value && Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled && isAllCardsInApplePay && (model.debitCards.isNotEmpty || model.creditCards.isNotEmpty)) {
+                                      if (value &&
+                                          Platform.isIOS &&
+                                          AppConstantsUtils.isApplePayFeatureEnabled &&
+                                          isAllCardsInApplePay &&
+                                          (model.debitCards.isNotEmpty || model.creditCards.isNotEmpty)) {
                                         ApplePayDialog.show(context, image: AssetUtils.applePayLogo, title: S.of(context).blinkWithApplePay, onSelected: () {
                                           Navigator.pop(context);
                                           Navigator.pushNamed(context, RoutePaths.SelectedCardForApplePayPage,
@@ -221,6 +217,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                         children: [
                                                           Expanded(
                                                             child: Stack(
+                                                              alignment: Alignment.bottomCenter,
                                                               children: [
                                                                 ///Settings page
                                                                 ///Timeline page
@@ -234,21 +231,21 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                           accountStatusEnum: cardData?.data?.dashboardDataContent?.account?.accountStatusEnum ?? AccountStatusEnum.NONE,
                                                                           isPrimaryDebitCard: model.isPrimaryDebitCard,
                                                                           debitCard: model.selectedDebitCard,
-                                                                          debitCardRequestPhysicalCardEnabled: cardData?.data?.dashboardDataContent?.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled ?? false))
-                                                                      : showTimeLine!
-                                                                          ? const SizedBox()
-                                                                          : model.timelinePage
-                                                                              ? DebitCardTimeLinePage(TimeLinePageArguments(cardType: model.cardTypeList[currentStep!].cardType, timeLineArguments: model.timeLineArguments))
-                                                                              : model.showPayBackView
-                                                                                  ? CreditCardPayBackPage(
-                                                                                      CreditCardPayBackArguments(
-                                                                                          accountHolderName: model.selectedCreditCard.name!,
-                                                                                          secureCode: model.selectedCreditCard.cardCode!,
-                                                                                          accountBalance: cardData!.data!.dashboardDataContent!.account!.availableBalance!,
-                                                                                          minDuePayBackAmount: model.selectedCreditCard.paymentDueAmount.toString(),
-                                                                                          totalMinDueAmount: model.selectedCreditCard.usedBalance!),
-                                                                                    )
-                                                                                  : const SizedBox(),
+                                                                          debitCardRequestPhysicalCardEnabled:
+                                                                              cardData?.data?.dashboardDataContent?.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled ?? false))
+                                                                      : model.timelinePage
+                                                                          ? DebitCardTimeLinePage(
+                                                                              TimeLinePageArguments(cardType: model.cardTypeList[currentStep!].cardType, timeLineArguments: model.timeLineArguments))
+                                                                          : model.showPayBackView
+                                                                              ? CreditCardPayBackPage(
+                                                                                  CreditCardPayBackArguments(
+                                                                                      accountHolderName: model.selectedCreditCard.name!,
+                                                                                      secureCode: model.selectedCreditCard.cardCode!,
+                                                                                      accountBalance: cardData!.data!.dashboardDataContent!.account!.availableBalance!,
+                                                                                      minDuePayBackAmount: model.selectedCreditCard.paymentDueAmount.toString(),
+                                                                                      totalMinDueAmount: model.selectedCreditCard.usedBalance!),
+                                                                                )
+                                                                              : const SizedBox(),
                                                                 ),
                                                                 AnimatedBuilder(
                                                                   animation: model.translateTimelineDownController,
@@ -257,7 +254,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                       child: SafeArea(
                                                                         child: Container(
                                                                           color: model.settings ? Colors.white : Colors.transparent,
-                                                                          // margin: EdgeInsets.only(bottom: model.timelinePage ? 0 : model.constBottomBarHeight),
+                                                                          margin: EdgeInsets.only(bottom: model.timelinePage ? 0 : model.constBottomBarHeight),
                                                                           child: Column(
                                                                             crossAxisAlignment: CrossAxisAlignment.stretch,
                                                                             children: [
@@ -284,6 +281,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                       translateSidewaysController: model.translateSidewaysController,
                                                                                       model: model,
                                                                                     ),
+
                                                                                     ///Timeline Button
                                                                                     ///For My Account and My credit card
                                                                                     Positioned(
@@ -301,7 +299,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                           /*if (myAccount) {
                                                                                             //TODO:
                                                                                           }*/
-
+                                                                                          if (!model.showButtonsInCreditCard) return;
                                                                                           if (!showTimeLine!) {
                                                                                             // Navigator.pushNamed(context, RoutePaths.TimeLinePage,
                                                                                             //     arguments: TimeLinePageArguments(cardType: model.cardTypeList[currentStep!].cardType, timeLineArguments: model.timeLineArguments));
@@ -311,10 +309,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                         child: AnimatedOpacity(
                                                                                           ///For Credit Card
                                                                                           duration: const Duration(milliseconds: 500),
-                                                                                          opacity: (/*!context.watch<LayoutViewModel>().showButtonsInCreditCard && */ model.myCreditCard) ||
-                                                                                              (/*!context.watch<LayoutViewModel>().showButtonsInDebitCard && */ model.myDebitCard)
-                                                                                              ? 0
-                                                                                              : 1,
+                                                                                          opacity: model.timelinePage ? 0 : 1,
                                                                                           child: AnimatedBuilder(
                                                                                             animation: model.appSwiperController,
                                                                                             builder: (BuildContext context, Widget? child) {
@@ -366,7 +361,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                               splashColor: Colors.transparent,
                                                                                               highlightColor: Colors.transparent,
                                                                                               onTap: () {
-                                                                                                /*if (model.myCreditCard) {
+                                                                                                if (model.myCreditCard) {
                                                                                                   if (model.settings) {
                                                                                                     model.showSettingPage(false);
                                                                                                     return;
@@ -377,25 +372,26 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                     return;
                                                                                                   }
 
-                                                                                                  if (context.read<LayoutViewModel>().showButtonsInCreditCard) {
-                                                                                                    model.goToTransactionPage(context);
+                                                                                                  if (model.showButtonsInCreditCard) {
+                                                                                                    model.goToTransactionPage(context, currentStep!);
                                                                                                     return;
                                                                                                   }
                                                                                                 }
-                                                                                                if (myAccount) {
+                                                                                                /* if (myAccount) {
                                                                                                   ///TODO:
                                                                                                 }*/
                                                                                               },
                                                                                               child: AnimatedOpacity(
                                                                                                 ///For credit card
                                                                                                 duration: const Duration(milliseconds: 500),
-                                                                                                opacity: model.myCreditCard ? 0 : 1,
+                                                                                                opacity: !model.showButtonsInCreditCard && model.myCreditCard ? 0 : 1,
                                                                                                 child: AnimatedBuilder(
                                                                                                   animation: model.appSwiperController,
                                                                                                   builder: (BuildContext context, Widget? child) {
                                                                                                     double translateYOffset = 0;
                                                                                                     double opacity = 0;
-                                                                                                    if (model.appSwiperController.hasClients) if (model.appSwiperController.position.hasContentDimensions) {
+                                                                                                    if (model.appSwiperController.hasClients) if (model
+                                                                                                        .appSwiperController.position.hasContentDimensions) {
                                                                                                       opacity = model.pageViewIndex - (model.appSwiperController.page ?? 0);
                                                                                                       translateYOffset = model.pageViewIndex - (model.appSwiperController.page ?? 0);
                                                                                                     }
@@ -420,7 +416,11 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                       border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
                                                                                                       borderRadius: BorderRadius.circular(100),
                                                                                                       boxShadow: [
-                                                                                                        BoxShadow(color: Theme.of(context).colorScheme.inverseSurface, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))
+                                                                                                        BoxShadow(
+                                                                                                            color: Theme.of(context).colorScheme.inverseSurface,
+                                                                                                            blurRadius: 5,
+                                                                                                            spreadRadius: 0.1,
+                                                                                                            offset: Offset(0, 4))
                                                                                                       ],
                                                                                                     ),
                                                                                                     child: AnimatedCrossFade(
@@ -429,7 +429,9 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                       firstCurve: Curves.easeIn,
                                                                                                       secondCurve: Curves.easeIn,
                                                                                                       alignment: Alignment.center,
-                                                                                                      crossFadeState: model.settings || model.showPayBackView ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                                                                                                      crossFadeState: model.settings || model.showPayBackView
+                                                                                                          ? CrossFadeState.showFirst
+                                                                                                          : CrossFadeState.showSecond,
                                                                                                       firstChild: const SVGImage(assetPath: "assets/icons/down.svg"),
                                                                                                       secondChild: const Text(
                                                                                                         "Transactions",
@@ -441,8 +443,6 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                               ),
                                                                                             ),
                                                                                     ),
-
-
                                                                                   ],
                                                                                 ),
                                                                               ),
@@ -457,7 +457,8 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                     mainAxisAlignment: MainAxisAlignment.center,
                                                                                     children: model.buildPageIndicator(currentStep!, cardData.data!.dashboardDataContent!.debitCard!.length),
                                                                                   ),
-                                                                                ),   duration: const Duration(milliseconds: 500),
+                                                                                ),
+                                                                                duration: const Duration(milliseconds: 500),
                                                                               ),
                                                                             ],
                                                                           ),
@@ -481,34 +482,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                     );
                                                                   },
                                                                 ),
-
-
                                                               ],
-                                                            ),
-                                                          ),
-                                                          Positioned(
-                                                            bottom: 0,
-                                                            child: Center(
-                                                              child: Container(
-                                                                padding: EdgeInsets.only(top: 24.0.h),
-                                                                child: BottomBarWidget(
-                                                                  onHomeTap: () {
-                                                                    model.moveToPage(0);
-                                                                  },
-                                                                  onMoreTap: () {
-                                                                    SettingsDialog.show(
-                                                                      context,
-                                                                    );
-                                                                  },
-                                                                  onContactUsTap: () {
-                                                                    EngagementTeamDialog.show(context, onDismissed: () {
-                                                                      Navigator.pop(context);
-                                                                    }, onSelected: (value) {
-                                                                      Navigator.pop(context);
-                                                                    });
-                                                                  },
-                                                                ),
-                                                              ),
                                                             ),
                                                           ),
                                                         ],

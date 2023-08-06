@@ -2,7 +2,6 @@ import 'package:domain/constants/enum/card_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -484,53 +483,7 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                     ,
                   )
                 : Container(),
-            Spacer(),
-            Stack(
-              clipBehavior: Clip.none,
-              alignment: Alignment.topCenter,
-              children: [
-                Center(
-                  child: Directionality(
-                    textDirection: TextDirection.ltr,
-                    child: Container(
-                      width: 281.w,
-                      height: 90.h,
-                      margin: EdgeInsets.only(top: 8.h),
-                      decoration: BoxDecoration(
-                          color: model.timeLineArguments.cardType == CardType.CREDIT
-                              ? Theme.of(context).primaryColor
-                              : model.timeLineArguments.cardType == CardType.DEBIT
-                                  ? Theme.of(context).canvasColor
-                                  : Theme.of(context).primaryColorDark,
-                          borderRadius:
-                              BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.only(top: 22.h, start: 27.w),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            model.timeLineArguments.cardType == CardType.CREDIT ||
-                                    model.timeLineArguments.cardType == CardType.ACCOUNT
-                                ? AppSvg.asset(AssetUtils.blink_updated_logo,
-                                    height: 34.h, width: 72.w, matchTextDirection: true)
-                                : AppSvg.asset(AssetUtils.blinkBlack,
-                                    height: 34.h, width: 72.w, matchTextDirection: true),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                PositionedDirectional(
-                    top: -3.h,
-                    child: AppSvg.asset(
-                      AssetUtils.swipeUp,
-                      height: 24.h,
-                      width: 24.w,
-                      matchTextDirection: true,
-                    )),
-              ],
-            ),
+
           ],
         ),
       ),

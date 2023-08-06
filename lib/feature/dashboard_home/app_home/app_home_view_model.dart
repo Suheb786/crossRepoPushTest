@@ -51,6 +51,9 @@ import 'package:neo_bank/utils/screen_size_utils.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../../ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
+import '../card_transaction/card_transaction_page.dart';
+
 class AppHomeViewModel extends BasePageViewModel {
   final GetDashboardDataUseCase _getDashboardDataUseCase;
   final GetCurrentUserUseCase _getCurrentUserUseCase;
@@ -209,6 +212,9 @@ class AppHomeViewModel extends BasePageViewModel {
   late AnimationController translateSettingsUpController;
   late Animation<double> animation;
 
+  late AnimationController zoomController;
+  late Animation<double> zoomAnimation;
+
   ///--------------- Pages ----------------------///
 
   bool timelinePage = false;
@@ -235,6 +241,15 @@ class AppHomeViewModel extends BasePageViewModel {
   ///--------------- Some Other params that i will name later on  ----------------------///
   late DebitCard selectedDebitCard;
   late CreditCard selectedCreditCard;
+  bool firstTime = true;
+  bool animationInitialized = false;
+
+  bool _showMainMenu = false;
+  bool get showMainMenu => _showMainMenu;
+  openMainMenu() {
+    _showMainMenu = !_showMainMenu;
+    notifyListeners();
+  }
 
   AppHomeViewModel(this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._initDynamicLinkUseCase, this._getCurrentUserUseCase, this._saveUserDataUseCase, this._verifyQRUseCase,
       this._getAntelopCardsListUseCase) {
@@ -983,9 +998,10 @@ class AppHomeViewModel extends BasePageViewModel {
     });*/
   }
 
-  goToTransactionPage(BuildContext context) {
+  goToTransactionPage(BuildContext context, int currentStep) {
     animateForwardTransactionPage();
-    Navigator.of(context).push(slideBottomToTop(nextPage: const SizedBox()));
+    Navigator.of(context).push(slideBottomToTop(nextPage: CardTransactionPage(GetCreditCardTransactionArguments(cardId: timeLineListArguments[currentStep - 1].cardId))));
+
   }
 
   animateForwardTransactionPage() {
@@ -1001,6 +1017,64 @@ class AppHomeViewModel extends BasePageViewModel {
     translateSettingsUpController.reverse();
     scaleAnimationController.reverse();
   }
+
+  BottomBarIndex bottomBarIndex = BottomBarIndex.home;
+
+  changeBottomBarIndex(BottomBarIndex value, BuildContext context) {
+    if(value == bottomBarIndex) return;
+
+    bottomBarIndex = value;
+
+    ///Disposing dashboard screen resources
+    if(value != BottomBarIndex.home) {
+      // disposeControllers();
+      appSwiperController.animateToPage(0, duration: Duration(seconds: 1), curve: Curves.linear);
+    }
+
+    ///Disposing payment screen resources
+    if(value != BottomBarIndex.payment) {
+      // disposeResources();
+/// TODO : do this in payment viewmodel.
+    }
+    notifyListeners();
+  }
+
+  onBottomMenuTap(int bottomIndex,BuildContext context) {
+    switch(bottomIndex) {
+      case 0:
+        changeBottomBarIndex(BottomBarIndex.home, context);
+        break;
+      case 1:
+       openMainMenu();
+        break;
+      case 2:
+        EngagementTeamDialog.show(context, onDismissed: () {
+          Navigator.pop(context);
+        }, onSelected: (value) {
+          Navigator.pop(context);
+        });
+        break;
+      default:
+      // if(viewModel.showMainMenu) {return;}
+        break;
+    }
+  }
+
+  ///Debit card logic
+  bool showButtonsInDebitCard = true;
+  showButtonsDebitCard() {
+    showButtonsInDebitCard = !showButtonsInDebitCard;
+    notifyListeners();
+  }
+
+  ///Credit card logic
+  bool showButtonsInCreditCard = true;
+  showButtonsCreditCard() {
+    showButtonsInCreditCard = !showButtonsInCreditCard;
+    notifyListeners();
+  }
+
+
 }
 
 class TimeLineSwipeUpArgs {
@@ -1012,3 +1086,9 @@ class TimeLineSwipeUpArgs {
 }
 
 enum SwipeUpEnum { SWIPE_UP_YES, SWIPE_UP_NO }
+
+
+enum BottomBarIndex {
+  home,
+  payment,
+}
