@@ -4,6 +4,7 @@ import 'dart:isolate';
 
 import 'package:card_swiper/card_swiper.dart';
 import 'package:data/helper/dynamic_link.dart';
+import 'package:data/helper/id_wise_helper.dart';
 import 'package:domain/constants/enum/account_status_enum.dart';
 import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/constants/enum/credit_card_call_status_enum.dart';
@@ -327,6 +328,14 @@ class AppHomeViewModel extends BasePageViewModel {
     });
 
     getDashboardData();
+
+    Future.delayed(Duration(seconds: 5), () async {
+      IdWiseHelper idWiseHelper = IdWiseHelper();
+      idWiseHelper.initializeIdWise();
+      var status = await idWiseHelper.startVerification('en');
+      debugPrint("STATUS : ${status.keys.first}");
+      debugPrint("TEXT :  ${status.values.first}");
+    });
   }
 
   showPopUps() {

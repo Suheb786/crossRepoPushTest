@@ -14,7 +14,7 @@ class VerifyOtpUseCase extends BaseUseCase<NetworkError, VerifyOtpUseCaseParams,
 
   @override
   Future<Either<NetworkError, bool>> execute({required VerifyOtpUseCaseParams params}) {
-    return _repository.verifyMobileOtp(otpCode: params.otp);
+    return Future.value(Right(false)); //_repository.verifyMobileOtp(otpCode: params.otp);
   }
 }
 

@@ -18,7 +18,6 @@ class CreatePasswordViewModel extends BasePageViewModel {
   TextEditingController confirmPasswordController = TextEditingController();
 
   final GlobalKey<AppTextFieldState> passwordKey = GlobalKey(debugLabel: "createPassword");
-
   final GlobalKey<AppTextFieldState> confirmPasswordKey = GlobalKey(debugLabel: "confirmPassword");
 
   ///create password request subject holder
@@ -81,12 +80,15 @@ class CreatePasswordViewModel extends BasePageViewModel {
 
   void createPassword() {
     _createPasswordRequest.safeAdd(CreatePasswordUseCaseParams(
-        createPassword: createPasswordController.text,
-        confirmPassword: confirmPasswordController.text,
-        minimumEightCharacters: minimumEightCharacters,
-        hasUpperCase: hasUpperCase,
-        hasSymbol: hasSymbol,
-        containsDigit: containsDigit));
+      createPassword: createPasswordController.text,
+      confirmPassword: confirmPasswordController.text,
+      minimumEightCharacters: minimumEightCharacters,
+      hasUpperCase: hasUpperCase,
+      hasSymbol: hasSymbol,
+      containsDigit: containsDigit,
+      emailAddress: '',
+      isEmailExist: 1,
+    ));
   }
 
   void validateAllFields() {

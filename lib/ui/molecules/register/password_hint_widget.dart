@@ -16,7 +16,7 @@ class PasswordHintWidget extends StatelessWidget {
       decoration: BoxDecoration(
           color: !isValid!
               ? Theme.of(context).inputDecorationTheme.hintStyle!.color
-              : Theme.of(context).primaryColorDark,
+              : Theme.of(context).colorScheme.error,
           borderRadius: BorderRadius.circular(100)),
       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
       child: Row(

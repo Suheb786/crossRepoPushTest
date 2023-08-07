@@ -235,7 +235,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           InkWell(
-                                            onTap: () {
+                                            onTap: () async {
                                               Navigator.pushNamed(context, RoutePaths.AddMoneyOptionSelector);
                                             },
                                             child: Container(

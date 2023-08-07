@@ -67,10 +67,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                           model.passwordKey.currentState!.isValid = true;
                           model.confirmPasswordKey.currentState!.isValid = true;
                           model.registerUser(
-                            email: ProviderScope.containerOf(context)
-                                .read(addNumberViewModelProvider)
-                                .emailController
-                                .text,
+                            email: "",
                             country: "Jordan",
                             phone: ProviderScope.containerOf(context)
                                 .read(addNumberViewModelProvider)
@@ -101,7 +98,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                     .read(accountRegistrationViewModelProvider)
                                     .appSwiperController
                                     .page ==
-                                1.0) {
+                                0.0) {
                               FocusScope.of(context).unfocus();
 
                               if (StringUtils.isDirectionRTL(context)) {

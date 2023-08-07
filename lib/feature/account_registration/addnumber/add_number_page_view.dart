@@ -14,12 +14,11 @@ import 'package:neo_bank/feature/account_registration/addnumber/add_number_model
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/mobile_number_dialog/mobile_number_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -48,10 +47,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                   if (data.status == Status.SUCCESS) {
                     var event = {
                       "definitionId": "UserEvents",
-                      "properties": {
-                        "emailId": model.emailController.text,
-                        "mobileNumber": model.mobileNumberController.text
-                      }
+                      "properties": {"emailId": '', "mobileNumber": model.mobileNumberController.text}
                     };
                     InfobipMobilemessaging.submitEventImmediately(event);
                     ProviderScope.containerOf(context).read(accountRegistrationViewModelProvider).nextPage();
@@ -60,233 +56,163 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                   }
                 },
                 dataBuilder: (context, data) {
-                  return GestureDetector(
-                    onHorizontalDragEnd: (details) {
-                      if (ProviderScope.containerOf(context)
-                              .read(accountRegistrationViewModelProvider)
-                              .appSwiperController
-                              .page ==
-                          0.0) {
-                        FocusScope.of(context).unfocus();
-                        if (StringUtils.isDirectionRTL(context)) {
-                          if (details.primaryVelocity!.isNegative) {
-                            ProviderScope.containerOf(context)
-                                .read(accountRegistrationViewModelProvider)
-                                .previousPage();
-                          } else {
-                            model.validateNumber();
-                          }
-                        } else {
-                          if (details.primaryVelocity!.isNegative) {
-                            model.validateNumber();
-                          } else {
-                            ProviderScope.containerOf(context)
-                                .read(accountRegistrationViewModelProvider)
-                                .previousPage();
-                          }
-                        }
-                      }
-                    },
-                    child: Card(
-                      margin: EdgeInsets.zero,
-                      child: Container(
-                          padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                          child: Column(
-                            children: [
-                              AppStreamBuilder<Resource<CheckUsername>>(
-                                initialData: Resource.none(),
-                                stream: model.checkUserNameStream,
-                                onData: (data) {
-                                  if (data.status == Status.ERROR) {
-                                    if (data.appError!.type == ErrorType.EMAIL_ALREADY_EXIST) {
-                                      model.isEmailExist = 1;
-                                    }
-                                    model.showToastWithError(data.appError!);
-                                    model.showErrorState();
-                                  }
-                                },
-                                dataBuilder: (context, data) {
-                                  return AppTextField(
-                                    labelText: S.of(context).emailAddress,
-                                    hintText: S.of(context).pleaseEnter,
-                                    controller: model.emailController,
-                                    key: model.emailKey,
-                                    inputAction: TextInputAction.go,
-                                    inputType: TextInputType.emailAddress,
-                                    onChanged: (value) {
-                                      model.validateEmail();
-                                      model.validate();
-                                    },
-                                  );
-                                },
-                              ),
-                              SizedBox(
-                                height: 16.h,
-                              ),
-                              AppStreamBuilder<Resource<AllowedCountryListResponse>>(
-                                initialData: Resource.success(data: AllowedCountryListResponse()),
-                                onData: (data) {
-                                  if (data.status == Status.SUCCESS) {
-                                    ProviderScope.containerOf(context)
-                                        .read(accountRegistrationViewModelProvider)
-                                        .countryDataList = data.data!.contentData!.countryData!;
-                                  }
-                                },
-                                stream: model.getAllowedCountryStream,
-                                dataBuilder: (context, country) {
-                                  return AppStreamBuilder<CountryData>(
-                                    initialData: CountryData(isoCode3: 'JOR', phoneCode: '962'),
-                                    stream: model.getSelectedCountryStream,
-                                    dataBuilder: (context, selectedCountry) {
-                                      return AppStreamBuilder<Resource<CheckUsername>>(
-                                        initialData: Resource.none(),
-                                        stream: model.checkUserMobileStream,
-                                        onData: (data) {
-                                          if (data.status == Status.ERROR) {
-                                            if (data.appError!.type == ErrorType.MOBILE_ALREADY_EXIST) {
-                                              model.isMobileNoExist = 1;
-                                            }
-                                            model.showToastWithError(data.appError!);
-                                            model.showErrorState();
-                                          } else if (data.status == Status.SUCCESS) {
-                                            ProviderScope.containerOf(context)
-                                                .read(accountRegistrationViewModelProvider)
-                                                .updateMobileNumber(MobileNumberParams(
-                                                    mobileCode: model.countryData.phoneCode!,
-                                                    mobileNumber: model.mobileNumberController.text));
+                  return Card(
+                    margin: EdgeInsets.zero,
+                    child: Container(
+                        padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+                        child: Column(
+                          children: [
+                            AppStreamBuilder<Resource<AllowedCountryListResponse>>(
+                              initialData: Resource.success(data: AllowedCountryListResponse()),
+                              onData: (data) {
+                                if (data.status == Status.SUCCESS) {
+                                  ProviderScope.containerOf(context)
+                                      .read(accountRegistrationViewModelProvider)
+                                      .countryDataList = data.data!.contentData!.countryData!;
+                                }
+                              },
+                              stream: model.getAllowedCountryStream,
+                              dataBuilder: (context, country) {
+                                return AppStreamBuilder<CountryData>(
+                                  initialData: CountryData(isoCode3: 'JOR', phoneCode: '962'),
+                                  stream: model.getSelectedCountryStream,
+                                  dataBuilder: (context, selectedCountry) {
+                                    return AppStreamBuilder<Resource<CheckUsername>>(
+                                      initialData: Resource.none(),
+                                      stream: model.checkUserMobileStream,
+                                      onData: (data) {
+                                        if (data.status == Status.ERROR) {
+                                          if (data.appError!.type == ErrorType.MOBILE_ALREADY_EXIST) {
+                                            model.isMobileNoExist = 1;
                                           }
-                                        },
-                                        dataBuilder: (context, data) {
-                                          debugPrint(
-                                              'model.countryData.mobileMax--${model.countryData.mobileMax}');
-                                          return Focus(
-                                            onFocusChange: (hasFocus) {
-                                              debugPrint('hasFocus--> ${hasFocus}');
-                                              model.validateMobile();
+                                          model.showToastWithError(data.appError!);
+                                          model.showErrorState();
+                                        } else if (data.status == Status.SUCCESS) {
+                                          ProviderScope.containerOf(context)
+                                              .read(accountRegistrationViewModelProvider)
+                                              .updateMobileNumber(MobileNumberParams(
+                                                  mobileCode: model.countryData.phoneCode!,
+                                                  mobileNumber: model.mobileNumberController.text));
+                                        }
+                                      },
+                                      dataBuilder: (context, data) {
+                                        debugPrint(
+                                            'model.countryData.mobileMax--${model.countryData.mobileMax}');
+                                        return Focus(
+                                          onFocusChange: (hasFocus) {
+                                            debugPrint('hasFocus--> ${hasFocus}');
+                                            model.validateMobile();
+                                          },
+                                          child: AppTextField(
+                                            labelText: S.of(context).mobileNumber.toUpperCase(),
+                                            hintText: S.of(context).mobileNumberHint,
+                                            inputType: TextInputType.phone,
+                                            inputAction: TextInputAction.done,
+                                            inputFormatters: [
+                                              LengthLimitingTextInputFormatter(model.countryData.mobileMax),
+                                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                            ],
+                                            controller: model.mobileNumberController,
+                                            key: model.mobileNumberKey,
+                                            onChanged: (value) {
+                                              model.validate();
                                             },
-                                            child: AppTextField(
-                                              labelText: S.of(context).mobileNumber.toUpperCase(),
-                                              hintText: S.of(context).mobileNumberHint,
-                                              inputType: TextInputType.phone,
-                                              inputAction: TextInputAction.done,
-                                              inputFormatters: [
-                                                LengthLimitingTextInputFormatter(model.countryData.mobileMax),
-                                                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                                              ],
-                                              controller: model.mobileNumberController,
-                                              key: model.mobileNumberKey,
-                                              onChanged: (value) {
-                                                model.validate();
-                                              },
-                                              prefixIcon: () {
-                                                return InkWell(
-                                                  onTap: () {
-                                                    MobileNumberDialog.show(context,
-                                                        title: S.of(context).mobileNumber,
-                                                        selectedCountryData: model.countryData,
-                                                        onSelected: (data) {
-                                                      Navigator.pop(context);
-                                                      model.countryData = data;
-                                                      model.setSelectedCountry(data);
-                                                      print('selectedData---->${data.phoneCode}');
-                                                    }, onDismissed: () {
-                                                      Navigator.pop(context);
-                                                    },
-                                                        countryDataList:
-                                                            country!.data!.contentData!.countryData);
+                                            prefixIcon: () {
+                                              return InkWell(
+                                                onTap: () {
+                                                  MobileNumberDialog.show(context,
+                                                      title: S.of(context).mobileNumber,
+                                                      selectedCountryData: model.countryData,
+                                                      onSelected: (data) {
+                                                    Navigator.pop(context);
+                                                    model.countryData = data;
+                                                    model.setSelectedCountry(data);
+                                                    print('selectedData---->${data.phoneCode}');
+                                                  }, onDismissed: () {
+                                                    Navigator.pop(context);
                                                   },
-                                                  child: Padding(
-                                                    padding: EdgeInsets.only(top: 8.0.h),
-                                                    child: Row(
-                                                      mainAxisSize: MainAxisSize.min,
-                                                      children: <Widget>[
-                                                        Container(
-                                                          height: 16.h,
-                                                          width: 16.w,
-                                                          decoration: BoxDecoration(
-                                                            color: Theme.of(context).primaryColorDark,
-                                                            shape: BoxShape.circle,
-                                                          ),
-                                                          child: AppSvg.asset(selectedCountry!.isoCode3 !=
-                                                                  null
-                                                              ? "${AssetUtils.flags}${selectedCountry.isoCode3?.toLowerCase()}.svg"
-                                                              : "assets/flags/jor.svg"),
+                                                      countryDataList:
+                                                          country!.data!.contentData!.countryData);
+                                                },
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(top: 8.0.h),
+                                                  child: Row(
+                                                    mainAxisSize: MainAxisSize.min,
+                                                    children: <Widget>[
+                                                      Container(
+                                                        height: 16.h,
+                                                        width: 16.w,
+                                                        decoration: BoxDecoration(
+                                                          color: Theme.of(context).primaryColorDark,
+                                                          shape: BoxShape.circle,
                                                         ),
-                                                        Padding(
-                                                          padding: EdgeInsets.symmetric(horizontal: 8.0.w),
-                                                          child: Directionality(
-                                                            textDirection: TextDirection.ltr,
-                                                            child: Text(
-                                                              selectedCountry.phoneCode!.isNotEmpty
-                                                                  ? '+${selectedCountry.phoneCode!}'
-                                                                  : "",
-                                                              style: TextStyle(
-                                                                color: Theme.of(context).indicatorColor,
-                                                                fontSize: 14.t,
-                                                                fontFamily: StringUtils.appFont,
-                                                                fontWeight: FontWeight.w600,
-                                                              ),
+                                                        child: AppSvg.asset(selectedCountry!.isoCode3 != null
+                                                            ? "${AssetUtils.flags}${selectedCountry.isoCode3?.toLowerCase()}.svg"
+                                                            : "assets/flags/jor.svg"),
+                                                      ),
+                                                      Padding(
+                                                        padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+                                                        child: Directionality(
+                                                          textDirection: TextDirection.ltr,
+                                                          child: Text(
+                                                            selectedCountry.phoneCode!.isNotEmpty
+                                                                ? '+${selectedCountry.phoneCode!}'
+                                                                : "",
+                                                            style: TextStyle(
+                                                              color: Theme.of(context).indicatorColor,
+                                                              fontSize: 14.t,
+                                                              fontFamily: StringUtils.appFont,
+                                                              fontWeight: FontWeight.w600,
                                                             ),
                                                           ),
                                                         ),
-                                                        Container(
-                                                            height: 16.h,
-                                                            width: 16.w,
-                                                            margin: EdgeInsetsDirectional.only(end: 8.w),
-                                                            child: AppSvg.asset(AssetUtils.downArrow,
-                                                                color: Theme.of(context)
-                                                                    .primaryTextTheme
-                                                                    .bodyLarge
-                                                                    ?.color))
-                                                      ],
-                                                    ),
+                                                      ),
+                                                      Container(
+                                                          height: 16.h,
+                                                          width: 16.w,
+                                                          margin: EdgeInsetsDirectional.only(end: 8.w),
+                                                          child: AppSvg.asset(AssetUtils.downArrow,
+                                                              color: Theme.of(context)
+                                                                  .primaryTextTheme
+                                                                  .bodyLarge
+                                                                  ?.color))
+                                                    ],
                                                   ),
-                                                );
-                                              },
-                                            ),
-                                          );
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                            Spacer(),
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 12.0.h),
+                              child: AppStreamBuilder<bool>(
+                                  stream: model.showButtonStream,
+                                  initialData: false,
+                                  dataBuilder: (context, isValid) {
+                                    return Visibility(
+                                      visible: isValid!,
+                                      child: AppPrimaryButton(
+                                        text: S.of(context).next,
+                                        onPressed: () {
+                                          model.validateNumber();
                                         },
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
-                              Spacer(),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Text(
-                                  S.of(context).backToRegistration,
-                                  style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    color: AppColor.brightBlue,
-                                    fontSize: 14.t,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(vertical: 12.0.h),
-                                child: AppStreamBuilder<bool>(
-                                    stream: model.showButtonStream,
-                                    initialData: false,
-                                    dataBuilder: (context, isValid) {
-                                      return Visibility(
-                                        visible: isValid!,
-                                        child: AnimatedButton(
-                                          buttonText: S.of(context).swipeToProceed,
-                                        ),
-                                      );
-                                    }),
-                              ),
-                              // SizedBox(
-                              //   height:
-                              //       MediaQuery.of(context).viewInsets.bottom,
-                              // ),
-                            ],
-                          )),
-                    ),
+                                      ),
+                                    );
+                                  }),
+                            ),
+                            // SizedBox(
+                            //   height:
+                            //       MediaQuery.of(context).viewInsets.bottom,
+                            // ),
+                          ],
+                        )),
                   );
                 },
               ),

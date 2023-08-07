@@ -48,6 +48,14 @@ class AccountRegistrationPageViewModel extends BasePageViewModel {
     _mobileNumberSubject.safeAdd(mobileNumberParams);
   }
 
+  BehaviorSubject<String> _emailSubject = BehaviorSubject();
+
+  Stream<String> get emailStream => _emailSubject.stream;
+
+  void updateEmail(String email) {
+    _emailSubject.safeAdd(email);
+  }
+
   List<CountryData> countryDataList = [];
 
   @override

@@ -8,6 +8,9 @@ import 'package:neo_bank/feature/account_registration/countryselection/country_s
 import 'package:neo_bank/feature/account_registration/createPassword/create_password_model.dart';
 import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_model.dart';
 
+import '../../feature/account_registration/add_email/add_email_model.dart';
+import '../../feature/account_registration/add_email_otp/email_otp_model.dart';
+
 ///account registration view model provider
 final accountRegistrationViewModelProvider =
     ChangeNotifierProvider.autoDispose<AccountRegistrationPageViewModel>(
@@ -24,14 +27,23 @@ final addNumberViewModelProvider = ChangeNotifierProvider.autoDispose<AddNumberV
   (ref) => AddNumberViewModel(
       ref.read(registerNumberUseCaseProvider),
       ref.read(fetchCountryByCodeUseCaseProvider),
-      ref.read(checkUserNameUseCaseProvider),
       ref.read(checkUserNameMobileUseCaseProvider),
       ref.read(getAllowedCodeCountriesListUseCaseProvider)),
+);
+
+final addEmailViewModelProvider = ChangeNotifierProvider.autoDispose<AddEmailViewModel>(
+  (ref) => AddEmailViewModel(ref.read(checkUserNameUseCaseProvider), ref.read(createPasswordUseCaseProvider)),
 );
 
 ///[ValidateOtpViewModel] provider
 final validateOtpViewModelProvider = ChangeNotifierProvider.autoDispose<ValidateOtpViewModel>(
   (ref) => ValidateOtpViewModel(ref.read(verifyOtpUseCaseProvider), ref.read(getTokenUseCaseProvider),
+      ref.read(changeMyNumberUseCaseProvider)),
+);
+
+///[ValidateOtpViewModel] provider
+final emailOtpViewModelProvider = ChangeNotifierProvider.autoDispose<EmailOtpViewModel>(
+  (ref) => EmailOtpViewModel(ref.read(verifyOtpUseCaseProvider), ref.read(getTokenUseCaseProvider),
       ref.read(changeMyNumberUseCaseProvider)),
 );
 

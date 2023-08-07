@@ -569,27 +569,22 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تغيير الحساب المرتبط"),
         "changeLinkedAccount":
             MessageLookupByLibrary.simpleMessage("تغيير الحساب المرتبط"),
-        "changeLinkedMobileNo":
-            MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل المرتبط"),
-        "changeLinkedMobileNumber":
-            MessageLookupByLibrary.simpleMessage("تغير رقم الموبايل المرتبط"),
-        "changeMobileNoError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "changeMobileNumber":
-            MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل"),
+        "changeLinkedMobileNo": MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل المرتبط"),
+        "changeLinkedMobileNumber": MessageLookupByLibrary.simpleMessage("تغير رقم الموبايل المرتبط"),
+        "changeMobileNoError":
+            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "changeMobileNumber": MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل"),
         "changeMobileNumberInfo": MessageLookupByLibrary.simpleMessage(
             "رح يتم تغيير الرقم فقط للاشعارات المتعلقة بالبطاقة. بتقدرى تغيّر الرقم المرتبط بالحساب من خلال إعدادات الحساب."),
+        "changeMyEmail": MessageLookupByLibrary.simpleMessage("Change My Email"),
         "changeMyNumber": MessageLookupByLibrary.simpleMessage("تغيير رقمي"),
-        "changePassword":
-            MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
-        "changePasswordError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "changePinError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "changeProfileImageError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "changeSettlementOptions":
-            MessageLookupByLibrary.simpleMessage("تغيير نسبة السداد "),
+        "changePassword": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
+        "changePasswordError":
+            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "changePinError": MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "changeProfileImageError":
+            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "changeSettlementOptions": MessageLookupByLibrary.simpleMessage("تغيير نسبة السداد "),
         "checkAgentStatusError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "checkCallStatusError": MessageLookupByLibrary.simpleMessage(
@@ -1056,26 +1051,21 @@ class MessageLookup extends MessageLookupByLibrary {
             "الرجاء اختيار طريقة التواصل المفضلة. رح يتم مراقبة أو تسجيل مكالمتك أو محادثتك لضمان الجودة."),
         "engagementTeamGettingReady":
             MessageLookupByLibrary.simpleMessage("فريقنا مستعد لخدمتك"),
-        "enterAddressHeader":
-            MessageLookupByLibrary.simpleMessage("وين ساكن حالياً؟"),
-        "enterBillDetails":
-            MessageLookupByLibrary.simpleMessage("ادخل تفاصيل الفاتورة"),
-        "enterCode": MessageLookupByLibrary.simpleMessage(
-            "أدخل الرمز المكون من 6 خانات"),
-        "enterConfirmPassword": MessageLookupByLibrary.simpleMessage(
-            "لا يمكن أن يكون حقل تأكيد كلمة المرور فارغًا"),
-        "enterDetails":
-            MessageLookupByLibrary.simpleMessage("أدخل المعلومات الناقصة"),
-        "enterIdNumberToResetPassword": MessageLookupByLibrary.simpleMessage(
-            "أدخل المعلومات التالية لإعادة تعيين كلمة المرور"),
-        "enterLoginDetails":
-            MessageLookupByLibrary.simpleMessage("أدخل معلومات تسجيل الدخول"),
-        "enterMailingAddress":
-            MessageLookupByLibrary.simpleMessage("أدخل عنوانك البريدي"),
-        "enterNewCardPinAndConfirmPin": MessageLookupByLibrary.simpleMessage(
-            "أدخل الرمز السري PIN الجديد وأكّد عليه"),
-        "enterNewEmailAddress":
-            MessageLookupByLibrary.simpleMessage("أدخل إيميلك الجديد"),
+        "enterAddressHeader": MessageLookupByLibrary.simpleMessage("وين ساكن حالياً؟"),
+        "enterBillDetails": MessageLookupByLibrary.simpleMessage("ادخل تفاصيل الفاتورة"),
+        "enterCode": MessageLookupByLibrary.simpleMessage("أدخل الرمز المكون من 6 خانات"),
+        "enterConfirmPassword":
+            MessageLookupByLibrary.simpleMessage("لا يمكن أن يكون حقل تأكيد كلمة المرور فارغًا"),
+        "enterDetails": MessageLookupByLibrary.simpleMessage("أدخل المعلومات الناقصة"),
+        "enterEmailAndPassword":
+            MessageLookupByLibrary.simpleMessage("Enter your email and create your password"),
+        "enterIdNumberToResetPassword":
+            MessageLookupByLibrary.simpleMessage("أدخل المعلومات التالية لإعادة تعيين كلمة المرور"),
+        "enterLoginDetails": MessageLookupByLibrary.simpleMessage("أدخل معلومات تسجيل الدخول"),
+        "enterMailingAddress": MessageLookupByLibrary.simpleMessage("أدخل عنوانك البريدي"),
+        "enterNewCardPinAndConfirmPin":
+            MessageLookupByLibrary.simpleMessage("أدخل الرمز السري PIN الجديد وأكّد عليه"),
+        "enterNewEmailAddress": MessageLookupByLibrary.simpleMessage("أدخل إيميلك الجديد"),
         "enterNewMobileNo":
             MessageLookupByLibrary.simpleMessage("أدخل رقم موبايلك الجديد"),
         "enterOtpHeader": MessageLookupByLibrary.simpleMessage(
@@ -1096,27 +1086,22 @@ class MessageLookup extends MessageLookupByLibrary {
             "يرجى إدخال كلمة مرور OTP الصحيحة "),
         "enterValidPersonsName":
             MessageLookupByLibrary.simpleMessage("أدخل اسم الشخص"),
-        "enterValidPersonsRole":
-            MessageLookupByLibrary.simpleMessage("أدخل وظيفته"),
-        "enterValidRelationshipWithPEP":
-            MessageLookupByLibrary.simpleMessage("أدخل طبيعة العلاقة مع PEP"),
-        "enterValidSpouseName":
-            MessageLookupByLibrary.simpleMessage("أدخل اسم الزوج/ الزوجة"),
-        "enterValidUserName": MessageLookupByLibrary.simpleMessage(
-            "خطأ في اسم المستخدم. حاول مرة ثانية. "),
-        "enterYourEmailAndMobile":
-            MessageLookupByLibrary.simpleMessage("أدخل إيميلك ورقم موبايلك"),
+        "enterValidPersonsRole": MessageLookupByLibrary.simpleMessage("أدخل وظيفته"),
+        "enterValidRelationshipWithPEP": MessageLookupByLibrary.simpleMessage("أدخل طبيعة العلاقة مع PEP"),
+        "enterValidSpouseName": MessageLookupByLibrary.simpleMessage("أدخل اسم الزوج/ الزوجة"),
+        "enterValidUserName": MessageLookupByLibrary.simpleMessage("خطأ في اسم المستخدم. حاول مرة ثانية. "),
+        "enterYourEmailAndMobile": MessageLookupByLibrary.simpleMessage("أدخل إيميلك ورقم موبايلك"),
+        "enterYourMobileNumber": MessageLookupByLibrary.simpleMessage("Enter your mobile number"),
         "error": MessageLookupByLibrary.simpleMessage("خطأ"),
-        "errorAddingUserName": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "errorAddingUserName":
+            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "errorCCUnBlockNI": MessageLookupByLibrary.simpleMessage(
             "واجهتنا مشكلة عند اعادة تفعيل الرمز السري للبطاقة. يرجى المحاولة مرة اخرى"),
         "errorCreateCreditCard": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين."),
         "errorCreatingAccount": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال فتح حسابك. حاول كمان مرة  أو تواصل معنا على 06-5200100"),
-        "errorCreatingDocuments":
-            MessageLookupByLibrary.simpleMessage("خطأ خلال إنشاء الوثائق"),
+        "errorCreatingDocuments": MessageLookupByLibrary.simpleMessage("خطأ خلال إنشاء الوثائق"),
         "errorCreatingWorkSpace":
             MessageLookupByLibrary.simpleMessage("خطأ خلال إنشاء مساحة العمل"),
         "errorCustomerByAccountA2A": MessageLookupByLibrary.simpleMessage(
@@ -2056,25 +2041,19 @@ class MessageLookup extends MessageLookupByLibrary {
             "إنت عم بتحاول تسجّل دخولك من جهاز جديد. بدك تحوّل صلاحية الدخول للجهاز الجديد؟"),
         "newDeviceRegisteredSuccessfully": MessageLookupByLibrary.simpleMessage(
             "تم تسجيل جهازك الجديد بنجاح. بتقدر تنتقل هلأ لشاشة التحكم."),
-        "newMobileNumber":
-            MessageLookupByLibrary.simpleMessage("رقم موبايل جديد"),
-        "newPassword":
-            MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
+        "newMobileNumber": MessageLookupByLibrary.simpleMessage("رقم موبايل جديد"),
+        "newPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
         "newPin": MessageLookupByLibrary.simpleMessage("رمز سري PIN جديد"),
-        "newSettlementAccount":
-            MessageLookupByLibrary.simpleMessage("حساب التسوية الجديد"),
-        "newSettlementPercentage":
-            MessageLookupByLibrary.simpleMessage("نسبة السداد الجديدة"),
+        "newSettlementAccount": MessageLookupByLibrary.simpleMessage("حساب التسوية الجديد"),
+        "newSettlementPercentage": MessageLookupByLibrary.simpleMessage("نسبة السداد الجديدة"),
+        "next": MessageLookupByLibrary.simpleMessage("Next"),
         "niHandlerError": MessageLookupByLibrary.simpleMessage(
             "بنعتذر منك، إنت غير مؤهل للحصول على بطاقة ائتمانية بهاللحظة. بتقدر تتمتع بكل خدماتنا الأخرى."),
         "nickName": MessageLookupByLibrary.simpleMessage("الاسم المستعار"),
-        "nickNameAlreadyExists": MessageLookupByLibrary.simpleMessage(
-            "الاسم المستعار مسجل مسبقا كمستفيد"),
+        "nickNameAlreadyExists": MessageLookupByLibrary.simpleMessage("الاسم المستعار مسجل مسبقا كمستفيد"),
         "nickNameCanOnlyContainAlphanumerics":
-            MessageLookupByLibrary.simpleMessage(
-                "يجب أن يحتوي  الأسم المستعار على حروف و أرقام فقط"),
-        "nickNameUpdated": MessageLookupByLibrary.simpleMessage(
-            "لقد تم تعديل الاسم المستعار بنجاج"),
+            MessageLookupByLibrary.simpleMessage("يجب أن يحتوي  الأسم المستعار على حروف و أرقام فقط"),
+        "nickNameUpdated": MessageLookupByLibrary.simpleMessage("لقد تم تعديل الاسم المستعار بنجاج"),
         "nickNameValueExceeds": MessageLookupByLibrary.simpleMessage(
             "الحد الاعلى للأسم المستعار هو ٥٠ خانة"),
         "nicknameAlreadyExistsM": MessageLookupByLibrary.simpleMessage(

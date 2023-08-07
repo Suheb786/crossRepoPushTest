@@ -1837,4 +1837,9 @@
   "youCanUnFreeze": "You can unfreeze and activate your card anytime from the app.",
   "unavailable": "Unavailable",
   "evoucherUnderProcessing": "E-voucher under processing"
+  "recipientNameValidation": "Oops! Recipient name should be at least 2 parts and each part to be with a minimum of 3 characters.",
+  "enterEmailAndPassword": "Enter your email and \ncreate your password",
+  "next": "Next",
+  "changeMyEmail": "Change My Email",
+  "enterYourMobileNumber": "Enter your mobile number"
 }
