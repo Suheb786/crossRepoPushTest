@@ -5,9 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
-import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_model.dart';
+import 'package:neo_bank/feature/account_registration/add_email_otp/email_otp_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_one/change_my_number_dialog/change_my_number_dialog.dart';
@@ -19,8 +18,8 @@ import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../ui/molecules/button/app_primary_button.dart';
 
-class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
-  ValidateOtpPageView(ProviderBase model) : super(model);
+class EmailOtpPageView extends BasePageViewWidget<EmailOtpViewModel> {
+  EmailOtpPageView(ProviderBase model) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
@@ -50,15 +49,16 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                     initialData: Resource.none(),
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
-                        // var event = {
-                        //   "definitionId": "ValidateOtp",
-                        //   "properties": {"validated": true}
-                        // };
-                        // InfobipMobilemessaging.submitEventImmediately(event);
                         model.saveUserData();
-                        Navigator.pushReplacementNamed(context, RoutePaths.Dashboard);
+                        //Navigator.pushReplacementNamed(context, RoutePaths.Dashboard);
+                        ProviderScope.containerOf(context)
+                            .read(accountRegistrationViewModelProvider)
+                            .nextPage();
                       } else if (data.status == Status.ERROR) {
                         model.showToastWithError(data.appError!);
+                        ProviderScope.containerOf(context)
+                            .read(accountRegistrationViewModelProvider)
+                            .nextPage();
                       }
                     },
                     dataBuilder: (context, isOtpVerified) {
@@ -77,7 +77,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                         length: 6,
                                         controller: model.otpController,
                                         onChanged: (val) {
-                                          if (val.length == 6) model.validate(val);
+                                          model.validate(val);
                                         },
                                       ),
                                       Center(
@@ -98,7 +98,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                             });
                                           },
                                           child: Text(
-                                            S.of(context).changeMyNumber,
+                                            S.of(context).changeMyEmail,
                                             style: TextStyle(
                                               fontFamily: StringUtils.appFont,
                                               color: Theme.of(context).textTheme.bodyLarge!.color!,
@@ -132,13 +132,16 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                                         fontSize: 14.t,
                                                         color: Theme.of(context).textTheme.bodyLarge!.color!),
                                                   ))
-                                              : Text(
-                                                  S.of(context).resendIn(
-                                                      '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      fontSize: 14.t,
-                                                      color: Theme.of(context).textTheme.bodyLarge!.color!),
+                                              : Padding(
+                                                  padding: const EdgeInsets.all(10.0),
+                                                  child: Text(
+                                                    S.of(context).resendIn(
+                                                        '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontSize: 14.t,
+                                                        color: Theme.of(context).textTheme.bodyLarge!.color!),
+                                                  ),
                                                 );
                                         },
                                       ),
@@ -152,7 +155,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                       initialData: false,
                                       dataBuilder: (context, isValid) {
                                         return Visibility(
-                                          visible: !isValid!,
+                                          visible: isValid!,
                                           child: AppPrimaryButton(
                                             text: S.of(context).next,
                                             onPressed: () {

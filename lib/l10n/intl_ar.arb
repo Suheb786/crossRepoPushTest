@@ -1771,5 +1771,9 @@
   "yourAccountInactive": "حسابك غير فعال",
   "callToActivate": "اتصل بنا على 5200100-06 لحتى نفعلك حسابك وتقدر تطلب بطاقة الدفع المباشر .",
   "copied": "نسخ",
-  "recipientNameValidation": "عفوا! يجب أن يكون اسم المستلم من مقطعين وكل مقطع من 3 خانات على الأقل"
+  "recipientNameValidation": "عفوا! يجب أن يكون اسم المستلم من مقطعين وكل مقطع من 3 خانات على الأقل",
+  "enterEmailAndPassword": "Enter your email and create your password",
+  "next": "Next",
+  "changeMyEmail": "Change My Email",
+  "enterYourMobileNumber": "Enter your mobile number"
 }

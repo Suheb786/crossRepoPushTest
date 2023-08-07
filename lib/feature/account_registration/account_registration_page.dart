@@ -49,10 +49,10 @@ class AccountRegistrationPageState
           break;
       }
     } else {
-      Future.delayed(Duration(microseconds: 100), () {
+      /*Future.delayed(Duration(microseconds: 100), () {
         model.navigateToPage(0);
         ProviderScope.containerOf(context).read(addNumberViewModelProvider).getAllowedCountryCode();
-      });
+      });*/
     }
   }
 

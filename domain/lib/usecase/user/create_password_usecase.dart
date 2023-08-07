@@ -21,6 +21,8 @@ class CreatePasswordUseCaseParams extends Params {
   final bool hasUpperCase;
   final bool hasSymbol;
   final bool containsDigit;
+  final String? emailAddress;
+  final int isEmailExist;
 
   CreatePasswordUseCaseParams(
       {required this.createPassword,
@@ -28,11 +30,17 @@ class CreatePasswordUseCaseParams extends Params {
       required this.containsDigit,
       required this.hasSymbol,
       required this.hasUpperCase,
-      required this.minimumEightCharacters});
+      required this.minimumEightCharacters,
+      required this.emailAddress,
+      required this.isEmailExist});
 
   @override
   Either<AppError, bool> verify() {
-    if (Validator.isEmpty(createPassword)) {
+    if (Validator.isEmpty(emailAddress!)) {
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_EMAIL, cause: Exception()));
+    } else if (!Validator.validateEmail(emailAddress!)) {
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_EMAIL, cause: Exception()));
+    } else if (Validator.isEmpty(createPassword)) {
       return Left(
           AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_PASSWORD, cause: Exception()));
     } else if (!minimumEightCharacters || !hasUpperCase || !hasSymbol || !containsDigit) {
@@ -44,6 +52,9 @@ class CreatePasswordUseCaseParams extends Params {
     } else if (!Validator.isEqual(confirmPassword, createPassword)) {
       return Left(
           AppError(error: ErrorInfo(message: ''), type: ErrorType.PASSWORD_MISMATCH, cause: Exception()));
+    } else if (isEmailExist == 1) {
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMAIL_ALREADY_EXIST, cause: Exception()));
     }
     return Right(true);
   }

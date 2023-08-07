@@ -17959,6 +17959,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Enter your email and \ncreate your password`
+  String get enterEmailAndPassword {
+    return Intl.message(
+      'Enter your email and \ncreate your password',
+      name: 'enterEmailAndPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change My Email`
+  String get changeMyEmail {
+    return Intl.message(
+      'Change My Email',
+      name: 'changeMyEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your mobile number`
+  String get enterYourMobileNumber {
+    return Intl.message(
+      'Enter your mobile number',
+      name: 'enterYourMobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

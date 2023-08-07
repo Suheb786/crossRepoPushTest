@@ -1817,5 +1817,9 @@
   "yourAccountInactive": "Your account is inactive",
   "callToActivate": "Call us on 06-5200100 to activate your account and get your debit card.",
   "copied": "Copied",
-  "recipientNameValidation": "Oops! Recipient name should be at least 2 parts and each part to be with a minimum of 3 characters."
+  "recipientNameValidation": "Oops! Recipient name should be at least 2 parts and each part to be with a minimum of 3 characters.",
+  "enterEmailAndPassword": "Enter your email and \ncreate your password",
+  "next": "Next",
+  "changeMyEmail": "Change My Email",
+  "enterYourMobileNumber": "Enter your mobile number"
 }
