@@ -586,62 +586,92 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                 tileIcon: AssetUtils.cardIcon,
                               );
                             }),
-                        SettingTile(
-                          onTap: () {
-                            Navigator.pushNamed(context, RoutePaths.ViewDebitCardSubscription,
-                                arguments: ViewDebitCardSubscriptionArguments(cardType: CardType.DEBIT));
-                          },
-                          title: S.of(context).viewCardSubSubscription,
-                          tileIcon: AssetUtils.circleRight,
-                          isEnabled: false,
-                          isNotify: true,
-                        ),
-                        SettingTile(
-                          onTap: () {
-                            Navigator.pushNamed(context, RoutePaths.SupplementaryDebitCard);
-                          },
-                          title: S.of(context).requestSupplementarycard,
-                          tileIcon: AssetUtils.cardIcon,
-                          isEnabled: false,
-                          isNotify: true,
-                          // isEnabled: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
-                          //     PrimarySecondaryEnum.PRIMARY,
-                          // isNotify: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
-                          //     PrimarySecondaryEnum.SECONDARY,
-                        ),
-                        IgnorePointer(
-                          ignoring: true,
+
+                        ///View card subscription-------->>
+
+                        Visibility(
+                          visible: false,
                           child: SettingTile(
                             onTap: () {
-                              Navigator.pushNamed(context, RoutePaths.DcChangeLinkedMobileNumber,
-                                  arguments: DCChangeLinkedMobileNumberArguments(
-                                      cardType: CardType.DEBIT,
-                                      tokenizedPan: model.debitCardSettingsArguments.debitCard.code));
+                              Navigator.pushNamed(context, RoutePaths.ViewDebitCardSubscription,
+                                  arguments: ViewDebitCardSubscriptionArguments(cardType: CardType.DEBIT));
                             },
-                            title: S.of(context).changeLinkedMobileNumber,
-                            tileIcon: AssetUtils.mobile,
+                            title: S.of(context).viewCardSubSubscription,
+                            tileIcon: AssetUtils.circleRight,
                             isEnabled: false,
                             isNotify: true,
                           ),
                         ),
-                        SettingTile(
-                          onTap: () {},
-                          title: S.of(context).changeLinkAccount,
-                          tileIcon: AssetUtils.link,
-                          isEnabled: false,
-                          isNotify: true,
+
+                        ///Request supplementary card-------->>
+
+                        Visibility(
+                          visible: false,
+                          child: SettingTile(
+                            onTap: () {
+                              Navigator.pushNamed(context, RoutePaths.SupplementaryDebitCard);
+                            },
+                            title: S.of(context).requestSupplementarycard,
+                            tileIcon: AssetUtils.cardIcon,
+                            isEnabled: false,
+                            isNotify: true,
+                            // isEnabled: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
+                            //     PrimarySecondaryEnum.PRIMARY,
+                            // isNotify: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
+                            //     PrimarySecondaryEnum.SECONDARY,
+                          ),
+                        ),
+
+                        ///Change linked mobile number .-------->>
+
+                        Visibility(
+                          visible: false,
+                          child: IgnorePointer(
+                            ignoring: true,
+                            child: SettingTile(
+                              onTap: () {
+                                Navigator.pushNamed(context, RoutePaths.DcChangeLinkedMobileNumber,
+                                    arguments: DCChangeLinkedMobileNumberArguments(
+                                        cardType: CardType.DEBIT,
+                                        tokenizedPan: model.debitCardSettingsArguments.debitCard.code));
+                              },
+                              title: S.of(context).changeLinkedMobileNumber,
+                              tileIcon: AssetUtils.mobile,
+                              isEnabled: false,
+                              isNotify: true,
+                            ),
+                          ),
+                        ),
+
+                        ///Change linked account-------->>
+
+                        Visibility(
+                          visible: false,
+                          child: SettingTile(
+                            onTap: () {},
+                            title: S.of(context).changeLinkAccount,
+                            tileIcon: AssetUtils.link,
+                            isEnabled: false,
+                            isNotify: true,
+                          ),
                         ),
                         SizedBox(height: 15),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 63.0.w),
-                          child: Text(
-                            S.of(context).actionComeToYouSoon,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              color: AppColor.gray_1,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 11.t,
+
+                        ///NOTE -------->>
+
+                        Visibility(
+                          visible: false,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 63.0.w),
+                            child: Text(
+                              S.of(context).actionComeToYouSoon,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                color: AppColor.gray_1,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 11.t,
+                              ),
                             ),
                           ),
                         ),
