@@ -222,4 +222,8 @@ class AssetUtils {
   static const String homeOutlineButton = svg + "home_outlined.svg";
   static const String blinkLogo1 = svg + "blink_logo1.svg";
   static const String eVouchersLanding = drawable + "evoucher_landing.png";
+  static const String timelineButton = svg + "time_line.svg";
+  static const String spin = svg + "spin.svg";
+  static const String down = svg + "down.svg";
+
 }

@@ -227,7 +227,7 @@ class CardTransactionPageView extends BasePageViewWidget<CardTransactionViewMode
                               color: Colors.white,
                               border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
                               boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))]),
-                          child: const SVGImage(assetPath: "assets/icons/down.svg"),
+                          child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue),
                         ),
                       ),
                     ),

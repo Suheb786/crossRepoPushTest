@@ -90,6 +90,8 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> w
         begin: 1.5,
         end: 1,
       ).animate(model.zoomController);
+
+      model.timelineScrollController = ScrollController();
     }
     super.onModelReady(model);
   }

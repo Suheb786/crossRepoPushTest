@@ -23,12 +23,15 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
 
   @override
   Widget build(BuildContext context, model) {
-    return AppKeyBoardHide(
-      child: Center(
-        child: Directionality(
-          textDirection: TextDirection.ltr,
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.035, vertical: 44),
+    double horizontalSpacing = MediaQuery.of(context).size.width * 0.035;
+    double screenHeight = MediaQuery.of(context).size.height;
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: horizontalSpacing, vertical: 44),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Directionality(
+            textDirection: TextDirection.ltr,
             child: Card(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -38,72 +41,223 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
               shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
               child: Container(
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
                   image: DecorationImage(image: AssetImage(AssetUtils.zigzagRed), alignment: AlignmentDirectional.topEnd, scale: 1, matchTextDirection: true),
                 ),
-                child: LayoutBuilder(builder: (context, constraints) {
-                  return Padding(
-                      padding: EdgeInsetsDirectional.only(start: 27.0.w),
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(minWidth: constraints.maxWidth, minHeight: constraints.maxHeight),
-                        child: IntrinsicHeight(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        S.of(context).myAccount,
+                        style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: Theme.of(context).colorScheme.secondary),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              account.accountTitle != null ? account.accountTitle!.replaceAll(' ', '\n') : '',
+                              maxLines: 3,
+                              style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 16.0.t, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+                            ),
+                            SizedBox(height: screenHeight * 0.05),
+                            Text.rich(
+                              TextSpan(style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700), children: [
+                                TextSpan(text: account.availableBalance!, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 20.0.t, fontWeight: FontWeight.w700, color: Theme.of(context).colorScheme.secondary)),
+                                TextSpan(
+                                    text: S.of(context).JOD,
+                                    style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 10.0.t, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4))),
+                              ]),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              S.of(context).availableBalance,
+                              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 10.0.t, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4)),
+                            ),
+                            SizedBox(height: screenHeight * 0.02),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  account.accountNo ?? '',
+                                  maxLines: 2,
+                                  style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 12.0.t, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+                                ),
+                                SizedBox(width: 8),
+                                InkWell(
+                                  onTap: () {
+                                    ProviderScope.containerOf(context).read(appHomeViewModelProvider).balenceUpdate();
+                                  },
+                                  child: Container(
+                                      height: 14.0.h,
+                                      width: 14.0.w,
+                                      child: Image.asset(
+                                        AssetUtils.refresh,
+                                        color: AppColor.brightBlue,
+                                      )),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              S.of(context).accountNo,
+                              style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4), fontSize: 10.0.t, fontWeight: FontWeight.w600),
+                            ),
+                            SizedBox(height: screenHeight * 0.02),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    account.iban!,
+                                    style: TextStyle(fontFamily: StringUtils.appFont, overflow: TextOverflow.ellipsis, color: Theme.of(context).colorScheme.secondary, fontWeight: FontWeight.w600, fontSize: 12.0.t),
+                                  ),
+                                ),
+                                SizedBox(width: 8),
+                                InkWell(
+                                  onTap: () {
+                                    Clipboard.setData(ClipboardData(text: account.accountNo ?? '')).then((value) => Fluttertoast.showToast(msg: S.of(context).accountNoCopied));
+                                  },
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.only(start: 8.0.w),
+                                    child: AppSvg.asset(
+                                      AssetUtils.copy,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            Text(
+                              S.of(context).iban,
+                              style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4), fontSize: 10.0.t, fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Directionality(
+                        textDirection: StringUtils.isDirectionRTL(context) ? TextDirection.rtl : TextDirection.ltr,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context, RoutePaths.AddMoneyOptionSelector);
+                              },
+                              child: Container(
+                                height: 40.0.h,
+                                width: 105.0.w,
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Theme.of(context).textTheme.bodyLarge!.color!),
+                                child: Center(
+                                  child: Text(
+                                    S.of(context).addMoney,
+                                    style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: Theme.of(context).colorScheme.secondary),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                _shareFiles(model, context, account);
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 33.0.w),
+                                child: AppSvg.asset(AssetUtils.share, color: Theme.of(context).textTheme.bodyLarge!.color!, height: 24.0.h, width: 24.0.w),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    /*return AppKeyBoardHide(
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.035, vertical: 44),
+          child: Card(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            elevation: 2,
+            color: Theme.of(context).primaryColorDark,
+            margin: EdgeInsetsDirectional.zero,
+            shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage(AssetUtils.zigzagRed), alignment: AlignmentDirectional.topEnd, scale: 1, matchTextDirection: true),
+              ),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.only(
+                          start: 27.0.w,
+                        ) +
+                        EdgeInsetsDirectional.symmetric(vertical: 32.0.h),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          S.of(context).myAccount,
+                          style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: Theme.of(context).colorScheme.secondary),
+                        ),
+                        Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.only(top: 30.0.h),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                padding: EdgeInsetsDirectional.only(
+                                  top: 66.0.h,
+                                ),
+                                child: Text(
+                                  account.accountTitle != null ? account.accountTitle!.replaceAll(' ', '\n') : '',
+                                  maxLines: 3,
+                                  style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 16.0.t, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.only(top: 23.0.h),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      S.of(context).myAccount,
-                                      style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: Theme.of(context).colorScheme.secondary),
-                                    ),
+                                    Text(account.availableBalance!, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 20.0.t, fontWeight: FontWeight.w700, color: Theme.of(context).colorScheme.secondary)),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.only(
-                                        top: 66.0.h,
-                                      ),
-                                      child: Text(
-                                        account.accountTitle != null ? account.accountTitle!.replaceAll(' ', '\n') : '',
-                                        maxLines: 3,
-                                        style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 16.0.t, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
-                                      ),
+                                      padding: EdgeInsetsDirectional.only(top: 5.0.h, start: 5.0.w),
+                                      child: Text(S.of(context).JOD,
+                                          style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 10.0.t, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4))),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.only(top: 23.0.h),
-                                      child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          Text(account.availableBalance!, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 20.0.t, fontWeight: FontWeight.w700, color: Theme.of(context).colorScheme.secondary)),
-                                          Padding(
-                                            padding: EdgeInsetsDirectional.only(top: 5.0.h, start: 5.0.w),
-                                            child: Text(S.of(context).JOD,
-                                                style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 10.0.t, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4))),
-                                          ),
-                                          SizedBox(width: 10.0.w),
-                                          InkWell(
-                                            onTap: () {
-                                              ProviderScope.containerOf(context).read(appHomeViewModelProvider).balenceUpdate();
-                                            },
-                                            child: Container(
-                                                height: 14.0.h,
-                                                width: 14.0.w,
-                                                child: Image.asset(
-                                                  AssetUtils.refresh,
-                                                  color: AppColor.brightBlue,
-                                                )),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.only(top: 4.0.h),
-                                      child: Text(
-                                        S.of(context).availableBalance,
-                                        style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 10.0.t, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4)),
-                                      ),
+                                    SizedBox(width: 10.0.w),
+                                    InkWell(
+                                      onTap: () {
+                                        ProviderScope.containerOf(context).read(appHomeViewModelProvider).balenceUpdate();
+                                      },
+                                      child: Container(
+                                          height: 14.0.h,
+                                          width: 14.0.w,
+                                          child: Image.asset(
+                                            AssetUtils.refresh,
+                                            color: AppColor.brightBlue,
+                                          )),
                                     ),
                                   ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.only(top: 4.0.h),
+                                child: Text(
+                                  S.of(context).availableBalance,
+                                  style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 10.0.t, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4)),
                                 ),
                               ),
                               Padding(
@@ -163,82 +317,58 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                   style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4), fontSize: 10.0.t, fontWeight: FontWeight.w600),
                                 ),
                               ),
-                              Spacer(),
-                              Directionality(
-                                textDirection: StringUtils.isDirectionRTL(context) ? TextDirection.rtl : TextDirection.ltr,
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.only(
-                                    top: 15.0.h,
-                                    start: StringUtils.isDirectionRTL(context) ? 27.0.w : 0,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          Navigator.pushNamed(context, RoutePaths.AddMoneyOptionSelector);
-                                        },
-                                        child: Container(
-                                          height: 40.0.h,
-                                          width: 105.0.w,
-                                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                          child: Center(
-                                            child: Text(
-                                              S.of(context).addMoney,
-                                              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: Theme.of(context).colorScheme.secondary),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          _shareFiles(model, context, account);
-                                        },
-                                        child: Padding(
-                                          padding: EdgeInsets.only(right: 33.0.w),
-                                          child: AppSvg.asset(AssetUtils.share, color: Theme.of(context).textTheme.bodyLarge!.color!, height: 24.0.h, width: 24.0.w),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 50.0.h),
                             ],
                           ),
                         ),
-                      ));
-                }),
+                        Directionality(
+                          textDirection: StringUtils.isDirectionRTL(context) ? TextDirection.rtl : TextDirection.ltr,
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.only(
+                              top: 15.0.h,
+                              start: StringUtils.isDirectionRTL(context) ? 27.0.w : 0,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.pushNamed(context, RoutePaths.AddMoneyOptionSelector);
+                                  },
+                                  child: Container(
+                                    height: 40.0.h,
+                                    width: 105.0.w,
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Theme.of(context).textTheme.bodyLarge!.color!),
+                                    child: Center(
+                                      child: Text(
+                                        S.of(context).addMoney,
+                                        style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: Theme.of(context).colorScheme.secondary),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    _shareFiles(model, context, account);
+                                  },
+                                  child: Padding(
+                                    padding: EdgeInsets.only(right: 33.0.w),
+                                    child: AppSvg.asset(AssetUtils.share, color: Theme.of(context).textTheme.bodyLarge!.color!, height: 24.0.h, width: 24.0.w),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
-        ), /*Stack(
-          alignment: Alignment.center,
-          children: [
-
-            Positioned(
-              bottom: 0,
-              child: Column(
-                children: [
-                  AppSvg.asset(AssetUtils.swipeUp),
-                  Padding(
-                    padding: EdgeInsetsDirectional.only(top: 6.0.h),
-                    child: Text(
-                      S.of(context).swipeUpToViewTransaction,
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 12.0.t,
-                          color: AppColor.dark_gray_1),
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
-        ),*/
+        ),
       ),
-    );
+    );*/
   }
 
   void _shareFiles(MyAccountViewModel model, BuildContext context, Account account) async {

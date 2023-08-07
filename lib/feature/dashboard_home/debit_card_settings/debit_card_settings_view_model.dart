@@ -6,6 +6,7 @@ import 'package:domain/usecase/card_delivery/remove_or_reapply_supp_debit_card_w
 import 'package:domain/usecase/card_delivery/remove_or_reapply_supplementary_debit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/request_physical_debit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/unfreeze_debit_card_usecase.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -23,6 +24,7 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
   final RemoveOrReapplySuppDebitCardWithResponseUseCase _removeOrReapplySuppDebitCardWithResponseUseCase;
   final RequestPhysicalDebitCardUseCase _requestPhysicalDebitCardUseCase;
   final PushAntelopCardsUseCase _pushAntelopCardsUseCase;
+  final ScrollController controller = ScrollController();
 
   ///freeze card
   PublishSubject<bool> _freezeCardSubject = PublishSubject();

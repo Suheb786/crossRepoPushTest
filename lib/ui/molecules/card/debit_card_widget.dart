@@ -23,6 +23,8 @@ import 'package:neo_bank/utils/extension/string_casing_extension.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../feature/dashboard_home/app_home/widgets/custom_svg_image.dart';
+
 class DebitCardWidget extends StatefulWidget {
   final Key key;
   final DebitCard debitCard;
@@ -70,10 +72,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                 margin: EdgeInsetsDirectional.zero,
                 shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.only(
-                    start: 27.0.w,
-                    top: 30.0.h,
-                  ),
+                  padding: EdgeInsetsDirectional.only(start: 27.0.w, top: 28.0.h),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -97,6 +96,27 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                   ),
                                 )
                               : InkWell(
+                                  splashFactory: NoSplash.splashFactory,
+                                  onTap: () {
+                                    widget.flipCardController!.toggleCard();
+                                  },
+                                  child: Container(
+                                    height: 50,
+                                    width: 50,
+                                    padding: const EdgeInsets.all(10),
+                                    margin: EdgeInsetsDirectional.only(end: 23.0.w),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Theme.of(context).canvasColor,
+                                      border: Border.all(color: AppColor.lightYellowColor),
+                                      boxShadow: const [
+                                        BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 0.1),
+                                      ],
+                                    ),
+                                    child: AppSvg.asset(AssetUtils.spin, height: 24.w, width: 24.w),
+                                  ),
+                                ),
+                          /* InkWell(
                                   splashFactory: NoSplash.splashFactory,
                                   onTap: () async {
                                     ///go to settings
@@ -125,7 +145,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                       ),
                                     ),
                                   ),
-                                )
+                                )*/
                         ],
                       ),
                       Column(
@@ -138,7 +158,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                               Align(
                                 alignment: AlignmentDirectional.centerStart,
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.only(top: 10.0.h),
+                                  padding: EdgeInsetsDirectional.only(top: 8.0.h),
                                   child: AppSvg.asset(AssetUtils.blinkBlack),
                                 ),
                               ),
@@ -195,7 +215,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.only(
-                          top: 50.0.h,
+                          top: 45.0.h,
                         ),
                         child: Align(
                           alignment: AlignmentDirectional.centerEnd,
@@ -205,7 +225,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                       Directionality(
                         textDirection: StringUtils.isDirectionRTL(context) ? TextDirection.rtl : TextDirection.ltr,
                         child: Padding(
-                          padding: EdgeInsetsDirectional.only(start: StringUtils.isDirectionRTL(context) ? 27.0.w : 0, top: 24.0.h, bottom: 32.0.h),
+                          padding: EdgeInsetsDirectional.only(start: StringUtils.isDirectionRTL(context) ? 27.0.w : 0, top: 23.0.h, bottom: 27.0.h),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -246,10 +266,29 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                   */
                                   widget.onSettingsClick();
                                 },
-                                child: Padding(
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  margin: EdgeInsetsDirectional.only(end: 30.0.w),
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Theme.of(context).canvasColor,
+                                    border: Border.all(color: AppColor.lightYellowColor),
+                                    boxShadow: const [
+                                      BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 0.1),
+                                    ],
+                                  ),
+                                  child: AppSvg.asset(
+                                    AssetUtils.settingsRed,
+                                    color: Theme.of(context).textTheme.bodyLarge!.color!,
+                                    height: 50,
+                                    width: 50,
+                                  ),
+                                ), /*Padding(
                                   padding: EdgeInsetsDirectional.only(end: 30.0.w),
                                   child: AppSvg.asset(AssetUtils.settingsRed, color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                ),
+                                ),*/
                               )
                             ],
                           ),
@@ -268,7 +307,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
               margin: EdgeInsetsDirectional.zero,
               shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
               child: Padding(
-                padding: EdgeInsetsDirectional.only(start: 29.0.w, top: 38.0.h, end: 25.0.w, bottom: 30.0.h),
+                padding: EdgeInsetsDirectional.only(start: 29.0.w, top: 32.0.h, end: 25.0.w, bottom: 30.0.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -292,13 +331,28 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                             widget.flipCardController!.toggleCard();
                           },
                           child: Container(
+                            height: 50,
+                            width: 50,
+                            padding: const EdgeInsets.all(10),
+                            margin: EdgeInsetsDirectional.only(end: 0.0.w),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Theme.of(context).canvasColor,
+                              border: Border.all(color: AppColor.lightYellowColor),
+                              boxShadow: const [
+                                BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 0.1),
+                              ],
+                            ),
+                            child: AppSvg.asset(AssetUtils.spin, height: 24.w, width: 24.w),
+                          ) /*Container(
                             height: 50.0.h,
                             alignment: Alignment.center,
                             child: Text(
                               S.of(context).flipBack,
                               style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).textTheme.bodyLarge!.color!, fontSize: 14.0.t, fontWeight: FontWeight.w600),
                             ),
-                          ),
+                          )*/
+                          ,
                         )
                       ],
                     ),

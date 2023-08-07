@@ -1832,5 +1832,6 @@
   "allRegion": "All Region",
   "allCategories": "All Categories",
   "eVouchersSettings": "eVouchers",
-  "evoucherUnderProcessing": "E-voucher under processing"
+  "evoucherUnderProcessing": "E-voucher under processing",
+  "transactions": "Transactions"
 }
