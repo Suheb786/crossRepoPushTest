@@ -19,15 +19,9 @@ class SettingsDialogViewModel extends BasePageViewModel {
   final LogoutUseCase _logoutUseCase;
   final GetProfileInfoUseCase _getProfileInfoUseCase;
 
-  final SwiperController pageController = SwiperController();
-
-  final CarouselController controller = CarouselController();
-
   PublishSubject<int> _currentStep = PublishSubject();
 
   Stream<int> get currentStep => _currentStep.stream;
-
-  List<PagesWidget> pages = [];
 
   List<PagesWidget> showPages = [];
 
@@ -146,6 +140,7 @@ class SettingsDialogViewModel extends BasePageViewModel {
         showPages.add(element);
       }
     });
+    print('Shoepages length---->${showPages.length}');
   }
 
   String getKeyByIndex(int index) {

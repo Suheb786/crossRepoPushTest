@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
+import 'package:neo_bank/feature/dashboard_home/app_home/widgets/custom_svg_image.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_progress.dart';
@@ -28,10 +29,30 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
+import 'dart:math' as math;
 
-class SettingsDialogView extends StatelessWidget {
+class SettingsDialogView extends StatefulWidget {
+  @override
+  State<SettingsDialogView> createState() => _SettingsDialogViewState();
+}
+
+class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTickerProviderStateMixin {
   ProviderBase providerBase() {
     return settingsDialogViewModelProvider;
+  }
+
+  late PageController pageController;
+  late AnimationController animationController;
+
+  @override
+  void initState() {
+    pageController = PageController(initialPage: 0, viewportFraction: 0.3);
+    animationController = AnimationController(
+      duration: const Duration(milliseconds: 250),
+      reverseDuration: const Duration(milliseconds: 100),
+      vsync: this,
+    );
+    super.initState();
   }
 
   @override
@@ -195,50 +216,75 @@ class SettingsDialogView extends StatelessWidget {
                       ),
                     ];
                     model.updateShowPages(context: context, pages: currentPages);
-                    model.pages = currentPages;
                   },
                   dataBuilder: (context, profileData) {
-                    return AppStreamBuilder<List<PagesWidget>>(
-                        stream: model.currentPages,
-                        initialData: [],
-                        dataBuilder: (context, pagesData) {
+                    return AppStreamBuilder<int>(
+                        stream: model.currentStep,
+                        initialData: 0,
+                        dataBuilder: (context, currentValue) {
+                          print('Show pages length----->${model.showPages.length}');
                           return Dialog(
                             elevation: 0.0,
                             insetPadding: EdgeInsets.zero,
-                            backgroundColor: Colors.transparent,
+                            backgroundColor: Theme.of(context).primaryColorDark.withOpacity(0.5),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.bottomCenter,
-                                    child: CarouselSlider.builder(
-                                      itemCount: model.showPages.length,
-                                      carouselController: model.controller,
-                                      itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
-                                          AppStreamBuilder<int>(
-                                              stream: model.currentStep,
-                                              initialData: 0,
-                                              dataBuilder: (context, currentValue) {
-                                                return Padding(
-                                                    padding: EdgeInsets.only(bottom: 5.0.h),
-                                                    child: AppTiltCard(
-                                                      pageViewIndex: pageViewIndex,
-                                                      degree: 8,
-                                                      currentPage: currentValue,
-                                                      child: model.showPages[itemIndex].child,
-                                                    ));
-                                              }),
-                                      options: CarouselOptions(
-                                        height: 180.0.h,
-                                        pageSnapping: true,
-                                        viewportFraction: 0.4,
-                                        enableInfiniteScroll: false,
-                                        onPageChanged: (index, reason) {
-                                          model.updatePage(index);
+                                Container(
+                                  height: 180.h,
+                                  child: PageView.builder(
+                                    itemCount: (model.showPages).length,
+                                    controller: pageController,
+                                    physics: const ClampingScrollPhysics(),
+                                    onPageChanged: (int value) {
+                                      print('index------>$value');
+                                      model.updatePage(value);
+                                    },
+                                    itemBuilder: (context, index) {
+                                      print(
+                                          'item builder index------>$index-----${model.showPages[index].key}');
+                                      return AnimatedBuilder(
+                                        animation: pageController,
+                                        builder: (context, child) {
+                                          double value = 0;
+
+                                          ///Y coordinate
+                                          double translateValue = 0;
+
+                                          ///CheckipageController is ready to use
+                                          if (pageController.position.hasContentDimensions) {
+                                            ///For current page value = 0, so rotation and translation value is zero
+                                            double indexFinal = index.toDouble();
+                                            value = indexFinal - (pageController.page ?? 0);
+                                            value = (value * 0.01);
+
+                                            if (value.abs() >= 0.02) {
+                                              translateValue = value.abs() * 500;
+                                            } else if (value.abs() >= 0.018) {
+                                              translateValue = value.abs() * 460;
+                                            } else if (value.abs() >= 0.016) {
+                                              translateValue = value.abs() * 420;
+                                            } else if (value.abs() >= 0.014) {
+                                              translateValue = value.abs() * 380;
+                                            } else if (value.abs() >= 0.012) {
+                                              translateValue = value.abs() * 340;
+                                            } else {
+                                              translateValue = value.abs() * 300;
+                                            }
+                                          }
+                                          return Transform.rotate(
+                                            angle: (math.pi * value),
+                                            child: Transform.translate(
+                                              offset: Offset(0, translateValue),
+                                              child: _cards(currentValue ?? 0, model,
+                                                  model.showPages[currentValue ?? 0].child),
+                                            ),
+                                          );
                                         },
-                                      ),
-                                    ),
+                                      );
+                                      // return _cards(
+                                      //     0, model, model.showPages[0].child);
+                                    },
                                   ),
                                 ),
                                 SizedBox(
@@ -269,6 +315,7 @@ class SettingsDialogView extends StatelessWidget {
                             ),
                           );
                         });
+                    ;
                   });
             });
       },
@@ -354,6 +401,59 @@ class SettingsDialogView extends StatelessWidget {
         displayDuration: Duration(milliseconds: 1500),
         reverseAnimationDuration: Duration(milliseconds: 500),
         animationDuration: Duration(milliseconds: 700));
+  }
+
+  int tappedMainMenuIndex = 0;
+  Color tappedMainMenuColor = Colors.white;
+  Color tappedMainMenuContentColor = Colors.black;
+
+  _cards(int index, SettingsDialogViewModel model, Widget child) {
+    return GestureDetector(
+      onTap: () {
+        // setState(() {
+        //   tappedMainMenuIndex = index;
+        //   tappedMainMenuColor = AppColor.brightBlue;
+        //   tappedMainMenuContentColor = Colors.white;
+        // });
+        // animationController.forward();
+        // Future.delayed(const Duration(milliseconds: 50), () {
+        //   setState(() {
+        //     tappedMainMenuColor = Colors.white;
+        //     tappedMainMenuContentColor = Colors.black;
+        //   });
+        //   animationController.reverse();
+        //
+        //   // Future.delayed(const Duration(milliseconds: 50),() {layoutViewModel.onClickMainMenu(index, context);});
+        // });
+      },
+      onPanDown: (_) {
+        // setState(() {
+        //   tappedMainMenuIndex = index;
+        //   tappedMainMenuColor = AppColor.brightBlue;
+        //   tappedMainMenuContentColor = Colors.white;
+        // });
+        // animationController.forward();
+      },
+      onPanCancel: () {
+        // setState(() {
+        //   tappedMainMenuColor = Colors.white;
+        //   tappedMainMenuContentColor = Colors.black;
+        // });
+        // animationController.reverse();
+      },
+      child: ScaleTransition(
+        scale: Tween<double>(begin: 1.0, end: index == tappedMainMenuIndex ? 0.95 : 1)
+            .animate(animationController),
+        child: child,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    animationController.dispose();
+    super.dispose();
   }
 }
 

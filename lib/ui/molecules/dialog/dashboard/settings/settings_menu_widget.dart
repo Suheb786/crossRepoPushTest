@@ -39,10 +39,11 @@ class SettingsMenuWidget extends StatelessWidget {
                   child: Container(
                     height: 174.0.h,
                     width: 112.0.w,
+                    margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 20),
                     decoration: BoxDecoration(
-                        color: mKey == model.getKeyByIndex(currentStep ?? 0)
+                        color: /*mKey == model.getKeyByIndex(currentStep ?? 0)
                             ? Theme.of(context).textTheme.bodyLarge!.color!
-                            : Theme.of(context).colorScheme.secondary,
+                            :*/ Theme.of(context).colorScheme.secondary,
                         borderRadius: BorderRadius.circular(8)),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -59,18 +60,18 @@ class SettingsMenuWidget extends StatelessWidget {
                             child: dynamicChild != null
                                 ? dynamicChild
                                 : AppSvg.asset(image,
-                                    color: mKey == model.getKeyByIndex(currentStep ?? 0)
+                                    color: /*mKey == model.getKeyByIndex(currentStep ?? 0)
                                         ? Theme.of(context).colorScheme.secondary
-                                        : Theme.of(context).primaryColorDark)),
+                                        : */Theme.of(context).primaryColorDark)),
                         Text(
                           title,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
-                              color: mKey == model.getKeyByIndex(currentStep ?? 0)
+                              color: /*mKey == model.getKeyByIndex(currentStep ?? 0)
                                   ? Theme.of(context).colorScheme.secondary
-                                  : Theme.of(context).primaryColorDark,
+                                  :*/ Theme.of(context).primaryColorDark,
                               fontSize: 12.0.t),
                         )
                       ],
