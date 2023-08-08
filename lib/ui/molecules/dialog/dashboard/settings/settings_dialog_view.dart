@@ -54,10 +54,6 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
 
   @override
   Widget build(BuildContext context) {
-    final homePageModel = ProviderScope.containerOf(context).read(
-      appHomeViewModelProvider,
-    );
-
     return BaseWidget<SettingsDialogViewModel>(
       builder: (context, model, child) {
         return AppStreamBuilder<Resource<LogoutResponse>>(
@@ -236,7 +232,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                           return Dialog(
                             elevation: 0.0,
                             insetPadding: EdgeInsets.zero,
-                            backgroundColor: Theme.of(context).primaryColorDark.withOpacity(0.5),
+                            backgroundColor: Theme.of(context).primaryColorDark.withOpacity(0.4),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
@@ -280,7 +276,9 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                                             }
                                           }
                                           return Transform.rotate(
-                                            angle: (math.pi * value),
+                                            angle: StringUtils.isDirectionRTL(context)
+                                                ? (math.pi * -value)
+                                                : (math.pi * value),
                                             child: Transform.translate(
                                               offset: Offset(0, translateValue),
                                               child: _cards(
@@ -297,7 +295,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    homePageModel.openMainMenu();
+                                    Navigator.pop(context);
                                   },
                                   child: Container(
                                     padding: EdgeInsets.all(15),
@@ -329,7 +327,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
           if (value) {
             AppProgress(context);
           } else {
-            homePageModel.openMainMenu();
+            Navigator.pop(context);
           }
         });
 

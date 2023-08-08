@@ -482,9 +482,12 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                 firstChild: const SizedBox(),
                                                                                 secondChild: SizedBox(
                                                                                   height: MediaQuery.of(context).size.height * 0.03,
-                                                                                  child: Row(
-                                                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                                                    children: model.buildPageIndicator(currentStep, cardData.data!.dashboardDataContent!.debitCard!.length),
+                                                                                  child: Padding(
+                                                                                    padding: EdgeInsets.only(bottom: 17.h),
+                                                                                    child: Row(
+                                                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                                                      children: model.buildPageIndicator(currentStep, cardData.data!.dashboardDataContent!.debitCard!.length),
+                                                                                    ),
                                                                                   ),
                                                                                 ),
                                                                                 duration: const Duration(milliseconds: 500),

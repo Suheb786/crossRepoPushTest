@@ -7,19 +7,19 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page_view_new.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
-import 'package:neo_bank/feature/dashboard_home/app_home/widgets/custom_svg_image.dart';
-import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../ui/molecules/dashboard/bottom_bar_widget.dart';
-import '../../../ui/molecules/dialog/dashboard/settings/settings_dialog_view.dart';
-import '../../../utils/asset_utils.dart';
 
 class AppHomePage extends BasePage<AppHomeViewModel> {
   @override
   AppHomePageState createState() => AppHomePageState();
 }
 
-class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> with AutomaticKeepAliveClientMixin, WidgetsBindingObserver, TickerProviderStateMixin {
+class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
+    with AutomaticKeepAliveClientMixin, WidgetsBindingObserver, TickerProviderStateMixin {
   @override
   ProviderBase provideBase() {
     return appHomeViewModelProvider;
@@ -121,91 +121,46 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> w
       alignment: Alignment.bottomCenter,
       children: [
         ///Main View
-        model.bottomBarIndex == BottomBarIndex.home
-            ? AnimatedBuilder(
-                animation: model.zoomController,
-                builder: (context, child) {
-                  return Transform.scale(
-                    scale: model.firstTime ? 1 : model.zoomAnimation.value,
-                    child: child!,
-                  );
-                },
-                child: AppHomePageViewNew(
-                  provideBase(),
-                ))
-            : model.bottomBarIndex == BottomBarIndex.payment
-                ? Container()
-                : AppHomePageViewNew(
-                    provideBase(),
-                  ),
+        AnimatedBuilder(
+            animation: model.zoomController,
+            builder: (context, child) {
+              return Transform.scale(
+                scale: model.firstTime ? 1 : model.zoomAnimation.value,
+                child: child!,
+              );
+            },
+            child: AppHomePageViewNew(
+              provideBase(),
+            )),
 
         ///Bottom Navigation Bar
-        AnimatedOpacity(
-          duration: const Duration(milliseconds: 300),
-          opacity: model.settings || model.timelinePage /*|| context.watch<PaymentViewModel>().showSendMoneyView || context.watch<PaymentViewModel>().showReceiveMoneyView*/ ? 0 : 1,
-          child: Theme(
-            data: ThemeData(
-              splashColor: Colors.transparent,
-              dividerColor: Colors.transparent,
-            ),
-            child: SizedBox(
-              height: model.bottomNavbarHeight,
-              child: BottomNavigationBar(
-                currentIndex: 0,
-                elevation: 0,
-                showSelectedLabels: false,
-                showUnselectedLabels: false,
-                enableFeedback: false,
-                backgroundColor: model.showMainMenu ? Colors.black26 : Colors.white,
-                onTap: (int value) {
-                  ///Deactivate bottom nav bar when menu is open
-                  if (!model.showMainMenu || value == 1) {
-                    ///Zoom out animation while coming back from main menu modules
-                    if (value == 0 && model.bottomBarIndex != BottomBarIndex.home) {
-                      model.zoomController.forward();
-                    }
-
-                    ///
-                    model.onBottomMenuTap(value, context);
-                  }
+        Positioned(
+          left: 0,
+          bottom: 0,
+          right: 0,
+          child: AnimatedOpacity(
+            duration: model.timelinePage ? const Duration(milliseconds: 200) : const Duration(seconds: 2),
+            opacity: model.settings || model.timelinePage ? 0 : 1,
+            child: Padding(
+              padding: EdgeInsets.only(top: 24.0.h, bottom: 0.0.h),
+              child: BottomBarWidget(
+                onHomeTap: () {
+                  model.moveToPage(0);
                 },
-                type: BottomNavigationBarType.fixed,
-                items: [
-                  BottomNavigationBarItem(
-                    label: "Home",
-                    icon: SVGImage(assetPath: AssetUtils.homeOutlineButton),
-                  ),
-                  BottomNavigationBarItem(
-                    label: "Main",
-                    icon: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        const SVGImage(assetPath: AssetUtils.blinkLogo2,),
-                        model.showMainMenu
-                            ? Container(
-                                padding: const EdgeInsets.all(16),
-                                decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: const Icon(Icons.close, color: AppColor.light_acccent_blue),
-                              )
-                            : const SizedBox(),
-                      ],
-                    ),
-                  ),
-                  BottomNavigationBarItem(
-                    label: "Support",
-                    icon: SVGImage(assetPath: AssetUtils.contactUs),
-                  )
-                ],
+                onMoreTap: () {
+                  SettingsDialog.show(context);
+                },
+                onContactUsTap: () {
+                  EngagementTeamDialog.show(context, onDismissed: () {
+                    Navigator.pop(context);
+                  }, onSelected: (value) {
+                    Navigator.pop(context);
+                  });
+                },
               ),
             ),
           ),
         ),
-
-        ///Main Menu
-        model.showMainMenu ? SettingsDialogView() : const SizedBox(),
       ],
     );
   }
