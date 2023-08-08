@@ -78,7 +78,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                     },
                     dataBuilder: (context, antelopStepCompleted) {
                       return Padding(
-                        padding: EdgeInsetsDirectional.only(top: 24.h),
+                        padding: EdgeInsetsDirectional.only(top: 24.h,bottom: 6.h),
                         child: (antelopStepCompleted ?? true)
                             ? Container()
                             : (!(model.debitCardSettingsArguments.debitCard.isCardInApplePay) && model.debitCardSettingsArguments.debitCard.getStatus)

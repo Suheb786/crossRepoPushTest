@@ -10,6 +10,7 @@ import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dar
 import 'package:neo_bank/feature/dashboard_home/app_home/widgets/custom_svg_image.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
+import '../../../ui/molecules/dashboard/bottom_bar_widget.dart';
 import '../../../ui/molecules/dialog/dashboard/settings/settings_dialog_view.dart';
 import '../../../utils/asset_utils.dart';
 
@@ -116,8 +117,6 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> w
 
   @override
   Widget buildView(BuildContext context, AppHomeViewModel model) {
-
-
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [

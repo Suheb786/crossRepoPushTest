@@ -9,9 +9,7 @@ class BottomBarWidget extends StatelessWidget {
   final Function() onMoreTap;
   final Function() onContactUsTap;
 
-  const BottomBarWidget(
-      {Key? key, required this.onHomeTap, required this.onMoreTap, required this.onContactUsTap})
-      : super(key: key);
+  const BottomBarWidget({Key? key, required this.onHomeTap, required this.onMoreTap, required this.onContactUsTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
