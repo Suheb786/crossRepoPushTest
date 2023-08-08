@@ -1,6 +1,6 @@
 import 'dart:io';
+import 'dart:math' as math;
 
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
@@ -10,12 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
-import 'package:neo_bank/feature/dashboard_home/app_home/widgets/custom_svg_image.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_progress.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_menu_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -29,7 +27,6 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
-import 'dart:math' as math;
 
 class SettingsDialogView extends StatefulWidget {
   @override
@@ -86,29 +83,29 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                       ///Bill payments
                       PagesWidget(
                           key: 'BILL_PAYMENTS',
+                          onTap: () async {
+                            ///LOG EVENT TO FIREBASE
+                            await FirebaseAnalytics.instance
+                                .logEvent(name: "payments_opened", parameters: {"is_payment_opened": "true"});
+                            Navigator.pushNamed(context, RoutePaths.PaymentHome,
+                                arguments: NavigationType.DASHBOARD);
+                          },
                           child: SettingsMenuWidget(
                             model: model,
                             title: S.of(context).billsAndPayments,
                             image: AssetUtils.paymentCircle,
                             mKey: 'BILL_PAYMENTS',
-                            onTap: () async {
-                              ///LOG EVENT TO FIREBASE
-                              await FirebaseAnalytics.instance.logEvent(
-                                  name: "payments_opened", parameters: {"is_payment_opened": "true"});
-                              Navigator.pushNamed(context, RoutePaths.PaymentHome,
-                                  arguments: NavigationType.DASHBOARD);
-                            },
                           )),
 
                       ///Activity home
                       PagesWidget(
+                        onTap: () {
+                          Navigator.pushNamed(context, RoutePaths.ActivityHome);
+                        },
                         key: 'ACTIVITY',
                         child: SettingsMenuWidget(
                           model: model,
                           title: S.of(context).activity,
-                          onTap: () {
-                            Navigator.pushNamed(context, RoutePaths.ActivityHome);
-                          },
                           image: AssetUtils.activityCircle,
                           mKey: 'ACTIVITY',
                         ),
@@ -116,13 +113,13 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
 
                       ///Manage Contacts
                       PagesWidget(
+                        onTap: () {
+                          Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList,
+                              arguments: NavigationType.SEND_MONEY);
+                        },
                         key: 'MANAGE_CONTACTS',
                         child: SettingsMenuWidget(
                           model: model,
-                          onTap: () {
-                            Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList,
-                                arguments: NavigationType.SEND_MONEY);
-                          },
                           mKey: 'MANAGE_CONTACTS',
                           title: S.of(context).manageContactsSettings,
                           image: AssetUtils.contacts,
@@ -131,66 +128,76 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
 
                       ///CLIQ
                       PagesWidget(
+                        onTap: () {
+                          Navigator.pushNamed(context, RoutePaths.CliqIdList);
+                        },
                         key: 'CLIQ',
                         child: SettingsMenuWidget(
                           model: model,
                           mKey: 'CLIQ',
                           image: AssetUtils.cliqLogoSvg,
                           title: S.of(context).manageCliqIdRoute,
-                          onTap: () {
-                            Navigator.pushNamed(context, RoutePaths.CliqIdList);
-                          },
                         ),
                       ),
 
                       ///E-VOUCHERS
                       PagesWidget(
+                        onTap: () {
+                          Navigator.pushNamed(context, RoutePaths.Evoucher);
+                        },
                         key: 'E-VOUCHERS',
                         child: SettingsMenuWidget(
                           model: model,
                           title: S.of(context).eVouchers,
                           image: AssetUtils.e_voucher,
                           mKey: 'E-VOUCHERS',
-                          onTap: () {
-                            Navigator.pushNamed(context, RoutePaths.Evoucher);
-                          },
                         ),
                       ),
 
                       ///Profile settings
                       PagesWidget(
+                        onTap: () {
+                          Navigator.pushNamed(context, RoutePaths.AccountSetting);
+                        },
                         key: 'SettingsMenuWidget',
                         child: SettingsMenuWidget(
                           model: model,
                           mKey: 'SettingsMenuWidget',
                           title: S.of(context).profileSettings,
                           image: AssetUtils.dummyProfile,
-                          onTap: () {
-                            Navigator.pushNamed(context, RoutePaths.AccountSetting);
-                          },
                           dynamicChild: (profileData.data?.content?.profileImage == null ||
                                   profileData.data?.content?.profileImage.isEmpty)
                               ? Center(
                                   child: Container(
                                     child: AppStreamBuilder<int>(
-                                        stream: model.currentStep,
-                                        initialData: 0,
-                                        dataBuilder: (context, currentValue) {
-                                          return AppStreamBuilder<String>(
-                                              stream: model.textStream,
-                                              initialData: "",
-                                              dataBuilder: (context, text) {
-                                                return Text(
-                                                  StringUtils.getFirstInitials(text),
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      fontWeight: FontWeight.w700,
-                                                      fontSize: 18.0.t,
-                                                      color: model.getKeyByIndex(currentValue ?? 0) ==
-                                                              'SettingsMenuWidget'
-                                                          ? Theme.of(context).colorScheme.secondary
-                                                          : Theme.of(context).primaryColorDark),
-                                                );
+                                        stream: model.menuTappedIndexStream,
+                                        initialData: -1,
+                                        dataBuilder: (context, tappedMenuIndex) {
+                                          return AppStreamBuilder<int>(
+                                              stream: model.currentStep,
+                                              initialData: 0,
+                                              dataBuilder: (context, currentValue) {
+                                                return AppStreamBuilder<String>(
+                                                    stream: model.textStream,
+                                                    initialData: "",
+                                                    dataBuilder: (context, text) {
+                                                      return Text(
+                                                        StringUtils.getFirstInitials(text),
+                                                        style: TextStyle(
+                                                            fontFamily: StringUtils.appFont,
+                                                            fontWeight: FontWeight.w700,
+                                                            fontSize: 18.0.t,
+                                                            color: (currentValue == tappedMenuIndex &&
+                                                                    "SettingsMenuWidget" ==
+                                                                        model.getKeyByIndex(
+                                                                            tappedMenuIndex ?? -1))
+                                                                ? Theme.of(context).colorScheme.secondary
+                                                                : Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyLarge!
+                                                                    .color!),
+                                                      );
+                                                    });
                                               });
                                         }),
                                   ),
@@ -207,15 +214,15 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
 
                       ///logout
                       PagesWidget(
+                        onTap: () {
+                          model.logout();
+                        },
                         key: 'LOGOUT',
                         child: SettingsMenuWidget(
                           model: model,
                           image: AssetUtils.logout,
                           title: S.of(context).logout,
                           mKey: 'LOGOUT',
-                          onTap: () {
-                            model.logout();
-                          },
                         ),
                       ),
                     ];
@@ -226,7 +233,6 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                         stream: model.currentStep,
                         initialData: 0,
                         dataBuilder: (context, currentValue) {
-                          print('Show pages length----->${model.showPages.length}');
                           return Dialog(
                             elevation: 0.0,
                             insetPadding: EdgeInsets.zero,
@@ -241,12 +247,9 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                                     controller: pageController,
                                     physics: const ClampingScrollPhysics(),
                                     onPageChanged: (int value) {
-                                      print('index------>$value');
                                       model.updatePage(value);
                                     },
                                     itemBuilder: (context, index) {
-                                      print(
-                                          'item builder index------>$index-----${model.showPages[index].key}');
                                       return AnimatedBuilder(
                                         animation: pageController,
                                         builder: (context, child) {
@@ -255,7 +258,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                                           ///Y coordinate
                                           double translateValue = 0;
 
-                                          ///CheckipageController is ready to use
+                                          ///Checking pageController is ready to use
                                           if (pageController.position.hasContentDimensions) {
                                             ///For current page value = 0, so rotation and translation value is zero
                                             double indexFinal = index.toDouble();
@@ -280,14 +283,12 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                                             angle: (math.pi * value),
                                             child: Transform.translate(
                                               offset: Offset(0, translateValue),
-                                              child: _cards(currentValue ?? 0, model,
-                                                  model.showPages[currentValue ?? 0].child),
+                                              child: _cards(
+                                                  index, model, model.showPages[index], currentValue ?? -1),
                                             ),
                                           );
                                         },
                                       );
-                                      // return _cards(
-                                      //     0, model, model.showPages[0].child);
                                     },
                                   ),
                                 ),
@@ -297,7 +298,6 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                                 InkWell(
                                   onTap: () {
                                     homePageModel.openMainMenu();
-                                    // Navigator.pop(context);
                                   },
                                   child: Container(
                                     padding: EdgeInsets.all(15),
@@ -320,7 +320,6 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                             ),
                           );
                         });
-                    ;
                   });
             });
       },
@@ -330,9 +329,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
           if (value) {
             AppProgress(context);
           } else {
-
             homePageModel.openMainMenu();
-            // Navigator.pop(context);
           }
         });
 
@@ -410,50 +407,30 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
         animationDuration: Duration(milliseconds: 700));
   }
 
-  int tappedMainMenuIndex = 0;
-  Color tappedMainMenuColor = Colors.white;
-  Color tappedMainMenuContentColor = Colors.black;
-
-  _cards(int index, SettingsDialogViewModel model, Widget child) {
-    return GestureDetector(
-      onTap: () {
-        // setState(() {
-        //   tappedMainMenuIndex = index;
-        //   tappedMainMenuColor = AppColor.brightBlue;
-        //   tappedMainMenuContentColor = Colors.white;
-        // });
-        // animationController.forward();
-        // Future.delayed(const Duration(milliseconds: 50), () {
-        //   setState(() {
-        //     tappedMainMenuColor = Colors.white;
-        //     tappedMainMenuContentColor = Colors.black;
-        //   });
-        //   animationController.reverse();
-        //
-        //   // Future.delayed(const Duration(milliseconds: 50),() {layoutViewModel.onClickMainMenu(index, context);});
-        // });
-      },
-      onPanDown: (_) {
-        // setState(() {
-        //   tappedMainMenuIndex = index;
-        //   tappedMainMenuColor = AppColor.brightBlue;
-        //   tappedMainMenuContentColor = Colors.white;
-        // });
-        // animationController.forward();
-      },
-      onPanCancel: () {
-        // setState(() {
-        //   tappedMainMenuColor = Colors.white;
-        //   tappedMainMenuContentColor = Colors.black;
-        // });
-        // animationController.reverse();
-      },
-      child: ScaleTransition(
-        scale: Tween<double>(begin: 1.0, end: index == tappedMainMenuIndex ? 0.95 : 1)
-            .animate(animationController),
-        child: child,
-      ),
-    );
+  _cards(int index, SettingsDialogViewModel model, PagesWidget pageWidget, int currentPage) {
+    return AppStreamBuilder<bool>(
+        stream: model.onClickStream,
+        initialData: false,
+        dataBuilder: (context, onClick) {
+          return GestureDetector(
+            onTap: (onClick ?? false)
+                ? () async {
+                    model.menuTapped(index);
+                    animationController.forward();
+                    await Future.delayed(const Duration(milliseconds: 100), () {
+                      model.menuTapped(-1);
+                      animationController.reverse();
+                      pageWidget.onTap?.call();
+                    });
+                  }
+                : null,
+            child: ScaleTransition(
+              scale: Tween<double>(begin: 1.0, end: index == currentPage ? 0.95 : 1)
+                  .animate(animationController),
+              child: pageWidget.child,
+            ),
+          );
+        });
   }
 
   @override
@@ -468,6 +445,7 @@ class PagesWidget {
   final String key;
   final Widget child;
   int? index;
+  Function()? onTap;
 
-  PagesWidget({required this.key, required this.child, this.index = 0});
+  PagesWidget({required this.key, required this.child, this.index = 0, this.onTap});
 }
