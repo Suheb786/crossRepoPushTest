@@ -51,6 +51,8 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                         .read(addBeneficiaryotpPageViewModel)
                         .otpController
                         .clear();
+
+                    ProviderScope.containerOf(context).read(addBeneficiaryotpPageViewModel).updateTime();
                   }
                 },
                 dataBuilder: (context, validate) {

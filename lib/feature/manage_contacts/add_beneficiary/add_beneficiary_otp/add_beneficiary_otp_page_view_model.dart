@@ -13,6 +13,7 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 import '../../../../di/manage_contacts/manage_contacts_modules.dart';
 import '../../../../main/app_viewmodel.dart';
@@ -79,6 +80,12 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
   void updateTime() {
     endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
     notifyListeners();
+    listenForSmsCode();
+  }
+
+  listenForSmsCode() async {
+    otpController.clear();
+    SmsAutoFill().listenForCode();
   }
 
   ///--------------------------public-other-methods-------------------------------------///
@@ -108,6 +115,7 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
   }
 
   void resendOTP() {
+    otpController.clear();
     _resendOTPUseCaseRequest.safeAdd(AddBeneficiaryOTPUseCaseParams());
   }
 
