@@ -181,7 +181,7 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> w
                     icon: Stack(
                       alignment: Alignment.center,
                       children: [
-                        const SVGImage(assetPath: "assets/icons/mainButton.svg"),
+                        const SVGImage(assetPath: AssetUtils.blinkLogo2,),
                         model.showMainMenu
                             ? Container(
                                 padding: const EdgeInsets.all(16),

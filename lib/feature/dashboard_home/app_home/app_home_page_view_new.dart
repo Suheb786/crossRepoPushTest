@@ -404,6 +404,11 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                             return;
                                                                                                           }
                                                                                                         }
+
+                                                                                                        if(model.isMyAccount(currentStep)){
+                                                                                                          // AccountTransactionPage();
+                                                                                                          model.goToAccountTransactionPage(context);
+                                                                                                        }
                                                                                                       },
                                                                                                       child: AnimatedOpacity(
                                                                                                         ///For credit card

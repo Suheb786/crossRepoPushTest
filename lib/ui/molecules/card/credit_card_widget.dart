@@ -292,13 +292,14 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    Navigator.pushNamed(context, RoutePaths.CreditCardPayBack,
+                                    widget.onPayBackClick();
+                                    /*Navigator.pushNamed(context, RoutePaths.CreditCardPayBack,
                                         arguments: CreditCardPayBackArguments(
                                             accountHolderName: widget.creditCard.name!,
                                             secureCode: widget.creditCard.cardCode!,
                                             accountBalance: widget.accountBalance!,
                                             minDuePayBackAmount: widget.creditCard.paymentDueAmount.toString(),
-                                            totalMinDueAmount: widget.creditCard.usedBalance!));
+                                            totalMinDueAmount: widget.creditCard.usedBalance!));*/
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(

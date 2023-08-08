@@ -52,6 +52,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
+import '../account_transaction/account_transaction_page.dart';
 import '../card_transaction/card_transaction_page.dart';
 
 class AppHomeViewModel extends BasePageViewModel {
@@ -414,6 +415,7 @@ class AppHomeViewModel extends BasePageViewModel {
                 key: ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
                 onPayBackClick: () {
                   selectedCreditCard = creditCard;
+                  goToPayBackView(true);
                 },
                 onSettingsTap: () {
                   selectedCreditCard = creditCard;
@@ -1021,6 +1023,11 @@ class AppHomeViewModel extends BasePageViewModel {
   goToTransactionPage(BuildContext context, int currentStep) {
     animateForwardTransactionPage();
     Navigator.of(context).push(slideBottomToTop(nextPage: CardTransactionPage(GetCreditCardTransactionArguments(cardId: timeLineListArguments[currentStep - 1].cardId))));
+  }
+
+  goToAccountTransactionPage(BuildContext context){
+    animateForwardTransactionPage();
+    Navigator.of(context).push(slideBottomToTop(nextPage: AccountTransactionPage()));
   }
 
   animateForwardTransactionPage() {
