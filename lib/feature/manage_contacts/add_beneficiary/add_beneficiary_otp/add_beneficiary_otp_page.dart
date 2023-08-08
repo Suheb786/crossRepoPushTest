@@ -3,6 +3,7 @@ import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
 import 'package:riverpod/src/framework.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 import 'add_beneficiary_otp_page_view.dart';
 import 'add_beneficiary_otp_page_view_model.dart';
@@ -14,7 +15,7 @@ class AddBeneficiaryOTPPage extends BasePage<AddBeneficiaryotpPageViewModel> {
 
 class AddBeneficiaryOTPPageState
     extends BaseStatefulPage<AddBeneficiaryotpPageViewModel, AddBeneficiaryOTPPage>
-    with AutomaticKeepAliveClientMixin {
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin, CodeAutoFill {
   AddBeneficiaryOTPPageState() : super(subscribeVisibilityEvents: true);
 
   @override
@@ -43,4 +44,21 @@ class AddBeneficiaryOTPPageState
 
   @override
   bool get wantKeepAlive => true;
+
+  @override
+  void initState() {
+    super.initState();
+    listenForCode();
+  }
+
+  @override
+  void codeUpdated() {
+    getViewModel().otpController.text = code!;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    cancel();
+  }
 }
