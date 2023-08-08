@@ -378,247 +378,302 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                           title: S.of(context).manageCardPin,
                           tileIcon: AssetUtils.cardShield,
                         ),
-                        IgnorePointer(
-                          child: SettingTile(
-                            isCardActivated:
-                                model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
-                            onTap: () {
-                              Navigator.pushNamed(context, RoutePaths.ViewDebitCardSubscription,
-                                  arguments: ViewDebitCardSubscriptionArguments(cardType: CardType.CREDIT));
-                            },
-                            title: S.of(context).viewCardSubscription,
-                            tileIcon: AssetUtils.cardSubscription,
-                            isEnabled: false,
-                            isNotify: true,
+
+                        ///View card subscription-------->>
+                        Visibility(
+                          visible: false,
+                          child: IgnorePointer(
+                            child: SettingTile(
+                              isCardActivated:
+                                  model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                              onTap: () {
+                                Navigator.pushNamed(context, RoutePaths.ViewDebitCardSubscription,
+                                    arguments: ViewDebitCardSubscriptionArguments(cardType: CardType.CREDIT));
+                              },
+                              title: S.of(context).viewCardSubscription,
+                              tileIcon: AssetUtils.cardSubscription,
+                              isEnabled: false,
+                              isNotify: true,
+                            ),
                           ),
                         ),
-                        AppStreamBuilder<bool>(
-                            stream: model.routeSupplementaryStream,
-                            initialData: false,
-                            onData: (route) {
-                              if (route) {
-                                Navigator.pushReplacementNamed(
-                                    context, RoutePaths.SupplementaryCreditCardActivationStatus,
-                                    arguments: SupplementaryCreditCardActivationArguments(
-                                        primaryCardId:
-                                            model.creditCardSettingsArguments.creditCard.cardId ?? ''));
-                              } else {
-                                ProviderScope.containerOf(context)
-                                    .read(appHomeViewModelProvider)
-                                    .currentCreditCard = model.creditCardSettingsArguments.creditCard;
-                                Navigator.pushNamed(context, RoutePaths.SupplementaryCreditCard);
-                              }
-                            },
-                            dataBuilder: (context, snapshot) {
-                              return AppStreamBuilder<Resource<SupplementaryCreditCardApplicationResponse>>(
-                                  stream: model.getSupplementaryCreditCardApplicationStream,
-                                  initialData: Resource.none(),
-                                  onData: (data) {},
-                                  dataBuilder: (context, supplementaryCreditCardApplication) {
-                                    return SettingTile(
-                                      onTap: () {
-                                        model.getSupplementaryCreditCardApplication();
-                                      },
-                                      isEnabled: false,
-                                      isNotify: true,
-                                      // isEnabled:
-                                      //     model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
-                                      //         PrimarySecondaryCardEnum.PRIMARY,
-                                      // isNotify:
-                                      //     model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
-                                      //         PrimarySecondaryCardEnum.SECONDARY,
-                                      title: S.of(context).requestSupplementarycard,
-                                      tileIcon: AssetUtils.cardIcon,
-                                      isCardActivated:
-                                          model.creditCardSettingsArguments.creditCard.isCreditDelivered ??
-                                              false,
-                                    );
-                                  });
-                            }),
-                        IgnorePointer(
-                          child: SettingTile(
-                            isCardActivated:
-                                model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
-                            onTap: () {
-                              Navigator.pushNamed(context, RoutePaths.ChangeCreditLimit);
-                            },
-                            title: S.of(context).changeCreditLimit,
-                            tileIcon: AssetUtils.add,
-                            isEnabled: false,
-                            isNotify: true,
+
+                        ///Request supplementary card-------->>
+
+                        Visibility(
+                          visible: false,
+                          child: AppStreamBuilder<bool>(
+                              stream: model.routeSupplementaryStream,
+                              initialData: false,
+                              onData: (route) {
+                                if (route) {
+                                  Navigator.pushReplacementNamed(
+                                      context, RoutePaths.SupplementaryCreditCardActivationStatus,
+                                      arguments: SupplementaryCreditCardActivationArguments(
+                                          primaryCardId:
+                                              model.creditCardSettingsArguments.creditCard.cardId ?? ''));
+                                } else {
+                                  ProviderScope.containerOf(context)
+                                      .read(appHomeViewModelProvider)
+                                      .currentCreditCard = model.creditCardSettingsArguments.creditCard;
+                                  Navigator.pushNamed(context, RoutePaths.SupplementaryCreditCard);
+                                }
+                              },
+                              dataBuilder: (context, snapshot) {
+                                return AppStreamBuilder<Resource<SupplementaryCreditCardApplicationResponse>>(
+                                    stream: model.getSupplementaryCreditCardApplicationStream,
+                                    initialData: Resource.none(),
+                                    onData: (data) {},
+                                    dataBuilder: (context, supplementaryCreditCardApplication) {
+                                      return SettingTile(
+                                        onTap: () {
+                                          model.getSupplementaryCreditCardApplication();
+                                        },
+                                        isEnabled: false,
+                                        isNotify: true,
+                                        // isEnabled:
+                                        //     model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                                        //         PrimarySecondaryCardEnum.PRIMARY,
+                                        // isNotify:
+                                        //     model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                                        //         PrimarySecondaryCardEnum.SECONDARY,
+                                        title: S.of(context).requestSupplementarycard,
+                                        tileIcon: AssetUtils.cardIcon,
+                                        isCardActivated:
+                                            model.creditCardSettingsArguments.creditCard.isCreditDelivered ??
+                                                false,
+                                      );
+                                    });
+                              }),
+                        ),
+
+                        ///Change credit limit-------->>
+                        Visibility(
+                          visible: false,
+                          child: IgnorePointer(
+                            child: SettingTile(
+                              isCardActivated:
+                                  model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                              onTap: () {
+                                Navigator.pushNamed(context, RoutePaths.ChangeCreditLimit);
+                              },
+                              title: S.of(context).changeCreditLimit,
+                              tileIcon: AssetUtils.add,
+                              isEnabled: false,
+                              isNotify: true,
+                            ),
                           ),
                         ),
-                        IgnorePointer(
-                          child: SettingTile(
-                            isCardActivated:
-                                model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
-                            onTap: () {
-                              Navigator.pushNamed(context, RoutePaths.ConvertPurchaseToInstallments);
-                            },
-                            title: S.of(context).convertPurchaseToInstallments,
-                            tileIcon: AssetUtils.chart,
-                            isEnabled: false,
-                            isNotify: true,
+
+                        ///Convert purchases to instalments.-------->>
+                        Visibility(
+                          visible: false,
+                          child: IgnorePointer(
+                            child: SettingTile(
+                              isCardActivated:
+                                  model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                              onTap: () {
+                                Navigator.pushNamed(context, RoutePaths.ConvertPurchaseToInstallments);
+                              },
+                              title: S.of(context).convertPurchaseToInstallments,
+                              tileIcon: AssetUtils.chart,
+                              isEnabled: false,
+                              isNotify: true,
+                            ),
                           ),
                         ),
-                        IgnorePointer(
-                          child: SettingTile(
-                            isCardActivated:
-                                model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
-                            onTap: () {
-                              Navigator.pushNamed(context, RoutePaths.DcChangeLinkedMobileNumber,
-                                  arguments: DCChangeLinkedMobileNumberArguments(
-                                      cardType: CardType.CREDIT,
-                                      tokenizedPan: model.creditCardSettingsArguments.creditCard.cardCode));
-                            },
-                            title: S.of(context).changeLinkedMobileNumber,
-                            tileIcon: AssetUtils.mobile,
-                            isEnabled: false,
-                            isNotify: true,
+
+                        ///Change linked mobile number .-------->>
+                        Visibility(
+                          visible: false,
+                          child: IgnorePointer(
+                            child: SettingTile(
+                              isCardActivated:
+                                  model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                              onTap: () {
+                                Navigator.pushNamed(context, RoutePaths.DcChangeLinkedMobileNumber,
+                                    arguments: DCChangeLinkedMobileNumberArguments(
+                                        cardType: CardType.CREDIT,
+                                        tokenizedPan: model.creditCardSettingsArguments.creditCard.cardCode));
+                              },
+                              title: S.of(context).changeLinkedMobileNumber,
+                              tileIcon: AssetUtils.mobile,
+                              isEnabled: false,
+                              isNotify: true,
+                            ),
                           ),
                         ),
-                        IgnorePointer(
-                          child: SettingTile(
-                            isCardActivated:
-                                model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
-                            onTap: () {
-                              Navigator.pushNamed(context, RoutePaths.ChangeCountryRestriction);
-                            },
-                            title: S.of(context).changeCountryRestriction,
-                            tileIcon: AssetUtils.globe,
-                            isEnabled: false,
-                            isNotify: true,
+
+                        ///Change country restriction-------->>
+
+                        Visibility(
+                          visible: false,
+                          child: IgnorePointer(
+                            child: SettingTile(
+                              isCardActivated:
+                                  model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                              onTap: () {
+                                Navigator.pushNamed(context, RoutePaths.ChangeCountryRestriction);
+                              },
+                              title: S.of(context).changeCountryRestriction,
+                              tileIcon: AssetUtils.globe,
+                              isEnabled: false,
+                              isNotify: true,
+                            ),
                           ),
                         ),
-                        AppStreamBuilder<Resource<bool>>(
-                            stream: model.reportLostStolenCCStream,
-                            initialData: Resource.none(),
-                            onData: (data) {
-                              if (data.status == Status.SUCCESS) {
-                                Navigator.pushNamed(context, RoutePaths.CreditCardApplySuccess,
-                                    arguments: CreditCardApplySuccessArguments(
-                                        creditSuccessState: CreditSuccessState.Applied_Success));
-                              }
-                            },
-                            dataBuilder: (context, snapshot) {
-                              return SettingTile(
-                                isCardActivated:
-                                    model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
-                                onTap: () {
-                                  InformationDialog.show(context,
-                                      image: AssetUtils.cardCancelIcon,
-                                      title: S.of(context).reportCardIssue,
-                                      descriptionWidget: Text(
-                                        S.of(context).reportStolenLostCardDesc,
-                                        style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            fontSize: 14.t,
-                                            fontWeight: FontWeight.w400,
-                                            color: AppColor.dark_brown),
-                                      ), onSelected: () {
-                                    Navigator.pop(context);
-                                    // Navigator.pushNamed(
-                                    //     context, RoutePaths.RenewCreditCard);
-                                    model.reportLostStolenCC();
-                                  }, onDismissed: () {
-                                    Navigator.pop(context);
-                                  });
-                                },
-                                title: S.of(context).reportCardIssue,
-                                tileIcon: AssetUtils.report,
-                                // isEnabled:
-                                //     model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
-                                //         PrimarySecondaryCardEnum.PRIMARY,
-                                // isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
-                                //     PrimarySecondaryCardEnum.SECONDARY,
-                                isEnabled: false,
-                                isNotify: true,
-                              );
-                            }),
-                        AppStreamBuilder<Resource<bool>>(
-                            stream: model.reportDamagedCCStream,
-                            initialData: Resource.none(),
-                            onData: (data) {
-                              if (data.status == Status.SUCCESS) {
-                                Navigator.pushNamed(context, RoutePaths.CreditCardApplySuccess,
-                                    arguments: CreditCardApplySuccessArguments(
-                                        creditSuccessState: CreditSuccessState.Applied_Success));
-                              }
-                            },
-                            dataBuilder: (context, snapshot) {
-                              return SettingTile(
-                                isCardActivated:
-                                    model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
-                                onTap: () {
-                                  InformationDialog.show(context,
-                                      image: AssetUtils.cardCancelIcon,
-                                      title: S.of(context).replaceDamageCard,
-                                      descriptionWidget: Text(
-                                        S.of(context).reportStolenLostCardDesc,
-                                        style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            fontSize: 14.t,
-                                            fontWeight: FontWeight.w400,
-                                            color: AppColor.dark_brown),
-                                      ), onSelected: () {
-                                    Navigator.pop(context);
-                                    model.reportDamagedCC();
-                                  }, onDismissed: () {
-                                    Navigator.pop(context);
-                                  });
-                                },
-                                title: S.of(context).replaceDamageCard,
-                                tileIcon: AssetUtils.damageCard,
-                                // isEnabled:
-                                //     model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
-                                //         PrimarySecondaryCardEnum.PRIMARY,
-                                // isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
-                                //     PrimarySecondaryCardEnum.SECONDARY,
-                                isEnabled: false,
-                                isNotify: true,
-                              );
-                            }),
-                        IgnorePointer(
+
+                        ///Report stolen or lost card-------->>
+
+                        Visibility(
+                          visible: false,
                           child: AppStreamBuilder<Resource<bool>>(
-                            initialData: Resource.none(),
-                            stream: model.cancelCreditCardStream,
-                            onData: (data) {},
-                            dataBuilder: (context, data) {
-                              return SettingTile(
-                                isCardActivated:
-                                    model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
-                                isNotify: true,
-                                isEnabled: false,
-                                onTap: () {
-                                  CardCancelDialog.show(context, onSelected: (reasonValue, needsReplacement) {
-                                    Navigator.pop(context);
-                                    model.cancelCard(reasonValue);
-                                  }, onDismissed: () {
-                                    Navigator.pop(context);
-                                  }, onError: (AppError error) {
-                                    model.showToastWithError(error);
+                              stream: model.reportLostStolenCCStream,
+                              initialData: Resource.none(),
+                              onData: (data) {
+                                if (data.status == Status.SUCCESS) {
+                                  Navigator.pushNamed(context, RoutePaths.CreditCardApplySuccess,
+                                      arguments: CreditCardApplySuccessArguments(
+                                          creditSuccessState: CreditSuccessState.Applied_Success));
+                                }
+                              },
+                              dataBuilder: (context, snapshot) {
+                                return SettingTile(
+                                  isCardActivated:
+                                      model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                                  onTap: () {
+                                    InformationDialog.show(context,
+                                        image: AssetUtils.cardCancelIcon,
+                                        title: S.of(context).reportCardIssue,
+                                        descriptionWidget: Text(
+                                          S.of(context).reportStolenLostCardDesc,
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontSize: 14.t,
+                                              fontWeight: FontWeight.w400,
+                                              color: AppColor.dark_brown),
+                                        ), onSelected: () {
+                                      Navigator.pop(context);
+                                      // Navigator.pushNamed(
+                                      //     context, RoutePaths.RenewCreditCard);
+                                      model.reportLostStolenCC();
+                                    }, onDismissed: () {
+                                      Navigator.pop(context);
+                                    });
                                   },
-                                      reasons: StringUtils.isDirectionRTL(context)
-                                          ? model.creditCardCancellationReasonAr
-                                          : model.creditCardCancellationReasonEn);
-                                },
-                                title: S.of(context).cancelThisCard,
-                                tileIcon: AssetUtils.cancelCard,
-                              );
-                            },
+                                  title: S.of(context).reportCardIssue,
+                                  tileIcon: AssetUtils.report,
+                                  // isEnabled:
+                                  //     model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                                  //         PrimarySecondaryCardEnum.PRIMARY,
+                                  // isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                                  //     PrimarySecondaryCardEnum.SECONDARY,
+                                  isEnabled: false,
+                                  isNotify: true,
+                                );
+                              }),
+                        ),
+
+                        ///Replace damaged card-------->>
+
+                        Visibility(
+                          visible: false,
+                          child: AppStreamBuilder<Resource<bool>>(
+                              stream: model.reportDamagedCCStream,
+                              initialData: Resource.none(),
+                              onData: (data) {
+                                if (data.status == Status.SUCCESS) {
+                                  Navigator.pushNamed(context, RoutePaths.CreditCardApplySuccess,
+                                      arguments: CreditCardApplySuccessArguments(
+                                          creditSuccessState: CreditSuccessState.Applied_Success));
+                                }
+                              },
+                              dataBuilder: (context, snapshot) {
+                                return SettingTile(
+                                  isCardActivated:
+                                      model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                                  onTap: () {
+                                    InformationDialog.show(context,
+                                        image: AssetUtils.cardCancelIcon,
+                                        title: S.of(context).replaceDamageCard,
+                                        descriptionWidget: Text(
+                                          S.of(context).reportStolenLostCardDesc,
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontSize: 14.t,
+                                              fontWeight: FontWeight.w400,
+                                              color: AppColor.dark_brown),
+                                        ), onSelected: () {
+                                      Navigator.pop(context);
+                                      model.reportDamagedCC();
+                                    }, onDismissed: () {
+                                      Navigator.pop(context);
+                                    });
+                                  },
+                                  title: S.of(context).replaceDamageCard,
+                                  tileIcon: AssetUtils.damageCard,
+                                  // isEnabled:
+                                  //     model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                                  //         PrimarySecondaryCardEnum.PRIMARY,
+                                  // isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                                  //     PrimarySecondaryCardEnum.SECONDARY,
+                                  isEnabled: false,
+                                  isNotify: true,
+                                );
+                              }),
+                        ),
+
+                        ///Cancel this card -------->>
+
+                        Visibility(
+                          visible: false,
+                          child: IgnorePointer(
+                            child: AppStreamBuilder<Resource<bool>>(
+                              initialData: Resource.none(),
+                              stream: model.cancelCreditCardStream,
+                              onData: (data) {},
+                              dataBuilder: (context, data) {
+                                return SettingTile(
+                                  isCardActivated:
+                                      model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                                  isNotify: true,
+                                  isEnabled: false,
+                                  onTap: () {
+                                  CardCancelDialog.show(context, onSelected: (reasonValue, needsReplacement) {
+                                      Navigator.pop(context);
+                                      model.cancelCard(reasonValue);
+                                    }, onDismissed: () {
+                                      Navigator.pop(context);
+                                    }, onError: (AppError error) {
+                                      model.showToastWithError(error);
+                                    },
+                                        reasons: StringUtils.isDirectionRTL(context)
+                                            ? model.creditCardCancellationReasonAr
+                                            : model.creditCardCancellationReasonEn);
+                                  },
+                                  title: S.of(context).cancelThisCard,
+                                  tileIcon: AssetUtils.cancelCard,
+                                );
+                              },
+                            ),
                           ),
                         ),
                         SizedBox(height: 15.h),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 63.0.w),
-                          child: Text(
-                            S.of(context).actionComeToYouSoon,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              color: AppColor.gray_1,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 11.t,
+
+                        ///NOTE -------->>
+                        Visibility(
+                          visible: false,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 63.0.w),
+                            child: Text(
+                              S.of(context).actionComeToYouSoon,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                color: AppColor.gray_1,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 11.t,
+                              ),
                             ),
                           ),
                         ),
