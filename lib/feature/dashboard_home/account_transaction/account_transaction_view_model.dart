@@ -5,6 +5,7 @@ import 'package:domain/model/dashboard/transactions/transactions_content.dart';
 import 'package:domain/usecase/card_delivery/get_debit_card_transactions_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_debit_years_usecase.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/model/transaction_item.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -12,6 +13,8 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+
+import '../../../di/dashboard/dashboard_modules.dart';
 
 class AccountTransactionViewModel extends BasePageViewModel {
   final GetDebitCardTransactionsUseCase _cardTransactionsUseCase;
@@ -167,6 +170,15 @@ class AccountTransactionViewModel extends BasePageViewModel {
       default:
         return 180;
     }
+  }
+
+
+  void animateBackToDashboard(BuildContext context) {
+    final dashboardProvider = ProviderScope.containerOf(context).read(
+      appHomeViewModelProvider,
+    );
+
+    dashboardProvider.animateReverseTransactionPage();
   }
 
   @override
