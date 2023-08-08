@@ -273,7 +273,6 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                       appSwiperController: model.appSwiperController,
                                                                                       // pageController: model.pageController,
                                                                                       onIndexChanged: (index) {
-                                                                                        model.pageViewIndex = index;
                                                                                         model.updatePage(index);
                                                                                       },
                                                                                       currentStep: currentStep,
@@ -289,17 +288,8 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                         splashColor: Colors.transparent,
                                                                                         highlightColor: Colors.transparent,
                                                                                         onTap: () {
-                                                                                          /*if (model.myCreditCard) {
-                                                                                            if (!context.read<LayoutViewModel>().showButtonsInCreditCard) return;
-                                                                                            context
-                                                                                                .read<DashboardViewModel>()
-                                                                                                .showTimeline(!model.timelinePage);
-                                                                                          }*/
-                                                                                          /*if (myAccount) {
-                                                                                            //TODO:
-                                                                                          }*/
-                                                                                          if (!model.showButtonsInCreditCard) return;
-                                                                                          if (!showTimeLine!) {
+                                                                                          // if (!model.showButtonsInCreditCard) return;
+                                                                                          if (model.cardTypeList[currentStep!].timeLineEnum == TimeLineEnum.TIMELINE_YES) {
                                                                                             // Navigator.pushNamed(context, RoutePaths.TimeLinePage,
                                                                                             //     arguments: TimeLinePageArguments(cardType: model.cardTypeList[currentStep!].cardType, timeLineArguments: model.timeLineArguments));
                                                                                             model.showTimeline(!model.timelinePage);
@@ -308,18 +298,15 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                         child: AnimatedOpacity(
                                                                                           ///For Credit Card
                                                                                           duration: const Duration(milliseconds: 500),
-                                                                                          opacity: (!model.showButtonsInCreditCard && model.isCreditCard(currentStep!)) ||
-                                                                                                  (!model.showButtonsInDebitCard && model.isDebitCard(currentStep!))
-                                                                                              ? 0
-                                                                                              : 1,
+                                                                                          opacity: model.cardTypeList[currentStep!].timeLineEnum != TimeLineEnum.TIMELINE_YES ? 0 : 1,
                                                                                           child: AnimatedBuilder(
                                                                                             animation: model.appSwiperController,
                                                                                             builder: (BuildContext context, Widget? child) {
                                                                                               double translateYOffset = 0;
                                                                                               double opacity = 0;
                                                                                               if (model.appSwiperController.positions.isNotEmpty) {
-                                                                                                opacity = model.pageViewIndex - (model.appSwiperController.page ?? 0);
-                                                                                                translateYOffset = model.pageViewIndex - (model.appSwiperController.page ?? 0);
+                                                                                                opacity = currentStep - (model.appSwiperController.page ?? 0);
+                                                                                                translateYOffset = currentStep - (model.appSwiperController.page ?? 0);
                                                                                               }
                                                                                               return Transform.translate(
                                                                                                 offset: Offset(0, translateYOffset.abs() * -40),
@@ -358,7 +345,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                       child:
 
                                                                                           ///No transaction button for debit card
-                                                                                          model.isDebitCard(currentStep!)
+                                                                                          model.isDebitCard(currentStep)
                                                                                               ? Container(
                                                                                                   child: AnimatedCrossFade(
                                                                                                     duration: const Duration(milliseconds: 500),
@@ -396,85 +383,91 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                     secondChild: const SizedBox(),
                                                                                                   ),
                                                                                                 )
-                                                                                              : InkWell(
-                                                                                                  splashColor: Colors.transparent,
-                                                                                                  highlightColor: Colors.transparent,
-                                                                                                  onTap: () {
-                                                                                                    if (model.isCreditCard(currentStep)) {
-                                                                                                      if (model.settings) {
-                                                                                                        model.showSettingPage(false);
-                                                                                                        return;
-                                                                                                      }
+                                                                                              : model.cardTypeList[currentStep].swipeUpEnum == SwipeUpEnum.SWIPE_UP_YES
+                                                                                                  ? InkWell(
+                                                                                                      splashColor: Colors.transparent,
+                                                                                                      highlightColor: Colors.transparent,
+                                                                                                      onTap: () {
+                                                                                                        if (model.isCreditCard(currentStep)) {
+                                                                                                          if (model.settings) {
+                                                                                                            model.showSettingPage(false);
+                                                                                                            return;
+                                                                                                          }
 
-                                                                                                      if (model.showPayBackView) {
-                                                                                                        model.goToPayBackView(false);
-                                                                                                        return;
-                                                                                                      }
+                                                                                                          if (model.showPayBackView) {
+                                                                                                            model.goToPayBackView(false);
+                                                                                                            return;
+                                                                                                          }
 
-                                                                                                      if (model.showButtonsInCreditCard) {
-                                                                                                        model.goToTransactionPage(context, currentStep!);
-                                                                                                        return;
-                                                                                                      }
-                                                                                                    }
-                                                                                                  },
-                                                                                                  child: AnimatedOpacity(
-                                                                                                    ///For credit card
-                                                                                                    duration: const Duration(milliseconds: 500),
-                                                                                                    opacity: (!model.showButtonsInCreditCard && model.isCreditCard(currentStep!)) ? 0 : 1,
-                                                                                                    child: AnimatedBuilder(
-                                                                                                      animation: model.appSwiperController,
-                                                                                                      builder: (BuildContext context, Widget? child) {
-                                                                                                        double translateYOffset = 0;
-                                                                                                        double opacity = 0;
-                                                                                                        if (model.appSwiperController.hasClients) if (model.appSwiperController.position.hasContentDimensions) {
-                                                                                                          opacity = model.pageViewIndex - (model.appSwiperController.page ?? 0);
-                                                                                                          translateYOffset = model.pageViewIndex - (model.appSwiperController.page ?? 0);
+                                                                                                          if (model.showButtonsInCreditCard) {
+                                                                                                            model.goToTransactionPage(context, currentStep);
+                                                                                                            return;
+                                                                                                          }
                                                                                                         }
-                                                                                                        return Transform.translate(
-                                                                                                          offset: Offset(0, translateYOffset.abs() * 40),
-                                                                                                          child: Opacity(
-                                                                                                            opacity: (opacity.abs() - 1).abs(),
-                                                                                                            child: child!,
-                                                                                                          ),
-                                                                                                        );
                                                                                                       },
-
-                                                                                                      ///For credit card
-                                                                                                      child: AnimatedContainer(
+                                                                                                      child: AnimatedOpacity(
+                                                                                                        ///For credit card
                                                                                                         duration: const Duration(milliseconds: 500),
-                                                                                                        curve: Curves.easeInOut,
-                                                                                                        width: model.settings || model.showPayBackView ? 48 : 150,
-                                                                                                        height: model.settings || model.showPayBackView ? 48 : 44,
-                                                                                                        alignment: Alignment.center,
-                                                                                                        decoration: BoxDecoration(
-                                                                                                          color: Colors.white,
-                                                                                                          border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
-                                                                                                          borderRadius: BorderRadius.circular(100),
-                                                                                                          boxShadow: [
-                                                                                                            BoxShadow(
-                                                                                                                color: Theme.of(context).colorScheme.inverseSurface, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))
-                                                                                                          ],
-                                                                                                        ),
-                                                                                                        child: AnimatedCrossFade(
-                                                                                                          duration: const Duration(milliseconds: 500),
-                                                                                                          reverseDuration: const Duration(milliseconds: 500),
-                                                                                                          firstCurve: Curves.easeIn,
-                                                                                                          secondCurve: Curves.easeIn,
-                                                                                                          alignment: Alignment.center,
-                                                                                                          crossFadeState: model.settings || model.showPayBackView ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-                                                                                                          firstChild: Padding(
-                                                                                                            padding: const EdgeInsets.all(10.0),
-                                                                                                            child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue, height: 40, width: 40),
-                                                                                                          ),
-                                                                                                          secondChild: Text(
-                                                                                                            S.current.transactions,
-                                                                                                            style: TextStyle(color: AppColor.skyblue, fontSize: 12, fontWeight: FontWeight.w600),
+                                                                                                        opacity: (!model.showButtonsInCreditCard && model.isCreditCard(currentStep)) ? 0 : 1,
+                                                                                                        child: AnimatedBuilder(
+                                                                                                          animation: model.appSwiperController,
+                                                                                                          builder: (BuildContext context, Widget? child) {
+                                                                                                            double translateYOffset = 0;
+                                                                                                            double opacity = 0;
+                                                                                                            if (model.appSwiperController.hasClients) if (model.appSwiperController.position.hasContentDimensions) {
+                                                                                                              opacity = currentStep - (model.appSwiperController.page ?? 0);
+                                                                                                              translateYOffset = currentStep - (model.appSwiperController.page ?? 0);
+                                                                                                            }
+                                                                                                            return Transform.translate(
+                                                                                                              offset: Offset(0, translateYOffset.abs() * 40),
+                                                                                                              child: Opacity(
+                                                                                                                opacity: (opacity.abs() - 1).abs(),
+                                                                                                                child: child!,
+                                                                                                              ),
+                                                                                                            );
+                                                                                                          },
+
+                                                                                                          ///For credit card
+                                                                                                          child: AnimatedContainer(
+                                                                                                            duration: const Duration(milliseconds: 500),
+                                                                                                            curve: Curves.easeInOut,
+                                                                                                            width: model.settings || model.showPayBackView ? 48 : 150,
+                                                                                                            height: model.settings || model.showPayBackView ? 48 : 44,
+                                                                                                            alignment: Alignment.center,
+                                                                                                            decoration: BoxDecoration(
+                                                                                                              color: Colors.white,
+                                                                                                              border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
+                                                                                                              borderRadius: BorderRadius.circular(100),
+                                                                                                              boxShadow: [
+                                                                                                                BoxShadow(
+                                                                                                                    color: Theme.of(context).colorScheme.inverseSurface,
+                                                                                                                    blurRadius: 5,
+                                                                                                                    spreadRadius: 0.1,
+                                                                                                                    offset: Offset(0, 4))
+                                                                                                              ],
+                                                                                                            ),
+                                                                                                            child: AnimatedCrossFade(
+                                                                                                              duration: const Duration(milliseconds: 500),
+                                                                                                              reverseDuration: const Duration(milliseconds: 500),
+                                                                                                              firstCurve: Curves.easeIn,
+                                                                                                              secondCurve: Curves.easeIn,
+                                                                                                              alignment: Alignment.center,
+                                                                                                              crossFadeState:
+                                                                                                                  model.settings || model.showPayBackView ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                                                                                                              firstChild: Padding(
+                                                                                                                padding: const EdgeInsets.all(10.0),
+                                                                                                                child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue, height: 40, width: 40),
+                                                                                                              ),
+                                                                                                              secondChild: Text(
+                                                                                                                S.current.transactions,
+                                                                                                                style: TextStyle(color: AppColor.skyblue, fontSize: 12, fontWeight: FontWeight.w600),
+                                                                                                              ),
+                                                                                                            ),
                                                                                                           ),
                                                                                                         ),
                                                                                                       ),
-                                                                                                    ),
-                                                                                                  ),
-                                                                                                ),
+                                                                                                    )
+                                                                                                  : SizedBox(),
                                                                                     ),
                                                                                   ],
                                                                                 ),
@@ -486,7 +479,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                   height: MediaQuery.of(context).size.height * 0.03,
                                                                                   child: Row(
                                                                                     mainAxisAlignment: MainAxisAlignment.center,
-                                                                                    children: model.buildPageIndicator(currentStep!, cardData.data!.dashboardDataContent!.debitCard!.length),
+                                                                                    children: model.buildPageIndicator(currentStep, cardData.data!.dashboardDataContent!.debitCard!.length),
                                                                                   ),
                                                                                 ),
                                                                                 duration: const Duration(milliseconds: 500),
