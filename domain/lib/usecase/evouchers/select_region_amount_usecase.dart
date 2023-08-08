@@ -24,7 +24,7 @@ class SelectRegionAmountUseCaseParams extends Params {
     if (selectedRegion!.isEmpty) {
       return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.SELECT_REGION, cause: Exception()));
     } else if (amount!.isEmpty) {
-      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.SELECT_AMOUNT, cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.SELECT_VALUE, cause: Exception()));
     }
     return Right(true);
   }

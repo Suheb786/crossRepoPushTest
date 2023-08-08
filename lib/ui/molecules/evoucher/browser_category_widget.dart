@@ -1,63 +1,77 @@
+import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:flutter/material.dart';
-import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class BrowserByCategoryItemWidget extends StatelessWidget {
-  const BrowserByCategoryItemWidget({Key? key}) : super(key: key);
+  List<VoucherCategories> categories;
+  Function(VoucherCategories, int) onSelectCategory;
+
+  BrowserByCategoryItemWidget(this.categories, {required this.onSelectCategory, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      itemCount: 6,
+    return ListView.separated(
+      itemCount: categories.length,
       shrinkWrap: true,
       physics: ScrollPhysics(),
+      padding: EdgeInsets.only(top: 24.h),
       itemBuilder: (context, index) {
         return Container(
-          child: _buildListItem(context),
+          child: _buildListItem(context, categories[index], index),
         );
       },
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3, crossAxisSpacing: 1.0, mainAxisSpacing: 1.0, childAspectRatio: 1.0),
+      separatorBuilder: (BuildContext context, int index) {
+        return Padding(
+          padding: EdgeInsets.symmetric(vertical: 16.h),
+          child: AppDivider(),
+        );
+      },
     );
   }
 
-  Widget _buildListItem(BuildContext context) {
+  Widget _buildListItem(BuildContext context, VoucherCategories category, int index) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, RoutePaths.EVouchersListing);
+        onSelectCategory(
+          category,
+          index,
+        );
+
+        print("category.categoryIcon===>${category.categoryIcon}");
       },
-      child: Card(
-        elevation: 30,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Container(
-          height: 103,
-          width: 103.66,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AppSvg.asset(
-                AssetUtils.processing_voucher_icon,
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Text(
-                S.of(context).games,
-                style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    color: AppColor.gray_black,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600),
-              )
-            ],
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: 48.w,
+            height: 48.h,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(48.w),
+              border: Border.all(color: AppColor.gray1, width: 1.w),
+            ),
+            alignment: Alignment.center,
+            child:
+                //MemoryImage()
+                Image.memory(
+              category.categoryIcon,
+              //   fit: BoxFit.cover,
+            ),
           ),
-        ),
+          SizedBox(width: 16.w),
+          Expanded(
+            child: Text(
+              category.categoryName,
+              style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  color: Theme.of(context).colorScheme.shadow,
+                  fontSize: 14.t,
+                  fontWeight: FontWeight.w600),
+            ),
+          )
+        ],
       ),
     );
   }

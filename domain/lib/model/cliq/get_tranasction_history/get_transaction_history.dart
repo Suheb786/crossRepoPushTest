@@ -3,6 +3,7 @@ import 'package:domain/model/cliq/get_tranasction_history/get_transaction_histor
 
 class GetTransactionHistory {
   final List<GetTransactionHistoryContent>? transactionHistoryContent;
+
   GetTransactionHistory({
     required this.transactionHistoryContent,
   });

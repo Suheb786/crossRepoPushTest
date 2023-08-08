@@ -7,8 +7,17 @@ class RemoveAvatarRequest {
   @JsonKey(name: "BeneficiaryDetailId")
   final String? beneficiaryDetailId;
 
+  @JsonKey(name: "UserId")
+  final String? userId;
+
   @JsonKey(name: "IsFromMobile")
   final bool? isFromMobile;
+
+  @JsonKey(name: "BeneType")
+  final String? beneType;
+
+  @JsonKey(name: "Nickname")
+  final String? nickName;
 
   @JsonKey(name: "GetToken")
   final bool? getToken;
@@ -18,7 +27,10 @@ class RemoveAvatarRequest {
 
   RemoveAvatarRequest({
     this.beneficiaryDetailId,
+    this.userId = '',
     this.isFromMobile = true,
+    this.beneType,
+    this.nickName = '',
     this.getToken = true,
     required this.baseData,
   });

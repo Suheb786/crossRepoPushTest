@@ -13,6 +13,7 @@ GetAccountByAliasRequestEntity _$GetAccountByAliasRequestEntityFromJson(
       value: json['Value'] as String?,
       currency: json['Currency'] as String?,
       getToken: json['getToken'] as bool? ?? true,
+      beneficiaryId: json['BeneficiaryId'] as String?,
     );
 
 Map<String, dynamic> _$GetAccountByAliasRequestEntityToJson(
@@ -21,5 +22,6 @@ Map<String, dynamic> _$GetAccountByAliasRequestEntityToJson(
       'Value': instance.value,
       'Currency': instance.currency,
       'getToken': instance.getToken,
+      'BeneficiaryId': instance.beneficiaryId,
       'baseClass': instance.baseData,
     };

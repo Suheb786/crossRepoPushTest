@@ -137,7 +137,9 @@ class SendAmountToContactViewModel extends BasePageViewModel {
 
   void checkSendMoney() {
     _checkSendMoneyRequest.safeAdd(CheckSendMoneyUseCaseParams(
-        toAccount: beneficiary.accountNo!, toAmount: double.parse(currentPinValue)));
+        toAccount: beneficiary.identifier ?? '',
+        toAmount: double.parse(currentPinValue),
+        beneficiaryId: beneficiary.id ?? ''));
   }
 
   void transfer(TransferResponse transferResponse) {

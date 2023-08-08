@@ -12,6 +12,8 @@ class TransferQRRequestEntity {
   final String? toAmount;
   @JsonKey(name: "toAccount")
   final String? toAccount;
+  @JsonKey(name: "OtpCode")
+  final String? otp;
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic>? baseData;
 
@@ -19,7 +21,8 @@ class TransferQRRequestEntity {
     this.toAmount,
     this.toAccount,
     this.qrRequestId,
-    this.getToken= true,
+    this.getToken = true,
+    this.otp = '',
     this.baseData,
   });
 

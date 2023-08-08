@@ -95,7 +95,6 @@ class RejectRequestPaymentOtpPageView extends BasePageViewWidget<RejectRequestPa
                                     .rejectReasonCode,
                                 GetToken: true,
                                 otpCode: model.otpController.text);
-                            //  Navigator.pushReplacementNamed(context, RoutePaths.CliqIdCreationSuccess);
                           }
                         }
                       },

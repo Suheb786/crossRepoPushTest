@@ -1,12 +1,11 @@
+import 'package:domain/model/bill_payments/get_biller_lookup_list/prepaid_Categories.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:domain/model/bill_payments/get_biller_lookup_list/prepaid_Categories.dart';
 
 part 'prepaid_categories_entity.g.dart';
 
 @JsonSerializable()
-class PrepaidCategoriesEntity extends BaseLayerDataTransformer<
-    PrepaidCategoriesEntity, PrepaidCategories> {
+class PrepaidCategoriesEntity extends BaseLayerDataTransformer<PrepaidCategoriesEntity, PrepaidCategories> {
   @JsonKey(name: "catCode")
   String? catCode;
 
@@ -25,13 +24,12 @@ class PrepaidCategoriesEntity extends BaseLayerDataTransformer<
   @JsonKey(name: "type")
   String? type;
 
-  PrepaidCategoriesEntity(
-      {this.catCode,
-      this.shortDescriptionAr,
-      this.shortDescriptionEn,
-      this.descriptionEn,
-      this.descriptionAr,
-      this.type});
+  PrepaidCategoriesEntity({this.catCode,
+    this.shortDescriptionAr,
+    this.shortDescriptionEn,
+    this.descriptionEn,
+    this.descriptionAr,
+    this.type});
 
   factory PrepaidCategoriesEntity.fromJson(Map<String, dynamic> json) =>
       _$PrepaidCategoriesEntityFromJson(json);

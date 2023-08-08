@@ -39,9 +39,9 @@ class TransactionEntity implements BaseLayerDataTransformer<TransactionEntity, T
       this.balance,
       this.balanceCur,
       this.trnxType,
-      this.memo= "",
-      this.type= "",
-      this.currency= ""});
+      this.memo = "",
+      this.type = "",
+      this.currency = ""});
 
   factory TransactionEntity.fromJson(Map<String, dynamic> json) => _$TransactionEntityFromJson(json);
 

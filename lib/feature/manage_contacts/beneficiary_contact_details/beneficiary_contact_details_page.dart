@@ -1,22 +1,20 @@
-import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
-import '../../../main/app_viewmodel.dart';
 import '../../../utils/navgition_type.dart';
 import 'beneficiary_contact_details_page_view.dart';
 import 'beneficiary_contact_details_page_view_model.dart';
 
 class BeneficiaryContactDetailsPage extends BasePage<BeneficiaryContactDetailsPageViewModel> {
-  final Beneficiary _beneficiaryInformation;
+  final BeneficiaryContactDetailArguments arguments;
 
-  BeneficiaryContactDetailsPage(this._beneficiaryInformation);
+  BeneficiaryContactDetailsPage(this.arguments);
 
   @override
   State<StatefulWidget> createState() => BeneficiaryContactDetailsPageState();
@@ -29,15 +27,11 @@ class BeneficiaryContactDetailsPageState
       BeneficiaryContactDetailsPageView(provideBase());
 
   @override
-  ProviderBase provideBase() =>
-      beneficiaryContactAddedPageViewModelProvider.call(widget._beneficiaryInformation);
+  ProviderBase provideBase() => beneficiaryContactAddedPageViewModelProvider.call(widget.arguments);
 
   @override
   void onModelReady(BeneficiaryContactDetailsPageViewModel model) {
-    final provider = ProviderScope.containerOf(appLevelKey.currentContext!).read(
-      beneficiaryContactListPageViewModelProvider,
-    );
-    model.navigationType = provider.navigationType!;
+    model.navigationType = model.argument.navigationType;
     super.onModelReady(model);
   }
 
@@ -58,13 +52,29 @@ class BeneficiaryContactDetailsPageState
           children: [
             InkWell(
               onTap: () {
-                Navigator.popUntil(context, ModalRoute.withName(RoutePaths.BeneficiaryContactsList));
+                if (getViewModel().argument.isFromContactCard) {
+                  final paymentProvider = ProviderScope.containerOf(context).read(
+                    paymentHomeViewModelProvider,
+                  );
+                  paymentProvider.getBeneficiaries(
+                      context, paymentProvider.navigationType == NavigationType.REQUEST_MONEY ? 'RTP' : 'SM');
+                } else {
+                  final provider = ProviderScope.containerOf(context).read(
+                    beneficiaryContactListPageViewModelProvider,
+                  );
+                  if (provider.isNewRecordCreated || getViewModel().isUpdateProfile) {
+                    provider.getBeneficiaryList(isFromSearch: false);
+                  }
+                }
+                Navigator.pop(context);
               },
               child: AppSvg.asset(AssetUtils.back,
                   height: 24.h,
                   width: 24.w,
                   matchTextDirection: true,
-                  color: Theme.of(context).colorScheme.secondary),
+                  color: getViewModel().argument.navigationType == NavigationType.SEND_MONEY
+                      ? Theme.of(context).colorScheme.secondary
+                      : Theme.of(context).colorScheme.shadow),
             ),
           ],
         ),
@@ -77,4 +87,13 @@ class BeneficiaryContactDetailsPageState
     super.build(context);
     return stateBuild(context);
   }
+}
+
+class BeneficiaryContactDetailArguments {
+  final dynamic beneficiaryInformation;
+  final bool isFromContactCard;
+  final NavigationType navigationType;
+
+  BeneficiaryContactDetailArguments(
+      {this.beneficiaryInformation, required this.isFromContactCard, required this.navigationType});
 }

@@ -35,7 +35,6 @@ class RTPConfirmationDialogView extends StatelessWidget {
       required this.cdtrName,
       required this.cdtrDpText,
       required this.amount,
-
       required this.cdtrAcct});
 
   @override
@@ -76,25 +75,28 @@ class RTPConfirmationDialogView extends StatelessWidget {
                       SizedBox(height: 16.0.h),
                       Visibility(
                         visible: isAmountVisible,
-                        child: RichText(
-                          text: TextSpan(
-                            text: amount,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                fontSize: 24.t,
-                                fontWeight: FontWeight.w700,
-                                color: AppColor.black),
-                            children: [
-                              TextSpan(text: " "),
-                              TextSpan(
-                                text: currency,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    fontSize: 12.t,
-                                    color: AppColor.light_gray,
-                                    fontWeight: FontWeight.w700),
-                              )
-                            ],
+                        child: Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: RichText(
+                            text: TextSpan(
+                              text: amount,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 24.t,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColor.black),
+                              children: [
+                                TextSpan(text: " "),
+                                TextSpan(
+                                  text: currency,
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 12.t,
+                                      color: AppColor.light_gray,
+                                      fontWeight: FontWeight.w700),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),

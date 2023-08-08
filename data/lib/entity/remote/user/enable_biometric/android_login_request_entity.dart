@@ -14,7 +14,7 @@ class AndroidLoginRequestEntity {
   final Map<String, dynamic> baseData;
 
   AndroidLoginRequestEntity(
-      {this.uniqueId= "", required this.baseData, this.fireBaseToken= "", this.signature= ""});
+      {this.uniqueId = "", required this.baseData, this.fireBaseToken = "", this.signature = ""});
 
   factory AndroidLoginRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$AndroidLoginRequestEntityFromJson(json);

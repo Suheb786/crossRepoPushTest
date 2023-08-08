@@ -7,8 +7,7 @@ import 'biller_service_entity.dart';
 part 'biller_details_entity.g.dart';
 
 @JsonSerializable()
-class BillerDetailsEntity
-    extends BaseLayerDataTransformer<BillerDetailsEntity, BillerDetailsList> {
+class BillerDetailsEntity extends BaseLayerDataTransformer<BillerDetailsEntity, BillerDetailsList> {
   @JsonKey(name: "billerCode")
   dynamic billerCode;
 
@@ -21,14 +20,9 @@ class BillerDetailsEntity
   @JsonKey(name: "billerServices")
   List<Map<String, dynamic>>? billerServices;
 
-  BillerDetailsEntity(
-      {this.billerCode,
-      this.billerNameEn,
-      this.billerNameAr,
-      this.billerServices});
+  BillerDetailsEntity({this.billerCode, this.billerNameEn, this.billerNameAr, this.billerServices});
 
-  factory BillerDetailsEntity.fromJson(Map<String, dynamic> json) =>
-      _$BillerDetailsEntityFromJson(json);
+  factory BillerDetailsEntity.fromJson(Map<String, dynamic> json) => _$BillerDetailsEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$BillerDetailsEntityToJson(this);
 
@@ -45,8 +39,7 @@ class BillerDetailsEntity
         billerNameEn: this.billerNameEn,
         billerService: this
             .billerServices!
-            .map((messages) =>
-                BillerServiceEntity.fromJson(messages).transform())
+            .map((messages) => BillerServiceEntity.fromJson(messages).transform())
             .toList());
   }
 }

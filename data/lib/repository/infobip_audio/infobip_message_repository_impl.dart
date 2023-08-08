@@ -4,7 +4,7 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/repository/help_center/infobip_message_repository.dart';
 import 'package:domain/repository/user/user_repository.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:infobip_mobilemessaging/models/UserData.dart';
+import 'package:infobip_mobilemessaging/models/user_data.dart';
 
 class InfobipMessageRepositoryImpl extends InfobipMessageRepository {
   final InfobipMessageLocalDs _infobipMessageDs;

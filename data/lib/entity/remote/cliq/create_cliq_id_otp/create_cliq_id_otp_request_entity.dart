@@ -9,7 +9,6 @@ class CreateCliqIdOtpRequestEntity {
   final String? accountNumber;
   @JsonKey(name: "isAlias")
   final bool? isAlias;
-
   @JsonKey(name: "aliasValue")
   final String? aliasValue;
   @JsonKey(name: "getToken")

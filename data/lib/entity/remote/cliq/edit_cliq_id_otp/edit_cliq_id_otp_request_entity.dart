@@ -10,7 +10,6 @@ class EditCliqOtpRequestEntity {
   final String? aliasId;
   @JsonKey(name: "isAlias")
   final bool? isAlias;
-
   @JsonKey(name: "aliasValue")
   final String? aliasValue;
   @JsonKey(name: "GetToken")

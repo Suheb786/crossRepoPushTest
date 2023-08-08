@@ -215,18 +215,6 @@ class BillPaymentRepositoryImpl extends BillPaymentRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> cliqRegisterCustomer() async {
-    final result = await safeApiCall(_remoteDS.cliqRegisterCustomer());
-    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
-  }
-
-  @override
-  Future<Either<NetworkError, bool>> cliqRegisterAccount() async {
-    final result = await safeApiCall(_remoteDS.cliqRegisterAccount());
-    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
-  }
-
-  @override
   Future<Either<NetworkError, bool>> accountUpload() async {
     final result = await safeApiCall(_remoteDS.accountUpload());
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));

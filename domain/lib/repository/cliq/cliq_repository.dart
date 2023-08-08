@@ -125,29 +125,6 @@ abstract class CliqRepository {
     required bool getToken,
   });
 
-  Future<Either<NetworkError, bool>> updateRTPCliqRequest({
-    required String msgId,
-    required String rejectReason,
-    required String rejectAddInfo,
-    required String dbtrBic,
-    required String dbtrAcct,
-    required String dbtrName,
-    required String dbtrIsIndvl,
-    required String cdtrBic,
-    required String cdtrAcct,
-    required String cdtrName,
-    required String cdtrIsIndvl,
-    required String rmtInf,
-    required String ctgyPurp,
-    required String amount,
-    required String curr,
-    required bool rtpStatus,
-    required String otPcode,
-    required String cdtrPstlAdr,
-    required String dbtrPstlAdr,
-    required bool getToken,
-  });
-
   Future<Either<NetworkError, EditCliqOtp>> editCliqIdOtp({
     required String aliasId,
     required bool isAlias,
@@ -218,6 +195,7 @@ abstract class CliqRepository {
   });
 
   Future<Either<NetworkError, List<RejectionReasonInward>>> getRejectionReasons();
+
   Future<Either<NetworkError, ReturnRTPRequestOTP>> returnRTPrequestOTP({
     required bool getToken,
   });
@@ -237,13 +215,6 @@ abstract class CliqRepository {
     required String? DisputeRefNo,
     required String? OtpCode,
     required bool GetToken,
-  });
-
-  Future<Either<NetworkError, bool>> getTransactionHistory({
-    required String? FilterDays,
-    required String? TransactionType,
-    required String? TotalRecords,
-    required bool? GetToken,
   });
 
   Future<Either<NetworkError, ApproveRTPOtp>> approveRTPRequestOtp();

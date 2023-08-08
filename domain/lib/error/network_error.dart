@@ -2,6 +2,7 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/base_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:flutter/cupertino.dart';
 
 class NetworkError extends BaseError {
   NetworkError(
@@ -56,7 +57,7 @@ class NetworkError extends BaseError {
         return AppError(cause: cause, error: error, type: ErrorType.GET_CALL_DURATION_ERROR);
 
       default:
-        print("I AM EXECUTED with error code ${error.message}");
+        debugPrint("I AM EXECUTED with error code ${error.message}");
         switch (error.message) {
           case "Err-SN1":
             return AppError(cause: cause, error: error, type: ErrorType.MOBILE_ALREADY_EXIST);
@@ -721,8 +722,12 @@ class NetworkError extends BaseError {
           case "err-364":
             return AppError(cause: cause, error: error, type: ErrorType.QR_NOT_SCANNED);
 
+          case "err-522":
+            return AppError(cause: cause, error: error, type: ErrorType.OOPS_YOU_CAN_ONLY_CREATE_5_CLIQ_IDS);
+
           case "err-365":
-            return AppError(cause: cause, error: error, type: ErrorType.QR_INVALID);
+            return AppError(
+                cause: cause, error: error, type: ErrorType.OOPS_THE_QR_CODE_IS_INVALID_PLEASE_TRY_AGAIN);
 
           case "err-375":
             return AppError(
@@ -855,12 +860,48 @@ class NetworkError extends BaseError {
           case "err-400":
             return AppError(cause: cause, error: error, type: ErrorType.ACCOUNT_CLOSED);
 
+          case "err-510":
+            return AppError(cause: cause, error: error, type: ErrorType.FAVOURITE_CONTACT_LIMIT_EXCEEDED);
+
+          case "err-511":
+            return AppError(cause: cause, error: error, type: ErrorType.NICKNAME_ALREADY_EXISTM);
+
+          case "err-512":
+            return AppError(cause: cause, error: error, type: ErrorType.INDENTFIER_ALREADY_EXISTS);
+
+          case "err-513":
+            return AppError(cause: cause, error: error, type: ErrorType.UPDATE_NICKNAME_FAILURE);
+
+          case "err-514":
+            return AppError(cause: cause, error: error, type: ErrorType.REMOVE_NICKNAME_FAILURE);
+
+          case "err-515":
+            return AppError(cause: cause, error: error, type: ErrorType.IMAGE_FORMAT_WRONG);
+
+          case "err-516":
+            return AppError(cause: cause, error: error, type: ErrorType.UPDATE_AVATAR_FAILURE);
+
+          case "err-517":
+            return AppError(cause: cause, error: error, type: ErrorType.REMOVE_AVATAR_FAILURE);
+
+          case "err-518":
+            return AppError(cause: cause, error: error, type: ErrorType.CONTACT_ADDING_FAVOURITE_FAILURE);
+
+          case "err-519":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.IBAN_ACCOUNTNUMBER_MOBILENUMBER_ALIAS_INVALID);
+
+          case "err-520":
+            return AppError(cause: cause, error: error, type: ErrorType.PLEASE_ENTER_IBAN_CLIQ);
+
+          case "err-521":
+            return AppError(cause: cause, error: error, type: ErrorType.TRANSFER_CANNOT_BE_DONE);
+
+          case "err-525":
+            return AppError(cause: cause, error: error, type: ErrorType.DORMANT_ACCOUNT_TRANSACTION_FAILED);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
-
-          // case "err-164":
-          //   return AppError(
-          //       cause: cause, error: error, type: ErrorType.FORCE_UPDATE);
 
           case "ex-001":
             return AppError(cause: cause, error: error, type: ErrorType.ERROR_ADDING_USERNAME);
@@ -1406,6 +1447,14 @@ class NetworkError extends BaseError {
           case "err-506":
             return AppError(
                 cause: cause, error: error, type: ErrorType.YOU_CANNOT_USE_YOUR_CLIQ_ID_TO_SEND_MONEY);
+          case "err-600":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.OOPS_YOU_CANNOT_SEND_MONEY_TO_YOUR_OWN_ACCOUNT);
+
+          case "err-601":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.OOPS_YOU_HAVE_EXCEEDED_YOUR_DAILY_TRANSFER_LIMIT);
+
           default:
             return AppError(cause: cause, error: error, type: ErrorType.NETWORK);
         }

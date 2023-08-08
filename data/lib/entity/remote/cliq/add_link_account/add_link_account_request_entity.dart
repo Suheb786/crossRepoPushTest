@@ -16,10 +16,8 @@ class AddLinkAccountRequestEntity {
   final bool isAlias;
   @JsonKey(name: "AliasValue")
   final String aliasValue;
-
   @JsonKey(name: "OtpCode")
   final String otpCode;
-
   @JsonKey(name: "GetToken")
   final bool getToken;
   @JsonKey(name: "BaseClass")

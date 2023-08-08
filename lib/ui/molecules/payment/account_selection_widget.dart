@@ -44,9 +44,7 @@ class AccountSelectionWidget extends StatelessWidget {
             labelTitle != null || labelTitle != ""
                 ? !labelTitle!.contains(S.of(context).denomination)
                     ? Text(
-                        labelTitle == null || labelTitle == ""
-                            ? S.of(context).savingAccount('${currentIndex + 1}')
-                            : '$labelTitle ${currentIndex + 1}',
+                        labelTitle == null || labelTitle == "" ? S.of(context).account : '$labelTitle ',
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             color: textColor,

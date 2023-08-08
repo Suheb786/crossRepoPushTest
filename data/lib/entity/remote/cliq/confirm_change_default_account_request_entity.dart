@@ -8,7 +8,6 @@ class ConfirmChangeDefaultAccountRequestEntity {
   final String acc;
   @JsonKey(name: "AliasId")
   final String aliasId;
-
   @JsonKey(name: "OtpCode")
   final String otpCode;
   @JsonKey(name: "GetToken")

@@ -50,7 +50,7 @@ class LoginViewModel extends BasePageViewModel {
   ///---------------------Login Request Response ---------------------///
 
   ///--------------------- Button Visibility ---------------------///
-  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(true);
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 

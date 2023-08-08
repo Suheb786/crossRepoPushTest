@@ -3,15 +3,8 @@ import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/cla
 import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/claim_of_tax_treaty_benefits_page_view_model.dart';
 import 'package:neo_bank/feature/static_content/exempt_payee_code/exempt_payee_code_page_view_model.dart';
 import 'package:neo_bank/feature/static_content/exemption_from_fatca_reporting_code/exemption_from_fatca_reporting_code_page_view_model.dart';
-import 'package:neo_bank/feature/static_content/fatca_certification/fatca_certification_page_view_model.dart';
 import 'package:neo_bank/feature/static_content/reference_number/reference_number_page_view-model.dart';
 import 'package:neo_bank/feature/static_content/us_tax_payer_identification_number/us_tax_payer_identification_number_page_view_model.dart';
-
-///fatca view model provider
-final fatcaCertificationViewModelProvider =
-    ChangeNotifierProvider.autoDispose<FatcaCertificationPageViewModel>(
-  (ref) => FatcaCertificationPageViewModel(),
-);
 
 ///exempt payee code page view model provider
 final exemptPayeeCodeViewModelProvider = ChangeNotifierProvider.autoDispose<ExemptPayeeCodePageViewModel>(

@@ -1,7 +1,7 @@
 class ProfileInfoContent {
   ProfileInfoContent(
-      {this.email= "",
-      this.mobileNumber= "",
+      {this.email = "",
+      this.mobileNumber = "",
       this.biometric,
       this.profileImage,
       this.fullName,

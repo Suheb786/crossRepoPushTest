@@ -1,13 +1,13 @@
-import 'dart:developer';
-
 import 'package:domain/constants/enum/check_send_money_message_enum.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/manage_contacts/send_otp_add_benificiary_response.dart';
+import 'package:domain/model/payment/check_send_money_response.dart';
 import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
 import 'package:domain/model/payment/transfer_respone.dart';
 import 'package:domain/model/purpose/purpose.dart';
 import 'package:domain/model/purpose/purpose_detail.dart';
 import 'package:domain/model/purpose/purpose_response.dart';
-import 'package:domain/usecase/manage_contacts/add_beneficiary_usecase.dart';
+import 'package:domain/usecase/manage_contacts/add_beneficiary_OTP_usecase.dart';
 import 'package:domain/usecase/payment/check_send_money_usecase.dart';
 import 'package:domain/usecase/payment/get_account_by_alias_usecase.dart';
 import 'package:domain/usecase/payment/get_purpose_usecase.dart';
@@ -19,19 +19,15 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
-import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/subjects.dart';
 
 import '../../../../di/manage_contacts/manage_contacts_modules.dart';
-import '../../../../generated/l10n.dart';
-import '../../../../ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import '../../../../utils/navgition_type.dart';
-import '../../../../utils/string_utils.dart';
 
 class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
   final CheckSendMoneyUseCase _checkSendMoneyUseCase;
-  final AddBeneficiaryUseCase addContactIBANuseCase;
+  final AddBeneficiaryOTPUseCase addBeneficiaryOTPUseCase;
   final GetPurposeUseCase getPurposeUseCase;
   final GetAccountByAliasUseCase _getAccountByAliasUseCase;
 
@@ -66,6 +62,9 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
 
   ///--------------------------send money request-------------------------------------///
   PublishSubject<CheckSendMoneyUseCaseParams> _checkSendMoneyRequest = PublishSubject();
+  BehaviorSubject<Resource<CheckSendMoneyResponse>> _checkSendMoneyResponse = BehaviorSubject();
+
+  Stream<Resource<CheckSendMoneyResponse>> get checkSendMoneySteam => _checkSendMoneyResponse.stream;
 
   ///--------------------------request money request-------------------------------------///
   PublishSubject<GetAccountByAliasUseCaseParams> _getAccountByAliasRequest = PublishSubject();
@@ -83,10 +82,11 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
 
   ///--------------------------addContact-subject-------------------------------------///
 
-  PublishSubject<AddContactIBANuseCaseParams> addcontactIBANuseCaseRequest = PublishSubject();
-  PublishSubject<Resource<bool>> addcontactIBANuseCaseResponse = PublishSubject();
+  PublishSubject<AddBeneficiaryOTPUseCaseParams> _addcontactIBANuseCaseRequest = PublishSubject();
+  BehaviorSubject<Resource<SendOtpAddBeneficiaryResponse>> _addcontactIBANuseCaseResponse = BehaviorSubject();
 
-  Stream<Resource<bool>> get addcontactIBANStream => addcontactIBANuseCaseResponse.stream;
+  Stream<Resource<SendOtpAddBeneficiaryResponse>> get addcontactIBANStream =>
+      _addcontactIBANuseCaseResponse.stream;
 
   ///---------------------------get-purpose---------------------------///
   PublishSubject<GetPurposeUseCaseParams> _getPurposeRequest = PublishSubject();
@@ -95,6 +95,9 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
   Stream<Resource<PurposeResponse>> get getPurposeResponseStream => _getPurposeResponse.stream;
 
   ///--------------------------public-other-methods-------------------------------------///
+
+  String mobileNumber = '';
+  String mobileCode = '';
 
   BehaviorSubject<String> _showNameVisibilityRequest = BehaviorSubject.seeded('');
 
@@ -106,42 +109,55 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
     _showNameVisibilityRequest.safeAdd(value);
   }
 
+  bool ibanFieldValidated = false;
+
   void getPurpose(String toAccount, String transferType, String detCustomerType, String type) {
     _getPurposeRequest.safeAdd(GetPurposeUseCaseParams(
         toAccount: toAccount, transferType: transferType, type: type, detCustomerType: detCustomerType));
   }
 
   validate(String data) {
-    if (nameController.text.isNotEmpty) {
-      _showButtonSubject.safeAdd(false);
-    }
-    if (ibanOrMobileController.text.isNotEmpty) {
-      _showButtonSubject.safeAdd(false);
+    if (nameController.text.isNotEmpty &&
+        ibanOrMobileController.text.isNotEmpty &&
+        purposeDetail?.strCode != null) {
+      _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);
     }
   }
 
-  validationUserInput() {
-    addcontactIBANuseCaseRequest.safeAdd(AddContactIBANuseCaseParams(
+  validationUserInput(BuildContext buildContext) {
+    _addcontactIBANuseCaseRequest.safeAdd(AddBeneficiaryOTPUseCaseParams(
         IBANAccountNoMobileNoAlias: ibanOrMobileController.text,
-        purpose: '',
+        purpose: purpose?.code ?? '',
         beneficiaryType: navigationType == NavigationType.REQUEST_MONEY ? 'RTP' : 'SM',
         purposeDetail: purposeDetail?.strCode ?? '',
         name: nameController.text,
         fullName: navigationType == NavigationType.REQUEST_MONEY
-            ? getAccountByAliasContentResponse.getAccountByAliasContent!.name ?? ''
+            ? getAccountByAliasContentResponse.getAccountByAliasContent?.name ?? ''
             : transferResponse.name ?? ''));
   }
 
-  void getError(Resource<bool> event) {
+  void getError(Resource<SendOtpAddBeneficiaryResponse> event) {
     switch (event.appError?.type) {
-      case ErrorType.PLEASE_ENTER_CONTACT_NAME:
+      case ErrorType.EMPTY_NICKNAME_VALUE:
         nameKey.currentState!.isValid = false;
         break;
 
-      case ErrorType.INVALID_IBAN:
+      case ErrorType.NICKNAME_LENGTH_SHOULD_NOT_BE_GREATER_THAN_50:
+        nameKey.currentState!.isValid = false;
+        break;
+
+      case ErrorType.PLEASE_ENTER_IBAN_ACCOUNT_MOBILE_ALIAS:
         ibanORaccountORmobileORaliasKey.currentState!.isValid = false;
+        break;
+
+      case ErrorType.EMPTY_PURPOSE:
+        purposeKey.currentState!.isValid = false;
+        break;
+
+      case ErrorType.EMPTY_PURPOSE_DETAIL:
+        purposeDetailKey.currentState!.isValid = false;
         break;
 
       default:
@@ -150,16 +166,19 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
   }
 
   void checkSendMoney({required String iban}) {
-    _checkSendMoneyRequest.safeAdd(CheckSendMoneyUseCaseParams(toAccount: iban, toAmount: 0));
+    _checkSendMoneyRequest
+        .safeAdd(CheckSendMoneyUseCaseParams(toAccount: iban, toAmount: 0, beneficiaryId: ''));
   }
 
   void getAccountByAlias(String value, String currency) {
-    _getAccountByAliasRequest.safeAdd(GetAccountByAliasUseCaseParams(value: value, currency: currency));
+    _getAccountByAliasRequest
+        .safeAdd(GetAccountByAliasUseCaseParams(value: value, currency: currency, beneficiaryId: ''));
   }
 
   void updatePurpose(Purpose value) {
     purposeController.text = value.labelEn!;
     purpose = value;
+    purposeDetail = null;
   }
 
   void updatePurposeDetail(PurposeDetail value) {
@@ -175,11 +194,7 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
   }
 
   void callAPIforRequestAndSendMoney() {
-    final provider = ProviderScope.containerOf(appLevelKey.currentContext!).read(
-      addBeneficiaryViewModelProvider,
-    );
-    navigationType = provider.navigationType;
-    if (provider.navigationType == NavigationType.REQUEST_MONEY) {
+    if (navigationType == NavigationType.REQUEST_MONEY) {
       if (ibanOrMobileController.text.isNotEmpty) {
         getAccountByAlias(ibanOrMobileController.text, 'JOD');
       }
@@ -192,20 +207,20 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
 
   ///--------------------------public-constructor-------------------------------------///
 
-  AddBeneficiaryFormPageViewModel(this.addContactIBANuseCase, this.getPurposeUseCase,
+  AddBeneficiaryFormPageViewModel(this.addBeneficiaryOTPUseCase, this.getPurposeUseCase,
       this._checkSendMoneyUseCase, this._getAccountByAliasUseCase) {
-    addcontactIBANuseCaseRequest.listen(
+    _addcontactIBANuseCaseRequest.listen(
       (value) {
-        RequestManager(value, createCall: () => addContactIBANuseCase.execute(params: value)).asFlow().listen(
+        RequestManager(value, createCall: () => addBeneficiaryOTPUseCase.execute(params: value))
+            .asFlow()
+            .listen(
           (event) {
             updateLoader();
-            addcontactIBANuseCaseResponse.safeAdd(event);
+            _addcontactIBANuseCaseResponse.safeAdd(event);
             if (event.status == Status.ERROR) {
-              getError(event);
               showErrorState();
               showToastWithError(event.appError!);
-
-              log("error......");
+              getError(event);
             }
           },
         );
@@ -224,16 +239,12 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
           showNameVisibility('');
         } else if (event.status == Status.SUCCESS) {
           purposeList.clear();
-          purposeList.addAll(event.data!.content!.transferPurposeResponse!.purposes!);
+          purposeList.addAll(event.data?.content?.transferPurposeResponse?.purposes ?? []);
 
           if (navigationType == NavigationType.REQUEST_MONEY) {
-            showNameVisibility(getAccountByAliasContentResponse.getAccountByAliasContent!.name ?? '');
+            showNameVisibility(getAccountByAliasContentResponse.getAccountByAliasContent?.name ?? '');
           } else {
-            if (transferResponse.messageEnum == CheckSendMoneyMessageEnum.IBAN_FROM_CliQ) {
-              showNameVisibility('');
-            } else {
-              showNameVisibility(transferResponse.name!);
-            }
+            showNameVisibility(transferResponse.name ?? '');
           }
         }
       });
@@ -244,11 +255,18 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         updateLoader();
+        _checkSendMoneyResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          purpose = null;
+          purposeDetail = null;
           showErrorState();
           showToastWithError(event.appError!);
           showNameVisibility('');
+          ibanFieldValidated = false;
         } else if (event.status == Status.SUCCESS) {
+          purpose = null;
+          purposeDetail = null;
+          ibanFieldValidated = true;
           transferResponse = event.data!.checkSendMoneyContent!.transferResponse!;
           getPurpose(event.data!.checkSendMoneyContent!.transferResponse!.toAccount!, "TransferI", '', '');
 
@@ -257,21 +275,6 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
 
           checkSendMoneyMessageEnum = event.data?.checkSendMoneyContent?.transferResponse?.messageEnum ??
               CheckSendMoneyMessageEnum.NONE;
-
-          if (event.data?.checkSendMoneyContent?.transferResponse?.messageEnum ==
-              CheckSendMoneyMessageEnum.Mobile_NUMBER_BANKSMART) {
-            InformationDialog.show(appLevelKey.currentContext!,
-                isSwipeToCancel: false,
-                title: S.current.mobileNoRegisteredWithBlink,
-                descriptionWidget: Text(
-                  S.current.mobileNoRegisteredWithBlinkDesc,
-                  style:
-                      TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w400),
-                ),
-                onDismissed: () {}, onSelected: () {
-              Navigator.pop(appLevelKey.currentContext!);
-            });
-          }
         }
       });
     });
@@ -283,6 +286,8 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
         updateLoader();
         _getAccountByAliasResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          purpose = null;
+          purposeDetail = null;
           showErrorState();
           showToastWithError(event.appError!);
           purposeList = [];
@@ -290,7 +295,11 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
           purposeController.clear();
           purposeDetailController.clear();
           showNameVisibility('');
+          ibanFieldValidated = false;
         } else if (event.status == Status.SUCCESS) {
+          purpose = null;
+          purposeDetail = null;
+          ibanFieldValidated = true;
           getAccountByAliasContentResponse = event.data!;
           getPurpose(
               event.data?.getAccountByAliasContent?.acciban ?? '',
@@ -303,5 +312,26 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    final provider = ProviderScope.containerOf(appLevelKey.currentContext!).read(
+      addBeneficiaryViewModelProvider,
+    );
+    navigationType = provider.arguments.navigationType;
+  }
+
+  @override
+  void dispose() {
+    _checkSendMoneyRequest.close();
+    _checkSendMoneyResponse.close();
+    _getAccountByAliasRequest.close();
+    _getAccountByAliasResponse.close();
+    formFieldSubject.close();
+    _showButtonSubject.close();
+    _addcontactIBANuseCaseRequest.close();
+    _addcontactIBANuseCaseResponse.close();
+    _getPurposeRequest.close();
+    _getPurposeResponse.close();
+    _showNameVisibilityRequest.close();
+    super.dispose();
   }
 }

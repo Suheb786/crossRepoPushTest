@@ -151,7 +151,23 @@ class TimeUtils {
   }
 
   static String convertDateTimeToDate(String date) {
-    final DateTime dateTime = DateFormat('yyyy-MM-ddTHH:mm:ss').parse(date).toLocal();
+    final DateTime dateTime = DateFormat('yyyy-MM-ddTHH:mm:ss', 'en').parse(date).toLocal();
     return DateFormat('dd MMMM yyyy').format(dateTime);
+  }
+
+  static String convertDateTimeToDateMonth(String date) {
+    final DateTime dateTime = DateFormat('MM/dd/yyyy', "en").parse(date).toLocal();
+    return DateFormat('dd MMMM').format(dateTime);
+  }
+
+  static String getFormattedDateMonth(String date) {
+    DateTime dateTime = DateFormat('dd-MM-yyyy', 'en').parse(date).toLocal();
+    final DateFormat formatter = DateFormat('dd MMMM');
+    return formatter.format(dateTime);
+  }
+
+  static String convertDateTimeToDMY(String date) {
+    final DateTime dateTime = DateTime.parse(date).toLocal();
+    return DateFormat('dd MMM yyyy').format(dateTime);
   }
 }

@@ -31,7 +31,7 @@ class AddIDNumberForResetPasswordPageViewModel extends BasePageViewModel {
   Stream<Resource<CheckForgetPasswordResponse>> get checkForgetPasswordResponseStream =>
       _checkForgetPasswordResponse.stream;
 
-  String selectedExpiryDate = DateTime.now().toString();
+  String? selectedExpiryDate;
 
   DateTime initialDate = DateTime.now();
 
@@ -48,6 +48,7 @@ class AddIDNumberForResetPasswordPageViewModel extends BasePageViewModel {
         updateLoader();
         _checkForgetPasswordResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          getError(event);
           showErrorState();
           showToastWithError(event.appError!);
         }
@@ -60,18 +61,18 @@ class AddIDNumberForResetPasswordPageViewModel extends BasePageViewModel {
         email: emailController.text, expiryDate: selectedExpiryDate, nationalId: nationalIdController.text));
   }
 
-  void getError(Resource<bool> event) {
+  void getError(Resource<CheckForgetPasswordResponse> event) {
     switch (event.appError!.type) {
-      case ErrorType.EMPTY_EMAIL:
+      case ErrorType.EMPTY_VERIFY_EMAIL:
         emailKey.currentState!.isValid = false;
         break;
       case ErrorType.INVALID_EMAIL:
         emailKey.currentState!.isValid = false;
         break;
-      case ErrorType.EMPTY_ID_NUMBER:
+      case ErrorType.EMPTY_VERIFY_NATIONAL_ID:
         nationalIdKey.currentState!.isValid = false;
         break;
-      case ErrorType.EMPTY_EXPIRY_DATE:
+      case ErrorType.EMPTY_VERIFY_EXPIRY_DATE:
         idExpiryDateKey.currentState!.isValid = false;
         break;
       default:

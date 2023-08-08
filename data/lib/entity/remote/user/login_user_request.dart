@@ -20,13 +20,13 @@ class LoginUserRequest {
   final Map<String, dynamic> baseData;
 
   LoginUserRequest(
-      {this.userName= "",
-      this.password= "",
+      {this.userName = "",
+      this.password = "",
       required this.baseData,
-      this.getToken= true,
-      this.platform= "",
-      this.uniqueId= "",
-      this.fireBaseToken= ""});
+      this.getToken = true,
+      this.platform = "",
+      this.uniqueId = "",
+      this.fireBaseToken = ""});
 
   factory LoginUserRequest.fromJson(Map<String, dynamic> json) => _$LoginUserRequestFromJson(json);
 

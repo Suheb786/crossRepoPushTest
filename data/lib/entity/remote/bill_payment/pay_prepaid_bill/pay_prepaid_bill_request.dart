@@ -66,8 +66,7 @@ class PayPrePaidRequest {
       this.getToken,
       required this.baseData});
 
-  factory PayPrePaidRequest.fromJson(Map<String, dynamic> json) =>
-      _$PayPrePaidRequestFromJson(json);
+  factory PayPrePaidRequest.fromJson(Map<String, dynamic> json) => _$PayPrePaidRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$PayPrePaidRequestToJson(this);
 }

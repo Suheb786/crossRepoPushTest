@@ -4370,16 +4370,6 @@ class S {
     );
   }
 
-  /// `Request Money Favourites`
-  String get requestMoneyFavourites {
-    return Intl.message(
-      'Request Money Favourites',
-      name: 'requestMoneyFavourites',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `You don't have any contacts yet. Your Blink contacts can be saved while sending money.`
   String get addSendContact {
     return Intl.message(
@@ -6435,16 +6425,6 @@ class S {
     return Intl.message(
       'Swipe up to send money',
       name: 'swipeToSend',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Send Money Favourites`
-  String get sendMoneyFavourites {
-    return Intl.message(
-      'Send Money Favourites',
-      name: 'sendMoneyFavourites',
       desc: '',
       args: [],
     );
@@ -11840,16 +11820,6 @@ class S {
     );
   }
 
-  /// `Pending`
-  String get pending {
-    return Intl.message(
-      'Pending',
-      name: 'pending',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Transaction Type`
   String get transactionType {
     return Intl.message(
@@ -13040,66 +13010,6 @@ class S {
     );
   }
 
-  /// `Category`
-  String get category {
-    return Intl.message(
-      'Category',
-      name: 'category',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Preferred Region`
-  String get preferredRegion {
-    return Intl.message(
-      'Preferred Region',
-      name: 'preferredRegion',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Min. Price`
-  String get minPrice {
-    return Intl.message(
-      'Min. Price',
-      name: 'minPrice',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Max. Price`
-  String get maxPrice {
-    return Intl.message(
-      'Max. Price',
-      name: 'maxPrice',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Filter Vouchers`
-  String get filterVouchers {
-    return Intl.message(
-      'Filter Vouchers',
-      name: 'filterVouchers',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Reset Filter`
-  String get resetFilter {
-    return Intl.message(
-      'Reset Filter',
-      name: 'resetFilter',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Select your preferred\nregion and amount`
   String get selectPreferredRegionAmount {
     return Intl.message(
@@ -13220,10 +13130,10 @@ class S {
     );
   }
 
-  /// `View Voucher`
+  /// `View E-Voucher`
   String get viewVoucher {
     return Intl.message(
-      'View Voucher',
+      'View E-Voucher',
       name: 'viewVoucher',
       desc: '',
       args: [],
@@ -13235,26 +13145,6 @@ class S {
     return Intl.message(
       'Share Voucher',
       name: 'shareVoucher',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `eVouchers`
-  String get eVouchers {
-    return Intl.message(
-      'eVouchers',
-      name: 'eVouchers',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Buy Vouchers`
-  String get buyVouchers {
-    return Intl.message(
-      'Buy Vouchers',
-      name: 'buyVouchers',
       desc: '',
       args: [],
     );
@@ -13370,16 +13260,6 @@ class S {
     );
   }
 
-  /// `Browse by Category`
-  String get browserByCatgy {
-    return Intl.message(
-      'Browse by Category',
-      name: 'browserByCatgy',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `PlayStation`
   String get playStation {
     return Intl.message(
@@ -13455,16 +13335,6 @@ class S {
     return Intl.message(
       'You can now purchase and redeem e-vouchers from your favorite online & offline stores, locally and internationally.',
       name: 'eVoucherLandingDialogDescption',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `What are you looking for?`
-  String get eVoucherSearchLabel {
-    return Intl.message(
-      'What are you looking for?',
-      name: 'eVoucherSearchLabel',
       desc: '',
       args: [],
     );
@@ -15400,20 +15270,20 @@ class S {
     );
   }
 
-  /// `ABC000012341234123819241213`
+  /// `ABC0000038363829727227184`
   String get dummyIBAN {
     return Intl.message(
-      'ABC000012341234123819241213',
+      'ABC0000038363829727227184',
       name: 'dummyIBAN',
       desc: '',
       args: [],
     );
   }
 
-  /// `9911 1407 61`
+  /// `9xxxxxxxxx`
   String get dummyAccountNo {
     return Intl.message(
-      '9911 1407 61',
+      '9xxxxxxxxx',
       name: 'dummyAccountNo',
       desc: '',
       args: [],
@@ -15430,10 +15300,10 @@ class S {
     );
   }
 
-  /// `00962 3320 8080`
+  /// `00962xxxxxxxxx`
   String get dummyMobileNo {
     return Intl.message(
-      '00962 3320 8080',
+      '00962xxxxxxxxx',
       name: 'dummyMobileNo',
       desc: '',
       args: [],
@@ -16970,16 +16840,6 @@ class S {
     );
   }
 
-  /// `Enter the 6-digit code sent to {variable}`
-  String enterOTPheaderwithVaiable(Object variable) {
-    return Intl.message(
-      'Enter the 6-digit code sent to $variable',
-      name: 'enterOTPheaderwithVaiable',
-      desc: '',
-      args: [variable],
-    );
-  }
-
   /// `Nickname is already stored as beneficiary`
   String get nickNameAlreadyExists {
     return Intl.message(
@@ -17150,51 +17010,11 @@ class S {
     );
   }
 
-  /// `Edit Contact`
-  String get editContact {
-    return Intl.message(
-      'Edit Contact',
-      name: 'editContact',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Back to Contact`
   String get backToContact {
     return Intl.message(
       'Back to Contact',
       name: 'backToContact',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Favourite Contacts`
-  String get favouriteContacts {
-    return Intl.message(
-      'Favourite Contacts',
-      name: 'favouriteContacts',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Recent Contacts`
-  String get recentContacts {
-    return Intl.message(
-      'Recent Contacts',
-      name: 'recentContacts',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Other Contacts`
-  String get otherContacts {
-    return Intl.message(
-      'Other Contacts',
-      name: 'otherContacts',
       desc: '',
       args: [],
     );
@@ -17210,16 +17030,6 @@ class S {
     );
   }
 
-  /// `You don’t have any contacts yet.\nAdd your first one now.`
-  String get youDontHaveAnyContactAddYourFirstNow {
-    return Intl.message(
-      'You don’t have any contacts yet.\nAdd your first one now.',
-      name: 'youDontHaveAnyContactAddYourFirstNow',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Remove contact`
   String get removeContact {
     return Intl.message(
@@ -17230,21 +17040,11 @@ class S {
     );
   }
 
-  /// `Are you sure you want to remove this contact? Your action can’t be undone.`
+  /// `Are you sure you want to remove this contact?`
   String get areYouSureToremoveContact {
     return Intl.message(
-      'Are you sure you want to remove this contact? Your action can’t be undone.',
+      'Are you sure you want to remove this contact?',
       name: 'areYouSureToremoveContact',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Favourite contact`
-  String get favouriteContact {
-    return Intl.message(
-      'Favourite contact',
-      name: 'favouriteContact',
       desc: '',
       args: [],
     );
@@ -17287,16 +17087,6 @@ class S {
       name: 'newContacthasBeenAdded',
       desc: '',
       args: [],
-    );
-  }
-
-  /// `Enter the 6-digit code sent to\n{mobile}`
-  String enterThe6DigitCodewithExtraString(Object mobile) {
-    return Intl.message(
-      'Enter the 6-digit code sent to\n$mobile',
-      name: 'enterThe6DigitCodewithExtraString',
-      desc: '',
-      args: [mobile],
     );
   }
 
@@ -17520,16 +17310,6 @@ class S {
     );
   }
 
-  /// `Where would like to save as favourite?`
-  String get saveAsFavourite {
-    return Intl.message(
-      'Where would like to save as favourite?',
-      name: 'saveAsFavourite',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Favourites`
   String get favourites {
     return Intl.message(
@@ -17645,6 +17425,806 @@ class S {
     return Intl.message(
       'URL',
       name: 'url',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact nickname has been updated`
+  String get nickNameUpdated {
+    return Intl.message(
+      'Contact nickname has been updated',
+      name: 'nickNameUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contactless payment limit exceeded.`
+  String get creditContactlessLimitExceeded {
+    return Intl.message(
+      'Contactless payment limit exceeded.',
+      name: 'creditContactlessLimitExceeded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! You can only select up to 9 favourite contacts`
+  String get favouriteContactLimitExceeded {
+    return Intl.message(
+      'Oops! You can only select up to 9 favourite contacts',
+      name: 'favouriteContactLimitExceeded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Nickname already exists, use another one`
+  String get nicknameAlreadyExistsM {
+    return Intl.message(
+      'Oops! Nickname already exists, use another one',
+      name: 'nicknameAlreadyExistsM',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! IBAN/account number/ mobile number/Alias already exists, use another one.`
+  String get identifierAlreadyExists {
+    return Intl.message(
+      'Oops! IBAN/account number/ mobile number/Alias already exists, use another one.',
+      name: 'identifierAlreadyExists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Nickname cannot be updated, please try again later`
+  String get updateNicknameFailure {
+    return Intl.message(
+      'Oops! Nickname cannot be updated, please try again later',
+      name: 'updateNicknameFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Nickname cannot be deleted, please try again later`
+  String get removeNicknameFailure {
+    return Intl.message(
+      'Oops! Nickname cannot be deleted, please try again later',
+      name: 'removeNicknameFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Please use .PNG or .JPG format. `
+  String get imageFormatWrong {
+    return Intl.message(
+      'Oops! Please use .PNG or .JPG format. ',
+      name: 'imageFormatWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Image cannot be uploaded, please try again later`
+  String get avatarUpdateFailure {
+    return Intl.message(
+      'Oops! Image cannot be uploaded, please try again later',
+      name: 'avatarUpdateFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Image cannot be removed, please try again later`
+  String get removeAvatarFailure {
+    return Intl.message(
+      'Oops! Image cannot be removed, please try again later',
+      name: 'removeAvatarFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Contact not marked as favorite, please try again later`
+  String get ContactMarkFavouriteFailure {
+    return Intl.message(
+      'Oops! Contact not marked as favorite, please try again later',
+      name: 'ContactMarkFavouriteFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transaction Period`
+  String get transaction_period {
+    return Intl.message(
+      'Transaction Period',
+      name: 'transaction_period',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 30 days`
+  String get last_30_days {
+    return Intl.message(
+      'Last 30 days',
+      name: 'last_30_days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 60 days`
+  String get last_60_days {
+    return Intl.message(
+      'Last 60 days',
+      name: 'last_60_days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 90 days`
+  String get last_90_days {
+    return Intl.message(
+      'Last 90 days',
+      name: 'last_90_days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Transactions`
+  String get viewTransactions {
+    return Intl.message(
+      'View Transactions',
+      name: 'viewTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Please fill the missing field.`
+  String get pleaseFillMissingField {
+    return Intl.message(
+      'Oops! Please fill the missing field.',
+      name: 'pleaseFillMissingField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accepted`
+  String get accepted {
+    return Intl.message(
+      'Accepted',
+      name: 'accepted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rejected`
+  String get rejected {
+    return Intl.message(
+      'Rejected',
+      name: 'rejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pending`
+  String get pending {
+    return Intl.message(
+      'Pending',
+      name: 'pending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide any account details you have for your contact,and we will take care of the rest. If the contact’s account is in Blink, we will send the money to Blink account, otherwise, we will send it via CliQ to his/her bank account. \n\nPlease be mindful of the formatting examples as follows:\n\n`
+  String get sendMoneyFormateSample {
+    return Intl.message(
+      'Please provide any account details you have for your contact,and we will take care of the rest. If the contact’s account is in Blink, we will send the money to Blink account, otherwise, we will send it via CliQ to his/her bank account. \n\nPlease be mindful of the formatting examples as follows:\n\n',
+      name: 'sendMoneyFormateSample',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IBAN (CliQ)`
+  String get ibanCliq {
+    return Intl.message(
+      'IBAN (CliQ)',
+      name: 'ibanCliq',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account No. (Blink)`
+  String get accountBlink {
+    return Intl.message(
+      'Account No. (Blink)',
+      name: 'accountBlink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile No. (CliQ or Blink)`
+  String get mobileNoCliqorBlink {
+    return Intl.message(
+      'Mobile No. (CliQ or Blink)',
+      name: 'mobileNoCliqorBlink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alias (CliQ)`
+  String get aliasCliq {
+    return Intl.message(
+      'Alias (CliQ)',
+      name: 'aliasCliq',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile No. (CliQ)`
+  String get mobileNoCliq {
+    return Intl.message(
+      'Mobile No. (CliQ)',
+      name: 'mobileNoCliq',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! IBAN/account number/ mobile number/Alias is invalid, use another one.`
+  String get ibanAccountNumberMobileNumberAlisInvalid {
+    return Intl.message(
+      'Oops! IBAN/account number/ mobile number/Alias is invalid, use another one.',
+      name: 'ibanAccountNumberMobileNumberAlisInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! please enter an IBAN or CliQ ID to request money.`
+  String get enterValidIBANCLiQ {
+    return Intl.message(
+      'Oops! please enter an IBAN or CliQ ID to request money.',
+      name: 'enterValidIBANCLiQ',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Sending money failed, contact details need to be updated`
+  String get transferCannotbeDone {
+    return Intl.message(
+      'Oops! Sending money failed, contact details need to be updated',
+      name: 'transferCannotbeDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n`
+  String get requestMoneyFormateSample {
+    return Intl.message(
+      'Please provide any account details you have for your contact, and we will take care of the rest. The request will be processed via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n',
+      name: 'requestMoneyFormateSample',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide any account details you have for your contact. Sending and requesting money is done either within Blink or via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n`
+  String get manageContactSendRequestSample {
+    return Intl.message(
+      'Please provide any account details you have for your contact. Sending and requesting money is done either within Blink or via CliQ.\n\nPlease be mindful of the formatting examples as follows:\n\n',
+      name: 'manageContactSendRequestSample',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! you cannot send money to your own account`
+  String get oopsYouCantSendMoneyToYourOwnAccount {
+    return Intl.message(
+      'Oops! you cannot send money to your own account',
+      name: 'oopsYouCantSendMoneyToYourOwnAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! The QR code is invalid. Please try again.`
+  String get oopsTheQRisInvalid {
+    return Intl.message(
+      'Oops! The QR code is invalid. Please try again.',
+      name: 'oopsTheQRisInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! You can only create 5 CliQ IDs`
+  String get oopsYouCanOnlyCreate5CliqIds {
+    return Intl.message(
+      'Oops! You can only create 5 CliQ IDs',
+      name: 'oopsYouCanOnlyCreate5CliqIds',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IBAN/ Alias/ Mobile No. (CliQ)`
+  String get accountMobileNoCliQ {
+    return Intl.message(
+      'IBAN/ Alias/ Mobile No. (CliQ)',
+      name: 'accountMobileNoCliQ',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Money received from`
+  String get moneyReceivedFrom {
+    return Intl.message(
+      'Money received from',
+      name: 'moneyReceivedFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Money sent to`
+  String get moneySentTo {
+    return Intl.message(
+      'Money sent to',
+      name: 'moneySentTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `HOME`
+  String get home {
+    return Intl.message(
+      'HOME',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MORE`
+  String get more {
+    return Intl.message(
+      'MORE',
+      name: 'more',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CONTACT US`
+  String get contactUs {
+    return Intl.message(
+      'CONTACT US',
+      name: 'contactUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Something went wrong while updating limit, please try again later.`
+  String get oopsErrorWhileUpdatingCardLimit {
+    return Intl.message(
+      'Oops! Something went wrong while updating limit, please try again later.',
+      name: 'oopsErrorWhileUpdatingCardLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! You have exceeded your daily transfer limit.`
+  String get oopsYouHaveExceededYourDailyTransferLimit {
+    return Intl.message(
+      'Oops! You have exceeded your daily transfer limit.',
+      name: 'oopsYouHaveExceededYourDailyTransferLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! The QR code is expired.`
+  String get oopsTheQRCodeIsExpired {
+    return Intl.message(
+      'Oops! The QR code is expired.',
+      name: 'oopsTheQRCodeIsExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account is inactive!`
+  String get accountDormantTitle {
+    return Intl.message(
+      'Your account is inactive!',
+      name: 'accountDormantTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your have not used your account for a long time and it is now deactivated. Please call us on 06-5200100 to activate your account and enjoy countless benefits.`
+  String get accountDormantStatusDesc {
+    return Intl.message(
+      'Your have not used your account for a long time and it is now deactivated. Please call us on 06-5200100 to activate your account and enjoy countless benefits.',
+      name: 'accountDormantStatusDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! You cannot request your physical card as your account is inactive. Call us on 06-5200100 to activate your account.`
+  String get dormantAccountPhysicalCardReq {
+    return Intl.message(
+      'Oops! You cannot request your physical card as your account is inactive. Call us on 06-5200100 to activate your account.',
+      name: 'dormantAccountPhysicalCardReq',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account is inactive`
+  String get yourAccountInactive {
+    return Intl.message(
+      'Your account is inactive',
+      name: 'yourAccountInactive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Call us on 06-5200100 to activate your account and get your debit card.`
+  String get callToActivate {
+    return Intl.message(
+      'Call us on 06-5200100 to activate your account and get your debit card.',
+      name: 'callToActivate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have insufficient balance in your account`
+  String get notEnoughAmountToPurchase {
+    return Intl.message(
+      'You have insufficient balance in your account',
+      name: 'notEnoughAmountToPurchase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Valid Until`
+  String get validUntil {
+    return Intl.message(
+      'Valid Until',
+      name: 'validUntil',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current Account`
+  String get currentAccount {
+    return Intl.message(
+      'Current Account',
+      name: 'currentAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Copied`
+  String get copied {
+    return Intl.message(
+      'Copied',
+      name: 'copied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Recipient name should be at least 2 parts and each part to be with a minimum of 3 characters.`
+  String get recipientNameValidation {
+    return Intl.message(
+      'Oops! Recipient name should be at least 2 parts and each part to be with a minimum of 3 characters.',
+      name: 'recipientNameValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Value`
+  String get selectValue {
+    return Intl.message(
+      'Select Value',
+      name: 'selectValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back`
+  String get back {
+    return Intl.message(
+      'Back',
+      name: 'back',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select region first`
+  String get selectRegionFirst {
+    return Intl.message(
+      'Select region first',
+      name: 'selectRegionFirst',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E-vouchers`
+  String get eVouchers {
+    return Intl.message(
+      'E-vouchers',
+      name: 'eVouchers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get category {
+    return Intl.message(
+      'Category',
+      name: 'category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preferred Region`
+  String get preferredRegion {
+    return Intl.message(
+      'Preferred Region',
+      name: 'preferredRegion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Min. Value`
+  String get minPrice {
+    return Intl.message(
+      'Min. Value',
+      name: 'minPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Max. Value`
+  String get maxPrice {
+    return Intl.message(
+      'Max. Value',
+      name: 'maxPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter E-vouchers`
+  String get filterVouchers {
+    return Intl.message(
+      'Filter E-vouchers',
+      name: 'filterVouchers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buy E-vouchers`
+  String get buyVouchers {
+    return Intl.message(
+      'Buy E-vouchers',
+      name: 'buyVouchers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `History`
+  String get history {
+    return Intl.message(
+      'History',
+      name: 'history',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What are you looking for?`
+  String get eVoucherSearchLabel {
+    return Intl.message(
+      'What are you looking for?',
+      name: 'eVoucherSearchLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Browse by Category`
+  String get browserByCatgy {
+    return Intl.message(
+      'Browse by Category',
+      name: 'browserByCatgy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset Filter`
+  String get resetFilter {
+    return Intl.message(
+      'Reset Filter',
+      name: 'resetFilter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Category`
+  String get selectCategory {
+    return Intl.message(
+      'Select Category',
+      name: 'selectCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select min value`
+  String get selectMinValue {
+    return Intl.message(
+      'Select min value',
+      name: 'selectMinValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select max value`
+  String get selectMaxvalue {
+    return Intl.message(
+      'Select max value',
+      name: 'selectMaxvalue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Max value should be greater than min value`
+  String get maxValueGreaterThanMin {
+    return Intl.message(
+      'Max value should be greater than min value',
+      name: 'maxValueGreaterThanMin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select category first`
+  String get selectCategoryFirst {
+    return Intl.message(
+      'Please select category first',
+      name: 'selectCategoryFirst',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Region`
+  String get allRegion {
+    return Intl.message(
+      'All Region',
+      name: 'allRegion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Categories`
+  String get allCategories {
+    return Intl.message(
+      'All Categories',
+      name: 'allCategories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `eVouchers`
+  String get eVouchersSettings {
+    return Intl.message(
+      'eVouchers',
+      name: 'eVouchersSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Transaction failed; your account is inactive. Call us on 06-5200100 to activate your account.`
+  String get dormantAccountTransactionFailed {
+    return Intl.message(
+      'Oops! Transaction failed; your account is inactive. Call us on 06-5200100 to activate your account.',
+      name: 'dormantAccountTransactionFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `When you freeze your card, your card cannot be used for any transaction including direct debit on your card such as your online subscriptions directly linked to your card, for example: Netflix, Careem, OSN, etc.`
+  String get whenYouFreezeYourCard {
+    return Intl.message(
+      'When you freeze your card, your card cannot be used for any transaction including direct debit on your card such as your online subscriptions directly linked to your card, for example: Netflix, Careem, OSN, etc.',
+      name: 'whenYouFreezeYourCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can unfreeze and activate your card anytime from the app.`
+  String get youCanUnFreeze {
+    return Intl.message(
+      'You can unfreeze and activate your card anytime from the app.',
+      name: 'youCanUnFreeze',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unavailable`
+  String get unavailable {
+    return Intl.message(
+      'Unavailable',
+      name: 'unavailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E-voucher under processing`
+  String get evoucherUnderProcessing {
+    return Intl.message(
+      'E-voucher under processing',
+      name: 'evoucherUnderProcessing',
       desc: '',
       args: [],
     );

@@ -1,5 +1,5 @@
 class ReturnReasonsPayment {
-  final String  code;
+  final String code;
   final String description;
 
   ReturnReasonsPayment({

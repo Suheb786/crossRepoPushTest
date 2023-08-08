@@ -42,7 +42,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
               fontFamily: StringUtils.appFont,
               fontSize: 14.0.t,
               fontWeight: FontWeight.w600,
-              color: AppColor.veryDarkGray2),
+              color: Theme.of(context).textTheme.bodyMedium!.color),
         ),
         Card(
           margin: EdgeInsets.only(top: 16.0.h, bottom: 32.0.h),
@@ -92,7 +92,8 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                 : '-',
                                             style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
-                                                color: AppColor.gray1,
+                                                color:
+                                                    Theme.of(context).inputDecorationTheme.hintStyle!.color,
                                                 fontSize: 12.0.t,
                                                 fontWeight: FontWeight.w600),
                                           ),
@@ -107,7 +108,9 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                     color: getColor(content.data?[index].trxStatus),
                                                     borderRadius: BorderRadius.circular(100)),
                                                 child: Text(
-                                                  (content.data?[index].trxStatus ?? '').toString(),
+                                                  content.data?[index].trxStatus
+                                                          ?.getPaymentTransactionStatus(context: context) ??
+                                                      '',
                                                   style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
                                                       color: Theme.of(context).colorScheme.secondary,
@@ -126,7 +129,8 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                           Padding(
                               padding: EdgeInsets.symmetric(vertical: 16.0.h),
                               child: AppSvg.asset(AssetUtils.rightChevron,
-                                  matchTextDirection: true, color: AppColor.white_gray))
+                                  matchTextDirection: true,
+                                  color: Theme.of(context).colorScheme.inverseSurface))
                         ],
                       ),
                     )
@@ -171,7 +175,10 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                     : '-',
                                                 style: TextStyle(
                                                     fontFamily: StringUtils.appFont,
-                                                    color: AppColor.gray1,
+                                                    color: Theme.of(context)
+                                                        .inputDecorationTheme
+                                                        .hintStyle!
+                                                        .color,
                                                     fontSize: 12.0.t,
                                                     fontWeight: FontWeight.w600),
                                               ),
@@ -186,7 +193,10 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                         color: getColor(content.data?[index].trxStatus),
                                                         borderRadius: BorderRadius.circular(100)),
                                                     child: Text(
-                                                      (content.data?[index].trxStatus ?? '').toString(),
+                                                      content.data?[index].trxStatus
+                                                              ?.getPaymentTransactionStatus(
+                                                                  context: context) ??
+                                                          '',
                                                       style: TextStyle(
                                                           fontFamily: StringUtils.appFont,
                                                           color: Theme.of(context).colorScheme.secondary,
@@ -205,7 +215,8 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                               Padding(
                                   padding: EdgeInsets.symmetric(vertical: 16.0.h),
                                   child: AppSvg.asset(AssetUtils.rightChevron,
-                                      matchTextDirection: true, color: AppColor.white_gray))
+                                      matchTextDirection: true,
+                                      color: Theme.of(context).colorScheme.inverseSurface))
                             ],
                           ),
                         )
@@ -254,7 +265,10 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                             : '-',
                                                         style: TextStyle(
                                                             fontFamily: StringUtils.appFont,
-                                                            color: AppColor.gray1,
+                                                            color: Theme.of(context)
+                                                                .inputDecorationTheme
+                                                                .hintStyle!
+                                                                .color,
                                                             fontSize: 12.0.t,
                                                             fontWeight: FontWeight.w600),
                                                       ),
@@ -269,7 +283,10 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                               },
                                                               child: Container(
                                                                 decoration: BoxDecoration(
-                                                                  color: AppColor.sky_blue_mid,
+                                                                  color: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyLarge!
+                                                                      .color,
                                                                   borderRadius: BorderRadius.circular(20),
                                                                 ),
                                                                 child: Padding(
@@ -281,7 +298,8 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                                     S.of(context).accept,
                                                                     style: TextStyle(
                                                                       fontFamily: StringUtils.appFont,
-                                                                      color: AppColor.white,
+                                                                      color: Theme.of(context)
+                                                                          .scaffoldBackgroundColor,
                                                                       fontSize: 12.0.t,
                                                                       fontWeight: FontWeight.w600,
                                                                     ),
@@ -298,9 +316,12 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                               },
                                                               child: Container(
                                                                 decoration: BoxDecoration(
-                                                                    color: AppColor.white,
+                                                                    color: Theme.of(context)
+                                                                        .scaffoldBackgroundColor,
                                                                     border: Border.all(
-                                                                        color: AppColor.white_gray),
+                                                                        color: Theme.of(context)
+                                                                            .colorScheme
+                                                                            .inverseSurface),
                                                                     borderRadius: BorderRadius.circular(20)),
                                                                 child: Padding(
                                                                   padding: EdgeInsets.symmetric(
@@ -311,7 +332,10 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                                     S.of(context).reject,
                                                                     style: TextStyle(
                                                                         fontFamily: StringUtils.appFont,
-                                                                        color: AppColor.sky_blue_mid,
+                                                                        color: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyLarge!
+                                                                            .color,
                                                                         fontSize: 12.0.t,
                                                                         fontWeight: FontWeight.w600),
                                                                   ),
@@ -332,7 +356,9 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                             : '-',
                                                         style: TextStyle(
                                                             fontFamily: StringUtils.appFont,
-                                                            color: AppColor.gray1,
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .onInverseSurface,
                                                             fontSize: 12.0.t,
                                                             fontWeight: FontWeight.w600),
                                                       ),
@@ -348,7 +374,10 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                               color: getColor(content.data?[index].trxStatus),
                                                               borderRadius: BorderRadius.circular(100)),
                                                           child: Text(
-                                                            (content.data?[index].trxStatus ?? '').toString(),
+                                                            content.data?[index].trxStatus
+                                                                    ?.getPaymentTransactionStatus(
+                                                                        context: context) ??
+                                                                '',
                                                             style: TextStyle(
                                                                 fontFamily: StringUtils.appFont,
                                                                 color:
@@ -367,14 +396,11 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                 Padding(
                                     padding: EdgeInsets.symmetric(vertical: 16.0.h),
                                     child: AppSvg.asset(AssetUtils.rightChevron,
-                                        matchTextDirection: true, color: AppColor.white_gray))
+                                        matchTextDirection: true,
+                                        color: Theme.of(context).colorScheme.inverseSurface))
                               ],
                             )
-                          :
-                          // (content.data?[index].trxDir ==
-                          //     RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_OUTGOING &&
-                          //     content.data?[index].paymentType == PaymentTypeEnum.RTP_REQUEST)?
-                          GestureDetector(
+                          : GestureDetector(
                               onTap: () {
                                 onTapRTPStatus.call(content.data![index]);
                               },
@@ -412,7 +438,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                         : '-',
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
-                                                        color: AppColor.gray1,
+                                                        color: Theme.of(context).colorScheme.onInverseSurface,
                                                         fontSize: 12.0.t,
                                                         fontWeight: FontWeight.w600),
                                                   ),
@@ -428,7 +454,10 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                           color: getColor(content.data?[index].trxStatus),
                                                           borderRadius: BorderRadius.circular(100)),
                                                       child: Text(
-                                                        (content.data?[index].trxStatus ?? '').toString(),
+                                                        content.data?[index].trxStatus
+                                                                ?.getPaymentTransactionStatus(
+                                                                    context: context) ??
+                                                            '',
                                                         style: TextStyle(
                                                             fontFamily: StringUtils.appFont,
                                                             color: Theme.of(context).colorScheme.secondary,
@@ -446,7 +475,8 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                   Padding(
                                       padding: EdgeInsets.symmetric(vertical: 16.0.h),
                                       child: AppSvg.asset(AssetUtils.rightChevron,
-                                          matchTextDirection: true, color: AppColor.white_gray))
+                                          matchTextDirection: true,
+                                          color: Theme.of(context).colorScheme.inverseSurface))
                                 ],
                               ),
                             );
@@ -458,7 +488,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 15.0.h),
                 child: Container(
                   height: 1,
-                  color: AppColor.light_grayish_violet,
+                  color: Theme.of(context).colorScheme.onTertiary,
                 ),
               );
             },
@@ -478,7 +508,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
               fontSize: 12.0.t,
               overflow: TextOverflow.ellipsis,
               fontWeight: FontWeight.w600,
-              color: AppColor.sky_blue_mid,
+              color: Theme.of(context).textTheme.bodyLarge!.color,
             ),
             children: [
               TextSpan(
@@ -523,7 +553,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
               fontSize: 12.0.t,
               overflow: TextOverflow.ellipsis,
               fontWeight: FontWeight.w600,
-              color: AppColor.sky_blue_mid,
+              color: Theme.of(context).textTheme.bodyLarge!.color,
             ),
             children: [
               TextSpan(
@@ -592,8 +622,8 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                         fontSize: 12.0.t,
                         overflow: TextOverflow.ellipsis,
                         fontWeight: FontWeight.w600,
-                        color: AppColor.sky_blue_mid,
-                        // color: AppColor.sky_blue_mid,
+                        color: Theme.of(context).textTheme.bodyLarge!.color,
+                        // color: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                   ]),
@@ -613,7 +643,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                 color: Theme.of(context).primaryColorDark),
             children: [
               TextSpan(
-                  text: "${(data?.amount?.toStringAsFixed(3)).toString()} ${data?.curr ?? ''}",
+                  text: "${(data?.amount?.toStringAsFixed(3)).toString()} ${data?.curr ?? ''} ",
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
                       fontSize: 12.0.t,
@@ -621,7 +651,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                       color: Theme.of(context).primaryColorDark),
                   children: [
                     TextSpan(
-                      text: S.of(context).from,
+                      text: S.of(context).fromSingleLine,
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           fontSize: 12.0.t,
@@ -636,8 +666,8 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                         fontSize: 12.0.t,
                         overflow: TextOverflow.ellipsis,
                         fontWeight: FontWeight.w600,
-                        color: AppColor.sky_blue_mid,
-                        // color: AppColor.sky_blue_mid,
+                        color: Theme.of(context).textTheme.bodyLarge!.color,
+                        // color: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                   ]),

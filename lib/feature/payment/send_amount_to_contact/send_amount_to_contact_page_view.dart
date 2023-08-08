@@ -340,7 +340,6 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                     ///LOG EVENT TO FIREBASE
                     await FireBaseLogUtil.fireBaseLog(
                         "send_money_to_saved_beneficiary_failure", {"is_money_sent": false});
-                    //Navigator.pushNamed(context, RoutePaths.SendMoneyFailure);
                     if (data.appError!.type == ErrorType.INVALID_OTP_NETWORK) {
                       model.showToastWithError(data.appError!);
                     } else if (data.appError!.type == ErrorType.DAILY_LIMIT_EXCEDED) {

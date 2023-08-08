@@ -16,6 +16,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 GlobalKey<NavigatorState> appLevelKey = GlobalKey(debugLabel: 'app-key');
 
@@ -52,26 +53,26 @@ class AppViewModel extends BaseViewModel {
           primaryColorLight: AppColor.verySoftRed,
           dialogBackgroundColor: AppColor.white,
           colorScheme: _themeData.colorScheme.copyWith(
-            secondary: AppColor.white,
-            onSecondary: AppColor.light_gray_4,
-            onSecondaryContainer: AppColor.brightBlue,
-            onTertiaryContainer: AppColor.very_light_blue,
-            background: AppColor.lightGray,
-            error: AppColor.vivid_red,
-            onSurface: AppColor.rj_gray,
-            surfaceVariant: AppColor.veryDarkGray2,
-            surface: AppColor.veryDarkGray1,
-            surfaceTint: AppColor.dark_gray_1,
-            onInverseSurface: AppColor.gray1,
-            inverseSurface: AppColor.white_gray,
-            shadow: AppColor.gray_black,
-            onBackground: AppColor.whiteGrey,
-            inversePrimary: AppColor.gray5,
-            tertiary: AppColor.dark_violet_4,
-            tertiaryContainer: AppColor.dark_Grayish_Blue,
-            onTertiary: AppColor.light_grayish_violet,
-            scrim: AppColor.dark_brown,
-          ),
+              secondary: AppColor.white,
+              onSecondary: AppColor.light_gray_4,
+              onSecondaryContainer: AppColor.brightBlue,
+              background: AppColor.lightGray,
+              error: AppColor.vivid_red,
+              secondaryContainer: AppColor.darkModerateLimeGreen,
+              onTertiaryContainer: AppColor.dark_orange,
+              onSurface: AppColor.rj_gray,
+              surfaceVariant: AppColor.veryDarkGray2,
+              surface: AppColor.veryDarkGray1,
+              surfaceTint: AppColor.dark_gray_1,
+              onInverseSurface: AppColor.gray1,
+              inverseSurface: AppColor.white_gray,
+              shadow: AppColor.gray_black,
+              onBackground: AppColor.whiteGrey,
+              inversePrimary: AppColor.gray5,
+              tertiary: AppColor.dark_violet_4,
+              tertiaryContainer: AppColor.dark_Grayish_Blue,
+              onTertiary: AppColor.light_grayish_violet,
+              scrim: AppColor.dark_brown),
           // backgroundColor: AppColor.lightGray,
           cardTheme: CardTheme(
               color: AppColor.veryLightGray,
@@ -145,7 +146,7 @@ class AppViewModel extends BaseViewModel {
                 fontFamily: StringUtils.appFont,
               ),
               displayMedium: TextStyle(
-                color: AppColor.very_dark_gray,
+                color: AppColor.very_dark_gray2,
                 fontFamily: StringUtils.appFont,
               ),
               displaySmall: TextStyle(
@@ -161,18 +162,13 @@ class AppViewModel extends BaseViewModel {
                 fontFamily: StringUtils.appFont,
               ),
               labelSmall: TextStyle(
-                color: AppColor.lightGrayishMagenta,
+                color: AppColor.dark_yellow1,
                 fontFamily: StringUtils.appFont,
               ),
               titleMedium: TextStyle(
                 color: AppColor.very_dark_gray1,
                 fontFamily: StringUtils.appFont,
-              ))
-            ..apply(
-                // bodyColor: AppColor.brightBlue,
-                // displayColor: AppColor.brightBlue,
-                // decorationColor: AppColor.brightBlue,
-                ),
+              )),
           primaryTextTheme: _themeData.textTheme.copyWith(
             bodyLarge: TextStyle(color: AppColor.white, fontFamily: StringUtils.appFont),
           ),
@@ -188,6 +184,15 @@ class AppViewModel extends BaseViewModel {
           highlightColor: Colors.transparent,
           dividerColor: AppColor.lightGrayishBlue,
           canvasColor: AppColor.vividYellow,
+          tabBarTheme: TabBarTheme(
+            labelColor: AppColor.darkBlack,
+            unselectedLabelColor: AppColor.gray4,
+            indicatorColor: AppColor.brightRed,
+            indicator: UnderlineTabIndicator(
+              borderSide: BorderSide(width: 4.0, color: AppColor.brightRed),
+            ),
+          ),
+
           /*colorScheme: ColorScheme.fromSwatch(accentColor: AppColor.white)
                 .copyWith(background: AppColor.lightGray)
                 .copyWith(error: AppColor.vivid_red)*/
@@ -349,6 +354,10 @@ class AppViewModel extends BaseViewModel {
     _receivePort.close();
     _isolate?.kill();
     super.dispose();
+  }
+
+  Future<void> getAppSignature() async {
+    AppConstantsDomain.APP_SIGNATURE = await SmsAutoFill().getAppSignature;
   }
 }
 

@@ -13,7 +13,7 @@ class GenerateQRRequestEntity {
 
   GenerateQRRequestEntity({
     this.amount,
-    this.getToken= true,
+    this.getToken = true,
     this.baseData,
   });
 

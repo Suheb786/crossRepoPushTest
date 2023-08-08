@@ -11,7 +11,7 @@ class VerifyMobileOtpRequest {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  VerifyMobileOtpRequest({this.otpCode= "", this.getToken= true, required this.baseData});
+  VerifyMobileOtpRequest({this.otpCode = "", this.getToken = true, required this.baseData});
 
   factory VerifyMobileOtpRequest.fromJson(Map<String, dynamic> json) =>
       _$VerifyMobileOtpRequestFromJson(json);

@@ -20,6 +20,9 @@ GetCreditCardLimitEntity _$GetCreditCardLimitEntityFromJson(
           json['onlinePurchaseCurrentLimit'] as String? ?? "0",
       onlinePurchaseMAXLimit: json['onlinePurchaseMAXLimit'] as String? ?? "0",
       isContactLess: json['isContactLess'] as bool? ?? false,
+      contactLessCurrentLimit:
+          json['contactLessCurrentLimit'] as String? ?? '0',
+      contactLessMaxLimit: json['contactLessMaxLimit'] as String? ?? '0',
     );
 
 Map<String, dynamic> _$GetCreditCardLimitEntityToJson(
@@ -35,4 +38,6 @@ Map<String, dynamic> _$GetCreditCardLimitEntityToJson(
       'onlinePurchaseCurrentLimit': instance.onlinePurchaseCurrentLimit,
       'onlinePurchaseMAXLimit': instance.onlinePurchaseMAXLimit,
       'isContactLess': instance.isContactLess,
+      'contactLessCurrentLimit': instance.contactLessCurrentLimit,
+      'contactLessMaxLimit': instance.contactLessMaxLimit,
     };

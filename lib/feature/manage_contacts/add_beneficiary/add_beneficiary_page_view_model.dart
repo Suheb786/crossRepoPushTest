@@ -1,10 +1,9 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
-
-import '../../../utils/navgition_type.dart';
 
 class AddBeneficiaryPageViewModel extends BasePageViewModel {
   ///--------------------------controllers-------------------------------------///
@@ -26,7 +25,7 @@ class AddBeneficiaryPageViewModel extends BasePageViewModel {
 
   ///--------------------------public-other-methods-------------------------------------///
 
-  late NavigationType navigationType;
+  late AddBeneficiaryPageArguments arguments;
 
   void updatePage(int index) {
     _currentStep.safeAdd(index);
@@ -42,5 +41,11 @@ class AddBeneficiaryPageViewModel extends BasePageViewModel {
 
   void changeCurrentPage(int index) {
     _currentPageSubject.safeAdd(index);
+  }
+
+  @override
+  void dispose() {
+    _currentPageSubject.close();
+    super.dispose();
   }
 }

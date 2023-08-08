@@ -8,7 +8,7 @@ class UploadDocumentLocalDSImpl extends UploadDocumentLocalDS {
 
   @override
   Future<String> clickDocumentImage() async {
-    final pickedFile = await _imagePicker.pickImage(source: ImageSource.camera);
+    final pickedFile = await _imagePicker.pickImage(source: ImageSource.camera, imageQuality: 50);
     if (pickedFile != null) {
       return pickedFile.path;
     }

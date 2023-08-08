@@ -18,8 +18,6 @@ import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transactio
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_view_model.dart';
-import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_view_model.dart';
-import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_page.dart';
@@ -29,7 +27,6 @@ import 'package:neo_bank/feature/dashboard_home/download_transaction/download_tr
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/home/home_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model.dart';
-import 'package:neo_bank/feature/dashboard_home/placeholder/placeholder_view_model.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_payment_account/change_card_payment_account_page_view_model.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_settlement_percentage/change_card_settlement_percentage_page_view_model.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/manage_credit_settlement_page_view_model.dart';
@@ -54,10 +51,6 @@ final biometricLoginViewModelProvider = ChangeNotifierProvider.autoDispose<Biome
   (ref) => BiometricLoginDialogViewModel(),
 );
 
-final placeholderViewModelProvider = ChangeNotifierProvider.autoDispose<PlaceholderViewModel>(
-  (ref) => PlaceholderViewModel(),
-);
-
 final appHomeViewModelProvider = ChangeNotifierProvider.autoDispose<AppHomeViewModel>(
   (ref) => AppHomeViewModel(
       ref.read(getDashboardDataUseCaseProvider),
@@ -77,11 +70,6 @@ final myAccountViewModelProvider = ChangeNotifierProvider.autoDispose<MyAccountV
   (ref) => MyAccountViewModel(),
 );
 
-final cardDeliveredViewModelProvider =
-    ChangeNotifierProvider.autoDispose.family<DebitCardDeliveredViewModel, TimeLineListArguments>(
-  (ref, args) => DebitCardDeliveredViewModel(ref.read(debitCardConfirmDeliveryCaseProvider), args),
-);
-
 final debitCardVerificationSuccessViewModelProvider =
     ChangeNotifierProvider.autoDispose<DebitCardVerificationSuccessViewModel>(
   (ref) => DebitCardVerificationSuccessViewModel(),
@@ -91,11 +79,6 @@ final cardTransactionViewModelProvider =
     ChangeNotifierProvider.autoDispose.family<CardTransactionViewModel, GetCreditCardTransactionArguments>(
   (ref, args) => CardTransactionViewModel(
       ref.read(creditCardTransactionUseCaseProvider), ref.read(getCreditYearsUseCaseProvider), args),
-);
-
-final creditCardVerificationSuccessViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CreditCardVerificationSuccessViewModel>(
-  (ref) => CreditCardVerificationSuccessViewModel(),
 );
 
 final accountTransactionViewModelProvider = ChangeNotifierProvider.autoDispose<AccountTransactionViewModel>(

@@ -186,7 +186,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          CountryData? countryData = event.data!.content!.countryData
+          CountryData? countryData = event.data?.content?.countryData
               ?.firstWhere((element) => element.isoCode3 == scannedDocumentResult.issuingPlaceISo3);
 
           issuingPlaceController.text = countryData!.countryName!;

@@ -1,6 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:domain/constants/enum/evoucher_landing_page_navigation_type_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
+import 'package:neo_bank/feature/evoucher/evoucher/evoucher_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_voucher_success_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -9,7 +13,10 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/extension/string_casing_extension.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+import 'package:neo_bank/utils/time_utils.dart';
 
 class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherSuccessPageViewModel> {
   PurchaseVoucherSuccessPageView(ProviderBase model) : super(model);
@@ -19,24 +26,34 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
-          Navigator.pushNamed(context, RoutePaths.EvoucherDetail);
+          final provider = ProviderScope.containerOf(context).read(
+            evoucherViewModelProvider,
+          );
+
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            RoutePaths.Evoucher,
+            (route) => route.settings.name == RoutePaths.AppHome,
+            arguments: EvoucherPageArguments(EvoucherLandingPageNavigationType.PURCHASE_BY_CATEGORY),
+          );
+
+          provider.tabChangeNotifier.value = 1;
+          provider.myVoucherHistoryList = [];
+          provider.getVoucherCategories();
         }
       },
       child: Container(
-          height: double.infinity,
-          width: double.infinity,
           color: Theme.of(context).primaryColor,
           padding: EdgeInsets.symmetric(horizontal: 24),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SingleChildScrollView(
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(top: 72),
+                        padding: EdgeInsets.only(top: 72.h),
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
@@ -60,15 +77,12 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 24,
-                      ),
+                      SizedBox(height: 24.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            '4.99',
+                            double.parse(model.argument.settlementAmount ?? '').toStringAsFixed(3),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
@@ -76,13 +90,11 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                                 fontSize: 32,
                                 color: Theme.of(context).colorScheme.secondary),
                           ),
-                          SizedBox(
-                            width: 4,
-                          ),
+                          const SizedBox(width: 4),
                           Padding(
-                            padding: const EdgeInsetsDirectional.only(bottom: 4),
+                            padding: const EdgeInsetsDirectional.only(top: 8),
                             child: Text(
-                              'USD',
+                              S.of(context).JOD,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
@@ -93,77 +105,67 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        '(3.540 JOD)',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14,
-                            color: Theme.of(context).colorScheme.secondary),
-                      ),
-                      SizedBox(
-                        height: 24,
-                      ),
-                      Text(
-                        S.of(context).purchasedFor,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 24,
-                            color: Theme.of(context).colorScheme.secondary),
-                      ),
-                      SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
                       Container(
                         padding: EdgeInsets.all(24),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16), color: Theme.of(context).colorScheme.secondary),
+                            borderRadius: BorderRadius.circular(16),
+                            color: Theme.of(context).colorScheme.secondary),
                         child: Column(
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(8),
                               child: Container(
-                                height: 72,
-                                width: 72,
-                                color: Theme.of(context).primaryColor,
+                                height: 72.h,
+                                width: 72.w,
+                                child: CachedNetworkImage(
+                                  imageUrl: model.argument.selectedItem.cardFaceImage,
+                                  placeholder: (context, url) =>
+                                      Container(color: Theme.of(context).primaryColor),
+                                  errorWidget: (context, url, error) => Icon(Icons.error),
+                                  fit: BoxFit.fill,
+                                ),
                               ),
                             ),
                             SizedBox(
-                              height: 16,
+                              height: 16.h,
                             ),
                             Text(
-                              'PlayStation Voucher Lorem Ipsum',
+                              model.argument.selectedItem.name,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 14,
+                                  fontSize: 14.t,
                                   color: Theme.of(context).indicatorColor),
                             ),
-                            SizedBox(
-                              height: 2,
-                            ),
+                            SizedBox(height: 2.h),
                             Text(
-                              'PlayStation',
+                              model.argument.selectedItem.brand,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 12,
+                                  fontSize: 12.t,
                                   color: Theme.of(context).indicatorColor),
                             ),
-                            SizedBox(
-                              height: 24,
-                            ),
+                            const SizedBox(height: 24),
                             AccountDetails(
-                              title: 'Ref No.',
-                              value: '984893922',
+                              title: S.current.refNo,
+                              value: model.argument.placeOrder?.referenceNo ?? '',
+                              showIcon: false,
+                            ),
+                            SizedBox(height: 16.h),
+                            AccountDetails(
+                              title: S.current.amount.toCapitalized(),
+                              value:
+                                  "${model.argument.placeOrder?.lineItems?.first.value?.toStringAsFixed(3) ?? 0.0} ${model.argument.placeOrder?.lineItems?.first.currency ?? ""}",
+                              showIcon: false,
+                            ),
+                            SizedBox(height: 16.h),
+                            AccountDetails(
+                              title: S.current.validUntil,
+                              value: '-',
                               showIcon: false,
                             ),
                             Padding(
@@ -182,20 +184,26 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                                   Text.rich(
                                     TextSpan(children: [
                                       TextSpan(
-                                        text: "16 Dec 2021 - ",
+                                        text: model.argument.placeOrder?.placementDate != null
+                                            ? "${TimeUtils.convertDateTimeToDMY(model.argument.placeOrder!.placementDate!)} - "
+                                            : '-',
                                         style: TextStyle(
                                           fontFamily: StringUtils.appFont,
-                                          fontSize: 12,
+                                          fontSize: 12.t,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
                                       TextSpan(
-                                        text: "3:30PM",
+                                        text: model.argument.placeOrder?.placementDate != null
+                                            ? TimeUtils.getFormattedTimeFor12HrsFormat(
+                                                model.argument.placeOrder!.placementDate!)
+                                            : '-',
                                         style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600,
-                                            color: AppColor.dark_gray_1),
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12.t,
+                                          fontWeight: FontWeight.w600,
+                                          color: Theme.of(context).colorScheme.surfaceTint,
+                                        ),
                                       )
                                     ]),
                                   )
@@ -205,42 +213,32 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 24,
-                      ),
+                      SizedBox(height: 24.h),
                     ],
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    AnimatedButton(
-                      buttonText: S.of(context).swipeToProceed,
-                      textColor: Theme.of(context).colorScheme.secondary,
-                      borderColor: Theme.of(context).colorScheme.secondary,
+              ),
+              AnimatedButton(
+                buttonText: S.of(context).swipeToProceed,
+                textColor: Theme.of(context).colorScheme.secondary,
+                borderColor: Theme.of(context).colorScheme.secondary,
+              ),
+              const SizedBox(height: 6),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 32),
+                child: Center(
+                  child: Text(
+                    S.of(context).toViewVoucher,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.secondary,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12,
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 32,
-                      ),
-                      child: Center(
-                        child: Text(
-                          S.of(context).toViewVoucher,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.secondary,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 0),
+            ],
           )),
     );
   }

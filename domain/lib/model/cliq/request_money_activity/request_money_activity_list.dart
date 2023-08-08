@@ -6,11 +6,9 @@ class RequestMoneyActivityList {
   final String? msgID;
   final double? amount;
   final String? creDtTm;
-
   final String? processFlag;
   final String? cdtrRecordID;
   final String? trxReason;
-
   final String? trxType;
   final String? dbtrAgt;
   final String? dbtrAlias;

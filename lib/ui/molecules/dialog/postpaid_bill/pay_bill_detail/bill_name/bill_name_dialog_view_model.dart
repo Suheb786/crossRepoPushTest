@@ -51,7 +51,7 @@ class PayBillDialogViewModel extends BasePageViewModel {
 
   PayBillDialogViewModel(this.getBillerLookupUseCase) {
     _getBillerLookupRequest.listen(
-          (params) {
+      (params) {
         RequestManager(
           params,
           createCall: () => getBillerLookupUseCase.execute(

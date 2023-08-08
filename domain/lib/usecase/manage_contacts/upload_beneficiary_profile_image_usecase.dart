@@ -13,15 +13,18 @@ class UploadBeneficiaryProfileImageUseCase
 
   @override
   Future<Either<NetworkError, bool>> execute({required UploadBeneficiaryProfileImageUseCaseParams params}) {
-    return _repository.uploadBeneficiaryImage(beneficiaryId: params.beneficiaryId, filePath: params.filePath);
+    return _repository.updateAvatar(
+        beneficiaryDetailId: params.beneficiaryId, avatarImage: params.filePath, beneType: params.beneType);
   }
 }
 
 class UploadBeneficiaryProfileImageUseCaseParams extends Params {
   final String beneficiaryId;
   final String filePath;
+  final String beneType;
 
-  UploadBeneficiaryProfileImageUseCaseParams({required this.beneficiaryId, required this.filePath});
+  UploadBeneficiaryProfileImageUseCaseParams(
+      {required this.beneficiaryId, required this.filePath, required this.beneType});
 
   @override
   Either<AppError, bool> verify() {

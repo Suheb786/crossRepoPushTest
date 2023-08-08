@@ -1,8 +1,9 @@
 class Beneficiary {
   final String? id;
+  final String? userId;
 
   //final String? beneficiaryId;
-  final dynamic imageUrl;
+  dynamic imageUrl;
   final String? nickName;
   final String? fullName;
   final String? accountNo;
@@ -19,24 +20,27 @@ class Beneficiary {
   final String? purposeParent;
   final String? purposeParentDetails;
   final num? limit;
+  final String? identifier;
 
   Beneficiary(
-      {this.id= "",
-      this.imageUrl= "",
-      this.nickName= "",
-      this.fullName= "",
+      {this.id = "",
+      this.userId = "",
+      this.imageUrl = "",
+      this.nickName = "",
+      this.fullName = "",
       this.bankName,
-      this.iban= "",
+      this.iban = "",
       this.purposeParent,
       this.purposeParentDetails,
       this.limit,
-      this.accountHolderName= "",
-      this.purpose= "",
-      this.purposeDetails= "",
-      this.mobileNumber= "",
-      this.accountNo= "",
-      this.beneficiaryAddress= "",
-      this.detCustomerType= "",
-      this.purposeType= "",
-      this.beneType});
+      this.accountHolderName = "",
+      this.purpose = "",
+      this.purposeDetails = "",
+      this.mobileNumber = "",
+      this.accountNo = "",
+      this.beneficiaryAddress = "",
+      this.detCustomerType = "",
+      this.purposeType = "",
+      this.beneType,
+      this.identifier = ''});
 }

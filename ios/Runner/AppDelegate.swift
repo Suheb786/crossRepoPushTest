@@ -495,7 +495,7 @@ import AntelopSDK
         
         AntelopAppDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         FirebaseApp.configure()
-        MobileMessagingPluginApplicationDelegate.install()
+//       MobileMessagingPluginApplicationDelegate.install()
         GeneratedPluginRegistrant.register(with: self)
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
@@ -543,18 +543,19 @@ import AntelopSDK
     }
     
     override func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        AntelopAppDelegate.shared.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+        MobileMessaging.didRegisterForRemoteNotificationsWithDeviceToken(deviceToken);
+        AntelopAppDelegate.shared.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken);
     }
     
     override func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        MobileMessaging.didReceiveRemoteNotification(userInfo, fetchCompletionHandler: {result in
+            return 
+        })
         guard !AntelopAppDelegate.shared.didReceiveRemoteNotification(userInfo, fetchCompletionHandler: { result in
-            NSLog("AppDelegate.didReceiveRemoteNotification - will call didReceiveRemoteNotification completionHandler")
             completionHandler(result)
         }) else {
-            NSLog("AppDelegate.didReceiveRemoteNotification - Notification handled by the Antelop SDK")
             return
         }
-        NSLog("AppDelegate.didReceiveRemoteNotification - Notification NOT handled by the Antelop SDK")
         completionHandler(.noData)
     }
     

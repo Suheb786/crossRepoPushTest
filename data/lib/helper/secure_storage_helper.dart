@@ -54,12 +54,8 @@ class SecureStorageHelper {
   ///save user data to secure storage
   Future<bool> saveUserToSecureStorage({User? user}) async {
     User? secureUser = await getUserDataFromSecureStorage();
-    //debugPrint('user to save from db ---->${user!.toJson()}');
     if (secureUser != null) {
-      // print('secure user not null');
-      // debugPrint('secure user from db ---->${secureUser!.toJson()}');
       if (secureUser.id == user!.id) {
-        //print('secure user id match');
         secureUser.id = user.id;
         secureUser.token = user.token ?? secureUser.token;
         secureUser.firstName = user.firstName ?? secureUser.firstName;
@@ -85,14 +81,13 @@ class SecureStorageHelper {
         secureUser.isRJPopUPClicked = user.isRJPopUPClicked ?? secureUser.isRJPopUPClicked;
         secureUser.isEfawateerPopUPClicked =
             user.isEfawateerPopUPClicked ?? secureUser.isEfawateerPopUPClicked;
+        secureUser.isEVoucherPopUPClicked = user.isEVoucherPopUPClicked ?? secureUser.isEVoucherPopUPClicked;
 
         await _storage.write(key: USER, value: json.encode(secureUser.toJson()));
       } else {
-        //print('new  user login');
         await _storage.write(key: USER, value: json.encode(user.toJson()));
       }
     } else {
-      //print('secure user inull');
       await _storage.write(key: USER, value: json.encode(user!.toJson()));
     }
 
@@ -101,7 +96,6 @@ class SecureStorageHelper {
 
   Future<User?> getUserDataFromSecureStorage() async {
     String? userString = await _storage.read(key: USER);
-    //debugPrint('------$userString');
     if (userString != null) {
       User user = User.fromJson(json.decode(userString));
       return user;

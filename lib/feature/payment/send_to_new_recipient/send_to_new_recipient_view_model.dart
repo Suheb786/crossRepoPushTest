@@ -166,6 +166,9 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _uploadProfilePhotoResponse.safeAdd(event.data!);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
       });
     });
 
@@ -232,8 +235,8 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   }
 
   void checkSendMoney({required String iban, required String amount}) {
-    _checkSendMoneyRequest
-        .safeAdd(CheckSendMoneyUseCaseParams(toAccount: iban, toAmount: double.parse(amount)));
+    _checkSendMoneyRequest.safeAdd(
+        CheckSendMoneyUseCaseParams(toAccount: iban, toAmount: double.parse(amount), beneficiaryId: ''));
   }
 
   void sendToNewRecipient(BuildContext context) {
@@ -244,10 +247,7 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
         isFriend: isFriend,
         purposeDetail: purposeDetailController.text,
         amount:
-        double.parse(ProviderScope
-            .containerOf(context)
-            .read(sendMoneyViewModelProvider)
-            .currentPinValue),
+            double.parse(ProviderScope.containerOf(context).read(sendMoneyViewModelProvider).currentPinValue),
         limit: limit,
         messageEnum: checkSendMoneyMessageEnum,
         recipientName: recipientNameController.text,
@@ -287,6 +287,9 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
         ibanOrMobileKey.currentState!.isValid = false;
         break;
       case ErrorType.EMPTY_RECIPIENT_NAME:
+        recipientNameKey.currentState!.isValid = false;
+        break;
+      case ErrorType.RECIPIENT_NAME_VALIDATION:
         recipientNameKey.currentState!.isValid = false;
         break;
       case ErrorType.EMPTY_RECIPIENT_ADDRESS:

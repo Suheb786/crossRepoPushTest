@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -113,52 +111,48 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                         fontSize: 14.t,
                       ),
                     ),
-                    Platform.isAndroid
-                        ? AppStreamBuilder<Resource<String>>(
-                            initialData: Resource.none(),
-                            stream: model.createDynamicLinkStream,
-                            onData: (data) {
-                              if (data.status == Status.SUCCESS) {
-                                if (data.data != null) {
-                                  _shareImage(model, data.data ?? '');
-                                }
-                              }
-                            },
-                            dataBuilder: (context, snapshot) {
-                              return InkWell(
-                                onTap: () async {
-                                  ///LOG EVENT TO FIREBASE
-                                  await FirebaseAnalytics.instance.logEvent(
-                                    name: "share_qr",
-                                    parameters: {"is_qr_shared_clicked": true.toString()},
-                                  );
-                                  model.createDynamicLink();
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.only(top: 34.h, left: 24.w, right: 24.w),
-                                  child: Container(
-                                    height: 50.h,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
-                                        border:
-                                            Border.all(color: Theme.of(context).textTheme.bodyLarge!.color!)),
-                                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 17.h),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          S.of(context).shareQr,
-                                          style: TextStyle(fontSize: 12.t, fontWeight: FontWeight.w600),
-                                        ),
-                                        AppSvg.asset(AssetUtils.share,
-                                            color: Theme.of(context).primaryColorDark)
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                    AppStreamBuilder<Resource<String>>(
+                        initialData: Resource.none(),
+                        stream: model.createDynamicLinkStream,
+                        onData: (data) {
+                          if (data.status == Status.SUCCESS) {
+                            if (data.data != null) {
+                              _shareImage(model, data.data ?? '');
+                            }
+                          }
+                        },
+                        dataBuilder: (context, snapshot) {
+                          return InkWell(
+                            onTap: () async {
+                              ///LOG EVENT TO FIREBASE
+                              await FirebaseAnalytics.instance.logEvent(
+                                name: "share_qr",
+                                parameters: {"is_qr_shared_clicked": true.toString()},
                               );
-                            })
-                        : Container(),
+                              model.createDynamicLink();
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 34.h, left: 24.w, right: 24.w),
+                              child: Container(
+                                height: 50.h,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(color: Theme.of(context).textTheme.bodyLarge!.color!)),
+                                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 17.h),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      S.of(context).shareQr,
+                                      style: TextStyle(fontSize: 12.t, fontWeight: FontWeight.w600),
+                                    ),
+                                    AppSvg.asset(AssetUtils.share, color: Theme.of(context).primaryColorDark)
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
                     Padding(
                       padding: EdgeInsets.only(top: 29.h, bottom: 16.h),
                       child: InkWell(
@@ -169,7 +163,6 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                             parameters: {"is_qr_screen_dismissed": true.toString()},
                           );
                           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-                          // Navigator.pushNamed(context, RoutePaths.AppHome);
                         },
                         child: Container(
                           height: 57.h,

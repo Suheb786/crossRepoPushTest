@@ -2,7 +2,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part "add_new_postpaid_biller_entity_request.g.dart";
 
-
 @JsonSerializable()
 class AddNewPostpaidBillerEntityRequest {
   @JsonKey(name: "serviceType")
@@ -22,15 +21,13 @@ class AddNewPostpaidBillerEntityRequest {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-
-  AddNewPostpaidBillerEntityRequest({
-    this.serviceType,
-    this.billerCode,
-    this.billingNumber,
-    this.nickname,
-    this.getToken= true,
-    required this.baseData
-  });
+  AddNewPostpaidBillerEntityRequest(
+      {this.serviceType,
+      this.billerCode,
+      this.billingNumber,
+      this.nickname,
+      this.getToken = true,
+      required this.baseData});
 
   factory AddNewPostpaidBillerEntityRequest.fromJson(Map<String, dynamic> json) =>
       _$AddNewPostpaidBillerEntityRequestFromJson(json);

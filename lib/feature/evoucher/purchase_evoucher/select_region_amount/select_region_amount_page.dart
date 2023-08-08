@@ -26,6 +26,14 @@ class SelectRegionAmountPageState
   }
 
   @override
+  void onModelReady(SelectRegionAmountPageViewModel model) {
+    model.voucherItems.clear();
+    model.voucherItems =
+        ProviderScope.containerOf(context).read(purchaseEVouchersViewModelProvider).voucherItems ?? [];
+    model.getRegionFromVoucherIds(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
     super.build(context);
     return stateBuild(context);

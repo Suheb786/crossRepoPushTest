@@ -33,6 +33,10 @@ DashboardFeaturesEntity _$DashboardFeaturesEntityFromJson(
       rtpFeatureEnabled: json['blink-retail-app-cliq-rtp-outward'] as bool?,
       returnPaymentFeatureEnabled:
           json['blink-retail-app-cliq-return-payment'] as bool?,
+      manageContactEnabled: json['blink-retail-app-manage-contacts'] as bool?,
+      manageContactHistory:
+          json['blink-retail-app-manage-contacts-History'] as bool?,
+      eVouchers: json['blink-retail-app-E-vouchers'] as bool?,
     );
 
 Map<String, dynamic> _$DashboardFeaturesEntityToJson(
@@ -61,4 +65,7 @@ Map<String, dynamic> _$DashboardFeaturesEntityToJson(
       'blink-retail-app-cliq-rtp-outward': instance.rtpFeatureEnabled,
       'blink-retail-app-cliq-return-payment':
           instance.returnPaymentFeatureEnabled,
+      'blink-retail-app-manage-contacts': instance.manageContactEnabled,
+      'blink-retail-app-manage-contacts-History': instance.manageContactHistory,
+      'blink-retail-app-E-vouchers': instance.eVouchers,
     };

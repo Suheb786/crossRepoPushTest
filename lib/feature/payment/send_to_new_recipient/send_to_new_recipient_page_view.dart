@@ -56,7 +56,6 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                           ProviderScope.containerOf(context)
                               .read(paymentToNewRecipientViewModelProvider)
                               .nextPage();
-                          // .next();
                         }
                       },
                       dataBuilder: (context, transferVerified) {
@@ -112,7 +111,6 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                       ProviderScope.containerOf(context)
                                           .read(paymentToNewRecipientViewModelProvider)
                                           .nextPage();
-                                      // .next();
                                     } else {
                                       model.verifyTransfer(
                                           amount: ProviderScope.containerOf(context)
@@ -143,10 +141,20 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                       FocusScope.of(context).unfocus();
                                       if (StringUtils.isDirectionRTL(context)) {
                                         if (!details.primaryVelocity!.isNegative) {
+                                          model.ibanOrMobileKey.currentState?.isValid = true;
+                                          model.recipientNameKey.currentState?.isValid = true;
+                                          model.recipientAddressKey.currentState?.isValid = true;
+                                          model.purposeKey.currentState?.isValid = true;
+                                          model.purposeDetailKey.currentState?.isValid = true;
                                           model.sendToNewRecipient(context);
                                         }
                                       } else {
                                         if (details.primaryVelocity!.isNegative) {
+                                          model.ibanOrMobileKey.currentState?.isValid = true;
+                                          model.recipientNameKey.currentState?.isValid = true;
+                                          model.recipientAddressKey.currentState?.isValid = true;
+                                          model.purposeKey.currentState?.isValid = true;
+                                          model.purposeDetailKey.currentState?.isValid = true;
                                           model.sendToNewRecipient(context);
                                         }
                                       }
@@ -193,37 +201,39 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                 onTap: () async {
                                                                   InformationDialog.show(context,
                                                                       isSwipeToCancel: false,
-                                                                      title: S.of(context).numberFormatting,
+                                                                      title: S.of(context).contactInformation,
                                                                       descriptionWidget: Column(
                                                                         children: [
                                                                           Text(
                                                                             S
                                                                                 .of(context)
-                                                                                .samplesOfNoFormatting,
+                                                                                .sendMoneyFormateSample,
                                                                             style: TextStyle(
                                                                                 fontFamily:
                                                                                     StringUtils.appFont,
                                                                                 fontSize: 14.t,
-                                                                                color: AppColor.veryDarkGray1
-                                                                                    .withOpacity(0.5),
+                                                                                color: Theme.of(context)
+                                                                                    .colorScheme
+                                                                                    .surface,
                                                                                 fontWeight: FontWeight.w400),
                                                                           ),
                                                                           NumberFormattingWidget(
-                                                                            title: S.of(context).iban,
+                                                                            title: S.of(context).ibanCliq,
                                                                             desc: S.of(context).dummyIBAN,
                                                                           ),
                                                                           NumberFormattingWidget(
-                                                                            title:
-                                                                                S.of(context).accountNumber,
+                                                                            title: S.of(context).accountBlink,
                                                                             desc:
                                                                                 S.of(context).dummyAccountNo,
                                                                           ),
                                                                           NumberFormattingWidget(
-                                                                            title: S.of(context).mobileNo,
+                                                                            title: S
+                                                                                .of(context)
+                                                                                .mobileNoCliqorBlink,
                                                                             desc: S.of(context).dummyMobileNo,
                                                                           ),
                                                                           NumberFormattingWidget(
-                                                                            title: S.of(context).alias,
+                                                                            title: S.of(context).aliasCliq,
                                                                             desc: S.of(context).dummyAlias,
                                                                           )
                                                                         ],

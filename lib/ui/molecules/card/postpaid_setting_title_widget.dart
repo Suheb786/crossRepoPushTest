@@ -7,13 +7,11 @@ import 'package:neo_bank/utils/string_utils.dart';
 import '../app_divider.dart';
 
 class PostPaidSettingTitleWidget extends StatelessWidget {
-
   final String tileIcon;
   final String? title;
   final Function()? onTap;
 
-  const PostPaidSettingTitleWidget(
-      {Key? key, required this.tileIcon, required this.title, this.onTap})
+  const PostPaidSettingTitleWidget({Key? key, required this.tileIcon, required this.title, this.onTap})
       : super(key: key);
 
   @override

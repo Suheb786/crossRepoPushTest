@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class EVoucherTextWidget extends StatelessWidget {
@@ -19,7 +20,7 @@ class EVoucherTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 24.0, end: 24),
+      padding: EdgeInsetsDirectional.only(start: 24.0.w),
       child: Align(
           alignment: this.alignment,
           child: Text(

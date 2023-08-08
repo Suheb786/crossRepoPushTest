@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:domain/model/cliq/credit_confirmation/credit_confirmation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -13,7 +14,6 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:domain/model/cliq/credit_confirmation/credit_confirmation.dart';
 
 class CreditConfirmationPaymentActivityPageView
     extends BasePageViewWidget<CreditConfirmationPaymentActivityViewModel> {
@@ -98,26 +98,29 @@ class CreditConfirmationPaymentActivityPageView
                                         ),
                                       )),
                                   SizedBox(height: 16.0.h),
-                                  RichText(
-                                    text: TextSpan(
-                                      text:
-                                          "-${double.parse(model.creditConfirmationArgument.amount?.replaceAll('-', '') ?? '0.0').toStringAsFixed(3)}",
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          fontSize: 24.t,
-                                          fontWeight: FontWeight.w700,
-                                          color: AppColor.black),
-                                      children: [
-                                        TextSpan(text: " "),
-                                        TextSpan(
-                                          text: model.creditConfirmationArgument.currency,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontSize: 12.t,
-                                              color: AppColor.light_gray,
-                                              fontWeight: FontWeight.w700),
-                                        )
-                                      ],
+                                  Directionality(
+                                    textDirection: TextDirection.ltr,
+                                    child: RichText(
+                                      text: TextSpan(
+                                        text:
+                                            "-${double.parse(model.creditConfirmationArgument.amount?.replaceAll('-', '') ?? '0.0').toStringAsFixed(3)}",
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontSize: 24.t,
+                                            fontWeight: FontWeight.w700,
+                                            color: AppColor.black),
+                                        children: [
+                                          TextSpan(text: " "),
+                                          TextSpan(
+                                            text: model.creditConfirmationArgument.currency,
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                fontSize: 12.t,
+                                                color: AppColor.light_gray,
+                                                fontWeight: FontWeight.w700),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   SizedBox(height: 8.0.h),

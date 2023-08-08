@@ -37,7 +37,6 @@ class EnterOtpViewModel extends BasePageViewModel {
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
 
-
   PublishSubject<Resource<bool>> _transferVerifyResponse = PublishSubject();
 
   ///transfer verify response stream
@@ -107,16 +106,16 @@ class EnterOtpViewModel extends BasePageViewModel {
     SmsAutoFill().listenForCode();
   }
 
-  void transfer({required TransferResponse transferResponse,
-    required String memo,
-    required bool isFriend,
-    required String beneficiaryImage,
-    required String nickName,
-    required num limit,
-    required String amount,
-    required String recipientName,
-    required String recipientAddress}) {
-    print('isFriend:--->$isFriend');
+  void transfer(
+      {required TransferResponse transferResponse,
+      required String memo,
+      required bool isFriend,
+      required String beneficiaryImage,
+      required String nickName,
+      required num limit,
+      required String amount,
+      required String recipientName,
+      required String recipientAddress}) {
     _transferRequest.safeAdd(TransferUseCaseParams(
         limit: limit,
         otpCode: _otpSubject.value,

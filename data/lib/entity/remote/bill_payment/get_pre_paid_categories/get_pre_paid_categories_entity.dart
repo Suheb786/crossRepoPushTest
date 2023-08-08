@@ -5,13 +5,13 @@ import 'package:json_annotation/json_annotation.dart';
 part 'get_pre_paid_categories_entity.g.dart';
 
 @JsonSerializable()
-class GetPrePaidCategoriesEntity extends BaseLayerDataTransformer<
-    GetPrePaidCategoriesEntity, GetPrepaidCategoriesModelData> {
+class GetPrePaidCategoriesEntity
+    extends BaseLayerDataTransformer<GetPrePaidCategoriesEntity, GetPrepaidCategoriesModelData> {
   @JsonKey(name: "code")
   String? code;
   @JsonKey(name: "description")
   String? description;
-@JsonKey(name: "type")
+  @JsonKey(name: "type")
   String? type;
 
   GetPrePaidCategoriesEntity({this.code, this.description});
@@ -28,7 +28,6 @@ class GetPrePaidCategoriesEntity extends BaseLayerDataTransformer<
 
   @override
   GetPrepaidCategoriesModelData transform() {
-    return GetPrepaidCategoriesModelData(
-        code: this.code, description: this.description,type:this.type);
+    return GetPrepaidCategoriesModelData(code: this.code, description: this.description, type: this.type);
   }
 }

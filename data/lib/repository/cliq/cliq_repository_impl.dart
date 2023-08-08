@@ -226,55 +226,6 @@ class CliqRepositoryImpl extends CliqRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> updateRTPCliqRequest(
-      {required String msgId,
-      required String rejectReason,
-      required String rejectAddInfo,
-      required String dbtrBic,
-      required String dbtrAcct,
-      required String dbtrName,
-      required String dbtrIsIndvl,
-      required String cdtrBic,
-      required String cdtrAcct,
-      required String cdtrName,
-      required String cdtrIsIndvl,
-      required String rmtInf,
-      required String ctgyPurp,
-      required String amount,
-      required String curr,
-      required bool rtpStatus,
-      required String otPcode,
-      required String cdtrPstlAdr,
-      required String dbtrPstlAdr,
-      required bool getToken}) async {
-    final result = await safeApiCall(_cliqDataSource.updateRTPCliqRequest(
-        msgId: msgId,
-        rejectReason: rejectReason,
-        rejectAddInfo: rejectAddInfo,
-        dbtrBic: dbtrBic,
-        dbtrAcct: dbtrAcct,
-        dbtrName: dbtrName,
-        dbtrIsIndvl: dbtrIsIndvl,
-        cdtrBic: cdtrBic,
-        cdtrAcct: cdtrAcct,
-        cdtrName: cdtrName,
-        cdtrIsIndvl: cdtrIsIndvl,
-        rmtInf: rmtInf,
-        ctgyPurp: ctgyPurp,
-        amount: amount,
-        curr: curr,
-        rtpStatus: rtpStatus,
-        otPcode: otPcode,
-        cdtrPstlAdr: cdtrPstlAdr,
-        dbtrPstlAdr: dbtrPstlAdr,
-        getToken: getToken));
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
-    );
-  }
-
-  @override
   Future<Either<NetworkError, EditCliqOtp>> editCliqIdOtp(
       {required String aliasId,
       required bool isAlias,
@@ -469,21 +420,6 @@ class CliqRepositoryImpl extends CliqRepository {
       OtpCode: OtpCode,
       GetToken: GetToken,
     ));
-    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
-  }
-
-  @override
-  Future<Either<NetworkError, bool>> getTransactionHistory(
-      {required String? FilterDays,
-      required String? TransactionType,
-      required String? TotalRecords,
-      required bool? GetToken}) async {
-    final result = await safeApiCall(_cliqDataSource.getTransactionHistory(
-        FilterDays: FilterDays,
-        TransactionType: TransactionType,
-        TotalRecords: TotalRecords,
-        GetToken: GetToken));
-
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
 

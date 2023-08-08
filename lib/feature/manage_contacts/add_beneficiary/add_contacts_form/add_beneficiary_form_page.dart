@@ -15,7 +15,6 @@ class AddBeneficiaryFormPage extends BasePage<AddBeneficiaryFormPageViewModel> {
 
 class AddBeneficiaryFormPageState
     extends BaseStatefulPage<AddBeneficiaryFormPageViewModel, AddBeneficiaryFormPage> {
-  // AddContactIBANformPageState() : super(subscribeVisibilityEvents: true);
   @override
   ProviderBase provideBase() {
     return addBeneficiaryFormPageViewModel;
@@ -29,12 +28,6 @@ class AddBeneficiaryFormPageState
   @override
   Color? scaffoldBackgroundColor() {
     return Colors.transparent;
-  }
-
-  @override
-  void onModelReady(AddBeneficiaryFormPageViewModel model) {
-    super.onModelReady(model);
-    //getViewModel().getPurpose('', "TransferI");
   }
 
   @override

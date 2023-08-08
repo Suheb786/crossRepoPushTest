@@ -85,7 +85,7 @@ class SaveIdInfoRequest {
       this.frontCardImage,
       this.backCardImage,
       this.personFaceImage,
-      this.getToken= true,
+      this.getToken = true,
       this.isimtfBlacklist,
       this.instanceID,
       this.scanPercentage,

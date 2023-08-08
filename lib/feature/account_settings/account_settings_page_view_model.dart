@@ -138,6 +138,8 @@ class AccountSettingPageViewModel extends BasePageViewModel {
           .listen((event) {
         if (event.status == Status.SUCCESS) {
           _uploadProfilePhotoResponse.safeAdd(event.data!);
+        } else if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
         }
       });
     });
