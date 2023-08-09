@@ -6,6 +6,7 @@ import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../generated/l10n.dart';
+import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/app_svg.dart';
 import '../../../utils/asset_utils.dart';
 import '../../../utils/color_utils.dart';
@@ -53,10 +54,7 @@ class OnboardingFailureScenariosPageView extends BasePageViewWidget<OnboardingFa
                     ],
                   ),
                   Padding(
-                      padding: EdgeInsetsDirectional.only(
-                        top: 47.h,
-                        start: 24.w
-                      ),
+                      padding: EdgeInsetsDirectional.only(top: 47.h, start: 24.w),
                       child: Text(
                         model.getTitle(model.argument.scenarios),
                         textAlign: TextAlign.center,
@@ -85,7 +83,9 @@ class OnboardingFailureScenariosPageView extends BasePageViewWidget<OnboardingFa
           Padding(
             padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w, vertical: 56.0.h),
             child: AppPrimaryButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding, (route) => false);
+                },
                 text: S.current.okay,
                 textColor: Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue,
                 backgroundColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
