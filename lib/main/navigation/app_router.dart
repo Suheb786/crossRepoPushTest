@@ -149,6 +149,7 @@ import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 
+import '../../feature/account_registration/manage_idwise_status/manage_idwise_status_page.dart';
 import '../../feature/evoucher/evoucher/evoucher_page.dart';
 import '../../feature/rj/rj_book_flight/rj_book_flight_page.dart';
 
@@ -188,6 +189,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => AccountRegistrationPage(settings.arguments as AccountRegistrationParams),
             settings: RouteSettings(name: RoutePaths.AccountRegistration));
+
+      case RoutePaths.ManageIDWiseStatus:
+        return CupertinoPageRoute(
+            builder: (context) => ManageIDWiseStatusPage(settings.arguments as ManageIDWiseStatusParams),
+            settings: RouteSettings(name: RoutePaths.ManageIDWiseStatus));
 
       case RoutePaths.NonJordanianRegister:
         return CupertinoPageRoute(

@@ -7,6 +7,7 @@ class RoutePaths {
   static const String AccountReady = '/accountReady';
   static const String NotifySuccess = '/notifySuccess';
   static const String AccountRegistration = '/accountRegistration';
+  static const String ManageIDWiseStatus = '/manageIDWiseStatus';
   static const String NonJordanianRegister = '/nonJordanianRegister';
   static const String Dashboard = '/dashboard';
   static const String AddMoneyOptionSelector = '/addMoneyOptionSelector';
