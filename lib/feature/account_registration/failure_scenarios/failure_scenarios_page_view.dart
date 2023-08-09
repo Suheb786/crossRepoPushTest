@@ -53,7 +53,10 @@ class OnboardingFailureScenariosPageView extends BasePageViewWidget<OnboardingFa
                     ],
                   ),
                   Padding(
-                      padding: EdgeInsetsDirectional.only(top: 47.h, start: 24.w, end: 24.w),
+                      padding: EdgeInsetsDirectional.only(
+                        top: 47.h,
+                        start: 24.w
+                      ),
                       child: Text(
                         model.getTitle(model.argument.scenarios),
                         textAlign: TextAlign.center,
@@ -64,7 +67,7 @@ class OnboardingFailureScenariosPageView extends BasePageViewWidget<OnboardingFa
                             color: Theme.of(context).colorScheme.secondary),
                       )),
                   Padding(
-                    padding: EdgeInsetsDirectional.only(top: 51.h, start: 24.w, end: 24.w),
+                    padding: EdgeInsetsDirectional.only(top: 24.h, start: 24.w, end: 24.w),
                     child: Text(
                       model.getDescription(model.argument.scenarios),
                       textAlign: TextAlign.center,
