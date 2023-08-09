@@ -63,8 +63,8 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
             offset: widget.currentStep == index
                 ? const Offset(0, 0)
                 : widget.currentStep! < index
-                    ? Offset(widget.translateSidewaysController!.value * 100, 0)
-                    : Offset(-widget.translateSidewaysController!.value * 100, 0),
+                    ? Offset(widget.translateSidewaysController!.value * 100 * (StringUtils.isDirectionRTL(context) ? -1 : 1), 0)
+                    : Offset(widget.translateSidewaysController!.value * 100 * (StringUtils.isDirectionRTL(context) ? 1 : -1), 0),
             child: AnimatedBuilder(
               animation: widget.appSwiperController,
               child: widget.pages![index],
@@ -80,7 +80,7 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
 
                 ///Tilted semicircle
                 return Transform.rotate(
-                  angle: (math.pi * value),
+                  angle: (math.pi * (StringUtils.isDirectionRTL(context) ? -1 : 1) * value),
                   child: Transform.translate(
                     offset: Offset(0, value.abs() * 500),
                     child: AnimatedOpacity(

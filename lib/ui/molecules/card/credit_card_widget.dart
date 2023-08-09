@@ -238,9 +238,11 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                           )
                                         ],
                                       ),
-                                      Padding(
+                                      Container(
+                                        width : 130.w,
                                         padding: EdgeInsets.only(top: 5.0.h),
-                                        child: Row(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.end,
                                           children: [
                                             Text(
                                               S.of(context).minDueBy,
