@@ -225,7 +225,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                       Directionality(
                         textDirection: StringUtils.isDirectionRTL(context) ? TextDirection.rtl : TextDirection.ltr,
                         child: Padding(
-                          padding: EdgeInsetsDirectional.only(start: StringUtils.isDirectionRTL(context) ? 27.0.w : 0, top: 23.0.h, bottom: 27.0.h),
+                          padding: EdgeInsetsDirectional.only(start: StringUtils.isDirectionRTL(context) ? 27.0.w : 0, end: StringUtils.isDirectionRTL(context) ? 0 : 27.0.w, top: 23.0.h, bottom: 27.0.h),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -269,7 +269,6 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                 child: Container(
                                   height: 50,
                                   width: 50,
-                                  margin: EdgeInsetsDirectional.only(end: 30.0.w),
                                   padding: EdgeInsets.all(10),
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
