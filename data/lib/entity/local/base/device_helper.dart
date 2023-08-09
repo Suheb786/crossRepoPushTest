@@ -6,6 +6,7 @@ import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_jailbreak_detection/flutter_jailbreak_detection.dart';
+import 'package:flutter_udid/flutter_udid.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class DeviceInfoHelper extends DeviceInfoService {
@@ -17,7 +18,8 @@ class DeviceInfoHelper extends DeviceInfoService {
 
   ///Load device info to submit as base class in api.
   Future<BaseClassEntity> initialiseDeviceInfo() async {
-    Map<String, dynamic> deviceData = await initPlatformState();
+    // Map<String, dynamic> deviceData = await initPlatformState();
+    String deviceData = await FlutterUdid.consistentUdid;
     final PackageInfo info = await PackageInfo.fromPlatform();
     debugPrint('Device Data ' + deviceData.toString());
     debugPrint('Package Info Data ' + ' ' + info.version + ' ' + info.buildNumber);
@@ -25,8 +27,8 @@ class DeviceInfoHelper extends DeviceInfoService {
     return BaseClassEntity(
       appVersion: info.version,
       ip: '',
-      deviceID: Platform.isAndroid ? deviceData['androidId'] : deviceData['identifierForVendor'],
-      mobileModel: Platform.isAndroid ? deviceData['model'] : deviceData['model'],
+      deviceID: deviceData,
+      mobileModel: "",
     );
   }
 
