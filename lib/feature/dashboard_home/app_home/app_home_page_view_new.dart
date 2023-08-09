@@ -11,7 +11,6 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/apple_pay/selected_card_for_apple_pay/selected_card_for_apple_pay_page.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/widgets/app_home_page_widgets.dart';
-import 'package:neo_bank/feature/dashboard_home/app_home/widgets/custom_svg_image.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
@@ -345,7 +344,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                       child:
 
                                                                                           ///No transaction button for debit card
-                                                                                          model.isDebitCard(currentStep)
+                                                                                          model.settings && (model.isDebitCard(currentStep) || model.isCreditCard(currentStep))
                                                                                               ? Container(
                                                                                                   child: AnimatedCrossFade(
                                                                                                     duration: const Duration(milliseconds: 500),
@@ -356,7 +355,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                     crossFadeState: model.settings ? CrossFadeState.showFirst : CrossFadeState.showSecond,
                                                                                                     firstChild: InkWell(
                                                                                                       onTap: () {
-                                                                                                        model.showSettingPage(false);
+                                                                                                        model.showSettingPage(false, updateDashboard: true, currentStep: currentStep);
                                                                                                       },
                                                                                                       child: Container(
                                                                                                           width: 48,
@@ -405,7 +404,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                           }
                                                                                                         }
 
-                                                                                                        if(model.isMyAccount(currentStep)){
+                                                                                                        if (model.isMyAccount(currentStep)) {
                                                                                                           // AccountTransactionPage();
                                                                                                           model.goToAccountTransactionPage(context);
                                                                                                         }

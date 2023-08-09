@@ -13,81 +13,66 @@ class ResumeCreditCardApplicationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 15.0.h),
-        child: Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          elevation: 2,
-          color: Theme.of(context).primaryColor,
-          margin: EdgeInsets.zero,
-          shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.035, vertical: 44),
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        elevation: 2,
+        color: Theme.of(context).primaryColor,
+        margin: EdgeInsets.zero,
+        shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
+        child: Container(
+          decoration: BoxDecoration(image: DecorationImage(image: AssetImage(AssetUtils.zigzagBackground), fit: BoxFit.cover, scale: isSmallDevices ? 1.3 : 1, matchTextDirection: true)),
           child: Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(AssetUtils.zigzagBackground),
-                    fit: BoxFit.cover,
-                    scale: isSmallDevices ? 1.3 : 1,
-                    matchTextDirection: true)),
-            child: Container(
-              padding: EdgeInsetsDirectional.only(top: 22.0.h, bottom: 40.0.h, start: 24.0.w, end: 24.0.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  AppSvg.asset(AssetUtils.blinkWhite, height: 33.64.h, width: 72.0.w),
-                  Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.center,
-                        child: AppSvg.asset(AssetUtils.cardCircle, height: 96.0.h),
+            padding: EdgeInsetsDirectional.only(top: 22.0.h, bottom: 40.0.h, start: 24.0.w, end: 24.0.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                AppSvg.asset(AssetUtils.blinkWhite, height: 33.64.h, width: 72.0.w),
+                Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: AppSvg.asset(AssetUtils.cardCircle, height: 96.0.h),
+                    ),
+                    SizedBox(
+                      height: 16.0.h,
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        S.of(context).resumeCreditCardProcess,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
                       ),
-                      SizedBox(
-                        height: 16.0.h,
+                    ),
+                  ],
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, RoutePaths.CreditCardActivationStatus);
+                    },
+                    child: Container(
+                      height: 48.0.h,
+                      width: 232.0.w,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: Theme.of(context).textTheme.bodyLarge!.color!,
                       ),
-                      Align(
-                        alignment: Alignment.center,
+                      child: Center(
                         child: Text(
-                          S.of(context).resumeCreditCardProcess,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              fontSize: 14.0.t,
-                              fontWeight: FontWeight.w600,
-                              color: Theme.of(context).colorScheme.secondary),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, RoutePaths.CreditCardActivationStatus);
-                      },
-                      child: Container(
-                        height: 48.0.h,
-                        width: 232.0.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Theme.of(context).textTheme.bodyLarge!.color!,
-                        ),
-                        child: Center(
-                          child: Text(
-                            S.of(context).resumeCreditCardText,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).colorScheme.secondary,
-                                fontSize: 12.0.t,
-                                fontWeight: FontWeight.w600),
-                          ),
+                          S.of(context).resumeCreditCardText,
+                          style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary, fontSize: 12.0.t, fontWeight: FontWeight.w600),
                         ),
                       ),
                     ),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
           ),
         ),

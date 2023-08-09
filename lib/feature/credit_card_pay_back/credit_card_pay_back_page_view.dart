@@ -26,306 +26,193 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
   @override
   Widget build(BuildContext context, CreditCardPayBackPageModel model) {
     return Scaffold(
-      body: GestureDetector(
-        onVerticalDragEnd: (details) {
-          int sensitivity = 8;
-          if (details.primaryVelocity! > sensitivity) {
-            Navigator.pop(context);
-          }
-        },
-        child: AppStreamBuilder<Resource<bool>>(
-            stream: model.payBackCreditCardStream,
-            initialData: Resource.none(),
-            onData: (data) {
-              if (data.status == Status.SUCCESS) {
-                Navigator.pushNamed(context, RoutePaths.CreditCardPayBackSuccess,
-                    arguments: CreditCardPayBackSuccessArguments(
-                        payBackAmount: model.currentPinValue,
-                        accountHolderName: model.payBackArguments.accountHolderName));
-              }
-            },
-            dataBuilder: (context, snapshot) {
-              return Column(
+      body: AppStreamBuilder<Resource<bool>>(
+          stream: model.payBackCreditCardStream,
+          initialData: Resource.none(),
+          onData: (data) {
+            if (data.status == Status.SUCCESS) {
+              Navigator.pushNamed(context, RoutePaths.CreditCardPayBackSuccess,
+                  arguments: CreditCardPayBackSuccessArguments(payBackAmount: model.currentPinValue, accountHolderName: model.payBackArguments.accountHolderName));
+            }
+          },
+          dataBuilder: (context, snapshot) {
+            return Container(
+              margin: EdgeInsets.only(top: (MediaQuery.of(context).size.height * 0.3) - 120),
+              child: Column(
+
                 children: [
-                  Stack(
-                    clipBehavior: Clip.none,
-                    alignment: Alignment.bottomCenter,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 48.w),
-                        height: 50.h,
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).primaryColor,
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16))),
-                      ),
-                      Positioned(
-                          bottom: -8.h,
-                          child: LottieBuilder.asset(
-                            AssetUtils.swipeDownAnimation,
-                            width: 28.0.w,
-                            height: 28.0.h,
-                          )),
-                    ],
+                  Text(
+                    S.of(context).payBack,
+                    style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 20.t),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 8.h),
-                    child: Text(
-                      S.of(context).backToDashboard,
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 12.t,
-                          color: AppColor.dark_gray_1),
-                    ),
+                  Text(
+                    S.of(context).myCreditCard,
+                    style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 20.t),
                   ),
-                  SizedBox(
-                    height: 48.h,
-                  ),
-                  SingleChildScrollView(
-                    child: Column(
+                  Spacer(),
+                  Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          S.of(context).payBack,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 20.t),
-                        ),
-                        Text(
-                          S.of(context).myCreditCard,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 20.t),
-                        ),
-                        SizedBox(height: 32.h),
-                        Directionality(
-                          textDirection: TextDirection.ltr,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Expanded(
-                                flex: 3,
-                                child: Container(
-                                  margin: EdgeInsetsDirectional.only(
-                                      start: MediaQuery.of(context).size.width / 4.5),
-                                  child: Directionality(
-                                    textDirection: StringUtils.isDirectionRTL(context)
-                                        ? TextDirection.rtl
-                                        : TextDirection.ltr,
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                      children: [
-                                        Flexible(
-                                          child: AutoSizeText(model.currentPinValue,
-                                              textAlign: TextAlign.center,
-                                              maxLines: 1,
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 40.t,
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: AppColor.black)),
-                                        ),
-                                        SizedBox(
-                                          width: 4.w,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsetsDirectional.only(bottom: 10.0.h, start: 4.0.w),
-                                          child: Text(S.of(context).JOD,
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 14.t,
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: AppColor.verLightGray4)),
-                                        ),
-                                      ],
-                                    ),
+                        Expanded(
+                          flex: 3,
+                          child: Container(
+                            margin: EdgeInsetsDirectional.only(start: MediaQuery.of(context).size.width / 4.5),
+                            child: Directionality(
+                              textDirection: StringUtils.isDirectionRTL(context) ? TextDirection.rtl : TextDirection.ltr,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Flexible(
+                                    child: AutoSizeText(model.currentPinValue,
+                                        textAlign: TextAlign.center, maxLines: 1, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40.t, fontFamily: StringUtils.appFont, color: AppColor.black)),
                                   ),
-                                ),
+                                  SizedBox(
+                                    width: 4.w,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.only(bottom: 10.0.h, start: 4.0.w),
+                                    child:
+                                        Text(S.of(context).JOD, textAlign: TextAlign.start, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.t, fontFamily: StringUtils.appFont, color: AppColor.verLightGray4)),
+                                  ),
+                                ],
                               ),
-                              Expanded(
-                                flex: 1,
-                                child: GestureDetector(
-                                    onTap: () {
-                                      model.clearValue();
-                                    },
-                                    child: Icon(
-                                      Icons.backspace,
-                                      color:
-                                          Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue,
-                                      size: 30,
-                                    )),
-                              ),
-                            ],
+                            ),
                           ),
                         ),
-                        SizedBox(
-                          height: 36.h,
-                        ),
-                        Row(
-                          children: [
-                            GestureDetector(
-                              onTap: () => model.changeMidDueValue(),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width / 2.45,
-                                padding: EdgeInsets.symmetric(vertical: 15.h),
-                                margin: EdgeInsetsDirectional.only(
-                                    start: MediaQuery.of(context).size.width / 13.5, end: 10),
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Theme.of(context).textTheme.bodyLarge?.color ??
-                                            AppColor.brightBlue),
-                                    borderRadius: BorderRadius.circular(20.w)),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(S.of(context).minDue,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 10.t,
-                                            fontFamily: StringUtils.appFont,
-                                            color: AppColor.verLightGray4)),
-                                    Text(model.payBackArguments.minDuePayBackAmount,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14.t,
-                                            fontFamily: StringUtils.appFont,
-                                            color: AppColor.black))
-                                  ],
-                                ),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () => model.changeTotalDueValue(),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width / 2.45,
-                                padding: EdgeInsets.symmetric(vertical: 15.h),
-                                margin:
-                                    EdgeInsetsDirectional.only(end: MediaQuery.of(context).size.width / 13.5),
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Theme.of(context).textTheme.bodyLarge?.color ??
-                                            AppColor.brightBlue),
-                                    borderRadius: BorderRadius.circular(20.w)),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(S.of(context).totalDue,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 10.t,
-                                            fontFamily: StringUtils.appFont,
-                                            color: AppColor.verLightGray4)),
-                                    Text(model.payBackArguments.totalMinDueAmount,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14.t,
-                                            fontFamily: StringUtils.appFont,
-                                            color: AppColor.black))
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 37.h,
-                        ),
-                        Center(
-                            child: Column(children: [
-                          Text(S.of(context).accountBalance,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 10.t,
-                                  fontFamily: StringUtils.appFont,
-                                  color: AppColor.verLightGray4)),
-                          Center(
-                              child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(model.payBackArguments.accountBalance,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14.t,
-                                      fontFamily: StringUtils.appFont,
-                                      color: AppColor.black)),
-                              SizedBox(
-                                width: 5.w,
-                              ),
-                              Text(S.of(context).JOD,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 12.t,
-                                      fontFamily: StringUtils.appFont,
-                                      color: AppColor.verLightGray4))
-                            ],
-                          )),
-                        ])),
-                        SizedBox(
-                          height: 45.h,
-                        ),
-                        Directionality(
-                          textDirection: TextDirection.ltr,
-                          child: NumericKeyboard(
-                              onKeyboardTap: (value) {
-                                model.changeValue(value);
-                              },
-                              textColor: AppColor.black,
-                              rightButtonFn: () {
-                                // if (model.payBackArguments.minDuePayBackAmount ==
-                                //         '0.0' ||
-                                //     model.payBackArguments.totalMinDueAmount ==
-                                //         '0.0') {
-                                //   model.showToastWithError(AppError(
-                                //       cause: Exception(),
-                                //       error: ErrorInfo(message: ''),
-                                //       type: ErrorType.NO_DUE_AMOUNT));
-                                // } else
-                                // if (num.parse(model.currentPinValue) < 0) {
-                                //   model.showToastWithError(AppError(
-                                //       cause: Exception(),
-                                //       error: ErrorInfo(message: ''),
-                                //       type: ErrorType.ZERO_AMOUNT));
-                                // }
-                                // else {
-                                //   model.payBackCreditCard();
-                                // }
-                                if (num.parse(model.currentPinValue) >
-                                    num.parse(model.payBackArguments.accountBalance)) {
-                                  model.showToastWithError(AppError(
-                                      cause: Exception(),
-                                      error: ErrorInfo(message: ''),
-                                      type: ErrorType.INVALID_ACCOUNT_BALANCE));
-                                } else if (!(num.parse(model.currentPinValue) > 0)) {
-                                  model.showToastWithError(AppError(
-                                      cause: Exception(),
-                                      error: ErrorInfo(message: ''),
-                                      type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
-                                } else {
-                                  model.payBackCreditCard();
-                                }
-                              },
-                              leftIcon: Icon(
-                                Icons.circle,
-                                color: AppColor.black,
-                                size: 5,
-                              ),
-                              rightWidget: CircleAvatar(
-                                radius: 30.w,
-                                backgroundColor: Color(0xFF3CB4E5),
-                                child: Center(child: AppSvg.asset(AssetUtils.next)),
-                              ),
-                              leftButtonFn: () {
-                                model.changeValue('.');
-                              },
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            alignment: Alignment.center,
+                            padding: EdgeInsets.only(top: 2),
+                            child: GestureDetector(
+                                onTap: () {
+                                  model.clearValue();
+                                },
+                                child: Icon(
+                                  Icons.backspace,
+                                  color: Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue,
+                                  size: 30,
+                                )),
+                          ),
                         ),
                       ],
                     ),
-                  )
+                  ),
+                  Spacer(),
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () => model.changeMidDueValue(),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 2.45,
+                          padding: EdgeInsets.symmetric(vertical: 15.h),
+                          margin: EdgeInsetsDirectional.only(start: MediaQuery.of(context).size.width / 13.5, end: 10),
+                          decoration: BoxDecoration(border: Border.all(color: Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue), borderRadius: BorderRadius.circular(15.w)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(S.of(context).minDue, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 10.t, fontFamily: StringUtils.appFont, color: AppColor.verLightGray4)),
+                              Text(model.payBackArguments.minDuePayBackAmount, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.t, fontFamily: StringUtils.appFont, color: AppColor.black))
+                            ],
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () => model.changeTotalDueValue(),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 2.45,
+                          padding: EdgeInsets.symmetric(vertical: 15.h),
+                          margin: EdgeInsetsDirectional.only(end: MediaQuery.of(context).size.width / 13.5),
+                          decoration: BoxDecoration(border: Border.all(color: Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue), borderRadius: BorderRadius.circular(15.w)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(S.of(context).totalDue, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 10.t, fontFamily: StringUtils.appFont, color: AppColor.verLightGray4)),
+                              Text(model.payBackArguments.totalMinDueAmount, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.t, fontFamily: StringUtils.appFont, color: AppColor.black))
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12.0),
+                    child: Column(
+                      children: [
+                        Text(S.of(context).accountBalance, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 10.t, fontFamily: StringUtils.appFont, color: AppColor.verLightGray4)),
+                        SizedBox(height: 1.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(model.payBackArguments.accountBalance, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.t, fontFamily: StringUtils.appFont, color: AppColor.black)),
+                            SizedBox(
+                              width: 5.w,
+                            ),
+                            Text(S.of(context).JOD, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12.t, fontFamily: StringUtils.appFont, color: AppColor.verLightGray4))
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Spacer(),
+                  Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: NumericKeyboard(
+                        onKeyboardTap: (value) {
+                          model.changeValue(value);
+                        },
+                        textColor: AppColor.black,
+                        rightButtonFn: () {
+                          // if (model.payBackArguments.minDuePayBackAmount ==
+                          //         '0.0' ||
+                          //     model.payBackArguments.totalMinDueAmount ==
+                          //         '0.0') {
+                          //   model.showToastWithError(AppError(
+                          //       cause: Exception(),
+                          //       error: ErrorInfo(message: ''),
+                          //       type: ErrorType.NO_DUE_AMOUNT));
+                          // } else
+                          // if (num.parse(model.currentPinValue) < 0) {
+                          //   model.showToastWithError(AppError(
+                          //       cause: Exception(),
+                          //       error: ErrorInfo(message: ''),
+                          //       type: ErrorType.ZERO_AMOUNT));
+                          // }
+                          // else {
+                          //   model.payBackCreditCard();
+                          // }
+                          if (num.parse(model.currentPinValue) > num.parse(model.payBackArguments.accountBalance)) {
+                            model.showToastWithError(AppError(cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.INVALID_ACCOUNT_BALANCE));
+                          } else if (!(num.parse(model.currentPinValue) > 0)) {
+                            model.showToastWithError(AppError(cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
+                          } else {
+                            model.payBackCreditCard();
+                          }
+                        },
+                        leftIcon: Icon(
+                          Icons.circle,
+                          color: AppColor.black,
+                          size: 5,
+                        ),
+                        rightWidget: CircleAvatar(
+                          radius: 30.w,
+                          backgroundColor: Color(0xFF3CB4E5),
+                          child: Center(child: AppSvg.asset(AssetUtils.next)),
+                        ),
+                        leftButtonFn: () {
+                          model.changeValue('.');
+                        },
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+                  ),
+                  Spacer(),
                 ],
-              );
-            }),
-      ),
+              ),
+            );
+          }),
     );
   }
 }

@@ -16,12 +16,9 @@ class CreditCardNotDeliveredWidget extends StatefulWidget {
   final CreditCard creditCard;
   final bool isSmallDevice;
   final bool isChangePinEnabled;
+  final Function() onSettingsTap;
 
-  CreditCardNotDeliveredWidget(
-      {required this.key,
-      required this.creditCard,
-      this.isSmallDevice = false,
-      required this.isChangePinEnabled});
+  CreditCardNotDeliveredWidget({required this.key, required this.creditCard, this.isSmallDevice = false, required this.isChangePinEnabled, required this.onSettingsTap});
 
   FlipCardController? flipCardController = FlipCardController();
 
@@ -32,25 +29,24 @@ class CreditCardNotDeliveredWidget extends StatefulWidget {
 class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWidget> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Directionality(
-      textDirection: TextDirection.ltr,
-      child: FlipCard(
-        controller: widget.flipCardController,
-        flipOnTouch: false,
-        direction: FlipDirection.HORIZONTAL,
-        front: Container(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 15.0.h),
-            child: Container(
-                key: ValueKey(true),
-                child: Card(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  elevation: 2,
-                  color: Theme.of(context).primaryColor,
-                  margin: EdgeInsets.zero,
-                  shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.035, vertical: 44),
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: FlipCard(
+          controller: widget.flipCardController,
+          flipOnTouch: false,
+          direction: FlipDirection.HORIZONTAL,
+          front: Container(
+              key: ValueKey(true),
+              child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                elevation: 2,
+                color: Theme.of(context).primaryColor,
+                margin: EdgeInsets.zero,
+                shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
+                child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -66,11 +62,7 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                             Text(
                               S.of(context).myCreditCard,
                               textAlign: TextAlign.right,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12.0.t,
-                                  color: Colors.white),
+                              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: Colors.white),
                             ),
                             InkWell(
                               splashFactory: NoSplash.splashFactory,
@@ -78,17 +70,19 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                                 widget.flipCardController!.toggleCard();
                               },
                               child: Container(
-                                height: 24.0.h,
-                                alignment: Alignment.center,
-                                child: Text(
-                                  S.of(context).flipCard,
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                      fontFamily: StringUtils.appFont,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 14.0.t,
-                                      color: Theme.of(context).textTheme.bodyLarge!.color!),
+                                height: 50,
+                                width: 50,
+                                padding: const EdgeInsets.all(10),
+                                margin: EdgeInsetsDirectional.only(end: 0.0.w),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Theme.of(context).primaryColor,
+                                  border: Border.all(color: AppColor.softRed1),
+                                  boxShadow: const [
+                                    BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 0.1),
+                                  ],
                                 ),
+                                child: AppSvg.asset(AssetUtils.spin, height: 24.w, width: 24.w),
                               ),
                             )
                           ],
@@ -102,11 +96,7 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                         padding: EdgeInsets.symmetric(horizontal: 23.0.w, vertical: 5.0.h),
                         child: Text(
                           widget.creditCard.name ?? "",
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14.0.t,
-                              color: Colors.white),
+                          style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 14.0.t, color: Colors.white),
                         ),
                       ),
                       SizedBox(
@@ -117,7 +107,6 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                         // fit: BoxFit.fill,
                         // height: widget.isSmallDevice ? 93 : 118,
                       ),
-                      Spacer(),
                       Padding(
                         padding: EdgeInsetsDirectional.only(top: 8.0.h, start: 23.0.w),
                         child: Text(
@@ -134,8 +123,7 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                         height: 4.0.h,
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.only(
-                            top: 8.0.h, start: 23.0.w, bottom: 40.0.h, end: 23.0.w),
+                        padding: EdgeInsetsDirectional.only(top: 8.0.h, start: 23.0.w, bottom: 40.0.h, end: 23.0.w),
                         child: Row(
                           children: [
                             Expanded(
@@ -154,103 +142,108 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                             ),
                             InkWell(
                                 onTap: () async {
-                                  await Navigator.pushNamed(context, RoutePaths.CreditCardSettings,
-                                      arguments: CreditCardSettingsArguments(
-                                          creditCard: widget.creditCard,
-                                          isChangePinEnabled: widget.isChangePinEnabled));
+                                  widget.onSettingsTap();
+                                  // await Navigator.pushNamed(context, RoutePaths.CreditCardSettings, arguments: CreditCardSettingsArguments(creditCard: widget.creditCard, isChangePinEnabled: widget.isChangePinEnabled));
                                 },
-                                child:
-                                    AppSvg.asset(AssetUtils.settingsRed, color: AppColor.light_acccent_blue)),
+                                child: Container(
+                                    height: 50,
+                                    width: 50,
+                                    padding: const EdgeInsets.all(12),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Theme.of(context).primaryColor,
+                                      border: Border.all(color: AppColor.strongRed),
+                                      boxShadow: const [
+                                        BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 0.1),
+                                      ],
+                                    ),
+                                    child: AppSvg.asset(AssetUtils.settingsRed, color: AppColor.light_acccent_blue))),
                           ],
                         ),
                       ),
                     ],
                   ),
-                )),
-          ),
-        ),
-        back: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 15.0.h),
-          child: Card(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            elevation: 2,
-            color: Theme.of(context).primaryColor,
-            margin: EdgeInsets.zero,
-            shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
-            child: Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(AssetUtils.creditCardNotDelivered),
-                      fit: BoxFit.cover,
-                      scale: widget.isSmallDevice ? 1.3 : 1,
-                      matchTextDirection: true)),
-              child: Padding(
-                padding: EdgeInsetsDirectional.only(start: 29.0.w, top: 32.0.t, end: 25.0.w, bottom: 30.0.t),
-                child: Stack(
-                  alignment: AlignmentDirectional.topEnd,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: 96.0.h,
-                          width: 96.0.w,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.secondary, shape: BoxShape.circle),
-                          child: AppSvg.asset(AssetUtils.card_activation),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.only(top: 16.0.h),
-                          child: Text(
-                            S.of(context).flipBackDesc,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              color: Theme.of(context).colorScheme.secondary,
-                              fontSize: 14.0.t,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          height: 50.0.h,
-                          width: 50.0.w,
-                        ),
-                        InkWell(
-                          splashFactory: NoSplash.splashFactory,
-                          onTap: () {
-                            widget.flipCardController!.toggleCard();
-                          },
-                          child: Container(
-                            height: 50.0.h,
+                ),
+              )),
+          back: Container(
+            child: Card(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              elevation: 2,
+              color: Theme.of(context).primaryColor,
+              margin: EdgeInsets.zero,
+              shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
+              child: Container(
+                decoration: BoxDecoration(image: DecorationImage(image: AssetImage(AssetUtils.creditCardNotDelivered), fit: BoxFit.cover, scale: widget.isSmallDevice ? 1.3 : 1, matchTextDirection: true)),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.only(start: 29.0.w, top: 32.0.t, end: 25.0.w, bottom: 30.0.t),
+                  child: Stack(
+                    alignment: AlignmentDirectional.topEnd,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: 96.0.h,
+                            width: 96.0.w,
                             alignment: Alignment.center,
+                            decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary, shape: BoxShape.circle),
+                            child: AppSvg.asset(AssetUtils.card_activation),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.only(top: 16.0.h),
                             child: Text(
-                              S.of(context).flipBack,
+                              S.of(context).flipBackDesc,
+                              textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).textTheme.bodyLarge!.color!,
-                                  fontSize: 14.0.t,
-                                  fontWeight: FontWeight.w600),
+                                fontFamily: StringUtils.appFont,
+                                color: Theme.of(context).colorScheme.secondary,
+                                fontSize: 14.0.t,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            height: 50.0.h,
+                            width: 50.0.w,
+                          ),
+                          InkWell(
+                            splashFactory: NoSplash.splashFactory,
+                            onTap: () {
+                              widget.flipCardController!.toggleCard();
+                            },
+                            child: Container(
+                              height: 50,
+                              width: 50,
+                              padding: const EdgeInsets.all(10),
+                              margin: EdgeInsetsDirectional.only(end: 0.0.w),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Theme.of(context).primaryColor,
+                                border: Border.all(color: AppColor.softRed1),
+                                boxShadow: const [
+                                  BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 0.1),
+                                ],
+                              ),
+                              child: AppSvg.asset(AssetUtils.spin, height: 24.w, width: 24.w),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
         ),
       ),
-    ));
+    );
   }
 }

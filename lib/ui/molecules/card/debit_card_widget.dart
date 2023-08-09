@@ -9,10 +9,7 @@ import 'package:flip_card/flip_card.dart';
 import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
-import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -23,7 +20,6 @@ import 'package:neo_bank/utils/extension/string_casing_extension.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-import '../../../feature/dashboard_home/app_home/widgets/custom_svg_image.dart';
 
 class DebitCardWidget extends StatefulWidget {
   final Key key;
@@ -53,26 +49,26 @@ class DebitCardWidget extends StatefulWidget {
 class _DebitCardWidgetState extends State<DebitCardWidget> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.035, vertical: 44),
-        child: Directionality(
-          textDirection: TextDirection.ltr,
-          child: FlipCard(
-            controller: widget.flipCardController,
-            flipOnTouch: false,
-            direction: FlipDirection.HORIZONTAL,
-            front: Container(
-              color: Theme.of(context).colorScheme.secondary,
-              child: Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                elevation: 2,
-                color: widget.debitCard.cardStatus == FreezeCardStatusEnum.F ? AppColor.paleYellow : Theme.of(context).canvasColor,
-                margin: EdgeInsetsDirectional.zero,
-                shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.only(start: 27.0.w, top: 28.0.h),
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.035, vertical: 44),
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: FlipCard(
+          controller: widget.flipCardController,
+          flipOnTouch: false,
+          direction: FlipDirection.HORIZONTAL,
+          front: Container(
+            color: Theme.of(context).colorScheme.secondary,
+            child: Card(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              elevation: 2,
+              color: widget.debitCard.cardStatus == FreezeCardStatusEnum.F ? AppColor.paleYellow : Theme.of(context).canvasColor,
+              margin: EdgeInsetsDirectional.zero,
+              shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
+              child: Padding(
+                padding: EdgeInsetsDirectional.only(start: 27.0.w, top: 28.0.h),
+                child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -225,7 +221,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                       Directionality(
                         textDirection: StringUtils.isDirectionRTL(context) ? TextDirection.rtl : TextDirection.ltr,
                         child: Padding(
-                          padding: EdgeInsetsDirectional.only(start: StringUtils.isDirectionRTL(context) ? 27.0.w : 0, top: 23.0.h, bottom: 27.0.h),
+                          padding: EdgeInsetsDirectional.only(start: StringUtils.isDirectionRTL(context) ? 27.0.w : 0, end: StringUtils.isDirectionRTL(context) ? 0 : 27.0.w, top: 23.0.h, bottom: 27.0.h),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -269,7 +265,6 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                 child: Container(
                                   height: 50,
                                   width: 50,
-                                  margin: EdgeInsetsDirectional.only(end: 30.0.w),
                                   padding: EdgeInsets.all(10),
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
@@ -299,15 +294,17 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                 ),
               ),
             ),
-            back: Card(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              elevation: 2,
-              color: Theme.of(context).canvasColor,
-              margin: EdgeInsetsDirectional.zero,
-              shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
-              child: Padding(
-                padding: EdgeInsetsDirectional.only(start: 29.0.w, top: 32.0.h, end: 25.0.w, bottom: 30.0.h),
+          ),
+          back: Card(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            elevation: 2,
+            color: Theme.of(context).canvasColor,
+            margin: EdgeInsetsDirectional.zero,
+            shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
+            child: Padding(
+              padding: EdgeInsetsDirectional.only(start: 29.0.w, top: 32.0.h, end: 25.0.w, bottom: 30.0.h),
+              child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
