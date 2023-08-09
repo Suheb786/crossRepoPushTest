@@ -1,17 +1,13 @@
-import 'package:domain/model/cliq/rejection_reason_inward_request/rejection_reason_inward.dart';
 import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:flutter/material.dart';
-import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class BrowserByCategoryItemWidget extends StatelessWidget {
   List<VoucherCategories> categories;
-  Function(VoucherCategories) onSelectCategory;
+  Function(VoucherCategories, int) onSelectCategory;
 
   BrowserByCategoryItemWidget(this.categories, {required this.onSelectCategory, Key? key}) : super(key: key);
 
@@ -21,51 +17,57 @@ class BrowserByCategoryItemWidget extends StatelessWidget {
       itemCount: categories.length,
       shrinkWrap: true,
       physics: ScrollPhysics(),
-      padding: const EdgeInsets.only(top: 24),
+      padding: EdgeInsets.only(top: 24.h),
       itemBuilder: (context, index) {
         return Container(
-          child: _buildListItem(context, categories[index]),
+          child: _buildListItem(context, categories[index], index),
         );
       },
       separatorBuilder: (BuildContext context, int index) {
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          padding: EdgeInsets.symmetric(vertical: 16.h),
           child: AppDivider(),
         );
       },
     );
   }
 
-  Widget _buildListItem(BuildContext context, VoucherCategories category) {
+  Widget _buildListItem(BuildContext context, VoucherCategories category, int index) {
     return InkWell(
       onTap: () {
-        onSelectCategory(category);
+        onSelectCategory(
+          category,
+          index,
+        );
 
+        print("category.categoryIcon===>${category.categoryIcon}");
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: 48,
-            height: 48,
+            width: 48.w,
+            height: 48.h,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(48),
-              border: Border.all(color: AppColor.gray1, width: 1),
+              borderRadius: BorderRadius.circular(48.w),
+              border: Border.all(color: AppColor.gray1, width: 1.w),
             ),
             alignment: Alignment.center,
-            child: AppSvg.asset(
-              AssetUtils.processing_voucher_icon,
-              color: AppColor.brightBlue,
+            child:
+                //MemoryImage()
+                Image.memory(
+              category.categoryIcon,
+              //   fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(width: 16),
+          SizedBox(width: 16.w),
           Expanded(
             child: Text(
-              category.bankCategory,
+              category.categoryName,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
-                  color: AppColor.gray_black,
-                  fontSize: 14,
+                  color: Theme.of(context).colorScheme.shadow,
+                  fontSize: 14.t,
                   fontWeight: FontWeight.w600),
             ),
           )

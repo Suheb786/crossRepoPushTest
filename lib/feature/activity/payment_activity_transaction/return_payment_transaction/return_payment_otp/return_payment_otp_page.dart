@@ -7,14 +7,13 @@ import 'package:neo_bank/feature/activity/payment_activity_transaction/return_pa
 import 'package:riverpod/src/framework.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-
 class ReturnPaymentOtpPage extends BasePage<ReturnPaymentOtpPageViewModel> {
   @override
   ReturnPaymentOtpPageState createState() => ReturnPaymentOtpPageState();
 }
 
 class ReturnPaymentOtpPageState extends BaseStatefulPage<ReturnPaymentOtpPageViewModel, ReturnPaymentOtpPage>
-    with AutomaticKeepAliveClientMixin, CodeAutoFill {
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin, CodeAutoFill {
   @override
   Widget buildView(BuildContext context, ReturnPaymentOtpPageViewModel model) {
     return ReturnPaymentOtpPageView(provideBase());
@@ -55,4 +54,10 @@ class ReturnPaymentOtpPageState extends BaseStatefulPage<ReturnPaymentOtpPageVie
 
   @override
   bool get wantKeepAlive => true;
+
+  @override
+  void dispose() {
+    super.dispose();
+    cancel();
+  }
 }

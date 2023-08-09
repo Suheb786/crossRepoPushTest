@@ -6,15 +6,14 @@ import 'package:domain/repository/bill_payment/bill_payment_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class PayPostPaidBillUseCase extends BaseUseCase<NetworkError,
-    PayPostPaidBillUseCaseParams, PayPostPaidBill> {
+class PayPostPaidBillUseCase
+    extends BaseUseCase<NetworkError, PayPostPaidBillUseCaseParams, PayPostPaidBill> {
   final BillPaymentRepository _repository;
 
   PayPostPaidBillUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, PayPostPaidBill>> execute(
-      {required PayPostPaidBillUseCaseParams params}) {
+  Future<Either<NetworkError, PayPostPaidBill>> execute({required PayPostPaidBillUseCaseParams params}) {
     return _repository.payPostPaidBill(params: params);
   }
 }

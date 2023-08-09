@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -10,6 +11,10 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 class EVoucherCategoryListingPage extends BasePage<EVoucherCategoryListingPageViewModel> {
+  final CategoryListArgument categoryListArgument;
+
+  EVoucherCategoryListingPage(this.categoryListArgument);
+
   @override
   EVoucherCategoryListingPageState createState() => EVoucherCategoryListingPageState();
 }
@@ -18,7 +23,7 @@ class EVoucherCategoryListingPageState
     extends BaseStatefulPage<EVoucherCategoryListingPageViewModel, EVoucherCategoryListingPage> {
   @override
   ProviderBase provideBase() {
-    return eVouchersCategoryListingViewModelProvider;
+    return eVouchersCategoryListingViewModelProvider.call(widget.categoryListArgument);
   }
 
   @override
@@ -43,12 +48,12 @@ class EVoucherCategoryListingPageState
                     matchTextDirection: true, color: Theme.of(context).colorScheme.secondary),
               ),
             ),
-
-            ///TODO:pass category name here
             Text(
-              provider.selectedVoucherCategories.bankCategory ?? '',
+              provider.selectedVoucherCategories.categoryName,
               style: TextStyle(
-                  fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+                  fontSize: 14.t,
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).colorScheme.secondary),
             ),
             Padding(
               padding: EdgeInsetsDirectional.only(end: 18.0.w),
@@ -76,4 +81,12 @@ class EVoucherCategoryListingPageState
   Widget buildView(BuildContext context, EVoucherCategoryListingPageViewModel model) {
     return EVoucherCategoryListingPageView(provideBase());
   }
+}
+
+class CategoryListArgument {
+  final num id;
+
+  CategoryListArgument({
+    required this.id,
+  });
 }

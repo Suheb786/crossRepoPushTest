@@ -1,10 +1,9 @@
 import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
-import 'package:domain/usecase/evouchers/evoucher_by_category_usecase.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:domain/usecase/evouchers/evoucher_item_filter_usecase.dart';
+import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
-import 'package:neo_bank/main/app_viewmodel.dart';
+import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -12,43 +11,92 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class EVoucherCategoryListingPageViewModel extends BasePageViewModel {
-  EVoucherByCategoryPageUseCase _eVoucherByCategoryPageUseCase;
+  final CategoryListArgument argument;
+  EVoucherItemFilterUseCase eVoucherItemFilterUseCase;
 
-  /// ------------- voucher categories stream -----------------------
-  PublishSubject<EVoucherByCategoryPageUseCaseParams> _voucherByCategoryRequestSubject = PublishSubject();
+  TextEditingController categorayListController = TextEditingController();
 
-  /// ------------- voucher by category stream -----------------------
-  BehaviorSubject<Resource<List<VoucherItem>>> _voucherByCategoryResponseSubject = BehaviorSubject();
+  /// ------------- voucher filter stream -----------------------
 
-  Stream<Resource<List<VoucherItem>>> get voucherByCategoryResponseStream =>
-      _voucherByCategoryResponseSubject.stream;
+  List<VoucherItem> filterList = [];
+
+  PublishSubject<EVoucherItemFilterUseCaseParams> _voucherItemFilterRequestSubject = PublishSubject();
+
+  PublishSubject<Resource<List<List<VoucherItem>>>> voucherItemFilterResponseSubject = PublishSubject();
+
+  Stream<Resource<List<List<VoucherItem>>>> get voucherItemFilterResponseStream =>
+      voucherItemFilterResponseSubject.stream;
+
+  void getVoucherItemFilter(
+      {required String category,
+      required String region,
+      required num maxValue,
+      required num minValue,
+      required String searchText}) {
+    _voucherItemFilterRequestSubject.safeAdd(EVoucherItemFilterUseCaseParams(
+        category: category, region: region, maxValue: maxValue, minValue: minValue, searchText: searchText));
+  }
 
   late VoucherCategories selectedVoucherCategories;
 
-  EVoucherCategoryListingPageViewModel(this._eVoucherByCategoryPageUseCase) {
-    _voucherByCategoryRequestSubject.listen((value) {
-      RequestManager<List<VoucherItem>>(value, createCall: () {
-        return _eVoucherByCategoryPageUseCase.execute(params: value);
-      }).asFlow().listen((event) {
-        if (event.status == Status.SUCCESS) {
-          // done...
-        } else if (event.status == Status.ERROR) {
+  List<VoucherItem> voucherItems = [];
+  List<List<VoucherItem>> filteredVoucherItems = [];
+
+  EVoucherCategoryListingPageViewModel(this.argument, this.eVoucherItemFilterUseCase) {
+    _voucherItemFilterRequestSubject.listen((value) {
+      RequestManager(value, createCall: () => eVoucherItemFilterUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        if (event.status == Status.ERROR) {
+          showErrorState();
           showToastWithError(event.appError!);
         }
-        _voucherByCategoryResponseSubject.safeAdd(event);
-        updateLoader();
+        if (event.status == Status.SUCCESS) {
+          voucherItems.clear();
+          voucherItems.addAll(event.data ?? []);
+          Map<String, dynamic> allData = {};
+          voucherItems.forEach((voucher) {
+            if (allData.isEmpty) {
+              allData[voucher.brand] = [voucher];
+            } else {
+              if (allData.containsKey(voucher.brand)) {
+                var models = allData[voucher.brand] as List<VoucherItem>;
+                models.add(voucher);
+                allData[voucher.brand] = models;
+              } else {
+                allData[voucher.brand] = [voucher];
+              }
+            }
+          });
+          List<List<VoucherItem>> filteredElements = [];
+
+          allData.values.forEach((element) {
+            filteredElements.add(element);
+          });
+          filteredVoucherItems = filteredElements;
+          voucherItemFilterResponseSubject.safeAdd(Resource.success(data: filteredElements));
+        }
       });
     });
-
-    getVouchersByCategory();
+    getVoucherItemFilter(
+      category: argument.id.toString(),
+      region: '',
+      maxValue: 0.0,
+      minValue: 0.0,
+      searchText: "",
+    );
   }
 
-  void getVouchersByCategory() {
-    final provider = ProviderScope.containerOf(appLevelKey.currentContext!).read(
-      evoucherViewModelProvider,
-    );
-    selectedVoucherCategories = provider.selectedVoucherCategories;
-    _voucherByCategoryRequestSubject.safeAdd(EVoucherByCategoryPageUseCaseParams(
-        category: provider.selectedVoucherCategories.muneroCategories ?? ''));
+  void searchItems() {
+    if (categorayListController.text.trim().isEmpty) {
+      voucherItemFilterResponseSubject.safeAdd(Resource.success(data: filteredVoucherItems));
+    } else {
+      List<List<VoucherItem>> searchedItems = filteredVoucherItems
+          .where((element) =>
+              element.first.name.toLowerCase().contains(categorayListController.text.toLowerCase().trim()))
+          .toList();
+      voucherItemFilterResponseSubject.safeAdd(Resource.success(data: searchedItems));
+    }
   }
 }

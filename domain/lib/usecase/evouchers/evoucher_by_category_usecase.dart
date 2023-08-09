@@ -14,7 +14,8 @@ class EVoucherByCategoryPageUseCase
   EVoucherByCategoryPageUseCase(this._eVoucherRepository);
 
   @override
-  Future<Either<BaseError, List<VoucherItem>>> execute({required EVoucherByCategoryPageUseCaseParams params}) {
+  Future<Either<BaseError, List<VoucherItem>>> execute(
+      {required EVoucherByCategoryPageUseCaseParams params}) {
     return _eVoucherRepository.getVoucherItemsByCategory(params.category);
   }
 }

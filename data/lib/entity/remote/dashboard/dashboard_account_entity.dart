@@ -1,7 +1,7 @@
+import 'package:domain/constants/enum/account_status_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:domain/constants/enum/account_status_enum.dart';
 
 part "dashboard_account_entity.g.dart";
 
@@ -20,13 +20,12 @@ class DashboardAccountEntity implements BaseLayerDataTransformer<DashboardAccoun
   @JsonKey(name: "status")
   final String? status;
 
-  DashboardAccountEntity(
-      {this.accountTitle = "",
-      this.availableBalance = 0.0,
-      this.accountNo = "",
-      this.iban = "",
-      this.cardNo = "",
-      this.status = ""});
+  DashboardAccountEntity({this.accountTitle = "",
+    this.availableBalance = 0.0,
+    this.accountNo = "",
+    this.iban = "",
+    this.cardNo = "",
+    this.status = ""});
 
   factory DashboardAccountEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardAccountEntityFromJson(json);

@@ -3,5 +3,6 @@ import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_p
 
 class SendMoneyFailureViewModel extends BasePageViewModel {
   final SendMoneyFailurePageArgument sendMoneyFailurePageArgument;
+
   SendMoneyFailureViewModel(this.sendMoneyFailurePageArgument);
 }

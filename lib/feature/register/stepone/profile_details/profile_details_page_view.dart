@@ -1,4 +1,3 @@
-
 import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:domain/model/user/save_profile_status_response.dart';

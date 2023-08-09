@@ -7,6 +7,7 @@ import 'package:domain/usecase/base/params.dart';
 
 class AccountUploadUseCase extends BaseUseCase<NetworkError, AccountUploadUseCaseParams, bool> {
   final BillPaymentRepository billPaymentRepository;
+
   AccountUploadUseCase(this.billPaymentRepository);
 
   @override

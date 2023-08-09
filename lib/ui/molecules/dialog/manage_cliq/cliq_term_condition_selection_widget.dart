@@ -12,19 +12,24 @@ class CliqTermConditionSelectionWidget extends StatelessWidget {
   final bool? isSelected;
 
   const CliqTermConditionSelectionWidget(
-      {Key? key, required this.subDescription, this.markSelected, this.unMarkSelected, required this.isSelected, required})
+      {Key? key,
+      required this.subDescription,
+      this.markSelected,
+      this.unMarkSelected,
+      required this.isSelected,
+      required})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         if (isSelected!)
           InkWell(
             onTap: () {
               unMarkSelected?.call();
-              //  model.isSelected(false);
+//  model.isSelected(false);
             },
             child: Container(
               height: 42.w,
@@ -43,7 +48,7 @@ class CliqTermConditionSelectionWidget extends StatelessWidget {
           InkWell(
             onTap: () {
               markSelected?.call();
-              //  model.isSelected(true);
+//  model.isSelected(true);
             },
             child: Container(
               width: 42.0.w,
@@ -60,7 +65,7 @@ class CliqTermConditionSelectionWidget extends StatelessWidget {
         Expanded(
           child: Text(
             subDescription,
-            // textAlign: TextAlign.center,
+// textAlign: TextAlign.center,
             style: TextStyle(
               color: AppColor.veryDarkGray2,
               fontFamily: StringUtils.appFont,

@@ -100,6 +100,8 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                                               isFromContactCard: true));
                                     },
                                     child: Container(
+                                      height: 40,
+                                      width: 40,
                                       child: AppSvg.asset(AssetUtils.plusIcon,
                                           color: Theme.of(context).colorScheme.onSecondaryContainer,
                                           width: 16.w,

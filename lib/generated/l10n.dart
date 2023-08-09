@@ -13010,66 +13010,6 @@ class S {
     );
   }
 
-  /// `Category`
-  String get category {
-    return Intl.message(
-      'Category',
-      name: 'category',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Preferred Region`
-  String get preferredRegion {
-    return Intl.message(
-      'Preferred Region',
-      name: 'preferredRegion',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Min. Price`
-  String get minPrice {
-    return Intl.message(
-      'Min. Price',
-      name: 'minPrice',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Max. Price`
-  String get maxPrice {
-    return Intl.message(
-      'Max. Price',
-      name: 'maxPrice',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Filter Vouchers`
-  String get filterVouchers {
-    return Intl.message(
-      'Filter Vouchers',
-      name: 'filterVouchers',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Reset Filter`
-  String get resetFilter {
-    return Intl.message(
-      'Reset Filter',
-      name: 'resetFilter',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Select your preferred\nregion and amount`
   String get selectPreferredRegionAmount {
     return Intl.message(
@@ -13190,10 +13130,10 @@ class S {
     );
   }
 
-  /// `View Voucher`
+  /// `View E-Voucher`
   String get viewVoucher {
     return Intl.message(
-      'View Voucher',
+      'View E-Voucher',
       name: 'viewVoucher',
       desc: '',
       args: [],
@@ -13205,26 +13145,6 @@ class S {
     return Intl.message(
       'Share Voucher',
       name: 'shareVoucher',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `eVouchers`
-  String get eVouchers {
-    return Intl.message(
-      'eVouchers',
-      name: 'eVouchers',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Buy Vouchers`
-  String get buyVouchers {
-    return Intl.message(
-      'Buy Vouchers',
-      name: 'buyVouchers',
       desc: '',
       args: [],
     );
@@ -13340,16 +13260,6 @@ class S {
     );
   }
 
-  /// `Browse by Category`
-  String get browserByCatgy {
-    return Intl.message(
-      'Browse by Category',
-      name: 'browserByCatgy',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `PlayStation`
   String get playStation {
     return Intl.message(
@@ -13425,16 +13335,6 @@ class S {
     return Intl.message(
       'You can now purchase and redeem e-vouchers from your favorite online & offline stores, locally and internationally.',
       name: 'eVoucherLandingDialogDescption',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `What are you looking for?`
-  String get eVoucherSearchLabel {
-    return Intl.message(
-      'What are you looking for?',
-      name: 'eVoucherSearchLabel',
       desc: '',
       args: [],
     );
@@ -17560,16 +17460,6 @@ class S {
     );
   }
 
-  /// `History`
-  String get history {
-    return Intl.message(
-      'History',
-      name: 'history',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Transaction Period`
   String get transaction_period {
     return Intl.message(
@@ -17940,6 +17830,36 @@ class S {
     );
   }
 
+  /// `You have insufficient balance in your account`
+  String get notEnoughAmountToPurchase {
+    return Intl.message(
+      'You have insufficient balance in your account',
+      name: 'notEnoughAmountToPurchase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Valid Until`
+  String get validUntil {
+    return Intl.message(
+      'Valid Until',
+      name: 'validUntil',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current Account`
+  String get currentAccount {
+    return Intl.message(
+      'Current Account',
+      name: 'currentAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Copied`
   String get copied {
     return Intl.message(
@@ -17960,41 +17880,271 @@ class S {
     );
   }
 
-  /// `Enter your email and \ncreate your password`
-  String get enterEmailAndPassword {
+  /// `Select Value`
+  String get selectValue {
     return Intl.message(
-      'Enter your email and \ncreate your password',
-      name: 'enterEmailAndPassword',
+      'Select Value',
+      name: 'selectValue',
       desc: '',
       args: [],
     );
   }
 
-  /// `Next`
-  String get next {
+  /// `Back`
+  String get back {
     return Intl.message(
-      'Next',
-      name: 'next',
+      'Back',
+      name: 'back',
       desc: '',
       args: [],
     );
   }
 
-  /// `Change My Email`
-  String get changeMyEmail {
+  /// `Select region first`
+  String get selectRegionFirst {
     return Intl.message(
-      'Change My Email',
-      name: 'changeMyEmail',
+      'Select region first',
+      name: 'selectRegionFirst',
       desc: '',
       args: [],
     );
   }
 
-  /// `Enter your mobile number`
-  String get enterYourMobileNumber {
+  /// `E-vouchers`
+  String get eVouchers {
     return Intl.message(
-      'Enter your mobile number',
-      name: 'enterYourMobileNumber',
+      'E-vouchers',
+      name: 'eVouchers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get category {
+    return Intl.message(
+      'Category',
+      name: 'category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preferred Region`
+  String get preferredRegion {
+    return Intl.message(
+      'Preferred Region',
+      name: 'preferredRegion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Min. Value`
+  String get minPrice {
+    return Intl.message(
+      'Min. Value',
+      name: 'minPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Max. Value`
+  String get maxPrice {
+    return Intl.message(
+      'Max. Value',
+      name: 'maxPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter E-vouchers`
+  String get filterVouchers {
+    return Intl.message(
+      'Filter E-vouchers',
+      name: 'filterVouchers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buy E-vouchers`
+  String get buyVouchers {
+    return Intl.message(
+      'Buy E-vouchers',
+      name: 'buyVouchers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `History`
+  String get history {
+    return Intl.message(
+      'History',
+      name: 'history',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What are you looking for?`
+  String get eVoucherSearchLabel {
+    return Intl.message(
+      'What are you looking for?',
+      name: 'eVoucherSearchLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Browse by Category`
+  String get browserByCatgy {
+    return Intl.message(
+      'Browse by Category',
+      name: 'browserByCatgy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset Filter`
+  String get resetFilter {
+    return Intl.message(
+      'Reset Filter',
+      name: 'resetFilter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Category`
+  String get selectCategory {
+    return Intl.message(
+      'Select Category',
+      name: 'selectCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select min value`
+  String get selectMinValue {
+    return Intl.message(
+      'Select min value',
+      name: 'selectMinValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select max value`
+  String get selectMaxvalue {
+    return Intl.message(
+      'Select max value',
+      name: 'selectMaxvalue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Max value should be greater than min value`
+  String get maxValueGreaterThanMin {
+    return Intl.message(
+      'Max value should be greater than min value',
+      name: 'maxValueGreaterThanMin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select category first`
+  String get selectCategoryFirst {
+    return Intl.message(
+      'Please select category first',
+      name: 'selectCategoryFirst',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Region`
+  String get allRegion {
+    return Intl.message(
+      'All Region',
+      name: 'allRegion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Categories`
+  String get allCategories {
+    return Intl.message(
+      'All Categories',
+      name: 'allCategories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `eVouchers`
+  String get eVouchersSettings {
+    return Intl.message(
+      'eVouchers',
+      name: 'eVouchersSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Transaction failed; your account is inactive. Call us on 06-5200100 to activate your account.`
+  String get dormantAccountTransactionFailed {
+    return Intl.message(
+      'Oops! Transaction failed; your account is inactive. Call us on 06-5200100 to activate your account.',
+      name: 'dormantAccountTransactionFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `When you freeze your card, your card cannot be used for any transaction including direct debit on your card such as your online subscriptions directly linked to your card, for example: Netflix, Careem, OSN, etc.`
+  String get whenYouFreezeYourCard {
+    return Intl.message(
+      'When you freeze your card, your card cannot be used for any transaction including direct debit on your card such as your online subscriptions directly linked to your card, for example: Netflix, Careem, OSN, etc.',
+      name: 'whenYouFreezeYourCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can unfreeze and activate your card anytime from the app.`
+  String get youCanUnFreeze {
+    return Intl.message(
+      'You can unfreeze and activate your card anytime from the app.',
+      name: 'youCanUnFreeze',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unavailable`
+  String get unavailable {
+    return Intl.message(
+      'Unavailable',
+      name: 'unavailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E-voucher under processing`
+  String get evoucherUnderProcessing {
+    return Intl.message(
+      'E-voucher under processing',
+      name: 'evoucherUnderProcessing',
       desc: '',
       args: [],
     );

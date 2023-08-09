@@ -1,41 +1,51 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:flutter/material.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class EVoucherCategoryListWidget extends StatelessWidget {
-  final VoucherItem? categoryVoucher;
+  final String? categoryVoucherName;
+  final Function()? onTap;
+  final String imageUrl;
 
-  const EVoucherCategoryListWidget({Key? key, this.categoryVoucher}) : super(key: key);
+  const EVoucherCategoryListWidget({
+    required this.imageUrl,
+    Key? key,
+    this.categoryVoucherName,
+    this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.pushNamed(context, RoutePaths.EVouchersPurchase);
-      },
+      onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            ///TODO:use category image here
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Container(
                 height: 56,
                 width: 56,
-                color: Theme.of(context).primaryColor,
+                child: CachedNetworkImage(
+                  imageUrl: imageUrl,
+                  placeholder: (context, url) => Container(color: Theme.of(context).primaryColor),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
-            const SizedBox(width: 24),
+            SizedBox(width: 24.w),
             Flexible(
               child: Text(
-                categoryVoucher?.name ?? '',
+                categoryVoucherName ?? "",
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     fontWeight: FontWeight.w600,
-                    fontSize: 14,
+                    fontSize: 14.t,
                     color: Theme.of(context).indicatorColor),
               ),
             )

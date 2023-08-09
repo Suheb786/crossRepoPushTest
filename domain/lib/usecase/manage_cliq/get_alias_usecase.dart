@@ -10,6 +10,7 @@ class GetAliasUsecase extends BaseUseCase<NetworkError, GetAliasUseCaseParams, G
   final CliqRepository _cliqRepository;
 
   GetAliasUsecase(this._cliqRepository);
+
   @override
   Future<Either<NetworkError, GetAlias>> execute({required GetAliasUseCaseParams params}) {
     return _cliqRepository.getAlias(getToken: params.getToken);
@@ -20,6 +21,7 @@ class GetAliasUseCaseParams extends Params {
   final bool getToken;
 
   GetAliasUseCaseParams({required this.getToken});
+
   @override
   Either<AppError, bool> verify() {
     return Right(true);

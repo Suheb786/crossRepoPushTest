@@ -6,26 +6,38 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class SelectAccountUseCase extends BaseUseCase<NetworkError, SelectAccountUseCaseParams, bool> {
+class GetSettlementValidationUseCase
+    extends BaseUseCase<NetworkError, GetSettlementValidationUseCaseParams, bool> {
   @override
-  Future<Either<NetworkError, bool>> execute({required SelectAccountUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required GetSettlementValidationUseCaseParams params}) {
     return Future.delayed(Duration(seconds: 2), () {
       return Right(true);
     });
   }
 }
 
-class SelectAccountUseCaseParams extends Params {
-  String? account;
+class GetSettlementValidationUseCaseParams extends Params {
+  String totalAmountString;
+  num itemValueString;
+  double totalAmount = 0;
+  bool isChecked;
 
-  SelectAccountUseCaseParams({this.account});
+  GetSettlementValidationUseCaseParams(
+      {required this.totalAmountString, required this.itemValueString, required this.isChecked}) {
+    totalAmount = double.parse(totalAmountString);
+  }
 
   @override
   Either<AppError, bool> verify() {
-    if (account!.isEmpty) {
+    if (totalAmount < itemValueString) {
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.NOTE_ENOUGH_AMOUNT, cause: Exception()));
+    }
+    if (isChecked == false) {
       return Left(
           AppError(error: ErrorInfo(message: ''), type: ErrorType.SELECT_ACCOUNT, cause: Exception()));
     }
+
     return Right(true);
   }
 }

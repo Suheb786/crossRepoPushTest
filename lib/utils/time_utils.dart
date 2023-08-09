@@ -155,8 +155,8 @@ class TimeUtils {
     return DateFormat('dd MMMM yyyy').format(dateTime);
   }
 
-  static String convertDateTimeToDateForVoucher(String date) {
-    final DateTime dateTime = DateFormat('dd-MM-yyyy').parse(date).toLocal();
+  static String convertDateTimeToDateMonth(String date) {
+    final DateTime dateTime = DateFormat('MM/dd/yyyy', "en").parse(date).toLocal();
     return DateFormat('dd MMMM').format(dateTime);
   }
 
@@ -164,5 +164,10 @@ class TimeUtils {
     DateTime dateTime = DateFormat('dd-MM-yyyy', 'en').parse(date).toLocal();
     final DateFormat formatter = DateFormat('dd MMMM');
     return formatter.format(dateTime);
+  }
+
+  static String convertDateTimeToDMY(String date) {
+    final DateTime dateTime = DateTime.parse(date).toLocal();
+    return DateFormat('dd MMM yyyy').format(dateTime);
   }
 }

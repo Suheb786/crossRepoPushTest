@@ -39,8 +39,7 @@ class PostpaidBillInquiry {
         inqRefNo: json["inqRefNo"],
       );
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "billerCode": billerCode,
         "serviceType": serviceType,
         "billingNumber": billingNumber,

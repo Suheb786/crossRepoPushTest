@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/rj/rj_modules.dart';
 import 'package:neo_bank/feature/rj/rj_book_flight/passenger_view_%20model.dart';
 import 'package:neo_bank/feature/rj/rj_book_flight/rj_book_flight_page_view_model.dart';
-
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../base/base_widget.dart';

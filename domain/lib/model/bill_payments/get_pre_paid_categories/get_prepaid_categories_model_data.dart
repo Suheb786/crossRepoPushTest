@@ -3,5 +3,5 @@ class GetPrepaidCategoriesModelData {
   String? description;
   String? type;
 
-  GetPrepaidCategoriesModelData({this.code, this.description,this.type});
+  GetPrepaidCategoriesModelData({this.code, this.description, this.type});
 }

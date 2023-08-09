@@ -57,7 +57,6 @@ class CreditCardVideoCallInitiatePageViewModel extends BasePageViewModel {
     Future.delayed(Duration(seconds: 2), () {
       checkAvailableAgent();
     });
-
   }
 
   void getAgoraCredentials() {

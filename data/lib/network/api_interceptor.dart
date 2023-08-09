@@ -96,6 +96,7 @@ class ApiInterceptor extends InterceptorsWrapper {
         if (((response.data as Map<String, dynamic>)['response']['token'] as String?)?.isNotEmpty ?? false) {
           if ((response.data as Map<String, dynamic>)['response']['token'] != 'Error') {
             authToken = (response.data as Map<String, dynamic>)['response']['token'] ?? '';
+            print('authToken11----->$authToken');
             SecureStorageHelper.instance.storeTokenId(token: authToken);
           }
         }

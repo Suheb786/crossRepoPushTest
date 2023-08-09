@@ -92,6 +92,8 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                                 isFromContactCard: true));
                                       },
                                       child: Container(
+                                        height: 40,
+                                        width: 40,
                                         child: AppSvg.asset(AssetUtils.plusIcon, width: 16.w, height: 16.h),
                                         padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
                                         decoration: BoxDecoration(

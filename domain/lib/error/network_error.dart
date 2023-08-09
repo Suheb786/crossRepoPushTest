@@ -716,8 +716,6 @@ class NetworkError extends BaseError {
             return AppError(
                 cause: cause, error: error, type: ErrorType.INSUFFICIENT_FUNDS_BILL_CANNOT_BE_PAYED);
 
-//QR
-
           case "err-363":
             return AppError(cause: cause, error: error, type: ErrorType.QR_EXPIRED);
 
@@ -898,6 +896,9 @@ class NetworkError extends BaseError {
 
           case "err-521":
             return AppError(cause: cause, error: error, type: ErrorType.TRANSFER_CANNOT_BE_DONE);
+
+          case "err-525":
+            return AppError(cause: cause, error: error, type: ErrorType.DORMANT_ACCOUNT_TRANSACTION_FAILED);
 
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
@@ -1453,7 +1454,6 @@ class NetworkError extends BaseError {
           case "err-601":
             return AppError(
                 cause: cause, error: error, type: ErrorType.OOPS_YOU_HAVE_EXCEEDED_YOUR_DAILY_TRANSFER_LIMIT);
-
 
           default:
             return AppError(cause: cause, error: error, type: ErrorType.NETWORK);

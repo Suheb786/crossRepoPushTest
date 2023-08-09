@@ -6,8 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'biller_service_entity.g.dart';
 
 @JsonSerializable()
-class BillerServiceEntity
-    extends BaseLayerDataTransformer<BillerServiceEntity, BillerService> {
+class BillerServiceEntity extends BaseLayerDataTransformer<BillerServiceEntity, BillerService> {
   @JsonKey(name: "serviceType")
   String? serviceType;
 
@@ -59,8 +58,7 @@ class BillerServiceEntity
     this.prepaidCategories,
   });
 
-  factory BillerServiceEntity.fromJson(Map<String, dynamic> json) =>
-      _$BillerServiceEntityFromJson(json);
+  factory BillerServiceEntity.fromJson(Map<String, dynamic> json) => _$BillerServiceEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$BillerServiceEntityToJson(this);
 
@@ -87,8 +85,7 @@ class BillerServiceEntity
             ? []
             : this
                 .prepaidCategories!
-                .map((messages) =>
-                    PrepaidCategoriesEntity.fromJson(messages).transform())
+                .map((messages) => PrepaidCategoriesEntity.fromJson(messages).transform())
                 .toList());
   }
 }

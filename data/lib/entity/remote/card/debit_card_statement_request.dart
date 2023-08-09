@@ -11,7 +11,7 @@ class DebitCardStatementRequest {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  DebitCardStatementRequest({required this.baseData, this.getToken= true, this.monthYear= ""});
+  DebitCardStatementRequest({required this.baseData, this.getToken = true, this.monthYear = ""});
 
   factory DebitCardStatementRequest.fromJson(Map<String, dynamic> json) =>
       _$DebitCardStatementRequestFromJson(json);

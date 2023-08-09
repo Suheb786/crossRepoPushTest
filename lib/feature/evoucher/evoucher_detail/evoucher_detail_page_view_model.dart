@@ -7,7 +7,11 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/subjects.dart';
 
+import 'evoucher_detail_page.dart';
+
 class EVoucherDetailViewModel extends BasePageViewModel {
+  final EvoucherDetailPageArgument argument;
+
   EVoucherDetailsPageUseCase _eVoucherDetailsPageUseCase;
 
   /// ------------- vouchers details stream -----------------------
@@ -20,7 +24,7 @@ class EVoucherDetailViewModel extends BasePageViewModel {
 
   late String orderIdentifier;
 
-  EVoucherDetailViewModel(this._eVoucherDetailsPageUseCase) {
+  EVoucherDetailViewModel(this._eVoucherDetailsPageUseCase, this.argument) {
     _voucherDetailsPageRequestSubject.listen((value) {
       listenToVoucherDetails(value);
     });

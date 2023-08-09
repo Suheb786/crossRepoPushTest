@@ -11,7 +11,7 @@ class DashboardDataRequest {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  DashboardDataRequest({required this.baseData, this.accountId= 1, this.getToken= true});
+  DashboardDataRequest({required this.baseData, this.accountId = 1, this.getToken = true});
 
   factory DashboardDataRequest.fromJson(Map<String, dynamic> json) => _$DashboardDataRequestFromJson(json);
 

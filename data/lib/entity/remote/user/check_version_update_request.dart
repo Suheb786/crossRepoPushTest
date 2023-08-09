@@ -20,7 +20,7 @@ class CheckVersionUpdateRequest {
   CheckVersionUpdateRequest(
       {this.uniqueId,
       this.platform,
-      this.clear= "true",
+      this.clear = "true",
       this.parentVersion,
       this.version,
       required this.baseData});

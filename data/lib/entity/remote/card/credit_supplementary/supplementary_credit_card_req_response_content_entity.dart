@@ -12,7 +12,7 @@ class SupplementaryCreditCardReqResponseContentEntity extends BaseLayerDataTrans
   @JsonKey(name: "suppId")
   final String? suppId;
 
-  SupplementaryCreditCardReqResponseContentEntity({this.primaryId= "", this.suppId= ""});
+  SupplementaryCreditCardReqResponseContentEntity({this.primaryId = "", this.suppId = ""});
 
   factory SupplementaryCreditCardReqResponseContentEntity.fromJson(Map<String, dynamic> json) =>
       _$SupplementaryCreditCardReqResponseContentEntityFromJson(json);

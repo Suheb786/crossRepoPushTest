@@ -5,8 +5,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'get_postpaid_biller_list_entity_data.g.dart';
 
 @JsonSerializable()
-class GetPostpaidBillerListEntityData extends BaseLayerDataTransformer<
-    GetPostpaidBillerListEntityData, GetPostpaidBillerListModelData> {
+class GetPostpaidBillerListEntityData
+    extends BaseLayerDataTransformer<GetPostpaidBillerListEntityData, GetPostpaidBillerListModelData> {
   @JsonKey(name: "joebppsNo")
   final String? joebppsNo;
 
@@ -85,8 +85,7 @@ class GetPostpaidBillerListEntityData extends BaseLayerDataTransformer<
   factory GetPostpaidBillerListEntityData.fromJson(Map<String, dynamic> json) =>
       _$GetPostpaidBillerListEntityDataFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$GetPostpaidBillerListEntityDataToJson(this);
+  Map<String, dynamic> toJson() => _$GetPostpaidBillerListEntityDataToJson(this);
 
   @override
   GetPostpaidBillerListEntityData restore(GetPostpaidBillerListModelData data) {

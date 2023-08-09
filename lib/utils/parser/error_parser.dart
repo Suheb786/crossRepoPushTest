@@ -143,6 +143,8 @@ class ErrorParser {
         return localisedHelper.invalidPermanentAddress;
       case ErrorType.INVALID_COUNTRY:
         return localisedHelper.invalidCountry;
+      case ErrorType.NOTE_ENOUGH_AMOUNT:
+        return localisedHelper.notEnoughAmountToPurchase;
       case ErrorType.INVALID_STATE:
         return localisedHelper.invalidState;
       case ErrorType.INVALID_CITY:
@@ -1079,6 +1081,10 @@ class ErrorParser {
         return localisedHelper.selectAccount;
       case ErrorType.SELECT_AMOUNT:
         return localisedHelper.selectAMount;
+      case ErrorType.SELECT_VALUE:
+        return localisedHelper.selectValue;
+      case ErrorType.SELECT_REGION_FIRST:
+        return localisedHelper.selectRegionFirst;
       case ErrorType.SELECT_REGION:
         return localisedHelper.selectRegion;
       case ErrorType.CANNOT_APPLY_CC_INSUFFICIENT_FUNDS:
@@ -1177,6 +1183,8 @@ class ErrorParser {
         return localisedHelper.selectAtLeastOneBill;
       case ErrorType.DORMANT_ACCOUNT:
         return localisedHelper.accountDormant;
+      case ErrorType.DORMANT_ACCOUNT_TRANSACTION_FAILED:
+        return localisedHelper.dormantAccountTransactionFailed;
       case ErrorType.ERROR_WHILE_GETTING_ALIAS:
         return localisedHelper.errorWhileGettingAlias;
       case ErrorType.ERROR_WHILE_GETTING_ACCOUNT_BY_ALIAS:
@@ -1363,6 +1371,16 @@ class ErrorParser {
         return localisedHelper.oopsYouHaveExceededYourDailyTransferLimit;
       case ErrorType.RECIPIENT_NAME_VALIDATION:
         return localisedHelper.recipientNameValidation;
+      case ErrorType.SELECT_CATEGORY:
+        return localisedHelper.selectCategory;
+      case ErrorType.SELECT_MIN_VALUE:
+        return localisedHelper.selectMinValue;
+      case ErrorType.SELECT_MAX_VALUE:
+        return localisedHelper.selectMaxvalue;
+      case ErrorType.MAX_VALUE_SHOULD_BE_GREATER_THAN_MIN:
+        return localisedHelper.maxValueGreaterThanMin;
+      case ErrorType.SELECT_CATEGORY_FIRST:
+        return localisedHelper.selectCategoryFirst;
       default:
         return "";
     }

@@ -10,9 +10,9 @@ class Transactions {
       this.balanceCur,
       this.amountCur,
       this.trnxType,
-      this.memo= "",
-      this.type= TransactionTypeEnum.NONE,
-      this.currency= ""});
+      this.memo = "",
+      this.type = TransactionTypeEnum.NONE,
+      this.currency = ""});
 
   int? id;
   String? description;

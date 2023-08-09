@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/src/in_app_webview/in_app_webview.dart';
+import 'package:flutter_inappwebview/src/types.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/evoucher/share_voucher/share_voucher_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel> {
@@ -36,7 +38,7 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
             Expanded(
               child: Container(
                 height: double.infinity,
-                padding: EdgeInsets.all(24),
+                padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w, vertical: 48.h),
                 decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.secondary,
                     borderRadius:
@@ -44,15 +46,18 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                 child: Column(
                   children: [
                     Container(
-                      // height: MediaQuery.of(context).size.height / 2.1,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1)),
-                      width: double.infinity,
-                      child: Image.asset(
-                        AssetUtils.shareVoucher,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                        height: MediaQuery.of(context).size.height / 1.7,
+                        decoration: BoxDecoration(
+                            border:
+                                Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1)),
+                        width: double.infinity,
+                        child: InAppWebView(
+                          initialUrlRequest: URLRequest(
+                              url: Uri.parse(model.argument?.voucherDetail?.lineItems.first.claimURL ?? "")),
+                          // onWebViewCreated: (controller) {
+                          //   model.webViewController = controller;
+                          // },
+                        )),
                     InkWell(
                       onTap: () async {},
                       child: Padding(
@@ -80,19 +85,21 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 24),
+                      padding: EdgeInsets.only(top: 36),
                       child: InkWell(
-                        onTap: () {
-                          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.EVoucherMainPage));
-                        },
-                        child: Container(
-                          height: 57,
-                          width: 57,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyLarge!.color!),
-                          child: Center(
-                            child:
-                                AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
+                        onTap: () {},
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            S.of(context).back,
+                            style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              color: Theme.of(context).colorScheme.onSecondaryContainer,
+                              fontSize: 14.t,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ),

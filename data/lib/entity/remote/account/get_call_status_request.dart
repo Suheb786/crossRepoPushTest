@@ -9,7 +9,7 @@ class GetCallStatusRequest {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  GetCallStatusRequest({this.session= "", required this.baseData});
+  GetCallStatusRequest({this.session = "", required this.baseData});
 
   factory GetCallStatusRequest.fromJson(Map<String, dynamic> json) => _$GetCallStatusRequestFromJson(json);
 

@@ -1,15 +1,20 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:domain/model/e_voucher/get_voucher_details.dart';
+import 'package:domain/model/e_voucher/voucher_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
 
-import 'evoucher_detail_page_view_model.dart';
 import 'evoucher_detail_page_view.dart';
+import 'evoucher_detail_page_view_model.dart';
 
 class EVoucherDetailPage extends BasePage<EVoucherDetailViewModel> {
-  String orderIdentifier;
+  final EvoucherDetailPageArgument argument;
 
-  EVoucherDetailPage(this.orderIdentifier);
+  EVoucherDetailPage({
+    required this.argument,
+  });
 
   @override
   EVoucherDetailState createState() => EVoucherDetailState();
@@ -18,7 +23,7 @@ class EVoucherDetailPage extends BasePage<EVoucherDetailViewModel> {
 class EVoucherDetailState extends BaseStatefulPage<EVoucherDetailViewModel, EVoucherDetailPage> {
   @override
   ProviderBase provideBase() {
-    return evoucherDetailViewModelProvider;
+    return evoucherDetailViewModelProvider.call(widget.argument);
   }
 
   @override
@@ -28,8 +33,6 @@ class EVoucherDetailState extends BaseStatefulPage<EVoucherDetailViewModel, EVou
 
   @override
   void onModelReady(EVoucherDetailViewModel model) {
-    model.orderIdentifier = widget.orderIdentifier;
-    model.getSelectedVoucherAndCallDetailApi();
     super.onModelReady(model);
   }
 
@@ -37,4 +40,11 @@ class EVoucherDetailState extends BaseStatefulPage<EVoucherDetailViewModel, EVou
   Widget buildView(BuildContext context, EVoucherDetailViewModel model) {
     return EvoucherDetailView(provideBase());
   }
+}
+
+class EvoucherDetailPageArgument {
+  final GetVoucherDetails? selectedVoucherData;
+  final VoucherDetail? voucherDetail;
+
+  EvoucherDetailPageArgument({required this.selectedVoucherData, required this.voucherDetail});
 }

@@ -1,12 +1,21 @@
 class VoucherCategories {
-  final String bankCategory;
-  final String bankCategoryAr;
-  final String bankCategoryIcon;
-  final String muneroCategories;
+  final num? id;
+  final String categoryName;
+  final String? createdDate;
+  final String? createdBy;
+  final String? updatedDate;
+  final String? updatedBy;
+  final String? categoryNameAr;
+  final dynamic categoryIcon;
 
-  VoucherCategories(
-      {required this.bankCategory,
-      required this.bankCategoryAr,
-      required this.bankCategoryIcon,
-      required this.muneroCategories});
+  VoucherCategories({
+    this.id,
+    required this.categoryName,
+    this.createdDate,
+    this.createdBy,
+    this.updatedDate,
+    this.updatedBy,
+    this.categoryNameAr,
+    this.categoryIcon,
+  });
 }

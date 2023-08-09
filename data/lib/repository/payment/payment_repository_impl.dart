@@ -5,7 +5,6 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/model/payment/check_send_money_response.dart';
 import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
 import 'package:domain/model/payment/get_rejection_reason/get_rejection_reason_response.dart';
-import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:domain/model/payment/request_to_pay_content_response.dart';
 import 'package:domain/model/payment/transfer_success_response.dart';
 import 'package:domain/model/purpose/purpose_response.dart';

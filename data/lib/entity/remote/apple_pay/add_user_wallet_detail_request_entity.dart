@@ -14,7 +14,7 @@ class AddUserWalletDetailRequestEntity {
   final Map<String, dynamic> baseData;
 
   AddUserWalletDetailRequestEntity(
-      {this.getToken= true, this.walletId= "", this.entrustWalletId= "", required this.baseData});
+      {this.getToken = true, this.walletId = "", this.entrustWalletId = "", required this.baseData});
 
   factory AddUserWalletDetailRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$AddUserWalletDetailRequestEntityFromJson(json);
