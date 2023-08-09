@@ -139,8 +139,8 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
           bottom: 0,
           right: 0,
           child: AnimatedOpacity(
-            duration: model.timelinePage ? const Duration(milliseconds: 200) : const Duration(seconds: 2),
-            opacity: model.settings || model.timelinePage ? 0 : 1,
+            duration: model.settings || model.showPayBackView || model.timelinePage ? const Duration(milliseconds: 200) : const Duration(seconds: 2),
+            opacity: model.settings || model.showPayBackView || model.timelinePage ? 0 : 1,
             child: Padding(
               padding: EdgeInsets.only(top: 24.0.h, bottom: 0.0.h),
               child: BottomBarWidget(

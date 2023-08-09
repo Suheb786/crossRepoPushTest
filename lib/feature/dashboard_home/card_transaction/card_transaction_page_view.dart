@@ -22,7 +22,6 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-import '../app_home/widgets/custom_svg_image.dart';
 
 class CardTransactionPageView extends BasePageViewWidget<CardTransactionViewModel> {
   CardTransactionPageView(ProviderBase model) : super(model);

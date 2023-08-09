@@ -47,93 +47,96 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
                         S.of(context).myAccount,
                         style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: Theme.of(context).colorScheme.secondary),
                       ),
                       Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              account.accountTitle != null ? account.accountTitle!.replaceAll(' ', '\n') : '',
-                              maxLines: 3,
-                              style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 16.0.t, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
-                            ),
-                            SizedBox(height: screenHeight * 0.05),
-                            Text.rich(
-                              TextSpan(style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700), children: [
-                                TextSpan(text: account.availableBalance!, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 20.0.t, fontWeight: FontWeight.w700, color: Theme.of(context).colorScheme.secondary)),
-                                TextSpan(
-                                    text: S.of(context).JOD,
-                                    style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 10.0.t, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4))),
-                              ]),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              S.of(context).availableBalance,
-                              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 10.0.t, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4)),
-                            ),
-                            SizedBox(height: screenHeight * 0.02),
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  account.accountNo ?? '',
-                                  maxLines: 2,
-                                  style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 12.0.t, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
-                                ),
-                                SizedBox(width: 8),
-                                InkWell(
-                                  onTap: () {
-                                    ProviderScope.containerOf(context).read(appHomeViewModelProvider).balenceUpdate();
-                                  },
-                                  child: Container(
-                                      height: 14.0.h,
-                                      width: 14.0.w,
-                                      child: Image.asset(
-                                        AssetUtils.refresh,
-                                        color: AppColor.brightBlue,
-                                      )),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              S.of(context).accountNo,
-                              style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4), fontSize: 10.0.t, fontWeight: FontWeight.w600),
-                            ),
-                            SizedBox(height: screenHeight * 0.02),
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Flexible(
-                                  child: Text(
-                                    account.iban!,
-                                    style: TextStyle(fontFamily: StringUtils.appFont, overflow: TextOverflow.ellipsis, color: Theme.of(context).colorScheme.secondary, fontWeight: FontWeight.w600, fontSize: 12.0.t),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: screenHeight * 0.075),
+                              Text(
+                                account.accountTitle != null ? account.accountTitle!.replaceAll(' ', '\n') : '',
+                                maxLines: 3,
+                                style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 16.0.t, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+                              ),
+                              SizedBox(height: screenHeight * 0.05),
+                              Text.rich(
+                                TextSpan(style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700), children: [
+                                  TextSpan(text: account.availableBalance!, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 20.0.t, fontWeight: FontWeight.w700, color: Theme.of(context).colorScheme.secondary)),
+                                  TextSpan(
+                                      text: S.of(context).JOD,
+                                      style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 10.0.t, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4))),
+                                ]),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                S.of(context).availableBalance,
+                                style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 10.0.t, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4)),
+                              ),
+                              SizedBox(height: screenHeight * 0.02),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    account.accountNo ?? '',
+                                    maxLines: 2,
+                                    style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 12.0.t, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
                                   ),
-                                ),
-                                SizedBox(width: 8),
-                                InkWell(
-                                  onTap: () {
-                                    Clipboard.setData(ClipboardData(text: account.accountNo ?? '')).then((value) => Fluttertoast.showToast(msg: S.of(context).accountNoCopied));
-                                  },
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.only(start: 8.0.w),
-                                    child: AppSvg.asset(
-                                      AssetUtils.copy,
+                                  SizedBox(width: 8),
+                                  InkWell(
+                                    onTap: () {
+                                      ProviderScope.containerOf(context).read(appHomeViewModelProvider).balenceUpdate();
+                                    },
+                                    child: Container(
+                                        height: 14.0.h,
+                                        width: 14.0.w,
+                                        child: Image.asset(
+                                          AssetUtils.refresh,
+                                          color: AppColor.brightBlue,
+                                        )),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                S.of(context).accountNo,
+                                style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4), fontSize: 10.0.t, fontWeight: FontWeight.w600),
+                              ),
+                              SizedBox(height: screenHeight * 0.02),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      account.iban!,
+                                      style: TextStyle(fontFamily: StringUtils.appFont, overflow: TextOverflow.ellipsis, color: Theme.of(context).colorScheme.secondary, fontWeight: FontWeight.w600, fontSize: 12.0.t),
                                     ),
                                   ),
-                                )
-                              ],
-                            ),
-                            Text(
-                              S.of(context).iban,
-                              style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4), fontSize: 10.0.t, fontWeight: FontWeight.w600),
-                            ),
-                          ],
+                                  SizedBox(width: 8),
+                                  InkWell(
+                                    onTap: () {
+                                      Clipboard.setData(ClipboardData(text: account.accountNo ?? '')).then((value) => Fluttertoast.showToast(msg: S.of(context).accountNoCopied));
+                                    },
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.only(start: 8.0.w),
+                                      child: AppSvg.asset(
+                                        AssetUtils.copy,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Text(
+                                S.of(context).iban,
+                                style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4), fontSize: 10.0.t, fontWeight: FontWeight.w600),
+                              ),
+                              SizedBox(height: screenHeight * 0.075),
+                            ],
+                          ),
                         ),
                       ),
                       Directionality(
