@@ -572,16 +572,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change credit limit"),
         "changeCreditLimitDesc": MessageLookupByLibrary.simpleMessage(
             "Adjust your\ndesired credit limit"),
-        "changeDefaultAccount":
-            MessageLookupByLibrary.simpleMessage("Change default account"),
-        "changeEmailAddress":
-            MessageLookupByLibrary.simpleMessage("CHANGE EMAIL ADDRESS"),
+        "changeDefaultAccount": MessageLookupByLibrary.simpleMessage("Change default account"),
+        "changeEmailAddress": MessageLookupByLibrary.simpleMessage("CHANGE EMAIL ADDRESS"),
         "changeEmailError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "changeLinkAccount":
-            MessageLookupByLibrary.simpleMessage("Change linked account"),
-        "changeLinkedAccount":
-            MessageLookupByLibrary.simpleMessage("Change linked account"),
+        "changeLinkAccount": MessageLookupByLibrary.simpleMessage("Change linked account"),
+        "changeLinkedAccount": MessageLookupByLibrary.simpleMessage("Change linked account"),
         "changeLinkedMobileNo": MessageLookupByLibrary.simpleMessage("Change linked mobile number"),
         "changeLinkedMobileNumber": MessageLookupByLibrary.simpleMessage("Change linked mobile number"),
         "changeMobileNoError": MessageLookupByLibrary.simpleMessage(
@@ -598,8 +594,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "changeProfileImageError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "changeSettlementOptions":
-            MessageLookupByLibrary.simpleMessage("Change settlement options "),
+        "changeSettlementOptions": MessageLookupByLibrary.simpleMessage("Change settlement options "),
         "checkAgentStatusError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "checkCallStatusError": MessageLookupByLibrary.simpleMessage(
@@ -1068,16 +1063,14 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Scan your finger/face to log in"),
         "enableBiometricLoginDescriptionIos":
             MessageLookupByLibrary.simpleMessage("Scan your face to log in"),
-        "enableBiometricLoginTitle":
-            MessageLookupByLibrary.simpleMessage("Enable Biometric Login"),
+        "enableBiometricLoginTitle": MessageLookupByLibrary.simpleMessage("Enable Biometric Login"),
         "enableFingerPrintError": MessageLookupByLibrary.simpleMessage(
             "An error occurred while enabling biometric login. Please try again later."),
-        "engagementTeam":
-            MessageLookupByLibrary.simpleMessage("Engagement Team"),
+        "engagementTeam": MessageLookupByLibrary.simpleMessage("Engagement Team"),
         "engagementTeamDescription": MessageLookupByLibrary.simpleMessage(
             "Please select your preferred communication. Your call or chat may be monitored or recorded to ensure the quality of service."),
-        "engagementTeamGettingReady": MessageLookupByLibrary.simpleMessage(
-            "Our Engagement Team\nis getting ready"),
+        "engagementTeamGettingReady":
+            MessageLookupByLibrary.simpleMessage("Our Engagement Team\nis getting ready"),
         "enterAddressHeader": MessageLookupByLibrary.simpleMessage("Where do you\ncurrently live?"),
         "enterBillDetails": MessageLookupByLibrary.simpleMessage("Enter bill details"),
         "enterCode": MessageLookupByLibrary.simpleMessage("Enter the 6-digit code sent to"),
@@ -1093,54 +1086,55 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterNewCardPinAndConfirmPin":
             MessageLookupByLibrary.simpleMessage("Enter new card PIN\nand confirm PIN"),
         "enterNewEmailAddress": MessageLookupByLibrary.simpleMessage("Please enter your\nnew email"),
-        "enterNewMobileNo": MessageLookupByLibrary.simpleMessage(
-            "Please enter your\nnew mobile number"),
-        "enterOtpHeader": MessageLookupByLibrary.simpleMessage(
-            "Enter the 6-digit code sent to"),
-        "enterPassword": MessageLookupByLibrary.simpleMessage(
-            "Password field cannot be empty"),
-        "enterValidEmail": MessageLookupByLibrary.simpleMessage(
-            "please enter valid email address"),
-        "enterValidEmployeeStatus": MessageLookupByLibrary.simpleMessage(
-            "Please select valid employee status"),
+        "enterNewMobileNo": MessageLookupByLibrary.simpleMessage("Please enter your\nnew mobile number"),
+        "enterOtpHeader": MessageLookupByLibrary.simpleMessage("Enter the 6-digit code sent to"),
+        "enterPassword": MessageLookupByLibrary.simpleMessage("Password field cannot be empty"),
+        "enterValidEmail": MessageLookupByLibrary.simpleMessage("please enter valid email address"),
+        "enterValidEmployeeStatus":
+            MessageLookupByLibrary.simpleMessage("Please select valid employee status"),
         "enterValidIBANCLiQ": MessageLookupByLibrary.simpleMessage(
-            "Oops! please enter an IBAN or CliQ ID to request money."),
-        "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
-            "You entered an invalid mobile number. Please try again."),
-        "enterValidNature": MessageLookupByLibrary.simpleMessage(
-            "Please select nature of special needs"),
-        "enterValidOtp":
-            MessageLookupByLibrary.simpleMessage("Please enter valid otp"),
-        "enterValidPersonsName": MessageLookupByLibrary.simpleMessage(
-            "Please enter valid person’s name"),
-        "enterValidPersonsRole": MessageLookupByLibrary.simpleMessage("Please enter valid person’s role"),
-        "enterValidRelationshipWithPEP":
-            MessageLookupByLibrary.simpleMessage("Please enter valid relationship with PEP"),
-        "enterValidSpouseName": MessageLookupByLibrary.simpleMessage("Please enter valid spouse name"),
-        "enterValidUserName":
-            MessageLookupByLibrary.simpleMessage("You have entered an invalid username. Please try again."),
-        "enterYourEmailAndMobile":
-            MessageLookupByLibrary.simpleMessage("Enter your email and\nmobile number"),
-        "enterYourMobileNumber": MessageLookupByLibrary.simpleMessage("Enter your mobile number"),
-        "error": MessageLookupByLibrary.simpleMessage("Error"),
-        "errorAddingUserName": MessageLookupByLibrary.simpleMessage(
-            "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "errorCCUnBlockNI": MessageLookupByLibrary.simpleMessage("Error while unblocking pin"),
-        "errorCreateCreditCard": MessageLookupByLibrary.simpleMessage(
-            "An error occurred while issuing your Rebellious Red credit card. Please try again later."),
-        "errorCreatingAccount": MessageLookupByLibrary.simpleMessage(
-            "An error occurred while opening your account. Please try again later or contact our Engagement Team on 06-5200100."),
-        "errorCreatingDocuments": MessageLookupByLibrary.simpleMessage("Error while creating Documents"),
-        "errorCreatingWorkSpace": MessageLookupByLibrary.simpleMessage(
-            "Error while creating Workspace"),
-        "errorCustomerByAccountA2A": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
-        "errorDecryptCard":
-            MessageLookupByLibrary.simpleMessage("Error while decrypting card"),
-        "errorEuronetCustomerCardDetails": MessageLookupByLibrary.simpleMessage(
-            "Error while getting EURONET Customer Card Details"),
-        "errorGetAccountDetails": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-072)"),
+        "Oops! please enter an IBAN or CliQ ID to request money."),
+    "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
+        "You entered an invalid mobile number. Please try again."),
+    "enterValidNature": MessageLookupByLibrary.simpleMessage(
+        "Please select nature of special needs"),
+    "enterValidOtp":
+    MessageLookupByLibrary.simpleMessage("Please enter valid otp"),
+    "enterValidPersonsName": MessageLookupByLibrary.simpleMessage(
+        "Please enter valid person’s name"),
+    "enterValidPersonsRole": MessageLookupByLibrary.simpleMessage(
+        "Please enter valid person’s role"),
+    "enterValidRelationshipWithPEP": MessageLookupByLibrary.simpleMessage(
+        "Please enter valid relationship with PEP"),
+    "enterValidSpouseName": MessageLookupByLibrary.simpleMessage(
+        "Please enter valid spouse name"),
+    "enterValidUserName": MessageLookupByLibrary.simpleMessage(
+        "You have entered an invalid username. Please try again."),
+    "enterYourEmailAndMobile": MessageLookupByLibrary.simpleMessage(
+        "Enter your email and\nmobile number"),
+    "enterYourMobileNumber":
+    MessageLookupByLibrary.simpleMessage("Enter your mobile number"),
+    "error": MessageLookupByLibrary.simpleMessage("Error"),
+    "errorAddingUserName": MessageLookupByLibrary.simpleMessage(
+        "Oops! There seems to be an issue with the connectivity. Please try again later."),
+    "errorCCUnBlockNI":
+    MessageLookupByLibrary.simpleMessage("Error while unblocking pin"),
+    "errorCreateCreditCard": MessageLookupByLibrary.simpleMessage(
+        "An error occurred while issuing your Rebellious Red credit card. Please try again later."),
+    "errorCreatingAccount": MessageLookupByLibrary.simpleMessage(
+        "An error occurred while opening your account. Please try again later or contact our Engagement Team on 06-5200100."),
+    "errorCreatingDocuments": MessageLookupByLibrary.simpleMessage(
+        "Error while creating Documents"),
+    "errorCreatingWorkSpace": MessageLookupByLibrary.simpleMessage(
+        "Error while creating Workspace"),
+    "errorCustomerByAccountA2A": MessageLookupByLibrary.simpleMessage(
+        "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
+    "errorDecryptCard":
+    MessageLookupByLibrary.simpleMessage("Error while decrypting card"),
+    "errorEuronetCustomerCardDetails": MessageLookupByLibrary.simpleMessage(
+        "Error while getting EURONET Customer Card Details"),
+    "errorGetAccountDetails": MessageLookupByLibrary.simpleMessage(
+        "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-072)"),
         "errorGettingCardInfo": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-097)"),
         "errorInGetCardInfoNet": MessageLookupByLibrary.simpleMessage(
@@ -2083,13 +2077,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "nationalitySmall": MessageLookupByLibrary.simpleMessage("Nationality"),
         "natureOfSpecialNeed":
             MessageLookupByLibrary.simpleMessage("NATURE OF SPECIAL NEEDS"),
-        "natureSpecialNeeds":
-            MessageLookupByLibrary.simpleMessage("Nature of Special Needs"),
+        "natureSpecialNeeds": MessageLookupByLibrary.simpleMessage("Nature of Special Needs"),
         "newBill": MessageLookupByLibrary.simpleMessage("New Bill"),
-        "newContacthasBeenAdded": MessageLookupByLibrary.simpleMessage(
-            "New contact has been added to the list"),
-        "newDeviceDetected":
-            MessageLookupByLibrary.simpleMessage("New device detected"),
+        "newContacthasBeenAdded":
+            MessageLookupByLibrary.simpleMessage("New contact has been added to the list"),
+        "newDeviceDetected": MessageLookupByLibrary.simpleMessage("New device detected"),
         "newDeviceDetectedDesc": MessageLookupByLibrary.simpleMessage(
             "You’re attempting to log in from a new device. Would you like to switch access to this device?\t"),
         "newDeviceRegisteredSuccessfully": MessageLookupByLibrary.simpleMessage(
@@ -2108,16 +2100,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "nickNameCanOnlyContainAlphanumerics":
             MessageLookupByLibrary.simpleMessage("Nick name can only contain alphanumerics"),
         "nickNameUpdated": MessageLookupByLibrary.simpleMessage("Contact nickname has been updated"),
-        "nickNameValueExceeds": MessageLookupByLibrary.simpleMessage(
-            "Nickname cannot be more than 50 characters long. "),
-        "nicknameAlreadyExistsM": MessageLookupByLibrary.simpleMessage(
-            "Oops! Nickname already exists, use another one"),
+        "nickNameValueExceeds":
+            MessageLookupByLibrary.simpleMessage("Nickname cannot be more than 50 characters long. "),
+        "nicknameAlreadyExistsM":
+            MessageLookupByLibrary.simpleMessage("Oops! Nickname already exists, use another one"),
         "nicknameLengthShouldNotBeGreaterThan50":
-            MessageLookupByLibrary.simpleMessage(
-                "Nickname length should not be greater than 50"),
+            MessageLookupByLibrary.simpleMessage("Nickname length should not be greater than 50"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
-        "noATMData": MessageLookupByLibrary.simpleMessage(
-            "ATM data cannot be retrieved. Please try again later."),
+        "noATMData":
+            MessageLookupByLibrary.simpleMessage("ATM data cannot be retrieved. Please try again later."),
         "noAccountFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-071)"),
         "noActivityToDisplay":
