@@ -14,8 +14,8 @@ class ApplyCreditCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 15.0.h),
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.035, vertical: 44),
         child: Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -38,12 +38,10 @@ class ApplyCreditCardWidget extends StatelessWidget {
                   padding: EdgeInsetsDirectional.only(top: 23.0.h, end: 23.0.w, start: 23.0.w),
                   child: AppSvg.asset(AssetUtils.blink_updated_logo, height: 33.64.h, width: 72.0.w),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.only(top: 58.0.h),
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: AppSvg.asset(AssetUtils.cardCircle, height: 96.0.h),
-                  ),
+                Spacer(),
+                Align(
+                  alignment: Alignment.center,
+                  child: AppSvg.asset(AssetUtils.cardCircle, height: 96.0.h),
                 ),
                 Padding(
                     padding: EdgeInsetsDirectional.only(top: 10.0.h, start: 23.0.w, end: 23.0.w),
@@ -59,9 +57,10 @@ class ApplyCreditCardWidget extends StatelessWidget {
                             color: Theme.of(context).colorScheme.secondary),
                       ),
                     )),
+                Spacer(),
                 Padding(
                   padding: EdgeInsetsDirectional.only(
-                      top: 88.0.h,
+                      // top: 88.0.h,
                       // bottom: isSmallDevices ? 30 : 50,
                       start: 24.0.w,
                       end: 24.0.w),
@@ -89,6 +88,7 @@ class ApplyCreditCardWidget extends StatelessWidget {
                     ),
                   ),
                 ),
+                Spacer(),
               ],
             ),
           ),

@@ -2,22 +2,21 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+import 'dart:math' as math;
+
+import '../../../feature/dashboard_home/app_home/app_home_view_model.dart';
 
 class DashboardSwiper extends StatefulWidget {
   final List? pages;
   final int? currentStep;
-  final SwiperController? pageController;
-  final Function(int)? onIndexChanged;
-  PageController? appSwiperController;
 
-  DashboardSwiper(
-      {Key? key,
-      this.pages,
-      this.currentStep,
-      this.pageController,
-      this.onIndexChanged,
-      required this.appSwiperController})
-      : super(key: key);
+  // final SwiperController? pagesController;
+  final Function(int)? onIndexChanged;
+  PageController appSwiperController;
+  AnimationController? translateSidewaysController;
+  AppHomeViewModel model;
+
+  DashboardSwiper({Key? key, this.pages, this.currentStep, this.onIndexChanged, required this.appSwiperController, required this.translateSidewaysController, required this.model}) : super(key: key);
 
   @override
   _DashboardSwiperState createState() => _DashboardSwiperState();
@@ -36,38 +35,66 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 16 / 8,
-      child: PageView.builder(
-          itemCount: widget.pages!.length,
-          onPageChanged: (i) {
-            widget.onIndexChanged!.call(i);
-          },
-          controller: widget.appSwiperController,
-          itemBuilder: (context, index) {
-            return carouselView(index);
-          }),
+    return Padding(
+      padding: EdgeInsets.only(bottom: widget.model.timelinePage ? widget.model.constBottomBarHeight : 0),
+      child: AspectRatio(
+        aspectRatio: 16 / 8,
+        child: PageView.builder(
+            physics: widget.model.settings || widget.model.timelinePage ? const NeverScrollableScrollPhysics() : const ClampingScrollPhysics(),
+            itemCount: widget.pages!.length,
+            onPageChanged: (i) {
+              widget.onIndexChanged!.call(i);
+            },
+            controller: widget.appSwiperController,
+            itemBuilder: (context, index) {
+              return carouselView(index);
+            }),
+      ),
     );
   }
 
   Widget carouselView(int index) {
-    return AnimatedBuilder(
-      animation: widget.appSwiperController!,
-      builder: (context, child) {
-        double value = 0.0;
-        // if (widget.appSwiperController!.position.haveDimensions) {
-        value = index.toDouble() - (widget.currentStep ?? 0);
-        value = (value * 0.018).clamp(-1, 1);
-        // } else {
-        //     value = (index * 0.018).clamp(-1, 1);
-        // }
-        return Transform(
-          // angle: pi * value,
-          transform:
-              StringUtils.isDirectionRTL(context) ? Matrix4.skewX(value * 1.5) : Matrix4.skewX(-value * 1.5),
-          child: widget.pages![index],
-        );
-      },
+    return Padding(
+      padding: EdgeInsets.only(bottom: widget.model.timelinePage ? widget.model.constBottomBarHeight : 0),
+      child: AnimatedBuilder(
+        animation: widget.translateSidewaysController!,
+        builder: (context, child) {
+          return Transform.translate(
+            offset: widget.currentStep == index
+                ? const Offset(0, 0)
+                : widget.currentStep! < index
+                    ? Offset(widget.translateSidewaysController!.value * 100, 0)
+                    : Offset(-widget.translateSidewaysController!.value * 100, 0),
+            child: AnimatedBuilder(
+              animation: widget.appSwiperController,
+              child: widget.pages![index],
+              builder: (context, child) {
+                double value = 0;
+
+                ///Checking if pageController is ready to use
+                if (widget.appSwiperController.position.hasContentDimensions) {
+                  ///For current page value = 0, so rotation and translation value is zero
+                  value = index.toDouble() - (widget.appSwiperController.page ?? 0);
+                  value = (value * 0.012);
+                }
+
+                ///Tilted semicircle
+                return Transform.rotate(
+                  angle: (math.pi * value),
+                  child: Transform.translate(
+                    offset: Offset(0, value.abs() * 500),
+                    child: AnimatedOpacity(
+                      opacity: index == widget.currentStep ? 1 : 0.5,
+                      duration: const Duration(milliseconds: 400),
+                      child: child!,
+                    ),
+                  ),
+                );
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 }

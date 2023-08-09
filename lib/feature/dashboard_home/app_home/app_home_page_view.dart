@@ -76,8 +76,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
                         ///RJ Pop up
-                        if (!(data.data?.isRJPopUPClicked ?? false) &&
-                            (model.dashboardDataContent.dashboardFeatures?.isRJFeatureEnabled ?? true)) {
+                        if (!(data.data?.isRJPopUPClicked ?? false) && (model.dashboardDataContent.dashboardFeatures?.isRJFeatureEnabled ?? true)) {
                           RjDialog.show(
                             context,
                             image: AssetUtils.flight,
@@ -91,18 +90,13 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                             descriptionWidget: Text(
                               S.of(context).bookFligtWithUsDescrption,
                               textAlign: TextAlign.start,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).colorScheme.surfaceVariant,
-                                  fontSize: 14),
+                              style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.surfaceVariant, fontSize: 14),
                             ),
                           );
                         }
 
                         ///Efawateer pop up
-                        if (!(data.data?.isEfawateerPopUPClicked ?? false) &&
-                            (model.dashboardDataContent.dashboardFeatures?.blinkRetailAppBillPayment ??
-                                true)) {
+                        if (!(data.data?.isEfawateerPopUPClicked ?? false) && (model.dashboardDataContent.dashboardFeatures?.blinkRetailAppBillPayment ?? true)) {
                           EfawateerLandingDialog.show(context,
                               title: S.current.payYourBillswithBlink,
                               descriptionWidget: Text(S.current.youCanPayAllYourBillsNow),
@@ -117,14 +111,12 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                 Navigator.pop(context);
                                 data.data?.isEfawateerPopUPClicked = true;
                                 model.saveCurrentUserData(user: data.data!);
-                                Navigator.pushNamed(context, RoutePaths.PaymentHome,
-                                    arguments: NavigationType.REQUEST_MONEY);
+                                Navigator.pushNamed(context, RoutePaths.PaymentHome, arguments: NavigationType.REQUEST_MONEY);
                               });
                         }
 
                         ///e-voucher pop up
-                        if (!(data.data?.isEVoucherPopUPClicked ?? false) &&
-                            (model.dashboardDataContent.dashboardFeatures?.eVouchers ?? true)) {
+                        if (!(data.data?.isEVoucherPopUPClicked ?? false) && (model.dashboardDataContent.dashboardFeatures?.eVouchers ?? true)) {
                           EvoucherDialog.show(context, isSwipeToCancel: true, onDismissed: () {
                             Navigator.pop(context);
                             data.data?.isEVoucherPopUPClicked = true;
@@ -138,8 +130,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                         }
 
                         ///Show account status pop up
-                        if (model.dashboardDataContent.account?.accountStatusEnum ==
-                            AccountStatusEnum.DORMANT) {
+                        if (model.dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.DORMANT) {
                           model.showAccountDormantPopUp(true);
                         }
                       }
@@ -160,11 +151,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                         doneImage: AssetUtils.contactUs,
                                         descriptionWidget: Text(
                                           S.of(context).accountDormantStatusDesc,
-                                          style: TextStyle(
-                                              color: Theme.of(context).colorScheme.surface,
-                                              fontFamily: StringUtils.appFont,
-                                              fontSize: 14.0.t,
-                                              height: 1.7),
+                                          style: TextStyle(color: Theme.of(context).colorScheme.surface, fontFamily: StringUtils.appFont, fontSize: 14.0.t, height: 1.7),
                                         ), onDismissed: () {
                                       Navigator.pop(context);
                                     }, onSelected: () {
@@ -182,30 +169,17 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                       stream: model.applePayPopUpStream,
                                       initialData: false,
                                       onData: (value) {
-                                        if (value &&
-                                            Platform.isIOS &&
-                                            AppConstantsUtils.isApplePayFeatureEnabled &&
-                                            isAllCardsInApplePay &&
-                                            (model.debitCards.isNotEmpty || model.creditCards.isNotEmpty)) {
-                                          ApplePayDialog.show(context,
-                                              image: AssetUtils.applePayLogo,
-                                              title: S.of(context).blinkWithApplePay, onSelected: () {
+                                        if (value && Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled && isAllCardsInApplePay && (model.debitCards.isNotEmpty || model.creditCards.isNotEmpty)) {
+                                          ApplePayDialog.show(context, image: AssetUtils.applePayLogo, title: S.of(context).blinkWithApplePay, onSelected: () {
                                             Navigator.pop(context);
-                                            Navigator.pushNamed(
-                                                context, RoutePaths.SelectedCardForApplePayPage,
-                                                arguments: SelectedCardsForApplePayPageArguments(
-                                                    debitCards: model.debitCards,
-                                                    creditCards: model.creditCards));
+                                            Navigator.pushNamed(context, RoutePaths.SelectedCardForApplePayPage,
+                                                arguments: SelectedCardsForApplePayPageArguments(debitCards: model.debitCards, creditCards: model.creditCards));
                                           }, onDismissed: () {
                                             Navigator.pop(context);
                                           },
                                               descriptionWidget: Text(
                                                 S.of(context).blinkWithApplePayLandingDialogDescription,
-                                                style: TextStyle(
-                                                    color: AppColor.veryDarkGray2,
-                                                    fontFamily: StringUtils.appFont,
-                                                    fontSize: 14.t,
-                                                    fontWeight: FontWeight.w400),
+                                                style: TextStyle(color: AppColor.veryDarkGray2, fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w400),
                                               ));
                                         }
                                       },
@@ -214,29 +188,17 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                             stream: model.showAddAnotherCardToApplePayPopUpStream,
                                             initialData: false,
                                             onData: (value) {
-                                              if (value &&
-                                                  Platform.isIOS &&
-                                                  AppConstantsUtils.isApplePayFeatureEnabled &&
-                                                  isAllCardsInApplePay) {
+                                              if (value && Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled && isAllCardsInApplePay) {
                                                 AddOtherCardToAppleWalletDialog.show(context,
                                                     title: S.of(context).addOtherCardToAppleWallet,
                                                     image: AssetUtils.applePayButton,
                                                     descriptionWidget: Text(
-                                                      S
-                                                          .of(context)
-                                                          .addOtherCardToAppleWalletDialogDescription,
-                                                      style: TextStyle(
-                                                          color: AppColor.veryDarkGray1,
-                                                          fontFamily: StringUtils.appFont,
-                                                          fontSize: 14.t,
-                                                          fontWeight: FontWeight.w400),
+                                                      S.of(context).addOtherCardToAppleWalletDialogDescription,
+                                                      style: TextStyle(color: AppColor.veryDarkGray1, fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w400),
                                                     ), onSelected: () {
                                                   Navigator.pop(context);
-                                                  Navigator.pushNamed(
-                                                      context, RoutePaths.SelectedCardForApplePayPage,
-                                                      arguments: SelectedCardsForApplePayPageArguments(
-                                                          debitCards: model.debitCards,
-                                                          creditCards: model.creditCards));
+                                                  Navigator.pushNamed(context, RoutePaths.SelectedCardForApplePayPage,
+                                                      arguments: SelectedCardsForApplePayPageArguments(debitCards: model.debitCards, creditCards: model.creditCards));
                                                 }, onDismissed: () {
                                                   Navigator.pop(context);
                                                 });
@@ -252,31 +214,17 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     onHorizontalDragEnd: (details) {},
                                                     onVerticalDragEnd: (details) {
                                                       if (details.primaryVelocity!.isNegative) {
-                                                        if (model.cardTypeList[currentStep!].cardType ==
-                                                            CardType.ACCOUNT) {
-                                                          Navigator.pushNamed(
-                                                              context, RoutePaths.AccountTransaction);
-                                                        } else if (model.cardTypeList[currentStep].cardType ==
-                                                                CardType.CREDIT &&
-                                                            model.cardTypeList[currentStep].swipeUpEnum ==
-                                                                SwipeUpEnum.SWIPE_UP_YES) {
-                                                          Navigator.pushNamed(
-                                                              context, RoutePaths.CardTransaction,
-                                                              arguments: GetCreditCardTransactionArguments(
-                                                                  cardId: model
-                                                                      .timeLineListArguments[currentStep - 1]
-                                                                      .cardId));
+                                                        if (model.cardTypeList[currentStep!].cardType == CardType.ACCOUNT) {
+                                                          Navigator.pushNamed(context, RoutePaths.AccountTransaction);
+                                                        } else if (model.cardTypeList[currentStep].cardType == CardType.CREDIT && model.cardTypeList[currentStep].swipeUpEnum == SwipeUpEnum.SWIPE_UP_YES) {
+                                                          Navigator.pushNamed(context, RoutePaths.CardTransaction,
+                                                              arguments: GetCreditCardTransactionArguments(cardId: model.timeLineListArguments[currentStep - 1].cardId));
                                                         }
                                                       } else {
                                                         if (details.primaryVelocity! > 0.5) {
                                                           if (!showTimeLine!) {
-                                                            Navigator.pushNamed(
-                                                                context, RoutePaths.TimeLinePage,
-                                                                arguments: TimeLinePageArguments(
-                                                                    cardType: model
-                                                                        .cardTypeList[currentStep!].cardType,
-                                                                    timeLineArguments:
-                                                                        model.timeLineArguments));
+                                                            Navigator.pushNamed(context, RoutePaths.TimeLinePage,
+                                                                arguments: TimeLinePageArguments(cardType: model.cardTypeList[currentStep!].cardType, timeLineArguments: model.timeLineArguments));
                                                           }
                                                         }
                                                       }
@@ -286,11 +234,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                       children: [
                                                         Text(
                                                           S.of(context).totalBalance,
-                                                          style: TextStyle(
-                                                              fontFamily: StringUtils.appFont,
-                                                              fontWeight: FontWeight.w400,
-                                                              fontSize: 18.0.t,
-                                                              color: AppColor.black),
+                                                          style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t, color: AppColor.black),
                                                         ),
                                                         Padding(
                                                           padding: EdgeInsets.only(top: 5.0.h),
@@ -298,116 +242,81 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                             mainAxisAlignment: MainAxisAlignment.center,
                                                             crossAxisAlignment: CrossAxisAlignment.center,
                                                             children: [
-                                                              Text(
-                                                                  '${cardData!.data!.dashboardDataContent!.account!.availableBalance!} ',
-                                                                  style: TextStyle(
-                                                                      fontFamily: StringUtils.appFont,
-                                                                      fontSize: 24.0.t,
-                                                                      fontWeight: FontWeight.w700,
-                                                                      color: Theme.of(context)
-                                                                          .primaryColorDark)),
+                                                              Text('${cardData!.data!.dashboardDataContent!.account!.availableBalance!} ',
+                                                                  style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 24.0.t, fontWeight: FontWeight.w700, color: Theme.of(context).primaryColorDark)),
                                                               Padding(
-                                                                padding:
-                                                                    EdgeInsets.only(top: 5.0.h, left: 5.0.w),
+                                                                padding: EdgeInsets.only(top: 5.0.h, left: 5.0.w),
                                                                 child: Text(S.of(context).JOD,
-                                                                    style: TextStyle(
-                                                                        fontFamily: StringUtils.appFont,
-                                                                        fontWeight: FontWeight.w700,
-                                                                        fontSize: 14.0.t,
-                                                                        color: AppColor.verLightGray4)),
+                                                                    style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w700, fontSize: 14.0.t, color: AppColor.verLightGray4)),
                                                               )
                                                             ],
                                                           ),
                                                         ),
+                                                        Padding(
+                                                            padding: EdgeInsets.only(top: 18.0.h),
+                                                            child: LottieBuilder.asset(
+                                                              'assets/animation/Swipe_Down.json',
+                                                              width: 28.0.w,
+                                                              height: 28.0.h,
+                                                            )),
                                                         Expanded(
-                                                          child: Column(
-                                                            mainAxisSize: MainAxisSize.min,
-                                                            children: [
-                                                              Padding(
-                                                                  padding: EdgeInsets.only(top: 18.0.h),
-                                                                  child: LottieBuilder.asset(
-                                                                    'assets/animation/Swipe_Down.json',
-                                                                    width: 28.0.w,
-                                                                    height: 28.0.h,
-                                                                  )),
-                                                              Expanded(
-                                                                child: Padding(
-                                                                  padding: EdgeInsets.only(top: 4.0.h),
-                                                                  child: AppStreamBuilder<List>(
-                                                                      stream: model.pageStream,
-                                                                      initialData: [Container()],
-                                                                      dataBuilder: (context, pagesList) {
-                                                                        return AppStreamBuilder<
-                                                                                GetDashboardDataContent>(
-                                                                            stream: ProviderScope.containerOf(
-                                                                                    context)
-                                                                                .read(
-                                                                                    appHomeViewModelProvider)
-                                                                                .getDashboardCardDataStream,
-                                                                            initialData:
-                                                                                GetDashboardDataContent(),
-                                                                            dataBuilder: (context, cardData) {
-                                                                              if (cardData!
-                                                                                      .account!.accountNo ==
-                                                                                  null) {
-                                                                                return SizedBox();
-                                                                              }
-                                                                              return DashboardSwiper(
-                                                                                pages: pagesList,
-                                                                                appSwiperController:
-                                                                                    model.appSwiperController,
-                                                                                pageController:
-                                                                                    model.pageController,
-                                                                                onIndexChanged: (index) {
-                                                                                  model.updatePage(index);
-                                                                                  model
-                                                                                      .updatePageControllerStream(
-                                                                                          index);
-                                                                                },
-                                                                                currentStep: currentStep,
-                                                                              );
-                                                                            });
-                                                                      }),
-                                                                ),
-                                                              ),
-                                                              const SizedBox(height: 0.0),
-                                                              SizedBox(
-                                                                height:
-                                                                    MediaQuery.of(context).size.height * 0.03,
-                                                                child: Row(
-                                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                                  children: model.buildPageIndicator(
-                                                                      currentStep!,
-                                                                      cardData.data!.dashboardDataContent!
-                                                                          .debitCard!.length),
-                                                                ),
-                                                              ),
-                                                              Align(
-                                                                alignment: Alignment.bottomCenter,
-                                                                child: Padding(
-                                                                  padding: EdgeInsets.only(
-                                                                      top: 24.0.h, bottom: 0.0.h),
-                                                                  child: BottomBarWidget(
-                                                                    onHomeTap: () {
-                                                                      model.moveToPage(0);
-                                                                    },
-                                                                    onMoreTap: () {
-                                                                      SettingsDialog.show(
-                                                                        context,
-                                                                      );
-                                                                    },
-                                                                    onContactUsTap: () {
-                                                                      EngagementTeamDialog.show(context,
-                                                                          onDismissed: () {
-                                                                        Navigator.pop(context);
-                                                                      }, onSelected: (value) {
-                                                                        Navigator.pop(context);
+                                                          child: Padding(
+                                                            padding: EdgeInsets.only(top: 4.0.h),
+                                                            child: AppStreamBuilder<List>(
+                                                                stream: model.pageStream,
+                                                                initialData: [Container()],
+                                                                dataBuilder: (context, pagesList) {
+                                                                  return AppStreamBuilder<GetDashboardDataContent>(
+                                                                      stream: ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardCardDataStream,
+                                                                      initialData: GetDashboardDataContent(),
+                                                                      dataBuilder: (context, cardData) {
+                                                                        if (cardData!.account!.accountNo == null) {
+                                                                          return SizedBox();
+                                                                        }
+
+                                                                        // return getPageController(model);
+                                                                        return DashboardSwiper(
+                                                                          pages: pagesList,
+                                                                          appSwiperController: model.appSwiperController,
+                                                                          // pageController: model.pageController,
+                                                                          onIndexChanged: (index) {
+                                                                            model.updatePage(index);
+                                                                            model.updatePageControllerStream(index);
+                                                                          },
+                                                                          currentStep: currentStep,
+                                                                          translateSidewaysController: model.translateSidewaysController,
+                                                                          model : model,
+                                                                        );
                                                                       });
-                                                                    },
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
+                                                                }),
+                                                          ),
+                                                        ),
+                                                        // const SizedBox(height: 0.0),
+                                                        SizedBox(
+                                                          height: MediaQuery.of(context).size.height * 0.03,
+                                                          child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.center,
+                                                            children: model.buildPageIndicator(currentStep!, cardData.data!.dashboardDataContent!.debitCard!.length),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding: EdgeInsets.only(top: 24.0.h, bottom: 0.0.h),
+                                                          child: BottomBarWidget(
+                                                            onHomeTap: () {
+                                                              model.moveToPage(0);
+                                                            },
+                                                            onMoreTap: () {
+                                                              SettingsDialog.show(
+                                                                context,
+                                                              );
+                                                            },
+                                                            onContactUsTap: () {
+                                                              EngagementTeamDialog.show(context, onDismissed: () {
+                                                                Navigator.pop(context);
+                                                              }, onSelected: (value) {
+                                                                Navigator.pop(context);
+                                                              });
+                                                            },
                                                           ),
                                                         ),
                                                       ],
@@ -439,10 +348,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
 
     model.getRequestMoneyPopUpDataStream.listen((data) {
       if (data) {
-        showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (context) => popUpWidget(context, model.requestMoneyPlaceholderData.image));
+        showDialog(context: context, barrierDismissible: false, builder: (context) => popUpWidget(context, model.requestMoneyPlaceholderData.image));
       }
     });
 

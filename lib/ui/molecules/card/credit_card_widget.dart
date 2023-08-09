@@ -28,12 +28,17 @@ class CreditCardWidget extends StatefulWidget {
   final CreditCard creditCard;
   final String? accountBalance;
   final bool isChangePinEnabled;
+  final Function() onPayBackClick;
+  final Function() onSettingsTap;
 
-  CreditCardWidget(
-      {required this.key,
-      required this.creditCard,
-      this.accountBalance = "",
-      required this.isChangePinEnabled});
+  CreditCardWidget({
+    required this.key,
+    required this.creditCard,
+    this.accountBalance = "",
+    required this.isChangePinEnabled,
+    required this.onPayBackClick,
+    required this.onSettingsTap,
+  });
 
   FlipCardController? flipCardController = FlipCardController();
 
@@ -44,518 +49,415 @@ class CreditCardWidget extends StatefulWidget {
 class _CreditCardWidgetState extends State<CreditCardWidget> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Directionality(
-      textDirection: TextDirection.ltr,
-      child: FlipCard(
-        controller: widget.flipCardController,
-        flipOnTouch: false,
-        direction: FlipDirection.HORIZONTAL,
-        front: Container(
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 15.0.h),
-                child: Container(
-                    key: ValueKey(true),
-                    child: Card(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      elevation: 2,
-                      color: widget.creditCard.cardStatus == FreezeCardStatusEnum.F
-                          ? AppColor.verySoftRedCard
-                          : Theme.of(context).primaryColor,
-                      margin: EdgeInsets.zero,
-                      shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.035, vertical: 44),
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: FlipCard(
+          controller: widget.flipCardController,
+          flipOnTouch: false,
+          direction: FlipDirection.HORIZONTAL,
+          front: Container(
+              key: ValueKey(true),
+              child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                elevation: 2,
+                color: widget.creditCard.cardStatus == FreezeCardStatusEnum.F ? AppColor.verySoftRedCard : Theme.of(context).primaryColor,
+                margin: EdgeInsets.zero,
+                shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: 26.0.h,
+                        right: 23.0.w,
+                        left: 23.0.w,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: 30.0.h,
-                              right: 23.0.w,
-                              left: 23.0.w,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  S.of(context).myCreditCard,
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                      fontFamily: StringUtils.appFont,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12.0.t,
-                                      color: Colors.white),
-                                ),
-                                widget.creditCard.cardStatus == FreezeCardStatusEnum.F
-                                    ? Container(
-                                        height: 24.0.h,
-                                        alignment: Alignment.center,
-                                        padding: EdgeInsets.only(right: 23.0.w),
-                                        child: Text(
-                                          S.of(context).cardFrozen,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              color: Theme.of(context).colorScheme.secondary.withOpacity(0.5),
-                                              fontSize: 14.0.t,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                      )
-                                    : InkWell(
-                                        splashFactory: NoSplash.splashFactory,
-                                        onTap: () async {
-                                          widget.flipCardController!.toggleCard();
-                                          // var result = await Navigator.pushNamed(
-                                          //     context, RoutePaths.CreditCardSettings,
-                                          //     arguments: CreditCardSettingsArguments(
-                                          //         creditCard: widget.creditCard));
-                                          // if (result != null) {
-                                          //   bool value = result as bool;
-                                          //   if (value) {
-                                          //     ProviderScope.containerOf(context)
-                                          //         .read(appHomeViewModelProvider)
-                                          //         .getDashboardData();
-                                          //   }
-                                          // }
-                                        },
-                                        child: Container(
-                                          height: 24.0.h,
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            S.of(context).flipCard,
-                                            textAlign: TextAlign.right,
-                                            style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 14.0.t,
-                                                color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                          ),
-                                        ),
-                                      )
-                              ],
-                            ),
+                          Text(
+                            S.of(context).myCreditCard,
+                            textAlign: TextAlign.right,
+                            style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: Colors.white),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 23.0.w, vertical: 5.0.h),
-                                child: AppSvg.asset(AssetUtils.blink_updated_logo,
-                                    height: 33.64.h, width: 72.0.w),
-                              ),
-                              AppStreamBuilder<bool>(
-                                  stream: antelopStepCompletedStream,
-                                  initialData: true,
-                                  onData: (value) {
-                                    if (!value) {
-                                      List<GetAllCardData> antelopIssuerCardList =
-                                          listOfCardFromAntelop.value;
-
-                                      for (int j = 0; j < antelopIssuerCardList.length; j++) {
-                                        if (antelopIssuerCardList[j].getIssuerCardId?.trim() ==
-                                            widget.creditCard.cardCode?.trim()) {
-                                          widget.creditCard.isCardInApplePay =
-                                              antelopIssuerCardList[j].isCardInApplePay ?? false;
-                                          widget.creditCard.getStatus =
-                                              antelopIssuerCardList[j].getStatus ?? false;
-                                        }
-                                      }
-                                    }
+                          widget.creditCard.cardStatus == FreezeCardStatusEnum.F
+                              ? Container(
+                                  height: 24.0.h,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.only(right: 23.0.w),
+                                  child: Text(
+                                    S.of(context).cardFrozen,
+                                    style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary.withOpacity(0.5), fontSize: 14.0.t, fontWeight: FontWeight.w600),
+                                  ),
+                                )
+                              : InkWell(
+                                  splashFactory: NoSplash.splashFactory,
+                                  onTap: () async {
+                                    widget.flipCardController!.toggleCard();
+                                    // var result = await Navigator.pushNamed(
+                                    //     context, RoutePaths.CreditCardSettings,
+                                    //     arguments: CreditCardSettingsArguments(
+                                    //         creditCard: widget.creditCard));
+                                    // if (result != null) {
+                                    //   bool value = result as bool;
+                                    //   if (value) {
+                                    //     ProviderScope.containerOf(context)
+                                    //         .read(appHomeViewModelProvider)
+                                    //         .getDashboardData();
+                                    //   }
+                                    // }
                                   },
-                                  dataBuilder: (context, antelopStepCompleted) {
-                                    return Platform.isIOS
-                                        ? (antelopStepCompleted ?? true)
-                                            ? Container()
-                                            : (widget.creditCard.isCardInApplePay)
-                                                ? InkWell(
-                                                    onTap: () {
-                                                      ///Pay
-                                                    },
-                                                    child: Padding(
-                                                      padding: EdgeInsetsDirectional.only(end: 24.0.w),
-                                                      child: AppSvg.asset(AssetUtils.applePayButton),
-                                                    ),
-                                                  )
-                                                : Container()
-                                        : Container();
-                                  })
-                            ],
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 23.0.w, vertical: 5.0.h),
-                            child: Text(
-                              widget.creditCard.name ?? "",
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 14.0.t,
-                                  color: Colors.white),
-                            ),
-                          ),
-                          Spacer(),
-                          Image.asset(
-                            AssetUtils.line_black_white,
-                            // fit: BoxFit.fill,
-                            // height: widget.isSmallDevice ? 93 : 118,
-                          ),
-                          FittedBox(
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 24.0.w, top: 53.0.h, right: 11.0.w),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: StringUtils.isDirectionRTL(context)
-                                    ? [
-                                        InkWell(
-                                          onTap: () {
-                                            Navigator.pushNamed(context, RoutePaths.CreditCardPayBack,
-                                                arguments: CreditCardPayBackArguments(
-                                                    accountHolderName: widget.creditCard.name!,
-                                                    secureCode: widget.creditCard.cardCode!,
-                                                    accountBalance: widget.accountBalance!,
-                                                    minDuePayBackAmount:
-                                                        widget.creditCard.paymentDueAmount.toString(),
-                                                    totalMinDueAmount: widget.creditCard.usedBalance!));
-                                          },
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: Theme.of(context).textTheme.bodyLarge!.color!,
-                                              borderRadius: BorderRadius.circular(20),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 25.0.w),
-                                              child: Text(
-                                                S.of(context).payBack,
-                                                style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: Theme.of(context).colorScheme.secondary,
-                                                  fontSize: 14.0.t,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.end,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  widget.creditCard.paymentDueAmount.toString(),
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      color: Theme.of(context).colorScheme.secondary,
-                                                      fontWeight: FontWeight.w700,
-                                                      fontSize: 20.0.t),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(left: 5.0.w),
-                                                  child: Text(
-                                                    S.of(context).JOD,
-                                                    style: TextStyle(
-                                                        fontFamily: StringUtils.appFont,
-                                                        color: Theme.of(context)
-                                                            .colorScheme
-                                                            .secondary
-                                                            .withOpacity(0.5),
-                                                        fontSize: 14.0.t,
-                                                        fontWeight: FontWeight.w700),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(top: 5.0.h),
-                                              child: Row(
-                                                children: [
-                                                  Text(
-                                                    S.of(context).minDueBy,
-                                                    style: TextStyle(
-                                                        fontFamily: StringUtils.appFont,
-                                                        color: AppColor.veryLightRed,
-                                                        fontWeight: FontWeight.w600,
-                                                        fontSize: 10.0.t),
-                                                  ),
-                                                  Text(
-                                                    widget.creditCard.nextPaymentDate!.isNotEmpty
-                                                        ? TimeUtils.getFormattedDateForCreditCard(
-                                                            widget.creditCard.nextPaymentDate!)
-                                                        : "-",
-                                                    style: TextStyle(
-                                                        fontFamily: StringUtils.appFont,
-                                                        color: Theme.of(context).colorScheme.secondary,
-                                                        fontWeight: FontWeight.w600,
-                                                        fontSize: 10.0.t),
-                                                  ),
-                                                ],
+                                  child: Container(
+                                    height: 50,
+                                    width: 50,
+                                    padding: const EdgeInsets.all(10),
+                                    margin: EdgeInsetsDirectional.only(end: 0.0.w),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Theme.of(context).primaryColor,
+                                      border: Border.all(color: AppColor.softRed1),
+                                      boxShadow: const [
+                                        BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 0.1),
+                                      ],
+                                    ),
+                                    child: AppSvg.asset(AssetUtils.spin, height: 24.w, width: 24.w),
+                                  ))
+                        ],
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 23.0.w, vertical: 5.0.h),
+                          child: AppSvg.asset(AssetUtils.blink_updated_logo, height: 33.64.h, width: 72.0.w),
+                        ),
+                        AppStreamBuilder<bool>(
+                            stream: antelopStepCompletedStream,
+                            initialData: true,
+                            onData: (value) {
+                              if (!value) {
+                                List<GetAllCardData> antelopIssuerCardList = listOfCardFromAntelop.value;
+
+                                for (int j = 0; j < antelopIssuerCardList.length; j++) {
+                                  if (antelopIssuerCardList[j].getIssuerCardId?.trim() == widget.creditCard.cardCode?.trim()) {
+                                    widget.creditCard.isCardInApplePay = antelopIssuerCardList[j].isCardInApplePay ?? false;
+                                    widget.creditCard.getStatus = antelopIssuerCardList[j].getStatus ?? false;
+                                  }
+                                }
+                              }
+                            },
+                            dataBuilder: (context, antelopStepCompleted) {
+                              return Platform.isIOS
+                                  ? (antelopStepCompleted ?? true)
+                                      ? Container()
+                                      : (widget.creditCard.isCardInApplePay)
+                                          ? InkWell(
+                                              onTap: () {
+                                                ///Pay
+                                              },
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional.only(end: 24.0.w),
+                                                child: AppSvg.asset(AssetUtils.applePayButton),
                                               ),
                                             )
-                                          ],
+                                          : Container()
+                                  : Container();
+                            })
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 23.0.w, vertical: 5.0.h),
+                      child: Text(
+                        widget.creditCard.name ?? "",
+                        style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 14.0.t, color: Colors.white),
+                      ),
+                    ),
+                    Spacer(),
+                    Image.asset(
+                      AssetUtils.line_black_white,
+                      // fit: BoxFit.fill,
+                      // height: widget.isSmallDevice ? 93 : 118,
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 24.0.w, top: 50.0.h, right: 24.0.w),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: StringUtils.isDirectionRTL(context)
+                            ? [
+                                InkWell(
+                                  onTap: () {
+                                    // Navigator.pushNamed(context, RoutePaths.CreditCardPayBack,
+                                    //     arguments: CreditCardPayBackArguments(
+                                    //         accountHolderName: widget.creditCard.name!,
+                                    //         secureCode: widget.creditCard.cardCode!,
+                                    //         accountBalance: widget.accountBalance!,
+                                    //         minDuePayBackAmount:
+                                    //             widget.creditCard.paymentDueAmount.toString(),
+                                    //         totalMinDueAmount: widget.creditCard.usedBalance!));
+                                    widget.onPayBackClick();
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context).textTheme.bodyLarge!.color!,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 25.0.w),
+                                      child: Text(
+                                        S.of(context).payBack,
+                                        style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: Theme.of(context).colorScheme.secondary,
+                                          fontSize: 14.0.t,
+                                          fontWeight: FontWeight.w600,
                                         ),
-                                      ]
-                                    : [
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Row(children: [
-                                              Text(
-                                                widget.creditCard.paymentDueAmount.toString(),
-                                                style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    color: Theme.of(context).colorScheme.secondary,
-                                                    fontWeight: FontWeight.w700,
-                                                    fontSize: 20.0.t),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.only(left: 5.0.w),
-                                                child: Text(
-                                                  S.of(context).JOD,
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .secondary
-                                                          .withOpacity(0.5),
-                                                      fontSize: 14.0.t,
-                                                      fontWeight: FontWeight.w700),
-                                                ),
-                                              )
-                                            ]),
-                                            Padding(
-                                              padding: EdgeInsets.only(top: 5.0.h),
-                                              child: Row(
-                                                children: [
-                                                  Text(
-                                                    S.of(context).minDueBy,
-                                                    style: TextStyle(
-                                                        fontFamily: StringUtils.appFont,
-                                                        color: AppColor.veryLightRed,
-                                                        fontWeight: FontWeight.w600,
-                                                        fontSize: 10.0.t),
-                                                  ),
-                                                  Text(
-                                                    widget.creditCard.nextPaymentDate!.isNotEmpty
-                                                        ? TimeUtils.getFormattedDateForCreditCard(
-                                                            widget.creditCard.nextPaymentDate!)
-                                                        : "-",
-                                                    style: TextStyle(
-                                                        fontFamily: StringUtils.appFont,
-                                                        color: Theme.of(context).colorScheme.secondary,
-                                                        fontWeight: FontWeight.w600,
-                                                        fontSize: 10.0.t),
-                                                  ),
-                                                ],
-                                              ),
-                                            )
-                                          ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          widget.creditCard.paymentDueAmount.toString(),
+                                          style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary, fontWeight: FontWeight.w700, fontSize: 20.0.t),
                                         ),
-                                        InkWell(
-                                          onTap: () {
-                                            Navigator.pushNamed(context, RoutePaths.CreditCardPayBack,
-                                                arguments: CreditCardPayBackArguments(
-                                                    accountHolderName: widget.creditCard.name!,
-                                                    secureCode: widget.creditCard.cardCode!,
-                                                    accountBalance: widget.accountBalance!,
-                                                    minDuePayBackAmount:
-                                                        widget.creditCard.paymentDueAmount.toString(),
-                                                    totalMinDueAmount: widget.creditCard.usedBalance!));
-                                          },
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: Theme.of(context).textTheme.bodyLarge!.color!,
-                                              borderRadius: BorderRadius.circular(20),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 25.0.w),
-                                              child: Text(
-                                                S.of(context).payBack,
-                                                style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: Theme.of(context).colorScheme.secondary,
-                                                  fontSize: 14.0.t,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                            ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 5.0.w),
+                                          child: Text(
+                                            S.of(context).JOD,
+                                            style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary.withOpacity(0.5), fontSize: 14.0.t, fontWeight: FontWeight.w700),
                                           ),
                                         )
                                       ],
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: 19.0.h,
-                              left: 24.0.w,
-                              right: 23.0.w,
-                              bottom: 50.0.h,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: StringUtils.isDirectionRTL(context)
-                                  ? [
-                                      InkWell(
-                                          onTap: () async {
-                                            var result = await Navigator.pushNamed(
-                                                context, RoutePaths.CreditCardSettings,
-                                                arguments: CreditCardSettingsArguments(
-                                                    creditCard: widget.creditCard,
-                                                    isChangePinEnabled: widget.isChangePinEnabled));
-                                            if (result != null) {
-                                              bool value = result as bool;
-                                              if (value) {
-                                                ProviderScope.containerOf(context)
-                                                    .read(appHomeViewModelProvider)
-                                                    .getDashboardData();
-                                              }
-                                            }
-                                          },
-                                          child: AppSvg.asset(AssetUtils.settingsRed,
-                                              color: AppColor.light_acccent_blue)),
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 5.0.h),
+                                      child: Row(
                                         children: [
-                                          Row(
-                                            children: [
-                                              Text(
-                                                widget.creditCard.availableBalance.toString(),
-                                                style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: Theme.of(context).colorScheme.secondary,
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 20.0.t,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional.only(start: 5.0.w),
-                                                child: Text(
-                                                  S.of(context).JOD,
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .secondary
-                                                          .withOpacity(0.5),
-                                                      fontSize: 14.0.t,
-                                                      fontWeight: FontWeight.w700),
-                                                ),
-                                              )
-                                            ],
+                                          Text(
+                                            S.of(context).minDueBy,
+                                            style: TextStyle(fontFamily: StringUtils.appFont, color: AppColor.veryLightRed, fontWeight: FontWeight.w600, fontSize: 10.0.t),
                                           ),
-                                          Padding(
-                                            padding: EdgeInsets.only(top: 5.0.h),
-                                            child: Text(
-                                              S.of(context).availableAmount,
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: AppColor.veryLightRed,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 10.0.t),
-                                            ),
+                                          Text(
+                                            widget.creditCard.nextPaymentDate!.isNotEmpty ? TimeUtils.getFormattedDateForCreditCard(widget.creditCard.nextPaymentDate!) : "-",
+                                            style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary, fontWeight: FontWeight.w600, fontSize: 10.0.t),
                                           ),
                                         ],
                                       ),
-                                    ]
-                                  : [
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                    )
+                                  ],
+                                ),
+                              ]
+                            : [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(children: [
+                                      Text(
+                                        widget.creditCard.paymentDueAmount.toString(),
+                                        style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary, fontWeight: FontWeight.w700, fontSize: 20.0.t),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(left: 5.0.w),
+                                        child: Text(
+                                          S.of(context).JOD,
+                                          style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary.withOpacity(0.5), fontSize: 14.0.t, fontWeight: FontWeight.w700),
+                                        ),
+                                      )
+                                    ]),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 5.0.h),
+                                      child: Row(
                                         children: [
-                                          Row(
-                                            children: [
-                                              Text(
-                                                widget.creditCard.availableBalance.toString(),
-                                                style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: Theme.of(context).colorScheme.secondary,
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 20.0.t,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.only(left: 5.0.h),
-                                                child: Text(
-                                                  S.of(context).JOD,
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .secondary
-                                                          .withOpacity(0.5),
-                                                      fontSize: 14.0.t,
-                                                      fontWeight: FontWeight.w700),
-                                                ),
-                                              )
-                                            ],
+                                          Text(
+                                            S.of(context).minDueBy,
+                                            style: TextStyle(fontFamily: StringUtils.appFont, color: AppColor.veryLightRed, fontWeight: FontWeight.w600, fontSize: 10.0.t),
                                           ),
-                                          Padding(
-                                            padding: EdgeInsets.only(top: 5.0.h),
-                                            child: Text(
-                                              S.of(context).availableAmount,
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: AppColor.veryLightRed,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 10.0.t),
-                                            ),
+                                          Text(
+                                            widget.creditCard.nextPaymentDate!.isNotEmpty ? TimeUtils.getFormattedDateForCreditCard(widget.creditCard.nextPaymentDate!) : "-",
+                                            style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary, fontWeight: FontWeight.w600, fontSize: 10.0.t),
                                           ),
                                         ],
                                       ),
-                                      InkWell(
-                                          onTap: () async {
-                                            var result = await Navigator.pushNamed(
-                                                context, RoutePaths.CreditCardSettings,
-                                                arguments: CreditCardSettingsArguments(
-                                                    creditCard: widget.creditCard,
-                                                    isChangePinEnabled: widget.isChangePinEnabled));
-                                            if (result != null) {
-                                              bool value = result as bool;
-                                              if (value) {
-                                                ProviderScope.containerOf(context)
-                                                    .read(appHomeViewModelProvider)
-                                                    .getDashboardData();
-                                              }
-                                            }
-                                          },
-                                          child: AppSvg.asset(AssetUtils.settingsRed,
-                                              color: AppColor.light_acccent_blue))
-                                    ],
-                            ),
-                          )
-                        ],
+                                    )
+                                  ],
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    widget.onPayBackClick();
+                                    /*Navigator.pushNamed(context, RoutePaths.CreditCardPayBack,
+                                        arguments: CreditCardPayBackArguments(
+                                            accountHolderName: widget.creditCard.name!,
+                                            secureCode: widget.creditCard.cardCode!,
+                                            accountBalance: widget.accountBalance!,
+                                            minDuePayBackAmount: widget.creditCard.paymentDueAmount.toString(),
+                                            totalMinDueAmount: widget.creditCard.usedBalance!));*/
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context).textTheme.bodyLarge!.color!,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 25.0.w),
+                                      child: Text(
+                                        S.of(context).payBack,
+                                        style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: Theme.of(context).colorScheme.secondary,
+                                          fontSize: 14.0.t,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
                       ),
-                    )),
-              ),
-              Positioned(
-                bottom: 0,
-                child: Column(
-                  children: [
-                    AppSvg.asset(AssetUtils.swipeUp),
+                    ),
                     Padding(
-                      padding: EdgeInsets.only(top: 6.0.h),
-                      child: Text(
-                        S.of(context).swipeUpToViewTransaction,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 12.0.t,
-                            color: AppColor.dark_gray_1),
+                      padding: EdgeInsets.only(
+                        top: 19.0.h,
+                        left: 24.0.w,
+                        right: 23.0.w,
+                        bottom: 44.0.h,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: StringUtils.isDirectionRTL(context)
+                            ? [
+                                InkWell(
+                                    onTap: () async {
+                                      widget.onSettingsTap();
+                                      /*var result = await Navigator.pushNamed(context, RoutePaths.CreditCardSettings,
+                                          arguments: CreditCardSettingsArguments(creditCard: widget.creditCard, isChangePinEnabled: widget.isChangePinEnabled));
+                                      if (result != null) {
+                                        bool value = result as bool;
+                                        if (value) {
+                                          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+                                        }
+                                      }*/
+                                    },
+                                    child: Container(
+                                        height: 50,
+                                        width: 50,
+                                        padding: const EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Theme.of(context).primaryColor,
+                                          border: Border.all(color: AppColor.strongRed),
+                                          boxShadow: const [
+                                            BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 0.1),
+                                          ],
+                                        ),
+                                        child: AppSvg.asset(AssetUtils.settingsRed, color: AppColor.light_acccent_blue))),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          widget.creditCard.availableBalance.toString(),
+                                          style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            color: Theme.of(context).colorScheme.secondary,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 20.0.t,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsetsDirectional.only(start: 5.0.w),
+                                          child: Text(
+                                            S.of(context).JOD,
+                                            style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary.withOpacity(0.5), fontSize: 14.0.t, fontWeight: FontWeight.w700),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 5.0.h),
+                                      child: Text(
+                                        S.of(context).availableAmount,
+                                        style: TextStyle(fontFamily: StringUtils.appFont, color: AppColor.veryLightRed, fontWeight: FontWeight.w600, fontSize: 10.0.t),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ]
+                            : [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          widget.creditCard.availableBalance.toString(),
+                                          style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            color: Theme.of(context).colorScheme.secondary,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 20.0.t,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 5.0.h),
+                                          child: Text(
+                                            S.of(context).JOD,
+                                            style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary.withOpacity(0.5), fontSize: 14.0.t, fontWeight: FontWeight.w700),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 5.0.h),
+                                      child: Text(
+                                        S.of(context).availableAmount,
+                                        style: TextStyle(fontFamily: StringUtils.appFont, color: AppColor.veryLightRed, fontWeight: FontWeight.w600, fontSize: 10.0.t),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                InkWell(
+                                    onTap: () async {
+                                      widget.onSettingsTap();
+                                      /*var result = await Navigator.pushNamed(context, RoutePaths.CreditCardSettings,
+                                          arguments: CreditCardSettingsArguments(creditCard: widget.creditCard, isChangePinEnabled: widget.isChangePinEnabled));
+                                      if (result != null) {
+                                        bool value = result as bool;
+                                        if (value) {
+                                          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+                                        }
+                                      }*/
+                                    },
+                                    child: Container(
+                                        height: 50,
+                                        width: 50,
+                                        padding: const EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Theme.of(context).primaryColor,
+                                          border: Border.all(color: AppColor.strongRed),
+                                          boxShadow: const [
+                                            BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 0.1),
+                                          ],
+                                        ),
+                                        child: AppSvg.asset(AssetUtils.settingsRed, color: AppColor.light_acccent_blue)))
+                              ],
                       ),
                     )
                   ],
                 ),
-              )
-            ],
-          ),
-        ),
-        back: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 15.0.h),
-          child: Container(
+              )),
+          back: Container(
             key: ValueKey(false),
             child: Card(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -565,7 +467,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
               margin: EdgeInsets.zero,
               shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
               child: Padding(
-                padding: EdgeInsets.only(left: 29.0.w, top: 32.0.h, right: 25.0.w, bottom: 30.0.h),
+                padding: EdgeInsets.only(left: 29.0.w, top: 30.0.h, right: 25.0.w, bottom: 30.0.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -575,11 +477,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       children: [
                         Text(
                           widget.creditCard.name ?? '',
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              color: Theme.of(context).colorScheme.secondary,
-                              fontSize: 12.0.t,
-                              fontWeight: FontWeight.w600),
+                          style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary, fontSize: 12.0.t, fontWeight: FontWeight.w600),
                         ),
                         InkWell(
                           splashFactory: NoSplash.splashFactory,
@@ -587,16 +485,19 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                             widget.flipCardController!.toggleCard();
                           },
                           child: Container(
-                            height: 24.0.h,
-                            alignment: Alignment.center,
-                            child: Text(
-                              S.of(context).flipBack,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).textTheme.bodyLarge!.color!,
-                                  fontSize: 14.0.t,
-                                  fontWeight: FontWeight.w600),
+                            height: 50,
+                            width: 50,
+                            padding: const EdgeInsets.all(10),
+                            margin: EdgeInsetsDirectional.only(end: 0.0.w),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Theme.of(context).primaryColor,
+                              border: Border.all(color: AppColor.softRed1),
+                              boxShadow: const [
+                                BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 0.1),
+                              ],
                             ),
+                            child: AppSvg.asset(AssetUtils.spin, height: 24.w, width: 24.w),
                           ),
                         )
                       ],
@@ -606,9 +507,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       child: Row(
                         children: [
                           Text(
-                            widget.creditCard.cardNumber!.isNotEmpty
-                                ? StringUtils.getFormattedCreditCardNumber(widget.creditCard.cardNumber)
-                                : '-',
+                            widget.creditCard.cardNumber!.isNotEmpty ? StringUtils.getFormattedCreditCardNumber(widget.creditCard.cardNumber) : '-',
                             style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w700,
@@ -621,8 +520,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                           ),
                           InkWell(
                             onTap: () {
-                              Clipboard.setData(ClipboardData(text: widget.creditCard.cardNumber ?? '')).then(
-                                  (value) => Fluttertoast.showToast(msg: S.of(context).cardNumberCopied));
+                              Clipboard.setData(ClipboardData(text: widget.creditCard.cardNumber ?? '')).then((value) => Fluttertoast.showToast(msg: S.of(context).cardNumberCopied));
                             },
                             child: AppSvg.asset(
                               AssetUtils.copy,
@@ -635,11 +533,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       padding: EdgeInsets.only(top: 4.0.h),
                       child: Text(
                         S.of(context).cardNumber,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontWeight: FontWeight.w600,
-                            color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
-                            fontSize: 10.0.t),
+                        style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary.withOpacity(0.6), fontSize: 10.0.t),
                       ),
                     ),
                     Visibility(
@@ -699,11 +593,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                 padding: EdgeInsets.only(top: 4.0.h),
                                 child: Text(
                                   S.of(context).expiryDate,
-                                  style: TextStyle(
-                                      fontFamily: StringUtils.appFont,
-                                      fontSize: 10.0.t,
-                                      color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
-                                      fontWeight: FontWeight.w600),
+                                  style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 10.0.t, color: Theme.of(context).colorScheme.secondary.withOpacity(0.6), fontWeight: FontWeight.w600),
                                 ),
                               )
                             ],
@@ -714,9 +604,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  widget.creditCard.cvv!.isNotEmpty
-                                      ? StringUtils.getCvv(widget.creditCard.cvv)
-                                      : '-',
+                                  widget.creditCard.cvv!.isNotEmpty ? StringUtils.getCvv(widget.creditCard.cvv) : '-',
                                   style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.w700,
@@ -728,11 +616,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                   padding: EdgeInsets.only(top: 4.0.h),
                                   child: Text(
                                     S.of(context).cvv,
-                                    style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 10.0.t,
-                                        color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
-                                        fontWeight: FontWeight.w600),
+                                    style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 10.0.t, color: Theme.of(context).colorScheme.secondary.withOpacity(0.6), fontWeight: FontWeight.w600),
                                   ),
                                 )
                               ],
@@ -780,11 +664,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                           padding: EdgeInsets.only(top: 4.0.h),
                           child: Text(
                             S.of(context).totalUsedAmount,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                fontSize: 10.0.t,
-                                color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
-                                fontWeight: FontWeight.w600),
+                            style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 10.0.t, color: Theme.of(context).colorScheme.secondary.withOpacity(0.6), fontWeight: FontWeight.w600),
                           ),
                         )
                       ],
@@ -825,11 +705,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                           padding: EdgeInsets.only(top: 4.0.h),
                           child: Text(
                             S.of(context).yourCardLimit,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                fontSize: 10.0.t,
-                                color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
-                                fontWeight: FontWeight.w600),
+                            style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 10.0.t, color: Theme.of(context).colorScheme.secondary.withOpacity(0.6), fontWeight: FontWeight.w600),
                           ),
                         )
                       ],
@@ -841,6 +717,6 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
           ),
         ),
       ),
-    ));
+    );
   }
 }

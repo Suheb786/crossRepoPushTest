@@ -6,6 +6,7 @@ import 'package:domain/usecase/card_delivery/freeze_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_supplementary_credit_card_application_usecase.dart';
 import 'package:domain/usecase/card_delivery/report_lost_stolen_cc_usecase.dart';
 import 'package:domain/usecase/card_delivery/unfreeze_credit_card_usecase.dart';
+import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -22,6 +23,7 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
   final GetSupplementaryCreditCardApplicationUseCase _getSupplementaryCreditCardApplicationUseCase;
   final ReportLostStolenCCUseCase _reportLostStolenCCUseCase;
   final PushAntelopCardsUseCase _pushAntelopCardsUseCase;
+  final ScrollController controller = ScrollController();
 
   PublishSubject<bool> _toggleFreezeCardSubject = PublishSubject();
 
