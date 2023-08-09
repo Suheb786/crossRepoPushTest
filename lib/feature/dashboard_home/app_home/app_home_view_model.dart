@@ -443,6 +443,11 @@ class AppHomeViewModel extends BasePageViewModel {
                 creditCard: creditCard,
                 isChangePinEnabled: dashboardDataContent.dashboardFeatures?.isPinChangeEnabled ?? true,
                 key: ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
+                onSettingsTap: () {
+                  selectedCreditCard = creditCard;
+                  selectedDebitCard = null;
+                  showSettingPage(true);
+                },
               ));
 
               ///time line list  arguments set
@@ -1015,9 +1020,10 @@ class AppHomeViewModel extends BasePageViewModel {
   }
 
   timelineGlitchAnimation() {
-    timelineScrollController.animateTo(30, duration: const Duration(milliseconds: 400), curve: Curves.easeIn).then((value) {
-      timelineScrollController.animateTo(-30, duration: const Duration(milliseconds: 500), curve: Curves.easeInBack);
-    });
+    if (timelineScrollController.positions.isNotEmpty && timelineScrollController.hasClients)
+      timelineScrollController.animateTo(30, duration: const Duration(milliseconds: 400), curve: Curves.easeIn).then((value) {
+        timelineScrollController.animateTo(-30, duration: const Duration(milliseconds: 500), curve: Curves.easeInBack);
+      });
   }
 
   goToTransactionPage(BuildContext context, int currentStep) {
@@ -1025,7 +1031,7 @@ class AppHomeViewModel extends BasePageViewModel {
     Navigator.of(context).push(slideBottomToTop(nextPage: CardTransactionPage(GetCreditCardTransactionArguments(cardId: timeLineListArguments[currentStep - 1].cardId))));
   }
 
-  goToAccountTransactionPage(BuildContext context){
+  goToAccountTransactionPage(BuildContext context) {
     animateForwardTransactionPage();
     Navigator.of(context).push(slideBottomToTop(nextPage: AccountTransactionPage()));
   }

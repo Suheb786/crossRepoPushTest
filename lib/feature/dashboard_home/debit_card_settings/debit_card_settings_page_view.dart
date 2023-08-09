@@ -41,6 +41,8 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../di/dashboard/dashboard_modules.dart';
+
 class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsViewModel> {
   DebitCardSettingsPageView(ProviderBase model) : super(model);
 
@@ -78,7 +80,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                     },
                     dataBuilder: (context, antelopStepCompleted) {
                       return Padding(
-                        padding: EdgeInsetsDirectional.only(top: 24.h,bottom: 6.h),
+                        padding: EdgeInsetsDirectional.only(top: 24.h, bottom: 6.h),
                         child: (antelopStepCompleted ?? true)
                             ? Container()
                             : (!(model.debitCardSettingsArguments.debitCard.isCardInApplePay) && model.debitCardSettingsArguments.debitCard.getStatus)
@@ -372,7 +374,9 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                 initialData: Resource.none(),
                                 onData: (reapply) {
                                   if (reapply.status == Status.SUCCESS) {
-                                    Navigator.pop(context, true);
+                                    // Navigator.pop(context, true);
+                                    ProviderScope.containerOf(context).read(appHomeViewModelProvider).showSettingPage(false);
+                                    ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
                                   }
                                 },
                                 dataBuilder: (context, removeOrReapplyCardResponse) {
@@ -385,7 +389,9 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                           Navigator.pushReplacementNamed(context, RoutePaths.DebitCardReplacement,
                                               arguments: DebitCardReplacementArguments(debitRoutes: DebitRoutes.DEBIT_SETTING, isPinSet: true, type: DebitReplacementEnum.Normal));
                                         } else {
-                                          Navigator.pop(context, true);
+                                          // Navigator.pop(context, true);
+                                          ProviderScope.containerOf(context).read(appHomeViewModelProvider).showSettingPage(false);
+                                          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
                                         }
                                       }
                                     },

@@ -345,7 +345,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                       child:
 
                                                                                           ///No transaction button for debit card
-                                                                                          model.isDebitCard(currentStep)
+                                                                                          model.settings && (model.isDebitCard(currentStep) || model.isCreditCard(currentStep))
                                                                                               ? Container(
                                                                                                   child: AnimatedCrossFade(
                                                                                                     duration: const Duration(milliseconds: 500),
@@ -357,6 +357,12 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                     firstChild: InkWell(
                                                                                                       onTap: () {
                                                                                                         model.showSettingPage(false);
+                                                                                                        if(model.isDebitCard(currentStep)){
+                                                                                                          /// TODO....
+
+                                                                                                        }else{
+
+                                                                                                        }
                                                                                                       },
                                                                                                       child: Container(
                                                                                                           width: 48,
@@ -405,7 +411,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                           }
                                                                                                         }
 
-                                                                                                        if(model.isMyAccount(currentStep)){
+                                                                                                        if (model.isMyAccount(currentStep)) {
                                                                                                           // AccountTransactionPage();
                                                                                                           model.goToAccountTransactionPage(context);
                                                                                                         }
