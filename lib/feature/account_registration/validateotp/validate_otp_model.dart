@@ -149,29 +149,6 @@ class ValidateOtpViewModel extends BasePageViewModel {
     });
   }
 
-  // Future<void> initiateSmsListener() async {
-  //   String? incomingMsg = "Message";
-  //   try {
-  //     incomingMsg = await AltSmsAutofill().listenForSms;
-  //   } on PlatformException {
-  //     incomingMsg = 'Failed to get Sms.';
-  //   }
-  //
-  //   ///SMS Sample: Your phone verification code is 625742.
-  //   _incomingSms = incomingMsg!;
-  //   print("====>Message: ${_incomingSms}");
-  //   print(
-  //       "${_incomingSms[32] + _incomingSms[33] + _incomingSms[34] + _incomingSms[35] + _incomingSms[36] + _incomingSms[37]}");
-  //   otpController.text = _incomingSms[32] +
-  //       _incomingSms[33] +
-  //       _incomingSms[34] +
-  //       _incomingSms[35] +
-  //       _incomingSms[36] +
-  //       _incomingSms[37];
-  //
-  //   notifyListeners();
-  // }
-
   listenForSmsCode() async {
     SmsAutoFill().listenForCode();
   }

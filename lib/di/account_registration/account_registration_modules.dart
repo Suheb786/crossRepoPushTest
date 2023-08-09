@@ -10,6 +10,7 @@ import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_m
 
 import '../../feature/account_registration/add_email/add_email_model.dart';
 import '../../feature/account_registration/add_email_otp/email_otp_model.dart';
+import '../../feature/account_registration/manage_idwise_status/manage_idwise_status_model.dart';
 
 ///account registration view model provider
 final accountRegistrationViewModelProvider =
@@ -53,3 +54,6 @@ final createPasswordViewModelProvider =
           ref.read(createPasswordUseCaseProvider),
           ref.read(registerProspectUseCaseProvider),
         ));
+
+final manageIDWiseStatusViewModel =
+    ChangeNotifierProvider.autoDispose<ManageIDWiseStatusViewModel>((ref) => ManageIDWiseStatusViewModel());

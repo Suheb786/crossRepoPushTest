@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:data/helper/id_wise_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,6 +19,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../ui/molecules/button/app_primary_button.dart';
+import '../manage_idwise_status/manage_idwise_status_page.dart';
 
 class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
   ValidateOtpPageView(ProviderBase model) : super(model);
@@ -48,15 +50,22 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                   return AppStreamBuilder<Resource<bool>>(
                     stream: model.verifyOtpStream,
                     initialData: Resource.none(),
-                    onData: (data) {
+                    onData: (data) async {
                       if (data.status == Status.SUCCESS) {
-                        // var event = {
-                        //   "definitionId": "ValidateOtp",
-                        //   "properties": {"validated": true}
-                        // };
-                        // InfobipMobilemessaging.submitEventImmediately(event);
                         model.saveUserData();
-                        Navigator.pushReplacementNamed(context, RoutePaths.Dashboard);
+                        // Navigator.pushReplacementNamed(context, RoutePaths.Dashboard);
+
+                        IdWiseHelper idWiseHelper = IdWiseHelper();
+                        idWiseHelper.initializeIdWise();
+                        var status = await idWiseHelper.startVerification('en');
+                        debugPrint("STATUS : ${status.keys.first}");
+                        debugPrint("TEXT :  ${status.values.first}");
+
+                        // Navigator.pushReplacementNamed()
+
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, RoutePaths.ManageIDWiseStatus, (route) => false,
+                            arguments: ManageIDWiseStatusParams(journeyId: status.values.first));
                       } else if (data.status == Status.ERROR) {
                         model.showToastWithError(data.appError!);
                       }
@@ -77,7 +86,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                         length: 6,
                                         controller: model.otpController,
                                         onChanged: (val) {
-                                          if (val.length == 6) model.validate(val);
+                                          model.validate(val);
                                         },
                                       ),
                                       Center(
@@ -132,13 +141,16 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                                         fontSize: 14.t,
                                                         color: Theme.of(context).textTheme.bodyLarge!.color!),
                                                   ))
-                                              : Text(
-                                                  S.of(context).resendIn(
-                                                      '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      fontSize: 14.t,
-                                                      color: Theme.of(context).textTheme.bodyLarge!.color!),
+                                              : Padding(
+                                                  padding: const EdgeInsets.all(10.0),
+                                                  child: Text(
+                                                    S.of(context).resendIn(
+                                                        '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontSize: 14.t,
+                                                        color: Theme.of(context).textTheme.bodyLarge!.color!),
+                                                  ),
                                                 );
                                         },
                                       ),
@@ -152,7 +164,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                       initialData: false,
                                       dataBuilder: (context, isValid) {
                                         return Visibility(
-                                          visible: !isValid!,
+                                          visible: isValid!,
                                           child: AppPrimaryButton(
                                             text: S.of(context).next,
                                             onPressed: () {
