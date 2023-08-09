@@ -13,6 +13,9 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
+import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:rxdart/rxdart.dart';
 
 class DebitCardSettingsViewModel extends BasePageViewModel {
@@ -110,12 +113,6 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
 
   ///---------------push antelop cards-----------------------///
 
-  bool isFreezed = false;
-  bool isUnFreezed = false;
-  bool isCancelled = false;
-  bool lostStolenReported = false;
-  bool isReportDamagedCard = false;
-  bool removeOrReapply = false;
 
   bool needsReplacement = false;
 
@@ -154,7 +151,8 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
           updateFreezeStatus(false);
         } else if (event.status == Status.SUCCESS) {
-          isFreezed = true;
+          // isFreezed = true;
+          ProviderScope.containerOf(appLevelKey.currentContext!).read(appHomeViewModelProvider).debitCardIsFreezed = true;
           updateFreezeStatus(true);
         }
       });
@@ -171,7 +169,8 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
           _freezeCardSubject.safeAdd(true);
         } else if (event.status == Status.SUCCESS) {
-          isUnFreezed = true;
+          // isUnFreezed = true;
+          ProviderScope.containerOf(appLevelKey.currentContext!).read(appHomeViewModelProvider).debitCardIsUnFreezed = true;
           _freezeCardSubject.safeAdd(false);
         }
       });
@@ -186,7 +185,8 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          isCancelled = true;
+          // isCancelled = true;
+          ProviderScope.containerOf(appLevelKey.currentContext!).read(appHomeViewModelProvider).debitCardIsCancelled = true;
         }
       });
     });
@@ -200,7 +200,8 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          lostStolenReported = true;
+          // lostStolenReported = true;
+          ProviderScope.containerOf(appLevelKey.currentContext!).read(appHomeViewModelProvider).debitCardLostStolenReported = true;
         }
       });
     });
@@ -214,7 +215,8 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          isReportDamagedCard = true;
+          // isReportDamagedCard = true;
+          ProviderScope.containerOf(appLevelKey.currentContext!).read(appHomeViewModelProvider).debitCardIsReportDamagedCard = true;
         }
       });
     });
@@ -228,7 +230,8 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          removeOrReapply = true;
+          // removeOrReapply = true;
+          ProviderScope.containerOf(appLevelKey.currentContext!).read(appHomeViewModelProvider).debitCardRemoveOrReapply = true;
         }
       });
     });
@@ -242,7 +245,8 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          removeOrReapply = true;
+          // removeOrReapply = true;
+          ProviderScope.containerOf(appLevelKey.currentContext!).read(appHomeViewModelProvider).debitCardRemoveOrReapply = true;
         }
       });
     });
@@ -313,13 +317,6 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
     _freezeCardSubject.safeAdd(value);
   }
 
-  bool willPop() {
-    bool pop = false;
-    if (isFreezed || isUnFreezed || isCancelled || isReportDamagedCard || lostStolenReported) {
-      pop = true;
-    }
-    return pop;
-  }
 
   void updateShowDialog(bool value) {
     _showDialogRequestSubject.safeAdd(value);

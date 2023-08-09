@@ -74,7 +74,7 @@ class AppHomeViewModel extends BasePageViewModel {
 
   PageController appSwiperController = PageController(viewportFraction: 0.8);
 
-  PublishSubject<int> _currentStep = PublishSubject();
+  BehaviorSubject<int> _currentStep = BehaviorSubject();
 
   Stream<int> get currentStep => _currentStep.stream;
 
@@ -254,6 +254,21 @@ class AppHomeViewModel extends BasePageViewModel {
     _showMainMenu = !_showMainMenu;
     notifyListeners();
   }
+
+  ///--------------- Credit card settings params  ----------------------///
+
+  bool creditCardIsFreezed = false;
+  bool creditCardIsUnFreezed = false;
+  bool creditCardIsCancelled = false;
+
+  ///--------------- Debit card settings params  ----------------------///
+
+  bool debitCardIsFreezed = false;
+  bool debitCardIsUnFreezed = false;
+  bool debitCardIsCancelled = false;
+  bool debitCardLostStolenReported = false;
+  bool debitCardIsReportDamagedCard = false;
+  bool debitCardRemoveOrReapply = false;
 
   AppHomeViewModel(
       this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._initDynamicLinkUseCase, this._getCurrentUserUseCase, this._saveUserDataUseCase, this._verifyQRUseCase, this._getAntelopCardsListUseCase) {
@@ -927,7 +942,7 @@ class AppHomeViewModel extends BasePageViewModel {
   double bottomNavbarHeight = 130;
 
   /// SETTINGS PAGE ANIMATIONS AND TRANSITIONS....
-  showSettingPage(bool value) {
+  showSettingPage(bool value, {bool updateDashboard = false, int currentStep = 0}) {
     if (value) {
       Future.delayed(
         const Duration(milliseconds: 300),
@@ -943,7 +958,16 @@ class AppHomeViewModel extends BasePageViewModel {
     }
 
     settings = value;
-    notifyListeners();
+    _currentStep.add(_currentStep.value);
+    if (updateDashboard) {
+      Future.delayed(Duration(milliseconds: 500), () {
+        if (isDebitCard(currentStep)) {
+          onDebitCardSettingsClosed();
+        } else if (isCreditCard(currentStep)) {
+          onCreditCardSettingsClosed();
+        }
+      });
+    }
   }
 
   animateForwardSettingsPage() {
@@ -1106,6 +1130,18 @@ class AppHomeViewModel extends BasePageViewModel {
   showButtonsCreditCard() {
     showButtonsInCreditCard = !showButtonsInCreditCard;
     notifyListeners();
+  }
+
+  void onDebitCardSettingsClosed() {
+    if (debitCardIsFreezed || debitCardIsUnFreezed || debitCardIsCancelled || debitCardIsReportDamagedCard || debitCardLostStolenReported) {
+      getDashboardData();
+    }
+  }
+
+  void onCreditCardSettingsClosed() {
+    if (creditCardIsFreezed || creditCardIsUnFreezed || creditCardIsCancelled) {
+      getDashboardData();
+    }
   }
 }
 

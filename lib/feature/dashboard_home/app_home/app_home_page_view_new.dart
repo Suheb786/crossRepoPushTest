@@ -356,13 +356,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                     crossFadeState: model.settings ? CrossFadeState.showFirst : CrossFadeState.showSecond,
                                                                                                     firstChild: InkWell(
                                                                                                       onTap: () {
-                                                                                                        model.showSettingPage(false);
-                                                                                                        if(model.isDebitCard(currentStep)){
-                                                                                                          /// TODO....
-
-                                                                                                        }else{
-
-                                                                                                        }
+                                                                                                        model.showSettingPage(false, updateDashboard: true, currentStep: currentStep);
                                                                                                       },
                                                                                                       child: Container(
                                                                                                           width: 48,
