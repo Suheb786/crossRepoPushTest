@@ -1840,5 +1840,12 @@
   "enterEmailAndPassword": "Enter your email and \ncreate your password",
   "next": "Next",
   "changeMyEmail": "Change My Email",
-  "enterYourMobileNumber": "Enter your mobile number"
+  "enterYourMobileNumber": "Enter your mobile number",
+  "okay": "Okay",
+  "ineligibleIdentity": "Ineligible identity",
+  "ineligibleIdentityDescription": "Seems that you are ineligible to continue the registration. Please reach out to Blink Engagement Team for further assistance.",
+  "selfieMismatched": "Selfie mismatched",
+  "selfieMismatchedDescription": "Seems that your selfie does not match with your ID card. Please reach out to Blink Engagement Team for further assitance.",
+  "registrationStopped": "Registration stopped",
+  "registrationStoppedDescription": "Unfortunately, you did not meet minimum age required to open an account with us. You may try again when you turn 18."
 }
