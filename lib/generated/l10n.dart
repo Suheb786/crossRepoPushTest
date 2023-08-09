@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -18186,6 +18185,76 @@ class S {
     return Intl.message(
       'Enter your mobile number',
       name: 'enterYourMobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Okay`
+  String get okay {
+    return Intl.message(
+      'Okay',
+      name: 'okay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ineligible identity`
+  String get ineligibleIdentity {
+    return Intl.message(
+      'Ineligible identity',
+      name: 'ineligibleIdentity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Seems that you are ineligible to continue the registration. Please reach out to Blink Engagement Team for further assistance.`
+  String get ineligibleIdentityDescription {
+    return Intl.message(
+      'Seems that you are ineligible to continue the registration. Please reach out to Blink Engagement Team for further assistance.',
+      name: 'ineligibleIdentityDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Selfie mismatched`
+  String get selfieMismatched {
+    return Intl.message(
+      'Selfie mismatched',
+      name: 'selfieMismatched',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Seems that your selfie does not match with your ID card. Please reach out to Blink Engagement Team for further assitance.`
+  String get selfieMismatchedDescription {
+    return Intl.message(
+      'Seems that your selfie does not match with your ID card. Please reach out to Blink Engagement Team for further assitance.',
+      name: 'selfieMismatchedDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registration stopped`
+  String get registrationStopped {
+    return Intl.message(
+      'Registration stopped',
+      name: 'registrationStopped',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unfortunately, you did not meet minimum age required to open an account with us. You may try again when you turn 18.`
+  String get registrationStoppedDescription {
+    return Intl.message(
+      'Unfortunately, you did not meet minimum age required to open an account with us. You may try again when you turn 18.',
+      name: 'registrationStoppedDescription',
       desc: '',
       args: [],
     );

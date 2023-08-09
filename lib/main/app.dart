@@ -15,6 +15,7 @@ class App extends ConsumerWidget {
   late AppViewModel _appViewModel;
 
   @override
+  
   Widget build(BuildContext context, ref) {
     return BaseWidget<AppViewModel>(
       providerBase: appViewModel,

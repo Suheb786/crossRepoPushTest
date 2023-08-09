@@ -147,6 +147,7 @@ import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 
+import '../../feature/account_registration/failure_scenarios/failure_scenarios_page.dart';
 import '../../feature/account_registration/manage_idwise_status/manage_idwise_status_page.dart';
 import '../../feature/evoucher/evoucher/evoucher_page.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page.dart';
@@ -911,6 +912,12 @@ class AppRouter {
             builder: (context) => BeneficiaryTransactionHistoryListPage(
                 settings.arguments as BeneficiaryTransactionHistoryListPageArguments),
             settings: RouteSettings(name: RoutePaths.BeneficiaryTransactionHistoryList));
+
+      case RoutePaths.OnboardingFailurScenariosPage:
+        return CupertinoPageRoute(
+            builder: (context) =>
+                OnboardingFailurScenariosPage(settings.arguments as OnboardingFailureScenarioArgument),
+            settings: RouteSettings(name: RoutePaths.OnboardingFailurScenariosPage));
 
       default:
         return CupertinoPageRoute(
