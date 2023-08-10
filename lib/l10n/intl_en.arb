@@ -1840,5 +1840,11 @@
   "enterEmailAndPassword": "Enter your email and \ncreate your password",
   "next": "Next",
   "changeMyEmail": "Change My Email",
-  "enterYourMobileNumber": "Enter your mobile number"
+  "enterYourMobileNumber": "Enter your mobile number",
+  "processingIDWiseStatus": "Processing...",
+  "verifyingYourNationalID": "Verifying your National ID",
+  "validatingYourSelfie": "Validating your selfie",
+  "done": "Done",
+  "unableVerifyYourID": "Unable verify your ID",
+  "unableVerifyYourIDDescription": "Seems that we are unable to verify your\nNational ID. Please try again later."
 }

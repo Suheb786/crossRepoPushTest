@@ -572,29 +572,40 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change credit limit"),
         "changeCreditLimitDesc": MessageLookupByLibrary.simpleMessage(
             "Adjust your\ndesired credit limit"),
-        "changeDefaultAccount": MessageLookupByLibrary.simpleMessage("Change default account"),
-        "changeEmailAddress": MessageLookupByLibrary.simpleMessage("CHANGE EMAIL ADDRESS"),
+        "changeDefaultAccount":
+            MessageLookupByLibrary.simpleMessage("Change default account"),
+        "changeEmailAddress":
+            MessageLookupByLibrary.simpleMessage("CHANGE EMAIL ADDRESS"),
         "changeEmailError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "changeLinkAccount": MessageLookupByLibrary.simpleMessage("Change linked account"),
-        "changeLinkedAccount": MessageLookupByLibrary.simpleMessage("Change linked account"),
-        "changeLinkedMobileNo": MessageLookupByLibrary.simpleMessage("Change linked mobile number"),
-        "changeLinkedMobileNumber": MessageLookupByLibrary.simpleMessage("Change linked mobile number"),
+        "changeLinkAccount":
+            MessageLookupByLibrary.simpleMessage("Change linked account"),
+        "changeLinkedAccount":
+            MessageLookupByLibrary.simpleMessage("Change linked account"),
+        "changeLinkedMobileNo":
+            MessageLookupByLibrary.simpleMessage("Change linked mobile number"),
+        "changeLinkedMobileNumber":
+            MessageLookupByLibrary.simpleMessage("Change linked mobile number"),
         "changeMobileNoError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "changeMobileNumber": MessageLookupByLibrary.simpleMessage("CHANGE MOBILE NUMBER"),
+        "changeMobileNumber":
+            MessageLookupByLibrary.simpleMessage("CHANGE MOBILE NUMBER"),
         "changeMobileNumberInfo": MessageLookupByLibrary.simpleMessage(
             "Changing the mobile number is only for notification relating to this card. If you wish to change the mobile number relating to account, please go to Profile Settings."),
-        "changeMyEmail": MessageLookupByLibrary.simpleMessage("Change My Email"),
-        "changeMyNumber": MessageLookupByLibrary.simpleMessage("Change My Number"),
-        "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
+        "changeMyEmail":
+            MessageLookupByLibrary.simpleMessage("Change My Email"),
+        "changeMyNumber":
+            MessageLookupByLibrary.simpleMessage("Change My Number"),
+        "changePassword":
+            MessageLookupByLibrary.simpleMessage("Change Password"),
         "changePasswordError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "changePinError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "changeProfileImageError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "changeSettlementOptions": MessageLookupByLibrary.simpleMessage("Change settlement options "),
+        "changeSettlementOptions":
+            MessageLookupByLibrary.simpleMessage("Change settlement options "),
         "checkAgentStatusError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "checkCallStatusError": MessageLookupByLibrary.simpleMessage(
@@ -909,6 +920,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dobHint": MessageLookupByLibrary.simpleMessage("DD/MM/YYYY"),
         "documentsNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-081)"),
+        "done": MessageLookupByLibrary.simpleMessage("Done"),
         "dontNeedMyCardAnymore": MessageLookupByLibrary.simpleMessage(
             "I don\'t need my card anymore"),
         "dormantAccountCCFailedTitle": MessageLookupByLibrary.simpleMessage(
@@ -1063,78 +1075,91 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Scan your finger/face to log in"),
         "enableBiometricLoginDescriptionIos":
             MessageLookupByLibrary.simpleMessage("Scan your face to log in"),
-        "enableBiometricLoginTitle": MessageLookupByLibrary.simpleMessage("Enable Biometric Login"),
+        "enableBiometricLoginTitle":
+            MessageLookupByLibrary.simpleMessage("Enable Biometric Login"),
         "enableFingerPrintError": MessageLookupByLibrary.simpleMessage(
             "An error occurred while enabling biometric login. Please try again later."),
-        "engagementTeam": MessageLookupByLibrary.simpleMessage("Engagement Team"),
+        "engagementTeam":
+            MessageLookupByLibrary.simpleMessage("Engagement Team"),
         "engagementTeamDescription": MessageLookupByLibrary.simpleMessage(
             "Please select your preferred communication. Your call or chat may be monitored or recorded to ensure the quality of service."),
-        "engagementTeamGettingReady":
-            MessageLookupByLibrary.simpleMessage("Our Engagement Team\nis getting ready"),
-        "enterAddressHeader": MessageLookupByLibrary.simpleMessage("Where do you\ncurrently live?"),
-        "enterBillDetails": MessageLookupByLibrary.simpleMessage("Enter bill details"),
-        "enterCode": MessageLookupByLibrary.simpleMessage("Enter the 6-digit code sent to"),
-        "enterConfirmPassword":
-            MessageLookupByLibrary.simpleMessage("Confirm password field cannot be empty"),
-        "enterDetails": MessageLookupByLibrary.simpleMessage("Please enter missing information."),
-        "enterEmailAndPassword":
-            MessageLookupByLibrary.simpleMessage("Enter your email and \ncreate your password"),
-        "enterIdNumberToResetPassword":
-            MessageLookupByLibrary.simpleMessage("Enter below details to reset your password"),
-        "enterLoginDetails": MessageLookupByLibrary.simpleMessage("Enter your login details"),
-        "enterMailingAddress": MessageLookupByLibrary.simpleMessage("Enter mailing address"),
-        "enterNewCardPinAndConfirmPin":
-            MessageLookupByLibrary.simpleMessage("Enter new card PIN\nand confirm PIN"),
-        "enterNewEmailAddress": MessageLookupByLibrary.simpleMessage("Please enter your\nnew email"),
-        "enterNewMobileNo": MessageLookupByLibrary.simpleMessage("Please enter your\nnew mobile number"),
-        "enterOtpHeader": MessageLookupByLibrary.simpleMessage("Enter the 6-digit code sent to"),
-        "enterPassword": MessageLookupByLibrary.simpleMessage("Password field cannot be empty"),
-        "enterValidEmail": MessageLookupByLibrary.simpleMessage("please enter valid email address"),
-        "enterValidEmployeeStatus":
-            MessageLookupByLibrary.simpleMessage("Please select valid employee status"),
+        "engagementTeamGettingReady": MessageLookupByLibrary.simpleMessage(
+            "Our Engagement Team\nis getting ready"),
+        "enterAddressHeader": MessageLookupByLibrary.simpleMessage(
+            "Where do you\ncurrently live?"),
+        "enterBillDetails":
+            MessageLookupByLibrary.simpleMessage("Enter bill details"),
+        "enterCode": MessageLookupByLibrary.simpleMessage(
+            "Enter the 6-digit code sent to"),
+        "enterConfirmPassword": MessageLookupByLibrary.simpleMessage(
+            "Confirm password field cannot be empty"),
+        "enterDetails": MessageLookupByLibrary.simpleMessage(
+            "Please enter missing information."),
+        "enterEmailAndPassword": MessageLookupByLibrary.simpleMessage(
+            "Enter your email and \ncreate your password"),
+        "enterIdNumberToResetPassword": MessageLookupByLibrary.simpleMessage(
+            "Enter below details to reset your password"),
+        "enterLoginDetails":
+            MessageLookupByLibrary.simpleMessage("Enter your login details"),
+        "enterMailingAddress":
+            MessageLookupByLibrary.simpleMessage("Enter mailing address"),
+        "enterNewCardPinAndConfirmPin": MessageLookupByLibrary.simpleMessage(
+            "Enter new card PIN\nand confirm PIN"),
+        "enterNewEmailAddress": MessageLookupByLibrary.simpleMessage(
+            "Please enter your\nnew email"),
+        "enterNewMobileNo": MessageLookupByLibrary.simpleMessage(
+            "Please enter your\nnew mobile number"),
+        "enterOtpHeader": MessageLookupByLibrary.simpleMessage(
+            "Enter the 6-digit code sent to"),
+        "enterPassword": MessageLookupByLibrary.simpleMessage(
+            "Password field cannot be empty"),
+        "enterValidEmail": MessageLookupByLibrary.simpleMessage(
+            "please enter valid email address"),
+        "enterValidEmployeeStatus": MessageLookupByLibrary.simpleMessage(
+            "Please select valid employee status"),
         "enterValidIBANCLiQ": MessageLookupByLibrary.simpleMessage(
-        "Oops! please enter an IBAN or CliQ ID to request money."),
-    "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
-        "You entered an invalid mobile number. Please try again."),
-    "enterValidNature": MessageLookupByLibrary.simpleMessage(
-        "Please select nature of special needs"),
-    "enterValidOtp":
-    MessageLookupByLibrary.simpleMessage("Please enter valid otp"),
-    "enterValidPersonsName": MessageLookupByLibrary.simpleMessage(
-        "Please enter valid person’s name"),
-    "enterValidPersonsRole": MessageLookupByLibrary.simpleMessage(
-        "Please enter valid person’s role"),
-    "enterValidRelationshipWithPEP": MessageLookupByLibrary.simpleMessage(
-        "Please enter valid relationship with PEP"),
-    "enterValidSpouseName": MessageLookupByLibrary.simpleMessage(
-        "Please enter valid spouse name"),
-    "enterValidUserName": MessageLookupByLibrary.simpleMessage(
-        "You have entered an invalid username. Please try again."),
-    "enterYourEmailAndMobile": MessageLookupByLibrary.simpleMessage(
-        "Enter your email and\nmobile number"),
-    "enterYourMobileNumber":
-    MessageLookupByLibrary.simpleMessage("Enter your mobile number"),
-    "error": MessageLookupByLibrary.simpleMessage("Error"),
-    "errorAddingUserName": MessageLookupByLibrary.simpleMessage(
-        "Oops! There seems to be an issue with the connectivity. Please try again later."),
-    "errorCCUnBlockNI":
-    MessageLookupByLibrary.simpleMessage("Error while unblocking pin"),
-    "errorCreateCreditCard": MessageLookupByLibrary.simpleMessage(
-        "An error occurred while issuing your Rebellious Red credit card. Please try again later."),
-    "errorCreatingAccount": MessageLookupByLibrary.simpleMessage(
-        "An error occurred while opening your account. Please try again later or contact our Engagement Team on 06-5200100."),
-    "errorCreatingDocuments": MessageLookupByLibrary.simpleMessage(
-        "Error while creating Documents"),
-    "errorCreatingWorkSpace": MessageLookupByLibrary.simpleMessage(
-        "Error while creating Workspace"),
-    "errorCustomerByAccountA2A": MessageLookupByLibrary.simpleMessage(
-        "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
-    "errorDecryptCard":
-    MessageLookupByLibrary.simpleMessage("Error while decrypting card"),
-    "errorEuronetCustomerCardDetails": MessageLookupByLibrary.simpleMessage(
-        "Error while getting EURONET Customer Card Details"),
-    "errorGetAccountDetails": MessageLookupByLibrary.simpleMessage(
-        "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-072)"),
+            "Oops! please enter an IBAN or CliQ ID to request money."),
+        "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
+            "You entered an invalid mobile number. Please try again."),
+        "enterValidNature": MessageLookupByLibrary.simpleMessage(
+            "Please select nature of special needs"),
+        "enterValidOtp":
+            MessageLookupByLibrary.simpleMessage("Please enter valid otp"),
+        "enterValidPersonsName": MessageLookupByLibrary.simpleMessage(
+            "Please enter valid person’s name"),
+        "enterValidPersonsRole": MessageLookupByLibrary.simpleMessage(
+            "Please enter valid person’s role"),
+        "enterValidRelationshipWithPEP": MessageLookupByLibrary.simpleMessage(
+            "Please enter valid relationship with PEP"),
+        "enterValidSpouseName": MessageLookupByLibrary.simpleMessage(
+            "Please enter valid spouse name"),
+        "enterValidUserName": MessageLookupByLibrary.simpleMessage(
+            "You have entered an invalid username. Please try again."),
+        "enterYourEmailAndMobile": MessageLookupByLibrary.simpleMessage(
+            "Enter your email and\nmobile number"),
+        "enterYourMobileNumber":
+            MessageLookupByLibrary.simpleMessage("Enter your mobile number"),
+        "error": MessageLookupByLibrary.simpleMessage("Error"),
+        "errorAddingUserName": MessageLookupByLibrary.simpleMessage(
+            "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "errorCCUnBlockNI":
+            MessageLookupByLibrary.simpleMessage("Error while unblocking pin"),
+        "errorCreateCreditCard": MessageLookupByLibrary.simpleMessage(
+            "An error occurred while issuing your Rebellious Red credit card. Please try again later."),
+        "errorCreatingAccount": MessageLookupByLibrary.simpleMessage(
+            "An error occurred while opening your account. Please try again later or contact our Engagement Team on 06-5200100."),
+        "errorCreatingDocuments": MessageLookupByLibrary.simpleMessage(
+            "Error while creating Documents"),
+        "errorCreatingWorkSpace": MessageLookupByLibrary.simpleMessage(
+            "Error while creating Workspace"),
+        "errorCustomerByAccountA2A": MessageLookupByLibrary.simpleMessage(
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
+        "errorDecryptCard":
+            MessageLookupByLibrary.simpleMessage("Error while decrypting card"),
+        "errorEuronetCustomerCardDetails": MessageLookupByLibrary.simpleMessage(
+            "Error while getting EURONET Customer Card Details"),
+        "errorGetAccountDetails": MessageLookupByLibrary.simpleMessage(
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-072)"),
         "errorGettingCardInfo": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-097)"),
         "errorInGetCardInfoNet": MessageLookupByLibrary.simpleMessage(
@@ -2077,38 +2102,46 @@ class MessageLookup extends MessageLookupByLibrary {
         "nationalitySmall": MessageLookupByLibrary.simpleMessage("Nationality"),
         "natureOfSpecialNeed":
             MessageLookupByLibrary.simpleMessage("NATURE OF SPECIAL NEEDS"),
-        "natureSpecialNeeds": MessageLookupByLibrary.simpleMessage("Nature of Special Needs"),
+        "natureSpecialNeeds":
+            MessageLookupByLibrary.simpleMessage("Nature of Special Needs"),
         "newBill": MessageLookupByLibrary.simpleMessage("New Bill"),
-        "newContacthasBeenAdded":
-            MessageLookupByLibrary.simpleMessage("New contact has been added to the list"),
-        "newDeviceDetected": MessageLookupByLibrary.simpleMessage("New device detected"),
+        "newContacthasBeenAdded": MessageLookupByLibrary.simpleMessage(
+            "New contact has been added to the list"),
+        "newDeviceDetected":
+            MessageLookupByLibrary.simpleMessage("New device detected"),
         "newDeviceDetectedDesc": MessageLookupByLibrary.simpleMessage(
             "You’re attempting to log in from a new device. Would you like to switch access to this device?\t"),
         "newDeviceRegisteredSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Your new device has been\nsuccessfully registered.\nYou may proceed to your Dashboard."),
-        "newMobileNumber": MessageLookupByLibrary.simpleMessage("NEW MOBILE NUMBER"),
+        "newMobileNumber":
+            MessageLookupByLibrary.simpleMessage("NEW MOBILE NUMBER"),
         "newPassword": MessageLookupByLibrary.simpleMessage("NEW PASSWORD"),
         "newPin": MessageLookupByLibrary.simpleMessage("new pin "),
-        "newSettlementAccount": MessageLookupByLibrary.simpleMessage("New settlement account"),
-        "newSettlementPercentage": MessageLookupByLibrary.simpleMessage("New settlement Percentage"),
+        "newSettlementAccount":
+            MessageLookupByLibrary.simpleMessage("New settlement account"),
+        "newSettlementPercentage":
+            MessageLookupByLibrary.simpleMessage("New settlement Percentage"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "niHandlerError": MessageLookupByLibrary.simpleMessage(
             "We apologies, you are not eligible to a credit card at the moment. You can still enjoy the benefits of our services."),
         "nickName": MessageLookupByLibrary.simpleMessage("Nickname"),
-        "nickNameAlreadyExists":
-            MessageLookupByLibrary.simpleMessage("Nickname is already stored as beneficiary"),
+        "nickNameAlreadyExists": MessageLookupByLibrary.simpleMessage(
+            "Nickname is already stored as beneficiary"),
         "nickNameCanOnlyContainAlphanumerics":
-            MessageLookupByLibrary.simpleMessage("Nick name can only contain alphanumerics"),
-        "nickNameUpdated": MessageLookupByLibrary.simpleMessage("Contact nickname has been updated"),
-        "nickNameValueExceeds":
-            MessageLookupByLibrary.simpleMessage("Nickname cannot be more than 50 characters long. "),
-        "nicknameAlreadyExistsM":
-            MessageLookupByLibrary.simpleMessage("Oops! Nickname already exists, use another one"),
+            MessageLookupByLibrary.simpleMessage(
+                "Nick name can only contain alphanumerics"),
+        "nickNameUpdated": MessageLookupByLibrary.simpleMessage(
+            "Contact nickname has been updated"),
+        "nickNameValueExceeds": MessageLookupByLibrary.simpleMessage(
+            "Nickname cannot be more than 50 characters long. "),
+        "nicknameAlreadyExistsM": MessageLookupByLibrary.simpleMessage(
+            "Oops! Nickname already exists, use another one"),
         "nicknameLengthShouldNotBeGreaterThan50":
-            MessageLookupByLibrary.simpleMessage("Nickname length should not be greater than 50"),
+            MessageLookupByLibrary.simpleMessage(
+                "Nickname length should not be greater than 50"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
-        "noATMData":
-            MessageLookupByLibrary.simpleMessage("ATM data cannot be retrieved. Please try again later."),
+        "noATMData": MessageLookupByLibrary.simpleMessage(
+            "ATM data cannot be retrieved. Please try again later."),
         "noAccountFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-071)"),
         "noActivityToDisplay":
@@ -2407,6 +2440,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "processLoanValuesError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "processing": MessageLookupByLibrary.simpleMessage("Processing"),
+        "processingIDWiseStatus":
+            MessageLookupByLibrary.simpleMessage("Processing..."),
         "processingVoucher":
             MessageLookupByLibrary.simpleMessage("Processing voucher"),
         "productSelectorHeader": MessageLookupByLibrary.simpleMessage(
@@ -3055,6 +3090,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error has occurred and we are unable to proceed with the transaction"),
         "unableToVerifyIDCard": MessageLookupByLibrary.simpleMessage(
             "Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777."),
+        "unableVerifyYourID":
+            MessageLookupByLibrary.simpleMessage("Unable verify your ID"),
+        "unableVerifyYourIDDescription": MessageLookupByLibrary.simpleMessage(
+            "Seems that we are unable to verify your\nNational ID. Please try again later."),
         "unauthorize": MessageLookupByLibrary.simpleMessage(
             "Oops! We are unable to authorize you. User might not be registered or something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-u)"),
         "unavailable": MessageLookupByLibrary.simpleMessage("Unavailable"),
@@ -3126,6 +3165,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "vKeyTransactionFailed":
             MessageLookupByLibrary.simpleMessage("Vkey transaction failed"),
         "validUntil": MessageLookupByLibrary.simpleMessage("Valid Until"),
+        "validatingYourSelfie":
+            MessageLookupByLibrary.simpleMessage("Validating your selfie"),
         "value": MessageLookupByLibrary.simpleMessage("VALUE"),
         "verificationCallEnded": MessageLookupByLibrary.simpleMessage(
             "Verification call\nhas ended"),
@@ -3157,6 +3198,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "verifyViaVideoCallCC": MessageLookupByLibrary.simpleMessage(
             "You can call us between 10:00am and 6:00pm to complete your application. We may ask for proof of occupation, kindly have it ready. "),
+        "verifyingYourNationalID":
+            MessageLookupByLibrary.simpleMessage("Verifying your National ID"),
         "videoCall": MessageLookupByLibrary.simpleMessage("VIDEO CALL"),
         "videoCallDueNow": MessageLookupByLibrary.simpleMessage(
             "Your video call is due now. Swipe to initiate the call when you’re ready."),

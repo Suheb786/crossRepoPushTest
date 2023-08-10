@@ -17,6 +17,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../ui/molecules/button/app_primary_button.dart';
+import '../../../utils/color_utils.dart';
 
 class EmailOtpPageView extends BasePageViewWidget<EmailOtpViewModel> {
   EmailOtpPageView(ProviderBase model) : super(model);
@@ -148,22 +149,40 @@ class EmailOtpPageView extends BasePageViewWidget<EmailOtpViewModel> {
                                     ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 16.0.h),
-                                  child: AppStreamBuilder<bool>(
-                                      stream: model.showButtonStream,
-                                      initialData: false,
-                                      dataBuilder: (context, isValid) {
-                                        return Visibility(
-                                          visible: isValid!,
-                                          child: AppPrimaryButton(
-                                            text: S.of(context).next,
-                                            onPressed: () {
-                                              model.validateOtp();
-                                            },
-                                          ),
-                                        );
-                                      }),
+                                Column(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(bottom: 20.h),
+                                      child: AppStreamBuilder<bool>(
+                                          stream: model.showButtonStream,
+                                          initialData: false,
+                                          dataBuilder: (context, isValid) {
+                                            return AppPrimaryButton(
+                                              text: S.of(context).next,
+                                              isDisabled: !isValid!,
+                                              onPressed: () {
+                                                model.validateOtp();
+                                              },
+                                            );
+                                          }),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        ProviderScope.containerOf(context)
+                                            .read(accountRegistrationViewModelProvider)
+                                            .previousPage();
+                                      },
+                                      child: Text(
+                                        S.of(context).back,
+                                        style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: AppColor.brightBlue,
+                                          fontSize: 14.t,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             )),
