@@ -920,6 +920,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dobHint": MessageLookupByLibrary.simpleMessage("DD/MM/YYYY"),
         "documentsNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-081)"),
+        "done": MessageLookupByLibrary.simpleMessage("Done"),
         "dontNeedMyCardAnymore": MessageLookupByLibrary.simpleMessage(
             "I don\'t need my card anymore"),
         "dormantAccountCCFailedTitle": MessageLookupByLibrary.simpleMessage(
@@ -2444,6 +2445,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "processLoanValuesError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "processing": MessageLookupByLibrary.simpleMessage("Processing"),
+        "processingIDWiseStatus":
+            MessageLookupByLibrary.simpleMessage("Processing..."),
         "processingVoucher":
             MessageLookupByLibrary.simpleMessage("Processing voucher"),
         "productSelectorHeader": MessageLookupByLibrary.simpleMessage(
@@ -3100,6 +3103,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error has occurred and we are unable to proceed with the transaction"),
         "unableToVerifyIDCard": MessageLookupByLibrary.simpleMessage(
             "Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777."),
+        "unableVerifyYourID":
+            MessageLookupByLibrary.simpleMessage("Unable verify your ID"),
+        "unableVerifyYourIDDescription": MessageLookupByLibrary.simpleMessage(
+            "Seems that we are unable to verify your\nNational ID. Please try again later."),
         "unauthorize": MessageLookupByLibrary.simpleMessage(
             "Oops! We are unable to authorize you. User might not be registered or something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-u)"),
         "unavailable": MessageLookupByLibrary.simpleMessage("Unavailable"),
@@ -3171,6 +3178,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "vKeyTransactionFailed":
             MessageLookupByLibrary.simpleMessage("Vkey transaction failed"),
         "validUntil": MessageLookupByLibrary.simpleMessage("Valid Until"),
+        "validatingYourSelfie":
+            MessageLookupByLibrary.simpleMessage("Validating your selfie"),
         "value": MessageLookupByLibrary.simpleMessage("VALUE"),
         "verificationCallEnded": MessageLookupByLibrary.simpleMessage(
             "Verification call\nhas ended"),
@@ -3202,6 +3211,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "verifyViaVideoCallCC": MessageLookupByLibrary.simpleMessage(
             "You can call us between 10:00am and 6:00pm to complete your application. We may ask for proof of occupation, kindly have it ready. "),
+        "verifyingYourNationalID":
+            MessageLookupByLibrary.simpleMessage("Verifying your National ID"),
         "videoCall": MessageLookupByLibrary.simpleMessage("VIDEO CALL"),
         "videoCallDueNow": MessageLookupByLibrary.simpleMessage(
             "Your video call is due now. Swipe to initiate the call when you’re ready."),

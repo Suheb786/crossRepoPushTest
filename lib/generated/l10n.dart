@@ -18190,71 +18190,61 @@ class S {
     );
   }
 
-  /// `Okay`
-  String get okay {
+  /// `Processing...`
+  String get processingIDWiseStatus {
     return Intl.message(
-      'Okay',
-      name: 'okay',
+      'Processing...',
+      name: 'processingIDWiseStatus',
       desc: '',
       args: [],
     );
   }
 
-  /// `Ineligible identity`
-  String get ineligibleIdentity {
+  /// `Verifying your National ID`
+  String get verifyingYourNationalID {
     return Intl.message(
-      'Ineligible identity',
-      name: 'ineligibleIdentity',
+      'Verifying your National ID',
+      name: 'verifyingYourNationalID',
       desc: '',
       args: [],
     );
   }
 
-  /// `Seems that you are ineligible to continue the registration. Please reach out to Blink Engagement Team for further assistance.`
-  String get ineligibleIdentityDescription {
+  /// `Validating your selfie`
+  String get validatingYourSelfie {
     return Intl.message(
-      'Seems that you are ineligible to continue the registration. Please reach out to Blink Engagement Team for further assistance.',
-      name: 'ineligibleIdentityDescription',
+      'Validating your selfie',
+      name: 'validatingYourSelfie',
       desc: '',
       args: [],
     );
   }
 
-  /// `Selfie mismatched`
-  String get selfieMismatched {
+  /// `Done`
+  String get done {
     return Intl.message(
-      'Selfie mismatched',
-      name: 'selfieMismatched',
+      'Done',
+      name: 'done',
       desc: '',
       args: [],
     );
   }
 
-  /// `Seems that your selfie does not match with your ID card. Please reach out to Blink Engagement Team for further assitance.`
-  String get selfieMismatchedDescription {
+  /// `Unable verify your ID`
+  String get unableVerifyYourID {
     return Intl.message(
-      'Seems that your selfie does not match with your ID card. Please reach out to Blink Engagement Team for further assitance.',
-      name: 'selfieMismatchedDescription',
+      'Unable verify your ID',
+      name: 'unableVerifyYourID',
       desc: '',
       args: [],
     );
   }
 
-  /// `Registration stopped`
-  String get registrationStopped {
+  /// `Seems that we are unable to verify your\nNational ID. Please try again later.`
+  String get unableVerifyYourIDDescription {
     return Intl.message(
-      'Registration stopped',
-      name: 'registrationStopped',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Unfortunately, you did not meet minimum age required to open an account with us. You may try again when you turn 18.`
-  String get registrationStoppedDescription {
-    return Intl.message(
-      'Unfortunately, you did not meet minimum age required to open an account with us. You may try again when you turn 18.',
-      name: 'registrationStoppedDescription',
+      'Seems that we are unable to verify your\nNational ID. Please try again later.',
+      name: 'unableVerifyYourIDDescription',
       desc: '',
       args: [],
     );

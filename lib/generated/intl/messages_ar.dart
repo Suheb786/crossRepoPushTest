@@ -901,6 +901,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dobHint": MessageLookupByLibrary.simpleMessage("يوم/شهر/سنة"),
         "documentsNotFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-081)"),
+        "done": MessageLookupByLibrary.simpleMessage("Done"),
         "dontNeedMyCardAnymore":
             MessageLookupByLibrary.simpleMessage("بطلت محتاج بطاقتي "),
         "dormantAccountCCFailedTitle": MessageLookupByLibrary.simpleMessage(
@@ -2386,6 +2387,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "processLoanValuesError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "processing": MessageLookupByLibrary.simpleMessage("المعالجة"),
+        "processingIDWiseStatus":
+            MessageLookupByLibrary.simpleMessage("Processing..."),
         "productSelectorHeader":
             MessageLookupByLibrary.simpleMessage("ممتاز! تعرّف على عروض Blink"),
         "profileDetailsQ1": MessageLookupByLibrary.simpleMessage("متزوج؟"),
@@ -3015,6 +3018,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "خطأ! الحركة غير ممكنة حالياً."),
         "unableToVerifyIDCard": MessageLookupByLibrary.simpleMessage(
             "عملينا العزيز، ما قدرنا نتحقق من رقم هويتك الشخصية. حاول امسح الهوية كمان مرة أو تواصل مع مركز خدمات الزبائن على 06-5200100"),
+        "unableVerifyYourID":
+            MessageLookupByLibrary.simpleMessage("Unable verify your ID"),
+        "unableVerifyYourIDDescription": MessageLookupByLibrary.simpleMessage(
+            "Seems that we are unable to verify your\nNational ID. Please try again later."),
         "unauthorize": MessageLookupByLibrary.simpleMessage(
             "عفواً! مش قادرين نتعرف عليك. المشترك غير مسجل او صار خلل. حاول كمان مرة بعدين أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06   (Err-u)"),
         "unavailable": MessageLookupByLibrary.simpleMessage("غير متوفر"),
@@ -3083,6 +3090,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "vKeyTransactionFailed":
             MessageLookupByLibrary.simpleMessage("فشل حركة Vkey"),
         "validUntil": MessageLookupByLibrary.simpleMessage("صالح حتى"),
+        "validatingYourSelfie":
+            MessageLookupByLibrary.simpleMessage("Validating your selfie"),
         "value": MessageLookupByLibrary.simpleMessage("القيمة"),
         "verificationCallEnded":
             MessageLookupByLibrary.simpleMessage("انتهت مكالمة التحقق"),
@@ -3115,6 +3124,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "verifyViaVideoCallCC": MessageLookupByLibrary.simpleMessage(
             "تواصل معنا لتستكمل الطلب بين الساعة ١٠:٠٠ص و ٦:٠٠م. ممكن نطلب إثبات عمل،  يا ريت يكون معك عند الاتصال."),
+        "verifyingYourNationalID":
+            MessageLookupByLibrary.simpleMessage("Verifying your National ID"),
         "videoCall": MessageLookupByLibrary.simpleMessage("مكالمة فيديو"),
         "videoCallDueNow": MessageLookupByLibrary.simpleMessage(
             "صار وقت مكالمة الفيديو. اسحب الشاشة لتبدأ المكالمة لما تكون جاهز."),
