@@ -15,11 +15,13 @@ import 'package:neo_bank/ui/molecules/dashboard/bottom_bar_widget.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
+import 'package:neo_bank/ui/molecules/pager/payment_swiper.dart';
 import 'package:neo_bank/ui/molecules/postpaid_bills/post_paid_bill_card_widget.dart';
 import 'package:neo_bank/ui/molecules/prepaid/pre_paid_bill_card_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -48,50 +50,21 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
         dataBuilder: (context, data) {
           if (data!.status == Status.SUCCESS) {
             pages.add(AddSendMoneyContactPage(beneficiaries: model.smBeneficiaries));
-            model.paymentWidgetTypeFeature.add(
-                PaymentHomeWidgetFeature(paymentWidgetType: PaymentWidgetType.SEND_MONEY, isEnabled: true));
-            if (ProviderScope.containerOf(context)
-                    .read(appHomeViewModelProvider)
-                    .dashboardDataContent
-                    .dashboardFeatures
-                    ?.rtpFeatureEnabled ??
-                false) {
+            model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(paymentWidgetType: PaymentWidgetType.SEND_MONEY, isEnabled: true));
+            if (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.rtpFeatureEnabled ?? false) {
               pages.add(AddRequestMoneyContactPage(beneficiaries: model.rtpBeneficiaries));
-              model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(
-                  paymentWidgetType: PaymentWidgetType.REQUEST_MONEY, isEnabled: true));
+              model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(paymentWidgetType: PaymentWidgetType.REQUEST_MONEY, isEnabled: true));
             }
-            if ((ProviderScope.containerOf(context)
-                        .read(appHomeViewModelProvider)
-                        .dashboardDataContent
-                        .dashboardFeatures
-                        ?.blinkRetailAppBillPayment ??
-                    true) &&
-                (ProviderScope.containerOf(context)
-                        .read(appHomeViewModelProvider)
-                        .dashboardDataContent
-                        .dashboardFeatures
-                        ?.appBillPaymentPostpaid ??
-                    true)) {
+            if ((ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.blinkRetailAppBillPayment ?? true) &&
+                (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.appBillPaymentPostpaid ?? true)) {
               pages.add(PostPaidBillCardWidget());
-              model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(
-                  paymentWidgetType: PaymentWidgetType.POST_PAID_BILL, isEnabled: true));
+              model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(paymentWidgetType: PaymentWidgetType.POST_PAID_BILL, isEnabled: true));
             }
 
-            if ((ProviderScope.containerOf(context)
-                        .read(appHomeViewModelProvider)
-                        .dashboardDataContent
-                        .dashboardFeatures
-                        ?.blinkRetailAppBillPayment ??
-                    true) &&
-                (ProviderScope.containerOf(context)
-                        .read(appHomeViewModelProvider)
-                        .dashboardDataContent
-                        .dashboardFeatures
-                        ?.appBillPaymentPrepaid ??
-                    true)) {
+            if ((ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.blinkRetailAppBillPayment ?? true) &&
+                (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.appBillPaymentPrepaid ?? true)) {
               pages.add(PrePaidBillCardWidget());
-              model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(
-                  paymentWidgetType: PaymentWidgetType.PRE_PAID_BILL, isEnabled: true));
+              model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(paymentWidgetType: PaymentWidgetType.PRE_PAID_BILL, isEnabled: true));
             }
 
             return AppStreamBuilder<int>(
@@ -118,120 +91,125 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                     }
                   },
                   behavior: HitTestBehavior.translucent,
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 75.0.h),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        if (currentStep == 0)
-                          ProviderScope.containerOf(context)
-                                      .read(appHomeViewModelProvider)
-                                      .dashboardDataContent
-                                      .dashboardFeatures
-                                      ?.appBillPaymentQrCode ??
-                                  true
-                              ? Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    InkWell(
-                                        onTap: () async {
-                                          ///LOG EVENT TO FIREBASE
-                                          await FirebaseAnalytics.instance.logEvent(
-                                              name: "pay_via_qr",
-                                              parameters: {"pay_via_qr_clicked": true.toString()});
+                  child: Stack(
+                    children: [
+                      AppStreamBuilder<AnimatedPage>(
+                          stream: model.pageSwitchStream,
+                          initialData: AnimatedPage.NULL,
+                          dataBuilder: (context, switchedPage) {
+                            return AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 500),
+                              reverseDuration: const Duration(milliseconds: 400),
+                              switchInCurve: Curves.easeInOut,
+                              switchOutCurve: Curves.linearToEaseOut,
+                              child: switchedPage == AnimatedPage.PAY_NEW_BILL
+                                  ? const SizedBox()
+                                  : switchedPage == AnimatedPage.POST_PAID_BILL_HISTORY
+                                      ? const SizedBox()
+                                      : switchedPage == AnimatedPage.PRE_PAID_BILL_HISTORY
+                                          ? const SizedBox()
+                                          : switchedPage == AnimatedPage.SEND_MONEY
+                                              ? const SizedBox()
+                                              : switchedPage == AnimatedPage.REQUEST_MONEY
+                                                  ? const SizedBox()
+                                                  : const SizedBox(),
+                            );
+                          }),
+                      AnimatedBuilder(
+                        animation: model.translateUpController,
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 75.0.h),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              if (currentStep == 0)
+                                ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.appBillPaymentQrCode ?? true
+                                    ? Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          InkWell(
+                                              onTap: () async {
+                                                ///LOG EVENT TO FIREBASE
+                                                await FirebaseAnalytics.instance.logEvent(name: "pay_via_qr", parameters: {"pay_via_qr_clicked": true.toString()});
 
-                                          InformationDialog.show(context,
-                                              image: AssetUtils.payRequestViaQRBlackIcon,
-                                              title: S.of(context).payViaQR,
-                                              descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR,
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: 14.0.t)), onDismissed: () {
-                                            Navigator.pop(context);
-                                          }, onSelected: () {
-                                            Navigator.pop(context);
-                                            Navigator.pushNamed(context, RoutePaths.QRScanningScreen);
-                                          });
-                                        },
-                                        child: AppSvg.asset(AssetUtils.payViaQrIcon)),
-                                    Text(
-                                      S.of(context).payViaQR,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 18.0.t),
-                                    ),
-                                  ],
-                                )
-                              : Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(vertical: 10.0.h),
-                                      child: AppSvg.asset(AssetUtils.payments),
-                                    ),
-                                    Text(
-                                      S.of(context).billsAndPayments,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 18.0.t),
-                                    )
-                                  ],
-                                )
-                        else if (currentStep == 1)
-                          if (model.paymentWidgetTypeFeature[1].paymentWidgetType ==
-                              PaymentWidgetType.REQUEST_MONEY)
-                            ProviderScope.containerOf(context)
-                                        .read(appHomeViewModelProvider)
-                                        .dashboardDataContent
-                                        .dashboardFeatures
-                                        ?.appBillPaymentQrCode ??
-                                    true
-                                ? Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      InkWell(
-                                          onTap: () async {
-                                            ///LOG EVENT TO FIREBASE
-                                            await FirebaseAnalytics.instance.logEvent(
-                                                name: "request_via_qr",
-                                                parameters: {"request_via_qr_clicked": true.toString()});
-                                            InformationDialog.show(context,
-                                                image: AssetUtils.payRequestViaQRBlackIcon,
-                                                title: S.of(context).requestViaQR,
-                                                descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR,
-                                                    style: TextStyle(
-                                                        fontFamily: StringUtils.appFont,
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 14.0.t)), onDismissed: () {
-                                              Navigator.pop(context);
-                                            }, onSelected: () {
-                                              Navigator.pop(context);
+                                                InformationDialog.show(context,
+                                                    image: AssetUtils.payRequestViaQRBlackIcon,
+                                                    title: S.of(context).payViaQR,
+                                                    descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
+                                                    onDismissed: () {
+                                                  Navigator.pop(context);
+                                                }, onSelected: () {
+                                                  Navigator.pop(context);
+                                                  Navigator.pushNamed(context, RoutePaths.QRScanningScreen);
+                                                });
+                                              },
+                                              child: AppSvg.asset(AssetUtils.payViaQrIcon)),
+                                          Text(
+                                            S.of(context).payViaQR,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
+                                          ),
+                                        ],
+                                      )
+                                    : Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(vertical: 10.0.h),
+                                            child: AppSvg.asset(AssetUtils.payments),
+                                          ),
+                                          Text(
+                                            S.of(context).billsAndPayments,
+                                            style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
+                                          )
+                                        ],
+                                      )
+                              else if (currentStep == 1)
+                                if (model.paymentWidgetTypeFeature[1].paymentWidgetType == PaymentWidgetType.REQUEST_MONEY)
+                                  ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.appBillPaymentQrCode ?? true
+                                      ? Column(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            InkWell(
+                                                onTap: () async {
+                                                  ///LOG EVENT TO FIREBASE
+                                                  await FirebaseAnalytics.instance.logEvent(name: "request_via_qr", parameters: {"request_via_qr_clicked": true.toString()});
+                                                  InformationDialog.show(context,
+                                                      image: AssetUtils.payRequestViaQRBlackIcon,
+                                                      title: S.of(context).requestViaQR,
+                                                      descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
+                                                      onDismissed: () {
+                                                    Navigator.pop(context);
+                                                  }, onSelected: () {
+                                                    Navigator.pop(context);
 
-                                              Navigator.pushNamed(
-                                                  context, RoutePaths.RequestMoneyQrGeneration,
-                                                  arguments: RequestMoneyQrGenerationPageArguments(
-                                                      ProviderScope.containerOf(context)
-                                                          .read(appHomeViewModelProvider)
-                                                          .dashboardDataContent
-                                                          .account!));
-                                            });
-                                          },
-                                          child: AppSvg.asset(AssetUtils.requestViaQrIcon)),
-                                      Text(
-                                        S.of(context).requestViaQR,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 18.0.t),
-                                      ),
-                                    ],
-                                  )
-                                : Column(
+                                                    Navigator.pushNamed(context, RoutePaths.RequestMoneyQrGeneration,
+                                                        arguments: RequestMoneyQrGenerationPageArguments(ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.account!));
+                                                  });
+                                                },
+                                                child: AppSvg.asset(AssetUtils.requestViaQrIcon)),
+                                            Text(
+                                              S.of(context).requestViaQR,
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
+                                            ),
+                                          ],
+                                        )
+                                      : Column(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(vertical: 10.0.h),
+                                              child: AppSvg.asset(AssetUtils.payments),
+                                            ),
+                                            Text(
+                                              S.of(context).billsAndPayments,
+                                              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
+                                            )
+                                          ],
+                                        )
+                                else
+                                  Column(
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
                                       Padding(
@@ -240,106 +218,166 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                       ),
                                       Text(
                                         S.of(context).billsAndPayments,
-                                        style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 18.0.t),
+                                        style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
                                       )
                                     ],
                                   )
-                          else
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 10.0.h),
-                                  child: AppSvg.asset(AssetUtils.payments),
+                              else
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(vertical: 10.0.h),
+                                      child: AppSvg.asset(AssetUtils.payments),
+                                    ),
+                                    Text(
+                                      S.of(context).billsAndPayments,
+                                      style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
+                                    )
+                                  ],
                                 ),
-                                Text(
-                                  S.of(context).billsAndPayments,
-                                  style: TextStyle(
-                                      fontFamily: StringUtils.appFont,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 18.0.t),
-                                )
-                              ],
-                            )
-                        else
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(vertical: 10.0.h),
-                                child: AppSvg.asset(AssetUtils.payments),
-                              ),
-                              Text(
-                                S.of(context).billsAndPayments,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 18.0.t),
-                              )
-                            ],
-                          ),
-                        Expanded(
-                          child: Column(
-                            children: [
                               Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.only(top: 16.0.h, bottom: 5.0.h),
-                                  child: AppSwiper(
-                                    appSwiperController: model.appSwiperController,
-                                    pages: pages,
-                                    pageController: model.pageController,
-                                    onIndexChanged: (index) {
-                                      model.updatePage(index);
-                                      model.updatePageControllerStream(index);
-                                    },
-                                    currentStep: currentStep,
-                                  ),
-                                ),
-                              ),
-                              SmoothPageIndicator(
-                                controller: model.controller,
-                                count: pages.length,
-                                effect: ScrollingDotsEffect(
-                                  activeStrokeWidth: 2.6,
-                                  activeDotScale: 1.3,
-                                  activeDotColor: Theme.of(context).primaryColorDark,
-                                  dotColor: Theme.of(context).primaryColorDark.withOpacity(0.6),
-                                  maxVisibleDots: 5,
-                                  radius: 8,
-                                  spacing: 10,
-                                  dotHeight: 10,
-                                  dotWidth: 10,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 24.h),
-                                child: Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: BottomBarWidget(
-                                    onHomeTap: () {
-                                      Navigator.pop(context);
-                                    },
-                                    onMoreTap: () {
-                                      Navigator.pop(context);
-                                    },
-                                    onContactUsTap: () {
-                                      EngagementTeamDialog.show(context, onDismissed: () {
-                                        Navigator.pop(context);
-                                      }, onSelected: (value) {
-                                        Navigator.pop(context);
-                                      });
-                                    },
-                                  ),
+                                child: Column(
+                                  children: [
+                                    Expanded(
+                                      child: Stack(
+                                        fit: StackFit.expand,
+                                        alignment: Alignment.topCenter,
+                                        children: [
+                                          PaymentSwiper(
+                                            appSwiperController: model.appSwiperController,
+                                            pages: pages,
+                                            // pageController: model.pageController,
+                                            onIndexChanged: (index) {
+                                              model.updatePage(index);
+                                            },
+                                            currentStep: currentStep,
+                                            model: model,
+                                            translateSidewaysController: model.translateSidewaysController,
+                                          ),
+
+                                          ///Transactions button
+                                          ///For My Account and My credit card
+                                          AppStreamBuilder<AnimatedPage>(
+                                              stream: model.pageSwitchStream,
+                                              initialData: AnimatedPage.NULL,
+                                              dataBuilder: (context, switchedPage) {
+                                                return Positioned(
+                                                  bottom: 20,
+                                                  child: InkWell(
+                                                    splashColor: Colors.transparent,
+                                                    highlightColor: Colors.transparent,
+                                                    onTap: () {},
+                                                    child: AnimatedOpacity(
+                                                      ///For credit card
+                                                      duration: const Duration(milliseconds: 500),
+                                                      opacity: 1,
+                                                      child: AnimatedBuilder(
+                                                        animation: model.appSwiperController,
+                                                        builder: (BuildContext context, Widget? child) {
+                                                          double translateYOffset = 0;
+                                                          double opacity = 0;
+                                                          if (model.appSwiperController.hasClients) if (model.appSwiperController.position.hasContentDimensions) {
+                                                            opacity = currentStep! - (model.appSwiperController.page ?? 0);
+                                                            translateYOffset = currentStep - (model.appSwiperController.page ?? 0);
+                                                          }
+                                                          return Transform.translate(
+                                                            offset: Offset(0, translateYOffset.abs() * 40),
+                                                            child: Opacity(
+                                                              opacity: (opacity.abs() - 1).abs(),
+                                                              child: child!,
+                                                            ),
+                                                          );
+                                                        },
+
+                                                        ///For credit card
+                                                        child: AnimatedContainer(
+                                                          duration: const Duration(milliseconds: 500),
+                                                          curve: Curves.easeInOut,
+                                                          width: switchedPage == AnimatedPage.NULL ? 48 : 150,
+                                                          height: switchedPage == AnimatedPage.NULL ? 48 : 44,
+                                                          alignment: Alignment.center,
+                                                          decoration: BoxDecoration(
+                                                            color: Colors.white,
+                                                            border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
+                                                            borderRadius: BorderRadius.circular(100),
+                                                            boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.inverseSurface, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))],
+                                                          ),
+                                                          child: AnimatedCrossFade(
+                                                            duration: const Duration(milliseconds: 500),
+                                                            reverseDuration: const Duration(milliseconds: 500),
+                                                            firstCurve: Curves.easeIn,
+                                                            secondCurve: Curves.easeIn,
+                                                            alignment: Alignment.center,
+                                                            crossFadeState: switchedPage == AnimatedPage.NULL ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                                                            firstChild: Padding(
+                                                              padding: const EdgeInsets.all(10.0),
+                                                              child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue, height: 40, width: 40),
+                                                            ),
+                                                            secondChild: Text(
+                                                              S.current.transactions,
+                                                              style: TextStyle(color: AppColor.skyblue, fontSize: 12, fontWeight: FontWeight.w600),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              }),
+                                        ],
+                                      ),
+                                    ),
+                                    SmoothPageIndicator(
+                                      controller: model.appSwiperController,
+                                      count: pages.length,
+                                      effect: ScrollingDotsEffect(
+                                        activeStrokeWidth: 2.6,
+                                        activeDotScale: 1.3,
+                                        activeDotColor: Theme.of(context).primaryColorDark,
+                                        dotColor: Theme.of(context).primaryColorDark.withOpacity(0.6),
+                                        maxVisibleDots: 5,
+                                        radius: 8,
+                                        spacing: 10,
+                                        dotHeight: 10,
+                                        dotWidth: 10,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 17.h + 24.h),
+                                      child: Align(
+                                        alignment: Alignment.bottomCenter,
+                                        child: BottomBarWidget(
+                                          onHomeTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                          onMoreTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                          onContactUsTap: () {
+                                            EngagementTeamDialog.show(context, onDismissed: () {
+                                              Navigator.pop(context);
+                                            }, onSelected: (value) {
+                                              Navigator.pop(context);
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               )
                             ],
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                        builder: (BuildContext context, Widget? child) {
+                          return Transform.translate(
+                            offset: Offset(0, model.translateUpAnimation.value * (-MediaQuery.of(context).size.height * 0.7)),
+                            child: child,
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 );
               },

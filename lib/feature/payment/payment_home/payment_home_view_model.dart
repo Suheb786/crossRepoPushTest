@@ -23,7 +23,6 @@ class PaymentHomeViewModel extends BasePageViewModel {
 
   GetBeneficiaryUseCase _getBeneficiaryUseCase;
 
-  PageController controller = PageController(viewportFraction: 0.8, keepPage: true, initialPage: 0);
   PublishSubject<int> _currentStep = PublishSubject();
 
   Stream<int> get currentStep => _currentStep.stream;
@@ -34,8 +33,7 @@ class PaymentHomeViewModel extends BasePageViewModel {
 
   PublishSubject<GetBeneficiaryUseCaseParams> _getBeneficiaryRequest = PublishSubject();
 
-  BehaviorSubject<Resource<GetBeneficiaryListResponse>> _getBeneficiaryResponse =
-      BehaviorSubject.seeded(Resource.success(data: GetBeneficiaryListResponse()));
+  BehaviorSubject<Resource<GetBeneficiaryListResponse>> _getBeneficiaryResponse = BehaviorSubject.seeded(Resource.success(data: GetBeneficiaryListResponse()));
 
   List<Beneficiary> smBeneficiaries = [];
 
@@ -47,16 +45,19 @@ class PaymentHomeViewModel extends BasePageViewModel {
     _currentStep.safeAdd(index);
   }
 
-  void updatePageControllerStream(int index) {
-    controller = PageController(initialPage: index, viewportFraction: 0.8, keepPage: true);
-    _pageControllerSubject.safeAdd(controller);
-  }
+  bool animationInitialized = false;
+  late AnimationController translateUpController;
+  late Animation<double> translateUpAnimation;
+
+  BehaviorSubject<AnimatedPage> pageSwitchSubject = BehaviorSubject.seeded(AnimatedPage.NULL);
+
+  Stream<AnimatedPage> get pageSwitchStream => pageSwitchSubject.stream;
+
+  late AnimationController translateSidewaysController;
 
   PaymentHomeViewModel(this._getBeneficiaryUseCase) {
     _getBeneficiaryRequest.listen((value) {
-      RequestManager(value, createCall: () => _getBeneficiaryUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
+      RequestManager(value, createCall: () => _getBeneficiaryUseCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
         _getBeneficiaryResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -88,8 +89,7 @@ class PaymentHomeViewModel extends BasePageViewModel {
           }
 
           Future.delayed(Duration(milliseconds: 50), () {
-            if (appSwiperController.hasClients)
-              appSwiperController.jumpToPage(getInitialNavigation(navigationType, value.context!));
+            if (appSwiperController.hasClients) appSwiperController.jumpToPage(getInitialNavigation(navigationType, value.context!));
           });
         }
       });
@@ -108,24 +108,9 @@ class PaymentHomeViewModel extends BasePageViewModel {
         return 1;
       case NavigationType.REQUEST_MONEY:
       case NavigationType.REQUEST_MONEY:
-        if (ProviderScope.containerOf(appLevelKey.currentContext!)
-                .read(appHomeViewModelProvider)
-                .dashboardDataContent
-                .dashboardFeatures
-                ?.blinkRetailAppBillPayment ??
-            true) {
-          if ((ProviderScope.containerOf(appLevelKey.currentContext!)
-                      .read(appHomeViewModelProvider)
-                      .dashboardDataContent
-                      .dashboardFeatures
-                      ?.appBillPaymentPostpaid ??
-                  true) ||
-              (ProviderScope.containerOf(appLevelKey.currentContext!)
-                      .read(appHomeViewModelProvider)
-                      .dashboardDataContent
-                      .dashboardFeatures
-                      ?.appBillPaymentPrepaid ??
-                  true)) {
+        if (ProviderScope.containerOf(appLevelKey.currentContext!).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.blinkRetailAppBillPayment ?? true) {
+          if ((ProviderScope.containerOf(appLevelKey.currentContext!).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.appBillPaymentPostpaid ?? true) ||
+              (ProviderScope.containerOf(appLevelKey.currentContext!).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.appBillPaymentPrepaid ?? true)) {
             return 2;
           }
         }
@@ -150,3 +135,5 @@ class PaymentHomeWidgetFeature {
 }
 
 enum PaymentWidgetType { SEND_MONEY, REQUEST_MONEY, POST_PAID_BILL, PRE_PAID_BILL }
+
+enum AnimatedPage { SEND_MONEY, REQUEST_MONEY, POST_PAID_BILL_HISTORY, PRE_PAID_BILL_HISTORY, PAY_NEW_BILL, NULL }
