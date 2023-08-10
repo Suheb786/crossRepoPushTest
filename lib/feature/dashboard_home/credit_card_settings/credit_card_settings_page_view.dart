@@ -44,8 +44,8 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
   @override
   Widget build(BuildContext context, model) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.035, vertical: 44),
-      padding: EdgeInsets.only(top: 52.h),
+      margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.035, vertical: 44.h),
+      padding: EdgeInsets.only(top: 58.h),
       child: Column(
         children: [
           Platform.isIOS

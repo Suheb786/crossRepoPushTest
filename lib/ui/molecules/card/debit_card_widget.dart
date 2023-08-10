@@ -20,7 +20,6 @@ import 'package:neo_bank/utils/extension/string_casing_extension.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-
 class DebitCardWidget extends StatefulWidget {
   final Key key;
   final DebitCard debitCard;
@@ -211,11 +210,11 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.only(
-                          top: 45.0.h,
+                          top: MediaQuery.of(context).size.height * 0.035,
                         ),
                         child: Align(
                           alignment: AlignmentDirectional.centerEnd,
-                          child: AppSvg.asset(AssetUtils.zigzagCircle, height: 156.0.h, matchTextDirection: true),
+                          child: AppSvg.asset(AssetUtils.zigzagCircle, height: MediaQuery.of(context).size.height * 0.156, matchTextDirection: true),
                         ),
                       ),
                       Directionality(
@@ -303,7 +302,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
             margin: EdgeInsetsDirectional.zero,
             shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
             child: Padding(
-              padding: EdgeInsetsDirectional.only(start: 29.0.w, top: 32.0.h, end: 25.0.w, bottom: 30.0.h),
+              padding: EdgeInsetsDirectional.only(start: 29.0.w, top: MediaQuery.of(context).size.height * 0.032, end: 25.0.w, bottom: MediaQuery.of(context).size.height * 0.03),
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -354,7 +353,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.only(top: 63.0.h),
+                      padding: EdgeInsetsDirectional.only(top: MediaQuery.of(context).size.height * 0.063),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

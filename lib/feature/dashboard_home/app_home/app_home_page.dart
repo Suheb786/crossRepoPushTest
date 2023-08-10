@@ -18,8 +18,7 @@ class AppHomePage extends BasePage<AppHomeViewModel> {
   AppHomePageState createState() => AppHomePageState();
 }
 
-class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
-    with AutomaticKeepAliveClientMixin, WidgetsBindingObserver, TickerProviderStateMixin {
+class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> with AutomaticKeepAliveClientMixin, WidgetsBindingObserver, TickerProviderStateMixin {
   @override
   ProviderBase provideBase() {
     return appHomeViewModelProvider;
@@ -52,7 +51,7 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
   void onModelReady(AppHomeViewModel model) {
     if (!model.animationInitialized) {
       model.animationInitialized = true;
-      model.deviceSize = MediaQuery.of(context).size;
+
       model.translateSettingsUpController = AnimationController(
         vsync: this,
         duration: const Duration(milliseconds: 500),
@@ -145,17 +144,26 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
               padding: EdgeInsets.only(top: 24.0.h, bottom: 0.0.h),
               child: BottomBarWidget(
                 onHomeTap: () {
-                  model.moveToPage(0);
+                  if (model.settings || model.showPayBackView || model.timelinePage) {
+                  } else {
+                    model.moveToPage(0);
+                  }
                 },
                 onMoreTap: () {
-                  SettingsDialog.show(context);
+                  if (model.settings || model.showPayBackView || model.timelinePage) {
+                  } else {
+                    SettingsDialog.show(context);
+                  }
                 },
                 onContactUsTap: () {
-                  EngagementTeamDialog.show(context, onDismissed: () {
-                    Navigator.pop(context);
-                  }, onSelected: (value) {
-                    Navigator.pop(context);
-                  });
+                  if (model.settings || model.showPayBackView || model.timelinePage) {
+                  } else {
+                    EngagementTeamDialog.show(context, onDismissed: () {
+                      Navigator.pop(context);
+                    }, onSelected: (value) {
+                      Navigator.pop(context);
+                    });
+                  }
                 },
               ),
             ),

@@ -19,6 +19,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/device_size_helper.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
@@ -134,8 +135,8 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 23.0.w, vertical: 5.0.h),
-                            child: AppSvg.asset(AssetUtils.blink_updated_logo, height: 33.64.h, width: 72.0.w),
+                            padding: EdgeInsets.symmetric(horizontal: 23.0.w, vertical: MediaQuery.of(context).size.height * 0.005),
+                            child: AppSvg.asset(AssetUtils.blink_updated_logo, height: MediaQuery.of(context).size.height * 0.033, width: MediaQuery.of(context).size.width * 0.072),
                           ),
                           AppStreamBuilder<bool>(
                               stream: antelopStepCompletedStream,
@@ -172,11 +173,14 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                         ],
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 23.0.w, vertical: 5.0.h),
+                        padding: EdgeInsets.symmetric(horizontal: 23.0.w, vertical: MediaQuery.of(context).size.height * 0.005),
                         child: Text(
                           widget.creditCard.name ?? "",
                           style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 14.0.t, color: Colors.white),
                         ),
+                      ),
+                      SizedBox(
+                        height: DeviceSizeHelper.isSmallDevice ? 0 : 20.h,
                       ),
                       Image.asset(
                         AssetUtils.line_black_white,
@@ -184,7 +188,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                         // height: widget.isSmallDevice ? 93 : 118,
                       ),
                       Container(
-                        padding: EdgeInsets.only(left: 24.0.w, top: 50.0.h, right: 24.0.w),
+                        padding: EdgeInsets.only(left: 24.0.w, top: MediaQuery.of(context).size.height * 0.04, right: 24.0.w),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: StringUtils.isDirectionRTL(context)
@@ -207,7 +211,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                         borderRadius: BorderRadius.circular(20),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 25.0.w),
+                                        padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.008, horizontal: 25.0.w),
                                         child: Text(
                                           S.of(context).payBack,
                                           style: TextStyle(
@@ -239,8 +243,8 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                         ],
                                       ),
                                       Container(
-                                        width : 130.w,
-                                        padding: EdgeInsets.only(top: 5.0.h),
+                                        width: 130.w,
+                                        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.005),
                                         child: Column(
                                           crossAxisAlignment: CrossAxisAlignment.end,
                                           children: [
@@ -276,7 +280,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                         )
                                       ]),
                                       Padding(
-                                        padding: EdgeInsets.only(top: 5.0.h),
+                                        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.005),
                                         child: Row(
                                           children: [
                                             Text(
@@ -309,7 +313,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                         borderRadius: BorderRadius.circular(20),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 25.0.w),
+                                        padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.008, horizontal: 25.0.w),
                                         child: Text(
                                           S.of(context).payBack,
                                           style: TextStyle(
@@ -327,10 +331,10 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(
-                          top: 19.0.h,
+                          top: MediaQuery.of(context).size.height * 0.019,
                           left: 24.0.w,
                           right: 23.0.w,
-                          bottom: 44.0.h,
+                          bottom: MediaQuery.of(context).size.height * 0.044,
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -633,7 +637,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                         height: 1,
                       ),
                       SizedBox(
-                        height: 24.0.h,
+                        height: MediaQuery.of(context).size.height * 0.024,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -674,7 +678,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                         ],
                       ),
                       SizedBox(
-                        height: 24.0.h,
+                        height: MediaQuery.of(context).size.height * 0.024,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
