@@ -4,12 +4,10 @@ import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
-import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
 import 'package:neo_bank/feature/account_registration/add_email_otp/email_otp_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_one/change_my_number_dialog/change_my_number_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -17,6 +15,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../ui/molecules/button/app_primary_button.dart';
+import '../../../ui/molecules/dialog/register/step_one/change_my_email_dialog/change_my_email_dialog.dart';
 import '../../../utils/color_utils.dart';
 
 class EmailOtpPageView extends BasePageViewWidget<EmailOtpViewModel> {
@@ -90,16 +89,13 @@ class EmailOtpPageView extends BasePageViewWidget<EmailOtpViewModel> {
                                         padding: EdgeInsets.only(top: 32.0.h),
                                         child: InkWell(
                                           onTap: () {
-                                            ChangeMyNumberDialog.show(context,
-                                                countryList: ProviderScope.containerOf(context)
-                                                    .read(accountRegistrationViewModelProvider)
-                                                    .countryDataList, onDismissed: () {
+                                            ChangeMyEmailDialog.show(context, onDismissed: () {
                                               Navigator.pop(context);
-                                            }, onSelected: (country, mobileNo) {
-                                              model.mobileNumberParams = MobileNumberParams(
-                                                  mobileNumber: mobileNo, mobileCode: country.phoneCode!);
+                                            }, onSelected: (email) {
                                               Navigator.pop(context);
-                                              model.changeMyNumber(mobileNo, country.phoneCode!);
+                                              ProviderScope.containerOf(context)
+                                                  .read(accountRegistrationViewModelProvider)
+                                                  .updateEmail(email);
                                             });
                                           },
                                           child: Text(

@@ -64,6 +64,8 @@ import 'package:neo_bank/ui/molecules/profile/profile_item_view_model.dart';
 import 'package:neo_bank/ui/molecules/register/taxation_switch_widget/taxation_switch_widget.dart';
 import 'package:neo_bank/ui/molecules/register/taxation_switch_widget/taxation_switch_widget_model.dart';
 
+import '../../ui/molecules/dialog/register/step_one/change_my_email_dialog/change_my_email_dialog_view_model.dart';
+
 final registerViewModelProvider = ChangeNotifierProvider.autoDispose<RegisterViewModel>(
   (ref) => RegisterViewModel(),
 );
@@ -397,6 +399,9 @@ final videoCallScheduledViewModelProvider = ChangeNotifierProvider.autoDispose
 final changeMyNumberDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<ChangeMyNumberDialogViewModel>(
         (ref) => ChangeMyNumberDialogViewModel());
+
+final changeMyEmailDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ChangeMyEmailDialogViewModel>((ref) => ChangeMyEmailDialogViewModel());
 
 ///upload documents later page
 final uploadDocumentsLaterPageViewModelProvider =
