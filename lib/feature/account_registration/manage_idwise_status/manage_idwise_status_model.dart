@@ -17,14 +17,14 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
   }
 
   void nationalIDVerification() {
-    Future.delayed(Duration(milliseconds: 900), () {
+    Future.delayed(Duration(milliseconds: 1200), () {
       verifyNationalID.safeAdd(true);
       selfieVerification();
     });
   }
 
   void selfieVerification() {
-    Future.delayed(Duration(milliseconds: 500), () {
+    Future.delayed(Duration(milliseconds: 1000), () {
       verifySelfie.safeAdd(true);
     });
   }
