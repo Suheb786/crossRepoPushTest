@@ -242,7 +242,7 @@ packages:
     source: hosted
     version: "0.10.1"
   device_info:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: device_info
       sha256: f4a8156cb7b7480d969cb734907d18b333c8f0bc0b1ad0b342cdcecf30d62c48
