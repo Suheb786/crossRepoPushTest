@@ -1049,6 +1049,7 @@ class AppHomeViewModel extends BasePageViewModel {
     notifyListeners();
   }
 
+
   timelineGlitchAnimation() {
     if (timelineScrollController.positions.isNotEmpty && timelineScrollController.hasClients)
       timelineScrollController.animateTo(30, duration: const Duration(milliseconds: 400), curve: Curves.easeIn).then((value) {
