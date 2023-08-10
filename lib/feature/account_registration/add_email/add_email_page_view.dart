@@ -75,6 +75,7 @@ class AddEmailPageView extends BasePageViewWidget<AddEmailViewModel> {
                           slivers: [
                             SliverToBoxAdapter(
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   AppStreamBuilder<Resource<CheckUsername>>(
                                     initialData: Resource.none(),
@@ -121,30 +122,31 @@ class AddEmailPageView extends BasePageViewWidget<AddEmailViewModel> {
                                       return InkWell(
                                         onTap: () {
                                           model.passwordKey.currentState!.secureText =
-                                              !model.passwordKey.currentState!.secureText;
+                                          !model.passwordKey.currentState!.secureText;
                                         },
                                         child: model.passwordKey.currentState!.secureText
                                             ? Container(
-                                                width: 16.w,
-                                                height: 16.h,
-                                                padding: EdgeInsets.all(4),
-                                                child: AppSvg.asset(AssetUtils.eye,
-                                                    color: Theme.of(context)
-                                                        .inputDecorationTheme
-                                                        .labelStyle!
-                                                        .color),
-                                              )
+                                          width: 16.w,
+                                          height: 16.h,
+                                          padding: EdgeInsets.all(4),
+                                          child: AppSvg.asset(AssetUtils.eye,
+                                              color: Theme.of(context)
+                                                  .inputDecorationTheme
+                                                  .labelStyle!
+                                                  .color),
+                                        )
                                             : Icon(
-                                                Icons.visibility_off,
-                                                color:
-                                                    Theme.of(context).inputDecorationTheme.labelStyle!.color,
-                                              ),
+                                          Icons.visibility_off,
+                                          color:
+                                          Theme.of(context).inputDecorationTheme.labelStyle!.color,
+                                        ),
                                       );
                                     },
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(top: 10.0.h),
                                     child: Wrap(
+                                      alignment: WrapAlignment.start,
                                       runSpacing: 10,
                                       spacing: 8,
                                       children: [
@@ -182,24 +184,24 @@ class AddEmailPageView extends BasePageViewWidget<AddEmailViewModel> {
                                       return InkWell(
                                         onTap: () {
                                           model.confirmPasswordKey.currentState!.secureText =
-                                              !model.confirmPasswordKey.currentState!.secureText;
+                                          !model.confirmPasswordKey.currentState!.secureText;
                                         },
                                         child: model.confirmPasswordKey.currentState!.secureText
                                             ? Container(
-                                                width: 16.w,
-                                                height: 16.h,
-                                                padding: EdgeInsets.all(4),
-                                                child: AppSvg.asset(AssetUtils.eye,
-                                                    color: Theme.of(context)
-                                                        .inputDecorationTheme
-                                                        .labelStyle!
-                                                        .color),
-                                              )
+                                          width: 16.w,
+                                          height: 16.h,
+                                          padding: EdgeInsets.all(4),
+                                          child: AppSvg.asset(AssetUtils.eye,
+                                              color: Theme.of(context)
+                                                  .inputDecorationTheme
+                                                  .labelStyle!
+                                                  .color),
+                                        )
                                             : Icon(
-                                                Icons.visibility_off,
-                                                color:
-                                                    Theme.of(context).inputDecorationTheme.labelStyle!.color,
-                                              ),
+                                          Icons.visibility_off,
+                                          color:
+                                          Theme.of(context).inputDecorationTheme.labelStyle!.color,
+                                        ),
                                       );
                                     },
                                   ),
@@ -228,23 +230,21 @@ class AddEmailPageView extends BasePageViewWidget<AddEmailViewModel> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(vertical: 12.0.h),
+                                      padding: EdgeInsets.symmetric(vertical: 15.0.h),
                                       child: AppStreamBuilder<bool>(
                                           stream: model.showButtonStream,
                                           initialData: false,
                                           dataBuilder: (context, isValid) {
-                                            return Visibility(
-                                              visible: isValid!,
-                                              child: AppPrimaryButton(
-                                                text: S.of(context).next,
-                                                onPressed: () {
-                                                  model.createPassword();
+                                            return AppPrimaryButton(
+                                              text: S.of(context).next,
+                                              isDisabled: !isValid!,
+                                              onPressed: () {
+                                                model.createPassword();
 
-                                                  /*  ProviderScope.containerOf(context)
-                                                    .read(accountRegistrationViewModelProvider)
-                                                    .previousPage();*/
-                                                },
-                                              ),
+                                                /*  ProviderScope.containerOf(context)
+                                                  .read(accountRegistrationViewModelProvider)
+                                                  .previousPage();*/
+                                              },
                                             );
                                           }),
                                     ),

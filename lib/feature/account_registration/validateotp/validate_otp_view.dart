@@ -1,5 +1,4 @@
 import 'package:animated_widgets/animated_widgets.dart';
-import 'package:data/helper/id_wise_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,6 +18,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../ui/molecules/button/app_primary_button.dart';
+import '../../../utils/color_utils.dart';
 import '../manage_idwise_status/manage_idwise_status_page.dart';
 
 class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
@@ -55,17 +55,14 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                         model.saveUserData();
                         // Navigator.pushReplacementNamed(context, RoutePaths.Dashboard);
 
-                        IdWiseHelper idWiseHelper = IdWiseHelper();
+                        /* IdWiseHelper idWiseHelper = IdWiseHelper();
                         idWiseHelper.initializeIdWise();
                         var status = await idWiseHelper.startVerification('en');
                         debugPrint("STATUS : ${status.keys.first}");
-                        debugPrint("TEXT :  ${status.values.first}");
+                        debugPrint("TEXT :  ${status.values.first}");*/
 
-                        // Navigator.pushReplacementNamed()
-
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, RoutePaths.ManageIDWiseStatus, (route) => false,
-                            arguments: ManageIDWiseStatusParams(journeyId: status.values.first));
+                        Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
+                            arguments: ManageIDWiseStatusParams(journeyId: ''));
                       } else if (data.status == Status.ERROR) {
                         model.showToastWithError(data.appError!);
                       }
@@ -157,22 +154,40 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                     ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 16.0.h),
-                                  child: AppStreamBuilder<bool>(
-                                      stream: model.showButtonStream,
-                                      initialData: false,
-                                      dataBuilder: (context, isValid) {
-                                        return Visibility(
-                                          visible: isValid!,
-                                          child: AppPrimaryButton(
-                                            text: S.of(context).next,
-                                            onPressed: () {
-                                              model.validateOtp();
-                                            },
-                                          ),
-                                        );
-                                      }),
+                                Column(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(bottom: 20.0.h),
+                                      child: AppStreamBuilder<bool>(
+                                          stream: model.showButtonStream,
+                                          initialData: false,
+                                          dataBuilder: (context, isValid) {
+                                            return AppPrimaryButton(
+                                              text: S.of(context).next,
+                                              isDisabled: !isValid!,
+                                              onPressed: () {
+                                                model.validateOtp();
+                                              },
+                                            );
+                                          }),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        ProviderScope.containerOf(context)
+                                            .read(accountRegistrationViewModelProvider)
+                                            .previousPage();
+                                      },
+                                      child: Text(
+                                        S.of(context).back,
+                                        style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: AppColor.brightBlue,
+                                          fontSize: 14.t,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             )),

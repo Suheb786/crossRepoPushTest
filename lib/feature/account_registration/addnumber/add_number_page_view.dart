@@ -24,6 +24,8 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../utils/color_utils.dart';
+
 class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
   AddNumberPageView(ProviderBase model) : super(model);
 
@@ -190,22 +192,40 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                               },
                             ),
                             Spacer(),
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 12.0.h),
-                              child: AppStreamBuilder<bool>(
-                                  stream: model.showButtonStream,
-                                  initialData: false,
-                                  dataBuilder: (context, isValid) {
-                                    return Visibility(
-                                      visible: isValid!,
-                                      child: AppPrimaryButton(
-                                        text: S.of(context).next,
-                                        onPressed: () {
-                                          model.validateNumber();
-                                        },
-                                      ),
-                                    );
-                                  }),
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 20.0.h),
+                                  child: AppStreamBuilder<bool>(
+                                      stream: model.showButtonStream,
+                                      initialData: false,
+                                      dataBuilder: (context, isValid) {
+                                        return AppPrimaryButton(
+                                          isDisabled: !isValid!,
+                                          text: S.of(context).next,
+                                          onPressed: () {
+                                            model.validateNumber();
+                                          },
+                                        );
+                                      }),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    ProviderScope.containerOf(context)
+                                        .read(accountRegistrationViewModelProvider)
+                                        .previousPage();
+                                  },
+                                  child: Text(
+                                    S.of(context).back,
+                                    style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      color: AppColor.brightBlue,
+                                      fontSize: 14.t,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                             // SizedBox(
                             //   height:
