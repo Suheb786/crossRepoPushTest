@@ -5,12 +5,14 @@ import 'package:riverpod/src/framework.dart';
 
 import '../../../base/base_page.dart';
 import '../../../generated/l10n.dart';
+import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/account/idwise_processing_status_widget.dart';
 import '../../../ui/molecules/app_svg.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../utils/asset_utils.dart';
 import '../../../utils/color_utils.dart';
 import '../../../utils/string_utils.dart';
+import '../../register/register_page.dart';
 
 class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewModel> {
   ManageIDWiseStatusView(ProviderBase providerBase) : super(providerBase);
@@ -77,7 +79,14 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
           AppStreamBuilder<bool>(
               stream: model.verifySelfieStream,
               initialData: false,
-              onData: (passwordData) {},
+              onData: (passwordData) {
+                if (passwordData) {
+                  Future.delayed(Duration(milliseconds: 2000), () {
+                    Navigator.pushNamedAndRemoveUntil(context, RoutePaths.Registration, (route) => false,
+                        arguments: RegisterPageParams());
+                  });
+                }
+              },
               dataBuilder: (context, data) {
                 return IDWiseProcessingStatusWidget(
                   label: S.of(context).validatingYourSelfie,

@@ -51,6 +51,10 @@ class EmailOtpPageView extends BasePageViewWidget<EmailOtpViewModel> {
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
                         model.saveUserData();
+                        ProviderScope.containerOf(context)
+                            .read(addNumberViewModelProvider)
+                            .getAllowedCountryCode();
+
                         //Navigator.pushReplacementNamed(context, RoutePaths.Dashboard);
                         ProviderScope.containerOf(context)
                             .read(accountRegistrationViewModelProvider)

@@ -53,6 +53,7 @@ class AddEmailPageView extends BasePageViewWidget<AddEmailViewModel> {
                     ProviderScope.containerOf(context)
                         .read(accountRegistrationViewModelProvider)
                         .updateEmail(model.emailController.text);
+
                     ProviderScope.containerOf(context).read(accountRegistrationViewModelProvider).nextPage();
                   } else if (passwordData.status == Status.ERROR) {
                     if (passwordData.appError!.type == ErrorType.PASSWORD_MISMATCH) {
@@ -215,38 +216,34 @@ class AddEmailPageView extends BasePageViewWidget<AddEmailViewModel> {
                                 margin: EdgeInsets.only(top: 80.h, bottom: 40.h),
                                 child: Column(
                                   children: [
-                                    InkWell(
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: Text(
-                                        S.of(context).backToRegistration,
-                                        style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: AppColor.brightBlue,
-                                          fontSize: 14.t,
-                                          fontWeight: FontWeight.w500,
+                                    AppStreamBuilder<bool>(
+                                        stream: model.showButtonStream,
+                                        initialData: false,
+                                        dataBuilder: (context, isValid) {
+                                          return AppPrimaryButton(
+                                            text: S.of(context).next,
+                                            isDisabled: !isValid!,
+                                            onPressed: () {
+                                              model.createPassword();
+                                            },
+                                          );
+                                        }),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(vertical: 16.0.h),
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text(
+                                          S.of(context).backToRegistration,
+                                          style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            color: AppColor.brightBlue,
+                                            fontSize: 14.t,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(vertical: 15.0.h),
-                                      child: AppStreamBuilder<bool>(
-                                          stream: model.showButtonStream,
-                                          initialData: false,
-                                          dataBuilder: (context, isValid) {
-                                            return AppPrimaryButton(
-                                              text: S.of(context).next,
-                                              isDisabled: !isValid!,
-                                              onPressed: () {
-                                                model.createPassword();
-
-                                                /*  ProviderScope.containerOf(context)
-                                                  .read(accountRegistrationViewModelProvider)
-                                                  .previousPage();*/
-                                              },
-                                            );
-                                          }),
                                     ),
                                   ],
                                 ),

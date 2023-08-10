@@ -148,7 +148,7 @@ class AddNumberViewModel extends BasePageViewModel {
         validate();
       });
     });
-    getAllowedCountryCode();
+   // getAllowedCountryCode();
   }
 
   void fetchCountryByCode(BuildContext context, String code) {
