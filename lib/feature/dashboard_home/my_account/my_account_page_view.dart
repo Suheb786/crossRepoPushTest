@@ -48,6 +48,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         S.of(context).myAccount,
@@ -55,6 +56,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                       ),
                       Expanded(
                         child: SingleChildScrollView(
+                          physics: BouncingScrollPhysics(),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

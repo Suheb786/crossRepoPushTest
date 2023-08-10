@@ -20,14 +20,9 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
 
   @override
   Widget build(BuildContext context, model) {
-    return GestureDetector(
-      onVerticalDragEnd: (details) {
-        if (details.primaryVelocity!.isNegative) {
-          Navigator.pop(context);
-        }
-      },
+    return SafeArea(
       child: Padding(
-        padding: EdgeInsets.only(top: 28.h),
+        padding: EdgeInsets.only(top: 0.h),
         child: Column(
           children: [
             AppHomePageWidgets.totalBalance( model.timeLineArguments.timeLineArguments.availableBalance ?? "0.000"),

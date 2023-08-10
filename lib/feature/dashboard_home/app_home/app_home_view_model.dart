@@ -30,6 +30,7 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_page.dart';
+import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/ui/molecules/card/apply_credit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/apply_debit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/credit_card_issuance_failure_widget.dart';
@@ -48,6 +49,7 @@ import 'package:neo_bank/utils/navigation_transitions.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/screen_size_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -226,7 +228,7 @@ class AppHomeViewModel extends BasePageViewModel {
   bool transactionPage = false;
 
   // this is to toggle heights ....
-  double constBottomBarHeight = 130;
+  double constBottomBarHeight = 130.h;
 
   bool isMyAccount(int index) {
     return cardTypeList[index].cardType == CardType.ACCOUNT;
@@ -270,9 +272,13 @@ class AppHomeViewModel extends BasePageViewModel {
   bool debitCardIsReportDamagedCard = false;
   bool debitCardRemoveOrReapply = false;
 
+  bool isSmallDevices = false;
+
   AppHomeViewModel(
       this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._initDynamicLinkUseCase, this._getCurrentUserUseCase, this._saveUserDataUseCase, this._verifyQRUseCase, this._getAntelopCardsListUseCase) {
     isShowBalenceUpdatedToast = false;
+    deviceSize = MediaQuery.of(appLevelKey.currentContext!).size;
+    isSmallDevices = deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT || deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
     _getDashboardDataRequest.listen((value) {
       RequestManager(value, createCall: () => _getDashboardDataUseCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
@@ -399,7 +405,7 @@ class AppHomeViewModel extends BasePageViewModel {
     debitCards.clear();
     creditCards.clear();
     cardTypeList.clear();
-    bool isSmallDevices = deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT || deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
+
     pages.add(MyAccountPage(account: dashboardDataContent.account!));
     cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.ACCOUNT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES, timeLineEnum: TimeLineEnum.TIMELINE_YES));
 
@@ -1043,9 +1049,11 @@ class AppHomeViewModel extends BasePageViewModel {
     notifyListeners();
   }
 
+
   timelineGlitchAnimation() {
     if (timelineScrollController.positions.isNotEmpty && timelineScrollController.hasClients)
       timelineScrollController.animateTo(30, duration: const Duration(milliseconds: 400), curve: Curves.easeIn).then((value) {
+        if (timelineScrollController.positions.isNotEmpty && timelineScrollController.hasClients)
         timelineScrollController.animateTo(-30, duration: const Duration(milliseconds: 500), curve: Curves.easeInBack);
       });
   }

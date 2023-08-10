@@ -30,6 +30,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/screen_size_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -43,6 +44,9 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
 
   @override
   Widget build(BuildContext context, model) {
+    model.deviceSize = MediaQuery.of(context).size;
+    model.isSmallDevices = model.deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
+
     listenPopUps(model, context);
     return AppStreamBuilder<int>(
       stream: model.currentStep,
@@ -270,7 +274,6 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                     DashboardSwiper(
                                                                                       pages: pagesList,
                                                                                       appSwiperController: model.appSwiperController,
-                                                                                      // pageController: model.pageController,
                                                                                       onIndexChanged: (index) {
                                                                                         model.updatePage(index);
                                                                                       },
