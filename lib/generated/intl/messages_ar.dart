@@ -1614,6 +1614,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "incomeDetails": MessageLookupByLibrary.simpleMessage("معلومات الدخل"),
         "increaseCreditLimit":
             MessageLookupByLibrary.simpleMessage("رفع سقف الائتمان"),
+        "ineligibleIdentity":
+            MessageLookupByLibrary.simpleMessage("Ineligible identity"),
+        "ineligibleIdentityDescription": MessageLookupByLibrary.simpleMessage(
+            "Seems that you are ineligible to continue the registration. Please reach out to Blink Engagement Team for further assistance."),
         "infobipInitError":
             MessageLookupByLibrary.simpleMessage("خطأ خلال التجهيز للمكالمة"),
         "informationSave": MessageLookupByLibrary.simpleMessage(
@@ -2160,6 +2164,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("نوع العمل/ الوظيفة"),
         "occupationSmall": MessageLookupByLibrary.simpleMessage("الوظيفة"),
         "ofTheBank": MessageLookupByLibrary.simpleMessage("من البنك"),
+        "okay": MessageLookupByLibrary.simpleMessage("Okay"),
         "onIdFit": MessageLookupByLibrary.simpleMessage(
             "رح يتم مسح الهوية تلقائياً لما تحطها داخل المستطيل"),
         "oneFinalStop": MessageLookupByLibrary.simpleMessage("خطوة أخيرة..."),
@@ -2496,6 +2501,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خطأ خلال تسجيل المستخدم"),
         "registrationProcessError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-002)"),
+        "registrationStopped":
+            MessageLookupByLibrary.simpleMessage("Registration stopped"),
+        "registrationStoppedDescription": MessageLookupByLibrary.simpleMessage(
+            "Unfortunately, you did not meet minimum age required to open an account with us. You may try again when you turn 18."),
         "reject": MessageLookupByLibrary.simpleMessage("رفض"),
         "rejectRequest": MessageLookupByLibrary.simpleMessage("رفض الطلب"),
         "rejected": MessageLookupByLibrary.simpleMessage("مرفوضة"),
@@ -2728,6 +2737,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "selfieCheck": MessageLookupByLibrary.simpleMessage("صورة سيلفي"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-015)"),
+        "selfieMismatched":
+            MessageLookupByLibrary.simpleMessage("Selfie mismatched"),
+        "selfieMismatchedDescription": MessageLookupByLibrary.simpleMessage(
+            "Seems that your selfie does not match with your ID card. Please reach out to Blink Engagement Team for further assitance."),
         "sendAndRequestFavouriteContacts": MessageLookupByLibrary.simpleMessage(
             "أرسل وطلب ما يصل إلى 9 جهات اتصال مفضلة بسهولة. هل ترغب في إضافة جهة الاتصال هذه إلى المفضلة لديك؟"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("تحويل أموال"),

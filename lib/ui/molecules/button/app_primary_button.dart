@@ -5,7 +5,9 @@ import 'package:neo_bank/utils/string_utils.dart';
 
 @immutable
 class AppPrimaryButton extends StatelessWidget {
-  const AppPrimaryButton({
+  AppPrimaryButton({
+    this.textColor,
+    this.backgroundColor,
     Key? key,
     required this.onPressed,
     this.text = 'Next',
@@ -17,6 +19,8 @@ class AppPrimaryButton extends StatelessWidget {
   final String text;
   final double width;
   final bool isDisabled;
+  final MaterialStateProperty<Color?>? backgroundColor;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +34,15 @@ class AppPrimaryButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(100),
             ),
           ),
-          backgroundColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
-            if (states.contains(MaterialState.disabled)) {
-              return Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5);
-            }
-            return isDisabled
-                ? Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5)
-                : Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue;
-          }),
+          backgroundColor: backgroundColor ??
+              MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+                if (states.contains(MaterialState.disabled)) {
+                  return Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5);
+                }
+                return isDisabled
+                    ? Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5)
+                    : Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue;
+              }),
         ),
         onPressed: !isDisabled ? onPressed : null,
         child: Text(
@@ -46,7 +51,7 @@ class AppPrimaryButton extends StatelessWidget {
               fontFamily: StringUtils.appFont,
               fontSize: 14.t,
               fontWeight: FontWeight.w600,
-              color: Theme.of(context).colorScheme.secondary),
+              color: textColor ?? Theme.of(context).colorScheme.secondary),
         ),
       ),
     );
