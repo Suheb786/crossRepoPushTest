@@ -170,4 +170,14 @@ class TimeUtils {
     final DateTime dateTime = DateTime.parse(date).toLocal();
     return DateFormat('dd MMM yyyy').format(dateTime);
   }
+
+  static String convertUTCDateToLocal(String date) {
+    try {
+      final DateTime dateTime = DateFormat('yyyy-MM-dd HH:mm:ss', 'en').parse(date, true).toLocal();
+      final DateFormat formatter = DateFormat('hh:mm aa');
+      return formatter.format(dateTime);
+    } catch (e) {
+      return '';
+    }
+  }
 }
