@@ -54,7 +54,7 @@ class _PaymentSwiperState extends State<PaymentSwiper> {
   Widget carouselView(int index) {
     double horizontalSpacing = MediaQuery.of(context).size.width * 0.035;
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: horizontalSpacing, vertical: 44),
+      margin: EdgeInsets.symmetric(horizontal: horizontalSpacing) + EdgeInsets.only(bottom: 40, top: 22),
       child: AnimatedBuilder(
         animation: widget.translateSidewaysController!,
         builder: (context, child) {

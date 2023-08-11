@@ -170,7 +170,11 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                     stream: model.applePayPopUpStream,
                                     initialData: false,
                                     onData: (value) {
-                                      if (value && Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled && isAllCardsInApplePay && (model.debitCards.isNotEmpty || model.creditCards.isNotEmpty)) {
+                                      if (value &&
+                                          Platform.isIOS &&
+                                          AppConstantsUtils.isApplePayFeatureEnabled &&
+                                          isAllCardsInApplePay &&
+                                          (model.debitCards.isNotEmpty || model.creditCards.isNotEmpty)) {
                                         ApplePayDialog.show(context, image: AssetUtils.applePayLogo, title: S.of(context).blinkWithApplePay, onSelected: () {
                                           Navigator.pop(context);
                                           Navigator.pushNamed(context, RoutePaths.SelectedCardForApplePayPage,
@@ -233,12 +237,14 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                               accountStatusEnum: cardData?.data?.dashboardDataContent?.account?.accountStatusEnum ?? AccountStatusEnum.NONE,
                                                                               isPrimaryDebitCard: model.isPrimaryDebitCard,
                                                                               debitCard: model.selectedDebitCard!,
-                                                                              debitCardRequestPhysicalCardEnabled: cardData?.data?.dashboardDataContent?.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled ?? false))
+                                                                              debitCardRequestPhysicalCardEnabled:
+                                                                                  cardData?.data?.dashboardDataContent?.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled ?? false))
                                                                           : CreditCardSettingsPage(CreditCardSettingsArguments(
                                                                               creditCard: model.selectedCreditCard!,
                                                                               isChangePinEnabled: cardData?.data?.dashboardDataContent?.dashboardFeatures?.isPinChangeEnabled ?? true))
                                                                       : model.timelinePage
-                                                                          ? DebitCardTimeLinePage(TimeLinePageArguments(cardType: model.cardTypeList[currentStep!].cardType, timeLineArguments: model.timeLineArguments))
+                                                                          ? DebitCardTimeLinePage(
+                                                                              TimeLinePageArguments(cardType: model.cardTypeList[currentStep!].cardType, timeLineArguments: model.timeLineArguments))
                                                                           : model.showPayBackView
                                                                               ? CreditCardPayBackPage(
                                                                                   CreditCardPayBackArguments(
@@ -331,7 +337,8 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                               child: AnimatedSwitcher(
                                                                                                 duration: const Duration(milliseconds: 500),
                                                                                                 child: !model.timelinePage
-                                                                                                    ? AppSvg.asset(AssetUtils.timelineButton, height: 24.w, width: 24.w, color: AppColor.light_acccent_blue)
+                                                                                                    ? AppSvg.asset(AssetUtils.timelineButton,
+                                                                                                        height: 24.w, width: 24.w, color: AppColor.light_acccent_blue)
                                                                                                     : AppSvg.asset(AssetUtils.swipeUp, height: 24.w, width: 24.w, color: AppColor.light_acccent_blue),
                                                                                               ),
                                                                                             ),
@@ -421,7 +428,8 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                           builder: (BuildContext context, Widget? child) {
                                                                                                             double translateYOffset = 0;
                                                                                                             double opacity = 0;
-                                                                                                            if (model.appSwiperController.hasClients) if (model.appSwiperController.position.hasContentDimensions) {
+                                                                                                            if (model.appSwiperController.hasClients) if (model
+                                                                                                                .appSwiperController.position.hasContentDimensions) {
                                                                                                               opacity = currentStep - (model.appSwiperController.page ?? 0);
                                                                                                               translateYOffset = currentStep - (model.appSwiperController.page ?? 0);
                                                                                                             }
@@ -459,11 +467,13 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                               firstCurve: Curves.easeIn,
                                                                                                               secondCurve: Curves.easeIn,
                                                                                                               alignment: Alignment.center,
-                                                                                                              crossFadeState:
-                                                                                                                  model.settings || model.showPayBackView ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                                                                                                              crossFadeState: model.settings || model.showPayBackView
+                                                                                                                  ? CrossFadeState.showFirst
+                                                                                                                  : CrossFadeState.showSecond,
                                                                                                               firstChild: Padding(
                                                                                                                 padding: const EdgeInsets.all(10.0),
-                                                                                                                child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue, height: 40, width: 40),
+                                                                                                                child: AppSvg.asset(AssetUtils.down,
+                                                                                                                    color: AppColor.light_acccent_blue, height: 40, width: 40),
                                                                                                               ),
                                                                                                               secondChild: Text(
                                                                                                                 S.current.transactions,
@@ -480,7 +490,9 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                 ),
                                                                               ),
                                                                               AnimatedCrossFade(
-                                                                                crossFadeState: model.settings || model.timelinePage || model.showPayBackView ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                                                                                crossFadeState: model.settings || model.timelinePage || model.showPayBackView
+                                                                                    ? CrossFadeState.showFirst
+                                                                                    : CrossFadeState.showSecond,
                                                                                 firstChild: const SizedBox(),
                                                                                 secondChild: SizedBox(
                                                                                   height: MediaQuery.of(context).size.height * 0.03,
@@ -501,7 +513,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                       builder: (context, child) {
                                                                         return Transform.translate(
                                                                           //offset: Offset(0, model.animation.value* (-MediaQuery.of(context).size.height*0.65)),
-                                                                          offset: Offset(0, (model.animation.value * (MediaQuery.of(context).size.height * 0.65))),
+                                                                          offset: Offset(0, (model.animation.value * (-MediaQuery.of(context).size.height * 0.65))),
                                                                           child: Transform.scale(
                                                                             scale: model.scaleAnimationController.value,
                                                                             child: child,

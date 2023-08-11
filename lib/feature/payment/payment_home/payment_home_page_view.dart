@@ -30,6 +30,11 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../postpaid_bills/bill_payments_transaction/bill_payments_transaction_page.dart';
+import '../../postpaid_bills/new_bill/new_bills_page.dart';
+import '../request_money/request_money_page.dart';
+import '../send_money/send_money_page.dart';
+
 class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
   NavigationType? navigationType;
   List<dynamic> pages = [];
@@ -72,23 +77,8 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
               initialData: model.getInitialNavigation(navigationType!, context),
               dataBuilder: (context, currentStep) {
                 return GestureDetector(
-                  onHorizontalDragEnd: (details) {
-                    if (currentStep == 2) {}
-                  },
                   onVerticalDragEnd: (details) {
-                    if (details.primaryVelocity!.isNegative) {
-                      if (currentStep == 0) {
-                        Navigator.pushNamed(context, RoutePaths.SendMoney);
-                      } else if (currentStep == 1) {
-                        getVerticalRouting(context, model, 1);
-                      } else if (currentStep == 2) {
-                        getVerticalRouting(context, model, 2);
-                      } else if (currentStep == 3) {
-                        getVerticalRouting(context, model, 3);
-                      } else {
-                        Navigator.pop(context);
-                      }
-                    }
+                    if (details.primaryVelocity!.isNegative) {}
                   },
                   behavior: HitTestBehavior.translucent,
                   child: Stack(
@@ -103,22 +93,22 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                               switchInCurve: Curves.easeInOut,
                               switchOutCurve: Curves.linearToEaseOut,
                               child: switchedPage == AnimatedPage.PAY_NEW_BILL
-                                  ? const SizedBox()
+                                  ? NewBillsPage()
                                   : switchedPage == AnimatedPage.POST_PAID_BILL_HISTORY
-                                      ? const SizedBox()
+                                      ? BillPaymentsTransactionPage()
                                       : switchedPage == AnimatedPage.PRE_PAID_BILL_HISTORY
-                                          ? const SizedBox()
+                                          ? BillPaymentsTransactionPage()
                                           : switchedPage == AnimatedPage.SEND_MONEY
-                                              ? const SizedBox()
+                                              ? SendMoneyPage()
                                               : switchedPage == AnimatedPage.REQUEST_MONEY
-                                                  ? const SizedBox()
+                                                  ? RequestMoneyPage()
                                                   : const SizedBox(),
                             );
                           }),
                       AnimatedBuilder(
                         animation: model.translateUpController,
                         child: Padding(
-                          padding: EdgeInsets.only(top: 75.0.h),
+                          padding: EdgeInsets.only(top: 70.0.h),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -135,7 +125,8 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                 InformationDialog.show(context,
                                                     image: AssetUtils.payRequestViaQRBlackIcon,
                                                     title: S.of(context).payViaQR,
-                                                    descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
+                                                    descriptionWidget:
+                                                        Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
                                                     onDismissed: () {
                                                   Navigator.pop(context);
                                                 }, onSelected: () {
@@ -177,14 +168,16 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                   InformationDialog.show(context,
                                                       image: AssetUtils.payRequestViaQRBlackIcon,
                                                       title: S.of(context).requestViaQR,
-                                                      descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
+                                                      descriptionWidget:
+                                                          Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
                                                       onDismissed: () {
                                                     Navigator.pop(context);
                                                   }, onSelected: () {
                                                     Navigator.pop(context);
 
                                                     Navigator.pushNamed(context, RoutePaths.RequestMoneyQrGeneration,
-                                                        arguments: RequestMoneyQrGenerationPageArguments(ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.account!));
+                                                        arguments:
+                                                            RequestMoneyQrGenerationPageArguments(ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.account!));
                                                   });
                                                 },
                                                 child: AppSvg.asset(AssetUtils.requestViaQrIcon)),
@@ -267,7 +260,19 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                   child: InkWell(
                                                     splashColor: Colors.transparent,
                                                     highlightColor: Colors.transparent,
-                                                    onTap: () {},
+                                                    onTap: () {
+                                                      if (currentStep == 0) {
+                                                        model.animatePage(AnimatedPage.SEND_MONEY);
+                                                      } else if (currentStep == 1) {
+                                                        getVerticalRouting(context, model, 1);
+                                                      } else if (currentStep == 2) {
+                                                        getVerticalRouting(context, model, 2);
+                                                      } else if (currentStep == 3) {
+                                                        getVerticalRouting(context, model, 3);
+                                                      } else {
+                                                        Navigator.pop(context);
+                                                      }
+                                                    },
                                                     child: AnimatedOpacity(
                                                       ///For credit card
                                                       duration: const Duration(milliseconds: 500),
@@ -294,8 +299,8 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                         child: AnimatedContainer(
                                                           duration: const Duration(milliseconds: 500),
                                                           curve: Curves.easeInOut,
-                                                          width: switchedPage == AnimatedPage.NULL ? 48 : 150,
-                                                          height: switchedPage == AnimatedPage.NULL ? 48 : 44,
+                                                          width: switchedPage == AnimatedPage.NULL ? 48 : 48,
+                                                          height: switchedPage == AnimatedPage.NULL ? 48 : 48,
                                                           alignment: Alignment.center,
                                                           decoration: BoxDecoration(
                                                             color: Colors.white,
@@ -303,21 +308,9 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                             borderRadius: BorderRadius.circular(100),
                                                             boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.inverseSurface, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))],
                                                           ),
-                                                          child: AnimatedCrossFade(
-                                                            duration: const Duration(milliseconds: 500),
-                                                            reverseDuration: const Duration(milliseconds: 500),
-                                                            firstCurve: Curves.easeIn,
-                                                            secondCurve: Curves.easeIn,
-                                                            alignment: Alignment.center,
-                                                            crossFadeState: switchedPage == AnimatedPage.NULL ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-                                                            firstChild: Padding(
-                                                              padding: const EdgeInsets.all(10.0),
-                                                              child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue, height: 40, width: 40),
-                                                            ),
-                                                            secondChild: Text(
-                                                              S.current.transactions,
-                                                              style: TextStyle(color: AppColor.skyblue, fontSize: 12, fontWeight: FontWeight.w600),
-                                                            ),
+                                                          child: Padding(
+                                                            padding: const EdgeInsets.all(10.0),
+                                                            child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue, height: 40, width: 40),
                                                           ),
                                                         ),
                                                       ),
@@ -328,51 +321,70 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                         ],
                                       ),
                                     ),
-                                    SmoothPageIndicator(
-                                      controller: model.appSwiperController,
-                                      count: pages.length,
-                                      effect: ScrollingDotsEffect(
-                                        activeStrokeWidth: 2.6,
-                                        activeDotScale: 1.3,
-                                        activeDotColor: Theme.of(context).primaryColorDark,
-                                        dotColor: Theme.of(context).primaryColorDark.withOpacity(0.6),
-                                        maxVisibleDots: 5,
-                                        radius: 8,
-                                        spacing: 10,
-                                        dotHeight: 10,
-                                        dotWidth: 10,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 17.h + 24.h),
-                                      child: Align(
-                                        alignment: Alignment.bottomCenter,
-                                        child: BottomBarWidget(
-                                          onHomeTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          onMoreTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          onContactUsTap: () {
-                                            EngagementTeamDialog.show(context, onDismissed: () {
-                                              Navigator.pop(context);
-                                            }, onSelected: (value) {
-                                              Navigator.pop(context);
-                                            });
-                                          },
-                                        ),
-                                      ),
-                                    )
+
+                                    /// INDICATOR...
+                                    AppStreamBuilder<AnimatedPage>(
+                                        stream: model.pageSwitchStream,
+                                        initialData: AnimatedPage.NULL,
+                                        dataBuilder: (context, switchedPage) {
+                                          return AnimatedCrossFade(
+                                            crossFadeState: switchedPage != AnimatedPage.NULL ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                                            firstChild: const SizedBox(),
+                                            secondChild: SizedBox(
+                                              height: MediaQuery.of(context).size.height * 0.03,
+                                              child: Padding(
+                                                padding: EdgeInsets.only(bottom: 17.h),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: buildPageIndicator(currentStep!, pages.length),
+                                                ),
+                                              ),
+                                            ),
+                                            duration: const Duration(milliseconds: 500),
+                                          );
+                                        }),
+
+                                    /// BOTTOM BAR
+                                    AppStreamBuilder<AnimatedPage>(
+                                        stream: model.pageSwitchStream,
+                                        initialData: AnimatedPage.NULL,
+                                        dataBuilder: (context, switchedPage) {
+                                          return AnimatedCrossFade(
+                                            duration: Duration(milliseconds: 500),
+                                            firstChild: Padding(
+                                              padding: EdgeInsets.only(top: 17.h + 24.h),
+                                              child: Align(
+                                                alignment: Alignment.bottomCenter,
+                                                child: BottomBarWidget(
+                                                  onHomeTap: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  onMoreTap: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  onContactUsTap: () {
+                                                    EngagementTeamDialog.show(context, onDismissed: () {
+                                                      Navigator.pop(context);
+                                                    }, onSelected: (value) {
+                                                      Navigator.pop(context);
+                                                    });
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                            secondChild: const SizedBox(),
+                                            crossFadeState: switchedPage == AnimatedPage.NULL ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                                          );
+                                        })
                                   ],
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
                         builder: (BuildContext context, Widget? child) {
                           return Transform.translate(
-                            offset: Offset(0, model.translateUpAnimation.value * (-MediaQuery.of(context).size.height * 0.7)),
+                            offset: Offset(0, model.translateUpAnimation.value * (-MediaQuery.of(context).size.height * 0.75)),
                             child: child,
                           );
                         },
@@ -391,13 +403,15 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
   getVerticalRouting(BuildContext context, PaymentHomeViewModel model, int index) {
     switch (model.paymentWidgetTypeFeature[index].paymentWidgetType) {
       case PaymentWidgetType.REQUEST_MONEY:
-        Navigator.pushNamed(context, RoutePaths.RequestMoney);
+        // Navigator.pushNamed(context, RoutePaths.RequestMoney);
+        model.animatePage(AnimatedPage.REQUEST_MONEY);
         break;
       case PaymentWidgetType.PRE_PAID_BILL:
 
         ///LOG EVENT TO FIREBASE
         FireBaseLogUtil.fireBaseLog("new_pre_paid", {"new_pre_paid_clicked": true});
-        Navigator.pushNamed(context, RoutePaths.NewBillsPage);
+        // Navigator.pushNamed(context, RoutePaths.NewBillsPage);
+        model.animatePage(AnimatedPage.PAY_NEW_BILL);
         AppConstantsUtils.PRE_PAID_FLOW = true;
         AppConstantsUtils.POST_PAID_FLOW = false;
         AppConstantsUtils.IS_NEW_PAYMENT = true;
@@ -406,7 +420,8 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
 
         ///LOG EVENT TO FIREBASE
         FireBaseLogUtil.fireBaseLog("new_post_paid", {"new_post_paid_clicked": true});
-        Navigator.pushNamed(context, RoutePaths.NewBillsPage);
+        // Navigator.pushNamed(context, RoutePaths.NewBillsPage);
+        model.animatePage(AnimatedPage.PAY_NEW_BILL);
         AppConstantsUtils.POST_PAID_FLOW = true;
         AppConstantsUtils.PRE_PAID_FLOW = false;
         AppConstantsUtils.IS_NEW_PAYMENT = true;
@@ -414,6 +429,44 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
 
       default:
         Navigator.pop(context);
+    }
+  }
+
+  List<Widget> buildPageIndicator(int currentPage, int totalPage) {
+    List<Widget> list = [];
+    for (int i = 0; i < totalPage; i++) {
+      list.add(i == currentPage ? indicator(true, i, currentPage, totalPage) : indicator(false, i, currentPage, totalPage));
+    }
+    return list;
+  }
+
+  Widget indicator(bool isActive, int i, int currentPage, int totalPage) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 300),
+      margin: const EdgeInsets.symmetric(horizontal: 6.0),
+      height: getIndicatorSize(isActive, i, currentPage, totalPage),
+      width: getIndicatorSize(isActive, i, currentPage, totalPage),
+      decoration: BoxDecoration(
+        color: getColor(isActive, i),
+        shape: BoxShape.circle,
+      ),
+    );
+  }
+
+  double getIndicatorSize(bool isActive, int i, int currentPage, int totalPage) {
+    if (isActive) {
+      return 13.0;
+    } else if ((i == 0 || i == pages.length - 1) && !isActive) {
+      return 7.0;
+    }
+    return 10.0;
+  }
+
+  Color getColor(bool isActive, int i) {
+    if (isActive) {
+      return Colors.black;
+    } else {
+      return Color(0xFFA9A9A9);
     }
   }
 }

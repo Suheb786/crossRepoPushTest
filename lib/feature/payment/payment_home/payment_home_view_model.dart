@@ -125,6 +125,24 @@ class PaymentHomeViewModel extends BasePageViewModel {
     _currentStep.close();
     super.dispose();
   }
+
+  void animatePage(AnimatedPage animatedPage) {
+    if (pageSwitchSubject.value == AnimatedPage.NULL && animatedPage != AnimatedPage.NULL) {
+      animateToNewPage();
+      pageSwitchSubject.safeAdd(animatedPage);
+    } else {
+      animateBackToMainPage();
+      pageSwitchSubject.safeAdd(AnimatedPage.NULL);
+    }
+  }
+
+  void animateToNewPage() {
+    translateUpController.forward();
+  }
+
+  void animateBackToMainPage() {
+    translateUpController.reverse();
+  }
 }
 
 class PaymentHomeWidgetFeature {
