@@ -36,6 +36,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../ui/molecules/app_svg.dart';
+import '../../../utils/device_size_helper.dart';
 import '../../credit_card_pay_back/credit_card_pay_back_page.dart';
 import '../credit_card_settings/credit_card_settings_page.dart';
 
@@ -512,12 +513,9 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                       ),
                                                                       builder: (context, child) {
                                                                         return Transform.translate(
-                                                                          //offset: Offset(0, model.animation.value* (-MediaQuery.of(context).size.height*0.65)),
-                                                                          offset: Offset(0, (model.animation.value * (-MediaQuery.of(context).size.height * 0.65))),
-                                                                          child: Transform.scale(
-                                                                            scale: model.scaleAnimationController.value,
-                                                                            child: child,
-                                                                          ),
+                                                                          offset:
+                                                                              Offset(0, (model.animation.value * (-MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.63 : 0.65)))),
+                                                                          child: child,
                                                                         );
                                                                       }),
                                                                   builder: (context, child) {

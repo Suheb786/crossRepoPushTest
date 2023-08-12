@@ -8,4 +8,9 @@ class DeviceSizeHelper {
     Size deviceSize = MediaQuery.of(appLevelKey.currentContext!).size;
     return deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
   }
+
+  static bool get isBigDevice {
+    Size deviceSize = MediaQuery.of(appLevelKey.currentContext!).size;
+    return deviceSize.height > ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
+  }
 }
