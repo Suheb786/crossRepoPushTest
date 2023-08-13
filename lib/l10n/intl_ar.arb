@@ -1809,7 +1809,7 @@
   "youCanUnFreeze": ".بتقدر تفك تجميد بطاقتك وتفعلها بأي وقت من داخل التطبيق",
   "eVouchersAreHere": "القسائم الإلكترونية صارت متاحة!",
   "unavailable": "غير متوفر",
-  "eVoucherLandingDialogDescption": "صار بإمكانك تشتري القسائم الإلكترونية من مختلف المتاجر المحلية والدولية المفضلة لديك. "
+  "eVoucherLandingDialogDescption": "صار بإمكانك تشتري القسائم الإلكترونية من مختلف المتاجر المحلية والدولية المفضلة لديك. ",
   "enterEmailAndPassword": "Enter your email and create your password",
   "next": "Next",
   "changeMyEmail": "Change My Email",
@@ -1819,7 +1819,7 @@
   "selfieMismatched": "Selfie mismatched",
   "selfieMismatchedDescription": "Seems that your selfie does not match with your ID card. Please reach out to Blink Engagement Team for further assitance.",
   "registrationStopped": "Registration stopped",
-  "registrationStoppedDescription": "Unfortunately, you did not meet minimum age required to open an account with us. You may try again when you turn 18."
+  "registrationStoppedDescription": "Unfortunately, you did not meet minimum age required to open an account with us. You may try again when you turn 18.",
   "enterYourMobileNumber": "Enter your mobile number",
   "processingIDWiseStatus": "Processing...",
   "verifyingYourNationalID": "Verifying your National ID",
