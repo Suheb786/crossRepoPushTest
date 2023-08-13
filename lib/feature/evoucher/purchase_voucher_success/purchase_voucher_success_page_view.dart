@@ -195,7 +195,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                                       ),
                                       TextSpan(
                                         text: model.argument.placeOrder?.placementDate != null
-                                            ? TimeUtils.getFormattedTimeFor12HrsFormat(
+                                            ? TimeUtils.convertUTCDateToLocal(
                                                 model.argument.placeOrder!.placementDate!)
                                             : '-',
                                         style: TextStyle(
