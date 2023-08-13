@@ -18180,6 +18180,66 @@ class S {
     );
   }
 
+  /// `Processing...`
+  String get processingIDWiseStatus {
+    return Intl.message(
+      'Processing...',
+      name: 'processingIDWiseStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verifying your National ID`
+  String get verifyingYourNationalID {
+    return Intl.message(
+      'Verifying your National ID',
+      name: 'verifyingYourNationalID',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Validating your selfie`
+  String get validatingYourSelfie {
+    return Intl.message(
+      'Validating your selfie',
+      name: 'validatingYourSelfie',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Done`
+  String get done {
+    return Intl.message(
+      'Done',
+      name: 'done',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unable verify your ID`
+  String get unableVerifyYourID {
+    return Intl.message(
+      'Unable verify your ID',
+      name: 'unableVerifyYourID',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Seems that we are unable to verify your\nNational ID. Please try again later.`
+  String get unableVerifyYourIDDescription {
+    return Intl.message(
+      'Seems that we are unable to verify your\nNational ID. Please try again later.',
+      name: 'unableVerifyYourIDDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Enter your mobile number`
   String get enterYourMobileNumber {
     return Intl.message(
