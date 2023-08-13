@@ -47,7 +47,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
   Widget build(BuildContext context, model) {
     model.deviceSize = MediaQuery.of(context).size;
     model.isSmallDevices = model.deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
-
+    DeviceSizeHelper.isBigDevice;
     listenPopUps(model, context);
     return AppStreamBuilder<int>(
       stream: model.currentStep,
@@ -514,7 +514,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                       builder: (context, child) {
                                                                         return Transform.translate(
                                                                           offset:
-                                                                              Offset(0, (model.animation.value * (-MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.63 : 0.65)))),
+                                                                               Offset(0, (model.animation.value * (-MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.63 : 0.65)))),
                                                                           child: child,
                                                                         );
                                                                       }),

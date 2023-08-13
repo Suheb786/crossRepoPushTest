@@ -233,7 +233,7 @@ class AppHomeViewModel extends BasePageViewModel {
       ? 120.h
       : DeviceSizeHelper.isBigDevice
           ? 140.h
-          : 130.h;
+          : 125.h;
 
   bool isMyAccount(int index) {
     return cardTypeList[index].cardType == CardType.ACCOUNT;

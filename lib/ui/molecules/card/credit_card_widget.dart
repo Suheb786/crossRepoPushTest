@@ -188,7 +188,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                         // height: widget.isSmallDevice ? 93 : 118,
                       ),
                       Container(
-                        padding: EdgeInsets.only(left: 24.0.w, top: MediaQuery.of(context).size.height * 0.04, right: 24.0.w),
+                        padding: EdgeInsets.only(left: 23.50.w, top: MediaQuery.of(context).size.height * 0.04, right: 23.50.w),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: StringUtils.isDirectionRTL(context)
