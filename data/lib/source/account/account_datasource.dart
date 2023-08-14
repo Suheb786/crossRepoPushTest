@@ -10,6 +10,7 @@ import 'package:data/entity/remote/account/video_call_status_response_entity.dar
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:domain/usecase/account/send_mobile_otp_usecase.dart';
+import 'package:domain/usecase/account/verify_mobile_otp_usecase.dart';
 
 abstract class AccountRemoteDS {
   Future<HttpResponse<CheckVideoCallStatusResponseEntity>> checkVideoCallStatus({bool getToken});
@@ -34,6 +35,8 @@ abstract class AccountRemoteDS {
 
   Future<HttpResponse<VideoCallStatusResponseEntity>> getCallStatus(String session);
   Future<HttpResponse<ResponseEntity>> sendMobileOTP({required SendMobileOTPUsecaseParams params});
+  Future<HttpResponse<ResponseEntity>> verifyMobileOTP(
+      {required OnboardingVerifyMobileOtpUsecaseParams params});
 }
 
 abstract class AccountLocalDS {}

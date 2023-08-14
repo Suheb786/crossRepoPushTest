@@ -1,4 +1,5 @@
 import 'package:domain/usecase/account/send_mobile_otp_usecase.dart';
+import 'package:domain/usecase/account/verify_mobile_otp_usecase.dart';
 import 'package:domain/usecase/user/change_my_number_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
@@ -17,7 +18,7 @@ import 'package:sms_autofill/sms_autofill.dart';
 
 class ValidateOtpViewModel extends BasePageViewModel {
   final VerifyOtpUseCase _verifyOtpUseCase;
-
+  final OnboardingVerifyMobileOtpUsecase _onboardingVerifyMobileOtpUsecase;
   final GetTokenUseCase _getTokenUseCase;
   final SendMobileOTPUsecase _sendMobileOTPUsecase;
 
@@ -82,14 +83,22 @@ class ValidateOtpViewModel extends BasePageViewModel {
   ///change my number stream
   Stream<Resource<bool>> get changeMyNumberStream => _changeMyNumberResponse.stream;
 
+  ///-------send Mobile Otp--------->
   PublishSubject<SendMobileOTPUsecaseParams> _sendMobileOTPRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _sendMobileOTPResponse = PublishSubject();
 
   Stream<Resource<bool>> get sendMobileOTPResponseStream => _sendMobileOTPResponse.stream;
 
+  ///-------verify Mobile Otp--------->
+  PublishSubject<OnboardingVerifyMobileOtpUsecaseParams> _verifyMobileOtpRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _verifyMobileOtpResponse = PublishSubject();
+
+  Stream<Resource<bool>> get verifyMobileOtpResponseStream => _verifyMobileOtpResponse.stream;
+
   ValidateOtpViewModel(this._verifyOtpUseCase, this._getTokenUseCase, this._changeMyNumberUseCase,
-      this._sendMobileOTPUsecase) {
+      this._sendMobileOTPUsecase, this._onboardingVerifyMobileOtpUsecase) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value, createCall: () => _verifyOtpUseCase.execute(params: value))
           .asFlow()
@@ -146,6 +155,17 @@ class ValidateOtpViewModel extends BasePageViewModel {
         }
       });
     });
+    _verifyMobileOtpRequest.listen((value) {
+      RequestManager(value, createCall: () => _onboardingVerifyMobileOtpUsecase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _verifyMobileOtpResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
   }
 
   void validateOtp() {
@@ -169,6 +189,10 @@ class ValidateOtpViewModel extends BasePageViewModel {
       MobileCode:
           ProviderScope.containerOf(context).read(addNumberViewModelProvider).countryData.phoneCode ?? "",
     ));
+  }
+
+  void verifyMobileOtp({required String? OTPCode}) {
+    _verifyMobileOtpResponse.safeAdd(OnboardingVerifyMobileOtpUsecaseParams(OTPCode: OTPCode));
   }
 
   void validate(String value) {

@@ -6,9 +6,8 @@ part of 'onboarding_mobile_otp_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-OnboardingMobileOTPRequestEntity _$OnboardingMobileOTPRequestEntityFromJson(
-        Map<String, dynamic> json) =>
-    OnboardingMobileOTPRequestEntity(
+OnboardingSendMobileOTPRequestEntity _$OnboardingMobileOTPRequestEntityFromJson(Map<String, dynamic> json) =>
+    OnboardingSendMobileOTPRequestEntity(
       GetToken: json['GetToken'] as bool?,
       MobileNumber: json['MobileNumber'] as String?,
       MobileCode: json['MobileCode'] as String?,
@@ -16,7 +15,7 @@ OnboardingMobileOTPRequestEntity _$OnboardingMobileOTPRequestEntityFromJson(
     );
 
 Map<String, dynamic> _$OnboardingMobileOTPRequestEntityToJson(
-        OnboardingMobileOTPRequestEntity instance) =>
+        OnboardingSendMobileOTPRequestEntity instance) =>
     <String, dynamic>{
       'GetToken': instance.GetToken,
       'MobileNumber': instance.MobileNumber,

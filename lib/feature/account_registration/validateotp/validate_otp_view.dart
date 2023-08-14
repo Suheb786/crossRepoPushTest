@@ -60,7 +60,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                         var status = await idWiseHelper.startVerification('en');
                         debugPrint("STATUS : ${status.keys.first}");
                         debugPrint("TEXT :  ${status.values.first}");*/
-
+                        model.verifyMobileOtp(OTPCode: "");
                         Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
                             arguments: ManageIDWiseStatusParams(journeyId: ''));
                       } else if (data.status == Status.ERROR) {
