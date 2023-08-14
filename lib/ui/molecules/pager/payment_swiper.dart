@@ -5,6 +5,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 import '../../../feature/payment/payment_home/payment_home_view_model.dart';
 import 'dart:math' as math;
 
+import '../../../utils/device_size_helper.dart';
 import '../stream_builder/app_stream_builder.dart';
 
 class PaymentSwiper extends StatefulWidget {
@@ -54,7 +55,7 @@ class _PaymentSwiperState extends State<PaymentSwiper> {
   Widget carouselView(int index) {
     double horizontalSpacing = MediaQuery.of(context).size.width * 0.035;
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: horizontalSpacing) + EdgeInsets.only(bottom: 40, top: 22),
+      margin: EdgeInsets.symmetric(horizontal: horizontalSpacing) + EdgeInsets.only(bottom: 40, top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.06 : 0.04)),
       child: AnimatedBuilder(
         animation: widget.translateSidewaysController!,
         builder: (context, child) {

@@ -12,6 +12,9 @@ import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../feature/postpaid_bills/bill_payments_transaction/bill_payments_transaction_page.dart';
+import '../../../utils/navigation_transitions.dart';
+
 class PrePaidBillCardWidget extends StatelessWidget {
   const PrePaidBillCardWidget({Key? key}) : super(key: key);
 
@@ -39,7 +42,8 @@ class PrePaidBillCardWidget extends StatelessWidget {
                       AppConstantsUtils.PRE_PAID_FLOW = true;
                       AppConstantsUtils.POST_PAID_FLOW = false;
                       // Navigator.pushNamed(context, RoutePaths.BillPaymentsTransactionPage);
-                      ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animatePage(AnimatedPage.PRE_PAID_BILL_HISTORY);
+                      ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animateToNewPage();
+                      Navigator.of(context).push(slideBottomToTop(nextPage: BillPaymentsTransactionPage()));
                     },
                     child: Text(S.of(context).viewHistory, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, fontWeight: FontWeight.w600, color: AppColor.brightBlue)),
                   ),

@@ -30,6 +30,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../utils/device_size_helper.dart';
 import '../../postpaid_bills/bill_payments_transaction/bill_payments_transaction_page.dart';
 import '../../postpaid_bills/new_bill/new_bills_page.dart';
 import '../request_money/request_money_page.dart';
@@ -101,7 +102,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                     AnimatedBuilder(
                       animation: model.translateUpController,
                       child: Padding(
-                        padding: EdgeInsets.only(top: 70.0.h),
+                        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.06 : 0.04)),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -362,7 +363,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                         return AnimatedCrossFade(
                                           duration: Duration(milliseconds: 500),
                                           firstChild: Padding(
-                                            padding: EdgeInsets.only(top: 17.h + 24.h),
+                                            padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.07 : 0.05)),
                                             child: Align(
                                               alignment: Alignment.bottomCenter,
                                               child: BottomBarWidget(
