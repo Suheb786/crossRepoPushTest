@@ -39,13 +39,14 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.27),
+                  padding: EdgeInsetsDirectional.only(top: (MediaQuery.of(context).size.height * 0.18) + 10.h),
                   child: Text(
                     S.of(context).requestMoney,
                     style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
                   ),
                 ),
-                Padding(
+                Spacer()
+,                Padding(
                   padding: EdgeInsetsDirectional.only(top: 88.0.h, start: 24.0.w, end: 24.0.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -111,7 +112,8 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                     ],
                   ),
                 ),
-                Expanded(
+                Padding(
+                  padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.03),
                   child: Directionality(
                     textDirection: TextDirection.ltr,
                     child: NumericKeyboard(

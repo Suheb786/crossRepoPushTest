@@ -28,12 +28,13 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.27),
+            padding: EdgeInsetsDirectional.only(top: (MediaQuery.of(context).size.height * 0.18) + 10.h),
             child: Text(
               S.of(context).sendMoney,
               style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
             ),
           ),
+          Spacer(),
           Padding(
             padding: EdgeInsets.only(top: 95.0.h, left: 24.0.w, right: 24.0.w),
             child: Row(
@@ -101,7 +102,8 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
               ],
             ),
           ),
-          Expanded(
+          Padding(
+            padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.03),
             child: Directionality(
               textDirection: TextDirection.ltr,
               child: NumericKeyboard(

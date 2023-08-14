@@ -54,6 +54,8 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
         },
         dataBuilder: (context, data) {
           if (data!.status == Status.SUCCESS) {
+            pages.clear();
+            model.paymentWidgetTypeFeature.clear();
             pages.add(AddSendMoneyContactPage(beneficiaries: model.smBeneficiaries));
             model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(paymentWidgetType: PaymentWidgetType.SEND_MONEY, isEnabled: true));
             if (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.rtpFeatureEnabled ?? false) {
@@ -76,43 +78,77 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
               stream: model.currentStep,
               initialData: model.getInitialNavigation(navigationType!, context),
               dataBuilder: (context, currentStep) {
-                return GestureDetector(
-                  onVerticalDragEnd: (details) {
-                    if (details.primaryVelocity!.isNegative) {}
-                  },
-                  behavior: HitTestBehavior.translucent,
-                  child: Stack(
-                    children: [
-                      AppStreamBuilder<AnimatedPage>(
-                          stream: model.pageSwitchStream,
-                          initialData: AnimatedPage.NULL,
-                          dataBuilder: (context, switchedPage) {
-                            return AnimatedSwitcher(
-                              duration: const Duration(milliseconds: 500),
-                              reverseDuration: const Duration(milliseconds: 400),
-                              switchInCurve: Curves.easeInOut,
-                              switchOutCurve: Curves.linearToEaseOut,
-                              child: switchedPage == AnimatedPage.PAY_NEW_BILL
-                                  ? NewBillsPage()
-                                  : switchedPage == AnimatedPage.POST_PAID_BILL_HISTORY
-                                      ? BillPaymentsTransactionPage()
-                                      : switchedPage == AnimatedPage.PRE_PAID_BILL_HISTORY
-                                          ? BillPaymentsTransactionPage()
-                                          : switchedPage == AnimatedPage.SEND_MONEY
-                                              ? SendMoneyPage()
-                                              : switchedPage == AnimatedPage.REQUEST_MONEY
-                                                  ? RequestMoneyPage()
-                                                  : const SizedBox(),
-                            );
-                          }),
-                      AnimatedBuilder(
-                        animation: model.translateUpController,
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 70.0.h),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              if (currentStep == 0)
+                return Stack(
+                  children: [
+                    AppStreamBuilder<AnimatedPage>(
+                        stream: model.pageSwitchStream,
+                        initialData: AnimatedPage.NULL,
+                        dataBuilder: (context, switchedPage) {
+                          return AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 500),
+                            reverseDuration: const Duration(milliseconds: 400),
+                            switchInCurve: Curves.easeInOut,
+                            switchOutCurve: Curves.linearToEaseOut,
+                            child: switchedPage == AnimatedPage.PAY_NEW_BILL
+                                ? NewBillsPage()
+                                : switchedPage == AnimatedPage.SEND_MONEY
+                                    ? SendMoneyPage()
+                                    : switchedPage == AnimatedPage.REQUEST_MONEY
+                                        ? RequestMoneyPage()
+                                        : const SizedBox(),
+                          );
+                        }),
+                    AnimatedBuilder(
+                      animation: model.translateUpController,
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 70.0.h),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            if (currentStep == 0)
+                              ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.appBillPaymentQrCode ?? true
+                                  ? Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        InkWell(
+                                            onTap: () async {
+                                              ///LOG EVENT TO FIREBASE
+                                              await FirebaseAnalytics.instance.logEvent(name: "pay_via_qr", parameters: {"pay_via_qr_clicked": true.toString()});
+
+                                              InformationDialog.show(context,
+                                                  image: AssetUtils.payRequestViaQRBlackIcon,
+                                                  title: S.of(context).payViaQR,
+                                                  descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
+                                                  onDismissed: () {
+                                                Navigator.pop(context);
+                                              }, onSelected: () {
+                                                Navigator.pop(context);
+                                                Navigator.pushNamed(context, RoutePaths.QRScanningScreen);
+                                              });
+                                            },
+                                            child: AppSvg.asset(AssetUtils.payViaQrIcon)),
+                                        Text(
+                                          S.of(context).payViaQR,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
+                                        ),
+                                      ],
+                                    )
+                                  : Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(vertical: 10.0.h),
+                                          child: AppSvg.asset(AssetUtils.payments),
+                                        ),
+                                        Text(
+                                          S.of(context).billsAndPayments,
+                                          style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
+                                        )
+                                      ],
+                                    )
+                            else if (currentStep == 1)
+                              if (model.paymentWidgetTypeFeature[1].paymentWidgetType == PaymentWidgetType.REQUEST_MONEY)
                                 ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.appBillPaymentQrCode ?? true
                                     ? Column(
                                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -120,23 +156,23 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                           InkWell(
                                               onTap: () async {
                                                 ///LOG EVENT TO FIREBASE
-                                                await FirebaseAnalytics.instance.logEvent(name: "pay_via_qr", parameters: {"pay_via_qr_clicked": true.toString()});
-
+                                                await FirebaseAnalytics.instance.logEvent(name: "request_via_qr", parameters: {"request_via_qr_clicked": true.toString()});
                                                 InformationDialog.show(context,
                                                     image: AssetUtils.payRequestViaQRBlackIcon,
-                                                    title: S.of(context).payViaQR,
-                                                    descriptionWidget:
-                                                        Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
+                                                    title: S.of(context).requestViaQR,
+                                                    descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
                                                     onDismissed: () {
                                                   Navigator.pop(context);
                                                 }, onSelected: () {
                                                   Navigator.pop(context);
-                                                  Navigator.pushNamed(context, RoutePaths.QRScanningScreen);
+
+                                                  Navigator.pushNamed(context, RoutePaths.RequestMoneyQrGeneration,
+                                                      arguments: RequestMoneyQrGenerationPageArguments(ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.account!));
                                                 });
                                               },
-                                              child: AppSvg.asset(AssetUtils.payViaQrIcon)),
+                                              child: AppSvg.asset(AssetUtils.requestViaQrIcon)),
                                           Text(
-                                            S.of(context).payViaQR,
+                                            S.of(context).requestViaQR,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
                                           ),
@@ -155,66 +191,6 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                           )
                                         ],
                                       )
-                              else if (currentStep == 1)
-                                if (model.paymentWidgetTypeFeature[1].paymentWidgetType == PaymentWidgetType.REQUEST_MONEY)
-                                  ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.appBillPaymentQrCode ?? true
-                                      ? Column(
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: [
-                                            InkWell(
-                                                onTap: () async {
-                                                  ///LOG EVENT TO FIREBASE
-                                                  await FirebaseAnalytics.instance.logEvent(name: "request_via_qr", parameters: {"request_via_qr_clicked": true.toString()});
-                                                  InformationDialog.show(context,
-                                                      image: AssetUtils.payRequestViaQRBlackIcon,
-                                                      title: S.of(context).requestViaQR,
-                                                      descriptionWidget:
-                                                          Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
-                                                      onDismissed: () {
-                                                    Navigator.pop(context);
-                                                  }, onSelected: () {
-                                                    Navigator.pop(context);
-
-                                                    Navigator.pushNamed(context, RoutePaths.RequestMoneyQrGeneration,
-                                                        arguments:
-                                                            RequestMoneyQrGenerationPageArguments(ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.account!));
-                                                  });
-                                                },
-                                                child: AppSvg.asset(AssetUtils.requestViaQrIcon)),
-                                            Text(
-                                              S.of(context).requestViaQR,
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
-                                            ),
-                                          ],
-                                        )
-                                      : Column(
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(vertical: 10.0.h),
-                                              child: AppSvg.asset(AssetUtils.payments),
-                                            ),
-                                            Text(
-                                              S.of(context).billsAndPayments,
-                                              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
-                                            )
-                                          ],
-                                        )
-                                else
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(vertical: 10.0.h),
-                                        child: AppSvg.asset(AssetUtils.payments),
-                                      ),
-                                      Text(
-                                        S.of(context).billsAndPayments,
-                                        style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
-                                      )
-                                    ],
-                                  )
                               else
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -228,169 +204,202 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                       style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
                                     )
                                   ],
-                                ),
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      child: Stack(
-                                        fit: StackFit.expand,
-                                        alignment: Alignment.topCenter,
-                                        children: [
-                                          PaymentSwiper(
-                                            appSwiperController: model.appSwiperController,
-                                            pages: pages,
-                                            // pageController: model.pageController,
-                                            onIndexChanged: (index) {
-                                              model.updatePage(index);
-                                            },
-                                            currentStep: currentStep,
-                                            model: model,
-                                            translateSidewaysController: model.translateSidewaysController,
-                                          ),
+                                )
+                            else
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 10.0.h),
+                                    child: AppSvg.asset(AssetUtils.payments),
+                                  ),
+                                  Text(
+                                    S.of(context).billsAndPayments,
+                                    style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
+                                  )
+                                ],
+                              ),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: Stack(
+                                      fit: StackFit.expand,
+                                      alignment: Alignment.topCenter,
+                                      children: [
+                                        PaymentSwiper(
+                                          appSwiperController: model.appSwiperController,
+                                          pages: pages,
+                                          // pageController: model.pageController,
+                                          onIndexChanged: (index) {
+                                            model.updatePage(index);
+                                          },
+                                          currentStep: currentStep,
+                                          model: model,
+                                          translateSidewaysController: model.translateSidewaysController,
+                                        ),
 
-                                          ///Transactions button
-                                          ///For My Account and My credit card
-                                          AppStreamBuilder<AnimatedPage>(
-                                              stream: model.pageSwitchStream,
-                                              initialData: AnimatedPage.NULL,
-                                              dataBuilder: (context, switchedPage) {
-                                                return Positioned(
-                                                  bottom: 20,
-                                                  child: InkWell(
-                                                    splashColor: Colors.transparent,
-                                                    highlightColor: Colors.transparent,
-                                                    onTap: () {
-                                                      if (currentStep == 0) {
-                                                        model.animatePage(AnimatedPage.SEND_MONEY);
-                                                      } else if (currentStep == 1) {
-                                                        getVerticalRouting(context, model, 1);
-                                                      } else if (currentStep == 2) {
-                                                        getVerticalRouting(context, model, 2);
-                                                      } else if (currentStep == 3) {
-                                                        getVerticalRouting(context, model, 3);
-                                                      } else {
-                                                        Navigator.pop(context);
-                                                      }
-                                                    },
-                                                    child: AnimatedOpacity(
-                                                      ///For credit card
-                                                      duration: const Duration(milliseconds: 500),
-                                                      opacity: 1,
-                                                      child: AnimatedBuilder(
-                                                        animation: model.appSwiperController,
-                                                        builder: (BuildContext context, Widget? child) {
-                                                          double translateYOffset = 0;
-                                                          double opacity = 0;
-                                                          if (model.appSwiperController.hasClients) if (model.appSwiperController.position.hasContentDimensions) {
-                                                            opacity = currentStep! - (model.appSwiperController.page ?? 0);
-                                                            translateYOffset = currentStep - (model.appSwiperController.page ?? 0);
-                                                          }
-                                                          return Transform.translate(
-                                                            offset: Offset(0, translateYOffset.abs() * 40),
-                                                            child: Opacity(
-                                                              opacity: (opacity.abs() - 1).abs(),
-                                                              child: child!,
-                                                            ),
-                                                          );
-                                                        },
-
-                                                        ///For credit card
-                                                        child: AnimatedContainer(
-                                                          duration: const Duration(milliseconds: 500),
-                                                          curve: Curves.easeInOut,
-                                                          width: switchedPage == AnimatedPage.NULL ? 48 : 48,
-                                                          height: switchedPage == AnimatedPage.NULL ? 48 : 48,
-                                                          alignment: Alignment.center,
-                                                          decoration: BoxDecoration(
-                                                            color: Colors.white,
-                                                            border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
-                                                            borderRadius: BorderRadius.circular(100),
-                                                            boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.inverseSurface, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))],
+                                        ///Transactions button
+                                        ///For My Account and My credit card
+                                        AppStreamBuilder<AnimatedPage>(
+                                            stream: model.pageSwitchStream,
+                                            initialData: AnimatedPage.NULL,
+                                            dataBuilder: (context, switchedPage) {
+                                              return Positioned(
+                                                bottom: 20,
+                                                child: InkWell(
+                                                  splashColor: Colors.transparent,
+                                                  highlightColor: Colors.transparent,
+                                                  onTap: () {
+                                                    if (currentStep == 0) {
+                                                      model.animatePage(AnimatedPage.SEND_MONEY);
+                                                    } else if (currentStep == 1) {
+                                                      getVerticalRouting(context, model, 1);
+                                                    } else if (currentStep == 2) {
+                                                      getVerticalRouting(context, model, 2);
+                                                    } else if (currentStep == 3) {
+                                                      getVerticalRouting(context, model, 3);
+                                                    } else {
+                                                      Navigator.pop(context);
+                                                    }
+                                                  },
+                                                  child: AnimatedOpacity(
+                                                    ///For credit card
+                                                    duration: const Duration(milliseconds: 500),
+                                                    opacity: 1,
+                                                    child: AnimatedBuilder(
+                                                      animation: model.appSwiperController,
+                                                      builder: (BuildContext context, Widget? child) {
+                                                        double translateYOffset = 0;
+                                                        double opacity = 0;
+                                                        if (model.appSwiperController.hasClients) if (model.appSwiperController.position.hasContentDimensions) {
+                                                          opacity = currentStep! - (model.appSwiperController.page ?? 0);
+                                                          translateYOffset = currentStep - (model.appSwiperController.page ?? 0);
+                                                        }
+                                                        return Transform.translate(
+                                                          offset: Offset(0, translateYOffset.abs() * 40),
+                                                          child: Opacity(
+                                                            opacity: (opacity.abs() - 1).abs(),
+                                                            child: child!,
                                                           ),
-                                                          child: Padding(
-                                                            padding: const EdgeInsets.all(10.0),
-                                                            child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue, height: 40, width: 40),
+                                                        );
+                                                      },
+
+                                                      ///For credit card
+                                                      child: AnimatedContainer(
+                                                        duration: const Duration(milliseconds: 500),
+                                                        curve: Curves.easeInOut,
+                                                        padding: const EdgeInsets.all(10.0),
+                                                        width: switchedPage != AnimatedPage.NULL
+                                                            ? 48
+                                                            : model.paymentWidgetTypeFeature[currentStep!].paymentWidgetType == PaymentWidgetType.SEND_MONEY
+                                                                ? 115
+                                                                : model.paymentWidgetTypeFeature[currentStep].paymentWidgetType == PaymentWidgetType.REQUEST_MONEY
+                                                                    ? 125
+                                                                    : 115,
+                                                        height: switchedPage != AnimatedPage.NULL ? 48 : 44,
+                                                        alignment: Alignment.center,
+                                                        decoration: BoxDecoration(
+                                                          color: Colors.white,
+                                                          border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
+                                                          borderRadius: BorderRadius.circular(100),
+                                                          boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.inverseSurface, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))],
+                                                        ),
+                                                        child: AnimatedCrossFade(
+                                                          duration: const Duration(milliseconds: 500),
+                                                          reverseDuration: const Duration(milliseconds: 500),
+                                                          firstCurve: Curves.easeIn,
+                                                          secondCurve: Curves.easeIn,
+                                                          alignment: Alignment.center,
+                                                          crossFadeState: switchedPage != AnimatedPage.NULL ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                                                          firstChild: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue, height: 40, width: 40),
+                                                          secondChild: Text(
+                                                            model.paymentWidgetTypeFeature[currentStep!].paymentWidgetType == PaymentWidgetType.SEND_MONEY
+                                                                ? S.current.sendMoney
+                                                                : model.paymentWidgetTypeFeature[currentStep].paymentWidgetType == PaymentWidgetType.REQUEST_MONEY
+                                                                    ? S.current.requestMoney
+                                                                    : S.current.payNewBill,
+                                                            style: TextStyle(color: AppColor.light_acccent_blue, fontSize: 12, fontWeight: FontWeight.w600),
                                                           ),
                                                         ),
                                                       ),
                                                     ),
                                                   ),
-                                                );
-                                              }),
-                                        ],
-                                      ),
+                                                ),
+                                              );
+                                            }),
+                                      ],
                                     ),
+                                  ),
 
-                                    /// INDICATOR...
-                                    AppStreamBuilder<AnimatedPage>(
-                                        stream: model.pageSwitchStream,
-                                        initialData: AnimatedPage.NULL,
-                                        dataBuilder: (context, switchedPage) {
-                                          return AnimatedCrossFade(
-                                            crossFadeState: switchedPage != AnimatedPage.NULL ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-                                            firstChild: const SizedBox(),
-                                            secondChild: SizedBox(
-                                              height: MediaQuery.of(context).size.height * 0.03,
-                                              child: Padding(
-                                                padding: EdgeInsets.only(bottom: 17.h),
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: buildPageIndicator(currentStep!, pages.length),
-                                                ),
+                                  /// INDICATOR...
+                                  AppStreamBuilder<AnimatedPage>(
+                                      stream: model.pageSwitchStream,
+                                      initialData: AnimatedPage.NULL,
+                                      dataBuilder: (context, switchedPage) {
+                                        return AnimatedCrossFade(
+                                          crossFadeState: switchedPage != AnimatedPage.NULL ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                                          firstChild: const SizedBox(),
+                                          secondChild: SizedBox(
+                                            height: MediaQuery.of(context).size.height * 0.03,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(bottom: 17.h),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: buildPageIndicator(currentStep!, pages.length),
                                               ),
                                             ),
-                                            duration: const Duration(milliseconds: 500),
-                                          );
-                                        }),
+                                          ),
+                                          duration: const Duration(milliseconds: 500),
+                                        );
+                                      }),
 
-                                    /// BOTTOM BAR
-                                    AppStreamBuilder<AnimatedPage>(
-                                        stream: model.pageSwitchStream,
-                                        initialData: AnimatedPage.NULL,
-                                        dataBuilder: (context, switchedPage) {
-                                          return AnimatedCrossFade(
-                                            duration: Duration(milliseconds: 500),
-                                            firstChild: Padding(
-                                              padding: EdgeInsets.only(top: 17.h + 24.h),
-                                              child: Align(
-                                                alignment: Alignment.bottomCenter,
-                                                child: BottomBarWidget(
-                                                  onHomeTap: () {
+                                  /// BOTTOM BAR
+                                  AppStreamBuilder<AnimatedPage>(
+                                      stream: model.pageSwitchStream,
+                                      initialData: AnimatedPage.NULL,
+                                      dataBuilder: (context, switchedPage) {
+                                        return AnimatedCrossFade(
+                                          duration: Duration(milliseconds: 500),
+                                          firstChild: Padding(
+                                            padding: EdgeInsets.only(top: 17.h + 24.h),
+                                            child: Align(
+                                              alignment: Alignment.bottomCenter,
+                                              child: BottomBarWidget(
+                                                onHomeTap: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                onMoreTap: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                onContactUsTap: () {
+                                                  EngagementTeamDialog.show(context, onDismissed: () {
                                                     Navigator.pop(context);
-                                                  },
-                                                  onMoreTap: () {
+                                                  }, onSelected: (value) {
                                                     Navigator.pop(context);
-                                                  },
-                                                  onContactUsTap: () {
-                                                    EngagementTeamDialog.show(context, onDismissed: () {
-                                                      Navigator.pop(context);
-                                                    }, onSelected: (value) {
-                                                      Navigator.pop(context);
-                                                    });
-                                                  },
-                                                ),
+                                                  });
+                                                },
                                               ),
                                             ),
-                                            secondChild: const SizedBox(),
-                                            crossFadeState: switchedPage == AnimatedPage.NULL ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-                                          );
-                                        })
-                                  ],
-                                ),
+                                          ),
+                                          secondChild: const SizedBox(),
+                                          crossFadeState: switchedPage == AnimatedPage.NULL ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                                        );
+                                      })
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        builder: (BuildContext context, Widget? child) {
-                          return Transform.translate(
-                            offset: Offset(0, model.translateUpAnimation.value * (-MediaQuery.of(context).size.height * 0.75)),
-                            child: child,
-                          );
-                        },
                       ),
-                    ],
-                  ),
+                      builder: (BuildContext context, Widget? child) {
+                        return Transform.translate(
+                          offset: Offset(0, model.translateUpAnimation.value * (-MediaQuery.of(context).size.height * 0.84)),
+                          child: child,
+                        );
+                      },
+                    ),
+                  ],
                 );
               },
             );

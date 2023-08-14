@@ -31,11 +31,12 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
           initialData: Resource.none(),
           dataBuilder: (context, snapshot) {
             return Padding(
-              padding: EdgeInsetsDirectional.only(top: MediaQuery.of(context).size.height * 0.27),
+              padding: EdgeInsetsDirectional.only(top: (MediaQuery.of(context).size.height * 0.18) + 10.h),
               child: Column(
                 children: [
                   Text(
                     S.of(context).newBill,
+                    textAlign: TextAlign.center,
                     style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.t, color: AppColor.gray_black),
                   ),
                   Padding(
@@ -78,8 +79,7 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                                           } else {
                                             AppConstantsUtils.billerDetailsCacheListKey = '${AppConstantsUtils.BILLER_CATEGORY}${AppConstantsUtils.POSTPAID_KEY}';
                                           }
-                                          AppConstantsUtils.BILLER_CATEGORY_API_VALUE =
-                                              !StringUtils.isDirectionRTL(context) ? snapshot.data![index].categoryName ?? "" : snapshot.data![index].categoryNameAr ?? "";
+                                          AppConstantsUtils.BILLER_CATEGORY_API_VALUE = !StringUtils.isDirectionRTL(context) ? snapshot.data![index].categoryName ?? "" : snapshot.data![index].categoryNameAr ?? "";
 
                                           Navigator.pushNamed(context, RoutePaths.PayBillPage);
                                         },

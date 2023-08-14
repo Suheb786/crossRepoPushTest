@@ -13,7 +13,10 @@ import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../feature/dashboard_home/card_transaction/card_transaction_page.dart';
 import '../../../feature/payment/payment_home/payment_home_view_model.dart';
+import '../../../feature/postpaid_bills/bill_payments_transaction/bill_payments_transaction_page.dart';
+import '../../../utils/navigation_transitions.dart';
 
 class PostPaidBillCardWidget extends StatelessWidget {
   const PostPaidBillCardWidget({Key? key}) : super(key: key);
@@ -43,7 +46,8 @@ class PostPaidBillCardWidget extends StatelessWidget {
                       AppConstantsUtils.PRE_PAID_FLOW = false;
                       AppConstantsUtils.POST_PAID_FLOW = true;
                       // Navigator.pushNamed(context, RoutePaths.BillPaymentsTransactionPage);
-                      ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animatePage(AnimatedPage.POST_PAID_BILL_HISTORY);
+                      ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animateToNewPage();
+                      Navigator.of(context).push(slideBottomToTop(nextPage: BillPaymentsTransactionPage()));
                     },
                     child: Text(S.of(context).viewHistory, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, fontWeight: FontWeight.w600, color: AppColor.brightBlue)),
                   ),
@@ -60,8 +64,7 @@ class PostPaidBillCardWidget extends StatelessWidget {
               SizedBox(
                 height: 8.h,
               ),
-              Text(S.of(context).howWouldLikeToPayPostPaidYourBills,
-                  textAlign: TextAlign.center, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, fontWeight: FontWeight.w600, color: AppColor.white)),
+              Text(S.of(context).howWouldLikeToPayPostPaidYourBills, textAlign: TextAlign.center, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, fontWeight: FontWeight.w600, color: AppColor.white)),
               Spacer(),
               InkWell(
                 onTap: () {

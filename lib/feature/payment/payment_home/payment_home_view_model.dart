@@ -138,10 +138,12 @@ class PaymentHomeViewModel extends BasePageViewModel {
 
   void animateToNewPage() {
     translateUpController.forward();
+    translateSidewaysController.forward();
   }
 
   void animateBackToMainPage() {
     translateUpController.reverse();
+    translateSidewaysController.reverse();
   }
 }
 

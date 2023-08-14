@@ -15,6 +15,8 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../di/payment/payment_modules.dart';
+
 class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTransactionViewModel> {
   BillPaymentsTransactionPageView(ProviderBase model) : super(model);
 
@@ -27,6 +29,7 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
           onVerticalDragEnd: (details) {
             if (details.primaryVelocity!.isNegative) {
             } else {
+              ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animateBackToMainPage();
               Navigator.pop(context);
             }
           },
