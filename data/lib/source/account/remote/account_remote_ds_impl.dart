@@ -13,6 +13,7 @@ import 'package:data/entity/remote/account/doc_status_response_entity.dart';
 import 'package:data/entity/remote/account/get_call_status_request.dart';
 import 'package:data/entity/remote/account/get_time_slots_request.dart';
 import 'package:data/entity/remote/account/get_time_slots_response_entity.dart';
+import 'package:data/entity/remote/account/onboarding_mobile_otp_request_entity.dart';
 import 'package:data/entity/remote/account/request_call_response_entity.dart';
 import 'package:data/entity/remote/account/request_video_call_request.dart';
 import 'package:data/entity/remote/account/save_customer_schedule_time_request_entity.dart';
@@ -22,6 +23,7 @@ import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/account/account_datasource.dart';
+import 'package:domain/usecase/account/send_mobile_otp_usecase.dart';
 import 'package:retrofit/dio.dart';
 
 class AccountRemoteDSImpl extends AccountRemoteDS {
@@ -112,5 +114,15 @@ class AccountRemoteDSImpl extends AccountRemoteDS {
     return _apiService.getCallStatus(
       GetCallStatusRequest(baseData: baseData.toJson(), session: session),
     );
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> sendMobileOTP({required SendMobileOTPUsecaseParams params}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.sendMobileOTP(OnboardingMobileOTPRequestEntity(
+        GetToken: params.GetToken,
+        MobileNumber: params.MobileNumber,
+        MobileCode: params.MobileCode,
+        BaseClass: baseData.toJson()));
   }
 }

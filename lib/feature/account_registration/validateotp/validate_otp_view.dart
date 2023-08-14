@@ -114,43 +114,54 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                           ),
                                         ),
                                       )),
-                                      CountdownTimer(
-                                        controller: model.countDownController,
-                                        onEnd: () {},
-                                        endTime: model.endTime,
-                                        textStyle: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            fontSize: 16.t,
-                                            color: Theme.of(context).textTheme.bodyMedium!.color!),
-                                        widgetBuilder: (context, currentTimeRemaining) {
-                                          return currentTimeRemaining == null
-                                              ? TextButton(
-                                                  onPressed: () {
-                                                    model.updateTime();
-                                                  },
-                                                  style: TextButton.styleFrom(
-                                                    padding: EdgeInsets.all(8.0),
-                                                  ),
-                                                  child: Text(
-                                                    S.of(context).resendCode,
-                                                    style: TextStyle(
-                                                        fontFamily: StringUtils.appFont,
-                                                        fontSize: 14.t,
-                                                        color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                                  ))
-                                              : Padding(
-                                                  padding: const EdgeInsets.all(10.0),
-                                                  child: Text(
-                                                    S.of(context).resendIn(
-                                                        '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
-                                                    style: TextStyle(
-                                                        fontFamily: StringUtils.appFont,
-                                                        fontSize: 14.t,
-                                                        color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                                  ),
-                                                );
-                                        },
-                                      ),
+                                      AppStreamBuilder<Resource<bool>>(
+                                          stream: model.sendMobileOTPResponseStream,
+                                          initialData: Resource.none(),
+                                          dataBuilder: (context, mobileOTP) {
+                                            return CountdownTimer(
+                                              controller: model.countDownController,
+                                              onEnd: () {},
+                                              endTime: model.endTime,
+                                              textStyle: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontSize: 16.t,
+                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                              widgetBuilder: (context, currentTimeRemaining) {
+                                                return currentTimeRemaining == null
+                                                    ? TextButton(
+                                                        onPressed: () {
+                                                          model.updateTime(context);
+                                                        },
+                                                        style: TextButton.styleFrom(
+                                                          padding: EdgeInsets.all(8.0),
+                                                        ),
+                                                        child: Text(
+                                                          S.of(context).resendCode,
+                                                          style: TextStyle(
+                                                              fontFamily: StringUtils.appFont,
+                                                              fontSize: 14.t,
+                                                              color: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyLarge!
+                                                                  .color!),
+                                                        ))
+                                                    : Padding(
+                                                        padding: const EdgeInsets.all(10.0),
+                                                        child: Text(
+                                                          S.of(context).resendIn(
+                                                              '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                                          style: TextStyle(
+                                                              fontFamily: StringUtils.appFont,
+                                                              fontSize: 14.t,
+                                                              color: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyLarge!
+                                                                  .color!),
+                                                        ),
+                                                      );
+                                              },
+                                            );
+                                          }),
                                     ],
                                   ),
                                 ),

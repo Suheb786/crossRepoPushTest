@@ -13,6 +13,7 @@ import '../../feature/account_registration/add_email_otp/email_otp_model.dart';
 import '../../feature/account_registration/failure_scenarios/failure_scenarios_page.dart';
 import '../../feature/account_registration/failure_scenarios/failure_scenarios_page_view_model.dart';
 import '../../feature/account_registration/manage_idwise_status/manage_idwise_status_model.dart';
+import '../usecase/account/account_usecase_provider.dart';
 
 ///account registration view model provider
 final accountRegistrationViewModelProvider =
@@ -31,7 +32,8 @@ final addNumberViewModelProvider = ChangeNotifierProvider.autoDispose<AddNumberV
       ref.read(registerNumberUseCaseProvider),
       ref.read(fetchCountryByCodeUseCaseProvider),
       ref.read(checkUserNameMobileUseCaseProvider),
-      ref.read(getAllowedCodeCountriesListUseCaseProvider)),
+      ref.read(getAllowedCodeCountriesListUseCaseProvider),
+      ref.read(sendMobileOTPUsecaseProvider)),
 );
 
 final addEmailViewModelProvider = ChangeNotifierProvider.autoDispose<AddEmailViewModel>(
@@ -41,7 +43,7 @@ final addEmailViewModelProvider = ChangeNotifierProvider.autoDispose<AddEmailVie
 ///[ValidateOtpViewModel] provider
 final validateOtpViewModelProvider = ChangeNotifierProvider.autoDispose<ValidateOtpViewModel>(
   (ref) => ValidateOtpViewModel(ref.read(verifyOtpUseCaseProvider), ref.read(getTokenUseCaseProvider),
-      ref.read(changeMyNumberUseCaseProvider)),
+      ref.read(changeMyNumberUseCaseProvider), ref.read(sendMobileOTPUsecaseProvider)),
 );
 
 ///[ValidateOtpViewModel] provider

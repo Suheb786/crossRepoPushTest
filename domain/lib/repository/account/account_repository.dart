@@ -10,6 +10,8 @@ import 'package:domain/model/account/doc_status_response.dart';
 import 'package:domain/model/account/request_call_status.dart';
 import 'package:domain/model/account/video_kyc_status.dart';
 
+import '../../usecase/account/send_mobile_otp_usecase.dart';
+
 abstract class AccountRepository {
   /// check Video call status
   Future<Either<NetworkError, CheckVideoCallResponse>> checkVideoCallStatus({required bool getToken});
@@ -40,4 +42,5 @@ abstract class AccountRepository {
   Future<Either<NetworkError, List<AvailableTimeSlots>>> getCallTimeSlots(String callDate);
 
   Future<Either<NetworkError, VideoKycStatus>> getCallStatus(String session);
+  Future<Either<NetworkError, bool>> sendMobileOTP({required SendMobileOTPUsecaseParams params});
 }
