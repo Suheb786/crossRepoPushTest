@@ -17,7 +17,6 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 2.0.1+2308042
 
-
 environment:
   sdk: ">=2.15.0 <=3.0.0"
 
@@ -87,6 +86,7 @@ dependencies:
   qr_flutter: ^4.1.0
   syncfusion_flutter_pdfviewer: any
   cached_network_image: ^3.2.3
+  flutter_timezone: ^1.0.7
 
 dependency_overrides:
   flutter_inappwebview: ^5.7.2+3
