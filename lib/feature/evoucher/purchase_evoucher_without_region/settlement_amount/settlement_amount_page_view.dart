@@ -73,18 +73,10 @@ class SettlementAmountPageView extends BasePageViewWidget<SettlementAmountPageVi
                               if (StringUtils.isDirectionRTL(context)) {
                                 if (!details.primaryVelocity!.isNegative) {
                                   model.validateFields(context);
-                                } else {
-                                  ProviderScope.containerOf(context)
-                                      .read(purchaseEVoucherWithoutRegionPageViewModel(model.argument))
-                                      .previousPage();
                                 }
                               } else {
                                 if (details.primaryVelocity!.isNegative) {
                                   model.validateFields(context);
-                                } else {
-                                  ProviderScope.containerOf(context)
-                                      .read(purchaseEVoucherWithoutRegionPageViewModel(model.argument))
-                                      .previousPage();
                                 }
                               }
                             }
