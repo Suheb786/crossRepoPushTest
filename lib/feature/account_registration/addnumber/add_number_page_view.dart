@@ -53,6 +53,9 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                     };
                     InfobipMobilemessaging.submitEventImmediately(event);
                     ProviderScope.containerOf(context).read(accountRegistrationViewModelProvider).nextPage();
+                    model.sendMobileOtp(
+                        MobileNumber: model.mobileNumberController.text,
+                        MobileCode: "${model.countryData.phoneCode} ");
                   } else if (data.status == Status.ERROR) {
                     model.showToastWithError(data.appError!);
                   }

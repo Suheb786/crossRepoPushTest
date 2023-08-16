@@ -3,6 +3,7 @@ import 'package:domain/model/country/country.dart';
 import 'package:domain/model/country/country_list/country_data.dart';
 import 'package:domain/model/country/get_allowed_code/allowed_country_list_response.dart';
 import 'package:domain/model/user/check_username.dart';
+import 'package:domain/usecase/account/send_mobile_otp_usecase.dart';
 import 'package:domain/usecase/country/fetch_country_by_code_usecase.dart';
 import 'package:domain/usecase/country/get_allowed_code_country_list_usecase.dart';
 import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
@@ -21,6 +22,7 @@ class AddNumberViewModel extends BasePageViewModel {
   final FetchCountryByCodeUseCase _fetchCountryByCodeUseCase;
   final CheckUserNameMobileUseCase _checkUserNameMobileUseCase;
   final GetAllowedCodeCountryListUseCase _allowedCodeCountryListUseCase;
+  final SendMobileOTPUsecase _sendMobileOTPUsecase;
 
   ///controllers and keys
   final TextEditingController mobileNumberController = TextEditingController();
@@ -31,6 +33,10 @@ class AddNumberViewModel extends BasePageViewModel {
   PublishSubject<Resource<bool>> _registerNumberResponse = PublishSubject();
 
   Stream<Resource<bool>> get registerNumberStream => _registerNumberResponse.stream;
+
+  PublishSubject<SendMobileOTPUsecaseParams> _sendMobileOTPRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _sendMobileOTPResponse = PublishSubject();
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -82,7 +88,7 @@ class AddNumberViewModel extends BasePageViewModel {
   Stream<CountryData> get getSelectedCountryStream => _selectedCountryResponse.stream;
 
   AddNumberViewModel(this._registerNumberUseCase, this._fetchCountryByCodeUseCase,
-      this._checkUserNameMobileUseCase, this._allowedCodeCountryListUseCase) {
+      this._checkUserNameMobileUseCase, this._allowedCodeCountryListUseCase, this._sendMobileOTPUsecase) {
     _registerNumberRequest.listen((value) {
       RequestManager(value, createCall: () => _registerNumberUseCase.execute(params: value))
           .asFlow()
@@ -148,7 +154,22 @@ class AddNumberViewModel extends BasePageViewModel {
         validate();
       });
     });
-   // getAllowedCountryCode();
+
+    _sendMobileOTPRequest.listen((value) {
+      RequestManager(value, createCall: () => _sendMobileOTPUsecase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _sendMobileOTPResponse.safeAdd(event);
+        updateLoader();
+        if (event.status == Status.SUCCESS) {
+        } else if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+          showErrorState();
+        }
+      });
+    });
+
+    // getAllowedCountryCode();
   }
 
   void fetchCountryByCode(BuildContext context, String code) {
@@ -190,6 +211,11 @@ class AddNumberViewModel extends BasePageViewModel {
     } else {
       _showButtonSubject.safeAdd(false);
     }
+  }
+
+  void sendMobileOtp({required String MobileNumber, required String MobileCode}) {
+    _sendMobileOTPRequest.safeAdd(
+        SendMobileOTPUsecaseParams(GetToken: true, MobileNumber: MobileNumber, MobileCode: MobileCode));
   }
 
   /// get allowed country code
