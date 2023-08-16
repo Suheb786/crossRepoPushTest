@@ -46,8 +46,8 @@ final validateOtpViewModelProvider = ChangeNotifierProvider.autoDispose<Validate
 
 ///[ValidateOtpViewModel] provider
 final emailOtpViewModelProvider = ChangeNotifierProvider.autoDispose<EmailOtpViewModel>(
-  (ref) => EmailOtpViewModel(ref.read(verifyOtpUseCaseProvider), ref.read(getTokenUseCaseProvider),
-      ref.read(changeMyNumberUseCaseProvider)),
+  (ref) =>
+      EmailOtpViewModel(ref.read(verifyEmailOtpUseCaseProvider), ref.read(resendEmailOTPUseCaseProvider)),
 );
 
 ///[CreatePasswordViewModel] provider

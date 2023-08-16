@@ -610,4 +610,24 @@ class UserRepositoryImpl extends UserRepository {
     final cleared = await safeDbCall(_localDS.clearWalletId());
     return cleared.fold((l) => Left(l), (r) => Right(r));
   }
+
+  @override
+  Future<Either<NetworkError, bool>> sendEmailOTP({required String email, required String password}) async {
+    final result = await safeApiCall(
+      _remoteDS.sendEmailOTP(email: email, password: password),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> verifyEmailOTP({required String email, required String otpCode}) async {
+    final result = await safeApiCall(_remoteDS.verifyEmailOTP(email: email, otpCode: otpCode));
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
 }

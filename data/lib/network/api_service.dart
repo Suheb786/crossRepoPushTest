@@ -310,6 +310,8 @@ import '../entity/remote/e_voucher/get_voucher_details/get_voucher_details_reque
 import '../entity/remote/e_voucher/get_voucher_details/get_voucher_details_response_entity.dart';
 import '../entity/remote/e_voucher/place_order/place_order_request_entity.dart';
 import '../entity/remote/e_voucher/place_order/place_order_response_entity.dart';
+import '../entity/remote/user/account_registration/send_email_otp_request.dart';
+import '../entity/remote/user/account_registration/verify_email_otp_request.dart';
 
 part 'api_service.g.dart';
 
@@ -329,6 +331,12 @@ abstract class ApiService {
 
   @POST("/auth/loginV5")
   Future<HttpResponse<LoginResponseEntity>> loginUser(@Body() LoginUserRequest loginUserRequest);
+
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/api/Onboarding/SendEmailOtp")
+  Future<HttpResponse<BaseResponse>> sendEmailOTP(@Body() SendEmailOTPRequest sendEmailOTPRequest);
+
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/api/Onboarding/VerifyEmailOtp")
+  Future<HttpResponse<BaseResponse>> verifyEmailOTP(@Body() VerifyEmailOTPRequest sendEmailOTPRequest);
 
   @POST("/auth/RegisterV5")
   Future<HttpResponse<RegisterResponseEntity>> registerProspectUser(

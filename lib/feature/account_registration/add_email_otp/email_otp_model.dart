@@ -1,8 +1,12 @@
 import 'package:domain/usecase/user/change_my_number_usecase.dart';
+import 'package:domain/usecase/user/create_password_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
+import 'package:domain/usecase/user/resend_email_otp_usecase.dart';
+import 'package:domain/usecase/user/verify_email_otp_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -12,12 +16,11 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
+import '../../../di/account_registration/account_registration_modules.dart';
+
 class EmailOtpViewModel extends BasePageViewModel {
-  final VerifyOtpUseCase _verifyOtpUseCase;
-
-  final GetTokenUseCase _getTokenUseCase;
-
-  final ChangeMyNumberUseCase _changeMyNumberUseCase;
+  final VerifyEmailOtpUseCase _verifyOtpUseCase;
+  final ResendEmailOTPUseCase _resendOTPUseCase;
 
   ///otp controller
   TextEditingController otpController = TextEditingController();
@@ -29,13 +32,21 @@ class EmailOtpViewModel extends BasePageViewModel {
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
 
-  void updateTime() {
+  void updateTime(BuildContext context) {
     otpController.clear();
-    resendOtp();
+    resendOtp(context);
   }
 
+  ///create password request subject holder
+  PublishSubject<ResendEmailOTPUseCaseParams> _resendEmailOTPRequest = PublishSubject();
+
+  /// create password response subject holder
+  PublishSubject<Resource<bool>> _resendEmailOTPResponse = PublishSubject();
+
+  Stream<Resource<bool>> get createPasswordStream => _resendEmailOTPResponse.stream;
+
   ///verify otp request subject holder
-  PublishSubject<VerifyOtpUseCaseParams> _verifyOtpRequest = PublishSubject();
+  PublishSubject<VerifyEmailOtpUseCaseParams> _verifyOtpRequest = PublishSubject();
 
   ///verify otp response holder
   PublishSubject<Resource<bool>> _verifyOtpResponse = PublishSubject();
@@ -55,23 +66,7 @@ class EmailOtpViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  ///resend otp
-  PublishSubject<GetTokenUseCaseParams> _getTokenRequest = PublishSubject();
-
-  PublishSubject<Resource<bool>> _getTokenResponse = PublishSubject();
-
-  Stream<Resource<bool>> get getTokenStream => _getTokenResponse.stream;
-
-  ///change my number request subject holder
-  PublishSubject<ChangeMyNumberUseCaseParams> _changeMyNumberRequest = PublishSubject();
-
-  ///change my number response holder
-  PublishSubject<Resource<bool>> _changeMyNumberResponse = PublishSubject();
-
-  ///change my number stream
-  Stream<Resource<bool>> get changeMyNumberStream => _changeMyNumberResponse.stream;
-
-  EmailOtpViewModel(this._verifyOtpUseCase, this._getTokenUseCase, this._changeMyNumberUseCase) {
+  EmailOtpViewModel(this._verifyOtpUseCase, this._resendOTPUseCase) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value, createCall: () => _verifyOtpUseCase.execute(params: value))
           .asFlow()
@@ -84,46 +79,38 @@ class EmailOtpViewModel extends BasePageViewModel {
       });
     });
 
-    _getTokenRequest.listen((value) {
-      RequestManager(value, createCall: () => _getTokenUseCase.execute(params: value))
+    _resendEmailOTPRequest.listen((value) {
+      RequestManager(value, createCall: () => _resendOTPUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        _resendEmailOTPResponse.safeAdd(event);
         updateLoader();
-        _getTokenResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
-          showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {
-          endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
-          notifyListeners();
-          listenForSmsCode();
-        }
-      });
-    });
-
-    _changeMyNumberRequest.listen((value) {
-      RequestManager(value, createCall: () => _changeMyNumberUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _changeMyNumberResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showToastWithError(event.appError!);
+          showErrorState();
         }
       });
     });
   }
 
-  void validateOtp() {
-    _verifyOtpRequest.safeAdd(VerifyOtpUseCaseParams(otp: _otpSubject.value));
+  void validateOtp(BuildContext context) {
+    String email =
+        ProviderScope.containerOf(context).read(addEmailViewModelProvider).emailController.text.toString();
+    _verifyOtpRequest.safeAdd(VerifyEmailOtpUseCaseParams(otp: _otpSubject.value, email: email));
   }
 
-  void resendOtp() {
-    _getTokenRequest.safeAdd(GetTokenUseCaseParams());
-  }
+  void resendOtp(BuildContext context) {
+    String email =
+        ProviderScope.containerOf(context).read(addEmailViewModelProvider).emailController.text.toString();
+    String password = ProviderScope.containerOf(context)
+        .read(addEmailViewModelProvider)
+        .createPasswordController
+        .text
+        .toString();
 
-  void changeMyNumber(String mobileNo, String countryCode) {
-    _changeMyNumberRequest
-        .safeAdd(ChangeMyNumberUseCaseParams(mobileNumber: mobileNo, countryCode: '00$countryCode'));
+    _resendEmailOTPRequest.safeAdd(ResendEmailOTPUseCaseParams(
+      emailAddress: email,
+      password: password,
+    ));
   }
 
   void validate(String value) {

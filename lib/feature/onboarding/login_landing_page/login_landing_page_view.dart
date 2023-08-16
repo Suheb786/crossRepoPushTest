@@ -367,6 +367,13 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                                         children: [
                                           AppPrimaryButton(
                                             onPressed: () async {
+/*
+
+                                              IdWiseHelper idwiseHelper = IdWiseHelper();
+                                              idwiseHelper.initializeIdWise();
+                                              await idwiseHelper.startVerification("en");
+*/
+
                                               Navigator.pushNamed(context, RoutePaths.Login);
                                             },
                                             text: S.of(context).loginWithEmail,
