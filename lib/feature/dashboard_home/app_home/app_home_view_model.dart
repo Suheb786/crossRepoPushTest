@@ -26,6 +26,7 @@ import 'package:domain/usecase/payment/verify_qr_usecase.dart';
 import 'package:domain/usecase/user/get_current_user_usecase.dart';
 import 'package:domain/usecase/user/save_user_data_usecase.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
@@ -343,22 +344,7 @@ class AppHomeViewModel extends BasePageViewModel {
   }
 
   String formatBalance(double balance) {
-    String formattedBalance = balance.toStringAsFixed(3); // Format with 3 decimal places
-
-    List<String> parts = formattedBalance.split('.');
-    String integerPart = parts[0];
-    String decimalPart = parts[1];
-
-    // Add commas to the integer part
-    String commaSeparatedIntegerPart = '';
-    for (int i = integerPart.length - 1, count = 0; i >= 0; i--, count++) {
-      if (count != 0 && count % 3 == 0) {
-        commaSeparatedIntegerPart = ',' + commaSeparatedIntegerPart;
-      }
-      commaSeparatedIntegerPart = integerPart[i] + commaSeparatedIntegerPart;
-    }
-
-    return '$commaSeparatedIntegerPart.$decimalPart';
+    return NumberFormat('#,###.###').format(balance);
   }
 
   void getDashboardPages(GetDashboardDataContent dashboardDataContent) {
