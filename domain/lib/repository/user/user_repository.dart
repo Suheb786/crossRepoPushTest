@@ -38,6 +38,12 @@ abstract class UserRepository {
   /// Check email is available or not
   Future<Either<NetworkError, CheckUsername>> checkUserName({String? email});
 
+  ///Send email OTP
+  Future<Either<NetworkError, bool>> sendEmailOTP({required String email, required String password});
+
+  ///Verify email OTP
+  Future<Either<NetworkError, bool>> verifyEmailOTP({required String email, required String otpCode});
+
   /// Login user with syste
   Future<Either<NetworkError, User>> loginUser({required String email, required String password});
 

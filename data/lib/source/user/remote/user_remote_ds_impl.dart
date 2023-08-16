@@ -3,8 +3,11 @@ import 'dart:io';
 import 'package:data/entity/local/base/crypto_util.dart';
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/local/base/image_utils.dart';
+import 'package:data/entity/remote/accountsettings/verify_change_email_request.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
+import 'package:data/entity/remote/base/base_response.dart';
+import 'package:data/entity/remote/user/account_registration/send_email_otp_request.dart';
 import 'package:data/entity/remote/user/additional_income.dart';
 import 'package:data/entity/remote/user/biometric_login/get_cipher_response_entity.dart';
 import 'package:data/entity/remote/user/change_my_number/change_my_number_request_entity.dart';
@@ -64,6 +67,8 @@ import 'package:domain/model/user/confirm_application_data_get/job_detail_info.d
 import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:retrofit/retrofit.dart';
+
+import '../../../entity/remote/user/account_registration/verify_email_otp_request.dart';
 
 class UserRemoteDSImpl extends UserRemoteDS {
   final ApiService _apiService;
@@ -437,6 +442,27 @@ class UserRemoteDSImpl extends UserRemoteDS {
       clear: clear,
       // version: '2.0.0',
       version: baseData.appVersion,
+      baseData: baseData.toJson(),
+    ));
+  }
+
+  @override
+  Future<HttpResponse<BaseResponse>> sendEmailOTP({required String email, required String password}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.sendEmailOTP(SendEmailOTPRequest(
+      getToken: true,
+      email: email,
+      password: password,
+      baseData: baseData.toJson(),
+    ));
+  }
+
+  @override
+  Future<HttpResponse<BaseResponse>> verifyEmailOTP({required String email, required String otpCode}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.verifyEmailOTP(VerifyEmailOTPRequest(
+      email: email,
+      otpCode: otpCode,
       baseData: baseData.toJson(),
     ));
   }

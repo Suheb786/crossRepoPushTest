@@ -7,10 +7,17 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
-class CreatePasswordUseCase extends BaseUseCase<LocalError, CreatePasswordUseCaseParams, bool> {
+import '../../error/network_error.dart';
+import '../../repository/user/user_repository.dart';
+
+class CreatePasswordUseCase extends BaseUseCase<NetworkError, CreatePasswordUseCaseParams, bool> {
+  final UserRepository _repository;
+
+  CreatePasswordUseCase(this._repository);
+
   @override
-  Future<Either<LocalError, bool>> execute({required CreatePasswordUseCaseParams params}) {
-    return Future.value(Right(true));
+  Future<Either<NetworkError, bool>> execute({required CreatePasswordUseCaseParams params}) {
+    return _repository.sendEmailOTP(email: params.emailAddress ?? '', password: params.createPassword ?? '');
   }
 }
 
