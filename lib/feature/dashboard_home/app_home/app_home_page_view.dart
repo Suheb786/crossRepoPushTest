@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/enum/account_status_enum.dart';
 import 'package:domain/constants/enum/card_type.dart';
+import 'package:domain/constants/enum/evoucher_landing_page_navigation_type_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/model/qr/verify_qr_response.dart';
@@ -16,6 +17,7 @@ import 'package:neo_bank/feature/apple_pay/selected_card_for_apple_pay/selected_
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_page.dart';
+import 'package:neo_bank/feature/evoucher/evoucher/evoucher_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -133,7 +135,9 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                             Navigator.pop(context);
                             data.data?.isEVoucherPopUPClicked = true;
                             model.saveCurrentUserData(user: data.data!);
-                            Navigator.pushNamed(context, RoutePaths.Evoucher);
+                            Navigator.pushNamed(context, RoutePaths.Evoucher,
+                                arguments: EvoucherPageArguments(
+                                    EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING));
                           });
                         }
 
