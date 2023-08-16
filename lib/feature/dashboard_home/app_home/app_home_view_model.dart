@@ -342,6 +342,25 @@ class AppHomeViewModel extends BasePageViewModel {
     }
   }
 
+  String formatBalance(double balance) {
+    String formattedBalance = balance.toStringAsFixed(3); // Format with 3 decimal places
+
+    List<String> parts = formattedBalance.split('.');
+    String integerPart = parts[0];
+    String decimalPart = parts[1];
+
+    // Add commas to the integer part
+    String commaSeparatedIntegerPart = '';
+    for (int i = integerPart.length - 1, count = 0; i >= 0; i--, count++) {
+      if (count != 0 && count % 3 == 0) {
+        commaSeparatedIntegerPart = ',' + commaSeparatedIntegerPart;
+      }
+      commaSeparatedIntegerPart = integerPart[i] + commaSeparatedIntegerPart;
+    }
+
+    return '$commaSeparatedIntegerPart.$decimalPart';
+  }
+
   void getDashboardPages(GetDashboardDataContent dashboardDataContent) {
     pages.clear();
     timeLineListArguments.clear();
@@ -361,6 +380,123 @@ class AppHomeViewModel extends BasePageViewModel {
 
     ///end
 
+    if (dashboardDataContent.debitCardSomethingWrong ?? false) {
+      pages.add(DebitCardErrorWidget(
+        isSmallDevices: isSmallDevices,
+      ));
+
+      ///adding cardType
+      cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+    } else {
+      if (dashboardDataContent.debitCard!.length > 0) {
+        checkIfDebitCardThere(dashboardDataContent.debitCard);
+        dashboardDataContent.debitCard!.forEach((debitCard) {
+          if (debitCard.cardStatus == FreezeCardStatusEnum.L) {
+            if (!(debitCard.isPINSet ?? true)) {
+              if (dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.DORMANT) {
+                ///Dormant account widget
+                pages.add(DormantAccountDebitCardDisabledWidget());
+              } else {
+                pages.add(ApplyDebitCardWidget(
+                  debitRoutes: DebitRoutes.DASHBOARD,
+                  isSmallDevice: isSmallDevices,
+                  isPinSet: debitCard.isPINSet!,
+                  cardHolderName: debitCard.accountTitle ?? '',
+                  cardNo: debitCard.cardNumber ?? '',
+                  primarySecondaryEnum: debitCard.primarySecondaryCard ?? PrimarySecondaryEnum.PRIMARY,
+                ));
+              }
+
+              ///adding cardType
+              cardTypeList
+                  .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+            } else {
+              if (dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.DORMANT) {
+                ///Dormant account widget
+                pages.add(DormantAccountDebitCardDisabledWidget());
+              } else {
+                pages.add(ApplyDebitCardWidget(
+                  debitRoutes: DebitRoutes.DASHBOARD,
+                  isSmallDevice: isSmallDevices,
+                  isPinSet: true,
+                  cardHolderName: debitCard.accountTitle ?? '',
+                  cardNo: debitCard.cardNumber ?? '',
+                  primarySecondaryEnum: debitCard.primarySecondaryCard ?? PrimarySecondaryEnum.PRIMARY,
+                ));
+              }
+
+              ///adding cardType
+              cardTypeList
+                  .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+            }
+          } else {
+            if (!(debitCard.isPINSet ?? true)) {
+              if (dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.DORMANT) {
+                ///Dormant account widget
+                pages.add(DormantAccountDebitCardDisabledWidget());
+              } else {
+                pages.add(ApplyDebitCardWidget(
+                  debitRoutes: DebitRoutes.DASHBOARD,
+                  isSmallDevice: isSmallDevices,
+                  isPinSet: debitCard.isPINSet!,
+                  cardHolderName: debitCard.accountTitle ?? '',
+                  cardNo: debitCard.cardNumber ?? '',
+                  primarySecondaryEnum: debitCard.primarySecondaryCard ?? PrimarySecondaryEnum.PRIMARY,
+                ));
+              }
+
+              ///adding cardType
+              cardTypeList
+                  .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+            } else {
+              pages.add(DebitCardWidget(
+                  accountStatusEnum:
+                      dashboardDataContent.account?.accountStatusEnum ?? AccountStatusEnum.NONE,
+                  isPrimaryDebitCard: isPrimaryDebitCard,
+                  isSmallDevice: isSmallDevices,
+                  key: ValueKey('debit${debitCard.code}${debitCard.cvv}'),
+                  debitCard: debitCard,
+                  isDebitCardRequestPhysicalCardEnabled:
+                      dashboardDataContent.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled ??
+                          false));
+
+              ///time line list arguments set
+              timeLineListArguments.add(TimeLineListArguments(
+                  cardCardActivated: debitCard.debitCardActivated.toString(),
+                  cardDeliveredDatetime: debitCard.debitDeliveredDatetime.toString(),
+                  cardId: '',
+                  cardNumber: debitCard.cardNumber ?? '',
+                  accountTitle: debitCard.accountTitle ?? '',
+                  cardType: CardType.DEBIT,
+                  isCardDelivered: debitCard.isDebitDelivered));
+
+              ///adding cardType
+              cardTypeList
+                  .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+
+              debitCards.add(debitCard);
+            }
+          }
+        });
+      } else {
+        if (dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.DORMANT) {
+          ///Dormant account widget
+          pages.add(DormantAccountDebitCardDisabledWidget());
+        } else {
+          pages.add(ApplyDebitCardWidget(
+            debitRoutes: DebitRoutes.DASHBOARD,
+            isSmallDevice: isSmallDevices,
+            isPinSet: true,
+            primarySecondaryEnum: PrimarySecondaryEnum.PRIMARY,
+          ));
+        }
+
+        ///adding cardType
+        cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+      }
+    }
+
+    ///-------------credit-card---------------->>>
     if (dashboardDataContent.somethingWrong ?? false) {
       pages.add(CreditCardIssuanceFailureWidget(
         isSmallDevices: isSmallDevices,
@@ -487,122 +623,6 @@ class AppHomeViewModel extends BasePageViewModel {
           cardTypeList
               .add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
         }
-      }
-    }
-
-    if (dashboardDataContent.debitCardSomethingWrong ?? false) {
-      pages.add(DebitCardErrorWidget(
-        isSmallDevices: isSmallDevices,
-      ));
-
-      ///adding cardType
-      cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-    } else {
-      if (dashboardDataContent.debitCard!.length > 0) {
-        checkIfDebitCardThere(dashboardDataContent.debitCard);
-        dashboardDataContent.debitCard!.forEach((debitCard) {
-          if (debitCard.cardStatus == FreezeCardStatusEnum.L) {
-            if (!(debitCard.isPINSet ?? true)) {
-              if (dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.DORMANT) {
-                ///Dormant account widget
-                pages.add(DormantAccountDebitCardDisabledWidget());
-              } else {
-                pages.add(ApplyDebitCardWidget(
-                  debitRoutes: DebitRoutes.DASHBOARD,
-                  isSmallDevice: isSmallDevices,
-                  isPinSet: debitCard.isPINSet!,
-                  cardHolderName: debitCard.accountTitle ?? '',
-                  cardNo: debitCard.cardNumber ?? '',
-                  primarySecondaryEnum: debitCard.primarySecondaryCard ?? PrimarySecondaryEnum.PRIMARY,
-                ));
-              }
-
-              ///adding cardType
-              cardTypeList
-                  .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-            } else {
-              if (dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.DORMANT) {
-                ///Dormant account widget
-                pages.add(DormantAccountDebitCardDisabledWidget());
-              } else {
-                pages.add(ApplyDebitCardWidget(
-                  debitRoutes: DebitRoutes.DASHBOARD,
-                  isSmallDevice: isSmallDevices,
-                  isPinSet: true,
-                  cardHolderName: debitCard.accountTitle ?? '',
-                  cardNo: debitCard.cardNumber ?? '',
-                  primarySecondaryEnum: debitCard.primarySecondaryCard ?? PrimarySecondaryEnum.PRIMARY,
-                ));
-              }
-
-              ///adding cardType
-              cardTypeList
-                  .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-            }
-          } else {
-            if (!(debitCard.isPINSet ?? true)) {
-              if (dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.DORMANT) {
-                ///Dormant account widget
-                pages.add(DormantAccountDebitCardDisabledWidget());
-              } else {
-                pages.add(ApplyDebitCardWidget(
-                  debitRoutes: DebitRoutes.DASHBOARD,
-                  isSmallDevice: isSmallDevices,
-                  isPinSet: debitCard.isPINSet!,
-                  cardHolderName: debitCard.accountTitle ?? '',
-                  cardNo: debitCard.cardNumber ?? '',
-                  primarySecondaryEnum: debitCard.primarySecondaryCard ?? PrimarySecondaryEnum.PRIMARY,
-                ));
-              }
-
-              ///adding cardType
-              cardTypeList
-                  .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-            } else {
-              pages.add(DebitCardWidget(
-                  accountStatusEnum:
-                      dashboardDataContent.account?.accountStatusEnum ?? AccountStatusEnum.NONE,
-                  isPrimaryDebitCard: isPrimaryDebitCard,
-                  isSmallDevice: isSmallDevices,
-                  key: ValueKey('debit${debitCard.code}${debitCard.cvv}'),
-                  debitCard: debitCard,
-                  isDebitCardRequestPhysicalCardEnabled:
-                      dashboardDataContent.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled ??
-                          false));
-
-              ///time line list arguments set
-              timeLineListArguments.add(TimeLineListArguments(
-                  cardCardActivated: debitCard.debitCardActivated.toString(),
-                  cardDeliveredDatetime: debitCard.debitDeliveredDatetime.toString(),
-                  cardId: '',
-                  cardNumber: debitCard.cardNumber ?? '',
-                  accountTitle: debitCard.accountTitle ?? '',
-                  cardType: CardType.DEBIT,
-                  isCardDelivered: debitCard.isDebitDelivered));
-
-              ///adding cardType
-              cardTypeList
-                  .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-
-              debitCards.add(debitCard);
-            }
-          }
-        });
-      } else {
-        if (dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.DORMANT) {
-          ///Dormant account widget
-          pages.add(DormantAccountDebitCardDisabledWidget());
-        } else {
-          pages.add(ApplyDebitCardWidget(
-            debitRoutes: DebitRoutes.DASHBOARD,
-            isSmallDevice: isSmallDevices,
-            isPinSet: true,
-            primarySecondaryEnum: PrimarySecondaryEnum.PRIMARY,
-          ));
-        }
-
-        ///adding cardType
-        cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
       }
     }
 
