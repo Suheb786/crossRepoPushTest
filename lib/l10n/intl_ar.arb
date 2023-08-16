@@ -1804,6 +1804,6 @@
   "toViewVoucher": "لعرض القسيمة",
   "evoucherUnderProcessing": "القسيمة الإلكترونية قيد الإنتظار",
   "viewVoucherDialogDescription": "القسيمة الإلكترونية قيد الإنتظار، رح نخبرك لما تكون جاهزة  للاستخدام.",
-  "transactions": "الحركات"
-
+  "transactions": "الحركات",
+  "next": "Next"
 }
