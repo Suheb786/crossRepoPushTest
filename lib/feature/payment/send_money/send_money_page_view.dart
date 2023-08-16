@@ -24,198 +24,121 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
   @override
   Widget build(BuildContext context, model) {
     return AppKeyBoardHide(
-      child: GestureDetector(
-        onVerticalDragEnd: (details) {
-          if (details.primaryVelocity!.isNegative) {
-          } else {
-            Navigator.pop(context);
-          }
-        },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Align(
-              alignment: Alignment.topCenter,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 25.0.h),
-                    child: Container(
-                      height: 50.0.h,
-                      width: 281.0.w,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(16),
-                          bottomRight: Radius.circular(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Padding(
+            padding: EdgeInsetsDirectional.only(top: (MediaQuery.of(context).size.height * 0.18) + 10.h),
+            child: Text(
+              S.of(context).sendMoney,
+              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
+            ),
+          ),
+          Spacer(),
+          Padding(
+            padding: EdgeInsets.only(top: 95.0.h, left: 24.0.w, right: 24.0.w),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AutoSizeText(
+                        model.currentPinValue,
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40.0.t, fontFamily: StringUtils.appFont, color: AppColor.black),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 15.0.h, left: 4.0.w),
+                        child: Text(
+                          S.of(context).JOD,
+                          style: TextStyle(fontFamily: StringUtils.appFont, color: AppColor.verLightGray4, fontSize: 16.0.t, fontWeight: FontWeight.w700),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                  Positioned(
-                      bottom: -2,
-                      child: LottieBuilder.asset(
-                        AssetUtils.swipeDownAnimation,
-                        width: 28.0.w,
-                        height: 28.0.h,
-                      )),
-                ],
-              ),
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: InkWell(
+                    onTap: () {
+                      model.clearValue();
+                    },
+                    child: AppSvg.asset(AssetUtils.backspaceBlue),
+                  ),
+                ),
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 6.0.h),
-              child: Text(
-                S.of(context).backToPayments,
-                style: TextStyle(
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 49.0.h),
+            child: Text(
+              S.of(context).accountBalance,
+              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 10.0.t, color: AppColor.dark_gray_1),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 2.0.h, bottom: 32.0.h),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.account!.availableBalance!,
+                  style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    fontSize: 12.0.t,
-                    fontWeight: FontWeight.w600,
-                    color: AppColor.dark_gray_2),
-              ),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14.0.t,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 4.0.w, top: 2.0.h),
+                  child: Text(
+                    S.of(context).JOD,
+                    style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w700, fontSize: 12.0.t, color: AppColor.dark_gray_1),
+                  ),
+                ),
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 80.0.h),
-              child: Text(
-                S.of(context).sendMoney,
-                style:
-                    TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 95.0.h, left: 24.0.w, right: 24.0.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AutoSizeText(
-                          model.currentPinValue,
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 40.0.t,
-                              fontFamily: StringUtils.appFont,
-                              color: AppColor.black),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 15.0.h, left: 4.0.w),
-                          child: Text(
-                            S.of(context).JOD,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: AppColor.verLightGray4,
-                                fontSize: 16.0.t,
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ),
-                      ],
+          ),
+          Padding(
+            padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.03),
+            child: Directionality(
+              textDirection: TextDirection.ltr,
+              child: NumericKeyboard(
+                  onKeyboardTap: (value) {
+                    model.changeValue(value);
+                  },
+                  textColor: Colors.black,
+                  rightButtonFn: () {
+                    if (double.parse(model.currentPinValue) <= 0) {
+                      model.showToastWithError(AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.ZERO_AMOUNT));
+                    } else if (double.parse(model.currentPinValue) > double.parse(ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.account!.availableBalance!)) {
+                      model.showToastWithError(AppError(cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.INSUFFICIENT_BALANCE_TRANSFER));
+                    } else {
+                      Navigator.pushNamed(context, RoutePaths.PaymentToNewRecipient, arguments: model.currentPinValue);
+                    }
+                  },
+                  leftIcon: Icon(
+                    Icons.circle,
+                    color: AppColor.black,
+                    size: 5,
+                  ),
+                  rightWidget: CircleAvatar(
+                    radius: 30.0.w,
+                    backgroundColor: Color(0xFF3CB4E5),
+                    child: Center(
+                      child: AppSvg.asset(AssetUtils.next),
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: InkWell(
-                      onTap: () {
-                        model.clearValue();
-                      },
-                      child: AppSvg.asset(AssetUtils.backspaceBlue),
-                    ),
-                  ),
-                ],
-              ),
+                  leftButtonFn: () {
+                    model.changeValue(".");
+                  },
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 49.0.h),
-              child: Text(
-                S.of(context).accountBalance,
-                style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 10.0.t,
-                    color: AppColor.dark_gray_1),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 2.0.h, bottom: 32.0.h),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    ProviderScope.containerOf(context)
-                        .read(appHomeViewModelProvider)
-                        .dashboardDataContent
-                        .account!
-                        .availableBalance!,
-                    style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14.0.t,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 4.0.w, top: 2.0.h),
-                    child: Text(
-                      S.of(context).JOD,
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 12.0.t,
-                          color: AppColor.dark_gray_1),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Directionality(
-                textDirection: TextDirection.ltr,
-                child: NumericKeyboard(
-                    onKeyboardTap: (value) {
-                      model.changeValue(value);
-                    },
-                    textColor: Colors.black,
-                    rightButtonFn: () {
-                      if (double.parse(model.currentPinValue) <= 0) {
-                        model.showToastWithError(AppError(
-                            cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.ZERO_AMOUNT));
-                      } else if (double.parse(model.currentPinValue) >
-                          double.parse(ProviderScope.containerOf(context)
-                              .read(appHomeViewModelProvider)
-                              .dashboardDataContent
-                              .account!
-                              .availableBalance!)) {
-                        model.showToastWithError(AppError(
-                            cause: Exception(),
-                            error: ErrorInfo(message: ''),
-                            type: ErrorType.INSUFFICIENT_BALANCE_TRANSFER));
-                      } else {
-                        Navigator.pushNamed(context, RoutePaths.PaymentToNewRecipient,
-                            arguments: model.currentPinValue);
-                      }
-                    },
-                    leftIcon: Icon(
-                      Icons.circle,
-                      color: AppColor.black,
-                      size: 5,
-                    ),
-                    rightWidget: CircleAvatar(
-                      radius: 30.0.w,
-                      backgroundColor: Color(0xFF3CB4E5),
-                      child: Center(
-                        child: AppSvg.asset(AssetUtils.next),
-                      ),
-                    ),
-                    leftButtonFn: () {
-                      model.changeValue(".");
-                    },
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly),
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

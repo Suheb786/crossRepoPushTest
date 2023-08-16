@@ -18119,6 +18119,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Pay New Bill`
+  String get payNewBill {
+    return Intl.message(
+      'Pay New Bill',
+      name: 'payNewBill',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
