@@ -8,7 +8,8 @@ import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_un
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
+import 'package:neo_bank/ui/molecules/button/app_secondary_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -123,15 +124,27 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  AnimatedButton(
-                    buttonText: S.of(context).swipeToProceed,
-                    textColor: model.manageCardPinArguments.cardType == CardType.CREDIT
-                        ? Theme.of(context).colorScheme.secondary
-                        : Theme.of(context).textTheme.bodyLarge?.color,
-                    borderColor: model.manageCardPinArguments.cardType == CardType.CREDIT
-                        ? Theme.of(context).colorScheme.secondary
-                        : Theme.of(context).textTheme.bodyLarge?.color,
-                  ),
+                  model.manageCardPinArguments.cardType != CardType.CREDIT
+                      ? AppPrimaryButton(
+                          text: S.of(context).next,
+                          width: 230.w,
+                          onPressed: () {
+                            Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+                            ProviderScope.containerOf(context)
+                                .read(appHomeViewModelProvider)
+                                .getDashboardData();
+                          },
+                        )
+                      : AppSecondaryButton(
+                          text: S.of(context).next,
+                          width: 230.w,
+                          onPressed: () {
+                            Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+                            ProviderScope.containerOf(context)
+                                .read(appHomeViewModelProvider)
+                                .getDashboardData();
+                          },
+                        ),
                   SizedBox(
                     height: 5.h,
                   ),

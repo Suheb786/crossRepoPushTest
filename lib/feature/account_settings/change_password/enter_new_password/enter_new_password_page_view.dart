@@ -7,7 +7,6 @@ import 'package:neo_bank/feature/account_settings/change_password/enter_new_pass
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/register/password_hint_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -16,6 +15,8 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../../ui/molecules/button/app_primary_button.dart';
 
 class EnterNewPasswordPageView extends BasePageViewWidget<EnterNewPasswordPageViewModel> {
   EnterNewPasswordPageView(ProviderBase model) : super(model);
@@ -250,11 +251,13 @@ class EnterNewPasswordPageView extends BasePageViewWidget<EnterNewPasswordPageVi
                                           stream: model.showButtonStream,
                                           initialData: false,
                                           dataBuilder: (context, isValid) {
-                                            if (isValid!) {
-                                              return AnimatedButton(buttonText: S.of(context).swipeToProceed);
-                                            } else {
-                                              return Container();
-                                            }
+                                            return AppPrimaryButton(
+                                              text: S.of(context).next,
+                                              isDisabled: !isValid!,
+                                              onPressed: () {
+                                                model.createPassword();
+                                              },
+                                            );
                                           }),
                                     ),
                                   ],
