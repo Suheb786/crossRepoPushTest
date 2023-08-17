@@ -16,6 +16,9 @@ import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../utils/color_utils.dart';
+import '../../../utils/device_size_helper.dart';
+
 class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyContactViewModel> {
   final List<Beneficiary>? beneficiaries;
 
@@ -35,7 +38,7 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                  padding: EdgeInsetsDirectional.only(top: 30.0.h, start: 25.0.w, end: 24.w),
+                  padding: EdgeInsetsDirectional.only(top: 24.0.h, start: 24.0.w, end: 24.w),
                   child: Row(
                     children: [
                       AppSvg.asset(AssetUtils.blueStar, color: Theme.of(context).primaryColorDark),
@@ -43,15 +46,13 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                         width: 4.w,
                       ),
                       Expanded(
-                        child: Text(S.of(context).requestMoneyFrom,
-                            style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: Theme.of(context).primaryColorDark)),
+                        child: Text(S.of(context).requestMoneyFrom, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: Theme.of(context).primaryColorDark)),
                       ),
                       Visibility(
                         visible: (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.manageContactEnabled ?? false),
                         child: InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
-                                arguments: AddBeneficiaryPageArguments(navigationType: NavigationType.REQUEST_MONEY, isFromContactCard: true));
+                            Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage, arguments: AddBeneficiaryPageArguments(navigationType: NavigationType.REQUEST_MONEY, isFromContactCard: true));
                           },
                           child: Container(
                             height: 40,
@@ -75,7 +76,14 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                           textDirection: TextDirection.ltr,
                           child: GridView.builder(
                             itemCount: 9,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, childAspectRatio: 0.8, mainAxisSpacing: 6),
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                childAspectRatio: DeviceSizeHelper.isSmallDevice
+                                    ? 0.90
+                                    : DeviceSizeHelper.isBigDevice
+                                        ? 0.80
+                                        : 0.85,
+                                mainAxisSpacing: 2),
                             shrinkWrap: true,
                             padding: EdgeInsetsDirectional.only(top: 22.0.h, end: 28.0.w, start: 27.0.w),
                             itemBuilder: (context, index) {
@@ -92,6 +100,9 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                             },
                           ),
                         ),
+                        SizedBox(
+                          height: DeviceSizeHelper.isBigDevice ? 6.h : 0,
+                        ),
                         Padding(
                           padding: EdgeInsetsDirectional.only(bottom: 14.0.h),
                           child: Visibility(
@@ -104,7 +115,12 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                                 alignment: Alignment.center,
                                 child: Container(
                                   padding: EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 14.0.w),
-                                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.circular(20.w)),
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context).canvasColor,
+                                    borderRadius: BorderRadius.circular(20.w),
+                                    border: Border.all(color: AppColor.lightYellowColor, width: 1),
+                                    boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 3))],
+                                  ),
                                   child: Text(
                                     S.of(context).seeAllContacts,
                                     style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, fontWeight: FontWeight.w600, color: Theme.of(context).textTheme.bodyLarge!.color!),

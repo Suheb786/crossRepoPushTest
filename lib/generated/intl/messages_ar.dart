@@ -2054,7 +2054,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("رقم موبايل جديد"),
         "newPassword":
             MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
+        "newPayment": MessageLookupByLibrary.simpleMessage("New Payment"),
         "newPin": MessageLookupByLibrary.simpleMessage("رمز سري PIN جديد"),
+        "newPostPaidBill":
+            MessageLookupByLibrary.simpleMessage("New Postpaid Bill"),
+        "newPrePaidBill":
+            MessageLookupByLibrary.simpleMessage("New Prepaid Bill"),
         "newSettlementAccount":
             MessageLookupByLibrary.simpleMessage("حساب التسوية الجديد"),
         "newSettlementPercentage":

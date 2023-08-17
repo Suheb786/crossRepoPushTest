@@ -37,10 +37,9 @@ class PostPaidBillCardWidget extends StatelessWidget {
           child: Column(
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(S.of(context).myPostPaidBill, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 12.0.t, fontWeight: FontWeight.w600, color: AppColor.white)),
+                  Expanded(child: Text(S.of(context).myPostPaidBill, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 12.0.t, fontWeight: FontWeight.w600, color: AppColor.white))),
                   GestureDetector(
                     onTap: () {
                       AppConstantsUtils.PRE_PAID_FLOW = false;
@@ -49,12 +48,25 @@ class PostPaidBillCardWidget extends StatelessWidget {
                       ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animateToNewPage();
                       Navigator.of(context).push(slideBottomToTop(nextPage: BillPaymentsTransactionPage()));
                     },
-                    child: Text(S.of(context).viewHistory, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, fontWeight: FontWeight.w600, color: AppColor.brightBlue)),
+                    child: Container(
+                      height: 50.h,
+                      width: 50.h,
+                      alignment: Alignment.center,
+                      child: AppSvg.asset(AssetUtils.clock, width: 24.h, height: 24.h, color: AppColor.light_acccent_blue),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColor.black,
+                        border: Border.all(color: AppColor.borderColorNew, width: 1),
+                        boxShadow: const [
+                          BoxShadow(color: AppColor.borderColorNew, blurRadius: 14, spreadRadius: 0.6),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
               SizedBox(
-                height: 72.h,
+                height: 50.h,
               ),
               Container(
                 height: 112.h,
@@ -75,12 +87,12 @@ class PostPaidBillCardWidget extends StatelessWidget {
                   Navigator.pushNamed(context, RoutePaths.PayAllPostPaidBillsPage, arguments: PayAllPostPaidBillsPageArguments(PostPaidBillsPayTypeOptionEnum.VIEWMYBILLS));
                 },
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 17.0.h),
+                  padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 12.0.h),
                   decoration: BoxDecoration(border: Border.all(width: 1, color: AppColor.white_gray), borderRadius: BorderRadius.circular(100)),
                   child: Center(
                     child: Text(
                       S.of(context).manageMyBills,
-                      style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, fontWeight: FontWeight.w600, color: AppColor.white),
+                      style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 12.0.t, fontWeight: FontWeight.w600, color: AppColor.white),
                     ),
                   ),
                 ),
@@ -97,12 +109,12 @@ class PostPaidBillCardWidget extends StatelessWidget {
                   Navigator.pushNamed(context, RoutePaths.PayAllPostPaidBillsPage, arguments: PayAllPostPaidBillsPageArguments(PostPaidBillsPayTypeOptionEnum.PAYALLBILLS));
                 },
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 17.0.h),
+                  padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 12.0.h),
                   decoration: BoxDecoration(color: AppColor.brightBlue, borderRadius: BorderRadius.circular(100)),
                   child: Center(
                     child: Text(
                       S.of(context).viewAndPayYourDueBills,
-                      style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, fontWeight: FontWeight.w600, color: AppColor.white),
+                      style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 12.0.t, fontWeight: FontWeight.w600, color: AppColor.white),
                     ),
                   ),
                 ),

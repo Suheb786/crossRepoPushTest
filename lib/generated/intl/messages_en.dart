@@ -2107,7 +2107,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "newMobileNumber":
             MessageLookupByLibrary.simpleMessage("NEW MOBILE NUMBER"),
         "newPassword": MessageLookupByLibrary.simpleMessage("NEW PASSWORD"),
+        "newPayment": MessageLookupByLibrary.simpleMessage("New Payment"),
         "newPin": MessageLookupByLibrary.simpleMessage("new pin "),
+        "newPostPaidBill":
+            MessageLookupByLibrary.simpleMessage("New Postpaid Bill"),
+        "newPrePaidBill":
+            MessageLookupByLibrary.simpleMessage("New Prepaid Bill"),
         "newSettlementAccount":
             MessageLookupByLibrary.simpleMessage("New settlement account"),
         "newSettlementPercentage":

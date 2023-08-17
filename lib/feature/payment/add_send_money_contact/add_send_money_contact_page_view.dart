@@ -12,6 +12,8 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/payment/payment_beneficiary_empty_widget.dart';
 import 'package:neo_bank/ui/molecules/payment/payment_beneficiary_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/device_size_helper.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -75,7 +77,14 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                           textDirection: TextDirection.ltr,
                           child: GridView.builder(
                             itemCount: 9,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, childAspectRatio: 0.8, mainAxisSpacing: 6),
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                childAspectRatio: DeviceSizeHelper.isSmallDevice
+                                    ? 0.90
+                                    : DeviceSizeHelper.isBigDevice
+                                        ? 0.80
+                                        : 0.85,
+                                mainAxisSpacing: 2),
                             shrinkWrap: true,
                             padding: EdgeInsetsDirectional.only(top: 22.0.h, end: 28.0.w, start: 27.0.w),
                             itemBuilder: (context, index) {
@@ -92,6 +101,9 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                             },
                           ),
                         ),
+                        SizedBox(
+                          height: DeviceSizeHelper.isBigDevice ? 6.h : 0,
+                        ),
                         Padding(
                           padding: EdgeInsets.only(bottom: 16.0.h),
                           child: Visibility(
@@ -105,7 +117,12 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                 child: Container(
                                   //height: 36.0.h,
                                   padding: EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 14.0.w),
-                                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.circular(20.w)),
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context).primaryColor,
+                                    borderRadius: BorderRadius.circular(20.w),
+                                    border: Border.all(color: AppColor.softRed1, width: 1),
+                                    boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 3))],
+                                  ),
                                   // alignment: Alignment.center,
                                   child: Text(
                                     S.of(context).seeAllContacts,

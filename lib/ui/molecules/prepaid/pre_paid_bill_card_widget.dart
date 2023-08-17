@@ -34,10 +34,33 @@ class PrePaidBillCardWidget extends StatelessWidget {
           child: Column(
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(S.of(context).myPrePaidBills, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 12.0.t, fontWeight: FontWeight.w600, color: AppColor.white)),
-                  GestureDetector(
+                  Expanded(child: Text(S.of(context).myPrePaidBills, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 12.0.t, fontWeight: FontWeight.w600, color: AppColor.white))),
+                  InkWell(
+                    onTap: () {
+                      AppConstantsUtils.PRE_PAID_FLOW = true;
+                      AppConstantsUtils.POST_PAID_FLOW = false;
+                      // Navigator.pushNamed(context, RoutePaths.BillPaymentsTransactionPage);
+                      ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animateToNewPage();
+                      Navigator.of(context).push(slideBottomToTop(nextPage: BillPaymentsTransactionPage()));
+                    },
+                    child: Container(
+                      height: 50.h,
+                      width: 50.h,
+                      alignment: Alignment.center,
+                      child: AppSvg.asset(AssetUtils.clock, width: 24.h, height: 24.h, color: AppColor.light_acccent_blue),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColor.black,
+                        border: Border.all(color: AppColor.borderColorNew, width: 1),
+                        boxShadow: const [
+                          BoxShadow(color: AppColor.borderColorNew, blurRadius: 14, spreadRadius: 0.6),
+                        ],
+                      ),
+                    ),
+                  ),
+                  /*GestureDetector(
                     onTap: () {
                       AppConstantsUtils.PRE_PAID_FLOW = true;
                       AppConstantsUtils.POST_PAID_FLOW = false;
@@ -46,11 +69,11 @@ class PrePaidBillCardWidget extends StatelessWidget {
                       Navigator.of(context).push(slideBottomToTop(nextPage: BillPaymentsTransactionPage()));
                     },
                     child: Text(S.of(context).viewHistory, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, fontWeight: FontWeight.w600, color: AppColor.brightBlue)),
-                  ),
+                  ),*/
                 ],
               ),
               SizedBox(
-                height: 72.h,
+                height: 66.h,
               ),
               Container(
                 height: 112.h,
@@ -60,8 +83,7 @@ class PrePaidBillCardWidget extends StatelessWidget {
               SizedBox(
                 height: 8.h,
               ),
-              Text(S.of(context).howWouldLikeToPayPrePaidYourBills,
-                  textAlign: TextAlign.center, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, fontWeight: FontWeight.w600, color: AppColor.white)),
+              Text(S.of(context).howWouldLikeToPayPrePaidYourBills, textAlign: TextAlign.center, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, fontWeight: FontWeight.w600, color: AppColor.white)),
               SizedBox(
                 height: 40.h,
               ),
@@ -74,12 +96,12 @@ class PrePaidBillCardWidget extends StatelessWidget {
                   Navigator.pushNamed(context, RoutePaths.PayMyPrePaidBillsPage);
                 },
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 17.0.h),
+                  padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 12.0.h),
                   decoration: BoxDecoration(border: Border.all(width: 1, color: AppColor.white_gray), borderRadius: BorderRadius.circular(100)),
                   child: Center(
                     child: Text(
                       S.of(context).manageAndPayMyBills,
-                      style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, fontWeight: FontWeight.w600, color: AppColor.white),
+                      style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 12.0.t, fontWeight: FontWeight.w600, color: AppColor.white),
                     ),
                   ),
                 ),

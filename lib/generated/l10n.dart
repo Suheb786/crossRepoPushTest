@@ -18129,6 +18129,36 @@ class S {
       args: [],
     );
   }
+
+  /// `New Payment`
+  String get newPayment {
+    return Intl.message(
+      'New Payment',
+      name: 'newPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Postpaid Bill`
+  String get newPostPaidBill {
+    return Intl.message(
+      'New Postpaid Bill',
+      name: 'newPostPaidBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Prepaid Bill`
+  String get newPrePaidBill {
+    return Intl.message(
+      'New Prepaid Bill',
+      name: 'newPrePaidBill',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
