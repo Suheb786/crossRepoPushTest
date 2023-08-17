@@ -54,6 +54,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
+import '../../../utils/device_size_helper.dart';
 import '../account_transaction/account_transaction_page.dart';
 import '../card_transaction/card_transaction_page.dart';
 
@@ -228,7 +229,11 @@ class AppHomeViewModel extends BasePageViewModel {
   bool transactionPage = false;
 
   // this is to toggle heights ....
-  double constBottomBarHeight = 130.h;
+  double constBottomBarHeight = DeviceSizeHelper.isSmallDevice
+      ? 120.h
+      : DeviceSizeHelper.isBigDevice
+          ? 140.h
+          : 125.h;
 
   bool isMyAccount(int index) {
     return cardTypeList[index].cardType == CardType.ACCOUNT;
@@ -274,8 +279,8 @@ class AppHomeViewModel extends BasePageViewModel {
 
   bool isSmallDevices = false;
 
-  AppHomeViewModel(
-      this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._initDynamicLinkUseCase, this._getCurrentUserUseCase, this._saveUserDataUseCase, this._verifyQRUseCase, this._getAntelopCardsListUseCase) {
+  AppHomeViewModel(this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._initDynamicLinkUseCase, this._getCurrentUserUseCase, this._saveUserDataUseCase, this._verifyQRUseCase,
+      this._getAntelopCardsListUseCase) {
     isShowBalenceUpdatedToast = false;
     deviceSize = MediaQuery.of(appLevelKey.currentContext!).size;
     isSmallDevices = deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT || deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
@@ -1049,12 +1054,11 @@ class AppHomeViewModel extends BasePageViewModel {
     notifyListeners();
   }
 
-
   timelineGlitchAnimation() {
     if (timelineScrollController.positions.isNotEmpty && timelineScrollController.hasClients)
       timelineScrollController.animateTo(30, duration: const Duration(milliseconds: 400), curve: Curves.easeIn).then((value) {
         if (timelineScrollController.positions.isNotEmpty && timelineScrollController.hasClients)
-        timelineScrollController.animateTo(-30, duration: const Duration(milliseconds: 500), curve: Curves.easeInBack);
+          timelineScrollController.animateTo(-30, duration: const Duration(milliseconds: 500), curve: Curves.easeInBack);
       });
   }
 

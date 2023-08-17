@@ -37,9 +37,8 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
           },
           dataBuilder: (context, snapshot) {
             return Container(
-              margin: EdgeInsets.only(top: (MediaQuery.of(context).size.height * 0.3) - 120),
+              margin: EdgeInsets.only(top: (MediaQuery.of(context).size.height * 0.20)),
               child: Column(
-
                 children: [
                   Text(
                     S.of(context).payBack,
@@ -67,15 +66,17 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                                 children: [
                                   Flexible(
                                     child: AutoSizeText(model.currentPinValue,
-                                        textAlign: TextAlign.center, maxLines: 1, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40.t, fontFamily: StringUtils.appFont, color: AppColor.black)),
+                                        textAlign: TextAlign.center,
+                                        maxLines: 1,
+                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40.t, fontFamily: StringUtils.appFont, color: AppColor.black)),
                                   ),
                                   SizedBox(
                                     width: 4.w,
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.only(bottom: 10.0.h, start: 4.0.w),
-                                    child:
-                                        Text(S.of(context).JOD, textAlign: TextAlign.start, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.t, fontFamily: StringUtils.appFont, color: AppColor.verLightGray4)),
+                                    child: Text(S.of(context).JOD,
+                                        textAlign: TextAlign.start, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.t, fontFamily: StringUtils.appFont, color: AppColor.verLightGray4)),
                                   ),
                                 ],
                               ),

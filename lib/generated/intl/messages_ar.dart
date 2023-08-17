@@ -2218,6 +2218,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "payBills": m7,
         "payFrom": MessageLookupByLibrary.simpleMessage("تسديد من"),
         "payMyBill": MessageLookupByLibrary.simpleMessage("تسديد فاتورتي"),
+        "payNewBill": MessageLookupByLibrary.simpleMessage("Pay New Bill"),
         "payViaQR": MessageLookupByLibrary.simpleMessage(
             "تحويل أموال من خلال رمز الاستجابة السريع\nQR"),
         "payViaQRDesc": MessageLookupByLibrary.simpleMessage(
