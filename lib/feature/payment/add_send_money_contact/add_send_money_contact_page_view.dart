@@ -30,6 +30,7 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
         clipBehavior: Clip.antiAliasWithSaveLayer,
         elevation: 2,
         color: Theme.of(context).primaryColor,
+        borderOnForeground: false,
         margin: EdgeInsets.zero,
         shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
         child: Container(

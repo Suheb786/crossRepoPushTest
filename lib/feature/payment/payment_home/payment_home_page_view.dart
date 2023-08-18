@@ -105,7 +105,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                     AnimatedBuilder(
                       animation: model.translateUpController,
                       child: Padding(
-                        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.06 : 0.04)),
+                        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.08 : 0.06)),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -122,7 +122,8 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                               InformationDialog.show(context,
                                                   image: AssetUtils.payRequestViaQRBlackIcon,
                                                   title: S.of(context).payViaQR,
-                                                  descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
+                                                  descriptionWidget:
+                                                      Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
                                                   onDismissed: () {
                                                 Navigator.pop(context);
                                               }, onSelected: () {
@@ -164,14 +165,16 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                 InformationDialog.show(context,
                                                     image: AssetUtils.payRequestViaQRBlackIcon,
                                                     title: S.of(context).requestViaQR,
-                                                    descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
+                                                    descriptionWidget:
+                                                        Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
                                                     onDismissed: () {
                                                   Navigator.pop(context);
                                                 }, onSelected: () {
                                                   Navigator.pop(context);
 
                                                   Navigator.pushNamed(context, RoutePaths.RequestMoneyQrGeneration,
-                                                      arguments: RequestMoneyQrGenerationPageArguments(ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.account!));
+                                                      arguments:
+                                                          RequestMoneyQrGenerationPageArguments(ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.account!));
                                                 });
                                               },
                                               child: AppSvg.asset(AssetUtils.requestViaQrIcon)),
@@ -250,7 +253,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                             initialData: AnimatedPage.NULL,
                                             dataBuilder: (context, switchedPage) {
                                               return Positioned(
-                                                bottom: 23,
+                                                bottom: switchedPage != AnimatedPage.NULL ? 18 : 23,
                                                 child: InkWell(
                                                   splashColor: Colors.transparent,
                                                   highlightColor: Colors.transparent,
@@ -363,7 +366,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                         return AnimatedCrossFade(
                                           duration: Duration(milliseconds: 500),
                                           firstChild: Padding(
-                                            padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.056 : 0.04)),
+                                            padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.036 : 0.02)),
                                             child: Align(
                                               alignment: Alignment.bottomCenter,
                                               child: BottomBarWidget(
