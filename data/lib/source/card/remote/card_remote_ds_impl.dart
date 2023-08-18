@@ -89,18 +89,30 @@ class CardRemoteDsImpl extends CardRemoteDs {
 
   @override
   Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
-      {required String cardId, num? noOfDays}) async {
+      {required String cardId,
+      num? noOfDays,
+      required String secureCode,
+      required bool isIssuedFromCMS}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getCreditCardTransactions(GetCreditCardTransactionListRequestEntity(
-        baseData: baseData.toJson(), cardId: cardId, noOfDays: noOfDays));
+        issuedFromCms: isIssuedFromCMS,
+        secureCode: secureCode,
+        baseData: baseData.toJson(),
+        cardId: cardId,
+        noOfDays: noOfDays));
   }
 
   @override
   Future<HttpResponse<CardStatementResponseEntity>> getCreditCardStatement(
-      {String? monthYear, String? cardId}) async {
+      {String? monthYear, String? cardId, String? secureCode, bool? issuedFromCms}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getCreditCardStatement(CreditCardStatementRequest(
-        baseData: baseData.toJson(), date: monthYear, getToken: true, cardId: cardId));
+        secureCode: secureCode,
+        baseData: baseData.toJson(),
+        date: monthYear,
+        getToken: true,
+        issuedFromCms: issuedFromCms,
+        cardId: cardId));
   }
 
   @override
@@ -149,17 +161,27 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> freezeCreditCard({String? cardId}) async {
+  Future<HttpResponse<ResponseEntity>> freezeCreditCard(
+      {String? cardId, String? secureCode, bool? isIssuedFromCMS}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.freezeCreditCard(
-        FreezeCreditCardRequestEntity(cardId: cardId, getToken: true, baseData: baseData.toJson()));
+    return _apiService.freezeCreditCard(FreezeCreditCardRequestEntity(
+        cardId: cardId,
+        getToken: true,
+        baseData: baseData.toJson(),
+        secureCode: secureCode,
+        issuedFromCms: isIssuedFromCMS));
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> unFreezeCreditCard({String? cardId}) async {
+  Future<HttpResponse<ResponseEntity>> unFreezeCreditCard(
+      {String? cardId, String? secureCode, bool? isIssuedFromCMS}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.unFreezeCreditCard(
-        FreezeCreditCardRequestEntity(cardId: cardId, getToken: true, baseData: baseData.toJson()));
+    return _apiService.unFreezeCreditCard(FreezeCreditCardRequestEntity(
+        cardId: cardId,
+        getToken: true,
+        baseData: baseData.toJson(),
+        secureCode: secureCode,
+        issuedFromCms: isIssuedFromCMS));
   }
 
   @override
@@ -488,11 +510,12 @@ class CardRemoteDsImpl extends CardRemoteDs {
   Future<HttpResponse<ResponseEntity>> updateSettlement({required params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.updateSettlement(CcUpdateSettlementRequestEntity(
-      baseData: baseData.toJson(),
-      cardId: params.cardId,
-      rate: params.rate,
-      getToken: true,
-    ));
+        baseData: baseData.toJson(),
+        cardId: params.cardId,
+        rate: params.rate,
+        getToken: true,
+        issuedFromCms: params.isIssuedFromCMS,
+        secureCode: params.secureCode));
   }
 
   @override

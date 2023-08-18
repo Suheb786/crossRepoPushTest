@@ -220,11 +220,17 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
   }
 
   void freezeCard(String cardID) {
-    _freezeCardRequestSubject.safeAdd(FreezeCreditCardUseCaseParams(cardId: cardID));
+    _freezeCardRequestSubject.safeAdd(FreezeCreditCardUseCaseParams(
+        cardId: cardID,
+        secureCode: creditCardSettingsArguments.creditCard.cardCode ?? '',
+        isIssuedFromCMS: creditCardSettingsArguments.creditCard.issuedFromCms));
   }
 
   void unFreezeCard(String cardID) {
-    _unFreezeCardRequestSubject.safeAdd(UnFreezeCreditCardUseCaseParams(cardId: cardID));
+    _unFreezeCardRequestSubject.safeAdd(UnFreezeCreditCardUseCaseParams(
+        cardId: cardID,
+        secureCode: creditCardSettingsArguments.creditCard.cardCode ?? '',
+        isIssuedFromCMS: creditCardSettingsArguments.creditCard.issuedFromCms));
   }
 
   void cancelCard(String reason) {

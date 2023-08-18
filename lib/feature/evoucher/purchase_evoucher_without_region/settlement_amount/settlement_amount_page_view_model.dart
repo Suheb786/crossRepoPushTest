@@ -80,7 +80,7 @@ class SettlementAmountPageViewModel extends BasePageViewModel {
   String mobileNumber = "";
 
   void getOTP() {
-    _evoucherOtpRequest.safeAdd(EVoucherUsecaseOTPParams(GetToken: true));
+    _evoucherOtpRequest.safeAdd(EVoucherUsecaseOTPParams(voucherName: argument.selectedItem.name));
   }
 
   void check(bool value) {

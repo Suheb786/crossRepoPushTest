@@ -195,6 +195,7 @@ import 'package:data/entity/remote/device_change/send_otp_token_email_request_en
 import 'package:data/entity/remote/device_change/verify_device_change_otp_request_entity.dart';
 import 'package:data/entity/remote/e_voucher/get_settlement_amount/get_settlement_amount_request_entity.dart';
 import 'package:data/entity/remote/e_voucher/get_settlement_amount/get_settlement_amount_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/place_order/evoucher_otp_request_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_category/voucher_categories_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_detail_request.dart';
 import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_details_response_entity.dart';
@@ -520,7 +521,7 @@ abstract class ApiService {
   Future<HttpResponse<CardTransactionResponseEntity>> getDebitCardTransactions(
       @Body() GetDebitCardTransactionRequest debitCardTransactionRequest);
 
-  @POST("/TransactionHistory/GetCreditCardTransactionsList")
+  @POST("/TransactionHistory/GetCreditCardTransactionsListV1")
   Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
       @Body() GetCreditCardTransactionListRequestEntity getCreditCardTransactionListRequestEntity);
 
@@ -530,7 +531,7 @@ abstract class ApiService {
   @POST("/CardTracking/CreditCardReqV2")
   Future<HttpResponse<ResponseEntity>> requestCreditCard(@Body() RequestCardRequest requestCardRequest);
 
-  @POST("/CardTracking/GetCreditCardStatementV1")
+  @POST("/CardTracking/GetCreditCardStatementV2")
   Future<HttpResponse<CardStatementResponseEntity>> getCreditCardStatement(
       @Body() CreditCardStatementRequest cardStatementRequest);
 
@@ -555,11 +556,11 @@ abstract class ApiService {
   @POST("/RuleEngine/PinUnblock")
   Future<HttpResponse<ResponseEntity>> creditCardPinUnBlock(@Body() BaseRequest baseRequest);
 
-  @POST("/RuleEngine/FreezeCreditCard")
+  @POST("/RuleEngine/FreezeCreditCardV1")
   Future<HttpResponse<ResponseEntity>> freezeCreditCard(
       @Body() FreezeCreditCardRequestEntity freezeCreditCardRequestEntity);
 
-  @POST("/RuleEngine/UnfreezeCreditCard")
+  @POST("/RuleEngine/UnfreezeCreditCardV1")
   Future<HttpResponse<ResponseEntity>> unFreezeCreditCard(
       @Body() FreezeCreditCardRequestEntity unFreezeCreditCardRequestEntity);
 
@@ -791,7 +792,7 @@ abstract class ApiService {
   @POST("/DashBoard/GetAdPlaceholder")
   Future<HttpResponse<PlaceholderResponseEntity>> getPlaceholder(@Body() GetPlaceholderRequestEntity request);
 
-  @POST("/CardTracking/UpdateSettlement")
+  @POST("/CardTracking/UpdateSettlementV1")
   Future<HttpResponse<ResponseEntity>> updateSettlement(@Body() CcUpdateSettlementRequestEntity request);
 
   @POST("/CardTracking/GetLimitV2")
@@ -1196,7 +1197,7 @@ abstract class ApiService {
       @Body() GetSettlementAmountRequestEntity request);
 
   @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/EVoucherOtp")
-  Future<HttpResponse<EVoucherOtpResponseEntity>> eVoucherOtp(@Body() BaseRequest request);
+  Future<HttpResponse<EVoucherOtpResponseEntity>> eVoucherOtp(@Body() EVoucherOtpRequestEntity request);
 
   @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/GetVoucherDetails")
   Future<HttpResponse<GetVoucherDetailResponseEntity>> getVoucherDetailsApi(

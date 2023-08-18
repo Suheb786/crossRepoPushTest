@@ -1381,6 +1381,10 @@ class ErrorParser {
         return localisedHelper.maxValueGreaterThanMin;
       case ErrorType.SELECT_CATEGORY_FIRST:
         return localisedHelper.selectCategoryFirst;
+      case ErrorType.ACCOUNT_INACTIVE:
+        return localisedHelper.accountInactive;
+      case ErrorType.ACCOUNT_CANNOT_BE_DEBITED:
+        return localisedHelper.accountCannotBeDebited;
       default:
         return "";
     }

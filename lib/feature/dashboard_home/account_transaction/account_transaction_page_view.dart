@@ -72,7 +72,10 @@ class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionVi
                                     Navigator.pop(context);
                                     Navigator.pushNamed(context, RoutePaths.DownloadTransaction,
                                         arguments: DownloadStatementArguments(
-                                            statementType: StatementType.Debit, transactionDate: value));
+                                            issuedFromCms: false,
+                                            secureCode: '',
+                                            statementType: StatementType.Debit,
+                                            transactionDate: value));
                                   });
                                 }
                               },

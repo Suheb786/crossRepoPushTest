@@ -81,6 +81,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Account balance"),
         "accountBlink":
             MessageLookupByLibrary.simpleMessage("Account No. (Blink)"),
+        "accountCannotBeDebited": MessageLookupByLibrary.simpleMessage(
+            "Oops! Transaction failed; your account cannot be debited."),
         "accountCard": MessageLookupByLibrary.simpleMessage("Account Card"),
         "accountClaimNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
@@ -104,6 +106,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Your account is inactive!"),
         "accountHolderName":
             MessageLookupByLibrary.simpleMessage("account holder name"),
+        "accountInactive": MessageLookupByLibrary.simpleMessage(
+            "Oops! Transaction failed; your account is inactive."),
         "accountInquiryWentWrong": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-010)"),
         "accountInquiryWentWrong61": MessageLookupByLibrary.simpleMessage(

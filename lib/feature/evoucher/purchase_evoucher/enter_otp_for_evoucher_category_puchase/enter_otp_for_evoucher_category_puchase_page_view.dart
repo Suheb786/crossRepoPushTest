@@ -149,7 +149,11 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                                           return currentTimeRemaining == null
                                               ? TextButton(
                                                   onPressed: () {
-                                                    model.makeOTPRequest();
+                                                    model.makeOTPRequest(
+                                                        voucherName: ProviderScope.containerOf(context)
+                                                            .read(selectAmountRegionViewModelProvider)
+                                                            .selectedItem
+                                                            .name);
                                                   },
                                                   child: Text(
                                                     S.of(context).resendCode,

@@ -1304,7 +1304,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/TransactionHistory/GetCreditCardTransactionsList',
+              '/TransactionHistory/GetCreditCardTransactionsListV1',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1382,7 +1382,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/CardTracking/GetCreditCardStatementV1',
+              '/CardTracking/GetCreditCardStatementV2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1566,7 +1566,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/RuleEngine/FreezeCreditCard',
+              '/RuleEngine/FreezeCreditCardV1',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1592,7 +1592,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/RuleEngine/UnfreezeCreditCard',
+              '/RuleEngine/UnfreezeCreditCardV1',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -3171,7 +3171,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/CardTracking/UpdateSettlement',
+              '/CardTracking/UpdateSettlementV1',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5548,7 +5548,7 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<EVoucherOtpResponseEntity>> eVoucherOtp(
-      BaseRequest request) async {
+      EVoucherOtpRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
