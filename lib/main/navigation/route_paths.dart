@@ -157,4 +157,7 @@ class RoutePaths {
   static const String AddContactIBANotpPage = "/addContactIbanOTPPage";
   static const String RjFlightBookingPage = "/rjFlightBookingPage";
   static const String BeneficiaryTransactionHistoryList = "beneficiaryTransactionHistoryListPage";
+  static const String SelectTransferPage = "/SelectTransferPage";
+  static const String TransferSuccessPage = "/TransferSuccessPage";
+
 }

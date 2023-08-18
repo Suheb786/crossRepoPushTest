@@ -1809,5 +1809,11 @@
   "youCanUnFreeze": ".بتقدر تفك تجميد بطاقتك وتفعلها بأي وقت من داخل التطبيق",
   "eVouchersAreHere": "القسائم الإلكترونية صارت متاحة!",
   "unavailable": "غير متوفر",
-  "eVoucherLandingDialogDescption": "صار بإمكانك تشتري القسائم الإلكترونية من مختلف المتاجر المحلية والدولية المفضلة لديك. "
+  "eVoucherLandingDialogDescption": "صار بإمكانك تشتري القسائم الإلكترونية من مختلف المتاجر المحلية والدولية المفضلة لديك. ",
+  "transfer": "Transfer",
+  "transferHeader": "Enter your transfer details",
+  "transferFrom": "Transfer from",
+  "mainAccountPrimary": "Main Account-Primary",
+  "transferTo": "Transfer To",
+  "subAccountSavings": "Sub Account - Savings"
 }

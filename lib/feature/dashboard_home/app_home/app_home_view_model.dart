@@ -343,10 +343,17 @@ class AppHomeViewModel extends BasePageViewModel {
     }
   }
 
-  String formatBalance(double balance) {
-    return NumberFormat('#,###.###').format(balance);
+  String formatBalance(String balance) {
+    if (balance.isEmpty) {
+      return "";
+    }
+    double? balanceValue = double.tryParse(balance);
+    if (balanceValue != null) {
+      return NumberFormat('#,###.000').format(balanceValue);
+    } else {
+      return balance;
+    }
   }
-
   void getDashboardPages(GetDashboardDataContent dashboardDataContent) {
     pages.clear();
     timeLineListArguments.clear();

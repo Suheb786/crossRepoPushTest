@@ -1836,5 +1836,11 @@
   "whenYouFreezeYourCard": "When you freeze your card, your card cannot be used for any transaction including direct debit on your card such as your online subscriptions directly linked to your card, for example: Netflix, Careem, OSN, etc.",
   "youCanUnFreeze": "You can unfreeze and activate your card anytime from the app.",
   "unavailable": "Unavailable",
-  "evoucherUnderProcessing": "E-voucher under processing"
+  "evoucherUnderProcessing": "E-voucher under processing",
+  "transfer": "Transfer",
+  "transferHeader": "Enter your transfer details",
+  "transferFrom": "Transfer from",
+  "mainAccountPrimary": "Main Account-Primary",
+  "transferTo": "Transfer To",
+  "subAccountSavings": "Sub Account - Savings"
 }

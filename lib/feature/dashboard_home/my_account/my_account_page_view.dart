@@ -92,9 +92,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                             crossAxisAlignment: CrossAxisAlignment.center,
                                             mainAxisAlignment: MainAxisAlignment.start,
                                             children: [
-                                              Text(
-                                                  model
-                                                      .formatBalance(double.parse(account.availableBalance!)),
+                                              Text(model.formatBalance(account.availableBalance!),
                                                   style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
                                                       fontSize: 20.0.t,

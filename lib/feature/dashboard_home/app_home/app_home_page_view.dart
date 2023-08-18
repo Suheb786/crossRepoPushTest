@@ -303,8 +303,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                             crossAxisAlignment: CrossAxisAlignment.center,
                                                             children: [
                                                               Text(
-                                                                  model.formatBalance(double.parse(
-                                                                      '${cardData!.data!.dashboardDataContent!.account!.availableBalance!}')),
+                                                                  model.formatBalance(
+                                                                      '${cardData!.data!.dashboardDataContent!.account!.availableBalance!}'),
                                                                   style: TextStyle(
                                                                       fontFamily: StringUtils.appFont,
                                                                       fontSize: 24.0.t,

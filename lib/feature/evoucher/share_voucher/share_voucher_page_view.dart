@@ -18,11 +18,11 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
   Widget build(BuildContext context, model) {
     return AppKeyBoardHide(
       child: Container(
-        padding: EdgeInsets.only(top: 52),
+        padding: EdgeInsetsDirectional.only(top: 52.h),
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 48.0),
+              padding: EdgeInsetsDirectional.symmetric(horizontal: 48.0.h),
               child: Center(
                 child: Text(
                   S.of(context).viewVoucher,
@@ -30,11 +30,11 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                       fontFamily: StringUtils.appFont,
                       color: Theme.of(context).colorScheme.secondary,
                       fontWeight: FontWeight.w600,
-                      fontSize: 14),
+                      fontSize: 14.t),
                 ),
               ),
             ),
-            const SizedBox(height: 35),
+            SizedBox(height: 35.h),
             Expanded(
               child: Container(
                 height: double.infinity,
@@ -46,10 +46,10 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                 child: Column(
                   children: [
                     Container(
-                        height: MediaQuery.of(context).size.height / 1.7,
+                        height: MediaQuery.of(context).size.height / 1.7.h,
                         decoration: BoxDecoration(
                             border:
-                                Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1)),
+                                Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1.w)),
                         width: double.infinity,
                         child: InAppWebView(
                           initialUrlRequest: URLRequest(
@@ -61,13 +61,13 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                     InkWell(
                       onTap: () async {},
                       child: Padding(
-                        padding: EdgeInsetsDirectional.only(top: 24),
+                        padding: EdgeInsetsDirectional.only(top: 24.h),
                         child: Container(
                           height: 50,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               border: Border.all(color: Theme.of(context).textTheme.bodyLarge!.color!)),
-                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
+                          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 17.h),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -75,7 +75,7 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                                 S.of(context).shareVoucher,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
-                                    fontSize: 12,
+                                    fontSize: 12.t,
                                     fontWeight: FontWeight.w600),
                               ),
                               AppSvg.asset(AssetUtils.share, color: Theme.of(context).primaryColorDark)
@@ -85,7 +85,7 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 36),
+                      padding: EdgeInsets.only(top: 36.h),
                       child: InkWell(
                         onTap: () {},
                         child: InkWell(

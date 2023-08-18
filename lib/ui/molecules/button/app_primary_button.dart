@@ -5,18 +5,24 @@ import 'package:neo_bank/utils/string_utils.dart';
 
 @immutable
 class AppPrimaryButton extends StatelessWidget {
-  const AppPrimaryButton({
+  AppPrimaryButton({
     Key? key,
     required this.onPressed,
     this.text = 'Next',
     this.width = double.infinity,
     this.isDisabled = false,
+    this.textColor,
+    this.activeBackgroundColor,
+    this.disableBackgroundColor,
   }) : super(key: key);
 
   final VoidCallback? onPressed;
   final String text;
   final double width;
+  final Color? textColor;
   final bool isDisabled;
+  final Color? activeBackgroundColor;
+  final Color? disableBackgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +41,10 @@ class AppPrimaryButton extends StatelessWidget {
               return Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5);
             }
             return isDisabled
-                ? Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5)
-                : Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue;
+                ? disableBackgroundColor ?? Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5)
+                : activeBackgroundColor ??
+                    Theme.of(context).textTheme.bodyLarge?.color ??
+                    AppColor.brightBlue;
           }),
         ),
         onPressed: !isDisabled ? onPressed : null,
@@ -46,7 +54,7 @@ class AppPrimaryButton extends StatelessWidget {
               fontFamily: StringUtils.appFont,
               fontSize: 14.t,
               fontWeight: FontWeight.w600,
-              color: Theme.of(context).colorScheme.secondary),
+              color: textColor ?? Theme.of(context).colorScheme.secondary),
         ),
       ),
     );

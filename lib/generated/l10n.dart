@@ -18149,6 +18149,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Transfer`
+  String get transfer {
+    return Intl.message(
+      'Transfer',
+      name: 'transfer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your transfer details`
+  String get transferHeader {
+    return Intl.message(
+      'Enter your transfer details',
+      name: 'transferHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer from`
+  String get transferFrom {
+    return Intl.message(
+      'Transfer from',
+      name: 'transferFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main Account-Primary`
+  String get mainAccountPrimary {
+    return Intl.message(
+      'Main Account-Primary',
+      name: 'mainAccountPrimary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer To`
+  String get transferTo {
+    return Intl.message(
+      'Transfer To',
+      name: 'transferTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sub Account - Savings`
+  String get subAccountSavings {
+    return Intl.message(
+      'Sub Account - Savings',
+      name: 'subAccountSavings',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
