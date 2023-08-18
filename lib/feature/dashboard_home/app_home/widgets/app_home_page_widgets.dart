@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../../di/dashboard/dashboard_modules.dart';
+import '../../../../utils/device_size_helper.dart';
 
 class AppHomePageWidgets {
   /// TOP TOTAL WIDGET ...
@@ -12,7 +16,7 @@ class AppHomePageWidgets {
     return Builder(builder: (context) {
       return Column(
         children: [
-          SizedBox(height: 20),
+          SizedBox(height: ProviderScope.containerOf(context).read(appHomeViewModelProvider).constBottomBarHeight),
           Text(
             S.of(context).totalBalance,
             style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t, color: AppColor.black),

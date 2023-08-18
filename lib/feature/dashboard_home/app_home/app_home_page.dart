@@ -116,60 +116,51 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> w
 
   @override
   Widget buildView(BuildContext context, AppHomeViewModel model) {
-    return Stack(
-      alignment: Alignment.bottomCenter,
-      children: [
-        ///Main View
-        AnimatedBuilder(
-            animation: model.zoomController,
-            builder: (context, child) {
-              return Transform.scale(
-                scale: model.firstTime ? 1 : model.zoomAnimation.value,
-                child: child!,
-              );
-            },
+    return AnimatedBuilder(
+      animation: model.zoomController,
+      builder: (context, child) {
+        return Transform.scale(
+          scale: model.firstTime ? 1 : model.zoomAnimation.value,
+          child: child!,
+        );
+      },
+      child: Column(
+        children: [
+          Expanded(
             child: AppHomePageViewNew(
               provideBase(),
-            )),
-
-        ///Bottom Navigation Bar
-        Positioned(
-          left: 0,
-          bottom: 0,
-          right: 0,
-          child: AnimatedOpacity(
-            duration: model.settings || model.showPayBackView || model.timelinePage ? const Duration(milliseconds: 200) : const Duration(seconds: 2),
-            opacity: model.settings || model.showPayBackView || model.timelinePage ? 0 : 1,
-            child: Padding(
-              padding: EdgeInsets.only(top: 24.0.h, bottom: 0.0.h),
-              child: BottomBarWidget(
-                onHomeTap: () {
-                  if (model.settings || model.showPayBackView || model.timelinePage) {
-                  } else {
-                    model.moveToPage(0);
-                  }
-                },
-                onMoreTap: () {
-                  if (model.settings || model.showPayBackView || model.timelinePage) {
-                  } else {
-                    SettingsDialog.show(context);
-                  }
-                },
-                onContactUsTap: () {
-                  if (model.settings || model.showPayBackView || model.timelinePage) {
-                  } else {
-                    EngagementTeamDialog.show(context, onDismissed: () {
-                      Navigator.pop(context);
-                    }, onSelected: (value) {
-                      Navigator.pop(context);
-                    });
-                  }
-                },
-              ),
             ),
           ),
-        ),
-      ],
+          AnimatedOpacity(
+            duration: model.settings || model.showPayBackView || model.timelinePage ? const Duration(milliseconds: 200) : const Duration(seconds: 2),
+            opacity: model.settings || model.showPayBackView || model.timelinePage ? 0 : 1,
+            child: BottomBarWidget(
+              onHomeTap: () {
+                if (model.settings || model.showPayBackView || model.timelinePage) {
+                } else {
+                  model.moveToPage(0);
+                }
+              },
+              onMoreTap: () {
+                if (model.settings || model.showPayBackView || model.timelinePage) {
+                } else {
+                  SettingsDialog.show(context);
+                }
+              },
+              onContactUsTap: () {
+                if (model.settings || model.showPayBackView || model.timelinePage) {
+                } else {
+                  EngagementTeamDialog.show(context, onDismissed: () {
+                    Navigator.pop(context);
+                  }, onSelected: (value) {
+                    Navigator.pop(context);
+                  });
+                }
+              },
+            ),
+          )
+        ],
+      ),
     );
   }
 

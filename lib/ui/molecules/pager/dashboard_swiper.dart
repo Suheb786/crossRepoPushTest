@@ -54,47 +54,44 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
   }
 
   Widget carouselView(int index) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: widget.model.timelinePage ? widget.model.constBottomBarHeight : 0),
-      child: AnimatedBuilder(
-        animation: widget.translateSidewaysController!,
-        builder: (context, child) {
-          return Transform.translate(
-            offset: widget.currentStep == index
-                ? const Offset(0, 0)
-                : widget.currentStep! < index
-                    ? Offset(widget.translateSidewaysController!.value * 100 * (StringUtils.isDirectionRTL(context) ? -1 : 1), 0)
-                    : Offset(widget.translateSidewaysController!.value * 100 * (StringUtils.isDirectionRTL(context) ? 1 : -1), 0),
-            child: AnimatedBuilder(
-              animation: widget.appSwiperController,
-              child: widget.pages![index],
-              builder: (context, child) {
-                double value = 0;
+    return AnimatedBuilder(
+      animation: widget.translateSidewaysController!,
+      builder: (context, child) {
+        return Transform.translate(
+          offset: widget.currentStep == index
+              ? const Offset(0, 0)
+              : widget.currentStep! < index
+                  ? Offset(widget.translateSidewaysController!.value * 100 * (StringUtils.isDirectionRTL(context) ? -1 : 1), 0)
+                  : Offset(widget.translateSidewaysController!.value * 100 * (StringUtils.isDirectionRTL(context) ? 1 : -1), 0),
+          child: AnimatedBuilder(
+            animation: widget.appSwiperController,
+            child: widget.pages![index],
+            builder: (context, child) {
+              double value = 0;
 
-                ///Checking if pageController is ready to use
-                if (widget.appSwiperController.position.hasContentDimensions) {
-                  ///For current page value = 0, so rotation and translation value is zero
-                  value = index.toDouble() - (widget.appSwiperController.page ?? 0);
-                  value = (value * 0.012);
-                }
+              ///Checking if pageController is ready to use
+              if (widget.appSwiperController.position.hasContentDimensions) {
+                ///For current page value = 0, so rotation and translation value is zero
+                value = index.toDouble() - (widget.appSwiperController.page ?? 0);
+                value = (value * 0.012);
+              }
 
-                ///Tilted semicircle
-                return Transform.rotate(
-                  angle: (math.pi * (StringUtils.isDirectionRTL(context) ? -1 : 1) * value),
-                  child: Transform.translate(
-                    offset: Offset(0, value.abs() * 500),
-                    child: AnimatedOpacity(
-                      opacity: index == widget.currentStep ? 1 : 0.5,
-                      duration: const Duration(milliseconds: 400),
-                      child: child!,
-                    ),
+              ///Tilted semicircle
+              return Transform.rotate(
+                angle: (math.pi * (StringUtils.isDirectionRTL(context) ? -1 : 1) * value),
+                child: Transform.translate(
+                  offset: Offset(0, value.abs() * 500),
+                  child: AnimatedOpacity(
+                    opacity: index == widget.currentStep ? 1 : 0.5,
+                    duration: const Duration(milliseconds: 400),
+                    child: child!,
                   ),
-                );
-              },
-            ),
-          );
-        },
-      ),
+                ),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

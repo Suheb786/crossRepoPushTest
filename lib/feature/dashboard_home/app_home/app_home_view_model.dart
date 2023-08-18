@@ -229,11 +229,8 @@ class AppHomeViewModel extends BasePageViewModel {
   bool transactionPage = false;
 
   // this is to toggle heights ....
-  double constBottomBarHeight = DeviceSizeHelper.isSmallDevice
-      ? 120.h
-      : DeviceSizeHelper.isBigDevice
-          ? 140.h
-          : 125.h;
+  late double constBottomBarHeight;
+  late double bottomNavbarHeight;
 
   bool isMyAccount(int index) {
     return cardTypeList[index].cardType == CardType.ACCOUNT;
@@ -281,6 +278,12 @@ class AppHomeViewModel extends BasePageViewModel {
 
   AppHomeViewModel(this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._initDynamicLinkUseCase, this._getCurrentUserUseCase, this._saveUserDataUseCase, this._verifyQRUseCase,
       this._getAntelopCardsListUseCase) {
+    bottomNavbarHeight = constBottomBarHeight = MediaQuery.of(appLevelKey.currentContext!).size.height *
+        (DeviceSizeHelper.isBigDevice
+            ? 0.06
+            : DeviceSizeHelper.isSmallDevice
+                ? 0.045
+                : 0.047);
     isShowBalenceUpdatedToast = false;
     deviceSize = MediaQuery.of(appLevelKey.currentContext!).size;
     isSmallDevices = deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT || deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
@@ -950,7 +953,6 @@ class AppHomeViewModel extends BasePageViewModel {
   }
 
   ///--------------- Animation methods... ----------------------///
-  double bottomNavbarHeight = 130;
 
   /// SETTINGS PAGE ANIMATIONS AND TRANSITIONS....
   showSettingPage(bool value, {bool updateDashboard = false, int currentStep = 0}) {
