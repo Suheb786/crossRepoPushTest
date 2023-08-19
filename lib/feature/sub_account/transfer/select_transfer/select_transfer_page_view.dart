@@ -15,6 +15,7 @@ import '../../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../../ui/molecules/textfield/transfer_account_textfield.dart';
 import '../../../../utils/color_utils.dart';
 import '../../../../utils/string_utils.dart';
+import '../transfer_success/transfer_success_page.dart';
 
 class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewModel> {
   SelectTransferPageView(ProviderBase model) : super(model);
@@ -100,34 +101,35 @@ class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewMo
                                     ),
                                   ),
                                   SizedBox(height: 16.h),
-                                  GestureDetector(
-                                    onTap: () {
-                                      if (model.transferFromAccountDetailsResponse.hasValue) {
-                                        SelectFromListDialog.show(
-                                          context,
-                                          title: S.current.transferTo,
-                                          accountName: model.getNonSelectedAccountNameList(),
-                                          accountNumber: model.getNonSelectedAccountNumberList(),
-                                          availableAmount: model.getNonSelectedavailableAmountList(),
-                                          onDismissed: () => Navigator.pop(context),
-                                          onConfirm: (value) {
-                                            model.updateTransferToAccount(value);
-                                            Navigator.pop(context);
-                                            model.validate();
+                                  AppStreamBuilder<Account>(
+                                      stream: model.transferToAccountDetailsStream,
+                                      initialData:
+                                          Account(accountNo: " ", accountTitle: " ", availableBalance: ""),
+                                      dataBuilder: (context, snapShot) {
+                                        return GestureDetector(
+                                          onTap: () {
+                                            if (model.transferFromAccountDetailsResponse.hasValue) {
+                                              SelectFromListDialog.show(
+                                                context,
+                                                title: S.current.transferTo,
+                                                accountName: model.getNonSelectedAccountNameList(),
+                                                accountNumber: model.getNonSelectedAccountNumberList(),
+                                                availableAmount: model.getNonSelectedavailableAmountList(),
+                                                onDismissed: () => Navigator.pop(context),
+                                                onConfirm: (value) {
+                                                  model.updateTransferToAccount(value);
+
+                                                  Navigator.pop(context);
+                                                  model.validate();
+                                                },
+                                              );
+                                            } else {
+                                              model.tranferFromKey.currentState!.isValid = false;
+                                              model.showToastWithErrorString(
+                                                  "Please confirm trasnfer from account");
+                                            }
                                           },
-                                        );
-                                      } else {
-                                        model.tranferFromKey.currentState!.isValid = false;
-                                        model
-                                            .showToastWithErrorString("Please confirm trasnfer from account");
-                                      }
-                                    },
-                                    child: AppStreamBuilder<Account>(
-                                        stream: model.transferToAccountDetailsStream,
-                                        initialData:
-                                            Account(accountNo: " ", accountTitle: " ", availableBalance: ""),
-                                        dataBuilder: (context, snapShot) {
-                                          return TransferAccountTextField(
+                                          child: TransferAccountTextField(
                                             context: context,
                                             model: model,
                                             label: S.current.transferTo.toUpperCase(),
@@ -138,9 +140,9 @@ class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewMo
                                                 : model.formatBalance(snapShot?.availableBalance ?? "") +
                                                     " " +
                                                     S.current.JOD.toUpperCase(),
-                                          );
-                                        }),
-                                  ),
+                                          ),
+                                        );
+                                      }),
                                   SizedBox(height: 16.h),
                                   AppTextField(
                                     labelText: S.current.amount.toUpperCase(),
@@ -163,7 +165,13 @@ class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewMo
                                     dataBuilder: (context, isValid) {
                                       return AppPrimaryButton(
                                         onPressed: () {
-                                          Navigator.pushNamed(context, RoutePaths.TransferSuccessPage);
+                                          Navigator.pushNamed(
+                                            context,
+                                            RoutePaths.TransferSuccessPage,
+                                            arguments: TransferSuccessPageArgument(
+                                                amount: model.amountTextController.text,
+                                                account: model.transferToAccountDetailsResponse.value),
+                                          );
                                         },
                                         isDisabled: !isValid!,
                                         text: S.current.transfer,

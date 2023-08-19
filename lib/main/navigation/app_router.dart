@@ -918,7 +918,7 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.SelectTransferPage));
       case RoutePaths.TransferSuccessPage:
         return CupertinoPageRoute(
-            builder: (context) => TransferSuccessPage(),
+            builder: (context) => TransferSuccessPage(settings.arguments as TransferSuccessPageArgument),
             settings: RouteSettings(name: RoutePaths.TransferSuccessPage));
       default:
         return CupertinoPageRoute(

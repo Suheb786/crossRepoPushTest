@@ -93,8 +93,6 @@ class SelectTransferPageViewModel extends BasePageViewModel {
     print(transferFromAccountDetailsResponse.value);
   }
 
-
-
   getIntialTrasnferfromAccountDetail(Account account) {
     if (accountNumberList.contains(account.accountNo)) {
       return account;

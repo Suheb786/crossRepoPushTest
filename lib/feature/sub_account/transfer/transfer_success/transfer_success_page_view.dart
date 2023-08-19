@@ -60,7 +60,7 @@ class TransferSuccessPageView extends BasePageViewWidget<TransferSuccessPageView
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "2000",
+                          model.argument.amount,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
@@ -94,7 +94,7 @@ class TransferSuccessPageView extends BasePageViewWidget<TransferSuccessPageView
                     ),
                     SizedBox(height: 24.h),
                     Text(
-                      "Sub Acount",
+                      model.argument.account.accountTitle ?? "",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
@@ -102,8 +102,9 @@ class TransferSuccessPageView extends BasePageViewWidget<TransferSuccessPageView
                           fontSize: 14.t,
                           color: Theme.of(context).colorScheme.secondary),
                     ),
+                    SizedBox(height: 3.h),
                     Text(
-                      "98689575",
+                      model.argument.account.accountNo ?? "",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
