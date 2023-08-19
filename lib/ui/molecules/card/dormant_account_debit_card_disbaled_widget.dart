@@ -33,7 +33,6 @@ class _DormantAccountDebitCardDisabledWidgetState extends State<DormantAccountDe
   Widget build(BuildContext context) {
     return Container(
       color: Theme.of(context).colorScheme.secondary,
-      margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.035, vertical: 44),
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: Card(

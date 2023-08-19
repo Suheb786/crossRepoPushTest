@@ -261,7 +261,6 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                 child: SafeArea(
                                                                   child: Container(
                                                                     color: model.settings ? Colors.white : Colors.transparent,
-                                                                    margin: EdgeInsets.only(bottom: model.timelinePage ? 0 : model.constBottomBarHeight),
                                                                     child: Column(
                                                                       crossAxisAlignment: CrossAxisAlignment.stretch,
                                                                       children: [
@@ -272,8 +271,8 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                         ),
                                                                         Expanded(
                                                                           child: Stack(
-                                                                            alignment: Alignment.topCenter,
                                                                             fit: StackFit.expand,
+                                                                            alignment: Alignment.topCenter,
                                                                             children: [
                                                                               DashboardSwiper(
                                                                                 pages: pagesList,
@@ -289,7 +288,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                               ///Timeline Button
                                                                               ///For My Account and My credit card
                                                                               Positioned(
-                                                                                top: 20,
+                                                                                top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.06 : 0.04) - 24,
                                                                                 child: InkWell(
                                                                                   splashColor: Colors.transparent,
                                                                                   highlightColor: Colors.transparent,
@@ -336,7 +335,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                           duration: const Duration(milliseconds: 500),
                                                                                           child: !model.timelinePage
                                                                                               ? AppSvg.asset(AssetUtils.timelineButton, height: 24.w, width: 24.w, color: AppColor.light_acccent_blue)
-                                                                                              : AppSvg.asset(AssetUtils.swipeUp, height: 24.w, width: 24.w, color: AppColor.light_acccent_blue),
+                                                                                              : AppSvg.asset(AssetUtils.swipeUpSmall, height: 24.w, width: 24.w, color: AppColor.light_acccent_blue),
                                                                                         ),
                                                                                       ),
                                                                                     ),
@@ -487,20 +486,20 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                             ],
                                                                           ),
                                                                         ),
+
+                                                                        /// INDICATOR...
                                                                         AnimatedCrossFade(
                                                                           crossFadeState:
                                                                               model.settings || model.timelinePage || model.showPayBackView ? CrossFadeState.showFirst : CrossFadeState.showSecond,
                                                                           firstChild: const SizedBox(),
                                                                           secondChild: SizedBox(
-                                                                            height: MediaQuery.of(context).size.height *
-                                                                                (DeviceSizeHelper.isBigDevice
-                                                                                    ? 0.045
-                                                                                    : DeviceSizeHelper.isSmallDevice
-                                                                                        ? 0.01
-                                                                                        : 0.04),
-                                                                            child: Row(
-                                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                                              children: model.buildPageIndicator(currentStep, cardData.data!.dashboardDataContent!.debitCard!.length),
+                                                                            height: MediaQuery.of(context).size.height * 0.03,
+                                                                            child: Padding(
+                                                                              padding: EdgeInsets.only(bottom: 17.h),
+                                                                              child: Row(
+                                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                                children: model.buildPageIndicator(currentStep, cardData.data!.dashboardDataContent!.debitCard!.length),
+                                                                              ),
                                                                             ),
                                                                           ),
                                                                           duration: const Duration(milliseconds: 500),

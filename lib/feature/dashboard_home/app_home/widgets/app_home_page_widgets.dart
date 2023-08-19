@@ -16,7 +16,6 @@ class AppHomePageWidgets {
     return Builder(builder: (context) {
       return Column(
         children: [
-          SizedBox(height: ProviderScope.containerOf(context).read(appHomeViewModelProvider).constBottomBarHeight),
           Text(
             S.of(context).totalBalance,
             style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t, color: AppColor.black),

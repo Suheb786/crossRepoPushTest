@@ -228,10 +228,6 @@ class AppHomeViewModel extends BasePageViewModel {
   bool settings = false;
   bool transactionPage = false;
 
-  // this is to toggle heights ....
-  late double constBottomBarHeight;
-  late double bottomNavbarHeight;
-
   bool isMyAccount(int index) {
     return cardTypeList[index].cardType == CardType.ACCOUNT;
   }
@@ -278,12 +274,6 @@ class AppHomeViewModel extends BasePageViewModel {
 
   AppHomeViewModel(this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._initDynamicLinkUseCase, this._getCurrentUserUseCase, this._saveUserDataUseCase, this._verifyQRUseCase,
       this._getAntelopCardsListUseCase) {
-    bottomNavbarHeight = constBottomBarHeight = MediaQuery.of(appLevelKey.currentContext!).size.height *
-        (DeviceSizeHelper.isBigDevice
-            ? 0.06
-            : DeviceSizeHelper.isSmallDevice
-                ? 0.045
-                : 0.047);
     isShowBalenceUpdatedToast = false;
     deviceSize = MediaQuery.of(appLevelKey.currentContext!).size;
     isSmallDevices = deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT || deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
@@ -959,14 +949,11 @@ class AppHomeViewModel extends BasePageViewModel {
     if (value) {
       Future.delayed(
         const Duration(milliseconds: 300),
-        () {
-          changeBottomNavbarHeight(0);
-        },
+        () {},
       );
       animateForwardSettingsPage();
     } else {
       selectedDebitCard = selectedCreditCard = null;
-      changeBottomNavbarHeight(constBottomBarHeight);
       animateReverseSettingsPage();
     }
 
@@ -993,23 +980,11 @@ class AppHomeViewModel extends BasePageViewModel {
     translateSettingsUpController.reverse();
   }
 
-  changeBottomNavbarHeight(double value) {
-    bottomNavbarHeight = value;
-    notifyListeners();
-  }
-
   /// PAYBACK PAGE ANIMATIONS AND TRANSITIONS....
   goToPayBackView(bool value) {
     if (value) {
-      Future.delayed(
-        const Duration(milliseconds: 300),
-        () {
-          changeBottomNavbarHeight(0);
-        },
-      );
       animateForwardSettingsPage();
     } else {
-      changeBottomNavbarHeight(constBottomBarHeight);
       animateReverseSettingsPage();
     }
 
@@ -1034,7 +1009,6 @@ class AppHomeViewModel extends BasePageViewModel {
       Future.delayed(
         const Duration(milliseconds: 500),
         () {
-          bottomNavbarHeight = 0;
           timelineGlitchAnimation();
 
           notifyListeners();
@@ -1045,7 +1019,6 @@ class AppHomeViewModel extends BasePageViewModel {
       Future.delayed(
         const Duration(milliseconds: 500),
         () {
-          bottomNavbarHeight = constBottomBarHeight;
           notifyListeners();
         },
       );

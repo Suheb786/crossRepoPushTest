@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../ui/molecules/dashboard/bottom_bar_widget.dart';
+import '../../../utils/device_size_helper.dart';
 
 class AppHomePage extends BasePage<AppHomeViewModel> {
   @override
@@ -127,36 +128,43 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> w
       child: Column(
         children: [
           Expanded(
-            child: AppHomePageViewNew(
-              provideBase(),
+            child: Padding(
+              padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.08 : 0.06) - 4),
+              child: AppHomePageViewNew(
+                provideBase(),
+              ),
             ),
           ),
-          AnimatedOpacity(
-            duration: model.settings || model.showPayBackView || model.timelinePage ? const Duration(milliseconds: 200) : const Duration(seconds: 2),
-            opacity: model.settings || model.showPayBackView || model.timelinePage ? 0 : 1,
-            child: BottomBarWidget(
-              onHomeTap: () {
-                if (model.settings || model.showPayBackView || model.timelinePage) {
-                } else {
-                  model.moveToPage(0);
-                }
-              },
-              onMoreTap: () {
-                if (model.settings || model.showPayBackView || model.timelinePage) {
-                } else {
-                  SettingsDialog.show(context);
-                }
-              },
-              onContactUsTap: () {
-                if (model.settings || model.showPayBackView || model.timelinePage) {
-                } else {
-                  EngagementTeamDialog.show(context, onDismissed: () {
-                    Navigator.pop(context);
-                  }, onSelected: (value) {
-                    Navigator.pop(context);
-                  });
-                }
-              },
+          AnimatedCrossFade(
+            crossFadeState: model.settings || model.showPayBackView || model.timelinePage ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+            duration: Duration(milliseconds: 500),
+            secondChild: const SizedBox(),
+            firstChild: Padding(
+              padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.036 : 0.02)),
+              child: BottomBarWidget(
+                onHomeTap: () {
+                  if (model.settings || model.showPayBackView || model.timelinePage) {
+                  } else {
+                    model.moveToPage(0);
+                  }
+                },
+                onMoreTap: () {
+                  if (model.settings || model.showPayBackView || model.timelinePage) {
+                  } else {
+                    SettingsDialog.show(context);
+                  }
+                },
+                onContactUsTap: () {
+                  if (model.settings || model.showPayBackView || model.timelinePage) {
+                  } else {
+                    EngagementTeamDialog.show(context, onDismissed: () {
+                      Navigator.pop(context);
+                    }, onSelected: (value) {
+                      Navigator.pop(context);
+                    });
+                  }
+                },
+              ),
             ),
           )
         ],

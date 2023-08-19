@@ -33,13 +33,15 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
         borderOnForeground: false,
         margin: EdgeInsets.zero,
         shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
-        child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                  padding: EdgeInsetsDirectional.only(top: 24.0.h, start: 24.0.w, end: 24.w),
-                  child: Container(
+        child: LayoutBuilder(builder: (BuildContext p0, p1) {
+          double itemBetweenSpacing = 6.w;
+          double itemTopBottomSpacing = 68.h + 48.h;
+          return Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                    padding: EdgeInsetsDirectional.only(top: 24.0.h, start: 24.0.w, end: 24.w),
                     child: Row(
                       children: [
                         AppSvg.asset(AssetUtils.blueStar, color: Theme.of(context).colorScheme.secondary),
@@ -47,13 +49,15 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                           width: 4.w,
                         ),
                         Expanded(
-                          child: Text(S.of(context).sendMoneyTo, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: Theme.of(context).colorScheme.secondary)),
+                          child: Text(S.of(context).sendMoneyTo,
+                              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: Theme.of(context).colorScheme.secondary)),
                         ),
                         Visibility(
                           visible: (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.manageContactEnabled ?? false),
                           child: InkWell(
                             onTap: () {
-                              Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage, arguments: AddBeneficiaryPageArguments(navigationType: NavigationType.SEND_MONEY, isFromContactCard: true));
+                              Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
+                                  arguments: AddBeneficiaryPageArguments(navigationType: NavigationType.SEND_MONEY, isFromContactCard: true));
                             },
                             child: Container(
                               height: 40,
@@ -68,104 +72,99 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                           ),
                         )
                       ],
-                    ),
-                  )),
-              (beneficiaries ?? []).length > 0
-                  ? Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Directionality(
-                          textDirection: TextDirection.ltr,
-                          child: GridView.builder(
-                            itemCount: 9,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                childAspectRatio: DeviceSizeHelper.isSmallDevice
-                                    ? 0.90
-                                    : DeviceSizeHelper.isBigDevice
-                                        ? 0.80
-                                        : 0.85,
-                                mainAxisSpacing: 2),
-                            shrinkWrap: true,
-                            padding: EdgeInsetsDirectional.only(top: 22.0.h, end: 28.0.w, start: 27.0.w),
-                            itemBuilder: (context, index) {
-                              if (index >= beneficiaries!.length) {
-                                return PaymentBeneficiaryEmptyWidget();
-                              }
-                              return PaymentBeneficiaryWidget(
-                                onTap: () {
-                                  Navigator.pushNamed(context, RoutePaths.SendAmountToContact, arguments: beneficiaries![index]);
-                                },
-                                transferEnum: TransferEnum.send,
-                                beneficiary: beneficiaries![index],
-                              );
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          height: DeviceSizeHelper.isBigDevice ? 6.h : 0,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(bottom: 16.0.h),
-                          child: Visibility(
-                            visible: (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.manageContactEnabled ?? false),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList, arguments: NavigationType.SEND_MONEY);
+                    )),
+                (beneficiaries ?? []).length > 0
+                    ? Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: GridView.builder(
+                              itemCount: 9,
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3, childAspectRatio: ((p1.maxWidth - itemBetweenSpacing) / (p1.maxHeight - itemTopBottomSpacing)), mainAxisSpacing: 2),
+                              shrinkWrap: true,
+                              padding: EdgeInsetsDirectional.only(top: 22.0.h, end: 27.0.w, start: 27.0.w),
+                              itemBuilder: (context, index) {
+                                if (index >= beneficiaries!.length) {
+                                  return PaymentBeneficiaryEmptyWidget();
+                                }
+                                return PaymentBeneficiaryWidget(
+                                  onTap: () {
+                                    Navigator.pushNamed(context, RoutePaths.SendAmountToContact, arguments: beneficiaries![index]);
+                                  },
+                                  transferEnum: TransferEnum.send,
+                                  beneficiary: beneficiaries![index],
+                                );
                               },
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Container(
-                                  //height: 36.0.h,
-                                  padding: EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 14.0.w),
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).primaryColor,
-                                    borderRadius: BorderRadius.circular(20.w),
-                                    border: Border.all(color: AppColor.softRed1, width: 1),
-                                    boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 3))],
-                                  ),
-                                  // alignment: Alignment.center,
-                                  child: Text(
-                                    S.of(context).seeAllContacts,
-                                    style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, height: 1.2, fontWeight: FontWeight.w600, color: Theme.of(context).textTheme.bodyLarge!.color!),
+                            ),
+                          ),
+                          SizedBox(
+                            height: DeviceSizeHelper.isBigDevice ? 6.h : 0,
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.only(bottom: 16.0.h),
+                            child: Visibility(
+                              visible: (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.manageContactEnabled ?? false),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList, arguments: NavigationType.SEND_MONEY);
+                                },
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Container(
+                                    //height: 36.0.h,
+                                    padding: EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 14.0.w),
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context).primaryColor,
+                                      borderRadius: BorderRadius.circular(20.w),
+                                      border: Border.all(color: AppColor.softRed1, width: 1),
+                                      boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 3))],
+                                    ),
+                                    // alignment: Alignment.center,
+                                    child: Text(
+                                      S.of(context).seeAllContacts,
+                                      style:
+                                          TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, height: 1.2, fontWeight: FontWeight.w600, color: Theme.of(context).textTheme.bodyLarge!.color!),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
+                          )
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(top: 90.0.h),
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: AppSvg.asset(AssetUtils.profileCircle, height: 96.0.h, width: 96.0.w),
+                            ),
                           ),
-                        )
-                      ],
-                    )
-                  : Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: 90.0.h),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: AppSvg.asset(AssetUtils.profileCircle, height: 96.0.h, width: 96.0.w),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.only(top: 12.0.h, start: 24.0.w, end: 24.0.w),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              S.of(context).addSendContact,
-                              maxLines: 3,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                fontSize: 12.0.t,
-                                color: Theme.of(context).colorScheme.secondary,
-                                fontWeight: FontWeight.w600,
+                          Padding(
+                            padding: EdgeInsetsDirectional.only(top: 12.0.h, start: 24.0.w, end: 24.0.w),
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                S.of(context).addSendContact,
+                                maxLines: 3,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 12.0.t,
+                                  color: Theme.of(context).colorScheme.secondary,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    )
-            ],
-          ),
-        ));
+                        ],
+                      )
+              ],
+            ),
+          );
+        }));
   }
 }

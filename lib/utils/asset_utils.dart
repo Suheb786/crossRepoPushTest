@@ -227,5 +227,6 @@ class AssetUtils {
   static const String spin = svg + "spin.svg";
   static const String down = svg + "down.svg";
   static const String clock = svg + "clock.svg";
+  static const String swipeUpSmall = svg + "swipe_up_small.svg";
 
 }
