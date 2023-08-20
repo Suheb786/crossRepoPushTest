@@ -18239,6 +18239,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Oops! Transaction failed; your account is inactive.`
+  String get accountInactive {
+    return Intl.message(
+      'Oops! Transaction failed; your account is inactive.',
+      name: 'accountInactive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Transaction failed; your account cannot be debited.`
+  String get accountCannotBeDebited {
+    return Intl.message(
+      'Oops! Transaction failed; your account cannot be debited.',
+      name: 'accountCannotBeDebited',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

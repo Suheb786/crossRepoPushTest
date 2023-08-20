@@ -105,7 +105,7 @@ class OtpPurchaseEvoucherWithoutRegionPageViewModel extends BasePageViewModel {
 
   void makeOTPRequest() {
     otpController.clear();
-    _evoucherOtpRequest.safeAdd(EVoucherUsecaseOTPParams(GetToken: true));
+    _evoucherOtpRequest.safeAdd(EVoucherUsecaseOTPParams(voucherName: argument.selectedItem.name));
   }
 
   void validateOtp() {

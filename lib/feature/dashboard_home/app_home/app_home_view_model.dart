@@ -354,6 +354,7 @@ class AppHomeViewModel extends BasePageViewModel {
       return balance;
     }
   }
+
   void getDashboardPages(GetDashboardDataContent dashboardDataContent) {
     pages.clear();
     timeLineListArguments.clear();
@@ -518,7 +519,9 @@ class AppHomeViewModel extends BasePageViewModel {
                   cardNumber: creditCard.cardNumber ?? '',
                   accountTitle: creditCard.name ?? '',
                   cardType: CardType.CREDIT,
-                  isCardDelivered: creditCard.isCreditDelivered));
+                  isCardDelivered: creditCard.isCreditDelivered,
+                  secureCode: creditCard.cardCode,
+                  isIssuedFromCMS: creditCard.issuedFromCms));
 
               ///adding cardType
               cardTypeList
@@ -540,7 +543,9 @@ class AppHomeViewModel extends BasePageViewModel {
                   cardNumber: creditCard.cardNumber ?? '',
                   accountTitle: creditCard.name ?? '',
                   cardType: CardType.CREDIT,
-                  isCardDelivered: creditCard.isCreditDelivered));
+                  isCardDelivered: creditCard.isCreditDelivered,
+                  secureCode: creditCard.cardCode,
+                  isIssuedFromCMS: creditCard.issuedFromCms));
 
               ///adding cardType
               cardTypeList
@@ -692,7 +697,8 @@ class AppHomeViewModel extends BasePageViewModel {
     if (blinkTimeLineListArguments.isNotEmpty) {
       ///sorting in descending order
       blinkTimeLineListArguments.sort((a, b) {
-        return DateTime.parse(b.cardCardActivated!).compareTo(DateTime.parse(a.cardCardActivated!));
+        return DateTime.parse(b.cardCardActivated ?? DateTime.now().toString())
+            .compareTo(DateTime.parse(a.cardCardActivated ?? DateTime.now().toString()));
       });
     }
   }

@@ -1818,5 +1818,7 @@
   "subAccountSavings": "Sub Account - Savings",
   "successExclmn": "Success!",
   "openAccountSucessDescription": "Congratulations, your new account has been opened successfully!",
-  "goToDashboard": "Go to Dashboard"
+  "goToDashboard": "Go to Dashboard",
+  "accountInactive": "عفوا! لم تتم العملية بنجاح لأنه لا يمكن خصم المبلغ من الحساب",
+  "accountCannotBeDebited": "عفوا! لم تتم العملية بنجاح لأنه لا يمكن خصم المبلغ من الحساب "
 }

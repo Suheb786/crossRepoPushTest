@@ -61,6 +61,8 @@ class DashboardCardEntity implements BaseLayerDataTransformer<DashboardCardEntit
   final bool? isCallPending;
   @JsonKey(name: "parentId")
   final String? parentId;
+  @JsonKey(name: "issuedFromCms")
+  final bool? issuedFromCms;
 
   DashboardCardEntity(
       {this.name = "",
@@ -88,7 +90,8 @@ class DashboardCardEntity implements BaseLayerDataTransformer<DashboardCardEntit
       this.minimumSettlement = 0,
       this.callStatus = "",
       this.isCallPending = false,
-      this.parentId = ""});
+      this.parentId = "",
+      this.issuedFromCms = false});
 
   factory DashboardCardEntity.fromJson(Map<String, dynamic> json) => _$DashboardCardEntityFromJson(json);
 
@@ -129,6 +132,7 @@ class DashboardCardEntity implements BaseLayerDataTransformer<DashboardCardEntit
         minimumSettlement: this.minimumSettlement ?? 0,
         callStatus: this.callStatus!.fromCreditCardCallStatusValue(),
         isCallPending: this.isCallPending ?? false,
-        parentId: this.parentId ?? '');
+        parentId: this.parentId ?? '',
+        issuedFromCms: this.issuedFromCms ?? false);
   }
 }

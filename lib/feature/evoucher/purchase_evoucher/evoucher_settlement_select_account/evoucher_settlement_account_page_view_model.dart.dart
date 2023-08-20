@@ -89,7 +89,8 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
   }
 
   void getOTP() {
-    _evoucherOtpRequest.safeAdd(EVoucherUsecaseOTPParams(GetToken: true));
+    _evoucherOtpRequest.safeAdd(
+        EVoucherUsecaseOTPParams(voucherName: _getSelectedVoucherInformationResponse.value.voucherName));
   }
 
   void check(bool value) {

@@ -900,6 +900,15 @@ class NetworkError extends BaseError {
           case "err-525":
             return AppError(cause: cause, error: error, type: ErrorType.DORMANT_ACCOUNT_TRANSACTION_FAILED);
 
+          case "err-526":
+            return AppError(cause: cause, error: error, type: ErrorType.ACCOUNT_INACTIVE);
+
+          case "err-527":
+            return AppError(cause: cause, error: error, type: ErrorType.ACCOUNT_CANNOT_BE_DEBITED);
+
+          case "err-528":
+            return AppError(cause: cause, error: error, type: ErrorType.ACCOUNT_INACTIVE);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
 

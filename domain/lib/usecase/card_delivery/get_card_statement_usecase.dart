@@ -18,7 +18,8 @@ class GetCardStatementUseCase
       {required GetCardStatementUseCaseParams params}) {
     return params.statementType == StatementType.Debit
         ? _repository.getDebitCardStatement(params.monthYear)
-        : _repository.getCreditCardStatement(params.monthYear, params.cardId);
+        : _repository.getCreditCardStatement(
+            params.monthYear, params.cardId, params.secureCode, params.issuedFromCms);
   }
 }
 
@@ -26,8 +27,15 @@ class GetCardStatementUseCaseParams extends Params {
   String monthYear;
   String? cardId;
   StatementType statementType;
+  String secureCode;
+  bool? issuedFromCms;
 
-  GetCardStatementUseCaseParams({required this.monthYear, required this.statementType, required this.cardId});
+  GetCardStatementUseCaseParams(
+      {required this.monthYear,
+      required this.statementType,
+      required this.cardId,
+      required this.secureCode,
+      required this.issuedFromCms});
 
   @override
   Either<AppError, bool> verify() {

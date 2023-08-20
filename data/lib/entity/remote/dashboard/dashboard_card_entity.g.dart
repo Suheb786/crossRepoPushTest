@@ -34,6 +34,7 @@ DashboardCardEntity _$DashboardCardEntityFromJson(Map<String, dynamic> json) =>
       callStatus: json['callStatus'] as String? ?? "",
       isCallPending: json['isCallPending'] as bool? ?? false,
       parentId: json['parentId'] as String? ?? "",
+      issuedFromCms: json['issuedFromCms'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$DashboardCardEntityToJson(
@@ -65,4 +66,5 @@ Map<String, dynamic> _$DashboardCardEntityToJson(
       'callStatus': instance.callStatus,
       'isCallPending': instance.isCallPending,
       'parentId': instance.parentId,
+      'issuedFromCms': instance.issuedFromCms,
     };

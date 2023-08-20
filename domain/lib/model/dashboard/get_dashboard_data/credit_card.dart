@@ -31,7 +31,8 @@ class CreditCard {
       this.isCallPending = false,
       this.parentId = "",
       this.isCardInApplePay = false,
-      this.getStatus = false});
+      this.getStatus = false,
+      this.issuedFromCms = false});
 
   String? name;
   String? cardNumber;
@@ -61,4 +62,5 @@ class CreditCard {
   bool? isCallPending;
   bool isCardInApplePay;
   bool getStatus;
+  bool issuedFromCms;
 }

@@ -79,7 +79,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                       if (data.status == Status.SUCCESS) {
                         ///RJ Pop up
                         if (!(data.data?.isRJPopUPClicked ?? false) &&
-                            (model.dashboardDataContent.dashboardFeatures?.isRJFeatureEnabled ?? true)) {
+                            (model.dashboardDataContent.dashboardFeatures?.isRJFeatureEnabled ?? false)) {
                           RjDialog.show(
                             context,
                             image: AssetUtils.flight,
@@ -104,7 +104,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                         ///Efawateer pop up
                         if (!(data.data?.isEfawateerPopUPClicked ?? false) &&
                             (model.dashboardDataContent.dashboardFeatures?.blinkRetailAppBillPayment ??
-                                true)) {
+                                false)) {
                           EfawateerLandingDialog.show(context,
                               title: S.current.payYourBillswithBlink,
                               descriptionWidget: Text(S.current.youCanPayAllYourBillsNow),
@@ -126,7 +126,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
 
                         ///e-voucher pop up
                         if (!(data.data?.isEVoucherPopUPClicked ?? false) &&
-                            (model.dashboardDataContent.dashboardFeatures?.eVouchers ?? true)) {
+                            (model.dashboardDataContent.dashboardFeatures?.eVouchers ?? false)) {
                           EvoucherDialog.show(context, isSwipeToCancel: true, onDismissed: () {
                             Navigator.pop(context);
                             data.data?.isEVoucherPopUPClicked = true;
@@ -267,6 +267,16 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                           Navigator.pushNamed(
                                                               context, RoutePaths.CardTransaction,
                                                               arguments: GetCreditCardTransactionArguments(
+                                                                  isIssuedFromCMS: model
+                                                                          .timeLineListArguments[
+                                                                              currentStep - 1]
+                                                                          .isIssuedFromCMS ??
+                                                                      false,
+                                                                  secureCode: model
+                                                                          .timeLineListArguments[
+                                                                              currentStep - 1]
+                                                                          .secureCode ??
+                                                                      '',
                                                                   cardId: model
                                                                       .timeLineListArguments[currentStep - 1]
                                                                       .cardId));
