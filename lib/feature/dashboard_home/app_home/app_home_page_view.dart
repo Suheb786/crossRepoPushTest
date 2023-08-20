@@ -275,17 +275,22 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                         }
 
                                                                         // return getPageController(model);
-                                                                        return DashboardSwiper(
-                                                                          pages: pagesList,
-                                                                          appSwiperController: model.appSwiperController,
-                                                                          // pageController: model.pageController,
-                                                                          onIndexChanged: (index) {
-                                                                            model.updatePage(index);
-                                                                            model.updatePageControllerStream(index);
+                                                                        return InkWell(
+                                                                          onTap: (){
+                                                                            print("dsadadasdasdasfd asd");
                                                                           },
-                                                                          currentStep: currentStep,
-                                                                          translateSidewaysController: model.translateSidewaysController,
-                                                                          model : model,
+                                                                          child: DashboardSwiper(
+                                                                            pages: pagesList,
+                                                                            appSwiperController: model.appSwiperController,
+                                                                            // pageController: model.pageController,
+                                                                            onIndexChanged: (index) {
+                                                                              model.updatePage(index);
+                                                                              model.updatePageControllerStream(index);
+                                                                            },
+                                                                            currentStep: currentStep,
+                                                                            translateSidewaysController: model.translateSidewaysController,
+                                                                            model : model,
+                                                                          ),
                                                                         );
                                                                       });
                                                                 }),

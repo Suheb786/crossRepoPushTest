@@ -726,7 +726,7 @@ class AppHomeViewModel extends BasePageViewModel {
   Widget indicator(bool isActive, int i, int currentPage) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 300),
-      margin: const EdgeInsets.symmetric(horizontal: 6.0),
+      margin: const EdgeInsets.symmetric(horizontal: 2),
       height: getIndicatorSize(isActive, i, currentPage),
       width: getIndicatorSize(isActive, i, currentPage),
       decoration: BoxDecoration(
@@ -755,11 +755,11 @@ class AppHomeViewModel extends BasePageViewModel {
 
   double getIndicatorSize(bool isActive, int i, int currentPage) {
     if (isActive) {
-      return 13.0;
-    } else if ((i == 0 || i == pages.length - 1) && !isActive) {
       return 7.0;
+    } else if ((i == 0 || i == pages.length - 1) && !isActive) {
+      return 5.0;
     }
-    return 10.0;
+    return 5.0;
   }
 
   void updatePage(int index) {

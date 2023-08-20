@@ -49,8 +49,8 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
   @override
   Widget build(BuildContext context, model) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.035, vertical: 44.h),
-      padding: EdgeInsets.only(top: (MediaQuery.of(context).size.height * 0.2) - 44.h),
+      margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.035, vertical: 22.h),
+      padding: EdgeInsets.only(top: (MediaQuery.of(context).size.height * 0.14) - 22.h),
       child: Column(
         children: [
           ///Add to wallet button

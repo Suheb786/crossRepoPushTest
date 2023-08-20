@@ -269,134 +269,246 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                 animation: model.translateSettingsUpController,
                                                                 child: AnimatedBuilder(
                                                                   animation: model.translateAccountSettingsUpController,
-                                                                  child: SafeArea(
-                                                                    child: Container(
-                                                                      // color: switchtchedPageedPage == DashboardAnimatedPage.SETTINGS ? Colors.white : Colors.transparent,
-                                                                      child: Column(
-                                                                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                                                                        children: [
-                                                                          AppStreamBuilder<DashboardAnimatedPage>(
-                                                                              stream: model.pageSwitchStream,
-                                                                              initialData: DashboardAnimatedPage.NULL,
-                                                                              dataBuilder: (context, switchedPage) {
-                                                                                return AnimatedOpacity(
-                                                                                  duration: const Duration(milliseconds: 250),
-                                                                                  opacity: switchedPage != DashboardAnimatedPage.NULL ? 0 : 1,
-                                                                                  child: AppHomePageWidgets.totalBalance(cardData!.data!.dashboardDataContent!.account!.availableBalance ?? "0.000"),
-                                                                                );
-                                                                              }),
-                                                                          Expanded(
-                                                                            child: Stack(
-                                                                              fit: StackFit.expand,
-                                                                              alignment: Alignment.topCenter,
-                                                                              children: [
-                                                                                DashboardSwiper(
-                                                                                  pages: pagesList,
-                                                                                  appSwiperController: model.appSwiperController,
-                                                                                  onIndexChanged: (index) {
-                                                                                    model.updatePage(index);
-                                                                                  },
-                                                                                  currentStep: currentStep,
-                                                                                  translateSidewaysController: model.translateSidewaysController,
-                                                                                  model: model,
+                                                                  child: Container(
+                                                                    // color: switchtchedPageedPage == DashboardAnimatedPage.SETTINGS ? Colors.white : Colors.transparent,
+                                                                    child: Column(
+                                                                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                                                                      children: [
+                                                                        /// To get rid of the unwanted card size changes....
+                                                                        AppStreamBuilder<DashboardAnimatedPage>(
+                                                                            stream: model.pageSwitchStream,
+                                                                            initialData: DashboardAnimatedPage.NULL,
+                                                                            dataBuilder: (context, switchedPage) {
+                                                                              return AnimatedCrossFade(
+                                                                                crossFadeState: switchedPage == DashboardAnimatedPage.NULL || switchedPage == DashboardAnimatedPage.TIMELINE
+                                                                                    ? CrossFadeState.showFirst
+                                                                                    : CrossFadeState.showSecond,
+                                                                                firstChild: const SizedBox(),
+                                                                                secondChild: SizedBox(
+                                                                                  height: MediaQuery.of(context).size.height * 0.03 +
+                                                                                      MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.036 : 0.02) +
+                                                                                      117.h,
                                                                                 ),
+                                                                                duration: const Duration(milliseconds: 500),
+                                                                              );
+                                                                            }),
+                                                                        AppStreamBuilder<DashboardAnimatedPage>(
+                                                                            stream: model.pageSwitchStream,
+                                                                            initialData: DashboardAnimatedPage.NULL,
+                                                                            dataBuilder: (context, switchedPage) {
+                                                                              return AnimatedOpacity(
+                                                                                duration: const Duration(milliseconds: 250),
+                                                                                opacity: switchedPage != DashboardAnimatedPage.NULL ? 0 : 1,
+                                                                                child: AppHomePageWidgets.totalBalance(cardData!.data!.dashboardDataContent!.account!.availableBalance ?? "0.000"),
+                                                                              );
+                                                                            }),
+                                                                        Expanded(
+                                                                          child: Stack(
+                                                                            fit: StackFit.expand,
+                                                                            alignment: Alignment.topCenter,
+                                                                            children: [
+                                                                              DashboardSwiper(
+                                                                                pages: pagesList,
+                                                                                appSwiperController: model.appSwiperController,
+                                                                                onIndexChanged: (index) {
+                                                                                  model.updatePage(index);
+                                                                                },
+                                                                                currentStep: currentStep,
+                                                                                translateSidewaysController: model.translateSidewaysController,
+                                                                                model: model,
+                                                                              ),
 
-                                                                                ///Timeline Button
-                                                                                ///For My Account and My credit card
-                                                                                Positioned(
-                                                                                  top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.06 : 0.04) - 24,
-                                                                                  child: InkWell(
-                                                                                    splashColor: Colors.transparent,
-                                                                                    highlightColor: Colors.transparent,
-                                                                                    onTap: () {
-                                                                                      // if (!model.showButtonsInCreditCard) return;
-                                                                                      if (model.cardTypeList[currentStep!].timeLineEnum == TimeLineEnum.TIMELINE_YES) {
-                                                                                        // Navigator.pushNamed(context, RoutePaths.TimeLinePage,
-                                                                                        //     arguments: TimeLinePageArguments(cardType: model.cardTypeList[currentStep!].cardType, timeLineArguments: model.timeLineArguments));
-                                                                                        model.showTimeline(!(model.pageSwitchSubject.value == DashboardAnimatedPage.TIMELINE));
+                                                                              ///Timeline Button
+                                                                              ///For My Account and My credit card
+                                                                              Positioned(
+                                                                                top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.06 : 0.04) - 24,
+                                                                                child: AnimatedOpacity(
+                                                                                  duration: const Duration(milliseconds: 500),
+                                                                                  opacity: model.cardTypeList[currentStep!].timeLineEnum != TimeLineEnum.TIMELINE_YES ? 0 : 1,
+                                                                                  child: AnimatedBuilder(
+                                                                                    animation: model.appSwiperController,
+                                                                                    builder: (BuildContext context, Widget? child) {
+                                                                                      double translateYOffset = 0;
+                                                                                      double opacity = 0;
+                                                                                      if (model.appSwiperController.positions.isNotEmpty) {
+                                                                                        opacity = currentStep - (model.appSwiperController.page ?? 0);
+                                                                                        translateYOffset = currentStep - (model.appSwiperController.page ?? 0);
                                                                                       }
-                                                                                    },
-                                                                                    child: AnimatedOpacity(
-                                                                                      ///For Credit Card
-                                                                                      duration: const Duration(milliseconds: 500),
-                                                                                      opacity: model.cardTypeList[currentStep!].timeLineEnum != TimeLineEnum.TIMELINE_YES ? 0 : 1,
-                                                                                      child: AnimatedBuilder(
-                                                                                        animation: model.appSwiperController,
-                                                                                        builder: (BuildContext context, Widget? child) {
-                                                                                          double translateYOffset = 0;
-                                                                                          double opacity = 0;
-                                                                                          if (model.appSwiperController.positions.isNotEmpty) {
-                                                                                            opacity = currentStep - (model.appSwiperController.page ?? 0);
-                                                                                            translateYOffset = currentStep - (model.appSwiperController.page ?? 0);
-                                                                                          }
-                                                                                          return Transform.translate(
-                                                                                            offset: Offset(0, translateYOffset.abs() * -40),
-                                                                                            child: Opacity(
-                                                                                              opacity: (opacity.abs() - 1).abs(),
-                                                                                              child: child!,
-                                                                                            ),
-                                                                                          );
-                                                                                        },
-                                                                                        child: Container(
-                                                                                          height: 48,
-                                                                                          width: 48,
-                                                                                          padding: const EdgeInsets.all(10),
-                                                                                          decoration: BoxDecoration(
-                                                                                              shape: BoxShape.circle,
-                                                                                              color: Colors.white,
-                                                                                              border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1)),
-                                                                                          //child: const SVGImage(assetPath: "assets/icons/audioWave.svg"),
-                                                                                          ///For Credit Card
-                                                                                          child: AppStreamBuilder<DashboardAnimatedPage>(
-                                                                                              stream: model.pageSwitchStream,
-                                                                                              initialData: DashboardAnimatedPage.NULL,
-                                                                                              dataBuilder: (context, switchedPage) {
-                                                                                                return AnimatedSwitcher(
-                                                                                                  duration: const Duration(milliseconds: 500),
-                                                                                                  child: !(switchedPage == DashboardAnimatedPage.TIMELINE)
-                                                                                                      ? AppSvg.asset(AssetUtils.timelineButton,
-                                                                                                          height: 24.w, width: 24.w, color: AppColor.light_acccent_blue)
-                                                                                                      : AppSvg.asset(AssetUtils.swipeUpSmall,
-                                                                                                          height: 24.w, width: 24.w, color: AppColor.light_acccent_blue),
-                                                                                                );
-                                                                                              }),
+                                                                                      return Transform.translate(
+                                                                                        offset: Offset(0, translateYOffset.abs() * -40),
+                                                                                        child: Opacity(
+                                                                                          opacity: (opacity.abs() - 1).abs(),
+                                                                                          child: child!,
                                                                                         ),
+                                                                                      );
+                                                                                    },
+                                                                                    child: InkWell(
+                                                                                      splashColor: Colors.transparent,
+                                                                                      highlightColor: Colors.transparent,
+                                                                                      onTap: () {
+                                                                                        print("sdfsdfsdfsdfsdfsdfsdf sd sfsd fsdfsdfdsfsd fsd sdf ");
+                                                                                        // if (!model.showButtonsInCreditCard) return;
+                                                                                        if (model.cardTypeList[currentStep].timeLineEnum == TimeLineEnum.TIMELINE_YES) {
+                                                                                          // Navigator.pushNamed(context, RoutePaths.TimeLinePage,
+                                                                                          //     arguments: TimeLinePageArguments(cardType: model.cardTypeList[currentStep!].cardType, timeLineArguments: model.timeLineArguments));
+                                                                                          model.showTimeline(!(model.pageSwitchSubject.value == DashboardAnimatedPage.TIMELINE));
+                                                                                        }
+                                                                                      },
+                                                                                      child: Container(
+                                                                                        height: 48,
+                                                                                        width: 48,
+                                                                                        padding: const EdgeInsets.all(10),
+                                                                                        decoration: BoxDecoration(
+                                                                                            shape: BoxShape.circle,
+                                                                                            color: Colors.white,
+                                                                                            border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1)),
+                                                                                        //child: const SVGImage(assetPath: "assets/icons/audioWave.svg"),
+                                                                                        ///For Credit Card
+                                                                                        child: AppStreamBuilder<DashboardAnimatedPage>(
+                                                                                            stream: model.pageSwitchStream,
+                                                                                            initialData: DashboardAnimatedPage.NULL,
+                                                                                            dataBuilder: (context, switchedPage) {
+                                                                                              return AnimatedSwitcher(
+                                                                                                duration: const Duration(milliseconds: 500),
+                                                                                                child: !(switchedPage == DashboardAnimatedPage.TIMELINE)
+                                                                                                    ? AppSvg.asset(AssetUtils.timelineButton,
+                                                                                                        height: 24.w, width: 24.w, color: AppColor.light_acccent_blue)
+                                                                                                    : AppSvg.asset(AssetUtils.swipeUpSmall,
+                                                                                                        height: 24.w, width: 24.w, color: AppColor.light_acccent_blue),
+                                                                                              );
+                                                                                            }),
                                                                                       ),
                                                                                     ),
                                                                                   ),
                                                                                 ),
+                                                                              ),
 
-                                                                                ///Transactions button
-                                                                                ///For My Account and My credit card
-                                                                                AppStreamBuilder<DashboardAnimatedPage>(
-                                                                                    stream: model.pageSwitchStream,
-                                                                                    initialData: DashboardAnimatedPage.NULL,
-                                                                                    dataBuilder: (context, switchedPage) {
-                                                                                      return Positioned(
-                                                                                        bottom: 20,
-                                                                                        child:
+                                                                              ///Transactions button
+                                                                              ///For My Account and My credit card
+                                                                              AppStreamBuilder<DashboardAnimatedPage>(
+                                                                                  stream: model.pageSwitchStream,
+                                                                                  initialData: DashboardAnimatedPage.NULL,
+                                                                                  dataBuilder: (context, switchedPage) {
+                                                                                    return Positioned(
+                                                                                      bottom: 20,
+                                                                                      child:
 
-                                                                                            ///No transaction button for debit card
-                                                                                            switchedPage == DashboardAnimatedPage.SETTINGS &&
-                                                                                                    (model.isDebitCard(currentStep) || model.isCreditCard(currentStep))
-                                                                                                ? Container(
-                                                                                                    child: AnimatedCrossFade(
-                                                                                                      duration: const Duration(milliseconds: 500),
-                                                                                                      reverseDuration: const Duration(milliseconds: 500),
-                                                                                                      firstCurve: Curves.easeIn,
-                                                                                                      secondCurve: Curves.easeIn,
-                                                                                                      alignment: Alignment.center,
-                                                                                                      crossFadeState: switchedPage == DashboardAnimatedPage.SETTINGS
-                                                                                                          ? CrossFadeState.showFirst
-                                                                                                          : CrossFadeState.showSecond,
-                                                                                                      firstChild: InkWell(
-                                                                                                        onTap: () {
-                                                                                                          model.showSettingPage(false, updateDashboard: true, currentStep: currentStep);
-                                                                                                        },
-                                                                                                        child: Container(
-                                                                                                            width: 48,
-                                                                                                            height: 48,
-                                                                                                            margin: EdgeInsets.only(bottom: 4),
+                                                                                          ///No transaction button for debit card
+                                                                                          switchedPage == DashboardAnimatedPage.SETTINGS &&
+                                                                                                  (model.isDebitCard(currentStep) || model.isCreditCard(currentStep))
+                                                                                              ? Container(
+                                                                                                  child: AnimatedCrossFade(
+                                                                                                    duration: const Duration(milliseconds: 500),
+                                                                                                    reverseDuration: const Duration(milliseconds: 500),
+                                                                                                    firstCurve: Curves.easeIn,
+                                                                                                    secondCurve: Curves.easeIn,
+                                                                                                    alignment: Alignment.center,
+                                                                                                    crossFadeState: switchedPage == DashboardAnimatedPage.SETTINGS
+                                                                                                        ? CrossFadeState.showFirst
+                                                                                                        : CrossFadeState.showSecond,
+                                                                                                    firstChild: InkWell(
+                                                                                                      onTap: () {
+                                                                                                        model.showSettingPage(false, updateDashboard: true, currentStep: currentStep);
+                                                                                                      },
+                                                                                                      child: Container(
+                                                                                                          width: 48,
+                                                                                                          height: 48,
+                                                                                                          margin: EdgeInsets.only(bottom: 4),
+                                                                                                          decoration: BoxDecoration(
+                                                                                                            color: Colors.white,
+                                                                                                            border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
+                                                                                                            borderRadius: BorderRadius.circular(100),
+                                                                                                            boxShadow: [
+                                                                                                              BoxShadow(
+                                                                                                                  color: Theme.of(context).colorScheme.inverseSurface,
+                                                                                                                  blurRadius: 5,
+                                                                                                                  spreadRadius: 0.1,
+                                                                                                                  offset: Offset(0, 2))
+                                                                                                            ],
+                                                                                                          ),
+                                                                                                          padding: EdgeInsets.all(10),
+                                                                                                          child: AppSvg.asset(
+                                                                                                            AssetUtils.down,
+                                                                                                            color: AppColor.light_acccent_blue,
+                                                                                                          )),
+                                                                                                    ),
+                                                                                                    secondChild: const SizedBox(),
+                                                                                                  ),
+                                                                                                )
+                                                                                              : model.cardTypeList[currentStep].swipeUpEnum == SwipeUpEnum.SWIPE_UP_YES
+                                                                                                  ? InkWell(
+                                                                                                      splashColor: Colors.transparent,
+                                                                                                      highlightColor: Colors.transparent,
+                                                                                                      onTap: () {
+                                                                                                        if (model.isCreditCard(currentStep)) {
+                                                                                                          if (switchedPage == DashboardAnimatedPage.SETTINGS) {
+                                                                                                            model.showSettingPage(false);
+                                                                                                            return;
+                                                                                                          }
+
+                                                                                                          if (switchedPage == DashboardAnimatedPage.PAYBACK) {
+                                                                                                            model.goToPayBackView(false);
+                                                                                                            return;
+                                                                                                          }
+
+                                                                                                          if (model.showButtonsInCreditCard) {
+                                                                                                            model.goToTransactionPage(context, currentStep);
+                                                                                                            return;
+                                                                                                          }
+                                                                                                        }
+
+                                                                                                        if (model.isMyAccount(currentStep)) {
+                                                                                                          // AccountTransactionPage();
+                                                                                                          if (switchedPage == DashboardAnimatedPage.ACT_SETTING) {
+                                                                                                            model.showHideAccountSettings(false);
+                                                                                                          } else {
+                                                                                                            model.goToAccountTransactionPage(context);
+                                                                                                          }
+                                                                                                        }
+                                                                                                      },
+                                                                                                      child: AnimatedOpacity(
+                                                                                                        ///For credit card
+                                                                                                        duration: const Duration(milliseconds: 500),
+                                                                                                        opacity: (!model.showButtonsInCreditCard && model.isCreditCard(currentStep)) ? 0 : 1,
+                                                                                                        child: AnimatedBuilder(
+                                                                                                          animation: model.appSwiperController,
+                                                                                                          builder: (BuildContext context, Widget? child) {
+                                                                                                            double translateYOffset = 0;
+                                                                                                            double opacity = 0;
+                                                                                                            if (model.appSwiperController.hasClients) if (model
+                                                                                                                .appSwiperController.position.hasContentDimensions) {
+                                                                                                              opacity = currentStep - (model.appSwiperController.page ?? 0);
+                                                                                                              translateYOffset = currentStep - (model.appSwiperController.page ?? 0);
+                                                                                                            }
+                                                                                                            return Transform.translate(
+                                                                                                              offset: Offset(0, translateYOffset.abs() * 40),
+                                                                                                              child: Opacity(
+                                                                                                                opacity: (opacity.abs() - 1).abs(),
+                                                                                                                child: child!,
+                                                                                                              ),
+                                                                                                            );
+                                                                                                          },
+
+                                                                                                          ///For credit card
+                                                                                                          child: AnimatedContainer(
+                                                                                                            duration: const Duration(milliseconds: 500),
+                                                                                                            curve: Curves.easeInOut,
+                                                                                                            width: switchedPage == DashboardAnimatedPage.SETTINGS ||
+                                                                                                                    switchedPage == DashboardAnimatedPage.PAYBACK ||
+                                                                                                                    switchedPage == DashboardAnimatedPage.ACT_SETTING
+                                                                                                                ? 48
+                                                                                                                : 150,
+                                                                                                            height: switchedPage == DashboardAnimatedPage.SETTINGS ||
+                                                                                                                    switchedPage == DashboardAnimatedPage.PAYBACK ||
+                                                                                                                    switchedPage == DashboardAnimatedPage.ACT_SETTING
+                                                                                                                ? 48
+                                                                                                                : 36,
+                                                                                                            alignment: Alignment.center,
+                                                                                                            margin: switchedPage == DashboardAnimatedPage.SETTINGS ||
+                                                                                                                    switchedPage == DashboardAnimatedPage.PAYBACK ||
+                                                                                                                    switchedPage == DashboardAnimatedPage.ACT_SETTING
+                                                                                                                ? EdgeInsets.zero
+                                                                                                                : EdgeInsets.only(bottom: 4),
                                                                                                             decoration: BoxDecoration(
                                                                                                               color: Colors.white,
                                                                                                               border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
@@ -406,159 +518,63 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                                     color: Theme.of(context).colorScheme.inverseSurface,
                                                                                                                     blurRadius: 5,
                                                                                                                     spreadRadius: 0.1,
-                                                                                                                    offset: Offset(0, 2))
+                                                                                                                    offset: Offset(0, 4))
                                                                                                               ],
                                                                                                             ),
-                                                                                                            padding: EdgeInsets.all(10),
-                                                                                                            child: AppSvg.asset(
-                                                                                                              AssetUtils.down,
-                                                                                                              color: AppColor.light_acccent_blue,
-                                                                                                            )),
-                                                                                                      ),
-                                                                                                      secondChild: const SizedBox(),
-                                                                                                    ),
-                                                                                                  )
-                                                                                                : model.cardTypeList[currentStep].swipeUpEnum == SwipeUpEnum.SWIPE_UP_YES
-                                                                                                    ? InkWell(
-                                                                                                        splashColor: Colors.transparent,
-                                                                                                        highlightColor: Colors.transparent,
-                                                                                                        onTap: () {
-                                                                                                          if (model.isCreditCard(currentStep)) {
-                                                                                                            if (switchedPage == DashboardAnimatedPage.SETTINGS) {
-                                                                                                              model.showSettingPage(false);
-                                                                                                              return;
-                                                                                                            }
-
-                                                                                                            if (switchedPage == DashboardAnimatedPage.PAYBACK) {
-                                                                                                              model.goToPayBackView(false);
-                                                                                                              return;
-                                                                                                            }
-
-                                                                                                            if (model.showButtonsInCreditCard) {
-                                                                                                              model.goToTransactionPage(context, currentStep);
-                                                                                                              return;
-                                                                                                            }
-                                                                                                          }
-
-                                                                                                          if (model.isMyAccount(currentStep)) {
-                                                                                                            // AccountTransactionPage();
-                                                                                                            if (switchedPage == DashboardAnimatedPage.ACT_SETTING) {
-                                                                                                              model.showHideAccountSettings(false);
-                                                                                                            } else {
-                                                                                                              model.goToAccountTransactionPage(context);
-                                                                                                            }
-                                                                                                          }
-                                                                                                        },
-                                                                                                        child: AnimatedOpacity(
-                                                                                                          ///For credit card
-                                                                                                          duration: const Duration(milliseconds: 500),
-                                                                                                          opacity: (!model.showButtonsInCreditCard && model.isCreditCard(currentStep)) ? 0 : 1,
-                                                                                                          child: AnimatedBuilder(
-                                                                                                            animation: model.appSwiperController,
-                                                                                                            builder: (BuildContext context, Widget? child) {
-                                                                                                              double translateYOffset = 0;
-                                                                                                              double opacity = 0;
-                                                                                                              if (model.appSwiperController.hasClients) if (model
-                                                                                                                  .appSwiperController.position.hasContentDimensions) {
-                                                                                                                opacity = currentStep - (model.appSwiperController.page ?? 0);
-                                                                                                                translateYOffset = currentStep - (model.appSwiperController.page ?? 0);
-                                                                                                              }
-                                                                                                              return Transform.translate(
-                                                                                                                offset: Offset(0, translateYOffset.abs() * 40),
-                                                                                                                child: Opacity(
-                                                                                                                  opacity: (opacity.abs() - 1).abs(),
-                                                                                                                  child: child!,
-                                                                                                                ),
-                                                                                                              );
-                                                                                                            },
-
-                                                                                                            ///For credit card
-                                                                                                            child: AnimatedContainer(
+                                                                                                            child: AnimatedCrossFade(
                                                                                                               duration: const Duration(milliseconds: 500),
-                                                                                                              curve: Curves.easeInOut,
-                                                                                                              width: switchedPage == DashboardAnimatedPage.SETTINGS ||
-                                                                                                                      switchedPage == DashboardAnimatedPage.PAYBACK ||
-                                                                                                                      switchedPage == DashboardAnimatedPage.ACT_SETTING
-                                                                                                                  ? 48
-                                                                                                                  : 150,
-                                                                                                              height: switchedPage == DashboardAnimatedPage.SETTINGS ||
-                                                                                                                      switchedPage == DashboardAnimatedPage.PAYBACK ||
-                                                                                                                      switchedPage == DashboardAnimatedPage.ACT_SETTING
-                                                                                                                  ? 48
-                                                                                                                  : 36,
+                                                                                                              reverseDuration: const Duration(milliseconds: 500),
+                                                                                                              firstCurve: Curves.easeIn,
+                                                                                                              secondCurve: Curves.easeIn,
                                                                                                               alignment: Alignment.center,
-                                                                                                              margin: switchedPage == DashboardAnimatedPage.SETTINGS ||
+                                                                                                              crossFadeState: switchedPage == DashboardAnimatedPage.SETTINGS ||
                                                                                                                       switchedPage == DashboardAnimatedPage.PAYBACK ||
                                                                                                                       switchedPage == DashboardAnimatedPage.ACT_SETTING
-                                                                                                                  ? EdgeInsets.zero
-                                                                                                                  : EdgeInsets.only(bottom: 4),
-                                                                                                              decoration: BoxDecoration(
-                                                                                                                color: Colors.white,
-                                                                                                                border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
-                                                                                                                borderRadius: BorderRadius.circular(100),
-                                                                                                                boxShadow: [
-                                                                                                                  BoxShadow(
-                                                                                                                      color: Theme.of(context).colorScheme.inverseSurface,
-                                                                                                                      blurRadius: 5,
-                                                                                                                      spreadRadius: 0.1,
-                                                                                                                      offset: Offset(0, 4))
-                                                                                                                ],
+                                                                                                                  ? CrossFadeState.showFirst
+                                                                                                                  : CrossFadeState.showSecond,
+                                                                                                              firstChild: Padding(
+                                                                                                                padding: const EdgeInsets.all(10.0),
+                                                                                                                child: AppSvg.asset(AssetUtils.down,
+                                                                                                                    color: AppColor.light_acccent_blue, height: 40, width: 40),
                                                                                                               ),
-                                                                                                              child: AnimatedCrossFade(
-                                                                                                                duration: const Duration(milliseconds: 500),
-                                                                                                                reverseDuration: const Duration(milliseconds: 500),
-                                                                                                                firstCurve: Curves.easeIn,
-                                                                                                                secondCurve: Curves.easeIn,
-                                                                                                                alignment: Alignment.center,
-                                                                                                                crossFadeState: switchedPage == DashboardAnimatedPage.SETTINGS ||
-                                                                                                                        switchedPage == DashboardAnimatedPage.PAYBACK ||
-                                                                                                                        switchedPage == DashboardAnimatedPage.ACT_SETTING
-                                                                                                                    ? CrossFadeState.showFirst
-                                                                                                                    : CrossFadeState.showSecond,
-                                                                                                                firstChild: Padding(
-                                                                                                                  padding: const EdgeInsets.all(10.0),
-                                                                                                                  child: AppSvg.asset(AssetUtils.down,
-                                                                                                                      color: AppColor.light_acccent_blue, height: 40, width: 40),
-                                                                                                                ),
-                                                                                                                secondChild: Text(
-                                                                                                                  S.current.transactions,
-                                                                                                                  style: TextStyle(color: AppColor.skyblue, fontSize: 12, fontWeight: FontWeight.w600),
-                                                                                                                ),
+                                                                                                              secondChild: Text(
+                                                                                                                S.current.transactions,
+                                                                                                                style: TextStyle(color: AppColor.skyblue, fontSize: 12, fontWeight: FontWeight.w600),
                                                                                                               ),
                                                                                                             ),
                                                                                                           ),
                                                                                                         ),
-                                                                                                      )
-                                                                                                    : SizedBox(),
-                                                                                      );
-                                                                                    }),
-                                                                              ],
-                                                                            ),
+                                                                                                      ),
+                                                                                                    )
+                                                                                                  : SizedBox(),
+                                                                                    );
+                                                                                  }),
+                                                                            ],
                                                                           ),
+                                                                        ),
 
-                                                                          /// INDICATOR...
-                                                                          AppStreamBuilder<DashboardAnimatedPage>(
-                                                                              stream: model.pageSwitchStream,
-                                                                              initialData: DashboardAnimatedPage.NULL,
-                                                                              dataBuilder: (context, switchedPage) {
-                                                                                return AnimatedCrossFade(
-                                                                                  crossFadeState: switchedPage != DashboardAnimatedPage.NULL ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-                                                                                  firstChild: const SizedBox(),
-                                                                                  secondChild: SizedBox(
-                                                                                    height: MediaQuery.of(context).size.height * 0.03,
-                                                                                    child: Padding(
-                                                                                      padding: EdgeInsets.only(bottom: 17.h),
-                                                                                      child: Row(
-                                                                                        mainAxisAlignment: MainAxisAlignment.center,
-                                                                                        children: model.buildPageIndicator(currentStep, cardData!.data!.dashboardDataContent!.debitCard!.length),
-                                                                                      ),
+                                                                        /// INDICATOR...
+                                                                        AppStreamBuilder<DashboardAnimatedPage>(
+                                                                            stream: model.pageSwitchStream,
+                                                                            initialData: DashboardAnimatedPage.NULL,
+                                                                            dataBuilder: (context, switchedPage) {
+                                                                              return AnimatedCrossFade(
+                                                                                crossFadeState: switchedPage != DashboardAnimatedPage.NULL ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                                                                                firstChild: const SizedBox(),
+                                                                                secondChild: SizedBox(
+                                                                                  height: MediaQuery.of(context).size.height * 0.04,
+                                                                                  child: Padding(
+                                                                                    padding: EdgeInsets.only(bottom: 17.h),
+                                                                                    child: Row(
+                                                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                                                      children: model.buildPageIndicator(currentStep, cardData!.data!.dashboardDataContent!.debitCard!.length),
                                                                                     ),
                                                                                   ),
-                                                                                  duration: const Duration(milliseconds: 500),
-                                                                                );
-                                                                              }),
-                                                                        ],
-                                                                      ),
+                                                                                ),
+                                                                                duration: const Duration(milliseconds: 500),
+                                                                              );
+                                                                            }),
+                                                                      ],
                                                                     ),
                                                                   ),
                                                                   builder: (BuildContext context, Widget? child) {

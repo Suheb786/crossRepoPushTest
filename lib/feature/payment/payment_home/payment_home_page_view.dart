@@ -105,7 +105,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                     AnimatedBuilder(
                       animation: model.translateUpController,
                       child: Padding(
-                        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.08 : 0.06)),
+                        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.058 : 0.033)),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -229,6 +229,20 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                             Expanded(
                               child: Column(
                                 children: [
+                                  /// To get rid of the unwanted card size changes....
+                                  AppStreamBuilder<AnimatedPage>(
+                                      stream: model.pageSwitchStream,
+                                      initialData: AnimatedPage.NULL,
+                                      dataBuilder: (context, switchedPage) {
+                                        return AnimatedCrossFade(
+                                          crossFadeState: switchedPage == AnimatedPage.NULL ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                                          firstChild: const SizedBox(),
+                                          secondChild: SizedBox(
+                                            height: MediaQuery.of(context).size.height * 0.03 + MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.036 : 0.02) + 100.h,
+                                          ),
+                                          duration: const Duration(milliseconds: 500),
+                                        );
+                                      }),
                                   Expanded(
                                     child: Stack(
                                       fit: StackFit.expand,
@@ -456,7 +470,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
   Widget indicator(bool isActive, int i, int currentPage, int totalPage) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 300),
-      margin: const EdgeInsets.symmetric(horizontal: 6.0),
+      margin: const EdgeInsets.symmetric(horizontal: 2),
       height: getIndicatorSize(isActive, i, currentPage, totalPage),
       width: getIndicatorSize(isActive, i, currentPage, totalPage),
       decoration: BoxDecoration(
@@ -468,11 +482,11 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
 
   double getIndicatorSize(bool isActive, int i, int currentPage, int totalPage) {
     if (isActive) {
-      return 13.0;
-    } else if ((i == 0 || i == pages.length - 1) && !isActive) {
       return 7.0;
+    } else if ((i == 0 || i == pages.length - 1) && !isActive) {
+      return 5.0;
     }
-    return 10.0;
+    return 5.0;
   }
 
   Color getColor(bool isActive, int i) {
