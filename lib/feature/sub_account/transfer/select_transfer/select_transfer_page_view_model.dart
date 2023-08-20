@@ -5,6 +5,7 @@ import 'package:neo_bank/feature/sub_account/transfer/select_transfer/select_tra
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 import '../../../../base/base_page_view_model.dart';
+import '../../../../generated/l10n.dart';
 import '../../../../main/navigation/route_paths.dart';
 import '../../../../ui/molecules/textfield/app_textfield.dart';
 import '../../../../ui/molecules/textfield/transfer_account_textfield.dart';
@@ -75,7 +76,7 @@ class SelectTransferPageViewModel extends BasePageViewModel {
             removeCommasFromNumberString(transferFromAccountDetailsResponse.value.availableBalance!)) <
         double.parse(removeCommasFromNumberString(amountTextController.text))) {
       amountKey.currentState?.isValid = false;
-      showToastWithErrorString("Available Balance is not sufficient");
+      showToastWithErrorString(S.current.insufficientBalanceTransfer);
     } else {
       Navigator.pushNamed(
         ctx,
