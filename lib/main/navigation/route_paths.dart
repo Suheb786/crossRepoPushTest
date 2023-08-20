@@ -159,5 +159,5 @@ class RoutePaths {
   static const String BeneficiaryTransactionHistoryList = "beneficiaryTransactionHistoryListPage";
   static const String SelectTransferPage = "/SelectTransferPage";
   static const String TransferSuccessPage = "/TransferSuccessPage";
-
+  static const String OpenSubAccountSuccessPage = "/OpenSubAccountSuccessPage";
 }

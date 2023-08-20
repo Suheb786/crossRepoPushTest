@@ -1842,5 +1842,8 @@
   "transferFrom": "Transfer from",
   "mainAccountPrimary": "Main Account-Primary",
   "transferTo": "Transfer To",
-  "subAccountSavings": "Sub Account - Savings"
+  "subAccountSavings": "Sub Account - Savings",
+  "successExclmn": "Success!",
+  "openAccountSucessDescription": "Congratulations, your new account has been opened successfully!",
+  "goToDashboard": "Go to Dashboard"
 }

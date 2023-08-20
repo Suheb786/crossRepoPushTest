@@ -25,7 +25,7 @@ class SelectTransferPageState extends BaseStatefulPage<SelectTransferPageViewMod
 
   @override
   ProviderBase provideBase() {
-    return selectTransferPageViewModel.call(widget.argument);
+    return selectTransferPageViewModelProivder.call(widget.argument);
   }
 
   @override

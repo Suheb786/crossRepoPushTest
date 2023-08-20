@@ -23,7 +23,7 @@ class TransferSuccessPageState extends BaseStatefulPage<TransferSuccessPageViewM
 
   @override
   ProviderBase provideBase() {
-    return transferSuccessPageViewModel.call(widget.argument);
+    return transferSuccessPageViewModelProvider.call(widget.argument);
   }
 }
 

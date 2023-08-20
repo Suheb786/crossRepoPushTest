@@ -5,30 +5,33 @@ import 'package:neo_bank/feature/sub_account/transfer/select_transfer/select_tra
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 import '../../../../base/base_page_view_model.dart';
+import '../../../../main/navigation/route_paths.dart';
 import '../../../../ui/molecules/textfield/transfer_account_textfield.dart';
+import '../transfer_success/transfer_success_page.dart';
 
 class SelectTransferPageViewModel extends BasePageViewModel {
 //*-----------------------------------------------[Variables]----------------------------------------------
 
   TextEditingController amountTextController = TextEditingController();
-  final GlobalKey<TransferAccountTextFieldState> tranferFromKey = GlobalKey();
+  final GlobalKey<TransferAccountTextFieldState> transferFromKey = GlobalKey();
+  final GlobalKey<TransferAccountTextFieldState> transferToKey = GlobalKey();
+
   final SelectTranferPageArgument argument;
+  SelectTransferPageViewModel({required this.argument});
 
   ///-------------[account-details-lists]----------------///
 
   List<String> accountNameList = [
-    "Main Account - Primary",
+    "Main Account 1 - Primary",
     "Sub Account - Savings",
-    "Main Account - Primary"
+    "Main Account 2 - Primary"
   ];
-  List<String> accountNumberList = ["9869868", "8986808", "9869856"];
+  List<String> accountNumberList = ["9869868", "8986808", "3369856"];
   List<String> availableAmountList = ["8769", "900", "555"];
 
   ///-------------[button-subject]----------------///
 
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
-
-  SelectTransferPageViewModel({required this.argument});
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   ///-------------[update-Account-Details-subject]----------------///
@@ -44,7 +47,7 @@ class SelectTransferPageViewModel extends BasePageViewModel {
 
 //*-----------------------------------------------[Methods]----------------------------------------------
 
-  validate() {
+  void validateIfEmpty() {
     if (amountTextController.text != "" &&
         transferFromAccountDetailsResponse.hasValue &&
         transferToAccountDetailsResponse.hasValue) {
@@ -57,12 +60,38 @@ class SelectTransferPageViewModel extends BasePageViewModel {
     if (balance.isEmpty) {
       return "";
     }
+  
     double? balanceValue = double.tryParse(balance);
+  
     if (balanceValue != null) {
       return NumberFormat('#,###.000').format(balanceValue);
     } else {
       return balance;
     }
+  }
+
+  void validButton(BuildContext ctx) {
+    if (transferFromAccountDetailsResponse.value.accountNo ==
+        transferToAccountDetailsResponse.value.accountNo) {
+      transferFromKey.currentState?.isValid = false;
+      transferToKey.currentState?.isValid = false;
+      showToastWithErrorString("Can not transfer money to same account number");
+    } else {
+      Navigator.pushNamed(
+        ctx,
+        RoutePaths.TransferSuccessPage,
+        arguments: TransferSuccessPageArgument(
+            amount: amountTextController.text, account: transferToAccountDetailsResponse.value),
+      );
+    }
+  }
+
+  void isSatisfied() {
+    if (transferFromKey.currentState?.isValid == false || transferToKey.currentState?.isValid == false) {
+      transferFromKey.currentState?.isValid = true;
+      transferToKey.currentState?.isValid = true;
+    }
+    transferFromKey.currentState?.isValid = true;
   }
 
   void formatAmount(value) {
@@ -75,7 +104,7 @@ class SelectTransferPageViewModel extends BasePageViewModel {
         selection: TextSelection.collapsed(offset: formattedValue.length),
       );
     }
-    validate();
+    validateIfEmpty();
   }
 
   String removeCommasFromNumberString(String formattedNumber) {
@@ -90,7 +119,6 @@ class SelectTransferPageViewModel extends BasePageViewModel {
   void updateTransferToAccount(Account value) {
     Account(accountNo: value.accountNo);
     transferToAccountDetailsResponse.safeAdd(value);
-    print(transferFromAccountDetailsResponse.value);
   }
 
   getIntialTrasnferfromAccountDetail(Account account) {

@@ -18209,6 +18209,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Success!`
+  String get successExclmn {
+    return Intl.message(
+      'Success!',
+      name: 'successExclmn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Congratulations, your new account has been opened successfully!`
+  String get openAccountSucessDescription {
+    return Intl.message(
+      'Congratulations, your new account has been opened successfully!',
+      name: 'openAccountSucessDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go to Dashboard`
+  String get goToDashboard {
+    return Intl.message(
+      'Go to Dashboard',
+      name: 'goToDashboard',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
