@@ -35,11 +35,7 @@ class SelectTransferPageState extends BaseStatefulPage<SelectTransferPageViewMod
 }
 
 @override
-void onModelReady(SelectTransferPageViewModel model) {
-  // model.transferFromAccountDetailsResponse.value.accountNo = model.argument.account.accountTitle;
-  // model.transferFromAccountDetailsResponse.value.accountTitle = model.argument.account.accountTitle;
-  // model.transferFromAccountDetailsResponse.value.availableBalance = model.argument.account.availableBalance;
-}
+void onModelReady(SelectTransferPageViewModel model) {}
 
 class SelectTranferPageArgument {
   final Account account;

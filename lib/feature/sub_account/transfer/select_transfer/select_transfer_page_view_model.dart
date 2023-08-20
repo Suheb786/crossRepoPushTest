@@ -6,6 +6,7 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 import '../../../../base/base_page_view_model.dart';
 import '../../../../main/navigation/route_paths.dart';
+import '../../../../ui/molecules/textfield/app_textfield.dart';
 import '../../../../ui/molecules/textfield/transfer_account_textfield.dart';
 import '../transfer_success/transfer_success_page.dart';
 
@@ -13,6 +14,7 @@ class SelectTransferPageViewModel extends BasePageViewModel {
 //*-----------------------------------------------[Variables]----------------------------------------------
 
   TextEditingController amountTextController = TextEditingController();
+  final GlobalKey<AppTextFieldState> amountKey = GlobalKey();
   final GlobalKey<TransferAccountTextFieldState> transferFromKey = GlobalKey();
   final GlobalKey<TransferAccountTextFieldState> transferToKey = GlobalKey();
 
@@ -60,9 +62,7 @@ class SelectTransferPageViewModel extends BasePageViewModel {
     if (balance.isEmpty) {
       return "";
     }
-  
     double? balanceValue = double.tryParse(balance);
-  
     if (balanceValue != null) {
       return NumberFormat('#,###.000').format(balanceValue);
     } else {
@@ -70,12 +70,12 @@ class SelectTransferPageViewModel extends BasePageViewModel {
     }
   }
 
-  void validButton(BuildContext ctx) {
-    if (transferFromAccountDetailsResponse.value.accountNo ==
-        transferToAccountDetailsResponse.value.accountNo) {
-      transferFromKey.currentState?.isValid = false;
-      transferToKey.currentState?.isValid = false;
-      showToastWithErrorString("Can not transfer money to same account number");
+  void validForm(BuildContext ctx) {
+    if (double.parse(
+            removeCommasFromNumberString(transferFromAccountDetailsResponse.value.availableBalance!)) <
+        double.parse(removeCommasFromNumberString(amountTextController.text))) {
+      amountKey.currentState?.isValid = false;
+      showToastWithErrorString("Available Balance is not sufficient");
     } else {
       Navigator.pushNamed(
         ctx,
@@ -84,14 +84,6 @@ class SelectTransferPageViewModel extends BasePageViewModel {
             amount: amountTextController.text, account: transferToAccountDetailsResponse.value),
       );
     }
-  }
-
-  void isSatisfied() {
-    if (transferFromKey.currentState?.isValid == false || transferToKey.currentState?.isValid == false) {
-      transferFromKey.currentState?.isValid = true;
-      transferToKey.currentState?.isValid = true;
-    }
-    transferFromKey.currentState?.isValid = true;
   }
 
   void formatAmount(value) {
@@ -123,22 +115,60 @@ class SelectTransferPageViewModel extends BasePageViewModel {
 
   getIntialTrasnferfromAccountDetail(Account account) {
     if (accountNumberList.contains(account.accountNo)) {
+      transferFromAccountDetailsResponse.safeAdd(argument.account);
       return account;
+    }
+    // transferFromAccountDetailsResponse.safeAdd(argument.account);
+  }
+
+  getNonSelectedAccountNumberTransferFromList() {
+    List<String> updatedTransferFromList = List.from(accountNumberList);
+    if (transferToAccountDetailsResponse.hasValue) {
+      String? selectedTransferToAccount = transferToAccountDetailsResponse.value.accountNo;
+      if (updatedTransferFromList.contains(selectedTransferToAccount)) {
+        updatedTransferFromList.remove(selectedTransferToAccount);
+      }
+      return updatedTransferFromList;
+    }
+    return accountNumberList;
+  }
+
+  getNonSelectedAccountTitleTransferFromList() {
+    List<String> updatedTransferFromList = List.from(accountNameList);
+    if (transferToAccountDetailsResponse.hasValue) {
+      String? selectedTransferToAccount = transferToAccountDetailsResponse.value.accountTitle;
+      if (updatedTransferFromList.contains(selectedTransferToAccount)) {
+        updatedTransferFromList.remove(selectedTransferToAccount);
+      }
+      return updatedTransferFromList;
+    } else {
+      return accountNameList;
     }
   }
 
-  getNonSelectedAccountNumberList() {
+  getNonSelectedAvailableBalanceTransferFromList() {
+    List<String> updatedTransferFromList = List.from(availableAmountList);
+    if (transferToAccountDetailsResponse.hasValue) {
+      String? selectedTransferToAccount = transferToAccountDetailsResponse.value.availableBalance;
+      if (updatedTransferFromList.contains(selectedTransferToAccount)) {
+        updatedTransferFromList.remove(selectedTransferToAccount);
+      }
+      return updatedTransferFromList;
+    }
+    return availableAmountList;
+  }
+
+  getNonSelectedAccountNumberTransferToList() {
     List<String> updatedAccountNumbersList = List.from(accountNumberList);
     String? selectedAccount = transferFromAccountDetailsResponse.value.accountNo;
 
     if (updatedAccountNumbersList.contains(selectedAccount)) {
-      argument.account.accountNo = selectedAccount;
       updatedAccountNumbersList.remove(selectedAccount);
     }
     return updatedAccountNumbersList;
   }
 
-  getNonSelectedAccountNameList() {
+  getNonSelectedAccountNameTransferToList() {
     List<String> updatedAccountNameList = List.from(accountNameList);
     String? selectedAccount = transferFromAccountDetailsResponse.value.accountTitle;
 
@@ -148,7 +178,7 @@ class SelectTransferPageViewModel extends BasePageViewModel {
     return updatedAccountNameList;
   }
 
-  getNonSelectedavailableAmountList() {
+  getNonSelectedavailableAmountTansferToList() {
     List<String> updatedAvailableAmountList = List.from(availableAmountList);
     String? selectedAccount = transferFromAccountDetailsResponse.value.availableBalance;
 

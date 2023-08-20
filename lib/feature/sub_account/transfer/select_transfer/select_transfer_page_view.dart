@@ -9,14 +9,13 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../../base/base_page.dart';
 import '../../../../generated/l10n.dart';
-import '../../../../ui/molecules/dialog/card_settings/select_from_list_dialog/select_from_list_dialog_page.dart';
+import '../../../../ui/molecules/dialog/sub_accounts_dialogs/select_from_list_dialog/select_from_list_dialog.dart';
 import '../../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../../ui/molecules/textfield/transfer_account_textfield.dart';
 import '../../../../utils/string_utils.dart';
 
 class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewModel> {
   SelectTransferPageView(ProviderBase model) : super(model);
-  FocusNode _focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context, SelectTransferPageViewModel model) {
@@ -27,7 +26,7 @@ class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewMo
         child: Container(
           child: Column(
             children: [
-              SizedBox(height: MediaQuery.of(context).size.height / 7.7.h),
+              SizedBox(height: 96.h),
               Text(
                 S.current.transfer.toUpperCase(),
                 style: TextStyle(
@@ -70,13 +69,14 @@ class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewMo
                                             SelectFromListDialog.show(
                                               context,
                                               title: S.current.transferTo,
-                                              accountName: model.accountNameList,
-                                              accountNumber: model.accountNumberList,
-                                              availableAmount: model.availableAmountList,
+                                              accountName: model.getNonSelectedAccountTitleTransferFromList(),
+                                              accountNumber:
+                                                  model.getNonSelectedAccountNumberTransferFromList(),
+                                              availableAmount:
+                                                  model.getNonSelectedAvailableBalanceTransferFromList(),
                                               onDismissed: () => Navigator.pop(context),
                                               onConfirm: (value) {
                                                 model.updateTransferFromAccount(value);
-                                                model.isSatisfied();
                                                 Navigator.pop(context);
                                               },
                                             );
@@ -109,21 +109,18 @@ class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewMo
                                             SelectFromListDialog.show(
                                               context,
                                               title: S.current.transferTo,
-                                              accountName: model.getNonSelectedAccountNameList(),
-                                              accountNumber: model.getNonSelectedAccountNumberList(),
-                                              availableAmount: model.getNonSelectedavailableAmountList(),
+                                              accountName: model.getNonSelectedAccountNameTransferToList(),
+                                              accountNumber:
+                                                  model.getNonSelectedAccountNumberTransferToList(),
+                                              availableAmount:
+                                                  model.getNonSelectedavailableAmountTansferToList(),
                                               onDismissed: () => Navigator.pop(context),
                                               onConfirm: (value) {
                                                 model.updateTransferToAccount(value);
-                                                model.isSatisfied();
                                                 model.validateIfEmpty();
                                                 Navigator.pop(context);
                                               },
                                             );
-                                          } else {
-                                            model.transferFromKey.currentState!.isValid = false;
-                                            model.showToastWithErrorString(
-                                                "Please confirm trasnfer from account");
                                           }
                                         },
                                         child: TransferAccountTextField(
@@ -146,6 +143,7 @@ class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewMo
                                   labelText: S.current.amount.toUpperCase(),
                                   hintText: S.current.JOD.toUpperCase(),
                                   controller: model.amountTextController,
+                                  key: model.amountKey,
                                   inputType: TextInputType.number,
                                   onFieldSubmitted: (value) => model.formatAmount(value),
                                 )
@@ -163,7 +161,7 @@ class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewMo
                                   dataBuilder: (context, isValid) {
                                     return AppPrimaryButton(
                                       onPressed: () {
-                                        model.validButton(context);
+                                        model.validForm(context);
                                       },
                                       isDisabled: !isValid!,
                                       text: S.current.transfer,
