@@ -214,19 +214,20 @@ class AppHomeViewModel extends BasePageViewModel {
   late AnimationController scaleAnimationController;
   late AnimationController translateTimelineDownController;
   late AnimationController translateSettingsUpController;
-  late Animation<double> animation;
+  late AnimationController translateAccountSettingsUpController;
+  late Animation<double> settingsAnimation;
+  late Animation<double> accountSettingsAnimation;
 
   late AnimationController zoomController;
   late Animation<double> zoomAnimation;
 
   late ScrollController timelineScrollController;
 
-  ///--------------- Pages ----------------------///
+  ///--------------- Animated Pages streams ----------------------///
 
-  bool timelinePage = false;
-  bool showPayBackView = false;
-  bool settings = false;
-  bool transactionPage = false;
+  BehaviorSubject<DashboardAnimatedPage> pageSwitchSubject = BehaviorSubject.seeded(DashboardAnimatedPage.NULL);
+
+  Stream<DashboardAnimatedPage> get pageSwitchStream => pageSwitchSubject.stream;
 
   bool isMyAccount(int index) {
     return cardTypeList[index].cardType == CardType.ACCOUNT;
@@ -245,15 +246,6 @@ class AppHomeViewModel extends BasePageViewModel {
   CreditCard? selectedCreditCard;
   bool firstTime = true;
   bool animationInitialized = false;
-
-  bool _showMainMenu = false;
-
-  bool get showMainMenu => _showMainMenu;
-
-  void openMainMenu() {
-    _showMainMenu = !_showMainMenu;
-    notifyListeners();
-  }
 
   ///--------------- Credit card settings params  ----------------------///
 
@@ -927,13 +919,14 @@ class AppHomeViewModel extends BasePageViewModel {
     _showRequestMoneyPopUpSubject.close();
     _verifyQRRequest.close();
     _verifyQRResponse.close();
+    pageSwitchSubject?.close();
 
     translateSidewaysController.dispose();
     translateSettingsUpController.dispose();
+    translateAccountSettingsUpController.dispose();
     scaleAnimationController.dispose();
     translateTimelineDownController.dispose();
     appSwiperController.dispose();
-    // controller?.dispose();
 
     if (timer != null) {
       timer?.cancel();
@@ -957,7 +950,7 @@ class AppHomeViewModel extends BasePageViewModel {
       animateReverseSettingsPage();
     }
 
-    settings = value;
+    pageSwitchSubject.add(value ? DashboardAnimatedPage.SETTINGS : DashboardAnimatedPage.NULL);
     _currentStep.add(_currentStep.value);
     if (updateDashboard) {
       Future.delayed(Duration(milliseconds: 500), () {
@@ -968,6 +961,17 @@ class AppHomeViewModel extends BasePageViewModel {
         }
       });
     }
+  }
+
+  showHideAccountSettings(bool value) {
+    if (value) {
+      translateSidewaysController.forward();
+      translateAccountSettingsUpController.forward();
+    } else {
+      translateSidewaysController.reverse();
+      translateAccountSettingsUpController.reverse();
+    }
+    pageSwitchSubject.add(value ? DashboardAnimatedPage.ACT_SETTING : DashboardAnimatedPage.NULL);
   }
 
   animateForwardSettingsPage() {
@@ -988,8 +992,7 @@ class AppHomeViewModel extends BasePageViewModel {
       animateReverseSettingsPage();
     }
 
-    showPayBackView = value;
-    notifyListeners();
+    pageSwitchSubject.add(value ? DashboardAnimatedPage.PAYBACK : DashboardAnimatedPage.NULL);
   }
 
   animateForwardTimelinePage() {
@@ -1010,23 +1013,13 @@ class AppHomeViewModel extends BasePageViewModel {
         const Duration(milliseconds: 500),
         () {
           timelineGlitchAnimation();
-
-          notifyListeners();
         },
       );
       animateForwardTimelinePage();
     } else {
-      Future.delayed(
-        const Duration(milliseconds: 500),
-        () {
-          notifyListeners();
-        },
-      );
-
       animateReverseTimelinePage();
     }
-    timelinePage = value;
-    notifyListeners();
+    pageSwitchSubject.add(value ? DashboardAnimatedPage.TIMELINE : DashboardAnimatedPage.NULL);
   }
 
   timelineGlitchAnimation() {
@@ -1048,67 +1041,16 @@ class AppHomeViewModel extends BasePageViewModel {
   }
 
   animateForwardTransactionPage() {
-    transactionPage = true;
-    notifyListeners();
+    pageSwitchSubject.add(DashboardAnimatedPage.TRANSACTIONS);
+
     translateSettingsUpController.forward();
     scaleAnimationController.forward();
   }
 
   animateReverseTransactionPage() {
-    transactionPage = false;
-    notifyListeners();
+    pageSwitchSubject.add(DashboardAnimatedPage.NULL);
     translateSettingsUpController.reverse();
     scaleAnimationController.reverse();
-  }
-
-  BottomBarIndex bottomBarIndex = BottomBarIndex.home;
-
-  changeBottomBarIndex(BottomBarIndex value, BuildContext context) {
-    if (value == bottomBarIndex) return;
-
-    bottomBarIndex = value;
-
-    ///Disposing dashboard screen resources
-    if (value != BottomBarIndex.home) {
-      // disposeControllers();
-      appSwiperController.animateToPage(0, duration: Duration(seconds: 1), curve: Curves.linear);
-    }
-
-    ///Disposing payment screen resources
-    if (value != BottomBarIndex.payment) {
-      // disposeResources();
-      /// TODO : do this in payment viewmodel.
-    }
-    notifyListeners();
-  }
-
-  onBottomMenuTap(int bottomIndex, BuildContext context) {
-    switch (bottomIndex) {
-      case 0:
-        changeBottomBarIndex(BottomBarIndex.home, context);
-        break;
-      case 1:
-        openMainMenu();
-        break;
-      case 2:
-        EngagementTeamDialog.show(context, onDismissed: () {
-          Navigator.pop(context);
-        }, onSelected: (value) {
-          Navigator.pop(context);
-        });
-        break;
-      default:
-        // if(viewModel.showMainMenu) {return;}
-        break;
-    }
-  }
-
-  ///Debit card logic
-  bool showButtonsInDebitCard = true;
-
-  showButtonsDebitCard() {
-    showButtonsInDebitCard = !showButtonsInDebitCard;
-    notifyListeners();
   }
 
   ///Credit card logic
@@ -1139,7 +1081,7 @@ class TimeLineSwipeUpArgs {
 
   final TimeLineEnum timeLineEnum;
 
-  TimeLineSwipeUpArgs({this.cardType = CardType.ACCOUNT, this.swipeUpEnum = SwipeUpEnum.SWIPE_UP_NO, this.timeLineEnum = TimeLineEnum.TIMELINE_No});
+  TimeLineSwipeUpArgs({this.cardType = CardType.ACCOUNT, this.swipeUpEnum = SwipeUpEnum.SWIPE_UP_NO, this.timeLineEnum = TimeLineEnum.TIMELINE_NO});
 }
 
 enum SwipeUpEnum {
@@ -1149,12 +1091,9 @@ enum SwipeUpEnum {
 
 enum TimeLineEnum {
   TIMELINE_YES, // time line
-  TIMELINE_No, // don't show time line
+  TIMELINE_NO, // don't show time line
 }
 
-enum BottomBarIndex {
-  home,
-  payment,
-}
+enum DashboardAnimatedPage { TIMELINE, PAYBACK, SETTINGS, TRANSACTIONS, ACT_SETTING, SUB_ACT_SETTING, NULL }
 
-enum DashboardCardType { account, credit, debit, rj }
+enum DashboardCardType { account, credit, debit, subAccount, rj }

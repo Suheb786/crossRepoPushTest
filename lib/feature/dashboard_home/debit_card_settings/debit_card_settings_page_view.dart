@@ -50,7 +50,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
   Widget build(BuildContext context, model) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.035, vertical: 44.h),
-      padding: EdgeInsets.only(top: (MediaQuery.of(context).size.height * 0.20) - 44.h),
+      padding: EdgeInsets.only(top: (MediaQuery.of(context).size.height * 0.2) - 44.h),
       child: Column(
         children: [
           ///Add to wallet button
@@ -261,7 +261,9 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                       onTap: () {
                         Navigator.pushNamed(context, RoutePaths.manageDebitLimit,
                             arguments: ManageCardLimitsArguments(
-                                debitDeliveredDatetime: model.debitCardSettingsArguments.debitCard.debitDeliveredDatetime, tokenizedPan: model.debitCardSettingsArguments.debitCard.code!, cardType: CardType.DEBIT));
+                                debitDeliveredDatetime: model.debitCardSettingsArguments.debitCard.debitDeliveredDatetime,
+                                tokenizedPan: model.debitCardSettingsArguments.debitCard.code!,
+                                cardType: CardType.DEBIT));
                       },
                       title: S.of(context).manageCardLimits,
                       tileIcon: AssetUtils.settingBars,
@@ -302,7 +304,8 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                     style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w400, color: AppColor.dark_brown),
                                   ), onSelected: () {
                                 Navigator.pop(context);
-                                model.reportStolenLostCard(status: 'TE', reasonValue: "Lost or Stolen", tokenizedPlan: model.debitCardSettingsArguments.debitCard.code, cancellationReason: "Lost or Stolen");
+                                model.reportStolenLostCard(
+                                    status: 'TE', reasonValue: "Lost or Stolen", tokenizedPlan: model.debitCardSettingsArguments.debitCard.code, cancellationReason: "Lost or Stolen");
                               }, onDismissed: () {
                                 Navigator.pop(context);
                               });
@@ -357,8 +360,8 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                         onData: (reapplyWithResponse) {
                           if (reapplyWithResponse.status == Status.SUCCESS) {
                             Navigator.pushNamed(context, RoutePaths.SupplementaryDebitCardPinSet,
-                                arguments:
-                                    SupplementaryDebitCardPinSetArguments(type: DebitReplacementEnum.Supplementary, nameOnCard: reapplyWithResponse.data!.cardHolderName, cardNo: reapplyWithResponse.data!.cardNumber));
+                                arguments: SupplementaryDebitCardPinSetArguments(
+                                    type: DebitReplacementEnum.Supplementary, nameOnCard: reapplyWithResponse.data!.cardHolderName, cardNo: reapplyWithResponse.data!.cardNumber));
                           }
                         },
                         dataBuilder: (context, removeOrReapplyCardResponse) {
@@ -426,7 +429,8 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                         stream: model.requestPhysicalDebitCardResponseStream,
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
-                            Navigator.pushNamed(context, RoutePaths.CardPinUnBlockSuccess, arguments: ManageCardPinArguments(cardType: CardType.DEBIT, successPageRouteEnum: SuccessPageRouteEnum.PHYSICAL_DC));
+                            Navigator.pushNamed(context, RoutePaths.CardPinUnBlockSuccess,
+                                arguments: ManageCardPinArguments(cardType: CardType.DEBIT, successPageRouteEnum: SuccessPageRouteEnum.PHYSICAL_DC));
                           }
                         },
                         dataBuilder: (context, requestPhysicalDataResponse) {
@@ -451,8 +455,9 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                 });
                               }
                             },
-                            isEnabled:
-                                (model.debitCardSettingsArguments.debitCardRequestPhysicalCardEnabled == true ? (model.debitCardSettingsArguments.debitCard.isPhysicalDebitCardRequested == true ? false : true) : false),
+                            isEnabled: (model.debitCardSettingsArguments.debitCardRequestPhysicalCardEnabled == true
+                                ? (model.debitCardSettingsArguments.debitCard.isPhysicalDebitCardRequested == true ? false : true)
+                                : false),
                             /*isEnabled: !(model
                                         .debitCardSettingsArguments.debitCard.isPhysicalDebitCardRequested ??
                                     false),*/

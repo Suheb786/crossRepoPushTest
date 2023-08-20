@@ -4,7 +4,6 @@ import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/payment/send_money/send_money_view_model.dart';

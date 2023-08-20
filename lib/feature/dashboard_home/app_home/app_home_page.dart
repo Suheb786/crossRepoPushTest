@@ -9,9 +9,9 @@ import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page_view_new.
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
-import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../ui/molecules/dashboard/bottom_bar_widget.dart';
+import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../utils/device_size_helper.dart';
 
 class AppHomePage extends BasePage<AppHomeViewModel> {
@@ -57,12 +57,29 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> w
         vsync: this,
         duration: const Duration(milliseconds: 500),
       );
-      model.animation = Tween<double>(
+
+      model.translateAccountSettingsUpController = AnimationController(
+        vsync: this,
+        duration: const Duration(milliseconds: 500),
+      );
+
+      model.settingsAnimation = Tween<double>(
         begin: 0,
         end: 1,
       ).animate(
         CurvedAnimation(
           parent: model.translateSettingsUpController,
+          curve: Curves.easeInOut,
+          reverseCurve: Curves.easeInOut,
+        ),
+      );
+
+      model.accountSettingsAnimation = Tween<double>(
+        begin: 0,
+        end: 1,
+      ).animate(
+        CurvedAnimation(
+          parent: model.translateAccountSettingsUpController,
           curve: Curves.easeInOut,
           reverseCurve: Curves.easeInOut,
         ),
@@ -135,38 +152,40 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> w
               ),
             ),
           ),
-          AnimatedCrossFade(
-            crossFadeState: model.settings || model.showPayBackView || model.timelinePage ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-            duration: Duration(milliseconds: 500),
-            secondChild: const SizedBox(),
-            firstChild: Padding(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.036 : 0.02)),
-              child: BottomBarWidget(
-                onHomeTap: () {
-                  if (model.settings || model.showPayBackView || model.timelinePage) {
-                  } else {
-                    model.moveToPage(0);
-                  }
-                },
-                onMoreTap: () {
-                  if (model.settings || model.showPayBackView || model.timelinePage) {
-                  } else {
-                    SettingsDialog.show(context);
-                  }
-                },
-                onContactUsTap: () {
-                  if (model.settings || model.showPayBackView || model.timelinePage) {
-                  } else {
-                    EngagementTeamDialog.show(context, onDismissed: () {
-                      Navigator.pop(context);
-                    }, onSelected: (value) {
-                      Navigator.pop(context);
-                    });
-                  }
-                },
-              ),
-            ),
-          )
+          AppStreamBuilder<DashboardAnimatedPage>(
+              stream: model.pageSwitchStream,
+              initialData: DashboardAnimatedPage.NULL,
+              dataBuilder: (context, switchedPage) {
+                return AnimatedCrossFade(
+                  crossFadeState: (switchedPage != DashboardAnimatedPage.NULL) ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                  duration: Duration(milliseconds: 500),
+                  secondChild: const SizedBox(),
+                  firstChild: Padding(
+                    padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.036 : 0.02)),
+                    child: BottomBarWidget(
+                      onHomeTap: () {
+                        if (switchedPage == DashboardAnimatedPage.NULL) {
+                          model.moveToPage(0);
+                        }
+                      },
+                      onMoreTap: () {
+                        if (switchedPage == DashboardAnimatedPage.NULL) {
+                          SettingsDialog.show(context);
+                        }
+                      },
+                      onContactUsTap: () {
+                        if (switchedPage == DashboardAnimatedPage.NULL) {
+                          EngagementTeamDialog.show(context, onDismissed: () {
+                            Navigator.pop(context);
+                          }, onSelected: (value) {
+                            Navigator.pop(context);
+                          });
+                        }
+                      },
+                    ),
+                  ),
+                );
+              })
         ],
       ),
     );

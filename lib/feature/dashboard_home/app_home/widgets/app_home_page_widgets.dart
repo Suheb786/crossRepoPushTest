@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-
-import '../../../../di/dashboard/dashboard_modules.dart';
-import '../../../../utils/device_size_helper.dart';
 
 class AppHomePageWidgets {
   /// TOP TOTAL WIDGET ...

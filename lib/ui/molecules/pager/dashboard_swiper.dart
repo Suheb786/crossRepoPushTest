@@ -6,6 +6,7 @@ import 'dart:math' as math;
 
 import '../../../feature/dashboard_home/app_home/app_home_view_model.dart';
 import '../../../utils/device_size_helper.dart';
+import '../stream_builder/app_stream_builder.dart';
 
 class DashboardSwiper extends StatefulWidget {
   final List? pages;
@@ -36,15 +37,20 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
 
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-        physics: widget.model.settings || widget.model.timelinePage ? const NeverScrollableScrollPhysics() : const ClampingScrollPhysics(),
-        itemCount: widget.pages!.length,
-        onPageChanged: (i) {
-          widget.onIndexChanged!.call(i);
-        },
-        controller: widget.appSwiperController,
-        itemBuilder: (context, index) {
-          return carouselView(index);
+    return AppStreamBuilder<DashboardAnimatedPage>(
+        stream: widget.model.pageSwitchStream,
+        initialData: DashboardAnimatedPage.NULL,
+        dataBuilder: (context, switchedPage) {
+          return PageView.builder(
+              physics: switchedPage == DashboardAnimatedPage.SETTINGS || switchedPage == DashboardAnimatedPage.TIMELINE ? const NeverScrollableScrollPhysics() : const ClampingScrollPhysics(),
+              itemCount: widget.pages!.length,
+              onPageChanged: (i) {
+                widget.onIndexChanged!.call(i);
+              },
+              controller: widget.appSwiperController,
+              itemBuilder: (context, index) {
+                return carouselView(index);
+              });
         });
   }
 

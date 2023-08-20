@@ -14,7 +14,6 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dashboard/bottom_bar_widget.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
-import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/pager/payment_swiper.dart';
 import 'package:neo_bank/ui/molecules/postpaid_bills/post_paid_bill_card_widget.dart';
 import 'package:neo_bank/ui/molecules/prepaid/pre_paid_bill_card_widget.dart';
@@ -28,11 +27,10 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../utils/device_size_helper.dart';
-import '../../postpaid_bills/bill_payments_transaction/bill_payments_transaction_page.dart';
 import '../../postpaid_bills/new_bill/new_bills_page.dart';
+import '../request_amount_from_contact/request_amount_from_contact_page.dart';
 import '../request_money/request_money_page.dart';
 import '../send_amount_to_contact/send_amount_to_contact_page.dart';
 import '../send_money/send_money_page.dart';
@@ -98,8 +96,10 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                     : switchedPage == AnimatedPage.REQUEST_MONEY
                                         ? RequestMoneyPage()
                                         : switchedPage == AnimatedPage.SEND_TO_SPECIFIC_PERSON
-                                            ? const SizedBox() /*SendAmountToContactPage()*/
-                                            : const SizedBox(),
+                                            ? SendAmountToContactPage(model.selectedBenificiary) /*SendAmountToContactPage()*/
+                                            : switchedPage == AnimatedPage.REQUEST_FROM_SPECIFIC_PERSON
+                                                ? RequestAmountFromContactPage(beneficiary: model.selectedBenificiary)
+                                                : const SizedBox(),
                           );
                         }),
                     AnimatedBuilder(

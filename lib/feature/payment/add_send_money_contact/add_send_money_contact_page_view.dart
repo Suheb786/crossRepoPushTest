@@ -18,6 +18,8 @@ import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../payment_home/payment_home_view_model.dart';
+
 class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContactViewModel> {
   final List<Beneficiary>? beneficiaries;
 
@@ -91,7 +93,9 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                 }
                                 return PaymentBeneficiaryWidget(
                                   onTap: () {
-                                    Navigator.pushNamed(context, RoutePaths.SendAmountToContact, arguments: beneficiaries![index]);
+                                    // Navigator.pushNamed(context, RoutePaths.SendAmountToContact, arguments: beneficiaries![index]);
+                                    ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).setSelectedBenificiary(beneficiaries![index]);
+                                    ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animatePage(AnimatedPage.SEND_TO_SPECIFIC_PERSON);
                                   },
                                   transferEnum: TransferEnum.send,
                                   beneficiary: beneficiaries![index],

@@ -55,6 +55,10 @@ class PaymentHomeViewModel extends BasePageViewModel {
 
   late AnimationController translateSidewaysController;
 
+  late Beneficiary selectedBenificiary;
+
+  // (SendAmountToContactPage(settings.arguments as Beneficiary)
+
   PaymentHomeViewModel(this._getBeneficiaryUseCase) {
     _getBeneficiaryRequest.listen((value) {
       RequestManager(value, createCall: () => _getBeneficiaryUseCase.execute(params: value)).asFlow().listen((event) {
@@ -144,6 +148,10 @@ class PaymentHomeViewModel extends BasePageViewModel {
   void animateBackToMainPage() {
     translateUpController.reverse();
     translateSidewaysController.reverse();
+  }
+
+  setSelectedBenificiary(Beneficiary selectedBenificiary) {
+    this.selectedBenificiary = selectedBenificiary;
   }
 }
 

@@ -141,9 +141,9 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                 Directionality(
                   textDirection: StringUtils.isDirectionRTL(context) ? TextDirection.rtl : TextDirection.ltr,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // mainAxisAlignment: MainAxisAlignmentt.spaceBetween,
                     children: [
-                      InkWell(
+                      /*InkWell(
                         onTap: () {
                           Navigator.pushNamed(context, RoutePaths.AddMoneyOptionSelector);
                         },
@@ -158,14 +158,35 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                             ),
                           ),
                         ),
-                      ),
-                      InkWell(
+                      ),*/
+                      Spacer(),
+                      /*InkWell(
                         onTap: () {
                           _shareFiles(model, context, account);
                         },
                         child: Padding(
                           padding: EdgeInsets.only(right: 33.0.w),
                           child: AppSvg.asset(AssetUtils.share, color: Theme.of(context).textTheme.bodyLarge!.color!, height: 24.0.h, width: 24.0.w),
+                        ),
+                      ),*/
+                      InkWell(
+                        onTap: () {
+                          // _shareFiles(model, context, account);
+                          ProviderScope.containerOf(context).read(appHomeViewModelProvider).showHideAccountSettings(true);
+                        },
+                        child: Container(
+                          height: 50.h,
+                          width: 50.h,
+                          alignment: Alignment.center,
+                          child: AppSvg.asset(AssetUtils.moreMenu, color: Theme.of(context).textTheme.bodyLarge!.color!, height: 24.0.h, width: 24.0.w),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColor.black,
+                            border: Border.all(color: AppColor.borderColorNew, width: 1),
+                            boxShadow: const [
+                              BoxShadow(color: AppColor.borderColorNew, blurRadius: 14, spreadRadius: 0.6),
+                            ],
+                          ),
                         ),
                       )
                     ],
