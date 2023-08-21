@@ -71,7 +71,7 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                         ),
                       ),
                       Align(
-                        alignment: Alignment.centerRight,
+                        alignment: AlignmentDirectional.centerEnd,
                         child: InkWell(
                             onTap: () {
                               model.clearValue();

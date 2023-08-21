@@ -31,6 +31,7 @@ import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_page.dart';
 import 'package:neo_bank/main/app_viewmodel.dart';
+import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/ui/molecules/card/apply_credit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/apply_debit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/credit_card_issuance_failure_widget.dart';
@@ -45,7 +46,6 @@ import 'package:neo_bank/ui/molecules/card/rj_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/verify_credit_card_videocall_widget.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
-import 'package:neo_bank/utils/navigation_transitions.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/screen_size_utils.dart';
@@ -264,8 +264,8 @@ class AppHomeViewModel extends BasePageViewModel {
 
   bool isSmallDevices = false;
 
-  AppHomeViewModel(this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._initDynamicLinkUseCase, this._getCurrentUserUseCase, this._saveUserDataUseCase, this._verifyQRUseCase,
-      this._getAntelopCardsListUseCase) {
+  AppHomeViewModel(
+      this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._initDynamicLinkUseCase, this._getCurrentUserUseCase, this._saveUserDataUseCase, this._verifyQRUseCase, this._getAntelopCardsListUseCase) {
     isShowBalenceUpdatedToast = false;
     deviceSize = MediaQuery.of(appLevelKey.currentContext!).size;
     isSmallDevices = deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT || deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
@@ -1025,19 +1025,18 @@ class AppHomeViewModel extends BasePageViewModel {
   timelineGlitchAnimation() {
     if (timelineScrollController.positions.isNotEmpty && timelineScrollController.hasClients)
       timelineScrollController.animateTo(30, duration: const Duration(milliseconds: 400), curve: Curves.easeIn).then((value) {
-        if (timelineScrollController.positions.isNotEmpty && timelineScrollController.hasClients)
-          timelineScrollController.animateTo(-30, duration: const Duration(milliseconds: 500), curve: Curves.easeInBack);
+        if (timelineScrollController.positions.isNotEmpty && timelineScrollController.hasClients) timelineScrollController.animateTo(-30, duration: const Duration(milliseconds: 500), curve: Curves.easeInBack);
       });
   }
 
   goToTransactionPage(BuildContext context, int currentStep) {
     animateForwardTransactionPage();
-    Navigator.of(context).push(slideBottomToTop(nextPage: CardTransactionPage(GetCreditCardTransactionArguments(cardId: timeLineListArguments[currentStep - 1].cardId))));
+    Navigator.of(context).push(CustomRoute.swipeUpRoute(CardTransactionPage(GetCreditCardTransactionArguments(cardId: timeLineListArguments[currentStep - 1].cardId))));
   }
 
   goToAccountTransactionPage(BuildContext context) {
     animateForwardTransactionPage();
-    Navigator.of(context).push(slideBottomToTop(nextPage: AccountTransactionPage()));
+    Navigator.of(context).push(CustomRoute.swipeUpRoute(AccountTransactionPage()));
   }
 
   animateForwardTransactionPage() {

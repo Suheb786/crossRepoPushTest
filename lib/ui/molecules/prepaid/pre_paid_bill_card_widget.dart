@@ -13,7 +13,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../feature/postpaid_bills/bill_payments_transaction/bill_payments_transaction_page.dart';
-import '../../../utils/navigation_transitions.dart';
+import '../../../main/navigation/cutom_route.dart';
 
 class PrePaidBillCardWidget extends StatelessWidget {
   const PrePaidBillCardWidget({Key? key}) : super(key: key);
@@ -43,7 +43,7 @@ class PrePaidBillCardWidget extends StatelessWidget {
                       AppConstantsUtils.POST_PAID_FLOW = false;
                       // Navigator.pushNamed(context, RoutePaths.BillPaymentsTransactionPage);
                       ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animateToNewPage();
-                      Navigator.of(context).push(slideBottomToTop(nextPage: BillPaymentsTransactionPage()));
+                      Navigator.of(context).push(CustomRoute.swipeUpRoute(BillPaymentsTransactionPage()));
                     },
                     child: Container(
                       height: 50.h,

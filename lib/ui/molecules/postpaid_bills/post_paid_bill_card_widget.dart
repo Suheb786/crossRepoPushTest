@@ -16,7 +16,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 import '../../../feature/dashboard_home/card_transaction/card_transaction_page.dart';
 import '../../../feature/payment/payment_home/payment_home_view_model.dart';
 import '../../../feature/postpaid_bills/bill_payments_transaction/bill_payments_transaction_page.dart';
-import '../../../utils/navigation_transitions.dart';
+import '../../../main/navigation/cutom_route.dart';
 
 class PostPaidBillCardWidget extends StatelessWidget {
   const PostPaidBillCardWidget({Key? key}) : super(key: key);
@@ -46,7 +46,7 @@ class PostPaidBillCardWidget extends StatelessWidget {
                       AppConstantsUtils.POST_PAID_FLOW = true;
                       // Navigator.pushNamed(context, RoutePaths.BillPaymentsTransactionPage);
                       ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animateToNewPage();
-                      Navigator.of(context).push(slideBottomToTop(nextPage: BillPaymentsTransactionPage()));
+                      Navigator.of(context).push(CustomRoute.swipeUpRoute( BillPaymentsTransactionPage()));
                     },
                     child: Container(
                       height: 50.h,
@@ -84,7 +84,9 @@ class PostPaidBillCardWidget extends StatelessWidget {
                   FireBaseLogUtil.fireBaseLog("view_my_post_paid_bills", {"view_my_post_paid_bills_clicked": true});
 
                   AppConstantsUtils.IS_NEW_PAYMENT = false;
-                  Navigator.pushNamed(context, RoutePaths.PayAllPostPaidBillsPage, arguments: PayAllPostPaidBillsPageArguments(PostPaidBillsPayTypeOptionEnum.VIEWMYBILLS));
+                  ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animateToNewPage();
+                  Navigator.of(context).push(CustomRoute.swipeUpRoute( PayAllPostPaidBillsPage(PayAllPostPaidBillsPageArguments(PostPaidBillsPayTypeOptionEnum.VIEWMYBILLS))));
+                  // Navigator.pushNamed(context, RoutePaths.PayAllPostPaidBillsPage, arguments: PayAllPostPaidBillsPageArguments(PostPaidBillsPayTypeOptionEnum.VIEWMYBILLS));
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 12.0.h),
@@ -106,7 +108,10 @@ class PostPaidBillCardWidget extends StatelessWidget {
                   FireBaseLogUtil.fireBaseLog("pay_all_post_paid_bills", {"pay_all_post_paid_bills_clicked": true});
 
                   AppConstantsUtils.IS_NEW_PAYMENT = false;
-                  Navigator.pushNamed(context, RoutePaths.PayAllPostPaidBillsPage, arguments: PayAllPostPaidBillsPageArguments(PostPaidBillsPayTypeOptionEnum.PAYALLBILLS));
+                  ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animateToNewPage();
+                  Navigator.of(context).push(CustomRoute.swipeUpRoute( PayAllPostPaidBillsPage(PayAllPostPaidBillsPageArguments(PostPaidBillsPayTypeOptionEnum.PAYALLBILLS))));
+
+                  // Navigator.pushNamed(context, RoutePaths.PayAllPostPaidBillsPage, arguments: PayAllPostPaidBillsPageArguments(PostPaidBillsPayTypeOptionEnum.PAYALLBILLS));
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 12.0.h),

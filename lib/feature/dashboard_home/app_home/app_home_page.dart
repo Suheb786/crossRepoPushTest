@@ -157,7 +157,6 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> w
               stream: model.pageSwitchStream,
               initialData: DashboardAnimatedPage.NULL,
               dataBuilder: (context, switchedPage) {
-                print("switched page --- ${switchedPage}");
                 return AnimatedCrossFade(
                   crossFadeState: (switchedPage != DashboardAnimatedPage.NULL) ? CrossFadeState.showSecond : CrossFadeState.showFirst,
                   duration: Duration(milliseconds: 500),

@@ -122,8 +122,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                               InformationDialog.show(context,
                                                   image: AssetUtils.payRequestViaQRBlackIcon,
                                                   title: S.of(context).payViaQR,
-                                                  descriptionWidget:
-                                                      Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
+                                                  descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
                                                   onDismissed: () {
                                                 Navigator.pop(context);
                                               }, onSelected: () {
@@ -165,16 +164,14 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                 InformationDialog.show(context,
                                                     image: AssetUtils.payRequestViaQRBlackIcon,
                                                     title: S.of(context).requestViaQR,
-                                                    descriptionWidget:
-                                                        Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
+                                                    descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
                                                     onDismissed: () {
                                                   Navigator.pop(context);
                                                 }, onSelected: () {
                                                   Navigator.pop(context);
 
                                                   Navigator.pushNamed(context, RoutePaths.RequestMoneyQrGeneration,
-                                                      arguments:
-                                                          RequestMoneyQrGenerationPageArguments(ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.account!));
+                                                      arguments: RequestMoneyQrGenerationPageArguments(ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.account!));
                                                 });
                                               },
                                               child: AppSvg.asset(AssetUtils.requestViaQrIcon)),

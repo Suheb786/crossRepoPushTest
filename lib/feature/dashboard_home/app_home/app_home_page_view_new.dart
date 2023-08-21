@@ -171,11 +171,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                     stream: model.applePayPopUpStream,
                                     initialData: false,
                                     onData: (value) {
-                                      if (value &&
-                                          Platform.isIOS &&
-                                          AppConstantsUtils.isApplePayFeatureEnabled &&
-                                          isAllCardsInApplePay &&
-                                          (model.debitCards.isNotEmpty || model.creditCards.isNotEmpty)) {
+                                      if (value && Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled && isAllCardsInApplePay && (model.debitCards.isNotEmpty || model.creditCards.isNotEmpty)) {
                                         ApplePayDialog.show(context, image: AssetUtils.applePayLogo, title: S.of(context).blinkWithApplePay, onSelected: () {
                                           Navigator.pop(context);
                                           Navigator.pushNamed(context, RoutePaths.SelectedCardForApplePayPage,
@@ -239,14 +235,12 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                               accountStatusEnum: cardData?.data?.dashboardDataContent?.account?.accountStatusEnum ?? AccountStatusEnum.NONE,
                                                                               isPrimaryDebitCard: model.isPrimaryDebitCard,
                                                                               debitCard: model.selectedDebitCard!,
-                                                                              debitCardRequestPhysicalCardEnabled:
-                                                                                  cardData?.data?.dashboardDataContent?.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled ?? false))
+                                                                              debitCardRequestPhysicalCardEnabled: cardData?.data?.dashboardDataContent?.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled ?? false))
                                                                           : CreditCardSettingsPage(CreditCardSettingsArguments(
                                                                               creditCard: model.selectedCreditCard!,
                                                                               isChangePinEnabled: cardData?.data?.dashboardDataContent?.dashboardFeatures?.isPinChangeEnabled ?? true))
                                                                       : switchedPage == DashboardAnimatedPage.TIMELINE
-                                                                          ? DebitCardTimeLinePage(
-                                                                              TimeLinePageArguments(cardType: model.cardTypeList[currentStep!].cardType, timeLineArguments: model.timeLineArguments))
+                                                                          ? DebitCardTimeLinePage(TimeLinePageArguments(cardType: model.cardTypeList[currentStep!].cardType, timeLineArguments: model.timeLineArguments))
                                                                           : switchedPage == DashboardAnimatedPage.PAYBACK
                                                                               ? CreditCardPayBackPage(
                                                                                   CreditCardPayBackArguments(
@@ -346,7 +340,6 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                       splashColor: Colors.transparent,
                                                                                       highlightColor: Colors.transparent,
                                                                                       onTap: () {
-                                                                                        print("sdfsdfsdfsdfsdfsdfsdf sd sfsd fsdfsdfdsfsd fsd sdf ");
                                                                                         // if (!model.showButtonsInCreditCard) return;
                                                                                         if (model.cardTypeList[currentStep].timeLineEnum == TimeLineEnum.TIMELINE_YES) {
                                                                                           // Navigator.pushNamed(context, RoutePaths.TimeLinePage,
@@ -359,9 +352,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                         width: 48,
                                                                                         padding: const EdgeInsets.all(10),
                                                                                         decoration: BoxDecoration(
-                                                                                            shape: BoxShape.circle,
-                                                                                            color: Colors.white,
-                                                                                            border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1)),
+                                                                                            shape: BoxShape.circle, color: Colors.white, border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1)),
                                                                                         //child: const SVGImage(assetPath: "assets/icons/audioWave.svg"),
                                                                                         ///For Credit Card
                                                                                         child: AppStreamBuilder<DashboardAnimatedPage>(
@@ -371,10 +362,8 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                               return AnimatedSwitcher(
                                                                                                 duration: const Duration(milliseconds: 500),
                                                                                                 child: !(switchedPage == DashboardAnimatedPage.TIMELINE)
-                                                                                                    ? AppSvg.asset(AssetUtils.timelineButton,
-                                                                                                        height: 24.w, width: 24.w, color: AppColor.light_acccent_blue)
-                                                                                                    : AppSvg.asset(AssetUtils.swipeUpSmall,
-                                                                                                        height: 24.w, width: 24.w, color: AppColor.light_acccent_blue),
+                                                                                                    ? AppSvg.asset(AssetUtils.timelineButton, height: 24.w, width: 24.w, color: AppColor.light_acccent_blue)
+                                                                                                    : AppSvg.asset(AssetUtils.swipeUpSmall, height: 24.w, width: 24.w, color: AppColor.light_acccent_blue),
                                                                                               );
                                                                                             }),
                                                                                       ),
@@ -394,8 +383,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                       child:
 
                                                                                           ///No transaction button for debit card
-                                                                                          switchedPage == DashboardAnimatedPage.SETTINGS &&
-                                                                                                  (model.isDebitCard(currentStep) || model.isCreditCard(currentStep))
+                                                                                          switchedPage == DashboardAnimatedPage.SETTINGS && (model.isDebitCard(currentStep) || model.isCreditCard(currentStep))
                                                                                               ? Container(
                                                                                                   child: AnimatedCrossFade(
                                                                                                     duration: const Duration(milliseconds: 500),
@@ -403,9 +391,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                     firstCurve: Curves.easeIn,
                                                                                                     secondCurve: Curves.easeIn,
                                                                                                     alignment: Alignment.center,
-                                                                                                    crossFadeState: switchedPage == DashboardAnimatedPage.SETTINGS
-                                                                                                        ? CrossFadeState.showFirst
-                                                                                                        : CrossFadeState.showSecond,
+                                                                                                    crossFadeState: switchedPage == DashboardAnimatedPage.SETTINGS ? CrossFadeState.showFirst : CrossFadeState.showSecond,
                                                                                                     firstChild: InkWell(
                                                                                                       onTap: () {
                                                                                                         model.showSettingPage(false, updateDashboard: true, currentStep: currentStep);
@@ -475,8 +461,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                           builder: (BuildContext context, Widget? child) {
                                                                                                             double translateYOffset = 0;
                                                                                                             double opacity = 0;
-                                                                                                            if (model.appSwiperController.hasClients) if (model
-                                                                                                                .appSwiperController.position.hasContentDimensions) {
+                                                                                                            if (model.appSwiperController.hasClients) if (model.appSwiperController.position.hasContentDimensions) {
                                                                                                               opacity = currentStep - (model.appSwiperController.page ?? 0);
                                                                                                               translateYOffset = currentStep - (model.appSwiperController.page ?? 0);
                                                                                                             }
@@ -534,8 +519,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                                   : CrossFadeState.showSecond,
                                                                                                               firstChild: Padding(
                                                                                                                 padding: const EdgeInsets.all(10.0),
-                                                                                                                child: AppSvg.asset(AssetUtils.down,
-                                                                                                                    color: AppColor.light_acccent_blue, height: 40, width: 40),
+                                                                                                                child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue, height: 40, width: 40),
                                                                                                               ),
                                                                                                               secondChild: Text(
                                                                                                                 S.current.transactions,

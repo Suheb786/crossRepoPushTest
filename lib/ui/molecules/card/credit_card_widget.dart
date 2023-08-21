@@ -78,16 +78,22 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            S.of(context).myCreditCard,
-                            textAlign: TextAlign.right,
-                            style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: Colors.white),
+                          Padding(
+                            padding: EdgeInsets.only(
+                              top: widget.creditCard.cardStatus == FreezeCardStatusEnum.F ? 15.0 : 0,
+                              bottom: widget.creditCard.cardStatus == FreezeCardStatusEnum.F ? 20.0 : 0,
+                            ),
+                            child: Text(
+                              S.of(context).myCreditCard,
+                              textAlign: TextAlign.right,
+                              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: Colors.white),
+                            ),
                           ),
                           widget.creditCard.cardStatus == FreezeCardStatusEnum.F
                               ? Container(
                                   height: 24.0.h,
-                                  alignment: Alignment.center,
-                                  padding: EdgeInsets.only(right: 23.0.w),
+                                  alignment: Alignment.bottomCenter,
+                                  padding: EdgeInsets.only(right: 23.0.w, bottom: 6),
                                   child: Text(
                                     S.of(context).cardFrozen,
                                     style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary.withOpacity(0.5), fontSize: 14.0.t, fontWeight: FontWeight.w600),
