@@ -44,8 +44,8 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
   @override
   Widget build(BuildContext context, model) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.035, vertical: 44.h),
-      padding: EdgeInsets.only(top: (MediaQuery.of(context).size.height * 0.20) - 44.h),
+      margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.035, vertical: 22.h),
+      padding: EdgeInsets.only(top: (MediaQuery.of(context).size.height * 0.14) - 22.h),
       child: Column(
         children: [
           Platform.isIOS
@@ -257,7 +257,8 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                       onTap: () {
                         Navigator.pushNamed(context, RoutePaths.ManageCreditCardLimits,
                             arguments: ManageCreditCardLimitsArguments(
-                                secureCode: model.creditCardSettingsArguments.creditCard.cardCode ?? '', creditDeliveredDatetime: model.creditCardSettingsArguments.creditCard.creditDeliveredDatetime));
+                                secureCode: model.creditCardSettingsArguments.creditCard.cardCode ?? '',
+                                creditDeliveredDatetime: model.creditCardSettingsArguments.creditCard.creditDeliveredDatetime));
                       },
                       title: S.of(context).manageCardLimits,
                       tileIcon: AssetUtils.settingBars,

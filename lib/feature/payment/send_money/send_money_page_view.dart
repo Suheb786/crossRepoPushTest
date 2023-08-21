@@ -4,7 +4,6 @@ import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/payment/send_money/send_money_view_model.dart';
@@ -28,10 +27,10 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.only(top: (MediaQuery.of(context).size.height * 0.18) + 10.h),
+            padding: EdgeInsetsDirectional.only(top: (MediaQuery.of(context).size.height * 0.14) + (MediaQuery.of(context).size.height * 0.08)),
             child: Text(
               S.of(context).sendMoney,
-              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
+              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 20.0.t),
             ),
           ),
           Spacer(),
@@ -73,10 +72,10 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 49.0.h),
+            padding: EdgeInsets.only(top: 22.0.h),
             child: Text(
               S.of(context).accountBalance,
-              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 10.0.t, color: AppColor.dark_gray_1),
+              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: AppColor.dark_gray_1),
             ),
           ),
           Padding(
@@ -103,7 +102,7 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.03),
+            padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.06),
             child: Directionality(
               textDirection: TextDirection.ltr,
               child: NumericKeyboard(

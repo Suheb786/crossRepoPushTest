@@ -9,10 +9,12 @@ class PaymentBeneficiaryEmptyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CircleAvatar(
-          radius: 32.0.w,
-          backgroundColor: Theme.of(context).primaryColorDark.withOpacity(0.1),
-        ),
+        LayoutBuilder(builder: (p0, p1) {
+          return CircleAvatar(
+            radius: (p1.maxWidth) / 2.5,
+            backgroundColor: Theme.of(context).primaryColorDark.withOpacity(0.1),
+          );
+        }),
         Padding(
           padding: EdgeInsets.only(top: 6.0.h),
           child: Text(

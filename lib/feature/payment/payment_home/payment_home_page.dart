@@ -32,13 +32,14 @@ class PaymentHomePageState extends BaseStatefulPage<PaymentHomeViewModel, Paymen
     return stateBuild(context);
   }
 
+
   @override
   void onModelReady(PaymentHomeViewModel model) {
     model.navigationType = widget.navigationType ?? NavigationType.DASHBOARD;
     // model.getBeneficiaries(context, "SM");
     if (!model.animationInitialized) {
       model.animationInitialized = true;
-
+      model.getBeneficiaries(context, "SM");
       model.translateUpController = AnimationController(
         vsync: this,
         duration: const Duration(milliseconds: 500),

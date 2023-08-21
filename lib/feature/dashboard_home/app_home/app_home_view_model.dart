@@ -31,6 +31,7 @@ import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_page.dart';
 import 'package:neo_bank/main/app_viewmodel.dart';
+import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/ui/molecules/card/apply_credit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/apply_debit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/credit_card_issuance_failure_widget.dart';
@@ -45,7 +46,6 @@ import 'package:neo_bank/ui/molecules/card/rj_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/verify_credit_card_videocall_widget.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
-import 'package:neo_bank/utils/navigation_transitions.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/screen_size_utils.dart';
@@ -214,26 +214,20 @@ class AppHomeViewModel extends BasePageViewModel {
   late AnimationController scaleAnimationController;
   late AnimationController translateTimelineDownController;
   late AnimationController translateSettingsUpController;
-  late Animation<double> animation;
+  late AnimationController translateAccountSettingsUpController;
+  late Animation<double> settingsAnimation;
+  late Animation<double> accountSettingsAnimation;
 
   late AnimationController zoomController;
   late Animation<double> zoomAnimation;
 
   late ScrollController timelineScrollController;
 
-  ///--------------- Pages ----------------------///
+  ///--------------- Animated Pages streams ----------------------///
 
-  bool timelinePage = false;
-  bool showPayBackView = false;
-  bool settings = false;
-  bool transactionPage = false;
+  BehaviorSubject<DashboardAnimatedPage> pageSwitchSubject = BehaviorSubject.seeded(DashboardAnimatedPage.NULL);
 
-  // this is to toggle heights ....
-  double constBottomBarHeight = DeviceSizeHelper.isSmallDevice
-      ? 120.h
-      : DeviceSizeHelper.isBigDevice
-          ? 140.h
-          : 125.h;
+  Stream<DashboardAnimatedPage> get pageSwitchStream => pageSwitchSubject.stream;
 
   bool isMyAccount(int index) {
     return cardTypeList[index].cardType == CardType.ACCOUNT;
@@ -253,15 +247,6 @@ class AppHomeViewModel extends BasePageViewModel {
   bool firstTime = true;
   bool animationInitialized = false;
 
-  bool _showMainMenu = false;
-
-  bool get showMainMenu => _showMainMenu;
-
-  void openMainMenu() {
-    _showMainMenu = !_showMainMenu;
-    notifyListeners();
-  }
-
   ///--------------- Credit card settings params  ----------------------///
 
   bool creditCardIsFreezed = false;
@@ -279,8 +264,8 @@ class AppHomeViewModel extends BasePageViewModel {
 
   bool isSmallDevices = false;
 
-  AppHomeViewModel(this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._initDynamicLinkUseCase, this._getCurrentUserUseCase, this._saveUserDataUseCase, this._verifyQRUseCase,
-      this._getAntelopCardsListUseCase) {
+  AppHomeViewModel(
+      this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._initDynamicLinkUseCase, this._getCurrentUserUseCase, this._saveUserDataUseCase, this._verifyQRUseCase, this._getAntelopCardsListUseCase) {
     isShowBalenceUpdatedToast = false;
     deviceSize = MediaQuery.of(appLevelKey.currentContext!).size;
     isSmallDevices = deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT || deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
@@ -741,7 +726,7 @@ class AppHomeViewModel extends BasePageViewModel {
   Widget indicator(bool isActive, int i, int currentPage) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 300),
-      margin: const EdgeInsets.symmetric(horizontal: 6.0),
+      margin: const EdgeInsets.symmetric(horizontal: 2),
       height: getIndicatorSize(isActive, i, currentPage),
       width: getIndicatorSize(isActive, i, currentPage),
       decoration: BoxDecoration(
@@ -770,11 +755,11 @@ class AppHomeViewModel extends BasePageViewModel {
 
   double getIndicatorSize(bool isActive, int i, int currentPage) {
     if (isActive) {
-      return 13.0;
-    } else if ((i == 0 || i == pages.length - 1) && !isActive) {
       return 7.0;
+    } else if ((i == 0 || i == pages.length - 1) && !isActive) {
+      return 5.0;
     }
-    return 10.0;
+    return 5.0;
   }
 
   void updatePage(int index) {
@@ -934,13 +919,14 @@ class AppHomeViewModel extends BasePageViewModel {
     _showRequestMoneyPopUpSubject.close();
     _verifyQRRequest.close();
     _verifyQRResponse.close();
+    pageSwitchSubject?.close();
 
     translateSidewaysController.dispose();
     translateSettingsUpController.dispose();
+    translateAccountSettingsUpController.dispose();
     scaleAnimationController.dispose();
     translateTimelineDownController.dispose();
     appSwiperController.dispose();
-    // controller?.dispose();
 
     if (timer != null) {
       timer?.cancel();
@@ -950,25 +936,21 @@ class AppHomeViewModel extends BasePageViewModel {
   }
 
   ///--------------- Animation methods... ----------------------///
-  double bottomNavbarHeight = 130;
 
   /// SETTINGS PAGE ANIMATIONS AND TRANSITIONS....
   showSettingPage(bool value, {bool updateDashboard = false, int currentStep = 0}) {
     if (value) {
       Future.delayed(
         const Duration(milliseconds: 300),
-        () {
-          changeBottomNavbarHeight(0);
-        },
+        () {},
       );
       animateForwardSettingsPage();
     } else {
       selectedDebitCard = selectedCreditCard = null;
-      changeBottomNavbarHeight(constBottomBarHeight);
       animateReverseSettingsPage();
     }
 
-    settings = value;
+    pageSwitchSubject.add(value ? DashboardAnimatedPage.SETTINGS : DashboardAnimatedPage.NULL);
     _currentStep.add(_currentStep.value);
     if (updateDashboard) {
       Future.delayed(Duration(milliseconds: 500), () {
@@ -981,6 +963,17 @@ class AppHomeViewModel extends BasePageViewModel {
     }
   }
 
+  showHideAccountSettings(bool value) {
+    if (value) {
+      translateSidewaysController.forward();
+      translateAccountSettingsUpController.forward();
+    } else {
+      translateSidewaysController.reverse();
+      translateAccountSettingsUpController.reverse();
+    }
+    pageSwitchSubject.add(value ? DashboardAnimatedPage.ACT_SETTING : DashboardAnimatedPage.NULL);
+  }
+
   animateForwardSettingsPage() {
     translateSidewaysController.forward();
     translateSettingsUpController.forward();
@@ -991,28 +984,15 @@ class AppHomeViewModel extends BasePageViewModel {
     translateSettingsUpController.reverse();
   }
 
-  changeBottomNavbarHeight(double value) {
-    bottomNavbarHeight = value;
-    notifyListeners();
-  }
-
   /// PAYBACK PAGE ANIMATIONS AND TRANSITIONS....
   goToPayBackView(bool value) {
     if (value) {
-      Future.delayed(
-        const Duration(milliseconds: 300),
-        () {
-          changeBottomNavbarHeight(0);
-        },
-      );
       animateForwardSettingsPage();
     } else {
-      changeBottomNavbarHeight(constBottomBarHeight);
       animateReverseSettingsPage();
     }
 
-    showPayBackView = value;
-    notifyListeners();
+    pageSwitchSubject.add(value ? DashboardAnimatedPage.PAYBACK : DashboardAnimatedPage.NULL);
   }
 
   animateForwardTimelinePage() {
@@ -1032,108 +1012,44 @@ class AppHomeViewModel extends BasePageViewModel {
       Future.delayed(
         const Duration(milliseconds: 500),
         () {
-          bottomNavbarHeight = 0;
           timelineGlitchAnimation();
-
-          notifyListeners();
         },
       );
       animateForwardTimelinePage();
     } else {
-      Future.delayed(
-        const Duration(milliseconds: 500),
-        () {
-          bottomNavbarHeight = constBottomBarHeight;
-          notifyListeners();
-        },
-      );
-
       animateReverseTimelinePage();
     }
-    timelinePage = value;
-    notifyListeners();
+    pageSwitchSubject.add(value ? DashboardAnimatedPage.TIMELINE : DashboardAnimatedPage.NULL);
   }
 
   timelineGlitchAnimation() {
     if (timelineScrollController.positions.isNotEmpty && timelineScrollController.hasClients)
       timelineScrollController.animateTo(30, duration: const Duration(milliseconds: 400), curve: Curves.easeIn).then((value) {
-        if (timelineScrollController.positions.isNotEmpty && timelineScrollController.hasClients)
-          timelineScrollController.animateTo(-30, duration: const Duration(milliseconds: 500), curve: Curves.easeInBack);
+        if (timelineScrollController.positions.isNotEmpty && timelineScrollController.hasClients) timelineScrollController.animateTo(-30, duration: const Duration(milliseconds: 500), curve: Curves.easeInBack);
       });
   }
 
   goToTransactionPage(BuildContext context, int currentStep) {
     animateForwardTransactionPage();
-    Navigator.of(context).push(slideBottomToTop(nextPage: CardTransactionPage(GetCreditCardTransactionArguments(cardId: timeLineListArguments[currentStep - 1].cardId))));
+    Navigator.of(context).push(CustomRoute.swipeUpRoute(CardTransactionPage(GetCreditCardTransactionArguments(cardId: timeLineListArguments[currentStep - 1].cardId))));
   }
 
   goToAccountTransactionPage(BuildContext context) {
     animateForwardTransactionPage();
-    Navigator.of(context).push(slideBottomToTop(nextPage: AccountTransactionPage()));
+    Navigator.of(context).push(CustomRoute.swipeUpRoute(AccountTransactionPage()));
   }
 
   animateForwardTransactionPage() {
-    transactionPage = true;
-    notifyListeners();
+    pageSwitchSubject.add(DashboardAnimatedPage.TRANSACTIONS);
+
     translateSettingsUpController.forward();
     scaleAnimationController.forward();
   }
 
   animateReverseTransactionPage() {
-    transactionPage = false;
-    notifyListeners();
+    pageSwitchSubject.add(DashboardAnimatedPage.NULL);
     translateSettingsUpController.reverse();
     scaleAnimationController.reverse();
-  }
-
-  BottomBarIndex bottomBarIndex = BottomBarIndex.home;
-
-  changeBottomBarIndex(BottomBarIndex value, BuildContext context) {
-    if (value == bottomBarIndex) return;
-
-    bottomBarIndex = value;
-
-    ///Disposing dashboard screen resources
-    if (value != BottomBarIndex.home) {
-      // disposeControllers();
-      appSwiperController.animateToPage(0, duration: Duration(seconds: 1), curve: Curves.linear);
-    }
-
-    ///Disposing payment screen resources
-    if (value != BottomBarIndex.payment) {
-      // disposeResources();
-      /// TODO : do this in payment viewmodel.
-    }
-    notifyListeners();
-  }
-
-  onBottomMenuTap(int bottomIndex, BuildContext context) {
-    switch (bottomIndex) {
-      case 0:
-        changeBottomBarIndex(BottomBarIndex.home, context);
-        break;
-      case 1:
-        openMainMenu();
-        break;
-      case 2:
-        EngagementTeamDialog.show(context, onDismissed: () {
-          Navigator.pop(context);
-        }, onSelected: (value) {
-          Navigator.pop(context);
-        });
-        break;
-      default:
-        // if(viewModel.showMainMenu) {return;}
-        break;
-    }
-  }
-
-  ///Debit card logic
-  bool showButtonsInDebitCard = true;
-
-  showButtonsDebitCard() {
-    showButtonsInDebitCard = !showButtonsInDebitCard;
-    notifyListeners();
   }
 
   ///Credit card logic
@@ -1164,7 +1080,7 @@ class TimeLineSwipeUpArgs {
 
   final TimeLineEnum timeLineEnum;
 
-  TimeLineSwipeUpArgs({this.cardType = CardType.ACCOUNT, this.swipeUpEnum = SwipeUpEnum.SWIPE_UP_NO, this.timeLineEnum = TimeLineEnum.TIMELINE_No});
+  TimeLineSwipeUpArgs({this.cardType = CardType.ACCOUNT, this.swipeUpEnum = SwipeUpEnum.SWIPE_UP_NO, this.timeLineEnum = TimeLineEnum.TIMELINE_NO});
 }
 
 enum SwipeUpEnum {
@@ -1174,12 +1090,9 @@ enum SwipeUpEnum {
 
 enum TimeLineEnum {
   TIMELINE_YES, // time line
-  TIMELINE_No, // don't show time line
+  TIMELINE_NO, // don't show time line
 }
 
-enum BottomBarIndex {
-  home,
-  payment,
-}
+enum DashboardAnimatedPage { TIMELINE, PAYBACK, SETTINGS, TRANSACTIONS, ACT_SETTING, SUB_ACT_SETTING, NULL }
 
-enum DashboardCardType { account, credit, debit, rj }
+enum DashboardCardType { account, credit, debit, subAccount, rj }

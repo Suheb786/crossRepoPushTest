@@ -5,6 +5,8 @@ import 'package:neo_bank/utils/string_utils.dart';
 import 'dart:math' as math;
 
 import '../../../feature/dashboard_home/app_home/app_home_view_model.dart';
+import '../../../utils/device_size_helper.dart';
+import '../stream_builder/app_stream_builder.dart';
 
 class DashboardSwiper extends StatefulWidget {
   final List? pages;
@@ -35,27 +37,27 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: widget.model.timelinePage ? widget.model.constBottomBarHeight : 0),
-      child: AspectRatio(
-        aspectRatio: 16 / 8,
-        child: PageView.builder(
-            physics: widget.model.settings || widget.model.timelinePage ? const NeverScrollableScrollPhysics() : const ClampingScrollPhysics(),
-            itemCount: widget.pages!.length,
-            onPageChanged: (i) {
-              widget.onIndexChanged!.call(i);
-            },
-            controller: widget.appSwiperController,
-            itemBuilder: (context, index) {
-              return carouselView(index);
-            }),
-      ),
-    );
+    return AppStreamBuilder<DashboardAnimatedPage>(
+        stream: widget.model.pageSwitchStream,
+        initialData: DashboardAnimatedPage.NULL,
+        dataBuilder: (context, switchedPage) {
+          return PageView.builder(
+              physics: switchedPage == DashboardAnimatedPage.SETTINGS || switchedPage == DashboardAnimatedPage.TIMELINE ? const NeverScrollableScrollPhysics() : const ClampingScrollPhysics(),
+              itemCount: widget.pages!.length,
+              onPageChanged: (i) {
+                widget.onIndexChanged!.call(i);
+              },
+              controller: widget.appSwiperController,
+              itemBuilder: (context, index) {
+                return carouselView(index);
+              });
+        });
   }
 
   Widget carouselView(int index) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: widget.model.timelinePage ? widget.model.constBottomBarHeight : 0),
+    double horizontalSpacing = MediaQuery.of(context).size.width * 0.035;
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: horizontalSpacing) + EdgeInsets.only(bottom: 40, top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.06 : 0.04)),
       child: AnimatedBuilder(
         animation: widget.translateSidewaysController!,
         builder: (context, child) {
