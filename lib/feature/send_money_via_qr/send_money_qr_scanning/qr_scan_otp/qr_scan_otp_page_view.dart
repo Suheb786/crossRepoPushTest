@@ -4,6 +4,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/qr_scan_otp/qr_scan_otp_page_view_model.dart';
@@ -12,13 +13,14 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
+
+import '../../../../ui/molecules/button/app_primary_button.dart';
+import '../../../../utils/color_utils.dart';
 
 class QRScanOTPPageView extends BasePageViewWidget<QRScanOTPPageViewModel> {
   QRScanOTPPageView(ProviderBase model) : super(model);
@@ -149,19 +151,35 @@ class QRScanOTPPageView extends BasePageViewWidget<QRScanOTPPageViewModel> {
                                     },
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 16.0.h),
+                                    padding: EdgeInsets.only(top: 16.0.h,bottom: 16.0.h),
                                     child: AppStreamBuilder<bool>(
                                         stream: model.showButtonStream,
                                         initialData: false,
                                         dataBuilder: (context, isValid) {
-                                          return Visibility(
-                                            visible: isValid!,
-                                            child: AnimatedButton(
-                                              buttonHeight: 50,
-                                              buttonText: S.of(context).swipeToProceed,
-                                            ),
+                                          return AppPrimaryButton(
+                                            text: S.of(context).next,
+                                            isDisabled: !isValid!,
+                                            onPressed: () {
+                                              model.transferQR(context: context);
+                                            },
                                           );
                                         }),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      ProviderScope.containerOf(context)
+                                          .read(sendMoneyQrScanningViewModelProvider)
+                                          .previousPage();
+                                    },
+                                    child: Text(
+                                      S.of(context).back,
+                                      style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontSize: 14.0.t,
+                                        fontWeight: FontWeight.w600,
+                                        color: AppColor.brightBlue,
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
