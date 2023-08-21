@@ -311,6 +311,8 @@ import '../entity/remote/e_voucher/get_voucher_details/get_voucher_details_reque
 import '../entity/remote/e_voucher/get_voucher_details/get_voucher_details_response_entity.dart';
 import '../entity/remote/e_voucher/place_order/place_order_request_entity.dart';
 import '../entity/remote/e_voucher/place_order/place_order_response_entity.dart';
+import '../entity/remote/sub_account/deactivate_sub_account/deactivate_sub_account_request_entity.dart';
+import '../entity/remote/sub_account/update_nick_name/update_nick_name_request_entity.dart';
 
 part 'api_service.g.dart';
 
@@ -1202,4 +1204,12 @@ abstract class ApiService {
   @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/GetVoucherDetails")
   Future<HttpResponse<GetVoucherDetailResponseEntity>> getVoucherDetailsApi(
       @Body() GetVoucherDetailsRequestEntity request);
+
+  @POST("${NetworkProperties.BASE_SUB_ACCOUNT_URL}/DeActivateSubAccount")
+  Future<HttpResponse<ResponseEntity>> deActivateSubAccount(
+      @Body() DeactivateSubAccountRequestEntity request);
+
+  @POST("${NetworkProperties.BASE_SUB_ACCOUNT_URL}/UpdateNickName")
+  Future<HttpResponse<ResponseEntity>> updateNickNameSubAccount(
+      @Body() UpdateNickNameSubAccountRequestEntity request);
 }
