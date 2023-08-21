@@ -150,6 +150,9 @@ import 'package:neo_bank/utils/navgition_type.dart';
 import '../../feature/evoucher/evoucher/evoucher_page.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page.dart';
 import '../../feature/rj/rj_book_flight/rj_book_flight_page.dart';
+import '../../feature/sub_account/open_sub_account/open_sub_account_success/open_sub_account_success_page.dart';
+import '../../feature/sub_account/transfer/select_transfer/select_transfer_page.dart';
+import '../../feature/sub_account/transfer/transfer_success/transfer_success_page.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -906,6 +909,22 @@ class AppRouter {
                 settings.arguments as BeneficiaryTransactionHistoryListPageArguments),
             settings: RouteSettings(name: RoutePaths.BeneficiaryTransactionHistoryList));
 
+      ///------------[Sub-Account-Router]---------///
+
+      case RoutePaths.OpenSubAccountSuccessPage:
+        return CupertinoPageRoute(
+            builder: (context) => OpenSubAccountSuccessPage(),
+            settings: RouteSettings(name: RoutePaths.OpenSubAccountSuccessPage));
+      case RoutePaths.SelectTransferPage:
+        return CupertinoPageRoute(
+            builder: (context) => SelectTransferPage(
+                  argument: settings.arguments as SelectTranferPageArgument,
+                ),
+            settings: RouteSettings(name: RoutePaths.SelectTransferPage));
+      case RoutePaths.TransferSuccessPage:
+        return CupertinoPageRoute(
+            builder: (context) => TransferSuccessPage(settings.arguments as TransferSuccessPageArgument),
+            settings: RouteSettings(name: RoutePaths.TransferSuccessPage));
       default:
         return CupertinoPageRoute(
           builder: (context) => Container(),

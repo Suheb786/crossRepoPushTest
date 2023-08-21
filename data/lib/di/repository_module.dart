@@ -59,10 +59,13 @@ import 'package:domain/repository/register/register_repository.dart';
 import 'package:domain/repository/register/register_step_four_repository.dart';
 import 'package:domain/repository/register/register_step_three_repository.dart';
 import 'package:domain/repository/rj/rj_repository.dart';
+import 'package:domain/repository/sub_account/sub_account_repository.dart';
 import 'package:domain/repository/upload_document/upload_document_repository.dart';
 import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/repository/utility/utility_repository.dart';
 import 'package:riverpod/riverpod.dart';
+
+import '../repository/sub_account/sub_account_repository_impl.dart';
 
 /// inject [UserRepository] provider
 var userRepoProvider = Provider<UserRepository>(
@@ -194,3 +197,7 @@ var eVoucherRepositoryProvider =
 /// inject [CliqRepository] provider
 var cliqRepositoryProvider =
     Provider<CliqRepository>((ref) => CliqRepositoryImpl(ref.read(cliqDataSourceProvider)));
+
+/// inject [SubAccount] provider
+var subAccountRepository =
+    Provider<SubAccountRepository>((ref) => SubAccountRepositoryImpl(ref.read(subAccountDataSourceProvider)));
