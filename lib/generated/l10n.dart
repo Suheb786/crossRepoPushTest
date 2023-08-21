@@ -18120,6 +18120,16 @@ class S {
     );
   }
 
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Pay New Bill`
   String get payNewBill {
     return Intl.message(

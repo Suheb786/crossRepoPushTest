@@ -2083,63 +2083,50 @@ class MessageLookup extends MessageLookupByLibrary {
             "NAME AS PER INCOME TAX RETURN"),
         "nameHint": MessageLookupByLibrary.simpleMessage("Please Enter Name"),
         "nameOfBeneficiary": MessageLookupByLibrary.simpleMessage("Name"),
-        "nationalId":
-            MessageLookupByLibrary.simpleMessage("NATIONAL ID NUMBER"),
+        "nationalId": MessageLookupByLibrary.simpleMessage("NATIONAL ID NUMBER"),
         "nationality": MessageLookupByLibrary.simpleMessage("NATIONALITY"),
-        "nationalityHint":
-            MessageLookupByLibrary.simpleMessage("Please Enter Nationality"),
+        "nationalityHint": MessageLookupByLibrary.simpleMessage("Please Enter Nationality"),
         "nationalityRestricted": MessageLookupByLibrary.simpleMessage(
             "Sorry, this product is restricted to specific nationalities only."),
         "nationalitySmall": MessageLookupByLibrary.simpleMessage("Nationality"),
-        "natureOfSpecialNeed":
-            MessageLookupByLibrary.simpleMessage("NATURE OF SPECIAL NEEDS"),
-        "natureSpecialNeeds":
-            MessageLookupByLibrary.simpleMessage("Nature of Special Needs"),
+        "natureOfSpecialNeed": MessageLookupByLibrary.simpleMessage("NATURE OF SPECIAL NEEDS"),
+        "natureSpecialNeeds": MessageLookupByLibrary.simpleMessage("Nature of Special Needs"),
         "newBill": MessageLookupByLibrary.simpleMessage("New Bill"),
-        "newContacthasBeenAdded": MessageLookupByLibrary.simpleMessage(
-            "New contact has been added to the list"),
-        "newDeviceDetected":
-            MessageLookupByLibrary.simpleMessage("New device detected"),
+        "newContacthasBeenAdded":
+            MessageLookupByLibrary.simpleMessage("New contact has been added to the list"),
+        "newDeviceDetected": MessageLookupByLibrary.simpleMessage("New device detected"),
         "newDeviceDetectedDesc": MessageLookupByLibrary.simpleMessage(
             "You’re attempting to log in from a new device. Would you like to switch access to this device?\t"),
         "newDeviceRegisteredSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Your new device has been\nsuccessfully registered.\nYou may proceed to your Dashboard."),
-        "newMobileNumber":
-            MessageLookupByLibrary.simpleMessage("NEW MOBILE NUMBER"),
+        "newMobileNumber": MessageLookupByLibrary.simpleMessage("NEW MOBILE NUMBER"),
         "newPassword": MessageLookupByLibrary.simpleMessage("NEW PASSWORD"),
         "newPin": MessageLookupByLibrary.simpleMessage("new pin "),
-        "newSettlementAccount":
-            MessageLookupByLibrary.simpleMessage("New settlement account"),
-        "newSettlementPercentage":
-            MessageLookupByLibrary.simpleMessage("New settlement Percentage"),
+        "newSettlementAccount": MessageLookupByLibrary.simpleMessage("New settlement account"),
+        "newSettlementPercentage": MessageLookupByLibrary.simpleMessage("New settlement Percentage"),
+        "next": MessageLookupByLibrary.simpleMessage("Next"),
         "niHandlerError": MessageLookupByLibrary.simpleMessage(
             "We apologies, you are not eligible to a credit card at the moment. You can still enjoy the benefits of our services."),
         "nickName": MessageLookupByLibrary.simpleMessage("Nickname"),
-        "nickNameAlreadyExists": MessageLookupByLibrary.simpleMessage(
-            "Nickname is already stored as beneficiary"),
+        "nickNameAlreadyExists":
+            MessageLookupByLibrary.simpleMessage("Nickname is already stored as beneficiary"),
         "nickNameCanOnlyContainAlphanumerics":
-            MessageLookupByLibrary.simpleMessage(
-                "Nick name can only contain alphanumerics"),
-        "nickNameUpdated": MessageLookupByLibrary.simpleMessage(
-            "Contact nickname has been updated"),
-        "nickNameValueExceeds": MessageLookupByLibrary.simpleMessage(
-            "Nickname cannot be more than 50 characters long. "),
-        "nicknameAlreadyExistsM": MessageLookupByLibrary.simpleMessage(
-            "Oops! Nickname already exists, use another one"),
+            MessageLookupByLibrary.simpleMessage("Nick name can only contain alphanumerics"),
+        "nickNameUpdated": MessageLookupByLibrary.simpleMessage("Contact nickname has been updated"),
+        "nickNameValueExceeds":
+            MessageLookupByLibrary.simpleMessage("Nickname cannot be more than 50 characters long. "),
+        "nicknameAlreadyExistsM":
+            MessageLookupByLibrary.simpleMessage("Oops! Nickname already exists, use another one"),
         "nicknameLengthShouldNotBeGreaterThan50":
-            MessageLookupByLibrary.simpleMessage(
-                "Nickname length should not be greater than 50"),
+            MessageLookupByLibrary.simpleMessage("Nickname length should not be greater than 50"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
-        "noATMData": MessageLookupByLibrary.simpleMessage(
-            "ATM data cannot be retrieved. Please try again later."),
+        "noATMData":
+            MessageLookupByLibrary.simpleMessage("ATM data cannot be retrieved. Please try again later."),
         "noAccountFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-071)"),
-        "noActivityToDisplay":
-            MessageLookupByLibrary.simpleMessage("No Activity to Display"),
-        "noBillerFound":
-            MessageLookupByLibrary.simpleMessage("No Biller Found"),
-        "noCardsToDisplay":
-            MessageLookupByLibrary.simpleMessage("No cards to display"),
+        "noActivityToDisplay": MessageLookupByLibrary.simpleMessage("No Activity to Display"),
+        "noBillerFound": MessageLookupByLibrary.simpleMessage("No Biller Found"),
+        "noCardsToDisplay": MessageLookupByLibrary.simpleMessage("No cards to display"),
         "noContactsYetDesc": MessageLookupByLibrary.simpleMessage(
             "You don’t have any contacts yet.\nAdd your Blink contacts while\nsending money"),
         "noCountriesFound":

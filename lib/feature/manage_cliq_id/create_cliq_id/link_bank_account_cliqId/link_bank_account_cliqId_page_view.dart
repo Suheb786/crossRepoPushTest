@@ -12,7 +12,6 @@ import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/link_bank_account_cliqId/link_bank_account_cliqId_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/register/app_switch_label_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -21,6 +20,8 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../../ui/molecules/button/app_primary_button.dart';
 
 class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCliqIdPageViewModel> {
   LinkBankAccountCliqIdPageView(ProviderBase model) : super(model);
@@ -86,305 +87,274 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                         return Column(
                           children: [
                             Expanded(
-                              child: GestureDetector(
-                                onHorizontalDragEnd: (details) {
-                                  if (ProviderScope.containerOf(context)
-                                          .read(createCliqIdViewModelProvider)
-                                          .appSwiperController
-                                          .page ==
-                                      1.0) {
-                                    FocusScope.of(context).unfocus();
-                                    if (StringUtils.isDirectionRTL(context)) {
-                                      if (!details.primaryVelocity!.isNegative) {
-                                        model.validate();
-                                      } else {
-                                        ProviderScope.containerOf(context)
-                                            .read(createCliqIdViewModelProvider)
-                                            .previousPage();
-                                      }
-                                    } else {
-                                      if (details.primaryVelocity!.isNegative) {
-                                        model.validate();
-                                      } else {
-                                        ProviderScope.containerOf(context)
-                                            .read(createCliqIdViewModelProvider)
-                                            .previousPage();
-                                      }
-                                    }
-                                  }
-                                },
-                                child: Card(
-                                  child: Padding(
-                                      padding: EdgeInsets.only(
-                                          bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
-                                              ? 0
-                                              : MediaQuery.of(context).viewInsets.bottom - 48),
-                                      child: Container(
-                                        padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
-                                        child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Expanded(
-                                                child: FadingEdgeScrollView.fromSingleChildScrollView(
-                                                  gradientFractionOnEnd: 0.2,
-                                                  gradientFractionOnStart: 0.2,
-                                                  child: SingleChildScrollView(
-                                                    //   physics: ClampingScrollPhysics(),
-                                                    controller: model.controller,
-                                                    child: Column(
-                                                      //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              child: Card(
+                                child: Padding(
+                                    padding: EdgeInsets.only(
+                                        bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                                            ? 0
+                                            : MediaQuery.of(context).viewInsets.bottom - 48),
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                      child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Expanded(
+                                              child: FadingEdgeScrollView.fromSingleChildScrollView(
+                                                gradientFractionOnEnd: 0.2,
+                                                gradientFractionOnStart: 0.2,
+                                                child: SingleChildScrollView(
+                                                  //   physics: ClampingScrollPhysics(),
+                                                  controller: model.controller,
+                                                  child: Column(
+                                                    //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-                                                      children: [
-                                                        Align(
-                                                          alignment: Alignment.topLeft,
-                                                          child: Text(
-                                                            S.of(context).linkedAccount,
-                                                            style: TextStyle(
-                                                                fontFamily: StringUtils.appFont,
-                                                                fontSize: 14.t,
-                                                                fontWeight: FontWeight.w600),
-                                                          ),
+                                                    children: [
+                                                      Align(
+                                                        alignment: Alignment.topLeft,
+                                                        child: Text(
+                                                          S.of(context).linkedAccount,
+                                                          style: TextStyle(
+                                                              fontFamily: StringUtils.appFont,
+                                                              fontSize: 14.t,
+                                                              fontWeight: FontWeight.w600),
                                                         ),
-                                                        SizedBox(
-                                                          height: 16.h,
-                                                        ),
-                                                        AppStreamBuilder<List<GetAccountByCustomerId>>(
-                                                            stream: model.linkBankAccountCliqIdListStream,
-                                                            initialData: model.linkBankAccountCliqIdList,
-                                                            dataBuilder: (BuildContext context, data) {
-                                                              return ListView.separated(
-                                                                  padding: EdgeInsets.zero,
-                                                                  shrinkWrap: true,
-                                                                  physics: NeverScrollableScrollPhysics(),
-                                                                  itemBuilder: (context, index) {
-                                                                    return Container(
-                                                                      padding: EdgeInsets.all(16.0),
-                                                                      decoration: BoxDecoration(
-                                                                          border: Border.all(
-                                                                              color: AppColor.whiteGrey),
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(8.0)),
-                                                                      child: Column(
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
-                                                                        children: [
-                                                                          Text(
-                                                                            S.of(context).account,
-                                                                            style: TextStyle(
-                                                                                fontFamily:
-                                                                                    StringUtils.appFont,
-                                                                                fontSize: 14.t,
-                                                                                color: AppColor.black,
-                                                                                fontWeight: FontWeight.w600),
-                                                                          ),
-                                                                          Row(
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment
-                                                                                    .spaceBetween,
-                                                                            children: [
-                                                                              Text(
-                                                                                data?[index].accountNumber ??
-                                                                                    '',
-                                                                                style: TextStyle(
-                                                                                    fontFamily:
-                                                                                        StringUtils.appFont,
-                                                                                    fontSize: 12.t,
-                                                                                    color: AppColor.black,
-                                                                                    fontWeight:
-                                                                                        FontWeight.w600),
-                                                                              ),
-                                                                              Visibility(
-                                                                                visible: false,
-                                                                                child: Icon(
-                                                                                  Icons.more_horiz_outlined,
-                                                                                  size: 25,
-                                                                                  color: Color(0xFF5F6368),
-                                                                                ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                          Visibility(
-                                                                            visible: false,
-                                                                            child: Container(
-                                                                              padding: EdgeInsets.symmetric(
-                                                                                  horizontal: 16.0.w,
-                                                                                  vertical: 10.0.h),
-                                                                              decoration: BoxDecoration(
+                                                      ),
+                                                      SizedBox(
+                                                        height: 16.h,
+                                                      ),
+                                                      AppStreamBuilder<List<GetAccountByCustomerId>>(
+                                                          stream: model.linkBankAccountCliqIdListStream,
+                                                          initialData: model.linkBankAccountCliqIdList,
+                                                          dataBuilder: (BuildContext context, data) {
+                                                            return ListView.separated(
+                                                                padding: EdgeInsets.zero,
+                                                                shrinkWrap: true,
+                                                                physics: NeverScrollableScrollPhysics(),
+                                                                itemBuilder: (context, index) {
+                                                                  return Container(
+                                                                    padding: EdgeInsets.all(16.0),
+                                                                    decoration: BoxDecoration(
+                                                                        border: Border.all(
+                                                                            color: AppColor.whiteGrey),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(8.0)),
+                                                                    child: Column(
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment.start,
+                                                                      children: [
+                                                                        Text(
+                                                                          S.of(context).account,
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 14.t,
+                                                                              color: AppColor.black,
+                                                                              fontWeight: FontWeight.w600),
+                                                                        ),
+                                                                        Row(
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.spaceBetween,
+                                                                          children: [
+                                                                            Text(
+                                                                              data?[index].accountNumber ??
+                                                                                  '',
+                                                                              style: TextStyle(
+                                                                                  fontFamily:
+                                                                                      StringUtils.appFont,
+                                                                                  fontSize: 12.t,
                                                                                   color: AppColor.black,
-                                                                                  borderRadius:
-                                                                                      BorderRadius.circular(
-                                                                                          100.0)),
-                                                                              child: Text(
-                                                                                S.of(context).Default,
-                                                                                style: TextStyle(
-                                                                                    fontFamily:
-                                                                                        StringUtils.appFont,
-                                                                                    fontSize: 12.t,
-                                                                                    color: AppColor.white,
-                                                                                    fontWeight:
-                                                                                        FontWeight.w600),
+                                                                                  fontWeight:
+                                                                                      FontWeight.w600),
+                                                                            ),
+                                                                            Visibility(
+                                                                              visible: false,
+                                                                              child: Icon(
+                                                                                Icons.more_horiz_outlined,
+                                                                                size: 25,
+                                                                                color: Color(0xFF5F6368),
                                                                               ),
                                                                             ),
-                                                                          )
-                                                                        ],
-                                                                      ),
-                                                                    );
-                                                                  },
-                                                                  separatorBuilder: (context, index) {
-                                                                    return SizedBox(
-                                                                      height: 8.h,
-                                                                    );
-                                                                  },
-                                                                  itemCount: data!.length);
-                                                            }),
-                                                        SizedBox(
-                                                          height: 8.h,
-                                                        ),
-                                                        AppStreamBuilder<bool>(
-                                                            stream: model.switchValue,
-                                                            initialData: model.isSetDefault,
-                                                            dataBuilder: (context, isActive) {
-                                                              return AppSwitchLabelWidget(
-                                                                label: S.of(context).setAsCliqDefaultAccount,
-                                                                inActiveText: S.of(context).no.toUpperCase(),
-                                                                activeText: S.of(context).yes.toUpperCase(),
-                                                                onToggle: (value) {
-                                                                  model.updateSwitchValue(value);
-                                                                },
-                                                                isActive: isActive,
-                                                              );
-                                                            }),
-                                                        AppStreamBuilder<bool>(
-                                                          initialData: false,
-                                                          stream: model.isSelectedStream,
-                                                          dataBuilder: (BuildContext context, isSelected) {
-                                                            return Padding(
-                                                              padding: EdgeInsets.symmetric(vertical: 24.0.h),
-                                                              child: Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment.spaceBetween,
-                                                                children: [
-                                                                  if (isSelected!)
-                                                                    InkWell(
-                                                                      onTap: () {
-                                                                        model.termAndConditionSelected(false);
-                                                                      },
-                                                                      child: Container(
-                                                                        width: 40.0.w,
-                                                                        height: 40.0.w,
-                                                                        child: Padding(
-                                                                          padding: EdgeInsetsDirectional.only(
-                                                                              start: 10.w,
-                                                                              end: 10.w,
-                                                                              bottom: 10.h,
-                                                                              top: 10.h),
-                                                                          child: AppSvg.asset(AssetUtils.tick,
-                                                                              color: AppColor.black),
+                                                                          ],
                                                                         ),
-                                                                        decoration: BoxDecoration(
-                                                                          color: AppColor.vividYellow,
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(100),
-                                                                        ),
-                                                                      ),
-                                                                    )
-                                                                  else
-                                                                    InkWell(
-                                                                      onTap: () {
-                                                                        model.termAndConditionSelected(true);
-                                                                      },
-                                                                      child: Container(
-                                                                        width: 40.0.w,
-                                                                        height: 40.0.w,
-                                                                        decoration: BoxDecoration(
-                                                                          border: Border.all(
-                                                                              color: AppColor.gray1),
-                                                                          borderRadius: BorderRadius.all(
-                                                                              Radius.circular(100.0)),
-                                                                        ),
-                                                                      ),
+                                                                        Visibility(
+                                                                          visible: false,
+                                                                          child: Container(
+                                                                            padding: EdgeInsets.symmetric(
+                                                                                horizontal: 16.0.w,
+                                                                                vertical: 10.0.h),
+                                                                            decoration: BoxDecoration(
+                                                                                color: AppColor.black,
+                                                                                borderRadius:
+                                                                                    BorderRadius.circular(
+                                                                                        100.0)),
+                                                                            child: Text(
+                                                                              S.of(context).Default,
+                                                                              style: TextStyle(
+                                                                                  fontFamily:
+                                                                                      StringUtils.appFont,
+                                                                                  fontSize: 12.t,
+                                                                                  color: AppColor.white,
+                                                                                  fontWeight:
+                                                                                      FontWeight.w600),
+                                                                            ),
+                                                                          ),
+                                                                        )
+                                                                      ],
                                                                     ),
-                                                                  SizedBox(
-                                                                    width: 16.w,
-                                                                  ),
-                                                                  Expanded(
-                                                                    child: Text(
-                                                                      S
-                                                                          .of(context)
-                                                                          .whenAcceptingCreationOfYourCliqId,
-                                                                      style: TextStyle(
-                                                                        color: AppColor.veryDarkGray2,
-                                                                        fontSize: 12.t,
-                                                                        fontWeight: FontWeight.w700,
+                                                                  );
+                                                                },
+                                                                separatorBuilder: (context, index) {
+                                                                  return SizedBox(
+                                                                    height: 8.h,
+                                                                  );
+                                                                },
+                                                                itemCount: data!.length);
+                                                          }),
+                                                      SizedBox(
+                                                        height: 8.h,
+                                                      ),
+                                                      AppStreamBuilder<bool>(
+                                                          stream: model.switchValue,
+                                                          initialData: model.isSetDefault,
+                                                          dataBuilder: (context, isActive) {
+                                                            return AppSwitchLabelWidget(
+                                                              label: S.of(context).setAsCliqDefaultAccount,
+                                                              inActiveText: S.of(context).no.toUpperCase(),
+                                                              activeText: S.of(context).yes.toUpperCase(),
+                                                              onToggle: (value) {
+                                                                model.updateSwitchValue(value);
+                                                              },
+                                                              isActive: isActive,
+                                                            );
+                                                          }),
+                                                      AppStreamBuilder<bool>(
+                                                        initialData: false,
+                                                        stream: model.isSelectedStream,
+                                                        dataBuilder: (BuildContext context, isSelected) {
+                                                          return Padding(
+                                                            padding: EdgeInsets.symmetric(vertical: 24.0.h),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment.spaceBetween,
+                                                              children: [
+                                                                if (isSelected!)
+                                                                  InkWell(
+                                                                    onTap: () {
+                                                                      model.termAndConditionSelected(false);
+                                                                    },
+                                                                    child: Container(
+                                                                      width: 40.0.w,
+                                                                      height: 40.0.w,
+                                                                      child: Padding(
+                                                                        padding: EdgeInsetsDirectional.only(
+                                                                            start: 10.w,
+                                                                            end: 10.w,
+                                                                            bottom: 10.h,
+                                                                            top: 10.h),
+                                                                        child: AppSvg.asset(AssetUtils.tick,
+                                                                            color: AppColor.black),
+                                                                      ),
+                                                                      decoration: BoxDecoration(
+                                                                        color: AppColor.vividYellow,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(100),
                                                                       ),
                                                                     ),
                                                                   )
-
-                                                                  /*: Container(
-                                                                width: 40.0.w,
-                                                                height: 40.0.h,
-                                                                decoration: BoxDecoration(
-                                                                  borderRadius: BorderRadius.all(Radius.circular(100.0)),
-                                                                  border: Border.all(color: AppColor.gray1),
+                                                                else
+                                                                  InkWell(
+                                                                    onTap: () {
+                                                                      model.termAndConditionSelected(true);
+                                                                    },
+                                                                    child: Container(
+                                                                      width: 40.0.w,
+                                                                      height: 40.0.w,
+                                                                      decoration: BoxDecoration(
+                                                                        border:
+                                                                            Border.all(color: AppColor.gray1),
+                                                                        borderRadius: BorderRadius.all(
+                                                                            Radius.circular(100.0)),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                SizedBox(
+                                                                  width: 16.w,
                                                                 ),
-                                                              ),*/
-                                                                ],
+                                                                Expanded(
+                                                                  child: Text(
+                                                                    S
+                                                                        .of(context)
+                                                                        .whenAcceptingCreationOfYourCliqId,
+                                                                    style: TextStyle(
+                                                                      color: AppColor.veryDarkGray2,
+                                                                      fontSize: 12.t,
+                                                                      fontWeight: FontWeight.w700,
+                                                                    ),
+                                                                  ),
+                                                                )
+
+                                                                /*: Container(
+                                                              width: 40.0.w,
+                                                              height: 40.0.h,
+                                                              decoration: BoxDecoration(
+                                                                borderRadius: BorderRadius.all(Radius.circular(100.0)),
+                                                                border: Border.all(color: AppColor.gray1),
                                                               ),
-                                                            );
-                                                          },
-                                                        ),
-                                                      ],
-                                                    ),
+                                                            ),*/
+                                                              ],
+                                                            ),
+                                                          );
+                                                        },
+                                                      ),
+                                                    ],
                                                   ),
                                                 ),
                                               ),
-                                              Column(
-                                                children: [
-                                                  AppStreamBuilder<bool>(
-                                                    stream: model.isSelectedStream,
-                                                    initialData: false,
-                                                    dataBuilder: (BuildContext context, data) {
-                                                      return Visibility(
-                                                        visible: data!,
-                                                        child: Padding(
-                                                          padding: EdgeInsets.only(top: 0.0.h),
-                                                          child: AnimatedButton(
-                                                              buttonText: S.of(context).swipeToProceed),
-                                                        ),
-                                                      );
-                                                    },
-                                                  ),
-                                                  SizedBox(
-                                                    height: 24.h,
-                                                  ),
-                                                  Center(
-                                                    child: InkWell(
-                                                      onTap: () {
-                                                        ProviderScope.containerOf(context)
-                                                            .read(createCliqIdViewModelProvider)
-                                                            .appSwiperController
-                                                            .previousPage(
-                                                                duration: Duration(seconds: 1),
-                                                                curve: Curves.linear);
-
-                                                        // Navigator.pop(context);
+                                            ),
+                                            Column(
+                                              children: [
+                                                AppStreamBuilder<bool>(
+                                                  stream: model.isSelectedStream,
+                                                  initialData: false,
+                                                  dataBuilder: (BuildContext context, data) {
+                                                    return AppPrimaryButton(
+                                                      text: S.of(context).next,
+                                                      isDisabled: !data!,
+                                                      onPressed: () {
+                                                        model.validate();
                                                       },
-                                                      child: Text(
-                                                        S.of(context).backToManageCliq,
-                                                        style: TextStyle(
-                                                          color: AppColor.brightBlue,
-                                                          fontSize: 14.t,
-                                                          letterSpacing: 1.0,
-                                                          fontWeight: FontWeight.w600,
-                                                        ),
+                                                    );
+                                                  },
+                                                ),
+                                                SizedBox(
+                                                  height: 24.h,
+                                                ),
+                                                Center(
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      ProviderScope.containerOf(context)
+                                                          .read(createCliqIdViewModelProvider)
+                                                          .appSwiperController
+                                                          .previousPage(
+                                                              duration: Duration(seconds: 1),
+                                                              curve: Curves.linear);
+
+                                                      // Navigator.pop(context);
+                                                    },
+                                                    child: Text(
+                                                      S.of(context).backToManageCliq,
+                                                      style: TextStyle(
+                                                        color: AppColor.brightBlue,
+                                                        fontSize: 14.t,
+                                                        letterSpacing: 1.0,
+                                                        fontWeight: FontWeight.w600,
                                                       ),
                                                     ),
                                                   ),
-                                                ],
-                                              )
-                                            ]),
-                                      )),
-                                ),
+                                                ),
+                                              ],
+                                            )
+                                          ]),
+                                    )),
                               ),
                             ),
                           ],

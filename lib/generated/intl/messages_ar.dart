@@ -2034,59 +2034,44 @@ class MessageLookup extends MessageLookupByLibrary {
         "nationalId": MessageLookupByLibrary.simpleMessage("الرقم الوطني"),
         "nationality": MessageLookupByLibrary.simpleMessage("الجنسية"),
         "nationalityHint": MessageLookupByLibrary.simpleMessage("اكتب جنسيتك"),
-        "nationalityRestricted": MessageLookupByLibrary.simpleMessage(
-            "عفواً، المنتج مخصص لجنسيات معينة فقط."),
+        "nationalityRestricted":
+            MessageLookupByLibrary.simpleMessage("عفواً، المنتج مخصص لجنسيات معينة فقط."),
         "nationalitySmall": MessageLookupByLibrary.simpleMessage("الجنسية"),
-        "natureOfSpecialNeed":
-            MessageLookupByLibrary.simpleMessage("طبيعة الاحتياجات الخاصة"),
-        "natureSpecialNeeds":
-            MessageLookupByLibrary.simpleMessage("طبيعة الاحتياجات الخاصة"),
+        "natureOfSpecialNeed": MessageLookupByLibrary.simpleMessage("طبيعة الاحتياجات الخاصة"),
+        "natureSpecialNeeds": MessageLookupByLibrary.simpleMessage("طبيعة الاحتياجات الخاصة"),
         "newBill": MessageLookupByLibrary.simpleMessage("فاتورة جديدة"),
-        "newContacthasBeenAdded":
-            MessageLookupByLibrary.simpleMessage("تم إضافة صديق بنجاح"),
-        "newDeviceDetected":
-            MessageLookupByLibrary.simpleMessage("تم اكتشاف جهاز جديد"),
+        "newContacthasBeenAdded": MessageLookupByLibrary.simpleMessage("تم إضافة صديق بنجاح"),
+        "newDeviceDetected": MessageLookupByLibrary.simpleMessage("تم اكتشاف جهاز جديد"),
         "newDeviceDetectedDesc": MessageLookupByLibrary.simpleMessage(
             "إنت عم بتحاول تسجّل دخولك من جهاز جديد. بدك تحوّل صلاحية الدخول للجهاز الجديد؟"),
         "newDeviceRegisteredSuccessfully": MessageLookupByLibrary.simpleMessage(
             "تم تسجيل جهازك الجديد بنجاح. بتقدر تنتقل هلأ لشاشة التحكم."),
-        "newMobileNumber":
-            MessageLookupByLibrary.simpleMessage("رقم موبايل جديد"),
-        "newPassword":
-            MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
+        "newMobileNumber": MessageLookupByLibrary.simpleMessage("رقم موبايل جديد"),
+        "newPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
         "newPin": MessageLookupByLibrary.simpleMessage("رمز سري PIN جديد"),
-        "newSettlementAccount":
-            MessageLookupByLibrary.simpleMessage("حساب التسوية الجديد"),
-        "newSettlementPercentage":
-            MessageLookupByLibrary.simpleMessage("نسبة السداد الجديدة"),
+        "newSettlementAccount": MessageLookupByLibrary.simpleMessage("حساب التسوية الجديد"),
+        "newSettlementPercentage": MessageLookupByLibrary.simpleMessage("نسبة السداد الجديدة"),
+        "next": MessageLookupByLibrary.simpleMessage("Next"),
         "niHandlerError": MessageLookupByLibrary.simpleMessage(
             "بنعتذر منك، إنت غير مؤهل للحصول على بطاقة ائتمانية بهاللحظة. بتقدر تتمتع بكل خدماتنا الأخرى."),
         "nickName": MessageLookupByLibrary.simpleMessage("الاسم المستعار"),
-        "nickNameAlreadyExists": MessageLookupByLibrary.simpleMessage(
-            "الاسم المستعار مسجل مسبقا كمستفيد"),
+        "nickNameAlreadyExists": MessageLookupByLibrary.simpleMessage("الاسم المستعار مسجل مسبقا كمستفيد"),
         "nickNameCanOnlyContainAlphanumerics":
-            MessageLookupByLibrary.simpleMessage(
-                "يجب أن يحتوي  الأسم المستعار على حروف و أرقام فقط"),
-        "nickNameUpdated": MessageLookupByLibrary.simpleMessage(
-            "لقد تم تعديل الاسم المستعار بنجاج"),
-        "nickNameValueExceeds": MessageLookupByLibrary.simpleMessage(
-            "الحد الاعلى للأسم المستعار هو ٥٠ خانة"),
-        "nicknameAlreadyExistsM": MessageLookupByLibrary.simpleMessage(
-            "عفوا! اسم المستعار مسجل، ادخل اسم مستعار آخر "),
+            MessageLookupByLibrary.simpleMessage("يجب أن يحتوي  الأسم المستعار على حروف و أرقام فقط"),
+        "nickNameUpdated": MessageLookupByLibrary.simpleMessage("لقد تم تعديل الاسم المستعار بنجاج"),
+        "nickNameValueExceeds": MessageLookupByLibrary.simpleMessage("الحد الاعلى للأسم المستعار هو ٥٠ خانة"),
+        "nicknameAlreadyExistsM":
+            MessageLookupByLibrary.simpleMessage("عفوا! اسم المستعار مسجل، ادخل اسم مستعار آخر "),
         "nicknameLengthShouldNotBeGreaterThan50":
-            MessageLookupByLibrary.simpleMessage(
-                "الحد الأعلى للاسم المستعار هو 50 خانة"),
+            MessageLookupByLibrary.simpleMessage("الحد الأعلى للاسم المستعار هو 50 خانة"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
-        "noATMData": MessageLookupByLibrary.simpleMessage(
-            "مش قادرين على استرداد بيانات الصراف الآلي. حاول بعدين."),
+        "noATMData":
+            MessageLookupByLibrary.simpleMessage("مش قادرين على استرداد بيانات الصراف الآلي. حاول بعدين."),
         "noAccountFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06  (Err-071)"),
-        "noActivityToDisplay":
-            MessageLookupByLibrary.simpleMessage("لا يوجد نشاط لعرضه"),
-        "noBillerFound": MessageLookupByLibrary.simpleMessage(
-            "لم نتمكن من العثور على الفاتورة"),
-        "noCardsToDisplay":
-            MessageLookupByLibrary.simpleMessage("لا يوجد بطاقات للعرض"),
+        "noActivityToDisplay": MessageLookupByLibrary.simpleMessage("لا يوجد نشاط لعرضه"),
+        "noBillerFound": MessageLookupByLibrary.simpleMessage("لم نتمكن من العثور على الفاتورة"),
+        "noCardsToDisplay": MessageLookupByLibrary.simpleMessage("لا يوجد بطاقات للعرض"),
         "noContactsYetDesc": MessageLookupByLibrary.simpleMessage(
             "ما عندك معارف حالياً. رح تقدر تضيفهم لقائمتك لما تحوللهم الأموال."),
         "noCountriesFound":

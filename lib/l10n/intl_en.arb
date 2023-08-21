@@ -1834,5 +1834,6 @@
   "eVouchersSettings": "eVouchers",
   "evoucherUnderProcessing": "E-voucher under processing",
   "transactions": "Transactions",
+  "next": "Next",
   "payNewBill": "Pay New Bill"
 }

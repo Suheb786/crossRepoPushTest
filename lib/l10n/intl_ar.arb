@@ -1805,5 +1805,6 @@
   "evoucherUnderProcessing": "القسيمة الإلكترونية قيد الإنتظار",
   "viewVoucherDialogDescription": "القسيمة الإلكترونية قيد الإنتظار، رح نخبرك لما تكون جاهزة  للاستخدام.",
   "transactions": "الحركات",
-  "payNewBill": "Pay New Bill"
+  "payNewBill": "Pay New Bill",
+  "next": "Next"
 }
