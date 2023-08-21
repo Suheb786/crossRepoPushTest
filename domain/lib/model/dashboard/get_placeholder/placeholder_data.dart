@@ -4,5 +4,5 @@ class PlaceholderData {
   final bool? status;
   final dynamic image;
 
-  PlaceholderData({this.placeholderId= 0, this.locationName= "", this.status= false, this.image});
+  PlaceholderData({this.placeholderId = 0, this.locationName = "", this.status = false, this.image});
 }

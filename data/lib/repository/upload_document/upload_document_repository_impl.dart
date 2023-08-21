@@ -16,9 +16,10 @@ class UploadDocumentRepositoryImpl extends UploadDocumentRepository {
   UploadDocumentRepositoryImpl(this._documentLocalDS, this._uploadDocumentRemoteDS);
 
   @override
-  Future<Either<BaseError, String>> pickUploadDocument({DocumentTypeEnum? type}) async {
+  Future<Either<BaseError, String>> pickUploadDocument(
+      {DocumentTypeEnum? type, String cameraPhotoFile = ''}) async {
     if (type == DocumentTypeEnum.CAMERA) {
-      var imageList = await _documentLocalDS.clickDocumentImage();
+      var imageList = await _documentLocalDS.clickDocumentImage(cameraPhotoFile);
       return Right(imageList);
     } else if (type == DocumentTypeEnum.GALLERY) {
       var imageList = await _documentLocalDS.pickUploadDocument();

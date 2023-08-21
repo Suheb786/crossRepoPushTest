@@ -14,9 +14,9 @@ class PayBackCreditCardRequestEntity {
   final Map<String, dynamic>? baseData;
 
   PayBackCreditCardRequestEntity({
-    this.payBackAmount= "",
-    this.secureCode= "",
-    this.getToken= true,
+    this.payBackAmount = "",
+    this.secureCode = "",
+    this.getToken = true,
     this.baseData,
   });
 

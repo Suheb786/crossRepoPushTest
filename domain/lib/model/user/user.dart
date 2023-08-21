@@ -43,7 +43,7 @@ class User {
       this.cifNumber,
       this.accountNumber,
       this.newDevice = false,
-      this.isBiometricEnabled = false,
+      this.isBiometricEnabled,
       this.applicationId = "",
       this.selectedLanguage = 'en',
       this.applePay,

@@ -13,7 +13,7 @@ class ChangeMobileRequest {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  ChangeMobileRequest({this.mobile= "", this.getToken= true, required this.baseData, this.mobileCode= ""});
+  ChangeMobileRequest({this.mobile = "", this.getToken = true, required this.baseData, this.mobileCode = ""});
 
   factory ChangeMobileRequest.fromJson(Map<String, dynamic> json) => _$ChangeMobileRequestFromJson(json);
 

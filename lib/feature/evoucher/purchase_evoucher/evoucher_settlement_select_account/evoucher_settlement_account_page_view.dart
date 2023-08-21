@@ -41,9 +41,11 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                   stream: model.evoucherOtpStream,
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
+                      ProviderScope.containerOf(context).read(purchaseEVouchersViewModelProvider).nextPage();
                       ProviderScope.containerOf(context)
-                          .read(purchaseEVouchersViewModelProvider(model.argument))
-                          .nextPage();
+                          .read(enterOtpForEVoucherCategoryPurchaseViewModelProvider)
+                          .otpController
+                          .clear();
                     }
                   },
                   dataBuilder: (context, otpSnapShot) {
@@ -61,7 +63,7 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                         return GestureDetector(
                           onHorizontalDragEnd: (details) {
                             if (ProviderScope.containerOf(context)
-                                    .read(purchaseEVouchersViewModelProvider(model.argument))
+                                    .read(purchaseEVouchersViewModelProvider)
                                     .appSwiperController
                                     .page ==
                                 1.0) {
@@ -71,7 +73,7 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                                   model.validateFields(context);
                                 } else {
                                   ProviderScope.containerOf(context)
-                                      .read(purchaseEVouchersViewModelProvider(model.argument))
+                                      .read(purchaseEVouchersViewModelProvider)
                                       .previousPage();
                                 }
                               } else {
@@ -79,7 +81,7 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                                   model.validateFields(context);
                                 } else {
                                   ProviderScope.containerOf(context)
-                                      .read(purchaseEVouchersViewModelProvider(model.argument))
+                                      .read(purchaseEVouchersViewModelProvider)
                                       .previousPage();
                                 }
                               }
@@ -87,10 +89,11 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                           },
                           child: Card(
                             margin: EdgeInsets.zero,
-                            child: AppStreamBuilder<double>(
-                                stream: model.getSettlementAmountStream,
-                                initialData: 0.0,
-                                dataBuilder: (context, getSettlementAmount) {
+                            child: AppStreamBuilder<SelectedVoucherInformation>(
+                                stream: model.getSelectedVoucherInformationStream,
+                                initialData: SelectedVoucherInformation(
+                                    voucherName: '-', voucherFaceImage: '', settlementValue: 0.0),
+                                dataBuilder: (context, selectedInformation) {
                                   return Container(
                                       padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                                       child: Column(
@@ -104,20 +107,23 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                                                   child: Container(
                                                     height: 72.h,
                                                     width: 72.w,
-                                                    child: CachedNetworkImage(
-                                                      imageUrl: model.argument.selectedItem.cardFaceImage,
-                                                      placeholder: (context, url) =>
-                                                          Container(color: Theme.of(context).primaryColor),
-                                                      errorWidget: (context, url, error) => Icon(Icons.error),
-                                                      fit: BoxFit.fill,
-                                                    ),
+                                                    child: selectedInformation!.voucherFaceImage.isNotEmpty
+                                                        ? CachedNetworkImage(
+                                                            imageUrl: selectedInformation.voucherFaceImage,
+                                                            placeholder: (context, url) => Container(
+                                                                color: Theme.of(context).primaryColor),
+                                                            errorWidget: (context, url, error) =>
+                                                                Icon(Icons.error),
+                                                            fit: BoxFit.fill,
+                                                          )
+                                                        : SizedBox(),
                                                   ),
                                                 ),
                                                 SizedBox(
                                                   height: 16.h,
                                                 ),
                                                 Text(
-                                                  model.argument.selectedItem.name,
+                                                  selectedInformation.voucherName,
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                     fontFamily: StringUtils.appFont,
@@ -133,7 +139,7 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                   children: [
                                                     Text(
-                                                      "$getSettlementAmount",
+                                                      "${selectedInformation.settlementValue.toStringAsFixed(3)}",
                                                       textAlign: TextAlign.center,
                                                       style: TextStyle(
                                                         fontFamily: StringUtils.appFont,

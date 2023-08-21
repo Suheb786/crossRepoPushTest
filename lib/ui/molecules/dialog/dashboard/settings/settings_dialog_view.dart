@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:data/helper/antelop_helper.dart';
+import 'package:domain/constants/enum/evoucher_landing_page_navigation_type_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
+import 'package:neo_bank/feature/evoucher/evoucher/evoucher_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_progress.dart';
@@ -139,7 +141,9 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                       ///E-VOUCHERS
                       PagesWidget(
                         onTap: () {
-                          Navigator.pushNamed(context, RoutePaths.Evoucher);
+                          Navigator.pushNamed(context, RoutePaths.Evoucher,
+                              arguments: EvoucherPageArguments(
+                                  EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING));
                         },
                         key: 'E-VOUCHERS',
                         child: SettingsMenuWidget(

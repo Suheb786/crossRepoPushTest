@@ -443,7 +443,9 @@ class AppHomeViewModel extends BasePageViewModel {
                   cardNumber: creditCard.cardNumber ?? '',
                   accountTitle: creditCard.name ?? '',
                   cardType: CardType.CREDIT,
-                  isCardDelivered: creditCard.isCreditDelivered));
+                  isCardDelivered: creditCard.isCreditDelivered,
+                  secureCode: creditCard.cardCode,
+                  isIssuedFromCMS: creditCard.issuedFromCms));
 
               ///adding cardType
               cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES, timeLineEnum: TimeLineEnum.TIMELINE_YES));
@@ -469,7 +471,9 @@ class AppHomeViewModel extends BasePageViewModel {
                   cardNumber: creditCard.cardNumber ?? '',
                   accountTitle: creditCard.name ?? '',
                   cardType: CardType.CREDIT,
-                  isCardDelivered: creditCard.isCreditDelivered));
+                  isCardDelivered: creditCard.isCreditDelivered,
+                  secureCode: creditCard.cardCode,
+                  isIssuedFromCMS: creditCard.issuedFromCms));
 
               ///adding cardType
               cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
@@ -639,7 +643,8 @@ class AppHomeViewModel extends BasePageViewModel {
                   cardNumber: debitCard.cardNumber ?? '',
                   accountTitle: debitCard.accountTitle ?? '',
                   cardType: CardType.DEBIT,
-                  isCardDelivered: debitCard.isDebitDelivered));
+                  isCardDelivered: debitCard.isDebitDelivered,
+                  secureCode: debitCard.cardCode));
 
               ///adding cardType
               cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO, timeLineEnum: TimeLineEnum.TIMELINE_YES));
@@ -740,7 +745,8 @@ class AppHomeViewModel extends BasePageViewModel {
     if (blinkTimeLineListArguments.isNotEmpty) {
       ///sorting in descending order
       blinkTimeLineListArguments.sort((a, b) {
-        return DateTime.parse(b.cardCardActivated!).compareTo(DateTime.parse(a.cardCardActivated!));
+        return DateTime.parse(b.cardCardActivated ?? DateTime.now().toString())
+            .compareTo(DateTime.parse(a.cardCardActivated ?? DateTime.now().toString()));
       });
     }
   }

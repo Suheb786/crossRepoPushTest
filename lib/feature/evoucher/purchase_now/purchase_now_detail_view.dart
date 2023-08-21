@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:domain/model/e_voucher/get_settlement_amount.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_now/purchase_now_detail_model.dart';
@@ -26,7 +27,7 @@ class PurchaseNowDetailView extends BasePageViewWidget<PurchaseNowDetailViewMode
     return Stack(
       children: [
         Container(
-          height: 180,
+          height: 180.h,
           width: double.infinity,
           color: Colors.transparent,
           child: Stack(
@@ -49,9 +50,9 @@ class PurchaseNowDetailView extends BasePageViewWidget<PurchaseNowDetailViewMode
                   onTap: () => Navigator.pop(context),
                   child: Container(
                     height: 56.h,
-                    width: 56.h,
+                    width: 56.w,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
+                        borderRadius: BorderRadius.circular(100.w),
                         color: Theme.of(context).colorScheme.secondary),
                     child: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSecondaryContainer),
                   ),
@@ -61,12 +62,13 @@ class PurchaseNowDetailView extends BasePageViewWidget<PurchaseNowDetailViewMode
           ),
         ),
         Padding(
-          padding: const EdgeInsetsDirectional.only(top: 168),
+          padding: EdgeInsetsDirectional.only(top: 168.h),
           child: Container(
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
+                borderRadius:
+                    BorderRadius.only(topLeft: Radius.circular(16.w), topRight: Radius.circular(16.w))),
             child: PageDetail(
               model: model,
             ),
@@ -175,7 +177,8 @@ class PageDetail extends StatelessWidget {
                         child: Column(
                           children: [
                             CustomBulletWithTitle(
-                              title: model.argument.selectedVoucherItem.termsAndConditions,
+                              title: Bidi.stripHtmlIfNeeded(
+                                  model.argument.selectedVoucherItem.termsAndConditions),
                               fontSize: 14.t,
                               lineHeight: 1.5,
                             ),

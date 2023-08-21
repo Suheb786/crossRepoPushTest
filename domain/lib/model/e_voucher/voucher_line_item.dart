@@ -1,8 +1,10 @@
+import 'package:domain/constants/enum/evoucher_history_status_enum.dart';
+
 class VoucherLineItem {
   int? lineNumber;
   String? cardItemId;
   num? value;
-  String? status;
+  EvoucherHistoryStatusEnum? status;
   String? claimURL;
   String? cardItemName;
   String? currency;

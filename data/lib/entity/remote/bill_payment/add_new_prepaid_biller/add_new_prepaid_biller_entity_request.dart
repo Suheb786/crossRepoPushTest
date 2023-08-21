@@ -54,10 +54,8 @@ class AddNewPrepaidBillerEntityRequest {
     required this.baseData,
   });
 
-  factory AddNewPrepaidBillerEntityRequest.fromJson(
-          Map<String, dynamic> json) =>
+  factory AddNewPrepaidBillerEntityRequest.fromJson(Map<String, dynamic> json) =>
       _$AddNewPrepaidBillerEntityRequestFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$AddNewPrepaidBillerEntityRequestToJson(this);
+  Map<String, dynamic> toJson() => _$AddNewPrepaidBillerEntityRequestToJson(this);
 }

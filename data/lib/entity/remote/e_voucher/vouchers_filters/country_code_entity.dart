@@ -1,7 +1,7 @@
 import 'package:domain/model/e_voucher/country_code.dart';
-
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 part 'country_code_entity.g.dart';
 
 @JsonSerializable()
@@ -77,6 +77,7 @@ class CountryCodeEntity implements BaseLayerDataTransformer<CountryCodeEntity, C
   });
 
   factory CountryCodeEntity.fromJson(Map<String, dynamic> json) => _$CountryCodeEntityFromJson(json);
+
   Map<String, dynamic> toJson() => _$CountryCodeEntityToJson(this);
 
   @override

@@ -16,10 +16,10 @@ class ReportStolenCCRequestEntity {
   final Map<String, dynamic> baseData;
 
   ReportStolenCCRequestEntity(
-      {this.cardCode= "",
-      this.panGenerationMode= "",
-      this.replaceReason= "",
-      this.getToken= true,
+      {this.cardCode = "",
+      this.panGenerationMode = "",
+      this.replaceReason = "",
+      this.getToken = true,
       required this.baseData});
 
   factory ReportStolenCCRequestEntity.fromJson(Map<String, dynamic> json) =>

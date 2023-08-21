@@ -93,7 +93,8 @@ class RequestPaymentFromNewRecipientPageView
                                                     fontWeight: FontWeight.w700,
                                                   ),
                                                   inputFormatters: [
-                                                    FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}')),
+                                                    FilteringTextInputFormatter.allow(
+                                                        RegExp(r'^\d+\.?\d{0,3}')),
                                                   ],
                                                   cursorColor: Theme.of(context).colorScheme.secondary,
                                                   controller: model.editAmountController,

@@ -1,6 +1,5 @@
 class AddNewPrepaidBillerModelData {
-  String ? nickName;
-  AddNewPrepaidBillerModelData({
-    this.nickName
-  });
+  String? nickName;
+
+  AddNewPrepaidBillerModelData({this.nickName});
 }

@@ -9,6 +9,7 @@ class SendMoneyFailurePage extends BasePage<SendMoneyFailureViewModel> {
   final SendMoneyFailurePageArgument sendMoneyFailurePageArgument;
 
   SendMoneyFailurePage(this.sendMoneyFailurePageArgument);
+
   @override
   SendMoneyFailurePageState createState() => SendMoneyFailurePageState();
 }

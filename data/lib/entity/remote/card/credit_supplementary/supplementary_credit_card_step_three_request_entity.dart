@@ -19,7 +19,7 @@ class SupplementaryCreditCardStepThreeRequestEntity {
       {this.primaryCardId,
       this.secondaryCardId,
       this.accountNumber,
-      this.getToken= false,
+      this.getToken = false,
       required this.baseData});
 
   factory SupplementaryCreditCardStepThreeRequestEntity.fromJson(Map<String, dynamic> json) =>

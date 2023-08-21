@@ -242,7 +242,7 @@ packages:
     source: hosted
     version: "0.10.1"
   device_info:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: device_info
       sha256: f4a8156cb7b7480d969cb734907d18b333c8f0bc0b1ad0b342cdcecf30d62c48
@@ -320,38 +320,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.3.1"
-  file_selector_linux:
-    dependency: transitive
-    description:
-      name: file_selector_linux
-      sha256: d17c5e450192cdc40b718804dfb4eaf79a71bed60ee9530703900879ba50baa3
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.9.1+3"
-  file_selector_macos:
-    dependency: transitive
-    description:
-      name: file_selector_macos
-      sha256: "6290eec24fc4cc62535fe609e0c6714d3c1306191dc8c3b0319eaecc09423a3a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.9.2"
-  file_selector_platform_interface:
-    dependency: transitive
-    description:
-      name: file_selector_platform_interface
-      sha256: "2a7f4bbf7bd2f022ecea85bfb1754e87f7dd403a9abc17a84a4fa2ddfe2abc0a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.5.1"
-  file_selector_windows:
-    dependency: transitive
-    description:
-      name: file_selector_windows
-      sha256: ef246380b66d1fb9089fc65622c387bf3780bca79f533424c31d07f12c2c7fd8
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.9.2"
   firebase_core:
     dependency: transitive
     description:
@@ -482,6 +450,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_udid:
+    dependency: "direct main"
+    description:
+      name: flutter_udid
+      sha256: "3b25da919eee10cc757d47c2c59d96958b86a17418ae3775b7aef090929cfffb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -579,18 +555,10 @@ packages:
     dependency: "direct main"
     description:
       name: image_picker
-      sha256: "6432178560d95303cc70d038363f892f5a05750dd27bc55220c7301af54d05e9"
+      sha256: f6147d315d6189573894441cb48895ca666bba6e487312d8665951d891308e9c
       url: "https://pub.dev"
     source: hosted
-    version: "0.8.8"
-  image_picker_android:
-    dependency: transitive
-    description:
-      name: image_picker_android
-      sha256: cc3e183c6dc00b24f3d07a913cc30f4fb7b54ec9aac1c135df27e3b5faf487be
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.8.6+12"
+    version: "0.8.4+11"
   image_picker_for_web:
     dependency: transitive
     description:
@@ -599,30 +567,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.12"
-  image_picker_ios:
-    dependency: transitive
-    description:
-      name: image_picker_ios
-      sha256: a1546ff5861fc15812953d4733b520c3d371cec3d2859a001ff04c46c4d81883
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.8.7+3"
-  image_picker_linux:
-    dependency: transitive
-    description:
-      name: image_picker_linux
-      sha256: "1d8f9a97178d6b8a035f1d2765f17f8ca3d36a40d5594e742a481b1e002f20be"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.0"
-  image_picker_macos:
-    dependency: transitive
-    description:
-      name: image_picker_macos
-      sha256: ff094b36d6c06200808f733144a033e45b4e17d59524e1cf7d2af7e4cb94e1ab
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.0"
   image_picker_platform_interface:
     dependency: transitive
     description:
@@ -631,14 +575,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.8.0"
-  image_picker_windows:
-    dependency: transitive
-    description:
-      name: image_picker_windows
-      sha256: bf77b819eb62c487e6af53b9eb213adc12bd060ef7e43f3b1dd69c53cc24a61d
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.0"
   infobip_mobilemessaging:
     dependency: "direct main"
     description:

@@ -5,14 +5,14 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class EVoucherCategoryListWidget extends StatelessWidget {
-  final VoucherItem? categoryVoucher;
+  final String? categoryVoucherName;
   final Function()? onTap;
   final String imageUrl;
 
   const EVoucherCategoryListWidget({
     required this.imageUrl,
     Key? key,
-    this.categoryVoucher,
+    this.categoryVoucherName,
     this.onTap,
   }) : super(key: key);
 
@@ -25,7 +25,6 @@ class EVoucherCategoryListWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-     
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Container(
@@ -42,7 +41,7 @@ class EVoucherCategoryListWidget extends StatelessWidget {
             SizedBox(width: 24.w),
             Flexible(
               child: Text(
-                categoryVoucher?.name ?? "",
+                categoryVoucherName ?? "",
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     fontWeight: FontWeight.w600,

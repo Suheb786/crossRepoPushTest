@@ -30,7 +30,6 @@ class CreditCardVideoCallInitiatePageState
   @override
   void onModelReady(CreditCardVideoCallInitiatePageViewModel model) {
     super.onModelReady(model);
-
   }
 
   @override

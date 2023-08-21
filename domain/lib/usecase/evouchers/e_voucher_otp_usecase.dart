@@ -10,6 +10,7 @@ import '../base/params.dart';
 
 class EVoucherOtpUseCase extends BaseUseCase<NetworkError, EVoucherUsecaseOTPParams, EVoucherOTP> {
   final EVoucherRepository _eVoucherRepository;
+
   EVoucherOtpUseCase(this._eVoucherRepository);
 
   @override
@@ -19,9 +20,10 @@ class EVoucherOtpUseCase extends BaseUseCase<NetworkError, EVoucherUsecaseOTPPar
 }
 
 class EVoucherUsecaseOTPParams extends Params {
-  final bool? GetToken;
+  final String? voucherName;
+
   EVoucherUsecaseOTPParams({
-    required this.GetToken,
+    required this.voucherName,
   });
 
   @override

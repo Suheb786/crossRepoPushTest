@@ -1,6 +1,5 @@
 import 'package:domain/model/e_voucher/e_voucher_otp.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
-import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
 import 'package:domain/usecase/evouchers/select_account_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,22 +11,21 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../purchase_evoucher_page.dart';
-
 class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
   final EVoucherOtpUseCase eVoucherOtpUseCase;
 
-  final PurchaseEVoucherPageArgument argument;
   final GetSettlementValidationUseCase _selectAccountUseCase;
 
   ///get settlement amount
 
-  BehaviorSubject<double> _getSettlementAmountResponse = BehaviorSubject();
+  BehaviorSubject<SelectedVoucherInformation> _getSelectedVoucherInformationResponse = BehaviorSubject.seeded(
+      SelectedVoucherInformation(voucherName: '-', voucherFaceImage: '', settlementValue: 0.0));
 
-  Stream<double> get getSettlementAmountStream => _getSettlementAmountResponse.stream;
+  Stream<SelectedVoucherInformation> get getSelectedVoucherInformationStream =>
+      _getSelectedVoucherInformationResponse.stream;
 
-  getSettleValue(double value) {
-    _getSettlementAmountResponse.safeAdd(value);
+  setVoucherInformation(SelectedVoucherInformation value) {
+    _getSelectedVoucherInformationResponse.safeAdd(value);
   }
 
   /// check Subject
@@ -57,8 +55,7 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
   String mobileCode = "";
   String mobileNumber = "";
 
-  EvoucherSettlementAccountPageViewModel(
-      this._selectAccountUseCase, this.argument, this.eVoucherOtpUseCase) {
+  EvoucherSettlementAccountPageViewModel(this._selectAccountUseCase, this.eVoucherOtpUseCase) {
     _selectAccountRequest.listen((value) {
       RequestManager(value, createCall: () => _selectAccountUseCase.execute(params: value))
           .asFlow()
@@ -92,7 +89,8 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
   }
 
   void getOTP() {
-    _evoucherOtpRequest.safeAdd(EVoucherUsecaseOTPParams(GetToken: true));
+    _evoucherOtpRequest.safeAdd(
+        EVoucherUsecaseOTPParams(voucherName: _getSelectedVoucherInformationResponse.value.voucherName));
   }
 
   void check(bool value) {
@@ -115,7 +113,7 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
                 .account
                 ?.availableBalance ??
             "",
-        itemValueString: _getSettlementAmountResponse.value));
+        itemValueString: _getSelectedVoucherInformationResponse.value.settlementValue));
   }
 
   void validate() {
@@ -136,4 +134,13 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
 
     super.dispose();
   }
+}
+
+class SelectedVoucherInformation {
+  final String voucherFaceImage;
+  final String voucherName;
+  final double settlementValue;
+
+  SelectedVoucherInformation(
+      {required this.voucherFaceImage, required this.voucherName, required this.settlementValue});
 }

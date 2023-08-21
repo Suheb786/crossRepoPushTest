@@ -6,8 +6,8 @@ import 'package:domain/repository/bill_payment/bill_payment_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetPostpaidBillerListUseCase extends BaseUseCase<NetworkError,
-    GetPostpaidBillerListUseCaseParams, GetPostpaidBillerListModel> {
+class GetPostpaidBillerListUseCase
+    extends BaseUseCase<NetworkError, GetPostpaidBillerListUseCaseParams, GetPostpaidBillerListModel> {
   final BillPaymentRepository _repository;
 
   GetPostpaidBillerListUseCase(this._repository);

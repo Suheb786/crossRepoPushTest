@@ -172,7 +172,10 @@ class FatcaSignaturePageView extends BasePageViewWidget<FatcaSignaturePageViewMo
                                                             key: model.signatureKey,
                                                             readOnly: true,
                                                             hintTextColor: Theme.of(context).primaryColorDark,
-                                                            textFieldBorderColor: Theme.of(context).textTheme.bodyMedium!.color!,
+                                                            textFieldBorderColor: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .color!,
                                                             textColor: Theme.of(context).primaryColorDark,
                                                             fontSize: 12.t,
                                                             containerPadding: EdgeInsets.symmetric(

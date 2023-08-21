@@ -3,6 +3,7 @@ import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/e_voucher/get_settlement_amount/get_settlement_amount_request_entity.dart';
 import 'package:data/entity/remote/e_voucher/get_voucher_details/get_voucher_details_request_entity.dart';
+import 'package:data/entity/remote/e_voucher/place_order/evoucher_otp_request_entity.dart';
 import 'package:data/entity/remote/e_voucher/place_order/place_order_request_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_category/voucher_categories_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_detail_request.dart';
@@ -38,12 +39,16 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
 
   @override
   Future<HttpResponse<VoucherHistoryListResponseEntity>> getMyVouchers(
-      {required int pageNo, required int rangeOfMonths, required String searchPhrase}) async {
+      {required int pageNo,
+      required int rangeOfMonths,
+      required String searchPhrase,
+      required int totalRecord}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getMyVouchers(VoucherHistoryRequest(
         pageNo: pageNo,
         searchPhrase: searchPhrase,
         rangeOfMonths: rangeOfMonths,
+        totalRecord: totalRecord,
         baseData: baseData.toJson()));
   }
 
@@ -143,7 +148,8 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
   Future<HttpResponse<EVoucherOtpResponseEntity>> eVoucherOtp(
       {required EVoucherUsecaseOTPParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.eVoucherOtp(BaseRequest(baseData: baseData.toJson()));
+    return _apiService.eVoucherOtp(EVoucherOtpRequestEntity(
+        baseData: baseData.toJson(), getToken: true, voucherName: params.voucherName));
   }
 
   Future<HttpResponse<VoucherMinMaxValueResponseEntity>> getMinMaxRange(

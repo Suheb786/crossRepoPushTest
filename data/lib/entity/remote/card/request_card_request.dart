@@ -13,8 +13,8 @@ class RequestCardRequest {
 
   RequestCardRequest({
     required this.baseData,
-    this.getToken= true,
-    this.cardId= "",
+    this.getToken = true,
+    this.cardId = "",
   });
 
   factory RequestCardRequest.fromJson(Map<String, dynamic> json) => _$RequestCardRequestFromJson(json);

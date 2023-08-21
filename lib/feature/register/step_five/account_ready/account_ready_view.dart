@@ -109,6 +109,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                               height: 34.h,
                             ),
                             AccountReadyHeader(
+                                descriptionVisibility: false,
                                 title: S.of(context).accountReadyMsg,
                                 subTitle: model.arguments.isDocumentUploaded
                                     ? S.of(context).uploadDocWithinTendays

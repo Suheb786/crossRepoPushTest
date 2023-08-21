@@ -33,7 +33,7 @@ class GetOneWayTripLinkRequestEntity {
 
   GetOneWayTripLinkRequestEntity(
       {required this.baseData,
-      this.getToken= true,
+      this.getToken = true,
       this.language,
       this.adults,
       this.cabin,

@@ -9,14 +9,14 @@ class CheckSendMoneyMessageEnum {
   }
 
   static const CheckSendMoneyMessageEnum IBAN_FROM_BANKSSMART =
-  CheckSendMoneyMessageEnum._("IBAN is from Banksmart");
+      CheckSendMoneyMessageEnum._("IBAN is from Banksmart");
   static const CheckSendMoneyMessageEnum IBAN_FROM_CliQ = CheckSendMoneyMessageEnum._("IBAN is from CliQ");
   static const CheckSendMoneyMessageEnum Mobile_NUMBER_BANKSMART =
-  CheckSendMoneyMessageEnum._("Mobile number is from Banksmart");
+      CheckSendMoneyMessageEnum._("Mobile number is from Banksmart");
   static const CheckSendMoneyMessageEnum MOBILE_NO_CLIQ =
-  CheckSendMoneyMessageEnum._("Mobile number is from CliQ");
+      CheckSendMoneyMessageEnum._("Mobile number is from CliQ");
   static const CheckSendMoneyMessageEnum ACCOUNT_FROM_BANKSMART =
-  CheckSendMoneyMessageEnum._("Account no is from Banksmart");
+      CheckSendMoneyMessageEnum._("Account no is from Banksmart");
   static const CheckSendMoneyMessageEnum ALIAS_FROM_CliQ = CheckSendMoneyMessageEnum._("Alias is from CliQ");
   static const CheckSendMoneyMessageEnum NONE = CheckSendMoneyMessageEnum._("None");
 }

@@ -44,6 +44,10 @@ class SettlementAmountPageView extends BasePageViewWidget<SettlementAmountPageVi
                       ProviderScope.containerOf(context)
                           .read(purchaseEVoucherWithoutRegionPageViewModel(model.argument))
                           .nextPage();
+                      ProviderScope.containerOf(context)
+                          .read(otpPurchaseEvoucherWithoutRegionPageViewModelProvider(model.argument))
+                          .otpController
+                          .clear();
                     }
                   },
                   dataBuilder: (context, snapshot) {
@@ -69,18 +73,10 @@ class SettlementAmountPageView extends BasePageViewWidget<SettlementAmountPageVi
                               if (StringUtils.isDirectionRTL(context)) {
                                 if (!details.primaryVelocity!.isNegative) {
                                   model.validateFields(context);
-                                } else {
-                                  ProviderScope.containerOf(context)
-                                      .read(purchaseEVoucherWithoutRegionPageViewModel(model.argument))
-                                      .previousPage();
                                 }
                               } else {
                                 if (details.primaryVelocity!.isNegative) {
                                   model.validateFields(context);
-                                } else {
-                                  ProviderScope.containerOf(context)
-                                      .read(purchaseEVoucherWithoutRegionPageViewModel(model.argument))
-                                      .previousPage();
                                 }
                               }
                             }
@@ -129,7 +125,7 @@ class SettlementAmountPageView extends BasePageViewWidget<SettlementAmountPageVi
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                model.argument.settlementAmount.toString(),
+                                                model.argument.settlementAmount.toStringAsFixed(3),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   fontFamily: StringUtils.appFont,

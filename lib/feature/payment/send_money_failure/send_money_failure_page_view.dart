@@ -32,7 +32,8 @@ class SendMoneyFailurePageView extends BasePageViewWidget<SendMoneyFailureViewMo
                     Stack(
                       alignment: Alignment.center,
                       children: [
-                        Image.asset(AssetUtils.line, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4)),
+                        Image.asset(AssetUtils.line,
+                            color: Theme.of(context).colorScheme.secondary.withOpacity(0.4)),
                         Align(
                           alignment: Alignment.center,
                           child: Container(

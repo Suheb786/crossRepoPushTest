@@ -9,7 +9,7 @@ class GetCipherContentEntity implements BaseLayerDataTransformer<GetCipherConten
   @JsonKey(name: "cipher")
   final String? cipher;
 
-  GetCipherContentEntity({this.cipher= ""});
+  GetCipherContentEntity({this.cipher = ""});
 
   factory GetCipherContentEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCipherContentEntityFromJson(json);

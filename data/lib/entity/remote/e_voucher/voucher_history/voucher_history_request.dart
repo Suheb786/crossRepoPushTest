@@ -13,6 +13,9 @@ class VoucherHistoryRequest {
   @JsonKey(name: "RangeOfMonths")
   final int? rangeOfMonths;
 
+  @JsonKey(name: "TotalRecord")
+  final int? totalRecord;
+
   @JsonKey(name: "GetToken")
   final bool getToken;
 
@@ -25,6 +28,7 @@ class VoucherHistoryRequest {
     this.rangeOfMonths,
     this.getToken = true,
     required this.baseData,
+    this.totalRecord,
   });
 
   factory VoucherHistoryRequest.fromJson(Map<String, dynamic> json) => _$VoucherHistoryRequestFromJson(json);

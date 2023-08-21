@@ -14,6 +14,8 @@ GetCreditCardTransactionListRequestEntity
           getToken: json['GetToken'] as bool? ?? true,
           noOfDays: json['NoOfDays'] as num? ?? 180,
           cardId: json['CardId'] as String? ?? "",
+          issuedFromCms: json['IssuedFromCms'] as bool? ?? false,
+          secureCode: json['SecureCode'] as String? ?? '',
         );
 
 Map<String, dynamic> _$GetCreditCardTransactionListRequestEntityToJson(
@@ -22,5 +24,7 @@ Map<String, dynamic> _$GetCreditCardTransactionListRequestEntityToJson(
       'CardId': instance.cardId,
       'NoOfDays': instance.noOfDays,
       'GetToken': instance.getToken,
+      'SecureCode': instance.secureCode,
+      'IssuedFromCms': instance.issuedFromCms,
       'baseClass': instance.baseData,
     };

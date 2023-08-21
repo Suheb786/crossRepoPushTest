@@ -1,6 +1,6 @@
 import 'package:data/entity/remote/e_voucher/voucher_min_max_value/voucher_min_max_value_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
-import 'package:domain/usecase/evouchers/voucher_min_max_value.dart';
+import 'package:domain/model/e_voucher/voucher_min_max_value.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
 

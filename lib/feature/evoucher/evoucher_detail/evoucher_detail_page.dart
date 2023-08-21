@@ -3,7 +3,6 @@ import 'package:domain/model/e_voucher/get_voucher_details.dart';
 import 'package:domain/model/e_voucher/voucher_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
 
@@ -12,9 +11,11 @@ import 'evoucher_detail_page_view_model.dart';
 
 class EVoucherDetailPage extends BasePage<EVoucherDetailViewModel> {
   final EvoucherDetailPageArgument argument;
+
   EVoucherDetailPage({
     required this.argument,
   });
+
   @override
   EVoucherDetailState createState() => EVoucherDetailState();
 }
@@ -44,5 +45,6 @@ class EVoucherDetailState extends BaseStatefulPage<EVoucherDetailViewModel, EVou
 class EvoucherDetailPageArgument {
   final GetVoucherDetails? selectedVoucherData;
   final VoucherDetail? voucherDetail;
+
   EvoucherDetailPageArgument({required this.selectedVoucherData, required this.voucherDetail});
 }

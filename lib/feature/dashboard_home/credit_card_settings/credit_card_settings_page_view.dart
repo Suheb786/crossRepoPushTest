@@ -57,10 +57,13 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                       List<GetAllCardData> antelopIssuerCardList = listOfCardFromAntelop.value;
 
                       for (int j = 0; j < antelopIssuerCardList.length; j++) {
-                        if (antelopIssuerCardList[j].getIssuerCardId?.trim() == model.creditCardSettingsArguments.creditCard.cardCode?.trim()) {
+                        if (antelopIssuerCardList[j].getIssuerCardId?.trim() ==
+                            model.creditCardSettingsArguments.creditCard.cardCode?.trim()) {
                           // model.creditCardSettingsArguments.creditCard.isCardInApplePay = true;
-                          model.creditCardSettingsArguments.creditCard.isCardInApplePay = antelopIssuerCardList[j].isCardInApplePay ?? false;
-                          model.creditCardSettingsArguments.creditCard.getStatus = antelopIssuerCardList[j].getStatus ?? false;
+                          model.creditCardSettingsArguments.creditCard.isCardInApplePay =
+                              antelopIssuerCardList[j].isCardInApplePay ?? false;
+                          model.creditCardSettingsArguments.creditCard.getStatus =
+                              antelopIssuerCardList[j].getStatus ?? false;
                         }
                       }
                     }
@@ -70,11 +73,15 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                       padding: EdgeInsetsDirectional.only(top: 24.h, bottom: 6.h),
                       child: (antelopStepCompleted ?? true)
                           ? const SizedBox()
-                          : (!(model.creditCardSettingsArguments.creditCard.isCardInApplePay) && model.creditCardSettingsArguments.creditCard.getStatus)
+                          : (!(model.creditCardSettingsArguments.creditCard.isCardInApplePay) &&
+                                  model.creditCardSettingsArguments.creditCard.getStatus)
                               ? InkWell(
                                   onTap: () {
                                     debugPrint('Adding to apple wallet---------');
-                                    model.pushCardToAntelop(cardCode: (model.creditCardSettingsArguments.creditCard.cardCode ?? '').trim());
+                                    model.pushCardToAntelop(
+                                        cardCode:
+                                            (model.creditCardSettingsArguments.creditCard.cardCode ?? '')
+                                                .trim());
                                   },
                                   child: Image.asset(
                                     AssetUtils.addAppleWalletIconPng,
@@ -88,7 +95,10 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                       children: [
                                         Text(
                                           S.of(context).addedTo,
-                                          style: TextStyle(fontSize: 14.t, fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600),
+                                          style: TextStyle(
+                                              fontSize: 14.t,
+                                              fontFamily: StringUtils.appFont,
+                                              fontWeight: FontWeight.w600),
                                         ),
                                         SizedBox(
                                           width: 9.w,
@@ -118,7 +128,8 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                           isSuccess: true,
                           successOrErrorIcon: AssetUtils.right,
                           title: S.of(context).yourCardAddedToApplePay,
-                          titleDescription: "${S.of(context).yourCardAddedToApplePayDesc1}\n\n${S.of(context).yourCardAddedToApplePayDesc2}"));
+                          titleDescription:
+                              "${S.of(context).yourCardAddedToApplePayDesc1}\n\n${S.of(context).yourCardAddedToApplePayDesc2}"));
                 }
               },
               dataBuilder: (context, pushCardSuccess) {
@@ -132,7 +143,10 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                         ///Navigate to error screen
                         Navigator.pushNamed(context, RoutePaths.ApplePaySuccessAndErrorPage,
                             arguments: ApplePaySuccessAndErrorPageArguments(
-                                isSuccess: false, successOrErrorIcon: AssetUtils.cancel, title: S.of(context).applePaySetFailed, titleDescription: S.of(context).errorSettingApplePay));
+                                isSuccess: false,
+                                successOrErrorIcon: AssetUtils.cancel,
+                                title: S.of(context).applePaySetFailed,
+                                titleDescription: S.of(context).errorSettingApplePay));
                       }
                     },
                     dataBuilder: (context, pushCardError) {
@@ -141,7 +155,9 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
               }),
           Expanded(
               child: Container(
-            decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
+            decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondary,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
             child: FadingEdgeScrollView.fromSingleChildScrollView(
               shouldDisposeScrollController: true,
               gradientFractionOnStart: 0.35,
@@ -164,7 +180,9 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.only(start: 8.0.w, bottom: 10.h),
-                                      child: Text(S.of(context).acknowledgeBeforeFreezingCard, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.t, height: 1.7)),
+                                      child: Text(S.of(context).acknowledgeBeforeFreezingCard,
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont, fontSize: 14.t, height: 1.7)),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -203,7 +221,10 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                         dataBuilder: (context, snapshot) {
                           return AppStreamBuilder<bool>(
                             stream: model.freezeCardStream,
-                            initialData: model.creditCardSettingsArguments.creditCard.cardStatus == FreezeCardStatusEnum.F ? true : false,
+                            initialData: model.creditCardSettingsArguments.creditCard.cardStatus ==
+                                    FreezeCardStatusEnum.F
+                                ? true
+                                : false,
                             onData: (value) {},
                             dataBuilder: (context, data) {
                               return SettingTile(
@@ -212,19 +233,26 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                 },
                                 title: S.of(context).freezeThisCard,
                                 tileIcon: AssetUtils.freeze,
-                                isCardActivated: model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                                isCardActivated:
+                                    model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                                 trailing: Directionality(
                                   textDirection: TextDirection.ltr,
                                   child: FlutterSwitch(
-                                    value: model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false ? data! : false,
-                                    onToggle: model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false
+                                    value: model.creditCardSettingsArguments.creditCard.isCreditDelivered ??
+                                            false
+                                        ? data!
+                                        : false,
+                                    onToggle: model
+                                                .creditCardSettingsArguments.creditCard.isCreditDelivered ??
+                                            false
                                         ? (value) {
                                             if (value) {
                                               model.updateShowDialog(true);
                                             }
                                             model.toggleFreezeCardStatus(value);
                                             if (!value) {
-                                              model.unFreezeCard(model.creditCardSettingsArguments.creditCard.cardId ?? '');
+                                              model.unFreezeCard(
+                                                  model.creditCardSettingsArguments.creditCard.cardId ?? '');
                                             }
                                           }
                                         : (v) {},
@@ -251,39 +279,53 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                           );
                         }),
                     SettingTile(
-                      isCardActivated: model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
-                      isEnabled: model.creditCardSettingsArguments.creditCard.primarySecondaryCard == PrimarySecondaryCardEnum.PRIMARY,
-                      isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard == PrimarySecondaryCardEnum.SECONDARY,
+                      isCardActivated:
+                          model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                      isEnabled: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                          PrimarySecondaryCardEnum.PRIMARY,
+                      isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                          PrimarySecondaryCardEnum.SECONDARY,
                       onTap: () {
                         Navigator.pushNamed(context, RoutePaths.ManageCreditCardLimits,
                             arguments: ManageCreditCardLimitsArguments(
                                 secureCode: model.creditCardSettingsArguments.creditCard.cardCode ?? '',
-                                creditDeliveredDatetime: model.creditCardSettingsArguments.creditCard.creditDeliveredDatetime));
+                                creditDeliveredDatetime:
+                                    model.creditCardSettingsArguments.creditCard.creditDeliveredDatetime));
                       },
                       title: S.of(context).manageCardLimits,
                       tileIcon: AssetUtils.settingBars,
                     ),
                     SettingTile(
-                      isCardActivated: model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                      isCardActivated:
+                          model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                       onTap: () {
-                        Navigator.pushNamed(context, RoutePaths.ManageCreditSettlement, arguments: ManageCreditSettlementArguments(creditCard: model.creditCardSettingsArguments.creditCard));
+                        Navigator.pushNamed(context, RoutePaths.ManageCreditSettlement,
+                            arguments: ManageCreditSettlementArguments(
+                                creditCard: model.creditCardSettingsArguments.creditCard));
                       },
                       title: S.of(context).manageSettlement,
                       tileIcon: AssetUtils.linked,
-                      isEnabled: model.creditCardSettingsArguments.creditCard.primarySecondaryCard == PrimarySecondaryCardEnum.PRIMARY,
-                      isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard == PrimarySecondaryCardEnum.SECONDARY,
+                      isEnabled: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                          PrimarySecondaryCardEnum.PRIMARY,
+                      isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                          PrimarySecondaryCardEnum.SECONDARY,
                     ),
                     SettingTile(
-                      isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard == PrimarySecondaryCardEnum.SECONDARY,
-                      isCardActivated: model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
-                      isEnabled: model.creditCardSettingsArguments.creditCard.primarySecondaryCard == PrimarySecondaryCardEnum.PRIMARY,
+                      isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                          PrimarySecondaryCardEnum.SECONDARY,
+                      isCardActivated:
+                          model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                      isEnabled: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                          PrimarySecondaryCardEnum.PRIMARY,
                       onTap: () {
                         Navigator.pushNamed(context, RoutePaths.ManageCardPin,
                             arguments: ManageCardPinArguments(
                                 isChangePinEnabled: model.creditCardSettingsArguments.isChangePinEnabled,
                                 cardType: CardType.CREDIT,
                                 tokenizedPan: model.creditCardSettingsArguments.creditCard.cardCode ?? '',
-                                freezeCardStatusEnum: model.creditCardSettingsArguments.creditCard.cardStatus ?? FreezeCardStatusEnum.NONE,
+                                freezeCardStatusEnum:
+                                    model.creditCardSettingsArguments.creditCard.cardStatus ??
+                                        FreezeCardStatusEnum.NONE,
                                 cardNumber: model.creditCardSettingsArguments.creditCard.cardNumber ?? ''));
                       },
                       title: S.of(context).manageCardPin,
@@ -291,9 +333,11 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                     ),
                     IgnorePointer(
                       child: SettingTile(
-                        isCardActivated: model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                        isCardActivated:
+                            model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                         onTap: () {
-                          Navigator.pushNamed(context, RoutePaths.ViewDebitCardSubscription, arguments: ViewDebitCardSubscriptionArguments(cardType: CardType.CREDIT));
+                          Navigator.pushNamed(context, RoutePaths.ViewDebitCardSubscription,
+                              arguments: ViewDebitCardSubscriptionArguments(cardType: CardType.CREDIT));
                         },
                         title: S.of(context).viewCardSubscription,
                         tileIcon: AssetUtils.cardSubscription,
@@ -306,10 +350,15 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                         initialData: false,
                         onData: (route) {
                           if (route) {
-                            Navigator.pushReplacementNamed(context, RoutePaths.SupplementaryCreditCardActivationStatus,
-                                arguments: SupplementaryCreditCardActivationArguments(primaryCardId: model.creditCardSettingsArguments.creditCard.cardId ?? ''));
+                            Navigator.pushReplacementNamed(
+                                context, RoutePaths.SupplementaryCreditCardActivationStatus,
+                                arguments: SupplementaryCreditCardActivationArguments(
+                                    primaryCardId:
+                                        model.creditCardSettingsArguments.creditCard.cardId ?? ''));
                           } else {
-                            ProviderScope.containerOf(context).read(appHomeViewModelProvider).currentCreditCard = model.creditCardSettingsArguments.creditCard;
+                            ProviderScope.containerOf(context)
+                                .read(appHomeViewModelProvider)
+                                .currentCreditCard = model.creditCardSettingsArguments.creditCard;
                             Navigator.pushNamed(context, RoutePaths.SupplementaryCreditCard);
                           }
                         },
@@ -333,13 +382,15 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                   //         PrimarySecondaryCardEnum.SECONDARY,
                                   title: S.of(context).requestSupplementarycard,
                                   tileIcon: AssetUtils.cardIcon,
-                                  isCardActivated: model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                                  isCardActivated:
+                                      model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                                 );
                               });
                         }),
                     IgnorePointer(
                       child: SettingTile(
-                        isCardActivated: model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                        isCardActivated:
+                            model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                         onTap: () {
                           Navigator.pushNamed(context, RoutePaths.ChangeCreditLimit);
                         },
@@ -351,7 +402,8 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                     ),
                     IgnorePointer(
                       child: SettingTile(
-                        isCardActivated: model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                        isCardActivated:
+                            model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                         onTap: () {
                           Navigator.pushNamed(context, RoutePaths.ConvertPurchaseToInstallments);
                         },
@@ -363,10 +415,13 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                     ),
                     IgnorePointer(
                       child: SettingTile(
-                        isCardActivated: model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                        isCardActivated:
+                            model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                         onTap: () {
                           Navigator.pushNamed(context, RoutePaths.DcChangeLinkedMobileNumber,
-                              arguments: DCChangeLinkedMobileNumberArguments(cardType: CardType.CREDIT, tokenizedPan: model.creditCardSettingsArguments.creditCard.cardCode));
+                              arguments: DCChangeLinkedMobileNumberArguments(
+                                  cardType: CardType.CREDIT,
+                                  tokenizedPan: model.creditCardSettingsArguments.creditCard.cardCode));
                         },
                         title: S.of(context).changeLinkedMobileNumber,
                         tileIcon: AssetUtils.mobile,
@@ -376,7 +431,8 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                     ),
                     IgnorePointer(
                       child: SettingTile(
-                        isCardActivated: model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                        isCardActivated:
+                            model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                         onTap: () {
                           Navigator.pushNamed(context, RoutePaths.ChangeCountryRestriction);
                         },
@@ -391,19 +447,26 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                         initialData: Resource.none(),
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
-                            Navigator.pushNamed(context, RoutePaths.CreditCardApplySuccess, arguments: CreditCardApplySuccessArguments(creditSuccessState: CreditSuccessState.Applied_Success));
+                            Navigator.pushNamed(context, RoutePaths.CreditCardApplySuccess,
+                                arguments: CreditCardApplySuccessArguments(
+                                    creditSuccessState: CreditSuccessState.Applied_Success));
                           }
                         },
                         dataBuilder: (context, snapshot) {
                           return SettingTile(
-                            isCardActivated: model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                            isCardActivated:
+                                model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                             onTap: () {
                               InformationDialog.show(context,
                                   image: AssetUtils.cardCancelIcon,
                                   title: S.of(context).reportCardIssue,
                                   descriptionWidget: Text(
                                     S.of(context).reportStolenLostCardDesc,
-                                    style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w400, color: AppColor.dark_brown),
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontSize: 14.t,
+                                        fontWeight: FontWeight.w400,
+                                        color: AppColor.dark_brown),
                                   ), onSelected: () {
                                 Navigator.pop(context);
                                 // Navigator.pushNamed(
@@ -429,19 +492,26 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                         initialData: Resource.none(),
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
-                            Navigator.pushNamed(context, RoutePaths.CreditCardApplySuccess, arguments: CreditCardApplySuccessArguments(creditSuccessState: CreditSuccessState.Applied_Success));
+                            Navigator.pushNamed(context, RoutePaths.CreditCardApplySuccess,
+                                arguments: CreditCardApplySuccessArguments(
+                                    creditSuccessState: CreditSuccessState.Applied_Success));
                           }
                         },
                         dataBuilder: (context, snapshot) {
                           return SettingTile(
-                            isCardActivated: model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                            isCardActivated:
+                                model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                             onTap: () {
                               InformationDialog.show(context,
                                   image: AssetUtils.cardCancelIcon,
                                   title: S.of(context).replaceDamageCard,
                                   descriptionWidget: Text(
                                     S.of(context).reportStolenLostCardDesc,
-                                    style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w400, color: AppColor.dark_brown),
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontSize: 14.t,
+                                        fontWeight: FontWeight.w400,
+                                        color: AppColor.dark_brown),
                                   ), onSelected: () {
                                 Navigator.pop(context);
                                 model.reportDamagedCC();
@@ -467,7 +537,8 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                         onData: (data) {},
                         dataBuilder: (context, data) {
                           return SettingTile(
-                            isCardActivated: model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                            isCardActivated:
+                                model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                             isNotify: true,
                             isEnabled: false,
                             onTap: () {
@@ -478,7 +549,10 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                 Navigator.pop(context);
                               }, onError: (AppError error) {
                                 model.showToastWithError(error);
-                              }, reasons: StringUtils.isDirectionRTL(context) ? model.creditCardCancellationReasonAr : model.creditCardCancellationReasonEn);
+                              },
+                                  reasons: StringUtils.isDirectionRTL(context)
+                                      ? model.creditCardCancellationReasonAr
+                                      : model.creditCardCancellationReasonEn);
                             },
                             title: S.of(context).cancelThisCard,
                             tileIcon: AssetUtils.cancelCard,

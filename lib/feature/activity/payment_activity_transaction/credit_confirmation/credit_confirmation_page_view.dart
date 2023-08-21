@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:domain/model/cliq/credit_confirmation/credit_confirmation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -13,7 +14,6 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:domain/model/cliq/credit_confirmation/credit_confirmation.dart';
 
 class CreditConfirmationPaymentActivityPageView
     extends BasePageViewWidget<CreditConfirmationPaymentActivityViewModel> {
