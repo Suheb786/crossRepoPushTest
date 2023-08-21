@@ -893,43 +893,34 @@ class MessageLookup extends MessageLookupByLibrary {
         "district": MessageLookupByLibrary.simpleMessage("المنطقة"),
         "doYouHaveAdditionalSourceOfIncome":
             MessageLookupByLibrary.simpleMessage("عندك دخل إضافي"),
-        "doYouHaveAnyOtherNationality":
-            MessageLookupByLibrary.simpleMessage("عندك جنسية ثانية؟"),
-        "doYouHaveTinAvailable":
-            MessageLookupByLibrary.simpleMessage("عندك رقم تعريف ضريبي؟"),
-        "doYouReallyWantToDelete":
-            MessageLookupByLibrary.simpleMessage("هل تريد حذف الفاتورة "),
+        "doYouHaveAnyOtherNationality": MessageLookupByLibrary.simpleMessage("عندك جنسية ثانية؟"),
+        "doYouHaveTinAvailable": MessageLookupByLibrary.simpleMessage("عندك رقم تعريف ضريبي؟"),
+        "doYouReallyWantToDelete": MessageLookupByLibrary.simpleMessage("هل تريد حذف الفاتورة "),
         "dob": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
         "dobHint": MessageLookupByLibrary.simpleMessage("يوم/شهر/سنة"),
         "documentsNotFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-081)"),
-        "dontNeedMyCardAnymore":
-            MessageLookupByLibrary.simpleMessage("بطلت محتاج بطاقتي "),
-        "dormantAccountCCFailedTitle": MessageLookupByLibrary.simpleMessage(
-            "لم تتم عملية طلبك للبطاقة الائتمانية بنجاح"),
+        "dontNeedMyCardAnymore": MessageLookupByLibrary.simpleMessage("بطلت محتاج بطاقتي "),
+        "dormantAccountCCFailedTitle":
+            MessageLookupByLibrary.simpleMessage("لم تتم عملية طلبك للبطاقة الائتمانية بنجاح"),
         "dormantAccountPhysicalCardReq": MessageLookupByLibrary.simpleMessage(
             "عفوا! لا يمكنك طلب طباعة البطاقة لأنه حسابك غير فعال. اتصل بنا على 5200100-06 ليتم تفعيل الحساب"),
-        "dormantAccountTransactionFailed": MessageLookupByLibrary.simpleMessage(
-            "عفوا! لم تتم العملية بنجاح لأنه حسابك غير فعال. اتصل بنا على 5200100-06 ليتم تفعيل الحساب"),
-        "downloadStatement":
-            MessageLookupByLibrary.simpleMessage("تنزيل كشف الحساب"),
-        "dragMap": MessageLookupByLibrary.simpleMessage(
-            "اسحب وحرك الخريطة لتضبط الموقع"),
+        "dormantAccountTransactionFailed":
+            MessageLookupByLibrary.simpleMessage("عفوا! لم تتم العملية بنجاح لأنه حسابك غير فعال"),
+        "downloadStatement": MessageLookupByLibrary.simpleMessage("تنزيل كشف الحساب"),
+        "dragMap": MessageLookupByLibrary.simpleMessage("اسحب وحرك الخريطة لتضبط الموقع"),
         "due": MessageLookupByLibrary.simpleMessage("مستحقة"),
         "dueAmt": MessageLookupByLibrary.simpleMessage("المبلغ المستحق"),
         "dummyAccountNo": MessageLookupByLibrary.simpleMessage("9xxxxxxxxx"),
         "dummyAlias": MessageLookupByLibrary.simpleMessage("username1"),
         "dummyAmount": MessageLookupByLibrary.simpleMessage("659.570"),
-        "dummyIBAN":
-            MessageLookupByLibrary.simpleMessage("ABC000012341234123819241213"),
+        "dummyIBAN": MessageLookupByLibrary.simpleMessage("ABC000012341234123819241213"),
         "dummyMobileNo": MessageLookupByLibrary.simpleMessage("00962xxxxxxxxx"),
         "eVoucherLandingDialogDescption": MessageLookupByLibrary.simpleMessage(
             "صار بإمكانك تشتري القسائم الإلكترونية من مختلف المتاجر المحلية والدولية المفضلة لديك. "),
         "eVoucherSearchLabel": MessageLookupByLibrary.simpleMessage("ابحث هنا"),
-        "eVouchers":
-            MessageLookupByLibrary.simpleMessage("القسائم الإلكترونية"),
-        "eVouchersAreHere": MessageLookupByLibrary.simpleMessage(
-            "القسائم الإلكترونية صارت متاحة!"),
+        "eVouchers": MessageLookupByLibrary.simpleMessage("القسائم الإلكترونية"),
+        "eVouchersAreHere": MessageLookupByLibrary.simpleMessage("القسائم الإلكترونية صارت متاحة!"),
         "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
         "editCliqId": MessageLookupByLibrary.simpleMessage("تعديل حساب CliQ"),
         "editId": MessageLookupByLibrary.simpleMessage("تعديل نوع الحساب"),

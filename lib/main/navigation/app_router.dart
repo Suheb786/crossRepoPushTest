@@ -145,6 +145,7 @@ import 'package:neo_bank/feature/video_kyc/video_kyc_page.dart';
 import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_subscription_page.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/ui/molecules/camera_capture/camera_capture_page.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 
 import '../../feature/evoucher/evoucher/evoucher_page.dart';
@@ -908,6 +909,11 @@ class AppRouter {
             builder: (context) => BeneficiaryTransactionHistoryListPage(
                 settings.arguments as BeneficiaryTransactionHistoryListPageArguments),
             settings: RouteSettings(name: RoutePaths.BeneficiaryTransactionHistoryList));
+
+      case RoutePaths.CameraCapturePage:
+        return CupertinoPageRoute(
+            builder: (context) => CameraCapturePage(),
+            settings: RouteSettings(name: RoutePaths.CameraCapturePage));
 
       ///------------[Sub-Account-Router]---------///
 

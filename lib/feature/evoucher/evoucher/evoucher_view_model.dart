@@ -56,9 +56,9 @@ class EvoucherViewModel extends BasePageViewModel {
   PublishSubject<Resource<List<VoucherItem>>> voucherItemFilterResponseSubject = PublishSubject();
 
   /// get voucher details subjects ----
-  BehaviorSubject<GetVoucherDetailsUseCaseParams> _getvoucherDetailsRequest = BehaviorSubject();
+  PublishSubject<GetVoucherDetailsUseCaseParams> _getvoucherDetailsRequest = PublishSubject();
 
-  BehaviorSubject<Resource<GetVoucherDetails>> _getvoucherDetailsResponse = BehaviorSubject();
+  PublishSubject<Resource<GetVoucherDetails>> _getvoucherDetailsResponse = PublishSubject();
 
   /// ------------- my vouchers stream -----------------------
   BehaviorSubject<Resource<List<VouchersByDate>>> _myVoucherResponseSubject = BehaviorSubject();
@@ -113,7 +113,6 @@ class EvoucherViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _getvoucherDetailsResponse.safeAdd(event);
-        categoriesDisplayToggleNotifier.value = false;
         if (event.status == Status.ERROR) {
           showErrorState();
 

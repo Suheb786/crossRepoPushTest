@@ -160,4 +160,5 @@ class RoutePaths {
   static const String SelectTransferPage = "/SelectTransferPage";
   static const String TransferSuccessPage = "/TransferSuccessPage";
   static const String OpenSubAccountSuccessPage = "/OpenSubAccountSuccessPage";
+  static const String CameraCapturePage = "cameraCapturePage";
 }
