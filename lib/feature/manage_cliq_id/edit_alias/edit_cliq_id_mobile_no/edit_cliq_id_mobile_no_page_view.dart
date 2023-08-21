@@ -9,7 +9,6 @@ import 'package:neo_bank/feature/manage_cliq_id/edit_alias/otp_for_edit_alias_an
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/manage_cliq/cliq_term_condition_selection_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -19,6 +18,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../../ui/molecules/button/app_primary_button.dart';
 import 'edit_cliq_id_mobile_no_page_view_model.dart';
 
 class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPageViewModel> {
@@ -175,12 +175,12 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
                                                     dataBuilder: (BuildContext context, isValid) {
                                                       return Padding(
                                                         padding: EdgeInsets.only(top: 26.0.h),
-                                                        child: Visibility(
-                                                          visible: (data == true
+                                                        child: AppPrimaryButton(
+                                                          text: S.of(context).next,
+                                                          isDisabled: (data == true
                                                               ? (isValid == true ? true : false)
                                                               : false),
-                                                          child: AnimatedButton(
-                                                              buttonText: S.of(context).swipeToProceed),
+                                                          onPressed: () {},
                                                         ),
                                                       );
                                                     },
