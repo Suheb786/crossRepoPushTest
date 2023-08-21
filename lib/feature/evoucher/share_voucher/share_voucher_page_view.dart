@@ -45,19 +45,22 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                         BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16))),
                 child: Column(
                   children: [
-                    Container(
-                        height: MediaQuery.of(context).size.height / 1.7.h,
-                        decoration: BoxDecoration(
-                            border:
-                                Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1.w)),
-                        width: double.infinity,
-                        child: InAppWebView(
-                          initialUrlRequest: URLRequest(
-                              url: Uri.parse(model.argument?.voucherDetail?.lineItems.first.claimURL ?? "")),
-                          // onWebViewCreated: (controller) {
-                          //   model.webViewController = controller;
-                          // },
-                        )),
+                    Expanded(
+                      child: Container(
+                          height: MediaQuery.of(context).size.height / 1.7.h,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Theme.of(context).colorScheme.inverseSurface, width: 1.w)),
+                          width: double.infinity,
+                          child: InAppWebView(
+                            initialUrlRequest: URLRequest(
+                                url:
+                                    Uri.parse(model.argument?.voucherDetail?.lineItems.first.claimURL ?? "")),
+                            // onWebViewCreated: (controller) {
+                            //   model.webViewController = controller;
+                            // },
+                          )),
+                    ),
                     InkWell(
                       onTap: () async {},
                       child: Padding(

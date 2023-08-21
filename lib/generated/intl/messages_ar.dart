@@ -893,12 +893,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "district": MessageLookupByLibrary.simpleMessage("المنطقة"),
         "doYouHaveAdditionalSourceOfIncome":
             MessageLookupByLibrary.simpleMessage("عندك دخل إضافي"),
-        "doYouHaveAnyOtherNationality":
-            MessageLookupByLibrary.simpleMessage("عندك جنسية ثانية؟"),
-        "doYouHaveTinAvailable":
-            MessageLookupByLibrary.simpleMessage("عندك رقم تعريف ضريبي؟"),
-        "doYouReallyWantToDelete":
-            MessageLookupByLibrary.simpleMessage("هل تريد حذف الفاتورة "),
+        "doYouHaveAnyOtherNationality": MessageLookupByLibrary.simpleMessage("عندك جنسية ثانية؟"),
+        "doYouHaveTinAvailable": MessageLookupByLibrary.simpleMessage("عندك رقم تعريف ضريبي؟"),
+        "doYouReallyWantToDelete": MessageLookupByLibrary.simpleMessage("هل تريد حذف الفاتورة "),
         "dob": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
         "dobHint": MessageLookupByLibrary.simpleMessage("يوم/شهر/سنة"),
         "documentsNotFound": MessageLookupByLibrary.simpleMessage(
@@ -922,10 +919,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "eVoucherLandingDialogDescption": MessageLookupByLibrary.simpleMessage(
             "صار بإمكانك تشتري القسائم الإلكترونية من مختلف المتاجر المحلية والدولية المفضلة لديك. "),
         "eVoucherSearchLabel": MessageLookupByLibrary.simpleMessage("ابحث هنا"),
-        "eVouchers":
-            MessageLookupByLibrary.simpleMessage("القسائم الإلكترونية"),
-        "eVouchersAreHere": MessageLookupByLibrary.simpleMessage(
-            "القسائم الإلكترونية صارت متاحة!"),
+        "eVouchers": MessageLookupByLibrary.simpleMessage("القسائم الإلكترونية"),
+        "eVouchersAreHere": MessageLookupByLibrary.simpleMessage("القسائم الإلكترونية صارت متاحة!"),
         "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
         "editCliqId": MessageLookupByLibrary.simpleMessage("تعديل حساب CliQ"),
         "editId": MessageLookupByLibrary.simpleMessage("تعديل نوع الحساب"),
