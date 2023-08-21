@@ -12,6 +12,8 @@ FreezeCreditCardRequestEntity _$FreezeCreditCardRequestEntityFromJson(
       baseData: json['BaseClass'] as Map<String, dynamic>,
       getToken: json['GetToken'] as bool? ?? true,
       cardId: json['CardId'] as String? ?? "",
+      secureCode: json['SecureCode'] as String? ?? '',
+      issuedFromCms: json['IssuedFromCms'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$FreezeCreditCardRequestEntityToJson(
@@ -19,5 +21,7 @@ Map<String, dynamic> _$FreezeCreditCardRequestEntityToJson(
     <String, dynamic>{
       'CardId': instance.cardId,
       'GetToken': instance.getToken,
+      'SecureCode': instance.secureCode,
+      'IssuedFromCms': instance.issuedFromCms,
       'BaseClass': instance.baseData,
     };

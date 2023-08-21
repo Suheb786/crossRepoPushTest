@@ -154,7 +154,7 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
     });
 
     voucherValue.clear();
-    voucherValue.addAll(prices);
+    voucherValue.addAll(prices.toSet().toList());
   }
 
   @override

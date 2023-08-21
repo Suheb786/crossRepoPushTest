@@ -74,7 +74,10 @@ class CardTransactionPageView extends BasePageViewWidget<CardTransactionViewMode
                                               arguments: DownloadStatementArguments(
                                                   statementType: StatementType.Credit,
                                                   transactionDate: value,
-                                                  cardId: model.cardTransactionArguments.cardId!));
+                                                  secureCode: model.cardTransactionArguments.secureCode,
+                                                  cardId: model.cardTransactionArguments.cardId ?? '',
+                                                  issuedFromCms:
+                                                      model.cardTransactionArguments.isIssuedFromCMS));
                                         },
                                         onDismissed: () {
                                           Navigator.pop(context);

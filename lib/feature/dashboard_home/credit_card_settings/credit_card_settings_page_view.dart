@@ -243,14 +243,6 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                             lineHeight: 1.7,
                                           ),
                                         ),
-                                        // Padding(
-                                        //   padding: EdgeInsets.symmetric(horizontal: 24.w),
-                                        //   child: CustomBulletWithTitle(
-                                        //     title: S.of(context).freezeAndActiveAtAnyTime,
-                                        //     fontSize: 14.t,
-                                        //     lineHeight: 1.7,
-                                        //   ),
-                                        // ),
                                       ],
                                     ), onSelected: () {
                                   Navigator.pop(context);
@@ -639,7 +631,8 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                   isNotify: true,
                                   isEnabled: false,
                                   onTap: () {
-                                  CardCancelDialog.show(context, onSelected: (reasonValue, needsReplacement) {
+                                    CardCancelDialog.show(context,
+                                        onSelected: (reasonValue, needsReplacement) {
                                       Navigator.pop(context);
                                       model.cancelCard(reasonValue);
                                     }, onDismissed: () {

@@ -20,10 +20,10 @@ class EVoucherOtpUseCase extends BaseUseCase<NetworkError, EVoucherUsecaseOTPPar
 }
 
 class EVoucherUsecaseOTPParams extends Params {
-  final bool? GetToken;
+  final String? voucherName;
 
   EVoucherUsecaseOTPParams({
-    required this.GetToken,
+    required this.voucherName,
   });
 
   @override

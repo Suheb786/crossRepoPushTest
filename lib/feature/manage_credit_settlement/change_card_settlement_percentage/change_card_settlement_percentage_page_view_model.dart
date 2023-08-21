@@ -47,8 +47,10 @@ class ChangeCardSettlementPercentagePageViewModel extends BasePageViewModel {
 
   void updateSettlement() {
     _updateSettlementRequest.safeAdd(UpdateSettlementUseCaseParams(
-        cardId: arguments!.creditCard.cardId,
-        rate: int.parse(settlementPercentageController.text.replaceAll("%", ""))));
+        cardId: arguments?.creditCard.cardId ?? '',
+        rate: int.parse(settlementPercentageController.text.replaceAll("%", "")),
+        secureCode: arguments?.creditCard.cardCode ?? '',
+        isIssuedFromCMS: arguments?.creditCard.issuedFromCms ?? false));
   }
 
   void validate() {

@@ -19,8 +19,11 @@ class UpdateSettlementUseCase extends BaseUseCase<NetworkError, UpdateSettlement
 class UpdateSettlementUseCaseParams extends Params {
   final String? cardId;
   final int? rate;
+  final String secureCode;
+  final bool isIssuedFromCMS;
 
-  UpdateSettlementUseCaseParams({this.cardId, this.rate});
+  UpdateSettlementUseCaseParams(
+      {this.cardId, this.rate, required this.secureCode, required this.isIssuedFromCMS});
 
   @override
   Either<AppError, bool> verify() {
