@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
@@ -15,8 +14,6 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-
-import '../sub_account/transfer/select_transfer/select_transfer_page.dart';
 
 class SplashPageView extends BasePageViewWidget<SplashViewModel> {
   SplashPageView(ProviderBase model) : super(model);
@@ -50,17 +47,7 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
           onData: (data) async {
             if (data == 1) {
               //model.checkDeviceCompatibility();
-
-              // Navigator.pushNamed(context, RoutePaths.OnBoarding);
-
-              Navigator.pushReplacementNamed(
-                context,
-                RoutePaths.SelectTransferPage,
-                arguments: SelectTranferPageArgument(
-                  account: Account(
-                      accountNo: "8986808", accountTitle: "Sub Account - Savings", availableBalance: "900"),
-                ),
-              );
+              Navigator.pushNamed(context, RoutePaths.OnBoarding);
             }
           },
           dataBuilder: (context, data) {
