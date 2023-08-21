@@ -31,16 +31,16 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
           initialData: Resource.none(),
           dataBuilder: (context, snapshot) {
             return Padding(
-              padding: EdgeInsetsDirectional.only(top: (MediaQuery.of(context).size.height * 0.18) + 10.h),
+              padding: EdgeInsetsDirectional.only(top: (MediaQuery.of(context).size.height * 0.14) + 16.h),
               child: Column(
                 children: [
                   Text(
-                    S.of(context).newBill,
+                    AppConstantsUtils.PRE_PAID_FLOW ? S.of(context).newPrePaidBill : S.of(context).newPostPaidBill,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.t, color: AppColor.gray_black),
+                    style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 20.t, color: AppColor.gray_black),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.only(top: 26.0.h, bottom: 32.h, start: 24.w, end: 24.w),
+                    padding: EdgeInsetsDirectional.only(top: 24.0.h, bottom: 32.h, start: 24.w, end: 24.w),
                     child: AppTextField(
                       labelText: '',
                       hintText: S.of(context).searchCategory,
@@ -79,7 +79,8 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                                           } else {
                                             AppConstantsUtils.billerDetailsCacheListKey = '${AppConstantsUtils.BILLER_CATEGORY}${AppConstantsUtils.POSTPAID_KEY}';
                                           }
-                                          AppConstantsUtils.BILLER_CATEGORY_API_VALUE = !StringUtils.isDirectionRTL(context) ? snapshot.data![index].categoryName ?? "" : snapshot.data![index].categoryNameAr ?? "";
+                                          AppConstantsUtils.BILLER_CATEGORY_API_VALUE =
+                                              !StringUtils.isDirectionRTL(context) ? snapshot.data![index].categoryName ?? "" : snapshot.data![index].categoryNameAr ?? "";
 
                                           Navigator.pushNamed(context, RoutePaths.PayBillPage);
                                         },

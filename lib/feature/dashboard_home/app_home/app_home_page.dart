@@ -12,6 +12,8 @@ import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../ui/molecules/dashboard/bottom_bar_widget.dart';
+import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
+import '../../../utils/device_size_helper.dart';
 
 class AppHomePage extends BasePage<AppHomeViewModel> {
   @override
@@ -56,12 +58,29 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> w
         vsync: this,
         duration: const Duration(milliseconds: 500),
       );
-      model.animation = Tween<double>(
+
+      model.translateAccountSettingsUpController = AnimationController(
+        vsync: this,
+        duration: const Duration(milliseconds: 500),
+      );
+
+      model.settingsAnimation = Tween<double>(
         begin: 0,
         end: 1,
       ).animate(
         CurvedAnimation(
           parent: model.translateSettingsUpController,
+          curve: Curves.easeInOut,
+          reverseCurve: Curves.easeInOut,
+        ),
+      );
+
+      model.accountSettingsAnimation = Tween<double>(
+        begin: 0,
+        end: 1,
+      ).animate(
+        CurvedAnimation(
+          parent: model.translateAccountSettingsUpController,
           curve: Curves.easeInOut,
           reverseCurve: Curves.easeInOut,
         ),
@@ -116,60 +135,60 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> w
 
   @override
   Widget buildView(BuildContext context, AppHomeViewModel model) {
-    return Stack(
-      alignment: Alignment.bottomCenter,
-      children: [
-        ///Main View
-        AnimatedBuilder(
-            animation: model.zoomController,
-            builder: (context, child) {
-              return Transform.scale(
-                scale: model.firstTime ? 1 : model.zoomAnimation.value,
-                child: child!,
-              );
-            },
-            child: AppHomePageViewNew(
-              provideBase(),
-            )),
-
-        ///Bottom Navigation Bar
-        Positioned(
-          left: 0,
-          bottom: 0,
-          right: 0,
-          child: AnimatedOpacity(
-            duration: model.settings || model.showPayBackView || model.timelinePage ? const Duration(milliseconds: 200) : const Duration(seconds: 2),
-            opacity: model.settings || model.showPayBackView || model.timelinePage ? 0 : 1,
+    return AnimatedBuilder(
+      animation: model.zoomController,
+      builder: (context, child) {
+        return Transform.scale(
+          scale: model.firstTime ? 1 : model.zoomAnimation.value,
+          child: child!,
+        );
+      },
+      child: Column(
+        children: [
+          Expanded(
             child: Padding(
-              padding: EdgeInsets.only(top: 24.0.h, bottom: 0.0.h),
-              child: BottomBarWidget(
-                onHomeTap: () {
-                  if (model.settings || model.showPayBackView || model.timelinePage) {
-                  } else {
-                    model.moveToPage(0);
-                  }
-                },
-                onMoreTap: () {
-                  if (model.settings || model.showPayBackView || model.timelinePage) {
-                  } else {
-                    SettingsDialog.show(context);
-                  }
-                },
-                onContactUsTap: () {
-                  if (model.settings || model.showPayBackView || model.timelinePage) {
-                  } else {
-                    EngagementTeamDialog.show(context, onDismissed: () {
-                      Navigator.pop(context);
-                    }, onSelected: (value) {
-                      Navigator.pop(context);
-                    });
-                  }
-                },
+              padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.08 : 0.06) - 4),
+              child: AppHomePageViewNew(
+                provideBase(),
               ),
             ),
           ),
-        ),
-      ],
+          AppStreamBuilder<DashboardAnimatedPage>(
+              stream: model.pageSwitchStream,
+              initialData: DashboardAnimatedPage.NULL,
+              dataBuilder: (context, switchedPage) {
+                return AnimatedCrossFade(
+                  crossFadeState: (switchedPage != DashboardAnimatedPage.NULL) ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                  duration: Duration(milliseconds: 500),
+                  secondChild: const SizedBox(),
+                  firstChild: Padding(
+                    padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.036 : 0.02)),
+                    child: BottomBarWidget(
+                      onHomeTap: () {
+                        if (switchedPage == DashboardAnimatedPage.NULL) {
+                          model.moveToPage(0);
+                        }
+                      },
+                      onMoreTap: () {
+                        if (switchedPage == DashboardAnimatedPage.NULL) {
+                          SettingsDialog.show(context);
+                        }
+                      },
+                      onContactUsTap: () {
+                        if (switchedPage == DashboardAnimatedPage.NULL) {
+                          EngagementTeamDialog.show(context, onDismissed: () {
+                            Navigator.pop(context);
+                          }, onSelected: (value) {
+                            Navigator.pop(context);
+                          });
+                        }
+                      },
+                    ),
+                  ),
+                );
+              })
+        ],
+      ),
     );
   }
 

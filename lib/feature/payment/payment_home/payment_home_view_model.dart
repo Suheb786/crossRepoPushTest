@@ -55,6 +55,10 @@ class PaymentHomeViewModel extends BasePageViewModel {
 
   late AnimationController translateSidewaysController;
 
+  late Beneficiary selectedBenificiary;
+
+  // (SendAmountToContactPage(settings.arguments as Beneficiary)
+
   PaymentHomeViewModel(this._getBeneficiaryUseCase) {
     _getBeneficiaryRequest.listen((value) {
       RequestManager(value, createCall: () => _getBeneficiaryUseCase.execute(params: value)).asFlow().listen((event) {
@@ -145,6 +149,10 @@ class PaymentHomeViewModel extends BasePageViewModel {
     translateUpController.reverse();
     translateSidewaysController.reverse();
   }
+
+  setSelectedBenificiary(Beneficiary selectedBenificiary) {
+    this.selectedBenificiary = selectedBenificiary;
+  }
 }
 
 class PaymentHomeWidgetFeature {
@@ -156,4 +164,4 @@ class PaymentHomeWidgetFeature {
 
 enum PaymentWidgetType { SEND_MONEY, REQUEST_MONEY, POST_PAID_BILL, PRE_PAID_BILL }
 
-enum AnimatedPage { SEND_MONEY, REQUEST_MONEY, POST_PAID_BILL_HISTORY, PRE_PAID_BILL_HISTORY, PAY_NEW_BILL, NULL }
+enum AnimatedPage { SEND_MONEY, REQUEST_MONEY, SEND_TO_SPECIFIC_PERSON, REQUEST_FROM_SPECIFIC_PERSON, PAY_NEW_BILL, NULL }

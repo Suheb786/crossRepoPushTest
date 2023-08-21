@@ -36,7 +36,7 @@ class PayAllPostPaidBillsPageState
     return Theme.of(context).primaryColorDark;
   }
 
-  @override
+/*  @override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
         preferredSize: Size(double.maxFinite, 85.0.h),
@@ -46,6 +46,7 @@ class PayAllPostPaidBillsPageState
             InkWell(
               onTap: () {
                 Navigator.pop(context);
+                ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animateBackToMainPage();
               },
               child: Padding(
                 padding: EdgeInsetsDirectional.only(start: 24.0.w),
@@ -97,7 +98,7 @@ class PayAllPostPaidBillsPageState
             ),
           ],
         ));
-  }
+  }*/
 
   @override
   Widget buildView(BuildContext context, PayAllPostPaidBillsPageViewModel model) {

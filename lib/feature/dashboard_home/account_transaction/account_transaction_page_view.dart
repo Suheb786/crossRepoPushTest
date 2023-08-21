@@ -89,7 +89,7 @@ class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionVi
                           borderRadius:
                               BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16))),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.only(top: 8.0.h),
+                        padding: EdgeInsetsDirectional.only(top: 24.0.h),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

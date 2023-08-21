@@ -123,4 +123,5 @@ class AppColor {
   static const card_shadow_color = const Color(0x14000000);
   static const very_dark_gray2 = const Color(0xff090909);
   static const dark_yellow1 = const Color(0xff80740B);
+  static const borderColorNew = const Color(0xff3d3d3d);
 }

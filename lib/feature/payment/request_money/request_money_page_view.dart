@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/payment/request_money/request_money_view_model.dart';
@@ -39,14 +38,14 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.only(top: (MediaQuery.of(context).size.height * 0.18) + 10.h),
+                  padding: EdgeInsetsDirectional.only(top: (MediaQuery.of(context).size.height * 0.14) + (MediaQuery.of(context).size.height * 0.08)),
                   child: Text(
                     S.of(context).requestMoney,
-                    style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
+                    style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 20.0.t),
                   ),
                 ),
-                Spacer()
-,                Padding(
+                Spacer(),
+                Padding(
                   padding: EdgeInsetsDirectional.only(top: 88.0.h, start: 24.0.w, end: 24.0.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -72,7 +71,7 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                         ),
                       ),
                       Align(
-                        alignment: Alignment.centerRight,
+                        alignment: AlignmentDirectional.centerEnd,
                         child: InkWell(
                             onTap: () {
                               model.clearValue();
@@ -83,10 +82,10 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 85.0.h),
+                  padding: EdgeInsets.only(top: 22.0.h),
                   child: Text(
                     S.of(context).accountBalance,
-                    style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 10.0.t, color: AppColor.dark_gray_1),
+                    style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: AppColor.dark_gray_1),
                   ),
                 ),
                 Padding(
@@ -113,7 +112,7 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.03),
+                  padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.06),
                   child: Directionality(
                     textDirection: TextDirection.ltr,
                     child: NumericKeyboard(

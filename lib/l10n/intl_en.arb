@@ -1834,6 +1834,9 @@
   "eVouchersSettings": "eVouchers",
   "evoucherUnderProcessing": "E-voucher under processing",
   "transactions": "Transactions",
-  "next": "Next",
-  "payNewBill": "Pay New Bill"
+  "payNewBill": "Pay New Bill",
+  "newPayment" : "New Payment",
+  "newPostPaidBill" : "New Postpaid Bill",
+  "newPrePaidBill" : "New Prepaid Bill"
+  "next": "Next"
 }
