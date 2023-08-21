@@ -18,8 +18,6 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../app_home/app_home_view_model.dart';
-
 class CreditCardSettingsViewModel extends BasePageViewModel {
   final CreditCardSettingsArguments creditCardSettingsArguments;
   final FreezeCreditCardUseCase _freezeCreditCardUseCase;

@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:data/entity/local/base/device_info_service.dart';
 import 'package:data/entity/remote/base/base_class.dart';
-import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_jailbreak_detection/flutter_jailbreak_detection.dart';
@@ -10,7 +9,6 @@ import 'package:flutter_udid/flutter_udid.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class DeviceInfoHelper extends DeviceInfoService {
-  final DeviceInfoPlugin _deviceInfoPlugin = DeviceInfoPlugin();
 
   String platformType() {
     return Platform.isAndroid ? 'A' : 'I';

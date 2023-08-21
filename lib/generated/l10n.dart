@@ -18120,16 +18120,6 @@ class S {
     );
   }
 
-  /// `Next`
-  String get next {
-    return Intl.message(
-      'Next',
-      name: 'next',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Pay New Bill`
   String get payNewBill {
     return Intl.message(
@@ -18165,6 +18155,166 @@ class S {
     return Intl.message(
       'New Prepaid Bill',
       name: 'newPrePaidBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Transaction failed; your account is inactive. Call us on 06-5200100 to activate your account.`
+  String get dormantAccountTransactionFailed {
+    return Intl.message(
+      'Oops! Transaction failed; your account is inactive. Call us on 06-5200100 to activate your account.',
+      name: 'dormantAccountTransactionFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `When you freeze your card, your card cannot be used for any transaction including direct debit on your card such as your online subscriptions directly linked to your card, for example: Netflix, Careem, OSN, etc.`
+  String get whenYouFreezeYourCard {
+    return Intl.message(
+      'When you freeze your card, your card cannot be used for any transaction including direct debit on your card such as your online subscriptions directly linked to your card, for example: Netflix, Careem, OSN, etc.',
+      name: 'whenYouFreezeYourCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can unfreeze and activate your card anytime from the app.`
+  String get youCanUnFreeze {
+    return Intl.message(
+      'You can unfreeze and activate your card anytime from the app.',
+      name: 'youCanUnFreeze',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unavailable`
+  String get unavailable {
+    return Intl.message(
+      'Unavailable',
+      name: 'unavailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer`
+  String get transfer {
+    return Intl.message(
+      'Transfer',
+      name: 'transfer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your transfer details`
+  String get transferHeader {
+    return Intl.message(
+      'Enter your transfer details',
+      name: 'transferHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer from`
+  String get transferFrom {
+    return Intl.message(
+      'Transfer from',
+      name: 'transferFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main Account-Primary`
+  String get mainAccountPrimary {
+    return Intl.message(
+      'Main Account-Primary',
+      name: 'mainAccountPrimary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer To`
+  String get transferTo {
+    return Intl.message(
+      'Transfer To',
+      name: 'transferTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sub Account - Savings`
+  String get subAccountSavings {
+    return Intl.message(
+      'Sub Account - Savings',
+      name: 'subAccountSavings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Success!`
+  String get successExclmn {
+    return Intl.message(
+      'Success!',
+      name: 'successExclmn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Congratulations, your new account has been opened successfully!`
+  String get openAccountSucessDescription {
+    return Intl.message(
+      'Congratulations, your new account has been opened successfully!',
+      name: 'openAccountSucessDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go to Dashboard`
+  String get goToDashboard {
+    return Intl.message(
+      'Go to Dashboard',
+      name: 'goToDashboard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Transaction failed; your account is inactive.`
+  String get accountInactive {
+    return Intl.message(
+      'Oops! Transaction failed; your account is inactive.',
+      name: 'accountInactive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Transaction failed; your account cannot be debited.`
+  String get accountCannotBeDebited {
+    return Intl.message(
+      'Oops! Transaction failed; your account cannot be debited.',
+      name: 'accountCannotBeDebited',
       desc: '',
       args: [],
     );

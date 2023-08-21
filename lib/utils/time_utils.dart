@@ -171,13 +171,6 @@ class TimeUtils {
     return formatter.format(dateTime);
   }
 
-  static String convertUtcToLocal(String utcTime) {
-    DateFormat inputFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
-    DateTime utcDateTime = inputFormat.parse(utcTime, true).toLocal();
-    String formattedLocalTime = DateFormat('hh:mm a').format(utcDateTime);
-    return formattedLocalTime;
-  }
-
   static String convertUTCDateToLocal(String date) {
     try {
       final DateTime dateTime = DateFormat('yyyy-MM-dd HH:mm:ss', 'en').parse(date, true).toLocal();
