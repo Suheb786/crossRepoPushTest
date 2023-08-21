@@ -1504,7 +1504,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "احصل على حساب بلينك اليوم. طرفة عين الآن!"),
         "goBack": MessageLookupByLibrary.simpleMessage("الرجوع"),
         "goToDashboard":
-            MessageLookupByLibrary.simpleMessage("Go to Dashboard"),
+            MessageLookupByLibrary.simpleMessage("العودة إلى الشاشة الرئيسية"),
         "governmentService":
             MessageLookupByLibrary.simpleMessage("خدمات حكومية"),
         "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage(
@@ -2191,8 +2191,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفوا! الاسم المستعار المدخل غير مسجل"),
         "openAccount": MessageLookupByLibrary.simpleMessage("افتح حساب"),
         "openAccountNow": MessageLookupByLibrary.simpleMessage("افتح حساب هلأ"),
-        "openAccountSucessDescription": MessageLookupByLibrary.simpleMessage(
-            "Congratulations, your new account has been opened successfully!"),
+        "openAccountSucessDescription":
+            MessageLookupByLibrary.simpleMessage("لقد تم فتح الحساب بنجاح."),
         "openDateIssuedMessage": MessageLookupByLibrary.simpleMessage(
             "تم رفض دفع الفاتوره بسبب عدم استحقاقها"),
         "openYourAccountNow":
@@ -2976,12 +2976,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "transactionPurpose":
             MessageLookupByLibrary.simpleMessage("سبب الحركة"),
         "transactionType": MessageLookupByLibrary.simpleMessage("نوع الحركة"),
-        "transfer": MessageLookupByLibrary.simpleMessage("Transfer"),
+        "transfer": MessageLookupByLibrary.simpleMessage("التحويل"),
         "transferCannotbeDone": MessageLookupByLibrary.simpleMessage(
             "عفوا! لا يمكن التحويل، لازم اتعدل تفاصيل صديقك المستفيد"),
-        "transferFrom": MessageLookupByLibrary.simpleMessage("Transfer from"),
-        "transferHeader":
-            MessageLookupByLibrary.simpleMessage("Enter your transfer details"),
+        "transferFrom": MessageLookupByLibrary.simpleMessage("التحويل من"),
+        "transferHeader": MessageLookupByLibrary.simpleMessage(
+            "أدخل تفاصيل الحوالة واختر الحسابات"),
         "transferTo": MessageLookupByLibrary.simpleMessage("Transfer To"),
         "transferTypeNF": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-117)"),
