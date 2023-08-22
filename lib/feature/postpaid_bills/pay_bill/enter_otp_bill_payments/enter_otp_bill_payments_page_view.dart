@@ -26,6 +26,8 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../../ui/molecules/button/app_primary_button.dart';
+import '../../../../utils/color_utils.dart';
 import 'enter_otp_bill_payments_view_model.dart';
 
 class EnterOtpBillPaymentsPageView extends BasePageViewWidget<EnterOtpBillPaymentsViewModel> {
@@ -145,81 +147,7 @@ class EnterOtpBillPaymentsPageView extends BasePageViewWidget<EnterOtpBillPaymen
                               duration: Duration(milliseconds: 100),
                               shakeAngle: Rotation.deg(z: 1),
                               curve: Curves.easeInOutSine,
-                              child: GestureDetector(
-                                onHorizontalDragEnd: (details) {
-                                  FocusScope.of(context).unfocus();
-                                  if (ProviderScope.containerOf(context)
-                                          .read(payBillPageViewModelProvider)
-                                          .appSwiperController
-                                          .page ==
-                                      2.0) {
-                                    if (StringUtils.isDirectionRTL(context)) {
-                                      if (!details.primaryVelocity!.isNegative) {
-                                        if (model.otpController.text.length < 6) {
-                                          AppError(
-                                              error: ErrorInfo(message: ''),
-                                              type: ErrorType.INVALID_OTP,
-                                              cause: Exception());
-                                          return;
-                                        } else {
-                                          if (ProviderScope.containerOf(context)
-                                                      .read(confirmBillPaymentAmountPageViewModelProvider)
-                                                      .isOtpSend ==
-                                                  true &&
-                                              ProviderScope.containerOf(context)
-                                                      .read(confirmBillPaymentAmountPageViewModelProvider)
-                                                      .isOtpRequired ==
-                                                  true) {
-                                            if (AppConstantsUtils.BILLER_TYPE ==
-                                                AppConstantsUtils.PREPAID_KEY) {
-                                              model.payPrePaidBill(context);
-                                            } else if (AppConstantsUtils.BILLER_TYPE ==
-                                                AppConstantsUtils.POSTPAID_KEY) {
-                                              model.payPostPaidBill(context);
-                                            }
-                                          }
-                                        }
-                                      } else {
-                                        ProviderScope.containerOf(context)
-                                            .read(payBillPageViewModelProvider)
-                                            .previousPage();
-                                      }
-                                    } else {
-                                      if (details.primaryVelocity!.isNegative) {
-                                        if (model.otpController.text.length < 6) {
-                                          AppError(
-                                              error: ErrorInfo(message: ''),
-                                              type: ErrorType.INVALID_OTP,
-                                              cause: Exception());
-                                          return;
-                                        } else {
-                                          if (ProviderScope.containerOf(context)
-                                                      .read(confirmBillPaymentAmountPageViewModelProvider)
-                                                      .isOtpSend ==
-                                                  true &&
-                                              ProviderScope.containerOf(context)
-                                                      .read(confirmBillPaymentAmountPageViewModelProvider)
-                                                      .isOtpRequired ==
-                                                  true) {
-                                            if (AppConstantsUtils.BILLER_TYPE ==
-                                                AppConstantsUtils.PREPAID_KEY) {
-                                              model.payPrePaidBill(context);
-                                            } else if (AppConstantsUtils.BILLER_TYPE ==
-                                                AppConstantsUtils.POSTPAID_KEY) {
-                                              model.payPostPaidBill(context);
-                                            }
-                                          }
-                                        }
-                                      } else {
-                                        ProviderScope.containerOf(context)
-                                            .read(payBillPageViewModelProvider)
-                                            .previousPage();
-                                      }
-                                    }
-                                  }
-                                },
-                                child: _cardView(context, model),
-                              ),
+                              child: _cardView(context, model),
                             );
                           });
                     },
@@ -294,20 +222,49 @@ class EnterOtpBillPaymentsPageView extends BasePageViewWidget<EnterOtpBillPaymen
                       },
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 16.0.t, bottom: 74.0),
+                      padding: EdgeInsets.only(top: 16.0.t, bottom: 16.0.t),
                       child: AppStreamBuilder<bool>(
                           stream: model.showButtonStream,
                           initialData: false,
                           dataBuilder: (context, isValid) {
-                            return Visibility(
-                              visible: isValid!,
-                              child: AnimatedButton(
-                                buttonHeight: 50,
-                                buttonText: S.of(context).swipeToProceed,
-                              ),
-                            );
+                            return AppPrimaryButton(
+                                text: S.of(context).next,
+                                isDisabled: !isValid!,
+                                onPressed: () {
+                                  if (ProviderScope.containerOf(context)
+                                              .read(confirmBillPaymentAmountPageViewModelProvider)
+                                              .isOtpSend ==
+                                          true &&
+                                      ProviderScope.containerOf(context)
+                                              .read(confirmBillPaymentAmountPageViewModelProvider)
+                                              .isOtpRequired ==
+                                          true) {
+                                    if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.PREPAID_KEY) {
+                                      model.payPrePaidBill(context);
+                                    } else if (AppConstantsUtils.BILLER_TYPE ==
+                                        AppConstantsUtils.POSTPAID_KEY) {
+                                      model.payPostPaidBill(context);
+                                    }
+                                  }
+                                });
                           }),
-                    )
+                    ),
+                    InkWell(
+                      onTap: () {
+                        ProviderScope.containerOf(context)
+                            .read(payBillPageViewModelProvider)
+                            .previousPage();
+                      },
+                      child: Text(
+                        S.of(context).backToPayments,
+                        style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          fontSize: 14.0.t,
+                          fontWeight: FontWeight.w600,
+                          color: AppColor.brightBlue,
+                        ),
+                      ),
+                    ),
                   ],
                 )
               ],
