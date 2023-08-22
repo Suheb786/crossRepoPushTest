@@ -31,6 +31,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
+import '../../../../../feature/manage_cliq_id/cliq_id_list/cliq_id_list_page.dart';
 import '../../../../../main/navigation/cutom_route.dart';
 
 class SettingsDialogView extends StatefulWidget {
@@ -129,7 +130,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                       ///CLIQ
                       PagesWidget(
                         onTap: () {
-                          Navigator.pushNamed(context, RoutePaths.CliqIdList);
+                          Navigator.of(context).push(CustomRoute.swipeUpRoute(CliqIdListPage()));
                         },
                         key: 'CLIQ',
                         child: SettingsMenuWidget(
