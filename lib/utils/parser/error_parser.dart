@@ -1183,6 +1183,8 @@ class ErrorParser {
         return localisedHelper.selectAtLeastOneBill;
       case ErrorType.DORMANT_ACCOUNT:
         return localisedHelper.accountDormant;
+      case ErrorType.DORMANT_ACCOUNT_TRANSACTION_FAILED:
+        return localisedHelper.dormantAccountTransactionFailed;
       case ErrorType.ERROR_WHILE_GETTING_ALIAS:
         return localisedHelper.errorWhileGettingAlias;
       case ErrorType.ERROR_WHILE_GETTING_ACCOUNT_BY_ALIAS:
@@ -1379,6 +1381,10 @@ class ErrorParser {
         return localisedHelper.maxValueGreaterThanMin;
       case ErrorType.SELECT_CATEGORY_FIRST:
         return localisedHelper.selectCategoryFirst;
+      case ErrorType.ACCOUNT_INACTIVE:
+        return localisedHelper.accountInactive;
+      case ErrorType.ACCOUNT_CANNOT_BE_DEBITED:
+        return localisedHelper.accountCannotBeDebited;
       default:
         return "";
     }

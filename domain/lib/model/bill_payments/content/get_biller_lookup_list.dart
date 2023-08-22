@@ -3,6 +3,7 @@ class GetBillerLookupList {
   String? serviceCode;
   String? paymentType;
   String? serviceDescriptionAr;
+
   GetBillerLookupList({
     this.serviceType,
     this.serviceCode,

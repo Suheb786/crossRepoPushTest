@@ -24,14 +24,14 @@ class SaveResidenceInformationRequest {
   final Map<String, dynamic> baseData;
 
   SaveResidenceInformationRequest(
-      {this.residantCountry= "",
-      this.buildingName= "",
-      this.streetName= "",
-      this.area= "",
-      this.cityId= "",
-      this.stateID= "",
-      this.perCountry= "",
-      this.perCity= "",
+      {this.residantCountry = "",
+      this.buildingName = "",
+      this.streetName = "",
+      this.area = "",
+      this.cityId = "",
+      this.stateID = "",
+      this.perCountry = "",
+      this.perCity = "",
       required this.baseData});
 
   factory SaveResidenceInformationRequest.fromJson(Map<String, dynamic> json) =>

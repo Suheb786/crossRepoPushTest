@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/enum/account_status_enum.dart';
 import 'package:domain/constants/enum/card_type.dart';
+import 'package:domain/constants/enum/evoucher_landing_page_navigation_type_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/model/qr/verify_qr_response.dart';
@@ -16,6 +17,7 @@ import 'package:neo_bank/feature/apple_pay/selected_card_for_apple_pay/selected_
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_page.dart';
+import 'package:neo_bank/feature/evoucher/evoucher/evoucher_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -76,7 +78,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
                         ///RJ Pop up
-                        if (!(data.data?.isRJPopUPClicked ?? false) && (model.dashboardDataContent.dashboardFeatures?.isRJFeatureEnabled ?? true)) {
+                        if (!(data.data?.isRJPopUPClicked ?? false) &&
+                            (model.dashboardDataContent.dashboardFeatures?.isRJFeatureEnabled ?? false)) {
                           RjDialog.show(
                             context,
                             image: AssetUtils.flight,
@@ -90,13 +93,18 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                             descriptionWidget: Text(
                               S.of(context).bookFligtWithUsDescrption,
                               textAlign: TextAlign.start,
-                              style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.surfaceVariant, fontSize: 14),
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  color: Theme.of(context).colorScheme.surfaceVariant,
+                                  fontSize: 14),
                             ),
                           );
                         }
 
                         ///Efawateer pop up
-                        if (!(data.data?.isEfawateerPopUPClicked ?? false) && (model.dashboardDataContent.dashboardFeatures?.blinkRetailAppBillPayment ?? true)) {
+                        if (!(data.data?.isEfawateerPopUPClicked ?? false) &&
+                            (model.dashboardDataContent.dashboardFeatures?.blinkRetailAppBillPayment ??
+                                false)) {
                           EfawateerLandingDialog.show(context,
                               title: S.current.payYourBillswithBlink,
                               descriptionWidget: Text(S.current.youCanPayAllYourBillsNow),
@@ -111,12 +119,14 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                 Navigator.pop(context);
                                 data.data?.isEfawateerPopUPClicked = true;
                                 model.saveCurrentUserData(user: data.data!);
-                                Navigator.pushNamed(context, RoutePaths.PaymentHome, arguments: NavigationType.REQUEST_MONEY);
+                                Navigator.pushNamed(context, RoutePaths.PaymentHome,
+                                    arguments: NavigationType.REQUEST_MONEY);
                               });
                         }
 
                         ///e-voucher pop up
-                        if (!(data.data?.isEVoucherPopUPClicked ?? false) && (model.dashboardDataContent.dashboardFeatures?.eVouchers ?? true)) {
+                        if (!(data.data?.isEVoucherPopUPClicked ?? false) &&
+                            (model.dashboardDataContent.dashboardFeatures?.eVouchers ?? false)) {
                           EvoucherDialog.show(context, isSwipeToCancel: true, onDismissed: () {
                             Navigator.pop(context);
                             data.data?.isEVoucherPopUPClicked = true;
@@ -125,12 +135,15 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                             Navigator.pop(context);
                             data.data?.isEVoucherPopUPClicked = true;
                             model.saveCurrentUserData(user: data.data!);
-                            Navigator.pushNamed(context, RoutePaths.Evoucher);
+                            Navigator.pushNamed(context, RoutePaths.Evoucher,
+                                arguments: EvoucherPageArguments(
+                                    EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING));
                           });
                         }
 
                         ///Show account status pop up
-                        if (model.dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.DORMANT) {
+                        if (model.dashboardDataContent.account?.accountStatusEnum ==
+                            AccountStatusEnum.DORMANT) {
                           model.showAccountDormantPopUp(true);
                         }
                       }
@@ -151,7 +164,11 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                         doneImage: AssetUtils.contactUs,
                                         descriptionWidget: Text(
                                           S.of(context).accountDormantStatusDesc,
-                                          style: TextStyle(color: Theme.of(context).colorScheme.surface, fontFamily: StringUtils.appFont, fontSize: 14.0.t, height: 1.7),
+                                          style: TextStyle(
+                                              color: Theme.of(context).colorScheme.surface,
+                                              fontFamily: StringUtils.appFont,
+                                              fontSize: 14.0.t,
+                                              height: 1.7),
                                         ), onDismissed: () {
                                       Navigator.pop(context);
                                     }, onSelected: () {
@@ -214,11 +231,30 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     onHorizontalDragEnd: (details) {},
                                                     onVerticalDragEnd: (details) {
                                                       if (details.primaryVelocity!.isNegative) {
-                                                        if (model.cardTypeList[currentStep!].cardType == CardType.ACCOUNT) {
-                                                          Navigator.pushNamed(context, RoutePaths.AccountTransaction);
-                                                        } else if (model.cardTypeList[currentStep].cardType == CardType.CREDIT && model.cardTypeList[currentStep].swipeUpEnum == SwipeUpEnum.SWIPE_UP_YES) {
-                                                          Navigator.pushNamed(context, RoutePaths.CardTransaction,
-                                                              arguments: GetCreditCardTransactionArguments(cardId: model.timeLineListArguments[currentStep - 1].cardId));
+                                                        if (model.cardTypeList[currentStep!].cardType ==
+                                                            CardType.ACCOUNT) {
+                                                          Navigator.pushNamed(
+                                                              context, RoutePaths.AccountTransaction);
+                                                        } else if (model.cardTypeList[currentStep].cardType ==
+                                                                CardType.CREDIT &&
+                                                            model.cardTypeList[currentStep].swipeUpEnum ==
+                                                                SwipeUpEnum.SWIPE_UP_YES) {
+                                                          Navigator.pushNamed(
+                                                              context, RoutePaths.CardTransaction,
+                                                              arguments: GetCreditCardTransactionArguments(
+                                                                  isIssuedFromCMS: model
+                                                                          .timeLineListArguments[
+                                                                              currentStep - 1]
+                                                                          .isIssuedFromCMS ??
+                                                                      false,
+                                                                  secureCode: model
+                                                                          .timeLineListArguments[
+                                                                              currentStep - 1]
+                                                                          .secureCode ??
+                                                                      '',
+                                                                  cardId: model
+                                                                      .timeLineListArguments[currentStep - 1]
+                                                                      .cardId));
                                                         }
                                                       } else {
                                                         if (details.primaryVelocity! > 0.5) {

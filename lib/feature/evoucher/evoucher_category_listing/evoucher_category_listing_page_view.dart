@@ -60,10 +60,9 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
             ),
           ),
           Expanded(
-            child: AppStreamBuilder<Resource<List<VoucherItem>>>(
+            child: AppStreamBuilder<Resource<List<List<VoucherItem>>>>(
                 initialData: Resource.none(),
                 stream: model.voucherItemFilterResponseStream,
-                
                 dataBuilder: (context, categoryVouchers) {
                   switch (categoryVouchers?.status) {
                     case Status.SUCCESS:
@@ -71,12 +70,14 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
                           ? ListView.separated(
                               itemBuilder: (context, index) {
                                 return EVoucherCategoryListWidget(
-                                  imageUrl: categoryVouchers?.data?[index].cardFaceImage ?? "",
-                                  onTap: () => Navigator.pushNamed(context, RoutePaths.EVouchersPurchase,
-                                      arguments: PurchaseEVoucherPageArgument(
-                                          voucherItems: model.voucherItems,
-                                          selectedItem: categoryVouchers!.data![index])),
-                                  categoryVoucher: categoryVouchers!.data![index],
+                                  imageUrl: categoryVouchers?.data?[index].first.cardFaceImage ?? '',
+                                  onTap: () {
+                                    Navigator.pushNamed(context, RoutePaths.EVouchersPurchase,
+                                        arguments: PurchaseEVoucherPageArgument(
+                                          voucherItems: categoryVouchers?.data?[index] ?? [],
+                                        ));
+                                  },
+                                  categoryVoucherName: categoryVouchers?.data?[index].first.brand,
                                 );
                               },
                               separatorBuilder: (context, int) {

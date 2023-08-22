@@ -39,6 +39,13 @@ class DownloadStatementArguments {
   final StatementType statementType;
   final String transactionDate;
   final String cardId;
+  final String secureCode;
+  final bool issuedFromCms;
 
-  DownloadStatementArguments({required this.statementType, required this.transactionDate, this.cardId = ''});
+  DownloadStatementArguments(
+      {required this.statementType,
+      required this.transactionDate,
+      this.cardId = '',
+      required this.secureCode,
+      required this.issuedFromCms});
 }

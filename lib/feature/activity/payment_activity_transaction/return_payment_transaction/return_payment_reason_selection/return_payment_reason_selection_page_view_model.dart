@@ -57,6 +57,7 @@ class ReturnPaymentReasonSelectionPageViewModel extends BasePageViewModel {
 
   PublishSubject<Resource<bool>> _requestPaymentReasonValidationResponse = PublishSubject();
   final GetRejectionReasonUseCase _getRejectionReasonUseCase;
+
   ReturnPaymentReasonSelectionPageViewModel(this._returnPaymentTransactionUsecase,
       this._getRejectionReasonUseCase, this._returnRTPrequestOTPUsecase) {
     _requestPaymentReasonValidationRequest.listen((params) {

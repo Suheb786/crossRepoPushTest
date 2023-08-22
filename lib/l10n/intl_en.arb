@@ -1838,5 +1838,20 @@
   "newPayment": "New Payment",
   "newPostPaidBill": "New Postpaid Bill",
   "newPrePaidBill": "New Prepaid Bill",
-  "next": "Next"
+  "next": "Next",
+  "dormantAccountTransactionFailed": "Oops! Transaction failed; your account is inactive. Call us on 06-5200100 to activate your account.",
+  "whenYouFreezeYourCard": "When you freeze your card, your card cannot be used for any transaction including direct debit on your card such as your online subscriptions directly linked to your card, for example: Netflix, Careem, OSN, etc.",
+  "youCanUnFreeze": "You can unfreeze and activate your card anytime from the app.",
+  "unavailable": "Unavailable",
+  "transfer": "Transfer",
+  "transferHeader": "Enter your transfer details",
+  "transferFrom": "Transfer from",
+  "mainAccountPrimary": "Main Account-Primary",
+  "transferTo": "Transfer To",
+  "subAccountSavings": "Sub Account - Savings",
+  "successExclmn": "Success!",
+  "openAccountSucessDescription": "Congratulations, your new account has been opened successfully!",
+  "goToDashboard": "Go to Dashboard",
+  "accountInactive": "Oops! Transaction failed; your account is inactive.",
+  "accountCannotBeDebited": "Oops! Transaction failed; your account cannot be debited."
 }

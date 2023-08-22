@@ -1,5 +1,5 @@
 class PurposeOfAccountOpeningResponse {
   final bool? isSuccess;
 
-  PurposeOfAccountOpeningResponse({this.isSuccess= false});
+  PurposeOfAccountOpeningResponse({this.isSuccess = false});
 }

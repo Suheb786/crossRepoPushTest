@@ -179,7 +179,6 @@ class StepTextHelper {
         return step1;
     }
   }
-  
 
   static String returnPaymentStepTextHelper(
     int index,

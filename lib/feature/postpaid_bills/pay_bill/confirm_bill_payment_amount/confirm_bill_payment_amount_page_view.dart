@@ -525,8 +525,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
   }
 
   _feeAmountWidget(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
-    return model.feeAmtController.text.isNotEmpty &&
-            double.parse(model.feeAmtController.text) > 0.0
+    return model.feeAmtController.text.isNotEmpty && double.parse(model.feeAmtController.text) > 0.0
         ? Padding(
             padding: EdgeInsetsDirectional.only(
               top: 8.0.h,
@@ -561,8 +560,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
   }
 
   _totalAmountViewWidget(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
-    return model.feeAmtController.text.isNotEmpty &&
-            double.parse(model.feeAmtController.text) > 0.0
+    return model.feeAmtController.text.isNotEmpty && double.parse(model.feeAmtController.text) > 0.0
         ? Padding(
             padding: EdgeInsetsDirectional.only(
               top: 8.0.h,

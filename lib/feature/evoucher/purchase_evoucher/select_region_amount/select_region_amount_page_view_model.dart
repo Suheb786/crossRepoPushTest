@@ -6,7 +6,6 @@ import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
 import 'package:domain/usecase/evouchers/select_region_amount_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -17,7 +16,6 @@ import 'package:rxdart/rxdart.dart';
 
 class SelectRegionAmountPageViewModel extends BasePageViewModel {
   final GetSettlementAmountUseCase getSettlementAmountUseCase;
-  final PurchaseEVoucherPageArgument argument;
   final SelectRegionAmountUseCase _selectRegionAmountUseCase;
 
   List<VoucherItem> voucherItems = [];
@@ -51,8 +49,7 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  SelectRegionAmountPageViewModel(
-      this._selectRegionAmountUseCase, this.argument, this.getSettlementAmountUseCase) {
+  SelectRegionAmountPageViewModel(this._selectRegionAmountUseCase, this.getSettlementAmountUseCase) {
     _selectRegionAmountRequest.listen((value) {
       RequestManager(value, createCall: () => _selectRegionAmountUseCase.execute(params: value))
           .asFlow()
@@ -77,6 +74,14 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           settlementAmount = event.data?.content ?? 0.0;
+
+          ///To sort selected region
+          selectedItem = voucherItems.firstWhere(
+              (element) =>
+                  (element.countryCode.isoCode == selectedRegion.isoCode) &&
+                  (element.fromValue.toStringAsFixed(3) == amountController.text.split(' ').first &&
+                      (element.currency == amountController.text.split(' ').last)),
+              orElse: () => voucherItems.first);
         }
       });
     });
@@ -120,12 +125,9 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
   }
 
   void getRegionFromVoucherIds(BuildContext context) {
-    List<VoucherItem> vouchersWithSameProductId =
-        voucherItems.where((items) => items.productId == selectedItem.productId).toList();
-
     Set<VoucherRegionByCategories> countries = Set<VoucherRegionByCategories>();
 
-    for (var value in vouchersWithSameProductId) {
+    for (var value in voucherItems) {
       countries.add(VoucherRegionByCategories(
           countryName: StringUtils.isDirectionRTL(context)
               ? value.countryCode.countryNameAR
@@ -139,21 +141,9 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
   }
 
   void getVoucherValue() {
-    List<VoucherItem> vouchersWithSameProductIdAndCountry = [];
-    if (selectedRegion.isoCode == null) {
-      vouchersWithSameProductIdAndCountry =
-          voucherItems.where((items) => items.productId == selectedItem.productId).toList();
-    } else {
-      vouchersWithSameProductIdAndCountry = voucherItems
-          .where((items) =>
-              items.productId == selectedItem.productId &&
-              items.countryCode.isoCode == selectedRegion.isoCode)
-          .toList();
-    }
-
     List<String> prices = [];
-    for (var value in vouchersWithSameProductIdAndCountry) {
-      prices.add(value.fromValue.toString() + " " + value.currency);
+    for (var value in voucherItems) {
+      prices.add(value.fromValue.toStringAsFixed(3) + " " + value.currency);
     }
 
     /// Sort the list of prices as numbers in ascending order
@@ -164,7 +154,7 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
     });
 
     voucherValue.clear();
-    voucherValue.addAll(prices);
+    voucherValue.addAll(prices.toSet().toList());
   }
 
   @override

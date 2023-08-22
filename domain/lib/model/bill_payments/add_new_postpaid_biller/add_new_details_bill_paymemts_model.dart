@@ -1,5 +1,5 @@
 class AddNewDetailsBillPaymentsModel {
-   String? amount;
+  String? amount;
   String? actualAmountFromApi;
   String? nickName;
   String? billerName;

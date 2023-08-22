@@ -9,7 +9,7 @@ class ContentEntity implements BaseLayerDataTransformer<ContentEntity, Content> 
   @JsonKey(name: "isExisting")
   final bool? isExisting;
 
-  ContentEntity({this.isExisting= false});
+  ContentEntity({this.isExisting = false});
 
   factory ContentEntity.fromJson(Map<String, dynamic> json) => _$ContentEntityFromJson(json);
 

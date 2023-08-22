@@ -43,7 +43,9 @@ class ReferenceNumberPageState extends BaseStatefulPage<ReferenceNumberPageViewM
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).colorScheme.secondary),
               ),
             ),
             Padding(

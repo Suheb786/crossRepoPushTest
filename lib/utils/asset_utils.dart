@@ -230,4 +230,7 @@ class AssetUtils {
   static const String swipeUpSmall = svg + "swipe_up_small.svg";
   static const String moreMenu = svg + "more_menu.svg";
 
+
+  ///dialog png
+  static const String close_bold = drawable + "close_bold.png";
 }

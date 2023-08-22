@@ -9,7 +9,7 @@ class CheckUserNameMobileRequest {
   @JsonKey(name: "content")
   final Map<String, dynamic>? content;
 
-  CheckUserNameMobileRequest({this.channelId= "01", required this.content});
+  CheckUserNameMobileRequest({this.channelId = "01", required this.content});
 
   factory CheckUserNameMobileRequest.fromJson(Map<String, dynamic> json) =>
       _$CheckUserNameMobileRequestFromJson(json);

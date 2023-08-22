@@ -46,6 +46,7 @@ class ReturnRTPrequestUsecaseParams extends Params {
   final String? DisputeRefNo;
   final String? OtpCode;
   final bool GetToken;
+
   ReturnRTPrequestUsecaseParams({
     required this.CustID,
     required this.MessageID,

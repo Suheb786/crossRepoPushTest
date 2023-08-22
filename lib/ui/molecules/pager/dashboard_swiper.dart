@@ -1,8 +1,8 @@
-import 'package:card_swiper/card_swiper.dart';
+import 'dart:math' as math;
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'dart:math' as math;
 
 import '../../../feature/dashboard_home/app_home/app_home_view_model.dart';
 import '../../../utils/device_size_helper.dart';

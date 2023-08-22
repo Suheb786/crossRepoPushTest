@@ -1,6 +1,6 @@
+import 'package:domain/model/e_voucher/place_order.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:domain/model/e_voucher/place_order.dart';
 
 import '../../user/response_entity.dart';
 

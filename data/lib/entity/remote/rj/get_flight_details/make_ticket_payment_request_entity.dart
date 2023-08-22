@@ -19,7 +19,7 @@ class MakeTicketPaymentRequestEntity {
 
   MakeTicketPaymentRequestEntity(
       {required this.baseData,
-      this.getToken= true,
+      this.getToken = true,
       this.referenceNumber,
       this.amount,
       this.accountNo,

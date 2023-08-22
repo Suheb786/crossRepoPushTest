@@ -9,7 +9,6 @@ import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page_view_new.
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
-import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../ui/molecules/dashboard/bottom_bar_widget.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';

@@ -4,5 +4,5 @@ class SetFatcaResponseContent {
   final String? data;
   final FatcaEnum? requestResponse;
 
-  SetFatcaResponseContent({this.data= "", this.requestResponse= FatcaEnum.NONE});
+  SetFatcaResponseContent({this.data = "", this.requestResponse = FatcaEnum.NONE});
 }

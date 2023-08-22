@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -82,6 +81,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Account balance"),
         "accountBlink":
             MessageLookupByLibrary.simpleMessage("Account No. (Blink)"),
+        "accountCannotBeDebited": MessageLookupByLibrary.simpleMessage(
+            "Oops! Transaction failed; your account cannot be debited."),
         "accountCard": MessageLookupByLibrary.simpleMessage("Account Card"),
         "accountClaimNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
@@ -105,6 +106,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Your account is inactive!"),
         "accountHolderName":
             MessageLookupByLibrary.simpleMessage("account holder name"),
+        "accountInactive": MessageLookupByLibrary.simpleMessage(
+            "Oops! Transaction failed; your account is inactive."),
         "accountInquiryWentWrong": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-010)"),
         "accountInquiryWentWrong61": MessageLookupByLibrary.simpleMessage(
@@ -924,6 +927,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Unfortunately, your credit card application has failed!"),
         "dormantAccountPhysicalCardReq": MessageLookupByLibrary.simpleMessage(
             "Oops! You cannot request your physical card as your account is inactive. Call us on 06-5200100 to activate your account."),
+        "dormantAccountTransactionFailed": MessageLookupByLibrary.simpleMessage(
+            "Oops! Transaction failed; your account is inactive. Call us on 06-5200100 to activate your account."),
         "downloadStatement":
             MessageLookupByLibrary.simpleMessage("Download Statement"),
         "dragMap": MessageLookupByLibrary.simpleMessage(
@@ -1531,6 +1536,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "\n\nGet your blink account today."),
         "goBack": MessageLookupByLibrary.simpleMessage("Go back"),
+        "goToDashboard":
+            MessageLookupByLibrary.simpleMessage("Go to Dashboard"),
         "governmentService":
             MessageLookupByLibrary.simpleMessage("Government Service"),
         "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage(
@@ -1969,6 +1976,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Mailing address different from residence address?"),
         "mailingAddressLine":
             MessageLookupByLibrary.simpleMessage("MAILING address Line"),
+        "mainAccountPrimary":
+            MessageLookupByLibrary.simpleMessage("Main Account-Primary"),
         "mainAnnualIncome":
             MessageLookupByLibrary.simpleMessage("MAIN ANNUAL INCOME"),
         "mainAnnualIncomeSmall":
@@ -2240,6 +2249,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "openAccount": MessageLookupByLibrary.simpleMessage("Open an Account"),
         "openAccountNow":
             MessageLookupByLibrary.simpleMessage("Open Account Now"),
+        "openAccountSucessDescription": MessageLookupByLibrary.simpleMessage(
+            "Congratulations, your new account has been opened successfully!"),
         "openDateIssuedMessage": MessageLookupByLibrary.simpleMessage(
             "Payment cannot be completed because the bill date is not reached Yet"),
         "openYourAccountNow":
@@ -2889,12 +2900,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "streetAddressSmall":
             MessageLookupByLibrary.simpleMessage("Street Address"),
         "streetName": MessageLookupByLibrary.simpleMessage("STREET NAME"),
+        "subAccountSavings":
+            MessageLookupByLibrary.simpleMessage("Sub Account - Savings"),
         "submittedFor": MessageLookupByLibrary.simpleMessage(
             "We are processing your request and we will notify you once ready"),
         "subscription": MessageLookupByLibrary.simpleMessage("subscriptions"),
         "subscriptionPopUpInfo": MessageLookupByLibrary.simpleMessage(
             "Please remember that the card you reported as stolen/lost had the following subscription. You will need to update you subscription with your new card details."),
         "success": MessageLookupByLibrary.simpleMessage("SUCCESS"),
+        "successExclmn": MessageLookupByLibrary.simpleMessage("Success!"),
         "successS": MessageLookupByLibrary.simpleMessage("Success"),
         "successfullyCreatedLoginAccount": MessageLookupByLibrary.simpleMessage(
             "You have successfully created your profile, now let\'s get your account up and running."),
@@ -3055,8 +3069,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "transaction_period":
             MessageLookupByLibrary.simpleMessage("Transaction Period"),
         "transactions": MessageLookupByLibrary.simpleMessage("Transactions"),
+        "transfer": MessageLookupByLibrary.simpleMessage("Transfer"),
         "transferCannotbeDone": MessageLookupByLibrary.simpleMessage(
             "Oops! Sending money failed, contact details need to be updated"),
+        "transferFrom": MessageLookupByLibrary.simpleMessage("Transfer from"),
+        "transferHeader":
+            MessageLookupByLibrary.simpleMessage("Enter your transfer details"),
+        "transferTo": MessageLookupByLibrary.simpleMessage("Transfer To"),
         "transferTypeNF": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. "),
         "transferTypeNFRTP": MessageLookupByLibrary.simpleMessage(
@@ -3088,6 +3107,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777."),
         "unauthorize": MessageLookupByLibrary.simpleMessage(
             "Oops! We are unable to authorize you. User might not be registered or something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-u)"),
+        "unavailable": MessageLookupByLibrary.simpleMessage("Unavailable"),
         "unblockCardPin":
             MessageLookupByLibrary.simpleMessage("Unblock card PIN"),
         "unblockCreditCardPinError": MessageLookupByLibrary.simpleMessage(
@@ -3254,6 +3274,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "What’s your email and mobile number?"),
         "whenAcceptingCreationOfYourCliqId": MessageLookupByLibrary.simpleMessage(
             "When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ."),
+        "whenYouFreezeYourCard": MessageLookupByLibrary.simpleMessage(
+            "When you freeze your card, your card cannot be used for any transaction including direct debit on your card such as your online subscriptions directly linked to your card, for example: Netflix, Careem, OSN, etc."),
         "whereDoYouCurrentlyLive": MessageLookupByLibrary.simpleMessage(
             "Where do you \ncurrently live?"),
         "whichTaxPayerAreYou":
@@ -3280,6 +3302,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "You cannot request money from your own account"),
         "youCanPayAllYourBillsNow": MessageLookupByLibrary.simpleMessage(
             "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! "),
+        "youCanUnFreeze": MessageLookupByLibrary.simpleMessage(
+            "You can unfreeze and activate your card anytime from the app."),
         "youCannotSendMoneyToYourOwnAccount":
             MessageLookupByLibrary.simpleMessage(
                 "You cannot send money to your own account."),

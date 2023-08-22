@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:domain/constants/enum/evoucher_history_status_enum.dart';
 import 'package:domain/model/e_voucher/voucher_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/utils/extension/string_casing_extension.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
@@ -25,9 +28,9 @@ class MyVoucherHistoryWidget extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h) + EdgeInsets.only(top: 4.h),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.w),
-                  color: Theme.of(context).colorScheme.secondaryContainer),
+                  color: getColor(data.lineItems.first.status, context)),
               child: Text(
-                data.lineItems.first.status ?? '',
+                data.lineItems.first.status?.getEvoucherTransactionHistoryStatus(context: context) ?? '',
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: Theme.of(context).colorScheme.secondary,
@@ -70,7 +73,7 @@ class MyVoucherHistoryWidget extends StatelessWidget {
                         ),
                         SizedBox(height: 4.h),
                         Text(
-                          TimeUtils.getFormattedTimeForTransaction(data.creationDate.toString()),
+                          TimeUtils.convertUTCDateToLocal(data.creationDate.toString()),
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: Theme.of(context).colorScheme.onInverseSurface,
@@ -114,5 +117,40 @@ class MyVoucherHistoryWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Color getColor(EvoucherHistoryStatusEnum? value, context) {
+    switch (value) {
+      case EvoucherHistoryStatusEnum.FAILED:
+        return Theme.of(context).colorScheme.scrim;
+      case EvoucherHistoryStatusEnum.PENDING:
+        return Theme.of(context).colorScheme.onTertiaryContainer;
+      case EvoucherHistoryStatusEnum.SUCCESS:
+        return Theme.of(context).colorScheme.secondaryContainer;
+
+      case EvoucherHistoryStatusEnum.UNAVAILABLE:
+        return Theme.of(context).colorScheme.error;
+
+      default:
+        return Theme.of(context).dialogBackgroundColor;
+    }
+  }
+}
+
+extension EvoucherTransactionHistoryStatusExt on EvoucherHistoryStatusEnum {
+  String getEvoucherTransactionHistoryStatus({required BuildContext context}) {
+    switch (this) {
+      case EvoucherHistoryStatusEnum.FAILED:
+        return S.of(context).failed;
+      case EvoucherHistoryStatusEnum.PENDING:
+        return S.of(context).pending;
+      case EvoucherHistoryStatusEnum.SUCCESS:
+        return S.of(context).success.toCapitalized();
+      case EvoucherHistoryStatusEnum.UNAVAILABLE:
+        return S.of(context).unavailable;
+
+      default:
+        return "";
+    }
   }
 }

@@ -10,13 +10,13 @@ import 'package:domain/model/e_voucher/voucher_by_date.dart';
 import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:domain/model/e_voucher/voucher_detail.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
+import 'package:domain/model/e_voucher/voucher_min_max_value.dart';
 import 'package:domain/model/e_voucher/voucher_region_by_categories.dart';
 import 'package:domain/repository/e_voucher/e_voucher_repository.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
 import 'package:domain/usecase/evouchers/get_voucher_details_usecase.dart';
 import 'package:domain/usecase/evouchers/place_order_usecase.dart';
-import 'package:domain/usecase/evouchers/voucher_min_max_value.dart';
 
 class EVoucherRepositoryImpl extends EVoucherRepository {
   final EVoucherRemoteDS _eVoucherRemoteDS;
@@ -25,9 +25,12 @@ class EVoucherRepositoryImpl extends EVoucherRepository {
 
   @override
   Future<Either<NetworkError, List<VouchersByDate>>> getMyVouchers(
-      {required int pageNo, required int rangeOfMonths, required String searchPhrase}) async {
+      {required int pageNo,
+      required int rangeOfMonths,
+      required String searchPhrase,
+      required int totalRecord}) async {
     final result = await safeApiCall(_eVoucherRemoteDS.getMyVouchers(
-        pageNo: pageNo, rangeOfMonths: rangeOfMonths, searchPhrase: searchPhrase));
+        pageNo: pageNo, rangeOfMonths: rangeOfMonths, searchPhrase: searchPhrase, totalRecord: totalRecord));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.data.transform()),

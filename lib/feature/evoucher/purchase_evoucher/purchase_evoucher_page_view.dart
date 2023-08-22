@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/enter_otp_for_evoucher_category_puchase/enter_otp_for_evoucher_category_puchase_page.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/evoucher_settlement_select_account/evoucher_settlement_account_page.dart';
-
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_region_amount/select_region_amount_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
@@ -23,11 +22,9 @@ class PurchaseEVoucherPageView extends BasePageViewWidget<PurchaseEVoucherPageVi
   @override
   Widget build(BuildContext context, model) {
     final pages = [
-      SelectRegionAmountPage(model.argument),
-      EvoucherSettlementAccountPage(
-        argument: model.argument,
-      ),
-      EnterOtpForEVoucherCategoryPurchasePage(model.argument),
+      SelectRegionAmountPage(),
+      EvoucherSettlementAccountPage(),
+      EnterOtpForEVoucherCategoryPurchasePage(),
     ];
     return Container(
       color: Theme.of(context).primaryColor,

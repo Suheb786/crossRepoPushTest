@@ -17,6 +17,7 @@ class PurchaseNowDetailViewModel extends BasePageViewModel {
   ///get settlement amount
   PublishSubject<GetSettlementAmountUseCaseParams> _getSettlementAmountRequest = PublishSubject();
   PublishSubject<Resource<GetSettlementAmount>> _getSettlementAmountResponse = PublishSubject();
+
   Stream<Resource<GetSettlementAmount>> get getSettlementAmountStream => _getSettlementAmountResponse.stream;
 
   PurchaseNowDetailViewModel(

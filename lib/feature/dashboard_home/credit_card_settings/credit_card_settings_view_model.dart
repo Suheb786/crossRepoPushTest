@@ -18,8 +18,6 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../app_home/app_home_view_model.dart';
-
 class CreditCardSettingsViewModel extends BasePageViewModel {
   final CreditCardSettingsArguments creditCardSettingsArguments;
   final FreezeCreditCardUseCase _freezeCreditCardUseCase;
@@ -227,11 +225,17 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
   }
 
   void freezeCard(String cardID) {
-    _freezeCardRequestSubject.safeAdd(FreezeCreditCardUseCaseParams(cardId: cardID));
+    _freezeCardRequestSubject.safeAdd(FreezeCreditCardUseCaseParams(
+        cardId: cardID,
+        secureCode: creditCardSettingsArguments.creditCard.cardCode ?? '',
+        isIssuedFromCMS: creditCardSettingsArguments.creditCard.issuedFromCms));
   }
 
   void unFreezeCard(String cardID) {
-    _unFreezeCardRequestSubject.safeAdd(UnFreezeCreditCardUseCaseParams(cardId: cardID));
+    _unFreezeCardRequestSubject.safeAdd(UnFreezeCreditCardUseCaseParams(
+        cardId: cardID,
+        secureCode: creditCardSettingsArguments.creditCard.cardCode ?? '',
+        isIssuedFromCMS: creditCardSettingsArguments.creditCard.issuedFromCms));
   }
 
   void cancelCard(String reason) {

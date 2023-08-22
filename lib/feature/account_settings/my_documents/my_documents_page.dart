@@ -42,8 +42,8 @@ class MyDocumentsPageState extends BaseStatefulPage<MyDocumentsPageViewModel, My
             ),
             Text(
               S.of(context).myDocuments,
-              style:
-                  TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+              style: TextStyle(
+                  fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
             ),
             Padding(
               padding: const EdgeInsets.only(right: 18.0),

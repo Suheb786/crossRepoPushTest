@@ -35,6 +35,7 @@ class OtpForChangeDeviceConfirmationPageState
   @override
   void onModelReady(OtpForChangeDeviceConfirmationPageViewModel model) {
     model.countDownController = CountdownTimerController(endTime: model.endTime);
+    super.onModelReady(model);
   }
 
   @override

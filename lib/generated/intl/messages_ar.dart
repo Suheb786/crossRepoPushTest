@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -80,6 +79,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountBalance": MessageLookupByLibrary.simpleMessage("رصيد الحساب"),
         "accountBlink":
             MessageLookupByLibrary.simpleMessage("رقم الحساب (بلينك)"),
+        "accountCannotBeDebited": MessageLookupByLibrary.simpleMessage(
+            "عفوا! لم تتم العملية بنجاح لأنه لا يمكن خصم المبلغ من الحساب "),
         "accountCard": MessageLookupByLibrary.simpleMessage("بطاقة الحساب"),
         "accountClaimNotFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-144)"),
@@ -103,6 +104,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("حسابك غير فعال"),
         "accountHolderName":
             MessageLookupByLibrary.simpleMessage("اسم صاحب الحساب"),
+        "accountInactive": MessageLookupByLibrary.simpleMessage(
+            "عفوا! لم تتم العملية بنجاح لأنه لا يمكن خصم المبلغ من الحساب"),
         "accountInquiryWentWrong": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06  (Err-010)"),
         "accountInquiryWentWrong61": MessageLookupByLibrary.simpleMessage(
@@ -905,6 +908,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "لم تتم عملية طلبك للبطاقة الائتمانية بنجاح"),
         "dormantAccountPhysicalCardReq": MessageLookupByLibrary.simpleMessage(
             "عفوا! لا يمكنك طلب طباعة البطاقة لأنه حسابك غير فعال. اتصل بنا على 5200100-06 ليتم تفعيل الحساب"),
+        "dormantAccountTransactionFailed": MessageLookupByLibrary.simpleMessage(
+            "عفوا! لم تتم العملية بنجاح لأنه حسابك غير فعال"),
         "downloadStatement":
             MessageLookupByLibrary.simpleMessage("تنزيل كشف الحساب"),
         "dragMap": MessageLookupByLibrary.simpleMessage(
@@ -917,9 +922,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "dummyIBAN":
             MessageLookupByLibrary.simpleMessage("ABC000012341234123819241213"),
         "dummyMobileNo": MessageLookupByLibrary.simpleMessage("00962xxxxxxxxx"),
+        "eVoucherLandingDialogDescption": MessageLookupByLibrary.simpleMessage(
+            "صار بإمكانك تشتري القسائم الإلكترونية من مختلف المتاجر المحلية والدولية المفضلة لديك. "),
         "eVoucherSearchLabel": MessageLookupByLibrary.simpleMessage("ابحث هنا"),
         "eVouchers":
             MessageLookupByLibrary.simpleMessage("القسائم الإلكترونية"),
+        "eVouchersAreHere": MessageLookupByLibrary.simpleMessage(
+            "القسائم الإلكترونية صارت متاحة!"),
         "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
         "editCliqId": MessageLookupByLibrary.simpleMessage("تعديل حساب CliQ"),
         "editId": MessageLookupByLibrary.simpleMessage("تعديل نوع الحساب"),
@@ -1493,6 +1502,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "احصل على حساب بلينك اليوم. طرفة عين الآن!"),
         "goBack": MessageLookupByLibrary.simpleMessage("الرجوع"),
+        "goToDashboard":
+            MessageLookupByLibrary.simpleMessage("العودة إلى الشاشة الرئيسية"),
         "governmentService":
             MessageLookupByLibrary.simpleMessage("خدمات حكومية"),
         "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage(
@@ -1923,6 +1934,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "العنوان البريدي مختلف على عنوان الإقامة"),
         "mailingAddressLine":
             MessageLookupByLibrary.simpleMessage("العنوان البريدي"),
+        "mainAccountPrimary":
+            MessageLookupByLibrary.simpleMessage("Main Account-Primary"),
         "mainAnnualIncome":
             MessageLookupByLibrary.simpleMessage("الدخل السنوي الرئيسي"),
         "mainAnnualIncomeSmall":
@@ -2183,6 +2196,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفوا! الاسم المستعار المدخل غير مسجل"),
         "openAccount": MessageLookupByLibrary.simpleMessage("افتح حساب"),
         "openAccountNow": MessageLookupByLibrary.simpleMessage("افتح حساب هلأ"),
+        "openAccountSucessDescription":
+            MessageLookupByLibrary.simpleMessage("لقد تم فتح الحساب بنجاح."),
         "openDateIssuedMessage": MessageLookupByLibrary.simpleMessage(
             "تم رفض دفع الفاتوره بسبب عدم استحقاقها"),
         "openYourAccountNow":
@@ -2804,12 +2819,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل اسم الشارع"),
         "streetAddressSmall": MessageLookupByLibrary.simpleMessage("الشارع"),
         "streetName": MessageLookupByLibrary.simpleMessage("اسم الشارع"),
+        "subAccountSavings":
+            MessageLookupByLibrary.simpleMessage("Sub Account - Savings"),
         "submittedFor": MessageLookupByLibrary.simpleMessage(
             "جاري معاجة طلبك لدفع فواتيرك, منخبرك بمجرد ما تمت عملية الدفع بنجاح"),
         "subscription": MessageLookupByLibrary.simpleMessage("الاشتراكات"),
         "subscriptionPopUpInfo": MessageLookupByLibrary.simpleMessage(
             "تذكر إنه البطاقة اللي بلّغت عن سرقتها/ ضياعها عليها الاشتراك التالي. رح تحتاج تحدّث اشتراكك ببطاقتك الجديدة."),
         "success": MessageLookupByLibrary.simpleMessage("نجاح"),
+        "successExclmn": MessageLookupByLibrary.simpleMessage("Success!"),
         "successS": MessageLookupByLibrary.simpleMessage("نجاح"),
         "successfullyCreatedLoginAccount": MessageLookupByLibrary.simpleMessage(
             "تم إنشاء ملفك الشخصي بنجاح. خلينا نفتح حسابك ونشغله"),
@@ -2965,8 +2983,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("سبب الحركة"),
         "transactionType": MessageLookupByLibrary.simpleMessage("نوع الحركة"),
         "transactions": MessageLookupByLibrary.simpleMessage("الحركات"),
+        "transfer": MessageLookupByLibrary.simpleMessage("التحويل"),
         "transferCannotbeDone": MessageLookupByLibrary.simpleMessage(
             "عفوا! لا يمكن التحويل، لازم اتعدل تفاصيل صديقك المستفيد"),
+        "transferFrom": MessageLookupByLibrary.simpleMessage("التحويل من"),
+        "transferHeader": MessageLookupByLibrary.simpleMessage(
+            "أدخل تفاصيل الحوالة واختر الحسابات"),
+        "transferTo": MessageLookupByLibrary.simpleMessage("Transfer To"),
         "transferTypeNF": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-117)"),
         "transferTypeNFRTP": MessageLookupByLibrary.simpleMessage(
@@ -2999,6 +3022,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "عملينا العزيز، ما قدرنا نتحقق من رقم هويتك الشخصية. حاول امسح الهوية كمان مرة أو تواصل مع مركز خدمات الزبائن على 06-5200100"),
         "unauthorize": MessageLookupByLibrary.simpleMessage(
             "عفواً! مش قادرين نتعرف عليك. المشترك غير مسجل او صار خلل. حاول كمان مرة بعدين أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06   (Err-u)"),
+        "unavailable": MessageLookupByLibrary.simpleMessage("غير متوفر"),
         "unblockCardPin": MessageLookupByLibrary.simpleMessage(
             "فك حظر الرمز السري PIN على البطاقة"),
         "unblockCreditCardPinError": MessageLookupByLibrary.simpleMessage(
@@ -3163,6 +3187,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("شو إيميلك ورقم موبايلك؟"),
         "whenAcceptingCreationOfYourCliqId": MessageLookupByLibrary.simpleMessage(
             "عند الموافقة على انشاء حساب كليك، يجب ان  تعلم ان جميع معلوماتك (المتضمنة اسمك الكامل، رقم الموبايل المربوط بهذه الخدمة،رقم حسابك او رقم حسابك الدولي و البنك المزود للخدمة) قد يتم مشاركتها مع طرف ثالث عند استلام او ارسال الدفعات عبر كليك"),
+        "whenYouFreezeYourCard": MessageLookupByLibrary.simpleMessage(
+            "لما تجمّد بطاقتك، بنحب نخبرك انه ما رح تقدر تستخدمها لأي حركة شرائية بالمحلات أو أونلاين أو سحب نقدي أو أي حركة اشتراك تلقائي مربوط بالبطاقة أونلاين مثل الاشتراك بنتفليكس أو تطبيق كريم أو أي اشتراكات مشابهه"),
         "whereDoYouCurrentlyLive":
             MessageLookupByLibrary.simpleMessage("وين ساكن حالياً؟"),
         "whichTaxPayerAreYou":
@@ -3189,6 +3215,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "عفوا! ما بتقدر تطلب حوالة من نفس حسابك"),
         "youCanPayAllYourBillsNow": MessageLookupByLibrary.simpleMessage(
             "يمكنك الآن دفع جميع فواتيرك من خلال بلينك، بخطوات بسيطة \"\nادفع أول دفعة اليوم!"),
+        "youCanUnFreeze": MessageLookupByLibrary.simpleMessage(
+            ".بتقدر تفك تجميد بطاقتك وتفعلها بأي وقت من داخل التطبيق"),
         "youCannotSendMoneyToYourOwnAccount":
             MessageLookupByLibrary.simpleMessage(
                 "عفوا! ما بتقدر تحول لنفس حسابك"),

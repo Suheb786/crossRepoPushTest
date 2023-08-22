@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pay_all_postpaid_bills_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -13,8 +12,6 @@ import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-import '../../../feature/dashboard_home/card_transaction/card_transaction_page.dart';
-import '../../../feature/payment/payment_home/payment_home_view_model.dart';
 import '../../../feature/postpaid_bills/bill_payments_transaction/bill_payments_transaction_page.dart';
 import '../../../main/navigation/cutom_route.dart';
 

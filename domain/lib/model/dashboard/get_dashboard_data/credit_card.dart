@@ -12,26 +12,27 @@ class CreditCard {
       this.availableBalance,
       this.totalAmount,
       this.maxLimit,
-      this.cardId= "",
+      this.cardId = "",
       this.creditLimit,
       this.creditDeliveredDatetime,
       this.isCreditDelivered,
       this.isApplied,
       this.creditCardActivatedDate,
       this.isSupCard,
-      this.primarySecondaryCard= PrimarySecondaryCardEnum.NONE,
+      this.primarySecondaryCard = PrimarySecondaryCardEnum.NONE,
       this.usedBalance,
       this.paymentDueAmount,
       this.cardCode,
-      this.isCompleted= false,
-      this.nextPaymentDate= "",
-      this.cardStatus= FreezeCardStatusEnum.NONE,
-      this.minimumSettlement= 0,
-      this.callStatus= CreditCardCallStatusEnum.NONE,
-      this.isCallPending= false,
-      this.parentId= "",
+      this.isCompleted = false,
+      this.nextPaymentDate = "",
+      this.cardStatus = FreezeCardStatusEnum.NONE,
+      this.minimumSettlement = 0,
+      this.callStatus = CreditCardCallStatusEnum.NONE,
+      this.isCallPending = false,
+      this.parentId = "",
       this.isCardInApplePay = false,
-      this.getStatus = false});
+      this.getStatus = false,
+      this.issuedFromCms = false});
 
   String? name;
   String? cardNumber;
@@ -61,4 +62,5 @@ class CreditCard {
   bool? isCallPending;
   bool isCardInApplePay;
   bool getStatus;
+  bool issuedFromCms;
 }

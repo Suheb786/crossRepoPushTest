@@ -41,9 +41,11 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                   stream: model.evoucherOtpStream,
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
+                      ProviderScope.containerOf(context).read(purchaseEVouchersViewModelProvider).nextPage();
                       ProviderScope.containerOf(context)
-                          .read(purchaseEVouchersViewModelProvider(model.argument))
-                          .nextPage();
+                          .read(enterOtpForEVoucherCategoryPurchaseViewModelProvider)
+                          .otpController
+                          .clear();
                     }
                   },
                   dataBuilder: (context, otpSnapShot) {
@@ -58,285 +60,311 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                         }
                       },
                       dataBuilder: (context, data) {
-                        return Card(
-                          margin: EdgeInsets.zero,
-                          child: AppStreamBuilder<double>(
-                              stream: model.getSettlementAmountStream,
-                              initialData: 0.0,
-                              dataBuilder: (context, getSettlementAmount) {
-                                return Container(
-                                    padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          child: Column(
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius: BorderRadius.circular(8),
-                                                child: Container(
-                                                  height: 72.h,
-                                                  width: 72.w,
-                                                  child: CachedNetworkImage(
-                                                    imageUrl: model.argument.selectedItem.cardFaceImage,
-                                                    placeholder: (context, url) =>
-                                                        Container(color: Theme.of(context).primaryColor),
-                                                    errorWidget: (context, url, error) => Icon(Icons.error),
-                                                    fit: BoxFit.fill,
+                        return GestureDetector(
+                          onHorizontalDragEnd: (details) {
+                            if (ProviderScope.containerOf(context)
+                                    .read(purchaseEVouchersViewModelProvider)
+                                    .appSwiperController
+                                    .page ==
+                                1.0) {
+                              FocusScope.of(context).unfocus();
+                              if (StringUtils.isDirectionRTL(context)) {
+                                if (!details.primaryVelocity!.isNegative) {
+                                  model.validateFields(context);
+                                } else {
+                                  ProviderScope.containerOf(context)
+                                      .read(purchaseEVouchersViewModelProvider)
+                                      .previousPage();
+                                }
+                              } else {
+                                if (details.primaryVelocity!.isNegative) {
+                                  model.validateFields(context);
+                                } else {
+                                  ProviderScope.containerOf(context)
+                                      .read(purchaseEVouchersViewModelProvider)
+                                      .previousPage();
+                                }
+                              }
+                            }
+                          },
+                          child: Card(
+                            margin: EdgeInsets.zero,
+                            child: AppStreamBuilder<SelectedVoucherInformation>(
+                                stream: model.getSelectedVoucherInformationStream,
+                                initialData: SelectedVoucherInformation(
+                                    voucherName: '-', voucherFaceImage: '', settlementValue: 0.0),
+                                dataBuilder: (context, selectedInformation) {
+                                  return Container(
+                                      padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Expanded(
+                                            child: Column(
+                                              children: [
+                                                ClipRRect(
+                                                  borderRadius: BorderRadius.circular(8),
+                                                  child: Container(
+                                                    height: 72.h,
+                                                    width: 72.w,
+                                                    child: selectedInformation!.voucherFaceImage.isNotEmpty
+                                                        ? CachedNetworkImage(
+                                                            imageUrl: selectedInformation.voucherFaceImage,
+                                                            placeholder: (context, url) => Container(
+                                                                color: Theme.of(context).primaryColor),
+                                                            errorWidget: (context, url, error) =>
+                                                                Icon(Icons.error),
+                                                            fit: BoxFit.fill,
+                                                          )
+                                                        : SizedBox(),
                                                   ),
                                                 ),
-                                              ),
-                                              SizedBox(
-                                                height: 16.h,
-                                              ),
-                                              Text(
-                                                model.argument.selectedItem.name,
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: Theme.of(context).indicatorColor,
-                                                  fontSize: 14.t,
-                                                  fontWeight: FontWeight.w600,
+                                                SizedBox(
+                                                  height: 16.h,
                                                 ),
-                                              ),
-                                              SizedBox(
-                                                height: 8.h,
-                                              ),
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    "$getSettlementAmount",
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      color: Theme.of(context).indicatorColor,
-                                                      fontSize: 24.t,
-                                                      fontWeight: FontWeight.w600,
+                                                Text(
+                                                  selectedInformation.voucherName,
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
+                                                    color: Theme.of(context).indicatorColor,
+                                                    fontSize: 14.t,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 8.h,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      "${selectedInformation.settlementValue.toStringAsFixed(3)}",
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        color: Theme.of(context).indicatorColor,
+                                                        fontSize: 24.t,
+                                                        fontWeight: FontWeight.w600,
+                                                      ),
                                                     ),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 4.h,
-                                                  ),
-                                                  Text(
-                                                    S.current.JOD,
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      color:
-                                                          Theme.of(context).colorScheme.tertiaryContainer,
-                                                      fontSize: 14.t,
-                                                      fontWeight: FontWeight.w600,
+                                                    SizedBox(
+                                                      width: 4.h,
                                                     ),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                height: 32.h,
-                                              ),
-                                              Column(
-                                                children: [
-                                                  Row(
-                                                    children: [
-                                                      Text(
-                                                        S.current.payFrom,
-                                                        textAlign: TextAlign.center,
-                                                        style: TextStyle(
-                                                          fontFamily: StringUtils.appFont,
-                                                          color: Theme.of(context).indicatorColor,
-                                                          fontSize: 14,
-                                                          fontWeight: FontWeight.w600,
+                                                    Text(
+                                                      S.current.JOD,
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        color:
+                                                            Theme.of(context).colorScheme.tertiaryContainer,
+                                                        fontSize: 14.t,
+                                                        fontWeight: FontWeight.w600,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: 32.h,
+                                                ),
+                                                Column(
+                                                  children: [
+                                                    Row(
+                                                      children: [
+                                                        Text(
+                                                          S.current.payFrom,
+                                                          textAlign: TextAlign.center,
+                                                          style: TextStyle(
+                                                            fontFamily: StringUtils.appFont,
+                                                            color: Theme.of(context).indicatorColor,
+                                                            fontSize: 14,
+                                                            fontWeight: FontWeight.w600,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 16.h,
+                                                    ),
+                                                    Container(
+                                                      width: MediaQuery.of(context).size.width,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.circular(8.h),
+                                                          border: Border.all(
+                                                              color: Theme.of(context)
+                                                                  .colorScheme
+                                                                  .tertiaryContainer)),
+                                                      child: Padding(
+                                                        padding: EdgeInsetsDirectional.all(16.h),
+                                                        child: Row(
+                                                          children: [
+                                                            Expanded(
+                                                              child: Column(
+                                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                                children: [
+                                                                  Row(
+                                                                    children: [
+                                                                      Text(
+                                                                        S.current.currentAccount,
+                                                                        textAlign: TextAlign.center,
+                                                                        style: TextStyle(
+                                                                          fontFamily: StringUtils.appFont,
+                                                                          color: Theme.of(context)
+                                                                              .indicatorColor,
+                                                                          fontSize: 14.t,
+                                                                          fontWeight: FontWeight.w600,
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  SizedBox(height: 4.h),
+                                                                  Row(
+                                                                    children: [
+                                                                      Text(
+                                                                        ProviderScope.containerOf(context)
+                                                                                .read(
+                                                                                    appHomeViewModelProvider)
+                                                                                .dashboardDataContent
+                                                                                .account
+                                                                                ?.accountNo ??
+                                                                            "",
+                                                                        textAlign: TextAlign.center,
+                                                                        style: TextStyle(
+                                                                          fontFamily: StringUtils.appFont,
+                                                                          color: Theme.of(context)
+                                                                              .colorScheme
+                                                                              .inversePrimary,
+                                                                          fontSize: 12.t,
+                                                                          fontWeight: FontWeight.w600,
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  SizedBox(height: 16.h),
+                                                                  Row(
+                                                                    children: [
+                                                                      Text(
+                                                                        "${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.account?.availableBalance}" +
+                                                                            " " +
+                                                                            "${S.current.JOD}",
+                                                                        textAlign: TextAlign.center,
+                                                                        style: TextStyle(
+                                                                          fontFamily: StringUtils.appFont,
+                                                                          color: Theme.of(context)
+                                                                              .indicatorColor,
+                                                                          fontSize: 14.t,
+                                                                          fontWeight: FontWeight.w600,
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            AppStreamBuilder<bool>(
+                                                                stream: model.isCheckedStream,
+                                                                initialData: false,
+                                                                dataBuilder: (context, isChecked) {
+                                                                  return isChecked!
+                                                                      ? GestureDetector(
+                                                                          onTap: () {
+                                                                            model.check(false);
+                                                                            model.validate();
+                                                                          },
+                                                                          child: Container(
+                                                                            height: 40.h,
+                                                                            width: 40.h,
+                                                                            decoration: BoxDecoration(
+                                                                                color: Theme.of(context)
+                                                                                    .canvasColor,
+                                                                                border: Border.all(
+                                                                                  color: Theme.of(context)
+                                                                                      .indicatorColor,
+                                                                                ),
+                                                                                borderRadius:
+                                                                                    BorderRadius.circular(
+                                                                                        100)),
+                                                                            child: AppSvg.asset(
+                                                                                AssetUtils.check,
+                                                                                color: Theme.of(context)
+                                                                                    .indicatorColor,
+                                                                                height: 16.h,
+                                                                                fit: BoxFit.scaleDown,
+                                                                                width: 16.h),
+                                                                          ),
+                                                                        )
+                                                                      : GestureDetector(
+                                                                          onTap: () {
+                                                                            model.check(true);
+                                                                            model.validate();
+                                                                          },
+                                                                          child: Container(
+                                                                            height: 40.h,
+                                                                            width: 40.h,
+                                                                            decoration: BoxDecoration(
+                                                                                color: Theme.of(context)
+                                                                                    .colorScheme
+                                                                                    .secondary,
+                                                                                border: Border.all(
+                                                                                  color: Theme.of(context)
+                                                                                      .indicatorColor,
+                                                                                ),
+                                                                                borderRadius:
+                                                                                    BorderRadius.circular(
+                                                                                        100)),
+                                                                          ),
+                                                                        );
+                                                                })
+                                                          ],
                                                         ),
                                                       ),
-                                                    ],
+                                                    )
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Column(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    EdgeInsetsDirectional.only(top: 12.0.h, bottom: 23.h),
+                                                child: AppStreamBuilder<bool>(
+                                                  stream: model.showButtonStream,
+                                                  initialData: false,
+                                                  dataBuilder: (context, isValid) {
+                                                    return AppPrimaryButton(
+                                                      text: S.of(context).next,
+                                                      isDisabled: !isValid! && !isChecked!,
+                                                      onPressed: () {
+                                                        model.validateFields(context);
+                                                      },
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                              InkWell(
+                                                onTap: () {
+                                                  ProviderScope.containerOf(context)
+                                                      .read(purchaseEVouchersViewModelProvider)
+                                                      .previousPage();
+                                                },
+                                                child: Text(
+                                                  S.of(context).cancel,
+                                                  style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
+                                                    color: Theme.of(context).colorScheme.onSecondaryContainer,
+                                                    fontSize: 14.t,
+                                                    fontWeight: FontWeight.w500,
                                                   ),
-                                                  SizedBox(
-                                                    height: 16.h,
-                                                  ),
-                                                  Container(
-                                                    width: MediaQuery.of(context).size.width,
-                                                    decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.circular(8.h),
-                                                        border: Border.all(
-                                                            color: Theme.of(context)
-                                                                .colorScheme
-                                                                .tertiaryContainer)),
-                                                    child: Padding(
-                                                      padding: EdgeInsetsDirectional.all(16.h),
-                                                      child: Row(
-                                                        children: [
-                                                          Expanded(
-                                                            child: Column(
-                                                              mainAxisAlignment: MainAxisAlignment.start,
-                                                              children: [
-                                                                Row(
-                                                                  children: [
-                                                                    Text(
-                                                                      S.current.currentAccount,
-                                                                      textAlign: TextAlign.center,
-                                                                      style: TextStyle(
-                                                                        fontFamily: StringUtils.appFont,
-                                                                        color: Theme.of(context)
-                                                                            .indicatorColor,
-                                                                        fontSize: 14.t,
-                                                                        fontWeight: FontWeight.w600,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                SizedBox(height: 4.h),
-                                                                Row(
-                                                                  children: [
-                                                                    Text(
-                                                                      ProviderScope.containerOf(context)
-                                                                              .read(
-                                                                                  appHomeViewModelProvider)
-                                                                              .dashboardDataContent
-                                                                              .account
-                                                                              ?.accountNo ??
-                                                                          "",
-                                                                      textAlign: TextAlign.center,
-                                                                      style: TextStyle(
-                                                                        fontFamily: StringUtils.appFont,
-                                                                        color: Theme.of(context)
-                                                                            .colorScheme
-                                                                            .inversePrimary,
-                                                                        fontSize: 12.t,
-                                                                        fontWeight: FontWeight.w600,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                SizedBox(height: 16.h),
-                                                                Row(
-                                                                  children: [
-                                                                    Text(
-                                                                      "${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.account?.availableBalance}" +
-                                                                          " " +
-                                                                          "${S.current.JOD}",
-                                                                      textAlign: TextAlign.center,
-                                                                      style: TextStyle(
-                                                                        fontFamily: StringUtils.appFont,
-                                                                        color: Theme.of(context)
-                                                                            .indicatorColor,
-                                                                        fontSize: 14.t,
-                                                                        fontWeight: FontWeight.w600,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          AppStreamBuilder<bool>(
-                                                              stream: model.isCheckedStream,
-                                                              initialData: false,
-                                                              dataBuilder: (context, isChecked) {
-                                                                return isChecked!
-                                                                    ? GestureDetector(
-                                                                        onTap: () {
-                                                                          model.check(false);
-                                                                          model.validate();
-                                                                        },
-                                                                        child: Container(
-                                                                          height: 40.h,
-                                                                          width: 40.h,
-                                                                          decoration: BoxDecoration(
-                                                                              color: Theme.of(context)
-                                                                                  .canvasColor,
-                                                                              border: Border.all(
-                                                                                color: Theme.of(context)
-                                                                                    .indicatorColor,
-                                                                              ),
-                                                                              borderRadius:
-                                                                                  BorderRadius.circular(
-                                                                                      100)),
-                                                                          child: AppSvg.asset(
-                                                                              AssetUtils.check,
-                                                                              color: Theme.of(context)
-                                                                                  .indicatorColor,
-                                                                              height: 16.h,
-                                                                              fit: BoxFit.scaleDown,
-                                                                              width: 16.h),
-                                                                        ),
-                                                                      )
-                                                                    : GestureDetector(
-                                                                        onTap: () {
-                                                                          model.check(true);
-                                                                          model.validate();
-                                                                        },
-                                                                        child: Container(
-                                                                          height: 40.h,
-                                                                          width: 40.h,
-                                                                          decoration: BoxDecoration(
-                                                                              color: Theme.of(context)
-                                                                                  .colorScheme
-                                                                                  .secondary,
-                                                                              border: Border.all(
-                                                                                color: Theme.of(context)
-                                                                                    .indicatorColor,
-                                                                              ),
-                                                                              borderRadius:
-                                                                                  BorderRadius.circular(
-                                                                                      100)),
-                                                                        ),
-                                                                      );
-                                                              })
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  )
-                                                ],
+                                                ),
                                               ),
                                             ],
                                           ),
-                                        ),
-                                        Column(
-                                          children: [
-                                            AppStreamBuilder<bool>(
-                                                stream: model.isCheckedStream,
-                                                initialData: false,
-                                                dataBuilder: (context, isChecked) {
-                                                  return Padding(
-                                                    padding: EdgeInsetsDirectional.only(
-                                                        top: 12.0.h, bottom: 16.h),
-                                                    child: AppStreamBuilder<bool>(
-                                                      stream: model.showButtonStream,
-                                                      initialData: false,
-                                                      dataBuilder: (context, isValid) {
-                                                        return AppPrimaryButton(
-                                                          text: S.of(context).next,
-                                                          isDisabled: !isValid! && !isChecked!,
-                                                          onPressed: () {
-                                                            model.validateFields(context);
-                                                          },
-                                                        );
-                                                      },
-                                                    ),
-                                                  );
-                                                }),
-                                            InkWell(
-                                              onTap: () {
-                                                ProviderScope.containerOf(context)
-                                                    .read(
-                                                        purchaseEVouchersViewModelProvider(model.argument))
-                                                    .previousPage();
-                                              },
-                                              child: Text(
-                                                S.of(context).back,
-                                                style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: Theme.of(context).colorScheme.onSecondaryContainer,
-                                                  fontSize: 14.t,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ));
-                              }),
+                                        ],
+                                      ));
+                                }),
+                          ),
                         );
                       },
                     );

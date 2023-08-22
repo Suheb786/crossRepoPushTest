@@ -142,7 +142,11 @@ class CardTransactionViewModel extends BasePageViewModel {
     required String cardId,
     required num noOfDays,
   }) {
-    _getTransactionsRequest.safeAdd(GetCreditCardTransactionsUseCaseParams(cardId: cardId, noOfDays: noOfDays));
+    _getTransactionsRequest.safeAdd(GetCreditCardTransactionsUseCaseParams(
+        cardId: cardId,
+        noOfDays: noOfDays,
+        secureCode: cardTransactionArguments.secureCode,
+        isIssuedFromCMS: cardTransactionArguments.isIssuedFromCMS));
   }
 
   int getFilterDays(String value) {

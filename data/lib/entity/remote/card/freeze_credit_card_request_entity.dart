@@ -8,14 +8,19 @@ class FreezeCreditCardRequestEntity {
   final String? cardId;
   @JsonKey(name: "GetToken")
   final bool? getToken;
+  @JsonKey(name: "SecureCode")
+  final String? secureCode;
+  @JsonKey(name: "IssuedFromCms")
+  final bool? issuedFromCms;
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  FreezeCreditCardRequestEntity({
-    required this.baseData,
-    this.getToken= true,
-    this.cardId= "",
-  });
+  FreezeCreditCardRequestEntity(
+      {required this.baseData,
+      this.getToken = true,
+      this.cardId = "",
+      this.secureCode = '',
+      this.issuedFromCms = false});
 
   factory FreezeCreditCardRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$FreezeCreditCardRequestEntityFromJson(json);

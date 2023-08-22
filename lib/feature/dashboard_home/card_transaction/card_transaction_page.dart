@@ -38,6 +38,9 @@ class DebitCardDeliveredPageState extends BaseStatefulPage<CardTransactionViewMo
 
 class GetCreditCardTransactionArguments {
   final String? cardId;
+  final String secureCode;
+  final bool isIssuedFromCMS;
 
-  GetCreditCardTransactionArguments({this.cardId = ""});
+  GetCreditCardTransactionArguments(
+      {this.cardId = "", required this.secureCode, required this.isIssuedFromCMS});
 }

@@ -39,15 +39,14 @@ class BrowserByCategoryItemWidget extends StatelessWidget {
           category,
           index,
         );
-
-        print("category.categoryIcon===>${category.categoryIcon}");
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             width: 48.w,
-            height: 48.h,
+            height: 48.w,
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(48.w),
               border: Border.all(color: AppColor.gray1, width: 1.w),
@@ -63,7 +62,7 @@ class BrowserByCategoryItemWidget extends StatelessWidget {
           SizedBox(width: 16.w),
           Expanded(
             child: Text(
-              category.categoryName ?? '',
+              category.categoryName,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   color: Theme.of(context).colorScheme.shadow,

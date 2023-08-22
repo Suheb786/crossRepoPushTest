@@ -16,18 +16,15 @@ class EVoucherCategoryListingPageViewModel extends BasePageViewModel {
 
   TextEditingController categorayListController = TextEditingController();
 
-  ValueNotifier<bool> searchListToggleNotifier = ValueNotifier(true);
-  ValueNotifier<bool> categoriesDisplayToggleNotifier = ValueNotifier(true);
-
   /// ------------- voucher filter stream -----------------------
 
   List<VoucherItem> filterList = [];
 
   PublishSubject<EVoucherItemFilterUseCaseParams> _voucherItemFilterRequestSubject = PublishSubject();
 
-  PublishSubject<Resource<List<VoucherItem>>> voucherItemFilterResponseSubject = PublishSubject();
+  PublishSubject<Resource<List<List<VoucherItem>>>> voucherItemFilterResponseSubject = PublishSubject();
 
-  Stream<Resource<List<VoucherItem>>> get voucherItemFilterResponseStream =>
+  Stream<Resource<List<List<VoucherItem>>>> get voucherItemFilterResponseStream =>
       voucherItemFilterResponseSubject.stream;
 
   void getVoucherItemFilter(
@@ -43,6 +40,7 @@ class EVoucherCategoryListingPageViewModel extends BasePageViewModel {
   late VoucherCategories selectedVoucherCategories;
 
   List<VoucherItem> voucherItems = [];
+  List<List<VoucherItem>> filteredVoucherItems = [];
 
   EVoucherCategoryListingPageViewModel(this.argument, this.eVoucherItemFilterUseCase) {
     _voucherItemFilterRequestSubject.listen((value) {
@@ -50,16 +48,34 @@ class EVoucherCategoryListingPageViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         updateLoader();
-        voucherItemFilterResponseSubject.safeAdd(event);
-        categoriesDisplayToggleNotifier.value = false;
         if (event.status == Status.ERROR) {
           showErrorState();
-
           showToastWithError(event.appError!);
         }
         if (event.status == Status.SUCCESS) {
           voucherItems.clear();
           voucherItems.addAll(event.data ?? []);
+          Map<String, dynamic> allData = {};
+          voucherItems.forEach((voucher) {
+            if (allData.isEmpty) {
+              allData[voucher.brand] = [voucher];
+            } else {
+              if (allData.containsKey(voucher.brand)) {
+                var models = allData[voucher.brand] as List<VoucherItem>;
+                models.add(voucher);
+                allData[voucher.brand] = models;
+              } else {
+                allData[voucher.brand] = [voucher];
+              }
+            }
+          });
+          List<List<VoucherItem>> filteredElements = [];
+
+          allData.values.forEach((element) {
+            filteredElements.add(element);
+          });
+          filteredVoucherItems = filteredElements;
+          voucherItemFilterResponseSubject.safeAdd(Resource.success(data: filteredElements));
         }
       });
     });
@@ -74,18 +90,13 @@ class EVoucherCategoryListingPageViewModel extends BasePageViewModel {
 
   void searchItems() {
     if (categorayListController.text.trim().isEmpty) {
-      voucherItemFilterResponseSubject.safeAdd(Resource.success(data: voucherItems));
+      voucherItemFilterResponseSubject.safeAdd(Resource.success(data: filteredVoucherItems));
     } else {
-      List<VoucherItem> searchedItems = voucherItems
-          .where((element) => element.name.toLowerCase().contains(categorayListController.text.trim()))
+      List<List<VoucherItem>> searchedItems = filteredVoucherItems
+          .where((element) =>
+              element.first.name.toLowerCase().contains(categorayListController.text.toLowerCase().trim()))
           .toList();
       voucherItemFilterResponseSubject.safeAdd(Resource.success(data: searchedItems));
-    }
-  }
-
-  getError(Resource<List<VoucherItem>> event) {
-    if (categorayListController.text.trim().isEmpty) {
-      voucherItemFilterResponseSubject.safeAdd(Resource.error(data: event.appError));
     }
   }
 }

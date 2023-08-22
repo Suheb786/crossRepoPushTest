@@ -5,8 +5,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'get_bill_categories_list_entity.g.dart';
 
 @JsonSerializable()
-class GetBillCategoriesListEntity extends BaseLayerDataTransformer<
-    GetBillCategoriesListEntity, GetBillCategoriesList> {
+class GetBillCategoriesListEntity
+    extends BaseLayerDataTransformer<GetBillCategoriesListEntity, GetBillCategoriesList> {
   @JsonKey(name: "categoryName")
   final String? categoryName;
   @JsonKey(name: "iconCode")

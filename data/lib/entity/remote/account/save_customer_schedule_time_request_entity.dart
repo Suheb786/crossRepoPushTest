@@ -21,11 +21,11 @@ class SaveCustomerScheduleTimeRequestEntity {
 
   SaveCustomerScheduleTimeRequestEntity(
       {this.callDate,
-      this.gender= "",
+      this.gender = "",
       this.startTime,
       this.dateToSend,
-      this.productId= 1,
-      this.getToken= true,
+      this.productId = 1,
+      this.getToken = true,
       required this.baseData});
 
   factory SaveCustomerScheduleTimeRequestEntity.fromJson(Map<String, dynamic> json) =>

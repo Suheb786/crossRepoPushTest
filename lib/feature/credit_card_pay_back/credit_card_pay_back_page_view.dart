@@ -4,7 +4,6 @@ import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/credit_card_pay_back/credit_card_pay_back_page_view_model.dart';
 import 'package:neo_bank/feature/credit_card_pay_back_success/credit_card_pay_back_success_page.dart';

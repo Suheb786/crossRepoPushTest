@@ -33,7 +33,7 @@ class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionVi
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 48.0.h)+ EdgeInsets.only(bottom: 16.0.h),
+              padding: EdgeInsets.symmetric(horizontal: 48.0.h) + EdgeInsets.only(bottom: 16.0.h),
               child: Row(
                 children: [
                   Expanded(
@@ -65,7 +65,10 @@ class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionVi
                                   Navigator.pop(context);
                                   Navigator.pushNamed(context, RoutePaths.DownloadTransaction,
                                       arguments: DownloadStatementArguments(
-                                          statementType: StatementType.Debit, transactionDate: value));
+                                          issuedFromCms: false,
+                                          secureCode: '',
+                                          statementType: StatementType.Debit,
+                                          transactionDate: value));
                                 });
                               }
                             },
@@ -93,7 +96,6 @@ class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionVi
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-
                             Padding(
                               padding: EdgeInsetsDirectional.only(top: 24.0.h, start: 24.0.w, end: 38.0.w),
                               child: Row(
@@ -113,8 +115,8 @@ class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionVi
                                       suffixIcon: (value, data) {
                                         return Padding(
                                             padding: EdgeInsetsDirectional.only(start: 19.0.w),
-                                            child:
-                                                AppSvg.asset(AssetUtils.search, height: 16.0.h, width: 16.0.w));
+                                            child: AppSvg.asset(AssetUtils.search,
+                                                height: 16.0.h, width: 16.0.w));
                                       },
                                     ),
                                   ),
@@ -234,7 +236,13 @@ class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionVi
                             shape: BoxShape.circle,
                             color: Colors.white,
                             border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
-                            boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))]),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black26,
+                                  blurRadius: 5,
+                                  spreadRadius: 0.1,
+                                  offset: Offset(0, 4))
+                            ]),
                         child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue),
                       ),
                     ),

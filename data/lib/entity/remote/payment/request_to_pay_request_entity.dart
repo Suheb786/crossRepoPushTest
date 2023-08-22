@@ -44,19 +44,19 @@ class RequestToPayRequestEntity {
       this.amount,
       this.dbtrBic,
       this.dbtrAcct,
-      this.nickName= "",
-      this.beneImage= "",
-      this.isFriend= false,
+      this.nickName = "",
+      this.beneImage = "",
+      this.isFriend = false,
       this.dbtrName,
       this.memo,
-      this.getToken= true,
+      this.getToken = true,
       this.baseData,
-      this.type= "",
-      this.detCustomerType= "",
-      this.dbtrSurname= "",
-      this.addressCountry= "",
-      this.addressCity= "",
-      this.alias= ""});
+      this.type = "",
+      this.detCustomerType = "",
+      this.dbtrSurname = "",
+      this.addressCountry = "",
+      this.addressCity = "",
+      this.alias = ""});
 
   factory RequestToPayRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$RequestToPayRequestEntityFromJson(json);

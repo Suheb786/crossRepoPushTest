@@ -4,5 +4,5 @@ class AdditionalIncomeType {
   final String? additionalIncomeSourceAr;
 
   AdditionalIncomeType(
-      {this.additionalIncomeSource= "", this.totalIncome= "", this.additionalIncomeSourceAr = ''});
+      {this.additionalIncomeSource = "", this.totalIncome = "", this.additionalIncomeSourceAr = ''});
 }

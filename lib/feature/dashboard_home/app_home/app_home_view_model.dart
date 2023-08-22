@@ -105,7 +105,8 @@ class AppHomeViewModel extends BasePageViewModel {
   /// ------------------------------Request money pop-up------------------///
 
   ///------------------------------dashboard card data response ------------------///
-  BehaviorSubject<GetDashboardDataContent> _dashboardCardResponse = BehaviorSubject.seeded(GetDashboardDataContent());
+  BehaviorSubject<GetDashboardDataContent> _dashboardCardResponse =
+      BehaviorSubject.seeded(GetDashboardDataContent());
 
   Stream<GetDashboardDataContent> get getDashboardCardDataStream => _dashboardCardResponse.stream;
 
@@ -154,7 +155,8 @@ class AppHomeViewModel extends BasePageViewModel {
 
   BehaviorSubject<Resource<GetPlaceholderResponse>> _getRequestMoneyPlaceHolderResponse = BehaviorSubject();
 
-  Stream<Resource<GetPlaceholderResponse>> get getRequestMoneyPlaceHolderStream => _getRequestMoneyPlaceHolderResponse.stream;
+  Stream<Resource<GetPlaceholderResponse>> get getRequestMoneyPlaceHolderStream =>
+      _getRequestMoneyPlaceHolderResponse.stream;
 
   PlaceholderData requestMoneyPlaceholderData = PlaceholderData();
 
@@ -222,7 +224,8 @@ class AppHomeViewModel extends BasePageViewModel {
 
   ///--------------- Animated Pages streams ----------------------///
 
-  BehaviorSubject<DashboardAnimatedPage> pageSwitchSubject = BehaviorSubject.seeded(DashboardAnimatedPage.NULL);
+  BehaviorSubject<DashboardAnimatedPage> pageSwitchSubject =
+      BehaviorSubject.seeded(DashboardAnimatedPage.NULL);
 
   Stream<DashboardAnimatedPage> get pageSwitchStream => pageSwitchSubject.stream;
 
@@ -262,12 +265,21 @@ class AppHomeViewModel extends BasePageViewModel {
   bool isSmallDevices = false;
 
   AppHomeViewModel(
-      this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._initDynamicLinkUseCase, this._getCurrentUserUseCase, this._saveUserDataUseCase, this._verifyQRUseCase, this._getAntelopCardsListUseCase) {
+      this._getDashboardDataUseCase,
+      this._getPlaceholderUseCase,
+      this._initDynamicLinkUseCase,
+      this._getCurrentUserUseCase,
+      this._saveUserDataUseCase,
+      this._verifyQRUseCase,
+      this._getAntelopCardsListUseCase) {
     isShowBalenceUpdatedToast = false;
     deviceSize = MediaQuery.of(appLevelKey.currentContext!).size;
-    isSmallDevices = deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT || deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
+    isSmallDevices = deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
+        deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
     _getDashboardDataRequest.listen((value) {
-      RequestManager(value, createCall: () => _getDashboardDataUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _getDashboardDataUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _getDashboardDataResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -287,7 +299,9 @@ class AppHomeViewModel extends BasePageViewModel {
     });
 
     _getPlaceHolderRequest.listen((value) {
-      RequestManager(value, createCall: () => _getPlaceholderUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _getPlaceholderUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _getPlaceHolderResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -307,7 +321,9 @@ class AppHomeViewModel extends BasePageViewModel {
     });
 
     _getRequestMoneyPlaceHolderRequest.listen((value) {
-      RequestManager(value, createCall: () => _getPlaceholderUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _getPlaceholderUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _getRequestMoneyPlaceHolderResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -323,7 +339,9 @@ class AppHomeViewModel extends BasePageViewModel {
 
     _antelopGetCardsRequest.listen(
       (params) {
-        RequestManager(params, createCall: () => _getAntelopCardsListUseCase.execute(params: params)).asFlow().listen((event) {
+        RequestManager(params, createCall: () => _getAntelopCardsListUseCase.execute(params: params))
+            .asFlow()
+            .listen((event) {
           _antelopGetCardResponse.safeAdd(event);
         });
       },
@@ -339,7 +357,9 @@ class AppHomeViewModel extends BasePageViewModel {
     });
 
     _initDynamicLinkRequestRequest.listen((value) {
-      RequestManager(value, createCall: () => _initDynamicLinkUseCase.execute(params: value)).asFlow().listen((event) {});
+      RequestManager(value, createCall: () => _initDynamicLinkUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {});
     });
 
     _currentUserRequestSubject.listen((value) {
@@ -360,7 +380,9 @@ class AppHomeViewModel extends BasePageViewModel {
     });
 
     _verifyQRRequest.listen((value) {
-      RequestManager(value, createCall: () => _verifyQRUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _verifyQRUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _verifyQRResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -398,7 +420,10 @@ class AppHomeViewModel extends BasePageViewModel {
 
 
     pages.add(MyAccountPage(account: dashboardDataContent.account!));
-    cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.ACCOUNT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES, timeLineEnum: TimeLineEnum.TIMELINE_YES));
+    cardTypeList.add(TimeLineSwipeUpArgs(
+        cardType: CardType.ACCOUNT,
+        swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
+        timeLineEnum: TimeLineEnum.TIMELINE_YES));
 
     ///setting timeline arguments value start
     timeLineArguments.availableBalance = dashboardDataContent.account!.availableBalance ?? '0.000';
@@ -444,10 +469,15 @@ class AppHomeViewModel extends BasePageViewModel {
                   cardNumber: creditCard.cardNumber ?? '',
                   accountTitle: creditCard.name ?? '',
                   cardType: CardType.CREDIT,
-                  isCardDelivered: creditCard.isCreditDelivered));
+                  isCardDelivered: creditCard.isCreditDelivered,
+                  secureCode: creditCard.cardCode,
+                  isIssuedFromCMS: creditCard.issuedFromCms));
 
               ///adding cardType
-              cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES, timeLineEnum: TimeLineEnum.TIMELINE_YES));
+              cardTypeList.add(TimeLineSwipeUpArgs(
+                  cardType: CardType.CREDIT,
+                  swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
+                  timeLineEnum: TimeLineEnum.TIMELINE_YES));
               creditCards.add(creditCard);
             } else {
               pages.add(CreditCardNotDeliveredWidget(
@@ -470,10 +500,13 @@ class AppHomeViewModel extends BasePageViewModel {
                   cardNumber: creditCard.cardNumber ?? '',
                   accountTitle: creditCard.name ?? '',
                   cardType: CardType.CREDIT,
-                  isCardDelivered: creditCard.isCreditDelivered));
+                  isCardDelivered: creditCard.isCreditDelivered,
+                  secureCode: creditCard.cardCode,
+                  isIssuedFromCMS: creditCard.issuedFromCms));
 
               ///adding cardType
-              cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+              cardTypeList
+                  .add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
             }
           } else {
             if (!(dashboardDataContent.dashboardFeatures?.isCreditCardFeatureEnabled ?? false)) {
@@ -483,7 +516,8 @@ class AppHomeViewModel extends BasePageViewModel {
               ));
 
               ///adding cardType
-              cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+              cardTypeList
+                  .add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
             } else {
               if (creditCard.primarySecondaryCard == PrimarySecondaryCardEnum.SECONDARY) {
               } else {
@@ -493,7 +527,8 @@ class AppHomeViewModel extends BasePageViewModel {
                       isSmallDevices: isSmallDevices,
                       key: ValueKey('credit#GetCreditCardNowWidget#'),
                     ));
-                    cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                    cardTypeList.add(
+                        TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
                     break;
 
                   case CreditCardCallStatusEnum.DROP:
@@ -504,7 +539,8 @@ class AppHomeViewModel extends BasePageViewModel {
                     ));
 
                     ///adding cardType
-                    cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                    cardTypeList.add(
+                        TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
                     break;
 
                   case CreditCardCallStatusEnum.REJECTED:
@@ -516,7 +552,8 @@ class AppHomeViewModel extends BasePageViewModel {
                     ));
 
                     ///adding cardType
-                    cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                    cardTypeList.add(
+                        TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
                 }
               }
             }
@@ -530,14 +567,16 @@ class AppHomeViewModel extends BasePageViewModel {
           ));
 
           ///adding cardType
-          cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+          cardTypeList
+              .add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
         } else {
           pages.add(ApplyCreditCardWidget(
             isSmallDevices: isSmallDevices,
           ));
 
           ///adding cardType
-          cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+          cardTypeList
+              .add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
         }
       }
     }
@@ -560,7 +599,8 @@ class AppHomeViewModel extends BasePageViewModel {
                 pages.add(DormantAccountDebitCardDisabledWidget());
 
                 ///adding cardType
-                cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                cardTypeList
+                    .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
               } else {
                 pages.add(ApplyDebitCardWidget(
                   debitRoutes: DebitRoutes.DASHBOARD,
@@ -572,7 +612,8 @@ class AppHomeViewModel extends BasePageViewModel {
                 ));
 
                 ///adding cardType
-                cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                cardTypeList
+                    .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
               }
             } else {
               if (dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.DORMANT) {
@@ -580,7 +621,8 @@ class AppHomeViewModel extends BasePageViewModel {
                 pages.add(DormantAccountDebitCardDisabledWidget());
 
                 ///adding cardType
-                cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                cardTypeList
+                    .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
               } else {
                 pages.add(ApplyDebitCardWidget(
                   debitRoutes: DebitRoutes.DASHBOARD,
@@ -592,7 +634,8 @@ class AppHomeViewModel extends BasePageViewModel {
                 ));
 
                 ///adding cardType
-                cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                cardTypeList
+                    .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
               }
             }
           } else {
@@ -602,7 +645,8 @@ class AppHomeViewModel extends BasePageViewModel {
                 pages.add(DormantAccountDebitCardDisabledWidget());
 
                 ///adding cardType
-                cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                cardTypeList
+                    .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
               } else {
                 pages.add(ApplyDebitCardWidget(
                   debitRoutes: DebitRoutes.DASHBOARD,
@@ -614,7 +658,8 @@ class AppHomeViewModel extends BasePageViewModel {
                 ));
 
                 ///adding cardType
-                cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                cardTypeList
+                    .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
               }
             } else {
               pages.add(DebitCardWidget(
@@ -623,7 +668,8 @@ class AppHomeViewModel extends BasePageViewModel {
                 isSmallDevice: isSmallDevices,
                 key: ValueKey('debit${debitCard.code}${debitCard.cvv}'),
                 debitCard: debitCard,
-                isDebitCardRequestPhysicalCardEnabled: dashboardDataContent.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled ?? false,
+                isDebitCardRequestPhysicalCardEnabled:
+                    dashboardDataContent.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled ?? false,
                 onSettingsClick: () {
                   /// showing settings page....
                   selectedDebitCard = debitCard;
@@ -640,10 +686,14 @@ class AppHomeViewModel extends BasePageViewModel {
                   cardNumber: debitCard.cardNumber ?? '',
                   accountTitle: debitCard.accountTitle ?? '',
                   cardType: CardType.DEBIT,
-                  isCardDelivered: debitCard.isDebitDelivered));
+                  isCardDelivered: debitCard.isDebitDelivered,
+                  secureCode: debitCard.cardCode));
 
               ///adding cardType
-              cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO, timeLineEnum: TimeLineEnum.TIMELINE_YES));
+              cardTypeList.add(TimeLineSwipeUpArgs(
+                  cardType: CardType.DEBIT,
+                  swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO,
+                  timeLineEnum: TimeLineEnum.TIMELINE_YES));
 
               debitCards.add(debitCard);
             }
@@ -655,7 +705,8 @@ class AppHomeViewModel extends BasePageViewModel {
           pages.add(DormantAccountDebitCardDisabledWidget());
 
           ///adding cardType
-          cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+          cardTypeList
+              .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
         } else {
           pages.add(ApplyDebitCardWidget(
             debitRoutes: DebitRoutes.DASHBOARD,
@@ -665,7 +716,8 @@ class AppHomeViewModel extends BasePageViewModel {
           ));
 
           ///adding cardType
-          cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+          cardTypeList
+              .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
         }
       }
     }
@@ -715,7 +767,9 @@ class AppHomeViewModel extends BasePageViewModel {
 
   checkIfDebitCardThere(List<DebitCard>? debitCards) {
     if (debitCards!.isNotEmpty) {
-      DebitCard debitCard = debitCards.firstWhere((debit) => debit.primarySecondaryCard == PrimarySecondaryEnum.PRIMARY, orElse: () => DebitCard());
+      DebitCard debitCard = debitCards.firstWhere(
+          (debit) => debit.primarySecondaryCard == PrimarySecondaryEnum.PRIMARY,
+          orElse: () => DebitCard());
       if (debitCard.cardNumber != null) {
         isPrimaryDebitCard = true;
       } else {
@@ -741,7 +795,8 @@ class AppHomeViewModel extends BasePageViewModel {
     if (blinkTimeLineListArguments.isNotEmpty) {
       ///sorting in descending order
       blinkTimeLineListArguments.sort((a, b) {
-        return DateTime.parse(b.cardCardActivated!).compareTo(DateTime.parse(a.cardCardActivated!));
+        return DateTime.parse(b.cardCardActivated ?? DateTime.now().toString())
+            .compareTo(DateTime.parse(a.cardCardActivated ?? DateTime.now().toString()));
       });
     }
   }
@@ -902,7 +957,8 @@ class AppHomeViewModel extends BasePageViewModel {
 
   PublishSubject<bool> _showAddAnotherCardToApplePayPopUpRequest = PublishSubject();
 
-  Stream<bool> get showAddAnotherCardToApplePayPopUpStream => _showAddAnotherCardToApplePayPopUpRequest.stream;
+  Stream<bool> get showAddAnotherCardToApplePayPopUpStream =>
+      _showAddAnotherCardToApplePayPopUpRequest.stream;
 
   void showAnotherAppToApplePayPupUp(bool value) {
     Future.delayed(Duration(milliseconds: 500), () {
@@ -1025,14 +1081,23 @@ class AppHomeViewModel extends BasePageViewModel {
 
   timelineGlitchAnimation() {
     if (timelineScrollController.positions.isNotEmpty && timelineScrollController.hasClients)
-      timelineScrollController.animateTo(30, duration: const Duration(milliseconds: 400), curve: Curves.easeIn).then((value) {
-        if (timelineScrollController.positions.isNotEmpty && timelineScrollController.hasClients) timelineScrollController.animateTo(-30, duration: const Duration(milliseconds: 500), curve: Curves.easeInBack);
+      timelineScrollController
+          .animateTo(30, duration: const Duration(milliseconds: 400), curve: Curves.easeIn)
+          .then((value) {
+        if (timelineScrollController.positions.isNotEmpty && timelineScrollController.hasClients)
+          timelineScrollController.animateTo(-30,
+              duration: const Duration(milliseconds: 500), curve: Curves.easeInBack);
       });
   }
 
   goToTransactionPage(BuildContext context, int currentStep) {
     animateForwardTransactionPage();
-    Navigator.of(context).push(CustomRoute.swipeUpRoute(CardTransactionPage(GetCreditCardTransactionArguments(cardId: timeLineListArguments[currentStep - 1].cardId))));
+    Navigator.of(context).push(CustomRoute.swipeUpRoute(CardTransactionPage(
+      GetCreditCardTransactionArguments(
+          cardId: timeLineListArguments[currentStep - 1].cardId,
+          secureCode: timeLineListArguments[currentStep - 1].secureCode ?? '',
+          isIssuedFromCMS: timeLineListArguments[currentStep - 1].isIssuedFromCMS ?? false),
+    )));
   }
 
   goToAccountTransactionPage(BuildContext context) {
@@ -1062,7 +1127,11 @@ class AppHomeViewModel extends BasePageViewModel {
   }
 
   void onDebitCardSettingsClosed() {
-    if (debitCardIsFreezed || debitCardIsUnFreezed || debitCardIsCancelled || debitCardIsReportDamagedCard || debitCardLostStolenReported) {
+    if (debitCardIsFreezed ||
+        debitCardIsUnFreezed ||
+        debitCardIsCancelled ||
+        debitCardIsReportDamagedCard ||
+        debitCardLostStolenReported) {
       getDashboardData();
     }
   }
@@ -1081,7 +1150,10 @@ class TimeLineSwipeUpArgs {
 
   final TimeLineEnum timeLineEnum;
 
-  TimeLineSwipeUpArgs({this.cardType = CardType.ACCOUNT, this.swipeUpEnum = SwipeUpEnum.SWIPE_UP_NO, this.timeLineEnum = TimeLineEnum.TIMELINE_NO});
+  TimeLineSwipeUpArgs(
+      {this.cardType = CardType.ACCOUNT,
+      this.swipeUpEnum = SwipeUpEnum.SWIPE_UP_NO,
+      this.timeLineEnum = TimeLineEnum.TIMELINE_NO});
 }
 
 enum SwipeUpEnum {

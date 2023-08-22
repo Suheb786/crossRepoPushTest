@@ -43,8 +43,7 @@ class VoucherCategoryEntity implements BaseLayerDataTransformer<VoucherCategoryE
     this.categoryIcon,
   });
 
-  factory VoucherCategoryEntity.fromJson(Map<String, dynamic> json) =>
-      _$VoucherCategoryEntityFromJson(json);
+  factory VoucherCategoryEntity.fromJson(Map<String, dynamic> json) => _$VoucherCategoryEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$VoucherCategoryEntityToJson(this);
 

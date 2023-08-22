@@ -1,17 +1,12 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
-import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page.dart';
-import 'package:neo_bank/utils/extension/stream_extention.dart';
-
 class PurchaseEVoucherPageViewModel extends BasePageViewModel {
-  final PurchaseEVoucherPageArgument argument;
-
-  PurchaseEVoucherPageViewModel(
-    this.argument,
-  );
+  List<VoucherItem>? voucherItems;
 
   final SwiperController pageController = SwiperController();
 

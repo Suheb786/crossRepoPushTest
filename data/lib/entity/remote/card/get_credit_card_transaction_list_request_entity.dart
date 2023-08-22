@@ -10,15 +10,20 @@ class GetCreditCardTransactionListRequestEntity {
   final num? noOfDays;
   @JsonKey(name: "GetToken")
   final bool? getToken;
+  @JsonKey(name: "SecureCode")
+  final String? secureCode;
+  @JsonKey(name: "IssuedFromCms")
+  final bool? issuedFromCms;
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  GetCreditCardTransactionListRequestEntity({
-    required this.baseData,
-    this.getToken = true,
-    this.noOfDays = 180,
-    this.cardId = "",
-  });
+  GetCreditCardTransactionListRequestEntity(
+      {required this.baseData,
+      this.getToken = true,
+      this.noOfDays = 180,
+      this.cardId = "",
+      this.issuedFromCms = false,
+      this.secureCode = ''});
 
   factory GetCreditCardTransactionListRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCreditCardTransactionListRequestEntityFromJson(json);

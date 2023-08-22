@@ -1,6 +1,5 @@
 import 'package:domain/model/e_voucher/e_voucher_otp.dart';
 import 'package:domain/model/e_voucher/place_order.dart';
-import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/enter_otp_for_evoucher_category_purchase_usecase.dart';
 import 'package:domain/usecase/evouchers/place_order_usecase.dart';
@@ -14,10 +13,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-import '../purchase_evoucher_page.dart';
-
 class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel {
-  final PurchaseEVoucherPageArgument argument;
   final PlaceOrderUseCase placeOrderUseCase;
   final EVoucherOtpUseCase eVoucherOtpUseCase;
   final EnterOtpForEVoucherCategoryPurchaseUseCase _enterOtpForEVoucherPurchaseCategoryUseCase;
@@ -37,9 +33,9 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
 
   /// make otp suject
   PublishSubject<EVoucherUsecaseOTPParams> _evoucherOtpRequest = PublishSubject();
-  PublishSubject<Resource<bool>> _evoucherOtpResponse = PublishSubject();
+  PublishSubject<Resource<EVoucherOTP>> _evoucherOtpResponse = PublishSubject();
 
-  Stream<Resource<bool>> get evoucherOtpStream => _evoucherOtpResponse.stream;
+  Stream<Resource<EVoucherOTP>> get evoucherOtpStream => _evoucherOtpResponse.stream;
 
   ///place order
   PublishSubject<PlaceOrderUseCaseParams> _placeOrderRequest = PublishSubject();
@@ -60,8 +56,8 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  EnterOtpForEVoucherCategoryPurchasePageViewModel(this._enterOtpForEVoucherPurchaseCategoryUseCase,
-      this.argument, this.placeOrderUseCase, this.eVoucherOtpUseCase) {
+  EnterOtpForEVoucherCategoryPurchasePageViewModel(
+      this._enterOtpForEVoucherPurchaseCategoryUseCase, this.placeOrderUseCase, this.eVoucherOtpUseCase) {
     _validateOtpRequest.listen((value) {
       RequestManager(value,
               createCall: () => _enterOtpForEVoucherPurchaseCategoryUseCase.execute(params: value))
@@ -106,9 +102,9 @@ class EnterOtpForEVoucherCategoryPurchasePageViewModel extends BasePageViewModel
     });
   }
 
-  void makeOTPRequest() {
+  void makeOTPRequest({required String voucherName}) {
     otpController.clear();
-    _evoucherOtpRequest.safeAdd(EVoucherUsecaseOTPParams(GetToken: true));
+    _evoucherOtpRequest.safeAdd(EVoucherUsecaseOTPParams(voucherName: voucherName));
   }
 
   void validateOtp() {

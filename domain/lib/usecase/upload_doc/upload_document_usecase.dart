@@ -13,14 +13,16 @@ class UploadDocumentUseCase extends BaseUseCase<BaseError, UploadDocumentUseCase
 
   @override
   Future<Either<BaseError, String>> execute({UploadDocumentUseCaseParams? params}) {
-    return _docRepository.pickUploadDocument(type: params!.documentType);
+    return _docRepository.pickUploadDocument(
+        type: params!.documentType, cameraPhotoFile: params.cameraPhotoFile);
   }
 }
 
 class UploadDocumentUseCaseParams extends Params {
   final DocumentTypeEnum documentType;
+  final String cameraPhotoFile;
 
-  UploadDocumentUseCaseParams({required this.documentType});
+  UploadDocumentUseCaseParams({required this.documentType, this.cameraPhotoFile = ''});
 
   @override
   Either<AppError, bool> verify() {

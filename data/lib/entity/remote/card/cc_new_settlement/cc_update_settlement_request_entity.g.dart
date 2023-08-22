@@ -13,6 +13,8 @@ CcUpdateSettlementRequestEntity _$CcUpdateSettlementRequestEntityFromJson(
       getToken: json['GetToken'] as bool? ?? true,
       cardId: json['CardId'] as String?,
       rate: json['Rate'] as num?,
+      secureCode: json['SecureCode'] as String? ?? '',
+      issuedFromCms: json['IssuedFromCms'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$CcUpdateSettlementRequestEntityToJson(
@@ -21,5 +23,7 @@ Map<String, dynamic> _$CcUpdateSettlementRequestEntityToJson(
       'Rate': instance.rate,
       'CardId': instance.cardId,
       'GetToken': instance.getToken,
+      'SecureCode': instance.secureCode,
+      'IssuedFromCms': instance.issuedFromCms,
       'BaseClass': instance.baseData,
     };

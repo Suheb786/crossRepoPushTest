@@ -19,6 +19,8 @@ class TimeLineListArguments {
   String? cardId;
   CardType cardType;
   bool? isCardDelivered;
+  bool? isIssuedFromCMS;
+  String? secureCode;
 
   TimeLineListArguments(
       {this.cardDeliveredDatetime = "",
@@ -27,7 +29,9 @@ class TimeLineListArguments {
       this.cardNumber = "",
       this.accountTitle = "",
       this.cardType = CardType.DEBIT,
-      this.isCardDelivered = false});
+      this.isCardDelivered = false,
+      this.secureCode = '',
+      this.isIssuedFromCMS = false});
 }
 
 class TimeLineArguments {
