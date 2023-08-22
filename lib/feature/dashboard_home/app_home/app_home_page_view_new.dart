@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/enum/account_status_enum.dart';
 import 'package:domain/constants/enum/evoucher_landing_page_navigation_type_enum.dart';
+import 'package:domain/model/bank_smart/create_account_response.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/model/qr/verify_qr_response.dart';
 import 'package:domain/model/user/user.dart';
@@ -25,6 +26,7 @@ import 'package:neo_bank/ui/molecules/dialog/efawateer_landing_page_dialog/efawa
 import 'package:neo_bank/ui/molecules/dialog/evoucher/evoucher_landing_page_dialog/evoucher_landing_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/rj/rj_dashbord_dialog/rj_dashboard_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/sub_accounts_dialogs/confirmation_dialog/confirmation_dialog.dart';
 import 'package:neo_bank/ui/molecules/pager/dashboard_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/app_constants.dart';
@@ -38,6 +40,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../ui/molecules/app_svg.dart';
+import '../../../ui/molecules/card/settings_tile.dart';
 import '../../../utils/device_size_helper.dart';
 import '../../credit_card_pay_back/credit_card_pay_back_page.dart';
 import '../credit_card_settings/credit_card_settings_page.dart';
@@ -269,28 +272,28 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                       const Duration(milliseconds: 400),
                                                                   switchInCurve: Curves.easeInOut,
                                                                   switchOutCurve: Curves.linearToEaseOut,
-                                                                  child: switchedPage ==
-                                                                          DashboardAnimatedPage.SETTINGS
-                                                                      ? model.selectedDebitCard != null
-                                                                          ? DebitCardSettingsPage(DebitCardSettingsArguments(
-                                                                              accountStatusEnum: cardData
-                                                                                      ?.data
-                                                                                      ?.dashboardDataContent
-                                                                                      ?.account
-                                                                                      ?.accountStatusEnum ??
-                                                                                  AccountStatusEnum.NONE,
-                                                                              isPrimaryDebitCard:
-                                                                                  model.isPrimaryDebitCard,
-                                                                              debitCard:
-                                                                                  model.selectedDebitCard!,
-                                                                              debitCardRequestPhysicalCardEnabled: cardData
-                                                                                      ?.data
-                                                                                      ?.dashboardDataContent
-                                                                                      ?.dashboardFeatures
-                                                                                      ?.isDebitCardRequestPhysicalCardEnabled ??
-                                                                                  false))
-                                                                          : CreditCardSettingsPage(
-                                                                              CreditCardSettingsArguments(
+                                                                  child:
+                                                                      switchedPage ==
+                                                                              DashboardAnimatedPage.SETTINGS
+                                                                          ? model.selectedDebitCard != null
+                                                                              ? DebitCardSettingsPage(DebitCardSettingsArguments(
+                                                                                  accountStatusEnum: cardData
+                                                                                          ?.data
+                                                                                          ?.dashboardDataContent
+                                                                                          ?.account
+                                                                                          ?.accountStatusEnum ??
+                                                                                      AccountStatusEnum.NONE,
+                                                                                  isPrimaryDebitCard: model
+                                                                                      .isPrimaryDebitCard,
+                                                                                  debitCard: model
+                                                                                      .selectedDebitCard!,
+                                                                                  debitCardRequestPhysicalCardEnabled: cardData
+                                                                                          ?.data
+                                                                                          ?.dashboardDataContent
+                                                                                          ?.dashboardFeatures
+                                                                                          ?.isDebitCardRequestPhysicalCardEnabled ??
+                                                                                      false))
+                                                                              : CreditCardSettingsPage(CreditCardSettingsArguments(
                                                                                   creditCard: model
                                                                                       .selectedCreditCard!,
                                                                                   isChangePinEnabled: cardData
@@ -299,39 +302,122 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                           ?.dashboardFeatures
                                                                                           ?.isPinChangeEnabled ??
                                                                                       true))
-                                                                      : switchedPage == DashboardAnimatedPage.TIMELINE
-                                                                          ? DebitCardTimeLinePage(TimeLinePageArguments(cardType: model.cardTypeList[currentStep!].cardType, timeLineArguments: model.timeLineArguments))
-                                                                          : switchedPage == DashboardAnimatedPage.PAYBACK
-                                                                              ? CreditCardPayBackPage(
-                                                                                  CreditCardPayBackArguments(
-                                                                                      accountHolderName: model
-                                                                                          .selectedCreditCard!
-                                                                                          .name!,
-                                                                                      secureCode: model
-                                                                                          .selectedCreditCard!
-                                                                                          .cardCode!,
-                                                                                      accountBalance: cardData!
-                                                                                          .data!
-                                                                                          .dashboardDataContent!
-                                                                                          .account!
-                                                                                          .availableBalance!,
-                                                                                      minDuePayBackAmount: model
-                                                                                          .selectedCreditCard!
-                                                                                          .paymentDueAmount
-                                                                                          .toString(),
-                                                                                      totalMinDueAmount: model
-                                                                                          .selectedCreditCard!
-                                                                                          .usedBalance!),
-                                                                                )
-                                                                              : switchedPage == DashboardAnimatedPage.ACT_SETTING
-                                                                                  ? SizedBox(
-                                                                                      height: MediaQuery.of(
-                                                                                                  context)
-                                                                                              .size
-                                                                                              .height *
-                                                                                          0.68,
+                                                                          : switchedPage ==
+                                                                                  DashboardAnimatedPage.TIMELINE
+                                                                              ? DebitCardTimeLinePage(TimeLinePageArguments(cardType: model.cardTypeList[currentStep!].cardType, timeLineArguments: model.timeLineArguments))
+                                                                              : switchedPage == DashboardAnimatedPage.PAYBACK
+                                                                                  ? CreditCardPayBackPage(
+                                                                                      CreditCardPayBackArguments(
+                                                                                          accountHolderName: model
+                                                                                              .selectedCreditCard!
+                                                                                              .name!,
+                                                                                          secureCode: model
+                                                                                              .selectedCreditCard!
+                                                                                              .cardCode!,
+                                                                                          accountBalance: cardData!
+                                                                                              .data!
+                                                                                              .dashboardDataContent!
+                                                                                              .account!
+                                                                                              .availableBalance!,
+                                                                                          minDuePayBackAmount: model
+                                                                                              .selectedCreditCard!
+                                                                                              .paymentDueAmount
+                                                                                              .toString(),
+                                                                                          totalMinDueAmount: model
+                                                                                              .selectedCreditCard!
+                                                                                              .usedBalance!),
                                                                                     )
-                                                                                  : const SizedBox(),
+                                                                                  : switchedPage == DashboardAnimatedPage.ACT_SETTING
+                                                                                      ? AppStreamBuilder<Resource<bool>>(
+                                                                                          stream: model.addSubAccountStream,
+                                                                                          initialData: Resource.none(),
+                                                                                          onData: (value) {
+                                                                                            if (value
+                                                                                                    .status ==
+                                                                                                Status
+                                                                                                    .SUCCESS) {
+                                                                                              Navigator.pushNamed(
+                                                                                                  context,
+                                                                                                  RoutePaths
+                                                                                                      .OpenSubAccountSuccessPage);
+                                                                                            }
+                                                                                          },
+                                                                                          dataBuilder: (context, snapshot) {
+                                                                                            return AppStreamBuilder<
+                                                                                                    Resource<
+                                                                                                        CreateAccountResponse>>(
+                                                                                                stream: model
+                                                                                                    .createAccountStream,
+                                                                                                initialData:
+                                                                                                    Resource
+                                                                                                        .none(),
+                                                                                                onData:
+                                                                                                    (event) {
+                                                                                                  if (event
+                                                                                                          .status ==
+                                                                                                      Status
+                                                                                                          .SUCCESS) {
+                                                                                                    model
+                                                                                                        .addSubAccount(
+                                                                                                      NickName:
+                                                                                                          "Sub Account 1",
+                                                                                                      SubAccountNo:
+                                                                                                          event.data?.content?.createAccountData?.accountNumber ??
+                                                                                                              "",
+                                                                                                    );
+                                                                                                  }
+                                                                                                },
+                                                                                                dataBuilder:
+                                                                                                    (context,
+                                                                                                        createAccountResponse) {
+                                                                                                  return Padding(
+                                                                                                    padding: EdgeInsetsDirectional.only(
+                                                                                                        start:
+                                                                                                            36.0.w),
+                                                                                                    child:
+                                                                                                        Column(
+                                                                                                      mainAxisAlignment:
+                                                                                                          MainAxisAlignment.end,
+                                                                                                      children: [
+                                                                                                        SettingTile(
+                                                                                                          tileIcon:
+                                                                                                              AssetUtils.addMoney,
+                                                                                                          title:
+                                                                                                              S.current.addMoney,
+                                                                                                          onTap:
+                                                                                                              () {},
+                                                                                                        ),
+                                                                                                        SettingTile(
+                                                                                                          tileIcon:
+                                                                                                              AssetUtils.openSubAccount,
+                                                                                                          title:
+                                                                                                              S.current.openSubAccount,
+                                                                                                          onTap:
+                                                                                                              () {
+                                                                                                            return ConfirmationDialog.show(context, title: S.current.openSubAccount, descriptionWidget: Text(S.current.opneSubAccountDescription), image: AssetUtils.openSubAccount, imageHight: 40.h, imageWidth: 40.w, onConfirmed: () {
+                                                                                                              Navigator.pop(context);
+                                                                                                              model.getAccount();
+                                                                                                            }, onDismissed: () {
+                                                                                                              Navigator.pop(context);
+                                                                                                            });
+                                                                                                          },
+                                                                                                        ),
+                                                                                                        SettingTile(
+                                                                                                          tileIcon:
+                                                                                                              AssetUtils.shareAccountInfo,
+                                                                                                          title:
+                                                                                                              S.current.shareAccountInformation,
+                                                                                                          onTap:
+                                                                                                              () {},
+                                                                                                        ),
+                                                                                                        SizedBox(
+                                                                                                            height: 180.h),
+                                                                                                      ],
+                                                                                                    ),
+                                                                                                  );
+                                                                                                });
+                                                                                          })
+                                                                                      : const SizedBox(),
                                                                 );
                                                               }),
                                                           AnimatedBuilder(

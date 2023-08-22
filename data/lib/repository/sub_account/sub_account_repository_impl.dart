@@ -26,8 +26,7 @@ class SubAccountRepositoryImpl extends SubAccountRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> addSubAccount(
-      {required AddSubAccountSubAccountUseCaseParams params}) async {
+  Future<Either<NetworkError, bool>> addSubAccount({required AddSubAccountUseCaseParams params}) async {
     final result = await safeApiCall(_subAccountDataSource.addSubAccount(params: params));
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }

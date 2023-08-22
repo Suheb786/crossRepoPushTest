@@ -10,6 +10,10 @@ import 'package:domain/constants/enum/credit_card_call_status_enum.dart';
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
 import 'package:domain/constants/enum/primary_secondary_card_enum.dart';
 import 'package:domain/constants/enum/primary_secondary_enum.dart';
+import 'package:domain/model/bank_smart/create_account_response.dart';
+import 'package:domain/model/bank_smart/customer_account_details.dart';
+import 'package:domain/model/bank_smart/customer_information.dart';
+import 'package:domain/model/bank_smart/get_account_response.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
@@ -19,14 +23,19 @@ import 'package:domain/model/dashboard/get_placeholder/placeholder_data.dart';
 import 'package:domain/model/qr/verify_qr_response.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/apple_pay/get_antelop_cards_list_usecase.dart';
+import 'package:domain/usecase/bank_smart/create_account_usecase.dart';
+import 'package:domain/usecase/bank_smart/get_account_usecase.dart';
 import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
 import 'package:domain/usecase/dashboard/get_placeholder_usecase.dart';
 import 'package:domain/usecase/dynamic_link/init_dynamic_link_usecase.dart';
 import 'package:domain/usecase/payment/verify_qr_usecase.dart';
+import 'package:domain/usecase/sub_account/add_account_usecase.dart';
 import 'package:domain/usecase/user/get_current_user_usecase.dart';
 import 'package:domain/usecase/user/save_user_data_usecase.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_page.dart';
@@ -60,6 +69,10 @@ class AppHomeViewModel extends BasePageViewModel {
   final GetCurrentUserUseCase _getCurrentUserUseCase;
   final SaveUserDataUseCase _saveUserDataUseCase;
   final VerifyQRUseCase _verifyQRUseCase;
+  final AddSubAccountUseCase _addSubAccountUseCase;
+  final GetAccountUseCase _getAccountUseCase;
+  final CreateAccountUseCase _createAccountUseCase;
+
   Timer? timer;
   final GetPlaceholderUseCase _getPlaceholderUseCase;
 
@@ -147,6 +160,32 @@ class AppHomeViewModel extends BasePageViewModel {
   BehaviorSubject<Resource<GetPlaceholderResponse>> _getPlaceHolderResponse = BehaviorSubject();
 
   Stream<Resource<GetPlaceholderResponse>> get getPlaceHolderStream => _getPlaceHolderResponse.stream;
+
+  /// add sub account request
+
+  PublishSubject<AddSubAccountUseCaseParams> _addSubAccountRequest = PublishSubject();
+
+  BehaviorSubject<Resource<bool>> _addSubAccountResposne = BehaviorSubject();
+
+  Stream<Resource<bool>> get addSubAccountStream => _addSubAccountResposne.stream;
+
+  ///get Account subject holder
+  PublishSubject<GetAccountUseCaseParams> _getAccountRequest = PublishSubject();
+
+  ///get Account response holder
+  PublishSubject<Resource<GetAccountResponse>> _getAccountResponse = PublishSubject();
+
+  ///get Account stream
+  Stream<Resource<GetAccountResponse>> get getAccountStream => _getAccountResponse.stream;
+
+  ///create Account subject holder
+  PublishSubject<CreateAccountUseCaseParams> _createAccountRequest = PublishSubject();
+
+  ///create Account response holder
+  PublishSubject<Resource<CreateAccountResponse>> _createAccountResponse = PublishSubject();
+
+  ///create Account stream
+  Stream<Resource<CreateAccountResponse>> get createAccountStream => _createAccountResponse.stream;
 
   PlaceholderData timelinePlaceholderData = PlaceholderData();
 
@@ -271,7 +310,10 @@ class AppHomeViewModel extends BasePageViewModel {
       this._getCurrentUserUseCase,
       this._saveUserDataUseCase,
       this._verifyQRUseCase,
-      this._getAntelopCardsListUseCase) {
+      this._getAntelopCardsListUseCase,
+      this._addSubAccountUseCase,
+      this._getAccountUseCase,
+      this._createAccountUseCase) {
     isShowBalenceUpdatedToast = false;
     deviceSize = MediaQuery.of(appLevelKey.currentContext!).size;
     isSmallDevices = deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
@@ -333,6 +375,52 @@ class AppHomeViewModel extends BasePageViewModel {
             requestMoneyPlaceholderData = event.data!.data!;
             _requestMoneyRequest.safeAdd(true);
           }
+        }
+      });
+    });
+
+    _addSubAccountRequest.listen((value) {
+      RequestManager(value, createCall: () => _addSubAccountUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _addSubAccountResposne.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {}
+      });
+    });
+
+    _getAccountRequest.listen((value) {
+      RequestManager(value, createCall: () => _getAccountUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getAccountResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          createAccount(
+            event.data!.content!.accountDetails!,
+            event.data!.content!.customerInformation!,
+          );
+        }
+      });
+    });
+
+    _createAccountRequest.listen((value) {
+      RequestManager(value, createCall: () => _createAccountUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _createAccountResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+         
         }
       });
     });
@@ -405,6 +493,20 @@ class AppHomeViewModel extends BasePageViewModel {
         AppConstantsUtils.isApplePayPopUpShown = true;
       }
     }
+  }
+
+  void getAccount() {
+    _getAccountRequest.safeAdd(GetAccountUseCaseParams());
+  }
+
+  void addSubAccount({required String? NickName, required String? SubAccountNo}) {
+    _addSubAccountRequest
+        .safeAdd(AddSubAccountUseCaseParams(NickName: NickName, SubAccountNo: SubAccountNo, GetToken: true));
+  }
+
+  void createAccount(CustomerAccountDetails customerAccountDetails, CustomerInformation customerInformation) {
+    _createAccountRequest.safeAdd(CreateAccountUseCaseParams(
+        accountDetails: customerAccountDetails, customerInformation: customerInformation));
   }
 
   void getDashboardPages(GetDashboardDataContent dashboardDataContent) {

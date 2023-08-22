@@ -230,6 +230,10 @@ class AssetUtils {
   static const String swipeUpSmall = svg + "swipe_up_small.svg";
   static const String moreMenu = svg + "more_menu.svg";
 
+  ///account
+  static const String addMoney = svg + "add_money.svg";
+  static const String openSubAccount = svg + "sub_account.svg";
+  static const String shareAccountInfo = svg + "share_account_info.svg";
 
   ///dialog png
   static const String close_bold = drawable + "close_bold.png";

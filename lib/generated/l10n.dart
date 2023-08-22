@@ -18319,6 +18319,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Share Account Information`
+  String get shareAccountInformation {
+    return Intl.message(
+      'Share Account Information',
+      name: 'shareAccountInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open Sub Account`
+  String get openSubAccount {
+    return Intl.message(
+      'Open Sub Account',
+      name: 'openSubAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to open a new account?`
+  String get opneSubAccountDescription {
+    return Intl.message(
+      'Are you sure you want to open a new account?',
+      name: 'opneSubAccountDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

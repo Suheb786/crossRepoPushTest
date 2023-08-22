@@ -93,7 +93,9 @@ class OpenSubAccountSuccessPageView extends BasePageViewWidget<OpenSubAccountSuc
               Padding(
                 padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w),
                 child: AppPrimaryButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   activeBackgroundColor: Theme.of(context).colorScheme.secondary,
                   textColor: Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue,
                   text: S.current.goToDashboard,

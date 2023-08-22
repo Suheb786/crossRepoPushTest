@@ -46,8 +46,7 @@ class SubAccountDataSourceImpl extends SubAccountDataSource {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> addSubAccount(
-      {required AddSubAccountSubAccountUseCaseParams params}) async {
+  Future<HttpResponse<ResponseEntity>> addSubAccount({required AddSubAccountUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.addSubAccount(
       AddSubAccountRequestEntity(

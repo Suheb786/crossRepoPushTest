@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/account_setting/account_setting_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/apple_pay/apple_pay_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/bank_smart/bank_smart_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/card_delivery/card_delivery_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/dashboard/dashboard_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/dc_change_linked_mobile_number/dc_change_linked_mobile_number_usecase_provider.dart';
@@ -37,6 +38,8 @@ import 'package:neo_bank/ui/molecules/dialog/dashboard/download_transaction_dial
 import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog_view_model.dart';
 
+import '../usecase/sub_account/sub_account_usecase_provider.dart';
+
 final dashboardViewModelProvider = ChangeNotifierProvider.autoDispose<DashboardPageViewModel>(
   (ref) => DashboardPageViewModel(
       ref.read(logoutUseCaseProvider),
@@ -52,13 +55,17 @@ final biometricLoginViewModelProvider = ChangeNotifierProvider.autoDispose<Biome
 
 final appHomeViewModelProvider = ChangeNotifierProvider.autoDispose<AppHomeViewModel>(
   (ref) => AppHomeViewModel(
-      ref.read(getDashboardDataUseCaseProvider),
-      ref.read(getPlaceHolderUseCaseProvider),
-      ref.read(initDynamicLinkUseCaseProvider),
-      ref.read(currentUserUseCaseProvider),
-      ref.read(saveDataUserUseCaseProvider),
-      ref.read(verifyQRUseCaseProvider),
-      ref.read(getAntelopCardListUseCaseProvider)),
+    ref.read(getDashboardDataUseCaseProvider),
+    ref.read(getPlaceHolderUseCaseProvider),
+    ref.read(initDynamicLinkUseCaseProvider),
+    ref.read(currentUserUseCaseProvider),
+    ref.read(saveDataUserUseCaseProvider),
+    ref.read(verifyQRUseCaseProvider),
+    ref.read(getAntelopCardListUseCaseProvider),
+    ref.read(addSubAccountUseCaseProvider),
+    ref.read(getAccountUseCaseProvider),
+    ref.read(createAccountUseCaseProvider),
+  ),
 );
 
 final filterTransactionDialogViewModelProvier =
@@ -196,6 +203,6 @@ final convertPurchaseToInstallmentsPageViewModelProvider =
 
 /// animated dashboard design viewmodel
 final animatedLayoutViewModelProvider =
-ChangeNotifierProvider.autoDispose<ConvertPurchaseToInstallmentsPageViewModel>(
-        (ref) => ConvertPurchaseToInstallmentsPageViewModel(),
+    ChangeNotifierProvider.autoDispose<ConvertPurchaseToInstallmentsPageViewModel>(
+  (ref) => ConvertPurchaseToInstallmentsPageViewModel(),
 );

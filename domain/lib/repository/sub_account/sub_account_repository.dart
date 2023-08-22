@@ -13,6 +13,6 @@ abstract class SubAccountRepository {
     required UpdateNickNameSubAccountUseCaseParams params,
   });
   Future<Either<NetworkError, bool>> addSubAccount({
-    required AddSubAccountSubAccountUseCaseParams params,
+    required AddSubAccountUseCaseParams params,
   });
 }

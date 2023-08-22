@@ -6,22 +6,22 @@ import '../../error/network_error.dart';
 import '../base/base_usecase.dart';
 import '../base/params.dart';
 
-class AddSubAccountUseCase extends BaseUseCase<NetworkError, AddSubAccountSubAccountUseCaseParams, bool> {
+class AddSubAccountUseCase extends BaseUseCase<NetworkError, AddSubAccountUseCaseParams, bool> {
   final SubAccountRepository _subAccountRepository;
   AddSubAccountUseCase(this._subAccountRepository);
 
   @override
-  Future<Either<NetworkError, bool>> execute({required AddSubAccountSubAccountUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required AddSubAccountUseCaseParams params}) {
     return _subAccountRepository.addSubAccount(params: params);
   }
 }
 
-class AddSubAccountSubAccountUseCaseParams extends Params {
+class AddSubAccountUseCaseParams extends Params {
   final String? NickName;
   final String? SubAccountNo;
   final bool? GetToken;
 
-  AddSubAccountSubAccountUseCaseParams({
+  AddSubAccountUseCaseParams({
     required this.NickName,
     required this.SubAccountNo,
     required this.GetToken,
