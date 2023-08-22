@@ -67,125 +67,97 @@ class QRScanOTPPageView extends BasePageViewWidget<QRScanOTPPageViewModel> {
                   }
                 },
                 dataBuilder: (context, checkSendMoneyResponse) {
-                  return GestureDetector(
-                    onHorizontalDragEnd: (details) {
-                      if (ProviderScope.containerOf(context)
-                              .read(sendMoneyQrScanningViewModelProvider)
-                              .appSwiperController
-                              .page ==
-                          1.0) {
-                        FocusScope.of(context).unfocus();
-                        if (StringUtils.isDirectionRTL(context)) {
-                          if (!details.primaryVelocity!.isNegative) {
-                            model.transferQR(context: context);
-                          } else {
-                            ProviderScope.containerOf(context)
-                                .read(sendMoneyQrScanningViewModelProvider)
-                                .previousPage();
-                          }
-                        } else {
-                          if (details.primaryVelocity!.isNegative) {
-                            model.transferQR(context: context);
-                          } else {
-                            ProviderScope.containerOf(context)
-                                .read(sendMoneyQrScanningViewModelProvider)
-                                .previousPage();
-                          }
-                        }
-                      }
-                    },
-                    child: Card(
-                      margin: EdgeInsets.zero,
-                      child: Container(
-                          padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SingleChildScrollView(
-                                physics: ClampingScrollPhysics(),
-                                child: Column(
-                                  children: [
-                                    AppOtpFields(
-                                      length: 6,
-                                      controller: model.otpController,
-                                      onChanged: (val) {
-                                        model.validate(val);
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Column(
+                  return Card(
+                    margin: EdgeInsets.zero,
+                    child: Container(
+                        padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SingleChildScrollView(
+                              physics: ClampingScrollPhysics(),
+                              child: Column(
                                 children: [
-                                  CountdownTimer(
-                                    controller: model.countDownController,
-                                    onEnd: () {},
-                                    endTime: model.endTime,
-                                    textStyle: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 16.t,
-                                        color: Theme.of(context).textTheme.bodyMedium!.color!),
-                                    widgetBuilder: (context, currentTimeRemaining) {
-                                      return currentTimeRemaining == null
-                                          ? TextButton(
-                                              onPressed: () {
-                                                model.resendOtp();
-                                              },
-                                              child: Text(
-                                                S.of(context).resendCode,
-                                                style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    fontSize: 14.t,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                              ))
-                                          : Text(
-                                              S.of(context).resendIn(
-                                                  '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                  AppOtpFields(
+                                    length: 6,
+                                    controller: model.otpController,
+                                    onChanged: (val) {
+                                      model.validate(val);
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: [
+                                CountdownTimer(
+                                  controller: model.countDownController,
+                                  onEnd: () {},
+                                  endTime: model.endTime,
+                                  textStyle: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 16.t,
+                                      color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                  widgetBuilder: (context, currentTimeRemaining) {
+                                    return currentTimeRemaining == null
+                                        ? TextButton(
+                                            onPressed: () {
+                                              model.resendOtp();
+                                            },
+                                            child: Text(
+                                              S.of(context).resendCode,
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   fontSize: 14.t,
                                                   fontWeight: FontWeight.w600,
                                                   color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                            );
-                                    },
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 16.0.h,bottom: 16.0.h),
-                                    child: AppStreamBuilder<bool>(
-                                        stream: model.showButtonStream,
-                                        initialData: false,
-                                        dataBuilder: (context, isValid) {
-                                          return Visibility(
-                                            visible: isValid!,
-                                            child: AnimatedButton(
-                                              buttonHeight: 50,
-                                              buttonText: S.of(context).swipeToProceed,
-                                            ),
+                                            ))
+                                        : Text(
+                                            S.of(context).resendIn(
+                                                '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                fontSize: 14.t,
+                                                fontWeight: FontWeight.w600,
+                                                color: Theme.of(context).textTheme.bodyLarge!.color!),
                                           );
-                                        }),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      ProviderScope.containerOf(context)
-                                          .read(sendMoneyQrScanningViewModelProvider)
-                                          .previousPage();
-                                    },
-                                    child: Text(
-                                      S.of(context).back,
-                                      style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 14.0.t,
-                                        fontWeight: FontWeight.w600,
-                                        color: AppColor.brightBlue,
-                                      ),
+                                  },
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 16.0.h, bottom: 16.0.h),
+                                  child: AppStreamBuilder<bool>(
+                                      stream: model.showButtonStream,
+                                      initialData: false,
+                                      dataBuilder: (context, isValid) {
+                                        return AppPrimaryButton(
+                                          isDisabled: !isValid!,
+                                          text: S.of(context).swipeToProceed,
+                                          onPressed: () {
+                                            model.transferQR(context: context);
+                                          },
+                                        );
+                                      }),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    ProviderScope.containerOf(context)
+                                        .read(sendMoneyQrScanningViewModelProvider)
+                                        .previousPage();
+                                  },
+                                  child: Text(
+                                    S.of(context).back,
+                                    style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 14.0.t,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColor.brightBlue,
                                     ),
                                   ),
-                                ],
-                              ),
-                            ],
-                          )),
-                    ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        )),
                   );
                 }),
           );
