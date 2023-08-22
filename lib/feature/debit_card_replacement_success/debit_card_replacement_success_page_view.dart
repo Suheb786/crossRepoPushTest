@@ -6,10 +6,10 @@ import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_p
 import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
 import '../../../ui/molecules/button/app_primary_button.dart';
 
 class DebitCardReplacementSuccessPageView
@@ -94,21 +94,23 @@ class DebitCardReplacementSuccessPageView
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                AppPrimaryButton(
-                  width: 230.w,
-                  text: S.of(context).next,
-                  onPressed: () {
-                    if (model.debitCardReplacementArguments.type == DebitReplacementEnum.Normal) {
-                      Navigator.of(context)..pop();
-                      ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
-                    } else {
-                      Navigator.of(context)
-                        ..pop
-                        ..pop()
-                        ..pop();
-                      ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
-                    }
-                  },
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: AppPrimaryButton(
+                    text: S.of(context).next,
+                    onPressed: () {
+                      if (model.debitCardReplacementArguments.type == DebitReplacementEnum.Normal) {
+                        Navigator.of(context)..pop();
+                        ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+                      } else {
+                        Navigator.of(context)
+                          ..pop
+                          ..pop()
+                          ..pop();
+                        ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+                      }
+                    },
+                  ),
                 ),
                 SizedBox(
                   height: 5.h,

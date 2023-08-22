@@ -196,13 +196,15 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                 ),
               ),
             ),
-            AppSecondaryButton(
-              width: 230.w,
-              onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, RoutePaths.Evoucher, (route) => route.settings.name == RoutePaths.AppHome);
-              },
-              text: S.of(context).next,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              child: AppSecondaryButton(
+                onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, RoutePaths.Evoucher, (route) => route.settings.name == RoutePaths.AppHome);
+                },
+                text: S.of(context).next,
+              ),
             ),
             const SizedBox(height: 6),
             Padding(

@@ -182,7 +182,6 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                                                     bottom: 26.0.h,
                                                   ),
                                                   child: AppPrimaryButton(
-                                                    width: 230.h,
                                                     text: S.of(context).next,
                                                     isDisabled: !isValid!,
                                                     onPressed: () {

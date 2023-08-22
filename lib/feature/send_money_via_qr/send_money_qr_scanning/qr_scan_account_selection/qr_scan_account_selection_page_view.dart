@@ -180,9 +180,8 @@ class QRScanAccountSelectionPageView extends BasePageViewWidget<QRScanAccountSel
                                     initialData: false,
                                     dataBuilder: (context, isValid) {
                                       return Padding(
-                                        padding: EdgeInsetsDirectional.only(top: 26.0.h, bottom: 24.h),
+                                        padding: EdgeInsetsDirectional.only(start: 24.w, top: 26.0.h, end: 24.w,bottom: 24.h),
                                         child: AppPrimaryButton(
-                                          width: 230.w,
                                           text: S.of(context).next,
                                           isDisabled: !isValid!,
                                           onPressed: () {

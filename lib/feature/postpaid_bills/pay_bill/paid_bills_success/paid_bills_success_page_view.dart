@@ -267,15 +267,17 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                 SizedBox(
                   height: 166.h,
                 ),
-                AppSecondaryButton(
-                  text: S.of(context).next,
-                  width: 230.w,
-                  onPressed: () {
-                    Navigator.of(context)
-                      ..pop()
-                      ..pop()
-                      ..pop();
-                  },
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  child: AppSecondaryButton(
+                    text: S.of(context).next,
+                    onPressed: () {
+                      Navigator.of(context)
+                        ..pop()
+                        ..pop()
+                        ..pop();
+                    },
+                  ),
                 ),
                 SizedBox(
                   height: 8.h,

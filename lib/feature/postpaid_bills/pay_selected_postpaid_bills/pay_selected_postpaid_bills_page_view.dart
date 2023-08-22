@@ -223,12 +223,9 @@ class PaySelectedBillsPostPaidBillsPageView
                                                 dataBuilder: (context, isValid) {
                                                   return AppPrimaryButton(
                                                     text: S.of(context).next,
-                                                    width: 230.w,
                                                     isDisabled: !isValid!,
                                                     onPressed: () {
-                                                      if (isValid == true) {
-                                                        model.payPostPaidBill(context);
-                                                      }
+                                                      model.payPostPaidBill(context);
                                                     },
                                                   );
                                                 }),

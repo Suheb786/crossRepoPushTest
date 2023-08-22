@@ -49,12 +49,9 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/screen_size_utils.dart';
-import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../../ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
-import '../../../utils/device_size_helper.dart';
 import '../account_transaction/account_transaction_page.dart';
 import '../card_transaction/card_transaction_page.dart';
 
@@ -395,6 +392,13 @@ class AppHomeViewModel extends BasePageViewModel {
     debitCards.clear();
     creditCards.clear();
     cardTypeList.clear();
+    pages.add(ApplyCreditCardWidget(
+      isSmallDevices: isSmallDevices,
+    ));
+
+    ///adding cardType
+    cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+
 
     pages.add(MyAccountPage(account: dashboardDataContent.account!));
     cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.ACCOUNT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES, timeLineEnum: TimeLineEnum.TIMELINE_YES));

@@ -20,157 +20,147 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
 
   @override
   Widget build(BuildContext context, CardPinUnBlockSuccessPageViewModel model) {
-    return GestureDetector(
-      onHorizontalDragUpdate: (details) {
-        if (details.primaryDelta!.isNegative) {
-          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
-          // if (model.manageCardPinArguments.successPageRouteEnum == SuccessPageRouteEnum.PHYSICAL_DC) {
-          //   Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-          //   ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
-          // } else {
-          //   Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-          // }
-        }
-      },
-      child: Container(
-          height: double.infinity,
-          width: double.infinity,
-          color: model.manageCardPinArguments.cardType == CardType.CREDIT
-              ? Theme.of(context).primaryColor
-              : Theme.of(context).canvasColor,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: 92.h),
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Image.asset(AssetUtils.line,
-                              color: model.manageCardPinArguments.cardType == CardType.DEBIT
-                                  ? Theme.of(context).colorScheme.secondary.withOpacity(0.4)
-                                  : AppColor.softRed),
-                          Align(
-                            alignment: Alignment.center,
-                            child: Container(
-                              height: 111.37.h,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: model.manageCardPinArguments.cardType == CardType.CREDIT
-                                    ? Theme.of(context).canvasColor
-                                    : Theme.of(context).primaryColor,
-                              ),
-                              child: Center(
-                                  child: AppSvg.asset(
-                                AssetUtils.right,
-                                color: model.manageCardPinArguments.cardType == CardType.CREDIT
-                                    ? Theme.of(context).primaryColorDark
-                                    : Theme.of(context).colorScheme.secondary,
-                              )),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 34.7.h,
-                    ),
-                    Center(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 24.0.w),
-                            child: Text(
-                              getSuccessTitle(model.manageCardPinArguments.successPageRouteEnum, context),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 24.t,
-                                  color: model.manageCardPinArguments.cardType == CardType.CREDIT
-                                      ? Theme.of(context).colorScheme.secondary
-                                      : Theme.of(context).textTheme.bodyLarge?.color),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 4.h,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 48.0.w),
-                            child: Text(
-                              getSuccessSubTitle(model.manageCardPinArguments.successPageRouteEnum, context),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14.t,
-                                  color: model.manageCardPinArguments.cardType == CardType.CREDIT
-                                      ? Theme.of(context).colorScheme.secondary
-                                      : Theme.of(context).textTheme.bodyLarge?.color),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Column(
+    return Container(
+        height: double.infinity,
+        width: double.infinity,
+        color: model.manageCardPinArguments.cardType == CardType.CREDIT
+            ? Theme.of(context).primaryColor
+            : Theme.of(context).canvasColor,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SingleChildScrollView(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  model.manageCardPinArguments.cardType != CardType.CREDIT
-                      ? AppPrimaryButton(
-                          text: S.of(context).next,
-                          width: 230.w,
-                          onPressed: () {
-                            Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-                            ProviderScope.containerOf(context)
-                                .read(appHomeViewModelProvider)
-                                .getDashboardData();
-                          },
-                        )
-                      : AppSecondaryButton(
-                          text: S.of(context).next,
-                          width: 230.w,
-                          onPressed: () {
-                            Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-                            ProviderScope.containerOf(context)
-                                .read(appHomeViewModelProvider)
-                                .getDashboardData();
-                          },
-                        ),
-                  SizedBox(
-                    height: 5.h,
-                  ),
                   Padding(
-                    padding: EdgeInsets.only(
-                      bottom: 32.h,
-                    ),
-                    child: Center(
-                      child: Text(
-                        S.of(context).toDashboard,
-                        style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          color: model.manageCardPinArguments.cardType == CardType.CREDIT
-                              ? Theme.of(context).colorScheme.secondary
-                              : Theme.of(context).textTheme.bodyLarge?.color,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12.t,
+                    padding: EdgeInsets.only(top: 92.h),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Image.asset(AssetUtils.line,
+                            color: model.manageCardPinArguments.cardType == CardType.DEBIT
+                                ? Theme.of(context).colorScheme.secondary.withOpacity(0.4)
+                                : AppColor.softRed),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            height: 111.37.h,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: model.manageCardPinArguments.cardType == CardType.CREDIT
+                                  ? Theme.of(context).canvasColor
+                                  : Theme.of(context).primaryColor,
+                            ),
+                            child: Center(
+                                child: AppSvg.asset(
+                              AssetUtils.right,
+                              color: model.manageCardPinArguments.cardType == CardType.CREDIT
+                                  ? Theme.of(context).primaryColorDark
+                                  : Theme.of(context).colorScheme.secondary,
+                            )),
+                          ),
                         ),
-                      ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 34.7.h,
+                  ),
+                  Center(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+                          child: Text(
+                            getSuccessTitle(model.manageCardPinArguments.successPageRouteEnum, context),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 24.t,
+                                color: model.manageCardPinArguments.cardType == CardType.CREDIT
+                                    ? Theme.of(context).colorScheme.secondary
+                                    : Theme.of(context).textTheme.bodyLarge?.color),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 4.h,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 48.0.w),
+                          child: Text(
+                            getSuccessSubTitle(model.manageCardPinArguments.successPageRouteEnum, context),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14.t,
+                                color: model.manageCardPinArguments.cardType == CardType.CREDIT
+                                    ? Theme.of(context).colorScheme.secondary
+                                    : Theme.of(context).textTheme.bodyLarge?.color),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
-              )
-            ],
-          )),
-    );
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                model.manageCardPinArguments.cardType != CardType.CREDIT
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24.w),
+                        child: AppPrimaryButton(
+                          text: S.of(context).next,
+                          onPressed: () {
+                            Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+                            ProviderScope.containerOf(context)
+                                .read(appHomeViewModelProvider)
+                                .getDashboardData();
+                          },
+                        ),
+                      )
+                    : Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24.w),
+                        child: AppSecondaryButton(
+                          text: S.of(context).next,
+                          onPressed: () {
+                            Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+                            ProviderScope.containerOf(context)
+                                .read(appHomeViewModelProvider)
+                                .getDashboardData();
+                          },
+                        ),
+                      ),
+                SizedBox(
+                  height: 5.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    bottom: 32.h,
+                  ),
+                  child: Center(
+                    child: Text(
+                      S.of(context).toDashboard,
+                      style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        color: model.manageCardPinArguments.cardType == CardType.CREDIT
+                            ? Theme.of(context).colorScheme.secondary
+                            : Theme.of(context).textTheme.bodyLarge?.color,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12.t,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ));
   }
 
   String getSuccessTitle(SuccessPageRouteEnum successPageRouteEnum, BuildContext context) {

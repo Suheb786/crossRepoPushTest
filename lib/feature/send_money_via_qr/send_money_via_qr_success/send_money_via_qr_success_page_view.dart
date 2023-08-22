@@ -143,13 +143,15 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
             ),
           ),
           Spacer(),
-          AppSecondaryButton(
-            width: 230.w,
-            onPressed: () {
-              Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-              ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
-            },
-            text: S.of(context).next,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            child: AppSecondaryButton(
+              onPressed: () {
+                Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+                ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+              },
+              text: S.of(context).next,
+            ),
           ),
           Padding(
             padding: EdgeInsets.only(top: 9, bottom: 24),
