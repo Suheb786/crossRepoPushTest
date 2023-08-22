@@ -1,7 +1,9 @@
+import 'package:data/entity/remote/sub_account/add_sub_account/add_sub_account_request_entity.dart';
 import 'package:data/entity/remote/sub_account/update_nick_name/update_nick_name_request_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/sub_account/sub_account_datasource.dart';
+import 'package:domain/usecase/sub_account/add_account_usecase.dart';
 import 'package:domain/usecase/sub_account/update_nick_name_sub_account_usecase.dart';
 import 'package:retrofit/dio.dart';
 import 'package:domain/usecase/sub_account/deactivate_sub_account_usecase.dart';
@@ -35,6 +37,20 @@ class SubAccountDataSourceImpl extends SubAccountDataSource {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.updateNickNameSubAccount(
       UpdateNickNameSubAccountRequestEntity(
+        nickName: params.NickName,
+        subAccountNo: params.SubAccountNo,
+        getToken: params.GetToken,
+        baseClass: baseData.toJson(),
+      ),
+    );
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> addSubAccount(
+      {required AddSubAccountSubAccountUseCaseParams params}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.addSubAccount(
+      AddSubAccountRequestEntity(
         nickName: params.NickName,
         subAccountNo: params.SubAccountNo,
         getToken: params.GetToken,

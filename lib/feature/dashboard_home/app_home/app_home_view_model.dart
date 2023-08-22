@@ -972,7 +972,7 @@ class AppHomeViewModel extends BasePageViewModel {
     _showRequestMoneyPopUpSubject.close();
     _verifyQRRequest.close();
     _verifyQRResponse.close();
-    pageSwitchSubject?.close();
+    pageSwitchSubject.close();
 
     translateSidewaysController.dispose();
     translateSettingsUpController.dispose();

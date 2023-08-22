@@ -3,6 +3,7 @@ import 'package:data/source/sub_account/sub_account_datasource.dart';
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/repository/sub_account/sub_account_repository.dart';
+import 'package:domain/usecase/sub_account/add_account_usecase.dart';
 import 'package:domain/usecase/sub_account/deactivate_sub_account_usecase.dart';
 import 'package:domain/usecase/sub_account/update_nick_name_sub_account_usecase.dart';
 
@@ -21,6 +22,13 @@ class SubAccountRepositoryImpl extends SubAccountRepository {
   Future<Either<NetworkError, bool>> updateNickNameSubAccount(
       {required UpdateNickNameSubAccountUseCaseParams params}) async {
     final result = await safeApiCall(_subAccountDataSource.updateNickNameSubAccount(params: params));
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> addSubAccount(
+      {required AddSubAccountSubAccountUseCaseParams params}) async {
+    final result = await safeApiCall(_subAccountDataSource.addSubAccount(params: params));
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
 }
