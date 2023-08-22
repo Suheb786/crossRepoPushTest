@@ -12,6 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/evoucher/evoucher/evoucher_page.dart';
+import 'package:neo_bank/feature/manage_contacts/beneficiary_contacts_list/beneficiary_contacts_list_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_progress.dart';
@@ -29,6 +30,8 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
+
+import '../../../../../main/navigation/cutom_route.dart';
 
 class SettingsDialogView extends StatefulWidget {
   @override
@@ -83,10 +86,8 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                           key: 'BILL_PAYMENTS',
                           onTap: () async {
                             ///LOG EVENT TO FIREBASE
-                            await FirebaseAnalytics.instance
-                                .logEvent(name: "payments_opened", parameters: {"is_payment_opened": "true"});
-                            Navigator.pushNamed(context, RoutePaths.PaymentHome,
-                                arguments: NavigationType.DASHBOARD);
+                            await FirebaseAnalytics.instance.logEvent(name: "payments_opened", parameters: {"is_payment_opened": "true"});
+                            Navigator.pushNamed(context, RoutePaths.PaymentHome, arguments: NavigationType.DASHBOARD);
                           },
                           child: SettingsMenuWidget(
                             model: model,
@@ -112,8 +113,9 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                       ///Manage Contacts
                       PagesWidget(
                         onTap: () {
-                          Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList,
-                              arguments: NavigationType.SEND_MONEY);
+                          Navigator.of(context).push(CustomRoute.swipeUpRoute(BeneficiaryContactListPage(navigationType: NavigationType.SEND_MONEY)));
+
+                          // Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList, arguments: NavigationType.SEND_MONEY);
                         },
                         key: 'MANAGE_CONTACTS',
                         child: SettingsMenuWidget(
@@ -141,9 +143,10 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                       ///E-VOUCHERS
                       PagesWidget(
                         onTap: () {
-                          Navigator.pushNamed(context, RoutePaths.Evoucher,
+                          Navigator.of(context).push(CustomRoute.swipeUpRoute(EvoucherPage(EvoucherPageArguments(EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING))));
+                          /*Navigator.pushNamed(context, RoutePaths.Evoucher,
                               arguments: EvoucherPageArguments(
-                                  EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING));
+                                  EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING));*/
                         },
                         key: 'E-VOUCHERS',
                         child: SettingsMenuWidget(
@@ -165,8 +168,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                           mKey: 'SettingsMenuWidget',
                           title: S.of(context).profileSettings,
                           image: AssetUtils.dummyProfile,
-                          dynamicChild: (profileData.data?.content?.profileImage == null ||
-                                  profileData.data?.content?.profileImage.isEmpty)
+                          dynamicChild: (profileData.data?.content?.profileImage == null || profileData.data?.content?.profileImage.isEmpty)
                               ? Center(
                                   child: Container(
                                     child: AppStreamBuilder<int>(
@@ -187,15 +189,9 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                                                             fontFamily: StringUtils.appFont,
                                                             fontWeight: FontWeight.w700,
                                                             fontSize: 18.0.t,
-                                                            color: (currentValue == tappedMenuIndex &&
-                                                                    "SettingsMenuWidget" ==
-                                                                        model.getKeyByIndex(
-                                                                            tappedMenuIndex ?? -1))
+                                                            color: (currentValue == tappedMenuIndex && "SettingsMenuWidget" == model.getKeyByIndex(tappedMenuIndex ?? -1))
                                                                 ? Theme.of(context).colorScheme.secondary
-                                                                : Theme.of(context)
-                                                                    .textTheme
-                                                                    .bodyLarge!
-                                                                    .color!),
+                                                                : Theme.of(context).textTheme.bodyLarge!.color!),
                                                       );
                                                     });
                                               });
@@ -280,13 +276,10 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                                             }
                                           }
                                           return Transform.rotate(
-                                            angle: StringUtils.isDirectionRTL(context)
-                                                ? (math.pi * -value)
-                                                : (math.pi * value),
+                                            angle: StringUtils.isDirectionRTL(context) ? (math.pi * -value) : (math.pi * value),
                                             child: Transform.translate(
                                               offset: Offset(0, translateValue),
-                                              child: _cards(
-                                                  index, model, model.showPages[index], currentValue ?? -1),
+                                              child: _cards(index, model, model.showPages[index], currentValue ?? -1),
                                             ),
                                           );
                                         },
@@ -307,12 +300,10 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                                     width: 80.w,
                                     decoration: BoxDecoration(
                                       color: Theme.of(context).colorScheme.secondary,
-                                      border:
-                                          Border.all(color: Theme.of(context).primaryColorDark, width: 12),
+                                      border: Border.all(color: Theme.of(context).primaryColorDark, width: 12),
                                       shape: BoxShape.circle,
                                     ),
-                                    child: AppSvg.asset(AssetUtils.close,
-                                        color: Theme.of(context).textTheme.bodyLarge?.color),
+                                    child: AppSvg.asset(AssetUtils.close, color: Theme.of(context).textTheme.bodyLarge?.color),
                                   ),
                                 ),
                                 SizedBox(
@@ -343,8 +334,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                   localisedHelper: S.of(context),
                 ),
                 context);
-            Navigator.pushNamedAndRemoveUntil(
-                context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
+            Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
           } else {
             _showTopError(
                 ErrorParser.getLocalisedStringError(
@@ -376,20 +366,11 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                       children: [
                         Text(
                           S.of(context).error,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              color: AppColor.light_grayish_violet,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 10.0.t),
+                          style: TextStyle(fontFamily: StringUtils.appFont, color: AppColor.light_grayish_violet, fontWeight: FontWeight.w400, fontSize: 10.0.t),
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 4.0.h, right: 16.0.w),
-                          child: Text(message,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).colorScheme.secondary,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12.0.t)),
+                          child: Text(message, style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary, fontWeight: FontWeight.w600, fontSize: 12.0.t)),
                         ),
                       ],
                     ),
@@ -427,8 +408,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                   }
                 : null,
             child: ScaleTransition(
-              scale: Tween<double>(begin: 1.0, end: index == currentPage ? 0.95 : 1)
-                  .animate(animationController),
+              scale: Tween<double>(begin: 1.0, end: index == currentPage ? 0.95 : 1).animate(animationController),
               child: pageWidget.child,
             ),
           );
