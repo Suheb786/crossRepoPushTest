@@ -392,9 +392,6 @@ class AppHomeViewModel extends BasePageViewModel {
     debitCards.clear();
     creditCards.clear();
     cardTypeList.clear();
-    pages.add(ApplyCreditCardWidget(
-      isSmallDevices: isSmallDevices,
-    ));
 
     ///adding cardType
     cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
