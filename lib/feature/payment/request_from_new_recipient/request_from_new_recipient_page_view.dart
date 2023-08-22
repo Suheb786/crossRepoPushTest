@@ -344,10 +344,19 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                                     return InkWell(
                                                                       onTap: () {
                                                                         ChooseProfileWidget.show(context,
-                                                                            onCameraTap: () {
+                                                                            onCameraTap: () async {
                                                                           Navigator.pop(context);
-                                                                          model.uploadProfilePhoto(
-                                                                              DocumentTypeEnum.CAMERA);
+
+                                                                          final dynamic filePath =
+                                                                              await Navigator.pushNamed(
+                                                                                  context,
+                                                                                  RoutePaths
+                                                                                      .CameraCapturePage);
+
+                                                                          if (filePath.toString().isNotEmpty)
+                                                                            model.uploadProfilePhoto(
+                                                                                DocumentTypeEnum.CAMERA,
+                                                                                cameraPhotoFile: filePath);
                                                                         }, onGalleryTap: () {
                                                                           Navigator.pop(context);
                                                                           model.uploadProfilePhoto(

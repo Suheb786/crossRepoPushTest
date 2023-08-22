@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/account_settings/my_documents/my_documents_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -138,10 +139,17 @@ class MyDocumentsPageView extends BasePageViewWidget<MyDocumentsPageViewModel> {
                                                             onTap: !(isUploaded!)
                                                                 ? () async {
                                                                     UploadDocumentSelectionWidget.show(
-                                                                        context, onCameraTap: () {
+                                                                        context, onCameraTap: () async {
                                                                       Navigator.pop(context);
-                                                                      model.uploadIncomeDocument(
-                                                                          DocumentTypeEnum.CAMERA);
+
+                                                                      final dynamic filePath =
+                                                                          await Navigator.pushNamed(context,
+                                                                              RoutePaths.CameraCapturePage);
+
+                                                                      if (filePath.toString().isNotEmpty)
+                                                                        model.uploadIncomeDocument(
+                                                                            DocumentTypeEnum.CAMERA,
+                                                                            cameraPhotoFile: filePath);
                                                                     }, onUploadDocumentTap: () {
                                                                       Navigator.pop(context);
                                                                       model.uploadIncomeDocument(
@@ -260,10 +268,17 @@ class MyDocumentsPageView extends BasePageViewWidget<MyDocumentsPageViewModel> {
                                                             onTap: !(isUploaded!)
                                                                 ? () async {
                                                                     UploadDocumentSelectionWidget.show(
-                                                                        context, onCameraTap: () {
+                                                                        context, onCameraTap: () async {
                                                                       Navigator.pop(context);
-                                                                      model.uploadAddressDocument(
-                                                                          DocumentTypeEnum.CAMERA);
+
+                                                                      final dynamic filePath =
+                                                                          await Navigator.pushNamed(context,
+                                                                              RoutePaths.CameraCapturePage);
+
+                                                                      if (filePath.toString().isNotEmpty)
+                                                                        model.uploadAddressDocument(
+                                                                            DocumentTypeEnum.CAMERA,
+                                                                            cameraPhotoFile: filePath);
                                                                     }, onUploadDocumentTap: () {
                                                                       Navigator.pop(context);
                                                                       model.uploadAddressDocument(

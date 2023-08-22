@@ -243,12 +243,27 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                                                     ? () async {
                                                                                         UploadDocumentSelectionWidget.show(
                                                                                             context,
-                                                                                            onCameraTap: () {
+                                                                                            onCameraTap:
+                                                                                                () async {
                                                                                           Navigator.pop(
                                                                                               context);
-                                                                                          model.uploadIncomeDocument(
-                                                                                              DocumentTypeEnum
-                                                                                                  .CAMERA);
+
+                                                                                          final dynamic
+                                                                                              filePath =
+                                                                                              await Navigator
+                                                                                                  .pushNamed(
+                                                                                                      context,
+                                                                                                      RoutePaths
+                                                                                                          .CameraCapturePage);
+
+                                                                                          if (filePath
+                                                                                              .toString()
+                                                                                              .isNotEmpty)
+                                                                                            model.uploadIncomeDocument(
+                                                                                                DocumentTypeEnum
+                                                                                                    .CAMERA,
+                                                                                                cameraPhotoFile:
+                                                                                                    filePath);
                                                                                         }, onUploadDocumentTap:
                                                                                                 () {
                                                                                           Navigator.pop(
@@ -401,12 +416,27 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                                                     ? () async {
                                                                                         UploadDocumentSelectionWidget.show(
                                                                                             context,
-                                                                                            onCameraTap: () {
+                                                                                            onCameraTap:
+                                                                                                () async {
                                                                                           Navigator.pop(
                                                                                               context);
-                                                                                          model.uploadAddressDocument(
-                                                                                              DocumentTypeEnum
-                                                                                                  .CAMERA);
+
+                                                                                          final dynamic
+                                                                                              filePath =
+                                                                                              await Navigator
+                                                                                                  .pushNamed(
+                                                                                                      context,
+                                                                                                      RoutePaths
+                                                                                                          .CameraCapturePage);
+
+                                                                                          if (filePath
+                                                                                              .toString()
+                                                                                              .isNotEmpty)
+                                                                                            model.uploadAddressDocument(
+                                                                                                DocumentTypeEnum
+                                                                                                    .CAMERA,
+                                                                                                cameraPhotoFile:
+                                                                                                    filePath);
                                                                                         }, onUploadDocumentTap:
                                                                                                 () {
                                                                                           Navigator.pop(
