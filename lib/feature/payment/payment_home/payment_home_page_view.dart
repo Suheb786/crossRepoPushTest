@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -125,11 +126,12 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                     : switchedPage == AnimatedPage.REQUEST_MONEY
                                         ? RequestMoneyPage()
                                         : switchedPage == AnimatedPage.SEND_TO_SPECIFIC_PERSON
-                                            ? SendAmountToContactPage(
-                                                model.selectedBenificiary) /*SendAmountToContactPage()*/
+                                            ? SendAmountToContactPage(SendAmountToContactPageArgument(
+                                                model.selectedBenificiary)) /*SendAmountToContactPage()*/
                                             : switchedPage == AnimatedPage.REQUEST_FROM_SPECIFIC_PERSON
                                                 ? RequestAmountFromContactPage(
-                                                    beneficiary: model.selectedBenificiary)
+                                                    RequestAmountToContactPageArgument(
+                                                        model.selectedBenificiary))
                                                 : const SizedBox(),
                           );
                         }),
@@ -439,7 +441,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                               color: AppColor.light_acccent_blue,
                                                               height: 40,
                                                               width: 40),
-                                                          secondChild: Text(
+                                                          secondChild: AutoSizeText(
                                                             (model.paymentWidgetTypeFeature[currentStep!]
                                                                             .paymentWidgetType ==
                                                                         PaymentWidgetType.SEND_MONEY) ||
@@ -458,6 +460,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                                 color: AppColor.light_acccent_blue,
                                                                 fontSize: 12,
                                                                 fontWeight: FontWeight.w600),
+                                                            maxLines: 1,
                                                           ),
                                                         ),
                                                       ),
