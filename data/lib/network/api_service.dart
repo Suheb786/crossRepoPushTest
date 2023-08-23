@@ -516,7 +516,7 @@ abstract class ApiService {
   Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeMobile(
       @Body() VerifyChangeMobileRequestEntity verifyChangeMobileRequestEntity);
 
-  @POST("/Dashboard/GetDashboardDataV4")
+  @POST("/Dashboard/GetDashboardDataV5")
   Future<HttpResponse<DashboardDataResponseEntity>> getDashboardData(
       @Body() DashboardDataRequest dashboardDataRequest);
 

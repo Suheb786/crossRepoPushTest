@@ -534,6 +534,10 @@ class AppHomeViewModel extends BasePageViewModel {
     print(result);
   }
 
+  List<Account> _yourAllAccounts = [];
+
+  List<Account> getAllMyAccounts() => _yourAllAccounts;
+
   void getDashboardPages(GetDashboardDataContent dashboardDataContent) {
     pages.clear();
     timeLineListArguments.clear();
@@ -544,19 +548,21 @@ class AppHomeViewModel extends BasePageViewModel {
 
     /// this is to be removed when proper data comes from the apis....
 
-    Account account = dashboardDataContent.accounts!.first;
-    account.isSubAccount = true;
-    dashboardDataContent.accounts!.add(account);
-
-    for (var selectedAccount in dashboardDataContent.accounts!) {
+    for (Account selectedAccount in (dashboardDataContent.accounts ?? [])) {
       pages.add(MyAccountPage(account: selectedAccount));
       cardTypeList.add(TimeLineSwipeUpArgs(
           cardType: selectedAccount.isSubAccount! ? CardType.SUBACCOUNT : CardType.ACCOUNT,
           swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
           timeLineEnum: TimeLineEnum.TIMELINE_YES));
+      if (!(selectedAccount.isSubAccount ?? true)) {
+        dashboardDataContent.account = selectedAccount;
+      }
 
       /// may be we will have conditions here for multiple account switching in the whole application....
     }
+
+    /// Adding all the accounts for the other pages to access so that we can show selection for the user to interact with the acocounts...
+    _yourAllAccounts.addAll(dashboardDataContent.accounts ?? []);
 
     ///setting timeline arguments value start
     timeLineArguments.availableBalance = dashboardDataContent.account!.availableBalance ?? '0.000';

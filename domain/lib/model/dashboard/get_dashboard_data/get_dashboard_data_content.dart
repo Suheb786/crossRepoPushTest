@@ -20,7 +20,7 @@ class GetDashboardDataContent {
       this.email,
       this.accounts});
 
-  final Account? account;
+  Account? account;
   final bool? somethingWrong;
   final List<CreditCard>? creditCard;
   final List<DebitCard>? debitCard;

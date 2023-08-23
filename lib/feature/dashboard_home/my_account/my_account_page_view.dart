@@ -295,9 +295,15 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                       InkWell(
                         onTap: () {
                           // _shareFiles(model, context, account);
-                          ProviderScope.containerOf(context)
-                              .read(appHomeViewModelProvider)
-                              .showHideAccountSettings(true);
+                          if (account.isSubAccount!) {
+                            ProviderScope.containerOf(context)
+                                .read(appHomeViewModelProvider)
+                                .showHideSubAccountSettings(true);
+                          } else {
+                            ProviderScope.containerOf(context)
+                                .read(appHomeViewModelProvider)
+                                .showHideAccountSettings(true);
+                          }
                         },
                         child: Container(
                           height: 50.h,
