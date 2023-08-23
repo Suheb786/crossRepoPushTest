@@ -252,6 +252,7 @@ import 'package:data/entity/remote/rj/get_flight_details/make_ticket_payment_req
 import 'package:data/entity/remote/rj/trip/get_one_way_trip_link_request_entity.dart';
 import 'package:data/entity/remote/rj/trip/get_trip_response_entity.dart';
 import 'package:data/entity/remote/rj/trip/get_two_way_trip_link_request_entity.dart';
+import 'package:data/entity/remote/sub_account/add_sub_account/add_sub_account_request_entity.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_response_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
@@ -384,7 +385,7 @@ abstract class ApiService {
   Future<HttpResponse<GetAccountResponseEntity>> getAccount(
       @Body() GetAccountRequestEntity getAccountRequestEntity);
 
-  @POST("/BankSmart/CreateAccountV1")
+  @POST("/BankSmart/CreateAccountV3")
   Future<HttpResponse<CreateAccountResponseEntity>> createAccount(
       @Body() CreateAccountRequestEntity createAccountRequestEntity);
 
@@ -515,7 +516,7 @@ abstract class ApiService {
   Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeMobile(
       @Body() VerifyChangeMobileRequestEntity verifyChangeMobileRequestEntity);
 
-  @POST("/Dashboard/GetDashboardDataV4")
+  @POST("/Dashboard/GetDashboardDataV5")
   Future<HttpResponse<DashboardDataResponseEntity>> getDashboardData(
       @Body() DashboardDataRequest dashboardDataRequest);
 
@@ -1212,4 +1213,7 @@ abstract class ApiService {
   @POST("${NetworkProperties.BASE_SUB_ACCOUNT_URL}/UpdateNickName")
   Future<HttpResponse<ResponseEntity>> updateNickNameSubAccount(
       @Body() UpdateNickNameSubAccountRequestEntity request);
+
+  @POST("${NetworkProperties.BASE_SUB_ACCOUNT_URL}/AddSubAccount")
+  Future<HttpResponse<ResponseEntity>> addSubAccount(@Body() AddSubAccountRequestEntity request);
 }

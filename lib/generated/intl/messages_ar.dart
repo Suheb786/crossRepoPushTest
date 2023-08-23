@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -101,17 +100,21 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفوا! حسابك غير فعال. اتصل بنا على ٠٦٥٢٠٠١٠٠ ليتم تفعيل الحساب"),
         "accountDormantStatusDesc": MessageLookupByLibrary.simpleMessage(
             "حسابك غير فعال لأنك ما استخدمته لفترة طويلة. اتصل بنا على 5200100-06 لحتى نفعلك حسابك وتقدر تستمتع بالمزايا والخدمات الي عم منقدمها."),
-        "accountDormantTitle": MessageLookupByLibrary.simpleMessage("حسابك غير فعال"),
-        "accountHolderName": MessageLookupByLibrary.simpleMessage("اسم صاحب الحساب"),
-        "accountInactive":
-            MessageLookupByLibrary.simpleMessage("عفوا! لم تتم العملية بنجاح لأنه حسابك غير فعال"),
+        "accountDormantTitle":
+            MessageLookupByLibrary.simpleMessage("حسابك غير فعال"),
+        "accountHolderName":
+            MessageLookupByLibrary.simpleMessage("اسم صاحب الحساب"),
+        "accountInactive": MessageLookupByLibrary.simpleMessage(
+            "عفوا! لم تتم العملية بنجاح لأنه لا يمكن خصم المبلغ من الحساب"),
         "accountInquiryWentWrong": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06  (Err-010)"),
         "accountInquiryWentWrong61": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال الحصول على معلومات حسابك. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06"),
-        "accountIsLinkedToTheAliasButUnableToSetItToDefault": MessageLookupByLibrary.simpleMessage(
-            "الحساب مرتبط بالاسم المستعار ، ولكن يتعذر تعيينه على الافتراضي"),
-        "accountLinkedSuccessfully": MessageLookupByLibrary.simpleMessage("تم ربط الحساب بنجاح"),
+        "accountIsLinkedToTheAliasButUnableToSetItToDefault":
+            MessageLookupByLibrary.simpleMessage(
+                "الحساب مرتبط بالاسم المستعار ، ولكن يتعذر تعيينه على الافتراضي"),
+        "accountLinkedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم ربط الحساب بنجاح"),
         "accountLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
         "accountMobileNoAlias": MessageLookupByLibrary.simpleMessage(
@@ -653,6 +656,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cliqType": MessageLookupByLibrary.simpleMessage("نوع CLIQ"),
         "closeDateIssueMessage": MessageLookupByLibrary.simpleMessage(
             "تم رفض دفع الفاتوره بسبب انتهاء صلاحية الفاتورة"),
+        "closeSubAccount":
+            MessageLookupByLibrary.simpleMessage("Close Sub Account"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "أكمل معلومات تقريرك الضريبي التالية:"),
         "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
@@ -899,21 +904,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "dobHint": MessageLookupByLibrary.simpleMessage("يوم/شهر/سنة"),
         "documentsNotFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-081)"),
-        "dontNeedMyCardAnymore": MessageLookupByLibrary.simpleMessage("بطلت محتاج بطاقتي "),
-        "dormantAccountCCFailedTitle":
-            MessageLookupByLibrary.simpleMessage("لم تتم عملية طلبك للبطاقة الائتمانية بنجاح"),
+        "dontNeedMyCardAnymore":
+            MessageLookupByLibrary.simpleMessage("بطلت محتاج بطاقتي "),
+        "dormantAccountCCFailedTitle": MessageLookupByLibrary.simpleMessage(
+            "لم تتم عملية طلبك للبطاقة الائتمانية بنجاح"),
         "dormantAccountPhysicalCardReq": MessageLookupByLibrary.simpleMessage(
             "عفوا! لا يمكنك طلب طباعة البطاقة لأنه حسابك غير فعال. اتصل بنا على 5200100-06 ليتم تفعيل الحساب"),
         "dormantAccountTransactionFailed": MessageLookupByLibrary.simpleMessage(
             "عفوا! لم تتم العملية بنجاح لأنه حسابك غير فعال. اتصل بنا على 5200100-06 ليتم تفعيل الحساب"),
-        "downloadStatement": MessageLookupByLibrary.simpleMessage("تنزيل كشف الحساب"),
-        "dragMap": MessageLookupByLibrary.simpleMessage("اسحب وحرك الخريطة لتضبط الموقع"),
+        "downloadStatement":
+            MessageLookupByLibrary.simpleMessage("تنزيل كشف الحساب"),
+        "dragMap": MessageLookupByLibrary.simpleMessage(
+            "اسحب وحرك الخريطة لتضبط الموقع"),
         "due": MessageLookupByLibrary.simpleMessage("مستحقة"),
         "dueAmt": MessageLookupByLibrary.simpleMessage("المبلغ المستحق"),
         "dummyAccountNo": MessageLookupByLibrary.simpleMessage("9xxxxxxxxx"),
         "dummyAlias": MessageLookupByLibrary.simpleMessage("username1"),
         "dummyAmount": MessageLookupByLibrary.simpleMessage("659.570"),
-        "dummyIBAN": MessageLookupByLibrary.simpleMessage("ABC000012341234123819241213"),
+        "dummyIBAN":
+            MessageLookupByLibrary.simpleMessage("ABC000012341234123819241213"),
         "dummyMobileNo": MessageLookupByLibrary.simpleMessage("00962xxxxxxxxx"),
         "eVoucherLandingDialogDescption": MessageLookupByLibrary.simpleMessage(
             "صار بإمكانك تشتري القسائم الإلكترونية من مختلف المتاجر المحلية والدولية المفضلة لديك. "),
@@ -1927,8 +1936,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "العنوان البريدي مختلف على عنوان الإقامة"),
         "mailingAddressLine":
             MessageLookupByLibrary.simpleMessage("العنوان البريدي"),
-        "mainAccountPrimary":
-            MessageLookupByLibrary.simpleMessage("Main Account-Primary"),
+        "mainAccount": MessageLookupByLibrary.simpleMessage("Main Account"),
         "mainAnnualIncome":
             MessageLookupByLibrary.simpleMessage("الدخل السنوي الرئيسي"),
         "mainAnnualIncomeSmall":
@@ -2193,8 +2201,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لقد تم فتح الحساب بنجاح."),
         "openDateIssuedMessage": MessageLookupByLibrary.simpleMessage(
             "تم رفض دفع الفاتوره بسبب عدم استحقاقها"),
+        "openSubAccount":
+            MessageLookupByLibrary.simpleMessage("افتح حساب إضافي"),
         "openYourAccountNow":
             MessageLookupByLibrary.simpleMessage("افتح حساب جديد "),
+        "opneSubAccountDescription": MessageLookupByLibrary.simpleMessage(
+            "هل أنت متأكد من عملية فتح حساب إضافي؟"),
         "optional": MessageLookupByLibrary.simpleMessage("اختياري"),
         "or": MessageLookupByLibrary.simpleMessage("أو"),
         "orContinueWith":
@@ -2771,6 +2783,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "share": MessageLookupByLibrary.simpleMessage("شارك"),
         "shareAccountInfo":
             MessageLookupByLibrary.simpleMessage("شارك معلومات حسابك"),
+        "shareAccountInformation":
+            MessageLookupByLibrary.simpleMessage("مشاركة تفاصيل الحساب"),
         "shareCliqId": MessageLookupByLibrary.simpleMessage("شارك CliQ"),
         "shareId": MessageLookupByLibrary.simpleMessage("مشاركة معلومات CLIQ"),
         "shareMyReceipt": MessageLookupByLibrary.simpleMessage("مشاركة الوصل"),
@@ -2812,8 +2826,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل اسم الشارع"),
         "streetAddressSmall": MessageLookupByLibrary.simpleMessage("الشارع"),
         "streetName": MessageLookupByLibrary.simpleMessage("اسم الشارع"),
-        "subAccountSavings":
-            MessageLookupByLibrary.simpleMessage("Sub Account - Savings"),
+        "subAccount": MessageLookupByLibrary.simpleMessage("Sub Account"),
         "submittedFor": MessageLookupByLibrary.simpleMessage(
             "جاري معاجة طلبك لدفع فواتيرك, منخبرك بمجرد ما تمت عملية الدفع بنجاح"),
         "subscription": MessageLookupByLibrary.simpleMessage("الاشتراكات"),
@@ -2977,11 +2990,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "transactionType": MessageLookupByLibrary.simpleMessage("نوع الحركة"),
         "transactions": MessageLookupByLibrary.simpleMessage("الحركات"),
         "transfer": MessageLookupByLibrary.simpleMessage("التحويل"),
+        "transferBetweenAccount":
+            MessageLookupByLibrary.simpleMessage("Transfer Between Accounts"),
         "transferCannotbeDone": MessageLookupByLibrary.simpleMessage(
             "عفوا! لا يمكن التحويل، لازم اتعدل تفاصيل صديقك المستفيد"),
         "transferFrom": MessageLookupByLibrary.simpleMessage("التحويل من"),
         "transferHeader": MessageLookupByLibrary.simpleMessage(
             "أدخل تفاصيل الحوالة واختر الحسابات"),
+        "transferRemainingBalanceForAccountClosure":
+            MessageLookupByLibrary.simpleMessage(
+                "Please transfer the remaining balance to complete the account closure"),
         "transferTo": MessageLookupByLibrary.simpleMessage("Transfer To"),
         "transferTypeNF": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-117)"),
