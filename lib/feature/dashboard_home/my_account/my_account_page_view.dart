@@ -50,14 +50,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
               Padding(
                 padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 32.h),
                 child: Text(
-                  ProviderScope.containerOf(context)
-                              .read(appHomeViewModelProvider)
-                              .dashboardDataContent
-                              .account
-                              ?.isSubAccount ==
-                          false
-                      ? S.current.mainAccount
-                      : S.of(context).subAccount,
+                  !account.isSubAccount! ? S.current.mainAccount : S.of(context).subAccount,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
                       fontWeight: FontWeight.w600,

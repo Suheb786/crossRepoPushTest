@@ -22,7 +22,7 @@ class LoginViewModel extends BasePageViewModel {
   final CheckKYCStatusUseCase _kycStatusUseCase;
   final SendOtpTokeDeviceChangeOtpUseCase _sendOtpTokeDeviceChangeOtpUseCase;
 
-  final TextEditingController emailController = TextEditingController(text: "selfie1@g.com");
+  final TextEditingController emailController = TextEditingController(text: "team16@g.com");
   final TextEditingController passwordController = TextEditingController(text: "Amta@123");
 
   final GlobalKey<AppTextFieldState> emailKey = GlobalKey(debugLabel: "login_email");

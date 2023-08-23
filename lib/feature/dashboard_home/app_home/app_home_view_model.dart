@@ -272,6 +272,10 @@ class AppHomeViewModel extends BasePageViewModel {
     return cardTypeList[index].cardType == CardType.ACCOUNT;
   }
 
+  bool isMySubAccount(int index) {
+    return cardTypeList[index].cardType == CardType.SUBACCOUNT;
+  }
+
   bool isCreditCard(int index) {
     return cardTypeList[index].cardType == CardType.CREDIT;
   }
@@ -507,36 +511,6 @@ class AppHomeViewModel extends BasePageViewModel {
         accountDetails: customerAccountDetails, customerInformation: customerInformation));
   }
 
-  List<Account> demoAccount = [
-    Account(
-        accountNo: "806806",
-        accountStatusEnum: AccountStatusEnum.ACTIVE,
-        accountTitle: "Suheb",
-        availableBalance: "324234.8",
-        cardNo: "970970970",
-        iban: "9866097-J080",
-        isSubAccount: true,
-        nickName: "Suheb Sub Account"),
-    Account(
-        accountNo: "4438036806",
-        accountStatusEnum: AccountStatusEnum.ACTIVE,
-        accountTitle: "Suheb",
-        availableBalance: "4324234.8",
-        cardNo: "4970970970",
-        iban: "49866097-J080",
-        isSubAccount: false,
-        nickName: "Suheb Main account"),
-    Account(
-        accountNo: "8068062",
-        accountStatusEnum: AccountStatusEnum.ACTIVE,
-        accountTitle: "Suheb 2",
-        availableBalance: "324234.822",
-        cardNo: "97097097022",
-        iban: "9866097-J08022",
-        isSubAccount: true,
-        nickName: "Suheb Sub Account 2")
-  ];
-
   getOpenSubAccountCount(String? nickName) {
     int subAccountCount = 1;
     String? subAccountPrefix = nickName;
@@ -568,29 +542,20 @@ class AppHomeViewModel extends BasePageViewModel {
     creditCards.clear();
     cardTypeList.clear();
 
-    ///adding cardType
-    // cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+    /// this is to be removed when proper data comes from the apis....
 
-    List<Account> accounts =
-        dashboardDataContent.accounts?.where((element) => (element.isSubAccount == false)).toList() ?? [];
-    for (var mainAccount in accounts) {
-      log("Main account is ::: ${mainAccount.isSubAccount}");
-      pages.add(MyAccountPage(account: mainAccount));
+    Account account = dashboardDataContent.accounts!.first;
+    account.isSubAccount = true;
+    dashboardDataContent.accounts!.add(account);
+
+    for (var selectedAccount in dashboardDataContent.accounts!) {
+      pages.add(MyAccountPage(account: selectedAccount));
       cardTypeList.add(TimeLineSwipeUpArgs(
-          cardType: CardType.ACCOUNT,
+          cardType: selectedAccount.isSubAccount! ? CardType.SUBACCOUNT : CardType.ACCOUNT,
           swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
           timeLineEnum: TimeLineEnum.TIMELINE_YES));
-    }
 
-    List<Account> subAccounts =
-        dashboardDataContent.accounts?.where((element) => (element.isSubAccount == true)).toList() ?? [];
-    for (var subAccount in subAccounts) {
-      log("Main account is ::: ${subAccount.isSubAccount}");
-      pages.add(MyAccountPage(account: subAccount));
-      cardTypeList.add(TimeLineSwipeUpArgs(
-          cardType: CardType.SUBACCOUNT,
-          swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
-          timeLineEnum: TimeLineEnum.TIMELINE_YES));
+      /// may be we will have conditions here for multiple account switching in the whole application....
     }
 
     ///setting timeline arguments value start
@@ -1197,6 +1162,17 @@ class AppHomeViewModel extends BasePageViewModel {
       translateAccountSettingsUpController.reverse();
     }
     pageSwitchSubject.add(value ? DashboardAnimatedPage.ACT_SETTING : DashboardAnimatedPage.NULL);
+  }
+
+  showHideSubAccountSettings(bool value) {
+    if (value) {
+      translateSidewaysController.forward();
+      translateAccountSettingsUpController.forward();
+    } else {
+      translateSidewaysController.reverse();
+      translateAccountSettingsUpController.reverse();
+    }
+    pageSwitchSubject.add(value ? DashboardAnimatedPage.SUB_ACT_SETTING : DashboardAnimatedPage.NULL);
   }
 
   animateForwardSettingsPage() {
