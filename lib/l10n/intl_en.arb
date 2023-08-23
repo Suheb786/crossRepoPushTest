@@ -1858,5 +1858,6 @@
   "openSubAccount": "Open Sub Account",
   "opneSubAccountDescription": "Are you sure you want to open a new account?",
   "transferBetweenAccount": "Transfer Between Accounts",
-  "closeSubAccount": "Close Sub Account"
+  "closeSubAccount": "Close Sub Account",
+  "transferRemainingBalanceForAccountClosure": "Please transfer the remaining balance to complete the account closure"
 }

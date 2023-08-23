@@ -67,6 +67,18 @@ class DashboardFeaturesEntity
   @JsonKey(name: 'blink-retail-app-applepay')
   final bool? blinkRetailAppApplePay;
 
+  @JsonKey(name: 'blink-retail-app-Sub-Accounts')
+  final bool? subAccountFeature;
+
+  @JsonKey(name: 'blink-retail-app-Sub-Accounts-Transfer-Between-Accounts')
+  final bool? transferBetweenAccountsFeature;
+
+  @JsonKey(name: 'blink-retail-app-Sub-Accounts-Close-Sub-Account')
+  final bool? closeSubAccountFeature;
+
+  @JsonKey(name: 'blink-retail-app-Sub-Accounts-Share-Account-Information')
+  final bool? shareAccountInformationFeature;
+
   DashboardFeaturesEntity(
       {this.blinkRetailAppBillPayment,
       this.blinkRetailAppBillPaymentPayPostpaid,
@@ -87,7 +99,11 @@ class DashboardFeaturesEntity
       this.manageContactEnabled,
       this.manageContactHistory,
       this.eVouchers,
-      this.blinkRetailAppApplePay});
+      this.blinkRetailAppApplePay,
+      this.subAccountFeature,
+      this.closeSubAccountFeature,
+      this.shareAccountInformationFeature,
+      this.transferBetweenAccountsFeature});
 
   factory DashboardFeaturesEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardFeaturesEntityFromJson(json);
@@ -120,6 +136,10 @@ class DashboardFeaturesEntity
         returnPaymentFeatureEnabled: returnPaymentFeatureEnabled ?? false,
         manageContactEnabled: /*this.manageContactEnabled ?? false*/ true,
         manageContactHistory: /*this.manageContactHistory ?? false*/ true,
-        eVouchers: /*this.eVouchers ?? false*/ true);
+        eVouchers: /*this.eVouchers ?? false*/ true,
+        subAccountFeature: /*this.subAccountFeature ?? false*/ true,
+        transferBetweenAccountsFeature: /*this.transferBetweenAccountsFeature ?? false*/ true,
+        closeSubAccountFeature: /*this.closeSubAccountFeature ?? false*/ true,
+        shareAccountInformationFeature: /*this.shareAccountInformationFeature ?? false*/ true);
   }
 }

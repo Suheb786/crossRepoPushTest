@@ -456,7 +456,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/BankSmart/CreateAccountV1',
+              '/BankSmart/CreateAccountV3',
               queryParameters: queryParameters,
               data: _data,
             )

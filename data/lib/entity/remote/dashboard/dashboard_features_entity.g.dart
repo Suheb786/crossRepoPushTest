@@ -38,6 +38,15 @@ DashboardFeaturesEntity _$DashboardFeaturesEntityFromJson(
           json['blink-retail-app-manage-contacts-History'] as bool?,
       eVouchers: json['blink-retail-app-E-vouchers'] as bool?,
       blinkRetailAppApplePay: json['blink-retail-app-applepay'] as bool?,
+      subAccountFeature: json['blink-retail-app-Sub-Accounts'] as bool?,
+      closeSubAccountFeature:
+          json['blink-retail-app-Sub-Accounts-Close-Sub-Account'] as bool?,
+      shareAccountInformationFeature:
+          json['blink-retail-app-Sub-Accounts-Share-Account-Information']
+              as bool?,
+      transferBetweenAccountsFeature:
+          json['blink-retail-app-Sub-Accounts-Transfer-Between-Accounts']
+              as bool?,
     );
 
 Map<String, dynamic> _$DashboardFeaturesEntityToJson(
@@ -70,4 +79,11 @@ Map<String, dynamic> _$DashboardFeaturesEntityToJson(
       'blink-retail-app-manage-contacts-History': instance.manageContactHistory,
       'blink-retail-app-E-vouchers': instance.eVouchers,
       'blink-retail-app-applepay': instance.blinkRetailAppApplePay,
+      'blink-retail-app-Sub-Accounts': instance.subAccountFeature,
+      'blink-retail-app-Sub-Accounts-Transfer-Between-Accounts':
+          instance.transferBetweenAccountsFeature,
+      'blink-retail-app-Sub-Accounts-Close-Sub-Account':
+          instance.closeSubAccountFeature,
+      'blink-retail-app-Sub-Accounts-Share-Account-Information':
+          instance.shareAccountInformationFeature,
     };

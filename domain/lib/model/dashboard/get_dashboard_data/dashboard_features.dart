@@ -31,6 +31,10 @@ class DashboardFeatures {
   final bool? blinkRetailAppCliqReturnPayment;
   final bool? blinkRetailAppCliqRTPOutward;
   final bool? blinkRetailAppManageContacts;
+  final bool? subAccountFeature;
+  final bool? transferBetweenAccountsFeature;
+  final bool? closeSubAccountFeature;
+  final bool? shareAccountInformationFeature;
 
   DashboardFeatures(
       {this.appBillPaymentPostpaid,
@@ -64,5 +68,9 @@ class DashboardFeatures {
       this.blinkRetailAppApplePay,
       this.blinkRetailAppCliqReturnPayment,
       this.blinkRetailAppCliqRTPOutward,
-      this.blinkRetailAppManageContacts});
+      this.blinkRetailAppManageContacts,
+      this.transferBetweenAccountsFeature,
+      this.shareAccountInformationFeature,
+      this.closeSubAccountFeature,
+      this.subAccountFeature});
 }

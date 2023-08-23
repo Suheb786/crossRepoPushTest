@@ -18369,6 +18369,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Please transfer the remaining balance to complete the account closure`
+  String get transferRemainingBalanceForAccountClosure {
+    return Intl.message(
+      'Please transfer the remaining balance to complete the account closure',
+      name: 'transferRemainingBalanceForAccountClosure',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -289,6 +289,7 @@ class AppHomeViewModel extends BasePageViewModel {
   ///--------------- Some Other params that i will name later on  ----------------------///
   DebitCard? selectedDebitCard;
   CreditCard? selectedCreditCard;
+  Account? selectedAccount;
   bool firstTime = true;
   bool animationInitialized = false;
 
@@ -559,13 +560,14 @@ class AppHomeViewModel extends BasePageViewModel {
     debitCards.clear();
     creditCards.clear();
     cardTypeList.clear();
+    _yourAllAccounts.clear();
 
     /// this is to be removed when proper data comes from the apis....
 
     for (Account selectedAccount in (dashboardDataContent.accounts ?? [])) {
       pages.add(MyAccountPage(account: selectedAccount));
       cardTypeList.add(TimeLineSwipeUpArgs(
-          cardType: selectedAccount.isSubAccount! ? CardType.SUBACCOUNT : CardType.ACCOUNT,
+          cardType: selectedAccount.isSubAccount ?? false ? CardType.SUBACCOUNT : CardType.ACCOUNT,
           swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
           timeLineEnum: TimeLineEnum.TIMELINE_YES));
       if (!(selectedAccount.isSubAccount ?? true)) {
@@ -1173,7 +1175,8 @@ class AppHomeViewModel extends BasePageViewModel {
     }
   }
 
-  showHideAccountSettings(bool value) {
+  showHideAccountSettings(bool value, {Account? account}) {
+    selectedAccount = account;
     if (value) {
       translateSidewaysController.forward();
       translateAccountSettingsUpController.forward();
@@ -1184,7 +1187,8 @@ class AppHomeViewModel extends BasePageViewModel {
     pageSwitchSubject.add(value ? DashboardAnimatedPage.ACT_SETTING : DashboardAnimatedPage.NULL);
   }
 
-  showHideSubAccountSettings(bool value) {
+  showHideSubAccountSettings(bool value, {Account? account}) {
+    selectedAccount = account;
     if (value) {
       translateSidewaysController.forward();
       translateAccountSettingsUpController.forward();

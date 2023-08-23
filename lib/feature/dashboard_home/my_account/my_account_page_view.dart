@@ -13,7 +13,6 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/extension/string_casing_extension.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:share_plus/share_plus.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../ui/molecules/textfield/app_textfield.dart';
 
@@ -76,9 +75,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                           labelText: "",
                           readOnly: false,
                           fontSize: 12.t,
-                          hintText:
-                              model.nickNameController.text == "" ? S.current.addNickName.toTitleCase() : "",
-                          controller: model.nickNameController,
+                          hintText: account.controller?.text == "" ? S.current.addNickName.toTitleCase() : "",
+                          controller: account.controller,
                           textCapitalization: TextCapitalization.words,
                           inputType: TextInputType.name,
                           containerPadding: EdgeInsets.only(left: 12.w, right: 3.w, top: 3.h, bottom: 0.h),
@@ -148,7 +146,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                 style: TextStyle(fontSize: 20.t, fontWeight: FontWeight.w700),
                                 children: [
                                   TextSpan(
-                                      text: account.availableBalance!,
+                                      text: account.availableBalance ?? '0',
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 20.0.t,
@@ -232,7 +230,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                           children: [
                             Flexible(
                               child: Text(
-                                account.iban!,
+                                account.iban ?? '',
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     overflow: TextOverflow.ellipsis,
@@ -275,45 +273,18 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                 child: Directionality(
                   textDirection: StringUtils.isDirectionRTL(context) ? TextDirection.rtl : TextDirection.ltr,
                   child: Row(
-                    // mainAxisAlignment: MainAxisAlignmentt.spaceBetween,
                     children: [
-                      /*InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, RoutePaths.AddMoneyOptionSelector);
-                        },
-                        child: Container(
-                          height: 40.0.h,
-                          width: 105.0.w,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Theme.of(context).textTheme.bodyLarge!.color!),
-                          child: Center(
-                            child: Text(
-                              S.of(context).addMoney,
-                              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: Theme.of(context).colorScheme.secondary),
-                            ),
-                          ),
-                        ),
-                      ),*/
                       Spacer(),
-                      /*InkWell(
-                        onTap: () {
-                          _shareFiles(model, context, account);
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 33.0.w),
-                          child: AppSvg.asset(AssetUtils.share, color: Theme.of(context).textTheme.bodyLarge!.color!, height: 24.0.h, width: 24.0.w),
-                        ),
-                      ),*/
                       InkWell(
                         onTap: () {
-                          // _shareFiles(model, context, account);
-                          if (account.isSubAccount!) {
+                          if (account.isSubAccount ?? false) {
                             ProviderScope.containerOf(context)
                                 .read(appHomeViewModelProvider)
-                                .showHideSubAccountSettings(true);
+                                .showHideSubAccountSettings(true, account: account);
                           } else {
                             ProviderScope.containerOf(context)
                                 .read(appHomeViewModelProvider)
-                                .showHideAccountSettings(true);
+                                .showHideAccountSettings(true, account: account);
                           }
                         },
                         child: Container(
@@ -539,13 +510,5 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
         ),
       ),
     );*/
-  }
-
-  void _shareFiles(MyAccountViewModel model, BuildContext context, Account account) async {
-    final box = context.findRenderObject() as RenderBox?;
-    await Share.share(
-        'Hello! Here are my Blink account details: \n\n${account.accountTitle ?? ''} \n${account.iban ?? '-'}\n\nOpen your Blink account today.',
-        subject: 'Share account info',
-        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
   }
 }

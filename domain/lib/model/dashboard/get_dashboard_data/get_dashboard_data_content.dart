@@ -18,7 +18,8 @@ class GetDashboardDataContent {
       this.dashboardFeatures,
       this.allowSubAccount,
       this.email,
-      this.accounts});
+      this.accounts,
+      this.availableBalance});
 
   Account? account;
   final bool? somethingWrong;
@@ -34,4 +35,5 @@ class GetDashboardDataContent {
   final bool? allowSubAccount;
   final String? email;
   final List<Account>? accounts;
+  final String? availableBalance;
 }

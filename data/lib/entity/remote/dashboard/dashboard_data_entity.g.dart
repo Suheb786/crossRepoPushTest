@@ -41,6 +41,7 @@ DashboardDataEntity _$DashboardDataEntityFromJson(Map<String, dynamic> json) =>
           ?.map(
               (e) => DashboardAccountEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
+      availableBalance: json['availableBalance'] as num?,
     );
 
 Map<String, dynamic> _$DashboardDataEntityToJson(
@@ -60,4 +61,5 @@ Map<String, dynamic> _$DashboardDataEntityToJson(
       'isCreditCard': instance.isCreditCard,
       'email': instance.email,
       'allowSubAccount': instance.allowSubAccount,
+      'availableBalance': instance.availableBalance,
     };

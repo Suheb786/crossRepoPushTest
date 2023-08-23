@@ -38,6 +38,8 @@ class DashboardDataEntity implements BaseLayerDataTransformer<DashboardDataEntit
   final String? email;
   @JsonKey(name: 'allowSubAccount')
   final bool? allowSubAccount;
+  @JsonKey(name: 'availableBalance')
+  final num? availableBalance;
 
   DashboardDataEntity(
       {this.account,
@@ -53,7 +55,8 @@ class DashboardDataEntity implements BaseLayerDataTransformer<DashboardDataEntit
       this.debitCard,
       this.email,
       this.allowSubAccount,
-      this.accounts});
+      this.accounts,
+      this.availableBalance});
 
   factory DashboardDataEntity.fromJson(Map<String, dynamic> json) => _$DashboardDataEntityFromJson(json);
 
@@ -78,6 +81,8 @@ class DashboardDataEntity implements BaseLayerDataTransformer<DashboardDataEntit
         debitCardSomethingWrong: this.debitCardSomethingWrong ?? false,
         mobileCode: this.mobileCode,
         isCreditCard: this.isCreditCard ?? true,
-        dashboardFeatures: this.dashboardFeatures?.transform());
+        dashboardFeatures: this.dashboardFeatures?.transform(),
+        allowSubAccount: this.allowSubAccount ?? false,
+        availableBalance: this.availableBalance != null ? this.availableBalance?.toStringAsFixed(3) : "0");
   }
 }
