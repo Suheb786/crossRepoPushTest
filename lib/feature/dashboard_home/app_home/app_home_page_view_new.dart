@@ -335,7 +335,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                         translateYOffset = currentStep - (model.appSwiperController.page ?? 0);
                                                                                       }
                                                                                       return Transform.translate(
-                                                                                        offset: Offset(0, translateYOffset.abs() * -40),
+                                                                                        offset: Offset(0, 1),
                                                                                         child: Opacity(
                                                                                           opacity: (opacity.abs() - 1).abs(),
                                                                                           child: child!,
@@ -472,7 +472,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                               translateYOffset = currentStep - (model.appSwiperController.page ?? 0);
                                                                                                             }
                                                                                                             return Transform.translate(
-                                                                                                              offset: Offset(0, translateYOffset.abs() * 40),
+                                                                                                              offset: Offset(0, 1),
                                                                                                               child: Opacity(
                                                                                                                 opacity: (opacity.abs() - 1).abs(),
                                                                                                                 child: child!,

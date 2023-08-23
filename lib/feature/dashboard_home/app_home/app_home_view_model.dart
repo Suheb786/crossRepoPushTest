@@ -416,8 +416,6 @@ class AppHomeViewModel extends BasePageViewModel {
     cardTypeList.clear();
 
     ///adding cardType
-    cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-
 
     pages.add(MyAccountPage(account: dashboardDataContent.account!));
     cardTypeList.add(TimeLineSwipeUpArgs(

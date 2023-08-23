@@ -752,7 +752,10 @@ class AppRouter {
 
       case RoutePaths.NewBillsPage:
         return CupertinoPageRoute(
-            builder: (context) => NewBillsPage(), settings: RouteSettings(name: RoutePaths.NewBillsPage));
+            builder: (context) => NewBillsPage(
+                  needBackButton: settings.arguments as bool,
+                ),
+            settings: RouteSettings(name: RoutePaths.NewBillsPage));
 
       case RoutePaths.PayBillPage:
         return CupertinoPageRoute(
