@@ -25,6 +25,9 @@ abstract class BankSmartRepository {
   /// create account
   Future<Either<NetworkError, CreateAccountResponse>> createAccount(
       {required bool getToken,
+      String? cif,
+      bool? isSubAccount,
+
       CustomerInformation? customerInformation,
       CustomerAccountDetails? accountDetails});
 

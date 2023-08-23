@@ -8,6 +8,8 @@ class CreateAccountRequestEntity {
   final bool? getToken;
   @JsonKey(name: "cif")
   final String? cif;
+  @JsonKey(name: "IsSubAccount")
+  final bool? iIsSubAccount;
   @JsonKey(name: "customer")
   final Map<String, dynamic>? customerDetailsEntity;
   @JsonKey(name: "account")
@@ -16,7 +18,12 @@ class CreateAccountRequestEntity {
   final Map<String, dynamic> baseData;
 
   CreateAccountRequestEntity(
-      {this.getToken = true, this.cif, this.customerDetailsEntity, this.account, required this.baseData});
+      {this.getToken = true,
+      this.cif,
+      this.customerDetailsEntity,
+      this.account,
+      required this.baseData,
+      this.iIsSubAccount = false});
 
   factory CreateAccountRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$CreateAccountRequestEntityFromJson(json);

@@ -6,7 +6,6 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import '../../../../base/base_page.dart';
-import '../../../../di/dashboard/dashboard_modules.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../ui/molecules/account_ready/account_details.dart';
 import '../../../../ui/molecules/account_ready/account_ready_header.dart';
@@ -77,12 +76,12 @@ class OpenSubAccountSuccessPageView extends BasePageViewWidget<OpenSubAccountSuc
                           children: [
                             AccountDetails(
                               title: S.of(context).accountNumber,
-                              value: "32454325345",
+                              value: model.argument.accountNo ?? "",
                             ),
                             SizedBox(height: 16.h),
                             AccountDetails(
                               title: S.of(context).iban,
-                              value: "JSDFI8765654765",
+                              value: model.argument.iban ?? "",
                               // showIcon: true,
                             ),
                           ],
@@ -103,15 +102,13 @@ class OpenSubAccountSuccessPageView extends BasePageViewWidget<OpenSubAccountSuc
                     initialData: Resource.none(),
                     onData: (value) {
                       if (value.status == Status.SUCCESS) {
-                        Navigator.pushNamed(context, RoutePaths.AppHome);
+                        Navigator.popAndPushNamed(context, RoutePaths.AppHome);
                       }
                     },
                     dataBuilder: (context, getDashboardDataResponse) {
                       return AppPrimaryButton(
                         onPressed: () {
-                          ProviderScope.containerOf(context)
-                              .read(appHomeViewModelProvider)
-                              .getDashboardData();
+                          model.getDashboardData();
                         },
                         activeBackgroundColor: Theme.of(context).colorScheme.secondary,
                         textColor: Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue,

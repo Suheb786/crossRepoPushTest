@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../feature/sub_account/open_sub_account/open_sub_account_success/open_sub_account_success_page.dart';
 import '../../feature/sub_account/open_sub_account/open_sub_account_success/open_sub_account_success_page_view_model.dart';
 import '../../feature/sub_account/transfer/select_transfer/select_transfer_page.dart';
 import '../../feature/sub_account/transfer/select_transfer/select_transfer_page_view_model.dart';
@@ -8,11 +9,9 @@ import '../../feature/sub_account/transfer/transfer_success/transfer_success_pag
 import '../usecase/dashboard/dashboard_usecase_provider.dart';
 
 ///------------[Open-sub-Account-Success-Page-View-Model-Provider]-------------------///
-final openSubAccountSuccessPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<OpenSubAccountSuccessPageViewModel>(
-  (ref) => OpenSubAccountSuccessPageViewModel(
-    ref.read(getDashboardDataUseCaseProvider),
-  ),
+final openSubAccountSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<OpenSubAccountSuccessPageViewModel, OpenSubAccountSuccessPageArgument>(
+  (ref, arg) => OpenSubAccountSuccessPageViewModel(ref.read(getDashboardDataUseCaseProvider), arg),
 );
 
 ///------------[Select-Transfer-Page-View-Model-Provider]-------------------///

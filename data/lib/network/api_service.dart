@@ -385,7 +385,7 @@ abstract class ApiService {
   Future<HttpResponse<GetAccountResponseEntity>> getAccount(
       @Body() GetAccountRequestEntity getAccountRequestEntity);
 
-  @POST("/BankSmart/CreateAccountV1")
+  @POST("/BankSmart/CreateAccountV3")
   Future<HttpResponse<CreateAccountResponseEntity>> createAccount(
       @Body() CreateAccountRequestEntity createAccountRequestEntity);
 

@@ -919,7 +919,8 @@ class AppRouter {
 
       case RoutePaths.OpenSubAccountSuccessPage:
         return CupertinoPageRoute(
-            builder: (context) => OpenSubAccountSuccessPage(),
+            builder: (context) =>
+                OpenSubAccountSuccessPage(settings.arguments as OpenSubAccountSuccessPageArgument),
             settings: RouteSettings(name: RoutePaths.OpenSubAccountSuccessPage));
       case RoutePaths.SelectTransferPage:
         return CupertinoPageRoute(

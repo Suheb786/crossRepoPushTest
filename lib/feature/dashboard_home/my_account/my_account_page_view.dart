@@ -50,7 +50,13 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
               Padding(
                 padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 32.h),
                 child: Text(
-                  !account.isSubAccount! ? S.current.mainAccount : S.of(context).subAccount,
+                  account.isSubAccount == false
+                      ? ((account.nickName ?? "").isNotEmpty
+                          ? (account.nickName ?? "")
+                          : S.current.mainAccount)
+                      : (account.nickName ?? "").isNotEmpty
+                          ? (account.nickName ?? "")
+                          : S.current.subAccount,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
                       fontWeight: FontWeight.w600,
@@ -82,8 +88,12 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                           textFieldBorderColor: Theme.of(context).colorScheme.surface,
                           hintTextColor: Theme.of(context).colorScheme.secondary,
                           textFieldFocusBorderColor: Theme.of(context).colorScheme.surface,
-                          onChanged: (p0) => model.toggleNickNameIcon(true),
-                          onFieldSubmitted: (p0) => model.toggleNickNameIcon(false),
+                          onChanged: (p0) {
+                            model.toggleNickNameIcon(true);
+                          },
+                          onFieldSubmitted: (p0) {
+                            model.toggleNickNameIcon(false);
+                          },
                           suffixIcon: (enabled, value) {
                             return isEditable!
                                 ? GestureDetector(
@@ -92,7 +102,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                       model.toggleNickNameIcon(false);
                                     },
                                     child: Padding(
-                                      padding: const EdgeInsets.all(4.0),
+                                      padding:
+                                          EdgeInsets.only(bottom: 4.0.h, left: 4.h, right: 4.h, top: 2.h),
                                       child: AppSvg.asset(
                                         AssetUtils.check,
                                         color: Theme.of(context).colorScheme.onSecondaryContainer,
@@ -100,7 +111,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                     ),
                                   )
                                 : Padding(
-                                    padding: EdgeInsets.only(bottom: 9.0.h, left: 9.h, right: 9.h, top: 0.h),
+                                    padding: EdgeInsets.only(bottom: 8.0.h, left: 8.h, right: 9.h, top: 6.h),
                                     child: AppSvg.asset(
                                       AssetUtils.editNickName,
                                       color: Theme.of(context).colorScheme.onSecondaryContainer,

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 import 'dart:isolate';
 
@@ -72,6 +71,9 @@ class AppHomeViewModel extends BasePageViewModel {
   final AddSubAccountUseCase _addSubAccountUseCase;
   final GetAccountUseCase _getAccountUseCase;
   final CreateAccountUseCase _createAccountUseCase;
+
+  String? accountNo = "";
+  String? iban = "";
 
   Timer? timer;
   final GetPlaceholderUseCase _getPlaceholderUseCase;
@@ -407,8 +409,10 @@ class AppHomeViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           createAccount(
-            event.data!.content!.accountDetails!,
-            event.data!.content!.customerInformation!,
+            customerAccountDetails: event.data!.content!.accountDetails!,
+            customerInformation: event.data!.content!.customerInformation!,
+            cif: "",
+            isSubAccount: true,
           );
         }
       });
@@ -423,7 +427,10 @@ class AppHomeViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {}
+        } else if (event.status == Status.SUCCESS) {
+          accountNo = event.data?.content?.createAccountData?.accountNumber;
+          iban = event.data?.content?.createAccountData?.iban;
+        }
       });
     });
 
@@ -506,9 +513,16 @@ class AppHomeViewModel extends BasePageViewModel {
         .safeAdd(AddSubAccountUseCaseParams(NickName: NickName, SubAccountNo: SubAccountNo, GetToken: true));
   }
 
-  void createAccount(CustomerAccountDetails customerAccountDetails, CustomerInformation customerInformation) {
+  void createAccount(
+      {bool? isSubAccount,
+      required CustomerAccountDetails customerAccountDetails,
+      String? cif,
+      required CustomerInformation customerInformation}) {
     _createAccountRequest.safeAdd(CreateAccountUseCaseParams(
-        accountDetails: customerAccountDetails, customerInformation: customerInformation));
+        cif: cif,
+        isSubAccount: isSubAccount,
+        accountDetails: customerAccountDetails,
+        customerInformation: customerInformation));
   }
 
   getOpenSubAccountCount(String? nickName) {
