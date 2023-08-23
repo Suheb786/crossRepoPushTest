@@ -17,7 +17,6 @@ import 'package:neo_bank/feature/postpaid_bills/pay_bill/pay_bill_detail/pay_bil
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/card/postpaid_setting_title_widget.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/denomintion_dialog/denomination_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/postpaid_bill/pay_bill_detail/bill_name/bill_name_dialog.dart';
@@ -31,6 +30,8 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../../ui/molecules/button/app_primary_button.dart';
 
 class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewModel> {
   late PayBillDetailPageViewModel model;
@@ -80,144 +81,48 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                                 duration: Duration(milliseconds: 100),
                                 shakeAngle: Rotation.deg(z: 1),
                                 curve: Curves.easeInOutSine,
-                                child: GestureDetector(
-                                  onHorizontalDragEnd: (details) {
-                                    model.validateData(context);
-                                    if (ProviderScope.containerOf(context)
-                                            .read(payBillPageViewModelProvider)
-                                            .appSwiperController
-                                            .page ==
-                                        0.0) {
-                                      if (StringUtils.isDirectionRTL(context)) {
-                                        if (details.primaryVelocity!.isNegative) {
-                                          if (ProviderScope.containerOf(context)
-                                                  .read(payBillPageViewModelProvider)
-                                                  .appSwiperController
-                                                  .page ==
-                                              1.0) {
-                                            ProviderScope.containerOf(context)
-                                                .read(payBillPageViewModelProvider)
-                                                .previousPage();
-                                          }
-                                        } else {
-                                          if (isValid == true) {
-                                            ProviderScope.containerOf(context)
-                                                .read(payBillPageViewModelProvider)
-                                                .nextPage();
-                                            ProviderScope.containerOf(context)
-                                                .read(confirmBillPaymentAmountPageViewModelProvider)
-                                                .setData(model.setData());
-
-                                            if (AppConstantsUtils.PRE_PAID_FLOW) {
-                                              // if (model.isPrepaidCategoryListEmpty == false) {
-                                              /// prepaid bill details inquiry
-                                              ProviderScope.containerOf(context)
-                                                  .read(confirmBillPaymentAmountPageViewModelProvider)
-                                                  .validatePrePaidBill(amount: model.amountText);
-                                              // }
-                                            } else if (AppConstantsUtils.POST_PAID_FLOW) {
-                                              /// post paid bill details inquiry
-                                              ProviderScope.containerOf(context)
-                                                  .read(confirmBillPaymentAmountPageViewModelProvider)
-                                                  .postPaidBillInquiry();
-                                            }
-                                          } else {
-                                            model.showToastWithError(AppError(
-                                                cause: Exception(),
-                                                error: ErrorInfo(message: ''),
-                                                type: !model.isNickNameValid
-                                                    ? ErrorType.INVALID_NICK_NAME
-                                                    : ErrorType.ENTER_BILL_DETAILS));
-                                          }
-                                        }
-                                      } else {
-                                        if (details.primaryVelocity!.isNegative) {
-                                          if (isValid == true) {
-                                            ProviderScope.containerOf(context)
-                                                .read(payBillPageViewModelProvider)
-                                                .nextPage();
-                                            ProviderScope.containerOf(context)
-                                                .read(confirmBillPaymentAmountPageViewModelProvider)
-                                                .setData(model.setData());
-
-                                            if (AppConstantsUtils.PRE_PAID_FLOW) {
-                                              // if (model.isPrepaidCategoryListEmpty == false) {
-                                              /// prepaid bill details inquiry
-                                              ProviderScope.containerOf(context)
-                                                  .read(confirmBillPaymentAmountPageViewModelProvider)
-                                                  .validatePrePaidBill(amount: model.amountText);
-                                              // }
-                                            } else if (AppConstantsUtils.POST_PAID_FLOW) {
-                                              /// post paid bill details inquiry
-                                              ProviderScope.containerOf(context)
-                                                  .read(confirmBillPaymentAmountPageViewModelProvider)
-                                                  .postPaidBillInquiry();
-                                            }
-                                          } else {
-                                            model.showToastWithError(AppError(
-                                                cause: Exception(),
-                                                error: ErrorInfo(message: ''),
-                                                type: !model.isNickNameValid
-                                                    ? ErrorType.INVALID_NICK_NAME
-                                                    : ErrorType.ENTER_BILL_DETAILS));
-                                          }
-                                        } else {
-                                          if (ProviderScope.containerOf(context)
-                                                  .read(payBillPageViewModelProvider)
-                                                  .appSwiperController
-                                                  .page ==
-                                              1.0) {
-                                            ProviderScope.containerOf(context)
-                                                .read(payBillPageViewModelProvider)
-                                                .previousPage();
-                                          }
-                                        }
-                                      }
-                                    }
-                                  },
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.only(
-                                        bottom: MediaQuery.of(context).viewInsets.bottom - 50.0.h <= 0
-                                            ? 0
-                                            : MediaQuery.of(context).viewInsets.bottom - 48.h),
-                                    child: Card(
-                                      //  clipBehavior: Clip.antiAlias,
-                                      margin: EdgeInsets.zero,
-                                      child: GestureDetector(
-                                        behavior: HitTestBehavior.opaque,
-                                        onPanDown: (_) {
-                                          FocusScope.of(context).requestFocus(FocusNode());
-                                        },
-                                        child: FadingEdgeScrollView.fromSingleChildScrollView(
-                                          gradientFractionOnEnd: 0.2,
-                                          gradientFractionOnStart: 0.2,
-                                          child: SingleChildScrollView(
-                                            controller: model.controller,
-                                            child: AppStreamBuilder<bool>(
-                                              initialData: false,
-                                              stream: model.totalBillAmtDueStream,
-                                              dataBuilder: (BuildContext context, isSwitchActive) {
-                                                return Container(
-                                                  padding:
-                                                      EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                                                  child: Column(children: [
-                                                    _billDetailsTitle(),
-                                                    _billerCategoryTitleWidget(),
-                                                    _billerNameAppTextField(),
-                                                    _servicesAppTextField(),
-                                                    _billingNumberTypeTextField(context),
-                                                    _ShowDenomination(),
-                                                    _showAmountForPrepaid(),
-                                                    // _refNoAppTextField(),
-                                                    _payFromAppTextField(),
-                                                    _addThisBillerSwitch(context, isSwitchActive),
-                                                    _nickNameAppTextField(context, isSwitchActive),
-                                                    _SwipeToProceedButton(),
-                                                    _backToPaymentsButton()
-                                                  ]),
-                                                );
-                                              },
-                                            ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.only(
+                                      bottom: MediaQuery.of(context).viewInsets.bottom - 50.0.h <= 0
+                                          ? 0
+                                          : MediaQuery.of(context).viewInsets.bottom - 48.h),
+                                  child: Card(
+                                    //  clipBehavior: Clip.antiAlias,
+                                    margin: EdgeInsets.zero,
+                                    child: GestureDetector(
+                                      behavior: HitTestBehavior.opaque,
+                                      onPanDown: (_) {
+                                        FocusScope.of(context).requestFocus(FocusNode());
+                                      },
+                                      child: FadingEdgeScrollView.fromSingleChildScrollView(
+                                        gradientFractionOnEnd: 0.2,
+                                        gradientFractionOnStart: 0.2,
+                                        child: SingleChildScrollView(
+                                          controller: model.controller,
+                                          child: AppStreamBuilder<bool>(
+                                            initialData: false,
+                                            stream: model.totalBillAmtDueStream,
+                                            dataBuilder: (BuildContext context, isSwitchActive) {
+                                              return Container(
+                                                padding:
+                                                    EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+                                                child: Column(children: [
+                                                  _billDetailsTitle(),
+                                                  _billerCategoryTitleWidget(),
+                                                  _billerNameAppTextField(),
+                                                  _servicesAppTextField(),
+                                                  _billingNumberTypeTextField(context),
+                                                  _ShowDenomination(),
+                                                  _showAmountForPrepaid(),
+                                                  // _refNoAppTextField(),
+                                                  _payFromAppTextField(),
+                                                  _addThisBillerSwitch(context, isSwitchActive),
+                                                  _nickNameAppTextField(context, isSwitchActive),
+                                                  _SwipeToProceedButton(),
+                                                  _backToPaymentsButton()
+                                                ]),
+                                              );
+                                            },
                                           ),
                                         ),
                                       ),
@@ -455,11 +360,40 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
           stream: model.showButtonStream,
           initialData: false,
           dataBuilder: (context, isValid) {
-            return Visibility(
-              visible: isValid!,
-              child: AnimatedButton(
-                buttonText: S.of(context).swipeToProceed,
-              ),
+            return AppPrimaryButton(
+              text: S.of(context).next,
+              isDisabled: !isValid!,
+              onPressed: () {
+                if (isValid == true) {
+                  ProviderScope.containerOf(context)
+                      .read(payBillPageViewModelProvider)
+                      .nextPage();
+                  ProviderScope.containerOf(context)
+                      .read(confirmBillPaymentAmountPageViewModelProvider)
+                      .setData(model.setData());
+
+                  if (AppConstantsUtils.PRE_PAID_FLOW) {
+                    // if (model.isPrepaidCategoryListEmpty == false) {
+                    /// prepaid bill details inquiry
+                    ProviderScope.containerOf(context)
+                        .read(confirmBillPaymentAmountPageViewModelProvider)
+                        .validatePrePaidBill(amount: model.amountText);
+                    // }
+                  } else if (AppConstantsUtils.POST_PAID_FLOW) {
+                    /// post paid bill details inquiry
+                    ProviderScope.containerOf(context)
+                        .read(confirmBillPaymentAmountPageViewModelProvider)
+                        .postPaidBillInquiry();
+                  }
+                } else {
+                  model.showToastWithError(AppError(
+                      cause: Exception(),
+                      error: ErrorInfo(message: ''),
+                      type: !model.isNickNameValid
+                          ? ErrorType.INVALID_NICK_NAME
+                          : ErrorType.ENTER_BILL_DETAILS));
+                }
+              },
             );
           }),
     );

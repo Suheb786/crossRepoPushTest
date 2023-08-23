@@ -53,6 +53,10 @@ class SetCreditLimitViewModel extends BasePageViewModel {
 
   Stream<Resource<GetLoanValuesResponse>> get getLoanValueResponse => _getLoanValueResponse.stream;
 
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+
+  Stream<bool> get showButtonStream => _showButtonSubject.stream;
+
   SetCreditLimitViewModel(this._setCreditLimitUseCase, this._getLoanValueUseCase) {
     _setCreditLimitRequest.listen((value) {
       RequestManager(value, createCall: () => _setCreditLimitUseCase.execute(params: value))
@@ -81,6 +85,14 @@ class SetCreditLimitViewModel extends BasePageViewModel {
     });
 
     getLoanValues();
+  }
+
+  void validate(String value) {
+    if (value.isNotEmpty) {
+      _showButtonSubject.safeAdd(true);
+    } else {
+      _showButtonSubject.safeAdd(false);
+    }
   }
 
   void updatedMinimumSettlementValue(String value) {

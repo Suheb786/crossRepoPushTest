@@ -15,7 +15,6 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -25,6 +24,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../ui/molecules/button/app_primary_button.dart';
 import 'how_much_like_to_pay_prepaid_bills_page_view_model.dart';
 
 class HowMuchLikeToPayPrePaidBillsPageView
@@ -374,12 +374,16 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                     stream: model.showButtonStream,
                                     initialData: false,
                                     dataBuilder: (context, isValid) {
-                                      return Visibility(
-                                        visible: isValid!,
-                                        child: AnimatedButton(
-                                          buttonText: S.of(context).swipeToProceed,
-                                        ),
-                                      );
+                                      return AppPrimaryButton(
+                                      text: S.of(context).next,
+                                      isDisabled: !isValid!,
+                                      onPressed: () {
+                                        if (model.isPrepaidCategoryListEmpty == false) {
+                                          model.payPrePaidBill(context);
+                                        } else if (model.isPrepaidCategoryListEmpty == true) {
+                                          model.payPrePaidBill(context);
+                                        }
+                                      });
                                     }),
                                 SizedBox(
                                   height: 24.h,
