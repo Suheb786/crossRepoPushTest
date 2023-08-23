@@ -16,8 +16,10 @@ import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../main/navigation/cutom_route.dart';
 import '../../../utils/color_utils.dart';
 import '../../../utils/device_size_helper.dart';
+import '../../manage_contacts/beneficiary_contacts_list/beneficiary_contacts_list_page.dart';
 import '../payment_home/payment_home_view_model.dart';
 
 class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyContactViewModel> {
@@ -112,7 +114,8 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                               visible: (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.manageContactEnabled ?? false),
                               child: InkWell(
                                 onTap: () {
-                                  Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList, arguments: NavigationType.REQUEST_MONEY);
+                                  Navigator.of(context).push(CustomRoute.swipeUpRoute(BeneficiaryContactListPage(navigationType: NavigationType.REQUEST_MONEY)));
+                                  // Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList, arguments: NavigationType.REQUEST_MONEY);
                                 },
                                 child: Align(
                                   alignment: Alignment.center,

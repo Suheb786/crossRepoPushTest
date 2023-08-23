@@ -51,11 +51,11 @@ class SendAmountToContactViewModel extends BasePageViewModel {
 
   List<Purpose>? purposeList = [];
 
+  bool showBackButton = false;
+
   SendAmountToContactViewModel(this.beneficiary, this._checkSendMoneyUseCase, this._transferUseCase) {
     _checkSendMoneyRequest.listen((value) {
-      RequestManager(value, createCall: () => _checkSendMoneyUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
+      RequestManager(value, createCall: () => _checkSendMoneyUseCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
         _checkSendMoneyResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -66,9 +66,7 @@ class SendAmountToContactViewModel extends BasePageViewModel {
     });
 
     _transferRequest.listen((value) {
-      RequestManager(value, createCall: () => _transferUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
+      RequestManager(value, createCall: () => _transferUseCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
         _transferResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -77,6 +75,10 @@ class SendAmountToContactViewModel extends BasePageViewModel {
         }
       });
     });
+  }
+
+  setShowBackButton(bool needBackButton) {
+    this.showBackButton = needBackButton;
   }
 
   List<String> myList = [];
@@ -136,10 +138,7 @@ class SendAmountToContactViewModel extends BasePageViewModel {
   }
 
   void checkSendMoney() {
-    _checkSendMoneyRequest.safeAdd(CheckSendMoneyUseCaseParams(
-        toAccount: beneficiary.identifier ?? '',
-        toAmount: double.parse(currentPinValue),
-        beneficiaryId: beneficiary.id ?? ''));
+    _checkSendMoneyRequest.safeAdd(CheckSendMoneyUseCaseParams(toAccount: beneficiary.identifier ?? '', toAmount: double.parse(currentPinValue), beneficiaryId: beneficiary.id ?? ''));
   }
 
   void transfer(TransferResponse transferResponse) {
@@ -148,9 +147,7 @@ class SendAmountToContactViewModel extends BasePageViewModel {
         toAmount: transferResponse.toAmount,
         toAccount: transferResponse.toAccount,
         limit: purposeDetail == null ? beneficiary.limit : purposeDetail!.limit,
-        memo: purposeDetail == null
-            ? (beneficiary.purpose == null ? '' : beneficiary.purpose!)
-            : purposeDetail!.strCode!,
+        memo: purposeDetail == null ? (beneficiary.purpose == null ? '' : beneficiary.purpose!) : purposeDetail!.strCode!,
         isFriend: false,
         nickName: "",
         transferType: transferResponse.transferType,
