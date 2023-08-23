@@ -15,6 +15,15 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ActivityHomeViewModel extends BasePageViewModel {
+
+  ///--------------- Animated Pages streams ----------------------///
+
+  BehaviorSubject<ActivityAnimatedPage> pageSwitchSubject =
+  BehaviorSubject.seeded(ActivityAnimatedPage.NULL);
+
+  Stream<ActivityAnimatedPage> get pageSwitchStream => pageSwitchSubject.stream;
+
+
   ActivityHomeViewModel(this._notificationUseCase, this._requestMoneyActivityUseCase) {
     _requestMoneyActivityRequest.listen(
       (value) {
@@ -167,3 +176,5 @@ class ActivityHomeViewModel extends BasePageViewModel {
 
   ///----------activity filtered list for cards-----------///
 }
+
+enum ActivityAnimatedPage { PAYMENT_ACTIVITY, NULL }
