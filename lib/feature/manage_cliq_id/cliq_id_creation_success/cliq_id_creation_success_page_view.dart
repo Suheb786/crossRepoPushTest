@@ -137,13 +137,15 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
             ),
           ),
           Spacer(),
-          AppSecondaryButton(
-            width: 230.w,
-            onPressed: () {
-              ProviderScope.containerOf(context).read(cliqIdListViewModelProvider).getAlias(true);
-              Navigator.pop(context);
-            },
-            text: S.of(context).next,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            child: AppSecondaryButton(
+              onPressed: () {
+                ProviderScope.containerOf(context).read(cliqIdListViewModelProvider).getAlias(true);
+                Navigator.pop(context);
+              },
+              text: S.of(context).next,
+            ),
           ),
           Padding(
             padding: EdgeInsets.only(top: 9.h, bottom: 16.h),
