@@ -4,6 +4,7 @@ import 'package:domain/constants/enum/evoucher_history_status_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:html/parser.dart';
+import 'package:intl/intl.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -89,7 +90,8 @@ class PageDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var htmlDecodedString = parse(model.argument.selectedVoucherData?.termsAndConditions ?? "");
+    var htmlDecodedString =
+        parse(model.argument.selectedVoucherData?.termsAndConditions ?? "").body?.text ?? '';
     return Column(
       children: [
         Expanded(
@@ -164,7 +166,7 @@ class PageDetail extends StatelessWidget {
                   child: Column(
                     children: [
                       CustomBulletWithTitle(
-                        title: htmlDecodedString.outerHtml,
+                        title: Bidi.stripHtmlIfNeeded(htmlDecodedString),
                         fontSize: 14.t,
                         lineHeight: 1.5,
                       ),

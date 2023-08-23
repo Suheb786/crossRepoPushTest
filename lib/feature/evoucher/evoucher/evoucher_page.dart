@@ -161,6 +161,11 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
                 child: InkWell(
                   onTap: () {
                     // ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animateBackToMainPage();
+
+                    model.buyVoucherSearchController.clear();
+                    model.myVoucherHistorySearchController
+                        .clear(); // user enter search text then keyboard open and navigated back without searching than api should not call bcz api is call on onFocus
+
                     Navigator.pop(context);
                   },
                   child: Container(

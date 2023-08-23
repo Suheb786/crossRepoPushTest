@@ -31,7 +31,13 @@ class App extends ConsumerWidget {
               return MaterialApp(
                   navigatorKey: appLevelKey,
                   builder: DevicePreview.appBuilder,
-                  localizationsDelegates: [S.delegate, GlobalMaterialLocalizations.delegate, GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate],
+                  useInheritedMediaQuery: true,
+                  localizationsDelegates: [
+                    S.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate
+                  ],
                   supportedLocales: S.delegate.supportedLocales,
                   onGenerateTitle: (context) => S.of(context).appName,
                   debugShowCheckedModeBanner: false,

@@ -3,6 +3,7 @@ import 'package:domain/model/e_voucher/get_settlement_amount.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:html/parser.dart';
+import 'package:intl/intl.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_now/purchase_now_detail_model.dart';
@@ -89,7 +90,7 @@ class PageDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var document = parse(model.argument.selectedVoucherItem.termsAndConditions);
+    var htmlDecodedString = parse(model.argument.selectedVoucherItem.termsAndConditions).body?.text ?? "";
 
     return AppStreamBuilder<Resource<GetSettlementAmount>>(
         initialData: Resource.none(),
@@ -179,7 +180,7 @@ class PageDetail extends StatelessWidget {
                         child: Column(
                           children: [
                             CustomBulletWithTitle(
-                              title: document.outerHtml,
+                              title: Bidi.stripHtmlIfNeeded(htmlDecodedString),
                               fontSize: 14.t,
                               lineHeight: 1.5,
                             ),
