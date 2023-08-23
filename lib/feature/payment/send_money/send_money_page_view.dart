@@ -27,10 +27,13 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.only(top: (MediaQuery.of(context).size.height * 0.14) + (MediaQuery.of(context).size.height * 0.08)),
+            padding: EdgeInsetsDirectional.only(
+                top: (MediaQuery.of(context).size.height * 0.14) +
+                    (MediaQuery.of(context).size.height * 0.08)),
             child: Text(
               S.of(context).sendMoney,
-              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 20.0.t),
+              style:
+                  TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 20.0.t),
             ),
           ),
           Spacer(),
@@ -47,13 +50,21 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                         model.currentPinValue,
                         textAlign: TextAlign.center,
                         maxLines: 1,
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40.0.t, fontFamily: StringUtils.appFont, color: AppColor.black),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 40.0.t,
+                            fontFamily: StringUtils.appFont,
+                            color: AppColor.black),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 15.0.h, left: 4.0.w),
                         child: Text(
                           S.of(context).JOD,
-                          style: TextStyle(fontFamily: StringUtils.appFont, color: AppColor.verLightGray4, fontSize: 16.0.t, fontWeight: FontWeight.w700),
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              color: AppColor.verLightGray4,
+                              fontSize: 16.0.t,
+                              fontWeight: FontWeight.w700),
                         ),
                       ),
                     ],
@@ -75,7 +86,11 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
             padding: EdgeInsets.only(top: 22.0.h),
             child: Text(
               S.of(context).accountBalance,
-              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: AppColor.dark_gray_1),
+              style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12.0.t,
+                  color: AppColor.dark_gray_1),
             ),
           ),
           Padding(
@@ -84,7 +99,12 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.account!.availableBalance!,
+                  ProviderScope.containerOf(context)
+                          .read(appHomeViewModelProvider)
+                          .dashboardDataContent
+                          .account
+                          ?.availableBalance ??
+                      "0.00",
                   style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     fontWeight: FontWeight.w700,
@@ -95,7 +115,11 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                   padding: EdgeInsets.only(left: 4.0.w, top: 2.0.h),
                   child: Text(
                     S.of(context).JOD,
-                    style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w700, fontSize: 12.0.t, color: AppColor.dark_gray_1),
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 12.0.t,
+                        color: AppColor.dark_gray_1),
                   ),
                 ),
               ],
@@ -112,11 +136,22 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                   textColor: Colors.black,
                   rightButtonFn: () {
                     if (double.parse(model.currentPinValue) <= 0) {
-                      model.showToastWithError(AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.ZERO_AMOUNT));
-                    } else if (double.parse(model.currentPinValue) > double.parse(ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.account!.availableBalance!)) {
-                      model.showToastWithError(AppError(cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.INSUFFICIENT_BALANCE_TRANSFER));
+                      model.showToastWithError(AppError(
+                          cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.ZERO_AMOUNT));
+                    } else if (double.parse(model.currentPinValue) >
+                        double.parse(ProviderScope.containerOf(context)
+                                .read(appHomeViewModelProvider)
+                                .dashboardDataContent
+                                .account
+                                ?.availableBalance ??
+                            "0.00")) {
+                      model.showToastWithError(AppError(
+                          cause: Exception(),
+                          error: ErrorInfo(message: ''),
+                          type: ErrorType.INSUFFICIENT_BALANCE_TRANSFER));
                     } else {
-                      Navigator.pushNamed(context, RoutePaths.PaymentToNewRecipient, arguments: model.currentPinValue);
+                      Navigator.pushNamed(context, RoutePaths.PaymentToNewRecipient,
+                          arguments: model.currentPinValue);
                     }
                   },
                   leftIcon: Icon(

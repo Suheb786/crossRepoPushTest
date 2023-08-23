@@ -36,29 +36,70 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
+          model.showBackButton
+              ? Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Padding(
+                padding: EdgeInsetsDirectional.only(bottom: 32.h, top: 50.h, start: 24.w),
+                child: AppSvg.asset(
+                  AssetUtils.back,
+                  height: 24.h,
+                  width: 24.w,
+                  matchTextDirection: true,
+                  color: Theme
+                      .of(context)
+                      .colorScheme
+                      .shadow,
+                ),
+              ),
+            ),
+          )
+              : const SizedBox(),
           Padding(
-            padding: EdgeInsetsDirectional.only(top: (MediaQuery.of(context).size.height * 0.14) + 24.h),
+            padding: EdgeInsetsDirectional.only(
+                top: !model.showBackButton ? ((MediaQuery
+                    .of(context)
+                    .size
+                    .height * 0.14) + 24.h) : 0),
             child: model.beneficiary.imageUrl.isNotEmpty
                 ? CircleAvatar(
-                    radius: 28.w,
-                    backgroundImage: Image.memory(
-                      model.beneficiary.imageUrl,
-                      fit: BoxFit.cover,
-                    ).image,
-                  )
+              radius: 28.w,
+              backgroundImage: Image
+                  .memory(
+                model.beneficiary.imageUrl,
+                fit: BoxFit.cover,
+              )
+                  .image,
+            )
                 : CircleAvatar(
-                    radius: 28.w,
-                    backgroundColor: Theme.of(context).canvasColor,
-                    child: Text(
-                      StringUtils.getFirstInitials(model.beneficiary.fullName),
-                      style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w700, fontSize: 20.t, color: Theme.of(context).primaryTextTheme.bodyMedium?.color),
-                    ),
-                  ),
+              radius: 28.w,
+              backgroundColor: Theme
+                  .of(context)
+                  .canvasColor,
+              child: Text(
+                StringUtils.getFirstInitials(model.beneficiary.fullName),
+                style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 20.t,
+                    color: Theme
+                        .of(context)
+                        .primaryTextTheme
+                        .bodyMedium
+                        ?.color),
+              ),
+            ),
           ),
           Padding(
             padding: EdgeInsets.only(top: 8.h),
             child: Text(
-              S.of(context).sendMoneyTo,
+              S
+                  .of(context)
+                  .sendMoneyTo,
               style: TextStyle(
                 fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w400,
@@ -69,7 +110,9 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
           Padding(
             padding: EdgeInsetsDirectional.only(end: 24.w, start: 24.w),
             child: Text(
-              (model.beneficiary.nickName != null && model.beneficiary.nickName!.isNotEmpty) ? model.beneficiary.nickName! : model.beneficiary.fullName!,
+              (model.beneficiary.nickName != null && model.beneficiary.nickName!.isNotEmpty)
+                  ? model.beneficiary.nickName!
+                  : model.beneficiary.fullName!,
               style: TextStyle(
                 fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
@@ -81,14 +124,26 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
           Padding(
             padding: EdgeInsetsDirectional.only(top: 16.h, end: 24.w, start: 24.w),
             child: Container(
-              decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.circular(15), border: Border.all(color: AppColor.whiteGray)),
+              decoration: BoxDecoration(
+                  color: Theme
+                      .of(context)
+                      .colorScheme
+                      .secondary,
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(color: AppColor.whiteGray)),
               padding: EdgeInsetsDirectional.only(top: 14.h, bottom: 14.h, start: 26.w, end: 34.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    S.of(context).transactionPurpose,
-                    style: TextStyle(fontFamily: StringUtils.appFont, color: AppColor.dark_gray_1, fontSize: 10.t, fontWeight: FontWeight.w600),
+                    S
+                        .of(context)
+                        .transactionPurpose,
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        color: AppColor.dark_gray_1,
+                        fontSize: 10.t,
+                        fontWeight: FontWeight.w600),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 2.h),
@@ -97,11 +152,17 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                       children: [
                         AppStreamBuilder<String>(
                             stream: model.purposeStream,
-                            initialData: (model.beneficiary.purposeParentDetails != null && model.beneficiary.purposeParentDetails!.isNotEmpty) ? model.beneficiary.purposeParentDetails! : '',
+                            initialData: (model.beneficiary.purposeParentDetails != null &&
+                                model.beneficiary.purposeParentDetails!.isNotEmpty)
+                                ? model.beneficiary.purposeParentDetails!
+                                : '',
                             dataBuilder: (context, value) {
                               return Text(
                                 value!,
-                                style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 12.t, fontWeight: FontWeight.w600),
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    fontSize: 12.t,
+                                    fontWeight: FontWeight.w600),
                               );
                             }),
                         Visibility(
@@ -110,19 +171,34 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                             onTap: () {
                               EditTransactionPurposeDialog.show(context, onDismissed: () {
                                 Navigator.pop(context);
-                              }, onSelected: (value1, value2) {
-                                model.updatePurpose(value1);
-                                model.updatePurposeDetail(value2);
-                                Navigator.pop(context);
                               },
-                                  purposeDetail: model.purposeDetail == null ? model.beneficiary.purposeDetails! : model.purposeDetail!.labelEn,
-                                  purpose: model.purpose == null ? model.beneficiary.purposeParentDetails : model.purpose!.labelEn,
+                                  onSelected: (value1, value2) {
+                                    model.updatePurpose(value1);
+                                    model.updatePurposeDetail(value2);
+                                    Navigator.pop(context);
+                                  },
+                                  purposeDetail: model.purposeDetail == null
+                                      ? model.beneficiary.purposeDetails!
+                                      : model.purposeDetail!.labelEn,
+                                  purpose: model.purpose == null
+                                      ? model.beneficiary.purposeParentDetails
+                                      : model.purpose!.labelEn,
                                   beneficiary: model.beneficiary,
                                   type: TransactionType.SM);
                             },
                             child: Text(
-                              S.of(context).edit,
-                              style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 12.t, fontWeight: FontWeight.w700, color: Theme.of(context).textTheme.bodyLarge!.color!),
+                              S
+                                  .of(context)
+                                  .edit,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 12.t,
+                                  fontWeight: FontWeight.w700,
+                                  color: Theme
+                                      .of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .color!),
                             ),
                           ),
                         )
@@ -133,11 +209,15 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                     padding: EdgeInsets.only(top: 2.h),
                     child: AppStreamBuilder<String>(
                         stream: model.purposeDetailStream,
-                        initialData: (model.beneficiary.purposeDetails != null && model.beneficiary.purposeDetails!.isNotEmpty) ? model.beneficiary.purposeDetails! : '',
+                        initialData: (model.beneficiary.purposeDetails != null &&
+                            model.beneficiary.purposeDetails!.isNotEmpty)
+                            ? model.beneficiary.purposeDetails!
+                            : '',
                         dataBuilder: (context, value) {
                           return Text(
                             value!,
-                            style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 12.t, fontWeight: FontWeight.w600),
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont, fontSize: 12.t, fontWeight: FontWeight.w600),
                           );
                         }),
                   ),
@@ -154,7 +234,8 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Directionality(
-                    textDirection: StringUtils.isDirectionRTL(context) ? TextDirection.rtl : TextDirection.ltr,
+                    textDirection:
+                    StringUtils.isDirectionRTL(context) ? TextDirection.rtl : TextDirection.ltr,
                     child: Expanded(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -163,13 +244,23 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                             model.currentPinValue,
                             textAlign: TextAlign.center,
                             maxLines: 1,
-                            style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.bold, fontSize: 40.t, color: AppColor.black),
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 40.t,
+                                color: AppColor.black),
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.only(top: 15.h, start: 4.w),
                             child: Text(
-                              S.of(context).JOD,
-                              style: TextStyle(fontFamily: StringUtils.appFont, color: AppColor.verLightGray4, fontSize: 16.t, fontWeight: FontWeight.w700),
+                              S
+                                  .of(context)
+                                  .JOD,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  color: AppColor.verLightGray4,
+                                  fontSize: 16.t,
+                                  fontWeight: FontWeight.w700),
                             ),
                           ),
                         ],
@@ -193,8 +284,14 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
           Padding(
             padding: EdgeInsets.only(top: 24.h),
             child: Text(
-              S.of(context).accountBalance,
-              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 10.t, color: AppColor.dark_gray_1),
+              S
+                  .of(context)
+                  .accountBalance,
+              style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 10.t,
+                  color: AppColor.dark_gray_1),
             ),
           ),
           Padding(
@@ -203,7 +300,12 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.account!.availableBalance!,
+                  ProviderScope
+                      .containerOf(context)
+                      .read(appHomeViewModelProvider)
+                      .dashboardDataContent
+                      .account
+                  ?.availableBalance ?? "0.00",
                   style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     fontWeight: FontWeight.w700,
@@ -213,8 +315,14 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                 Padding(
                   padding: EdgeInsetsDirectional.only(start: 4.0.w, top: 2.h),
                   child: Text(
-                    S.of(context).JOD,
-                    style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w700, fontSize: 12.t, color: AppColor.dark_gray_1),
+                    S
+                        .of(context)
+                        .JOD,
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 12.t,
+                        color: AppColor.dark_gray_1),
                   ),
                 ),
               ],
@@ -226,22 +334,35 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
               onData: (data) async {
                 if (data.status == Status.SUCCESS) {
                   ///LOGGING EVENT TO APP FLYER
-                  model.logEventsForAppFlyer(eventName: 'send_money_to_contact', eventValue: {"money_sent": data.data?.transferSuccessContent?.amount ?? 0.0});
+                  model.logEventsForAppFlyer(
+                      eventName: 'send_money_to_contact',
+                      eventValue: {"money_sent": data.data?.transferSuccessContent?.amount ?? 0.0});
 
                   ///LOG EVENT TO FIREBASE
-                  await FireBaseLogUtil.fireBaseLog("send_money_to_saved_beneficiary_success", {"is_money_sent": true, "money_sent": data.data?.transferSuccessContent?.amount ?? 0.0});
+                  await FireBaseLogUtil.fireBaseLog("send_money_to_saved_beneficiary_success", {
+                    "is_money_sent": true,
+                    "money_sent": data.data?.transferSuccessContent?.amount ?? 0.0
+                  });
                   data.data!.transferSuccessContent?.paymentMadeTo = model.beneficiary.iban ?? '';
-                  Navigator.pushNamed(context, RoutePaths.SendAmountToContactSuccess, arguments: data.data!.transferSuccessContent);
+                  Navigator.pushNamed(context, RoutePaths.SendAmountToContactSuccess,
+                      arguments: data.data!.transferSuccessContent);
                 } else if (data.status == Status.ERROR) {
                   ///LOG EVENT TO FIREBASE
-                  await FireBaseLogUtil.fireBaseLog("send_money_to_saved_beneficiary_failure", {"is_money_sent": false});
+                  await FireBaseLogUtil.fireBaseLog(
+                      "send_money_to_saved_beneficiary_failure", {"is_money_sent": false});
                   if (data.appError!.type == ErrorType.INVALID_OTP_NETWORK) {
                     model.showToastWithError(data.appError!);
                   } else if (data.appError!.type == ErrorType.DAILY_LIMIT_EXCEDED) {
                     Navigator.pushNamed(
                       context,
                       RoutePaths.SendMoneyFailure,
-                      arguments: SendMoneyFailurePageArgument(title: S.of(context).sendMoneyNotSuccessful, content: S.of(context).dailyLimitExceededorTryLater),
+                      arguments: SendMoneyFailurePageArgument(
+                          title: S
+                              .of(context)
+                              .sendMoneyNotSuccessful,
+                          content: S
+                              .of(context)
+                              .dailyLimitExceededorTryLater),
                     );
                   } else if (data.appError!.type == ErrorType.LOGIN_REGISTER_DISABLED) {
                     model.showToastWithError(data.appError!);
@@ -249,7 +370,12 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                     Navigator.pushNamed(
                       context,
                       RoutePaths.SendMoneyFailure,
-                      arguments: SendMoneyFailurePageArgument(title: S.of(context).sendMoneyNotSuccessful, content: S.of(context).tryAgainLater),
+                      arguments: SendMoneyFailurePageArgument(
+                          title: S
+                              .of(context)
+                              .sendMoneyNotSuccessful, content: S
+                          .of(context)
+                          .tryAgainLater),
                     );
                   }
                 }
@@ -265,7 +391,10 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                     },
                     dataBuilder: (context, checkSendMoneyResponse) {
                       return Padding(
-                        padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.06),
+                        padding: EdgeInsets.only(bottom: MediaQuery
+                            .of(context)
+                            .size
+                            .height * 0.06),
                         child: Directionality(
                           textDirection: TextDirection.ltr,
                           child: NumericKeyboard(
@@ -275,9 +404,15 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                               textColor: Colors.black,
                               rightButtonFn: () {
                                 if (double.parse(model.currentPinValue) <= 0) {
-                                  model.showToastWithError(AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.ZERO_AMOUNT));
+                                  model.showToastWithError(AppError(
+                                      cause: Exception(),
+                                      error: ErrorInfo(message: ""),
+                                      type: ErrorType.ZERO_AMOUNT));
                                 } else if (model.beneficiary.purpose == null && model.purposeDetail == null) {
-                                  model.showToastWithError(AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.EMPTY_PURPOSE_DETAIL));
+                                  model.showToastWithError(AppError(
+                                      cause: Exception(),
+                                      error: ErrorInfo(message: ""),
+                                      type: ErrorType.EMPTY_PURPOSE_DETAIL));
                                 } else {
                                   model.checkSendMoney();
                                 }

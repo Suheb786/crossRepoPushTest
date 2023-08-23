@@ -12,6 +12,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/payment/send_to_new_recipient/send_to_new_recipient_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/account_setting/choose_profile_widget.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -462,23 +463,33 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                 return InkWell(
                                                                                   onTap: () {
                                                                                     ChooseProfileWidget.show(
-                                                                                        context,
-                                                                                        onCameraTap: () {
-                                                                                      Navigator.pop(
-                                                                                          context);
-                                                                                      model.uploadProfilePhoto(
-                                                                                          DocumentTypeEnum
-                                                                                              .CAMERA);
+                                                                                        context, onCameraTap:
+                                                                                            () async {
+                                                                                      Navigator.pop(context);
+
+                                                                                      final dynamic filePath =
+                                                                                          await Navigator
+                                                                                              .pushNamed(
+                                                                                                  context,
+                                                                                                  RoutePaths
+                                                                                                      .CameraCapturePage);
+
+                                                                                      if (filePath
+                                                                                          .toString()
+                                                                                          .isNotEmpty)
+                                                                                        model.uploadProfilePhoto(
+                                                                                            DocumentTypeEnum
+                                                                                                .CAMERA,
+                                                                                            cameraPhotoFile:
+                                                                                                filePath);
                                                                                     }, onGalleryTap: () {
-                                                                                      Navigator.pop(
-                                                                                          context);
+                                                                                      Navigator.pop(context);
                                                                                       model.uploadProfilePhoto(
                                                                                           DocumentTypeEnum
                                                                                               .PICK_IMAGE);
                                                                                     }, onRemoveTap: () {
                                                                                       model.removeImage();
-                                                                                      Navigator.pop(
-                                                                                          context);
+                                                                                      Navigator.pop(context);
                                                                                     }, onCancelled: () {
                                                                                       Navigator.pop(
                                                                                           context);
