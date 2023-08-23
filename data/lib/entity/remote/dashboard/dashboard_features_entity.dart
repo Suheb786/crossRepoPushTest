@@ -64,6 +64,9 @@ class DashboardFeaturesEntity
   @JsonKey(name: "blink-retail-app-E-vouchers")
   final bool? eVouchers;
 
+  @JsonKey(name: 'blink-retail-app-applepay')
+  final bool? blinkRetailAppApplePay;
+
   DashboardFeaturesEntity(
       {this.blinkRetailAppBillPayment,
       this.blinkRetailAppBillPaymentPayPostpaid,
@@ -83,7 +86,8 @@ class DashboardFeaturesEntity
       this.returnPaymentFeatureEnabled,
       this.manageContactEnabled,
       this.manageContactHistory,
-      this.eVouchers});
+      this.eVouchers,
+      this.blinkRetailAppApplePay});
 
   factory DashboardFeaturesEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardFeaturesEntityFromJson(json);

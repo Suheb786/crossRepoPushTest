@@ -50,7 +50,14 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
               Padding(
                 padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 32.h),
                 child: Text(
-                  S.of(context).myAccount,
+                  ProviderScope.containerOf(context)
+                              .read(appHomeViewModelProvider)
+                              .dashboardDataContent
+                              .account
+                              ?.isSubAccount ==
+                          false
+                      ? S.current.mainAccount
+                      : S.of(context).subAccount,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
                       fontWeight: FontWeight.w600,
@@ -75,7 +82,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                           controller: model.nickNameController,
                           textCapitalization: TextCapitalization.words,
                           inputType: TextInputType.name,
-                          containerPadding: EdgeInsets.only(left: 12.w, right: 12.w, top: 5.h, bottom: 5.h),
+                          containerPadding: EdgeInsets.only(left: 12.w, right: 3.w, top: 3.h, bottom: 0.h),
                           textColor: Theme.of(context).colorScheme.secondary,
                           color: Colors.transparent,
                           borderRadius: BorderRadius.circular(100),
@@ -100,7 +107,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                     ),
                                   )
                                 : Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: EdgeInsets.only(bottom: 9.0.h, left: 9.h, right: 9.h, top: 0.h),
                                     child: AppSvg.asset(
                                       AssetUtils.editNickName,
                                       color: Theme.of(context).colorScheme.onSecondaryContainer,

@@ -1819,9 +1819,9 @@
   "transfer": "التحويل",
   "transferHeader": "أدخل تفاصيل الحوالة واختر الحسابات",
   "transferFrom": "التحويل من",
-  "mainAccountPrimary": "Main Account-Primary",
+  "mainAccount": "Main Account",
   "transferTo": "Transfer To",
-  "subAccountSavings": "Sub Account - Savings",
+  "subAccount": "Sub Account",
   "successExclmn": "Success!",
   "openAccountSucessDescription": "لقد تم فتح الحساب بنجاح.",
   "goToDashboard": "العودة إلى الشاشة الرئيسية",
@@ -1829,5 +1829,7 @@
   "accountCannotBeDebited": "عفوا! لم تتم العملية بنجاح لأنه لا يمكن خصم المبلغ من الحساب ",
   "shareAccountInformation": "مشاركة تفاصيل الحساب",
   "openSubAccount": "افتح حساب إضافي",
-  "opneSubAccountDescription": "هل أنت متأكد من عملية فتح حساب إضافي؟"
+  "opneSubAccountDescription": "هل أنت متأكد من عملية فتح حساب إضافي؟",
+  "transferBetweenAccount": "Transfer Between Accounts",
+  "closeSubAccount": "Close Sub Account"
 }

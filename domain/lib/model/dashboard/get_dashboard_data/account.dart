@@ -7,6 +7,8 @@ class Account {
       this.accountNo,
       this.iban,
       this.cardNo,
+      this.isSubAccount,
+      this.nickName,
       this.accountStatusEnum = AccountStatusEnum.NONE});
 
   String? accountTitle;
@@ -15,4 +17,6 @@ class Account {
   String? iban;
   String? cardNo;
   AccountStatusEnum accountStatusEnum;
+  String? nickName;
+  bool? isSubAccount;
 }

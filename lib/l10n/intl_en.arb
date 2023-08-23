@@ -1846,9 +1846,9 @@
   "transfer": "Transfer",
   "transferHeader": "Enter your transfer details",
   "transferFrom": "Transfer from",
-  "mainAccountPrimary": "Main Account-Primary",
+  "mainAccount": "Main Account",
   "transferTo": "Transfer To",
-  "subAccountSavings": "Sub Account - Savings",
+  "subAccount": "Sub Account",
   "successExclmn": "Success!",
   "openAccountSucessDescription": "Congratulations, your new account has been opened successfully!",
   "goToDashboard": "Go to Dashboard",
@@ -1856,5 +1856,7 @@
   "accountCannotBeDebited": "Oops! Transaction failed; your account cannot be debited.",
   "shareAccountInformation": "Share Account Information",
   "openSubAccount": "Open Sub Account",
-  "opneSubAccountDescription": "Are you sure you want to open a new account?"
+  "opneSubAccountDescription": "Are you sure you want to open a new account?",
+  "transferBetweenAccount": "Transfer Between Accounts",
+  "closeSubAccount": "Close Sub Account"
 }

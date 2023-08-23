@@ -12,6 +12,8 @@ part "dashboard_data_entity.g.dart";
 class DashboardDataEntity implements BaseLayerDataTransformer<DashboardDataEntity, GetDashboardDataContent> {
   @JsonKey(name: "account")
   final DashboardAccountEntity? account;
+  @JsonKey(name: 'accounts')
+  final List<DashboardAccountEntity>? accounts;
   @JsonKey(name: "creditCard")
   final List<DashboardCardEntity>? creditCard;
   @JsonKey(name: "debitCard")
@@ -32,20 +34,26 @@ class DashboardDataEntity implements BaseLayerDataTransformer<DashboardDataEntit
   final bool? debitCardSomethingWrong;
   @JsonKey(name: "isCreditCard")
   final bool? isCreditCard;
+  @JsonKey(name: 'email')
+  final String? email;
+  @JsonKey(name: 'allowSubAccount')
+  final bool? allowSubAccount;
 
-  DashboardDataEntity({
-    this.account,
-    this.creditCard,
-    this.mobileNumber = "",
-    this.blinkBornDate,
-    this.blinkJoinedDate,
-    this.mobileCode = "",
-    this.somethingWrong = false,
-    this.debitCardSomethingWrong = false,
-    this.isCreditCard = true,
-    this.dashboardFeatures,
-    this.debitCard,
-  });
+  DashboardDataEntity(
+      {this.account,
+      this.creditCard,
+      this.mobileNumber = "",
+      this.blinkBornDate,
+      this.blinkJoinedDate,
+      this.mobileCode = "",
+      this.somethingWrong = false,
+      this.debitCardSomethingWrong = false,
+      this.isCreditCard = true,
+      this.dashboardFeatures,
+      this.debitCard,
+      this.email,
+      this.allowSubAccount,
+      this.accounts});
 
   factory DashboardDataEntity.fromJson(Map<String, dynamic> json) => _$DashboardDataEntityFromJson(json);
 
@@ -60,6 +68,7 @@ class DashboardDataEntity implements BaseLayerDataTransformer<DashboardDataEntit
   GetDashboardDataContent transform() {
     return GetDashboardDataContent(
         account: this.account?.transform(),
+        accounts: this.accounts?.map((e) => e.transform()).toList(),
         creditCard: this.creditCard?.map((e) => e.transform()).toList(),
         debitCard: this.debitCard?.map((e) => e.transform()).toList(),
         blinkWasBorn: this.blinkBornDate,

@@ -18240,11 +18240,11 @@ class S {
     );
   }
 
-  /// `Main Account-Primary`
-  String get mainAccountPrimary {
+  /// `Main Account`
+  String get mainAccount {
     return Intl.message(
-      'Main Account-Primary',
-      name: 'mainAccountPrimary',
+      'Main Account',
+      name: 'mainAccount',
       desc: '',
       args: [],
     );
@@ -18260,11 +18260,11 @@ class S {
     );
   }
 
-  /// `Sub Account - Savings`
-  String get subAccountSavings {
+  /// `Sub Account`
+  String get subAccount {
     return Intl.message(
-      'Sub Account - Savings',
-      name: 'subAccountSavings',
+      'Sub Account',
+      name: 'subAccount',
       desc: '',
       args: [],
     );
@@ -18345,6 +18345,26 @@ class S {
     return Intl.message(
       'Are you sure you want to open a new account?',
       name: 'opneSubAccountDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer Between Accounts`
+  String get transferBetweenAccount {
+    return Intl.message(
+      'Transfer Between Accounts',
+      name: 'transferBetweenAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close Sub Account`
+  String get closeSubAccount {
+    return Intl.message(
+      'Close Sub Account',
+      name: 'closeSubAccount',
       desc: '',
       args: [],
     );

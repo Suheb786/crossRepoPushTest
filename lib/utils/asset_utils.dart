@@ -231,9 +231,11 @@ class AssetUtils {
   static const String moreMenu = svg + "more_menu.svg";
 
   ///account
-  static const String addMoney = svg + "add_money.svg";
-  static const String openSubAccount = svg + "sub_account.svg";
-  static const String shareAccountInfo = svg + "share_account_info.svg";
+  static const String addMoneyIcon = svg + "add_money.svg";
+  static const String openSubAccountIcon = svg + "sub_account.svg";
+  static const String shareAccountInfoIcon = svg + "share_account_info.svg";
+  static const String transferBetweenAccountIcon = svg + "transfer_between_account.svg";
+  static const String closeSubAccountIcon = svg + "close_sub_account.svg";
 
   ///dialog png
   static const String close_bold = drawable + "close_bold.png";

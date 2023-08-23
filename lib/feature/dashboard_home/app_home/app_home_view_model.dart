@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 import 'dart:isolate';
 
@@ -14,6 +15,7 @@ import 'package:domain/model/bank_smart/create_account_response.dart';
 import 'package:domain/model/bank_smart/customer_account_details.dart';
 import 'package:domain/model/bank_smart/customer_information.dart';
 import 'package:domain/model/bank_smart/get_account_response.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
@@ -33,9 +35,7 @@ import 'package:domain/usecase/sub_account/add_account_usecase.dart';
 import 'package:domain/usecase/user/get_current_user_usecase.dart';
 import 'package:domain/usecase/user/save_user_data_usecase.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_page.dart';
@@ -419,9 +419,7 @@ class AppHomeViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {
-         
-        }
+        } else if (event.status == Status.SUCCESS) {}
       });
     });
 
@@ -509,6 +507,59 @@ class AppHomeViewModel extends BasePageViewModel {
         accountDetails: customerAccountDetails, customerInformation: customerInformation));
   }
 
+  List<Account> demoAccount = [
+    Account(
+        accountNo: "806806",
+        accountStatusEnum: AccountStatusEnum.ACTIVE,
+        accountTitle: "Suheb",
+        availableBalance: "324234.8",
+        cardNo: "970970970",
+        iban: "9866097-J080",
+        isSubAccount: true,
+        nickName: "Suheb Sub Account"),
+    Account(
+        accountNo: "4438036806",
+        accountStatusEnum: AccountStatusEnum.ACTIVE,
+        accountTitle: "Suheb",
+        availableBalance: "4324234.8",
+        cardNo: "4970970970",
+        iban: "49866097-J080",
+        isSubAccount: false,
+        nickName: "Suheb Main account"),
+    Account(
+        accountNo: "8068062",
+        accountStatusEnum: AccountStatusEnum.ACTIVE,
+        accountTitle: "Suheb 2",
+        availableBalance: "324234.822",
+        cardNo: "97097097022",
+        iban: "9866097-J08022",
+        isSubAccount: true,
+        nickName: "Suheb Sub Account 2")
+  ];
+
+  getOpenSubAccountCount(String? nickName) {
+    int subAccountCount = 1;
+    String? subAccountPrefix = nickName;
+
+    List<Account> accounts =
+        dashboardDataContent.accounts?.where((element) => (element.isSubAccount == false)).toList() ?? [];
+
+    for (var account in accounts) {
+      if (account.isSubAccount == true) {
+        subAccountCount++;
+      }
+    }
+
+    String result;
+
+    if (subAccountCount == 0) {
+      result = "$subAccountPrefix 1";
+    } else {
+      result = "$subAccountPrefix $subAccountCount";
+    }
+    print(result);
+  }
+
   void getDashboardPages(GetDashboardDataContent dashboardDataContent) {
     pages.clear();
     timeLineListArguments.clear();
@@ -518,14 +569,29 @@ class AppHomeViewModel extends BasePageViewModel {
     cardTypeList.clear();
 
     ///adding cardType
-    cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+    // cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
 
+    List<Account> accounts =
+        dashboardDataContent.accounts?.where((element) => (element.isSubAccount == false)).toList() ?? [];
+    for (var mainAccount in accounts) {
+      log("Main account is ::: ${mainAccount.isSubAccount}");
+      pages.add(MyAccountPage(account: mainAccount));
+      cardTypeList.add(TimeLineSwipeUpArgs(
+          cardType: CardType.ACCOUNT,
+          swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
+          timeLineEnum: TimeLineEnum.TIMELINE_YES));
+    }
 
-    pages.add(MyAccountPage(account: dashboardDataContent.account!));
-    cardTypeList.add(TimeLineSwipeUpArgs(
-        cardType: CardType.ACCOUNT,
-        swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
-        timeLineEnum: TimeLineEnum.TIMELINE_YES));
+    List<Account> subAccounts =
+        dashboardDataContent.accounts?.where((element) => (element.isSubAccount == true)).toList() ?? [];
+    for (var subAccount in subAccounts) {
+      log("Main account is ::: ${subAccount.isSubAccount}");
+      pages.add(MyAccountPage(account: subAccount));
+      cardTypeList.add(TimeLineSwipeUpArgs(
+          cardType: CardType.SUBACCOUNT,
+          swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
+          timeLineEnum: TimeLineEnum.TIMELINE_YES));
+    }
 
     ///setting timeline arguments value start
     timeLineArguments.availableBalance = dashboardDataContent.account!.availableBalance ?? '0.000';
