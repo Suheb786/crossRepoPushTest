@@ -3,7 +3,10 @@ import 'dart:io';
 import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/enum/account_status_enum.dart';
 import 'package:domain/constants/enum/evoucher_landing_page_navigation_type_enum.dart';
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
 import 'package:domain/model/bank_smart/create_account_response.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/model/qr/verify_qr_response.dart';
@@ -293,13 +296,12 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                   model.isPrimaryDebitCard,
                                                                               debitCard:
                                                                                   model.selectedDebitCard!,
-                                                                              debitCardRequestPhysicalCardEnabled:
-                                                                                  cardData
-                                                                                          ?.data
-                                                                                          ?.dashboardDataContent
-                                                                                          ?.dashboardFeatures
-                                                                                          ?.isDebitCardRequestPhysicalCardEnabled ??
-                                                                                      false))
+                                                                              debitCardRequestPhysicalCardEnabled: cardData
+                                                                                      ?.data
+                                                                                      ?.dashboardDataContent
+                                                                                      ?.dashboardFeatures
+                                                                                      ?.isDebitCardRequestPhysicalCardEnabled ??
+                                                                                  false))
                                                                           : CreditCardSettingsPage(CreditCardSettingsArguments(
                                                                               creditCard:
                                                                                   model.selectedCreditCard!,
@@ -538,7 +540,20 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                 title: S
                                                                                                     .current
                                                                                                     .closeSubAccount,
-                                                                                                onTap: () {},
+                                                                                                onTap: () {
+                                                                                                  if (num.parse(model.selectedAccount?.availableBalance ??
+                                                                                                          '0') >
+                                                                                                      0) {
+                                                                                                    model.showToastWithError(AppError(
+                                                                                                        cause:
+                                                                                                            Exception(),
+                                                                                                        error:
+                                                                                                            ErrorInfo(message: ''),
+                                                                                                        type: ErrorType.TRANSFER_REMAINING_BALANCE_TO_CLOSE_ACCOUNT));
+                                                                                                  } else {
+                                                                                                    ///TODO:close account
+                                                                                                  }
+                                                                                                },
                                                                                               ),
                                                                                               SizedBox(
                                                                                                   height:
