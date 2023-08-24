@@ -101,7 +101,7 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                                             controller: model.nameController,
                                             key: model.nameKey,
                                             onChanged: (value) {
-                                              model.validate(value);
+                                              model.validate();
                                             }),
                                         SizedBox(height: 16.0.h),
                                         Focus(
@@ -117,7 +117,7 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                                                 model.showNameVisibility('');
                                                 model.ibanFieldValidated = false;
                                               }
-                                              model.validate(value);
+                                              model.validate();
                                             },
                                             labelIcon: () {
                                               return InkWell(
@@ -275,9 +275,9 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                                                       PurposeDetailDialog.show(context,
                                                           purposeDetailList: model.purposeDetailList,
                                                           onSelected: (value) {
-                                                        model.updatePurposeDetail(value);
+                                                            model.updatePurposeDetail(value);
                                                         Navigator.pop(context);
-                                                        model.validate('');
+                                                        model.validate();
                                                       }, onDismissed: () {
                                                         Navigator.pop(context);
                                                       });

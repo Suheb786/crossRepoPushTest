@@ -96,10 +96,12 @@ class DcChangeMobileNumberSuccessPageView extends BasePageViewWidget<DcChangeMob
               ),*/
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: AppPrimaryButton(text: S.of(context).next, onPressed: () {
-                  Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-                  ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
-                }),
+                child: AppPrimaryButton(
+                    text: S.of(context).done,
+                    onPressed: () {
+                      Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+                      ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+                    }),
               ),
               InkWell(
                 onTap: () {},
