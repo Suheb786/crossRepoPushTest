@@ -695,7 +695,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
               ProviderScope.containerOf(context).read(payBillPageViewModelProvider).previousPage();
             },
             child: Text(
-              S.of(context).backToPayments,
+              S.of(context).back,
               style: TextStyle(
                 fontFamily: StringUtils.appFont,
                 color: AppColor.brightBlue,

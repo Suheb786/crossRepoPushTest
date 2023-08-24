@@ -18,7 +18,6 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/app_progress.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -256,7 +255,7 @@ class EnterOtpBillPaymentsPageView extends BasePageViewWidget<EnterOtpBillPaymen
                             .previousPage();
                       },
                       child: Text(
-                        S.of(context).backToPayments,
+                        S.of(context).back,
                         style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           fontSize: 14.0.t,
