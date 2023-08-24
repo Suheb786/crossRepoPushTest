@@ -28,7 +28,7 @@ class EnterOtpViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get enterOtpResponseStream => _enterOtpResponse.stream;
 
-  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(true);
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
