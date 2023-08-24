@@ -5,5 +5,7 @@ import '../../../../base/base_page_view_model.dart';
 class TransferSuccessPageViewModel extends BasePageViewModel {
   final TransferSuccessPageArgument argument;
 
-  TransferSuccessPageViewModel(this.argument);
+  TransferSuccessPageViewModel({
+    required this.argument,
+  }) {}
 }

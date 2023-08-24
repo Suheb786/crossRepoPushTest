@@ -31,6 +31,7 @@ import 'package:domain/usecase/dashboard/get_placeholder_usecase.dart';
 import 'package:domain/usecase/dynamic_link/init_dynamic_link_usecase.dart';
 import 'package:domain/usecase/payment/verify_qr_usecase.dart';
 import 'package:domain/usecase/sub_account/add_account_usecase.dart';
+import 'package:domain/usecase/sub_account/deactivate_sub_account_usecase.dart';
 import 'package:domain/usecase/user/get_current_user_usecase.dart';
 import 'package:domain/usecase/user/save_user_data_usecase.dart';
 import 'package:flutter/material.dart';
@@ -71,6 +72,7 @@ class AppHomeViewModel extends BasePageViewModel {
   final AddSubAccountUseCase _addSubAccountUseCase;
   final GetAccountUseCase _getAccountUseCase;
   final CreateAccountUseCase _createAccountUseCase;
+  final DeactivateSubAccountUseCase _closeSubAccountUsecase;
 
   String? accountNo = "";
   String? iban = "";
@@ -149,6 +151,13 @@ class AppHomeViewModel extends BasePageViewModel {
 
   List<TimeLineListArguments> timeLineListArguments = [];
   List<TimeLineListArguments> blinkTimeLineListArguments = [];
+
+  ///*-------------------update nick name stream--------------------///
+  PublishSubject<DeactivateSubAccountUseCaseParams> _closeSubAccountRequest = PublishSubject();
+
+  BehaviorSubject<Resource<bool>> _closeSubAccountResponse = BehaviorSubject();
+
+  Stream<Resource<bool>> get _closeSubAccountResponseStream => _closeSubAccountResponse.stream;
 
   ///subscription pop up stream
   PublishSubject<bool> _showSubSubscriptionPopUpStream = PublishSubject();
@@ -320,7 +329,8 @@ class AppHomeViewModel extends BasePageViewModel {
       this._getAntelopCardsListUseCase,
       this._addSubAccountUseCase,
       this._getAccountUseCase,
-      this._createAccountUseCase) {
+      this._createAccountUseCase,
+      this._closeSubAccountUsecase) {
     isShowBalenceUpdatedToast = false;
     deviceSize = MediaQuery.of(appLevelKey.currentContext!).size;
     isSmallDevices = deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
@@ -434,6 +444,18 @@ class AppHomeViewModel extends BasePageViewModel {
         }
       });
     });
+    _closeSubAccountRequest.listen((value) {
+      RequestManager(value, createCall: () => _closeSubAccountUsecase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _closeSubAccountResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {}
+      });
+    });
 
     _antelopGetCardsRequest.listen(
       (params) {
@@ -503,6 +525,11 @@ class AppHomeViewModel extends BasePageViewModel {
         AppConstantsUtils.isApplePayPopUpShown = true;
       }
     }
+  }
+
+  void closeSubAccount({required String subAccountNo}) {
+    _closeSubAccountRequest
+        .safeAdd(DeactivateSubAccountUseCaseParams(subAccountNo: subAccountNo, getToken: true));
   }
 
   void getAccount() {
