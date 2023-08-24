@@ -21,7 +21,12 @@ abstract class BankSmartRemoteDS {
   Future<HttpResponse<GetAccountResponseEntity>> getAccount({bool getToken});
 
   Future<HttpResponse<CreateAccountResponseEntity>> createAccount(
-      {bool getToken, CustomerInformation? customerInformation, CustomerAccountDetails? accountDetails});
+      {String? cif,
+      bool? isSubAccount,
+
+      bool getToken,
+      CustomerInformation? customerInformation,
+      CustomerAccountDetails? accountDetails});
 
   Future<HttpResponse<GetAccountDetailsResponseEntity>> getAccountDetails({bool getToken});
 

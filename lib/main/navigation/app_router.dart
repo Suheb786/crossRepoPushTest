@@ -312,10 +312,11 @@ class AppRouter {
 
       case RoutePaths.RequestAmountFromContact:
         return CustomRoute.createRoute(
-            RequestAmountFromContactPage(beneficiary: settings.arguments as Beneficiary));
+            RequestAmountFromContactPage(settings.arguments as RequestAmountToContactPageArgument));
 
       case RoutePaths.SendAmountToContact:
-        return CustomRoute.createRoute(SendAmountToContactPage(settings.arguments as Beneficiary));
+        return CustomRoute.createRoute(
+            SendAmountToContactPage(settings.arguments as SendAmountToContactPageArgument));
 
       case RoutePaths.SendAmountToContactSuccess:
         return CupertinoPageRoute(
@@ -919,7 +920,8 @@ class AppRouter {
 
       case RoutePaths.OpenSubAccountSuccessPage:
         return CupertinoPageRoute(
-            builder: (context) => OpenSubAccountSuccessPage(),
+            builder: (context) =>
+                OpenSubAccountSuccessPage(settings.arguments as OpenSubAccountSuccessPageArgument),
             settings: RouteSettings(name: RoutePaths.OpenSubAccountSuccessPage));
       case RoutePaths.SelectTransferPage:
         return CupertinoPageRoute(

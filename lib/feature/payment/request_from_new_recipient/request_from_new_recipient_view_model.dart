@@ -254,8 +254,9 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
     _selectedImageSubject.safeAdd(image);
   }
 
-  void uploadProfilePhoto(DocumentTypeEnum type) {
-    _uploadProfilePhotoRequest.safeAdd(UploadDocumentUseCaseParams(documentType: type));
+  void uploadProfilePhoto(DocumentTypeEnum type, {String cameraPhotoFile = ""}) {
+    _uploadProfilePhotoRequest
+        .safeAdd(UploadDocumentUseCaseParams(documentType: type, cameraPhotoFile: cameraPhotoFile));
   }
 
   void removeImage() {

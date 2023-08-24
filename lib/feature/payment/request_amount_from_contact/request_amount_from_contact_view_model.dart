@@ -58,6 +58,8 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
     _purposeSubject.safeAdd(value.labelEn!);
   }
 
+  bool showBackButton = false;
+
   RequestAmountFromContactViewModel(
       this._requestAmountFromContactUseCase, this._getAccountByAliasUseCase, this.beneficiary) {
     _getAccountByAliasRequest.listen((value) {
@@ -92,6 +94,10 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
     });
 
     getAccountByAlias();
+  }
+
+  setShowBackButton(bool needBackButton) {
+    this.showBackButton = needBackButton;
   }
 
   void getAccountByAlias() {

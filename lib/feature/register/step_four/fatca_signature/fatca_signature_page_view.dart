@@ -9,6 +9,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_signature/fatca_signature_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -185,10 +186,19 @@ class FatcaSignaturePageView extends BasePageViewWidget<FatcaSignaturePageViewMo
                                                                 onTap: !(isUploaded!)
                                                                     ? () async {
                                                                         UploadDocumentSelectionWidget.show(
-                                                                            context, onCameraTap: () {
+                                                                            context, onCameraTap: () async {
                                                                           Navigator.pop(context);
-                                                                          model.getDocument(
-                                                                              DocumentTypeEnum.CAMERA);
+
+                                                                          final dynamic filePath =
+                                                                              await Navigator.pushNamed(
+                                                                                  context,
+                                                                                  RoutePaths
+                                                                                      .CameraCapturePage);
+
+                                                                          if (filePath.toString().isNotEmpty)
+                                                                            model.getDocument(
+                                                                                DocumentTypeEnum.CAMERA,
+                                                                                cameraPhotoFile: filePath);
                                                                         }, onUploadDocumentTap: () {
                                                                           Navigator.pop(context);
                                                                           model.getDocument(

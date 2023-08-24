@@ -18,6 +18,23 @@ class DashboardFeatures {
   final bool? manageContactEnabled;
   final bool? manageContactHistory;
   final bool? eVouchers;
+  final bool? blinkRetailAppLogin;
+  final bool? blinkRetailAppCreditCardsApplication;
+  final bool? blinkRetailAppRegister;
+  final bool? blinkRetailAppGorj;
+  final bool? blinkRetailAppCreditCardsPinChange;
+  final bool? blinkRetailAppDebitCardPhysicalCardRequest;
+  final bool? blinkRetailAppBillPaymentPayPostpaid;
+  final bool? blinkRetailAppPaymentsQRCode;
+  final bool? blinkRetailAppBillPaymentPayPrepaid;
+  final bool? blinkRetailAppApplePay;
+  final bool? blinkRetailAppCliqReturnPayment;
+  final bool? blinkRetailAppCliqRTPOutward;
+  final bool? blinkRetailAppManageContacts;
+  final bool? subAccountFeature;
+  final bool? transferBetweenAccountsFeature;
+  final bool? closeSubAccountFeature;
+  final bool? shareAccountInformationFeature;
 
   DashboardFeatures(
       {this.appBillPaymentPostpaid,
@@ -38,5 +55,22 @@ class DashboardFeatures {
       this.returnPaymentFeatureEnabled,
       this.manageContactEnabled,
       this.manageContactHistory,
-      this.eVouchers});
+      this.eVouchers,
+      this.blinkRetailAppLogin,
+      this.blinkRetailAppCreditCardsApplication,
+      this.blinkRetailAppRegister,
+      this.blinkRetailAppGorj,
+      this.blinkRetailAppCreditCardsPinChange,
+      this.blinkRetailAppDebitCardPhysicalCardRequest,
+      this.blinkRetailAppBillPaymentPayPostpaid,
+      this.blinkRetailAppPaymentsQRCode,
+      this.blinkRetailAppBillPaymentPayPrepaid,
+      this.blinkRetailAppApplePay,
+      this.blinkRetailAppCliqReturnPayment,
+      this.blinkRetailAppCliqRTPOutward,
+      this.blinkRetailAppManageContacts,
+      this.transferBetweenAccountsFeature,
+      this.shareAccountInformationFeature,
+      this.closeSubAccountFeature,
+      this.subAccountFeature});
 }

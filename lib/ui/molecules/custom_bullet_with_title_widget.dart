@@ -19,16 +19,19 @@ class CustomBulletWithTitle extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          width: 4.w,
-          height: 4.h,
-          margin: EdgeInsets.only(top: 10.h),
-          decoration: BoxDecoration(
-            color: AppColor.veryDarkGray1,
-            shape: BoxShape.circle,
+        Visibility(
+          visible: false,
+          child: Container(
+            width: 4.w,
+            height: 4.h,
+            margin: EdgeInsets.only(top: 10.h),
+            decoration: BoxDecoration(
+              color: AppColor.veryDarkGray1,
+              shape: BoxShape.circle,
+            ),
           ),
         ),
-        SizedBox(width: 5.w),
+        Visibility(visible: false, child: SizedBox(width: 5.w)),
         Expanded(
           child: Text(
             title,

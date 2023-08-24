@@ -18,6 +18,8 @@ import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../main/navigation/cutom_route.dart';
+import '../../manage_contacts/beneficiary_contacts_list/beneficiary_contacts_list_page.dart';
 import '../payment_home/payment_home_view_model.dart';
 
 class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContactViewModel> {
@@ -52,14 +54,24 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                         ),
                         Expanded(
                           child: Text(S.of(context).sendMoneyTo,
-                              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: Theme.of(context).colorScheme.secondary)),
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12.0.t,
+                                  color: Theme.of(context).colorScheme.secondary)),
                         ),
                         Visibility(
-                          visible: (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.manageContactEnabled ?? false),
+                          visible: (ProviderScope.containerOf(context)
+                                  .read(appHomeViewModelProvider)
+                                  .dashboardDataContent
+                                  .dashboardFeatures
+                                  ?.manageContactEnabled ??
+                              false),
                           child: InkWell(
                             onTap: () {
                               Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
-                                  arguments: AddBeneficiaryPageArguments(navigationType: NavigationType.SEND_MONEY, isFromContactCard: true));
+                                  arguments: AddBeneficiaryPageArguments(
+                                      navigationType: NavigationType.SEND_MONEY, isFromContactCard: true));
                             },
                             child: Container(
                               height: 40,
@@ -69,7 +81,12 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                               decoration: BoxDecoration(
                                   color: Theme.of(context).primaryColor,
                                   shape: BoxShape.circle,
-                                  boxShadow: [BoxShadow(color: Theme.of(context).primaryColorDark.withOpacity(0.15), blurRadius: 8.96, offset: Offset(0, 4.48))]),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Theme.of(context).primaryColorDark.withOpacity(0.15),
+                                        blurRadius: 8.96,
+                                        offset: Offset(0, 4.48))
+                                  ]),
                             ),
                           ),
                         )
@@ -84,7 +101,10 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                             child: GridView.builder(
                               itemCount: 9,
                               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3, childAspectRatio: ((p1.maxWidth - itemBetweenSpacing) / (p1.maxHeight - itemTopBottomSpacing)), mainAxisSpacing: 2),
+                                  crossAxisCount: 3,
+                                  childAspectRatio: ((p1.maxWidth - itemBetweenSpacing) /
+                                      (p1.maxHeight - itemTopBottomSpacing)),
+                                  mainAxisSpacing: 2),
                               shrinkWrap: true,
                               padding: EdgeInsetsDirectional.only(top: 22.0.h, end: 27.0.w, start: 27.0.w),
                               itemBuilder: (context, index) {
@@ -94,8 +114,12 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                 return PaymentBeneficiaryWidget(
                                   onTap: () {
                                     // Navigator.pushNamed(context, RoutePaths.SendAmountToContact, arguments: beneficiaries![index]);
-                                    ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).setSelectedBenificiary(beneficiaries![index]);
-                                    ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animatePage(AnimatedPage.SEND_TO_SPECIFIC_PERSON);
+                                    ProviderScope.containerOf(context)
+                                        .read(paymentHomeViewModelProvider)
+                                        .setSelectedBenificiary(beneficiaries![index]);
+                                    ProviderScope.containerOf(context)
+                                        .read(paymentHomeViewModelProvider)
+                                        .animatePage(AnimatedPage.SEND_TO_SPECIFIC_PERSON);
                                   },
                                   transferEnum: TransferEnum.send,
                                   beneficiary: beneficiaries![index],
@@ -109,10 +133,17 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                           Padding(
                             padding: EdgeInsetsDirectional.only(bottom: 16.0.h),
                             child: Visibility(
-                              visible: (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.manageContactEnabled ?? false),
+                              visible: (ProviderScope.containerOf(context)
+                                      .read(appHomeViewModelProvider)
+                                      .dashboardDataContent
+                                      .dashboardFeatures
+                                      ?.manageContactEnabled ??
+                                  false),
                               child: InkWell(
                                 onTap: () {
-                                  Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList, arguments: NavigationType.SEND_MONEY);
+                                  // Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList, arguments: NavigationType.SEND_MONEY);
+                                  Navigator.of(context).push(CustomRoute.swipeUpRoute(
+                                      BeneficiaryContactListPage(navigationType: NavigationType.SEND_MONEY)));
                                 },
                                 child: Align(
                                   alignment: Alignment.center,
@@ -123,13 +154,23 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                       color: Theme.of(context).primaryColor,
                                       borderRadius: BorderRadius.circular(20.w),
                                       border: Border.all(color: AppColor.softRed1, width: 1),
-                                      boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 3))],
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.black12,
+                                            blurRadius: 5,
+                                            spreadRadius: 0.1,
+                                            offset: Offset(0, 3))
+                                      ],
                                     ),
                                     // alignment: Alignment.center,
                                     child: Text(
                                       S.of(context).seeAllContacts,
-                                      style:
-                                          TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, height: 1.2, fontWeight: FontWeight.w600, color: Theme.of(context).textTheme.bodyLarge!.color!),
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 14.0.t,
+                                          height: 1.2,
+                                          fontWeight: FontWeight.w600,
+                                          color: Theme.of(context).textTheme.bodyLarge!.color!),
                                     ),
                                   ),
                                 ),

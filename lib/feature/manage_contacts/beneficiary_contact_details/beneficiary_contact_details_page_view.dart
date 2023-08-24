@@ -28,6 +28,8 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../payment/request_amount_from_contact/request_amount_from_contact_page.dart';
+import '../../payment/send_amount_to_contact/send_amount_to_contact_page.dart';
 import 'beneficiary_contact_details_page_view_model.dart';
 
 class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryContactDetailsPageViewModel> {
@@ -100,9 +102,15 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                                 }, onSelectFromLibrary: () {
                                   model.uploadProfilePhoto(DocumentTypeEnum.PICK_IMAGE);
                                   Navigator.pop(context);
-                                }, onTakePhoto: () {
-                                  model.uploadProfilePhoto(DocumentTypeEnum.CAMERA);
+                                }, onTakePhoto: () async {
                                   Navigator.pop(context);
+
+                                  final dynamic filePath =
+                                      await Navigator.pushNamed(context, RoutePaths.CameraCapturePage);
+
+                                  if (filePath.toString().isNotEmpty)
+                                    model.uploadProfilePhoto(DocumentTypeEnum.CAMERA,
+                                        cameraPhotoFile: filePath);
                                 }, title: S.current.pleaseSelectYourAction);
                               },
                               child: Stack(
@@ -452,27 +460,30 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                     Navigator.pushNamed(
                       context,
                       RoutePaths.RequestAmountFromContact,
-                      arguments: Beneficiary(
-                          userId: model.argument.beneficiaryInformation.userId,
-                          accountHolderName: model.argument.beneficiaryInformation.fullName,
-                          accountNo: model.argument.beneficiaryInformation.accountNo,
-                          bankName: model.argument.beneficiaryInformation.bankName,
-                          beneType: model.argument.beneficiaryInformation.beneficiaryType,
-                          beneficiaryAddress: "",
-                          detCustomerType: model.argument.beneficiaryInformation.detCustomerType,
-                          fullName: model.argument.beneficiaryInformation.fullName,
-                          iban: model.argument.beneficiaryInformation.accountNo,
-                          id: model.argument.beneficiaryInformation.id,
-                          imageUrl: model.argument.beneficiaryInformation.image,
-                          limit: model.argument.beneficiaryInformation.limit,
-                          mobileNumber: model.argument.beneficiaryInformation.mobileNumber,
-                          nickName: model.argument.beneficiaryInformation.nickName,
-                          purpose: model.argument.beneficiaryInformation.purpose,
-                          purposeDetails: model.argument.beneficiaryInformation.purposeDetails,
-                          purposeParent: model.argument.beneficiaryInformation.purposeParent,
-                          purposeParentDetails: model.argument.beneficiaryInformation.purposeParentDetails,
-                          purposeType: model.argument.beneficiaryInformation.purposeType,
-                          identifier: model.argument.beneficiaryInformation.identifier),
+                      arguments: RequestAmountToContactPageArgument(
+                          Beneficiary(
+                              userId: model.argument.beneficiaryInformation.userId,
+                              accountHolderName: model.argument.beneficiaryInformation.fullName,
+                              accountNo: model.argument.beneficiaryInformation.accountNo,
+                              bankName: model.argument.beneficiaryInformation.bankName,
+                              beneType: model.argument.beneficiaryInformation.beneficiaryType,
+                              beneficiaryAddress: "",
+                              detCustomerType: model.argument.beneficiaryInformation.detCustomerType,
+                              fullName: model.argument.beneficiaryInformation.fullName,
+                              iban: model.argument.beneficiaryInformation.accountNo,
+                              id: model.argument.beneficiaryInformation.id,
+                              imageUrl: model.argument.beneficiaryInformation.image,
+                              limit: model.argument.beneficiaryInformation.limit,
+                              mobileNumber: model.argument.beneficiaryInformation.mobileNumber,
+                              nickName: model.argument.beneficiaryInformation.nickName,
+                              purpose: model.argument.beneficiaryInformation.purpose,
+                              purposeDetails: model.argument.beneficiaryInformation.purposeDetails,
+                              purposeParent: model.argument.beneficiaryInformation.purposeParent,
+                              purposeParentDetails:
+                                  model.argument.beneficiaryInformation.purposeParentDetails,
+                              purposeType: model.argument.beneficiaryInformation.purposeType,
+                              identifier: model.argument.beneficiaryInformation.identifier),
+                          needBackButton: true),
                     );
                   },
                   child: Container(
@@ -523,27 +534,30 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                     Navigator.pushNamed(
                       context,
                       RoutePaths.SendAmountToContact,
-                      arguments: Beneficiary(
-                          userId: model.argument.beneficiaryInformation.userId,
-                          accountHolderName: model.argument.beneficiaryInformation.fullName,
-                          accountNo: model.argument.beneficiaryInformation.accountNo,
-                          bankName: model.argument.beneficiaryInformation.bankName,
-                          beneType: model.argument.beneficiaryInformation.beneficiaryType,
-                          beneficiaryAddress: "",
-                          detCustomerType: model.argument.beneficiaryInformation.detCustomerType,
-                          fullName: model.argument.beneficiaryInformation.fullName,
-                          iban: model.argument.beneficiaryInformation.accountNo,
-                          id: model.argument.beneficiaryInformation.id,
-                          imageUrl: model.argument.beneficiaryInformation.image,
-                          limit: model.argument.beneficiaryInformation.limit,
-                          mobileNumber: model.argument.beneficiaryInformation.mobileNumber,
-                          nickName: model.argument.beneficiaryInformation.nickName,
-                          purpose: model.argument.beneficiaryInformation.purpose,
-                          purposeDetails: model.argument.beneficiaryInformation.purposeDetails,
-                          purposeParent: model.argument.beneficiaryInformation.purposeParent,
-                          purposeParentDetails: model.argument.beneficiaryInformation.purposeParentDetails,
-                          purposeType: model.argument.beneficiaryInformation.purposeType,
-                          identifier: model.argument.beneficiaryInformation.identifier),
+                      arguments: SendAmountToContactPageArgument(
+                          Beneficiary(
+                              userId: model.argument.beneficiaryInformation.userId,
+                              accountHolderName: model.argument.beneficiaryInformation.fullName,
+                              accountNo: model.argument.beneficiaryInformation.accountNo,
+                              bankName: model.argument.beneficiaryInformation.bankName,
+                              beneType: model.argument.beneficiaryInformation.beneficiaryType,
+                              beneficiaryAddress: "",
+                              detCustomerType: model.argument.beneficiaryInformation.detCustomerType,
+                              fullName: model.argument.beneficiaryInformation.fullName,
+                              iban: model.argument.beneficiaryInformation.accountNo,
+                              id: model.argument.beneficiaryInformation.id,
+                              imageUrl: model.argument.beneficiaryInformation.image,
+                              limit: model.argument.beneficiaryInformation.limit,
+                              mobileNumber: model.argument.beneficiaryInformation.mobileNumber,
+                              nickName: model.argument.beneficiaryInformation.nickName,
+                              purpose: model.argument.beneficiaryInformation.purpose,
+                              purposeDetails: model.argument.beneficiaryInformation.purposeDetails,
+                              purposeParent: model.argument.beneficiaryInformation.purposeParent,
+                              purposeParentDetails:
+                                  model.argument.beneficiaryInformation.purposeParentDetails,
+                              purposeType: model.argument.beneficiaryInformation.purposeType,
+                              identifier: model.argument.beneficiaryInformation.identifier),
+                          needBackButton: true),
                     );
                   },
                   child: Container(

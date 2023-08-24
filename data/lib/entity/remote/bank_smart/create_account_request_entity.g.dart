@@ -14,6 +14,7 @@ CreateAccountRequestEntity _$CreateAccountRequestEntityFromJson(
       customerDetailsEntity: json['customer'] as Map<String, dynamic>?,
       account: json['account'] as Map<String, dynamic>?,
       baseData: json['baseClass'] as Map<String, dynamic>,
+      iIsSubAccount: json['IsSubAccount'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$CreateAccountRequestEntityToJson(
@@ -21,6 +22,7 @@ Map<String, dynamic> _$CreateAccountRequestEntityToJson(
     <String, dynamic>{
       'getToken': instance.getToken,
       'cif': instance.cif,
+      'IsSubAccount': instance.iIsSubAccount,
       'customer': instance.customerDetailsEntity,
       'account': instance.account,
       'baseClass': instance.baseData,

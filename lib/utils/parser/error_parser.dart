@@ -1385,6 +1385,8 @@ class ErrorParser {
         return localisedHelper.accountInactive;
       case ErrorType.ACCOUNT_CANNOT_BE_DEBITED:
         return localisedHelper.accountCannotBeDebited;
+      case ErrorType.TRANSFER_REMAINING_BALANCE_TO_CLOSE_ACCOUNT:
+        return localisedHelper.transferRemainingBalanceForAccountClosure;
       default:
         return "";
     }

@@ -10,6 +10,7 @@ AccountDetailsEntity _$AccountDetailsEntityFromJson(
         Map<String, dynamic> json) =>
     AccountDetailsEntity(
       createBy: json['createBy'] as String?,
+      nickName: json['NickName'] as String?,
       ourBranchID: json['ourBranchID'] as String?,
       clientID: json['clientID'] as String?,
       productID: json['productID'] as String?,
@@ -57,6 +58,7 @@ AccountDetailsEntity _$AccountDetailsEntityFromJson(
 Map<String, dynamic> _$AccountDetailsEntityToJson(
         AccountDetailsEntity instance) =>
     <String, dynamic>{
+      'NickName': instance.nickName,
       'createBy': instance.createBy,
       'ourBranchID': instance.ourBranchID,
       'clientID': instance.clientID,
