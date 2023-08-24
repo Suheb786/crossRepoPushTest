@@ -71,19 +71,17 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                               child: Stack(
                                 alignment: Alignment.center,
                                 children: [
-                                  Expanded(
-                                    child: Text(
-                                      model.arguments.paidBillsPayTypeOptionEnum ==
-                                              PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
-                                          ? S.of(context).viewAndPayYourDueBills
-                                          : S.of(context).myBills,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          fontSize: 14.t,
-                                          fontWeight: FontWeight.w600,
-                                          color: Theme.of(context).colorScheme.secondary),
-                                    ),
+                                  Text(
+                                    model.arguments.paidBillsPayTypeOptionEnum ==
+                                            PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+                                        ? S.of(context).viewAndPayYourDueBills
+                                        : S.of(context).myBills,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontSize: 14.t,
+                                        fontWeight: FontWeight.w600,
+                                        color: Theme.of(context).colorScheme.secondary),
                                   ),
                                   model.arguments.paidBillsPayTypeOptionEnum ==
                                           PostPaidBillsPayTypeOptionEnum.PAYALLBILLS

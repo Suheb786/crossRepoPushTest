@@ -131,7 +131,7 @@ class QRScanOTPPageView extends BasePageViewWidget<QRScanOTPPageViewModel> {
                                       dataBuilder: (context, isValid) {
                                         return AppPrimaryButton(
                                           isDisabled: !isValid!,
-                                          text: S.of(context).swipeToProceed,
+                                          text: S.of(context).next,
                                           onPressed: () {
                                             model.transferQR(context: context);
                                           },

@@ -202,7 +202,7 @@ class OtpForChangeCardPinPageView extends BasePageViewWidget<OtpForChangeCardPin
                                             },
                                             child: Center(
                                               child: Text(
-                                                S.of(context).backToCardSettings,
+                                                S.of(context).back,
                                                 style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   color: AppColor.brightBlue,
