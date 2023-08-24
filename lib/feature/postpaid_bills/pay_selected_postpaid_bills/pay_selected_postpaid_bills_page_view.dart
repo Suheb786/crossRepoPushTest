@@ -217,18 +217,21 @@ class PaySelectedBillsPostPaidBillsPageView
                                             SizedBox(
                                               height: 40.h,
                                             ),
-                                            AppStreamBuilder<bool>(
-                                                stream: model.showButtonStream,
-                                                initialData: false,
-                                                dataBuilder: (context, isValid) {
-                                                  return AppPrimaryButton(
-                                                    text: S.of(context).next,
-                                                    isDisabled: !isValid!,
-                                                    onPressed: () {
-                                                      model.payPostPaidBill(context);
-                                                    },
-                                                  );
-                                                }),
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(horizontal: 24.w),
+                                              child: AppStreamBuilder<bool>(
+                                                  stream: model.showButtonStream,
+                                                  initialData: false,
+                                                  dataBuilder: (context, isValid) {
+                                                    return AppPrimaryButton(
+                                                      text: S.of(context).next,
+                                                      isDisabled: !isValid!,
+                                                      onPressed: () {
+                                                        model.payPostPaidBill(context);
+                                                      },
+                                                    );
+                                                  }),
+                                            ),
                                             SizedBox(
                                               height: 24.h,
                                             ),
