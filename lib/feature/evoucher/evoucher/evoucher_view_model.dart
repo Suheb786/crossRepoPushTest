@@ -20,10 +20,8 @@ import 'package:rxdart/rxdart.dart';
 
 class EvoucherViewModel extends BasePageViewModel {
   TextEditingController buyVoucherSearchController = TextEditingController();
-  PublishSubject<bool> categoriesDisplayToggleNotifier =
-      PublishSubject(); // default true as showing categories
-
-  Stream<bool> get categoriesDisplayToggleNotifierStream => categoriesDisplayToggleNotifier.stream;
+  ValueNotifier<bool> categoriesDisplayToggleNotifier =
+      ValueNotifier(true); // default true as showing categories
 
   List<VoucherCategories> categoriesList = [];
   EVoucherCategoriesUseCase eVoucherCategoriesUseCase;
@@ -236,7 +234,7 @@ class EvoucherViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         voucherItemFilterResponseSubject.safeAdd(event);
-        categoriesDisplayToggleNotifier.safeAdd(false);
+        categoriesDisplayToggleNotifier.value = false;
         if (event.status == Status.ERROR) {
           showErrorState();
 
@@ -284,7 +282,7 @@ class EvoucherViewModel extends BasePageViewModel {
 
   void toggleSearch(bool focus) {
     if (buyVoucherSearchController.text.trim().isEmpty) {
-      categoriesDisplayToggleNotifier.safeAdd(true);
+      categoriesDisplayToggleNotifier.value = true;
       voucherCategoriesResponseSubject.safeAdd(Resource.success(data: categoriesList));
     } else {
       /// call search api...
