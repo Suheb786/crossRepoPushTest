@@ -32,6 +32,8 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
   final RemovePrepaidBillerUseCase removePrepaidBillerUseCase;
   final ValidatePrePaidUseCase validatePrePaidUseCase;
 
+  bool showBackButton = false;
+
   PayMyPrePaidBillsPageViewModel(this.getPrepaidBillerListUseCase, this.getPrePaidCategoriesListUseCase,
       this.removePrepaidBillerUseCase, this.validatePrePaidUseCase) {
     prepaidBillerListener();
@@ -75,6 +77,12 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
       },
     );
   }
+
+
+  setShowBackButton(bool needBackButton) {
+    this.showBackButton = needBackButton;
+  }
+
 
   /// ---------------- Call Api GetPrePaidCategoriesList -------------------- ///
 

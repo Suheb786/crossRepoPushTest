@@ -12,6 +12,10 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class PayMyPrePaidBillsPage extends BasePage<PayMyPrePaidBillsPageViewModel> {
+  final bool needBackButton;
+
+  PayMyPrePaidBillsPage({this.needBackButton = false});
+
   @override
   PayMyPrePaidBillsPageState createState() => PayMyPrePaidBillsPageState();
 }
@@ -29,6 +33,12 @@ class PayMyPrePaidBillsPageState
   }
 
   @override
+  void onModelReady(PayMyPrePaidBillsPageViewModel model) {
+    model.setShowBackButton(widget.needBackButton);
+    super.onModelReady(model);
+  }
+
+  /*@override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
         preferredSize: Size(double.maxFinite, 85.0.h),
@@ -61,12 +71,7 @@ class PayMyPrePaidBillsPageState
             )
           ],
         ));
-  }
-
-  @override
-  void onModelReady(PayMyPrePaidBillsPageViewModel model) {
-    super.onModelReady(model);
-  }
+  }*/
 
   @override
   Widget buildView(BuildContext context, PayMyPrePaidBillsPageViewModel model) {

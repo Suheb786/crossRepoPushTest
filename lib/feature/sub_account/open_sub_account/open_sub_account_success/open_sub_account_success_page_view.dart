@@ -102,7 +102,7 @@ class OpenSubAccountSuccessPageView extends BasePageViewWidget<OpenSubAccountSuc
                     initialData: Resource.none(),
                     onData: (value) {
                       if (value.status == Status.SUCCESS) {
-                        Navigator.popAndPushNamed(context, RoutePaths.AppHome);
+                        Navigator.pop(context);
                       }
                     },
                     dataBuilder: (context, getDashboardDataResponse) {
