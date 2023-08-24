@@ -1,4 +1,6 @@
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
+import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:neo_bank/feature/sub_account/transfer/select_transfer/select_transfer_page.dart';
@@ -9,6 +11,9 @@ import '../../../../generated/l10n.dart';
 import '../../../../main/navigation/route_paths.dart';
 import '../../../../ui/molecules/textfield/app_textfield.dart';
 import '../../../../ui/molecules/textfield/transfer_account_textfield.dart';
+import '../../../../utils/request_manager.dart';
+import '../../../../utils/resource.dart';
+import '../../../../utils/status.dart';
 import '../transfer_success/transfer_success_page.dart';
 
 class SelectTransferPageViewModel extends BasePageViewModel {
@@ -19,8 +24,31 @@ class SelectTransferPageViewModel extends BasePageViewModel {
   final GlobalKey<TransferAccountTextFieldState> transferFromKey = GlobalKey();
   final GlobalKey<TransferAccountTextFieldState> transferToKey = GlobalKey();
 
+  final GetDashboardDataUseCase getDashboardDataUseCase;
+
+//*---------------------------------[get Dashboard api variable]-----------------------///
+
+  PublishSubject<GetDashboardDataUseCaseParams> _getDashboardDataRequest = PublishSubject();
+
+  PublishSubject<Resource<GetDashboardDataResponse>> _getDashboardDataResponse = PublishSubject();
+
+  Stream<Resource<GetDashboardDataResponse>> get getDashboardDataStream => _getDashboardDataResponse.stream;
+
   final SelectTranferPageArgument argument;
-  SelectTransferPageViewModel({required this.argument});
+  SelectTransferPageViewModel({required this.argument, required this.getDashboardDataUseCase}) {
+    _getDashboardDataRequest.listen((value) {
+      RequestManager(value, createCall: () => getDashboardDataUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getDashboardDataResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {}
+      });
+    });
+  }
 
   ///-------------[account-details-lists]----------------///
 
@@ -49,6 +77,10 @@ class SelectTransferPageViewModel extends BasePageViewModel {
   bool _isValid = true;
 
 //*-----------------------------------------------[Methods]----------------------------------------------
+
+  void getDashboardData() {
+    _getDashboardDataRequest.safeAdd(GetDashboardDataUseCaseParams());
+  }
 
   void validateIfEmpty() {
     if (amountTextController.text != "" &&

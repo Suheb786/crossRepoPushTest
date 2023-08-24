@@ -9,10 +9,12 @@ class Account {
       this.iban,
       this.cardNo,
       this.isSubAccount,
+      this.isSelectedAccount,
       this.nickName,
       this.accountStatusEnum = AccountStatusEnum.NONE,
       this.controller}) {
     controller = TextEditingController();
+    isSelectedAccount = false;
   }
 
   String? accountTitle;
@@ -24,4 +26,5 @@ class Account {
   String? nickName;
   bool? isSubAccount;
   TextEditingController? controller;
+  bool? isSelectedAccount;
 }

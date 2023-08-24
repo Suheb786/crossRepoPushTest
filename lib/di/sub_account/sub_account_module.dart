@@ -17,11 +17,15 @@ final openSubAccountSuccessPageViewModelProvider = ChangeNotifierProvider.autoDi
 ///------------[Select-Transfer-Page-View-Model-Provider]-------------------///
 final selectTransferPageViewModelProivder =
     ChangeNotifierProvider.autoDispose.family<SelectTransferPageViewModel, SelectTranferPageArgument>(
-  (ref, arg) => SelectTransferPageViewModel(argument: arg),
+  (ref, arg) => SelectTransferPageViewModel(
+    argument: arg,
+    getDashboardDataUseCase: ref.read(getDashboardDataUseCaseProvider),
+  ),
 );
 
 ///------------[Transfer-Success-Page-View-Model-Provider]-------------------///
 final transferSuccessPageViewModelProvider =
     ChangeNotifierProvider.autoDispose.family<TransferSuccessPageViewModel, TransferSuccessPageArgument>(
-  (ref, arg) => TransferSuccessPageViewModel(arg),
+  (ref, arg) => TransferSuccessPageViewModel(
+      argument: arg, getDashboardDataUseCase: ref.read(getDashboardDataUseCaseProvider)),
 );

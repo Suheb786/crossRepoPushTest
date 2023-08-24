@@ -38,7 +38,7 @@ class SubAccountDataSourceImpl extends SubAccountDataSource {
     return _apiService.updateNickNameSubAccount(
       UpdateNickNameSubAccountRequestEntity(
         nickName: params.NickName,
-        subAccountNo: params.SubAccountNo,
+        accountNo: params.accountNo,
         getToken: params.GetToken,
         baseClass: baseData.toJson(),
       ),

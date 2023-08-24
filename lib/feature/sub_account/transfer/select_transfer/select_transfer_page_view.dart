@@ -1,7 +1,9 @@
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/feature/sub_account/transfer/select_transfer/select_transfer_page_view_model.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -12,6 +14,8 @@ import '../../../../generated/l10n.dart';
 import '../../../../ui/molecules/dialog/sub_accounts_dialogs/select_from_list_dialog/select_from_list_dialog.dart';
 import '../../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../../ui/molecules/textfield/transfer_account_textfield.dart';
+import '../../../../utils/resource.dart';
+import '../../../../utils/status.dart';
 import '../../../../utils/string_utils.dart';
 
 class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewModel> {
@@ -169,21 +173,31 @@ class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewMo
                                   }),
                             ),
                             Center(
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Text(
-                                  S.of(context).backToDashboard,
-                                  style: TextStyle(
-                                    color: Theme.of(context).colorScheme.onSecondaryContainer,
-                                    fontSize: 14.t,
-                                    letterSpacing: 1.0,
-                                    fontFamily: StringUtils.appFont,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
+                              child: AppStreamBuilder<Resource<GetDashboardDataResponse>>(
+                                  stream: model.getDashboardDataStream,
+                                  initialData: Resource.none(),
+                                  onData: (value) {
+                                    if (value.status == Status.SUCCESS) {
+                                      Navigator.pushNamed(context, RoutePaths.AppHome);
+                                    }
+                                  },
+                                  dataBuilder: (context, snapshot) {
+                                    return InkWell(
+                                      onTap: () {
+                                        model.getDashboardData();
+                                      },
+                                      child: Text(
+                                        S.of(context).backToDashboard,
+                                        style: TextStyle(
+                                          color: Theme.of(context).colorScheme.onSecondaryContainer,
+                                          fontSize: 14.t,
+                                          letterSpacing: 1.0,
+                                          fontFamily: StringUtils.appFont,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    );
+                                  }),
                             ),
                           ],
                         ),
