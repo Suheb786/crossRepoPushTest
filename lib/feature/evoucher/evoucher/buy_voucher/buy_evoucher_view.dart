@@ -71,21 +71,20 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
             ),
           ),
           SizedBox(height: 32.h),
-          AppStreamBuilder<bool>(
-              initialData: true,
-              stream: model.categoriesDisplayToggleNotifierStream,
-              dataBuilder: (context, isShowingCategories) {
-                return isShowingCategories!
+          ValueListenableBuilder<bool>(
+              valueListenable: model.categoriesDisplayToggleNotifier,
+              builder: (context, bool isShowingCategories, child) {
+                return isShowingCategories
                     ? AppStreamBuilder<Resource<List<VoucherCategories>>>(
-                  initialData: Resource.none(),
-                  stream: model.voucherCategoriesResponseStream,
-                  dataBuilder: (context, categoryData) {
-                    switch (categoryData?.status) {
-                      case Status.SUCCESS:
-                        return (categoryData?.data ?? []).isNotEmpty
-                            ? Column(
-                          children: [
-                            EVoucherTextWidget(
+                        initialData: Resource.none(),
+                        stream: model.voucherCategoriesResponseStream,
+                        dataBuilder: (context, categoryData) {
+                          switch (categoryData?.status) {
+                            case Status.SUCCESS:
+                              return (categoryData?.data ?? []).isNotEmpty
+                                  ? Column(
+                                      children: [
+                                        EVoucherTextWidget(
                                           alignment: AlignmentDirectional.topStart,
                                           text: S.of(context).browserByCatgy,
                                           textSize: 14.t,
