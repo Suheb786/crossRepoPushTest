@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -657,6 +656,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cliqType": MessageLookupByLibrary.simpleMessage("نوع CLIQ"),
         "closeDateIssueMessage": MessageLookupByLibrary.simpleMessage(
             "تم رفض دفع الفاتوره بسبب انتهاء صلاحية الفاتورة"),
+        "closeSubAccount":
+            MessageLookupByLibrary.simpleMessage("Close Sub Account"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "أكمل معلومات تقريرك الضريبي التالية:"),
         "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
@@ -910,7 +911,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dormantAccountPhysicalCardReq": MessageLookupByLibrary.simpleMessage(
             "عفوا! لا يمكنك طلب طباعة البطاقة لأنه حسابك غير فعال. اتصل بنا على 5200100-06 ليتم تفعيل الحساب"),
         "dormantAccountTransactionFailed": MessageLookupByLibrary.simpleMessage(
-            "عفوا! لم تتم العملية بنجاح لأنه حسابك غير فعال"),
+            "عفوا! لم تتم العملية بنجاح لأنه حسابك غير فعال. اتصل بنا على 5200100-06 ليتم تفعيل الحساب"),
         "downloadStatement":
             MessageLookupByLibrary.simpleMessage("تنزيل كشف الحساب"),
         "dragMap": MessageLookupByLibrary.simpleMessage(
@@ -1935,8 +1936,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "العنوان البريدي مختلف على عنوان الإقامة"),
         "mailingAddressLine":
             MessageLookupByLibrary.simpleMessage("العنوان البريدي"),
-        "mainAccountPrimary":
-            MessageLookupByLibrary.simpleMessage("Main Account-Primary"),
+        "mainAccount": MessageLookupByLibrary.simpleMessage("Main Account"),
         "mainAnnualIncome":
             MessageLookupByLibrary.simpleMessage("الدخل السنوي الرئيسي"),
         "mainAnnualIncomeSmall":
@@ -2201,8 +2201,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لقد تم فتح الحساب بنجاح."),
         "openDateIssuedMessage": MessageLookupByLibrary.simpleMessage(
             "تم رفض دفع الفاتوره بسبب عدم استحقاقها"),
+        "openSubAccount":
+            MessageLookupByLibrary.simpleMessage("افتح حساب إضافي"),
         "openYourAccountNow":
             MessageLookupByLibrary.simpleMessage("افتح حساب جديد "),
+        "opneSubAccountDescription": MessageLookupByLibrary.simpleMessage(
+            "هل أنت متأكد من عملية فتح حساب إضافي؟"),
         "optional": MessageLookupByLibrary.simpleMessage("اختياري"),
         "or": MessageLookupByLibrary.simpleMessage("أو"),
         "orContinueWith":
@@ -2779,6 +2783,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "share": MessageLookupByLibrary.simpleMessage("شارك"),
         "shareAccountInfo":
             MessageLookupByLibrary.simpleMessage("شارك معلومات حسابك"),
+        "shareAccountInformation":
+            MessageLookupByLibrary.simpleMessage("مشاركة تفاصيل الحساب"),
         "shareCliqId": MessageLookupByLibrary.simpleMessage("شارك CliQ"),
         "shareId": MessageLookupByLibrary.simpleMessage("مشاركة معلومات CLIQ"),
         "shareMyReceipt": MessageLookupByLibrary.simpleMessage("مشاركة الوصل"),
@@ -2820,8 +2826,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل اسم الشارع"),
         "streetAddressSmall": MessageLookupByLibrary.simpleMessage("الشارع"),
         "streetName": MessageLookupByLibrary.simpleMessage("اسم الشارع"),
-        "subAccountSavings":
-            MessageLookupByLibrary.simpleMessage("Sub Account - Savings"),
+        "subAccount": MessageLookupByLibrary.simpleMessage("Sub Account"),
         "submittedFor": MessageLookupByLibrary.simpleMessage(
             "جاري معاجة طلبك لدفع فواتيرك, منخبرك بمجرد ما تمت عملية الدفع بنجاح"),
         "subscription": MessageLookupByLibrary.simpleMessage("الاشتراكات"),
@@ -2985,11 +2990,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "transactionType": MessageLookupByLibrary.simpleMessage("نوع الحركة"),
         "transactions": MessageLookupByLibrary.simpleMessage("الحركات"),
         "transfer": MessageLookupByLibrary.simpleMessage("التحويل"),
+        "transferBetweenAccount":
+            MessageLookupByLibrary.simpleMessage("Transfer Between Accounts"),
         "transferCannotbeDone": MessageLookupByLibrary.simpleMessage(
             "عفوا! لا يمكن التحويل، لازم اتعدل تفاصيل صديقك المستفيد"),
         "transferFrom": MessageLookupByLibrary.simpleMessage("التحويل من"),
         "transferHeader": MessageLookupByLibrary.simpleMessage(
             "أدخل تفاصيل الحوالة واختر الحسابات"),
+        "transferRemainingBalanceForAccountClosure":
+            MessageLookupByLibrary.simpleMessage(
+                "Please transfer the remaining balance to complete the account closure"),
         "transferTo": MessageLookupByLibrary.simpleMessage("Transfer To"),
         "transferTypeNF": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-117)"),

@@ -12,7 +12,7 @@ class NetworkProperties {
   static const String BASE_ROUTER_URL = "https://10.6.13.1:2186/api";
   static const String BASE_BENEFICIARY_URL = "http://10.6.13.2:2186/contactcenter/api";
   static const String BASE_EV0UCHER_URL = "http://10.6.13.2:2186/Voucher/api";
-  static const String BASE_SUB_ACCOUNT_URL = "http://10.6.13.2:2186/api/SubAccount/";
+  static const String BASE_SUB_ACCOUNT_URL = "http://10.6.13.2:2186/api/SubAccount";
 
 //VAPT CONFIGURATION
 //   static const String BASE_CHANNEL_URL = "https://mba-neprp.theblink.com:443/api";

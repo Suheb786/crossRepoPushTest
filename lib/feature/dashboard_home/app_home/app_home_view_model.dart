@@ -10,6 +10,11 @@ import 'package:domain/constants/enum/credit_card_call_status_enum.dart';
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
 import 'package:domain/constants/enum/primary_secondary_card_enum.dart';
 import 'package:domain/constants/enum/primary_secondary_enum.dart';
+import 'package:domain/model/bank_smart/create_account_response.dart';
+import 'package:domain/model/bank_smart/customer_account_details.dart';
+import 'package:domain/model/bank_smart/customer_information.dart';
+import 'package:domain/model/bank_smart/get_account_response.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
@@ -19,10 +24,13 @@ import 'package:domain/model/dashboard/get_placeholder/placeholder_data.dart';
 import 'package:domain/model/qr/verify_qr_response.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/apple_pay/get_antelop_cards_list_usecase.dart';
+import 'package:domain/usecase/bank_smart/create_account_usecase.dart';
+import 'package:domain/usecase/bank_smart/get_account_usecase.dart';
 import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
 import 'package:domain/usecase/dashboard/get_placeholder_usecase.dart';
 import 'package:domain/usecase/dynamic_link/init_dynamic_link_usecase.dart';
 import 'package:domain/usecase/payment/verify_qr_usecase.dart';
+import 'package:domain/usecase/sub_account/add_account_usecase.dart';
 import 'package:domain/usecase/user/get_current_user_usecase.dart';
 import 'package:domain/usecase/user/save_user_data_usecase.dart';
 import 'package:flutter/material.dart';
@@ -60,6 +68,13 @@ class AppHomeViewModel extends BasePageViewModel {
   final GetCurrentUserUseCase _getCurrentUserUseCase;
   final SaveUserDataUseCase _saveUserDataUseCase;
   final VerifyQRUseCase _verifyQRUseCase;
+  final AddSubAccountUseCase _addSubAccountUseCase;
+  final GetAccountUseCase _getAccountUseCase;
+  final CreateAccountUseCase _createAccountUseCase;
+
+  String? accountNo = "";
+  String? iban = "";
+
   Timer? timer;
   final GetPlaceholderUseCase _getPlaceholderUseCase;
 
@@ -148,6 +163,32 @@ class AppHomeViewModel extends BasePageViewModel {
 
   Stream<Resource<GetPlaceholderResponse>> get getPlaceHolderStream => _getPlaceHolderResponse.stream;
 
+  /// add sub account request
+
+  PublishSubject<AddSubAccountUseCaseParams> _addSubAccountRequest = PublishSubject();
+
+  BehaviorSubject<Resource<bool>> _addSubAccountResposne = BehaviorSubject();
+
+  Stream<Resource<bool>> get addSubAccountStream => _addSubAccountResposne.stream;
+
+  ///get Account subject holder
+  PublishSubject<GetAccountUseCaseParams> _getAccountRequest = PublishSubject();
+
+  ///get Account response holder
+  PublishSubject<Resource<GetAccountResponse>> _getAccountResponse = PublishSubject();
+
+  ///get Account stream
+  Stream<Resource<GetAccountResponse>> get getAccountStream => _getAccountResponse.stream;
+
+  ///create Account subject holder
+  PublishSubject<CreateAccountUseCaseParams> _createAccountRequest = PublishSubject();
+
+  ///create Account response holder
+  PublishSubject<Resource<CreateAccountResponse>> _createAccountResponse = PublishSubject();
+
+  ///create Account stream
+  Stream<Resource<CreateAccountResponse>> get createAccountStream => _createAccountResponse.stream;
+
   PlaceholderData timelinePlaceholderData = PlaceholderData();
 
   /// get request money placeholder request
@@ -233,6 +274,10 @@ class AppHomeViewModel extends BasePageViewModel {
     return cardTypeList[index].cardType == CardType.ACCOUNT;
   }
 
+  bool isMySubAccount(int index) {
+    return cardTypeList[index].cardType == CardType.SUBACCOUNT;
+  }
+
   bool isCreditCard(int index) {
     return cardTypeList[index].cardType == CardType.CREDIT;
   }
@@ -244,6 +289,7 @@ class AppHomeViewModel extends BasePageViewModel {
   ///--------------- Some Other params that i will name later on  ----------------------///
   DebitCard? selectedDebitCard;
   CreditCard? selectedCreditCard;
+  Account? selectedAccount;
   bool firstTime = true;
   bool animationInitialized = false;
 
@@ -271,7 +317,10 @@ class AppHomeViewModel extends BasePageViewModel {
       this._getCurrentUserUseCase,
       this._saveUserDataUseCase,
       this._verifyQRUseCase,
-      this._getAntelopCardsListUseCase) {
+      this._getAntelopCardsListUseCase,
+      this._addSubAccountUseCase,
+      this._getAccountUseCase,
+      this._createAccountUseCase) {
     isShowBalenceUpdatedToast = false;
     deviceSize = MediaQuery.of(appLevelKey.currentContext!).size;
     isSmallDevices = deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
@@ -333,6 +382,55 @@ class AppHomeViewModel extends BasePageViewModel {
             requestMoneyPlaceholderData = event.data!.data!;
             _requestMoneyRequest.safeAdd(true);
           }
+        }
+      });
+    });
+
+    _addSubAccountRequest.listen((value) {
+      RequestManager(value, createCall: () => _addSubAccountUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _addSubAccountResposne.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {}
+      });
+    });
+
+    _getAccountRequest.listen((value) {
+      RequestManager(value, createCall: () => _getAccountUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getAccountResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          createAccount(
+            customerAccountDetails: event.data!.content!.accountDetails!,
+            customerInformation: event.data!.content!.customerInformation!,
+            cif: "",
+            isSubAccount: true,
+          );
+        }
+      });
+    });
+
+    _createAccountRequest.listen((value) {
+      RequestManager(value, createCall: () => _createAccountUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _createAccountResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          accountNo = event.data?.content?.createAccountData?.accountNumber;
+          iban = event.data?.content?.createAccountData?.iban;
         }
       });
     });
@@ -407,6 +505,54 @@ class AppHomeViewModel extends BasePageViewModel {
     }
   }
 
+  void getAccount() {
+    _getAccountRequest.safeAdd(GetAccountUseCaseParams());
+  }
+
+  void addSubAccount({required String? NickName, required String? SubAccountNo}) {
+    _addSubAccountRequest
+        .safeAdd(AddSubAccountUseCaseParams(NickName: NickName, SubAccountNo: SubAccountNo, GetToken: true));
+  }
+
+  void createAccount(
+      {bool? isSubAccount,
+      required CustomerAccountDetails customerAccountDetails,
+      String? cif,
+      required CustomerInformation customerInformation}) {
+    _createAccountRequest.safeAdd(CreateAccountUseCaseParams(
+        cif: cif,
+        isSubAccount: isSubAccount,
+        accountDetails: customerAccountDetails,
+        customerInformation: customerInformation));
+  }
+
+  getOpenSubAccountCount(String? nickName) {
+    int subAccountCount = 1;
+    String? subAccountPrefix = nickName;
+
+    List<Account> accounts =
+        dashboardDataContent.accounts?.where((element) => (element.isSubAccount == false)).toList() ?? [];
+
+    for (var account in accounts) {
+      if (account.isSubAccount == true) {
+        subAccountCount++;
+      }
+    }
+
+    String result;
+
+    if (subAccountCount == 0) {
+      result = "$subAccountPrefix 1";
+    } else {
+      result = "$subAccountPrefix $subAccountCount";
+    }
+    print(result);
+  }
+
+  List<Account> _yourAllAccounts = [];
+
+  List<Account> getAllMyAccounts() => _yourAllAccounts;
+
   void getDashboardPages(GetDashboardDataContent dashboardDataContent) {
     pages.clear();
     timeLineListArguments.clear();
@@ -414,14 +560,25 @@ class AppHomeViewModel extends BasePageViewModel {
     debitCards.clear();
     creditCards.clear();
     cardTypeList.clear();
+    _yourAllAccounts.clear();
 
-    ///adding cardType
+    /// this is to be removed when proper data comes from the apis....
 
-    pages.add(MyAccountPage(account: dashboardDataContent.account!));
-    cardTypeList.add(TimeLineSwipeUpArgs(
-        cardType: CardType.ACCOUNT,
-        swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
-        timeLineEnum: TimeLineEnum.TIMELINE_YES));
+    for (Account selectedAccount in (dashboardDataContent.accounts ?? [])) {
+      pages.add(MyAccountPage(account: selectedAccount));
+      cardTypeList.add(TimeLineSwipeUpArgs(
+          cardType: selectedAccount.isSubAccount ?? false ? CardType.SUBACCOUNT : CardType.ACCOUNT,
+          swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
+          timeLineEnum: TimeLineEnum.TIMELINE_YES));
+      if (!(selectedAccount.isSubAccount ?? true)) {
+        dashboardDataContent.account = selectedAccount;
+      }
+
+      /// may be we will have conditions here for multiple account switching in the whole application....
+    }
+
+    /// Adding all the accounts for the other pages to access so that we can show selection for the user to interact with the acocounts...
+    _yourAllAccounts.addAll(dashboardDataContent.accounts ?? []);
 
     ///setting timeline arguments value start
     timeLineArguments.availableBalance = dashboardDataContent.account!.availableBalance ?? '0.000';
@@ -974,7 +1131,7 @@ class AppHomeViewModel extends BasePageViewModel {
     _showRequestMoneyPopUpSubject.close();
     _verifyQRRequest.close();
     _verifyQRResponse.close();
-    pageSwitchSubject?.close();
+    pageSwitchSubject.close();
 
     translateSidewaysController.dispose();
     translateSettingsUpController.dispose();
@@ -1018,7 +1175,8 @@ class AppHomeViewModel extends BasePageViewModel {
     }
   }
 
-  showHideAccountSettings(bool value) {
+  showHideAccountSettings(bool value, {Account? account}) {
+    selectedAccount = account;
     if (value) {
       translateSidewaysController.forward();
       translateAccountSettingsUpController.forward();
@@ -1027,6 +1185,18 @@ class AppHomeViewModel extends BasePageViewModel {
       translateAccountSettingsUpController.reverse();
     }
     pageSwitchSubject.add(value ? DashboardAnimatedPage.ACT_SETTING : DashboardAnimatedPage.NULL);
+  }
+
+  showHideSubAccountSettings(bool value, {Account? account}) {
+    selectedAccount = account;
+    if (value) {
+      translateSidewaysController.forward();
+      translateAccountSettingsUpController.forward();
+    } else {
+      translateSidewaysController.reverse();
+      translateAccountSettingsUpController.reverse();
+    }
+    pageSwitchSubject.add(value ? DashboardAnimatedPage.SUB_ACT_SETTING : DashboardAnimatedPage.NULL);
   }
 
   animateForwardSettingsPage() {

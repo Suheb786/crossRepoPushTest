@@ -54,24 +54,42 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                         ),
                         Expanded(
                           child: Text(S.of(context).requestMoneyFrom,
-                              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: Theme.of(context).primaryColorDark)),
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12.0.t,
+                                  color: Theme.of(context).primaryColorDark)),
                         ),
                         Visibility(
-                          visible: (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.manageContactEnabled ?? false),
+                          visible: (ProviderScope.containerOf(context)
+                                  .read(appHomeViewModelProvider)
+                                  .dashboardDataContent
+                                  .dashboardFeatures
+                                  ?.manageContactEnabled ??
+                              false),
                           child: InkWell(
                             onTap: () {
                               Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
-                                  arguments: AddBeneficiaryPageArguments(navigationType: NavigationType.REQUEST_MONEY, isFromContactCard: true));
+                                  arguments: AddBeneficiaryPageArguments(
+                                      navigationType: NavigationType.REQUEST_MONEY, isFromContactCard: true));
                             },
                             child: Container(
                               height: 40,
                               width: 40,
-                              child: AppSvg.asset(AssetUtils.plusIcon, color: Theme.of(context).colorScheme.onSecondaryContainer, width: 16.w, height: 16.h),
+                              child: AppSvg.asset(AssetUtils.plusIcon,
+                                  color: Theme.of(context).colorScheme.onSecondaryContainer,
+                                  width: 16.w,
+                                  height: 16.h),
                               padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
                               decoration: BoxDecoration(
                                   color: Theme.of(context).canvasColor,
                                   shape: BoxShape.circle,
-                                  boxShadow: [BoxShadow(color: Theme.of(context).primaryColorDark.withOpacity(0.15), blurRadius: 8.96, offset: Offset(0, 4.48))]),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Theme.of(context).primaryColorDark.withOpacity(0.15),
+                                        blurRadius: 8.96,
+                                        offset: Offset(0, 4.48))
+                                  ]),
                             ),
                           ),
                         )
@@ -86,7 +104,10 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                             child: GridView.builder(
                               itemCount: 9,
                               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3, childAspectRatio: ((p1.maxWidth - itemBetweenSpacing) / (p1.maxHeight - itemTopBottomSpacing)), mainAxisSpacing: 2),
+                                  crossAxisCount: 3,
+                                  childAspectRatio: ((p1.maxWidth - itemBetweenSpacing) /
+                                      (p1.maxHeight - itemTopBottomSpacing)),
+                                  mainAxisSpacing: 2),
                               shrinkWrap: true,
                               padding: EdgeInsetsDirectional.only(top: 22.0.h, end: 27.0.w, start: 27.0.w),
                               itemBuilder: (context, index) {
@@ -96,8 +117,12 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                                 return PaymentBeneficiaryWidget(
                                   onTap: () {
                                     // Navigator.pushNamed(context, RoutePaths.RequestAmountFromContact, arguments: beneficiaries![index]);
-                                    ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).setSelectedBenificiary(beneficiaries![index]);
-                                    ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animatePage(AnimatedPage.REQUEST_FROM_SPECIFIC_PERSON);
+                                    ProviderScope.containerOf(context)
+                                        .read(paymentHomeViewModelProvider)
+                                        .setSelectedBenificiary(beneficiaries![index]);
+                                    ProviderScope.containerOf(context)
+                                        .read(paymentHomeViewModelProvider)
+                                        .animatePage(AnimatedPage.REQUEST_FROM_SPECIFIC_PERSON);
                                   },
                                   transferEnum: TransferEnum.request,
                                   beneficiary: beneficiaries![index],
@@ -111,7 +136,12 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                           Padding(
                             padding: EdgeInsetsDirectional.only(bottom: 16.0.h),
                             child: Visibility(
-                              visible: (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.manageContactEnabled ?? false),
+                              visible: (ProviderScope.containerOf(context)
+                                      .read(appHomeViewModelProvider)
+                                      .dashboardDataContent
+                                      .dashboardFeatures
+                                      ?.manageContactEnabled ??
+                                  false),
                               child: InkWell(
                                 onTap: () {
                                   Navigator.of(context).push(CustomRoute.swipeUpRoute(BeneficiaryContactListPage(navigationType: NavigationType.REQUEST_MONEY)));
@@ -125,11 +155,21 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                                       color: Theme.of(context).canvasColor,
                                       borderRadius: BorderRadius.circular(20.w),
                                       border: Border.all(color: AppColor.lightYellowColor, width: 1),
-                                      boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 3))],
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.black12,
+                                            blurRadius: 5,
+                                            spreadRadius: 0.1,
+                                            offset: Offset(0, 3))
+                                      ],
                                     ),
                                     child: Text(
                                       S.of(context).seeAllContacts,
-                                      style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, fontWeight: FontWeight.w600, color: Theme.of(context).textTheme.bodyLarge!.color!),
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 14.0.t,
+                                          fontWeight: FontWeight.w600,
+                                          color: Theme.of(context).textTheme.bodyLarge!.color!),
                                     ),
                                   ),
                                 ),

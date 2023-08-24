@@ -19,13 +19,21 @@ class DashboardAccountEntity implements BaseLayerDataTransformer<DashboardAccoun
   final String? cardNo;
   @JsonKey(name: "status")
   final String? status;
+  @JsonKey(name: 'nickName')
+  final String? nickName;
+  @JsonKey(name: 'isSubAccount')
+  final bool? isSubAccount;
 
-  DashboardAccountEntity({this.accountTitle = "",
+  DashboardAccountEntity({
+    this.accountTitle,
     this.availableBalance = 0.0,
     this.accountNo = "",
     this.iban = "",
     this.cardNo = "",
-    this.status = ""});
+    this.status,
+    this.isSubAccount,
+    this.nickName,
+  });
 
   factory DashboardAccountEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardAccountEntityFromJson(json);
@@ -40,6 +48,8 @@ class DashboardAccountEntity implements BaseLayerDataTransformer<DashboardAccoun
   @override
   Account transform() {
     return Account(
+        isSubAccount: this.isSubAccount,
+        nickName: this.nickName,
         accountNo: this.accountNo,
         iban: this.iban,
         accountTitle: this.accountTitle,

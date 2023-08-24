@@ -102,9 +102,15 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                                 }, onSelectFromLibrary: () {
                                   model.uploadProfilePhoto(DocumentTypeEnum.PICK_IMAGE);
                                   Navigator.pop(context);
-                                }, onTakePhoto: () {
-                                  model.uploadProfilePhoto(DocumentTypeEnum.CAMERA);
+                                }, onTakePhoto: () async {
                                   Navigator.pop(context);
+
+                                  final dynamic filePath =
+                                      await Navigator.pushNamed(context, RoutePaths.CameraCapturePage);
+
+                                  if (filePath.toString().isNotEmpty)
+                                    model.uploadProfilePhoto(DocumentTypeEnum.CAMERA,
+                                        cameraPhotoFile: filePath);
                                 }, title: S.current.pleaseSelectYourAction);
                               },
                               child: Stack(

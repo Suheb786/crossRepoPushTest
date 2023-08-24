@@ -18240,11 +18240,11 @@ class S {
     );
   }
 
-  /// `Main Account-Primary`
-  String get mainAccountPrimary {
+  /// `Main Account`
+  String get mainAccount {
     return Intl.message(
-      'Main Account-Primary',
-      name: 'mainAccountPrimary',
+      'Main Account',
+      name: 'mainAccount',
       desc: '',
       args: [],
     );
@@ -18260,11 +18260,11 @@ class S {
     );
   }
 
-  /// `Sub Account - Savings`
-  String get subAccountSavings {
+  /// `Sub Account`
+  String get subAccount {
     return Intl.message(
-      'Sub Account - Savings',
-      name: 'subAccountSavings',
+      'Sub Account',
+      name: 'subAccount',
       desc: '',
       args: [],
     );
@@ -18315,6 +18315,66 @@ class S {
     return Intl.message(
       'Oops! Transaction failed; your account cannot be debited.',
       name: 'accountCannotBeDebited',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share Account Information`
+  String get shareAccountInformation {
+    return Intl.message(
+      'Share Account Information',
+      name: 'shareAccountInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open Sub Account`
+  String get openSubAccount {
+    return Intl.message(
+      'Open Sub Account',
+      name: 'openSubAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to open a new account?`
+  String get opneSubAccountDescription {
+    return Intl.message(
+      'Are you sure you want to open a new account?',
+      name: 'opneSubAccountDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer Between Accounts`
+  String get transferBetweenAccount {
+    return Intl.message(
+      'Transfer Between Accounts',
+      name: 'transferBetweenAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close Sub Account`
+  String get closeSubAccount {
+    return Intl.message(
+      'Close Sub Account',
+      name: 'closeSubAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please transfer the remaining balance to complete the account closure`
+  String get transferRemainingBalanceForAccountClosure {
+    return Intl.message(
+      'Please transfer the remaining balance to complete the account closure',
+      name: 'transferRemainingBalanceForAccountClosure',
       desc: '',
       args: [],
     );

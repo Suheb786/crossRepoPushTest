@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -669,6 +668,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cliqType": MessageLookupByLibrary.simpleMessage("CLIQ Type"),
         "closeDateIssueMessage": MessageLookupByLibrary.simpleMessage(
             "Payment cannot be completed because the bill is closed."),
+        "closeSubAccount":
+            MessageLookupByLibrary.simpleMessage("Close Sub Account"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "Complete your tax report information below"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
@@ -1977,8 +1978,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Mailing address different from residence address?"),
         "mailingAddressLine":
             MessageLookupByLibrary.simpleMessage("MAILING address Line"),
-        "mainAccountPrimary":
-            MessageLookupByLibrary.simpleMessage("Main Account-Primary"),
+        "mainAccount": MessageLookupByLibrary.simpleMessage("Main Account"),
         "mainAnnualIncome":
             MessageLookupByLibrary.simpleMessage("MAIN ANNUAL INCOME"),
         "mainAnnualIncomeSmall":
@@ -2254,8 +2254,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Congratulations, your new account has been opened successfully!"),
         "openDateIssuedMessage": MessageLookupByLibrary.simpleMessage(
             "Payment cannot be completed because the bill date is not reached Yet"),
+        "openSubAccount":
+            MessageLookupByLibrary.simpleMessage("Open Sub Account"),
         "openYourAccountNow":
             MessageLookupByLibrary.simpleMessage("Open Your Account Now"),
+        "opneSubAccountDescription": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to open a new account?"),
         "optional": MessageLookupByLibrary.simpleMessage("(Optional)"),
         "or": MessageLookupByLibrary.simpleMessage("or"),
         "orContinueWith":
@@ -2857,6 +2861,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "share": MessageLookupByLibrary.simpleMessage("Share"),
         "shareAccountInfo":
             MessageLookupByLibrary.simpleMessage("Share account info"),
+        "shareAccountInformation":
+            MessageLookupByLibrary.simpleMessage("Share Account Information"),
         "shareCliqId": MessageLookupByLibrary.simpleMessage("Share CliQ ID"),
         "shareId": MessageLookupByLibrary.simpleMessage("Share ID"),
         "shareMyReceipt":
@@ -2901,8 +2907,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "streetAddressSmall":
             MessageLookupByLibrary.simpleMessage("Street Address"),
         "streetName": MessageLookupByLibrary.simpleMessage("STREET NAME"),
-        "subAccountSavings":
-            MessageLookupByLibrary.simpleMessage("Sub Account - Savings"),
+        "subAccount": MessageLookupByLibrary.simpleMessage("Sub Account"),
         "submittedFor": MessageLookupByLibrary.simpleMessage(
             "We are processing your request and we will notify you once ready"),
         "subscription": MessageLookupByLibrary.simpleMessage("subscriptions"),
@@ -3071,11 +3076,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Transaction Period"),
         "transactions": MessageLookupByLibrary.simpleMessage("Transactions"),
         "transfer": MessageLookupByLibrary.simpleMessage("Transfer"),
+        "transferBetweenAccount":
+            MessageLookupByLibrary.simpleMessage("Transfer Between Accounts"),
         "transferCannotbeDone": MessageLookupByLibrary.simpleMessage(
             "Oops! Sending money failed, contact details need to be updated"),
         "transferFrom": MessageLookupByLibrary.simpleMessage("Transfer from"),
         "transferHeader":
             MessageLookupByLibrary.simpleMessage("Enter your transfer details"),
+        "transferRemainingBalanceForAccountClosure":
+            MessageLookupByLibrary.simpleMessage(
+                "Please transfer the remaining balance to complete the account closure"),
         "transferTo": MessageLookupByLibrary.simpleMessage("Transfer To"),
         "transferTypeNF": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. "),
