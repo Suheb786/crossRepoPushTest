@@ -1834,5 +1834,6 @@
   "closeSubAccount": "Close Sub Account",
   "transferRemainingBalanceForAccountClosure": "Please transfer the remaining balance to complete the account closure",
   "done": "Done",
-  "okey": "Okay"
+  "okey": "Okay",
+  "view_more": "View More"
 }
