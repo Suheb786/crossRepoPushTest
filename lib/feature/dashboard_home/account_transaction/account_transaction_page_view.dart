@@ -33,7 +33,7 @@ class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionVi
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 48.0.h) + EdgeInsets.only(bottom: 16.0.h),
+              padding: EdgeInsets.symmetric(horizontal: 24.0.w) + EdgeInsets.only(bottom: 16.0.h),
               child: Row(
                 children: [
                   Expanded(

@@ -21,10 +21,10 @@ class PaymentActivityTransactionPageState
     return paymentActivityTransactionViewModelProvider.call(widget.paymentActivityTransactionPageArgument);
   }
 
-  @override
+  /*@override
   Color? scaffoldBackgroundColor() {
     return widget.paymentActivityTransactionPageArgument.backgroundColor;
-  }
+  }*/
 
   @override
   Widget buildView(BuildContext context, PaymentActivityTransactionViewModel model) {
