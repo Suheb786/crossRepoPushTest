@@ -29,79 +29,120 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
           stream: model.searchCategoryListStream,
           initialData: Resource.none(),
           dataBuilder: (context, snapshot) {
-            return Padding(
-              padding: EdgeInsetsDirectional.only(top: (MediaQuery.of(context).size.height * 0.14) + 16.h),
-              child: Column(
-                children: [
-                  Text(
-                    AppConstantsUtils.PRE_PAID_FLOW ? S.of(context).newPrePaidBill : S.of(context).newPostPaidBill,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 20.t, color: AppColor.gray_black),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.only(top: 24.0.h, bottom: 32.h, start: 24.w, end: 24.w),
-                    child: AppTextField(
-                      labelText: '',
-                      hintText: S.of(context).searchCategory,
-                      controller: model.searchBillController,
-                      onChanged: (value) {
-                        model.searchBillerCategory(value);
-                      },
-                      onPressed: () {},
-                      suffixIcon: (value, data) {
-                        return Container(height: 16.h, width: 16.w, padding: EdgeInsetsDirectional.only(end: 8.w), child: AppSvg.asset(AssetUtils.search, color: AppColor.dark_gray_1));
-                      },
-                    ),
-                  ),
-                  Expanded(
-                      child: Column(
-                    children: [
-                      Expanded(
-                        child: snapshot != null && snapshot.data != null && snapshot.data!.length > 0
-                            ? SingleChildScrollView(
-                                padding: EdgeInsets.symmetric(horizontal: 24.w),
-                                child: ListView.separated(
-                                    padding: EdgeInsets.zero,
-                                    shrinkWrap: true,
-                                    physics: NeverScrollableScrollPhysics(),
-                                    itemBuilder: (context, index) {
-                                      return PostPaidSettingTitleWidget(
-                                        tileIcon: snapshot.data?[index].iconCode ?? "",
-                                        title: !StringUtils.isDirectionRTL(context) ? snapshot.data![index].categoryName ?? "" : snapshot.data![index].categoryNameAr ?? "",
-                                        onTap: () {
-                                          model.billerCategory = snapshot.data?[index].categoryName ?? "";
-                                          model.titleIcon = snapshot.data?[index].iconCode ?? "";
-                                          AppConstantsUtils.BILLER_CATEGORY = snapshot.data?[index].categoryName ?? "";
-                                          AppConstantsUtils.BILLER_CATEGORY_ARABIC = snapshot.data?[index].categoryNameAr ?? "";
-                                          if (AppConstantsUtils.PRE_PAID_FLOW == true) {
-                                            AppConstantsUtils.billerDetailsCacheListKey = '${AppConstantsUtils.BILLER_CATEGORY}${AppConstantsUtils.PREPAID_KEY}';
-                                          } else {
-                                            AppConstantsUtils.billerDetailsCacheListKey = '${AppConstantsUtils.BILLER_CATEGORY}${AppConstantsUtils.POSTPAID_KEY}';
-                                          }
-                                          AppConstantsUtils.BILLER_CATEGORY_API_VALUE =
-                                              !StringUtils.isDirectionRTL(context) ? snapshot.data![index].categoryName ?? "" : snapshot.data![index].categoryNameAr ?? "";
-
-                                          Navigator.pushNamed(context, RoutePaths.PayBillPage);
-                                        },
-                                      );
-                                    },
-                                    separatorBuilder: (context, index) {
-                                      return AppDivider();
-                                    },
-                                    itemCount: snapshot.data!.length),
-                              )
-                            : Center(
-                                child: Text(
-                                  S.of(context).noDataFound,
-                                  style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w400, color: Theme.of(context).primaryColorDark),
-                                ),
-                              ),
+            return Column(children: [
+              model.showBackButton
+                  ? Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.only(bottom: 32.h, top: 50.h, start: 24.w),
+                          child: AppSvg.asset(
+                            AssetUtils.back,
+                            height: 24.h,
+                            width: 24.w,
+                            matchTextDirection: true,
+                            color: Theme.of(context).colorScheme.shadow,
+                          ),
+                        ),
                       ),
-                    ],
-                  ))
-                ],
+                    )
+                  : const SizedBox(),
+              SizedBox(
+                height: !model.showBackButton ? ((MediaQuery.of(context).size.height * 0.14) + 16.h) : 0,
               ),
-            );
+              Text(
+                AppConstantsUtils.PRE_PAID_FLOW
+                    ? S.of(context).newPrePaidBill
+                    : S.of(context).newPostPaidBill,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20.t,
+                    color: AppColor.gray_black),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.only(top: 24.0.h, bottom: 32.h, start: 24.w, end: 24.w),
+                child: AppTextField(
+                  labelText: '',
+                  hintText: S.of(context).searchCategory,
+                  controller: model.searchBillController,
+                  onChanged: (value) {
+                    model.searchBillerCategory(value);
+                  },
+                  onPressed: () {},
+                  suffixIcon: (value, data) {
+                    return Container(
+                        height: 16.h,
+                        width: 16.w,
+                        padding: EdgeInsetsDirectional.only(end: 8.w),
+                        child: AppSvg.asset(AssetUtils.search, color: AppColor.dark_gray_1));
+                  },
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: snapshot != null && snapshot.data != null && snapshot.data!.length > 0
+                          ? SingleChildScrollView(
+                              padding: EdgeInsets.symmetric(horizontal: 24.w),
+                              child: ListView.separated(
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemBuilder: (context, index) {
+                                    return PostPaidSettingTitleWidget(
+                                      tileIcon: snapshot.data?[index].iconCode ?? "",
+                                      title: !StringUtils.isDirectionRTL(context)
+                                          ? snapshot.data![index].categoryName ?? ""
+                                          : snapshot.data![index].categoryNameAr ?? "",
+                                      onTap: () {
+                                        model.billerCategory = snapshot.data?[index].categoryName ?? "";
+                                        model.titleIcon = snapshot.data?[index].iconCode ?? "";
+                                        AppConstantsUtils.BILLER_CATEGORY =
+                                            snapshot.data?[index].categoryName ?? "";
+                                        AppConstantsUtils.BILLER_CATEGORY_ARABIC =
+                                            snapshot.data?[index].categoryNameAr ?? "";
+                                        if (AppConstantsUtils.PRE_PAID_FLOW == true) {
+                                          AppConstantsUtils.billerDetailsCacheListKey =
+                                              '${AppConstantsUtils.BILLER_CATEGORY}${AppConstantsUtils.PREPAID_KEY}';
+                                        } else {
+                                          AppConstantsUtils.billerDetailsCacheListKey =
+                                              '${AppConstantsUtils.BILLER_CATEGORY}${AppConstantsUtils.POSTPAID_KEY}';
+                                        }
+                                        AppConstantsUtils.BILLER_CATEGORY_API_VALUE =
+                                            !StringUtils.isDirectionRTL(context)
+                                                ? snapshot.data![index].categoryName ?? ""
+                                                : snapshot.data![index].categoryNameAr ?? "";
+
+                                        Navigator.pushNamed(context, RoutePaths.PayBillPage);
+                                      },
+                                    );
+                                  },
+                                  separatorBuilder: (context, index) {
+                                    return AppDivider();
+                                  },
+                                  itemCount: snapshot.data!.length),
+                            )
+                          : Center(
+                              child: Text(
+                                S.of(context).noDataFound,
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                    color: Theme.of(context).primaryColorDark),
+                              ),
+                            ),
+                    ),
+                  ],
+                ),
+              )
+            ]);
           }),
     );
   }

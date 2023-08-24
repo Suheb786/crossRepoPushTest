@@ -1199,6 +1199,15 @@ class AppHomeViewModel extends BasePageViewModel {
     pageSwitchSubject.add(value ? DashboardAnimatedPage.SUB_ACT_SETTING : DashboardAnimatedPage.NULL);
   }
 
+  void closeSubAccountDialogAndRefreshPage() {
+    Future.delayed(Duration(milliseconds: 200), () {
+      showHideSubAccountSettings(false);
+      Future.delayed(Duration(milliseconds: 500), () {
+        getDashboardData();
+      });
+    });
+  }
+
   animateForwardSettingsPage() {
     translateSidewaysController.forward();
     translateSettingsUpController.forward();

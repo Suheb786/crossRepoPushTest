@@ -57,9 +57,9 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
 
   @override
   Widget build(BuildContext context, model) {
-    model.deviceSize = MediaQuery.of(context).size;
-    model.isSmallDevices = model.deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
-    DeviceSizeHelper.isBigDevice;
+    // model.deviceSize = MediaQuery.of(context).size;
+    // model.isSmallDevices = model.deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
+    // DeviceSizeHelper.isBigDevice;
     listenPopUps(model, context);
     return AppStreamBuilder<int>(
       stream: model.currentStep,
@@ -348,14 +348,19 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                         if (event.status ==
                                                                                             Status.SUCCESS) {
                                                                                           Navigator.pushNamed(
-                                                                                              context,
-                                                                                              RoutePaths
-                                                                                                  .OpenSubAccountSuccessPage,
-                                                                                              arguments: OpenSubAccountSuccessPageArgument(
-                                                                                                  accountNo: model
-                                                                                                      .accountNo,
-                                                                                                  iban: model
-                                                                                                      .iban));
+                                                                                                  context,
+                                                                                                  RoutePaths
+                                                                                                      .OpenSubAccountSuccessPage,
+                                                                                                  arguments: OpenSubAccountSuccessPageArgument(
+                                                                                                      accountNo:
+                                                                                                          model
+                                                                                                              .accountNo,
+                                                                                                      iban: model
+                                                                                                          .iban))
+                                                                                              .then((value) {
+                                                                                            model
+                                                                                                .closeSubAccountDialogAndRefreshPage();
+                                                                                          });
                                                                                         }
                                                                                       },
                                                                                       dataBuilder: (context, createAccountResponse) {
@@ -550,9 +555,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                         error:
                                                                                                             ErrorInfo(message: ''),
                                                                                                         type: ErrorType.TRANSFER_REMAINING_BALANCE_TO_CLOSE_ACCOUNT));
-                                                                                                  } else {
-                                                                                                    ///TODO:close account
-                                                                                                  }
+                                                                                                  } else {}
                                                                                                 },
                                                                                               ),
                                                                                               SizedBox(
@@ -704,11 +707,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                       }
                                                                                       return Transform
                                                                                           .translate(
-                                                                                        offset: Offset(
-                                                                                            0,
-                                                                                            translateYOffset
-                                                                                                    .abs() *
-                                                                                                -40),
+                                                                                        offset: Offset(0, 1),
                                                                                         child: Opacity(
                                                                                           opacity:
                                                                                               (opacity.abs() -
@@ -943,7 +942,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                               translateYOffset = currentStep - (model.appSwiperController.page ?? 0);
                                                                                                             }
                                                                                                             return Transform.translate(
-                                                                                                              offset: Offset(0, translateYOffset.abs() * 40),
+                                                                                                              offset: Offset(0, 1),
                                                                                                               child: Opacity(
                                                                                                                 opacity: (opacity.abs() - 1).abs(),
                                                                                                                 child: child!,
