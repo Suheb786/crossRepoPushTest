@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/feature/sub_account/transfer/transfer_success/transfer_success_page_view_model.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
@@ -124,7 +125,7 @@ class TransferSuccessPageView extends BasePageViewWidget<TransferSuccessPageView
                   padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w),
                   child: AppPrimaryButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pushNamedAndRemoveUntil(context, RoutePaths.AppHome, (route) => false);
                     },
                     activeBackgroundColor: Theme.of(context).colorScheme.secondary,
                     textColor: Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue,

@@ -10,31 +10,7 @@ import '../../../../utils/status.dart';
 import 'open_sub_account_success_page.dart';
 
 class OpenSubAccountSuccessPageViewModel extends BasePageViewModel {
-  final GetDashboardDataUseCase _getDashboardDataUseCase;
   final OpenSubAccountSuccessPageArgument argument;
 
-  PublishSubject<GetDashboardDataUseCaseParams> _getDashboardDataRequest = PublishSubject();
-
-  PublishSubject<Resource<GetDashboardDataResponse>> _getDashboardDataResponse = PublishSubject();
-
-  OpenSubAccountSuccessPageViewModel(this._getDashboardDataUseCase, this.argument) {
-    _getDashboardDataRequest.listen((value) {
-      RequestManager(value, createCall: () => _getDashboardDataUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _getDashboardDataResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showErrorState();
-          showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {}
-      });
-    });
-  }
-
-  Stream<Resource<GetDashboardDataResponse>> get getDashboardDataStream => _getDashboardDataResponse.stream;
-
-  void getDashboardData() {
-    _getDashboardDataRequest.safeAdd(GetDashboardDataUseCaseParams());
-  }
+  OpenSubAccountSuccessPageViewModel(this.argument);
 }

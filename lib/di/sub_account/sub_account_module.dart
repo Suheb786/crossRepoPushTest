@@ -11,7 +11,7 @@ import '../usecase/dashboard/dashboard_usecase_provider.dart';
 ///------------[Open-sub-Account-Success-Page-View-Model-Provider]-------------------///
 final openSubAccountSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<OpenSubAccountSuccessPageViewModel, OpenSubAccountSuccessPageArgument>(
-  (ref, arg) => OpenSubAccountSuccessPageViewModel(ref.read(getDashboardDataUseCaseProvider), arg),
+  (ref, arg) => OpenSubAccountSuccessPageViewModel(arg),
 );
 
 ///------------[Select-Transfer-Page-View-Model-Provider]-------------------///
@@ -27,5 +27,6 @@ final selectTransferPageViewModelProivder =
 final transferSuccessPageViewModelProvider =
     ChangeNotifierProvider.autoDispose.family<TransferSuccessPageViewModel, TransferSuccessPageArgument>(
   (ref, arg) => TransferSuccessPageViewModel(
-      argument: arg, getDashboardDataUseCase: ref.read(getDashboardDataUseCaseProvider)),
+    argument: arg,
+  ),
 );
