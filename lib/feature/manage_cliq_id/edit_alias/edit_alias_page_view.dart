@@ -169,9 +169,9 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
                                                   initialData: false,
                                                   dataBuilder: (BuildContext context, isValid) {
                                                     return Padding(
-                                                      padding: EdgeInsets.only(bottom: 26.0.h),
+                                                      padding: EdgeInsets.only(
+                                                          bottom: 26.0.h, left: 24.w, right: 24.w),
                                                       child: AppPrimaryButton(
-                                                        width: 230.h,
                                                         text: S.of(context).next,
                                                         isDisabled: (data == true
                                                             ? (!isValid! == true ? true : false)

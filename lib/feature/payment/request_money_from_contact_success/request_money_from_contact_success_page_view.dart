@@ -120,9 +120,9 @@ class RequestAmountFromContactSuccessPageView
             ),
             Spacer(),
             Padding(
-              padding: EdgeInsets.only(top: 10.0.h),
+              padding: EdgeInsets.only(top: 10.0.h, left: 24.w, right: 24.w),
               child: AppPrimaryButton(
-                text: S.of(context).next,
+                text: S.of(context).done,
                 onPressed: () {
                   Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
                   ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();

@@ -140,10 +140,7 @@ class AddNewMobileNumberPageView extends BasePageViewWidget<AddNewMobileNumberPa
                                                         width: 16.w,
                                                         margin: EdgeInsetsDirectional.only(end: 8.w),
                                                         child: AppSvg.asset(AssetUtils.downArrow,
-                                                            color: Theme.of(context)
-                                                                .primaryTextTheme
-                                                                .bodyLarge
-                                                                ?.color))
+                                                            color: Theme.of(context).primaryColorDark))
                                                   ],
                                                 ),
                                               ),

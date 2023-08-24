@@ -324,7 +324,7 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                                                     .previousPage();
                                               },
                                               child: Text(
-                                                S.of(context).cancel,
+                                                S.of(context).back,
                                                 style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   color: Theme.of(context).colorScheme.onSecondaryContainer,

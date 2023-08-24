@@ -237,7 +237,7 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                                             // Navigator.pop(context);
                                           },
                                           child: Text(
-                                            S.of(context).backToManageCliq,
+                                            S.of(context).back,
                                             style: TextStyle(
                                               color: AppColor.brightBlue,
                                               fontSize: 14.t,

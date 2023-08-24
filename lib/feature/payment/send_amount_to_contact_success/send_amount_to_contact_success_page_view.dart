@@ -204,7 +204,7 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
           Padding(
             padding: EdgeInsets.only(top: 76,left: 24.w,right: 24.w),
             child: AppSecondaryButton(
-              text: S.of(context).next,
+              text: S.of(context).done,
               onPressed: () {
                 Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
                 ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();

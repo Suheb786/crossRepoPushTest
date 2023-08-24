@@ -150,7 +150,7 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
                 Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
                 ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
               },
-              text: S.of(context).next,
+              text: S.of(context).done,
             ),
           ),
           Padding(

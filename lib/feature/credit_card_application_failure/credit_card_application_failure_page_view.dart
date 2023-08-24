@@ -78,7 +78,7 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
             child: AppSecondaryButton(
-                text: S.of(context).next,
+                text: S.of(context).okey,
                 onPressed: () {
                   if (model.creditCardApplicationFailureArguments.creditFailureState ==
                           CreditFailureState.InEligible ||

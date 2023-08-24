@@ -116,10 +116,11 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
         toAccount: toAccount, transferType: transferType, type: type, detCustomerType: detCustomerType));
   }
 
-  validate(String data) {
+  validate() {
     if (nameController.text.isNotEmpty &&
         ibanOrMobileController.text.isNotEmpty &&
-        purposeDetail?.strCode != null) {
+        purposeDetail?.strCode != null &&
+        ibanFieldValidated) {
       _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);
@@ -263,6 +264,7 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
           showNameVisibility('');
           ibanFieldValidated = false;
+          validate();
         } else if (event.status == Status.SUCCESS) {
           purpose = null;
           purposeDetail = null;
@@ -275,6 +277,7 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
 
           checkSendMoneyMessageEnum = event.data?.checkSendMoneyContent?.transferResponse?.messageEnum ??
               CheckSendMoneyMessageEnum.NONE;
+          validate();
         }
       });
     });
@@ -296,6 +299,7 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
           purposeDetailController.clear();
           showNameVisibility('');
           ibanFieldValidated = false;
+          validate();
         } else if (event.status == Status.SUCCESS) {
           purpose = null;
           purposeDetail = null;
@@ -309,6 +313,7 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
 
           purposeController.clear();
           purposeDetailController.clear();
+          validate();
         }
       });
     });
