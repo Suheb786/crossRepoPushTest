@@ -172,6 +172,8 @@ class PaymentHomeViewModel extends BasePageViewModel {
   setSelectedBenificiary(Beneficiary selectedBenificiary) {
     this.selectedBenificiary = selectedBenificiary;
   }
+
+  void animateToRequestMoneyViaQR() {}
 }
 
 class PaymentHomeWidgetFeature {
@@ -189,5 +191,6 @@ enum AnimatedPage {
   SEND_TO_SPECIFIC_PERSON,
   REQUEST_FROM_SPECIFIC_PERSON,
   PAY_NEW_BILL,
+  REQUEST_MONEY_VIA_QR,
   NULL
 }

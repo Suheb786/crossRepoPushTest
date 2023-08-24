@@ -105,6 +105,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
             ),
           ),
           Spacer(),
+
           Padding(
             padding: EdgeInsetsDirectional.only(top: 16.h, end: 24.w, start: 24.w),
             child: Container(
