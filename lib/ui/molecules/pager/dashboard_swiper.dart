@@ -18,7 +18,15 @@ class DashboardSwiper extends StatefulWidget {
   AnimationController? translateSidewaysController;
   AppHomeViewModel model;
 
-  DashboardSwiper({Key? key, this.pages, this.currentStep, this.onIndexChanged, required this.appSwiperController, required this.translateSidewaysController, required this.model}) : super(key: key);
+  DashboardSwiper(
+      {Key? key,
+      this.pages,
+      this.currentStep,
+      this.onIndexChanged,
+      required this.appSwiperController,
+      required this.translateSidewaysController,
+      required this.model})
+      : super(key: key);
 
   @override
   _DashboardSwiperState createState() => _DashboardSwiperState();
@@ -42,7 +50,9 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
         initialData: DashboardAnimatedPage.NULL,
         dataBuilder: (context, switchedPage) {
           return PageView.builder(
-              physics: switchedPage == DashboardAnimatedPage.SETTINGS || switchedPage == DashboardAnimatedPage.TIMELINE ? const NeverScrollableScrollPhysics() : const ClampingScrollPhysics(),
+              physics: switchedPage != DashboardAnimatedPage.NULL
+                  ? const NeverScrollableScrollPhysics()
+                  : const ClampingScrollPhysics(),
               itemCount: widget.pages!.length,
               onPageChanged: (i) {
                 widget.onIndexChanged!.call(i);
@@ -57,7 +67,10 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
   Widget carouselView(int index) {
     double horizontalSpacing = MediaQuery.of(context).size.width * 0.035;
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: horizontalSpacing) + EdgeInsets.only(bottom: 40, top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.06 : 0.04)),
+      margin: EdgeInsets.symmetric(horizontal: horizontalSpacing) +
+          EdgeInsets.only(
+              bottom: 40,
+              top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.06 : 0.04)),
       child: AnimatedBuilder(
         animation: widget.translateSidewaysController!,
         builder: (context, child) {
@@ -65,8 +78,16 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
             offset: widget.currentStep == index
                 ? const Offset(0, 0)
                 : widget.currentStep! < index
-                    ? Offset(widget.translateSidewaysController!.value * 100 * (StringUtils.isDirectionRTL(context) ? -1 : 1), 0)
-                    : Offset(widget.translateSidewaysController!.value * 100 * (StringUtils.isDirectionRTL(context) ? 1 : -1), 0),
+                    ? Offset(
+                        widget.translateSidewaysController!.value *
+                            100 *
+                            (StringUtils.isDirectionRTL(context) ? -1 : 1),
+                        0)
+                    : Offset(
+                        widget.translateSidewaysController!.value *
+                            100 *
+                            (StringUtils.isDirectionRTL(context) ? 1 : -1),
+                        0),
             child: AnimatedBuilder(
               animation: widget.appSwiperController,
               child: widget.pages![index],

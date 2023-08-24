@@ -10,6 +10,7 @@ import 'package:neo_bank/feature/payment/add_send_money_contact/add_send_money_c
 import 'package:neo_bank/feature/payment/payment_home/payment_home_view_model.dart';
 import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dashboard/bottom_bar_widget.dart';
@@ -31,6 +32,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../utils/device_size_helper.dart';
 import '../../postpaid_bills/new_bill/new_bills_page.dart';
+import '../../send_money_via_qr/qr_scanning_screen/qr_scanning_screen_page.dart';
 import '../request_amount_from_contact/request_amount_from_contact_page.dart';
 import '../request_money/request_money_page.dart';
 import '../send_amount_to_contact/send_amount_to_contact_page.dart';
@@ -132,7 +134,14 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                 ? RequestAmountFromContactPage(
                                                     RequestAmountToContactPageArgument(
                                                         model.selectedBenificiary))
-                                                : const SizedBox(),
+                                                : switchedPage == AnimatedPage.REQUEST_MONEY_VIA_QR
+                                                    ? RequestMoneyQrGenerationPage(
+                                                        RequestMoneyQrGenerationPageArguments(
+                                                            ProviderScope.containerOf(context)
+                                                                .read(appHomeViewModelProvider)
+                                                                .dashboardDataContent
+                                                                .account!))
+                                                    : const SizedBox(),
                           );
                         }),
                     AnimatedBuilder(
@@ -173,7 +182,8 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                 Navigator.pop(context);
                                               }, onSelected: () {
                                                 Navigator.pop(context);
-                                                Navigator.pushNamed(context, RoutePaths.QRScanningScreen);
+                                                Navigator.of(context)
+                                                    .push(CustomRoute.swipeUpRoute(QrScanningScreenPage()));
                                               });
                                             },
                                             child: AppSvg.asset(AssetUtils.payViaQrIcon)),
@@ -233,14 +243,15 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                   Navigator.pop(context);
                                                 }, onSelected: () {
                                                   Navigator.pop(context);
-
+                                                  model.animatePage(AnimatedPage.REQUEST_MONEY_VIA_QR);
+                                                  /*
                                                   Navigator.pushNamed(
                                                       context, RoutePaths.RequestMoneyQrGeneration,
                                                       arguments: RequestMoneyQrGenerationPageArguments(
                                                           ProviderScope.containerOf(context)
                                                               .read(appHomeViewModelProvider)
                                                               .dashboardDataContent
-                                                              .account!));
+                                                              .account!));*/
                                                 });
                                               },
                                               child: AppSvg.asset(AssetUtils.requestViaQrIcon)),

@@ -964,7 +964,14 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
 
                                                                                                         if (model
                                                                                                             .isMySubAccount(currentStep)) {
-                                                                                                          model.showHideSubAccountSettings(false);
+                                                                                                          if (switchedPage ==
+                                                                                                              DashboardAnimatedPage.SUB_ACT_SETTING) {
+                                                                                                            model.showHideSubAccountSettings(false);
+                                                                                                          } else if (switchedPage == DashboardAnimatedPage.TRANSACTIONS) {
+                                                                                                            model.showHideAccountSettings(false);
+                                                                                                          } else {
+                                                                                                            model.goToAccountTransactionPage(context);
+                                                                                                          }
                                                                                                         }
                                                                                                       },
                                                                                                       child:
