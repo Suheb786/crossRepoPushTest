@@ -310,7 +310,7 @@ class SettlementAmountPageView extends BasePageViewWidget<SettlementAmountPageVi
                                           Navigator.pop(context);
                                         },
                                         child: Text(
-                                          S.of(context).cancel,
+                                          S.of(context).back,
                                           style: TextStyle(
                                             fontFamily: StringUtils.appFont,
                                             color: Theme.of(context).colorScheme.onSecondaryContainer,

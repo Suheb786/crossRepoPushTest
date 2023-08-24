@@ -1832,7 +1832,7 @@
   "opneSubAccountDescription": "هل أنت متأكد من عملية فتح حساب إضافي؟",
   "transferBetweenAccount": "Transfer Between Accounts",
   "closeSubAccount": "Close Sub Account",
-  "transferRemainingBalanceForAccountClosure": "Please transfer the remaining balance to complete the account closure"
+  "transferRemainingBalanceForAccountClosure": "Please transfer the remaining balance to complete the account closure",
   "done": "Done",
   "okey": "Okay"
 }
