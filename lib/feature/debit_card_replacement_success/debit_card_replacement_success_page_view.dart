@@ -97,7 +97,7 @@ class DebitCardReplacementSuccessPageView
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: AppPrimaryButton(
-                    text: S.of(context).next,
+                    text: S.of(context).done,
                     onPressed: () {
                       if (model.debitCardReplacementArguments.type == DebitReplacementEnum.Normal) {
                         Navigator.of(context)..pop();

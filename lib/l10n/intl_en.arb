@@ -1853,5 +1853,7 @@
   "openAccountSucessDescription": "Congratulations, your new account has been opened successfully!",
   "goToDashboard": "Go to Dashboard",
   "accountInactive": "Oops! Transaction failed; your account is inactive.",
-  "accountCannotBeDebited": "Oops! Transaction failed; your account cannot be debited."
+  "accountCannotBeDebited": "Oops! Transaction failed; your account cannot be debited.",
+  "done": "Done",
+  "okey": "Okay"
 }

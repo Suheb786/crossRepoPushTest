@@ -1826,5 +1826,7 @@
   "openAccountSucessDescription": "لقد تم فتح الحساب بنجاح.",
   "goToDashboard": "العودة إلى الشاشة الرئيسية",
   "accountInactive": "عفوا! لم تتم العملية بنجاح لأنه لا يمكن خصم المبلغ من الحساب",
-  "accountCannotBeDebited": "عفوا! لم تتم العملية بنجاح لأنه لا يمكن خصم المبلغ من الحساب "
+  "accountCannotBeDebited": "عفوا! لم تتم العملية بنجاح لأنه لا يمكن خصم المبلغ من الحساب ",
+  "done": "Done",
+  "okey": "Okay"
 }

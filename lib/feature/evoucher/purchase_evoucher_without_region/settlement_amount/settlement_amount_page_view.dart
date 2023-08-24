@@ -284,22 +284,27 @@ class SettlementAmountPageView extends BasePageViewWidget<SettlementAmountPageVi
                                   ),
                                   Column(
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.only(top: 12.0.h, bottom: 16.h),
-                                        child: AppStreamBuilder<bool>(
-                                          stream: model.showButtonStream,
+                                      AppStreamBuilder<bool>(
+                                          stream: model.isCheckedStream,
                                           initialData: false,
-                                          dataBuilder: (context, isValid) {
-                                            return AppPrimaryButton(
-                                              text: S.of(context).next,
-                                              isDisabled: !isValid!,
-                                              onPressed: () {
-                                                model.validateFields(context);
-                                              },
+                                          dataBuilder: (context, isChecked) {
+                                            return Padding(
+                                              padding: EdgeInsetsDirectional.only(top: 12.0.h, bottom: 16.h),
+                                              child: AppStreamBuilder<bool>(
+                                                stream: model.showButtonStream,
+                                                initialData: false,
+                                                dataBuilder: (context, isValid) {
+                                                  return AppPrimaryButton(
+                                                    text: S.of(context).next,
+                                                    isDisabled: !isValid! && !isChecked!,
+                                                    onPressed: () {
+                                                      model.validateFields(context);
+                                                    },
+                                                  );
+                                                },
+                                              ),
                                             );
-                                          },
-                                        ),
-                                      ),
+                                          }),
                                       InkWell(
                                         onTap: () {
                                           Navigator.pop(context);

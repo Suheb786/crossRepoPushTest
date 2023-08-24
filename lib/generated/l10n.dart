@@ -18319,6 +18319,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Done`
+  String get done {
+    return Intl.message(
+      'Done',
+      name: 'done',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Okay`
+  String get okey {
+    return Intl.message(
+      'Okay',
+      name: 'okey',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
