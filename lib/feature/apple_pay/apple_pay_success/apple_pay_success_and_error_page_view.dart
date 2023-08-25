@@ -124,7 +124,7 @@ class ApplePaySuccessAndErrorPageView extends BasePageViewWidget<ApplePaySuccess
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.w),
                   child: AppPrimaryButton(
                     text: S.of(context).done,
                     onPressed: () {
@@ -136,25 +136,6 @@ class ApplePaySuccessAndErrorPageView extends BasePageViewWidget<ApplePaySuccess
                             .showAnotherAppToApplePayPupUp(true);
                       }
                     },
-                  ),
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    bottom: 56.h,
-                  ),
-                  child: Center(
-                    child: Text(
-                      S.of(context).toDashboard,
-                      style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).colorScheme.secondary,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12.t,
-                      ),
-                    ),
                   ),
                 ),
               ],

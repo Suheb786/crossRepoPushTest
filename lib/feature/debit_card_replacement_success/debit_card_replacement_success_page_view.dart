@@ -95,7 +95,7 @@ class DebitCardReplacementSuccessPageView
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                   child: AppPrimaryButton(
                     text: S.of(context).done,
                     onPressed: () {
@@ -114,22 +114,6 @@ class DebitCardReplacementSuccessPageView
                 ),
                 SizedBox(
                   height: 5.h,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    bottom: 32.h,
-                  ),
-                  child: Center(
-                    child: Text(
-                      S.of(context).toDashboard,
-                      style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).textTheme.bodyLarge!.color!,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12.t,
-                      ),
-                    ),
-                  ),
                 ),
               ],
             )

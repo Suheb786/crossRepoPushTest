@@ -11,6 +11,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class DcChangeMobileNumberSuccessPageView extends BasePageViewWidget<DcChangeMobileNumberSuccessViewModel> {
@@ -21,7 +22,7 @@ class DcChangeMobileNumberSuccessPageView extends BasePageViewWidget<DcChangeMob
   @override
   Widget build(BuildContext context, model) {
     return Padding(
-      padding: EdgeInsets.only(top: 92, bottom: 36),
+      padding: EdgeInsets.only(top: 92, bottom: 24.h),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -95,7 +96,7 @@ class DcChangeMobileNumberSuccessPageView extends BasePageViewWidget<DcChangeMob
                     : Theme.of(context).colorScheme.secondary,
               ),*/
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                padding: EdgeInsets.symmetric(horizontal: 24.0),
                 child: AppPrimaryButton(
                     text: S.of(context).done,
                     onPressed: () {
@@ -103,22 +104,6 @@ class DcChangeMobileNumberSuccessPageView extends BasePageViewWidget<DcChangeMob
                       ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
                     }),
               ),
-              InkWell(
-                onTap: () {},
-                child: Padding(
-                  padding: EdgeInsets.only(top: 9),
-                  child: Text(
-                    S.of(context).toDashboard,
-                    style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        color: _arguments.cardType == CardType.DEBIT
-                            ? Theme.of(context).textTheme.bodyLarge!.color!
-                            : Theme.of(context).colorScheme.secondary,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ),
-              )
             ],
           )
         ],

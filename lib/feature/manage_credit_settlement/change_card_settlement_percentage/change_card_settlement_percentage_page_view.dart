@@ -168,7 +168,7 @@ class ChangeCardSettlementPercentagePageView
                             Column(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 12.0.h),
+                                  padding: EdgeInsets.symmetric(vertical: 12.0.h, horizontal: 24.0.w),
                                   child: AppStreamBuilder<bool>(
                                       stream: model.showButtonStream,
                                       initialData: false,

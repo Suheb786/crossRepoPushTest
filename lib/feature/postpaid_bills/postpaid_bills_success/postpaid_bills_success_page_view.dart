@@ -263,7 +263,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
             ),*/
             Spacer(),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
               child: AppSecondaryButton(
                 text: S.of(context).done,
                 onPressed: () {
@@ -272,19 +272,6 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                     ..pop()
                     ..pop();
                 },
-              ),
-            ),
-            SizedBox(
-              height: 8.h,
-            ),
-            Center(
-              child: Text(
-                S.of(context).toPayments,
-                style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12.t,
-                    color: AppColor.white),
               ),
             ),
           ],

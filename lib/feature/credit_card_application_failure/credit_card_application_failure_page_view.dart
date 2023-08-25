@@ -76,7 +76,7 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
           ),
           Spacer(),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
             child: AppSecondaryButton(
                 text: S.of(context).okey,
                 onPressed: () {
@@ -97,23 +97,6 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
                         context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
                   }
                 }),
-          ),
-          InkWell(
-            onTap: () {},
-            child: Padding(
-              padding: EdgeInsets.only(top: 9.h),
-              child: Text(
-                model.creditCardApplicationFailureArguments.creditFailureState == CreditFailureState.FATCA
-                    ? S.of(context).toLoginPage
-                    : S.of(context).toDashboard,
-                style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  fontSize: 12.t,
-                  fontWeight: FontWeight.w400,
-                  color: Theme.of(context).colorScheme.secondary,
-                ),
-              ),
-            ),
           ),
         ],
       ),

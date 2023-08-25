@@ -1,10 +1,10 @@
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
+
 import '../../../../base/base_page.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../ui/molecules/account_ready/account_details.dart';
@@ -22,8 +22,8 @@ class OpenSubAccountSuccessPageView extends BasePageViewWidget<OpenSubAccountSuc
   @override
   Widget build(BuildContext context, OpenSubAccountSuccessPageViewModel model) {
     return Container(
-      height: MediaQuery.of(context).size.height.h,
-      width: MediaQuery.of(context).size.width.w,
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
       color: Theme.of(context).primaryColor,
       child: Column(
         children: [
@@ -96,7 +96,7 @@ class OpenSubAccountSuccessPageView extends BasePageViewWidget<OpenSubAccountSuc
           Column(
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w),
+                padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w, vertical: 24.h),
                 child: AppStreamBuilder<Resource<GetDashboardDataResponse>>(
                     stream: model.getDashboardDataStream,
                     initialData: Resource.none(),
@@ -112,11 +112,10 @@ class OpenSubAccountSuccessPageView extends BasePageViewWidget<OpenSubAccountSuc
                         },
                         activeBackgroundColor: Theme.of(context).colorScheme.secondary,
                         textColor: Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue,
-                        text: S.current.goToDashboard,
+                        text: S.current.done,
                       );
                     }),
               ),
-              SizedBox(height: 56.h),
             ],
           )
         ],
