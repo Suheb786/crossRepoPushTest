@@ -1857,6 +1857,7 @@
   "shareAccountInformation": "Share Account Information",
   "openSubAccount": "Open Sub Account",
   "opneSubAccountDescription": "Are you sure you want to open a new account?",
+  "closeSubAccountDescription": "Are you sure you want to close this sub account?",
   "transferBetweenAccount": "Transfer Between Accounts",
   "closeSubAccount": "Close Sub Account",
   "transferRemainingBalanceForAccountClosure": "Please transfer the remaining balance to complete the account closure",

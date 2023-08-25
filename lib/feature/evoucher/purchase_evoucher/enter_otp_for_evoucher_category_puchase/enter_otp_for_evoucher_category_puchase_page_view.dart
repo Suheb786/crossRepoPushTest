@@ -13,6 +13,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -68,15 +69,12 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                                 .dashboardDataContent
                                 .account
                                 ?.iban,
-                            sourceCurrency: "JOD",
+                            sourceCurrency: AppConstantsUtils.jodCurrency,
                             cardItemId: item.id,
                             exchangeRate: double.parse(item.exchangeRate),
                             voucherCurrency: item.currency,
                             reconciliationCurrency: item.reconciliationCurrency,
-                            equivalentAmount: ProviderScope.containerOf(context)
-                                .read(selectAmountRegionViewModelProvider)
-                                .settlementAmount
-                                .toString(),
+                            equivalentAmount: (item.fromValue.toDouble() * double.parse(item.exchangeRate)).toString(),
                             denomination: item.fromValue.toInt(),
                             discount: item.discount.replaceAll('%', ''),
                             categories: item.categories.join(','),

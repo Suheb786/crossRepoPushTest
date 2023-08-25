@@ -79,6 +79,7 @@ class MyAccountPageViewWidget extends StatelessWidget {
                               labelText: "",
                               readOnly: false,
                               fontSize: 12.t,
+                              inputFormatters: [LengthLimitingTextInputFormatter(10)],
                               hintText:
                                   accountTextController.text == "" ? S.current.addNickName.toTitleCase() : "",
                               controller: accountTextController,

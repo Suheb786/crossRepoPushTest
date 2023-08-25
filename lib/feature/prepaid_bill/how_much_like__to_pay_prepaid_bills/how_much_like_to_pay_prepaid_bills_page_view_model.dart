@@ -187,7 +187,6 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
           if (event.status == Status.ERROR) {
             showToastWithError(event.appError!);
           } else if (event.status == Status.SUCCESS) {
-            _payPrePaidResponse.safeAdd(event);
           }
         });
       },

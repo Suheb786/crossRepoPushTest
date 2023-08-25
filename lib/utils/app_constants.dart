@@ -73,4 +73,7 @@ class AppConstantsUtils {
     billPrepaidCategoriesCacheList = [];
     billerDetailsCacheList = Map<String, List<BillerDetailsList>?>();
   }
+
+  static String jodCurrency = 'JOD';
+  static String usdCurrency = 'USD';
 }
