@@ -659,6 +659,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "تم رفض دفع الفاتوره بسبب انتهاء صلاحية الفاتورة"),
         "closeSubAccount":
             MessageLookupByLibrary.simpleMessage("Close Sub Account"),
+        "closeSubAccountDescription": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to close this sub account?"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "أكمل معلومات تقريرك الضريبي التالية:"),
         "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),

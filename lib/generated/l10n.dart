@@ -18350,6 +18350,16 @@ class S {
     );
   }
 
+  /// `Are you sure you want to close this sub account?`
+  String get closeSubAccountDescription {
+    return Intl.message(
+      'Are you sure you want to close this sub account?',
+      name: 'closeSubAccountDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Transfer Between Accounts`
   String get transferBetweenAccount {
     return Intl.message(

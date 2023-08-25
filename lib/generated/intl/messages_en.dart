@@ -671,6 +671,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Payment cannot be completed because the bill is closed."),
         "closeSubAccount":
             MessageLookupByLibrary.simpleMessage("Close Sub Account"),
+        "closeSubAccountDescription": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to close this sub account?"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "Complete your tax report information below"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
