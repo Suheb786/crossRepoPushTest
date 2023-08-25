@@ -30,9 +30,15 @@ class MyAccountPageState extends BaseStatefulPage<MyAccountViewModel, MyAccountP
   }
 
   @override
+  void onModelReady(MyAccountViewModel model) {
+    model.account = widget.account;
+    super.onModelReady(model);
+  }
+
+  @override
   Widget buildView(BuildContext context, MyAccountViewModel model) {
     model.deviceSize = MediaQuery.of(context).size;
-    return MyAccountPageView(provideBase(), widget.account);
+    return MyAccountPageView(provideBase());
   }
 
   @override

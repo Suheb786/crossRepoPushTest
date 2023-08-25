@@ -2,6 +2,7 @@ import 'package:domain/model/bill_payments/get_bill_categories/get_bill_categori
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/payment/payment_home/payment_home_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
@@ -16,6 +17,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../di/payment/payment_modules.dart';
 import 'new_bills_page_view_model.dart';
 
 class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
@@ -119,7 +121,13 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                                                 ? snapshot.data![index].categoryName ?? ""
                                                 : snapshot.data![index].categoryNameAr ?? "";
 
-                                        Navigator.pushNamed(context, RoutePaths.PayBillPage);
+                                        Navigator.pushNamed(context, RoutePaths.PayBillPage).then((value) {
+                                          if (value != null && value is bool && value) {
+                                            ProviderScope.containerOf(context)
+                                                .read(paymentHomeViewModelProvider)
+                                                .animatePage(AnimatedPage.NULL);
+                                          }
+                                        });
                                       },
                                     );
                                   },

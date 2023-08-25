@@ -66,6 +66,7 @@ final appHomeViewModelProvider = ChangeNotifierProvider.autoDispose<AppHomeViewM
     ref.read(getAccountUseCaseProvider),
     ref.read(createAccountUseCaseProvider),
     ref.read(deactivateSubAccountUseCaseProvider),
+    ref.read(updateNickNameSubAccountUseCaseProvider),
   ),
 );
 
@@ -74,10 +75,7 @@ final filterTransactionDialogViewModelProvier =
         (ref) => FilterTransactionDialogViewModel());
 
 final myAccountViewModelProvider = ChangeNotifierProvider.autoDispose<MyAccountViewModel>(
-  (ref) => MyAccountViewModel(
-    ref.read(updateNickNameSubAccountUseCaseProvider),
-    ref.read(getDashboardDataUseCaseProvider),
-  ),
+  (ref) => MyAccountViewModel(),
 );
 
 final debitCardVerificationSuccessViewModelProvider =

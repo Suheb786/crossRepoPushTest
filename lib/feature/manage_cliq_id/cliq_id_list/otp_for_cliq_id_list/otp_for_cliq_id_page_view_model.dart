@@ -80,7 +80,7 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => _suspendCliqIdUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        updateLoader();
+        // updateLoader();
         _suspandCliqIDResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -93,7 +93,7 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => _reActivateCliqIdUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        updateLoader();
+        // updateLoader();
         _reactivateCliqIDResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -106,7 +106,7 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => _deleteCliqIdUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        updateLoader();
+        // updateLoader();
         _deleteCliqIdResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -147,7 +147,7 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => _suspendCliqIdOtpUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        updateLoader();
+        // updateLoader();
         _suspandCliqIDOtpResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -162,7 +162,7 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => _reActivateCliqIdOtpUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        updateLoader();
+        // updateLoader();
         _reactivateCliqIDOtpResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();

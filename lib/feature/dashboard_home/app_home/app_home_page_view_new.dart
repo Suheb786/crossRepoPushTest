@@ -46,6 +46,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../ui/molecules/app_progress.dart';
 import '../../../ui/molecules/app_svg.dart';
 import '../../../ui/molecules/card/settings_tile.dart';
 import '../../../utils/device_size_helper.dart';
@@ -55,8 +56,11 @@ import '../credit_card_settings/credit_card_settings_page.dart';
 class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
   AppHomePageViewNew(ProviderBase model) : super(model);
 
+  late BuildContext _buildContext;
+
   @override
   Widget build(BuildContext context, model) {
+    _buildContext = context;
     // model.deviceSize = MediaQuery.of(context).size;
     // model.isSmallDevices = model.deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
     // DeviceSizeHelper.isBigDevice;
@@ -270,6 +274,21 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                       return Stack(
                                                         alignment: Alignment.bottomCenter,
                                                         children: [
+                                                          AppStreamBuilder<Resource<bool>>(
+                                                              stream: model.updateNickNameResponseStream,
+                                                              initialData: Resource.none(),
+                                                              onData: (value) {
+                                                                if (value.status == Status.LOADING) {
+                                                                  AppProgress(_buildContext);
+                                                                } else if (value.status == Status.ERROR ||
+                                                                    value.status == Status.SUCCESS) {
+                                                                  Navigator.pop(_buildContext);
+                                                                }
+                                                              },
+                                                              dataBuilder: (context, value) {
+                                                                return const SizedBox();
+                                                              }),
+
                                                           ///Settings page
                                                           ///Timeline page
                                                           AppStreamBuilder<DashboardAnimatedPage>(
@@ -314,7 +333,8 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                               ?.isPinChangeEnabled ??
                                                                                           true))
                                                                           : switchedPage ==
-                                                                                  DashboardAnimatedPage.TIMELINE
+                                                                                  DashboardAnimatedPage
+                                                                                      .TIMELINE
                                                                               ? DebitCardTimeLinePage(TimeLinePageArguments(cardType: model.cardTypeList[currentStep ?? 0].cardType, timeLineArguments: model.timeLineArguments))
                                                                               : switchedPage == DashboardAnimatedPage.PAYBACK
                                                                                   ? CreditCardPayBackPage(
@@ -394,18 +414,14 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                     },
                                                                                                   ),
                                                                                                   SettingTile(
-                                                                                                    isEnabled: (cardData
-                                                                                                            ?.data
-                                                                                                            ?.dashboardDataContent
-                                                                                                            ?.dashboardFeatures
-                                                                                                            ?.transferBetweenAccountsFeature ??
-                                                                                                        false),
-                                                                                                    isCardActivated: (cardData
-                                                                                                            ?.data
-                                                                                                            ?.dashboardDataContent
-                                                                                                            ?.dashboardFeatures
-                                                                                                            ?.transferBetweenAccountsFeature ??
-                                                                                                        false),
+                                                                                                    isEnabled: ((cardData?.data?.dashboardDataContent?.dashboardFeatures?.transferBetweenAccountsFeature ??
+                                                                                                            false) &&
+                                                                                                        model.getAllMyAccounts().length >
+                                                                                                            1),
+                                                                                                    isCardActivated: (cardData?.data?.dashboardDataContent?.dashboardFeatures?.transferBetweenAccountsFeature ??
+                                                                                                            false) &&
+                                                                                                        model.getAllMyAccounts().length >
+                                                                                                            1,
                                                                                                     tileIcon:
                                                                                                         AssetUtils
                                                                                                             .transferBetweenAccountIcon,
@@ -738,9 +754,12 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                           0;
                                                                                       double opacity = 0;
                                                                                       if (model
-                                                                                          .appSwiperController
-                                                                                          .positions
-                                                                                          .isNotEmpty) {
+                                                                                              .appSwiperController
+                                                                                              .hasClients &&
+                                                                                          model
+                                                                                              .appSwiperController
+                                                                                              .positions
+                                                                                              .isNotEmpty) {
                                                                                         opacity = currentStep -
                                                                                             (model.appSwiperController
                                                                                                     .page ??
@@ -990,7 +1009,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                               (BuildContext context, Widget? child) {
                                                                                                             double translateYOffset = 0;
                                                                                                             double opacity = 0;
-                                                                                                            if (model.appSwiperController.hasClients) if (model.appSwiperController.position.hasContentDimensions) {
+                                                                                                            if (model.appSwiperController.hasClients && model.appSwiperController.positions.isNotEmpty) if (model.appSwiperController.position.hasContentDimensions) {
                                                                                                               opacity = currentStep - (model.appSwiperController.page ?? 0);
                                                                                                               translateYOffset = currentStep - (model.appSwiperController.page ?? 0);
                                                                                                             }
