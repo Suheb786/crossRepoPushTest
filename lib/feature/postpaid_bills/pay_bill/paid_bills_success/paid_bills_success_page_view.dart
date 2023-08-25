@@ -268,7 +268,7 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                   height: 166.h,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                   child: AppSecondaryButton(
                     text: S.of(context).next,
                     onPressed: () {
@@ -276,24 +276,6 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                         ..pop()
                         ..pop(true);
                     },
-                  ),
-                ),
-                SizedBox(
-                  height: 8.h,
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.only(
-                    bottom: 56.h,
-                  ),
-                  child: Center(
-                    child: Text(
-                      S.of(context).toPayments,
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12.t,
-                          color: AppColor.white),
-                    ),
                   ),
                 ),
               ],

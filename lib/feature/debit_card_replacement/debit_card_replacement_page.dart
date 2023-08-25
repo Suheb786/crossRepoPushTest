@@ -25,15 +25,18 @@ class DebitCardReplacementPageState
   @override
   void onModelReady(DebitCardReplacementPageViewModel model) {
     super.onModelReady(model);
-    model.debitCardReplacementArguments = widget._debitCardReplacementArguments;
-    if (widget._debitCardReplacementArguments.isPinSet) {
-      Future.delayed(Duration(microseconds: 100), () {
-        model.navigateToPage(0);
-      });
-    } else {
-      Future.delayed(Duration(microseconds: 100), () {
-        model.moveToPage(1);
-      });
+    if (model.isFirstTime) {
+      model.isFirstTime = false;
+      model.debitCardReplacementArguments = widget._debitCardReplacementArguments;
+      if (widget._debitCardReplacementArguments.isPinSet) {
+        Future.delayed(Duration(microseconds: 100), () {
+          model.navigateToPage(0);
+        });
+      } else {
+        Future.delayed(Duration(microseconds: 100), () {
+          model.moveToPage(1);
+        });
+      }
     }
   }
 

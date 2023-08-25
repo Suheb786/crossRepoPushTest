@@ -218,21 +218,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
               },
               text: S.of(context).done,
             ),
-            const SizedBox(height: 6),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 32),
-              child: Center(
-                child: Text(
-                  S.of(context).toViewVoucher,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 0),
+            SizedBox(height: 24.h),
           ],
         ));
   }

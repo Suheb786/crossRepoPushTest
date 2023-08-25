@@ -283,22 +283,7 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                 ),
               ),
               SizedBox(
-                height: 8.h,
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.only(
-                  bottom: 56.h,
-                ),
-                child: Center(
-                  child: Text(
-                    S.of(context).toPayments,
-                    style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12.t,
-                        color: AppColor.white),
-                  ),
-                ),
+                height: 24.h,
               ),
             ],
           ),

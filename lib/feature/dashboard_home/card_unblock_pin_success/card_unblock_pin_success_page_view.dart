@@ -113,7 +113,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
               children: [
                 model.manageCardPinArguments.cardType != CardType.CREDIT
                     ? Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 24.w),
+                        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                         child: AppPrimaryButton(
                           text: S.of(context).next,
                           onPressed: () {
@@ -125,7 +125,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                         ),
                       )
                     : Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                         child: AppSecondaryButton(
                           text: S.of(context).done,
                           onPressed: () {
@@ -136,27 +136,6 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                           },
                         ),
                       ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    bottom: 32.h,
-                  ),
-                  child: Center(
-                    child: Text(
-                      S.of(context).toDashboard,
-                      style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        color: model.manageCardPinArguments.cardType == CardType.CREDIT
-                            ? Theme.of(context).colorScheme.secondary
-                            : Theme.of(context).textTheme.bodyLarge?.color,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12.t,
-                      ),
-                    ),
-                  ),
-                ),
               ],
             )
           ],
