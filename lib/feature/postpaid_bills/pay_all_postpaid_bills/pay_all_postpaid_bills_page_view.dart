@@ -30,6 +30,7 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import '../../../di/payment/payment_modules.dart';
 import '../../../ui/molecules/app_keyboard_hide.dart';
 import '../../../utils/app_constants.dart';
+import '../../payment/payment_home/payment_home_view_model.dart';
 import '../new_bill/new_bills_page.dart';
 
 class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBillsPageViewModel> {
@@ -536,13 +537,23 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
 
                                                 if (temPostPaidBillInquiryData.isNotEmpty &&
                                                     temPostPaidBillInquiryData.isNotEmpty) {
-                                                  Navigator.pushNamed(
-                                                      context, RoutePaths.PaySelectedBillsPostPaidBillsPage,
-                                                      arguments: PaySelectedBillsPostPaidBillsPageArguments(
-                                                          model.postPaidBillInquiryData!.length.toString(),
-                                                          amt ?? 0.0,
-                                                          tempSelectedPostPaidBillsList,
-                                                          temPostPaidBillInquiryData));
+                                                  Navigator.pushNamed(context,
+                                                          RoutePaths.PaySelectedBillsPostPaidBillsPage,
+                                                          arguments:
+                                                              PaySelectedBillsPostPaidBillsPageArguments(
+                                                                  model.postPaidBillInquiryData!.length
+                                                                      .toString(),
+                                                                  amt ?? 0.0,
+                                                                  tempSelectedPostPaidBillsList,
+                                                                  temPostPaidBillInquiryData))
+                                                      .then((value) {
+                                                    if (value != null && value is bool && value) {
+                                                      ProviderScope.containerOf(context)
+                                                          .read(paymentHomeViewModelProvider)
+                                                          .animatePage(AnimatedPage.NULL);
+                                                      Navigator.of(context).pop();
+                                                    }
+                                                  });
                                                 } else {
                                                   model.showToastWithError(AppError(
                                                       cause: Exception(),

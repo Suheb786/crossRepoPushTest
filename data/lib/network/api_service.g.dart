@@ -5614,7 +5614,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/api/SubAccount/DeActivateSubAccount',
+              '/Dashboard/DeActivateSubAccount',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5640,7 +5640,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/api/SubAccount/UpdateNickName',
+              '/Dashboard/UpdateNickName',
               queryParameters: queryParameters,
               data: _data,
             )

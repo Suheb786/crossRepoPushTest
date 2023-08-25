@@ -19,12 +19,12 @@ class UpdateNickNameSubAccountUseCase
 
 class UpdateNickNameSubAccountUseCaseParams extends Params {
   final String NickName;
-  final String SubAccountNo;
+  final String accountNo;
   final bool GetToken;
 
   UpdateNickNameSubAccountUseCaseParams({
     required this.NickName,
-    required this.SubAccountNo,
+    required this.accountNo,
     required this.GetToken,
   });
 

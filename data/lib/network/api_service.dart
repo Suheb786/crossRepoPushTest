@@ -1206,11 +1206,11 @@ abstract class ApiService {
   Future<HttpResponse<GetVoucherDetailResponseEntity>> getVoucherDetailsApi(
       @Body() GetVoucherDetailsRequestEntity request);
 
-  @POST("${NetworkProperties.BASE_SUB_ACCOUNT_URL}/DeActivateSubAccount")
+  @POST("/Dashboard/DeActivateSubAccount")
   Future<HttpResponse<ResponseEntity>> deActivateSubAccount(
       @Body() DeactivateSubAccountRequestEntity request);
 
-  @POST("${NetworkProperties.BASE_SUB_ACCOUNT_URL}/UpdateNickName")
+  @POST("/Dashboard/UpdateNickName")
   Future<HttpResponse<ResponseEntity>> updateNickNameSubAccount(
       @Body() UpdateNickNameSubAccountRequestEntity request);
 

@@ -65,6 +65,8 @@ final appHomeViewModelProvider = ChangeNotifierProvider.autoDispose<AppHomeViewM
     ref.read(addSubAccountUseCaseProvider),
     ref.read(getAccountUseCaseProvider),
     ref.read(createAccountUseCaseProvider),
+    ref.read(deactivateSubAccountUseCaseProvider),
+    ref.read(updateNickNameSubAccountUseCaseProvider),
   ),
 );
 

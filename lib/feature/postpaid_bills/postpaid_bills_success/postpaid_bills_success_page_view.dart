@@ -269,8 +269,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                 onPressed: () {
                   Navigator.of(context)
                     ..pop()
-                    ..pop()
-                    ..pop();
+                    ..pop(true);
                 },
               ),
             ),

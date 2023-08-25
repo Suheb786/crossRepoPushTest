@@ -6,8 +6,8 @@ class UpdateNickNameSubAccountRequestEntity {
   @JsonKey(name: 'NickName')
   String nickName;
 
-  @JsonKey(name: 'SubAccountNo')
-  String subAccountNo;
+  @JsonKey(name: 'accountNo')
+  String accountNo;
 
   @JsonKey(name: 'GetToken')
   bool getToken;
@@ -17,7 +17,7 @@ class UpdateNickNameSubAccountRequestEntity {
 
   UpdateNickNameSubAccountRequestEntity({
     required this.nickName,
-    required this.subAccountNo,
+    required this.accountNo,
     required this.getToken,
     required this.baseClass,
   });

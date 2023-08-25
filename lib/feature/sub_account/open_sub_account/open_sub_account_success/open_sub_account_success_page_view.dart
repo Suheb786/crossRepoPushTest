@@ -1,6 +1,6 @@
-import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -13,7 +13,6 @@ import '../../../../ui/molecules/app_svg.dart';
 import '../../../../ui/molecules/button/app_primary_button.dart';
 import '../../../../utils/asset_utils.dart';
 import '../../../../utils/color_utils.dart';
-import '../../../../utils/resource.dart';
 import 'open_sub_account_success_page_view_model.dart';
 
 class OpenSubAccountSuccessPageView extends BasePageViewWidget<OpenSubAccountSuccessPageViewModel> {
@@ -96,26 +95,16 @@ class OpenSubAccountSuccessPageView extends BasePageViewWidget<OpenSubAccountSuc
           Column(
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w, vertical: 24.h),
-                child: AppStreamBuilder<Resource<GetDashboardDataResponse>>(
-                    stream: model.getDashboardDataStream,
-                    initialData: Resource.none(),
-                    onData: (value) {
-                      if (value.status == Status.SUCCESS) {
-                        Navigator.pop(context);
-                      }
+                  padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w,vertical: 24.h) +
+                      EdgeInsetsDirectional.only(bottom: 24.h),
+                  child: AppPrimaryButton(
+                    onPressed: () {
+                      Navigator.pop(context);
                     },
-                    dataBuilder: (context, getDashboardDataResponse) {
-                      return AppPrimaryButton(
-                        onPressed: () {
-                          model.getDashboardData();
-                        },
-                        activeBackgroundColor: Theme.of(context).colorScheme.secondary,
-                        textColor: Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue,
-                        text: S.current.done,
-                      );
-                    }),
-              ),
+                    activeBackgroundColor: Theme.of(context).colorScheme.secondary,
+                    textColor: Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue,
+                    text: S.current.done,
+                  )),
             ],
           )
         ],
