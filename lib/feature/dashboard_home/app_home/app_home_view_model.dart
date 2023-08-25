@@ -659,7 +659,8 @@ class AppHomeViewModel extends BasePageViewModel {
               cardTypeList.add(TimeLineSwipeUpArgs(
                   cardType: CardType.CREDIT,
                   swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
-                  timeLineEnum: TimeLineEnum.TIMELINE_YES));
+                  timeLineEnum: TimeLineEnum.TIMELINE_YES,
+                  object: creditCard));
               creditCards.add(creditCard);
             } else {
               pages.add(CreditCardNotDeliveredWidget(
@@ -1298,9 +1299,9 @@ class AppHomeViewModel extends BasePageViewModel {
     animateForwardTransactionPage();
     Navigator.of(context).push(CustomRoute.swipeUpRoute(CardTransactionPage(
       GetCreditCardTransactionArguments(
-          cardId: timeLineListArguments[currentStep - 1].cardId,
-          secureCode: timeLineListArguments[currentStep - 1].secureCode ?? '',
-          isIssuedFromCMS: timeLineListArguments[currentStep - 1].isIssuedFromCMS ?? false),
+          cardId: (cardTypeList[currentStep].object as CreditCard).cardId,
+          secureCode: (cardTypeList[currentStep].object as CreditCard).cardCode ?? '',
+          isIssuedFromCMS: (cardTypeList[currentStep].object as CreditCard).issuedFromCms ?? false),
     )));
   }
 
@@ -1354,10 +1355,13 @@ class TimeLineSwipeUpArgs {
 
   final TimeLineEnum timeLineEnum;
 
+  final Object? object;
+
   TimeLineSwipeUpArgs(
       {this.cardType = CardType.ACCOUNT,
       this.swipeUpEnum = SwipeUpEnum.SWIPE_UP_NO,
-      this.timeLineEnum = TimeLineEnum.TIMELINE_NO});
+      this.timeLineEnum = TimeLineEnum.TIMELINE_NO,
+      this.object = null});
 }
 
 enum SwipeUpEnum {
