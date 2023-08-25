@@ -1,4 +1,3 @@
-import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,17 +11,15 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/extension/string_casing_extension.dart';
-import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
-import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../ui/molecules/textfield/app_textfield.dart';
 
 class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
-  final Account account;
-  MyAccountPageView(ProviderBase model, this.account) : super(model);
+  MyAccountPageView(ProviderBase model) : super(model);
+
+  TextEditingController accountTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context, model) {
@@ -46,15 +43,10 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
             ),
             child: Directionality(
               textDirection: TextDirection.ltr,
-              child: AppStreamBuilder<Resource<bool>>(
-                  stream: model.updateNickNameResponseStream,
-                  initialData: Resource.none(),
-                  onData: (value) {
-                    if (value.status == Status.SUCCESS) {
-                      Navigator.pushNamed(context, RoutePaths.AppHome);
-                    }
-                  },
-                  dataBuilder: (context, snapshot) {
+              child: AppStreamBuilder<List>(
+                  stream: ProviderScope.containerOf(context).read(appHomeViewModelProvider).pageStream,
+                  initialData: [Container()],
+                  dataBuilder: (context, pagesList) {
                     return Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,12 +54,12 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                         Padding(
                           padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 32.h),
                           child: Text(
-                            account.isSubAccount == false
-                                ? ((account.nickName ?? "").isNotEmpty
-                                    ? (account.nickName ?? "")
+                            model.account.isSubAccount == false
+                                ? ((model.account.nickName ?? "").isNotEmpty
+                                    ? (model.account.nickName ?? "")
                                     : S.current.mainAccount)
-                                : (account.nickName ?? "").isNotEmpty
-                                    ? (account.nickName ?? "")
+                                : (model.account.nickName ?? "").isNotEmpty
+                                    ? (model.account.nickName ?? "")
                                     : S.current.subAccount,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
@@ -84,63 +76,65 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                               stream: model.nameEditableNotifierStream,
                               dataBuilder: (context, isEditable) {
                                 return IntrinsicWidth(
-                                    child: AppTextField(
-                                  labelText: "",
-                                  readOnly: false,
-                                  fontSize: 12.t,
-                                  maxLength: 10,
-                                  hintText: account.controller?.text == ""
-                                      ? S.current.addNickName.toTitleCase()
-                                      : "",
-                                  controller: account.controller,
-                                  textCapitalization: TextCapitalization.words,
-                                  inputType: TextInputType.name,
-                                  containerPadding:
-                                      EdgeInsets.only(left: 12.w, right: 3.w, top: 3.h, bottom: 0.h),
-                                  textColor: Theme.of(context).colorScheme.secondary,
-                                  color: Colors.transparent,
-                                  borderRadius: BorderRadius.circular(100),
-                                  textFieldBorderColor: Theme.of(context).colorScheme.surface,
-                                  hintTextColor: Theme.of(context).colorScheme.secondary,
-                                  textFieldFocusBorderColor: Theme.of(context).colorScheme.surface,
-                                  onChanged: (p0) {
-                                    model.toggleEditSubmitIcon(true);
-                                  },
-                                  suffixIcon: (selectedCard, value) {
-                                    if (isEditable! &&
-                                        account.controller?.text != account.nickName &&
-                                        account.controller!.text.isNotEmpty) {
-                                      return GestureDetector(
-                                        onTap: () {
-                                          FocusScope.of(context).unfocus();
-                                          model.toggleEditSubmitIcon(false);
-                                          Future.delayed(Duration(milliseconds: 500), () {
-                                            model.updateNickName(
-                                                SubAccountNo: account.accountNo ?? "",
-                                                NickName: account.controller?.text ?? "");
-                                          });
-                                        },
-                                        child: Padding(
+                                  child: AppTextField(
+                                    labelText: "",
+                                    readOnly: false,
+                                    fontSize: 12.t,
+                                    hintText: accountTextController.text == ""
+                                        ? S.current.addNickName.toTitleCase()
+                                        : "",
+                                    controller: accountTextController,
+                                    textCapitalization: TextCapitalization.words,
+                                    inputType: TextInputType.name,
+                                    containerPadding:
+                                        EdgeInsets.only(left: 12.w, right: 3.w, top: 3.h, bottom: 0.h),
+                                    textColor: Theme.of(context).colorScheme.secondary,
+                                    color: Colors.transparent,
+                                    borderRadius: BorderRadius.circular(100),
+                                    textFieldBorderColor: Theme.of(context).colorScheme.surface,
+                                    hintTextColor: Theme.of(context).colorScheme.secondary,
+                                    textFieldFocusBorderColor: Theme.of(context).colorScheme.surface,
+                                    onChanged: (p0) {
+                                      model.toggleEditSubmitIcon(true);
+                                    },
+                                    suffixIcon: (selectedCard, value) {
+                                      if (isEditable! &&
+                                          accountTextController.text != model.account.nickName &&
+                                          accountTextController.text.isNotEmpty) {
+                                        return GestureDetector(
+                                          onTap: () {
+                                            FocusScope.of(context).unfocus();
+                                            model.toggleEditSubmitIcon(false);
+                                            Future.delayed(Duration(milliseconds: 200), () {
+                                              ProviderScope.containerOf(context)
+                                                  .read(appHomeViewModelProvider)
+                                                  .updateNickName(
+                                                      SubAccountNo: model.account.accountNo ?? "",
+                                                      NickName: accountTextController.text ?? "");
+                                            });
+                                          },
+                                          child: Padding(
+                                            padding: EdgeInsets.only(
+                                                bottom: 4.0.h, left: 4.h, right: 4.h, top: 2.h),
+                                            child: AppSvg.asset(
+                                              AssetUtils.check,
+                                              color: Theme.of(context).colorScheme.onSecondaryContainer,
+                                            ),
+                                          ),
+                                        );
+                                      } else {
+                                        return Padding(
                                           padding:
-                                              EdgeInsets.only(bottom: 4.0.h, left: 4.h, right: 4.h, top: 2.h),
+                                              EdgeInsets.only(bottom: 8.0.h, left: 8.h, right: 9.h, top: 6.h),
                                           child: AppSvg.asset(
-                                            AssetUtils.check,
+                                            AssetUtils.editNickName,
                                             color: Theme.of(context).colorScheme.onSecondaryContainer,
                                           ),
-                                        ),
-                                      );
-                                    } else {
-                                      return Padding(
-                                        padding:
-                                            EdgeInsets.only(bottom: 8.0.h, left: 8.h, right: 9.h, top: 6.h),
-                                        child: AppSvg.asset(
-                                          AssetUtils.editNickName,
-                                          color: Theme.of(context).colorScheme.onSecondaryContainer,
-                                        ),
-                                      );
-                                    }
-                                  },
-                                ));
+                                        );
+                                      }
+                                    },
+                                  ),
+                                );
                               }),
                         ),
                         Expanded(
@@ -153,7 +147,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                 children: [
                                   SizedBox(height: screenHeight * 0.030.h),
                                   // Text(
-                                  //   account.accountTitle != null ? account.accountTitle!.replaceAll(' ', '\n') : '',
+                                  //   widget.account.accountTitle != null ? widget.account.accountTitle!.replaceAll(' ', '\n') : '',
                                   //   maxLines: 3,
                                   //   style: TextStyle(
                                   //       fontFamily: StringUtils.appFont,
@@ -169,8 +163,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                           style: TextStyle(fontSize: 20.t, fontWeight: FontWeight.w700),
                                           children: [
                                             TextSpan(
-                                                text: StringUtils.formatBalance(
-                                                    account.availableBalance ?? "0.000"),
+                                                text: model.account.availableBalance ?? '0',
                                                 style: TextStyle(
                                                     fontFamily: StringUtils.appFont,
                                                     fontSize: 20.0.t,
@@ -219,7 +212,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                   Row(
                                     children: [
                                       Text(
-                                        account.accountNo ?? '',
+                                        model.account.accountNo ?? '',
                                         maxLines: 2,
                                         style: TextStyle(
                                             fontFamily: StringUtils.appFont,
@@ -230,7 +223,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                       SizedBox(width: 8.w),
                                       InkWell(
                                         onTap: () {
-                                          Clipboard.setData(ClipboardData(text: account.accountNo ?? ''))
+                                          Clipboard.setData(
+                                                  ClipboardData(text: model.account.accountNo ?? ''))
                                               .then((value) =>
                                                   Fluttertoast.showToast(msg: S.of(context).accountNoCopied));
                                         },
@@ -258,7 +252,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                     children: [
                                       Flexible(
                                         child: Text(
-                                          account.iban ?? '',
+                                          model.account.iban ?? '',
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
                                               overflow: TextOverflow.ellipsis,
@@ -270,8 +264,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                       SizedBox(width: 8.w),
                                       InkWell(
                                         onTap: () {
-                                          Clipboard.setData(ClipboardData(text: account.iban ?? '')).then(
-                                              (value) =>
+                                          Clipboard.setData(ClipboardData(text: model.account.iban ?? ''))
+                                              .then((value) =>
                                                   Fluttertoast.showToast(msg: S.of(context).ibanCopied));
                                         },
                                         child: Padding(
@@ -307,14 +301,14 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                 Spacer(),
                                 InkWell(
                                   onTap: () {
-                                    if (account.isSubAccount ?? false) {
+                                    if (model.account.isSubAccount ?? false) {
                                       ProviderScope.containerOf(context)
                                           .read(appHomeViewModelProvider)
-                                          .showHideSubAccountSettings(true, account: account);
+                                          .showHideSubAccountSettings(true, account: model.account);
                                     } else {
                                       ProviderScope.containerOf(context)
                                           .read(appHomeViewModelProvider)
-                                          .showHideAccountSettings(true, account: account);
+                                          .showHideAccountSettings(true, account: model.account);
                                     }
                                   },
                                   child: Container(

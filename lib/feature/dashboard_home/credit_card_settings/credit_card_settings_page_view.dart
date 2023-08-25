@@ -16,6 +16,7 @@ import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_
 import 'package:neo_bank/feature/manage_credit_card_limits/manage_credit_card_limits_page.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/manage_credit_settlement_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/card/settings_tile.dart';
@@ -288,9 +289,9 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                       isCardActivated:
                           model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                       onTap: () {
-                        Navigator.pushNamed(context, RoutePaths.ManageCreditSettlement,
-                            arguments: ManageCreditSettlementArguments(
-                                creditCard: model.creditCardSettingsArguments.creditCard));
+                        Navigator.of(context).push(CustomRoute.swipeUpRoute(ManageCreditSettlementPage(
+                            manageCreditSettlementArguments: ManageCreditSettlementArguments(
+                                creditCard: model.creditCardSettingsArguments.creditCard))));
                       },
                       title: S.of(context).manageSettlement,
                       tileIcon: AssetUtils.linked,

@@ -41,6 +41,8 @@ class MyAccountViewModel extends BasePageViewModel {
 
   Stream<bool> get nameEditableNotifierStream => nameEditableNotifierSubject.stream;
 
+  // MyAccountViewModel() {}
+
   toggleEditSubmitIcon(value) {
     nameEditableNotifierSubject.safeAdd(value);
   }

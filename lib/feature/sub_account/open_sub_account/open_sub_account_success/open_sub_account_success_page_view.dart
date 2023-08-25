@@ -92,17 +92,16 @@ class OpenSubAccountSuccessPageView extends BasePageViewWidget<OpenSubAccountSuc
           Column(
             children: [
               Padding(
-                  padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w),
+                  padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w) +
+                      EdgeInsetsDirectional.only(bottom: 24.h),
                   child: AppPrimaryButton(
                     onPressed: () {
                       Navigator.pop(context);
-                      ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
                     },
                     activeBackgroundColor: Theme.of(context).colorScheme.secondary,
                     textColor: Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue,
                     text: S.current.goToDashboard,
                   )),
-              SizedBox(height: 56.h),
             ],
           )
         ],

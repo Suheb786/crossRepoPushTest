@@ -32,13 +32,14 @@ import 'package:domain/usecase/dynamic_link/init_dynamic_link_usecase.dart';
 import 'package:domain/usecase/payment/verify_qr_usecase.dart';
 import 'package:domain/usecase/sub_account/add_account_usecase.dart';
 import 'package:domain/usecase/sub_account/deactivate_sub_account_usecase.dart';
+import 'package:domain/usecase/sub_account/update_nick_name_sub_account_usecase.dart';
 import 'package:domain/usecase/user/get_current_user_usecase.dart';
 import 'package:domain/usecase/user/save_user_data_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
+import 'package:neo_bank/feature/dashboard_home/app_home/widgets/my_account_page_widget.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
-import 'package:neo_bank/feature/dashboard_home/my_account/my_account_page.dart';
 import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/ui/molecules/card/apply_credit_card_widget.dart';
@@ -73,6 +74,8 @@ class AppHomeViewModel extends BasePageViewModel {
   final GetAccountUseCase _getAccountUseCase;
   final CreateAccountUseCase _createAccountUseCase;
   final CloseSubAccountUseCase _closeSubAccountUsecase;
+  // final DeactivateSubAccountUseCase _closeSubAccountUsecase;
+  final UpdateNickNameSubAccountUseCase _updateNickNameSubAccountUseCase;
 
   String? accountNo = "";
   String? iban = "";
@@ -89,7 +92,7 @@ class AppHomeViewModel extends BasePageViewModel {
 
   final SwiperController pageController = SwiperController();
 
-  PageController appSwiperController = PageController(viewportFraction: 0.8);
+  final PageController appSwiperController = PageController(viewportFraction: 0.8);
 
   BehaviorSubject<int> _currentStep = BehaviorSubject();
 
@@ -320,17 +323,19 @@ class AppHomeViewModel extends BasePageViewModel {
   bool isSmallDevices = false;
 
   AppHomeViewModel(
-      this._getDashboardDataUseCase,
-      this._getPlaceholderUseCase,
-      this._initDynamicLinkUseCase,
-      this._getCurrentUserUseCase,
-      this._saveUserDataUseCase,
-      this._verifyQRUseCase,
-      this._getAntelopCardsListUseCase,
-      this._addSubAccountUseCase,
-      this._getAccountUseCase,
-      this._createAccountUseCase,
-      this._closeSubAccountUsecase) {
+    this._getDashboardDataUseCase,
+    this._getPlaceholderUseCase,
+    this._initDynamicLinkUseCase,
+    this._getCurrentUserUseCase,
+    this._saveUserDataUseCase,
+    this._verifyQRUseCase,
+    this._getAntelopCardsListUseCase,
+    this._addSubAccountUseCase,
+    this._getAccountUseCase,
+    this._createAccountUseCase,
+    this._closeSubAccountUsecase,
+    this._updateNickNameSubAccountUseCase,
+  ) {
     isShowBalenceUpdatedToast = false;
     deviceSize = MediaQuery.of(appLevelKey.currentContext!).size;
     isSmallDevices = deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
@@ -453,7 +458,12 @@ class AppHomeViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {}
+        } else if (event.status == Status.SUCCESS) {
+          showHideSubAccountSettings(false);
+          Future.delayed(Duration(milliseconds: 500), () {
+            getDashboardData();
+          });
+        }
       });
     });
 
@@ -511,7 +521,34 @@ class AppHomeViewModel extends BasePageViewModel {
       });
     });
 
+    _updateNickNameRequest.listen((value) {
+      RequestManager(value, createCall: () => _updateNickNameSubAccountUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _updateNickNameResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          getDashboardData();
+        }
+      });
+    });
+
     getDashboardData();
+  }
+
+  BehaviorSubject<Resource<bool>> _updateNickNameResponse = BehaviorSubject();
+
+  Stream<Resource<bool>> get updateNickNameResponseStream => _updateNickNameResponse.stream;
+
+  ///*-------------------update nick name api variable--------------------///
+  PublishSubject<UpdateNickNameSubAccountUseCaseParams> _updateNickNameRequest = PublishSubject();
+
+  void updateNickName({required String SubAccountNo, required String NickName}) {
+    _updateNickNameRequest.safeAdd(
+      UpdateNickNameSubAccountUseCaseParams(NickName: NickName, accountNo: SubAccountNo, GetToken: true),
+    );
   }
 
   showPopUps() {
@@ -592,7 +629,7 @@ class AppHomeViewModel extends BasePageViewModel {
     /// this is to be removed when proper data comes from the apis....
 
     for (Account selectedAccount in (dashboardDataContent.accounts ?? [])) {
-      pages.add(MyAccountPage(account: selectedAccount));
+      pages.add(MyAccountPageViewWidget(selectedAccount));
       cardTypeList.add(TimeLineSwipeUpArgs(
           cardType: selectedAccount.isSubAccount ?? false ? CardType.SUBACCOUNT : CardType.ACCOUNT,
           swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
@@ -659,7 +696,8 @@ class AppHomeViewModel extends BasePageViewModel {
               cardTypeList.add(TimeLineSwipeUpArgs(
                   cardType: CardType.CREDIT,
                   swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
-                  timeLineEnum: TimeLineEnum.TIMELINE_YES));
+                  timeLineEnum: TimeLineEnum.TIMELINE_YES,
+                  object: creditCard));
               creditCards.add(creditCard);
             } else {
               pages.add(CreditCardNotDeliveredWidget(
@@ -1008,14 +1046,6 @@ class AppHomeViewModel extends BasePageViewModel {
     _currentStep.safeAdd(index);
   }
 
-  void updateAppSwipeControllerStream(int index) {
-    appSwiperController = PageController(
-      viewportFraction: 0.90,
-      initialPage: index,
-    );
-    _currentStep.safeAdd(index);
-  }
-
   void updateShowTimeLineStream(bool value) {
     _showTimeLineSubject.add(value);
   }
@@ -1166,7 +1196,8 @@ class AppHomeViewModel extends BasePageViewModel {
     scaleAnimationController.dispose();
     translateTimelineDownController.dispose();
     appSwiperController.dispose();
-
+    _updateNickNameRequest.close();
+    _updateNickNameResponse.close();
     if (timer != null) {
       timer?.cancel();
     }
@@ -1298,9 +1329,9 @@ class AppHomeViewModel extends BasePageViewModel {
     animateForwardTransactionPage();
     Navigator.of(context).push(CustomRoute.swipeUpRoute(CardTransactionPage(
       GetCreditCardTransactionArguments(
-          cardId: timeLineListArguments[currentStep - 1].cardId,
-          secureCode: timeLineListArguments[currentStep - 1].secureCode ?? '',
-          isIssuedFromCMS: timeLineListArguments[currentStep - 1].isIssuedFromCMS ?? false),
+          cardId: (cardTypeList[currentStep].object as CreditCard).cardId,
+          secureCode: (cardTypeList[currentStep].object as CreditCard).cardCode ?? '',
+          isIssuedFromCMS: (cardTypeList[currentStep].object as CreditCard).issuedFromCms ?? false),
     )));
   }
 
@@ -1354,10 +1385,13 @@ class TimeLineSwipeUpArgs {
 
   final TimeLineEnum timeLineEnum;
 
+  final Object? object;
+
   TimeLineSwipeUpArgs(
       {this.cardType = CardType.ACCOUNT,
       this.swipeUpEnum = SwipeUpEnum.SWIPE_UP_NO,
-      this.timeLineEnum = TimeLineEnum.TIMELINE_NO});
+      this.timeLineEnum = TimeLineEnum.TIMELINE_NO,
+      this.object = null});
 }
 
 enum SwipeUpEnum {

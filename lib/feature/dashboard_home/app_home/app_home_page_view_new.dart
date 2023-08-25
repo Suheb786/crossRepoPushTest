@@ -42,6 +42,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../ui/molecules/app_progress.dart';
 import '../../../ui/molecules/app_svg.dart';
 import '../../../ui/molecules/card/settings_tile.dart';
 import '../../../utils/device_size_helper.dart';
@@ -51,8 +52,11 @@ import '../credit_card_settings/credit_card_settings_page.dart';
 class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
   AppHomePageViewNew(ProviderBase model) : super(model);
 
+  late BuildContext _buildContext;
+
   @override
   Widget build(BuildContext context, model) {
+    _buildContext = context;
     // model.deviceSize = MediaQuery.of(context).size;
     // model.isSmallDevices = model.deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
     // DeviceSizeHelper.isBigDevice;
@@ -266,6 +270,21 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                       return Stack(
                                                         alignment: Alignment.bottomCenter,
                                                         children: [
+                                                          AppStreamBuilder<Resource<bool>>(
+                                                              stream: model.updateNickNameResponseStream,
+                                                              initialData: Resource.none(),
+                                                              onData: (value) {
+                                                                if (value.status == Status.LOADING) {
+                                                                  AppProgress(_buildContext);
+                                                                } else if (value.status == Status.ERROR ||
+                                                                    value.status == Status.SUCCESS) {
+                                                                  Navigator.pop(_buildContext);
+                                                                }
+                                                              },
+                                                              dataBuilder: (context, value) {
+                                                                return const SizedBox();
+                                                              }),
+
                                                           ///Settings page
                                                           ///Timeline page
                                                           AppStreamBuilder<DashboardAnimatedPage>(
@@ -292,21 +311,23 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                   model.isPrimaryDebitCard,
                                                                               debitCard:
                                                                                   model.selectedDebitCard!,
-                                                                              debitCardRequestPhysicalCardEnabled: cardData
-                                                                                      ?.data
-                                                                                      ?.dashboardDataContent
-                                                                                      ?.dashboardFeatures
-                                                                                      ?.isDebitCardRequestPhysicalCardEnabled ??
-                                                                                  false))
-                                                                          : CreditCardSettingsPage(CreditCardSettingsArguments(
-                                                                              creditCard:
-                                                                                  model.selectedCreditCard!,
-                                                                              isChangePinEnabled: cardData
-                                                                                      ?.data
-                                                                                      ?.dashboardDataContent
-                                                                                      ?.dashboardFeatures
-                                                                                      ?.isPinChangeEnabled ??
-                                                                                  true))
+                                                                              debitCardRequestPhysicalCardEnabled:
+                                                                                  cardData
+                                                                                          ?.data
+                                                                                          ?.dashboardDataContent
+                                                                                          ?.dashboardFeatures
+                                                                                          ?.isDebitCardRequestPhysicalCardEnabled ??
+                                                                                      false))
+                                                                          : CreditCardSettingsPage(
+                                                                              CreditCardSettingsArguments(
+                                                                                  creditCard: model
+                                                                                      .selectedCreditCard!,
+                                                                                  isChangePinEnabled: cardData
+                                                                                          ?.data
+                                                                                          ?.dashboardDataContent
+                                                                                          ?.dashboardFeatures
+                                                                                          ?.isPinChangeEnabled ??
+                                                                                      true))
                                                                       : switchedPage == DashboardAnimatedPage.TIMELINE
                                                                           ? DebitCardTimeLinePage(TimeLinePageArguments(cardType: model.cardTypeList[currentStep ?? 0].cardType, timeLineArguments: model.timeLineArguments))
                                                                           : switchedPage == DashboardAnimatedPage.PAYBACK
@@ -397,28 +418,33 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                     ),
                                                                                               ),
                                                                                               OpenSubAccountTile(
-                                                                                                isCardActivated: (cardData
-                                                                                                            ?.data
-                                                                                                            ?.dashboardDataContent
-                                                                                                            ?.dashboardFeatures
-                                                                                                            ?.subAccountFeature ??
-                                                                                                        false) &&
-                                                                                                    (cardData
-                                                                                                            ?.data
-                                                                                                            ?.dashboardDataContent
-                                                                                                            ?.allowSubAccount ??
-                                                                                                        false),
-                                                                                                isEnabled: (cardData
-                                                                                                            ?.data
-                                                                                                            ?.dashboardDataContent
-                                                                                                            ?.dashboardFeatures
-                                                                                                            ?.subAccountFeature ??
-                                                                                                        false) &&
-                                                                                                    (cardData
-                                                                                                            ?.data
-                                                                                                            ?.dashboardDataContent
-                                                                                                            ?.allowSubAccount ??
-                                                                                                        false),
+                                                                                                isCardActivated:
+                                                                                                    true,
+                                                                                                isEnabled:
+                                                                                                    true,
+
+                                                                                                // isCardActivated: (cardData
+                                                                                                //             ?.data
+                                                                                                //             ?.dashboardDataContent
+                                                                                                //             ?.dashboardFeatures
+                                                                                                //             ?.subAccountFeature ??
+                                                                                                //         false) &&
+                                                                                                //     (cardData
+                                                                                                //             ?.data
+                                                                                                //             ?.dashboardDataContent
+                                                                                                //             ?.allowSubAccount ??
+                                                                                                //         false),
+                                                                                                // isEnabled: (cardData
+                                                                                                //             ?.data
+                                                                                                //             ?.dashboardDataContent
+                                                                                                //             ?.dashboardFeatures
+                                                                                                //             ?.subAccountFeature ??
+                                                                                                //         false) &&
+                                                                                                //     (cardData
+                                                                                                //             ?.data
+                                                                                                //             ?.dashboardDataContent
+                                                                                                //             ?.allowSubAccount ??
+                                                                                                //         false),
                                                                                                 model: model,
                                                                                               ),
                                                                                               ShareAccountTile(
@@ -626,9 +652,12 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                           0;
                                                                                       double opacity = 0;
                                                                                       if (model
-                                                                                          .appSwiperController
-                                                                                          .positions
-                                                                                          .isNotEmpty) {
+                                                                                              .appSwiperController
+                                                                                              .hasClients &&
+                                                                                          model
+                                                                                              .appSwiperController
+                                                                                              .positions
+                                                                                              .isNotEmpty) {
                                                                                         opacity = currentStep -
                                                                                             (model.appSwiperController
                                                                                                     .page ??
@@ -878,7 +907,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                               (BuildContext context, Widget? child) {
                                                                                                             double translateYOffset = 0;
                                                                                                             double opacity = 0;
-                                                                                                            if (model.appSwiperController.hasClients) if (model.appSwiperController.position.hasContentDimensions) {
+                                                                                                            if (model.appSwiperController.hasClients && model.appSwiperController.positions.isNotEmpty) if (model.appSwiperController.position.hasContentDimensions) {
                                                                                                               opacity = currentStep - (model.appSwiperController.page ?? 0);
                                                                                                               translateYOffset = currentStep - (model.appSwiperController.page ?? 0);
                                                                                                             }
