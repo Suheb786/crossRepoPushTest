@@ -5599,8 +5599,8 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> deActivateSubAccount(
-      DeactivateSubAccountRequestEntity request) async {
+  Future<HttpResponse<ResponseEntity>> closeSubAccount(
+      CloseSubAccountRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -5614,7 +5614,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/Dashboard/DeActivateSubAccount',
+              '/BankSmart/CloseAccount',
               queryParameters: queryParameters,
               data: _data,
             )

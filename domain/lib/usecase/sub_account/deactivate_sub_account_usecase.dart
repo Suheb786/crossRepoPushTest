@@ -6,23 +6,25 @@ import '../../error/app_error.dart';
 import '../../error/network_error.dart';
 import '../base/base_usecase.dart';
 
-class DeactivateSubAccountUseCase extends BaseUseCase<NetworkError, DeactivateSubAccountUseCaseParams, bool> {
+class CloseSubAccountUseCase extends BaseUseCase<NetworkError, CloseSubAccountUseCaseParams, bool> {
   final SubAccountRepository _subAccountRepo;
-  DeactivateSubAccountUseCase(this._subAccountRepo);
+  CloseSubAccountUseCase(this._subAccountRepo);
 
   @override
-  Future<Either<NetworkError, bool>> execute({required DeactivateSubAccountUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required CloseSubAccountUseCaseParams params}) {
     return _subAccountRepo.deActivateSubAccount(params: params);
   }
 }
 
-class DeactivateSubAccountUseCaseParams extends Params {
-  final String subAccountNo;
+class CloseSubAccountUseCaseParams extends Params {
+  final String accountNo;
+  final String iban;
   final bool getToken;
 
-  DeactivateSubAccountUseCaseParams({
-    required this.subAccountNo,
+  CloseSubAccountUseCaseParams({
+    required this.accountNo,
     required this.getToken,
+    required this.iban,
   });
 
   @override

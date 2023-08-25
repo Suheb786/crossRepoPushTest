@@ -7,7 +7,7 @@ import '../../usecase/sub_account/deactivate_sub_account_usecase.dart';
 
 abstract class SubAccountRepository {
   Future<Either<NetworkError, bool>> deActivateSubAccount({
-    required DeactivateSubAccountUseCaseParams params,
+    required CloseSubAccountUseCaseParams params,
   });
   Future<Either<NetworkError, bool>> updateNickNameSubAccount({
     required UpdateNickNameSubAccountUseCaseParams params,

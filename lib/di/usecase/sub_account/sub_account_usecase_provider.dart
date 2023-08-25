@@ -5,8 +5,8 @@ import 'package:domain/usecase/sub_account/update_nick_name_sub_account_usecase.
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[Deactivate-SubAccount-UseCase] provider
-final deactivateSubAccountUseCaseProvider = Provider.autoDispose<DeactivateSubAccountUseCase>(
-  (ref) => DeactivateSubAccountUseCase(ref.read(subAccountRepository)),
+final deactivateSubAccountUseCaseProvider = Provider.autoDispose<CloseSubAccountUseCase>(
+  (ref) => CloseSubAccountUseCase(ref.read(subAccountRepository)),
 );
 
 ///[Update-Nick-Name-UseCase] provider

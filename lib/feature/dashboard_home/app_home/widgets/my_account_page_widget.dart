@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
-import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -14,7 +12,6 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/extension/string_casing_extension.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:rxdart/rxdart.dart';
 import '../../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../../ui/molecules/textfield/app_textfield.dart';
 
@@ -111,7 +108,7 @@ class MyAccountPageViewWidget extends StatelessWidget {
                                             .read(appHomeViewModelProvider)
                                             .updateNickName(
                                                 SubAccountNo: account.accountNo ?? "",
-                                                NickName: accountTextController.text ?? "");
+                                                NickName: accountTextController.text);
                                       });
                                     },
                                     child: Padding(
@@ -162,7 +159,8 @@ class MyAccountPageViewWidget extends StatelessWidget {
                                           style: TextStyle(fontSize: 20.t, fontWeight: FontWeight.w700),
                                           children: [
                                             TextSpan(
-                                                text: account.availableBalance ?? '0',
+                                                text: StringUtils.formatBalance(
+                                                    account.availableBalance ?? '0.000'),
                                                 style: TextStyle(
                                                     fontFamily: StringUtils.appFont,
                                                     fontSize: 20.0.t,
@@ -262,8 +260,8 @@ class MyAccountPageViewWidget extends StatelessWidget {
                                       SizedBox(width: 8.w),
                                       InkWell(
                                         onTap: () {
-                                          Clipboard.setData(ClipboardData(text: account.accountNo ?? ''))
-                                              .then((value) =>
+                                          Clipboard.setData(ClipboardData(text: account.iban ?? '')).then(
+                                              (value) =>
                                                   Fluttertoast.showToast(msg: S.of(context).ibanCopied));
                                         },
                                         child: Padding(

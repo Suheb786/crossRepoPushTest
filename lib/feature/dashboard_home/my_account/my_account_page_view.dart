@@ -1,4 +1,3 @@
-import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,11 +13,8 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/extension/string_casing_extension.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../ui/molecules/textfield/app_textfield.dart';
-import '../../../utils/resource.dart';
-import '../../../utils/status.dart';
 
 class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
   MyAccountPageView(ProviderBase model) : super(model);
@@ -227,7 +223,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                       SizedBox(width: 8.w),
                                       InkWell(
                                         onTap: () {
-                                          Clipboard.setData(ClipboardData(text: model.account.accountNo ?? ''))
+                                          Clipboard.setData(
+                                                  ClipboardData(text: model.account.accountNo ?? ''))
                                               .then((value) =>
                                                   Fluttertoast.showToast(msg: S.of(context).accountNoCopied));
                                         },
@@ -267,7 +264,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                       SizedBox(width: 8.w),
                                       InkWell(
                                         onTap: () {
-                                          Clipboard.setData(ClipboardData(text: model.account.accountNo ?? ''))
+                                          Clipboard.setData(ClipboardData(text: model.account.iban ?? ''))
                                               .then((value) =>
                                                   Fluttertoast.showToast(msg: S.of(context).ibanCopied));
                                         },

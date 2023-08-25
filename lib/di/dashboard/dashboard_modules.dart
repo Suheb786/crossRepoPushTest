@@ -75,7 +75,9 @@ final filterTransactionDialogViewModelProvier =
         (ref) => FilterTransactionDialogViewModel());
 
 final myAccountViewModelProvider = ChangeNotifierProvider.autoDispose<MyAccountViewModel>(
-  (ref) => MyAccountViewModel(),
+  (ref) => MyAccountViewModel(
+    ref.read(updateNickNameSubAccountUseCaseProvider),
+  ),
 );
 
 final debitCardVerificationSuccessViewModelProvider =

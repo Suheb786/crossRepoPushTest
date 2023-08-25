@@ -5,8 +5,7 @@ import 'package:domain/usecase/sub_account/update_nick_name_sub_account_usecase.
 import 'package:retrofit/dio.dart';
 
 abstract class SubAccountDataSource {
-  Future<HttpResponse<ResponseEntity>> deActivateSubAccount(
-      {required DeactivateSubAccountUseCaseParams params});
+  Future<HttpResponse<ResponseEntity>> deActivateSubAccount({required CloseSubAccountUseCaseParams params});
 
   Future<HttpResponse<ResponseEntity>> updateNickNameSubAccount(
       {required UpdateNickNameSubAccountUseCaseParams params});

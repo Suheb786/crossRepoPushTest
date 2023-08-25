@@ -40,7 +40,6 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/widgets/my_account_page_widget.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
-import 'package:neo_bank/feature/dashboard_home/my_account/my_account_page.dart';
 import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/ui/molecules/card/apply_credit_card_widget.dart';
@@ -65,7 +64,6 @@ import 'package:rxdart/rxdart.dart';
 
 import '../account_transaction/account_transaction_page.dart';
 import '../card_transaction/card_transaction_page.dart';
-import '../my_account/my_account_page_view.dart';
 
 class AppHomeViewModel extends BasePageViewModel {
   final GetDashboardDataUseCase _getDashboardDataUseCase;
@@ -75,7 +73,8 @@ class AppHomeViewModel extends BasePageViewModel {
   final AddSubAccountUseCase _addSubAccountUseCase;
   final GetAccountUseCase _getAccountUseCase;
   final CreateAccountUseCase _createAccountUseCase;
-  final DeactivateSubAccountUseCase _closeSubAccountUsecase;
+  final CloseSubAccountUseCase _closeSubAccountUsecase;
+  // final DeactivateSubAccountUseCase _closeSubAccountUsecase;
   final UpdateNickNameSubAccountUseCase _updateNickNameSubAccountUseCase;
 
   String? accountNo = "";
@@ -157,7 +156,7 @@ class AppHomeViewModel extends BasePageViewModel {
   List<TimeLineListArguments> blinkTimeLineListArguments = [];
 
   ///*-------------------update nick name stream--------------------///
-  PublishSubject<DeactivateSubAccountUseCaseParams> _closeSubAccountRequest = PublishSubject();
+  PublishSubject<CloseSubAccountUseCaseParams> _closeSubAccountRequest = PublishSubject();
 
   BehaviorSubject<Resource<bool>> _closeSubAccountResponse = BehaviorSubject();
 
@@ -459,7 +458,12 @@ class AppHomeViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {}
+        } else if (event.status == Status.SUCCESS) {
+          showHideSubAccountSettings(false);
+          Future.delayed(Duration(milliseconds: 500), () {
+            getDashboardData();
+          });
+        }
       });
     });
 
@@ -560,9 +564,9 @@ class AppHomeViewModel extends BasePageViewModel {
     }
   }
 
-  void closeSubAccount({required String subAccountNo}) {
+  void closeSubAccount({required String subAccountNo, required String iban}) {
     _closeSubAccountRequest
-        .safeAdd(DeactivateSubAccountUseCaseParams(subAccountNo: subAccountNo, getToken: true));
+        .safeAdd(CloseSubAccountUseCaseParams(accountNo: subAccountNo, getToken: true, iban: iban));
   }
 
   void getAccount() {
@@ -589,24 +593,24 @@ class AppHomeViewModel extends BasePageViewModel {
   getOpenSubAccountCount(String? nickName) {
     int subAccountCount = 1;
     String? subAccountPrefix = nickName;
-
     List<Account> accounts =
         dashboardDataContent.accounts?.where((element) => (element.isSubAccount == false)).toList() ?? [];
-
     for (var account in accounts) {
       if (account.isSubAccount == true) {
         subAccountCount++;
       }
     }
-
     String result;
-
     if (subAccountCount == 0) {
       result = "$subAccountPrefix 1";
     } else {
       result = "$subAccountPrefix $subAccountCount";
     }
     print(result);
+  }
+
+  bool hasSubAccount(List<Account> accounts) {
+    return accounts.any((account) => account.isSubAccount == true);
   }
 
   List<Account> _yourAllAccounts = [];
