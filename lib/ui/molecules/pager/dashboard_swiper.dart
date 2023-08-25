@@ -95,7 +95,10 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
                 double value = 0;
 
                 ///Checking if pageController is ready to use
-                if (widget.appSwiperController.position.hasContentDimensions) {
+
+                if (widget.appSwiperController.hasClients &&
+                    widget.appSwiperController.positions
+                        .isNotEmpty) if (widget.appSwiperController.position.hasContentDimensions) {
                   ///For current page value = 0, so rotation and translation value is zero
                   value = index.toDouble() - (widget.appSwiperController.page ?? 0);
                   value = (value * 0.012);
