@@ -70,13 +70,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "acceptRequest":
             MessageLookupByLibrary.simpleMessage("موافقة على الطلب"),
         "accepted": MessageLookupByLibrary.simpleMessage("نفذت"),
-        "acceptedWorldWide": MessageLookupByLibrary.simpleMessage("مقبولة عالمياً بدون رسوم مخفية"),
+        "acceptedWorldWide": MessageLookupByLibrary.simpleMessage(
+            "مقبولة عالمياً بدون رسوم مخفية"),
         "account": MessageLookupByLibrary.simpleMessage("حساب"),
-        "accountActivatedSuccessfully": MessageLookupByLibrary.simpleMessage("تم تفعيل الحساب بنجاح"),
-        "accountActivityError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "accountActivatedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم تفعيل الحساب بنجاح"),
+        "accountActivityError": MessageLookupByLibrary.simpleMessage(
+            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "accountBalance": MessageLookupByLibrary.simpleMessage("رصيد الحساب"),
-        "accountBlink": MessageLookupByLibrary.simpleMessage("رقم الحساب (بلينك)"),
+        "accountBlink":
+            MessageLookupByLibrary.simpleMessage("رقم الحساب (بلينك)"),
         "accountCannotBeDebited": MessageLookupByLibrary.simpleMessage(
             "عفوا! لم تتم العملية بنجاح لأنه لا يمكن خصم المبلغ من الحساب"),
         "accountCard": MessageLookupByLibrary.simpleMessage("بطاقة الحساب"),
@@ -84,9 +87,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-144)"),
         "accountClosed": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم إغلاق حسابك ، يرجى الاتصال بنا إذا كنت بحاجة إلى أي معلومات على 06-5200100"),
-        "accountCreated": MessageLookupByLibrary.simpleMessage("تم إنشاء الحساب بنجاح"),
-        "accountDeletedSuccessfully": MessageLookupByLibrary.simpleMessage("تم حذف الحساب بنجاح "),
-        "accountDetails": MessageLookupByLibrary.simpleMessage("معلومات الحساب"),
+        "accountCreated":
+            MessageLookupByLibrary.simpleMessage("تم إنشاء الحساب بنجاح"),
+        "accountDeletedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم حذف الحساب بنجاح "),
+        "accountDetails":
+            MessageLookupByLibrary.simpleMessage("معلومات الحساب"),
         "accountDormant":
             MessageLookupByLibrary.simpleMessage("Account is Dormant"),
         "accountDormantDesc": MessageLookupByLibrary.simpleMessage(
@@ -95,17 +101,21 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفوا! حسابك غير فعال. اتصل بنا على ٠٦٥٢٠٠١٠٠ ليتم تفعيل الحساب"),
         "accountDormantStatusDesc": MessageLookupByLibrary.simpleMessage(
             "حسابك غير فعال لأنك ما استخدمته لفترة طويلة. اتصل بنا على 5200100-06 لحتى نفعلك حسابك وتقدر تستمتع بالمزايا والخدمات الي عم منقدمها."),
-        "accountDormantTitle": MessageLookupByLibrary.simpleMessage("حسابك غير فعال"),
-        "accountHolderName": MessageLookupByLibrary.simpleMessage("اسم صاحب الحساب"),
-        "accountInactive":
-            MessageLookupByLibrary.simpleMessage("عفوا! لم تتم العملية بنجاح لأنه حسابك غير فعال"),
+        "accountDormantTitle":
+            MessageLookupByLibrary.simpleMessage("حسابك غير فعال"),
+        "accountHolderName":
+            MessageLookupByLibrary.simpleMessage("اسم صاحب الحساب"),
+        "accountInactive": MessageLookupByLibrary.simpleMessage(
+            "عفوا! لم تتم العملية بنجاح لأنه حسابك غير فعال"),
         "accountInquiryWentWrong": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06  (Err-010)"),
         "accountInquiryWentWrong61": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال الحصول على معلومات حسابك. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06"),
-        "accountIsLinkedToTheAliasButUnableToSetItToDefault": MessageLookupByLibrary.simpleMessage(
-            "الحساب مرتبط بالاسم المستعار ، ولكن يتعذر تعيينه على الافتراضي"),
-        "accountLinkedSuccessfully": MessageLookupByLibrary.simpleMessage("تم ربط الحساب بنجاح"),
+        "accountIsLinkedToTheAliasButUnableToSetItToDefault":
+            MessageLookupByLibrary.simpleMessage(
+                "الحساب مرتبط بالاسم المستعار ، ولكن يتعذر تعيينه على الافتراضي"),
+        "accountLinkedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم ربط الحساب بنجاح"),
         "accountLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
         "accountMobileNoAlias": MessageLookupByLibrary.simpleMessage(
