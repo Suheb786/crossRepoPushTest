@@ -147,9 +147,12 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                           Navigator.pop(context);
                           data.data?.isEVoucherPopUPClicked = true;
                           model.saveCurrentUserData(user: data.data!);
-                          Navigator.of(context).push(CustomRoute.swipeUpRoute(EvoucherPage(
-                              EvoucherPageArguments(
-                                  EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING))));
+                          Navigator.of(context).push(CustomRoute.swipeUpRoute(
+                              EvoucherPage(
+                                EvoucherPageArguments(
+                                    EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING),
+                              ),
+                              routeName: RoutePaths.Evoucher));
                           /* Navigator.pushNamed(context, RoutePaths.Evoucher,
                               arguments: EvoucherPageArguments(
                                   EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING));*/
@@ -1131,6 +1134,7 @@ class CloseSubAccount extends StatelessWidget {
   bool isEnabled;
   bool isCardActivated;
   AppHomeViewModel model;
+
   CloseSubAccount({Key? key, this.isCardActivated = true, this.isEnabled = true, required this.model})
       : super(key: key);
 

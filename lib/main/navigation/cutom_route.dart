@@ -19,8 +19,9 @@ class CustomRoute {
     );
   }
 
-  static Route swipeUpRoute(Widget Page) {
+  static Route swipeUpRoute(Widget Page, {String? routeName}) {
     return PageRouteBuilder(
+      settings: RouteSettings(name: routeName),
       transitionDuration: const Duration(milliseconds: 500),
       reverseTransitionDuration: const Duration(milliseconds: 500),
       pageBuilder: (context, animation, secondaryAnimation) => Page,
