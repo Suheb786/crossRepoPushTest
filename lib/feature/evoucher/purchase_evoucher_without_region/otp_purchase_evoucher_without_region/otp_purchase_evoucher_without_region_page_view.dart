@@ -66,7 +66,9 @@ class OtpPurchaseEvoucherWithoutRegionPageView
                             exchangeRate: double.parse(model.argument.selectedItem.exchangeRate),
                             voucherCurrency: model.argument.selectedItem.currency,
                             reconciliationCurrency: model.argument.selectedItem.reconciliationCurrency,
-                            equivalentAmount: model.argument.settlementAmount.toString(),
+                            equivalentAmount: (model.argument.selectedItem.fromValue.toDouble() *
+                                    double.parse(model.argument.selectedItem.exchangeRate))
+                                .toString(),
                             denomination: model.argument.selectedItem.fromValue.toInt(),
                             discount: model.argument.selectedItem.discount.replaceAll('%', ''),
                             categories: model.argument.selectedItem.categories.join(','),
@@ -139,16 +141,14 @@ class OtpPurchaseEvoucherWithoutRegionPageView
                                                           fontFamily: StringUtils.appFont,
                                                           fontSize: 14,
                                                           fontWeight: FontWeight.w600,
-                                                          color: Theme.of(context)
-                                                              .textTheme
-                                                              .bodyLarge!
-                                                              .color!),
+                                                          color:
+                                                              Theme.of(context).textTheme.bodyLarge!.color!),
                                                     );
                                             },
                                           );
                                         }),
                                     Padding(
-                                      padding: EdgeInsets.only(top: 16.0.h,bottom: 16.0.h),
+                                      padding: EdgeInsets.only(top: 16.0.h, bottom: 16.0.h),
                                       child: AppStreamBuilder<bool>(
                                           stream: model.showButtonStream,
                                           initialData: false,

@@ -49,7 +49,6 @@ class CliqIdListPageViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _getAliasResponse.safeAdd(event);
-        print('came here ------------------------------------------------------------------------------------');
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         }

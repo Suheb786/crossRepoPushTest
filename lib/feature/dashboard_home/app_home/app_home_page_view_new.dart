@@ -45,6 +45,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 import '../../../ui/molecules/app_progress.dart';
 import '../../../ui/molecules/app_svg.dart';
 import '../../../ui/molecules/card/settings_tile.dart';
+import '../../../ui/molecules/dialog/sub_accounts_dialogs/confirmation_dialog/confirmation_dialog.dart';
 import '../../../utils/device_size_helper.dart';
 import '../../credit_card_pay_back/credit_card_pay_back_page.dart';
 import '../credit_card_settings/credit_card_settings_page.dart';
@@ -147,9 +148,12 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                           Navigator.pop(context);
                           data.data?.isEVoucherPopUPClicked = true;
                           model.saveCurrentUserData(user: data.data!);
-                          Navigator.of(context).push(CustomRoute.swipeUpRoute(EvoucherPage(
-                              EvoucherPageArguments(
-                                  EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING))));
+                          Navigator.of(context).push(CustomRoute.swipeUpRoute(
+                              EvoucherPage(
+                                EvoucherPageArguments(
+                                    EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING),
+                              ),
+                              routeName: RoutePaths.Evoucher));
                           /* Navigator.pushNamed(context, RoutePaths.Evoucher,
                               arguments: EvoucherPageArguments(
                                   EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING));*/
@@ -1131,6 +1135,7 @@ class CloseSubAccount extends StatelessWidget {
   bool isEnabled;
   bool isCardActivated;
   AppHomeViewModel model;
+
   CloseSubAccount({Key? key, this.isCardActivated = true, this.isEnabled = true, required this.model})
       : super(key: key);
 
@@ -1148,8 +1153,19 @@ class CloseSubAccount extends StatelessWidget {
               error: ErrorInfo(message: ''),
               type: ErrorType.TRANSFER_REMAINING_BALANCE_TO_CLOSE_ACCOUNT));
         } else {
-          model.closeSubAccount(
-              iban: model.selectedAccount?.iban ?? "", subAccountNo: model.selectedAccount?.accountNo ?? "");
+          ConfirmationDialog.show(context,
+              title: S.current.closeSubAccount,
+              descriptionWidget: Text(S.current.opneSubAccountDescription),
+              image: AssetUtils.closeSubAccountIcon,
+              imageHight: 40.h,
+              imageWidth: 40.w, onConfirmed: () {
+                Navigator.pop(context);
+                model.closeSubAccount(
+                    iban: model.selectedAccount?.iban ?? "", subAccountNo: model.selectedAccount?.accountNo ?? "");
+              }, onDismissed: () {
+                Navigator.pop(context);
+              });
+
         }
       },
     );

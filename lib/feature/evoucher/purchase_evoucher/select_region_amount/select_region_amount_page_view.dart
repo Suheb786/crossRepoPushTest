@@ -18,6 +18,7 @@ import 'package:neo_bank/ui/molecules/dialog/card_settings/relationship_with_car
 import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/region_filter/region_filter_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -44,10 +45,23 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                 initialData: Resource.none(),
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
-                    model.getSettlementAmmount(
-                        Amount: model.amountController.text.split(' ').first,
-                        FromCurrency: model.amountController.text.split(' ').last,
-                        ToCurrency: "JOD");
+                    var item = model.getSelectedItem();
+                    if (item.currency == AppConstantsUtils.jodCurrency) {
+                      ProviderScope.containerOf(context)
+                          .read(evoucherSettlementAccountViewModelProvider)
+                          .setVoucherInformation(SelectedVoucherInformation(
+                              settlementValue: item.fromValue.toDouble(),
+                              voucherFaceImage: model.selectedItem.cardFaceImage,
+                              voucherName: model.selectedItem.name));
+                      model.settlementAmount = item.fromValue.toDouble();
+                      ProviderScope.containerOf(context).read(purchaseEVouchersViewModelProvider).nextPage();
+                    } else {
+                      var amount = (item.fromValue.toDouble() * double.parse(item.exchangeRate)).toString();
+                      model.getSettlementAmmount(
+                          Amount: amount,
+                          FromCurrency: AppConstantsUtils.usdCurrency,
+                          ToCurrency: AppConstantsUtils.jodCurrency);
+                    }
                   } else if (data.status == Status.ERROR) {
                     model.showToastWithError(data.appError!);
                   }

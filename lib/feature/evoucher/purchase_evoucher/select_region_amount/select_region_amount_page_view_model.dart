@@ -74,14 +74,6 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           settlementAmount = event.data?.content ?? 0.0;
-
-          ///To sort selected region
-          selectedItem = voucherItems.firstWhere(
-              (element) =>
-                  (element.countryCode.isoCode == selectedRegion.isoCode) &&
-                  (element.fromValue.toStringAsFixed(3) == amountController.text.split(' ').first &&
-                      (element.currency == amountController.text.split(' ').last)),
-              orElse: () => voucherItems.first);
         }
       });
     });
@@ -109,6 +101,22 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
       default:
         break;
     }
+  }
+
+  VoucherItem getSelectedItem() {
+    ///To sort selected region
+    selectedItem = voucherItems.firstWhere(
+            (element) =>
+        (element.countryCode.isoCode == selectedRegion.isoCode) &&
+            (element.fromValue.toStringAsFixed(3) == amountController.text
+                .split(' ')
+                .first &&
+                (element.currency == amountController.text
+                    .split(' ')
+                    .last)),
+        orElse: () => voucherItems.first);
+
+    return selectedItem;
   }
 
   void validateFields() {

@@ -134,7 +134,8 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                       ///CLIQ
                       PagesWidget(
                         onTap: () {
-                          Navigator.of(context).push(CustomRoute.swipeUpRoute(CliqIdListPage()));
+                          Navigator.of(context).push(
+                              CustomRoute.swipeUpRoute(CliqIdListPage(), routeName: RoutePaths.CliqIdList));
                         },
                         key: 'CLIQ',
                         child: SettingsMenuWidget(
@@ -148,9 +149,12 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                       ///E-VOUCHERS
                       PagesWidget(
                         onTap: () {
-                          Navigator.of(context).push(CustomRoute.swipeUpRoute(EvoucherPage(
-                              EvoucherPageArguments(
-                                  EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING))));
+                          Navigator.of(context).push(
+                            CustomRoute.swipeUpRoute(
+                                EvoucherPage(EvoucherPageArguments(
+                                    EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING)),
+                                routeName: RoutePaths.Evoucher),
+                          );
                           /*Navigator.pushNamed(context, RoutePaths.Evoucher,
                               arguments: EvoucherPageArguments(
                                   EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING));*/

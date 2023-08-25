@@ -384,7 +384,6 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                     child: AnimatedBuilder(
                                                       animation: model.appSwiperController,
                                                       builder: (BuildContext context, Widget? child) {
-                                                        double translateYOffset = 0;
                                                         double opacity = 0;
                                                         if (model.appSwiperController.hasClients) if (model
                                                             .appSwiperController
@@ -392,11 +391,9 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                             .hasContentDimensions) {
                                                           opacity = currentStep! -
                                                               (model.appSwiperController.page ?? 0);
-                                                          translateYOffset = currentStep -
-                                                              (model.appSwiperController.page ?? 0);
                                                         }
                                                         return Transform.translate(
-                                                          offset: Offset(0, translateYOffset.abs() * 40),
+                                                          offset: Offset(0, 1),
                                                           child: Opacity(
                                                             opacity: (opacity.abs() - 1).abs(),
                                                             child: child!,
