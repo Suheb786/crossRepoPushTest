@@ -120,7 +120,7 @@ class RequestAmountFromContactSuccessPageView
             ),
             Spacer(),
             Padding(
-              padding: EdgeInsets.only(top: 10.0.h, left: 24.w, right: 24.w),
+              padding: EdgeInsets.only(top: 10.0.h, left: 24.w, right: 24.w, bottom: 24.h),
               child: AppPrimaryButton(
                 text: S.of(context).done,
                 onPressed: () {
@@ -132,52 +132,6 @@ class RequestAmountFromContactSuccessPageView
                 },
               ),
             ),
-            InkWell(
-              onTap: () {},
-              child: Padding(
-                padding: EdgeInsets.only(top: 9.h),
-                child: Text(
-                  S.of(context).toDashboard,
-                  style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      fontSize: 12.t,
-                      fontWeight: FontWeight.w400,
-                      color: Theme.of(context).textTheme.bodyMedium!.color!),
-                ),
-              ),
-            ),
-            Visibility(
-              visible: false,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 33.h),
-                    child: Text(
-                      S.of(context).undoRequest,
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          fontSize: 14.t,
-                          fontWeight: FontWeight.w600,
-                          color: Theme.of(context).textTheme.bodyMedium!.color!),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 4.h),
-                    child: Text(
-                      "0:07",
-                      style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        fontSize: 14.t,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10.h,
-            )
           ],
         ),
       ),

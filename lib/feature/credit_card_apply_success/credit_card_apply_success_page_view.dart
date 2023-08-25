@@ -88,32 +88,13 @@ class CreditCardApplySuccessPageView extends BasePageViewWidget<CreditCardApplyS
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                   child: AppSecondaryButton(
                     text: S.of(context).done,
                     onPressed: () {
                       Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
                       ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
                     },
-                  ),
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    bottom: 32.h,
-                  ),
-                  child: Center(
-                    child: Text(
-                      S.of(context).toDashboard,
-                      style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).colorScheme.secondary,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12.t,
-                      ),
-                    ),
                   ),
                 ),
               ],

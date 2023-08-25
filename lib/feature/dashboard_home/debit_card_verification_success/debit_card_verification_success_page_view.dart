@@ -64,7 +64,7 @@ class DebitCardVerificationSuccessPageView extends BasePageViewWidget<DebitCardV
             ),
             Spacer(),
             Padding(
-              padding: EdgeInsets.only(top: 10.h, left: 24.w, right: 24.w),
+              padding: EdgeInsets.only(top: 10.h, left: 24.w, right: 24.w, bottom: 24.h),
               child: AppSecondaryButton(
                 text: S.of(context).done,
                 onPressed: () {
@@ -76,24 +76,6 @@ class DebitCardVerificationSuccessPageView extends BasePageViewWidget<DebitCardV
                 },
               ),
             ),
-            InkWell(
-              onTap: () {
-                Navigator.of(context)
-                  ..pop()
-                  ..pop();
-              },
-              child: Padding(
-                padding: EdgeInsets.only(top: 9.h),
-                child: Text(
-                  S.of(context).toDashboard,
-                  style:
-                      TextStyle(fontFamily: StringUtils.appFont, fontSize: 12.t, fontWeight: FontWeight.w600),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10.0.h,
-            )
           ],
         ),
       ),

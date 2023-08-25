@@ -20,7 +20,7 @@ class ChangeCardSettlementPercentagePageViewModel extends BasePageViewModel {
   List<String> percentageList = ["25 %", "50 %", "100 %"];
 
   /// button subject
-  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(true);
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 

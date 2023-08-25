@@ -138,24 +138,13 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
           ),
           Spacer(),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
             child: AppSecondaryButton(
               onPressed: () {
                 ProviderScope.containerOf(context).read(cliqIdListViewModelProvider).getAlias(true);
                 Navigator.pop(context);
               },
               text: S.of(context).done,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 9.h, bottom: 16.h),
-            child: Text(
-              S.of(context).toManageCliq,
-              style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  color: Theme.of(context).colorScheme.secondary,
-                  fontSize: 12.t,
-                  fontWeight: FontWeight.w600),
             ),
           ),
         ],

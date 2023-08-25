@@ -74,7 +74,7 @@ class SendMoneyFailurePageView extends BasePageViewWidget<SendMoneyFailureViewMo
           Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 10.h, left: 24.w, right: 24.w),
+                padding: EdgeInsets.only(top: 10.h, left: 24.w, right: 24.w, bottom: 24.h),
                 child: AppPrimaryButton(
                   text: S.of(context).okey,
                   onPressed: () {
@@ -82,24 +82,6 @@ class SendMoneyFailurePageView extends BasePageViewWidget<SendMoneyFailureViewMo
                   },
                 ),
               ),
-              InkWell(
-                onTap: () {},
-                child: Padding(
-                  padding: EdgeInsets.only(top: 9.h),
-                  child: Text(
-                    S.of(context).toDashboard,
-                    style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      fontSize: 12.t,
-                      fontWeight: FontWeight.w400,
-                      color: Theme.of(context).colorScheme.secondary,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 24.0.h,
-              )
             ],
           ),
         ],

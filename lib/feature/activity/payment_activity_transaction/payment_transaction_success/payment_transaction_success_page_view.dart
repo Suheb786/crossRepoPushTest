@@ -131,7 +131,7 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
           ),
           Spacer(),
           Padding(
-            padding: EdgeInsets.only(top: 76, left: 24.w, right: 24.w),
+            padding: EdgeInsets.only(top: 76, left: 24.w, right: 24.w, bottom: 24.h),
             child: AppPrimaryButton(
               text: S.of(context).done,
               onPressed: () {
@@ -140,52 +140,6 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
               },
             ),
           ),
-          InkWell(
-            onTap: () {},
-            child: Padding(
-              padding: EdgeInsets.only(top: 9.0.h),
-              child: Text(
-                S.of(context).toDashboard,
-                style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    color: Theme.of(context).textTheme.bodyLarge!.color!,
-                    fontSize: 12.0.t,
-                    fontWeight: FontWeight.w600),
-              ),
-            ),
-          ),
-          Visibility(
-            visible: false,
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 33.0.h),
-                  child: Text(
-                    S.of(context).undoTransaction,
-                    style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        fontSize: 14.0.t,
-                        fontWeight: FontWeight.w600,
-                        color: Theme.of(context).textTheme.bodyLarge!.color!),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 4.0.h),
-                  child: Text(
-                    "0:07",
-                    style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        fontSize: 14.0.t,
-                        fontWeight: FontWeight.w600,
-                        color: Theme.of(context).colorScheme.secondary),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 40.0.h,
-          )
         ],
       ),
     );

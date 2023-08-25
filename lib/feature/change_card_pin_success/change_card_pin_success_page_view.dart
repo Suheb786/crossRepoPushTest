@@ -111,34 +111,13 @@ class ChangeCardPinSuccessPageView extends BasePageViewWidget<ChangeCardPinSucce
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+                  padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 24.h),
                   child: AppPrimaryButton(
                     text: S.of(context).done,
                     onPressed: () {
                       Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
                       ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
                     },
-                  ),
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    bottom: 32.h,
-                  ),
-                  child: Center(
-                    child: Text(
-                      S.of(context).toDashboard,
-                      style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        color: model.arguments.cardType == CardType.DEBIT
-                            ? Theme.of(context).primaryColorDark
-                            : Theme.of(context).colorScheme.secondary,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12.t,
-                      ),
-                    ),
                   ),
                 ),
               ],
