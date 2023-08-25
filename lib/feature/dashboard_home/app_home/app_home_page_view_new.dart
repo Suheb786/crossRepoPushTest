@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:data/helper/antelop_helper.dart';
@@ -7,7 +8,6 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/bank_smart/create_account_response.dart';
 import 'package:domain/model/base/error_info.dart';
-import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/model/qr/verify_qr_response.dart';
 import 'package:domain/model/user/user.dart';
@@ -22,7 +22,6 @@ import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_t
 import 'package:neo_bank/feature/evoucher/evoucher/evoucher_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
 import 'package:neo_bank/feature/sub_account/open_sub_account/open_sub_account_success/open_sub_account_success_page.dart';
-import 'package:neo_bank/feature/sub_account/transfer/select_transfer/select_transfer_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -33,7 +32,6 @@ import 'package:neo_bank/ui/molecules/dialog/efawateer_landing_page_dialog/efawa
 import 'package:neo_bank/ui/molecules/dialog/evoucher/evoucher_landing_page_dialog/evoucher_landing_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/rj/rj_dashbord_dialog/rj_dashboard_dialog.dart';
-import 'package:neo_bank/ui/molecules/dialog/sub_accounts_dialogs/confirmation_dialog/confirmation_dialog.dart';
 import 'package:neo_bank/ui/molecules/pager/dashboard_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/app_constants.dart';
@@ -44,7 +42,6 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:share_plus/share_plus.dart';
 
 import '../../../ui/molecules/app_svg.dart';
 import '../../../ui/molecules/card/settings_tile.dart';
@@ -282,335 +279,210 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                       const Duration(milliseconds: 400),
                                                                   switchInCurve: Curves.easeInOut,
                                                                   switchOutCurve: Curves.linearToEaseOut,
-                                                                  child:
-                                                                      switchedPage ==
-                                                                              DashboardAnimatedPage.SETTINGS
-                                                                          ? model.selectedDebitCard != null
-                                                                              ? DebitCardSettingsPage(DebitCardSettingsArguments(
-                                                                                  accountStatusEnum: cardData
-                                                                                          ?.data
-                                                                                          ?.dashboardDataContent
-                                                                                          ?.account
-                                                                                          ?.accountStatusEnum ??
-                                                                                      AccountStatusEnum.NONE,
-                                                                                  isPrimaryDebitCard: model
-                                                                                      .isPrimaryDebitCard,
-                                                                                  debitCard: model
-                                                                                      .selectedDebitCard!,
-                                                                                  debitCardRequestPhysicalCardEnabled: cardData
+                                                                  child: switchedPage ==
+                                                                          DashboardAnimatedPage.SETTINGS
+                                                                      ? model.selectedDebitCard != null
+                                                                          ? DebitCardSettingsPage(DebitCardSettingsArguments(
+                                                                              accountStatusEnum: cardData
+                                                                                      ?.data
+                                                                                      ?.dashboardDataContent
+                                                                                      ?.account
+                                                                                      ?.accountStatusEnum ??
+                                                                                  AccountStatusEnum.NONE,
+                                                                              isPrimaryDebitCard:
+                                                                                  model.isPrimaryDebitCard,
+                                                                              debitCard:
+                                                                                  model.selectedDebitCard!,
+                                                                              debitCardRequestPhysicalCardEnabled:
+                                                                                  cardData
                                                                                           ?.data
                                                                                           ?.dashboardDataContent
                                                                                           ?.dashboardFeatures
                                                                                           ?.isDebitCardRequestPhysicalCardEnabled ??
                                                                                       false))
-                                                                              : CreditCardSettingsPage(
-                                                                                  CreditCardSettingsArguments(
-                                                                                      creditCard: model
-                                                                                          .selectedCreditCard!,
-                                                                                      isChangePinEnabled: cardData
-                                                                                              ?.data
-                                                                                              ?.dashboardDataContent
-                                                                                              ?.dashboardFeatures
-                                                                                              ?.isPinChangeEnabled ??
-                                                                                          true))
-                                                                          : switchedPage ==
-                                                                                  DashboardAnimatedPage.TIMELINE
-                                                                              ? DebitCardTimeLinePage(TimeLinePageArguments(cardType: model.cardTypeList[currentStep ?? 0].cardType, timeLineArguments: model.timeLineArguments))
-                                                                              : switchedPage == DashboardAnimatedPage.PAYBACK
-                                                                                  ? CreditCardPayBackPage(
-                                                                                      CreditCardPayBackArguments(
-                                                                                          accountHolderName: model
-                                                                                                  .selectedCreditCard
-                                                                                                  ?.name ??
-                                                                                              '',
-                                                                                          secureCode: model
-                                                                                                  .selectedCreditCard
-                                                                                                  ?.cardCode ??
-                                                                                              '',
-                                                                                          accountBalance: cardData!
-                                                                                                  .data!
-                                                                                                  .dashboardDataContent
-                                                                                                  ?.account
-                                                                                                  ?.availableBalance ??
-                                                                                              '0',
-                                                                                          minDuePayBackAmount:
-                                                                                              (model.selectedCreditCard
-                                                                                                          ?.paymentDueAmount ??
-                                                                                                      '')
-                                                                                                  .toString(),
-                                                                                          totalMinDueAmount: model
-                                                                                                  .selectedCreditCard
-                                                                                                  ?.usedBalance ??
-                                                                                              '0'),
-                                                                                    )
-                                                                                  : switchedPage == DashboardAnimatedPage.ACT_SETTING
-                                                                                      ? AppStreamBuilder<Resource<CreateAccountResponse>>(
-                                                                                          stream: model.createAccountStream,
-                                                                                          initialData: Resource.none(),
-                                                                                          onData: (event) {
-                                                                                            if (event
-                                                                                                    .status ==
-                                                                                                Status
-                                                                                                    .SUCCESS) {
-                                                                                              Navigator.pushNamed(
-                                                                                                      context,
-                                                                                                      RoutePaths
-                                                                                                          .OpenSubAccountSuccessPage,
-                                                                                                      arguments: OpenSubAccountSuccessPageArgument(
-                                                                                                          accountNo: model
+                                                                          : CreditCardSettingsPage(
+                                                                              CreditCardSettingsArguments(
+                                                                                  creditCard: model
+                                                                                      .selectedCreditCard!,
+                                                                                  isChangePinEnabled: cardData
+                                                                                          ?.data
+                                                                                          ?.dashboardDataContent
+                                                                                          ?.dashboardFeatures
+                                                                                          ?.isPinChangeEnabled ??
+                                                                                      true))
+                                                                      : switchedPage == DashboardAnimatedPage.TIMELINE
+                                                                          ? DebitCardTimeLinePage(TimeLinePageArguments(cardType: model.cardTypeList[currentStep ?? 0].cardType, timeLineArguments: model.timeLineArguments))
+                                                                          : switchedPage == DashboardAnimatedPage.PAYBACK
+                                                                              ? CreditCardPayBackPage(
+                                                                                  CreditCardPayBackArguments(
+                                                                                      accountHolderName: model
+                                                                                              .selectedCreditCard
+                                                                                              ?.name ??
+                                                                                          '',
+                                                                                      secureCode: model
+                                                                                              .selectedCreditCard
+                                                                                              ?.cardCode ??
+                                                                                          '',
+                                                                                      accountBalance: cardData!
+                                                                                              .data!
+                                                                                              .dashboardDataContent
+                                                                                              ?.account
+                                                                                              ?.availableBalance ??
+                                                                                          '0',
+                                                                                      minDuePayBackAmount:
+                                                                                          (model.selectedCreditCard
+                                                                                                      ?.paymentDueAmount ??
+                                                                                                  '')
+                                                                                              .toString(),
+                                                                                      totalMinDueAmount: model
+                                                                                              .selectedCreditCard
+                                                                                              ?.usedBalance ??
+                                                                                          '0'),
+                                                                                )
+                                                                              : switchedPage == DashboardAnimatedPage.ACT_SETTING
+                                                                                  ? AppStreamBuilder<Resource<CreateAccountResponse>>(
+                                                                                      stream: model.createAccountStream,
+                                                                                      initialData: Resource.none(),
+                                                                                      onData: (event) {
+                                                                                        if (event.status ==
+                                                                                            Status.SUCCESS) {
+                                                                                          Navigator.pushNamed(
+                                                                                                  context,
+                                                                                                  RoutePaths
+                                                                                                      .OpenSubAccountSuccessPage,
+                                                                                                  arguments: OpenSubAccountSuccessPageArgument(
+                                                                                                      accountNo:
+                                                                                                          model
                                                                                                               .accountNo,
-                                                                                                          iban: model
-                                                                                                              .iban))
-                                                                                                  .then(
-                                                                                                      (value) {
-                                                                                                model
-                                                                                                    .closeSubAccountDialogAndRefreshPage();
-                                                                                              });
-                                                                                            }
-                                                                                          },
-                                                                                          dataBuilder: (context, createAccountResponse) {
-                                                                                            return Padding(
-                                                                                              padding: EdgeInsetsDirectional
+                                                                                                      iban: model
+                                                                                                          .iban))
+                                                                                              .then((value) {
+                                                                                            model
+                                                                                                .closeSubAccountDialogAndRefreshPage();
+                                                                                          });
+                                                                                        }
+                                                                                      },
+                                                                                      dataBuilder: (context, createAccountResponse) {
+                                                                                        return Padding(
+                                                                                          padding:
+                                                                                              EdgeInsetsDirectional
                                                                                                   .only(
                                                                                                       start: 36.0
                                                                                                           .w),
-                                                                                              child: Column(
-                                                                                                mainAxisAlignment:
-                                                                                                    MainAxisAlignment
-                                                                                                        .end,
-                                                                                                children: [
-                                                                                                  SettingTile(
-                                                                                                    tileIcon:
-                                                                                                        AssetUtils
-                                                                                                            .addMoneyIcon,
-                                                                                                    title: S
-                                                                                                        .current
-                                                                                                        .addMoney,
-                                                                                                    onTap:
-                                                                                                        () {
-                                                                                                      Navigator.pushNamed(
-                                                                                                          context,
-                                                                                                          RoutePaths.AddMoneyOptionSelector);
-                                                                                                    },
-                                                                                                  ),
-                                                                                                  SettingTile(
-                                                                                                    isEnabled: (cardData
+                                                                                          child: Column(
+                                                                                            mainAxisAlignment:
+                                                                                                MainAxisAlignment
+                                                                                                    .end,
+                                                                                            children: [
+                                                                                              AddMoneyTile(),
+                                                                                              TransferBetweenAccountTile(
+                                                                                                isEnabled: (cardData
                                                                                                             ?.data
                                                                                                             ?.dashboardDataContent
                                                                                                             ?.dashboardFeatures
                                                                                                             ?.transferBetweenAccountsFeature ??
-                                                                                                        false),
-                                                                                                    isCardActivated: (cardData
+                                                                                                        false) &&
+                                                                                                    model
+                                                                                                        .hasSubAccount(
+                                                                                                      (cardData?.data?.dashboardDataContent?.accounts ??
+                                                                                                          []),
+                                                                                                    ),
+                                                                                                isCardActivated: (cardData
                                                                                                             ?.data
                                                                                                             ?.dashboardDataContent
                                                                                                             ?.dashboardFeatures
                                                                                                             ?.transferBetweenAccountsFeature ??
-                                                                                                        false),
-                                                                                                    tileIcon:
-                                                                                                        AssetUtils
-                                                                                                            .transferBetweenAccountIcon,
-                                                                                                    title: S
-                                                                                                        .current
-                                                                                                        .transferBetweenAccount,
-                                                                                                    onTap:
-                                                                                                        () {
-                                                                                                      Navigator
-                                                                                                          .pushReplacementNamed(
-                                                                                                        context,
-                                                                                                        RoutePaths
-                                                                                                            .SelectTransferPage,
-                                                                                                        arguments:
-                                                                                                            SelectTranferPageArgument(
-                                                                                                          account: Account(
-                                                                                                              accountNo: "8986808",
-                                                                                                              accountTitle: "Sub Account - Savings",
-                                                                                                              availableBalance: "900"),
-                                                                                                        ),
-                                                                                                      );
-                                                                                                    },
-                                                                                                  ),
-                                                                                                  SettingTile(
-                                                                                                    isEnabled: (cardData?.data?.dashboardDataContent?.dashboardFeatures?.subAccountFeature ??
-                                                                                                            false) &&
-                                                                                                        (cardData?.data?.dashboardDataContent?.allowSubAccount ??
-                                                                                                            false),
-                                                                                                    isCardActivated: (cardData?.data?.dashboardDataContent?.dashboardFeatures?.subAccountFeature ??
-                                                                                                            false) &&
-                                                                                                        (cardData?.data?.dashboardDataContent?.allowSubAccount ??
-                                                                                                            false),
-                                                                                                    tileIcon:
-                                                                                                        AssetUtils
-                                                                                                            .openSubAccountIcon,
-                                                                                                    title: S
-                                                                                                        .current
-                                                                                                        .openSubAccount,
-                                                                                                    onTap:
-                                                                                                        () {
-                                                                                                      return ConfirmationDialog.show(
-                                                                                                          context,
-                                                                                                          title: S
-                                                                                                              .current.openSubAccount,
-                                                                                                          descriptionWidget: Text(S
-                                                                                                              .current.opneSubAccountDescription),
-                                                                                                          image: AssetUtils
-                                                                                                              .openSubAccountIcon,
-                                                                                                          imageHight: 40
-                                                                                                              .h,
-                                                                                                          imageWidth:
-                                                                                                              40.w,
-                                                                                                          onConfirmed:
-                                                                                                              () {
-                                                                                                        Navigator.pop(
-                                                                                                            context);
-                                                                                                        model
-                                                                                                            .getAccount();
-                                                                                                      }, onDismissed:
-                                                                                                              () {
-                                                                                                        Navigator.pop(
-                                                                                                            context);
-                                                                                                      });
-                                                                                                    },
-                                                                                                  ),
-                                                                                                  SettingTile(
-                                                                                                    tileIcon:
-                                                                                                        AssetUtils
-                                                                                                            .shareAccountInfoIcon,
-                                                                                                    title: S
-                                                                                                        .current
-                                                                                                        .shareAccountInformation,
-                                                                                                    onTap:
-                                                                                                        () {
-                                                                                                      _shareFiles(
-                                                                                                          context,
-                                                                                                          model.selectedAccount);
-                                                                                                    },
-                                                                                                  ),
-                                                                                                  (cardData?.data?.dashboardDataContent?.dashboardFeatures?.subAccountFeature ??
-                                                                                                          false)
-                                                                                                      ? SizedBox(
-                                                                                                          height: 110
-                                                                                                              .h)
-                                                                                                      : SizedBox(
-                                                                                                          height:
-                                                                                                              180.h),
-                                                                                                ],
+                                                                                                        false) &&
+                                                                                                    model
+                                                                                                        .hasSubAccount(
+                                                                                                      (cardData?.data?.dashboardDataContent?.accounts ??
+                                                                                                          []),
+                                                                                                    ),
                                                                                               ),
-                                                                                            );
-                                                                                          })
-                                                                                      : switchedPage == DashboardAnimatedPage.SUB_ACT_SETTING
-                                                                                          ? Padding(
-                                                                                              padding: EdgeInsetsDirectional
+                                                                                              OpenSubAccountTile(
+                                                                                                isCardActivated:
+                                                                                                    true,
+                                                                                                isEnabled:
+                                                                                                    true,
+                                                                                                model: model,
+                                                                                              ),
+                                                                                              ShareAccountTile(
+                                                                                                  context:
+                                                                                                      context,
+                                                                                                  model:
+                                                                                                      model),
+                                                                                              SizedBox(
+                                                                                                  height:
+                                                                                                      110.h),
+                                                                                            ],
+                                                                                          ),
+                                                                                        );
+                                                                                      })
+                                                                                  : switchedPage == DashboardAnimatedPage.SUB_ACT_SETTING
+                                                                                      ? Padding(
+                                                                                          padding:
+                                                                                              EdgeInsetsDirectional
                                                                                                   .only(
                                                                                                       start: 36.0
                                                                                                           .w),
-                                                                                              child: Column(
-                                                                                                mainAxisAlignment:
-                                                                                                    MainAxisAlignment
-                                                                                                        .end,
-                                                                                                children: [
-                                                                                                  SettingTile(
-                                                                                                    isEnabled: (cardData
-                                                                                                            ?.data
-                                                                                                            ?.dashboardDataContent
-                                                                                                            ?.dashboardFeatures
-                                                                                                            ?.transferBetweenAccountsFeature ??
-                                                                                                        false),
-                                                                                                    isCardActivated: (cardData
-                                                                                                            ?.data
-                                                                                                            ?.dashboardDataContent
-                                                                                                            ?.dashboardFeatures
-                                                                                                            ?.transferBetweenAccountsFeature ??
-                                                                                                        false),
-                                                                                                    tileIcon:
-                                                                                                        AssetUtils
-                                                                                                            .transferBetweenAccountIcon,
-                                                                                                    title: S
-                                                                                                        .current
-                                                                                                        .transferBetweenAccount,
-                                                                                                    onTap:
-                                                                                                        () {
-                                                                                                      Navigator
-                                                                                                          .pushReplacementNamed(
-                                                                                                        context,
-                                                                                                        RoutePaths
-                                                                                                            .SelectTransferPage,
-                                                                                                        arguments:
-                                                                                                            SelectTranferPageArgument(
-                                                                                                          account: Account(
-                                                                                                              accountNo: "8986808",
-                                                                                                              accountTitle: "Sub Account - Savings",
-                                                                                                              availableBalance: "900"),
-                                                                                                        ),
-                                                                                                      );
-                                                                                                    },
-                                                                                                  ),
-                                                                                                  SettingTile(
-                                                                                                    isEnabled: (cardData
-                                                                                                            ?.data
-                                                                                                            ?.dashboardDataContent
-                                                                                                            ?.dashboardFeatures
-                                                                                                            ?.shareAccountInformationFeature ??
-                                                                                                        false),
-                                                                                                    isCardActivated: (cardData
-                                                                                                            ?.data
-                                                                                                            ?.dashboardDataContent
-                                                                                                            ?.dashboardFeatures
-                                                                                                            ?.shareAccountInformationFeature ??
-                                                                                                        false),
-                                                                                                    tileIcon:
-                                                                                                        AssetUtils
-                                                                                                            .share,
-                                                                                                    title: S
-                                                                                                        .current
-                                                                                                        .shareAccountInformation,
-                                                                                                    onTap:
-                                                                                                        () {
-                                                                                                      _shareFiles(
-                                                                                                          context,
-                                                                                                          model.selectedAccount);
-                                                                                                    },
-                                                                                                  ),
-                                                                                                  SettingTile(
-                                                                                                    isEnabled: (cardData
-                                                                                                            ?.data
-                                                                                                            ?.dashboardDataContent
-                                                                                                            ?.dashboardFeatures
-                                                                                                            ?.closeSubAccountFeature ??
-                                                                                                        false),
-                                                                                                    isCardActivated: (cardData
-                                                                                                            ?.data
-                                                                                                            ?.dashboardDataContent
-                                                                                                            ?.dashboardFeatures
-                                                                                                            ?.closeSubAccountFeature ??
-                                                                                                        false),
-                                                                                                    tileIcon:
-                                                                                                        AssetUtils
-                                                                                                            .closeSubAccountIcon,
-                                                                                                    title: S
-                                                                                                        .current
-                                                                                                        .closeSubAccount,
-                                                                                                    onTap:
-                                                                                                        () {
-                                                                                                      if (num.parse(model.selectedAccount?.availableBalance ??
-                                                                                                              '0') >
-                                                                                                          0) {
-                                                                                                        model.showToastWithError(AppError(
-                                                                                                            cause: Exception(),
-                                                                                                            error: ErrorInfo(message: ''),
-                                                                                                            type: ErrorType.TRANSFER_REMAINING_BALANCE_TO_CLOSE_ACCOUNT));
-                                                                                                      } else {
-                                                                                                        model.closeSubAccount(
-                                                                                                            subAccountNo: model.selectedAccount?.accountNo ?? "");
-                                                                                                      }
-                                                                                                    },
-                                                                                                  ),
-                                                                                                  SizedBox(
-                                                                                                      height:
-                                                                                                          180.h),
-                                                                                                ],
+                                                                                          child: Column(
+                                                                                            mainAxisAlignment:
+                                                                                                MainAxisAlignment
+                                                                                                    .end,
+                                                                                            children: [
+                                                                                              TransferBetweenAccountTile(
+                                                                                                isEnabled: (cardData
+                                                                                                        ?.data
+                                                                                                        ?.dashboardDataContent
+                                                                                                        ?.dashboardFeatures
+                                                                                                        ?.transferBetweenAccountsFeature ??
+                                                                                                    false),
+                                                                                                isCardActivated: (cardData
+                                                                                                        ?.data
+                                                                                                        ?.dashboardDataContent
+                                                                                                        ?.dashboardFeatures
+                                                                                                        ?.transferBetweenAccountsFeature ??
+                                                                                                    false),
                                                                                               ),
-                                                                                            )
-                                                                                          : const SizedBox(),
+                                                                                              ShareAccountTile(
+                                                                                                context:
+                                                                                                    context,
+                                                                                                model: model,
+                                                                                                isCardActivated: (cardData
+                                                                                                        ?.data
+                                                                                                        ?.dashboardDataContent
+                                                                                                        ?.dashboardFeatures
+                                                                                                        ?.shareAccountInformationFeature ??
+                                                                                                    false),
+                                                                                                isEnabled: (cardData
+                                                                                                        ?.data
+                                                                                                        ?.dashboardDataContent
+                                                                                                        ?.dashboardFeatures
+                                                                                                        ?.shareAccountInformationFeature ??
+                                                                                                    false),
+                                                                                              ),
+                                                                                              CloseSubAccount(
+                                                                                                model: model,
+                                                                                                isCardActivated: (cardData
+                                                                                                        ?.data
+                                                                                                        ?.dashboardDataContent
+                                                                                                        ?.dashboardFeatures
+                                                                                                        ?.closeSubAccountFeature ??
+                                                                                                    false),
+                                                                                                isEnabled: (cardData
+                                                                                                        ?.data
+                                                                                                        ?.dashboardDataContent
+                                                                                                        ?.dashboardFeatures
+                                                                                                        ?.closeSubAccountFeature ??
+                                                                                                    false),
+                                                                                              ),
+                                                                                              SizedBox(
+                                                                                                  height:
+                                                                                                      180.h),
+                                                                                            ],
+                                                                                          ),
+                                                                                        )
+                                                                                      : const SizedBox(),
                                                                 );
                                                               }),
                                                           AnimatedBuilder(
@@ -680,11 +552,12 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                     ? 0
                                                                                     : 1,
                                                                                 child: AppHomePageWidgets
-                                                                                    .totalBalance(cardData
-                                                                                            ?.data
-                                                                                            ?.dashboardDataContent
-                                                                                            ?.availableBalance ??
-                                                                                        "0.000"),
+                                                                                    .totalBalance(StringUtils
+                                                                                        .formatBalance(cardData
+                                                                                                ?.data
+                                                                                                ?.dashboardDataContent
+                                                                                                ?.availableBalance ??
+                                                                                            "0.000")),
                                                                               );
                                                                             }),
                                                                         Expanded(
@@ -1215,12 +1088,33 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
           ],
         ));
   }
+}
 
-  void _shareFiles(BuildContext context, Account? account) async {
-    final box = context.findRenderObject() as RenderBox?;
-    await Share.share(
-        'Hello! Here are my Blink account details: \n\n${account?.accountTitle ?? ''} \n${account?.accountNo ?? ''} \n${account?.iban ?? '-'}\n\nOpen your Blink account today.',
-        subject: 'Share account info',
-        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+class CloseSubAccount extends StatelessWidget {
+  bool isEnabled;
+  bool isCardActivated;
+  AppHomeViewModel model;
+  CloseSubAccount({Key? key, this.isCardActivated = true, this.isEnabled = true, required this.model})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SettingTile(
+      isEnabled: isEnabled,
+      isCardActivated: isCardActivated,
+      tileIcon: AssetUtils.closeSubAccountIcon,
+      title: S.current.closeSubAccount,
+      onTap: () {
+        if (num.parse(model.selectedAccount?.availableBalance ?? '0') > 0) {
+          model.showToastWithError(AppError(
+              cause: Exception(),
+              error: ErrorInfo(message: ''),
+              type: ErrorType.TRANSFER_REMAINING_BALANCE_TO_CLOSE_ACCOUNT));
+        } else {
+          model.closeSubAccount(
+              iban: model.selectedAccount?.iban ?? "", subAccountNo: model.selectedAccount?.accountNo ?? "");
+        }
+      },
+    );
   }
 }

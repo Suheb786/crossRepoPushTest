@@ -13,7 +13,7 @@ class SubAccountRepositoryImpl extends SubAccountRepository {
   SubAccountRepositoryImpl(this._subAccountDataSource);
   @override
   Future<Either<NetworkError, bool>> deActivateSubAccount(
-      {required DeactivateSubAccountUseCaseParams params}) async {
+      {required CloseSubAccountUseCaseParams params}) async {
     final result = await safeApiCall(_subAccountDataSource.deActivateSubAccount(params: params));
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }

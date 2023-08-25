@@ -10,7 +10,7 @@ import 'package:domain/usecase/sub_account/deactivate_sub_account_usecase.dart';
 
 import '../../../entity/local/base/device_helper.dart';
 import '../../../entity/remote/base/base_class.dart';
-import '../../../entity/remote/sub_account/deactivate_sub_account/deactivate_sub_account_request_entity.dart';
+import '../../../entity/remote/sub_account/close_sub_account/close_sub_account_request_entity.dart';
 
 class SubAccountDataSourceImpl extends SubAccountDataSource {
   final ApiService _apiService;
@@ -20,11 +20,12 @@ class SubAccountDataSourceImpl extends SubAccountDataSource {
 
   @override
   Future<HttpResponse<ResponseEntity>> deActivateSubAccount(
-      {required DeactivateSubAccountUseCaseParams params}) async {
+      {required CloseSubAccountUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.deActivateSubAccount(
-      DeactivateSubAccountRequestEntity(
-        subAccountNo: params.subAccountNo,
+    return _apiService.closeSubAccount(
+      CloseSubAccountRequestEntity(
+        accountNo: params.accountNo,
+        iban: params.iban,
         getToken: params.getToken,
         baseClass: baseData.toJson(),
       ),

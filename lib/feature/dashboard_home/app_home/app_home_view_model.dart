@@ -72,7 +72,7 @@ class AppHomeViewModel extends BasePageViewModel {
   final AddSubAccountUseCase _addSubAccountUseCase;
   final GetAccountUseCase _getAccountUseCase;
   final CreateAccountUseCase _createAccountUseCase;
-  final DeactivateSubAccountUseCase _closeSubAccountUsecase;
+  final CloseSubAccountUseCase _closeSubAccountUsecase;
 
   String? accountNo = "";
   String? iban = "";
@@ -153,7 +153,7 @@ class AppHomeViewModel extends BasePageViewModel {
   List<TimeLineListArguments> blinkTimeLineListArguments = [];
 
   ///*-------------------update nick name stream--------------------///
-  PublishSubject<DeactivateSubAccountUseCaseParams> _closeSubAccountRequest = PublishSubject();
+  PublishSubject<CloseSubAccountUseCaseParams> _closeSubAccountRequest = PublishSubject();
 
   BehaviorSubject<Resource<bool>> _closeSubAccountResponse = BehaviorSubject();
 
@@ -527,9 +527,9 @@ class AppHomeViewModel extends BasePageViewModel {
     }
   }
 
-  void closeSubAccount({required String subAccountNo}) {
+  void closeSubAccount({required String subAccountNo, required String iban}) {
     _closeSubAccountRequest
-        .safeAdd(DeactivateSubAccountUseCaseParams(subAccountNo: subAccountNo, getToken: true));
+        .safeAdd(CloseSubAccountUseCaseParams(accountNo: subAccountNo, getToken: true, iban: iban));
   }
 
   void getAccount() {
@@ -556,24 +556,24 @@ class AppHomeViewModel extends BasePageViewModel {
   getOpenSubAccountCount(String? nickName) {
     int subAccountCount = 1;
     String? subAccountPrefix = nickName;
-
     List<Account> accounts =
         dashboardDataContent.accounts?.where((element) => (element.isSubAccount == false)).toList() ?? [];
-
     for (var account in accounts) {
       if (account.isSubAccount == true) {
         subAccountCount++;
       }
     }
-
     String result;
-
     if (subAccountCount == 0) {
       result = "$subAccountPrefix 1";
     } else {
       result = "$subAccountPrefix $subAccountCount";
     }
     print(result);
+  }
+
+  bool hasSubAccount(List<Account> accounts) {
+    return accounts.any((account) => account.isSubAccount == true);
   }
 
   List<Account> _yourAllAccounts = [];

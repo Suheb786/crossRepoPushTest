@@ -9,11 +9,11 @@ class StringUtils {
 
   /// seperate numbers with commas and ends with 3 digit of decimal eg. "555,555,555.000"
   static String formatBalance(String balance) {
-    if (balance.isEmpty) {
-      return "";
-    }
     double? balanceValue = double.tryParse(balance);
-    if (balanceValue != null) {
+
+    if (balance.isEmpty || balanceValue == 0.0) {
+      return "0.000";
+    } else if (balanceValue != null) {
       return NumberFormat('#,###.000').format(balanceValue);
     } else {
       return balance;

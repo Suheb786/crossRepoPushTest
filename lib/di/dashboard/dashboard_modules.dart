@@ -76,7 +76,6 @@ final filterTransactionDialogViewModelProvier =
 final myAccountViewModelProvider = ChangeNotifierProvider.autoDispose<MyAccountViewModel>(
   (ref) => MyAccountViewModel(
     ref.read(updateNickNameSubAccountUseCaseProvider),
-    ref.read(getDashboardDataUseCaseProvider),
   ),
 );
 
