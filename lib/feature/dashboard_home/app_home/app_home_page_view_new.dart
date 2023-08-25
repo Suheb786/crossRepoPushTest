@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:data/helper/antelop_helper.dart';
@@ -293,23 +292,21 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                   model.isPrimaryDebitCard,
                                                                               debitCard:
                                                                                   model.selectedDebitCard!,
-                                                                              debitCardRequestPhysicalCardEnabled:
-                                                                                  cardData
-                                                                                          ?.data
-                                                                                          ?.dashboardDataContent
-                                                                                          ?.dashboardFeatures
-                                                                                          ?.isDebitCardRequestPhysicalCardEnabled ??
-                                                                                      false))
-                                                                          : CreditCardSettingsPage(
-                                                                              CreditCardSettingsArguments(
-                                                                                  creditCard: model
-                                                                                      .selectedCreditCard!,
-                                                                                  isChangePinEnabled: cardData
-                                                                                          ?.data
-                                                                                          ?.dashboardDataContent
-                                                                                          ?.dashboardFeatures
-                                                                                          ?.isPinChangeEnabled ??
-                                                                                      true))
+                                                                              debitCardRequestPhysicalCardEnabled: cardData
+                                                                                      ?.data
+                                                                                      ?.dashboardDataContent
+                                                                                      ?.dashboardFeatures
+                                                                                      ?.isDebitCardRequestPhysicalCardEnabled ??
+                                                                                  false))
+                                                                          : CreditCardSettingsPage(CreditCardSettingsArguments(
+                                                                              creditCard:
+                                                                                  model.selectedCreditCard!,
+                                                                              isChangePinEnabled: cardData
+                                                                                      ?.data
+                                                                                      ?.dashboardDataContent
+                                                                                      ?.dashboardFeatures
+                                                                                      ?.isPinChangeEnabled ??
+                                                                                  true))
                                                                       : switchedPage == DashboardAnimatedPage.TIMELINE
                                                                           ? DebitCardTimeLinePage(TimeLinePageArguments(cardType: model.cardTypeList[currentStep ?? 0].cardType, timeLineArguments: model.timeLineArguments))
                                                                           : switchedPage == DashboardAnimatedPage.PAYBACK
@@ -400,10 +397,28 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                     ),
                                                                                               ),
                                                                                               OpenSubAccountTile(
-                                                                                                isCardActivated:
-                                                                                                    true,
-                                                                                                isEnabled:
-                                                                                                    true,
+                                                                                                isCardActivated: (cardData
+                                                                                                            ?.data
+                                                                                                            ?.dashboardDataContent
+                                                                                                            ?.dashboardFeatures
+                                                                                                            ?.subAccountFeature ??
+                                                                                                        false) &&
+                                                                                                    (cardData
+                                                                                                            ?.data
+                                                                                                            ?.dashboardDataContent
+                                                                                                            ?.allowSubAccount ??
+                                                                                                        false),
+                                                                                                isEnabled: (cardData
+                                                                                                            ?.data
+                                                                                                            ?.dashboardDataContent
+                                                                                                            ?.dashboardFeatures
+                                                                                                            ?.subAccountFeature ??
+                                                                                                        false) &&
+                                                                                                    (cardData
+                                                                                                            ?.data
+                                                                                                            ?.dashboardDataContent
+                                                                                                            ?.allowSubAccount ??
+                                                                                                        false),
                                                                                                 model: model,
                                                                                               ),
                                                                                               ShareAccountTile(
