@@ -48,7 +48,6 @@ class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewMo
               child: Container(
                 padding: EdgeInsetsDirectional.symmetric(vertical: 32.h, horizontal: 24.w),
                 child: Column(
-
                   children: [
                     Expanded(
                       child: SingleChildScrollView(

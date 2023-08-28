@@ -903,7 +903,9 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                           if (switchedPage ==
                                                                                                               DashboardAnimatedPage.ACT_SETTING) {
                                                                                                             model.showHideAccountSettings(false);
-                                                                                                          } else {}
+                                                                                                          } else {
+                                                                                                            model.goToAccountTransactionPage(context, model.cardTypeList[currentStep].object as Account);
+                                                                                                          }
                                                                                                         }
 
                                                                                                         if (model
