@@ -38,6 +38,7 @@ import 'package:neo_bank/ui/molecules/dialog/dashboard/download_transaction_dial
 import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog_view_model.dart';
 
+import '../../feature/dashboard_home/account_transaction/account_transaction_page.dart';
 import '../usecase/sub_account/sub_account_usecase_provider.dart';
 
 final dashboardViewModelProvider = ChangeNotifierProvider.autoDispose<DashboardPageViewModel>(
@@ -62,7 +63,6 @@ final appHomeViewModelProvider = ChangeNotifierProvider.autoDispose<AppHomeViewM
     ref.read(saveDataUserUseCaseProvider),
     ref.read(verifyQRUseCaseProvider),
     ref.read(getAntelopCardListUseCaseProvider),
-    ref.read(addSubAccountUseCaseProvider),
     ref.read(getAccountUseCaseProvider),
     ref.read(createAccountUseCaseProvider),
     ref.read(deactivateSubAccountUseCaseProvider),
@@ -91,9 +91,10 @@ final cardTransactionViewModelProvider =
       ref.read(creditCardTransactionUseCaseProvider), ref.read(getCreditYearsUseCaseProvider), args),
 );
 
-final accountTransactionViewModelProvider = ChangeNotifierProvider.autoDispose<AccountTransactionViewModel>(
-  (ref) => AccountTransactionViewModel(
-      ref.read(debitCardTransactionUseCaseProvider), ref.read(getDebitYearsUseCaseProvider)),
+final accountTransactionViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<AccountTransactionViewModel, AccountTransactionPageArgument>(
+  (ref, argument) => AccountTransactionViewModel(
+      ref.read(debitCardTransactionUseCaseProvider), ref.read(getDebitYearsUseCaseProvider), argument),
 );
 
 final debitCardTimeLineViewModelProvider =

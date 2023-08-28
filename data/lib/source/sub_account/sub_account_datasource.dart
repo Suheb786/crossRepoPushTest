@@ -10,5 +10,6 @@ abstract class SubAccountDataSource {
   Future<HttpResponse<ResponseEntity>> updateNickNameSubAccount(
       {required UpdateNickNameSubAccountUseCaseParams params});
 
-  Future<HttpResponse<ResponseEntity>> addSubAccount({required AddSubAccountUseCaseParams params});
+  Future<HttpResponse<ResponseEntity>> accountToAccountTransfer(
+      {required AccountToAccountTransferUseCaseParams params});
 }

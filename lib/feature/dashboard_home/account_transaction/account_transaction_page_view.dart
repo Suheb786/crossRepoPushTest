@@ -23,7 +23,9 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionViewModel> {
-  AccountTransactionPageView(ProviderBase model) : super(model);
+  AccountTransactionPageView(
+    ProviderBase model,
+  ) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
@@ -65,6 +67,7 @@ class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionVi
                                   Navigator.pop(context);
                                   Navigator.pushNamed(context, RoutePaths.DownloadTransaction,
                                       arguments: DownloadStatementArguments(
+                                          accountNo: model.argument.accountNo,
                                           issuedFromCms: false,
                                           secureCode: '',
                                           statementType: StatementType.Debit,
@@ -129,7 +132,7 @@ class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionVi
                                             onDismissed: () => Navigator.pop(context),
                                             onSelected: (value) {
                                               Navigator.pop(context);
-                                              model.getFilteredData(value);
+                                              model.getFilteredData(value, model.argument.accountNo);
                                             },
                                           );
                                         },

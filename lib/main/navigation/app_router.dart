@@ -1,4 +1,3 @@
-import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/payment/transfer_success_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
@@ -289,7 +288,8 @@ class AppRouter {
             CardTransactionPage(settings.arguments as GetCreditCardTransactionArguments));
 
       case RoutePaths.AccountTransaction:
-        return CustomRoute.createRoute(AccountTransactionPage());
+        return CustomRoute.createRoute(
+            AccountTransactionPage(settings.arguments as AccountTransactionPageArgument));
 
       case RoutePaths.DebitCardVerificationSuccess:
         return CupertinoPageRoute(

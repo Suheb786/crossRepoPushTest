@@ -45,6 +45,7 @@ class DownloadTransactionViewModel extends BasePageViewModel {
         statementType: arguments.statementType,
         cardId: arguments.cardId,
         secureCode: arguments.secureCode,
-        issuedFromCms: arguments.issuedFromCms));
+        issuedFromCms: arguments.issuedFromCms,
+        accountNO: arguments.accountNo));
   }
 }

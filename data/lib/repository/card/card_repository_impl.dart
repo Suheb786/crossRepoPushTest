@@ -45,9 +45,10 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, GetTransactionsResponse>> getDebitCardTransactions({num? noOfDays}) async {
+  Future<Either<NetworkError, GetTransactionsResponse>> getDebitCardTransactions(
+      {num? noOfDays, String? accountNo}) async {
     final result = await safeApiCall(
-      _remoteDs.getDebitCardTransactions(noOfDays: noOfDays),
+      _remoteDs.getDebitCardTransactions(noOfDays: noOfDays, accountNo: accountNo),
     );
     return result!.fold(
       (l) => Left(l),
@@ -72,9 +73,10 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, CardStatementResponse>> getDebitCardStatement(String monthYear) async {
+  Future<Either<NetworkError, CardStatementResponse>> getDebitCardStatement(
+      String monthYear, String? accountNo) async {
     final result = await safeApiCall(
-      _remoteDs.getDebitCardStatement(monthYear: monthYear),
+      _remoteDs.getDebitCardStatement(monthYear: monthYear, accountNo: accountNo),
     );
     return result!.fold(
       (l) => Left(l),
