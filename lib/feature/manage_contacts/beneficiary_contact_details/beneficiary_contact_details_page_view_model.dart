@@ -148,7 +148,6 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => _updateBeneficiaryUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        updateLoader();
         if (event.status == Status.SUCCESS) {
           isUpdateProfile = true;
           _nameEditableNotifierSubject.safeAdd(true);
@@ -204,6 +203,7 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
       FocusScope.of(context).requestFocus(nickNameFocus);
       _nameEditableNotifierSubject.safeAdd(false);
     } else {
+      FocusScope.of(context).unfocus();
       setNickNameReadOnly();
     }
   }

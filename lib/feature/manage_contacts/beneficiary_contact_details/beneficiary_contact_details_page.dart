@@ -36,6 +36,11 @@ class BeneficiaryContactDetailsPageState
   }
 
   @override
+  resizeToAvoidBottomInset() {
+    return true;
+  }
+
+  @override
   Color? scaffoldBackgroundColor() {
     return getViewModel().navigationType! == NavigationType.REQUEST_MONEY
         ? Theme.of(context).canvasColor

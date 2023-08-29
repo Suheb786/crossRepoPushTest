@@ -24,7 +24,7 @@ class ClaimOfTaxTreatyBenefitsPageState
     return claimOfTaxTreatyBenefitsViewModelProvider.call(widget._taxTreatyBenefitsArguments);
   }
 
-  @override
+  /*@override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
         preferredSize: Size(double.maxFinite, 85),
@@ -64,7 +64,7 @@ class ClaimOfTaxTreatyBenefitsPageState
             )
           ],
         ));
-  }
+  }*/
 
   @override
   bool extendBodyBehindAppBar() {
