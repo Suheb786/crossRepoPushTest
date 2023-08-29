@@ -24,12 +24,6 @@ class MyAccountPageViewWidget extends StatelessWidget {
 
   ValueNotifier<bool> nameEditableNotifier = ValueNotifier(false);
 
-  // account.nickName == null
-  //                                 ? accountTextController.text == ""
-  //                                     ? S.current.addNickName.toTitleCase()
-  //                                     : "75"
-  //                                 : account.nickName;
-
   String showNickName() {
     if (account.nickName == null || account.nickName?.isEmpty == true) {
       if (accountTextController.text == "") {
@@ -93,8 +87,6 @@ class MyAccountPageViewWidget extends StatelessWidget {
                               labelText: "",
                               readOnly: false,
                               fontSize: 12.t,
-                              //     accountTextController.text == "" ? S.current.addNickName.toTitleCase() : "",
-                              // inputFormatters: [LengthLimitingTextInputFormatter(10)],
                               maxLength: 10,
                               hintText: showNickName(),
                               controller: accountTextController,
@@ -158,15 +150,6 @@ class MyAccountPageViewWidget extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   SizedBox(height: screenHeight * 0.030.h),
-                                  // Text(
-                                  //   widget.account.accountTitle != null ? widget.account.accountTitle!.replaceAll(' ', '\n') : '',
-                                  //   maxLines: 3,
-                                  //   style: TextStyle(
-                                  //       fontFamily: StringUtils.appFont,
-                                  //       fontSize: 16.0.t,
-                                  //       fontWeight: FontWeight.w600,
-                                  //       color: Theme.of(context).colorScheme.secondary),
-                                  // ),
                                   SizedBox(height: screenHeight * 0.05.h),
                                   Row(
                                     children: [
