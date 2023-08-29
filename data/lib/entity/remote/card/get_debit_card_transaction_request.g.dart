@@ -13,11 +13,13 @@ GetDebitCardTransactionRequest _$GetDebitCardTransactionRequestFromJson(
       noOfDays: json['NoOfDays'] as num? ?? 90,
       getToken: json['GetToken'] as bool? ?? true,
       isDebit: json['IsDebit'] as bool? ?? true,
+      accountNo: json['AccountNo'] as String?,
     );
 
 Map<String, dynamic> _$GetDebitCardTransactionRequestToJson(
         GetDebitCardTransactionRequest instance) =>
     <String, dynamic>{
+      'AccountNo': instance.accountNo,
       'IsDebit': instance.isDebit,
       'NoOfDays': instance.noOfDays,
       'GetToken': instance.getToken,

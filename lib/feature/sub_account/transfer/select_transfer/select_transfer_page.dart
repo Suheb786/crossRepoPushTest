@@ -39,6 +39,10 @@ void onModelReady(SelectTransferPageViewModel model) {}
 
 class SelectTranferPageArgument {
   final Account account;
+  final List<String>? allAccountNumbers;
+  final List<String>? allAccountTitles;
+  final List<String>? allAvailableBalances;
 
-  SelectTranferPageArgument({required this.account});
+  SelectTranferPageArgument(
+      {required this.account, this.allAccountNumbers, this.allAccountTitles, this.allAvailableBalances});
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../generated/l10n.dart';
@@ -22,18 +21,6 @@ class SelectTransferToAccountWidget extends StatelessWidget {
   // String formatBalance(double availableBalance) {
   //   return NumberFormat('#,###.###').format(availableBalance);
   // }
-
-  String formatBalance(String balance) {
-    if (balance.isEmpty) {
-      return "";
-    }
-    double? balanceValue = double.tryParse(balance);
-    if (balanceValue != null) {
-      return NumberFormat('#,###.000').format(balanceValue);
-    } else {
-      return balance;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +60,7 @@ class SelectTransferToAccountWidget extends StatelessWidget {
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: formatBalance(availableAmount),
+                        text: availableAmount,
                         style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           fontSize: 14.0.t,
