@@ -133,7 +133,7 @@ class OpenSubAccountTile extends StatelessWidget {
       onTap: () {
         return ConfirmationDialog.show(context,
             title: S.current.openSubAccount,
-            descriptionWidget: Text(S.current.opneSubAccountDescription),
+            descriptionWidget: Text(S.current.openSubAccountDescription),
             image: AssetUtils.openSubAccountIcon,
             imageHight: 40.h,
             imageWidth: 40.w, onConfirmed: () {
@@ -192,7 +192,7 @@ class CloseSubAccount extends StatelessWidget {
         } else {
           ConfirmationDialog.show(context,
               title: S.current.closeSubAccount,
-              descriptionWidget: Text(S.current.opneSubAccountDescription),
+              descriptionWidget: Text(S.current.closeSubAccountDescription),
               image: AssetUtils.closeSubAccountIcon,
               imageHight: 40.h,
               imageWidth: 40.w, onConfirmed: () {
