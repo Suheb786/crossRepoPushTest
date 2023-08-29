@@ -6,6 +6,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/blink_credit_card/blink_credit_card_view_model.dart';
 import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/claim_of_tax_treaty_benefits_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -163,8 +164,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                                   : Theme.of(context).canvasColor,
                                               shape: BoxShape.circle,
                                               border: Border.all(
-                                                  color:
-                                                      Theme.of(context).textTheme.bodyLarge!.color!)),
+                                                  color: Theme.of(context).textTheme.bodyLarge!.color!)),
                                           child: Center(
                                             child: Visibility(
                                               visible: value,
@@ -215,13 +215,19 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                                     TextSpan(
                                                         text: S.of(context).creditBureau,
                                                         recognizer: new TapGestureRecognizer()
-                                                          ..onTap = () => Navigator.pushNamed(
-                                                              context, RoutePaths.TaxTreatyBenefits,
-                                                              arguments: ClaimOfTaxTreatyBenefitsArguments(
-                                                                  staticRouteContent:
-                                                                      StaticRouteContent.CREDIT_BUREAU)),
+                                                          ..onTap = () {
+                                                            Navigator.of(context).push(
+                                                                CustomRoute.swipeUpRoute(
+                                                                    ClaimOfTaxTreatyBenefitsPage(
+                                                                        ClaimOfTaxTreatyBenefitsArguments(
+                                                                            staticRouteContent:
+                                                                                StaticRouteContent
+                                                                                    .CREDIT_BUREAU)),
+                                                                    routeName: RoutePaths.TaxTreatyBenefits));
+                                                          },
                                                         style: TextStyle(
-                                                            color: Theme.of(context).textTheme.bodyLarge!.color!,
+                                                            color:
+                                                                Theme.of(context).textTheme.bodyLarge!.color!,
                                                             fontSize: 12.t,
                                                             fontFamily: StringUtils.appFont,
                                                             fontWeight: FontWeight.w600),
@@ -253,10 +259,10 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                   child: Center(
                                     child: AppPrimaryButton(
                                       text: S.of(context).next,
-                                       isDisabled: !value!,
-                                       onPressed: () {
-                                         model.submit();
-                                       },
+                                      isDisabled: !value!,
+                                      onPressed: () {
+                                        model.submit();
+                                      },
                                     ),
                                   ),
                                 );

@@ -13,9 +13,11 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_transaction_history_list/beneficiary_transaction_history_list_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
+import 'package:neo_bank/ui/molecules/app_progress.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/manage_contacts/edit_profile_pic_bottom_sheet_widget.dart';
@@ -194,9 +196,14 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
+                  Navigator.pop(context);
                   model.addNickName(nickName: model.nickNameController.text);
                   model.showSuccessTitleandDescriptionToast(
                       ToastwithTitleandDescription(title: '', description: S.of(context).nickNameUpdated));
+                } else if (data.status == Status.ERROR) {
+                  Navigator.pop(context);
+                } else if (data.status == Status.LOADING) {
+                  AppProgress(context);
                 }
               },
               dataBuilder: (context, data) {
@@ -406,11 +413,13 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, RoutePaths.BeneficiaryTransactionHistoryList,
-                          arguments: BeneficiaryTransactionHistoryListPageArguments(
-                            navigationType: model.argument.navigationType,
-                            beneficiaryId: model.argument.beneficiaryInformation.id ?? '',
-                          ));
+                      Navigator.of(context).push(CustomRoute.swipeUpRoute(
+                        BeneficiaryTransactionHistoryListPage(BeneficiaryTransactionHistoryListPageArguments(
+                          navigationType: model.argument.navigationType,
+                          beneficiaryId: model.argument.beneficiaryInformation.id ?? '',
+                        )),
+                        routeName: RoutePaths.BeneficiaryTransactionHistoryList,
+                      ));
                     },
                     child: Container(
                       height: 64.h,
