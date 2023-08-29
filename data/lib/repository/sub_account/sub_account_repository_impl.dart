@@ -6,6 +6,7 @@ import 'package:domain/repository/sub_account/sub_account_repository.dart';
 import 'package:domain/usecase/sub_account/add_account_usecase.dart';
 import 'package:domain/usecase/sub_account/deactivate_sub_account_usecase.dart';
 import 'package:domain/usecase/sub_account/update_nick_name_sub_account_usecase.dart';
+import 'package:domain/model/sub_account/account_to_account_transfer_response.dart';
 
 class SubAccountRepositoryImpl extends SubAccountRepository {
   final SubAccountDataSource _subAccountDataSource;
@@ -26,9 +27,9 @@ class SubAccountRepositoryImpl extends SubAccountRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> accountToAccountTransfer(
+  Future<Either<NetworkError, AccountToAccountTransferResponse>> accountToAccountTransfer(
       {required AccountToAccountTransferUseCaseParams params}) async {
     final result = await safeApiCall(_subAccountDataSource.accountToAccountTransfer(params: params));
-    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
   }
 }

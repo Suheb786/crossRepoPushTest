@@ -657,10 +657,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "cliqType": MessageLookupByLibrary.simpleMessage("نوع CLIQ"),
         "closeDateIssueMessage": MessageLookupByLibrary.simpleMessage(
             "تم رفض دفع الفاتوره بسبب انتهاء صلاحية الفاتورة"),
-        "closeSubAccount":
-            MessageLookupByLibrary.simpleMessage("Close Sub Account"),
+        "closeSubAccount": MessageLookupByLibrary.simpleMessage("إغلاق الحساب"),
         "closeSubAccountDescription": MessageLookupByLibrary.simpleMessage(
-            "Are you sure you want to close this sub account?"),
+            "هل أنت متأكد من عملية إغلاق الحساب؟"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "أكمل معلومات تقريرك الضريبي التالية:"),
         "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
@@ -2833,7 +2832,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل اسم الشارع"),
         "streetAddressSmall": MessageLookupByLibrary.simpleMessage("الشارع"),
         "streetName": MessageLookupByLibrary.simpleMessage("اسم الشارع"),
-        "subAccount": MessageLookupByLibrary.simpleMessage("Sub Account"),
+        "subAccount": MessageLookupByLibrary.simpleMessage("الحساب الإضافي"),
         "submittedFor": MessageLookupByLibrary.simpleMessage(
             "جاري معاجة طلبك لدفع فواتيرك, منخبرك بمجرد ما تمت عملية الدفع بنجاح"),
         "subscription": MessageLookupByLibrary.simpleMessage("الاشتراكات"),
@@ -2998,7 +2997,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "transactions": MessageLookupByLibrary.simpleMessage("الحركات"),
         "transfer": MessageLookupByLibrary.simpleMessage("التحويل"),
         "transferBetweenAccount":
-            MessageLookupByLibrary.simpleMessage("Transfer Between Accounts"),
+            MessageLookupByLibrary.simpleMessage("التحويل بين حساباتي"),
         "transferCannotbeDone": MessageLookupByLibrary.simpleMessage(
             "عفوا! لا يمكن التحويل، لازم اتعدل تفاصيل صديقك المستفيد"),
         "transferFrom": MessageLookupByLibrary.simpleMessage("التحويل من"),
@@ -3006,8 +3005,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "أدخل تفاصيل الحوالة واختر الحسابات"),
         "transferRemainingBalanceForAccountClosure":
             MessageLookupByLibrary.simpleMessage(
-                "Please transfer the remaining balance to complete the account closure"),
-        "transferTo": MessageLookupByLibrary.simpleMessage("Transfer To"),
+                "يجب أن يكون رصيد الحساب صفر ليتم إغلاقة."),
+        "transferTo": MessageLookupByLibrary.simpleMessage("التحويل إلى"),
         "transferTypeNF": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-117)"),
         "transferTypeNFRTP": MessageLookupByLibrary.simpleMessage(

@@ -1,11 +1,14 @@
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
+import 'package:domain/model/sub_account/account_to_account_transfer_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/feature/sub_account/transfer/select_transfer/select_transfer_page_view_model.dart';
+import 'package:neo_bank/feature/sub_account/transfer/transfer_success/transfer_success_page.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../../base/base_page.dart';
@@ -13,6 +16,7 @@ import '../../../../generated/l10n.dart';
 import '../../../../ui/molecules/dialog/sub_accounts_dialogs/select_from_list_dialog/select_from_list_dialog.dart';
 import '../../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../../ui/molecules/textfield/transfer_account_textfield.dart';
+import '../../../../utils/status.dart';
 import '../../../../utils/string_utils.dart';
 
 class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewModel> {
@@ -148,17 +152,31 @@ class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewMo
                       children: [
                         Padding(
                           padding: EdgeInsetsDirectional.only(bottom: 24.0.h),
-                          child: AppStreamBuilder<bool>(
-                              stream: model.showButtonStream,
-                              initialData: false,
-                              dataBuilder: (context, isValid) {
-                                return AppPrimaryButton(
-                                  onPressed: () {
-                                    model.validForm(context);
-                                  },
-                                  isDisabled: !isValid!,
-                                  text: S.current.transfer,
-                                );
+                          child: AppStreamBuilder<Resource<AccountToAccountTransferResponse>>(
+                              stream: model.accountToAccountTransferResponseStream,
+                              initialData: Resource.none(),
+                              onData: (value) {
+                                if (value.status == Status.SUCCESS) {
+                                  Navigator.pushNamed(context, RoutePaths.TransferSuccessPage,
+                                      arguments: TransferSuccessPageArgument(
+                                          amount: value.data?.content.amount ?? 0,
+                                          accountNo: value.data?.content.reference ?? "",
+                                          accountName: value.data?.content.name ?? ""));
+                                }
+                              },
+                              dataBuilder: (context, transferResponse) {
+                                return AppStreamBuilder<bool>(
+                                    stream: model.showButtonStream,
+                                    initialData: false,
+                                    dataBuilder: (context, isValid) {
+                                      return AppPrimaryButton(
+                                        onPressed: () {
+                                          model.validForm(context);
+                                        },
+                                        isDisabled: !isValid!,
+                                        text: S.current.transfer,
+                                      );
+                                    });
                               }),
                         ),
                         Center(

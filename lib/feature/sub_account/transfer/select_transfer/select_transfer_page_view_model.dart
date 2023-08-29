@@ -1,4 +1,5 @@
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
+import 'package:domain/model/sub_account/account_to_account_transfer_response.dart';
 import 'package:domain/usecase/sub_account/add_account_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/feature/sub_account/transfer/select_transfer/select_transfer_page.dart';
@@ -23,9 +24,9 @@ class SelectTransferPageViewModel extends BasePageViewModel {
 
   PublishSubject<AccountToAccountTransferUseCaseParams> accountToAccountTransferRequest = PublishSubject();
 
-  BehaviorSubject<Resource<bool>> accountToAccountTransferResponse = BehaviorSubject();
+  BehaviorSubject<Resource<AccountToAccountTransferResponse>> accountToAccountTransferResponse = BehaviorSubject();
 
-  Stream<Resource<bool>> get accountToAccountTransferResponseStream =>
+  Stream<Resource<AccountToAccountTransferResponse>> get accountToAccountTransferResponseStream =>
       accountToAccountTransferResponse.stream;
 
   final SelectTranferPageArgument argument;

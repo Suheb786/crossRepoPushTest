@@ -1,4 +1,4 @@
-{	//* --------------------Use This Snippet to speedup in vscode--------------------------------
+{ //* --------------------Use This Snippet to speedup in vscode--------------------------------
 	// Place your NeoBank workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
 	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
 	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
@@ -11,12 +11,11 @@
 		"prefix": "useCaseInt",
 		"body": [
 			"class $1 extends BaseUseCase <NetworkError, $2, bool> { ",
-				"final CliqRepository _cliqRepository; ",
-				" $1(this._cliqRepository);}"
+			"final CliqRepository _cliqRepository; ",
+			" $1(this._cliqRepository);}"
 		],
 		"description": "Extends with BaseUse"
 	},
-
 	"Params Creation": {
 		"scope": "dart",
 		"prefix": "param",
@@ -25,15 +24,14 @@
 			" final String $0 ;",
 			"",
 			"",
-				"@override",
-				"Either<AppError, bool> verify() {",
-					"return Right(true);",
-  		"}",
-		"}"
+			"@override",
+			"Either<AppError, bool> verify() {",
+			"return Right(true);",
+			"}",
+			"}"
 		],
 		"description": "Extends with Params"
 	},
-
 	"Request Entity": {
 		"scope": "dart",
 		"prefix": "requestEntity",
@@ -48,15 +46,12 @@
 			"",
 			"",
 			" factory $1.fromJson(Map<String, dynamic> json) =>",
-     		 "_$$1FromJson(json);",
-
- 		 "Map<String, dynamic> toJson() => _$$1ToJson(this);",
- 			 "}",
+			"_$$1FromJson(json);",
+			"Map<String, dynamic> toJson() => _$$1ToJson(this);",
+			"}",
 		],
 		"description": "api entity for request"
-	
-
-		},
+	},
 	"DataSource Api Impliment": {
 		"scope": "dart",
 		"prefix": "apiservice for DataSource",
@@ -66,9 +61,7 @@
 		],
 		"description": "Apiservice in Data implementation"
 	},
-
-
-		"Repository SafeApi Impliment": {
+	"Repository SafeApi Impliment": {
 		"scope": "dart",
 		"prefix": "safeApi for Repository",
 		"body": [
@@ -77,10 +70,24 @@
 			"",
 			");",
 			"return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));",
-  			
 		],
 		"description": "SafeApi in Repository implementation"
 	},
-
-
+	"Response Entity": {
+		"scope": "dart",
+		"prefix": "Response Entity",
+		"body": [
+			"@JsonSerializable()",
+			"class $1 extends BaseLayerDataTransformer<$1, $2> {",
+			"@JsonKey(name: $3 )",
+			"final ResponseEntity? response;",
+			"$1(this.response); ",
+			"",
+			"factory $1.fromJson(Map<String, dynamic> json) => _$$1FromJson(json);",
+			"",
+			"Map<String, dynamic> toJson() => _$$1ToJson(this);",
+			"}"
+		],
+		"description": "SafeApi in Repository implementation"
+	},
 }

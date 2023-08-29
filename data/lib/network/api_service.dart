@@ -313,6 +313,7 @@ import '../entity/remote/e_voucher/get_voucher_details/get_voucher_details_respo
 import '../entity/remote/e_voucher/place_order/place_order_request_entity.dart';
 import '../entity/remote/e_voucher/place_order/place_order_response_entity.dart';
 import '../entity/remote/sub_account/close_sub_account/close_sub_account_request_entity.dart';
+import '../entity/remote/sub_account/transfer_account/response/account_to_account_transfer_response_entity.dart';
 import '../entity/remote/sub_account/transfer_account/transfer_account_request_entity.dart';
 import '../entity/remote/sub_account/update_nick_name/update_nick_name_request_entity.dart';
 
@@ -1103,7 +1104,7 @@ abstract class ApiService {
       @Body() TransferQRRequestEntity transferQRRequestEntity);
 
   @POST("/Transfer/AccountToAccountTransfer")
-  Future<HttpResponse<ResponseEntity>> accountToAccountTransfer(
+  Future<HttpResponse<AccountToAccountTransferResponseEntity>> accountToAccountTransfer(
       @Body() AccountToAccountTransferRequestEntity request);
 
   /// Manage Contacts
