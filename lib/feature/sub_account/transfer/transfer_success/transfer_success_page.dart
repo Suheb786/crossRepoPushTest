@@ -1,4 +1,3 @@
-import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:neo_bank/feature/sub_account/transfer/transfer_success/transfer_success_page_view.dart';
 import 'package:neo_bank/feature/sub_account/transfer/transfer_success/transfer_success_page_view_model.dart';
@@ -28,11 +27,13 @@ class TransferSuccessPageState extends BaseStatefulPage<TransferSuccessPageViewM
 }
 
 class TransferSuccessPageArgument {
-  final String amount;
-  final Account account;
+  final double amount;
+  final String accountNo;
+  final String accountName;
 
   TransferSuccessPageArgument({
     required this.amount,
-    required this.account,
+    required this.accountNo,
+    required this.accountName,
   });
 }

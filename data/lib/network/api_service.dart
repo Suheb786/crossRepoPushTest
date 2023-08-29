@@ -252,7 +252,7 @@ import 'package:data/entity/remote/rj/get_flight_details/make_ticket_payment_req
 import 'package:data/entity/remote/rj/trip/get_one_way_trip_link_request_entity.dart';
 import 'package:data/entity/remote/rj/trip/get_trip_response_entity.dart';
 import 'package:data/entity/remote/rj/trip/get_two_way_trip_link_request_entity.dart';
-import 'package:data/entity/remote/sub_account/add_sub_account/add_sub_account_request_entity.dart';
+
 import 'package:data/entity/remote/upload_document/save_upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_response_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
@@ -313,6 +313,8 @@ import '../entity/remote/e_voucher/get_voucher_details/get_voucher_details_respo
 import '../entity/remote/e_voucher/place_order/place_order_request_entity.dart';
 import '../entity/remote/e_voucher/place_order/place_order_response_entity.dart';
 import '../entity/remote/sub_account/close_sub_account/close_sub_account_request_entity.dart';
+import '../entity/remote/sub_account/transfer_account/response/account_to_account_transfer_response_entity.dart';
+import '../entity/remote/sub_account/transfer_account/transfer_account_request_entity.dart';
 import '../entity/remote/sub_account/update_nick_name/update_nick_name_request_entity.dart';
 
 part 'api_service.g.dart';
@@ -520,7 +522,7 @@ abstract class ApiService {
   Future<HttpResponse<DashboardDataResponseEntity>> getDashboardData(
       @Body() DashboardDataRequest dashboardDataRequest);
 
-  @POST("/TransactionHistory/GetDebitCardTransactionsList")
+  @POST("/TransactionHistory/GetDebitCardTransactionsListV2")
   Future<HttpResponse<CardTransactionResponseEntity>> getDebitCardTransactions(
       @Body() GetDebitCardTransactionRequest debitCardTransactionRequest);
 
@@ -538,7 +540,7 @@ abstract class ApiService {
   Future<HttpResponse<CardStatementResponseEntity>> getCreditCardStatement(
       @Body() CreditCardStatementRequest cardStatementRequest);
 
-  @POST("/CardTracking/GetDebitCardStatement")
+  @POST("/CardTracking/GetDebitCardStatementV2")
   Future<HttpResponse<AccountCardStatementResponseEntity>> getDebitCardStatement(
       @Body() DebitCardStatementRequest cardStatementRequest);
 
@@ -1101,6 +1103,10 @@ abstract class ApiService {
   Future<HttpResponse<QRTransferResponseEntity>> transferQR(
       @Body() TransferQRRequestEntity transferQRRequestEntity);
 
+  @POST("/Transfer/AccountToAccountTransfer")
+  Future<HttpResponse<AccountToAccountTransferResponseEntity>> accountToAccountTransfer(
+      @Body() AccountToAccountTransferRequestEntity request);
+
   /// Manage Contacts
 
   @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/ShowContactCard")
@@ -1212,7 +1218,4 @@ abstract class ApiService {
   @POST("/Dashboard/UpdateNickName")
   Future<HttpResponse<ResponseEntity>> updateNickNameSubAccount(
       @Body() UpdateNickNameSubAccountRequestEntity request);
-
-  @POST("${NetworkProperties.BASE_SUB_ACCOUNT_URL}/AddSubAccount")
-  Future<HttpResponse<ResponseEntity>> addSubAccount(@Body() AddSubAccountRequestEntity request);
 }

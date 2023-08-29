@@ -1,3 +1,6 @@
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
@@ -61,10 +64,12 @@ class AppHomePageWidgets {
 class TransferBetweenAccountTile extends StatelessWidget {
   bool isEnabled;
   bool isCardActivated;
+  dynamic Function() onTap;
   TransferBetweenAccountTile({
     Key? key,
     required this.isEnabled,
     required this.isCardActivated,
+    required this.onTap,
   }) : super(key: key);
 
   @override
@@ -74,16 +79,7 @@ class TransferBetweenAccountTile extends StatelessWidget {
       isCardActivated: isCardActivated,
       tileIcon: AssetUtils.transferBetweenAccountIcon,
       title: S.current.transferBetweenAccount,
-      onTap: () {
-        // Navigator.pushReplacementNamed(
-        //   context,
-        //   RoutePaths.SelectTransferPage,
-        //   arguments: SelectTranferPageArgument(
-        //     account:
-        //         Account(accountNo: "8986808", accountTitle: "Sub Account - Savings", availableBalance: "900"),
-        //   ),
-        // );
-      },
+      onTap: onTap,
     );
   }
 }
@@ -165,6 +161,49 @@ class AddMoneyTile extends StatelessWidget {
       title: S.current.addMoney,
       onTap: () {
         Navigator.pushNamed(context, RoutePaths.AddMoneyOptionSelector);
+      },
+    );
+  }
+}
+
+///------------------------------Close Sub Account Tile-------------------------///
+
+class CloseSubAccount extends StatelessWidget {
+  bool isEnabled;
+  bool isCardActivated;
+  AppHomeViewModel model;
+
+  CloseSubAccount({Key? key, this.isCardActivated = true, this.isEnabled = true, required this.model})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SettingTile(
+      isEnabled: isEnabled,
+      isCardActivated: isCardActivated,
+      tileIcon: AssetUtils.closeSubAccountIcon,
+      title: S.current.closeSubAccount,
+      onTap: () {
+        if (num.parse(model.selectedAccount?.availableBalance ?? '0') > 0) {
+          model.showToastWithError(AppError(
+              cause: Exception(),
+              error: ErrorInfo(message: ''),
+              type: ErrorType.TRANSFER_REMAINING_BALANCE_TO_CLOSE_ACCOUNT));
+        } else {
+          ConfirmationDialog.show(context,
+              title: S.current.closeSubAccount,
+              descriptionWidget: Text(S.current.opneSubAccountDescription),
+              image: AssetUtils.closeSubAccountIcon,
+              imageHight: 40.h,
+              imageWidth: 40.w, onConfirmed: () {
+            Navigator.pop(context);
+            model.closeSubAccount(
+                iban: model.selectedAccount?.iban ?? "",
+                subAccountNo: model.selectedAccount?.accountNo ?? "");
+          }, onDismissed: () {
+            Navigator.pop(context);
+          });
+        }
       },
     );
   }

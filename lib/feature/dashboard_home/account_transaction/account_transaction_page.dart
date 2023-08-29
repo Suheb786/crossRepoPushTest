@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -6,6 +7,9 @@ import 'package:neo_bank/feature/dashboard_home/account_transaction/account_tran
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_view_model.dart';
 
 class AccountTransactionPage extends BasePage<AccountTransactionViewModel> {
+  final AccountTransactionPageArgument account;
+
+  AccountTransactionPage(this.account);
   @override
   AccountTransactionPageState createState() => AccountTransactionPageState();
 }
@@ -14,7 +18,7 @@ class AccountTransactionPageState
     extends BaseStatefulPage<AccountTransactionViewModel, AccountTransactionPage> {
   @override
   ProviderBase provideBase() {
-    return accountTransactionViewModelProvider;
+    return accountTransactionViewModelProvider.call(widget.account);
   }
 
   @override
@@ -24,6 +28,14 @@ class AccountTransactionPageState
 
   @override
   Widget buildView(BuildContext context, AccountTransactionViewModel model) {
-    return AccountTransactionPageView(provideBase());
+    return AccountTransactionPageView(
+      provideBase(),
+    );
   }
+}
+
+class AccountTransactionPageArgument {
+  final String? accountNo;
+
+  AccountTransactionPageArgument(this.accountNo);
 }

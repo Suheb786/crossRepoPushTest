@@ -3,28 +3,33 @@ import 'package:domain/repository/sub_account/sub_account_repository.dart';
 
 import '../../error/app_error.dart';
 import '../../error/network_error.dart';
+import '../../model/sub_account/account_to_account_transfer_response.dart';
 import '../base/base_usecase.dart';
 import '../base/params.dart';
 
-class AddSubAccountUseCase extends BaseUseCase<NetworkError, AddSubAccountUseCaseParams, bool> {
+class AccountToAccountTransferUseCase extends BaseUseCase<NetworkError, AccountToAccountTransferUseCaseParams,
+    AccountToAccountTransferResponse> {
   final SubAccountRepository _subAccountRepository;
-  AddSubAccountUseCase(this._subAccountRepository);
+  AccountToAccountTransferUseCase(this._subAccountRepository);
 
   @override
-  Future<Either<NetworkError, bool>> execute({required AddSubAccountUseCaseParams params}) {
-    return _subAccountRepository.addSubAccount(params: params);
+  Future<Either<NetworkError, AccountToAccountTransferResponse>> execute(
+      {required AccountToAccountTransferUseCaseParams params}) {
+    return _subAccountRepository.accountToAccountTransfer(params: params);
   }
 }
 
-class AddSubAccountUseCaseParams extends Params {
-  final String? NickName;
-  final String? SubAccountNo;
+class AccountToAccountTransferUseCaseParams extends Params {
+  final String? FromAccount;
+  final String? ToAccount;
   final bool? GetToken;
+  final double? TransferAmount;
 
-  AddSubAccountUseCaseParams({
-    required this.NickName,
-    required this.SubAccountNo,
-    required this.GetToken,
+  AccountToAccountTransferUseCaseParams({
+    this.FromAccount,
+    this.ToAccount,
+    this.TransferAmount,
+    this.GetToken,
   });
 
   @override

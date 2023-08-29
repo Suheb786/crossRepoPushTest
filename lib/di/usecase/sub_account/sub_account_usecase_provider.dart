@@ -15,6 +15,6 @@ final updateNickNameSubAccountUseCaseProvider = Provider.autoDispose<UpdateNickN
 );
 
 ///[Add-Sub-Account-UseCase] provider
-final addSubAccountUseCaseProvider = Provider.autoDispose<AddSubAccountUseCase>(
-  (ref) => AddSubAccountUseCase(ref.read(subAccountRepository)),
+final accountToAccountTransferUsecaseProvider = Provider.autoDispose<AccountToAccountTransferUseCase>(
+  (ref) => AccountToAccountTransferUseCase(ref.read(subAccountRepository)),
 );

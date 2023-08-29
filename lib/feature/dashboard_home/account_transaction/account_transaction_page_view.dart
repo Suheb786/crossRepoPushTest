@@ -19,11 +19,14 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
-import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../utils/status.dart';
+
 class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionViewModel> {
-  AccountTransactionPageView(ProviderBase model) : super(model);
+  AccountTransactionPageView(
+    ProviderBase model,
+  ) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
@@ -49,32 +52,43 @@ class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionVi
                       ),
                     ),
                   ),
-                  AppStreamBuilder<Resource<GetDebitYearsResponse>>(
-                      stream: model.getDebitYearsStream,
+                  AppStreamBuilder<Resource<GetTransactionsResponse>>(
+                      stream: model.getTransactionsStream,
                       initialData: Resource.none(),
-                      dataBuilder: (context, debitYears) {
-                        return Align(
-                          alignment: Alignment.centerRight,
-                          child: InkWell(
-                            onTap: () {
-                              if (debitYears!.status == Status.SUCCESS) {
-                                DownloadTransactionDialog.show(context, years: debitYears.data!.years,
-                                    onDismissed: () {
-                                  Navigator.pop(context);
-                                }, onSelected: (value) {
-                                  Navigator.pop(context);
-                                  Navigator.pushNamed(context, RoutePaths.DownloadTransaction,
-                                      arguments: DownloadStatementArguments(
-                                          issuedFromCms: false,
-                                          secureCode: '',
-                                          statementType: StatementType.Debit,
-                                          transactionDate: value));
-                                });
-                              }
-                            },
-                            child: AppSvg.asset(AssetUtils.download),
-                          ),
-                        );
+                      dataBuilder: (context, transactions) {
+                        return AppStreamBuilder<Resource<GetDebitYearsResponse>>(
+                            stream: model.getDebitYearsStream,
+                            initialData: Resource.none(),
+                            dataBuilder: (context, debitYears) {
+                              return Align(
+                                alignment: Alignment.centerRight,
+                                child: InkWell(
+                                  onTap: () {
+                                    if (model.hasTransactions &&
+                                        model.hasDebitYears &&
+                                        debitYears?.status == Status.SUCCESS) {
+                                      DownloadTransactionDialog.show(context,
+                                          years: debitYears?.data?.years ?? [], onDismissed: () {
+                                        Navigator.pop(context);
+                                      }, onSelected: (value) {
+                                        Navigator.pop(context);
+                                        Navigator.pushNamed(context, RoutePaths.DownloadTransaction,
+                                            arguments: DownloadStatementArguments(
+                                                accountNo: model.argument.accountNo,
+                                                issuedFromCms: false,
+                                                secureCode: '',
+                                                statementType: StatementType.Debit,
+                                                transactionDate: value));
+                                      });
+                                    }
+                                  },
+                                  child: AppSvg.asset(AssetUtils.download,
+                                      color: model.hasTransactions && model.hasDebitYears
+                                          ? Theme.of(context).colorScheme.secondary
+                                          : Theme.of(context).colorScheme.onSurface),
+                                ),
+                              );
+                            });
                       })
                 ],
               ),
@@ -129,7 +143,7 @@ class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionVi
                                             onDismissed: () => Navigator.pop(context),
                                             onSelected: (value) {
                                               Navigator.pop(context);
-                                              model.getFilteredData(value);
+                                              model.getFilteredData(value, model.argument.accountNo);
                                             },
                                           );
                                         },

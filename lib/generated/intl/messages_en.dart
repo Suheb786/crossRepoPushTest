@@ -2167,6 +2167,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "noDataFound": MessageLookupByLibrary.simpleMessage("No Data Found"),
         "noDataFoundInFI": MessageLookupByLibrary.simpleMessage(
             "No data Found in Financial Institutions"),
+        "noDataToDisplay":
+            MessageLookupByLibrary.simpleMessage("No Data to Display"),
         "noDebitCardFound": MessageLookupByLibrary.simpleMessage(
             "Something wrong with your Yellow Sun debit card information. Please contact our Engagement Team from the app or call 06-5200100."),
         "noDebitCardRecordFound": MessageLookupByLibrary.simpleMessage(
