@@ -32,6 +32,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../../ui/molecules/button/app_primary_button.dart';
+import '../../../payment/account_swiching/payment_account_switcher.dart';
 
 class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewModel> {
   late PayBillDetailPageViewModel model;
@@ -278,15 +279,16 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
   _payFromAppTextField() {
     return Padding(
       padding: EdgeInsetsDirectional.only(top: 16.0.h),
-      child: AppTextField(
-        labelText: S.of(context).payFrom.toUpperCase(),
-        hintText: "",
-        controller: model.payFromController,
-        readOnly: true,
-        onChanged: (val) {
-          model.validateData(context);
-        },
-      ),
+      child: PaymentAccountSwitcher(
+          title: S.of(context).payFrom,
+          onDefaultSelectedAccount: (Account) {
+            print('onDefaultSelectedAccount $Account');
+          },
+          onSelectAccount: (Account) {
+            print('onSelectAccount $Account');
+          },
+          isSingleLineView: false,
+          isShowAmount: false),
     );
   }
 
@@ -365,9 +367,7 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
               isDisabled: !isValid!,
               onPressed: () {
                 if (isValid == true) {
-                  ProviderScope.containerOf(context)
-                      .read(payBillPageViewModelProvider)
-                      .nextPage();
+                  ProviderScope.containerOf(context).read(payBillPageViewModelProvider).nextPage();
                   ProviderScope.containerOf(context)
                       .read(confirmBillPaymentAmountPageViewModelProvider)
                       .setData(model.setData());

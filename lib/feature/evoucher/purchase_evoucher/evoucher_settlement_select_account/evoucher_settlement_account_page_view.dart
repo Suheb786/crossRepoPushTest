@@ -4,20 +4,18 @@ import 'package:domain/model/e_voucher/e_voucher_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/evoucher_settlement_select_account/evoucher_settlement_account_page_view_model.dart.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-import '../../../../ui/molecules/app_svg.dart';
+import '../../../payment/account_swiching/payment_account_switcher.dart';
 
 class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettlementAccountPageViewModel> {
   EvoucherSettlementAccountPageView(
@@ -139,184 +137,37 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                                               SizedBox(
                                                 height: 32.h,
                                               ),
-                                              Column(
-                                                children: [
-                                                  Row(
-                                                    children: [
-                                                      Text(
-                                                        S.current.payFrom,
-                                                        textAlign: TextAlign.center,
-                                                        style: TextStyle(
-                                                          fontFamily: StringUtils.appFont,
-                                                          color: Theme.of(context).indicatorColor,
-                                                          fontSize: 14,
-                                                          fontWeight: FontWeight.w600,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 16.h,
-                                                  ),
-                                                  Container(
-                                                    width: MediaQuery.of(context).size.width,
-                                                    decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.circular(8.h),
-                                                        border: Border.all(
-                                                            color: Theme.of(context)
-                                                                .colorScheme
-                                                                .tertiaryContainer)),
-                                                    child: Padding(
-                                                      padding: EdgeInsetsDirectional.all(16.h),
-                                                      child: Row(
-                                                        children: [
-                                                          Expanded(
-                                                            child: Column(
-                                                              mainAxisAlignment: MainAxisAlignment.start,
-                                                              children: [
-                                                                Row(
-                                                                  children: [
-                                                                    Text(
-                                                                      S.current.currentAccount,
-                                                                      textAlign: TextAlign.center,
-                                                                      style: TextStyle(
-                                                                        fontFamily: StringUtils.appFont,
-                                                                        color:
-                                                                            Theme.of(context).indicatorColor,
-                                                                        fontSize: 14.t,
-                                                                        fontWeight: FontWeight.w600,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                SizedBox(height: 4.h),
-                                                                Row(
-                                                                  children: [
-                                                                    Text(
-                                                                      ProviderScope.containerOf(context)
-                                                                              .read(appHomeViewModelProvider)
-                                                                              .dashboardDataContent
-                                                                              .account
-                                                                              ?.accountNo ??
-                                                                          "",
-                                                                      textAlign: TextAlign.center,
-                                                                      style: TextStyle(
-                                                                        fontFamily: StringUtils.appFont,
-                                                                        color: Theme.of(context)
-                                                                            .colorScheme
-                                                                            .inversePrimary,
-                                                                        fontSize: 12.t,
-                                                                        fontWeight: FontWeight.w600,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                SizedBox(height: 16.h),
-                                                                Row(
-                                                                  children: [
-                                                                    Text(
-                                                                      "${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.account?.availableBalance}" +
-                                                                          " " +
-                                                                          "${S.current.JOD}",
-                                                                      textAlign: TextAlign.center,
-                                                                      style: TextStyle(
-                                                                        fontFamily: StringUtils.appFont,
-                                                                        color:
-                                                                            Theme.of(context).indicatorColor,
-                                                                        fontSize: 14.t,
-                                                                        fontWeight: FontWeight.w600,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          AppStreamBuilder<bool>(
-                                                              stream: model.isCheckedStream,
-                                                              initialData: false,
-                                                              dataBuilder: (context, isChecked) {
-                                                                return isChecked!
-                                                                    ? GestureDetector(
-                                                                        onTap: () {
-                                                                          model.check(false);
-                                                                          model.validate();
-                                                                        },
-                                                                        child: Container(
-                                                                          height: 40.h,
-                                                                          width: 40.h,
-                                                                          decoration: BoxDecoration(
-                                                                              color: Theme.of(context)
-                                                                                  .canvasColor,
-                                                                              border: Border.all(
-                                                                                color: Theme.of(context)
-                                                                                    .indicatorColor,
-                                                                              ),
-                                                                              borderRadius:
-                                                                                  BorderRadius.circular(100)),
-                                                                          child: AppSvg.asset(
-                                                                              AssetUtils.check,
-                                                                              color: Theme.of(context)
-                                                                                  .indicatorColor,
-                                                                              height: 16.h,
-                                                                              fit: BoxFit.scaleDown,
-                                                                              width: 16.h),
-                                                                        ),
-                                                                      )
-                                                                    : GestureDetector(
-                                                                        onTap: () {
-                                                                          model.check(true);
-                                                                          model.validate();
-                                                                        },
-                                                                        child: Container(
-                                                                          height: 40.h,
-                                                                          width: 40.h,
-                                                                          decoration: BoxDecoration(
-                                                                              color: Theme.of(context)
-                                                                                  .colorScheme
-                                                                                  .secondary,
-                                                                              border: Border.all(
-                                                                                color: Theme.of(context)
-                                                                                    .indicatorColor,
-                                                                              ),
-                                                                              borderRadius:
-                                                                                  BorderRadius.circular(100)),
-                                                                        ),
-                                                                      );
-                                                              })
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
+                                              PaymentAccountSwitcher(
+                                                title: S.of(context).payFrom,
+                                                onDefaultSelectedAccount: (Account) {
+                                                  print('onDefaultSelectedAccount $Account');
+                                                },
+                                                onSelectAccount: (Account) {
+                                                  print('onSelectAccount $Account');
+                                                },
+                                                isSingleLineView: false,
+                                              )
                                             ],
                                           ),
                                         ),
                                         Column(
                                           children: [
-                                            AppStreamBuilder<bool>(
-                                                stream: model.isCheckedStream,
+                                            Padding(
+                                              padding: EdgeInsetsDirectional.only(top: 12.0.h, bottom: 23.h),
+                                              child: AppStreamBuilder<bool>(
+                                                stream: model.showButtonStream,
                                                 initialData: false,
-                                                dataBuilder: (context, isChecked) {
-                                                  return Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional.only(top: 12.0.h, bottom: 23.h),
-                                                    child: AppStreamBuilder<bool>(
-                                                      stream: model.showButtonStream,
-                                                      initialData: false,
-                                                      dataBuilder: (context, isValid) {
-                                                        return AppPrimaryButton(
-                                                          text: S.of(context).next,
-                                                          isDisabled: !isValid! && !isChecked!,
-                                                          onPressed: () {
-                                                            model.validateFields(context);
-                                                          },
-                                                        );
-                                                      },
-                                                    ),
+                                                dataBuilder: (context, isValid) {
+                                                  return AppPrimaryButton(
+                                                    text: S.of(context).next,
+                                                    isDisabled: !isValid!,
+                                                    onPressed: () {
+                                                      model.validateFields(context);
+                                                    },
                                                   );
-                                                }),
+                                                },
+                                              ),
+                                            ),
                                             InkWell(
                                               onTap: () {
                                                 ProviderScope.containerOf(context)
