@@ -168,21 +168,14 @@ class PageDetail extends StatelessWidget {
                   padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.w, top: 16.h),
                   child: Column(
                     children: [
-                      CustomBulletWithTitle(
-                        title: Bidi.stripHtmlIfNeeded(htmlDecodedString),
-                        fontSize: 14.t,
-                        lineHeight: 1.5,
+                      Text(
+                        Bidi.stripHtmlIfNeeded(htmlDecodedString),
+                        style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          fontSize: 14.t,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
-                      // CustomBulletWithTitle(
-                      //   title: "",
-                      //   fontSize: 14.t,
-                      //   lineHeight: 1.5,
-                      // ),
-                      // CustomBulletWithTitle(
-                      //   title: "",
-                      //   fontSize: 14.t,
-                      //   lineHeight: 1.5,
-                      // ),
                     ],
                   ),
                 ),
