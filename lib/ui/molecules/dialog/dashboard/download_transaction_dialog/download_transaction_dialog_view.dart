@@ -109,7 +109,7 @@ class DownloadTransactionDialogView extends StatelessWidget {
                               ))
                             : Expanded(
                                 child: Center(
-                                  child: Text('No Data to Display'),
+                                  child: Text(S.current.noDataToDisplay),
                                 ),
                               ),
                         InkWell(

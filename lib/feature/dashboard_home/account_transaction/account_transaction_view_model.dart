@@ -23,6 +23,9 @@ class AccountTransactionViewModel extends BasePageViewModel {
   final GetDebitYearsUseCase _debitYearsUseCase;
   TextEditingController searchController = TextEditingController();
 
+  bool hasTransactions = false;
+  bool hasDebitYears = false;
+
   ///get transaction request
   PublishSubject<GetDebitCardTransactionsUseCaseParams> _getTransactionsRequest = PublishSubject();
 
@@ -86,6 +89,7 @@ class AccountTransactionViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           onSearchTransaction();
+          hasTransactions = event.data?.transactionResponse?.isEmpty == false;
           _getDebitYearsRequest.safeAdd(GetDebitYearsUseCaseParams());
         }
       });
@@ -100,6 +104,8 @@ class AccountTransactionViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          hasDebitYears = event.data?.years.isEmpty == false;
         }
       });
     });
