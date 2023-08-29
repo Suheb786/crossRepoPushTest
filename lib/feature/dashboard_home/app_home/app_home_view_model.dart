@@ -30,7 +30,6 @@ import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
 import 'package:domain/usecase/dashboard/get_placeholder_usecase.dart';
 import 'package:domain/usecase/dynamic_link/init_dynamic_link_usecase.dart';
 import 'package:domain/usecase/payment/verify_qr_usecase.dart';
-import 'package:domain/usecase/sub_account/add_account_usecase.dart';
 import 'package:domain/usecase/sub_account/deactivate_sub_account_usecase.dart';
 import 'package:domain/usecase/sub_account/update_nick_name_sub_account_usecase.dart';
 import 'package:domain/usecase/user/get_current_user_usecase.dart';
@@ -60,6 +59,7 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/screen_size_utils.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../account_transaction/account_transaction_page.dart';
@@ -70,7 +70,6 @@ class AppHomeViewModel extends BasePageViewModel {
   final GetCurrentUserUseCase _getCurrentUserUseCase;
   final SaveUserDataUseCase _saveUserDataUseCase;
   final VerifyQRUseCase _verifyQRUseCase;
-  final AddSubAccountUseCase _addSubAccountUseCase;
   final GetAccountUseCase _getAccountUseCase;
   final CreateAccountUseCase _createAccountUseCase;
   final CloseSubAccountUseCase _closeSubAccountUsecase;
@@ -175,14 +174,6 @@ class AppHomeViewModel extends BasePageViewModel {
   BehaviorSubject<Resource<GetPlaceholderResponse>> _getPlaceHolderResponse = BehaviorSubject();
 
   Stream<Resource<GetPlaceholderResponse>> get getPlaceHolderStream => _getPlaceHolderResponse.stream;
-
-  /// add sub account request
-
-  PublishSubject<AddSubAccountUseCaseParams> _addSubAccountRequest = PublishSubject();
-
-  BehaviorSubject<Resource<bool>> _addSubAccountResposne = BehaviorSubject();
-
-  Stream<Resource<bool>> get addSubAccountStream => _addSubAccountResposne.stream;
 
   ///get Account subject holder
   PublishSubject<GetAccountUseCaseParams> _getAccountRequest = PublishSubject();
@@ -331,7 +322,6 @@ class AppHomeViewModel extends BasePageViewModel {
     this._saveUserDataUseCase,
     this._verifyQRUseCase,
     this._getAntelopCardsListUseCase,
-    this._addSubAccountUseCase,
     this._getAccountUseCase,
     this._createAccountUseCase,
     this._closeSubAccountUsecase,
@@ -399,19 +389,6 @@ class AppHomeViewModel extends BasePageViewModel {
             _requestMoneyRequest.safeAdd(true);
           }
         }
-      });
-    });
-
-    _addSubAccountRequest.listen((value) {
-      RequestManager(value, createCall: () => _addSubAccountUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _addSubAccountResposne.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showErrorState();
-          showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {}
       });
     });
 
@@ -574,11 +551,6 @@ class AppHomeViewModel extends BasePageViewModel {
     _getAccountRequest.safeAdd(GetAccountUseCaseParams());
   }
 
-  void addSubAccount({required String? NickName, required String? SubAccountNo}) {
-    _addSubAccountRequest
-        .safeAdd(AddSubAccountUseCaseParams(NickName: NickName, SubAccountNo: SubAccountNo, GetToken: true));
-  }
-
   void createAccount(
       {bool? isSubAccount,
       required CustomerAccountDetails customerAccountDetails,
@@ -614,9 +586,33 @@ class AppHomeViewModel extends BasePageViewModel {
     return accounts.any((account) => account.isSubAccount == true);
   }
 
-  List<Account> _yourAllAccounts = [];
+  List<Account> yourAllAccounts = [];
 
-  List<Account> getAllMyAccounts() => _yourAllAccounts;
+  getAllAccountNumbers(List<Account> allAccounts) {
+    List<String> accountNumbers = [];
+    for (var account in allAccounts) {
+      accountNumbers.add(account.accountNo ?? "");
+    }
+    return accountNumbers;
+  }
+
+  getAllAccountTitles(List<Account> allAccounts) {
+    List<String> accountTitles = [];
+    for (var account in allAccounts) {
+      accountTitles.add(account.accountTitle ?? "");
+    }
+    return accountTitles;
+  }
+
+  getAllAvailableBalances(List<Account> allAccounts) {
+    List<String> availableAmounts = [];
+    for (var account in allAccounts) {
+      availableAmounts.add(StringUtils.formatBalance(account.availableBalance ?? ""));
+    }
+    return availableAmounts;
+  }
+
+  List<Account> getAllMyAccounts() => yourAllAccounts;
 
   void getDashboardPages(GetDashboardDataContent dashboardDataContent) {
     pages.clear();
@@ -625,13 +621,14 @@ class AppHomeViewModel extends BasePageViewModel {
     debitCards.clear();
     creditCards.clear();
     cardTypeList.clear();
-    _yourAllAccounts.clear();
+    yourAllAccounts.clear();
 
     /// this is to be removed when proper data comes from the apis....
 
     for (Account selectedAccount in (dashboardDataContent.accounts ?? [])) {
       pages.add(MyAccountPageViewWidget(selectedAccount));
       cardTypeList.add(TimeLineSwipeUpArgs(
+          object: selectedAccount,
           cardType: selectedAccount.isSubAccount ?? false ? CardType.SUBACCOUNT : CardType.ACCOUNT,
           swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
           timeLineEnum: TimeLineEnum.TIMELINE_YES));
@@ -643,7 +640,7 @@ class AppHomeViewModel extends BasePageViewModel {
     }
 
     /// Adding all the accounts for the other pages to access so that we can show selection for the user to interact with the acocounts...
-    _yourAllAccounts.addAll(dashboardDataContent.accounts ?? []);
+    yourAllAccounts.addAll(dashboardDataContent.accounts ?? []);
 
     ///setting timeline arguments value start
     timeLineArguments.availableBalance = dashboardDataContent.account!.availableBalance ?? '0.000';
@@ -1332,13 +1329,14 @@ class AppHomeViewModel extends BasePageViewModel {
       GetCreditCardTransactionArguments(
           cardId: (cardTypeList[currentStep].object as CreditCard).cardId,
           secureCode: (cardTypeList[currentStep].object as CreditCard).cardCode ?? '',
-          isIssuedFromCMS: (cardTypeList[currentStep].object as CreditCard).issuedFromCms ?? false),
+          isIssuedFromCMS: (cardTypeList[currentStep].object as CreditCard).issuedFromCms),
     )));
   }
 
-  goToAccountTransactionPage(BuildContext context) {
+  goToAccountTransactionPage(BuildContext context, Account? accountCardAccountNo) {
     animateForwardTransactionPage();
-    Navigator.of(context).push(CustomRoute.swipeUpRoute(AccountTransactionPage()));
+    Navigator.of(context).push(CustomRoute.swipeUpRoute(
+        AccountTransactionPage(AccountTransactionPageArgument(accountCardAccountNo?.accountNo))));
   }
 
   animateForwardTransactionPage() {

@@ -17,7 +17,7 @@ class GetCardStatementUseCase
   Future<Either<NetworkError, CardStatementResponse>> execute(
       {required GetCardStatementUseCaseParams params}) {
     return params.statementType == StatementType.Debit
-        ? _repository.getDebitCardStatement(params.monthYear)
+        ? _repository.getDebitCardStatement(params.monthYear, params.accountNO)
         : _repository.getCreditCardStatement(
             params.monthYear, params.cardId, params.secureCode, params.issuedFromCms);
   }
@@ -29,12 +29,14 @@ class GetCardStatementUseCaseParams extends Params {
   StatementType statementType;
   String secureCode;
   bool? issuedFromCms;
+  String? accountNO;
 
   GetCardStatementUseCaseParams(
       {required this.monthYear,
       required this.statementType,
       required this.cardId,
       required this.secureCode,
+      required this.accountNO,
       required this.issuedFromCms});
 
   @override
