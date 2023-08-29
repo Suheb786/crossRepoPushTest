@@ -27,7 +27,7 @@ class BeneficiaryTransactionHistoryListPageState extends BaseStatefulPage<
     return beneficiaryTransactionHistoryListPageViewModelProvider.call(widget.arguments);
   }
 
-  @override
+/*  @override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
       preferredSize: Size(double.maxFinite, 85.0.h),
@@ -67,7 +67,7 @@ class BeneficiaryTransactionHistoryListPageState extends BaseStatefulPage<
         ),
       ),
     );
-  }
+  }*/
 
   @override
   bool extendBodyBehindAppBar() {

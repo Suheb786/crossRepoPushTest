@@ -13,6 +13,7 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_transaction_history_list/beneficiary_transaction_history_list_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -412,11 +413,13 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, RoutePaths.BeneficiaryTransactionHistoryList,
-                          arguments: BeneficiaryTransactionHistoryListPageArguments(
-                            navigationType: model.argument.navigationType,
-                            beneficiaryId: model.argument.beneficiaryInformation.id ?? '',
-                          ));
+                      Navigator.of(context).push(CustomRoute.swipeUpRoute(
+                        BeneficiaryTransactionHistoryListPage(BeneficiaryTransactionHistoryListPageArguments(
+                          navigationType: model.argument.navigationType,
+                          beneficiaryId: model.argument.beneficiaryInformation.id ?? '',
+                        )),
+                        routeName: RoutePaths.BeneficiaryTransactionHistoryList,
+                      ));
                     },
                     child: Container(
                       height: 64.h,
