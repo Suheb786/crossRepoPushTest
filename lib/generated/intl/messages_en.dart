@@ -2250,27 +2250,21 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Oops! You have exceeded your daily transfer limit."),
         "oopsYourCardIsNotActive": MessageLookupByLibrary.simpleMessage(
             "Oops! Your card is not active"),
-        "oopscliqIDEnteredIsInvalid": MessageLookupByLibrary.simpleMessage(
-            "Oops! CliQ ID entered is invalid"),
+        "oopscliqIDEnteredIsInvalid": MessageLookupByLibrary.simpleMessage("Oops! CliQ ID entered is invalid"),
         "openAccount": MessageLookupByLibrary.simpleMessage("Open an Account"),
-        "openAccountNow":
-            MessageLookupByLibrary.simpleMessage("Open Account Now"),
+        "openAccountNow": MessageLookupByLibrary.simpleMessage("Open Account Now"),
         "openAccountSucessDescription": MessageLookupByLibrary.simpleMessage(
             "Congratulations, your new account has been opened successfully!"),
         "openDateIssuedMessage": MessageLookupByLibrary.simpleMessage(
             "Payment cannot be completed because the bill date is not reached Yet"),
-        "openSubAccount":
-            MessageLookupByLibrary.simpleMessage("Open Sub Account"),
-        "openYourAccountNow":
-            MessageLookupByLibrary.simpleMessage("Open Your Account Now"),
-        "opneSubAccountDescription": MessageLookupByLibrary.simpleMessage(
-            "Are you sure you want to open a new account?"),
+        "openSubAccount": MessageLookupByLibrary.simpleMessage("Open Sub Account"),
+        "openSubAccountDescription":
+            MessageLookupByLibrary.simpleMessage("Are you sure you want to open a new account?"),
+        "openYourAccountNow": MessageLookupByLibrary.simpleMessage("Open Your Account Now"),
         "optional": MessageLookupByLibrary.simpleMessage("(Optional)"),
         "or": MessageLookupByLibrary.simpleMessage("or"),
-        "orContinueWith":
-            MessageLookupByLibrary.simpleMessage("or continue with"),
-        "orYouCanUpload":
-            MessageLookupByLibrary.simpleMessage("or you can upload"),
+        "orContinueWith": MessageLookupByLibrary.simpleMessage("or continue with"),
+        "orYouCanUpload": MessageLookupByLibrary.simpleMessage("or you can upload"),
         "otherDetails": MessageLookupByLibrary.simpleMessage("OTHER DETAILS"),
         "otherIncome": MessageLookupByLibrary.simpleMessage("Other Income"),
         "otherNationality":
@@ -2303,8 +2297,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your password does not meet the minimum requirements. \nPlease try again."),
         "passwordUpdate": MessageLookupByLibrary.simpleMessage(
             "Password is successfully updated"),
-        "passwordUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
-            "Your password has been updated successfully"),
+        "passwordUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage("Your password has been updated successfully"),
         "pay": MessageLookupByLibrary.simpleMessage("Pay"),
         "payAllBills": MessageLookupByLibrary.simpleMessage("Pay All Bills"),
         "payAndRequestMoneyViaQR": MessageLookupByLibrary.simpleMessage(
@@ -2314,17 +2307,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "payBills": m7,
         "payFrom": MessageLookupByLibrary.simpleMessage("Pay from"),
         "payMyBill": MessageLookupByLibrary.simpleMessage("Pay My Bill"),
-        "payNewBill": MessageLookupByLibrary.simpleMessage("Pay New Bill"),
+        "payNewBill": MessageLookupByLibrary.simpleMessage("Pay a New Bill"),
         "payViaQR": MessageLookupByLibrary.simpleMessage("Pay via QR"),
         "payViaQRDesc": MessageLookupByLibrary.simpleMessage(
             "Place the QR code within the frame and proceed with payment"),
-        "payYourBillswithBlink":
-            MessageLookupByLibrary.simpleMessage("Pay your bills with Blink!"),
+        "payYourBillswithBlink": MessageLookupByLibrary.simpleMessage("Pay your bills with Blink!"),
         "paybackCreditCardError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "paying": MessageLookupByLibrary.simpleMessage("Paying"),
-        "paymentActivity":
-            MessageLookupByLibrary.simpleMessage("Payment Activity"),
+        "paymentActivity": MessageLookupByLibrary.simpleMessage("Payment Activity"),
         "paymentActivityApiError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "paymentAmountCanBe":
@@ -3281,24 +3272,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "wereBornInUS":
             MessageLookupByLibrary.simpleMessage("Were you born in the U.S.?"),
         "whatIsPEP": MessageLookupByLibrary.simpleMessage("What is P.E.P?"),
-        "whatIsTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
-            "What is Claim of Tax Treaty Benefits?"),
-        "whatIsYourEmploymentStatus": MessageLookupByLibrary.simpleMessage(
-            "What is your employment status?"),
-        "whatRelationshipWithCardHolder": MessageLookupByLibrary.simpleMessage(
-            "What is your relationship\nwith the cardholder?"),
-        "whatYourEmailAndMobileNumber": MessageLookupByLibrary.simpleMessage(
-            "What’s your email and mobile number?"),
+        "whatIsTaxTreatyBenefits":
+            MessageLookupByLibrary.simpleMessage("What is Claim of Tax Treaty Benefits?"),
+        "whatIsYourEmploymentStatus": MessageLookupByLibrary.simpleMessage("What is your employment status?"),
+        "whatRelationshipWithCardHolder":
+            MessageLookupByLibrary.simpleMessage("What is your relationship\nwith the cardholder?"),
+        "whatYourEmailAndMobileNumber":
+            MessageLookupByLibrary.simpleMessage("What’s your email and mobile number?"),
         "whenAcceptingCreationOfYourCliqId": MessageLookupByLibrary.simpleMessage(
-            "When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ."),
+            "By creating your CliQ Alias, you acknowledge and agree to the following:\n\nSome or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) will be revealed to the originator of the remittance through CliQ.\n\nIt is strictly prohibited to create any Alias name that belongs to a trademarks or trade names not intended for you or is deemed unacceptable on political, ideological, or social grounds."),
         "whenYouFreezeYourCard": MessageLookupByLibrary.simpleMessage(
             "When you freeze your card, your card cannot be used for any transaction including direct debit on your card such as your online subscriptions directly linked to your card, for example: Netflix, Careem, OSN, etc."),
-        "whereDoYouCurrentlyLive": MessageLookupByLibrary.simpleMessage(
-            "Where do you \ncurrently live?"),
-        "whichTaxPayerAreYou":
-            MessageLookupByLibrary.simpleMessage("WHICH TAX PAYER ARE YOU?"),
-        "whichTaxPayerAreYouSmall":
-            MessageLookupByLibrary.simpleMessage("Which Tax Payer Are You?"),
+        "whereDoYouCurrentlyLive": MessageLookupByLibrary.simpleMessage("Where do you \ncurrently live?"),
+        "whichTaxPayerAreYou": MessageLookupByLibrary.simpleMessage("WHICH TAX PAYER ARE YOU?"),
+        "whichTaxPayerAreYouSmall": MessageLookupByLibrary.simpleMessage("Which Tax Payer Are You?"),
         "wsChildError": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later."),
         "yearly": MessageLookupByLibrary.simpleMessage("YEARLY"),
