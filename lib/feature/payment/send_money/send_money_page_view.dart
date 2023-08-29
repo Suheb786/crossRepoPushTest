@@ -17,6 +17,8 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../account_swiching/payment_account_switcher.dart';
+
 class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
   SendMoneyPageView(ProviderBase model) : super(model);
 
@@ -83,46 +85,16 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 22.0.h),
-            child: Text(
-              S.of(context).accountBalance,
-              style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 12.0.t,
-                  color: AppColor.dark_gray_1),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 2.0.h, bottom: 32.0.h),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  ProviderScope.containerOf(context)
-                          .read(appHomeViewModelProvider)
-                          .dashboardDataContent
-                          .account
-                          ?.availableBalance ??
-                      "0.00",
-                  style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14.0.t,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 4.0.w, top: 2.0.h),
-                  child: Text(
-                    S.of(context).JOD,
-                    style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 12.0.t,
-                        color: AppColor.dark_gray_1),
-                  ),
-                ),
-              ],
+            padding: EdgeInsets.only(top: 22.0.h, bottom: 32.0.h),
+            child: PaymentAccountSwitcher(
+              title: S.of(context).transferFrom,
+              onDefaultSelectedAccount: (Account) {
+                print('onDefaultSelectedAccount $Account');
+              },
+              onSelectAccount: (Account) {
+                print('onSelectAccount $Account');
+              },
+              isSingleLineView: true,
             ),
           ),
           Padding(

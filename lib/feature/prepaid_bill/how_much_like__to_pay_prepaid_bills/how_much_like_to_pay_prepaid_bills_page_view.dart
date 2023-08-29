@@ -25,6 +25,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../ui/molecules/button/app_primary_button.dart';
+import '../../payment/account_swiching/payment_account_switcher.dart';
 import 'how_much_like_to_pay_prepaid_bills_page_view_model.dart';
 
 class HowMuchLikeToPayPrePaidBillsPageView
@@ -333,7 +334,17 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                     ? Container()
                                     : _enterAmountAppTextField(model, context),
                                 SizedBox(height: 16.h),
-                                AppTextField(
+                                PaymentAccountSwitcher(
+                                    title: S.of(context).payFrom,
+                                    onDefaultSelectedAccount: (Account) {
+                                      print('onDefaultSelectedAccount $Account');
+                                    },
+                                    onSelectAccount: (Account) {
+                                      print('onSelectAccount $Account');
+                                    },
+                                    isSingleLineView: false,
+                                    isShowAmount: false),
+                                /*AppTextField(
                                   labelText: S.of(context).payFrom.toUpperCase(),
                                   hintText: S.of(context).savingAccount(''),
                                   controller: model.savingAccountController,
@@ -342,7 +353,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                     model.validate(model.amtController.text);
                                   },
 
-                                  /*onPressed: () {
+                                  */ /*onPressed: () {
                                     AccountsDialog.show(context, label: S.of(context).selectAccount,
                                         onDismissed: () {
                                       Navigator.pop(context);
@@ -358,7 +369,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                               ?.accountNo ??
                                           ''
                                     ]);
-                                  },*/
+                                  },*/ /*
                                   // suffixIcon: (value, data) {
                                   //   return Container(
                                   //       height: 16.h,
@@ -366,7 +377,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                   //       padding: EdgeInsetsDirectional.only(end: 8.w),
                                   //       child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
                                   // },
-                                ),
+                                ),*/
                                 SizedBox(
                                   height: 110.h,
                                 ),
