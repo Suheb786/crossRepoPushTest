@@ -23,7 +23,9 @@ class BeneficiaryContactListPage extends BasePage<BeneficiaryContactListPageView
   BeneficiaryContactListPageState createState() => BeneficiaryContactListPageState();
 }
 
-class BeneficiaryContactListPageState extends BaseStatefulPage<BeneficiaryContactListPageViewModel, BeneficiaryContactListPage> with TickerProviderStateMixin {
+class BeneficiaryContactListPageState
+    extends BaseStatefulPage<BeneficiaryContactListPageViewModel, BeneficiaryContactListPage>
+    with TickerProviderStateMixin {
   @override
   ProviderBase provideBase() {
     return beneficiaryContactListPageViewModelProvider;
@@ -37,51 +39,6 @@ class BeneficiaryContactListPageState extends BaseStatefulPage<BeneficiaryContac
 
   late final _tabController = TabController(length: 2, vsync: this, initialIndex: 0);
 
-/*  @override
-  PreferredSizeWidget? buildAppbar() {
-    return PreferredSize(
-      preferredSize: Size(double.maxFinite, 85.0.h),
-      child: GestureDetector(
-          onVerticalDragEnd: (details) {
-            Navigator.pop(context);
-          },
-          behavior: HitTestBehavior.translucent,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Padding(
-                  padding: EdgeInsetsDirectional.only(start: 24.0.w),
-                  child: AppSvg.asset(AssetUtils.leftArrow,
-                      matchTextDirection: true,
-                      color: widget.navigationType == NavigationType.REQUEST_MONEY
-                          ? Theme.of(context).colorScheme.surfaceVariant
-                          : Theme.of(context).colorScheme.secondary),
-                ),
-              ),
-              Text(
-                S.of(context).manageContacts,
-                style: TextStyle(
-                    fontSize: 14.t,
-                    fontWeight: FontWeight.w600,
-                    color: widget.navigationType == NavigationType.REQUEST_MONEY
-                        ? Theme.of(context).colorScheme.surfaceVariant
-                        : Theme.of(context).colorScheme.secondary),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.only(end: 18.0.w),
-                child: Container(
-                  width: 28.w,
-                ),
-              )
-            ],
-          )),
-    );
-  }*/
-
   @override
   bool extendBodyBehindAppBar() {
     return false;
@@ -89,7 +46,14 @@ class BeneficiaryContactListPageState extends BaseStatefulPage<BeneficiaryContac
 
   @override
   Color? scaffoldBackgroundColor() {
-    return widget.navigationType == NavigationType.REQUEST_MONEY ? Theme.of(context).canvasColor : Theme.of(context).primaryColor;
+    return widget.navigationType == NavigationType.REQUEST_MONEY
+        ? Theme.of(context).canvasColor
+        : Theme.of(context).primaryColor;
+  }
+
+  @override
+  bool? resizeToAvoidBottomInset() {
+    return false;
   }
 
   @override
@@ -119,8 +83,17 @@ class BeneficiaryContactListPageState extends BaseStatefulPage<BeneficiaryContac
     super.onModelReady(model);
   }
 
+  Widget? _sendMoneyBeneficiary;
+  Widget? _requestMoneyBeneficiary;
+
   @override
   Widget buildView(BuildContext context, BeneficiaryContactListPageViewModel model) {
+    if (_sendMoneyBeneficiary == null) {
+      _sendMoneyBeneficiary = BeneficiarySendMoneyListPageView(provideBase());
+    }
+    if (_requestMoneyBeneficiary == null) {
+      _requestMoneyBeneficiary = BeneficiaryRequestMoneyListPageView(provideBase());
+    }
     return Column(
       children: [
         Container(
@@ -130,7 +103,8 @@ class BeneficiaryContactListPageState extends BaseStatefulPage<BeneficiaryContac
             S.of(context).manageContacts,
             textAlign: TextAlign.center,
             softWrap: false,
-            style: TextStyle(fontSize: 14.t, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+            style: TextStyle(
+                fontSize: 14.t, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
           ),
         ),
         Expanded(
@@ -139,7 +113,10 @@ class BeneficiaryContactListPageState extends BaseStatefulPage<BeneficiaryContac
             children: [
               Container(
                 margin: EdgeInsetsDirectional.only(top: 24.h),
-                decoration: BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor, borderRadius: BorderRadius.only(topLeft: Radius.circular(16.w), topRight: Radius.circular(16.w))),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    borderRadius:
+                        BorderRadius.only(topLeft: Radius.circular(16.w), topRight: Radius.circular(16.w))),
                 child: Column(
                   children: [
                     SizedBox(height: 47.h),
@@ -184,7 +161,10 @@ class BeneficiaryContactListPageState extends BaseStatefulPage<BeneficiaryContac
                       ),
                     ),
                     Expanded(
-                      child: TabBarView(controller: _tabController, children: [BeneficiarySendMoneyListPageView(provideBase()), BeneficiaryRequestMoneyListPageView(provideBase())]),
+                      child: TabBarView(controller: _tabController, children: [
+                        _sendMoneyBeneficiary!,
+                        _requestMoneyBeneficiary!,
+                      ]),
                     )
                   ],
                 ),
@@ -204,7 +184,10 @@ class BeneficiaryContactListPageState extends BaseStatefulPage<BeneficiaryContac
                         shape: BoxShape.circle,
                         color: Colors.white,
                         border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
-                        boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))]),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black26, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))
+                        ]),
                     child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue),
                   ),
                 ),

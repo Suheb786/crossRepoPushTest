@@ -74,6 +74,7 @@ class AppHomeViewModel extends BasePageViewModel {
   final GetAccountUseCase _getAccountUseCase;
   final CreateAccountUseCase _createAccountUseCase;
   final CloseSubAccountUseCase _closeSubAccountUsecase;
+
   // final DeactivateSubAccountUseCase _closeSubAccountUsecase;
   final UpdateNickNameSubAccountUseCase _updateNickNameSubAccountUseCase;
 
@@ -651,156 +652,6 @@ class AppHomeViewModel extends BasePageViewModel {
 
     ///end
 
-    if (dashboardDataContent.somethingWrong ?? false) {
-      pages.add(CreditCardIssuanceFailureWidget(
-        isSmallDevices: isSmallDevices,
-        type: IssuanceType.failure,
-      ));
-
-      ///adding cardType
-      cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-    } else {
-      if (dashboardDataContent.creditCard!.length > 0) {
-        dashboardDataContent.creditCard!.forEach((creditCard) {
-          if (creditCard.isCompleted ?? false) {
-            if (creditCard.isCreditDelivered ?? false) {
-              pages.add(CreditCardWidget(
-                accountBalance: dashboardDataContent.account!.availableBalance,
-                creditCard: creditCard,
-                isChangePinEnabled: dashboardDataContent.dashboardFeatures?.isPinChangeEnabled ?? true,
-                key: ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
-                onPayBackClick: () {
-                  selectedCreditCard = creditCard;
-                  goToPayBackView(true);
-                },
-                onSettingsTap: () {
-                  selectedCreditCard = creditCard;
-                  selectedDebitCard = null;
-                  showSettingPage(true);
-                },
-              ));
-
-              ///time line list  arguments set
-              timeLineListArguments.add(TimeLineListArguments(
-                  cardCardActivated: creditCard.creditCardActivatedDate ?? '',
-                  cardDeliveredDatetime: creditCard.creditDeliveredDatetime ?? '',
-                  cardId: creditCard.cardId ?? '',
-                  cardNumber: creditCard.cardNumber ?? '',
-                  accountTitle: creditCard.name ?? '',
-                  cardType: CardType.CREDIT,
-                  isCardDelivered: creditCard.isCreditDelivered,
-                  secureCode: creditCard.cardCode,
-                  isIssuedFromCMS: creditCard.issuedFromCms));
-
-              ///adding cardType
-              cardTypeList.add(TimeLineSwipeUpArgs(
-                  cardType: CardType.CREDIT,
-                  swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
-                  timeLineEnum: TimeLineEnum.TIMELINE_YES,
-                  object: creditCard));
-              creditCards.add(creditCard);
-            } else {
-              pages.add(CreditCardNotDeliveredWidget(
-                isSmallDevice: isSmallDevices,
-                creditCard: creditCard,
-                isChangePinEnabled: dashboardDataContent.dashboardFeatures?.isPinChangeEnabled ?? true,
-                key: ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
-                onSettingsTap: () {
-                  selectedCreditCard = creditCard;
-                  selectedDebitCard = null;
-                  showSettingPage(true);
-                },
-              ));
-
-              ///time line list  arguments set
-              timeLineListArguments.add(TimeLineListArguments(
-                  cardCardActivated: creditCard.creditCardActivatedDate ?? '',
-                  cardDeliveredDatetime: creditCard.creditDeliveredDatetime ?? '',
-                  cardId: creditCard.cardId ?? '',
-                  cardNumber: creditCard.cardNumber ?? '',
-                  accountTitle: creditCard.name ?? '',
-                  cardType: CardType.CREDIT,
-                  isCardDelivered: creditCard.isCreditDelivered,
-                  secureCode: creditCard.cardCode,
-                  isIssuedFromCMS: creditCard.issuedFromCms));
-
-              ///adding cardType
-              cardTypeList
-                  .add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-            }
-          } else {
-            if (!(dashboardDataContent.dashboardFeatures?.isCreditCardFeatureEnabled ?? false)) {
-              pages.add(CreditCardIssuanceFailureWidget(
-                isSmallDevices: isSmallDevices,
-                type: IssuanceType.service_unavailable,
-              ));
-
-              ///adding cardType
-              cardTypeList
-                  .add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-            } else {
-              if (creditCard.primarySecondaryCard == PrimarySecondaryCardEnum.SECONDARY) {
-              } else {
-                switch (creditCard.callStatus) {
-                  case CreditCardCallStatusEnum.APPROVED:
-                    pages.add(GetCreditCardNowWidget(
-                      isSmallDevices: isSmallDevices,
-                      key: ValueKey('credit#GetCreditCardNowWidget#'),
-                    ));
-                    cardTypeList.add(
-                        TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-                    break;
-
-                  case CreditCardCallStatusEnum.DROP:
-                  case CreditCardCallStatusEnum.CALL_NOT_RECEIVED:
-                    pages.add(VerifyCreditCardVideoCallWidget(
-                      isSmallDevices: isSmallDevices,
-                      creditCard: creditCard,
-                    ));
-
-                    ///adding cardType
-                    cardTypeList.add(
-                        TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-                    break;
-
-                  case CreditCardCallStatusEnum.REJECTED:
-                    break;
-
-                  default:
-                    pages.add(ResumeCreditCardApplicationView(
-                      isSmallDevices: isSmallDevices,
-                    ));
-
-                    ///adding cardType
-                    cardTypeList.add(
-                        TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-                }
-              }
-            }
-          }
-        });
-      } else {
-        if (!(dashboardDataContent.dashboardFeatures?.isCreditCardFeatureEnabled ?? false)) {
-          pages.add(CreditCardIssuanceFailureWidget(
-            isSmallDevices: isSmallDevices,
-            type: IssuanceType.service_unavailable,
-          ));
-
-          ///adding cardType
-          cardTypeList
-              .add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-        } else {
-          pages.add(ApplyCreditCardWidget(
-            isSmallDevices: isSmallDevices,
-          ));
-
-          ///adding cardType
-          cardTypeList
-              .add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-        }
-      }
-    }
-
     if (dashboardDataContent.debitCardSomethingWrong ?? false) {
       pages.add(DebitCardErrorWidget(
         isSmallDevices: isSmallDevices,
@@ -938,6 +789,156 @@ class AppHomeViewModel extends BasePageViewModel {
           ///adding cardType
           cardTypeList
               .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+        }
+      }
+    }
+
+    if (dashboardDataContent.somethingWrong ?? false) {
+      pages.add(CreditCardIssuanceFailureWidget(
+        isSmallDevices: isSmallDevices,
+        type: IssuanceType.failure,
+      ));
+
+      ///adding cardType
+      cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+    } else {
+      if (dashboardDataContent.creditCard!.length > 0) {
+        dashboardDataContent.creditCard!.forEach((creditCard) {
+          if (creditCard.isCompleted ?? false) {
+            if (creditCard.isCreditDelivered ?? false) {
+              pages.add(CreditCardWidget(
+                accountBalance: dashboardDataContent.account!.availableBalance,
+                creditCard: creditCard,
+                isChangePinEnabled: dashboardDataContent.dashboardFeatures?.isPinChangeEnabled ?? true,
+                key: ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
+                onPayBackClick: () {
+                  selectedCreditCard = creditCard;
+                  goToPayBackView(true);
+                },
+                onSettingsTap: () {
+                  selectedCreditCard = creditCard;
+                  selectedDebitCard = null;
+                  showSettingPage(true);
+                },
+              ));
+
+              ///time line list  arguments set
+              timeLineListArguments.add(TimeLineListArguments(
+                  cardCardActivated: creditCard.creditCardActivatedDate ?? '',
+                  cardDeliveredDatetime: creditCard.creditDeliveredDatetime ?? '',
+                  cardId: creditCard.cardId ?? '',
+                  cardNumber: creditCard.cardNumber ?? '',
+                  accountTitle: creditCard.name ?? '',
+                  cardType: CardType.CREDIT,
+                  isCardDelivered: creditCard.isCreditDelivered,
+                  secureCode: creditCard.cardCode,
+                  isIssuedFromCMS: creditCard.issuedFromCms));
+
+              ///adding cardType
+              cardTypeList.add(TimeLineSwipeUpArgs(
+                  cardType: CardType.CREDIT,
+                  swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
+                  timeLineEnum: TimeLineEnum.TIMELINE_YES,
+                  object: creditCard));
+              creditCards.add(creditCard);
+            } else {
+              pages.add(CreditCardNotDeliveredWidget(
+                isSmallDevice: isSmallDevices,
+                creditCard: creditCard,
+                isChangePinEnabled: dashboardDataContent.dashboardFeatures?.isPinChangeEnabled ?? true,
+                key: ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
+                onSettingsTap: () {
+                  selectedCreditCard = creditCard;
+                  selectedDebitCard = null;
+                  showSettingPage(true);
+                },
+              ));
+
+              ///time line list  arguments set
+              timeLineListArguments.add(TimeLineListArguments(
+                  cardCardActivated: creditCard.creditCardActivatedDate ?? '',
+                  cardDeliveredDatetime: creditCard.creditDeliveredDatetime ?? '',
+                  cardId: creditCard.cardId ?? '',
+                  cardNumber: creditCard.cardNumber ?? '',
+                  accountTitle: creditCard.name ?? '',
+                  cardType: CardType.CREDIT,
+                  isCardDelivered: creditCard.isCreditDelivered,
+                  secureCode: creditCard.cardCode,
+                  isIssuedFromCMS: creditCard.issuedFromCms));
+
+              ///adding cardType
+              cardTypeList
+                  .add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+            }
+          } else {
+            if (!(dashboardDataContent.dashboardFeatures?.isCreditCardFeatureEnabled ?? false)) {
+              /*pages.add(CreditCardIssuanceFailureWidget(
+                isSmallDevices: isSmallDevices,
+                type: IssuanceType.service_unavailable,
+              ));
+
+              ///adding cardType
+              cardTypeList
+                  .add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));*/
+            } else {
+              if (creditCard.primarySecondaryCard == PrimarySecondaryCardEnum.SECONDARY) {
+              } else {
+                switch (creditCard.callStatus) {
+                  case CreditCardCallStatusEnum.APPROVED:
+                    pages.add(GetCreditCardNowWidget(
+                      isSmallDevices: isSmallDevices,
+                      key: ValueKey('credit#GetCreditCardNowWidget#'),
+                    ));
+                    cardTypeList.add(
+                        TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                    break;
+
+                  case CreditCardCallStatusEnum.DROP:
+                  case CreditCardCallStatusEnum.CALL_NOT_RECEIVED:
+                    pages.add(VerifyCreditCardVideoCallWidget(
+                      isSmallDevices: isSmallDevices,
+                      creditCard: creditCard,
+                    ));
+
+                    ///adding cardType
+                    cardTypeList.add(
+                        TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                    break;
+
+                  case CreditCardCallStatusEnum.REJECTED:
+                    break;
+
+                  default:
+                    pages.add(ResumeCreditCardApplicationView(
+                      isSmallDevices: isSmallDevices,
+                    ));
+
+                    ///adding cardType
+                    cardTypeList.add(
+                        TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                }
+              }
+            }
+          }
+        });
+      } else {
+        if (!(dashboardDataContent.dashboardFeatures?.isCreditCardFeatureEnabled ?? false)) {
+        /*  pages.add(CreditCardIssuanceFailureWidget(
+            isSmallDevices: isSmallDevices,
+            type: IssuanceType.service_unavailable,
+          ));
+
+          ///adding cardType
+          cardTypeList
+              .add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));*/
+        } else {
+          pages.add(ApplyCreditCardWidget(
+            isSmallDevices: isSmallDevices,
+          ));
+
+          ///adding cardType
+          cardTypeList
+              .add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
         }
       }
     }

@@ -16,6 +16,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
+import 'package:neo_bank/ui/molecules/app_progress.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/manage_contacts/edit_profile_pic_bottom_sheet_widget.dart';
@@ -194,9 +195,14 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
+                  Navigator.pop(context);
                   model.addNickName(nickName: model.nickNameController.text);
                   model.showSuccessTitleandDescriptionToast(
                       ToastwithTitleandDescription(title: '', description: S.of(context).nickNameUpdated));
+                } else if (data.status == Status.ERROR) {
+                  Navigator.pop(context);
+                } else if (data.status == Status.LOADING) {
+                  AppProgress(context);
                 }
               },
               dataBuilder: (context, data) {
