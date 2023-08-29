@@ -24,6 +24,26 @@ class MyAccountPageViewWidget extends StatelessWidget {
 
   ValueNotifier<bool> nameEditableNotifier = ValueNotifier(false);
 
+  // account.nickName == null
+  //                                 ? accountTextController.text == ""
+  //                                     ? S.current.addNickName.toTitleCase()
+  //                                     : "75"
+  //                                 : account.nickName;
+
+  String showNickName() {
+    if (account.nickName == null || account.nickName?.isEmpty == true) {
+      if (accountTextController.text == "") {
+        return S.current.addNickName.toTitleCase();
+      } else {
+        return "";
+      }
+    } else if (accountTextController.text.isNotEmpty) {
+      return "";
+    } else {
+      return account.nickName ?? "";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -57,13 +77,7 @@ class MyAccountPageViewWidget extends StatelessWidget {
                         Padding(
                           padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 32.h),
                           child: Text(
-                            account.isSubAccount == false
-                                ? ((account.nickName ?? "").isNotEmpty
-                                    ? (account.nickName ?? "")
-                                    : S.current.mainAccount)
-                                : (account.nickName ?? "").isNotEmpty
-                                    ? (account.nickName ?? "")
-                                    : S.current.subAccount,
+                            account.isSubAccount == false ? S.current.mainAccount : S.current.subAccount,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w600,
@@ -79,9 +93,10 @@ class MyAccountPageViewWidget extends StatelessWidget {
                               labelText: "",
                               readOnly: false,
                               fontSize: 12.t,
-                              inputFormatters: [LengthLimitingTextInputFormatter(10)],
-                              hintText:
-                                  accountTextController.text == "" ? S.current.addNickName.toTitleCase() : "",
+                              //     accountTextController.text == "" ? S.current.addNickName.toTitleCase() : "",
+                              // inputFormatters: [LengthLimitingTextInputFormatter(10)],
+                              maxLength: 10,
+                              hintText: showNickName(),
                               controller: accountTextController,
                               textCapitalization: TextCapitalization.words,
                               inputType: TextInputType.name,
