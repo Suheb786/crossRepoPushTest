@@ -2242,17 +2242,15 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! The QR code is expired."),
         "oopsTheQRisInvalid": MessageLookupByLibrary.simpleMessage(
             "Oops! The QR code is invalid. Please try again."),
-        "oopsYouCanOnlyCreate5CliqIds": MessageLookupByLibrary.simpleMessage(
-            "Oops! You can only create 5 CliQ IDs"),
+        "oopsYouCanOnlyCreate5CliqIds":
+            MessageLookupByLibrary.simpleMessage("Oops! You can only create 5 CliQ IDs"),
         "oopsYouCantSendMoneyToYourOwnAccount":
-            MessageLookupByLibrary.simpleMessage(
-                "Oops! you cannot send money to your own account"),
+            MessageLookupByLibrary.simpleMessage("Oops! you cannot send money to your own account"),
         "oopsYouHaveExceededYourDailyTransferLimit":
-            MessageLookupByLibrary.simpleMessage(
-                "Oops! You have exceeded your daily transfer limit."),
-        "oopsYourCardIsNotActive": MessageLookupByLibrary.simpleMessage(
-            "Oops! Your card is not active"),
-        "oopscliqIDEnteredIsInvalid": MessageLookupByLibrary.simpleMessage("Oops! CliQ ID entered is invalid"),
+            MessageLookupByLibrary.simpleMessage("Oops! You have exceeded your daily transfer limit."),
+        "oopsYourCardIsNotActive": MessageLookupByLibrary.simpleMessage("Oops! Your card is not active"),
+        "oopscliqIDEnteredIsInvalid":
+            MessageLookupByLibrary.simpleMessage("Oops! CliQ ID entered is invalid"),
         "openAccount": MessageLookupByLibrary.simpleMessage("Open an Account"),
         "openAccountNow": MessageLookupByLibrary.simpleMessage("Open Account Now"),
         "openAccountSucessDescription": MessageLookupByLibrary.simpleMessage(
@@ -2269,15 +2267,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "orYouCanUpload": MessageLookupByLibrary.simpleMessage("or you can upload"),
         "otherDetails": MessageLookupByLibrary.simpleMessage("OTHER DETAILS"),
         "otherIncome": MessageLookupByLibrary.simpleMessage("Other Income"),
-        "otherNationality":
-            MessageLookupByLibrary.simpleMessage("Other Nationality"),
+        "otherNationality": MessageLookupByLibrary.simpleMessage("Other Nationality"),
         "others": MessageLookupByLibrary.simpleMessage("Others"),
         "otpExpired": MessageLookupByLibrary.simpleMessage(
             "Your OTP code is expired, please request for a new OTP code"),
         "otpExpiredNetwork": MessageLookupByLibrary.simpleMessage(
             "The code you have entered is expired. Please re-send code and try again."),
-        "otpLimitExceed": MessageLookupByLibrary.simpleMessage(
-            "Otp Limit Exceeds, Please Try again Later"),
+        "otpLimitExceed": MessageLookupByLibrary.simpleMessage("Otp Limit Exceeds, Please Try again Later"),
         "otpLimitExceedNetwork": MessageLookupByLibrary.simpleMessage(
             "You have exceed the number of times allowed to request a code. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "otpNull":
@@ -2289,17 +2285,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("PASSWORD"),
         "passwordDialogContent": MessageLookupByLibrary.simpleMessage(
             "Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol."),
-        "passwordDialogHeader":
-            MessageLookupByLibrary.simpleMessage("Create Password"),
-        "passwordMismatch": MessageLookupByLibrary.simpleMessage(
-            "The passwords you entered do not match. Please try again."),
+        "passwordDialogHeader": MessageLookupByLibrary.simpleMessage("Create Password"),
+        "passwordMismatch":
+            MessageLookupByLibrary.simpleMessage("The passwords you entered do not match. Please try again."),
         "passwordMismatchError": MessageLookupByLibrary.simpleMessage(
             "The passwords you entered do not match. Please check and try again."),
         "passwordNotMeetCriteria": MessageLookupByLibrary.simpleMessage(
             "Your password does not meet the minimum requirements. \nPlease try again."),
-        "passwordUpdate": MessageLookupByLibrary.simpleMessage(
-            "Password is successfully updated"),
-        "passwordUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage("Your password has been updated successfully"),
+        "passwordUpdate": MessageLookupByLibrary.simpleMessage("Password is successfully updated"),
+        "passwordUpdatedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Your password has been updated successfully"),
         "pay": MessageLookupByLibrary.simpleMessage("Pay"),
         "payAllBills": MessageLookupByLibrary.simpleMessage("Pay All Bills"),
         "payAndRequestMoneyViaQR": MessageLookupByLibrary.simpleMessage(
@@ -2320,12 +2315,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "paymentActivity": MessageLookupByLibrary.simpleMessage("Payment Activity"),
         "paymentActivityApiError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "paymentAmountCanBe":
-            MessageLookupByLibrary.simpleMessage("Payment amount can be"),
+        "paymentAmountCanBe": MessageLookupByLibrary.simpleMessage("Payment amount can be"),
         "paymentCashbackError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
-        "paymentNotDone":
-            MessageLookupByLibrary.simpleMessage("payment not done"),
+        "paymentNotDone": MessageLookupByLibrary.simpleMessage("payment not done"),
         "paymentPeriod": MessageLookupByLibrary.simpleMessage("Payment Period"),
         "payments": MessageLookupByLibrary.simpleMessage("Payments"),
         "pending": MessageLookupByLibrary.simpleMessage("Pending"),
@@ -3264,15 +3257,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "We will connect you\nin Blink..."),
         "weWillConnectYouInBlink": MessageLookupByLibrary.simpleMessage(
             "We will connect you\nin Blink..."),
-        "weWillNotifyOnceReady": MessageLookupByLibrary.simpleMessage(
-            "We will notify you once it\'s ready!"),
+        "weWillNotifyOnceReady": MessageLookupByLibrary.simpleMessage("We will notify you once it\'s ready!"),
         "welcome": MessageLookupByLibrary.simpleMessage("WELCOME"),
-        "welcomeToNeuBank":
-            MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank"),
+        "welcomeToNeuBank": MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank"),
         "wentWrongWhileLogin": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-014)"),
-        "wereBornInUS":
-            MessageLookupByLibrary.simpleMessage("Were you born in the U.S.?"),
+        "wereBornInUS": MessageLookupByLibrary.simpleMessage("Were you born in the U.S.?"),
         "whatIsPEP": MessageLookupByLibrary.simpleMessage("What is P.E.P?"),
         "whatIsTaxTreatyBenefits":
             MessageLookupByLibrary.simpleMessage("What is Claim of Tax Treaty Benefits?"),
@@ -3291,13 +3281,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "wsChildError": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later."),
         "yearly": MessageLookupByLibrary.simpleMessage("YEARLY"),
-        "yellowSunDebitCard":
-            MessageLookupByLibrary.simpleMessage("Yellow Sun\nVisa Debit Card"),
+        "yellowSunDebitCard": MessageLookupByLibrary.simpleMessage("Yellow Sun\nVisa Debit Card"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "you": MessageLookupByLibrary.simpleMessage("you"),
         "youAreAcceptingMoneyRequestViaQr":
-            MessageLookupByLibrary.simpleMessage(
-                "You are accepting a money\nrequest via QR"),
+            MessageLookupByLibrary.simpleMessage("You are accepting a money\nrequest via QR"),
         "youCanAddMoney": MessageLookupByLibrary.simpleMessage(
             "You can add money to your account and start using your virtual Yellow Sun debit card immediately."),
         "youCanChangeCardDetailsInSettings":

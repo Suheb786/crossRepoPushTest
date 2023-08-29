@@ -1836,7 +1836,6 @@
   "transferRemainingBalanceForAccountClosure": "يجب أن يكون رصيد الحساب صفر ليتم إغلاقة.",
   "done": "Done",
   "okey": "Okay",
-  "view_more": "المزيد"
-  "view_more": "View More",
+  "view_more": "المزيد",
   "noDataToDisplay": "No Data to Display"
 }
