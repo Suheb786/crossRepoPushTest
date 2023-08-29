@@ -14890,10 +14890,10 @@ class S {
     );
   }
 
-  /// `When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ.`
+  /// `By creating your CliQ Alias, you acknowledge and agree to the following:\n\nSome or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) will be revealed to the originator of the remittance through CliQ.\n\nIt is strictly prohibited to create any Alias name that belongs to a trademarks or trade names not intended for you or is deemed unacceptable on political, ideological, or social grounds.`
   String get whenAcceptingCreationOfYourCliqId {
     return Intl.message(
-      'When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ.',
+      'By creating your CliQ Alias, you acknowledge and agree to the following:\n\nSome or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) will be revealed to the originator of the remittance through CliQ.\n\nIt is strictly prohibited to create any Alias name that belongs to a trademarks or trade names not intended for you or is deemed unacceptable on political, ideological, or social grounds.',
       name: 'whenAcceptingCreationOfYourCliqId',
       desc: '',
       args: [],
@@ -18120,10 +18120,10 @@ class S {
     );
   }
 
-  /// `Pay New Bill`
+  /// `Pay a New Bill`
   String get payNewBill {
     return Intl.message(
-      'Pay New Bill',
+      'Pay a New Bill',
       name: 'payNewBill',
       desc: '',
       args: [],
@@ -18341,10 +18341,10 @@ class S {
   }
 
   /// `Are you sure you want to open a new account?`
-  String get opneSubAccountDescription {
+  String get openSubAccountDescription {
     return Intl.message(
       'Are you sure you want to open a new account?',
-      name: 'opneSubAccountDescription',
+      name: 'openSubAccountDescription',
       desc: '',
       args: [],
     );

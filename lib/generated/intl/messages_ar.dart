@@ -662,7 +662,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "هل أنت متأكد من عملية إغلاق الحساب؟"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "أكمل معلومات تقريرك الضريبي التالية:"),
-        "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
+        "confirm": MessageLookupByLibrary.simpleMessage("تم"),
         "confirmDelete": MessageLookupByLibrary.simpleMessage("تأكيد الحذف؟"),
         "confirmDeliveryError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
@@ -1939,7 +1939,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "العنوان البريدي مختلف على عنوان الإقامة"),
         "mailingAddressLine":
             MessageLookupByLibrary.simpleMessage("العنوان البريدي"),
-        "mainAccount": MessageLookupByLibrary.simpleMessage("Main Account"),
+        "mainAccount": MessageLookupByLibrary.simpleMessage("الحساب الرئيسي"),
         "mainAnnualIncome":
             MessageLookupByLibrary.simpleMessage("الدخل السنوي الرئيسي"),
         "mainAnnualIncomeSmall":
@@ -2071,17 +2071,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("رقم موبايل جديد"),
         "newPassword":
             MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
-        "newPayment": MessageLookupByLibrary.simpleMessage("New Payment"),
+        "newPayment": MessageLookupByLibrary.simpleMessage("حوالة جديدة"),
         "newPin": MessageLookupByLibrary.simpleMessage("رمز سري PIN جديد"),
         "newPostPaidBill":
-            MessageLookupByLibrary.simpleMessage("New Postpaid Bill"),
+            MessageLookupByLibrary.simpleMessage("ادفع فاتورة جديدة"),
         "newPrePaidBill":
-            MessageLookupByLibrary.simpleMessage("New Prepaid Bill"),
+            MessageLookupByLibrary.simpleMessage("ادفع فاتورة جديدة"),
         "newSettlementAccount":
             MessageLookupByLibrary.simpleMessage("حساب التسوية الجديد"),
         "newSettlementPercentage":
             MessageLookupByLibrary.simpleMessage("نسبة السداد الجديدة"),
-        "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "next": MessageLookupByLibrary.simpleMessage("أكمل"),
         "niHandlerError": MessageLookupByLibrary.simpleMessage(
             "بنعتذر منك، إنت غير مؤهل للحصول على بطاقة ائتمانية بهاللحظة. بتقدر تتمتع بكل خدماتنا الأخرى."),
         "nickName": MessageLookupByLibrary.simpleMessage("الاسم المستعار"),
@@ -2209,10 +2209,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "تم رفض دفع الفاتوره بسبب عدم استحقاقها"),
         "openSubAccount":
             MessageLookupByLibrary.simpleMessage("افتح حساب إضافي"),
+        "openSubAccountDescription": MessageLookupByLibrary.simpleMessage(
+            "هل أنت متأكد من عملية فتح حساب إضافي؟"),
         "openYourAccountNow":
             MessageLookupByLibrary.simpleMessage("افتح حساب جديد "),
-        "opneSubAccountDescription": MessageLookupByLibrary.simpleMessage(
-            "هل أنت متأكد من عملية فتح حساب إضافي؟"),
         "optional": MessageLookupByLibrary.simpleMessage("اختياري"),
         "or": MessageLookupByLibrary.simpleMessage("أو"),
         "orContinueWith":
@@ -2261,7 +2261,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "payBills": m7,
         "payFrom": MessageLookupByLibrary.simpleMessage("تسديد من"),
         "payMyBill": MessageLookupByLibrary.simpleMessage("تسديد فاتورتي"),
-        "payNewBill": MessageLookupByLibrary.simpleMessage("Pay New Bill"),
+        "payNewBill": MessageLookupByLibrary.simpleMessage("ادفع فاتورة جديدة"),
         "payViaQR": MessageLookupByLibrary.simpleMessage(
             "تحويل أموال من خلال رمز الاستجابة السريع\nQR"),
         "payViaQRDesc": MessageLookupByLibrary.simpleMessage(
@@ -3160,7 +3160,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("عرض القسيمة الإلكترونية"),
         "viewVoucherDialogDescription": MessageLookupByLibrary.simpleMessage(
             "القسيمة الإلكترونية قيد الإنتظار، رح نخبرك لما تكون جاهزة  للاستخدام."),
-        "view_more": MessageLookupByLibrary.simpleMessage("View More"),
+        "view_more": MessageLookupByLibrary.simpleMessage("المزيد"),
         "visaPlatinumCard": MessageLookupByLibrary.simpleMessage(
             "بطاقة فيزا الائتمانية البلاتينية"),
         "voiceCall": MessageLookupByLibrary.simpleMessage("مكالمة صوتية"),
@@ -3204,7 +3204,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "whatYourEmailAndMobileNumber":
             MessageLookupByLibrary.simpleMessage("شو إيميلك ورقم موبايلك؟"),
         "whenAcceptingCreationOfYourCliqId": MessageLookupByLibrary.simpleMessage(
-            "عند الموافقة على انشاء حساب كليك، يجب ان  تعلم ان جميع معلوماتك (المتضمنة اسمك الكامل، رقم الموبايل المربوط بهذه الخدمة،رقم حسابك او رقم حسابك الدولي و البنك المزود للخدمة) قد يتم مشاركتها مع طرف ثالث عند استلام او ارسال الدفعات عبر كليك"),
+            "عند انشاء اسمك المستعار على كليك، تقرّ وتوافق على:\n\nأن جميع معلوماتك (المتضمنة اسمك الكامل، رقم الموبايل المربوط بهذه الخدمة، رقم حسابك أو رقم حسابك الدولي و البنك المزود للخدمة) سيتم إظهارها لمنشئ الحوالة عبر كليك. \n\nأنه يمنع انشاء أية أسماء مستعارة تعود لعلامات تجارية أو اسماء تجارية ليست مملوكة لك، أو غير مقبولة على الصعيد السياسي أو العقائدي أو التجاري أو الاجتماعي."),
         "whenYouFreezeYourCard": MessageLookupByLibrary.simpleMessage(
             "لما تجمّد بطاقتك، بنحب نخبرك انه ما رح تقدر تستخدمها لأي حركة شرائية بالمحلات أو أونلاين أو سحب نقدي أو أي حركة اشتراك تلقائي مربوط بالبطاقة أونلاين مثل الاشتراك بنتفليكس أو تطبيق كريم أو أي اشتراكات مشابهه"),
         "whereDoYouCurrentlyLive":

@@ -16,6 +16,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 
+import '../../../utils/color_utils.dart';
 import 'beneficiary_transaction_history_list_page_view_model.dart';
 
 class BeneficiaryTransactionHistoryListPageView
@@ -27,12 +28,69 @@ class BeneficiaryTransactionHistoryListPageView
     return Container(
       height: double.infinity,
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 24.w),
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.secondary,
+          color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.only(topLeft: Radius.circular(16.w), topRight: Radius.circular(16.w))),
       child: Column(
-        children: [searchContact(context, model), listItem(context, model)],
+        children: [
+          Container(
+            padding: EdgeInsets.only(top: 52.0.h, bottom: 0.h),
+            height: 80.h,
+            child: Text(
+              S.of(context).transactionHistory,
+              textAlign: TextAlign.center,
+              softWrap: false,
+              style: TextStyle(
+                  fontSize: 14.t,
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).colorScheme.secondary),
+            ),
+          ),
+          Expanded(
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w),
+                  margin: EdgeInsetsDirectional.only(top: 24.h),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                      borderRadius:
+                          BorderRadius.only(topLeft: Radius.circular(16.w), topRight: Radius.circular(16.w))),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 47.h),
+                      searchContact(context, model),
+                      listItem(context, model)
+                    ],
+                  ),
+                ),
+                Positioned(
+                  top: 0.h,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      height: 48.h,
+                      width: 48.h,
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                          border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black26, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))
+                          ]),
+                      child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -40,13 +98,6 @@ class BeneficiaryTransactionHistoryListPageView
   searchContact(context, BeneficiaryTransactionHistoryListPageViewModel model) {
     return Column(
       children: [
-        Container(
-          margin: EdgeInsets.only(top: 8.h, bottom: 36.h),
-          height: 4.h,
-          width: 64.w,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(4), color: Theme.of(context).colorScheme.inverseSurface),
-        ),
         Row(
           children: [
             Expanded(
