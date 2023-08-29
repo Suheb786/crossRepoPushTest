@@ -2,6 +2,7 @@ import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/activity/activity_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -26,6 +27,18 @@ class AccountSelectionDialogView extends StatelessWidget {
 
   ProviderBase providerBase() {
     return accountSelectionDialogViewModelProvider;
+  }
+
+  String formatBalance(String balance) {
+    if (balance.isEmpty) {
+      return "";
+    }
+    double? balanceValue = double.tryParse(balance);
+    if (balanceValue != null) {
+      return NumberFormat('#,###.000').format(balanceValue);
+    } else {
+      return balance;
+    }
   }
 
   @override
@@ -136,7 +149,8 @@ class AccountSelectionDialogView extends StatelessWidget {
                                                       text: TextSpan(
                                                         children: [
                                                           TextSpan(
-                                                            text: "${account.availableBalance ?? "0.00"}",
+                                                            text: formatBalance(
+                                                                account.availableBalance ?? "0.00"),
                                                             style: TextStyle(
                                                               fontFamily: StringUtils.appFont,
                                                               fontSize: 14.0.t,
