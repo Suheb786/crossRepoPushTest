@@ -62,11 +62,13 @@ class AppHomePageWidgets {
 ///------------------------------Transfer Between Account Tile-------------------------///
 
 class TransferBetweenAccountTile extends StatelessWidget {
+  bool? isVisible;
   bool isEnabled;
   bool isCardActivated;
   dynamic Function() onTap;
   TransferBetweenAccountTile({
     Key? key,
+    this.isVisible,
     required this.isEnabled,
     required this.isCardActivated,
     required this.onTap,
@@ -74,12 +76,15 @@ class TransferBetweenAccountTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SettingTile(
-      isEnabled: isEnabled,
-      isCardActivated: isCardActivated,
-      tileIcon: AssetUtils.transferBetweenAccountIcon,
-      title: S.current.transferBetweenAccount,
-      onTap: onTap,
+    return Visibility(
+      visible: isVisible ?? true,
+      child: SettingTile(
+        isEnabled: isEnabled,
+        isCardActivated: isCardActivated,
+        tileIcon: AssetUtils.transferBetweenAccountIcon,
+        title: S.current.transferBetweenAccount,
+        onTap: onTap,
+      ),
     );
   }
 }

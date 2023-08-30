@@ -82,25 +82,35 @@ class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewMo
                                         );
                                       },
                                       child: TransferAccountTextField(
-                                        context: context,
-                                        model: model,
-                                        label: S.current.transferFrom.toUpperCase(),
-                                        accuntNumber: modified?.accountNo ?? "",
-                                        availableAmount: modified?.availableBalance == ""
-                                            ? ""
-                                            : StringUtils.formatBalance(modified?.availableBalance ?? "") +
-                                                " " +
-                                                S.current.JOD.toUpperCase(),
-                                        accountName: modified?.accountTitle ?? "",
-                                      ),
+                                          context: context,
+                                          model: model,
+                                          label: S.current.transferFrom.toUpperCase(),
+                                          accuntNumber: modified?.accountNo ?? "",
+                                          availableAmount: modified?.availableBalance == ""
+                                              ? ""
+                                              : StringUtils.formatBalance(modified?.availableBalance ?? "") +
+                                                  " " +
+                                                  S.current.JOD.toUpperCase(),
+                                          accountName: modified?.isSubAccount == false
+                                              ? (modified?.nickName == null || modified?.nickName == ""
+                                                  ? (S.current.mainAccount)
+                                                  : (S.current.mainAccount +
+                                                      " - " +
+                                                      (modified?.nickName ?? "")))
+                                              : (modified?.nickName == null || modified?.nickName == ""
+                                                  ? (S.current.subAccount)
+                                                  : (S.current.subAccount +
+                                                      " - " +
+                                                      (modified?.nickName ?? "")))),
                                     );
                                   }),
                             ),
                             SizedBox(height: 16.h),
                             AppStreamBuilder<Account>(
                                 stream: model.transferToAccountDetailsStream,
-                                initialData: Account(accountNo: " ", accountTitle: " ", availableBalance: ""),
-                                dataBuilder: (context, snapShot) {
+                                initialData: Account(
+                                    accountNo: " ", accountTitle: " ", availableBalance: "", nickName: ""),
+                                dataBuilder: (context, modified) {
                                   return InkWell(
                                     onTap: () {
                                       if (model.transferFromAccountDetailsResponse.hasValue) {
@@ -123,11 +133,17 @@ class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewMo
                                       context: context,
                                       model: model,
                                       label: S.current.transferTo.toUpperCase(),
-                                      accuntNumber: snapShot?.accountNo ?? "",
-                                      accountName: snapShot?.accountTitle ?? "",
-                                      availableAmount: snapShot?.availableBalance == ""
+                                      accuntNumber: (modified?.accountNo ?? ""),
+                                      accountName: (modified?.isSubAccount == false
+                                          ? (modified?.nickName == null || modified?.nickName == ""
+                                              ? (S.current.mainAccount)
+                                              : (S.current.mainAccount + " - " + (modified?.nickName ?? "")))
+                                          : (modified?.nickName == null || modified?.nickName == ""
+                                              ? (S.current.subAccount)
+                                              : (S.current.subAccount + " - " + (modified?.nickName ?? "")))),
+                                      availableAmount: modified?.availableBalance == ""
                                           ? ""
-                                          : StringUtils.formatBalance(snapShot?.availableBalance ?? "") +
+                                          : StringUtils.formatBalance(modified?.availableBalance ?? "") +
                                               " " +
                                               S.current.JOD.toUpperCase(),
                                     ),
@@ -182,8 +198,7 @@ class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewMo
                         Center(
                           child: InkWell(
                             onTap: () {
-                              Navigator.pushNamedAndRemoveUntil(
-                                  context, RoutePaths.AppHome, (route) => false);
+                              Navigator.pop(context);
                             },
                             child: Text(
                               S.of(context).backToDashboard,
