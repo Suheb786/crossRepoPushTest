@@ -14,7 +14,8 @@ class StringUtils {
     if (balance.isEmpty || balanceValue == 0.0) {
       return "0.000";
     } else if (balanceValue != null) {
-      return NumberFormat('#,###.000').format(balanceValue);
+      String formattedBalance = NumberFormat('#,##0.000').format(balanceValue);
+      return formattedBalance.startsWith('.') ? '0$formattedBalance' : formattedBalance;
     } else {
       return balance;
     }
