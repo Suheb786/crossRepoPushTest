@@ -48,7 +48,7 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get selectAccountStream => _selectAccountResponse.stream;
 
   /// button subject
-  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(true);
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 

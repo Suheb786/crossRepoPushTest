@@ -5,7 +5,6 @@ import 'package:domain/model/payment/request_to_pay_content_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/payment/request_amount_from_contact/request_amount_from_contact_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -23,6 +22,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../di/payment/payment_modules.dart';
+import '../account_swiching/payment_account_switcher.dart';
 import '../payment_home/payment_home_view_model.dart';
 
 class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountFromContactViewModel> {
@@ -295,48 +295,17 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                           ),
                         ),
                       ),
-                      Spacer(),
                       Padding(
-                        padding: EdgeInsets.only(top: 24.h),
-                        child: Text(
-                          S.of(context).accountBalance,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 10.t,
-                              color: AppColor.dark_gray_1),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 2.h),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              ProviderScope.containerOf(context)
-                                  .read(appHomeViewModelProvider)
-                                  .dashboardDataContent
-                                  .account!
-                                  .availableBalance!
-                                  .toString(),
-                              style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 14.t,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 4.0.w, top: 2.h),
-                              child: Text(
-                                S.of(context).JOD,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 12.t,
-                                    color: AppColor.dark_gray_1),
-                              ),
-                            ),
-                          ],
+                        padding: EdgeInsets.only(top: 15.0.h, bottom: 10.0.h),
+                        child: PaymentAccountSwitcher(
+                          title: S.of(context).transferFrom,
+                          onDefaultSelectedAccount: (Account) {
+                            print('onDefaultSelectedAccount $Account');
+                          },
+                          onSelectAccount: (Account) {
+                            print('onSelectAccount $Account');
+                          },
+                          isSingleLineView: true,
                         ),
                       ),
                       Padding(

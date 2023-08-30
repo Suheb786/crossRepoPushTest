@@ -12,12 +12,13 @@ import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/postpaid_bills/pay_selected_postpaid_bills/selected_bills_to_paid_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
-import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../payment/account_swiching/payment_account_switcher.dart';
 
 class PaySelectedBillsPostPaidBillsPageView
     extends BasePageViewWidget<PaySelectedBillsPostPaidBillsPageViewModel> {
@@ -190,28 +191,16 @@ class PaySelectedBillsPostPaidBillsPageView
                                                 },
                                                 itemCount: model.arguments.postPaidBillInquiryData!.length),
                                             Padding(
-                                              padding: EdgeInsetsDirectional.only(
-                                                  start: 24.w, top: 32.h, bottom: 16.h),
-                                              child: Align(
-                                                alignment: AlignmentDirectional.topStart,
-                                                child: Text(
-                                                  S.of(context).selectAccount,
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      color: AppColor.veryDarkGray2,
-                                                      fontWeight: FontWeight.w600,
-                                                      fontSize: 14.0.t),
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsetsDirectional.only(start: 24.0.w, end: 24.0.w),
-                                              child: AppTextField(
-                                                labelText: S.of(context).payFrom.toUpperCase(),
-                                                hintText: S.of(context).pleaseSelect,
-                                                controller: model.savingAccountController,
-                                                readOnly: true,
+                                              padding: EdgeInsets.symmetric(horizontal: 24.w),
+                                              child: PaymentAccountSwitcher(
+                                                title: S.of(context).payFrom,
+                                                onDefaultSelectedAccount: (Account) {
+                                                  print('onDefaultSelectedAccount $Account');
+                                                },
+                                                onSelectAccount: (Account) {
+                                                  print('onSelectAccount $Account');
+                                                },
+                                                isSingleLineView: false,
                                               ),
                                             ),
                                             SizedBox(

@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:domain/constants/app_constants.dart';
 import 'package:domain/model/e_voucher/get_settlement_amount.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -142,23 +141,18 @@ class PageDetail extends StatelessWidget {
                         text: model.argument.selectedVoucherItem.name,
                         textSize: 20.t,
                         textWeight: FontWeight.w600,
-                        textColor: Theme
-                            .of(context)
-                            .colorScheme
-                            .shadow,
+                        textColor: Theme.of(context).colorScheme.shadow,
                       ),
-                      SizedBox(height: 8.h),
-                      EVoucherTextWidget(
-                        alignment: AlignmentDirectional.topStart,
-                        text: S
-                            .of(context)
-                            .validUntil + " " + "--",
-                        textSize: 14.t,
-                        textWeight: FontWeight.w400,
-                        textColor: Theme
-                            .of(context)
-                            .colorScheme
-                            .shadow,
+                      // SizedBox(height: 8.h),
+                      Visibility(
+                        visible: false,
+                        child: EVoucherTextWidget(
+                          alignment: AlignmentDirectional.topStart,
+                          text: S.of(context).validUntil + " " + "--",
+                          textSize: 14.t,
+                          textWeight: FontWeight.w400,
+                          textColor: Theme.of(context).colorScheme.shadow,
+                        ),
                       ),
                       SizedBox(height: 24.h),
                       Padding(
