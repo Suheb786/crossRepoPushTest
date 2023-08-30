@@ -493,7 +493,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                         arguments:
                                                                                                             SelectTranferPageArgument(
                                                                                                           account:
-                                                                                                              model.cardTypeList[currentStep ?? 1].object as Account,
+                                                                                                              model.cardTypeList[currentStep ?? 0].object as Account,
                                                                                                           allAccountNumbers:
                                                                                                               model.getAllAccountNumbers(cardData?.data?.dashboardDataContent?.accounts ?? []),
                                                                                                           allAccountTitles:
