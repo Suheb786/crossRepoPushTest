@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -17,6 +18,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../account_swiching/payment_account_switcher.dart';
+import '../request_payment_from_new_recipient/request_payment_from_new_recipient_page.dart';
 
 class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
   RequestMoneyPageView(ProviderBase model) : super(model);
@@ -29,7 +31,9 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
           initialData: Resource.none(),
           onData: (data) {
             if (data.status == Status.SUCCESS) {
-              Navigator.pushNamed(context, RoutePaths.RequestPaymentFromNewRecipient, arguments: model.currentPinValue);
+              Navigator.pushNamed(context, RoutePaths.RequestPaymentFromNewRecipient,
+                  arguments: RequestPaymentFromNewRecipientArgument(
+                      account: model.selectedAccount, currentPin: model.currentPinValue));
             } else if (data.status == Status.ERROR) {
               model.showToastWithError(data.appError!);
             }
@@ -39,10 +43,13 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.only(top: (MediaQuery.of(context).size.height * 0.14) + (MediaQuery.of(context).size.height * 0.08)),
+                  padding: EdgeInsetsDirectional.only(
+                      top: (MediaQuery.of(context).size.height * 0.14) +
+                          (MediaQuery.of(context).size.height * 0.08)),
                   child: Text(
                     S.of(context).requestMoney,
-                    style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 20.0.t),
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 20.0.t),
                   ),
                 ),
                 Spacer(),
@@ -59,13 +66,21 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                               model.currentPinValue,
                               textAlign: TextAlign.center,
                               maxLines: 1,
-                              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.bold, fontSize: 40.0.t, color: AppColor.black),
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 40.0.t,
+                                  color: AppColor.black),
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.only(top: 15.0.h, start: 4.0.w),
                               child: Text(
                                 S.of(context).JOD,
-                                style: TextStyle(fontFamily: StringUtils.appFont, color: AppColor.verLightGray4, fontSize: 16.0.t, fontWeight: FontWeight.w700),
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    color: AppColor.verLightGray4,
+                                    fontSize: 16.0.t,
+                                    fontWeight: FontWeight.w700),
                               ),
                             ),
                           ],
@@ -86,11 +101,11 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                   padding: EdgeInsets.only(top: 22.0.h, bottom: 32.0.h),
                   child: PaymentAccountSwitcher(
                     title: S.of(context).transferFrom,
-                    onDefaultSelectedAccount: (Account) {
-                      print('onDefaultSelectedAccount $Account');
+                    onDefaultSelectedAccount: (Account account) {
+                      model.selectedAccount = account;
                     },
-                    onSelectAccount: (Account) {
-                      print('onSelectAccount $Account');
+                    onSelectAccount: (Account account) {
+                      model.selectedAccount = account;
                     },
                     isSingleLineView: true,
                   ),

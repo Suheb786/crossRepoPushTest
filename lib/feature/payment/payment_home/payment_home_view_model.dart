@@ -1,4 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
 import 'package:domain/usecase/manage_contacts/get_beneficiary_usecase.dart';
@@ -16,6 +17,7 @@ import 'package:rxdart/rxdart.dart';
 
 class PaymentHomeViewModel extends BasePageViewModel {
   final SwiperController pageController = SwiperController();
+  final Account selectedAccount = Account();
 
   NavigationType navigationType = NavigationType.DASHBOARD;
 

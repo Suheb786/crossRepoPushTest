@@ -12,10 +12,10 @@ import 'package:domain/model/qr/verify_qr_response.dart';
 
 abstract class PaymentRepository {
   Future<Either<NetworkError, GetAccountByAliasContentResponse>> getAccountByAlias(
-      String value, String currency, String? beneficiaryId);
+      String fromAccount, String value, String currency, String? beneficiaryId);
 
   Future<Either<NetworkError, CheckSendMoneyResponse>> checkSendMoney(
-      String toAccount, num toAmount, String beneficiaryId);
+      String? fromAccount, String toAccount, num toAmount, String beneficiaryId);
 
   Future<Either<NetworkError, TransferSuccessResponse>> transfer(
       {String beneficiaryId,
@@ -24,6 +24,7 @@ abstract class PaymentRepository {
       String beneficiaryImage,
       bool isFriend,
       num toAmount,
+      String? fromAccount,
       num localEq,
       String memo,
       String toAccount,
@@ -36,6 +37,7 @@ abstract class PaymentRepository {
   Future<Either<NetworkError, bool>> transferVerify({required String amount});
 
   Future<Either<NetworkError, RequestToPayContentResponse>> requestToPay(
+      String fromAccount,
       String ctgyPurp,
       num amount,
       String dbtrBic,
@@ -74,5 +76,5 @@ abstract class PaymentRepository {
   Future<Either<NetworkError, bool>> qrScanOTP();
 
   Future<Either<NetworkError, QRTransferResponse>> transferQR(
-      {required String requestId, required String toAmount, required String toAccount, required String otp});
+      {required String requestId,  String? fromAccount,  required String toAmount, required String toAccount, required String otp});
 }

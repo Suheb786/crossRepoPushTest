@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -20,6 +21,16 @@ class RequestFromNewRecipientPageState
   @override
   Widget buildView(BuildContext context, RequestFromNewRecipientViewModel model) {
     return RequestFromNewRecipientPageView(provideBase());
+  }
+
+  @override
+  void onModelReady(RequestFromNewRecipientViewModel model) {
+    super.onModelReady(model);
+    model.selectedAccount = ProviderScope.containerOf(context)
+            .read(requestPaymentFromNewRecipientViewModelProvider)
+            .argument
+            ?.account ??
+        Account();
   }
 
   @override

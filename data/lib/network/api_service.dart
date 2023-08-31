@@ -590,19 +590,19 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> unblockDebitCardPin(
       @Body() UnblockDebitCardPinRequest unblockDebitCardPinRequest);
 
-  @POST("/transfer/GetAccountByAlisas")
+  @POST("/transfer/GetAccountByAlisasV2")
   Future<HttpResponse<GetAccountByAliasContentResponseEntity>> getAccountByAlias(
       @Body() GetAccountByAliasRequestEntity getAccountByAliasRequestEntity);
 
-  @POST("/transfer/CheckSendMoneyV3")
+  @POST("/transfer/CheckSendMoneyV4")
   Future<HttpResponse<CheckSendMoneyResponseEntity>> checkSendMoney(
       @Body() CheckSendMoneyRequestEntity checkSendMoneyRequestEntity);
 
-  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ContactCenter/TransferAPI")
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ContactCenter/TransferAPIV2")
   Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
       @Body() TransferRequestEntity transferRequestEntity);
 
-  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ContactCenter/RequestToPay")
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ContactCenter/RequestToPayV2")
   Future<HttpResponse<RequestToPayContentResponseEntity>> requestToPay(
       @Body() RequestToPayRequestEntity requestToPayRequestEntity);
 
@@ -1100,7 +1100,7 @@ abstract class ApiService {
     @Body() BaseRequest request,
   );
 
-  @POST("/Transfer/TransferQR")
+  @POST("/Transfer/TransferQRV2")
   Future<HttpResponse<QRTransferResponseEntity>> transferQR(
       @Body() TransferQRRequestEntity transferQRRequestEntity);
 

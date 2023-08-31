@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/payment/check_send_money_response.dart';
 import 'package:domain/model/payment/transfer_respone.dart';
@@ -16,7 +17,7 @@ import 'package:rxdart/rxdart.dart';
 class SendAmountToContactViewModel extends BasePageViewModel {
   final CheckSendMoneyUseCase _checkSendMoneyUseCase;
   final TransferUseCase _transferUseCase;
-
+  Account selectedAccount = Account();
   final Beneficiary beneficiary;
 
   PublishSubject<String> _purposeSubject = PublishSubject();
@@ -55,7 +56,9 @@ class SendAmountToContactViewModel extends BasePageViewModel {
 
   SendAmountToContactViewModel(this.beneficiary, this._checkSendMoneyUseCase, this._transferUseCase) {
     _checkSendMoneyRequest.listen((value) {
-      RequestManager(value, createCall: () => _checkSendMoneyUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _checkSendMoneyUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _checkSendMoneyResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -66,7 +69,9 @@ class SendAmountToContactViewModel extends BasePageViewModel {
     });
 
     _transferRequest.listen((value) {
-      RequestManager(value, createCall: () => _transferUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _transferUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _transferResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -138,16 +143,23 @@ class SendAmountToContactViewModel extends BasePageViewModel {
   }
 
   void checkSendMoney() {
-    _checkSendMoneyRequest.safeAdd(CheckSendMoneyUseCaseParams(toAccount: beneficiary.identifier ?? '', toAmount: double.parse(currentPinValue), beneficiaryId: beneficiary.id ?? ''));
+    _checkSendMoneyRequest.safeAdd(CheckSendMoneyUseCaseParams(
+        fromAccount: selectedAccount.accountNo,
+        toAccount: beneficiary.identifier ?? '',
+        toAmount: double.parse(currentPinValue),
+        beneficiaryId: beneficiary.id ?? ''));
   }
 
   void transfer(TransferResponse transferResponse) {
     _transferRequest.safeAdd(TransferUseCaseParams(
         otpCode: '576824',
         toAmount: transferResponse.toAmount,
+        fromAccount: selectedAccount.accountNo,
         toAccount: transferResponse.toAccount,
         limit: purposeDetail == null ? beneficiary.limit : purposeDetail!.limit,
-        memo: purposeDetail == null ? (beneficiary.purpose == null ? '' : beneficiary.purpose!) : purposeDetail!.strCode!,
+        memo: purposeDetail == null
+            ? (beneficiary.purpose == null ? '' : beneficiary.purpose!)
+            : purposeDetail!.strCode!,
         isFriend: false,
         nickName: "",
         transferType: transferResponse.transferType,

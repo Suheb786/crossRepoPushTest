@@ -4,6 +4,8 @@ part "transfer_request_entity.g.dart";
 
 @JsonSerializable()
 class TransferRequestEntity {
+  @JsonKey(name: "FromAccount")
+  final String? fromAccount;
   @JsonKey(name: "BeneficiaryId")
   final String? beneficiaryId;
   @JsonKey(name: "OtpCode")
@@ -39,6 +41,7 @@ class TransferRequestEntity {
 
   TransferRequestEntity(
       {required this.baseData,
+      this.fromAccount = "",
       this.toAmount = 0,
       this.nickName = "",
       this.transferType = "",

@@ -162,8 +162,8 @@ final creditCardPayBackSuccessViewModelProvider = ChangeNotifierProvider.autoDis
 );
 
 final requestPaymentFromNewRecipientViewModelProvider =
-    ChangeNotifierProvider.autoDispose.family<RequestPaymentFromNewRecipientViewModel, String>(
-  (ref, args) => RequestPaymentFromNewRecipientViewModel(args),
+    ChangeNotifierProvider.autoDispose<RequestPaymentFromNewRecipientViewModel>(
+  (ref) => RequestPaymentFromNewRecipientViewModel(),
 );
 
 ///edit transaction purpose dialog view model provider
