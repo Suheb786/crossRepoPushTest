@@ -4,6 +4,9 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../../../generated/l10n.dart';
+import '../../../button/app_primary_button.dart';
+
 class InformationDialogView extends StatelessWidget {
   final Function? onDismissed;
   final bool? isSwipeToCancel;
@@ -74,6 +77,13 @@ class InformationDialogView extends StatelessWidget {
                             child: descriptionWidget,
                           ),
                           SizedBox(height: 30.h),
+                          AppPrimaryButton(
+                            onPressed: () {
+                              onSelected?.call();
+                            },
+                            text: S.of(context).confirm,
+                          ),
+                          SizedBox(height: 40.h),
                         ],
                       ),
                     )),
@@ -82,7 +92,7 @@ class InformationDialogView extends StatelessWidget {
             bottom: 32.h,
             child: InkWell(
               onTap: () {
-                onSelected?.call();
+                onDismissed?.call();
               },
               child: Container(
                   height: 48.h,
