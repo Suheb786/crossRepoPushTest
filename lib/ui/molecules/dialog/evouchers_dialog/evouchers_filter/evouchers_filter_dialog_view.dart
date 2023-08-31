@@ -1,9 +1,5 @@
 import 'package:domain/constants/enum/evoucher_filter_option_enum.dart';
-import 'package:domain/constants/error_types.dart';
-import 'package:domain/error/app_error.dart';
-import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/e_voucher/voucher_categories.dart';
-import 'package:domain/model/e_voucher/voucher_min_max_value.dart';
 import 'package:domain/model/e_voucher/voucher_region_by_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,12 +28,16 @@ class EVouchersFilterDialogView extends StatelessWidget {
   final Function(FilterSelectedData)? onSelected;
   final String? title;
   final List<VoucherCategories>? categoriesList;
+  final List<String>? rangeList;
+  final List<VoucherRegionByCategories>? regionList;
 
   EVouchersFilterDialogView({
     this.onDismissed,
     this.onSelected,
     this.title,
     this.categoriesList,
+    this.rangeList,
+    this.regionList,
   });
 
   ProviderBase providerBase() {
@@ -113,7 +113,6 @@ class EVouchersFilterDialogView extends StatelessWidget {
                                   Navigator.pop(context);
                                   model.categoryController.text = value.categoryName;
                                   model.categryId = value.id == 0 ? "" : value.id.toString();
-                                  model.getRegionByCategories(model.categryId);
 
                                   model.showResetFilterButton();
                                 });
@@ -130,148 +129,93 @@ class EVouchersFilterDialogView extends StatelessWidget {
                             SizedBox(
                               height: 16.h,
                             ),
-                            AppStreamBuilder<Resource<List<VoucherRegionByCategories>>>(
-                                initialData: Resource.none(),
-                                stream: model.voucherRegionByCategoriesResponseStream,
-                                onData: (regionByCategoriesValue) {},
-                                dataBuilder: (context, regionByCategories) {
-                                  return AppTextField(
-                                    labelText: S.of(context).preferredRegion.toUpperCase(),
-                                    hintText: S.of(context).pleaseSelect,
-                                    readOnly: true,
-                                    controller: model.preferredRegionController,
-                                    key: model.preferredRegionKey,
-                                    onPressed: () {
-                                      if (model.categoryController.text.isEmpty) {
-                                        model.categoryKey.currentState!.isValid = false;
-                                        model.showToastWithError(AppError(
-                                            cause: Exception(),
-                                            error: ErrorInfo(message: ''),
-                                            type: ErrorType.SELECT_CATEGORY_FIRST));
-                                      } else if (regionByCategories?.status == Status.SUCCESS) {
-                                        if ((regionByCategories?.data ?? []).isNotEmpty) {
-                                          RegionFilterDialog.show(context,
-                                              isFromPurchaseFlow: false,
-                                              title: S.of(context).preferredRegion,
-                                              regionByCategoriesList: regionByCategories?.data ?? [],
-                                              onDismissed: () {
-                                            Navigator.pop(context);
-                                          }, onSelected: (value) {
-                                            Navigator.pop(context);
-                                            model.preferredRegionController.text = value.countryName ?? '';
-                                            model.region = value.isoCode ?? "";
-                                            model.getMinMaxValue(model.categryId, model.region);
-                                            model.showResetFilterButton();
-                                          });
-                                        }
-                                      }
-                                    },
-                                    suffixIcon: (value, data) {
-                                      return Container(
-                                          height: 16.h,
-                                          width: 16.w,
-                                          padding: EdgeInsetsDirectional.only(end: 8.w),
-                                          child: AppSvg.asset(AssetUtils.downArrow,
-                                              color: Theme.of(context).colorScheme.surfaceTint));
-                                    },
-                                  );
-                                }),
+                            AppTextField(
+                              labelText: S.of(context).preferredRegion.toUpperCase(),
+                              hintText: S.of(context).pleaseSelect,
+                              readOnly: true,
+                              controller: model.preferredRegionController,
+                              key: model.preferredRegionKey,
+                              onPressed: () {
+                                RegionFilterDialog.show(context,
+                                    isFromPurchaseFlow: false,
+                                    title: S.of(context).preferredRegion,
+                                    regionByCategoriesList: regionList ?? [], onDismissed: () {
+                                  Navigator.pop(context);
+                                }, onSelected: (value) {
+                                  Navigator.pop(context);
+                                  model.preferredRegionController.text = value.countryName ?? '';
+                                  model.region = value.isoCode ?? "";
+
+                                  model.showResetFilterButton();
+                                });
+                              },
+                              suffixIcon: (value, data) {
+                                return Container(
+                                    height: 16.h,
+                                    width: 16.w,
+                                    padding: EdgeInsetsDirectional.only(end: 8.w),
+                                    child: AppSvg.asset(AssetUtils.downArrow,
+                                        color: Theme.of(context).colorScheme.surfaceTint));
+                              },
+                            ),
                             SizedBox(
                               height: 16,
                             ),
-                            AppStreamBuilder<Resource<VoucherMinMaxValue>>(
-                                initialData: Resource.none(),
-                                stream: model.voucherMinMaxResponseStream,
-                                dataBuilder: (context, voucherMinMaxResponse) {
-                                  return AppTextField(
-                                    labelText: S.of(context).minPrice.toUpperCase(),
-                                    hintText: S.of(context).pleaseSelect,
-                                    readOnly: true,
-                                    controller: model.minPriceController,
-                                    key: model.minPriceKey,
-                                    onPressed: () {
-                                      if (model.categoryController.text.isEmpty) {
-                                        model.categoryKey.currentState!.isValid = false;
-                                        model.showToastWithError(AppError(
-                                            cause: Exception(),
-                                            error: ErrorInfo(message: ''),
-                                            type: ErrorType.SELECT_CATEGORY_FIRST));
-                                      } else if (model.preferredRegionController.text.isEmpty) {
-                                        model.preferredRegionKey.currentState!.isValid = false;
-                                        model.showToastWithError(AppError(
-                                            cause: Exception(),
-                                            error: ErrorInfo(message: ''),
-                                            type: ErrorType.SELECT_REGION_FIRST));
-                                      } else if (voucherMinMaxResponse?.status == Status.SUCCESS) {
-                                        RelationshipWithCardHolderDialog.show(context,
-                                            title: S.of(context).minPrice,
-                                            relationSHipWithCardHolder: model.rangeList, onDismissed: () {
-                                          Navigator.pop(context);
-                                        }, onSelected: (value) {
-                                          Navigator.pop(context);
-                                          model.minPriceController.text = value;
-                                          model.showResetFilterButton();
-                                        });
-                                      }
-                                    },
-                                    suffixIcon: (value, data) {
-                                      return Container(
-                                          height: 16.h,
-                                          width: 16.w,
-                                          padding: EdgeInsetsDirectional.only(end: 8.w),
-                                          child: AppSvg.asset(AssetUtils.downArrow,
-                                              color: Theme.of(context).colorScheme.surfaceTint));
-                                    },
-                                  );
-                                }),
+                            AppTextField(
+                              labelText: S.of(context).minPrice.toUpperCase(),
+                              hintText: S.of(context).pleaseSelect,
+                              readOnly: true,
+                              controller: model.minPriceController,
+                              key: model.minPriceKey,
+                              onPressed: () {
+                                RelationshipWithCardHolderDialog.show(context,
+                                    title: S.of(context).minPrice,
+                                    relationSHipWithCardHolder: rangeList ?? [], onDismissed: () {
+                                  Navigator.pop(context);
+                                }, onSelected: (value) {
+                                  Navigator.pop(context);
+                                  model.minPriceController.text = value;
+                                  model.showResetFilterButton();
+                                });
+                              },
+                              suffixIcon: (value, data) {
+                                return Container(
+                                    height: 16.h,
+                                    width: 16.w,
+                                    padding: EdgeInsetsDirectional.only(end: 8.w),
+                                    child: AppSvg.asset(AssetUtils.downArrow,
+                                        color: Theme.of(context).colorScheme.surfaceTint));
+                              },
+                            ),
                             SizedBox(
                               height: 16.h,
                             ),
-                            AppStreamBuilder<Resource<VoucherMinMaxValue>>(
-                                initialData: Resource.none(),
-                                stream: model.voucherMinMaxResponseStream,
-                                dataBuilder: (context, voucherMinMaxResponse) {
-                                  return AppTextField(
-                                    labelText: S.of(context).maxPrice.toUpperCase(),
-                                    hintText: S.of(context).pleaseSelect,
-                                    readOnly: true,
-                                    controller: model.maxPriceController,
-                                    key: model.maxPriceKey,
-                                    onPressed: () {
-                                      if (model.categoryController.text.isEmpty) {
-                                        model.categoryKey.currentState!.isValid = false;
-                                        model.showToastWithError(AppError(
-                                            cause: Exception(),
-                                            error: ErrorInfo(message: ''),
-                                            type: ErrorType.SELECT_CATEGORY_FIRST));
-                                      } else if (model.preferredRegionController.text.isEmpty) {
-                                        model.preferredRegionKey.currentState!.isValid = false;
-                                        model.showToastWithError(AppError(
-                                            cause: Exception(),
-                                            error: ErrorInfo(message: ''),
-                                            type: ErrorType.SELECT_REGION_FIRST));
-                                      } else if (voucherMinMaxResponse?.status == Status.SUCCESS) {
-                                        RelationshipWithCardHolderDialog.show(context,
-                                            title: S.of(context).maxPrice,
-                                            relationSHipWithCardHolder: model.rangeList, onDismissed: () {
-                                          Navigator.pop(context);
-                                        }, onSelected: (value) {
-                                          Navigator.pop(context);
-                                          model.maxPriceController.text = value;
-                                          model.showResetFilterButton();
-                                        });
-                                      }
-                                    },
-                                    suffixIcon: (value, data) {
-                                      return Container(
-                                          height: 16.h,
-                                          width: 16.w,
-                                          padding: EdgeInsetsDirectional.only(end: 8.w),
-                                          child: AppSvg.asset(AssetUtils.downArrow,
-                                              color: Theme.of(context).colorScheme.surfaceTint));
-                                    },
-                                  );
-                                }),
+                            AppTextField(
+                              labelText: S.of(context).maxPrice.toUpperCase(),
+                              hintText: S.of(context).pleaseSelect,
+                              readOnly: true,
+                              controller: model.maxPriceController,
+                              key: model.maxPriceKey,
+                              onPressed: () {
+                                RelationshipWithCardHolderDialog.show(context,
+                                    title: S.of(context).maxPrice,
+                                    relationSHipWithCardHolder: rangeList ?? [], onDismissed: () {
+                                  Navigator.pop(context);
+                                }, onSelected: (value) {
+                                  Navigator.pop(context);
+                                  model.maxPriceController.text = value;
+                                  model.showResetFilterButton();
+                                });
+                              },
+                              suffixIcon: (value, data) {
+                                return Container(
+                                    height: 16.h,
+                                    width: 16.w,
+                                    padding: EdgeInsetsDirectional.only(end: 8.w),
+                                    child: AppSvg.asset(AssetUtils.downArrow,
+                                        color: Theme.of(context).colorScheme.surfaceTint));
+                              },
+                            ),
                             AppStreamBuilder<bool>(
                                 stream: model.showButtonStream,
                                 initialData: false,
@@ -307,8 +251,12 @@ class EVouchersFilterDialogView extends StatelessWidget {
                                         filterOption: EvoucherFilterOption.FROM_FILTER_DIALOG,
                                         categryId: model.categryId,
                                         region: model.region,
-                                        maxValue: model.maxPriceController.text.trim(),
-                                        minValue: model.minPriceController.text.trim()));
+                                        maxValue: model.maxPriceController.text.isEmpty
+                                            ? "0.0"
+                                            : model.maxPriceController.text.trim(),
+                                        minValue: model.minPriceController.text.isEmpty
+                                            ? "0.0"
+                                            : model.minPriceController.text.trim()));
                                   }
                                 },
                                 dataBuilder: (context, validationStatus) {

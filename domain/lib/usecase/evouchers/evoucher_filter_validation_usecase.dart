@@ -29,23 +29,18 @@ class EVoucherFilterValidationUseCaseParams extends Params {
 
   @override
   Either<AppError, bool> verify() {
-    if (category.isEmpty) {
+    if (category.isEmpty && region.isEmpty && minValue.isEmpty && maxValue.isEmpty) {
       return Left(
-          AppError(error: ErrorInfo(message: ''), type: ErrorType.SELECT_CATEGORY, cause: Exception()));
-    } else if (region.isEmpty) {
-      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.SELECT_REGION, cause: Exception()));
-    } else if (minValue.isEmpty) {
-      return Left(
-          AppError(error: ErrorInfo(message: ''), type: ErrorType.SELECT_MIN_VALUE, cause: Exception()));
-    } else if (maxValue.isEmpty) {
-      return Left(
-          AppError(error: ErrorInfo(message: ''), type: ErrorType.SELECT_MAX_VALUE, cause: Exception()));
-    } else if (double.parse(minValue) > double.parse(maxValue)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.MAX_VALUE_SHOULD_BE_GREATER_THAN_MIN,
-          cause: Exception()));
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.SELECT_ANY_OPTION, cause: Exception()));
+    } else if (minValue.isNotEmpty && maxValue.isNotEmpty) {
+      if (double.parse(minValue) > double.parse(maxValue)) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.MAX_VALUE_SHOULD_BE_GREATER_THAN_MIN,
+            cause: Exception()));
+      }
     }
+
     return Right(true);
   }
 }

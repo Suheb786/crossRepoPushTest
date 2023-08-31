@@ -205,6 +205,8 @@ import 'package:data/entity/remote/e_voucher/voucher_min_max_value/voucher_min_m
 import 'package:data/entity/remote/e_voucher/voucher_min_max_value/voucher_min_max_value_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_region_by_categories/voucher_region_by_categories_request.dart';
 import 'package:data/entity/remote/e_voucher/voucher_region_by_categories/voucher_region_by_categories_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_region_min_max_value/voucher_region_min_max_value_request.dart';
+import 'package:data/entity/remote/e_voucher/voucher_region_min_max_value/voucher_region_min_max_value_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_category_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_filter_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_search_request.dart';
@@ -252,7 +254,6 @@ import 'package:data/entity/remote/rj/get_flight_details/make_ticket_payment_req
 import 'package:data/entity/remote/rj/trip/get_one_way_trip_link_request_entity.dart';
 import 'package:data/entity/remote/rj/trip/get_trip_response_entity.dart';
 import 'package:data/entity/remote/rj/trip/get_two_way_trip_link_request_entity.dart';
-
 import 'package:data/entity/remote/upload_document/save_upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_response_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
@@ -1177,6 +1178,10 @@ abstract class ApiService {
   @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/GetMinMaxRange")
   Future<HttpResponse<VoucherMinMaxValueResponseEntity>> getMinMaxRange(
       @Body() VoucherMinMaxValueRequest voucherMinMaxValueRequest);
+
+  @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/GetRegionsAndMinMax")
+  Future<HttpResponse<VoucherRegionMinMaxValueResponseEntity>> regionsAndMinMax(
+      @Body() VoucherRegionMinMaxValueRequest voucherRegionMinMaxValueRequest);
 
   ///Voucher Items By Category
   @POST("/Vouchers/GetItemByCategory")

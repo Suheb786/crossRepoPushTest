@@ -12,6 +12,7 @@ import 'package:domain/model/e_voucher/voucher_detail.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:domain/model/e_voucher/voucher_min_max_value.dart';
 import 'package:domain/model/e_voucher/voucher_region_by_categories.dart';
+import 'package:domain/model/e_voucher/voucher_region_min_max_value.dart';
 import 'package:domain/repository/e_voucher/e_voucher_repository.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
@@ -140,5 +141,14 @@ class EVoucherRepositoryImpl extends EVoucherRepository {
       {required GetVoucherDetailsUseCaseParams params}) async {
     final result = await safeApiCall(_eVoucherRemoteDS.getVoucherDetailsApi(params: params));
     return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
+  }
+
+  @override
+  Future<Either<NetworkError, VoucherRegionsAndMinMax>> regionsAndMinMax() async {
+    final result = await safeApiCall(_eVoucherRemoteDS.regionsAndMinMax());
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
+    );
   }
 }
