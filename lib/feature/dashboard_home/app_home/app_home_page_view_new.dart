@@ -648,146 +648,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                 model: model,
                                                                               ),
 
-                                                                              ///Timeline Button
-                                                                              ///For My Account and My credit card
-                                                                              Positioned(
-                                                                                top: MediaQuery.of(context)
-                                                                                            .size
-                                                                                            .height *
-                                                                                        (DeviceSizeHelper
-                                                                                                .isBigDevice
-                                                                                            ? 0.06
-                                                                                            : 0.04) -
-                                                                                    24,
-                                                                                child: AnimatedOpacity(
-                                                                                  duration: const Duration(
-                                                                                      milliseconds: 500),
-                                                                                  opacity: model
-                                                                                              .cardTypeList[
-                                                                                                  currentStep!]
-                                                                                              .timeLineEnum !=
-                                                                                          TimeLineEnum
-                                                                                              .TIMELINE_YES
-                                                                                      ? 0
-                                                                                      : 1,
-                                                                                  child: AnimatedBuilder(
-                                                                                    animation: model
-                                                                                        .appSwiperController,
-                                                                                    builder:
-                                                                                        (BuildContext context,
-                                                                                            Widget? child) {
-                                                                                      double
-                                                                                          translateYOffset =
-                                                                                          0;
-                                                                                      double opacity = 0;
-                                                                                      if (model
-                                                                                              .appSwiperController
-                                                                                              .hasClients &&
-                                                                                          model
-                                                                                              .appSwiperController
-                                                                                              .positions
-                                                                                              .isNotEmpty) {
-                                                                                        opacity = currentStep -
-                                                                                            (model.appSwiperController
-                                                                                                    .page ??
-                                                                                                0);
-                                                                                        translateYOffset =
-                                                                                            currentStep -
-                                                                                                (model.appSwiperController
-                                                                                                        .page ??
-                                                                                                    0);
-                                                                                      }
-                                                                                      return Transform
-                                                                                          .translate(
-                                                                                        offset: Offset(0, 1),
-                                                                                        child: Opacity(
-                                                                                          opacity:
-                                                                                              (opacity.abs() -
-                                                                                                      1)
-                                                                                                  .abs(),
-                                                                                          child: child!,
-                                                                                        ),
-                                                                                      );
-                                                                                    },
-                                                                                    child: InkWell(
-                                                                                      splashColor:
-                                                                                          Colors.transparent,
-                                                                                      highlightColor:
-                                                                                          Colors.transparent,
-                                                                                      onTap: () {
-                                                                                        if (model
-                                                                                                .cardTypeList[
-                                                                                                    currentStep]
-                                                                                                .timeLineEnum ==
-                                                                                            TimeLineEnum
-                                                                                                .TIMELINE_YES) {
-                                                                                          model.showTimeline(!(model
-                                                                                                  .pageSwitchSubject
-                                                                                                  .value ==
-                                                                                              DashboardAnimatedPage
-                                                                                                  .TIMELINE));
-                                                                                        }
-                                                                                      },
-                                                                                      child: Container(
-                                                                                        height: 48,
-                                                                                        width: 48,
-                                                                                        padding:
-                                                                                            const EdgeInsets
-                                                                                                .all(10),
-                                                                                        decoration: BoxDecoration(
-                                                                                            shape: BoxShape
-                                                                                                .circle,
-                                                                                            color:
-                                                                                                Colors.white,
-                                                                                            border: Border.all(
-                                                                                                color: Theme.of(
-                                                                                                        context)
-                                                                                                    .colorScheme
-                                                                                                    .inverseSurface,
-                                                                                                width: 1)),
 
-                                                                                        ///For Credit Card
-                                                                                        child: AppStreamBuilder<
-                                                                                                DashboardAnimatedPage>(
-                                                                                            stream: model
-                                                                                                .pageSwitchStream,
-                                                                                            initialData:
-                                                                                                DashboardAnimatedPage
-                                                                                                    .NULL,
-                                                                                            dataBuilder: (context,
-                                                                                                switchedPage) {
-                                                                                              return AnimatedSwitcher(
-                                                                                                duration: const Duration(
-                                                                                                    milliseconds:
-                                                                                                        500),
-                                                                                                child: !(switchedPage ==
-                                                                                                        DashboardAnimatedPage
-                                                                                                            .TIMELINE)
-                                                                                                    ? AppSvg.asset(
-                                                                                                        AssetUtils
-                                                                                                            .timelineButton,
-                                                                                                        height: 24
-                                                                                                            .w,
-                                                                                                        width: 24
-                                                                                                            .w,
-                                                                                                        color: AppColor
-                                                                                                            .light_acccent_blue)
-                                                                                                    : AppSvg.asset(
-                                                                                                        AssetUtils
-                                                                                                            .swipeUpSmall,
-                                                                                                        height: 24
-                                                                                                            .w,
-                                                                                                        width: 24
-                                                                                                            .w,
-                                                                                                        color:
-                                                                                                            AppColor.light_acccent_blue),
-                                                                                              );
-                                                                                            }),
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
 
                                                                               ///Transactions button
                                                                               ///For My Account and My credit card
@@ -809,7 +670,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                       DashboardAnimatedPage
                                                                                                           .SETTINGS &&
                                                                                                   (model.isDebitCard(
-                                                                                                          currentStep) ||
+                                                                                                          currentStep!) ||
                                                                                                       model.isCreditCard(
                                                                                                           currentStep))
                                                                                               ? Container(
@@ -868,7 +729,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                         const SizedBox(),
                                                                                                   ),
                                                                                                 )
-                                                                                              : model.cardTypeList[currentStep].swipeUpEnum ==
+                                                                                              : model.cardTypeList[currentStep!].swipeUpEnum ==
                                                                                                       SwipeUpEnum
                                                                                                           .SWIPE_UP_YES
                                                                                                   ? InkWell(
@@ -1024,7 +885,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                               .center,
                                                                                       children: model
                                                                                           .buildPageIndicator(
-                                                                                              currentStep,
+                                                                                              currentStep!,
                                                                                               cardData!
                                                                                                   .data!
                                                                                                   .dashboardDataContent!
