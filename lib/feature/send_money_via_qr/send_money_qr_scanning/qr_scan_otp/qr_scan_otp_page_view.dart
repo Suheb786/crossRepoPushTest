@@ -133,7 +133,12 @@ class QRScanOTPPageView extends BasePageViewWidget<QRScanOTPPageViewModel> {
                                           isDisabled: !isValid!,
                                           text: S.of(context).next,
                                           onPressed: () {
-                                            model.transferQR(context: context);
+                                            model.transferQR(
+                                                context: context,
+                                                fromAccount: ProviderScope.containerOf(context)
+                                                    .read(qrScanAccountSelectionViewModelProvider)
+                                                    .selectedAccount
+                                                    .accountNo);
                                           },
                                         );
                                       }),

@@ -161,10 +161,12 @@ class PaymentRepositoryImpl extends PaymentRepository {
   Future<Either<NetworkError, QRTransferResponse>> transferQR(
       {required String requestId,
       required String toAmount,
+      String? fromAccount,
       required String toAccount,
       required String otp}) async {
     final result = await safeApiCall(
-      paymentRemoteDs.transferQR(requestId: requestId, toAmount: toAmount, toAccount: toAccount, otp: otp),
+      paymentRemoteDs.transferQR(
+          fromAccount: fromAccount, requestId: requestId, toAmount: toAmount, toAccount: toAccount, otp: otp),
     );
     return result!.fold(
       (l) => Left(l),

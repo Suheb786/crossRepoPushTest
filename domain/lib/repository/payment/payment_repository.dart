@@ -76,5 +76,5 @@ abstract class PaymentRepository {
   Future<Either<NetworkError, bool>> qrScanOTP();
 
   Future<Either<NetworkError, QRTransferResponse>> transferQR(
-      {required String requestId, required String toAmount, required String toAccount, required String otp});
+      {required String requestId,  String? fromAccount,  required String toAmount, required String toAccount, required String otp});
 }

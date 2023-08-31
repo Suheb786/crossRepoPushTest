@@ -174,11 +174,13 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
   Future<HttpResponse<QRTransferResponseEntity>> transferQR(
       {required String requestId,
       required String toAmount,
+      String? fromAccount,
       required String toAccount,
       required String otp}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.transferQR(TransferQRRequestEntity(
         baseData: baseData.toJson(),
+        fromAccount: fromAccount,
         getToken: true,
         qrRequestId: requestId,
         toAccount: toAccount,

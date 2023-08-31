@@ -64,7 +64,11 @@ abstract class PaymentRemoteDs {
   Future<HttpResponse<VerifyQRResponseEntity>> verifyQR({required String requestId, required String source});
 
   Future<HttpResponse<QRTransferResponseEntity>> transferQR(
-      {required String requestId, required String toAmount, required String toAccount, required String otp});
+      {String? fromAccount,
+      required String requestId,
+      required String toAmount,
+      required String toAccount,
+      required String otp});
 
   Future<HttpResponse<GetRejectionReasonResponseEntity>> getReturnRejectionReason({
     required bool getToken,

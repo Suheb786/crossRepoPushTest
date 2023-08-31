@@ -1099,7 +1099,7 @@ abstract class ApiService {
     @Body() BaseRequest request,
   );
 
-  @POST("/Transfer/TransferQR")
+  @POST("/Transfer/TransferQRV2")
   Future<HttpResponse<QRTransferResponseEntity>> transferQR(
       @Body() TransferQRRequestEntity transferQRRequestEntity);
 
