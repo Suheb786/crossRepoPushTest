@@ -52,7 +52,6 @@ class AppViewModel extends BaseViewModel {
           primaryColorDark: AppColor.black,
           primaryColorLight: AppColor.verySoftRed,
           dialogBackgroundColor: AppColor.white,
-          shadowColor: AppColor.softRed,
           colorScheme: _themeData.colorScheme.copyWith(
               secondary: AppColor.white,
               onSecondary: AppColor.light_gray_4,
