@@ -208,7 +208,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
               },
               dataBuilder: (context, data) {
                 return Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w) + EdgeInsets.only(top: 10.h, bottom: 6.h),
+                  padding: EdgeInsetsDirectional.only(start: 16.w, end: 10.w),
                   decoration: BoxDecoration(
                       border: Border.all(
                         color: AppColor.white_gray,
@@ -228,31 +228,34 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                                     model.toggleNickName(context);
                                   }
                                 },
-                                child: AutoSizeTextField(
-                                  controller: model.nickNameController,
-                                  focusNode: model.nickNameFocus,
-                                  fullwidth: false,
-                                  textAlign: TextAlign.center,
-                                  cursorWidth: 1.w,
-                                  minWidth: 40.w,
-                                  readOnly: isEditable ?? false,
-                                  decoration: InputDecoration(
-                                    isDense: true,
-                                    contentPadding: const EdgeInsets.only(right: 6.0, left: 0.0),
-                                    isCollapsed: false,
+                                child: Padding(
+                                  padding: EdgeInsets.only(top: 10.h, bottom: 6.h),
+                                  child: AutoSizeTextField(
+                                    controller: model.nickNameController,
+                                    focusNode: model.nickNameFocus,
+                                    fullwidth: false,
+                                    textAlign: TextAlign.center,
+                                    cursorWidth: 1.w,
+                                    minWidth: 40.w,
+                                    readOnly: isEditable ?? false,
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      contentPadding: const EdgeInsets.only(right: 6.0, left: 0.0),
+                                      isCollapsed: false,
+                                    ),
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: AppColor.brightBlue,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 16.0.t),
+                                    onSubmitted: (value) {},
                                   ),
-                                  style: TextStyle(
-                                      fontFamily: StringUtils.appFont,
-                                      color: AppColor.brightBlue,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 16.0.t),
-                                  onSubmitted: (value) {},
                                 ),
                               );
                             }),
                       ),
                       SizedBox(
-                        width: 5.w,
+                        width: 1.w,
                       ),
                       AppStreamBuilder<bool>(
                           stream: model.nameEditableNotifierStream,
@@ -260,13 +263,18 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                           dataBuilder: (context, isEditable) {
                             return GestureDetector(
                               onTap: () {
-                                model.toggleNickName(context);
+                                model.onlyToggleNickName(context);
                               },
-                              child: AppSvg.asset(
-                                (isEditable ?? false) ? AssetUtils.editNickName : AssetUtils.checkIcon,
-                                color: AppColor.brightBlue,
-                                width: isEditable ?? false ? 14.h : 12.h,
-                                height: isEditable ?? false ? 14.h : 12.h,
+                              child: Container(
+                                alignment: Alignment.center,
+                                padding:
+                                    EdgeInsetsDirectional.only(top: 6.h, bottom: 6.h, start: 4.w, end: 6.w),
+                                child: AppSvg.asset(
+                                  (isEditable ?? false) ? AssetUtils.editNickName : AssetUtils.checkIcon,
+                                  color: AppColor.brightBlue,
+                                  width: isEditable ?? false ? 14.h : 12.h,
+                                  height: isEditable ?? false ? 14.h : 12.h,
+                                ),
                               ),
                             );
                           })
