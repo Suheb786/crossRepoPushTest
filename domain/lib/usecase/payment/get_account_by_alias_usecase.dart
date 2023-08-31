@@ -17,16 +17,19 @@ class GetAccountByAliasUseCase
   @override
   Future<Either<NetworkError, GetAccountByAliasContentResponse>> execute(
       {required GetAccountByAliasUseCaseParams params}) {
-    return _repository.getAccountByAlias(params.value ?? '', params.currency ?? '', params.beneficiaryId);
+    return _repository.getAccountByAlias(
+        params.fromAccount ?? "", params.value ?? '', params.currency ?? '', params.beneficiaryId);
   }
 }
 
 class GetAccountByAliasUseCaseParams extends Params {
+  String? fromAccount;
   String? value;
   String? currency;
   String beneficiaryId;
 
-  GetAccountByAliasUseCaseParams({this.value, this.currency = "JOD", required this.beneficiaryId});
+  GetAccountByAliasUseCaseParams(
+      {this.fromAccount, this.value, this.currency = "JOD", required this.beneficiaryId});
 
   @override
   Either<AppError, bool> verify() {

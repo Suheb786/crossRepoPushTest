@@ -2,25 +2,22 @@ import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/qr_scan_account_selection/qr_scan_account_selection_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
-import 'package:neo_bank/ui/molecules/dialog/payment/accounts_dialog/accounts_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
-import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+import '../../../payment/account_swiching/payment_account_switcher.dart';
 
 class QRScanAccountSelectionPageView extends BasePageViewWidget<QRScanAccountSelectionPageViewModel> {
   QRScanAccountSelectionPageView(ProviderBase model) : super(model);
@@ -136,38 +133,18 @@ class QRScanAccountSelectionPageView extends BasePageViewWidget<QRScanAccountSel
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.only(start: 24.w, top: 32.h, end: 24.w),
-                                    child: AppTextField(
-                                      labelText: S.of(context).payFrom.toUpperCase(),
-                                      hintText: S.of(context).pleaseSelect,
-                                      controller: model.payFromController,
-                                      key: model.payFromKey,
-                                      readOnly: true,
-                                      onPressed: () {
-                                        AccountsDialog.show(context, label: S.of(context).selectAccount,
-                                            onDismissed: () {
-                                          Navigator.pop(context);
-                                        }, onSelected: (value) {
-                                          Navigator.pop(context);
-                                          model.payFromController.text = value;
-                                          model.validate();
-                                        }, accountsList: [
-                                          ProviderScope.containerOf(context)
-                                                  .read(appHomeViewModelProvider)
-                                                  .dashboardDataContent
-                                                  .account
-                                                  ?.accountNo ??
-                                              ''
-                                        ]);
+                                    padding: EdgeInsetsDirectional.only(top: 32.h, start: 2.w, end: 2.w),
+                                    child: PaymentAccountSwitcher(
+                                      title: S.of(context).transferFrom,
+                                      onDefaultSelectedAccount: (Account account) {
+                                        model.selectedAccount = account;
+                                        model.validate();
                                       },
-                                      suffixIcon: (isValid, value) {
-                                        return Container(
-                                            height: 16.h,
-                                            width: 16.w,
-                                            padding: EdgeInsets.symmetric(horizontal: 7.w),
-                                            child: AppSvg.asset(AssetUtils.downArrow,
-                                                color: Theme.of(context).primaryColorDark));
+                                      onSelectAccount: (Account account) {
+                                        model.selectedAccount = account;
+                                        model.validate();
                                       },
+                                      isSingleLineView: true,
                                     ),
                                   ),
                                 ],
@@ -180,27 +157,17 @@ class QRScanAccountSelectionPageView extends BasePageViewWidget<QRScanAccountSel
                                     initialData: false,
                                     dataBuilder: (context, isValid) {
                                       return Padding(
-                                        padding: EdgeInsetsDirectional.only(start: 24.w, top: 26.0.h, end: 24.w,bottom: 24.h),
+                                        padding: EdgeInsetsDirectional.only(
+                                            start: 24.w, top: 26.0.h, end: 24.w, bottom: 24.h),
                                         child: AppPrimaryButton(
                                           text: S.of(context).next,
                                           isDisabled: !isValid!,
                                           onPressed: () {
-                                            if (model.payFromController.text.isEmpty) {
-                                              model.showErrorState();
-                                              model.showToastWithError(AppError(
-                                                  cause: Exception(),
-                                                  error: ErrorInfo(message: ''),
-                                                  type: ErrorType.SELECT_ACCOUNT));
-                                            } else if (double.parse(ProviderScope.containerOf(context)
-                                                .read(appHomeViewModelProvider)
-                                                .dashboardDataContent
-                                                .account
-                                                ?.availableBalance ??
-                                                '-1') <
+                                            if (double.parse(model.selectedAccount.availableBalance ?? '-1') <
                                                 double.parse(ProviderScope.containerOf(context)
-                                                    .read(sendMoneyQrScanningViewModelProvider)
-                                                    .arguments
-                                                    ?.amount ??
+                                                        .read(sendMoneyQrScanningViewModelProvider)
+                                                        .arguments
+                                                        ?.amount ??
                                                     '')) {
                                               model.showErrorState();
                                               model.showToastWithError(AppError(

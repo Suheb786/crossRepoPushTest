@@ -113,10 +113,13 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                           .read(paymentToNewRecipientViewModelProvider)
                                           .nextPage();
                                     } else {
+                                      //Todo :  we need verify the request for fromAccount
                                       model.verifyTransfer(
                                           amount: ProviderScope.containerOf(context)
-                                              .read(sendMoneyViewModelProvider)
-                                              .currentPinValue);
+                                                  .read(paymentToNewRecipientViewModelProvider)
+                                                  .argument
+                                                  ?.currentPinValue ??
+                                              "");
                                     }
                                   } else if (data.status == Status.ERROR) {
                                     if (data.appError!.type == ErrorType.EMPTY_IBAN_MOBILE) {
@@ -134,8 +137,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
                                     elevation: 2,
-                                    color:
-                                        Theme.of(context).cardTheme.copyWith(color: AppColor.white).color,
+                                    color: Theme.of(context).cardTheme.copyWith(color: AppColor.white).color,
                                     margin: EdgeInsets.zero,
                                     shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                                     child: Padding(
@@ -180,8 +182,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                               .of(context)
                                                                               .sendMoneyFormateSample,
                                                                           style: TextStyle(
-                                                                              fontFamily:
-                                                                                  StringUtils.appFont,
+                                                                              fontFamily: StringUtils.appFont,
                                                                               fontSize: 14.t,
                                                                               color: Theme.of(context)
                                                                                   .colorScheme
@@ -194,8 +195,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                         ),
                                                                         NumberFormattingWidget(
                                                                           title: S.of(context).accountBlink,
-                                                                          desc:
-                                                                              S.of(context).dummyAccountNo,
+                                                                          desc: S.of(context).dummyAccountNo,
                                                                         ),
                                                                         NumberFormattingWidget(
                                                                           title: S
@@ -214,8 +214,8 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                 });
                                                               },
                                                               child: Padding(
-                                                                padding: EdgeInsetsDirectional.only(
-                                                                    start: 5.0.w),
+                                                                padding:
+                                                                    EdgeInsetsDirectional.only(start: 5.0.w),
                                                                 child: Container(
                                                                     height: 14.h,
                                                                     width: 14.w,
@@ -238,9 +238,20 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                             if (model
                                                                 .ibanOrMobileController.text.isNotEmpty) {
                                                               model.checkSendMoney(
+                                                                  fromAccount: ProviderScope.containerOf(
+                                                                              context)
+                                                                          .read(
+                                                                              paymentToNewRecipientViewModelProvider)
+                                                                          .argument
+                                                                          ?.account
+                                                                          .accountNo ??
+                                                                      "",
                                                                   amount: ProviderScope.containerOf(context)
-                                                                      .read(sendMoneyViewModelProvider)
-                                                                      .currentPinValue,
+                                                                          .read(
+                                                                              paymentToNewRecipientViewModelProvider)
+                                                                          .argument
+                                                                          ?.currentPinValue ??
+                                                                      "",
                                                                   iban: model.ibanOrMobileController.text);
                                                             }
                                                           }
@@ -263,15 +274,13 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                     labelText: S.of(context).recipientName,
                                                                     hintText: S.of(context).pleaseEnter,
                                                                     key: model.recipientNameKey,
-                                                                    controller:
-                                                                        model.recipientNameController,
+                                                                    controller: model.recipientNameController,
                                                                   ),
                                                                   SizedBox(
                                                                     height: 16.h,
                                                                   ),
                                                                   AppTextField(
-                                                                    labelText:
-                                                                        S.of(context).recipientAddress,
+                                                                    labelText: S.of(context).recipientAddress,
                                                                     hintText: S.of(context).pleaseEnter,
                                                                     key: model.recipientAddressKey,
                                                                     controller:
@@ -361,8 +370,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                           return Container(
                                                               height: 16.0.h,
                                                               width: 16.0.w,
-                                                              padding:
-                                                                  EdgeInsetsDirectional.only(end: 8.0.w),
+                                                              padding: EdgeInsetsDirectional.only(end: 8.0.w),
                                                               child: AppSvg.asset(AssetUtils.downArrow,
                                                                   color: AppColor.dark_gray_1));
                                                         },
@@ -392,8 +400,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                           return Container(
                                                               height: 16.0.h,
                                                               width: 16.0.w,
-                                                              padding:
-                                                                  EdgeInsetsDirectional.only(end: 8.0.w),
+                                                              padding: EdgeInsetsDirectional.only(end: 8.0.w),
                                                               child: AppSvg.asset(AssetUtils.downArrow,
                                                                   color: AppColor.dark_gray_1));
                                                         },
@@ -408,19 +415,16 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                             child: Column(
                                                               children: [
                                                                 AppSwitchLabelWidget(
-                                                                  label:
-                                                                      S.of(context).addRecipientToContact,
+                                                                  label: S.of(context).addRecipientToContact,
                                                                   inActiveText:
                                                                       S.of(context).no.toUpperCase(),
-                                                                  activeText:
-                                                                      S.of(context).yes.toUpperCase(),
+                                                                  activeText: S.of(context).yes.toUpperCase(),
                                                                   onToggle: (value) {
                                                                     model.isFriend = value;
                                                                     model.addNickNameController.clear();
                                                                     model.updateSwitchValue(value);
                                                                     if (value) {
-                                                                      if (model
-                                                                          .scrollController.hasClients) {
+                                                                      if (model.scrollController.hasClients) {
                                                                         model.scrollController.animateTo(
                                                                           model.scrollController.position
                                                                               .maxScrollExtent,
@@ -439,8 +443,8 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                     child: Row(
                                                                       children: [
                                                                         AppStreamBuilder<String>(
-                                                                          stream: model
-                                                                              .uploadProfilePhotoStream,
+                                                                          stream:
+                                                                              model.uploadProfilePhotoStream,
                                                                           initialData: '',
                                                                           onData: (data) {
                                                                             if (data.isNotEmpty) {
@@ -458,8 +462,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                               stream:
                                                                                   model.selectedImageValue,
                                                                               initialData: '',
-                                                                              dataBuilder:
-                                                                                  (context, image) {
+                                                                              dataBuilder: (context, image) {
                                                                                 return InkWell(
                                                                                   onTap: () {
                                                                                     ChooseProfileWidget.show(
@@ -491,8 +494,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                       model.removeImage();
                                                                                       Navigator.pop(context);
                                                                                     }, onCancelled: () {
-                                                                                      Navigator.pop(
-                                                                                          context);
+                                                                                      Navigator.pop(context);
                                                                                     },
                                                                                         title: S
                                                                                             .of(context)
@@ -501,22 +503,21 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                   child: Container(
                                                                                     height: 50.0.h,
                                                                                     width: 50.0.w,
-                                                                                    decoration:
-                                                                                        BoxDecoration(
-                                                                                            shape: BoxShape
-                                                                                                .circle),
+                                                                                    decoration: BoxDecoration(
+                                                                                        shape:
+                                                                                            BoxShape.circle),
                                                                                     child: ClipOval(
                                                                                       child: image!.isEmpty
                                                                                           ? AppSvg.asset(
                                                                                               AssetUtils
                                                                                                   .personCircle,
-                                                                                              fit: BoxFit
-                                                                                                  .fill,
+                                                                                              fit:
+                                                                                                  BoxFit.fill,
                                                                                             )
                                                                                           : Image.file(
                                                                                               File(image),
-                                                                                              fit: BoxFit
-                                                                                                  .fill,
+                                                                                              fit:
+                                                                                                  BoxFit.fill,
                                                                                             ),
                                                                                     ),
                                                                                   ),
@@ -534,8 +535,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                 stream:
                                                                                     model.addNickNameStream,
                                                                                 initialData: false,
-                                                                                dataBuilder:
-                                                                                    (context, val) {
+                                                                                dataBuilder: (context, val) {
                                                                                   return FocusScope(
                                                                                     onFocusChange:
                                                                                         (hasFocus) {
@@ -549,8 +549,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                             fontFamily:
                                                                                                 StringUtils
                                                                                                     .appFont,
-                                                                                            fontSize:
-                                                                                                14.0.t,
+                                                                                            fontSize: 14.0.t,
                                                                                             fontWeight:
                                                                                                 FontWeight
                                                                                                     .w600,
@@ -560,8 +559,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                                 .bodyLarge!
                                                                                                 .color!),
                                                                                         cursorColor:
-                                                                                            Theme.of(
-                                                                                                    context)
+                                                                                            Theme.of(context)
                                                                                                 .textTheme
                                                                                                 .bodyLarge!
                                                                                                 .color!,
@@ -589,16 +587,14 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                                       .textTheme
                                                                                                       .bodyLarge!
                                                                                                       .color!),
-                                                                                          border:
-                                                                                              InputBorder
-                                                                                                  .none,
+                                                                                          border: InputBorder
+                                                                                              .none,
                                                                                           contentPadding:
                                                                                               EdgeInsets.only(
                                                                                                   bottom:
                                                                                                       18.0.h),
                                                                                         ),
-                                                                                        onSubmitted:
-                                                                                            (value) {
+                                                                                        onSubmitted: (value) {
                                                                                           model.addNickNameVal =
                                                                                               value;
                                                                                           // model.updateNickName(false);
@@ -631,11 +627,15 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                               isDisabled: !isValid!,
                                                               text: S.of(context).next,
                                                               onPressed: () {
-                                                                model.ibanOrMobileKey.currentState?.isValid = true;
-                                                                model.recipientNameKey.currentState?.isValid = true;
-                                                                model.recipientAddressKey.currentState?.isValid = true;
+                                                                model.ibanOrMobileKey.currentState?.isValid =
+                                                                    true;
+                                                                model.recipientNameKey.currentState?.isValid =
+                                                                    true;
+                                                                model.recipientAddressKey.currentState
+                                                                    ?.isValid = true;
                                                                 model.purposeKey.currentState?.isValid = true;
-                                                                model.purposeDetailKey.currentState?.isValid = true;
+                                                                model.purposeDetailKey.currentState?.isValid =
+                                                                    true;
                                                                 model.sendToNewRecipient(context);
                                                               },
                                                             );
@@ -648,7 +648,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                         Navigator.pop(context);
                                                       },
                                                       child: Padding(
-                                                        padding: EdgeInsets.only(top: 16.0.h,bottom: 20),
+                                                        padding: EdgeInsets.only(top: 16.0.h, bottom: 20),
                                                         child: Center(
                                                           child: Text(
                                                             S.of(context).backToPayments,
@@ -666,7 +666,6 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                 ),
                                               ),
                                             ),
-
                                           ],
                                         ),
                                       ),

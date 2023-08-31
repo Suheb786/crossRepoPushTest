@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -42,6 +43,7 @@ class SendAmountToContactPageState
 class SendAmountToContactPageArgument {
   final Beneficiary beneficiary;
   final bool needBackButton;
+  final Account? account;
 
-  SendAmountToContactPageArgument(this.beneficiary, {this.needBackButton = false});
+  SendAmountToContactPageArgument(this.beneficiary, {this.needBackButton = false, this.account});
 }

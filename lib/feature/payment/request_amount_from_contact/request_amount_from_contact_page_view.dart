@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:domain/constants/enum/transaction_type.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
 import 'package:domain/model/payment/request_to_pay_content_response.dart';
 import 'package:flutter/material.dart';
@@ -299,11 +300,11 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                         padding: EdgeInsets.only(top: 15.0.h, bottom: 10.0.h),
                         child: PaymentAccountSwitcher(
                           title: S.of(context).transferFrom,
-                          onDefaultSelectedAccount: (Account) {
-                            print('onDefaultSelectedAccount $Account');
+                          onDefaultSelectedAccount: (Account account) {
+                            model.selectedAccount = account;
                           },
-                          onSelectAccount: (Account) {
-                            print('onSelectAccount $Account');
+                          onSelectAccount: (Account account) {
+                            model.selectedAccount = account;
                           },
                           isSingleLineView: true,
                         ),
