@@ -62,7 +62,8 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
     return AppStreamBuilder<int>(
       stream: model.currentStep,
       initialData: 0,
-      dataBuilder: (context, currentStep) {
+      dataBuilder: (context, myyCurrentStep) {
+        int currentStep = myyCurrentStep ?? 0;
         return AppStreamBuilder<Resource<VerifyQrResponse>>(
             stream: model.verifyQRStream,
             onData: (data) async {
@@ -332,7 +333,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                           : switchedPage ==
                                                                                   DashboardAnimatedPage
                                                                                       .TIMELINE
-                                                                              ? DebitCardTimeLinePage(TimeLinePageArguments(cardType: model.cardTypeList[currentStep ?? 0].cardType, timeLineArguments: model.timeLineArguments))
+                                                                              ? DebitCardTimeLinePage(TimeLinePageArguments(cardType: model.cardTypeList[currentStep].cardType, timeLineArguments: model.timeLineArguments))
                                                                               : switchedPage == DashboardAnimatedPage.PAYBACK
                                                                                   ? CreditCardPayBackPage(
                                                                                       CreditCardPayBackArguments(
@@ -398,17 +399,10 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                 children: [
                                                                                                   AddMoneyTile(),
                                                                                                   TransferBetweenAccountTile(
-                                                                                                    isVisible: (cardData?.data?.dashboardDataContent?.dashboardFeatures?.transferBetweenAccountsFeature ??
-                                                                                                            false) &&
-                                                                                                        model
-                                                                                                            .hasSubAccount(
-                                                                                                          (cardData?.data?.dashboardDataContent?.accounts ??
-                                                                                                              []),
-                                                                                                        ),
                                                                                                     onTap:
                                                                                                         () {
                                                                                                       Navigator
-                                                                                                          .pushNamed(
+                                                                                                          .pushReplacementNamed(
                                                                                                         context,
                                                                                                         RoutePaths
                                                                                                             .SelectTransferPage,
@@ -430,10 +424,20 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                         ),
                                                                                                       );
                                                                                                     },
-                                                                                                    isEnabled:
-                                                                                                        true,
-                                                                                                    isCardActivated:
-                                                                                                        true,
+                                                                                                    isEnabled: (cardData?.data?.dashboardDataContent?.dashboardFeatures?.transferBetweenAccountsFeature ??
+                                                                                                            false) &&
+                                                                                                        model
+                                                                                                            .hasSubAccount(
+                                                                                                          (cardData?.data?.dashboardDataContent?.accounts ??
+                                                                                                              []),
+                                                                                                        ),
+                                                                                                    isCardActivated: (cardData?.data?.dashboardDataContent?.dashboardFeatures?.transferBetweenAccountsFeature ??
+                                                                                                            false) &&
+                                                                                                        model
+                                                                                                            .hasSubAccount(
+                                                                                                          (cardData?.data?.dashboardDataContent?.accounts ??
+                                                                                                              []),
+                                                                                                        ),
                                                                                                   ),
                                                                                                   OpenSubAccountTile(
                                                                                                     isCardActivated: (cardData?.data?.dashboardDataContent?.dashboardFeatures?.subAccountFeature ??
@@ -486,14 +490,19 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                     onTap:
                                                                                                         () {
                                                                                                       Navigator
-                                                                                                          .pushNamed(
+                                                                                                          .pushReplacementNamed(
                                                                                                         context,
                                                                                                         RoutePaths
                                                                                                             .SelectTransferPage,
                                                                                                         arguments:
                                                                                                             SelectTranferPageArgument(
                                                                                                           account:
-                                                                                                              model.cardTypeList[currentStep ?? 0].object as Account,
+                                                                                                              Account(
+                                                                                                            accountNo: model.selectedAccount?.accountNo ?? "",
+                                                                                                            accountTitle: model.selectedAccount?.accountTitle ?? "",
+                                                                                                            availableBalance: model.selectedAccount?.availableBalance ?? "99",
+                                                                                                            iban: model.selectedAccount?.iban ?? "",
+                                                                                                          ),
                                                                                                           allAccountNumbers:
                                                                                                               model.getAllAccountNumbers(cardData?.data?.dashboardDataContent?.accounts ?? []),
                                                                                                           allAccountTitles:
@@ -642,7 +651,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
 
                                                                               ///Timeline Button
                                                                               ///For My Account and My credit card
-                                                                              Positioned(
+                                                                              /*Positioned(
                                                                                 top: MediaQuery.of(context)
                                                                                             .size
                                                                                             .height *
@@ -656,7 +665,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                       milliseconds: 500),
                                                                                   opacity: model
                                                                                               .cardTypeList[
-                                                                                                  currentStep!]
+                                                                                                  currentStep]
                                                                                               .timeLineEnum !=
                                                                                           TimeLineEnum
                                                                                               .TIMELINE_YES
@@ -668,9 +677,6 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                     builder:
                                                                                         (BuildContext context,
                                                                                             Widget? child) {
-                                                                                      double
-                                                                                          translateYOffset =
-                                                                                          0;
                                                                                       double opacity = 0;
                                                                                       if (model
                                                                                               .appSwiperController
@@ -683,11 +689,6 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                             (model.appSwiperController
                                                                                                     .page ??
                                                                                                 0);
-                                                                                        translateYOffset =
-                                                                                            currentStep -
-                                                                                                (model.appSwiperController
-                                                                                                        .page ??
-                                                                                                    0);
                                                                                       }
                                                                                       return Transform
                                                                                           .translate(
@@ -779,7 +780,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                     ),
                                                                                   ),
                                                                                 ),
-                                                                              ),
+                                                                              ),*/
 
                                                                               ///Transactions button
                                                                               ///For My Account and My credit card
@@ -926,11 +927,9 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                               model.appSwiperController,
                                                                                                           builder:
                                                                                                               (BuildContext context, Widget? child) {
-                                                                                                            double translateYOffset = 0;
                                                                                                             double opacity = 0;
                                                                                                             if (model.appSwiperController.hasClients && model.appSwiperController.positions.isNotEmpty) if (model.appSwiperController.position.hasContentDimensions) {
                                                                                                               opacity = currentStep - (model.appSwiperController.page ?? 0);
-                                                                                                              translateYOffset = currentStep - (model.appSwiperController.page ?? 0);
                                                                                                             }
                                                                                                             return Transform.translate(
                                                                                                               offset: Offset(0, 1),

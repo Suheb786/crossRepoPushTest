@@ -4,6 +4,8 @@ part "request_to_pay_request_entity.g.dart";
 
 @JsonSerializable()
 class RequestToPayRequestEntity {
+  @JsonKey(name: "FromAccount")
+  final String? fromAccount;
   @JsonKey(name: "DbtrSurname")
   final String? dbtrSurname;
   @JsonKey(name: "Alias")
@@ -42,6 +44,7 @@ class RequestToPayRequestEntity {
   RequestToPayRequestEntity(
       {this.ctgyPurp,
       this.amount,
+      this.fromAccount,
       this.dbtrBic,
       this.dbtrAcct,
       this.nickName = "",

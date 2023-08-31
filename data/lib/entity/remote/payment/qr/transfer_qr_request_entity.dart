@@ -4,6 +4,8 @@ part "transfer_qr_request_entity.g.dart";
 
 @JsonSerializable()
 class TransferQRRequestEntity {
+  @JsonKey(name: "FromAccount")
+  final String? fromAccount;
   @JsonKey(name: "QrRequestId")
   final String? qrRequestId;
   @JsonKey(name: "GetToken")
@@ -18,6 +20,7 @@ class TransferQRRequestEntity {
   final Map<String, dynamic>? baseData;
 
   TransferQRRequestEntity({
+    this.fromAccount,
     this.toAmount,
     this.toAccount,
     this.qrRequestId,

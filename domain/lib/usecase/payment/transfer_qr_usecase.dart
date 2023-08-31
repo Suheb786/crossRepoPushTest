@@ -16,18 +16,27 @@ class TransferQRUseCase extends BaseUseCase<NetworkError, TransferQRUseCaseParam
   @override
   Future<Either<NetworkError, QRTransferResponse>> execute({required TransferQRUseCaseParams params}) {
     return _repository.transferQR(
-        toAmount: params.toAmount, toAccount: params.toAccount, requestId: params.requestId, otp: params.otp);
+        fromAccount: params.fromAccount,
+        toAmount: params.toAmount,
+        toAccount: params.toAccount,
+        requestId: params.requestId,
+        otp: params.otp);
   }
 }
 
 class TransferQRUseCaseParams extends Params {
   final String toAmount;
   final String toAccount;
+  final String? fromAccount;
   final String requestId;
   final String otp;
 
   TransferQRUseCaseParams(
-      {required this.toAmount, required this.requestId, required this.toAccount, required this.otp});
+      {required this.toAmount,
+      this.fromAccount,
+      required this.requestId,
+      required this.toAccount,
+      required this.otp});
 
   @override
   Either<AppError, bool> verify() {

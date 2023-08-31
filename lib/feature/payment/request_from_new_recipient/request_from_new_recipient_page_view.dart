@@ -59,23 +59,29 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                 eventName: 'request_money_from_new_contact',
                                 eventValue: {
                                   "money_requested": ProviderScope.containerOf(context)
-                                      .read(requestMoneyViewModelProvider)
-                                      .currentPinValue
+                                          .read(requestPaymentFromNewRecipientViewModelProvider)
+                                          .argument
+                                          ?.currentPin ??
+                                      ""
                                 });
 
                             ///LOG EVENT TO FIREBASE
                             await FireBaseLogUtil.fireBaseLog("request_money_from_new_recipient_success", {
                               "is_money_requested": true,
                               "money_requested": ProviderScope.containerOf(context)
-                                  .read(requestMoneyViewModelProvider)
-                                  .currentPinValue
+                                      .read(requestPaymentFromNewRecipientViewModelProvider)
+                                      .argument
+                                      ?.currentPin ??
+                                  ""
                             });
                             Navigator.pushReplacementNamed(
                                 context, RoutePaths.RequestAmountFromContactSuccess,
                                 arguments: [
                                   ProviderScope.containerOf(context)
-                                      .read(requestMoneyViewModelProvider)
-                                      .currentPinValue,
+                                          .read(requestPaymentFromNewRecipientViewModelProvider)
+                                          .argument
+                                          ?.currentPin ??
+                                      "",
                                   data.data!.requestToPayContent!.dbtrName!,
                                   model.ibanOrMobileController.text,
                                 ]);

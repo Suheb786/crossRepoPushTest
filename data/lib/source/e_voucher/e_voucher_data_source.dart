@@ -3,6 +3,7 @@ import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_details_resp
 import 'package:data/entity/remote/e_voucher/voucher_history/voucher_history_list_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_min_max_value/voucher_min_max_value_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_region_by_categories/voucher_region_by_categories_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_region_min_max_value/voucher_region_min_max_value_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_filter_response_entity.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/get_settlement_ammount_usecase.dart';
@@ -57,6 +58,8 @@ abstract class EVoucherRemoteDS {
     required String category,
     required String region,
   });
+
+  Future<HttpResponse<VoucherRegionMinMaxValueResponseEntity>> regionsAndMinMax();
 
   Future<HttpResponse<GetVoucherDetailResponseEntity>> getVoucherDetailsApi({
     required GetVoucherDetailsUseCaseParams params,

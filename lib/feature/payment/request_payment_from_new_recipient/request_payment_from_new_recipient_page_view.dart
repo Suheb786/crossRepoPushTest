@@ -108,8 +108,7 @@ class RequestPaymentFromNewRecipientPageView
                                                       ProviderScope.containerOf(context)
                                                           .read(requestMoneyViewModelProvider)
                                                           .currentPinValue = model.editAmountController.text;
-                                                      print(
-                                                          "got request value : ${ProviderScope.containerOf(context).read(requestMoneyViewModelProvider).currentPinValue}");
+                                                      model.argument?.currentPin = value;
                                                     }
                                                   },
                                                   onFieldSubmitted: (value) {
@@ -118,9 +117,7 @@ class RequestPaymentFromNewRecipientPageView
                                                 ),
                                               )
                                             : Text(
-                                                double.parse(ProviderScope.containerOf(context)
-                                                        .read(requestMoneyViewModelProvider)
-                                                        .currentPinValue)
+                                                double.parse(model.argument?.currentPin ?? "")
                                                     .toStringAsFixed(3),
                                                 style: TextStyle(
                                                     fontFamily: StringUtils.appFont,

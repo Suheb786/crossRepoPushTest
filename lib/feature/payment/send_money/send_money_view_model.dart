@@ -1,8 +1,10 @@
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 
 class SendMoneyViewModel extends BasePageViewModel {
   List<String> myList = [];
   String currentPinValue = '0';
+  Account selectedAccount = Account();
 
   void changeValue(String value) {
     if (value == ".") {
