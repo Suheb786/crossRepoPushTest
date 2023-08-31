@@ -999,12 +999,12 @@ abstract class ApiService {
   @POST("/Cliq/GetAlias")
   Future<HttpResponse<GetAliasResponseEntity>> getAlias(@Body() CliqGetAliasRequestEntity request);
 
-  @POST("/Cliq/ConfirmCreateCLidIDV2")
+  @POST("/Cliq/ConfirmCreateCLidID")
   Future<HttpResponse<ConfirmCreateCliqIdResponseEntity>> confirmCreateCLidID(
     @Body() ConfirmCreateCliqIdRequestEntity request,
   );
 
-  @POST("/Cliq/CreateCliqIdOtpV2")
+  @POST("/Cliq/CreateCliqIdOtp")
   Future<HttpResponse<CreateCliqIdOtpResponseEntity>> createCliqIdOtp(
     @Body() CreateCliqIdOtpRequestEntity request,
   );
