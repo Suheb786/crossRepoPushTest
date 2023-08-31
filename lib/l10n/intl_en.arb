@@ -1864,5 +1864,6 @@
   "done": "Done",
   "okey": "Okay",
   "view_more": "View More",
-  "noDataToDisplay": "No Data to Display"
+  "noDataToDisplay": "No Data to Display",
+  "insufficientBalanceAccountTransfer": "You do not have sufficient balance to transfer."
 }

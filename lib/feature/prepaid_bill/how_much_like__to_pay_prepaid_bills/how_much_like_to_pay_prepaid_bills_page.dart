@@ -35,12 +35,6 @@ class HowMuchLikeToPayPrePaidBillsPageState
   void onModelReady(HowMuchLikeToPayPrePaidBillsPageViewModel model) {
     final providerModel = ProviderScope.containerOf(context).read(payMyPrePaidBillsPageViewModelProvider);
     model.isPrepaidCategoryListEmpty = providerModel.isPrePaidCategoryEmpty;
-    model.savingAccountController.text = ProviderScope.containerOf(context)
-            .read(appHomeViewModelProvider)
-            .dashboardDataContent
-            .account
-            ?.accountNo ??
-        '';
     super.onModelReady(model);
   }
 

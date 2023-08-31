@@ -18429,6 +18429,16 @@ class S {
       args: [],
     );
   }
+
+  /// `You do not have sufficient balance to transfer.`
+  String get insufficientBalanceAccountTransfer {
+    return Intl.message(
+      'You do not have sufficient balance to transfer.',
+      name: 'insufficientBalanceAccountTransfer',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

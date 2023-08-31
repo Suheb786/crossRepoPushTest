@@ -145,7 +145,7 @@ class _PaymentAccountSwitcherState extends State<PaymentAccountSwitcher> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                widget.title,
+                                widget.title.toUpperCase(),
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontSize: 10.0.t,

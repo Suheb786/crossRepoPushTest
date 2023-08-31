@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -47,7 +46,6 @@ class PrePaidBillCardWidget extends StatelessWidget {
                     onTap: () {
                       AppConstantsUtils.PRE_PAID_FLOW = true;
                       AppConstantsUtils.POST_PAID_FLOW = false;
-                      // Navigator.pushNamed(context, RoutePaths.BillPaymentsTransactionPage);
                       ProviderScope.containerOf(context)
                           .read(paymentHomeViewModelProvider)
                           .animateToNewPage();
@@ -69,16 +67,6 @@ class PrePaidBillCardWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                  /*GestureDetector(
-                    onTap: () {
-                      AppConstantsUtils.PRE_PAID_FLOW = true;
-                      AppConstantsUtils.POST_PAID_FLOW = false;
-                      // Navigator.pushNamed(context, RoutePaths.BillPaymentsTransactionPage);
-                      ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animateToNewPage();
-                      Navigator.of(context).push(slideBottomToTop(nextPage: BillPaymentsTransactionPage()));
-                    },
-                    child: Text(S.of(context).viewHistory, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, fontWeight: FontWeight.w600, color: AppColor.brightBlue)),
-                  ),*/
                 ],
               ),
               SizedBox(

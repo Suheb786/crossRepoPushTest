@@ -711,9 +711,8 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
 
   void _navigatePostPaid(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
     if (double.parse(ProviderScope.containerOf(context)
-                .read(appHomeViewModelProvider)
-                .dashboardDataContent
-                .account
+                .read(payBillDetailPageViewModelProvider)
+                .selectedAccount
                 ?.availableBalance ??
             '-1') >=
         double.parse(model.totalAmountToPay() ?? "0")) {
@@ -732,9 +731,8 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
 
   void _navigatePrePaid(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
     if (double.parse(ProviderScope.containerOf(context)
-                .read(appHomeViewModelProvider)
-                .dashboardDataContent
-                .account
+                .read(payBillDetailPageViewModelProvider)
+                .selectedAccount
                 ?.availableBalance ??
             '-1') >=
         double.parse(model.dueAmtController ?? "0")) {

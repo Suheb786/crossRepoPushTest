@@ -168,7 +168,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                   ? Container()
                                                   : Padding(
                                                       padding: EdgeInsetsDirectional.only(
-                                                          start: 50.0, end: 50.0, top: 16.0, bottom: 16.0),
+                                                          start: 24.0, end: 24.0, top: 16.0, bottom: 16.0),
                                                       child: Container(
                                                         padding: EdgeInsets.symmetric(
                                                             horizontal: 16.0.w, vertical: 8.0.h),

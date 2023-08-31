@@ -1,5 +1,6 @@
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/feature/sub_account/transfer/select_transfer/select_transfer_page_view.dart';
 import 'package:neo_bank/feature/sub_account/transfer/select_transfer/select_transfer_page_view_model.dart';
 import 'package:riverpod/src/framework.dart';
@@ -25,6 +26,11 @@ class SelectTransferPageState extends BaseStatefulPage<SelectTransferPageViewMod
   }
 
   @override
+  void onModelReady(SelectTransferPageViewModel model) {
+    super.onModelReady(model);
+  }
+
+  @override
   ProviderBase provideBase() {
     return selectTransferPageViewModelProivder.call(widget.argument);
   }
@@ -36,11 +42,8 @@ class SelectTransferPageState extends BaseStatefulPage<SelectTransferPageViewMod
 }
 
 class SelectTranferPageArgument {
-  final Account account;
-  final List<String>? allAccountNumbers;
-  final List<String>? allAccountTitles;
-  final List<String>? allAvailableBalances;
+  final Account? selectedAccount;
+  final List<Account> allAccountsList;
 
-  SelectTranferPageArgument(
-      {required this.account, this.allAccountNumbers, this.allAccountTitles, this.allAvailableBalances});
+  SelectTranferPageArgument({required this.selectedAccount, required this.allAccountsList});
 }

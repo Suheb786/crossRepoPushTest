@@ -5,6 +5,7 @@ import 'package:domain/model/bill_payments/get_postpaid_biller_list/post_paid_bi
 import 'package:domain/model/bill_payments/pay_post_paid_bill/biller_success.dart';
 import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry_data.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/usecase/bill_payment/pay_post_paid_bill_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,7 +24,6 @@ import 'package:rxdart/rxdart.dart';
 class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   final PaySelectedBillsPostPaidBillsPageArguments arguments;
   final ScrollController payingBillController = ScrollController();
-  final TextEditingController savingAccountController = TextEditingController();
 
   PublishSubject<double> _totalBillAmtDueSubject = PublishSubject();
 
@@ -101,6 +101,8 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     _postPaidBillEnquiryListResponse.safeAdd(list);
   }
 
+  Account? selectedAccount;
+
   /// ---------------- pay postPaid bill -------------------------------- ///
   PublishSubject<PayPostPaidBillUseCaseParams> _payPostPaidRequest = PublishSubject();
 
@@ -146,17 +148,11 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     tempPostpaidBillInquiryRequestList = tempPostpaidBillInquiryRequestList?.toSet().toList();
     await addAllBillAmt(context, isApi: true);
     if (totalBillAmt > 0) {
-      if (double.parse(ProviderScope.containerOf(context)
-                  .read(appHomeViewModelProvider)
-                  .dashboardDataContent
-                  .account
-                  ?.availableBalance ??
-              '-1') >=
-          totalBillAmt) {
+      if (double.parse(selectedAccount?.availableBalance ?? '-1') >= totalBillAmt) {
         Future.delayed(Duration(milliseconds: 200))
             .then((value) => _payPostPaidRequest.safeAdd(PayPostPaidBillUseCaseParams(
                 billerList: tempPostpaidBillInquiryRequestList,
-                accountNo: savingAccountController.text,
+                accountNo: selectedAccount?.accountNo ?? '',
                 totalAmount: totalBillAmt.toStringAsFixed(3),
                 currencyCode: "JOD",
                 isNewBiller: false,
@@ -283,7 +279,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   validate() {
-    if (isTotalAmountZero == false && savingAccountController.text.isNotEmpty && validRequestCounter == 0) {
+    if (isTotalAmountZero == false && validRequestCounter == 0) {
       _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);

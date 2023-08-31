@@ -132,7 +132,7 @@ class AppHomeViewModel extends BasePageViewModel {
 
   PublishSubject<GetDashboardDataUseCaseParams> _getDashboardDataRequest = PublishSubject();
 
-  PublishSubject<Resource<GetDashboardDataResponse>> _getDashboardDataResponse = PublishSubject();
+  BehaviorSubject<Resource<GetDashboardDataResponse>> _getDashboardDataResponse = BehaviorSubject();
 
   Stream<Resource<GetDashboardDataResponse>> get getDashboardDataStream => _getDashboardDataResponse.stream;
 
@@ -583,34 +583,11 @@ class AppHomeViewModel extends BasePageViewModel {
   }
 
   bool hasSubAccount(List<Account> accounts) {
+    print('Accounts----from dashboard:--->${accounts.length}');
     return accounts.any((account) => account.isSubAccount == true);
   }
 
   List<Account> yourAllAccounts = [];
-
-  getAllAccountNumbers(List<Account> allAccounts) {
-    List<String> accountNumbers = [];
-    for (var account in allAccounts) {
-      accountNumbers.add(account.accountNo ?? "");
-    }
-    return accountNumbers;
-  }
-
-  getAllAccountTitles(List<Account> allAccounts) {
-    List<String> accountTitles = [];
-    for (var account in allAccounts) {
-      accountTitles.add(account.accountTitle ?? "");
-    }
-    return accountTitles;
-  }
-
-  getAllAvailableBalances(List<Account> allAccounts) {
-    List<String> availableAmounts = [];
-    for (var account in allAccounts) {
-      availableAmounts.add(StringUtils.formatBalance(account.availableBalance ?? ""));
-    }
-    return availableAmounts;
-  }
 
   List<Account> getAllMyAccounts() => yourAllAccounts;
 
@@ -920,7 +897,7 @@ class AppHomeViewModel extends BasePageViewModel {
         });
       } else {
         if (!(dashboardDataContent.dashboardFeatures?.isCreditCardFeatureEnabled ?? false)) {
-        /*  pages.add(CreditCardIssuanceFailureWidget(
+          /*  pages.add(CreditCardIssuanceFailureWidget(
             isSmallDevices: isSmallDevices,
             type: IssuanceType.service_unavailable,
           ));

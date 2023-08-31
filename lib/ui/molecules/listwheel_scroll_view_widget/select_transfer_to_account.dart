@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
@@ -5,22 +6,16 @@ import '../../../generated/l10n.dart';
 import '../../../utils/string_utils.dart';
 
 class SelectTransferToAccountWidget extends StatelessWidget {
-  final String accountName;
-  final String accountNumber;
-  final String availableAmount;
+  final Account account;
   final Function()? onTap;
   final bool isSelected;
+
   SelectTransferToAccountWidget({
     Key? key,
-    required this.accountName,
-    required this.accountNumber,
-    required this.availableAmount,
+    required this.account,
     this.onTap,
     required this.isSelected,
   }) : super(key: key);
-  // String formatBalance(double availableBalance) {
-  //   return NumberFormat('#,###.###').format(availableBalance);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +30,13 @@ class SelectTransferToAccountWidget extends StatelessWidget {
               children: [
                 SizedBox(height: 17.h),
                 Text(
-                  accountName,
+                  (account.isSubAccount ?? false)
+                      ? (account.nickName ?? '').isNotEmpty
+                          ? S.of(context).subAccount + " - " + (account.nickName ?? '')
+                          : S.of(context).subAccount
+                      : (account.nickName ?? '').isNotEmpty
+                          ? S.of(context).mainAccount + " - " + (account.nickName ?? '')
+                          : S.of(context).mainAccount,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
                       fontSize: 14.0.t,
@@ -46,7 +47,7 @@ class SelectTransferToAccountWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 4.h),
                 Text(
-                  accountNumber,
+                  account.accountNo ?? '',
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
                       fontSize: 10.0.t,
@@ -60,7 +61,7 @@ class SelectTransferToAccountWidget extends StatelessWidget {
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: availableAmount,
+                        text: StringUtils.formatBalance(account.availableBalance ?? ""),
                         style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           fontSize: 14.0.t,

@@ -867,7 +867,7 @@ abstract class ApiService {
   Future<HttpResponse<GetPrepaidBillerListEntityResponse>> getPrepaidBillerListData(
       @Body() BaseRequest request);
 
-  @POST("/BillPayment/PayPrepaidBill")
+  @POST("/BillPayment/PayPrepaidBillV2")
   Future<HttpResponse<PayPrePaidResponse>> payPrePaidBillData(@Body() PayPrePaidRequest payPrePaidRequest);
 
   @POST("/BillPayment/PayPostPaidBillV1")
@@ -999,12 +999,12 @@ abstract class ApiService {
   @POST("/Cliq/GetAlias")
   Future<HttpResponse<GetAliasResponseEntity>> getAlias(@Body() CliqGetAliasRequestEntity request);
 
-  @POST("/Cliq/ConfirmCreateCLidID")
+  @POST("/Cliq/ConfirmCreateCLidIDV2")
   Future<HttpResponse<ConfirmCreateCliqIdResponseEntity>> confirmCreateCLidID(
     @Body() ConfirmCreateCliqIdRequestEntity request,
   );
 
-  @POST("/Cliq/CreateCliqIdOtp")
+  @POST("/Cliq/CreateCliqIdOtpV2")
   Future<HttpResponse<CreateCliqIdOtpResponseEntity>> createCliqIdOtp(
     @Body() CreateCliqIdOtpRequestEntity request,
   );

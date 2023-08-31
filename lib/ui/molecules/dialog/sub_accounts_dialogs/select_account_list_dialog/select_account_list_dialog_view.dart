@@ -3,7 +3,7 @@ import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
-import 'package:neo_bank/ui/molecules/dialog/sub_accounts_dialogs/select_from_list_dialog/select_from_list_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/sub_accounts_dialogs/select_account_list_dialog/select_account_list_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
@@ -15,23 +15,19 @@ import '../../../../../utils/string_utils.dart';
 import '../../../app_scollable_list_view_widget.dart';
 import '../../../listwheel_scroll_view_widget/select_transfer_to_account.dart';
 
-class SelectFromListDialogPageView extends StatelessWidget {
+class SelectAccountListDialogPageView extends StatelessWidget {
   final Function()? onDismissed;
   final Function(Account)? onConfirm;
-  final List<String> accountName;
-  final List<String> accountNumber;
-  final List<String> availableAmount;
+  final List<Account> accountList;
 
   final String title;
 
-  const SelectFromListDialogPageView({
+  const SelectAccountListDialogPageView({
     Key? key,
     this.onDismissed,
     this.onConfirm,
-    required this.accountName,
     required this.title,
-    required this.accountNumber,
-    required this.availableAmount,
+    required this.accountList,
   }) : super(key: key);
 
   ProviderBase providerBase() {
@@ -40,7 +36,7 @@ class SelectFromListDialogPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget<SelectFromListDialogPageViewModel>(
+    return BaseWidget<SelectAccountListDialogPageViewModel>(
         builder: (context, model, child) {
           return Scaffold(
             backgroundColor: Colors.transparent,
@@ -86,11 +82,11 @@ class SelectFromListDialogPageView extends StatelessWidget {
                                 ),
                               ),
                               AppScrollableListViewWidget(
-                                key: ValueKey(accountName.length),
+                                key: ValueKey(accountList.length),
                                 child: ClickableListWheelScrollView(
                                   scrollController: model.scrollController,
                                   itemHeight: 90.h,
-                                  itemCount: accountName.length,
+                                  itemCount: accountList.length,
                                   onItemTapCallback: (index) {
                                     model.currentIndexUpdate(index);
                                   },
@@ -103,12 +99,10 @@ class SelectFromListDialogPageView extends StatelessWidget {
                                       physics: FixedExtentScrollPhysics(),
                                       perspective: 0.0000000001,
                                       childDelegate: ListWheelChildBuilderDelegate(
-                                          childCount: accountName.length,
+                                          childCount: accountList.length,
                                           builder: (BuildContext context, int index) {
                                             return SelectTransferToAccountWidget(
-                                              accountName: accountName[index],
-                                              accountNumber: accountNumber[index],
-                                              availableAmount: availableAmount[index],
+                                              account: accountList[index],
                                               isSelected: currentIndex == index ? true : false,
                                             );
                                           })),
@@ -122,11 +116,7 @@ class SelectFromListDialogPageView extends StatelessWidget {
                                 text: S.current.confirm,
                                 onPressed: () {
                                   onConfirm?.call(
-                                    Account(
-                                      accountNo: accountNumber[currentIndex!],
-                                      accountTitle: accountName[currentIndex],
-                                      availableBalance: availableAmount[currentIndex],
-                                    ),
+                                    accountList[currentIndex ?? 0],
                                   );
                                 }),
                           ),

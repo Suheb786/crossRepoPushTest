@@ -3,7 +3,7 @@ import 'package:rxdart/rxdart.dart';
 
 import '../../../../../base/base_page_view_model.dart';
 
-class SelectFromListDialogPageViewModel extends BasePageViewModel {
+class SelectAccountListDialogPageViewModel extends BasePageViewModel {
   final FixedExtentScrollController scrollController = FixedExtentScrollController();
 
   int currentIndex = 0;
@@ -14,6 +14,4 @@ class SelectFromListDialogPageViewModel extends BasePageViewModel {
   void currentIndexUpdate(int index) {
     _currentSelectIndex.add(index);
   }
-
-  
 }

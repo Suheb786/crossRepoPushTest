@@ -55,9 +55,6 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
   @override
   Widget build(BuildContext context, model) {
     _buildContext = context;
-    // model.deviceSize = MediaQuery.of(context).size;
-    // model.isSmallDevices = model.deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
-    // DeviceSizeHelper.isBigDevice;
     listenPopUps(model, context);
     return AppStreamBuilder<int>(
       stream: model.currentStep,
@@ -151,9 +148,6 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                     EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING),
                               ),
                               routeName: RoutePaths.Evoucher));
-                          /* Navigator.pushNamed(context, RoutePaths.Evoucher,
-                              arguments: EvoucherPageArguments(
-                                  EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING));*/
                         });
                       }
 
@@ -330,8 +324,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                               ?.isPinChangeEnabled ??
                                                                                           true))
                                                                           : switchedPage ==
-                                                                                  DashboardAnimatedPage
-                                                                                      .TIMELINE
+                                                                                  DashboardAnimatedPage.TIMELINE
                                                                               ? DebitCardTimeLinePage(TimeLinePageArguments(cardType: model.cardTypeList[currentStep ?? 0].cardType, timeLineArguments: model.timeLineArguments))
                                                                               : switchedPage == DashboardAnimatedPage.PAYBACK
                                                                                   ? CreditCardPayBackPage(
@@ -407,6 +400,9 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                         ),
                                                                                                     onTap:
                                                                                                         () {
+                                                                                                      var accounts =
+                                                                                                          (cardData?.data?.dashboardDataContent?.accounts ??
+                                                                                                              []);
                                                                                                       Navigator
                                                                                                           .pushNamed(
                                                                                                         context,
@@ -414,19 +410,10 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                             .SelectTransferPage,
                                                                                                         arguments:
                                                                                                             SelectTranferPageArgument(
-                                                                                                          account:
-                                                                                                              Account(
-                                                                                                            accountNo: model.selectedAccount?.accountNo ?? "",
-                                                                                                            accountTitle: model.selectedAccount?.accountTitle ?? "",
-                                                                                                            availableBalance: model.selectedAccount?.availableBalance ?? "99",
-                                                                                                            iban: model.selectedAccount?.iban ?? "",
-                                                                                                          ),
-                                                                                                          allAccountNumbers:
-                                                                                                              model.getAllAccountNumbers(cardData?.data?.dashboardDataContent?.accounts ?? []),
-                                                                                                          allAccountTitles:
-                                                                                                              model.getAllAccountTitles(cardData?.data?.dashboardDataContent?.accounts ?? []),
-                                                                                                          allAvailableBalances:
-                                                                                                              model.getAllAvailableBalances(cardData?.data?.dashboardDataContent?.accounts ?? []),
+                                                                                                          selectedAccount:
+                                                                                                              model.selectedAccount,
+                                                                                                          allAccountsList: /*model.getAllMyAccounts()*/
+                                                                                                              accounts,
                                                                                                         ),
                                                                                                       );
                                                                                                     },
@@ -453,8 +440,12 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                       model:
                                                                                                           model),
                                                                                                   SizedBox(
-                                                                                                      height:
-                                                                                                          110.h),
+                                                                                                      height: (cardData?.data?.dashboardDataContent?.dashboardFeatures?.transferBetweenAccountsFeature ?? false) &&
+                                                                                                              model.hasSubAccount(
+                                                                                                                (cardData?.data?.dashboardDataContent?.accounts ?? []),
+                                                                                                              )
+                                                                                                          ? 110.h
+                                                                                                          : 180.h),
                                                                                                 ],
                                                                                               ),
                                                                                             );
@@ -485,6 +476,9 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                         false),
                                                                                                     onTap:
                                                                                                         () {
+                                                                                                      var accounts =
+                                                                                                          (cardData?.data?.dashboardDataContent?.accounts ??
+                                                                                                              []);
                                                                                                       Navigator
                                                                                                           .pushNamed(
                                                                                                         context,
@@ -492,14 +486,10 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                             .SelectTransferPage,
                                                                                                         arguments:
                                                                                                             SelectTranferPageArgument(
-                                                                                                          account:
-                                                                                                              model.cardTypeList[currentStep ?? 0].object as Account,
-                                                                                                          allAccountNumbers:
-                                                                                                              model.getAllAccountNumbers(cardData?.data?.dashboardDataContent?.accounts ?? []),
-                                                                                                          allAccountTitles:
-                                                                                                              model.getAllAccountTitles(cardData?.data?.dashboardDataContent?.accounts ?? []),
-                                                                                                          allAvailableBalances:
-                                                                                                              model.getAllAvailableBalances(cardData?.data?.dashboardDataContent?.accounts ?? []),
+                                                                                                          selectedAccount:
+                                                                                                              model.selectedAccount,
+                                                                                                          allAccountsList:
+                                                                                                              accounts,
                                                                                                         ),
                                                                                                       );
                                                                                                     },

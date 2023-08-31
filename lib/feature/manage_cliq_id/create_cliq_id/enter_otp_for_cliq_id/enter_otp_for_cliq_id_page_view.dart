@@ -76,20 +76,12 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
                           if (data.data!) {
-                            //  Navigator.pushReplacementNamed(context, RoutePaths.CliqIdCreationSuccess);
-
                             model.makeCreateCliqIDRequest(
                                 accountNumber: ProviderScope.containerOf(context)
                                         .read(linkBankAccountCliqIdViewModelProvider)
-                                        .linkBankAccountCliqIdList
-                                        .isNotEmpty
-                                    ? (ProviderScope.containerOf(context)
-                                            .read(linkBankAccountCliqIdViewModelProvider)
-                                            .linkBankAccountCliqIdList
-                                            .first
-                                            .accountNumber ??
-                                        '')
-                                    : "",
+                                        .selectedAccount
+                                        ?.accountNo ??
+                                    '',
                                 isAlias: ProviderScope.containerOf(context)
                                         .read(cliqIdTypeSelectionViewModelProvider)
                                         .cliqIdTypeSubject
@@ -155,16 +147,9 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                                                     model.makeOtpRequest(
                                                       accountNumber: ProviderScope.containerOf(context)
                                                               .read(linkBankAccountCliqIdViewModelProvider)
-                                                              .linkBankAccountCliqIdList
-                                                              .isNotEmpty
-                                                          ? (ProviderScope.containerOf(context)
-                                                                  .read(
-                                                                      linkBankAccountCliqIdViewModelProvider)
-                                                                  .linkBankAccountCliqIdList
-                                                                  .first
-                                                                  .accountNumber ??
-                                                              '')
-                                                          : "",
+                                                              .selectedAccount
+                                                              ?.accountNo ??
+                                                          '',
                                                       isAlias: ProviderScope.containerOf(context)
                                                               .read(cliqIdTypeSelectionViewModelProvider)
                                                               .cliqIdTypeSubject

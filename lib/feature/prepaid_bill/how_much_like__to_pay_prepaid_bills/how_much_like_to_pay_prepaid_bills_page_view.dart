@@ -5,6 +5,7 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/paid_bill_conent.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/pay_prepaid.dart';
 import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prepaid_biller.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -50,9 +51,6 @@ class HowMuchLikeToPayPrePaidBillsPageView
             model.validationCode = value.data?.content?.validationCode ?? "";
             model.isNewBiller = value.data?.content?.validationCode == "" ? false : true;
             model.validate(model.amtController.text);
-            // if (model.isPrepaidCategoryListEmpty == true) {
-            //   Future.delayed(Duration(milliseconds: 200)).then((value) => model.payPrePaidBill(context));
-            // }
           } else if (value.status == Status.ERROR) {
             model.validatePrepaidCall = false;
 
@@ -336,48 +334,14 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                 SizedBox(height: 16.h),
                                 PaymentAccountSwitcher(
                                     title: S.of(context).payFrom,
-                                    onDefaultSelectedAccount: (Account) {
-                                      print('onDefaultSelectedAccount $Account');
+                                    onDefaultSelectedAccount: (Account account) {
+                                      model.selectedAccount = account;
                                     },
-                                    onSelectAccount: (Account) {
-                                      print('onSelectAccount $Account');
+                                    onSelectAccount: (Account account) {
+                                      model.selectedAccount = account;
                                     },
                                     isSingleLineView: false,
                                     isShowAmount: false),
-                                /*AppTextField(
-                                  labelText: S.of(context).payFrom.toUpperCase(),
-                                  hintText: S.of(context).savingAccount(''),
-                                  controller: model.savingAccountController,
-                                  readOnly: true,
-                                  onChanged: (val) {
-                                    model.validate(model.amtController.text);
-                                  },
-
-                                  */ /*onPressed: () {
-                                    AccountsDialog.show(context, label: S.of(context).selectAccount,
-                                        onDismissed: () {
-                                      Navigator.pop(context);
-                                    }, onSelected: (value) {
-                                      model.savingAccountController.text = value;
-                                      model.validate(model.amtController.text);
-                                      Navigator.pop(context);
-                                    }, accountsList: [
-                                      ProviderScope.containerOf(context)
-                                              .read(appHomeViewModelProvider)
-                                              .dashboardDataContent
-                                              .account
-                                              ?.accountNo ??
-                                          ''
-                                    ]);
-                                  },*/ /*
-                                  // suffixIcon: (value, data) {
-                                  //   return Container(
-                                  //       height: 16.h,
-                                  //       width: 16.w,
-                                  //       padding: EdgeInsetsDirectional.only(end: 8.w),
-                                  //       child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
-                                  // },
-                                ),*/
                                 SizedBox(
                                   height: 110.h,
                                 ),
@@ -386,15 +350,15 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                     initialData: false,
                                     dataBuilder: (context, isValid) {
                                       return AppPrimaryButton(
-                                      text: S.of(context).next,
-                                      isDisabled: !isValid!,
-                                      onPressed: () {
-                                        if (model.isPrepaidCategoryListEmpty == false) {
-                                          model.payPrePaidBill(context);
-                                        } else if (model.isPrepaidCategoryListEmpty == true) {
-                                          model.payPrePaidBill(context);
-                                        }
-                                      });
+                                          text: S.of(context).next,
+                                          isDisabled: !isValid!,
+                                          onPressed: () {
+                                            if (model.isPrepaidCategoryListEmpty == false) {
+                                              model.payPrePaidBill(context);
+                                            } else if (model.isPrepaidCategoryListEmpty == true) {
+                                              model.payPrePaidBill(context);
+                                            }
+                                          });
                                     }),
                                 SizedBox(
                                   height: 24.h,
@@ -435,12 +399,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
       onFocusChange: (hasFocus) {
         if (!hasFocus) {
           if (model.amtController.text.isNotEmpty && double.parse(model.amtController.text) > 0) {
-            if (double.parse(ProviderScope.containerOf(context)
-                        .read(appHomeViewModelProvider)
-                        .dashboardDataContent
-                        .account
-                        ?.availableBalance ??
-                    '-1') >=
+            if (double.parse(model.selectedAccount?.availableBalance ?? '-1') >=
                 double.parse(model.amtController.text)) {
               if (model.isPrepaidCategoryListEmpty == true) {
                 Future.delayed(Duration(milliseconds: 200)).then((value) => model.validatePrePaidBill());
