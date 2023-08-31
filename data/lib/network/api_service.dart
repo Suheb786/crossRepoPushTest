@@ -593,15 +593,15 @@ abstract class ApiService {
   Future<HttpResponse<GetAccountByAliasContentResponseEntity>> getAccountByAlias(
       @Body() GetAccountByAliasRequestEntity getAccountByAliasRequestEntity);
 
-  @POST("/transfer/CheckSendMoneyV3")
+  @POST("/transfer/CheckSendMoneyV4")
   Future<HttpResponse<CheckSendMoneyResponseEntity>> checkSendMoney(
       @Body() CheckSendMoneyRequestEntity checkSendMoneyRequestEntity);
 
-  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ContactCenter/TransferAPI")
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ContactCenter/TransferAPIV2")
   Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
       @Body() TransferRequestEntity transferRequestEntity);
 
-  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ContactCenter/RequestToPay")
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ContactCenter/RequestToPayV2")
   Future<HttpResponse<RequestToPayContentResponseEntity>> requestToPay(
       @Body() RequestToPayRequestEntity requestToPayRequestEntity);
 

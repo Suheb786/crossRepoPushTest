@@ -1,4 +1,5 @@
 import 'package:domain/constants/enum/document_type_enum.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
 import 'package:domain/model/payment/request_to_pay_content_response.dart';
 import 'package:domain/model/purpose/purpose.dart';
@@ -21,7 +22,7 @@ import 'package:rxdart/rxdart.dart';
 
 class RequestFromNewRecipientViewModel extends BasePageViewModel {
   RequestFromNewRecipientUseCase _useCase;
-
+  Account selectedAccount = Account();
   GetAccountByAliasUseCase _getAccountByAliasUseCase;
 
   UploadDocumentUseCase _uploadDocumentUseCase;
@@ -199,6 +200,7 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
 
   void requestFromNewRecipient(BuildContext context) {
     _requestFromNewRecipientRequest.safeAdd(RequestFromNewRecipientUseCaseParams(
+        fromAccount: selectedAccount.accountNo,
         ibanOrMobile: ibanOrMobileController.text,
         purpose: purposeController.text,
         purposeDetail: purposeDetailController.text,

@@ -1777,7 +1777,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/transfer/CheckSendMoneyV3',
+              '/transfer/CheckSendMoneyV4',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1803,7 +1803,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ContactCenter/TransferAPI',
+              'http://10.6.13.2:2186/contactcenter/api/ContactCenter/TransferAPIV2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1829,7 +1829,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ContactCenter/RequestToPay',
+              'http://10.6.13.2:2186/contactcenter/api/ContactCenter/RequestToPayV2',
               queryParameters: queryParameters,
               data: _data,
             )

@@ -15,11 +15,12 @@ abstract class PaymentRemoteDs {
       String value, String currency, String? beneficiaryId);
 
   Future<HttpResponse<CheckSendMoneyResponseEntity>> checkSendMoney(
-      {String toAccount, num toAmount, String beneficiaryId});
+      {String? fromAccount, String toAccount, num toAmount, String beneficiaryId});
 
   Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
       {String beneficiaryId,
       String? otpCode,
+      String? fromAccount,
       String transferType,
       String beneficiaryImage,
       bool isFriend,
@@ -34,6 +35,7 @@ abstract class PaymentRemoteDs {
       String? recipientAddress});
 
   Future<HttpResponse<RequestToPayContentResponseEntity>> requestToPay(
+      String fromAccount,
       String ctgyPurp,
       num amount,
       String dbtrBic,

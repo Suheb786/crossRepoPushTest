@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
 import 'package:domain/model/payment/request_to_pay_content_response.dart';
@@ -15,7 +16,7 @@ import 'package:rxdart/rxdart.dart';
 
 class RequestAmountFromContactViewModel extends BasePageViewModel {
   RequestAmountFromContactUseCase _requestAmountFromContactUseCase;
-
+  Account selectedAccount = Account();
   GetAccountByAliasUseCase _getAccountByAliasUseCase;
 
   BehaviorSubject<String> _purposeSubject = BehaviorSubject();
@@ -153,6 +154,7 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
 
   void requestFromNewRecipient(BuildContext context) {
     _requestFromContactRequest.safeAdd(RequestAmountFromContactUseCaseParams(
+        fromAccount: selectedAccount.accountNo,
         alias: beneficiary!.iban,
         addressCity: getAccountByAliasResult!.getAccountByAliasContent!.addressCity ?? "",
         addressCountry: getAccountByAliasResult!.getAccountByAliasContent!.addressCountry ?? "",

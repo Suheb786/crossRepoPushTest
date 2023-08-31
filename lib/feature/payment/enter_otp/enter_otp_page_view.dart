@@ -132,8 +132,16 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                                 .read(sendToNewRecipientViewModelProvider)
                                 .limit!,
                             amount: ProviderScope.containerOf(context)
-                                .read(sendMoneyViewModelProvider)
-                                .currentPinValue,
+                                    .read(paymentToNewRecipientViewModelProvider)
+                                    .argument
+                                    ?.currentPinValue ??
+                                "",
+                            fromAccount: ProviderScope.containerOf(context)
+                                    .read(paymentToNewRecipientViewModelProvider)
+                                    .argument
+                                    ?.account
+                                    .accountNo ??
+                                "",
                             recipientName: ProviderScope.containerOf(context)
                                 .read(sendToNewRecipientViewModelProvider)
                                 .recipientNameController
@@ -189,16 +197,17 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                                                   onPressed: () {
                                                     model.updateTime(
                                                         amount: ProviderScope.containerOf(context)
-                                                            .read(sendMoneyViewModelProvider)
-                                                            .currentPinValue);
+                                                                .read(paymentToNewRecipientViewModelProvider)
+                                                                .argument
+                                                                ?.currentPinValue ??
+                                                            "");
                                                   },
                                                   child: Text(
                                                     S.of(context).resendCode,
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
                                                         fontSize: 14.0.t,
-                                                        color:
-                                                            Theme.of(context).textTheme.bodyLarge!.color!),
+                                                        color: Theme.of(context).textTheme.bodyLarge!.color!),
                                                   ))
                                               : Text(
                                                   S.of(context).resendIn(
@@ -211,7 +220,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                                         },
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(top: 16.0.h,bottom: 16.0.h),
+                                        padding: EdgeInsets.only(top: 16.0.h, bottom: 16.0.h),
                                         child: AppStreamBuilder<bool>(
                                             stream: model.showButtonStream,
                                             initialData: false,
