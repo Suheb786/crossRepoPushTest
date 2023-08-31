@@ -4,9 +4,11 @@ import 'package:domain/model/e_voucher/voucher_by_date.dart';
 import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:domain/model/e_voucher/voucher_detail.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
+import 'package:domain/model/e_voucher/voucher_region_min_max_value.dart';
 import 'package:domain/usecase/evouchers/evoucher_categories_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_history_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_item_filter_usecase.dart';
+import 'package:domain/usecase/evouchers/evoucher_region_min_max_value_usecase.dart';
 import 'package:domain/usecase/evouchers/get_voucher_details_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -27,6 +29,7 @@ class EvoucherViewModel extends BasePageViewModel {
   EVoucherCategoriesUseCase eVoucherCategoriesUseCase;
   EVoucherHistoryUseCase eVoucherHistoryUseCase;
   EVoucherItemFilterUseCase eVoucherItemFilterUseCase;
+  EVoucherRegionMinMaxValueUseCase eVoucherRegionMinMaxValueUseCase;
   EvoucherFilterOption evoucherFilterOption = EvoucherFilterOption.FROM_SEARCH_FILTER;
 
   ///---------------------Filter option for date-------------------------------------
@@ -85,6 +88,7 @@ class EvoucherViewModel extends BasePageViewModel {
     required this.eVoucherCategoriesUseCase,
     required this.eVoucherHistoryUseCase,
     required this.eVoucherItemFilterUseCase,
+    required this.eVoucherRegionMinMaxValueUseCase,
   }) {
     getVoucherCategories();
     getVoucherCategoriesSubject();
@@ -95,6 +99,8 @@ class EvoucherViewModel extends BasePageViewModel {
     getVoucherItemFilterSubject();
 
     listenGetVoucherDetials();
+
+    getVoucherRegionMinMaxValueSubject();
   }
 
   listenGetVoucherDetials() {
@@ -115,6 +121,58 @@ class EvoucherViewModel extends BasePageViewModel {
       });
     });
   }
+
+  /// ------------- voucher region and min,max value stream -------------------------------------------
+
+  PublishSubject<EVoucherRegionMinMaxValueUseCaseParams> _voucherRegionsAndMinMaxRequestSubject =
+      PublishSubject();
+
+  PublishSubject<Resource<VoucherRegionsAndMinMax>> _voucherRegionsAndMinMaxResponseSubject =
+      PublishSubject();
+
+  Stream<Resource<VoucherRegionsAndMinMax>> get voucherRegionsAndMinMaxResponseStream =>
+      _voucherRegionsAndMinMaxResponseSubject.stream;
+
+  void getVoucherRegionMinMaxValueSubject() {
+    _voucherRegionsAndMinMaxRequestSubject.listen((value) {
+      RequestManager(value, createCall: () => eVoucherRegionMinMaxValueUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _voucherRegionsAndMinMaxResponseSubject.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+
+          showToastWithError(event.appError!);
+        }
+        if (event.status == Status.SUCCESS) {}
+      });
+    });
+  }
+
+  getVoucherRegionsAndMinMax() {
+    _voucherRegionsAndMinMaxRequestSubject.safeAdd(EVoucherRegionMinMaxValueUseCaseParams());
+  }
+
+  generateListForMinMax(num minRange, num maxRange) {
+    rangeList.add(minRange.ceil().toString());
+
+    if (maxRange <= 50 && maxRange > -1) {
+      int result = (maxRange / 5).ceil();
+
+      for (int i = 0; i < result; i++) {
+        rangeList.add("${(i + 1) * 5}");
+      }
+    } else if (maxRange > 50) {
+      int result = (maxRange / 10).ceil();
+
+      for (int i = 0; i < result; i++) {
+        rangeList.add("${(i + 1) * 10}");
+      }
+    }
+  }
+
+  List<String> rangeList = [];
 
   /// ------------- voucher categories stream -------------------------------------------
 

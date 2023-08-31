@@ -59,7 +59,8 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
     return AppStreamBuilder<int>(
       stream: model.currentStep,
       initialData: 0,
-      dataBuilder: (context, currentStep) {
+      dataBuilder: (context, myyCurrentStep) {
+        int currentStep = myyCurrentStep ?? 0;
         return AppStreamBuilder<Resource<VerifyQrResponse>>(
             stream: model.verifyQRStream,
             onData: (data) async {
@@ -324,8 +325,9 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                               ?.isPinChangeEnabled ??
                                                                                           true))
                                                                           : switchedPage ==
-                                                                                  DashboardAnimatedPage.TIMELINE
-                                                                              ? DebitCardTimeLinePage(TimeLinePageArguments(cardType: model.cardTypeList[currentStep ?? 0].cardType, timeLineArguments: model.timeLineArguments))
+                                                                                  DashboardAnimatedPage
+                                                                                      .TIMELINE
+                                                                              ? DebitCardTimeLinePage(TimeLinePageArguments(cardType: model.cardTypeList[currentStep].cardType, timeLineArguments: model.timeLineArguments))
                                                                               : switchedPage == DashboardAnimatedPage.PAYBACK
                                                                                   ? CreditCardPayBackPage(
                                                                                       CreditCardPayBackArguments(
@@ -632,7 +634,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
 
                                                                               ///Timeline Button
                                                                               ///For My Account and My credit card
-                                                                              Positioned(
+                                                                              /*Positioned(
                                                                                 top: MediaQuery.of(context)
                                                                                             .size
                                                                                             .height *
@@ -646,7 +648,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                       milliseconds: 500),
                                                                                   opacity: model
                                                                                               .cardTypeList[
-                                                                                                  currentStep!]
+                                                                                                  currentStep]
                                                                                               .timeLineEnum !=
                                                                                           TimeLineEnum
                                                                                               .TIMELINE_YES
@@ -658,9 +660,6 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                     builder:
                                                                                         (BuildContext context,
                                                                                             Widget? child) {
-                                                                                      double
-                                                                                          translateYOffset =
-                                                                                          0;
                                                                                       double opacity = 0;
                                                                                       if (model
                                                                                               .appSwiperController
@@ -673,11 +672,6 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                             (model.appSwiperController
                                                                                                     .page ??
                                                                                                 0);
-                                                                                        translateYOffset =
-                                                                                            currentStep -
-                                                                                                (model.appSwiperController
-                                                                                                        .page ??
-                                                                                                    0);
                                                                                       }
                                                                                       return Transform
                                                                                           .translate(
@@ -769,7 +763,7 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                     ),
                                                                                   ),
                                                                                 ),
-                                                                              ),
+                                                                              ),*/
 
                                                                               ///Transactions button
                                                                               ///For My Account and My credit card
@@ -916,11 +910,9 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                               model.appSwiperController,
                                                                                                           builder:
                                                                                                               (BuildContext context, Widget? child) {
-                                                                                                            double translateYOffset = 0;
                                                                                                             double opacity = 0;
                                                                                                             if (model.appSwiperController.hasClients && model.appSwiperController.positions.isNotEmpty) if (model.appSwiperController.position.hasContentDimensions) {
                                                                                                               opacity = currentStep - (model.appSwiperController.page ?? 0);
-                                                                                                              translateYOffset = currentStep - (model.appSwiperController.page ?? 0);
                                                                                                             }
                                                                                                             return Transform.translate(
                                                                                                               offset: Offset(0, 1),

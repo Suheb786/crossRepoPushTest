@@ -67,9 +67,10 @@ class QRScanOTPPageViewModel extends BasePageViewModel {
 
   Stream<Resource<QRTransferResponse>> get transferQRStream => _transferQRResponse.stream;
 
-  void transferQR({required BuildContext context}) {
+  void transferQR({required BuildContext context, String? fromAccount}) {
     var data = ProviderScope.containerOf(context).read(sendMoneyQrScanningViewModelProvider).arguments;
     _transferQRRequest.safeAdd(TransferQRUseCaseParams(
+        fromAccount: fromAccount,
         toAccount: data?.accountNo ?? '',
         toAmount: data?.amount ?? '',
         requestId: data?.requestId ?? '',

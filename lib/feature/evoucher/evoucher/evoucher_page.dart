@@ -1,4 +1,5 @@
 import 'package:domain/constants/enum/evoucher_landing_page_navigation_type_enum.dart';
+import 'package:domain/model/e_voucher/voucher_region_min_max_value.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -7,6 +8,7 @@ import 'package:neo_bank/feature/evoucher/evoucher/buy_voucher/buy_evoucher_view
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/evouchers_filter_dialog.dart';
+import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -14,6 +16,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../utils/color_utils.dart';
+import '../../../utils/status.dart';
 import 'evoucher_view_model.dart';
 import 'my_voucher_history/my_voucher_history_view.dart';
 
@@ -75,34 +78,59 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
                 S.of(context).eVouchers,
                 textAlign: TextAlign.center,
                 softWrap: false,
-                style: TextStyle(fontSize: 14.t, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+                style: TextStyle(
+                    fontSize: 14.t,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).colorScheme.secondary),
               ),
-              PositionedDirectional(
-                end: 18.0.w,
-                child: ValueListenableBuilder<int>(
-                    valueListenable: model.tabChangeNotifier,
-                    builder: (context, int value, Widget? child) {
-                      return AnimatedOpacity(
-                        opacity: value == 0 ? 1.0 : 0.0,
-                        duration: Duration(milliseconds: 100),
-                        child: InkWell(
-                          onTap: () {
-                            if (model.categoriesList.isNotEmpty)
-                              EVouchersFilterDialog.show(context, title: S.of(context).filterVouchers, categoriesList: model.categoriesList, onSelected: (value) {
-                                model.evoucherFilterOption = value.filterOption;
-                                model.getVoucherItemFilter(
-                                    category: value.categryId, region: value.region, maxValue: double.parse(value.maxValue), minValue: double.parse(value.minValue), searchText: model.buyVoucherSearchController.text);
+              AppStreamBuilder<Resource<VoucherRegionsAndMinMax>>(
+                  initialData: Resource.none(),
+                  stream: model.voucherRegionsAndMinMaxResponseStream,
+                  onData: (data) {
+                    if (data.status == Status.SUCCESS) {
+                      model.generateListForMinMax(
+                          data.data?.minMaxRange?.minRange ?? 0.0, data.data?.minMaxRange?.maxRange ?? 0.0);
 
-                                Navigator.pop(context);
-                              }, onDismissed: () {
-                                Navigator.pop(context);
-                              });
-                          },
-                          child: AppSvg.asset(AssetUtils.filterMenu, height: 26),
-                        ),
-                      );
-                    }),
-              )
+                      EVouchersFilterDialog.show(context,
+                          title: S.of(context).filterVouchers,
+                          categoriesList: model.categoriesList,
+                          rangeList: model.rangeList,
+                          regionList: data.data?.allowedRegions, onSelected: (value) {
+                        model.evoucherFilterOption = value.filterOption;
+                        model.getVoucherItemFilter(
+                            category: value.categryId,
+                            region: value.region,
+                            maxValue: double.parse(value.maxValue),
+                            minValue: double.parse(value.minValue),
+                            searchText: model.buyVoucherSearchController.text);
+
+                        Navigator.pop(context);
+                      }, onDismissed: () {
+                        Navigator.pop(context);
+                      });
+                    }
+                  },
+                  dataBuilder: (context, regionAndMinMaxValue) {
+                    return PositionedDirectional(
+                      end: 18.0.w,
+                      child: ValueListenableBuilder<int>(
+                          valueListenable: model.tabChangeNotifier,
+                          builder: (context, int value, Widget? child) {
+                            return AnimatedOpacity(
+                              opacity: value == 0 ? 1.0 : 0.0,
+                              duration: Duration(milliseconds: 100),
+                              child: InkWell(
+                                onTap: () {
+                                  if (model.categoriesList.isNotEmpty) {
+                                    model.getVoucherRegionsAndMinMax();
+                                  }
+                                },
+                                child: AppSvg.asset(AssetUtils.filterMenu, height: 26),
+                              ),
+                            );
+                          }),
+                    );
+                  })
             ],
           ),
         ),

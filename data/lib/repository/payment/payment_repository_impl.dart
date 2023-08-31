@@ -20,9 +20,9 @@ class PaymentRepositoryImpl extends PaymentRepository {
 
   @override
   Future<Either<NetworkError, GetAccountByAliasContentResponse>> getAccountByAlias(
-      String value, String currency, String? beneficiaryId) async {
+      String fromAccount, String value, String currency, String? beneficiaryId) async {
     final result = await safeApiCall(
-      paymentRemoteDs.getAccountByAlias(value, currency, beneficiaryId),
+      paymentRemoteDs.getAccountByAlias(fromAccount, value, currency, beneficiaryId),
     );
     return result!.fold(
       (l) => Left(l),
@@ -32,9 +32,10 @@ class PaymentRepositoryImpl extends PaymentRepository {
 
   @override
   Future<Either<NetworkError, CheckSendMoneyResponse>> checkSendMoney(
-      String toAccount, num toAmount, String beneficiaryId) async {
+      String? fromAccount, String toAccount, num toAmount, String beneficiaryId) async {
     final result = await safeApiCall(
-      paymentRemoteDs.checkSendMoney(toAccount: toAccount, toAmount: toAmount, beneficiaryId: beneficiaryId),
+      paymentRemoteDs.checkSendMoney(
+          toAccount: toAccount, toAmount: toAmount, beneficiaryId: beneficiaryId, fromAccount: fromAccount),
     );
     return result!.fold(
       (l) => Left(l),
@@ -54,6 +55,7 @@ class PaymentRepositoryImpl extends PaymentRepository {
       String? memo,
       String? toAccount,
       String? nickName,
+      String? fromAccount,
       String? detCustomerType,
       String? type,
       String? recipientName,
@@ -62,6 +64,7 @@ class PaymentRepositoryImpl extends PaymentRepository {
       paymentRemoteDs.transfer(
           beneficiaryId: beneficiaryId!,
           otpCode: otpCode,
+          fromAccount: fromAccount,
           transferType: transferType!,
           beneficiaryImage: beneficiaryImage!,
           isFriend: isFriend!,
@@ -83,6 +86,7 @@ class PaymentRepositoryImpl extends PaymentRepository {
 
   @override
   Future<Either<NetworkError, RequestToPayContentResponse>> requestToPay(
+      String fromAccount,
       String ctgyPurp,
       num amount,
       String dbtrBic,
@@ -99,8 +103,8 @@ class PaymentRepositoryImpl extends PaymentRepository {
       String? addressCity,
       String? addressCountry) async {
     final result = await safeApiCall(
-      paymentRemoteDs.requestToPay(ctgyPurp, amount, dbtrBic, dbtrAcct, dbtrName, memo, isFriend, image,
-          nickName, detCustomerType, type, alias, dbtrSurname, addressCity, addressCountry),
+      paymentRemoteDs.requestToPay(fromAccount, ctgyPurp, amount, dbtrBic, dbtrAcct, dbtrName, memo, isFriend,
+          image, nickName, detCustomerType, type, alias, dbtrSurname, addressCity, addressCountry),
     );
     return result!.fold(
       (l) => Left(l),
@@ -157,10 +161,12 @@ class PaymentRepositoryImpl extends PaymentRepository {
   Future<Either<NetworkError, QRTransferResponse>> transferQR(
       {required String requestId,
       required String toAmount,
+      String? fromAccount,
       required String toAccount,
       required String otp}) async {
     final result = await safeApiCall(
-      paymentRemoteDs.transferQR(requestId: requestId, toAmount: toAmount, toAccount: toAccount, otp: otp),
+      paymentRemoteDs.transferQR(
+          fromAccount: fromAccount, requestId: requestId, toAmount: toAmount, toAccount: toAccount, otp: otp),
     );
     return result!.fold(
       (l) => Left(l),

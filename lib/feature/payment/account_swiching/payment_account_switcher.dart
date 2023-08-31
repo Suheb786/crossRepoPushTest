@@ -62,8 +62,9 @@ class _PaymentAccountSwitcherState extends State<PaymentAccountSwitcher> {
     return InkWell(
       borderRadius: BorderRadius.circular(100),
       onTap: () {
-        AccountSelectionDialog.show(context, title: widget.title, onDismissed: () {},
-            onSelected: (selectedAccount) {
+        AccountSelectionDialog.show(context, title: widget.title, onDismissed: () {
+          Navigator.pop(context);
+        }, onSelected: (selectedAccount) {
           onSelectedAccount(selectedAccount);
           Navigator.pop(context);
         }, accountList: totalAccounts);

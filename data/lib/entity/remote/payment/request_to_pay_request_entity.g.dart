@@ -11,6 +11,7 @@ RequestToPayRequestEntity _$RequestToPayRequestEntityFromJson(
     RequestToPayRequestEntity(
       ctgyPurp: json['CtgyPurp'] as String?,
       amount: json['Amount'] as num?,
+      fromAccount: json['FromAccount'] as String?,
       dbtrBic: json['DbtrBic'] as String?,
       dbtrAcct: json['DbtrAcct'] as String?,
       nickName: json['NickName'] as String? ?? "",
@@ -31,6 +32,7 @@ RequestToPayRequestEntity _$RequestToPayRequestEntityFromJson(
 Map<String, dynamic> _$RequestToPayRequestEntityToJson(
         RequestToPayRequestEntity instance) =>
     <String, dynamic>{
+      'FromAccount': instance.fromAccount,
       'DbtrSurname': instance.dbtrSurname,
       'Alias': instance.alias,
       'AddressCity': instance.addressCity,

@@ -9,6 +9,7 @@ part of 'transfer_qr_request_entity.dart';
 TransferQRRequestEntity _$TransferQRRequestEntityFromJson(
         Map<String, dynamic> json) =>
     TransferQRRequestEntity(
+      fromAccount: json['FromAccount'] as String?,
       toAmount: json['ToAmount'] as String?,
       toAccount: json['toAccount'] as String?,
       qrRequestId: json['QrRequestId'] as String?,
@@ -20,6 +21,7 @@ TransferQRRequestEntity _$TransferQRRequestEntityFromJson(
 Map<String, dynamic> _$TransferQRRequestEntityToJson(
         TransferQRRequestEntity instance) =>
     <String, dynamic>{
+      'FromAccount': instance.fromAccount,
       'QrRequestId': instance.qrRequestId,
       'GetToken': instance.getToken,
       'ToAmount': instance.toAmount,

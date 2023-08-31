@@ -4,6 +4,8 @@ part "check_send_money_request_entity.g.dart";
 
 @JsonSerializable()
 class CheckSendMoneyRequestEntity {
+  @JsonKey(name: "FromAccount")
+  final String? fromAccount;
   @JsonKey(name: "ToAccount")
   final String? toAccount;
   @JsonKey(name: "ToAmount")
@@ -17,6 +19,7 @@ class CheckSendMoneyRequestEntity {
 
   CheckSendMoneyRequestEntity(
       {required this.baseData,
+      this.fromAccount = "",
       this.toAccount = '',
       this.toAmount = 0,
       this.getToken = true,

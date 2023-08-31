@@ -34,22 +34,24 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
 
   @override
   Future<HttpResponse<GetAccountByAliasContentResponseEntity>> getAccountByAlias(
-      String value, String currency, String? beneficiaryId) async {
+      String fromAccount, String value, String currency, String? beneficiaryId) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.getAccountByAlias(GetAccountByAliasRequestEntity(
         beneficiaryId: beneficiaryId,
         baseData: baseData.toJson(),
         value: value,
+        fromAccount: fromAccount,
         currency: currency,
         getToken: true));
   }
 
   @override
   Future<HttpResponse<CheckSendMoneyResponseEntity>> checkSendMoney(
-      {String? toAccount, num? toAmount, String? beneficiaryId}) async {
+      {String? fromAccount, String? toAccount, num? toAmount, String? beneficiaryId}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.checkSendMoney(CheckSendMoneyRequestEntity(
         baseData: baseData.toJson(),
+        fromAccount: fromAccount,
         toAccount: toAccount,
         toAmount: toAmount,
         getToken: true,
@@ -59,6 +61,7 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
   @override
   Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
       {String? beneficiaryId,
+      String? fromAccount,
       String? otpCode,
       String? transferType,
       String? beneficiaryImage,
@@ -77,6 +80,7 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
         baseData: baseData.toJson(),
         toAmount: toAmount!,
         toAccount: toAccount!,
+        fromAccount: fromAccount,
         beneficiaryId: beneficiaryId,
         beneficiaryImage: (beneficiaryImage!.isNotEmpty) ? ImageUtils.convertToBase64(beneficiaryImage) : '',
         otpCode: otpCode,
@@ -94,6 +98,7 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
 
   @override
   Future<HttpResponse<RequestToPayContentResponseEntity>> requestToPay(
+      String fromAccount,
       String ctgyPurp,
       num amount,
       String dbtrBic,
@@ -114,6 +119,7 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
         ctgyPurp: ctgyPurp,
         amount: amount,
         memo: memo,
+        fromAccount: fromAccount,
         nickName: nickName,
         baseData: baseData.toJson(),
         dbtrBic: dbtrBic,
@@ -168,11 +174,13 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
   Future<HttpResponse<QRTransferResponseEntity>> transferQR(
       {required String requestId,
       required String toAmount,
+      String? fromAccount,
       required String toAccount,
       required String otp}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.transferQR(TransferQRRequestEntity(
         baseData: baseData.toJson(),
+        fromAccount: fromAccount,
         getToken: true,
         qrRequestId: requestId,
         toAccount: toAccount,

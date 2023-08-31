@@ -43,58 +43,51 @@ class ConfirmationDialogView extends StatelessWidget {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
               child: WillPopScope(
                 onWillPop: () async => false,
-                child: GestureDetector(
-                  onVerticalDragEnd: (details) {
-                    if (details.primaryVelocity! > 0) {
-                      onDismissed?.call();
-                    }
-                  },
-                  child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 24.0.w),
-                      child: SingleChildScrollView(
-                        physics: ClampingScrollPhysics(),
-                        child: Column(
-                          children: [
-                            SizedBox(height: 32.h),
-                            image != null
-                                ? Padding(
-                                    padding: EdgeInsets.only(bottom: 25.0.h),
-                                    child: AppSvg.asset(
-                                      image!,
-                                      height: imageHight?.h,
-                                      width: imageWidth?.w,
-                                    ),
-                                  )
-                                : Container(),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(start: 28.0, end: 28.0),
-                              child: Text(
-                                title,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Theme.of(context).textTheme.bodySmall?.color,
-                                    fontFamily: StringUtils.appFont,
-                                    fontSize: 20.t,
-                                    fontWeight: FontWeight.w700),
-                              ),
+                child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+                    child: SingleChildScrollView(
+                      physics: ClampingScrollPhysics(),
+                      child: Column(
+                        children: [
+                          SizedBox(height: 32.h),
+                          image != null
+                              ? Padding(
+                                  padding: EdgeInsets.only(bottom: 25.0.h),
+                                  child: AppSvg.asset(
+                                    image!,
+                                    height: imageHight?.h,
+                                    width: imageWidth?.w,
+                                  ),
+                                )
+                              : Container(),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.only(start: 28.0, end: 28.0),
+                            child: Text(
+                              title,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Theme.of(context).textTheme.bodySmall?.color,
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 20.t,
+                                  fontWeight: FontWeight.w700),
                             ),
-                            SizedBox(height: 24.h),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(start: 15.0, end: 15),
-                              child: descriptionWidget,
-                            ),
-                            SizedBox(height: 30.h),
-                            AppPrimaryButton(
-                              text: S.current.confirm,
-                              onPressed: () {
-                                onConfirmed?.call();
-                              },
-                            ),
-                            SizedBox(height: 56.h),
-                          ],
-                        ),
-                      )),
-                ),
+                          ),
+                          SizedBox(height: 24.h),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.only(start: 15.0, end: 15),
+                            child: descriptionWidget,
+                          ),
+                          SizedBox(height: 30.h),
+                          AppPrimaryButton(
+                            text: S.current.confirm,
+                            onPressed: () {
+                              onConfirmed?.call();
+                            },
+                          ),
+                          SizedBox(height: 56.h),
+                        ],
+                      ),
+                    )),
               )),
           Positioned(
             bottom: 32.h,

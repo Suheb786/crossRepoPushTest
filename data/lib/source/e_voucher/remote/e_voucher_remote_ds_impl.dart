@@ -14,6 +14,8 @@ import 'package:data/entity/remote/e_voucher/voucher_min_max_value/voucher_min_m
 import 'package:data/entity/remote/e_voucher/voucher_min_max_value/voucher_min_max_value_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_region_by_categories/voucher_region_by_categories_request.dart';
 import 'package:data/entity/remote/e_voucher/voucher_region_by_categories/voucher_region_by_categories_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_region_min_max_value/voucher_region_min_max_value_request.dart';
+import 'package:data/entity/remote/e_voucher/voucher_region_min_max_value/voucher_region_min_max_value_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_category_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_filter_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_search_request.dart';
@@ -169,6 +171,16 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getVoucherDetailsApi(
       GetVoucherDetailsRequestEntity(baseData: baseData.toJson(), OrderIdentifier: params.OrderIdentifier),
+    );
+  }
+
+  @override
+  Future<HttpResponse<VoucherRegionMinMaxValueResponseEntity>> regionsAndMinMax() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.regionsAndMinMax(
+      VoucherRegionMinMaxValueRequest(
+        baseData: baseData.toJson(),
+      ),
     );
   }
 }
