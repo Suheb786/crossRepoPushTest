@@ -154,8 +154,9 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                                                             desc: S.of(context).dummyAlias,
                                                           )
                                                         ],
-                                                      ),
-                                                      onDismissed: () {}, onSelected: () {
+                                                      ), onDismissed: () {
+                                                    Navigator.pop(context);
+                                                  }, onSelected: () {
                                                     Navigator.pop(context);
                                                   });
                                                 },
