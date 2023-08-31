@@ -18,6 +18,7 @@ class RequestAmountFromContactUseCase
   Future<Either<NetworkError, RequestToPayContentResponse>> execute(
       {required RequestAmountFromContactUseCaseParams params}) {
     return _repository.requestToPay(
+        params.fromAccount ?? "",
         params.purpose!,
         params.amount!,
         params.dbtrBic!,
@@ -37,6 +38,7 @@ class RequestAmountFromContactUseCase
 }
 
 class RequestAmountFromContactUseCaseParams extends Params {
+  String? fromAccount;
   String? purpose;
   String? purposeDetail;
   num? amount;
@@ -61,6 +63,7 @@ class RequestAmountFromContactUseCaseParams extends Params {
       this.dbtrBic,
       this.dbtrName,
       this.dbtrAcct,
+      this.fromAccount,
       this.isFriend = false,
       this.image = "",
       this.nickName = "",

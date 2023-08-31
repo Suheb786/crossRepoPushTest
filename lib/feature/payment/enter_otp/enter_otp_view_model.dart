@@ -114,6 +114,7 @@ class EnterOtpViewModel extends BasePageViewModel {
       required String nickName,
       required num limit,
       required String amount,
+      required String fromAccount,
       required String recipientName,
       required String recipientAddress}) {
     _transferRequest.safeAdd(TransferUseCaseParams(
@@ -124,6 +125,7 @@ class EnterOtpViewModel extends BasePageViewModel {
         memo: memo,
         nickName: nickName,
         isFriend: isFriend,
+        fromAccount: fromAccount,
         transferType: transferResponse.transferType,
         localEq: double.parse(amount),
         beneficiaryId: transferResponse.beneficiaryId,

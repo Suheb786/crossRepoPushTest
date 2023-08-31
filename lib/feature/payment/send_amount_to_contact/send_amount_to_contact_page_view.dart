@@ -3,6 +3,7 @@ import 'package:domain/constants/enum/transaction_type.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/payment/check_send_money_response.dart';
 import 'package:domain/model/payment/transfer_success_response.dart';
 import 'package:flutter/material.dart';
@@ -106,7 +107,6 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
             ),
           ),
           Spacer(),
-
           Padding(
             padding: EdgeInsetsDirectional.only(top: 16.h, end: 24.w, start: 24.w),
             child: Container(
@@ -256,11 +256,11 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
             padding: EdgeInsets.only(top: 15.0.h, bottom: 10.0.h),
             child: PaymentAccountSwitcher(
               title: S.of(context).transferFrom,
-              onDefaultSelectedAccount: (Account) {
-                print('onDefaultSelectedAccount $Account');
+              onDefaultSelectedAccount: (Account account) {
+                model.selectedAccount = account;
               },
-              onSelectAccount: (Account) {
-                print('onSelectAccount $Account');
+              onSelectAccount: (Account account) {
+                model.selectedAccount = account;
               },
               isSingleLineView: true,
             ),

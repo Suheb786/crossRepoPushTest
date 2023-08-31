@@ -340,13 +340,15 @@ class AppRouter {
 
       case RoutePaths.RequestPaymentFromNewRecipient:
         return CupertinoPageRoute(
-            builder: (context) =>
-                RequestPaymentFromNewRecipientPage(requestValue: settings.arguments as String),
+            builder: (context) => RequestPaymentFromNewRecipientPage(
+                  argument: settings.arguments as RequestPaymentFromNewRecipientArgument,
+                ),
             settings: RouteSettings(name: RoutePaths.RequestPaymentFromNewRecipient));
 
       case RoutePaths.PaymentToNewRecipient:
         return CupertinoPageRoute(
-            builder: (context) => PaymentToNewRecipientPage(),
+            builder: (context) =>
+                PaymentToNewRecipientPage(settings.arguments as PaymentToNewRecipentPageArgument),
             settings: RouteSettings(name: RoutePaths.PaymentToNewRecipient));
 
       case RoutePaths.VideoKyc:

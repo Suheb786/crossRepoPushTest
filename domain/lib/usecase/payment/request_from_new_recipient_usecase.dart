@@ -18,6 +18,7 @@ class RequestFromNewRecipientUseCase
   Future<Either<NetworkError, RequestToPayContentResponse>> execute(
       {required RequestFromNewRecipientUseCaseParams params}) {
     return _repository.requestToPay(
+        params.fromAccount ?? "",
         params.purposeCode!,
         params.amount!,
         params.dbtrBic!,
@@ -38,6 +39,7 @@ class RequestFromNewRecipientUseCase
 
 class RequestFromNewRecipientUseCaseParams extends Params {
   String? ibanOrMobile;
+  String? fromAccount;
   String? purpose;
   String? purposeDetail;
   num? amount;
@@ -59,6 +61,7 @@ class RequestFromNewRecipientUseCaseParams extends Params {
 
   RequestFromNewRecipientUseCaseParams(
       {this.ibanOrMobile,
+      this.fromAccount,
       this.purpose,
       this.purposeDetail,
       this.amount,
