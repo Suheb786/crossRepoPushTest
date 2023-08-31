@@ -32,6 +32,7 @@ final evoucherViewModelProvider = ChangeNotifierProvider.autoDispose<EvoucherVie
     eVoucherCategoriesUseCase: ref.read(eVoucherCategoriesUseCaseProvider),
     eVoucherHistoryUseCase: ref.read(eVoucherHistoryUseCaseProvider),
     eVoucherItemFilterUseCase: ref.read(eVoucherItemFilterUseCaseProvider),
+    eVoucherRegionMinMaxValueUseCase: ref.read(eVoucherRegionMinMaxValueUseCaseProvider),
   ),
 );
 

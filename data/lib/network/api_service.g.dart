@@ -5418,6 +5418,32 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<HttpResponse<VoucherRegionMinMaxValueResponseEntity>> regionsAndMinMax(
+      VoucherRegionMinMaxValueRequest voucherRegionMinMaxValueRequest) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(voucherRegionMinMaxValueRequest.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<VoucherRegionMinMaxValueResponseEntity>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'http://10.6.13.2:2186/Voucher/api/Voucher/GetRegionsAndMinMax',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = VoucherRegionMinMaxValueResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
   Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByCategory(
       VoucherByCategoryRequest voucherByCategoryRequest) async {
     const _extra = <String, dynamic>{};

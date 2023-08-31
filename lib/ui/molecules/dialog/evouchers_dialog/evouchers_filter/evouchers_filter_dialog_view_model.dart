@@ -34,9 +34,9 @@ class EVouchersFilterDialogViewModel extends BasePageViewModel {
 
   EVouchersFilterDialogViewModel(this.eVoucherRegionByCategoriesUseCase, this.eVoucherFilterValidationUseCase,
       this.eVoucherMinMaxValueUseCase) {
-    getRegionByCategoriesSubject();
+   // getRegionByCategoriesSubject();
     getFilterValidationSubject();
-    getMinMaxValueSubject();
+    //  getMinMaxValueSubject();
   }
 
   /// Region By Categories
@@ -147,9 +147,9 @@ class EVouchersFilterDialogViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         }
         if (event.status == Status.SUCCESS) {
-          rangeList.clear();
-
-          generateListForMinMax(event.data?.minRange ?? 0.0, event.data?.maxRange ?? 0.0);
+          // rangeList.clear();
+          //
+          // generateListForMinMax(event.data?.minRange ?? 0.0, event.data?.maxRange ?? 0.0);
 
           //  regionByCategoriesList = event.data ?? [];
         }
@@ -165,25 +165,7 @@ class EVouchersFilterDialogViewModel extends BasePageViewModel {
   String categryId = "";
   String region = "";
 
-  generateListForMinMax(num minRange, num maxRange) {
-    rangeList.add(minRange.ceil().toString());
 
-    if (maxRange <= 50 && maxRange > -1) {
-      int result = (maxRange / 5).ceil();
-
-      for (int i = 0; i < result; i++) {
-        rangeList.add("${(i + 1) * 5}");
-      }
-    } else if (maxRange > 50) {
-      int result = (maxRange / 10).ceil();
-
-      for (int i = 0; i < result; i++) {
-        rangeList.add("${(i + 1) * 10}");
-      }
-    }
-  }
-
-  List<String> rangeList = [];
 
   /// button subject
   BehaviorSubject<bool> _showResetButtonSubject = BehaviorSubject.seeded(false);
