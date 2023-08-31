@@ -11,6 +11,7 @@ class SelectTransferPage extends BasePage<SelectTransferPageViewModel> {
   final SelectTranferPageArgument argument;
 
   SelectTransferPage({required this.argument});
+
   @override
   State<StatefulWidget> createState() {
     return SelectTransferPageState();
@@ -33,9 +34,6 @@ class SelectTransferPageState extends BaseStatefulPage<SelectTransferPageViewMod
     return Theme.of(context).primaryColor;
   }
 }
-
-@override
-void onModelReady(SelectTransferPageViewModel model) {}
 
 class SelectTranferPageArgument {
   final Account account;

@@ -1,15 +1,12 @@
 import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
-import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/activity/activity_modules.dart';
-import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_scollable_list_view_widget.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/list_scroll_wheel_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -75,7 +72,7 @@ class AccountSelectionDialogView extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                               child: Container(
-                                height: 64.h,
+                                height: 90.h,
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(16.w),
@@ -87,7 +84,7 @@ class AccountSelectionDialogView extends StatelessWidget {
                               key: ValueKey(model.allCategories.length),
                               child: ClickableListWheelScrollView(
                                 scrollController: model.scrollController,
-                                itemHeight: 64.h,
+                                itemHeight: 90.h,
                                 itemCount: model.allCategories.length,
                                 onItemTapCallback: (index) {
                                   model.currentIndexUpdate(index);
@@ -104,13 +101,69 @@ class AccountSelectionDialogView extends StatelessWidget {
                                         childCount: model.allCategories.length,
                                         builder: (BuildContext context, int index) {
                                           Account account = model.allCategories[index];
-                                          return ListScrollWheelListWidget(
-                                            label:
-                                                '${account.nickName}\n${account.accountNo}\n${account.availableBalance}${S.current.JOD}',
-                                            textColor: currentIndex == index
-                                                ? Theme.of(context).primaryColorDark
-                                                : AppColor.dark_gray_1,
-                                            widgetColor: Colors.transparent,
+                                          return Padding(
+                                            padding: EdgeInsetsDirectional.only(start: 48.w),
+                                            child: Row(
+                                              children: [
+                                                Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    SizedBox(height: 17.h),
+                                                    Text(
+                                                      "${account.isSubAccount! ? "${account.nickName == null ? S.of(context).subAccount : "${S.of(context).subAccount} - ${account.nickName}"}" : "${account.nickName == null ? S.of(context).mainAccount : "${S.of(context).mainAccount} - ${account.nickName}"}"}",
+                                                      style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
+                                                          fontSize: 14.0.t,
+                                                          color: currentIndex == index
+                                                              ? Theme.of(context).primaryColorDark
+                                                              : Theme.of(context).colorScheme.surfaceTint,
+                                                          fontWeight: FontWeight.w600),
+                                                    ),
+                                                    SizedBox(height: 4.h),
+                                                    Text(
+                                                      "${account.accountNo ?? ""}",
+                                                      style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
+                                                          fontSize: 10.0.t,
+                                                          color: index == currentIndex
+                                                              ? Theme.of(context).colorScheme.shadow
+                                                              : Theme.of(context).colorScheme.surfaceTint,
+                                                          fontWeight: FontWeight.w600),
+                                                    ),
+                                                    SizedBox(height: 15.h),
+                                                    RichText(
+                                                      text: TextSpan(
+                                                        children: [
+                                                          TextSpan(
+                                                            text: StringUtils.formatBalance(
+                                                                account.availableBalance ?? '0.00'),
+                                                            style: TextStyle(
+                                                              fontFamily: StringUtils.appFont,
+                                                              fontSize: 14.0.t,
+                                                              color: index == currentIndex
+                                                                  ? Theme.of(context).primaryColorDark
+                                                                  : Theme.of(context).colorScheme.surfaceTint,
+                                                              fontWeight: FontWeight.w700,
+                                                            ),
+                                                          ),
+                                                          TextSpan(
+                                                            text: " " + S.current.JOD.toUpperCase(),
+                                                            style: TextStyle(
+                                                              fontFamily: StringUtils.appFont,
+                                                              fontSize: 12.0.t,
+                                                              color: index == currentIndex
+                                                                  ? Theme.of(context).primaryColorDark
+                                                                  : Theme.of(context).colorScheme.surfaceTint,
+                                                              fontWeight: FontWeight.w600,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
                                           );
                                         })),
                               ),

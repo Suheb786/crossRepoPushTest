@@ -52,6 +52,7 @@ class AppViewModel extends BaseViewModel {
           primaryColorDark: AppColor.black,
           primaryColorLight: AppColor.verySoftRed,
           dialogBackgroundColor: AppColor.white,
+          shadowColor: AppColor.softRed,
           colorScheme: _themeData.colorScheme.copyWith(
               secondary: AppColor.white,
               onSecondary: AppColor.light_gray_4,
@@ -139,6 +140,10 @@ class AppViewModel extends BaseViewModel {
               ),
               titleLarge: TextStyle(
                 color: AppColor.very_dark_gray,
+                fontFamily: StringUtils.appFont,
+              ),
+              titleSmall: TextStyle(
+                color: AppColor.very_light_red,
                 fontFamily: StringUtils.appFont,
               ),
               displayLarge: TextStyle(

@@ -398,10 +398,17 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                 children: [
                                                                                                   AddMoneyTile(),
                                                                                                   TransferBetweenAccountTile(
+                                                                                                    isVisible: (cardData?.data?.dashboardDataContent?.dashboardFeatures?.transferBetweenAccountsFeature ??
+                                                                                                            false) &&
+                                                                                                        model
+                                                                                                            .hasSubAccount(
+                                                                                                          (cardData?.data?.dashboardDataContent?.accounts ??
+                                                                                                              []),
+                                                                                                        ),
                                                                                                     onTap:
                                                                                                         () {
                                                                                                       Navigator
-                                                                                                          .pushReplacementNamed(
+                                                                                                          .pushNamed(
                                                                                                         context,
                                                                                                         RoutePaths
                                                                                                             .SelectTransferPage,
@@ -423,20 +430,10 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                         ),
                                                                                                       );
                                                                                                     },
-                                                                                                    isEnabled: (cardData?.data?.dashboardDataContent?.dashboardFeatures?.transferBetweenAccountsFeature ??
-                                                                                                            false) &&
-                                                                                                        model
-                                                                                                            .hasSubAccount(
-                                                                                                          (cardData?.data?.dashboardDataContent?.accounts ??
-                                                                                                              []),
-                                                                                                        ),
-                                                                                                    isCardActivated: (cardData?.data?.dashboardDataContent?.dashboardFeatures?.transferBetweenAccountsFeature ??
-                                                                                                            false) &&
-                                                                                                        model
-                                                                                                            .hasSubAccount(
-                                                                                                          (cardData?.data?.dashboardDataContent?.accounts ??
-                                                                                                              []),
-                                                                                                        ),
+                                                                                                    isEnabled:
+                                                                                                        true,
+                                                                                                    isCardActivated:
+                                                                                                        true,
                                                                                                   ),
                                                                                                   OpenSubAccountTile(
                                                                                                     isCardActivated: (cardData?.data?.dashboardDataContent?.dashboardFeatures?.subAccountFeature ??
@@ -489,19 +486,14 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                     onTap:
                                                                                                         () {
                                                                                                       Navigator
-                                                                                                          .pushReplacementNamed(
+                                                                                                          .pushNamed(
                                                                                                         context,
                                                                                                         RoutePaths
                                                                                                             .SelectTransferPage,
                                                                                                         arguments:
                                                                                                             SelectTranferPageArgument(
                                                                                                           account:
-                                                                                                              Account(
-                                                                                                            accountNo: model.selectedAccount?.accountNo ?? "",
-                                                                                                            accountTitle: model.selectedAccount?.accountTitle ?? "",
-                                                                                                            availableBalance: model.selectedAccount?.availableBalance ?? "99",
-                                                                                                            iban: model.selectedAccount?.iban ?? "",
-                                                                                                          ),
+                                                                                                              model.cardTypeList[currentStep ?? 0].object as Account,
                                                                                                           allAccountNumbers:
                                                                                                               model.getAllAccountNumbers(cardData?.data?.dashboardDataContent?.accounts ?? []),
                                                                                                           allAccountTitles:

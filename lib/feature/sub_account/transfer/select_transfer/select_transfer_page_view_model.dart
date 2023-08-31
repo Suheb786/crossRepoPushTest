@@ -24,7 +24,8 @@ class SelectTransferPageViewModel extends BasePageViewModel {
 
   PublishSubject<AccountToAccountTransferUseCaseParams> accountToAccountTransferRequest = PublishSubject();
 
-  BehaviorSubject<Resource<AccountToAccountTransferResponse>> accountToAccountTransferResponse = BehaviorSubject();
+  BehaviorSubject<Resource<AccountToAccountTransferResponse>> accountToAccountTransferResponse =
+      BehaviorSubject();
 
   Stream<Resource<AccountToAccountTransferResponse>> get accountToAccountTransferResponseStream =>
       accountToAccountTransferResponse.stream;
@@ -144,10 +145,6 @@ class SelectTransferPageViewModel extends BasePageViewModel {
   }
 
   getIntialTrasnferfromAccountDetail(Account account) {
-    if (argument.allAccountNumbers!.contains(account.accountNo)) {
-      transferFromAccountDetailsResponse.safeAdd(argument.account);
-      return account;
-    }
     transferFromAccountDetailsResponse.safeAdd(argument.account);
     return account;
     // transferFromAccountDetailsResponse.safeAdd(argument.account);

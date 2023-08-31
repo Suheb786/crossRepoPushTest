@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/enum/cliq_id_type_enum.dart';
 import 'package:domain/model/cliq/create_cliq_id/create_cliq_id_otp.dart';
-import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,9 +18,9 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
-import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../../ui/molecules/button/app_primary_button.dart';
+import '../../../payment/account_swiching/payment_account_switcher.dart';
 
 class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCliqIdPageViewModel> {
   LinkBankAccountCliqIdPageView(ProviderBase model) : super(model);
@@ -109,20 +108,7 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                                     //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
                                                     children: [
-                                                      Align(
-                                                        alignment: Alignment.topLeft,
-                                                        child: Text(
-                                                          S.of(context).linkedAccount,
-                                                          style: TextStyle(
-                                                              fontFamily: StringUtils.appFont,
-                                                              fontSize: 14.t,
-                                                              fontWeight: FontWeight.w600),
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 16.h,
-                                                      ),
-                                                      AppStreamBuilder<List<GetAccountByCustomerId>>(
+                                                      /*AppStreamBuilder<List<GetAccountByCustomerId>>(
                                                           stream: model.linkBankAccountCliqIdListStream,
                                                           initialData: model.linkBankAccountCliqIdList,
                                                           dataBuilder: (BuildContext context, data) {
@@ -208,9 +194,19 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                                                   );
                                                                 },
                                                                 itemCount: data!.length);
-                                                          }),
-                                                      SizedBox(
-                                                        height: 8.h,
+                                                          }),*/
+                                                      Padding(
+                                                        padding: EdgeInsets.only(bottom: 20.0.h),
+                                                        child: PaymentAccountSwitcher(
+                                                            title: S.of(context).linkedAccount,
+                                                            onDefaultSelectedAccount: (Account) {
+                                                              print('onDefaultSelectedAccount $Account');
+                                                            },
+                                                            onSelectAccount: (Account) {
+                                                              print('onSelectAccount $Account');
+                                                            },
+                                                            isSingleLineView: false,
+                                                            isShowAmount: true),
                                                       ),
                                                       AppStreamBuilder<bool>(
                                                           stream: model.switchValue,

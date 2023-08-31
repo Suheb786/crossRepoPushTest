@@ -11,7 +11,6 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/account_ready/account_details.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/extension/string_casing_extension.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -26,7 +25,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
   Widget build(BuildContext context, PurchaseVoucherSuccessPageViewModel model) {
     return Container(
         color: Theme.of(context).primaryColor,
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
         child: Column(
           children: [
             Expanded(
@@ -41,12 +40,12 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                         children: [
                           Image.asset(
                             AssetUtils.line,
-                            color: AppColor.softRed,
+                            color: Theme.of(context).shadowColor,
                           ),
                           Align(
                             alignment: Alignment.center,
                             child: Container(
-                              height: 111.37,
+                              height: 111.37.h,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Theme.of(context).canvasColor,
@@ -69,34 +68,34 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w700,
-                              fontSize: 32,
+                              fontSize: 32.t,
                               color: Theme.of(context).colorScheme.secondary),
                         ),
-                        const SizedBox(width: 4),
+                        SizedBox(width: 4.w),
                         Padding(
-                          padding: const EdgeInsetsDirectional.only(top: 8),
+                          padding: EdgeInsetsDirectional.only(top: 8.h),
                           child: Text(
                             S.of(context).JOD,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w700,
-                                fontSize: 14,
-                                color: AppColor.very_light_red),
+                                fontSize: 14.t,
+                                color: Theme.of(context).textTheme.titleSmall?.color),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 24),
+                    SizedBox(height: 24.h),
                     Container(
-                      padding: EdgeInsets.all(24),
+                      padding: EdgeInsets.all(24.w),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: BorderRadius.circular(16.w),
                           color: Theme.of(context).colorScheme.secondary),
                       child: Column(
                         children: [
                           ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(8.w),
                             child: Container(
                               height: 72.h,
                               width: 72.w,
@@ -131,7 +130,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                                 fontSize: 12.t,
                                 color: Theme.of(context).indicatorColor),
                           ),
-                          const SizedBox(height: 24),
+                          SizedBox(height: 24.h),
                           AccountDetails(
                             title: S.current.refNo,
                             value: model.argument.placeOrder?.referenceNo ?? '',
@@ -144,14 +143,17 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                                 "${model.argument.placeOrder?.lineItems?.first.value?.toStringAsFixed(3) ?? 0.0} ${model.argument.placeOrder?.lineItems?.first.currency ?? ""}",
                             showIcon: false,
                           ),
-                          SizedBox(height: 16.h),
-                          AccountDetails(
-                            title: S.current.validUntil,
-                            value: '-',
-                            showIcon: false,
+                          //  SizedBox(height: 16.h),
+                          Visibility(
+                            visible: false,
+                            child: AccountDetails(
+                              title: S.current.validUntil,
+                              value: '-',
+                              showIcon: false,
+                            ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(top: 16),
+                            padding: EdgeInsets.only(top: 16.h),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -159,7 +161,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                                   S.of(context).date,
                                   style: TextStyle(
                                     fontFamily: StringUtils.appFont,
-                                    fontSize: 12,
+                                    fontSize: 12.t,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
