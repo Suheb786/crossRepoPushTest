@@ -103,6 +103,7 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
 
   void getAccountByAlias() {
     _getAccountByAliasRequest.safeAdd(GetAccountByAliasUseCaseParams(
+      fromAccount: selectedAccount.accountNo,
         value: beneficiary?.identifier ?? '', currency: "JOD", beneficiaryId: beneficiary?.id ?? ''));
   }
 

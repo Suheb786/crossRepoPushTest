@@ -194,8 +194,8 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
   }
 
   void getAccountByAlias(String value, String currency) {
-    _getAccountByAliasRequest
-        .safeAdd(GetAccountByAliasUseCaseParams(value: value, currency: currency, beneficiaryId: ''));
+    _getAccountByAliasRequest.safeAdd(GetAccountByAliasUseCaseParams(
+        fromAccount: selectedAccount.accountNo, value: value, currency: currency, beneficiaryId: ''));
   }
 
   void requestFromNewRecipient(BuildContext context) {
