@@ -1750,7 +1750,7 @@ class _ApiService implements ApiService {
     )
                 .compose(
                   _dio.options,
-                  '/transfer/GetAccountByAlisas',
+                  '/transfer/GetAccountByAlisasV2',
                   queryParameters: queryParameters,
                   data: _data,
                 )
@@ -4432,7 +4432,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/Cliq/ConfirmCreateCLidID',
+              '/Cliq/ConfirmCreateCLidIDV2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4458,7 +4458,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/Cliq/CreateCliqIdOtp',
+              '/Cliq/CreateCliqIdOtpV2',
               queryParameters: queryParameters,
               data: _data,
             )

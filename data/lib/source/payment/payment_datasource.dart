@@ -12,7 +12,7 @@ import 'package:retrofit/dio.dart';
 
 abstract class PaymentRemoteDs {
   Future<HttpResponse<GetAccountByAliasContentResponseEntity>> getAccountByAlias(
-      String value, String currency, String? beneficiaryId);
+      String fromAccount, String value, String currency, String? beneficiaryId);
 
   Future<HttpResponse<CheckSendMoneyResponseEntity>> checkSendMoney(
       {String? fromAccount, String toAccount, num toAmount, String beneficiaryId});

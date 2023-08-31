@@ -589,7 +589,7 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> unblockDebitCardPin(
       @Body() UnblockDebitCardPinRequest unblockDebitCardPinRequest);
 
-  @POST("/transfer/GetAccountByAlisas")
+  @POST("/transfer/GetAccountByAlisasV2")
   Future<HttpResponse<GetAccountByAliasContentResponseEntity>> getAccountByAlias(
       @Body() GetAccountByAliasRequestEntity getAccountByAliasRequestEntity);
 
@@ -999,12 +999,12 @@ abstract class ApiService {
   @POST("/Cliq/GetAlias")
   Future<HttpResponse<GetAliasResponseEntity>> getAlias(@Body() CliqGetAliasRequestEntity request);
 
-  @POST("/Cliq/ConfirmCreateCLidID")
+  @POST("/Cliq/ConfirmCreateCLidIDV2")
   Future<HttpResponse<ConfirmCreateCliqIdResponseEntity>> confirmCreateCLidID(
     @Body() ConfirmCreateCliqIdRequestEntity request,
   );
 
-  @POST("/Cliq/CreateCliqIdOtp")
+  @POST("/Cliq/CreateCliqIdOtpV2")
   Future<HttpResponse<CreateCliqIdOtpResponseEntity>> createCliqIdOtp(
     @Body() CreateCliqIdOtpRequestEntity request,
   );

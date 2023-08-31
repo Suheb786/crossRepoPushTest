@@ -20,9 +20,9 @@ class PaymentRepositoryImpl extends PaymentRepository {
 
   @override
   Future<Either<NetworkError, GetAccountByAliasContentResponse>> getAccountByAlias(
-      String value, String currency, String? beneficiaryId) async {
+      String fromAccount, String value, String currency, String? beneficiaryId) async {
     final result = await safeApiCall(
-      paymentRemoteDs.getAccountByAlias(value, currency, beneficiaryId),
+      paymentRemoteDs.getAccountByAlias(fromAccount, value, currency, beneficiaryId),
     );
     return result!.fold(
       (l) => Left(l),
