@@ -1,7 +1,6 @@
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -58,18 +57,6 @@ class _PaymentAccountSwitcherState extends State<PaymentAccountSwitcher> {
     widget.onSelectAccount(selectedAccount);
   }
 
-  String formatBalance(String balance) {
-    if (balance.isEmpty) {
-      return "";
-    }
-    double? balanceValue = double.tryParse(balance);
-    if (balanceValue != null) {
-      return NumberFormat('#,###.000').format(balanceValue);
-    } else {
-      return balance;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -97,7 +84,7 @@ class _PaymentAccountSwitcherState extends State<PaymentAccountSwitcher> {
                     children: [
                       SizedBox(width: 16),
                       Text(
-                        "${(selectedAccount.isSubAccount ?? false) ? "Sub Account" : "Main Account"}",
+                        "${selectedAccount.isSubAccount! ? "${selectedAccount.nickName == null ? S.of(context).subAccount : "${S.of(context).subAccount} - ${selectedAccount.nickName}"}" : "${selectedAccount.nickName == null ? S.of(context).mainAccount : "${S.of(context).mainAccount} - ${selectedAccount.nickName}"}"}",
                         softWrap: true,
                         style: TextStyle(
                           fontFamily: StringUtils.appFont,
@@ -108,7 +95,7 @@ class _PaymentAccountSwitcherState extends State<PaymentAccountSwitcher> {
                       ),
                       SizedBox(width: 4),
                       Text(
-                        formatBalance(selectedAccount.availableBalance ?? '0.00'),
+                        StringUtils.formatBalance(selectedAccount.availableBalance ?? '0.00'),
                         softWrap: true,
                         style: TextStyle(
                           fontFamily: StringUtils.appFont,
@@ -167,7 +154,7 @@ class _PaymentAccountSwitcherState extends State<PaymentAccountSwitcher> {
                               ),
                               SizedBox(height: 8.h),
                               Text(
-                                selectedAccount.nickName ?? "Main Account",
+                                "${selectedAccount.isSubAccount! ? "${selectedAccount.nickName == null ? S.of(context).subAccount : "${S.of(context).subAccount} - ${selectedAccount.nickName}"}" : "${selectedAccount.nickName == null ? S.of(context).mainAccount : "${S.of(context).mainAccount} - ${selectedAccount.nickName}"}"}",
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontSize: 14.0.t,
@@ -187,7 +174,7 @@ class _PaymentAccountSwitcherState extends State<PaymentAccountSwitcher> {
                               Visibility(
                                 visible: !widget.isShowAmount,
                                 child: Text(
-                                  formatBalance(selectedAccount.availableBalance ?? '0.00') +
+                                  StringUtils.formatBalance(selectedAccount.availableBalance ?? '0.00') +
                                       " " +
                                       S.of(context).JOD,
                                   style: TextStyle(
