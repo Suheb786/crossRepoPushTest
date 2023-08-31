@@ -20,7 +20,7 @@ class EvoucherLandingDialogView extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         children: [
           Dialog(
-              insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+              insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36.h, top: 204),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
               child: WillPopScope(
                 onWillPop: () async => false,
@@ -57,7 +57,7 @@ class EvoucherLandingDialogView extends StatelessWidget {
                       ),
                       SizedBox(height: 30.h),
                       Padding(
-                        padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 30.h),
+                        padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 40.h),
                         child: AppPrimaryButton(
                           onPressed: () {
                             onSelected!.call();
@@ -70,7 +70,7 @@ class EvoucherLandingDialogView extends StatelessWidget {
                 )),
               )),
           Positioned(
-            bottom: 80.h,
+            bottom: 76.h,
             child: InkWell(
               onTap: () {
                 onDismissed?.call();

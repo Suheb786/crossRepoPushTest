@@ -30,7 +30,7 @@ class ApplePayDialogView extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         children: [
           Dialog(
-              insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
+              insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 0.h, top: 204.h),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
               child: WillPopScope(
                 onWillPop: () async => false,
@@ -84,7 +84,7 @@ class ApplePayDialogView extends StatelessWidget {
                 )),
               )),
           Positioned(
-            bottom: 88.h,
+            bottom: 70.h,
             child: InkWell(
               onTap: () {
                 onDismissed?.call();

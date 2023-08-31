@@ -72,7 +72,7 @@ class AddOtherCardToAppleWalletDialogView extends StatelessWidget {
                       ),
                       SizedBox(height: 30.h),
                       Padding(
-                        padding: EdgeInsets.only(left: 16.0.w, right: 16.w, bottom: 30.h),
+                        padding: EdgeInsets.only(left: 16.0.w, right: 16.w, bottom: 40.h),
                         child: AppPrimaryButton(
                           text: S.of(context).confirm,
                           onPressed: () {
@@ -85,7 +85,7 @@ class AddOtherCardToAppleWalletDialogView extends StatelessWidget {
                 )),
               )),
           Positioned(
-            bottom: 134.h,
+            bottom: 132.h,
             child: InkWell(
               onTap: () {
                 onDismissed?.call();
