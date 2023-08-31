@@ -277,7 +277,7 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                     Navigator.of(context)
                       ..pop()
                       ..pop()
-                      ..pop();
+                      ..pop(true);
                   },
                 ),
               ),

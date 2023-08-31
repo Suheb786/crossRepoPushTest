@@ -37,7 +37,7 @@ class BeneficiaryContactDetailsPageState
 
   @override
   resizeToAvoidBottomInset() {
-    return true;
+    return false;
   }
 
   @override
