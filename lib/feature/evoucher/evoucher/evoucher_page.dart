@@ -56,6 +56,10 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
       model.voucherCategoriesResponseSubject.safeAdd(Resource.success(data: model.categoriesList));
     });
 
+    model.switchTabStream.listen((event) {
+      model.switchTab(_tabController, event);
+    });
+
     super.onModelReady(model);
   }
 
