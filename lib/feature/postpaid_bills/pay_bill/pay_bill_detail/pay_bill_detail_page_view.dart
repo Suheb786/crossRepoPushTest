@@ -374,12 +374,11 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                       .setData(model.setData());
 
                   if (AppConstantsUtils.PRE_PAID_FLOW) {
-                    // if (model.isPrepaidCategoryListEmpty == false) {
                     /// prepaid bill details inquiry
                     ProviderScope.containerOf(context)
                         .read(confirmBillPaymentAmountPageViewModelProvider)
-                        .validatePrePaidBill(amount: model.amountText);
-                    // }
+                        .validatePrePaidBill(
+                            amount: model.amountText, fromAccount: model.selectedAccount?.accountNo ?? '');
                   } else if (AppConstantsUtils.POST_PAID_FLOW) {
                     /// post paid bill details inquiry
                     ProviderScope.containerOf(context)

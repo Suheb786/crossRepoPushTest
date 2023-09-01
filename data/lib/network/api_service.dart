@@ -871,7 +871,7 @@ abstract class ApiService {
   @POST("/BillPayment/PayPrepaidBillV2")
   Future<HttpResponse<PayPrePaidResponse>> payPrePaidBillData(@Body() PayPrePaidRequest payPrePaidRequest);
 
-  @POST("/BillPayment/PayPostPaidBillV1")
+  @POST("/BillPayment/PayPostPaidBillV2")
   Future<HttpResponse<PayPostPaidBillResponse>> payPostPaidBillV1(
     @Body() PayPostPaidBillRequestEntity ecGetRegisterRequest,
   );
@@ -1100,7 +1100,7 @@ abstract class ApiService {
     @Body() BaseRequest request,
   );
 
-  @POST("/Transfer/TransferQRV2")
+  @POST("/Transfer/TransferQR")
   Future<HttpResponse<QRTransferResponseEntity>> transferQR(
       @Body() TransferQRRequestEntity transferQRRequestEntity);
 

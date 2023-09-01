@@ -3646,7 +3646,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/BillPayment/PayPostPaidBillV1',
+              '/BillPayment/PayPostPaidBillV2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4981,7 +4981,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/Transfer/TransferQRV2',
+              '/Transfer/TransferQR',
               queryParameters: queryParameters,
               data: _data,
             )

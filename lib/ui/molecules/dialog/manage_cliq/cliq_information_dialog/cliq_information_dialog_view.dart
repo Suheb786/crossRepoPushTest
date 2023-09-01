@@ -42,7 +42,7 @@ class CliqInformationDialogView extends StatelessWidget {
       providerBase: providerBase(),
       builder: (BuildContext context, model, child) {
         return Dialog(
-            insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
+            insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
             child: Stack(
               alignment: Alignment.bottomCenter,

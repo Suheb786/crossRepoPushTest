@@ -8,7 +8,6 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
-import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../ui/molecules/app_svg.dart';
 import '../../../utils/asset_utils.dart';

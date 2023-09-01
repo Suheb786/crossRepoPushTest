@@ -38,7 +38,7 @@ class CardCancelDialogView extends StatelessWidget {
       providerBase: providerBase(),
       builder: (context, model, child) => Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-        insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
+        insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 170.h),
         child: Stack(
           alignment: Alignment.bottomCenter,
           clipBehavior: Clip.none,
@@ -167,7 +167,10 @@ class CardCancelDialogView extends StatelessWidget {
                         },
                         text: S.of(context).confirm,
                       ),
-                    )
+                    ),
+                    SizedBox(
+                      height: 24.h,
+                    ),
                   ],
                 ),
               ),

@@ -1,6 +1,7 @@
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/sub_account/account_to_account_transfer_response.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/feature/sub_account/transfer/select_transfer/select_transfer_page_view_model.dart';
 import 'package:neo_bank/feature/sub_account/transfer/transfer_success/transfer_success_page.dart';
@@ -117,7 +118,7 @@ class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewMo
                               AppStreamBuilder<Account>(
                                   stream: model.selectedToAccountStream,
                                   initialData: Account(
-                                      accountNo: " ", accountTitle: " ", availableBalance: "", nickName: ""),
+                                      accountNo: "", accountTitle: "", availableBalance: "", nickName: ""),
                                   dataBuilder: (context, modified) {
                                     return InkWell(
                                       onTap: () {
@@ -141,17 +142,19 @@ class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewMo
                                         model: model,
                                         label: S.current.transferTo.toUpperCase(),
                                         accuntNumber: (modified?.accountNo ?? ""),
-                                        accountName: (modified?.isSubAccount == false
-                                            ? (modified?.nickName == null || modified?.nickName == ""
-                                                ? (S.current.mainAccount)
-                                                : (S.current.mainAccount +
-                                                    " - " +
-                                                    (modified?.nickName ?? "")))
-                                            : (modified?.nickName == null || modified?.nickName == ""
-                                                ? (S.current.subAccount)
-                                                : (S.current.subAccount +
-                                                    " - " +
-                                                    (modified?.nickName ?? "")))),
+                                        accountName: (modified?.accountNo ?? '').isNotEmpty
+                                            ? (modified?.isSubAccount == false
+                                                ? (modified?.nickName == null || modified?.nickName == ""
+                                                    ? (S.current.mainAccount)
+                                                    : (S.current.mainAccount +
+                                                        " - " +
+                                                        (modified?.nickName ?? "")))
+                                                : (modified?.nickName == null || modified?.nickName == ""
+                                                    ? (S.current.subAccount)
+                                                    : (S.current.subAccount +
+                                                        " - " +
+                                                        (modified?.nickName ?? ""))))
+                                            : S.of(context).selectAccount,
                                         availableAmount: modified?.availableBalance == ""
                                             ? ""
                                             : StringUtils.formatBalance(modified?.availableBalance ?? "") +
@@ -166,7 +169,10 @@ class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewMo
                                   hintText: S.current.JOD.toUpperCase(),
                                   controller: model.amountTextController,
                                   key: model.amountKey,
-                                  inputType: TextInputType.number,
+                                  inputType: TextInputType.numberWithOptions(decimal: true, signed: true),
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(RegExp(r'^[0-9]+.?[0-9]*'))
+                                  ],
                                   onChanged: (value) {
                                     model.validateIfEmpty();
                                   },

@@ -42,7 +42,10 @@ class PrePaidBillCardWidget extends StatelessWidget {
                               fontSize: 12.0.t,
                               fontWeight: FontWeight.w600,
                               color: AppColor.white))),
-                  InkWell(
+                  SizedBox(
+                    width: 8.w,
+                  ),
+                  GestureDetector(
                     onTap: () {
                       AppConstantsUtils.PRE_PAID_FLOW = true;
                       AppConstantsUtils.POST_PAID_FLOW = false;
@@ -51,21 +54,12 @@ class PrePaidBillCardWidget extends StatelessWidget {
                           .animateToNewPage();
                       Navigator.of(context).push(CustomRoute.swipeUpRoute(BillPaymentsTransactionPage()));
                     },
-                    child: Container(
-                      height: 50.h,
-                      width: 50.h,
-                      alignment: Alignment.center,
-                      child: AppSvg.asset(AssetUtils.clock,
-                          width: 24.h, height: 24.h, color: AppColor.light_acccent_blue),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColor.black,
-                        border: Border.all(color: AppColor.borderColorNew, width: 1),
-                        boxShadow: const [
-                          BoxShadow(color: AppColor.borderColorNew, blurRadius: 14, spreadRadius: 0.6),
-                        ],
-                      ),
-                    ),
+                    child: Text(S.of(context).viewHistory,
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            fontSize: 14.0.t,
+                            fontWeight: FontWeight.w600,
+                            color: AppColor.brightBlue)),
                   ),
                 ],
               ),

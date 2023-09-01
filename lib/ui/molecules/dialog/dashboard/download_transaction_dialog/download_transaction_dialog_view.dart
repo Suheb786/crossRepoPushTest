@@ -32,7 +32,7 @@ class DownloadTransactionDialogView extends StatelessWidget {
         builder: (context, model, child) {
           return Dialog(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-              insetPadding: EdgeInsets.only(left: 24.0.w, right: 24.0.w, bottom: 36.0.h, top: 204.0.h),
+              insetPadding: EdgeInsets.only(left: 24.0.w, right: 24.0.w, bottom: 56.0.h, top: 204.0.h),
               child: Stack(
                 alignment: Alignment.bottomCenter,
                 clipBehavior: Clip.none,

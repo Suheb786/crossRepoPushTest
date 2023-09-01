@@ -40,7 +40,7 @@ class SelectAccountListDialogPageView extends StatelessWidget {
         builder: (context, model, child) {
           return Dialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-            insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
+            insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
             child: Stack(
               alignment: Alignment.bottomCenter,
               clipBehavior: Clip.none,

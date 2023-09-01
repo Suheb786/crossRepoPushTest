@@ -7,6 +7,7 @@ import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/mobile_number_dialog/mobile_number_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/allowed_mobile_number_list_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -46,174 +47,154 @@ class MobileNumberDialogView extends StatelessWidget {
           return Dialog(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
               insetPadding: EdgeInsets.only(
-                  left: 24.0.w, right: 24.0.w, bottom: 36.0.h, top: _keyboardVisible ? 36.0.h : 204.0.h),
-              child: GestureDetector(
-                onVerticalDragEnd: (details) {
-                  if (details.primaryVelocity! > 0) {
-                    onDismissed?.call();
-                  }
-                },
-                child: AppKeyBoardHide(
-                  child: AppStreamBuilder<int>(
-                    stream: model!.currentIndexStream,
-                    initialData: 0,
-                    dataBuilder: (context, currentIndex) {
-                      return AppStreamBuilder<Resource<List<CountryData>>>(
-                        stream: model.getAllowedCountryCodeStream,
-                        initialData: Resource.none(),
-                        dataBuilder: (context, data) {
-                          return Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(top: 32.0.h),
-                                child: Center(
-                                  child: Text(
-                                    title!,
-                                    style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 14.0.t,
-                                        color: Theme.of(context).indicatorColor,
-                                        fontWeight: FontWeight.w600),
+                  left: 24.0.w, right: 24.0.w, bottom: 56.0.h, top: _keyboardVisible ? 36.0.h : 204.0.h),
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                clipBehavior: Clip.none,
+                children: [
+                  AppKeyBoardHide(
+                    child: AppStreamBuilder<int>(
+                      stream: model!.currentIndexStream,
+                      initialData: 0,
+                      dataBuilder: (context, currentIndex) {
+                        return AppStreamBuilder<Resource<List<CountryData>>>(
+                          stream: model.getAllowedCountryCodeStream,
+                          initialData: Resource.none(),
+                          dataBuilder: (context, data) {
+                            return Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(top: 32.0.h),
+                                  child: Center(
+                                    child: Text(
+                                      title!,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 14.0.t,
+                                          color: Theme.of(context).indicatorColor,
+                                          fontWeight: FontWeight.w600),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 32.0.h),
-                                child: AppTextField(
-                                  labelText: '',
-                                  controller: model.mobileNumberSearchController,
-                                  textFieldBorderColor: AppColor.gray_1,
-                                  hintTextColor: AppColor.gray_2,
-                                  textColor: Theme.of(context).primaryColorDark,
-                                  hintText: S.of(context).searchCountry,
-                                  containerPadding:
-                                      EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 10.0.h),
-                                  onChanged: (value) {
-                                    model.searchMobileNumber(value);
-                                  },
-                                  suffixIcon: (value, data) {
-                                    return InkWell(
-                                      onTap: () async {},
-                                      child: Container(
-                                          height: 16.0.h,
-                                          width: 16.0.w,
-                                          padding: EdgeInsets.all(6),
-                                          child: AppSvg.asset(AssetUtils.search,
-                                              color: Theme.of(context).primaryColorDark)),
-                                    );
-                                  },
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 32.0.h),
+                                  child: AppTextField(
+                                    labelText: '',
+                                    controller: model.mobileNumberSearchController,
+                                    textFieldBorderColor: AppColor.gray_1,
+                                    hintTextColor: AppColor.gray_2,
+                                    textColor: Theme.of(context).primaryColorDark,
+                                    hintText: S.of(context).searchCountry,
+                                    containerPadding:
+                                        EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 10.0.h),
+                                    onChanged: (value) {
+                                      model.searchMobileNumber(value);
+                                    },
+                                    suffixIcon: (value, data) {
+                                      return InkWell(
+                                        onTap: () async {},
+                                        child: Container(
+                                            height: 16.0.h,
+                                            width: 16.0.w,
+                                            padding: EdgeInsets.all(6),
+                                            child: AppSvg.asset(AssetUtils.search,
+                                                color: Theme.of(context).primaryColorDark)),
+                                      );
+                                    },
+                                  ),
                                 ),
-                              ),
-                              Expanded(
-                                  child: data!.data!.length > 0
-                                      ? Stack(
-                                          alignment: Alignment.center,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(horizontal: 16.0.w),
-                                              child: Container(
-                                                height: 64.0.h,
-                                                width: double.infinity,
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(16),
-                                                  color: AppColor.vividYellow,
+                                Expanded(
+                                    child: data!.data!.length > 0
+                                        ? Stack(
+                                            alignment: Alignment.center,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+                                                child: Container(
+                                                  height: 64.0.h,
+                                                  width: double.infinity,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(16),
+                                                    color: AppColor.vividYellow,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            AppScrollableListViewWidget(
-                                              key: ValueKey(data.data!.length),
-                                              child: ClickableListWheelScrollView(
-                                                scrollController: model.scrollController,
-                                                itemHeight: 72.0.h,
-                                                itemCount: data.data!.length,
-                                                onItemTapCallback: (index) {
-                                                  model.selectMobileNumber(index);
-                                                },
-                                                child: ListWheelScrollView.useDelegate(
-                                                    controller: model.scrollController,
-                                                    itemExtent: 72.0.h,
-                                                    onSelectedItemChanged: (int index) {
-                                                      model.selectMobileNumber(index);
-                                                    },
-                                                    physics: FixedExtentScrollPhysics(),
-                                                    perspective: 0.0000000001,
-                                                    childDelegate: ListWheelChildBuilderDelegate(
-                                                        childCount: data.data!.length,
-                                                        builder: (BuildContext context, int index) {
-                                                          return AllowedMobileNumberListWidget(
-                                                            item: data.data![index],
-                                                          );
-                                                        })),
+                                              AppScrollableListViewWidget(
+                                                key: ValueKey(data.data!.length),
+                                                child: ClickableListWheelScrollView(
+                                                  scrollController: model.scrollController,
+                                                  itemHeight: 72.0.h,
+                                                  itemCount: data.data!.length,
+                                                  onItemTapCallback: (index) {
+                                                    model.selectMobileNumber(index);
+                                                  },
+                                                  child: ListWheelScrollView.useDelegate(
+                                                      controller: model.scrollController,
+                                                      itemExtent: 72.0.h,
+                                                      onSelectedItemChanged: (int index) {
+                                                        model.selectMobileNumber(index);
+                                                      },
+                                                      physics: FixedExtentScrollPhysics(),
+                                                      perspective: 0.0000000001,
+                                                      childDelegate: ListWheelChildBuilderDelegate(
+                                                          childCount: data.data!.length,
+                                                          builder: (BuildContext context, int index) {
+                                                            return AllowedMobileNumberListWidget(
+                                                              item: data.data![index],
+                                                            );
+                                                          })),
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        )
-                                      : Center(
-                                          child: Text(
-                                            S.of(context).noCountriesFound,
-                                            style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                fontSize: 14.0.t,
-                                                fontWeight: FontWeight.w400,
-                                                color: AppColor.dark_violet_4),
-                                          ),
-                                        )),
-                              GestureDetector(
-                                onVerticalDragEnd: (details) {
-                                  if (!details.primaryVelocity!.isNegative) {
-                                    onDismissed?.call();
-                                  }
-                                },
-                                child: Container(
-                                  color: AppColor.white.withOpacity(0),
-                                  child: Column(
-                                    children: <Widget>[
-                                      InkWell(
-                                        onTap: () {
-                                          onSelected!.call(model.selectedCountryData!);
-                                        },
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 16.0.h),
-                                          height: 57.0.h,
-                                          width: 57.0.w,
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                          child: AppSvg.asset(AssetUtils.tick,
-                                              color: Theme.of(context).colorScheme.secondary),
-                                        ),
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          onDismissed?.call();
-                                        },
-                                        child: Padding(
-                                          padding: EdgeInsets.only(top: 8.0.h, bottom: 16.0.h),
-                                          child: Center(
+                                            ],
+                                          )
+                                        : Center(
                                             child: Text(
-                                              S.of(context).swipeDownToCancel,
+                                              S.of(context).noCountriesFound,
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
-                                                  fontSize: 10.0.t,
+                                                  fontSize: 14.0.t,
                                                   fontWeight: FontWeight.w400,
-                                                  color: AppColor.dark_gray_1),
+                                                  color: AppColor.dark_violet_4),
                                             ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                          )),
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 40.h, left: 24.w, right: 24.w, top: 16.h),
+                                  child: AppPrimaryButton(
+                                    onPressed: () {
+                                      onSelected!.call(model.selectedCountryData!);
+                                    },
+                                    text: S.of(context).confirm,
                                   ),
                                 ),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ),
-                ),
+                  Positioned(
+                    bottom: -24.h,
+                    child: InkWell(
+                      onTap: () {
+                        onDismissed?.call();
+                      },
+                      child: Container(
+                          height: 48.h,
+                          width: 48.h,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Theme.of(context).colorScheme.onBackground),
+                              shape: BoxShape.circle,
+                              color: Theme.of(context).colorScheme.secondary),
+                          child: Image.asset(
+                            AssetUtils.close_bold,
+                            scale: 3.5,
+                          )),
+                    ),
+                  ),
+                ],
               ));
         },
         onModelReady: (model) {

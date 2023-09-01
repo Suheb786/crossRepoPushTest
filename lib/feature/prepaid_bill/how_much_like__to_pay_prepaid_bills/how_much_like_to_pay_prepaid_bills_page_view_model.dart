@@ -77,6 +77,7 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("new_pre_paid_inquire_bill", {"new_pre_paid_inquire_bill_call": true});
     _validatePrePaidRequest.safeAdd(ValidatePrePaidUseCaseParams(
+        fromAccount: selectedAccount?.accountNo ?? '',
         billerCode: argument.payMyPrePaidBillsPageDataList[0].billerCode,
         amount: isPrepaidCategoryListEmpty == true
             ? (amtController.text.isNotEmpty ? double.parse(amtController.text).toStringAsFixed(3) : '')

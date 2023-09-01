@@ -15,7 +15,7 @@ class EvoucherLandingDialogView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-        insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36.h, top: 204),
+        insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         child: Stack(
           clipBehavior: Clip.none,
