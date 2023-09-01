@@ -1,4 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -120,7 +123,15 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                         },
                         textColor: Colors.black,
                         rightButtonFn: () {
-                          model.requestMoney();
+                          if (double.parse(model.selectedAccount.availableBalance ?? '0') <
+                              double.parse(model.currentPinValue)) {
+                            model.showToastWithError(AppError(
+                                cause: Exception(),
+                                error: ErrorInfo(message: ""),
+                                type: ErrorType.INSUFFICIENT_BALANCE_TRANSFER));
+                          } else {
+                            model.requestMoney();
+                          }
                         },
                         leftIcon: Icon(
                           Icons.circle,

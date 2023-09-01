@@ -1665,6 +1665,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "insufficientBalanceAccountTransfer":
             MessageLookupByLibrary.simpleMessage(
                 "You do not have sufficient balance to transfer."),
+        "insufficientBalanceSubAccount": MessageLookupByLibrary.simpleMessage(
+            "Oops! Transaction failed; you have insufficient balance in your account."),
         "insufficientBalanceTransfer": MessageLookupByLibrary.simpleMessage(
             "You do not have sufficient balance to make payment."),
         "insufficientFundsBillCannotBePaid":
@@ -2780,8 +2782,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Select account to pay your credit card"),
         "selectAdditionalIncome":
             MessageLookupByLibrary.simpleMessage("Select Additional Income"),
-        "selectAnyOption":
-            MessageLookupByLibrary.simpleMessage("Select any Option"),
+        "selectAnyOption": MessageLookupByLibrary.simpleMessage(
+            "Select atleast one filter option"),
         "selectAtLeastOneBill":
             MessageLookupByLibrary.simpleMessage("Select at least one bill"),
         "selectCategory":

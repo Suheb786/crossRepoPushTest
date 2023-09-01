@@ -68,236 +68,231 @@ class EVouchersFilterDialogView extends StatelessWidget {
         });
       },
       builder: (context, model, child) {
-        return Scaffold(
-          backgroundColor: Colors.transparent,
-          body: Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              Dialog(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0.w)),
-                  insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.only(top: 32.0.h, bottom: 40.h),
-                        child: Center(
-                          child: Text(
-                            title ?? '',
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w600),
-                          ),
+        return Dialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0.w)),
+            insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 180.h),
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              clipBehavior: Clip.none,
+              children: [
+                Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.only(top: 32.0.h, bottom: 16.h),
+                      child: Center(
+                        child: Text(
+                          title ?? '',
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w600),
                         ),
                       ),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 24.w),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                AppTextField(
-                                  labelText: S.of(context).category.toUpperCase(),
-                                  hintText: S.of(context).pleaseSelect,
-                                  readOnly: true,
-                                  controller: model!.categoryController,
-                                  key: model.categoryKey,
-                                  onPressed: () {
-                                    CategoriesFilterDialog.show(context,
-                                        title: S.of(context).category,
-                                        categoriesList: categoriesList ?? [], onDismissed: () {
-                                      Navigator.pop(context);
-                                    }, onSelected: (value) {
-                                      Navigator.pop(context);
-                                      model.categoryController.text = value.categoryName;
-                                      model.categryId = value.id == 0 ? "" : value.id.toString();
+                    ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        physics: ClampingScrollPhysics(),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 24.w),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              AppTextField(
+                                labelText: S.of(context).category.toUpperCase(),
+                                hintText: S.of(context).pleaseSelect,
+                                readOnly: true,
+                                controller: model!.categoryController,
+                                key: model.categoryKey,
+                                onPressed: () {
+                                  CategoriesFilterDialog.show(context,
+                                      title: S.of(context).category,
+                                      categoriesList: categoriesList ?? [], onDismissed: () {
+                                    Navigator.pop(context);
+                                  }, onSelected: (value) {
+                                    Navigator.pop(context);
+                                    model.categoryController.text = value.categoryName;
+                                    model.categryId = value.id == 0 ? "" : value.id.toString();
 
-                                      model.showResetFilterButton();
-                                    });
-                                  },
-                                  suffixIcon: (value, data) {
-                                    return Container(
-                                        height: 16.h,
-                                        width: 16.w,
-                                        padding: EdgeInsetsDirectional.only(end: 8.w),
-                                        child: AppSvg.asset(AssetUtils.downArrow,
-                                            color: Theme.of(context).colorScheme.surfaceTint));
-                                  },
-                                ),
-                                SizedBox(
-                                  height: 16.h,
-                                ),
-                                AppTextField(
-                                  labelText: S.of(context).preferredRegion.toUpperCase(),
-                                  hintText: S.of(context).pleaseSelect,
-                                  readOnly: true,
-                                  controller: model.preferredRegionController,
-                                  key: model.preferredRegionKey,
-                                  onPressed: () {
-                                    RegionFilterDialog.show(context,
-                                        isFromPurchaseFlow: false,
-                                        title: S.of(context).preferredRegion,
-                                        regionByCategoriesList: regionList ?? [], onDismissed: () {
-                                      Navigator.pop(context);
-                                    }, onSelected: (value) {
-                                      Navigator.pop(context);
-                                      model.preferredRegionController.text = value.countryName ?? '';
-                                      model.region = value.isoCode ?? "";
+                                    model.showResetFilterButton();
+                                  });
+                                },
+                                suffixIcon: (value, data) {
+                                  return Container(
+                                      height: 16.h,
+                                      width: 16.w,
+                                      padding: EdgeInsetsDirectional.only(end: 8.w),
+                                      child: AppSvg.asset(AssetUtils.downArrow,
+                                          color: Theme.of(context).colorScheme.surfaceTint));
+                                },
+                              ),
+                              SizedBox(
+                                height: 16.h,
+                              ),
+                              AppTextField(
+                                labelText: S.of(context).preferredRegion.toUpperCase(),
+                                hintText: S.of(context).pleaseSelect,
+                                readOnly: true,
+                                controller: model.preferredRegionController,
+                                key: model.preferredRegionKey,
+                                onPressed: () {
+                                  RegionFilterDialog.show(context,
+                                      isFromPurchaseFlow: false,
+                                      title: S.of(context).preferredRegion,
+                                      regionByCategoriesList: regionList ?? [], onDismissed: () {
+                                    Navigator.pop(context);
+                                  }, onSelected: (value) {
+                                    Navigator.pop(context);
+                                    model.preferredRegionController.text = value.countryName ?? '';
+                                    model.region = value.isoCode ?? "";
 
-                                      model.showResetFilterButton();
-                                    });
-                                  },
-                                  suffixIcon: (value, data) {
-                                    return Container(
-                                        height: 16.h,
-                                        width: 16.w,
-                                        padding: EdgeInsetsDirectional.only(end: 8.w),
-                                        child: AppSvg.asset(AssetUtils.downArrow,
-                                            color: Theme.of(context).colorScheme.surfaceTint));
-                                  },
-                                ),
-                                SizedBox(
-                                  height: 16.h,
-                                ),
-                                AppTextField(
-                                  labelText: S.of(context).minPrice.toUpperCase(),
-                                  hintText: S.of(context).pleaseSelect,
-                                  readOnly: true,
-                                  controller: model.minPriceController,
-                                  key: model.minPriceKey,
-                                  onPressed: () {
-                                    RelationshipWithCardHolderDialog.show(context,
-                                        title: S.of(context).minPrice,
-                                        relationSHipWithCardHolder: rangeList ?? [], onDismissed: () {
-                                      Navigator.pop(context);
-                                    }, onSelected: (value) {
-                                      Navigator.pop(context);
-                                      model.minPriceController.text = value;
-                                      model.showResetFilterButton();
-                                    });
-                                  },
-                                  suffixIcon: (value, data) {
-                                    return Container(
-                                        height: 16.h,
-                                        width: 16.w,
-                                        padding: EdgeInsetsDirectional.only(end: 8.w),
-                                        child: AppSvg.asset(AssetUtils.downArrow,
-                                            color: Theme.of(context).colorScheme.surfaceTint));
-                                  },
-                                ),
-                                SizedBox(
-                                  height: 16.h,
-                                ),
-                                AppTextField(
-                                  labelText: S.of(context).maxPrice.toUpperCase(),
-                                  hintText: S.of(context).pleaseSelect,
-                                  readOnly: true,
-                                  controller: model.maxPriceController,
-                                  key: model.maxPriceKey,
-                                  onPressed: () {
-                                    RelationshipWithCardHolderDialog.show(context,
-                                        title: S.of(context).maxPrice,
-                                        relationSHipWithCardHolder: rangeList ?? [], onDismissed: () {
-                                      Navigator.pop(context);
-                                    }, onSelected: (value) {
-                                      Navigator.pop(context);
-                                      model.maxPriceController.text = value;
-                                      model.showResetFilterButton();
-                                    });
-                                  },
-                                  suffixIcon: (value, data) {
-                                    return Container(
-                                        height: 16.h,
-                                        width: 16.w,
-                                        padding: EdgeInsetsDirectional.only(end: 8.w),
-                                        child: AppSvg.asset(AssetUtils.downArrow,
-                                            color: Theme.of(context).colorScheme.surfaceTint));
-                                  },
-                                ),
-                                AppStreamBuilder<bool>(
-                                    stream: model.showButtonStream,
-                                    initialData: false,
-                                    dataBuilder: (context, isVisible) {
-                                      return Visibility(
-                                        visible: isVisible!,
-                                        child: InkWell(
-                                          onTap: () => model.resetFilter(),
-                                          child: Padding(
-                                            padding: EdgeInsetsDirectional.only(top: 32.0.h),
-                                            child: Text(
-                                              S.of(context).resetFilter,
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  fontSize: 14.t,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                            ),
+                                    model.showResetFilterButton();
+                                  });
+                                },
+                                suffixIcon: (value, data) {
+                                  return Container(
+                                      height: 16.h,
+                                      width: 16.w,
+                                      padding: EdgeInsetsDirectional.only(end: 8.w),
+                                      child: AppSvg.asset(AssetUtils.downArrow,
+                                          color: Theme.of(context).colorScheme.surfaceTint));
+                                },
+                              ),
+                              SizedBox(
+                                height: 16.h,
+                              ),
+                              AppTextField(
+                                labelText: S.of(context).minPrice.toUpperCase(),
+                                hintText: S.of(context).pleaseSelect,
+                                readOnly: true,
+                                controller: model.minPriceController,
+                                key: model.minPriceKey,
+                                onPressed: () {
+                                  RelationshipWithCardHolderDialog.show(context,
+                                      title: S.of(context).minPrice,
+                                      relationSHipWithCardHolder: rangeList ?? [], onDismissed: () {
+                                    Navigator.pop(context);
+                                  }, onSelected: (value) {
+                                    Navigator.pop(context);
+                                    model.minPriceController.text = value;
+                                    model.showResetFilterButton();
+                                  });
+                                },
+                                suffixIcon: (value, data) {
+                                  return Container(
+                                      height: 16.h,
+                                      width: 16.w,
+                                      padding: EdgeInsetsDirectional.only(end: 8.w),
+                                      child: AppSvg.asset(AssetUtils.downArrow,
+                                          color: Theme.of(context).colorScheme.surfaceTint));
+                                },
+                              ),
+                              SizedBox(
+                                height: 16.h,
+                              ),
+                              AppTextField(
+                                labelText: S.of(context).maxPrice.toUpperCase(),
+                                hintText: S.of(context).pleaseSelect,
+                                readOnly: true,
+                                controller: model.maxPriceController,
+                                key: model.maxPriceKey,
+                                onPressed: () {
+                                  RelationshipWithCardHolderDialog.show(context,
+                                      title: S.of(context).maxPrice,
+                                      relationSHipWithCardHolder: rangeList ?? [], onDismissed: () {
+                                    Navigator.pop(context);
+                                  }, onSelected: (value) {
+                                    Navigator.pop(context);
+                                    model.maxPriceController.text = value;
+                                    model.showResetFilterButton();
+                                  });
+                                },
+                                suffixIcon: (value, data) {
+                                  return Container(
+                                      height: 16.h,
+                                      width: 16.w,
+                                      padding: EdgeInsetsDirectional.only(end: 8.w),
+                                      child: AppSvg.asset(AssetUtils.downArrow,
+                                          color: Theme.of(context).colorScheme.surfaceTint));
+                                },
+                              ),
+                              AppStreamBuilder<bool>(
+                                  stream: model.showButtonStream,
+                                  initialData: false,
+                                  dataBuilder: (context, isVisible) {
+                                    return Visibility(
+                                      visible: isVisible!,
+                                      child: InkWell(
+                                        onTap: () => model.resetFilter(),
+                                        child: Padding(
+                                          padding: EdgeInsetsDirectional.only(top: 32.0.h),
+                                          child: Text(
+                                            S.of(context).resetFilter,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                fontSize: 14.t,
+                                                fontWeight: FontWeight.w600,
+                                                color: Theme.of(context).textTheme.bodyLarge!.color!),
                                           ),
                                         ),
-                                      );
-                                    }),
-                                SizedBox(
-                                  height: 40.h,
-                                ),
-                                AppStreamBuilder<Resource<bool>>(
-                                    initialData: Resource.none(),
-                                    stream: model.eVoucherFilterValidationResponseStream,
-                                    onData: (status) {
-                                      if (status.status == Status.SUCCESS) {
-                                        this.onSelected?.call(FilterSelectedData(
-                                            filterOption: EvoucherFilterOption.FROM_FILTER_DIALOG,
-                                            categryId: model.categryId,
-                                            region: model.region,
-                                            maxValue: model.maxPriceController.text.isEmpty
-                                                ? "0.0"
-                                                : model.maxPriceController.text.trim(),
-                                            minValue: model.minPriceController.text.isEmpty
-                                                ? "0.0"
-                                                : model.minPriceController.text.trim()));
-                                      }
-                                    },
-                                    dataBuilder: (context, validationStatus) {
-                                      return Padding(
-                                        padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 40.h),
-                                        child: AppPrimaryButton(
-                                          onPressed: () {
-                                            model.getFilterValidated();
-                                          },
-                                          text: S.of(context).confirm,
-                                        ),
-                                      );
-                                    })
-                              ],
-                            ),
+                                      ),
+                                    );
+                                  }),
+                            ],
                           ),
                         ),
                       ),
-                    ],
-                  )),
-              Positioned(
-                bottom: 12.h,
-                child: InkWell(
-                  onTap: () {
-                    onDismissed?.call();
-                  },
-                  child: Container(
-                      height: 48.h,
-                      width: 48.h,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Theme.of(context).colorScheme.onBackground),
-                          shape: BoxShape.circle,
-                          color: Theme.of(context).colorScheme.secondary),
-                      child: Image.asset(
-                        AssetUtils.close_bold,
-                        scale: 3.5,
-                      )),
+                    ),
+                    AppStreamBuilder<Resource<bool>>(
+                        initialData: Resource.none(),
+                        stream: model.eVoucherFilterValidationResponseStream,
+                        onData: (status) {
+                          if (status.status == Status.SUCCESS) {
+                            this.onSelected?.call(FilterSelectedData(
+                                filterOption: EvoucherFilterOption.FROM_FILTER_DIALOG,
+                                categryId: model.categryId,
+                                region: model.region,
+                                maxValue: model.maxPriceController.text.isEmpty
+                                    ? "0.0"
+                                    : model.maxPriceController.text.trim(),
+                                minValue: model.minPriceController.text.isEmpty
+                                    ? "0.0"
+                                    : model.minPriceController.text.trim()));
+                          }
+                        },
+                        dataBuilder: (context, validationStatus) {
+                          return Padding(
+                            padding: EdgeInsets.only(bottom: 40.h, left: 24.w, right: 24.w),
+                            child: AppPrimaryButton(
+                              onPressed: () {
+                                model.getFilterValidated();
+                              },
+                              text: S.of(context).confirm,
+                            ),
+                          );
+                        })
+                  ],
                 ),
-              ),
-            ],
-          ),
-        );
+                Positioned(
+                  bottom: -24.h,
+                  child: InkWell(
+                    onTap: () {
+                      onDismissed?.call();
+                    },
+                    child: Container(
+                        height: 48.h,
+                        width: 48.h,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Theme.of(context).colorScheme.onBackground),
+                            shape: BoxShape.circle,
+                            color: Theme.of(context).colorScheme.secondary),
+                        child: Image.asset(
+                          AssetUtils.close_bold,
+                          scale: 3.5,
+                        )),
+                  ),
+                ),
+              ],
+            ));
       },
     );
   }

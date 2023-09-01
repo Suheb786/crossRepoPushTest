@@ -41,7 +41,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
     return AppKeyBoardHide(
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.035, vertical: 22.h),
-        padding: EdgeInsets.only(top: (MediaQuery.of(context).size.height * 0.14) - 12.h),
+        padding: EdgeInsets.only(top: (MediaQuery.of(context).size.height * 0.16) - 12.h),
         child: Column(
           children: [
             Padding(
@@ -139,8 +139,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                           borderRadius: BorderRadius.circular(16),
                                           color: AppColor.whiteGray,
                                         ),
-                                        padding:
-                                            EdgeInsets.symmetric(vertical: 10.0.h, horizontal: 16.0.w),
+                                        padding: EdgeInsets.symmetric(vertical: 10.0.h, horizontal: 16.0.w),
                                         child: Row(
                                           children: [
                                             Text(
@@ -197,8 +196,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                     dataBuilder: (context, requestActivity) {
                                       switch (requestActivity!.status) {
                                         case Status.SUCCESS:
-                                          return (requestActivity.data?.paymentActivityContent ?? [])
-                                                      .length >
+                                          return (requestActivity.data?.paymentActivityContent ?? []).length >
                                                   0
                                               ? ListView.builder(
                                                   itemBuilder: (context, index) {
@@ -213,35 +211,34 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                               '${(RequestMoneyActivityList.amount?.toStringAsFixed(3)).toString()}',
                                                           currency: RequestMoneyActivityList.curr ?? '',
                                                           isAmountVisible: true,
-                                                          cdtrAcct:
-                                                              RequestMoneyActivityList.cdtrAcct ?? '',
+                                                          cdtrAcct: RequestMoneyActivityList.cdtrAcct ?? '',
                                                           cdtrDpText: StringUtils.getFirstInitials(
                                                               RequestMoneyActivityList.cdtrName),
-                                                          cdtrName:
-                                                              RequestMoneyActivityList.cdtrName ?? '',
+                                                          cdtrName: RequestMoneyActivityList.cdtrName ?? '',
                                                           description: Container(),
                                                           showDescription: false,
+                                                          onDismiss: () {
+                                                            Navigator.pop(context);
+                                                          },
                                                           actionWidget: GestureDetector(
                                                             onTap: () {
                                                               Navigator.pop(context);
                                                               Navigator.pushNamed(
                                                                   context, RoutePaths.CreditConfirmation,
                                                                   arguments: CreditConfirmationArgument(
-                                                                      crediterDP:
-                                                                          StringUtils.getFirstInitials(
-                                                                              RequestMoneyActivityList
-                                                                                  .cdtrName),
+                                                                      crediterDP: StringUtils.getFirstInitials(
+                                                                          RequestMoneyActivityList.cdtrName),
                                                                       transactionType:
-                                                                          RequestMoneyActivityList
-                                                                              .paymentType
+                                                                          RequestMoneyActivityList.paymentType
                                                                               .toString(),
-                                                                      date:
-                                                                          TimeUtils.convertDateTimeToDate(
+                                                                      date: TimeUtils.convertDateTimeToDate(
+                                                                          RequestMoneyActivityList.paymentDate
+                                                                              .toString()),
+                                                                      time:
+                                                                          TimeUtils.getFormattedTimeFor12HrsFormat(
                                                                               RequestMoneyActivityList
                                                                                   .paymentDate
                                                                                   .toString()),
-                                                                      time: TimeUtils.getFormattedTimeFor12HrsFormat(
-                                                                          RequestMoneyActivityList.paymentDate.toString()),
                                                                       refID: RequestMoneyActivityList.payRefNo,
                                                                       accountNo: RequestMoneyActivityList.cdtrAcct,
                                                                       amount: "- ${RequestMoneyActivityList.amount}",
@@ -253,8 +250,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                               width: double.infinity,
                                                               decoration: BoxDecoration(
                                                                 color: AppColor.white,
-                                                                border: Border.all(
-                                                                    color: AppColor.white_gray),
+                                                                border:
+                                                                    Border.all(color: AppColor.white_gray),
                                                                 borderRadius: BorderRadius.circular(100),
                                                               ),
                                                               child: Padding(
@@ -330,8 +327,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                   ),
                                                                   Text(
                                                                     TimeUtils.convertDateTimeToDate(
-                                                                        RequestMoneyActivityList
-                                                                            .paymentDate
+                                                                        RequestMoneyActivityList.paymentDate
                                                                             .toString()),
                                                                     style: TextStyle(
                                                                         fontFamily: StringUtils.appFont,
@@ -358,11 +354,9 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                         fontWeight: FontWeight.w400),
                                                                   ),
                                                                   Text(
-                                                                    TimeUtils
-                                                                        .getFormattedTimeFor12HrsFormat(
-                                                                            RequestMoneyActivityList
-                                                                                .paymentDate
-                                                                                .toString()),
+                                                                    TimeUtils.getFormattedTimeFor12HrsFormat(
+                                                                        RequestMoneyActivityList.paymentDate
+                                                                            .toString()),
                                                                     textAlign: TextAlign.center,
                                                                     style: TextStyle(
                                                                         fontFamily: StringUtils.appFont,
@@ -389,8 +383,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                         fontWeight: FontWeight.w400),
                                                                   ),
                                                                   Text(
-                                                                    RequestMoneyActivityList.payRefNo ??
-                                                                        '',
+                                                                    RequestMoneyActivityList.payRefNo ?? '',
                                                                     textAlign: TextAlign.center,
                                                                     style: TextStyle(
                                                                         fontFamily: StringUtils.appFont,
@@ -405,8 +398,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                         );
                                                         //  }
                                                       },
-                                                      onTapInWardSendMoney:
-                                                          (RequestMoneyActivityList data) {
+                                                      onTapInWardSendMoney: (RequestMoneyActivityList data) {
                                                         ///Normal Incoming (Show return payment option)
                                                         if (RequestMoneyActivityStatusEnum
                                                                     .CATEGORY_ACCEPTED ==
@@ -420,8 +412,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                             currency: data.curr ?? '',
                                                             isAmountVisible: true,
                                                             cdtrAcct: data.dbtrAcct ?? '',
-                                                            cdtrDpText: StringUtils.getFirstInitials(
-                                                                data.dbtrName),
+                                                            cdtrDpText:
+                                                                StringUtils.getFirstInitials(data.dbtrName),
                                                             cdtrName: data.dbtrName ?? '',
                                                             description: Container(),
                                                             listOfDetails: Column(
@@ -468,8 +460,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                     Text(
                                                                       TimeUtils
                                                                           .getFormattedTimeFor12HrsFormat(
-                                                                              data.paymentDate
-                                                                                  .toString()),
+                                                                              data.paymentDate.toString()),
                                                                       textAlign: TextAlign.center,
                                                                       style: TextStyle(
                                                                           fontFamily: StringUtils.appFont,
@@ -508,6 +499,9 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                 )
                                                               ],
                                                             ),
+                                                            onDismiss: () {
+                                                              Navigator.pop(context);
+                                                            },
                                                             showDescription: false,
                                                             actionWidget: GestureDetector(
                                                               onTap: () {
@@ -524,8 +518,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                           ReturnPaymentTransactionSliderPageArgument(
                                                                               name: data.dbtrName,
                                                                               iban: data.dbtrAcct,
-                                                                              statusInfo:
-                                                                                  S.current.sentTo,
+                                                                              statusInfo: S.current.sentTo,
                                                                               custID: "",
                                                                               OrgnlMsgId: data.msgID,
                                                                               rtpStatus: "True",
@@ -554,8 +547,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                 width: double.infinity,
                                                                 decoration: BoxDecoration(
                                                                   color: AppColor.sky_blue_mid,
-                                                                  borderRadius:
-                                                                      BorderRadius.circular(100),
+                                                                  borderRadius: BorderRadius.circular(100),
                                                                 ),
                                                                 child: Padding(
                                                                   padding: EdgeInsets.symmetric(
@@ -584,11 +576,14 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                 '${(data.amount?.toStringAsFixed(3)).toString()}',
                                                             isAmountVisible: false,
                                                             cdtrAcct: data.dbtrAcct ?? '',
-                                                            cdtrDpText: StringUtils.getFirstInitials(
-                                                                data.dbtrName),
+                                                            cdtrDpText:
+                                                                StringUtils.getFirstInitials(data.dbtrName),
                                                             cdtrName: data.dbtrName ?? '',
                                                             showDescription: true,
                                                             actionWidget: Container(),
+                                                            onDismiss: () {
+                                                              Navigator.pop(context);
+                                                            },
                                                             description: RichText(
                                                                 text: TextSpan(
                                                                     text: data.dbtrName ?? '',
@@ -601,10 +596,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                     children: [
                                                                   TextSpan(
                                                                     text: " " +
-                                                                        S
-                                                                            .of(context)
-                                                                            .returned
-                                                                            .toLowerCase(),
+                                                                        S.of(context).returned.toLowerCase(),
                                                                     style: TextStyle(
                                                                         fontFamily: StringUtils.appFont,
                                                                         fontSize: 12.0.t,
@@ -652,8 +644,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                       decoration: BoxDecoration(
                                                                         borderRadius:
                                                                             BorderRadius.circular(20),
-                                                                        color: model
-                                                                            .getColor(data.trxStatus),
+                                                                        color: model.getColor(data.trxStatus),
                                                                       ),
                                                                       padding: EdgeInsets.only(
                                                                           left: 8.w,
@@ -666,8 +657,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                                     context: context) ??
                                                                             '',
                                                                         style: TextStyle(
-                                                                            fontFamily:
-                                                                                StringUtils.appFont,
+                                                                            fontFamily: StringUtils.appFont,
                                                                             fontSize: 12.t,
                                                                             color: AppColor.white,
                                                                             fontWeight: FontWeight.w700),
@@ -754,8 +744,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                     Text(
                                                                       TimeUtils
                                                                           .getFormattedTimeFor12HrsFormat(
-                                                                              data.paymentDate
-                                                                                  .toString()),
+                                                                              data.paymentDate.toString()),
                                                                       textAlign: TextAlign.center,
                                                                       style: TextStyle(
                                                                           fontFamily: StringUtils.appFont,
@@ -809,12 +798,10 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                               " " +
                                                                               data.curr.toString(),
                                                                           style: TextStyle(
-                                                                              fontFamily:
-                                                                                  StringUtils.appFont,
+                                                                              fontFamily: StringUtils.appFont,
                                                                               fontSize: 14.0.t,
                                                                               fontWeight: FontWeight.w700,
-                                                                              color:
-                                                                                  AppColor.veryDarkGray1),
+                                                                              color: AppColor.veryDarkGray1),
                                                                           children: [
                                                                             TextSpan(
                                                                               text: S.current
@@ -825,8 +812,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                                 fontSize: 14.0.t,
                                                                                 overflow:
                                                                                     TextOverflow.ellipsis,
-                                                                                fontWeight:
-                                                                                    FontWeight.w400,
+                                                                                fontWeight: FontWeight.w400,
                                                                                 // color: AppColor.sky_blue_mid,
                                                                               ),
                                                                             ),
@@ -853,13 +839,11 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                       ctgyPurp: data.ctgyPurp ?? '',
                                                                       payRefNo: data.payRefNo ?? '',
                                                                       dbtrPstlAdr: data.dbtrAddr ?? '',
-                                                                      cdtrRecordID:
-                                                                          data.cdtrRecordID ?? '',
+                                                                      cdtrRecordID: data.cdtrRecordID ?? '',
                                                                       cdtrPstlAdr: data.cdtrAddr ?? '',
                                                                       orgnlMsgId: data.msgID ?? '',
                                                                       rgltryRptg: data.rgltryRptg ?? '',
-                                                                      dbtrRecordID:
-                                                                          data.dbtrRecordID ?? '',
+                                                                      dbtrRecordID: data.dbtrRecordID ?? '',
                                                                       cdtrAcct: data.cdtrAcct ?? '',
                                                                       dbtrAlias: data.dbtrAlias ?? '',
                                                                       cdtrBic: data.cdtrAgt ?? '',
@@ -877,8 +861,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                   height: 48.h,
                                                                   decoration: BoxDecoration(
                                                                     color: AppColor.sky_blue_mid,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(100),
+                                                                    borderRadius: BorderRadius.circular(100),
                                                                   ),
                                                                   child: Padding(
                                                                     padding: EdgeInsets.symmetric(
@@ -905,16 +888,14 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                       RoutePaths.RejectRequestPayment,
                                                                       arguments:
                                                                           RejectRequestPaymentPageArgument(
-                                                                              amount:
-                                                                                  data.amount.toString(),
+                                                                              amount: data.amount.toString(),
                                                                               name: data.cdtrName ?? '',
                                                                               iban: data.cdtrAcct ?? '',
                                                                               statusInfo: S
                                                                                   .of(context)
                                                                                   .requestSuccessFullyRejected,
                                                                               custID: '',
-                                                                              OrgnlMsgId:
-                                                                                  data.msgID ?? '',
+                                                                              OrgnlMsgId: data.msgID ?? '',
                                                                               rtpStatus: 'True'));
                                                                 },
                                                                 child: Container(
@@ -924,8 +905,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                     color: AppColor.white,
                                                                     border: Border.all(
                                                                         color: AppColor.sky_blue_mid),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(100),
+                                                                    borderRadius: BorderRadius.circular(100),
                                                                   ),
                                                                   child: Padding(
                                                                     padding: EdgeInsets.symmetric(
@@ -992,9 +972,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                         fontWeight: FontWeight.w400),
                                                                   ),
                                                                   Text(
-                                                                    TimeUtils
-                                                                        .getFormattedTimeFor12HrsFormat(
-                                                                            data.rtpDate.toString()),
+                                                                    TimeUtils.getFormattedTimeFor12HrsFormat(
+                                                                        data.rtpDate.toString()),
                                                                     textAlign: TextAlign.center,
                                                                     style: TextStyle(
                                                                       fontFamily: StringUtils.appFont,
@@ -1007,6 +986,9 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                               ),
                                                             ],
                                                           ),
+                                                          onDismiss: () {
+                                                            Navigator.pop(context);
+                                                          },
                                                         );
                                                       },
                                                       onRejectButton: (RequestMoneyActivityList data) {
@@ -1049,12 +1031,10 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                               " " +
                                                                               data.curr.toString(),
                                                                           style: TextStyle(
-                                                                              fontFamily:
-                                                                                  StringUtils.appFont,
+                                                                              fontFamily: StringUtils.appFont,
                                                                               fontSize: 14.0.t,
                                                                               fontWeight: FontWeight.w700,
-                                                                              color:
-                                                                                  AppColor.veryDarkGray1),
+                                                                              color: AppColor.veryDarkGray1),
                                                                           children: [
                                                                             TextSpan(
                                                                               text: S.current
@@ -1065,8 +1045,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                                 fontSize: 14.0.t,
                                                                                 overflow:
                                                                                     TextOverflow.ellipsis,
-                                                                                fontWeight:
-                                                                                    FontWeight.w400,
+                                                                                fontWeight: FontWeight.w400,
                                                                                 // color: AppColor.sky_blue_mid,
                                                                               ),
                                                                             ),
@@ -1092,13 +1071,11 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                       ctgyPurp: data.ctgyPurp ?? '',
                                                                       payRefNo: data.payRefNo ?? '',
                                                                       dbtrPstlAdr: data.dbtrAddr ?? '',
-                                                                      cdtrRecordID:
-                                                                          data.cdtrRecordID ?? '',
+                                                                      cdtrRecordID: data.cdtrRecordID ?? '',
                                                                       cdtrPstlAdr: data.cdtrAddr ?? '',
                                                                       orgnlMsgId: data.msgID ?? '',
                                                                       rgltryRptg: data.rgltryRptg ?? '',
-                                                                      dbtrRecordID:
-                                                                          data.dbtrRecordID ?? '',
+                                                                      dbtrRecordID: data.dbtrRecordID ?? '',
                                                                       cdtrAcct: data.cdtrAcct ?? '',
                                                                       dbtrAlias: data.dbtrAlias ?? '',
                                                                       cdtrBic: data.cdtrAgt ?? '',
@@ -1115,8 +1092,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                   height: 48.h,
                                                                   decoration: BoxDecoration(
                                                                     color: AppColor.sky_blue_mid,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(100),
+                                                                    borderRadius: BorderRadius.circular(100),
                                                                   ),
                                                                   child: Padding(
                                                                     padding: EdgeInsets.symmetric(
@@ -1143,16 +1119,14 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                       RoutePaths.RejectRequestPayment,
                                                                       arguments:
                                                                           RejectRequestPaymentPageArgument(
-                                                                              amount:
-                                                                                  data.amount.toString(),
+                                                                              amount: data.amount.toString(),
                                                                               name: data.cdtrName ?? '',
                                                                               iban: data.cdtrAcct ?? '',
                                                                               statusInfo: S
                                                                                   .of(context)
                                                                                   .requestSuccessFullyRejected,
                                                                               custID: '',
-                                                                              OrgnlMsgId:
-                                                                                  data.msgID ?? '',
+                                                                              OrgnlMsgId: data.msgID ?? '',
                                                                               rtpStatus: 'True'));
                                                                 },
                                                                 child: Container(
@@ -1162,8 +1136,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                     color: AppColor.white,
                                                                     border: Border.all(
                                                                         color: AppColor.sky_blue_mid),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(100),
+                                                                    borderRadius: BorderRadius.circular(100),
                                                                   ),
                                                                   child: Padding(
                                                                     padding: EdgeInsets.symmetric(
@@ -1230,9 +1203,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                         fontWeight: FontWeight.w400),
                                                                   ),
                                                                   Text(
-                                                                    TimeUtils
-                                                                        .getFormattedTimeFor12HrsFormat(
-                                                                            data.rtpDate.toString()),
+                                                                    TimeUtils.getFormattedTimeFor12HrsFormat(
+                                                                        data.rtpDate.toString()),
                                                                     textAlign: TextAlign.center,
                                                                     style: TextStyle(
                                                                       fontFamily: StringUtils.appFont,
@@ -1245,6 +1217,9 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                               ),
                                                             ],
                                                           ),
+                                                          onDismiss: () {
+                                                            Navigator.pop(context);
+                                                          },
                                                         );
                                                       },
                                                       onTapRTPStatus: (RequestMoneyActivityList data) {
@@ -1262,8 +1237,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                 '${(data.amount?.toStringAsFixed(3)).toString()}',
                                                             isAmountVisible: false,
                                                             cdtrAcct: data.dbtrAcct ?? '',
-                                                            cdtrDpText: StringUtils.getFirstInitials(
-                                                                data.dbtrName),
+                                                            cdtrDpText:
+                                                                StringUtils.getFirstInitials(data.dbtrName),
                                                             cdtrName: data.dbtrName ?? '',
                                                             showDescription: true,
                                                             actionWidget: Container(),
@@ -1297,14 +1272,11 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                         ),
                                                                         children: [
                                                                           TextSpan(
-                                                                            text:
-                                                                                " ${data.dbtrName ?? ''}",
+                                                                            text: " ${data.dbtrName ?? ''}",
                                                                             style: TextStyle(
-                                                                              fontFamily:
-                                                                                  StringUtils.appFont,
+                                                                              fontFamily: StringUtils.appFont,
                                                                               fontSize: 14.0.t,
-                                                                              overflow:
-                                                                                  TextOverflow.ellipsis,
+                                                                              overflow: TextOverflow.ellipsis,
                                                                               fontWeight: FontWeight.w700,
                                                                               // color: AppColor.sky_blue_mid,
                                                                             ),
@@ -1335,8 +1307,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                       decoration: BoxDecoration(
                                                                         borderRadius:
                                                                             BorderRadius.circular(20),
-                                                                        color: model
-                                                                            .getColor(data.trxStatus),
+                                                                        color: model.getColor(data.trxStatus),
                                                                       ),
                                                                       padding: EdgeInsets.only(
                                                                           left: 8.w,
@@ -1349,8 +1320,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                                     context: context) ??
                                                                             '',
                                                                         style: TextStyle(
-                                                                            fontFamily:
-                                                                                StringUtils.appFont,
+                                                                            fontFamily: StringUtils.appFont,
                                                                             fontSize: 12.t,
                                                                             color: AppColor.white,
                                                                             fontWeight: FontWeight.w700),
@@ -1449,14 +1419,17 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                 ),
                                                               ],
                                                             ),
+                                                            onDismiss: () {
+                                                              Navigator.pop(context);
+                                                            },
                                                           );
                                                         }
                                                       },
                                                     );
                                                   },
                                                   shrinkWrap: true,
-                                                  itemCount: requestActivity
-                                                      .data!.paymentActivityContent!.length,
+                                                  itemCount:
+                                                      requestActivity.data!.paymentActivityContent!.length,
                                                 )
                                               : Center(
                                                   child: Center(

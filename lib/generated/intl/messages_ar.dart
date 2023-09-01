@@ -1627,6 +1627,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "insufficientBalanceAccountTransfer":
             MessageLookupByLibrary.simpleMessage(
                 "You do not have sufficient balance to transfer."),
+        "insufficientBalanceSubAccount": MessageLookupByLibrary.simpleMessage(
+            "عفوا! لم تتم العملية بنجاح لأنه الرصيد المتوفر غير كاف"),
         "insufficientBalanceTransfer": MessageLookupByLibrary.simpleMessage(
             "ما عندك رصيد كافي لتكمل الدفعة."),
         "insufficientFundsBillCannotBePaid":
@@ -2705,8 +2707,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "اختار الحساب اللي بدك تدفع منه لبطاقتك الائتمانية"),
         "selectAdditionalIncome":
             MessageLookupByLibrary.simpleMessage("اختار الدخل الإضافي"),
-        "selectAnyOption":
-            MessageLookupByLibrary.simpleMessage("اختار أي خيار"),
+        "selectAnyOption": MessageLookupByLibrary.simpleMessage(
+            "Select atleast one filter option"),
         "selectAtLeastOneBill":
             MessageLookupByLibrary.simpleMessage("حدد فاتورة واحدة على الأقل"),
         "selectCategory": MessageLookupByLibrary.simpleMessage("اختر الفئة"),

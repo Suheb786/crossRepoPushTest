@@ -41,115 +41,113 @@ class CliqInformationDialogView extends StatelessWidget {
     return BaseWidget<CliqInformationDialogViewModel>(
       providerBase: providerBase(),
       builder: (BuildContext context, model, child) {
-        return Scaffold(
-          backgroundColor: Colors.transparent,
-          body: Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              Dialog(
-                  insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-                  child: WillPopScope(
-                    onWillPop: () async => false,
-                    child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 24.0.w),
-                        child: SingleChildScrollView(
-                          physics: ClampingScrollPhysics(),
-                          child: Column(
-                            children: [
-                              SizedBox(height: 32.h),
-                              image != null ? AppSvg.asset(image!, height: 40.h, width: 40.w) : Container(),
-                              SizedBox(height: 25.h),
-                              Text(
-                                title,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: AppColor.very_dark_gray,
-                                    fontFamily: StringUtils.appFont,
-                                    fontSize: 20.t,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                              SizedBox(height: 24.h),
-                              Text(
-                                description,
-                                //  textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: AppColor.veryDarkGray1,
-                                    fontFamily: StringUtils.appFont,
-                                    fontSize: 14.t,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              SizedBox(height: 32.h),
-                              AppStreamBuilder<bool>(
-                                stream: model!.selectedStream,
-                                initialData: false,
-                                dataBuilder: (BuildContext context, isSelected) {
-                                  return CliqTermConditionSelectionWidget(
-                                    subDescription: subDescription,
-                                    isSelected: isSelected,
-                                    unMarkSelected: () {
-                                      model.isSelected(false);
-                                    },
-                                    markSelected: () {
-                                      model.isSelected(true);
-                                    },
-                                  );
-                                },
-                              ),
-                              SizedBox(height: 32.h),
-                              AppStreamBuilder<bool>(
-                                stream: model.selectedStream,
-                                initialData: false,
-                                dataBuilder: (BuildContext context, data) {
-                                  return InkWell(
-                                    onTap: () {
-                                      onSelected!.call();
-                                    },
-                                    child: Visibility(
-                                      visible: data ?? false,
-                                      child: AppPrimaryButton(
-                                        onPressed: () {
-                                          onSelected!.call();
-                                        },
-                                        text: S.of(context).confirm,
-                                      ),
+        return Dialog(
+            insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              clipBehavior: Clip.none,
+              children: [
+                WillPopScope(
+                  onWillPop: () async => false,
+                  child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+                      child: SingleChildScrollView(
+                        physics: ClampingScrollPhysics(),
+                        child: Column(
+                          children: [
+                            SizedBox(height: 32.h),
+                            image != null ? AppSvg.asset(image!, height: 40.h, width: 40.w) : Container(),
+                            SizedBox(height: 25.h),
+                            Text(
+                              title,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: AppColor.very_dark_gray,
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 20.t,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                            SizedBox(height: 24.h),
+                            Text(
+                              description,
+                              //  textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: AppColor.veryDarkGray1,
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 14.t,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            SizedBox(height: 32.h),
+                            AppStreamBuilder<bool>(
+                              stream: model!.selectedStream,
+                              initialData: false,
+                              dataBuilder: (BuildContext context, isSelected) {
+                                return CliqTermConditionSelectionWidget(
+                                  subDescription: subDescription,
+                                  isSelected: isSelected,
+                                  unMarkSelected: () {
+                                    model.isSelected(false);
+                                  },
+                                  markSelected: () {
+                                    model.isSelected(true);
+                                  },
+                                );
+                              },
+                            ),
+                            SizedBox(height: 32.h),
+                            AppStreamBuilder<bool>(
+                              stream: model.selectedStream,
+                              initialData: false,
+                              dataBuilder: (BuildContext context, data) {
+                                return InkWell(
+                                  onTap: () {
+                                    onSelected!.call();
+                                  },
+                                  child: Visibility(
+                                    visible: data ?? false,
+                                    child: AppPrimaryButton(
+                                      onPressed: () {
+                                        onSelected!.call();
+                                      },
+                                      text: S.of(context).confirm,
                                     ),
-                                  );
-                                },
-                              ),
-                              SizedBox(height: 32.h),
-                            ],
-                          ),
-                        )),
-                  )),
-              AppStreamBuilder<bool>(
-                stream: model.selectedStream,
-                initialData: false,
-                dataBuilder: (BuildContext context, data) {
-                  return Positioned(
-                    bottom: data! ? 18.h : 48.h,
-                    child: InkWell(
-                      onTap: () {
-                        onDismissed?.call();
-                      },
-                      child: Container(
-                          height: 48.h,
-                          width: 48.h,
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Theme.of(context).colorScheme.onBackground),
-                              shape: BoxShape.circle,
-                              color: Theme.of(context).colorScheme.secondary),
-                          child: Image.asset(
-                            AssetUtils.close_bold,
-                            scale: 3.5,
-                          )),
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
-        );
+                                  ),
+                                );
+                              },
+                            ),
+                            SizedBox(height: 32.h),
+                          ],
+                        ),
+                      )),
+                ),
+                AppStreamBuilder<bool>(
+                  stream: model.selectedStream,
+                  initialData: false,
+                  dataBuilder: (BuildContext context, data) {
+                    return Positioned(
+                      bottom: -24.h,
+                      child: InkWell(
+                        onTap: () {
+                          onDismissed?.call();
+                        },
+                        child: Container(
+                            height: 48.h,
+                            width: 48.h,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Theme.of(context).colorScheme.onBackground),
+                                shape: BoxShape.circle,
+                                color: Theme.of(context).colorScheme.secondary),
+                            child: Image.asset(
+                              AssetUtils.close_bold,
+                              scale: 3.5,
+                            )),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ));
       },
     );
   }

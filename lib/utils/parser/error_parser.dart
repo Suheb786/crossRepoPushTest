@@ -1391,6 +1391,8 @@ class ErrorParser {
         return localisedHelper.insufficientBalanceAccountTransfer;
       case ErrorType.SELECT_ANY_OPTION:
         return localisedHelper.selectAnyOption;
+      case ErrorType.INSUFFICIENT_BALANCE_SUBACCOUNT:
+        return localisedHelper.insufficientBalanceSubAccount;
       default:
         return "";
     }

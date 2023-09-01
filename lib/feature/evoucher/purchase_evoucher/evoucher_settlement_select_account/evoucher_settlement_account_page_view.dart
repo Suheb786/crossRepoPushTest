@@ -1,5 +1,6 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/e_voucher/e_voucher_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -139,11 +140,11 @@ class EvoucherSettlementAccountPageView extends BasePageViewWidget<EvoucherSettl
                                               ),
                                               PaymentAccountSwitcher(
                                                 title: S.of(context).payFrom,
-                                                onDefaultSelectedAccount: (Account) {
-                                                  print('onDefaultSelectedAccount $Account');
+                                                onDefaultSelectedAccount: (Account account) {
+                                                  model.selectedAccount = account;
                                                 },
-                                                onSelectAccount: (Account) {
-                                                  print('onSelectAccount $Account');
+                                                onSelectAccount: (Account account) {
+                                                  model.selectedAccount = account;
                                                 },
                                                 isSingleLineView: false,
                                               )

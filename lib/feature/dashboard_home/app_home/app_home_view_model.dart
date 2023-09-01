@@ -583,7 +583,6 @@ class AppHomeViewModel extends BasePageViewModel {
   }
 
   bool hasSubAccount(List<Account> accounts) {
-    print('Accounts----from dashboard:--->${accounts.length}');
     return accounts.any((account) => account.isSubAccount == true);
   }
 

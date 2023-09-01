@@ -171,7 +171,6 @@
   "ibanNumber": "84118220000022123444",
   "cardLater": "رح آخذ بطاقتي بعدين",
   "cardPersonalization": "لتخصيص البطاقة",
-  "selectAnyOption": "اختار أي خيار",
   "storage": "تخزين",
   "camera": "كاميرا",
   "cancel": "إلغاء",
@@ -1838,5 +1837,7 @@
   "okey": "Okay",
   "view_more": "المزيد",
   "noDataToDisplay": "No Data to Display",
-  "insufficientBalanceAccountTransfer": "You do not have sufficient balance to transfer."
+  "insufficientBalanceAccountTransfer": "You do not have sufficient balance to transfer.",
+  "selectAnyOption": "Select atleast one filter option",
+  "insufficientBalanceSubAccount": "عفوا! لم تتم العملية بنجاح لأنه الرصيد المتوفر غير كاف"
 }
