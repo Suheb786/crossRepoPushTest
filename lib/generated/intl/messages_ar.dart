@@ -1625,8 +1625,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "insufficientBalance":
             MessageLookupByLibrary.simpleMessage("الرصيد غير كافي (Err-89)"),
         "insufficientBalanceAccountTransfer":
-            MessageLookupByLibrary.simpleMessage(
-                "You do not have sufficient balance to transfer."),
+            MessageLookupByLibrary.simpleMessage("ليس لديك رصيد كافي للتحويل."),
         "insufficientBalanceSubAccount": MessageLookupByLibrary.simpleMessage(
             "عفوا! لم تتم العملية بنجاح لأنه الرصيد المتوفر غير كاف"),
         "insufficientBalanceTransfer": MessageLookupByLibrary.simpleMessage(
@@ -2119,8 +2118,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noCountriesFound":
             MessageLookupByLibrary.simpleMessage("الدولة غير موجودة"),
         "noDataFound": MessageLookupByLibrary.simpleMessage("لاتوجد بيانات"),
-        "noDataToDisplay":
-            MessageLookupByLibrary.simpleMessage("No Data to Display"),
+        "noDataToDisplay": MessageLookupByLibrary.simpleMessage("لا يوجد"),
         "noDebitCardFound": MessageLookupByLibrary.simpleMessage(
             "خطأ بمعلومات بطاقة الدفع المباشر Yellow Sun. تواصل معنا من التطبيق أو بالاتصال على 5200100-06"),
         "noDebitCardRecordFound": MessageLookupByLibrary.simpleMessage(
@@ -2708,7 +2706,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectAdditionalIncome":
             MessageLookupByLibrary.simpleMessage("اختار الدخل الإضافي"),
         "selectAnyOption": MessageLookupByLibrary.simpleMessage(
-            "Select atleast one filter option"),
+            "حدد خيار تصفية واحدًا على الأقل"),
         "selectAtLeastOneBill":
             MessageLookupByLibrary.simpleMessage("حدد فاتورة واحدة على الأقل"),
         "selectCategory": MessageLookupByLibrary.simpleMessage("اختر الفئة"),

@@ -1836,8 +1836,8 @@
   "done": "Done",
   "okey": "Okay",
   "view_more": "المزيد",
-  "noDataToDisplay": "No Data to Display",
-  "insufficientBalanceAccountTransfer": "You do not have sufficient balance to transfer.",
-  "selectAnyOption": "Select atleast one filter option",
+  "noDataToDisplay": "لا يوجد",
+  "insufficientBalanceAccountTransfer": "ليس لديك رصيد كافي للتحويل.",
+  "selectAnyOption": "حدد خيار تصفية واحدًا على الأقل",
   "insufficientBalanceSubAccount": "عفوا! لم تتم العملية بنجاح لأنه الرصيد المتوفر غير كاف"
 }
