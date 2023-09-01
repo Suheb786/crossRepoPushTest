@@ -59,7 +59,7 @@ abstract class PaymentRemoteDs {
 
   Future<HttpResponse<ResponseEntity>> payBackCreditCard({String? secureCode, String? payBackAmount});
 
-  Future<HttpResponse<QRResponseEntity>> generateQR({required String amount});
+  Future<HttpResponse<QRResponseEntity>> generateQR({required String amount, required String fromAccount});
 
   Future<HttpResponse<VerifyQRResponseEntity>> verifyQR({required String requestId, required String source});
 

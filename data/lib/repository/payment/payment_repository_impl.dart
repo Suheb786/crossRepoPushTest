@@ -147,9 +147,10 @@ class PaymentRepositoryImpl extends PaymentRepository {
   }
 
   @override
-  Future<Either<NetworkError, QrResponse>> generateQR({required String amount}) async {
+  Future<Either<NetworkError, QrResponse>> generateQR(
+      {required String amount, required String fromAccount}) async {
     final result = await safeApiCall(
-      paymentRemoteDs.generateQR(amount: amount),
+      paymentRemoteDs.generateQR(amount: amount, fromAccount: fromAccount),
     );
     return result!.fold(
       (l) => Left(l),

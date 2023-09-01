@@ -123,15 +123,7 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                         },
                         textColor: Colors.black,
                         rightButtonFn: () {
-                          if (double.parse(model.selectedAccount.availableBalance ?? '0') <
-                              double.parse(model.currentPinValue)) {
-                            model.showToastWithError(AppError(
-                                cause: Exception(),
-                                error: ErrorInfo(message: ""),
-                                type: ErrorType.INSUFFICIENT_BALANCE_TRANSFER));
-                          } else {
-                            model.requestMoney();
-                          }
+                          model.requestMoney();
                         },
                         leftIcon: Icon(
                           Icons.circle,

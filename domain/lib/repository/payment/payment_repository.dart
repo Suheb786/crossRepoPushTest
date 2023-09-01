@@ -64,9 +64,7 @@ abstract class PaymentRepository {
   });
 
   ///QR
-  Future<Either<NetworkError, QrResponse>> generateQR({
-    required String amount,
-  });
+  Future<Either<NetworkError, QrResponse>> generateQR({required String amount, required String fromAccount});
 
   Future<Either<NetworkError, VerifyQrResponse>> verifyQR({
     required String requestId,
@@ -76,5 +74,9 @@ abstract class PaymentRepository {
   Future<Either<NetworkError, bool>> qrScanOTP();
 
   Future<Either<NetworkError, QRTransferResponse>> transferQR(
-      {required String requestId,  String? fromAccount,  required String toAmount, required String toAccount, required String otp});
+      {required String requestId,
+      String? fromAccount,
+      required String toAmount,
+      required String toAccount,
+      required String otp});
 }

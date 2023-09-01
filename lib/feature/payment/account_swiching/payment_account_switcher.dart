@@ -94,7 +94,7 @@ class _PaymentAccountSwitcherState extends State<PaymentAccountSwitcher> {
                           color: AppColor.light_acccent_blue,
                         ),
                       ),
-                      SizedBox(width: 4),
+                      SizedBox(width: 8),
                       Text(
                         StringUtils.formatBalance(selectedAccount.availableBalance ?? '0.00'),
                         softWrap: true,

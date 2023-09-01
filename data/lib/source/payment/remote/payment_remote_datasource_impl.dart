@@ -164,10 +164,11 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
   }
 
   @override
-  Future<HttpResponse<QRResponseEntity>> generateQR({required String amount}) async {
+  Future<HttpResponse<QRResponseEntity>> generateQR(
+      {required String amount, required String fromAccount}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
-    return _apiService
-        .generateQR(GenerateQRRequestEntity(baseData: baseData.toJson(), getToken: true, amount: amount));
+    return _apiService.generateQR(GenerateQRRequestEntity(
+        baseData: baseData.toJson(), getToken: true, amount: amount, fromAccount: fromAccount));
   }
 
   @override
