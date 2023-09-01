@@ -28,123 +28,110 @@ class EngagementTeamDialogView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseWidget<EngagementTeamDialogViewModel>(
         builder: (context, model, child) {
-          return Scaffold(
-            backgroundColor: Colors.transparent,
-            body: Stack(
+          return Dialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+            insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 340.h),
+            child: Stack(
               alignment: Alignment.bottomCenter,
+              clipBehavior: Clip.none,
               children: [
-                Dialog(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-                  insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 340.h),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: 32.0.h),
-                        child: Center(
-                          child: Text(
-                            S.of(context).engagementTeam,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont, fontSize: 20.t, fontWeight: FontWeight.w600),
-                          ),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 32.0.h),
+                      child: Center(
+                        child: Text(
+                          S.of(context).engagementTeam,
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont, fontSize: 20.t, fontWeight: FontWeight.w600),
                         ),
                       ),
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.only(top: 32.0.h, start: 24.0.w, end: 24.0.w),
-                          child: Text(
-                            S.of(context).engagementTeamDescription,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                fontSize: 14.t,
-                                height: 1.5,
-                                fontWeight: FontWeight.w400,
-                                color: AppColor.very_dark_gray_black),
-                          ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.only(top: 32.0.h, start: 24.0.w, end: 24.0.w),
+                        child: Text(
+                          S.of(context).engagementTeamDescription,
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 14.t,
+                              height: 1.5,
+                              fontWeight: FontWeight.w400,
+                              color: AppColor.very_dark_gray_black),
                         ),
                       ),
-                      SizedBox(height: 24.h),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushReplacementNamed(context, RoutePaths.HelpCenter);
-                        },
-                        child: Container(
-                          height: 72.h,
-                          margin: EdgeInsets.symmetric(horizontal: 24.w),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: AppColor.brightBlue),
-                              borderRadius: BorderRadius.circular(8)),
-                          child: Row(
-                            children: [
-                              Container(
-                                  margin: EdgeInsets.symmetric(horizontal: 18.11.w),
-                                  height: 25.h,
-                                  width: 25.w,
-                                  child: AppSvg.asset(
-                                    AssetUtils.voiceCall,
-                                    color: Theme.of(context).primaryColorDark,
-                                  )),
-                              Text(
-                                S.of(context).voiceCall,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    fontSize: 14.0.t,
-                                    fontWeight: FontWeight.w600),
-                              )
-                            ],
-                          ),
+                    ),
+                    SizedBox(height: 24.h),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushReplacementNamed(context, RoutePaths.HelpCenter);
+                      },
+                      child: Container(
+                        height: 72.h,
+                        margin: EdgeInsets.symmetric(horizontal: 24.w),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: AppColor.brightBlue),
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Row(
+                          children: [
+                            Container(
+                                margin: EdgeInsets.symmetric(horizontal: 18.11.w),
+                                height: 25.h,
+                                width: 25.w,
+                                child: AppSvg.asset(
+                                  AssetUtils.voiceCall,
+                                  color: Theme.of(context).primaryColorDark,
+                                )),
+                            Text(
+                              S.of(context).voiceCall,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 14.0.t,
+                                  fontWeight: FontWeight.w600),
+                            )
+                          ],
                         ),
                       ),
-                      // AppStreamBuilder<Resource<bool>>(
-                      //   stream: model!.initInfobipMessageResponseStream,
-                      //   onData: (value) {},
-                      //   initialData: Resource.success(data: false),
-                      //   dataBuilder: (context, value) =>
-                      InkWell(
-                        onTap: () {
-                          // if (value?.data != null && value!.data!) {
-
-                          // ProviderScope.containerOf(context)
-                          //     .read(appViewModel)
-                          //     .saveUserData();
-                          model!.showChat();
-                          // }
-                        },
-                        child: Container(
-                          height: 72.h,
-                          margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 8.0.h),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: AppColor.brightBlue),
-                              borderRadius: BorderRadius.circular(8)),
-                          child: Row(
-                            children: [
-                              Container(
-                                  margin: EdgeInsets.symmetric(horizontal: 18.11.w),
-                                  height: 25.h,
-                                  width: 25.w,
-                                  child: AppSvg.asset(
-                                    AssetUtils.liveChat,
-                                    color: Theme.of(context).primaryColorDark,
-                                  )),
-                              Text(
-                                S.of(context).liveChat,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    fontSize: 14.0.t,
-                                    fontWeight: FontWeight.w600),
-                              )
-                            ],
-                          ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        model!.showChat();
+                      },
+                      child: Container(
+                        height: 72.h,
+                        margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 8.0.h),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: AppColor.brightBlue),
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Row(
+                          children: [
+                            Container(
+                                margin: EdgeInsets.symmetric(horizontal: 18.11.w),
+                                height: 25.h,
+                                width: 25.w,
+                                child: AppSvg.asset(
+                                  AssetUtils.liveChat,
+                                  color: Theme.of(context).primaryColorDark,
+                                )),
+                            Text(
+                              S.of(context).liveChat,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 14.0.t,
+                                  fontWeight: FontWeight.w600),
+                            )
+                          ],
                         ),
                       ),
-                      // ),
-                      SizedBox(height: 56.h),
-                    ],
-                  ),
+                    ),
+                    // ),
+                    SizedBox(height: 56.h),
+                  ],
                 ),
                 Positioned(
-                  bottom: 12.h,
+                  bottom: -24.h,
                   child: InkWell(
                     onTap: () {
                       onDismissed?.call();

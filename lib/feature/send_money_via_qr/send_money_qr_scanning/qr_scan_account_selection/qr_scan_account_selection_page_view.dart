@@ -133,9 +133,9 @@ class QRScanAccountSelectionPageView extends BasePageViewWidget<QRScanAccountSel
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.only(top: 32.h, start: 2.w, end: 2.w),
+                                    padding: EdgeInsetsDirectional.only(top: 32.h, start: 24.w, end: 24.w),
                                     child: PaymentAccountSwitcher(
-                                      title: S.of(context).transferFrom,
+                                      title: S.of(context).payFrom,
                                       onDefaultSelectedAccount: (Account account) {
                                         model.selectedAccount = account;
                                         model.validate();
@@ -144,7 +144,7 @@ class QRScanAccountSelectionPageView extends BasePageViewWidget<QRScanAccountSel
                                         model.selectedAccount = account;
                                         model.validate();
                                       },
-                                      isSingleLineView: true,
+                                      isSingleLineView: false,
                                     ),
                                   ),
                                 ],

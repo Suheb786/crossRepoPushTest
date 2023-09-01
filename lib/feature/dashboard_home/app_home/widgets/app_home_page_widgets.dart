@@ -66,6 +66,7 @@ class TransferBetweenAccountTile extends StatelessWidget {
   bool isEnabled;
   bool isCardActivated;
   dynamic Function() onTap;
+
   TransferBetweenAccountTile({
     Key? key,
     this.isVisible,
@@ -121,6 +122,7 @@ class OpenSubAccountTile extends StatelessWidget {
   bool isEnabled;
   bool isCardActivated;
   AppHomeViewModel model;
+
   OpenSubAccountTile({
     Key? key,
     required this.isCardActivated,

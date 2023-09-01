@@ -54,68 +54,63 @@ class PayBillDialogView extends StatelessWidget {
             stream: model!.getBillerLookupStream,
             initialData: Resource.none(),
             onData: (value) {
-              if (value.status == Status.SUCCESS) {
-                // model.billerDetailsList =
-                //     value.data!.content!.billerDetailsList!;
-              }
+              if (value.status == Status.SUCCESS) {}
             },
             dataBuilder: (context, snapshot) {
-              return Scaffold(
-                backgroundColor: Colors.transparent,
-                body: Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    Dialog(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-                        insetPadding: EdgeInsets.only(
-                            left: 24.w, right: 24.w, bottom: 36.h, top: _keyboardVisible ? 36.h : 204.h),
-                        child: AppStreamBuilder<int>(
-                          stream: model.currentIndexStream,
-                          initialData: 0,
-                          dataBuilder: (BuildContext context, index) {
-                            return AppStreamBuilder<List<BillerDetailsList>>(
-                              stream: model.searchBillNameStream,
-                              initialData: model.billerDetailsList,
-                              dataBuilder: (BuildContext context, billList) {
-                                return AppKeyBoardHide(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                                    children: [
-                                      ///title
-                                      _titleWidget(),
-                                      _searchWidget(model, context, billList),
-                                      _billerListWidget(model, context, billList),
-                                      _tickWidget(context, billList, index),
-                                    ],
-                                  ),
-                                );
-                              },
-                            );
-                          },
-                        )),
-                    Positioned(
-                      bottom: 12.h,
-                      child: InkWell(
-                        onTap: () {
-                          onDismissed?.call();
+              return Dialog(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+                  insetPadding: EdgeInsets.only(
+                      left: 24.w, right: 24.w, bottom: 56.h, top: _keyboardVisible ? 36.h : 204.h),
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    clipBehavior: Clip.none,
+                    children: [
+                      AppStreamBuilder<int>(
+                        stream: model.currentIndexStream,
+                        initialData: 0,
+                        dataBuilder: (BuildContext context, index) {
+                          return AppStreamBuilder<List<BillerDetailsList>>(
+                            stream: model.searchBillNameStream,
+                            initialData: model.billerDetailsList,
+                            dataBuilder: (BuildContext context, billList) {
+                              return AppKeyBoardHide(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: [
+                                    ///title
+                                    _titleWidget(),
+                                    _searchWidget(model, context, billList),
+                                    _billerListWidget(model, context, billList),
+                                    _tickWidget(context, billList, index),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
                         },
-                        child: Container(
-                            height: 48.h,
-                            width: 48.h,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Theme.of(context).colorScheme.onBackground),
-                                shape: BoxShape.circle,
-                                color: Theme.of(context).colorScheme.secondary),
-                            child: Image.asset(
-                              AssetUtils.close_bold,
-                              scale: 3.5,
-                            )),
                       ),
-                    )
-                  ],
-                ),
-              );
+                      Positioned(
+                        bottom: -24.h,
+                        child: InkWell(
+                          onTap: () {
+                            onDismissed?.call();
+                          },
+                          child: Container(
+                              height: 48.h,
+                              width: 48.h,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Theme.of(context).colorScheme.onBackground),
+                                  shape: BoxShape.circle,
+                                  color: Theme.of(context).colorScheme.secondary),
+                              child: Image.asset(
+                                AssetUtils.close_bold,
+                                scale: 3.5,
+                              )),
+                        ),
+                      )
+                    ],
+                  ));
             },
           );
         },

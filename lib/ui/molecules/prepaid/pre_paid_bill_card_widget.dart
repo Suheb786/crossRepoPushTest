@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -43,42 +42,25 @@ class PrePaidBillCardWidget extends StatelessWidget {
                               fontSize: 12.0.t,
                               fontWeight: FontWeight.w600,
                               color: AppColor.white))),
-                  InkWell(
+                  SizedBox(
+                    width: 8.w,
+                  ),
+                  GestureDetector(
                     onTap: () {
                       AppConstantsUtils.PRE_PAID_FLOW = true;
                       AppConstantsUtils.POST_PAID_FLOW = false;
-                      // Navigator.pushNamed(context, RoutePaths.BillPaymentsTransactionPage);
                       ProviderScope.containerOf(context)
                           .read(paymentHomeViewModelProvider)
                           .animateToNewPage();
                       Navigator.of(context).push(CustomRoute.swipeUpRoute(BillPaymentsTransactionPage()));
                     },
-                    child: Container(
-                      height: 50.h,
-                      width: 50.h,
-                      alignment: Alignment.center,
-                      child: AppSvg.asset(AssetUtils.clock,
-                          width: 24.h, height: 24.h, color: AppColor.light_acccent_blue),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColor.black,
-                        border: Border.all(color: AppColor.borderColorNew, width: 1),
-                        boxShadow: const [
-                          BoxShadow(color: AppColor.borderColorNew, blurRadius: 14, spreadRadius: 0.6),
-                        ],
-                      ),
-                    ),
+                    child: Text(S.of(context).viewHistory,
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            fontSize: 14.0.t,
+                            fontWeight: FontWeight.w600,
+                            color: AppColor.brightBlue)),
                   ),
-                  /*GestureDetector(
-                    onTap: () {
-                      AppConstantsUtils.PRE_PAID_FLOW = true;
-                      AppConstantsUtils.POST_PAID_FLOW = false;
-                      // Navigator.pushNamed(context, RoutePaths.BillPaymentsTransactionPage);
-                      ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animateToNewPage();
-                      Navigator.of(context).push(slideBottomToTop(nextPage: BillPaymentsTransactionPage()));
-                    },
-                    child: Text(S.of(context).viewHistory, style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, fontWeight: FontWeight.w600, color: AppColor.brightBlue)),
-                  ),*/
                 ],
               ),
               SizedBox(

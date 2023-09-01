@@ -57,10 +57,10 @@ class OtpPurchaseEvoucherWithoutRegionPageView
                       if (data.status == Status.SUCCESS) {
                         model.placeOrder(
                             sourceAccount: ProviderScope.containerOf(context)
-                                .read(appHomeViewModelProvider)
-                                .dashboardDataContent
-                                .account
-                                ?.iban,
+                                    .read(settlementAccountViewModelProvider(model.argument))
+                                    .selectedAccount
+                                    ?.iban ??
+                                '',
                             sourceCurrency: "JOD",
                             cardItemId: model.argument.selectedItem.id,
                             exchangeRate: double.parse(model.argument.selectedItem.exchangeRate),

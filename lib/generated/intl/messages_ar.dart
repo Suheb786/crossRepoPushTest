@@ -1624,6 +1624,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خيارات التقسيط"),
         "insufficientBalance":
             MessageLookupByLibrary.simpleMessage("الرصيد غير كافي (Err-89)"),
+        "insufficientBalanceAccountTransfer":
+            MessageLookupByLibrary.simpleMessage("ليس لديك رصيد كافي للتحويل."),
+        "insufficientBalanceSubAccount": MessageLookupByLibrary.simpleMessage(
+            "عفوا! لم تتم العملية بنجاح لأنه الرصيد المتوفر غير كاف"),
         "insufficientBalanceTransfer": MessageLookupByLibrary.simpleMessage(
             "ما عندك رصيد كافي لتكمل الدفعة."),
         "insufficientFundsBillCannotBePaid":
@@ -2114,8 +2118,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noCountriesFound":
             MessageLookupByLibrary.simpleMessage("الدولة غير موجودة"),
         "noDataFound": MessageLookupByLibrary.simpleMessage("لاتوجد بيانات"),
-        "noDataToDisplay":
-            MessageLookupByLibrary.simpleMessage("No Data to Display"),
+        "noDataToDisplay": MessageLookupByLibrary.simpleMessage("لا يوجد"),
         "noDebitCardFound": MessageLookupByLibrary.simpleMessage(
             "خطأ بمعلومات بطاقة الدفع المباشر Yellow Sun. تواصل معنا من التطبيق أو بالاتصال على 5200100-06"),
         "noDebitCardRecordFound": MessageLookupByLibrary.simpleMessage(
@@ -2702,8 +2705,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "اختار الحساب اللي بدك تدفع منه لبطاقتك الائتمانية"),
         "selectAdditionalIncome":
             MessageLookupByLibrary.simpleMessage("اختار الدخل الإضافي"),
-        "selectAnyOption":
-            MessageLookupByLibrary.simpleMessage("اختار أي خيار"),
+        "selectAnyOption": MessageLookupByLibrary.simpleMessage(
+            "حدد خيار تصفية واحدًا على الأقل"),
         "selectAtLeastOneBill":
             MessageLookupByLibrary.simpleMessage("حدد فاتورة واحدة على الأقل"),
         "selectCategory": MessageLookupByLibrary.simpleMessage("اختر الفئة"),

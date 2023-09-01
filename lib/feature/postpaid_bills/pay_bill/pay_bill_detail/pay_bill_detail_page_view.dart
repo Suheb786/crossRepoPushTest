@@ -6,6 +6,7 @@ import 'package:domain/model/bill_payments/get_biller_lookup_list/biller_details
 import 'package:domain/model/bill_payments/get_biller_lookup_list/biller_service.dart';
 import 'package:domain/model/bill_payments/get_biller_lookup_list/get_biller_lookup_list.dart';
 import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_categories_model.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -281,11 +282,11 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
       padding: EdgeInsetsDirectional.only(top: 16.0.h),
       child: PaymentAccountSwitcher(
           title: S.of(context).payFrom,
-          onDefaultSelectedAccount: (Account) {
-            print('onDefaultSelectedAccount $Account');
+          onDefaultSelectedAccount: (Account account) {
+            model.selectedAccount = account;
           },
-          onSelectAccount: (Account) {
-            print('onSelectAccount $Account');
+          onSelectAccount: (Account account) {
+            model.selectedAccount = account;
           },
           isSingleLineView: false,
           isShowAmount: false),
@@ -373,12 +374,11 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                       .setData(model.setData());
 
                   if (AppConstantsUtils.PRE_PAID_FLOW) {
-                    // if (model.isPrepaidCategoryListEmpty == false) {
                     /// prepaid bill details inquiry
                     ProviderScope.containerOf(context)
                         .read(confirmBillPaymentAmountPageViewModelProvider)
-                        .validatePrePaidBill(amount: model.amountText);
-                    // }
+                        .validatePrePaidBill(
+                            amount: model.amountText, fromAccount: model.selectedAccount?.accountNo ?? '');
                   } else if (AppConstantsUtils.POST_PAID_FLOW) {
                     /// post paid bill details inquiry
                     ProviderScope.containerOf(context)

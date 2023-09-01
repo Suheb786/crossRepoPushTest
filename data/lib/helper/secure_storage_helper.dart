@@ -82,6 +82,7 @@ class SecureStorageHelper {
         secureUser.isEfawateerPopUPClicked =
             user.isEfawateerPopUPClicked ?? secureUser.isEfawateerPopUPClicked;
         secureUser.isEVoucherPopUPClicked = user.isEVoucherPopUPClicked ?? secureUser.isEVoucherPopUPClicked;
+        secureUser.isApplePayPopUpClicked = user.isApplePayPopUpClicked ?? secureUser.isApplePayPopUpClicked;
 
         await _storage.write(key: USER, value: json.encode(secureUser.toJson()));
       } else {

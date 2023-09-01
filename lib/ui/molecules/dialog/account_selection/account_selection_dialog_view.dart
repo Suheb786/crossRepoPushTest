@@ -35,178 +35,176 @@ class AccountSelectionDialogView extends StatelessWidget {
           model.allCategories.addAll(accountList);
         },
         builder: (context, model, child) {
-          return Scaffold(
-            backgroundColor: Colors.transparent,
-            body: Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                Dialog(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0.w)),
-                    insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
-                    child: AppStreamBuilder<int>(
-                      stream: model!.currentIndexStream,
-                      initialData: 0,
-                      dataBuilder: (context, currentIndex) {
-                        return Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(top: 32.0.h),
-                              child: Center(
-                                child: Text(
-                                  title,
-                                  style: TextStyle(
-                                      fontFamily: StringUtils.appFont,
-                                      fontSize: 16.t,
-                                      fontWeight: FontWeight.w600),
-                                ),
+          return Dialog(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0.w)),
+              insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                clipBehavior: Clip.none,
+                children: [
+                  AppStreamBuilder<int>(
+                    stream: model!.currentIndexStream,
+                    initialData: 0,
+                    dataBuilder: (context, currentIndex) {
+                      return Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(top: 32.0.h),
+                            child: Center(
+                              child: Text(
+                                title,
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    fontSize: 16.t,
+                                    fontWeight: FontWeight.w600),
                               ),
                             ),
-                            Expanded(
-                                child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 16.0.w),
-                                  child: Container(
-                                    height: 90.h,
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(16.w),
-                                      color: Theme.of(context).canvasColor,
-                                    ),
+                          ),
+                          Expanded(
+                              child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+                                child: Container(
+                                  height: 90.h,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16.w),
+                                    color: Theme.of(context).canvasColor,
                                   ),
                                 ),
-                                AppScrollableListViewWidget(
-                                  key: ValueKey(model.allCategories.length),
-                                  child: ClickableListWheelScrollView(
-                                    scrollController: model.scrollController,
-                                    itemHeight: 90.h,
-                                    itemCount: model.allCategories.length,
-                                    onItemTapCallback: (index) {
-                                      model.currentIndexUpdate(index);
-                                    },
-                                    child: ListWheelScrollView.useDelegate(
-                                        controller: model.scrollController,
-                                        itemExtent: 100.h,
-                                        onSelectedItemChanged: (int index) {
-                                          model.currentIndexUpdate(index);
-                                        },
-                                        physics: FixedExtentScrollPhysics(),
-                                        perspective: 0.0000000001,
-                                        childDelegate: ListWheelChildBuilderDelegate(
-                                            childCount: model.allCategories.length,
-                                            builder: (BuildContext context, int index) {
-                                              Account account = model.allCategories[index];
-                                              return Padding(
-                                                padding: EdgeInsetsDirectional.only(start: 48.w),
-                                                child: Row(
-                                                  children: [
-                                                    Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        SizedBox(height: 17.h),
-                                                        Text(
-                                                          "${account.isSubAccount! ? "${account.nickName == null ? S.of(context).subAccount : "${S.of(context).subAccount} - ${account.nickName}"}" : "${account.nickName == null ? S.of(context).mainAccount : "${S.of(context).mainAccount} - ${account.nickName}"}"}",
-                                                          style: TextStyle(
-                                                              fontFamily: StringUtils.appFont,
-                                                              fontSize: 14.0.t,
-                                                              color: currentIndex == index
-                                                                  ? Theme.of(context).primaryColorDark
-                                                                  : Theme.of(context).colorScheme.surfaceTint,
-                                                              fontWeight: FontWeight.w600),
-                                                        ),
-                                                        SizedBox(height: 4.h),
-                                                        Text(
-                                                          "${account.accountNo ?? ""}",
-                                                          style: TextStyle(
-                                                              fontFamily: StringUtils.appFont,
-                                                              fontSize: 10.0.t,
-                                                              color: index == currentIndex
-                                                                  ? Theme.of(context).colorScheme.shadow
-                                                                  : Theme.of(context).colorScheme.surfaceTint,
-                                                              fontWeight: FontWeight.w600),
-                                                        ),
-                                                        SizedBox(height: 15.h),
-                                                        RichText(
-                                                          text: TextSpan(
-                                                            children: [
-                                                              TextSpan(
-                                                                text: StringUtils.formatBalance(
-                                                                    account.availableBalance ?? '0.00'),
-                                                                style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  color: index == currentIndex
-                                                                      ? Theme.of(context).primaryColorDark
-                                                                      : Theme.of(context)
-                                                                          .colorScheme
-                                                                          .surfaceTint,
-                                                                  fontWeight: FontWeight.w700,
-                                                                ),
-                                                              ),
-                                                              TextSpan(
-                                                                text: " " + S.current.JOD.toUpperCase(),
-                                                                style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 12.0.t,
-                                                                  color: index == currentIndex
-                                                                      ? Theme.of(context).primaryColorDark
-                                                                      : Theme.of(context)
-                                                                          .colorScheme
-                                                                          .surfaceTint,
-                                                                  fontWeight: FontWeight.w600,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        )
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            })),
-                                  ),
-                                ),
-                              ],
-                            )),
-                            Padding(
-                              padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 32.h),
-                              child: AppPrimaryButton(
-                                onPressed: () {
-                                  onSelected?.call(model.allCategories[currentIndex!]);
-                                },
-                                text: S.of(context).confirm,
                               ),
-                            )
-                          ],
-                        );
-                      },
-                    )),
-                Positioned(
-                  bottom: 12.h,
-                  child: InkWell(
-                    onTap: () {
-                      onDismissed?.call();
+                              AppScrollableListViewWidget(
+                                key: ValueKey(model.allCategories.length),
+                                child: ClickableListWheelScrollView(
+                                  scrollController: model.scrollController,
+                                  itemHeight: 90.h,
+                                  itemCount: model.allCategories.length,
+                                  onItemTapCallback: (index) {
+                                    model.currentIndexUpdate(index);
+                                  },
+                                  child: ListWheelScrollView.useDelegate(
+                                      controller: model.scrollController,
+                                      itemExtent: 100.h,
+                                      onSelectedItemChanged: (int index) {
+                                        model.currentIndexUpdate(index);
+                                      },
+                                      physics: FixedExtentScrollPhysics(),
+                                      perspective: 0.0000000001,
+                                      childDelegate: ListWheelChildBuilderDelegate(
+                                          childCount: model.allCategories.length,
+                                          builder: (BuildContext context, int index) {
+                                            Account account = model.allCategories[index];
+                                            return Padding(
+                                              padding: EdgeInsetsDirectional.only(start: 48.w),
+                                              child: Row(
+                                                children: [
+                                                  Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      SizedBox(height: 17.h),
+                                                      Text(
+                                                        "${account.isSubAccount! ? "${account.nickName == null ? S.of(context).subAccount : "${S.of(context).subAccount} - ${account.nickName}"}" : "${account.nickName == null ? S.of(context).mainAccount : "${S.of(context).mainAccount} - ${account.nickName}"}"}",
+                                                        style: TextStyle(
+                                                            fontFamily: StringUtils.appFont,
+                                                            fontSize: 14.0.t,
+                                                            color: currentIndex == index
+                                                                ? Theme.of(context).primaryColorDark
+                                                                : Theme.of(context).colorScheme.surfaceTint,
+                                                            fontWeight: FontWeight.w600),
+                                                      ),
+                                                      SizedBox(height: 4.h),
+                                                      Text(
+                                                        "${account.accountNo ?? ""}",
+                                                        style: TextStyle(
+                                                            fontFamily: StringUtils.appFont,
+                                                            fontSize: 10.0.t,
+                                                            color: index == currentIndex
+                                                                ? Theme.of(context).colorScheme.shadow
+                                                                : Theme.of(context).colorScheme.surfaceTint,
+                                                            fontWeight: FontWeight.w600),
+                                                      ),
+                                                      SizedBox(height: 15.h),
+                                                      RichText(
+                                                        text: TextSpan(
+                                                          children: [
+                                                            TextSpan(
+                                                              text: StringUtils.formatBalance(
+                                                                  account.availableBalance ?? '0.00'),
+                                                              style: TextStyle(
+                                                                fontFamily: StringUtils.appFont,
+                                                                fontSize: 14.0.t,
+                                                                color: index == currentIndex
+                                                                    ? Theme.of(context).primaryColorDark
+                                                                    : Theme.of(context)
+                                                                        .colorScheme
+                                                                        .surfaceTint,
+                                                                fontWeight: FontWeight.w700,
+                                                              ),
+                                                            ),
+                                                            TextSpan(
+                                                              text: " " + S.current.JOD.toUpperCase(),
+                                                              style: TextStyle(
+                                                                fontFamily: StringUtils.appFont,
+                                                                fontSize: 12.0.t,
+                                                                color: index == currentIndex
+                                                                    ? Theme.of(context).primaryColorDark
+                                                                    : Theme.of(context)
+                                                                        .colorScheme
+                                                                        .surfaceTint,
+                                                                fontWeight: FontWeight.w600,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          })),
+                                ),
+                              ),
+                            ],
+                          )),
+                          Padding(
+                            padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 32.h),
+                            child: AppPrimaryButton(
+                              onPressed: () {
+                                onSelected?.call(model.allCategories[currentIndex!]);
+                              },
+                              text: S.of(context).confirm,
+                            ),
+                          )
+                        ],
+                      );
                     },
-                    child: Container(
-                        height: 48.h,
-                        width: 48.h,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Theme.of(context).colorScheme.onBackground),
-                            shape: BoxShape.circle,
-                            color: Theme.of(context).colorScheme.secondary),
-                        child: Image.asset(
-                          AssetUtils.close_bold,
-                          scale: 3.5,
-                        )),
                   ),
-                )
-              ],
-            ),
-          );
+                  Positioned(
+                    bottom: -24.h,
+                    child: InkWell(
+                      onTap: () {
+                        onDismissed?.call();
+                      },
+                      child: Container(
+                          height: 48.h,
+                          width: 48.h,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Theme.of(context).colorScheme.onBackground),
+                              shape: BoxShape.circle,
+                              color: Theme.of(context).colorScheme.secondary),
+                          child: Image.asset(
+                            AssetUtils.close_bold,
+                            scale: 3.5,
+                          )),
+                    ),
+                  )
+                ],
+              ));
         },
         providerBase: providerBase());
   }

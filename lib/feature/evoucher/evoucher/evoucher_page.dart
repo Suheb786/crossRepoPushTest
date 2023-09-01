@@ -50,9 +50,14 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
     }
 
     _tabController.addListener(() {
-      if (model.tabChangeNotifier.value != _tabController.index) model.tabChangeNotifier.value = _tabController.index;
+      if (model.tabChangeNotifier.value != _tabController.index)
+        model.tabChangeNotifier.value = _tabController.index;
       model.voucherItemFilterResponseSubject.safeAdd(Resource.success(data: model.filterList));
       model.voucherCategoriesResponseSubject.safeAdd(Resource.success(data: model.categoriesList));
+    });
+
+    model.switchTabStream.listen((event) {
+      model.switchTab(_tabController, event);
     });
 
     super.onModelReady(model);
@@ -94,7 +99,7 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
                       EVouchersFilterDialog.show(context,
                           title: S.of(context).filterVouchers,
                           categoriesList: model.categoriesList,
-                          rangeList: model.rangeList,
+                          rangeList: model.rangeList.toSet().toList(),
                           regionList: data.data?.allowedRegions, onSelected: (value) {
                         model.evoucherFilterOption = value.filterOption;
                         model.getVoucherItemFilter(
@@ -140,7 +145,10 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
             children: [
               Container(
                 margin: EdgeInsetsDirectional.only(top: 24.h),
-                decoration: BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor, borderRadius: BorderRadius.only(topLeft: Radius.circular(16.w), topRight: Radius.circular(16.w))),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    borderRadius:
+                        BorderRadius.only(topLeft: Radius.circular(16.w), topRight: Radius.circular(16.w))),
                 child: Column(
                   children: [
                     SizedBox(height: 47.h),
@@ -163,13 +171,19 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
                           tabs: [
                             Text(
                               S.of(context).buyVouchers,
-                              style: TextStyle(fontSize: 14.t, fontWeight: FontWeight.w600, fontFamily: StringUtils.appFont),
+                              style: TextStyle(
+                                  fontSize: 14.t,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: StringUtils.appFont),
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.only(start: 2.w),
                               child: Text(
                                 S.of(context).history,
-                                style: TextStyle(fontSize: 14.t, fontWeight: FontWeight.w600, fontFamily: StringUtils.appFont),
+                                style: TextStyle(
+                                    fontSize: 14.t,
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: StringUtils.appFont),
                               ),
                             )
                           ],
@@ -178,7 +192,9 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
                     ),
                     Expanded(
                       child: Container(
-                        child: TabBarView(controller: _tabController, children: [BuyEvoucherView(provideBase()), MyVoucherHistoryView(provideBase())]),
+                        child: TabBarView(
+                            controller: _tabController,
+                            children: [BuyEvoucherView(provideBase()), MyVoucherHistoryView(provideBase())]),
                       ),
                     )
                   ],
@@ -204,7 +220,10 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
                         shape: BoxShape.circle,
                         color: Colors.white,
                         border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
-                        boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))]),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black26, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))
+                        ]),
                     child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue),
                   ),
                 ),

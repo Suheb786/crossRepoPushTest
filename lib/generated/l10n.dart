@@ -1730,16 +1730,6 @@ class S {
     );
   }
 
-  /// `Select any Option`
-  String get selectAnyOption {
-    return Intl.message(
-      'Select any Option',
-      name: 'selectAnyOption',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Storage`
   String get storage {
     return Intl.message(
@@ -18425,6 +18415,36 @@ class S {
     return Intl.message(
       'No Data to Display',
       name: 'noDataToDisplay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You do not have sufficient balance to transfer.`
+  String get insufficientBalanceAccountTransfer {
+    return Intl.message(
+      'You do not have sufficient balance to transfer.',
+      name: 'insufficientBalanceAccountTransfer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select atleast one filter option`
+  String get selectAnyOption {
+    return Intl.message(
+      'Select atleast one filter option',
+      name: 'selectAnyOption',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Transaction failed; you have insufficient balance in your account.`
+  String get insufficientBalanceSubAccount {
+    return Intl.message(
+      'Oops! Transaction failed; you have insufficient balance in your account.',
+      name: 'insufficientBalanceSubAccount',
       desc: '',
       args: [],
     );

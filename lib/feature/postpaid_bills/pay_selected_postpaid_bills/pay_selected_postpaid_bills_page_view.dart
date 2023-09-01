@@ -1,5 +1,6 @@
 import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry_data.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -194,11 +195,11 @@ class PaySelectedBillsPostPaidBillsPageView
                                               padding: EdgeInsets.symmetric(horizontal: 24.w),
                                               child: PaymentAccountSwitcher(
                                                 title: S.of(context).payFrom,
-                                                onDefaultSelectedAccount: (Account) {
-                                                  print('onDefaultSelectedAccount $Account');
+                                                onDefaultSelectedAccount: (Account account) {
+                                                  model.selectedAccount = account;
                                                 },
-                                                onSelectAccount: (Account) {
-                                                  print('onSelectAccount $Account');
+                                                onSelectAccount: (Account account) {
+                                                  model.selectedAccount = account;
                                                 },
                                                 isSingleLineView: false,
                                               ),

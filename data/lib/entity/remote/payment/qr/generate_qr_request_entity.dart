@@ -6,16 +6,14 @@ part "generate_qr_request_entity.g.dart";
 class GenerateQRRequestEntity {
   @JsonKey(name: "Amount")
   final String? amount;
+  @JsonKey(name: "FromAccount")
+  final String? fromAccount;
   @JsonKey(name: "GetToken")
   final bool? getToken;
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic>? baseData;
 
-  GenerateQRRequestEntity({
-    this.amount,
-    this.getToken = true,
-    this.baseData,
-  });
+  GenerateQRRequestEntity({this.amount, this.getToken = true, this.baseData, this.fromAccount = ''});
 
   factory GenerateQRRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$GenerateQRRequestEntityFromJson(json);

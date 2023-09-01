@@ -94,7 +94,7 @@ class _PaymentAccountSwitcherState extends State<PaymentAccountSwitcher> {
                           color: AppColor.light_acccent_blue,
                         ),
                       ),
-                      SizedBox(width: 4),
+                      SizedBox(width: 8),
                       Text(
                         StringUtils.formatBalance(selectedAccount.availableBalance ?? '0.00'),
                         softWrap: true,
@@ -146,7 +146,7 @@ class _PaymentAccountSwitcherState extends State<PaymentAccountSwitcher> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                widget.title,
+                                widget.title.toUpperCase(),
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontSize: 10.0.t,

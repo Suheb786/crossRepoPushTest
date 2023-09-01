@@ -13,14 +13,15 @@ class GenerateQRUseCase extends BaseUseCase<NetworkError, GenerateQRUseCaseParam
 
   @override
   Future<Either<NetworkError, QrResponse>> execute({required GenerateQRUseCaseParams params}) {
-    return _repository.generateQR(amount: params.amount);
+    return _repository.generateQR(amount: params.amount, fromAccount: params.fromAccount);
   }
 }
 
 class GenerateQRUseCaseParams extends Params {
   final String amount;
+  final String fromAccount;
 
-  GenerateQRUseCaseParams({required this.amount});
+  GenerateQRUseCaseParams({required this.amount, required this.fromAccount});
 
   @override
   Either<AppError, bool> verify() {

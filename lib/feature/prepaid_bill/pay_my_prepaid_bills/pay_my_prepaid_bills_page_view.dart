@@ -292,7 +292,6 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
                                         top: 0.h,
                                         child: InkWell(
                                           onTap: () {
-                                            // ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animateBackToMainPage();
                                             Navigator.pop(context);
                                           },
                                           child: Container(

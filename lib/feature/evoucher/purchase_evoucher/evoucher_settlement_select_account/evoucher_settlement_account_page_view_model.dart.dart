@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/e_voucher/e_voucher_otp.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/select_account_usecase.dart';
@@ -55,6 +56,8 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
   String mobileCode = "";
   String mobileNumber = "";
 
+  Account? selectedAccount;
+
   EvoucherSettlementAccountPageViewModel(this._selectAccountUseCase, this.eVoucherOtpUseCase) {
     _selectAccountRequest.listen((value) {
       RequestManager(value, createCall: () => _selectAccountUseCase.execute(params: value))
@@ -107,12 +110,7 @@ class EvoucherSettlementAccountPageViewModel extends BasePageViewModel {
   validateFields(BuildContext context) {
     _selectAccountRequest.safeAdd(GetSettlementValidationUseCaseParams(
         isChecked: _isCheckedRequest.value,
-        totalAmountString: ProviderScope.containerOf(context)
-                .read(appHomeViewModelProvider)
-                .dashboardDataContent
-                .account
-                ?.availableBalance ??
-            "",
+        totalAmountString: selectedAccount?.availableBalance ?? "",
         itemValueString: _getSelectedVoucherInformationResponse.value.settlementValue));
   }
 

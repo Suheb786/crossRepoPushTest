@@ -3620,7 +3620,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/BillPayment/PayPrepaidBill',
+              '/BillPayment/PayPrepaidBillV2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -3646,7 +3646,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/BillPayment/PayPostPaidBillV1',
+              '/BillPayment/PayPostPaidBillV2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4432,7 +4432,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/Cliq/ConfirmCreateCLidID',
+              '/Cliq/ConfirmCreateCLidIDV2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4458,7 +4458,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/Cliq/CreateCliqIdOtp',
+              '/Cliq/CreateCliqIdOtpV2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4981,7 +4981,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/Transfer/TransferQRV2',
+              '/Transfer/TransferQR',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5426,19 +5426,21 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(voucherRegionMinMaxValueRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<VoucherRegionMinMaxValueResponseEntity>>(Options(
+        _setStreamType<HttpResponse<VoucherRegionMinMaxValueResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              'http://10.6.13.2:2186/Voucher/api/Voucher/GetRegionsAndMinMax',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = VoucherRegionMinMaxValueResponseEntity.fromJson(_result.data!);
+                .compose(
+                  _dio.options,
+                  'http://10.6.13.2:2186/Voucher/api/Voucher/GetRegionsAndMinMax',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value =
+        VoucherRegionMinMaxValueResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

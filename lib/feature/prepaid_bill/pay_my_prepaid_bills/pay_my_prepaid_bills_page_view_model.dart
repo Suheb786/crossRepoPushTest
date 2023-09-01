@@ -78,11 +78,9 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
     );
   }
 
-
   setShowBackButton(bool needBackButton) {
     this.showBackButton = needBackButton;
   }
-
 
   /// ---------------- Call Api GetPrePaidCategoriesList -------------------- ///
 
@@ -124,6 +122,7 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("new_pre_paid_inquire_bill", {"new_pre_paid_inquire_bill_call": true});
     _validatePrePaidRequest.safeAdd(ValidatePrePaidUseCaseParams(
+        fromAccount: '',
         billerCode: getPrepaidBillerListModelData.billerCode,
         amount: isPrePaidCategoryEmpty == true ? double.parse("0").toStringAsFixed(3) : "",
         serviceType: getPrepaidBillerListModelData.serviceType,

@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/account_ready/account_details.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/extension/string_casing_extension.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -208,16 +209,13 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                   evoucherViewModelProvider,
                 );
 
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  RoutePaths.Evoucher,
-                  (route) => route.settings.name == RoutePaths.AppHome,
-                  arguments: EvoucherPageArguments(EvoucherLandingPageNavigationType.PURCHASE_BY_CATEGORY),
-                );
+                Navigator.popUntil(context, (route) => route.settings.name == RoutePaths.Evoucher);
 
                 provider.tabChangeNotifier.value = 1;
                 provider.myVoucherHistoryList = [];
                 provider.getVoucherCategories();
+                // to switch to history tab...
+                provider.switchTabSubject.safeAdd(1);
               },
               text: S.of(context).done,
             ),

@@ -2,7 +2,6 @@ import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/widgets.dart';
 import 'package:neo_bank/ui/molecules/app_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/account_selection/account_selection_dialog_view.dart';
-import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog_view.dart';
 
 class AccountSelectionDialog {
   AccountSelectionDialog._();

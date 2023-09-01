@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/enum/cliq_id_type_enum.dart';
 import 'package:domain/model/cliq/create_cliq_id/create_cliq_id_otp.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -55,9 +56,10 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
                           model.makeOtpRequest(
-                            accountNumber: model.linkBankAccountCliqIdList.isNotEmpty
+                            accountNumber: model.selectedAccount?.accountNo ?? '',
+                            /*accountNumber: model.linkBankAccountCliqIdList.isNotEmpty
                                 ? (model.linkBankAccountCliqIdList.first.accountNumber ?? '')
-                                : "",
+                                : "",*/
                             isAlias: ProviderScope.containerOf(context)
                                     .read(cliqIdTypeSelectionViewModelProvider)
                                     .cliqIdTypeSubject
@@ -102,108 +104,18 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                                 gradientFractionOnEnd: 0.2,
                                                 gradientFractionOnStart: 0.2,
                                                 child: SingleChildScrollView(
-                                                  //   physics: ClampingScrollPhysics(),
                                                   controller: model.controller,
                                                   child: Column(
-                                                    //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
                                                     children: [
-                                                      /*AppStreamBuilder<List<GetAccountByCustomerId>>(
-                                                          stream: model.linkBankAccountCliqIdListStream,
-                                                          initialData: model.linkBankAccountCliqIdList,
-                                                          dataBuilder: (BuildContext context, data) {
-                                                            return ListView.separated(
-                                                                padding: EdgeInsets.zero,
-                                                                shrinkWrap: true,
-                                                                physics: NeverScrollableScrollPhysics(),
-                                                                itemBuilder: (context, index) {
-                                                                  return Container(
-                                                                    padding: EdgeInsets.all(16.0),
-                                                                    decoration: BoxDecoration(
-                                                                        border: Border.all(
-                                                                            color: AppColor.whiteGrey),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(8.0)),
-                                                                    child: Column(
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment.start,
-                                                                      children: [
-                                                                        Text(
-                                                                          S.of(context).account,
-                                                                          style: TextStyle(
-                                                                              fontFamily: StringUtils.appFont,
-                                                                              fontSize: 14.t,
-                                                                              color: AppColor.black,
-                                                                              fontWeight: FontWeight.w600),
-                                                                        ),
-                                                                        Row(
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.spaceBetween,
-                                                                          children: [
-                                                                            Text(
-                                                                              data?[index].accountNumber ??
-                                                                                  '',
-                                                                              style: TextStyle(
-                                                                                  fontFamily:
-                                                                                      StringUtils.appFont,
-                                                                                  fontSize: 12.t,
-                                                                                  color: AppColor.black,
-                                                                                  fontWeight:
-                                                                                      FontWeight.w600),
-                                                                            ),
-                                                                            Visibility(
-                                                                              visible: false,
-                                                                              child: Icon(
-                                                                                Icons.more_horiz_outlined,
-                                                                                size: 25,
-                                                                                color: Color(0xFF5F6368),
-                                                                              ),
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                        Visibility(
-                                                                          visible: false,
-                                                                          child: Container(
-                                                                            padding: EdgeInsets.symmetric(
-                                                                                horizontal: 16.0.w,
-                                                                                vertical: 10.0.h),
-                                                                            decoration: BoxDecoration(
-                                                                                color: AppColor.black,
-                                                                                borderRadius:
-                                                                                    BorderRadius.circular(
-                                                                                        100.0)),
-                                                                            child: Text(
-                                                                              S.of(context).Default,
-                                                                              style: TextStyle(
-                                                                                  fontFamily:
-                                                                                      StringUtils.appFont,
-                                                                                  fontSize: 12.t,
-                                                                                  color: AppColor.white,
-                                                                                  fontWeight:
-                                                                                      FontWeight.w600),
-                                                                            ),
-                                                                          ),
-                                                                        )
-                                                                      ],
-                                                                    ),
-                                                                  );
-                                                                },
-                                                                separatorBuilder: (context, index) {
-                                                                  return SizedBox(
-                                                                    height: 8.h,
-                                                                  );
-                                                                },
-                                                                itemCount: data!.length);
-                                                          }),*/
                                                       Padding(
                                                         padding: EdgeInsets.only(bottom: 20.0.h),
                                                         child: PaymentAccountSwitcher(
                                                             title: S.of(context).linkedAccount,
-                                                            onDefaultSelectedAccount: (Account) {
-                                                              print('onDefaultSelectedAccount $Account');
+                                                            onDefaultSelectedAccount: (Account account) {
+                                                              model.selectedAccount = account;
                                                             },
-                                                            onSelectAccount: (Account) {
-                                                              print('onSelectAccount $Account');
+                                                            onSelectAccount: (Account account) {
+                                                              model.selectedAccount = account;
                                                             },
                                                             isSingleLineView: false,
                                                             isShowAmount: true),
@@ -287,15 +199,6 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                                                     ),
                                                                   ),
                                                                 )
-
-                                                                /*: Container(
-                                                              width: 40.0.w,
-                                                              height: 40.0.h,
-                                                              decoration: BoxDecoration(
-                                                                borderRadius: BorderRadius.all(Radius.circular(100.0)),
-                                                                border: Border.all(color: AppColor.gray1),
-                                                              ),
-                                                            ),*/
                                                               ],
                                                             ),
                                                           );
@@ -333,8 +236,6 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                                           .previousPage(
                                                               duration: Duration(seconds: 1),
                                                               curve: Curves.linear);
-
-                                                      // Navigator.pop(context);
                                                     },
                                                     child: Text(
                                                       S.of(context).back,

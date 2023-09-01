@@ -171,7 +171,6 @@
   "ibanNumber": "84118220000022123444",
   "cardLater": "I’ll get my card later",
   "cardPersonalization": "to card personalization",
-  "selectAnyOption": "Select any Option",
   "storage": "Storage",
   "camera": "Camera",
   "cancel": "Cancel",
@@ -1864,5 +1863,8 @@
   "done": "Done",
   "okey": "Okay",
   "view_more": "View More",
-  "noDataToDisplay": "No Data to Display"
+  "noDataToDisplay": "No Data to Display",
+  "insufficientBalanceAccountTransfer": "You do not have sufficient balance to transfer.",
+  "selectAnyOption": "Select atleast one filter option",
+  "insufficientBalanceSubAccount": "Oops! Transaction failed; you have insufficient balance in your account."
 }

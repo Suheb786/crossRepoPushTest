@@ -1,5 +1,6 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/e_voucher/e_voucher_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -133,160 +134,14 @@ class SettlementAmountPageView extends BasePageViewWidget<SettlementAmountPageVi
                                         ),
                                         PaymentAccountSwitcher(
                                           title: S.of(context).payFrom,
-                                          onDefaultSelectedAccount: (Account) {
-                                            print('onDefaultSelectedAccount $Account');
+                                          onDefaultSelectedAccount: (Account account) {
+                                            model.selectedAccount = account;
                                           },
-                                          onSelectAccount: (Account) {
-                                            print('onSelectAccount $Account');
+                                          onSelectAccount: (Account account) {
+                                            model.selectedAccount = account;
                                           },
                                           isSingleLineView: false,
                                         )
-                                        /*Column(
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  S.current.payFrom,
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    color: Theme.of(context).indicatorColor,
-                                                    fontSize: 14.t,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: 16.h,
-                                            ),
-                                            Container(
-                                              width: MediaQuery.of(context).size.width,
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(8.h),
-                                                  border: Border.all(
-                                                      color:
-                                                          Theme.of(context).colorScheme.tertiaryContainer)),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional.all(16.h),
-                                                child: Row(
-                                                  children: [
-                                                    Expanded(
-                                                      child: Column(
-                                                        mainAxisAlignment: MainAxisAlignment.start,
-                                                        children: [
-                                                          Row(
-                                                            children: [
-                                                              Text(
-                                                                S.current.currentAccount,
-                                                                textAlign: TextAlign.center,
-                                                                style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  color: Theme.of(context).indicatorColor,
-                                                                  fontSize: 14.t,
-                                                                  fontWeight: FontWeight.w600,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          SizedBox(height: 3.h),
-                                                          Row(
-                                                            children: [
-                                                              Text(
-                                                                ProviderScope.containerOf(context)
-                                                                        .read(appHomeViewModelProvider)
-                                                                        .dashboardDataContent
-                                                                        .account
-                                                                        ?.accountNo ??
-                                                                    "",
-                                                                textAlign: TextAlign.center,
-                                                                style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  color: Theme.of(context)
-                                                                      .colorScheme
-                                                                      .inversePrimary,
-                                                                  fontSize: 12.t,
-                                                                  fontWeight: FontWeight.w600,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          SizedBox(height: 16.h),
-                                                          Row(
-                                                            children: [
-                                                              Text(
-                                                                "${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.account?.availableBalance}" +
-                                                                    " " +
-                                                                    "${S.current.JOD}",
-                                                                textAlign: TextAlign.center,
-                                                                style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  color: Theme.of(context).indicatorColor,
-                                                                  fontSize: 14.t,
-                                                                  fontWeight: FontWeight.w600,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    AppStreamBuilder<bool>(
-                                                        stream: model.isCheckedStream,
-                                                        initialData: false,
-                                                        dataBuilder: (context, isChecked) {
-                                                          return isChecked!
-                                                              ? GestureDetector(
-                                                                  onTap: () {
-                                                                    model.check(false);
-                                                                    model.validate();
-                                                                  },
-                                                                  child: Container(
-                                                                    height: 40.h,
-                                                                    width: 40.h,
-                                                                    decoration: BoxDecoration(
-                                                                        color: Theme.of(context).canvasColor,
-                                                                        border: Border.all(
-                                                                          color: Theme.of(context)
-                                                                              .indicatorColor,
-                                                                        ),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(100)),
-                                                                    child: AppSvg.asset(AssetUtils.check,
-                                                                        color:
-                                                                            Theme.of(context).indicatorColor,
-                                                                        height: 16.h,
-                                                                        fit: BoxFit.scaleDown,
-                                                                        width: 16.h),
-                                                                  ),
-                                                                )
-                                                              : GestureDetector(
-                                                                  onTap: () {
-                                                                    model.check(true);
-                                                                    model.validate();
-                                                                  },
-                                                                  child: Container(
-                                                                    height: 40.h,
-                                                                    width: 40.h,
-                                                                    decoration: BoxDecoration(
-                                                                        color: Theme.of(context)
-                                                                            .colorScheme
-                                                                            .secondary,
-                                                                        border: Border.all(
-                                                                          color: Theme.of(context)
-                                                                              .indicatorColor,
-                                                                        ),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(100)),
-                                                                  ),
-                                                                );
-                                                        })
-                                                  ],
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),*/
                                       ],
                                     ),
                                   ),

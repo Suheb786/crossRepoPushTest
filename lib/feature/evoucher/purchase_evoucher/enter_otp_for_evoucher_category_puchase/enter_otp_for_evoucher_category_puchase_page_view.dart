@@ -65,16 +65,17 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                             .selectedItem;
                         model.placeOrder(
                             sourceAccount: ProviderScope.containerOf(context)
-                                .read(appHomeViewModelProvider)
-                                .dashboardDataContent
-                                .account
-                                ?.iban,
+                                    .read(evoucherSettlementAccountViewModelProvider)
+                                    .selectedAccount
+                                    ?.iban ??
+                                '',
                             sourceCurrency: AppConstantsUtils.jodCurrency,
                             cardItemId: item.id,
                             exchangeRate: double.parse(item.exchangeRate),
                             voucherCurrency: item.currency,
                             reconciliationCurrency: item.reconciliationCurrency,
-                            equivalentAmount: (item.fromValue.toDouble() * double.parse(item.exchangeRate)).toString(),
+                            equivalentAmount:
+                                (item.fromValue.toDouble() * double.parse(item.exchangeRate)).toString(),
                             denomination: item.fromValue.toInt(),
                             discount: item.discount.replaceAll('%', ''),
                             categories: item.categories.join(','),
@@ -147,7 +148,7 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                                       },
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(top: 16.0.h,bottom: 16.h),
+                                      padding: EdgeInsets.only(top: 16.0.h, bottom: 16.h),
                                       child: AppStreamBuilder<bool>(
                                           stream: model.showButtonStream,
                                           initialData: false,

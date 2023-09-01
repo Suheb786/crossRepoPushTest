@@ -132,7 +132,7 @@ class AppHomeViewModel extends BasePageViewModel {
 
   PublishSubject<GetDashboardDataUseCaseParams> _getDashboardDataRequest = PublishSubject();
 
-  PublishSubject<Resource<GetDashboardDataResponse>> _getDashboardDataResponse = PublishSubject();
+  BehaviorSubject<Resource<GetDashboardDataResponse>> _getDashboardDataResponse = BehaviorSubject();
 
   Stream<Resource<GetDashboardDataResponse>> get getDashboardDataStream => _getDashboardDataResponse.stream;
 
@@ -533,12 +533,6 @@ class AppHomeViewModel extends BasePageViewModel {
     if (!showPopUp) {
       showPopUp = true;
       getCurrentUser();
-
-      ///show apple pay pop up button
-      if (!AppConstantsUtils.isApplePayPopUpShown) {
-        showApplePayPopUp(true);
-        AppConstantsUtils.isApplePayPopUpShown = true;
-      }
     }
   }
 
@@ -587,30 +581,6 @@ class AppHomeViewModel extends BasePageViewModel {
   }
 
   List<Account> yourAllAccounts = [];
-
-  getAllAccountNumbers(List<Account> allAccounts) {
-    List<String> accountNumbers = [];
-    for (var account in allAccounts) {
-      accountNumbers.add(account.accountNo ?? "");
-    }
-    return accountNumbers;
-  }
-
-  getAllAccountTitles(List<Account> allAccounts) {
-    List<String> accountTitles = [];
-    for (var account in allAccounts) {
-      accountTitles.add(account.accountTitle ?? "");
-    }
-    return accountTitles;
-  }
-
-  getAllAvailableBalances(List<Account> allAccounts) {
-    List<String> availableAmounts = [];
-    for (var account in allAccounts) {
-      availableAmounts.add(StringUtils.formatBalance(account.availableBalance ?? ""));
-    }
-    return availableAmounts;
-  }
 
   List<Account> getAllMyAccounts() => yourAllAccounts;
 
@@ -920,7 +890,7 @@ class AppHomeViewModel extends BasePageViewModel {
         });
       } else {
         if (!(dashboardDataContent.dashboardFeatures?.isCreditCardFeatureEnabled ?? false)) {
-        /*  pages.add(CreditCardIssuanceFailureWidget(
+          /*  pages.add(CreditCardIssuanceFailureWidget(
             isSmallDevices: isSmallDevices,
             type: IssuanceType.service_unavailable,
           ));
@@ -1138,18 +1108,6 @@ class AppHomeViewModel extends BasePageViewModel {
   }
 
   ///--------------------Antelop Cards List-----------------///
-
-  ///--------------------Apple Pay PopUp -------------------///
-
-  PublishSubject<bool> _showApplePayPopUpRequest = PublishSubject();
-
-  Stream<bool> get applePayPopUpStream => _showApplePayPopUpRequest.stream;
-
-  void showApplePayPopUp(bool value) {
-    _showApplePayPopUpRequest.safeAdd(value);
-  }
-
-  ///--------------------Apple Pay PopUp -------------------///
 
   ///--------------------Account dormant status -------------------///
 

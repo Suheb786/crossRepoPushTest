@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/qr/qr_response.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/payment/account_swiching/payment_account_switcher.dart';
 import 'package:neo_bank/feature/request_money_via_qr/qr_screen/qr_screen_page.dart';
 import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -111,46 +113,16 @@ class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQr
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 8.0.h),
-            child: Text(
-              S.of(context).accountBalance,
-              style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 12.0.t,
-                  color: AppColor.dark_gray_1),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 2.0.h, bottom: 32.0.h),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  ProviderScope.containerOf(context)
-                          .read(appHomeViewModelProvider)
-                          .dashboardDataContent
-                          .account
-                          ?.availableBalance ??
-                      "0.00",
-                  style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14.0.t,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 4.0.w, top: 2.0.h),
-                  child: Text(
-                    S.of(context).JOD,
-                    style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 12.0.t,
-                        color: AppColor.dark_gray_1),
-                  ),
-                ),
-              ],
+            padding: EdgeInsets.only(top: 8.0.h, bottom: 32.0.h),
+            child: PaymentAccountSwitcher(
+              title: S.of(context).to.toUpperCase(),
+              onDefaultSelectedAccount: (Account account) {
+                model.selectedAccount = account;
+              },
+              onSelectAccount: (Account account) {
+                model.selectedAccount = account;
+              },
+              isSingleLineView: true,
             ),
           ),
           AppStreamBuilder<Resource<QrResponse>>(

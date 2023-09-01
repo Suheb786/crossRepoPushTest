@@ -70,7 +70,6 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
               if (response.status == Status.SUCCESS) {
                 AppConstantsUtils.resetCacheLists();
                 if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
-                  AppConstantsUtils.isApplePayPopUpShown = false;
                   AntelopHelper.walletDisconnect();
                 }
                 Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding, (route) => false);

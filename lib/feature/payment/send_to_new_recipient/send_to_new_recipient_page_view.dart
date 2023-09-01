@@ -208,8 +208,9 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                           desc: S.of(context).dummyAlias,
                                                                         )
                                                                       ],
-                                                                    ),
-                                                                    onDismissed: () {}, onSelected: () {
+                                                                    ), onDismissed: () {
+                                                                  Navigator.pop(context);
+                                                                }, onSelected: () {
                                                                   Navigator.pop(context);
                                                                 });
                                                               },

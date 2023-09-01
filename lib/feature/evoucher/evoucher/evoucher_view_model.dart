@@ -11,6 +11,7 @@ import 'package:domain/usecase/evouchers/evoucher_item_filter_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_region_min_max_value_usecase.dart';
 import 'package:domain/usecase/evouchers/get_voucher_details_usecase.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/model/transaction_period.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -82,6 +83,10 @@ class EvoucherViewModel extends BasePageViewModel {
 
   Stream<Resource<List<VoucherItem>>> get voucherItemFilterResponseStream =>
       voucherItemFilterResponseSubject.stream;
+
+  PublishSubject<int> switchTabSubject = PublishSubject();
+
+  Stream<int> get switchTabStream => switchTabSubject.stream;
 
   EvoucherViewModel({
     required this.getVoucherDetailsUseCase,
@@ -357,6 +362,10 @@ class EvoucherViewModel extends BasePageViewModel {
 
   void setSelectedCategory(VoucherCategories category) {
     this.selectedVoucherCategories = category;
+  }
+
+  void switchTab(TabController tabController, int tab) {
+    tabController.animateTo(1, duration: const Duration(milliseconds: 300));
   }
 
   @override

@@ -160,8 +160,9 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                                   desc: S.of(context).dummyAlias,
                                                                 )
                                                               ],
-                                                            ),
-                                                            onDismissed: () {}, onSelected: () {
+                                                            ), onDismissed: () {
+                                                          Navigator.pop(context);
+                                                        }, onSelected: () {
                                                           Navigator.pop(context);
                                                         });
                                                       },

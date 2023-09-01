@@ -339,6 +339,12 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                                       cause: Exception(),
                                       error: ErrorInfo(message: ""),
                                       type: ErrorType.EMPTY_PURPOSE_DETAIL));
+                                } else if (double.parse(model.selectedAccount.availableBalance ?? '0') <
+                                    double.parse(model.currentPinValue)) {
+                                  model.showToastWithError(AppError(
+                                      cause: Exception(),
+                                      error: ErrorInfo(message: ""),
+                                      type: ErrorType.INSUFFICIENT_BALANCE_TRANSFER));
                                 } else {
                                   model.checkSendMoney();
                                 }

@@ -20,6 +20,7 @@ PayPostPaidBillRequestEntity _$PayPostPaidBillRequestEntityFromJson(
       CardId: json['CardId'] as String?,
       nickName: json['NickName'] as String?,
       getToken: json['GetToken'] as bool? ?? true,
+      fromAccount: json['FromAccount'] as String?,
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
 
@@ -36,6 +37,7 @@ Map<String, dynamic> _$PayPostPaidBillRequestEntityToJson(
       'otpCode': instance.otpCode,
       'NickName': instance.nickName,
       'CardId': instance.CardId,
+      'FromAccount': instance.fromAccount,
       'GetToken': instance.getToken,
       'BaseClass': instance.baseData,
     };
