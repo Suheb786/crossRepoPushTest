@@ -23,8 +23,6 @@ class AppConstantsUtils {
 
   static bool isApplePayFeatureEnabled = false;
 
-  static bool isApplePayPopUpShown = false;
-
   static String RJRouteLink = '/RJFlightConfirmation/Index';
 
   static String SELECTED_BILLER_CODE = "";

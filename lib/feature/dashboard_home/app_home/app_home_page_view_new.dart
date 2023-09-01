@@ -152,6 +152,34 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                         });
                       }
 
+                      if (!(data.data?.isApplePayPopUpClicked ?? false) &&
+                          Platform.isIOS &&
+                          AppConstantsUtils.isApplePayFeatureEnabled &&
+                          (model.debitCards.isNotEmpty || model.creditCards.isNotEmpty)) {
+                        ApplePayDialog.show(context,
+                            image: AssetUtils.applePayLogo,
+                            title: S.of(context).blinkWithApplePay, onSelected: () {
+                          Navigator.pop(context);
+                          data.data?.isApplePayPopUpClicked = true;
+                          model.saveCurrentUserData(user: data.data!);
+                          Navigator.pushNamed(context, RoutePaths.SelectedCardForApplePayPage,
+                              arguments: SelectedCardsForApplePayPageArguments(
+                                  debitCards: model.debitCards, creditCards: model.creditCards));
+                        }, onDismissed: () {
+                          Navigator.pop(context);
+                          data.data?.isApplePayPopUpClicked = true;
+                          model.saveCurrentUserData(user: data.data!);
+                        },
+                            descriptionWidget: Text(
+                              S.of(context).blinkWithApplePayLandingDialogDescription,
+                              style: TextStyle(
+                                  color: AppColor.veryDarkGray2,
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 14.t,
+                                  fontWeight: FontWeight.w400),
+                            ));
+                      }
+
                       ///Show account status pop up
                       if (model.dashboardDataContent.account?.accountStatusEnum ==
                           AccountStatusEnum.DORMANT) {
@@ -194,17 +222,24 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                               },
                               dataBuilder: (context, accountStatus) {
                                 return AppStreamBuilder<bool>(
-                                    stream: model.applePayPopUpStream,
+                                    stream: model.showAddAnotherCardToApplePayPopUpStream,
                                     initialData: false,
                                     onData: (value) {
                                       if (value &&
                                           Platform.isIOS &&
                                           AppConstantsUtils.isApplePayFeatureEnabled &&
-                                          isAllCardsInApplePay &&
-                                          (model.debitCards.isNotEmpty || model.creditCards.isNotEmpty)) {
-                                        ApplePayDialog.show(context,
-                                            image: AssetUtils.applePayLogo,
-                                            title: S.of(context).blinkWithApplePay, onSelected: () {
+                                          isAllCardsInApplePay) {
+                                        AddOtherCardToAppleWalletDialog.show(context,
+                                            title: S.of(context).addOtherCardToAppleWallet,
+                                            image: AssetUtils.applePayButton,
+                                            descriptionWidget: Text(
+                                              S.of(context).addOtherCardToAppleWalletDialogDescription,
+                                              style: TextStyle(
+                                                  color: AppColor.veryDarkGray1,
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontSize: 14.t,
+                                                  fontWeight: FontWeight.w400),
+                                            ), onSelected: () {
                                           Navigator.pop(context);
                                           Navigator.pushNamed(context, RoutePaths.SelectedCardForApplePayPage,
                                               arguments: SelectedCardsForApplePayPageArguments(
@@ -212,429 +247,400 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                   creditCards: model.creditCards));
                                         }, onDismissed: () {
                                           Navigator.pop(context);
-                                        },
-                                            descriptionWidget: Text(
-                                              S.of(context).blinkWithApplePayLandingDialogDescription,
-                                              style: TextStyle(
-                                                  color: AppColor.veryDarkGray2,
-                                                  fontFamily: StringUtils.appFont,
-                                                  fontSize: 14.t,
-                                                  fontWeight: FontWeight.w400),
-                                            ));
+                                        });
                                       }
                                     },
-                                    dataBuilder: (context, value) {
+                                    dataBuilder: (context, addAnotherCardToAppleWallet) {
                                       return AppStreamBuilder<bool>(
-                                          stream: model.showAddAnotherCardToApplePayPopUpStream,
-                                          initialData: false,
-                                          onData: (value) {
-                                            if (value &&
-                                                Platform.isIOS &&
-                                                AppConstantsUtils.isApplePayFeatureEnabled &&
-                                                isAllCardsInApplePay) {
-                                              AddOtherCardToAppleWalletDialog.show(context,
-                                                  title: S.of(context).addOtherCardToAppleWallet,
-                                                  image: AssetUtils.applePayButton,
-                                                  descriptionWidget: Text(
-                                                    S.of(context).addOtherCardToAppleWalletDialogDescription,
-                                                    style: TextStyle(
-                                                        color: AppColor.veryDarkGray1,
-                                                        fontFamily: StringUtils.appFont,
-                                                        fontSize: 14.t,
-                                                        fontWeight: FontWeight.w400),
-                                                  ), onSelected: () {
-                                                Navigator.pop(context);
-                                                Navigator.pushNamed(
-                                                    context, RoutePaths.SelectedCardForApplePayPage,
-                                                    arguments: SelectedCardsForApplePayPageArguments(
-                                                        debitCards: model.debitCards,
-                                                        creditCards: model.creditCards));
-                                              }, onDismissed: () {
-                                                Navigator.pop(context);
-                                              });
-                                            }
-                                          },
-                                          dataBuilder: (context, addAnotherCardToAppleWallet) {
-                                            return AppStreamBuilder<bool>(
-                                              stream: model.showTimeLineStream,
-                                              initialData: false,
-                                              dataBuilder: (context, showTimeLine) {
-                                                return AppStreamBuilder<List>(
-                                                    stream: model.pageStream,
-                                                    initialData: [Container()],
-                                                    dataBuilder: (context, pagesList) {
-                                                      return Stack(
-                                                        alignment: Alignment.bottomCenter,
-                                                        children: [
-                                                          AppStreamBuilder<Resource<bool>>(
-                                                              stream: model.updateNickNameResponseStream,
-                                                              initialData: Resource.none(),
-                                                              onData: (value) {
-                                                                if (value.status == Status.LOADING) {
-                                                                  AppProgress(_buildContext);
-                                                                } else if (value.status == Status.ERROR ||
-                                                                    value.status == Status.SUCCESS) {
-                                                                  Navigator.pop(_buildContext);
-                                                                }
-                                                              },
-                                                              dataBuilder: (context, value) {
-                                                                return const SizedBox();
-                                                              }),
+                                        stream: model.showTimeLineStream,
+                                        initialData: false,
+                                        dataBuilder: (context, showTimeLine) {
+                                          return AppStreamBuilder<List>(
+                                              stream: model.pageStream,
+                                              initialData: [Container()],
+                                              dataBuilder: (context, pagesList) {
+                                                return Stack(
+                                                  alignment: Alignment.bottomCenter,
+                                                  children: [
+                                                    AppStreamBuilder<Resource<bool>>(
+                                                        stream: model.updateNickNameResponseStream,
+                                                        initialData: Resource.none(),
+                                                        onData: (value) {
+                                                          if (value.status == Status.LOADING) {
+                                                            AppProgress(_buildContext);
+                                                          } else if (value.status == Status.ERROR ||
+                                                              value.status == Status.SUCCESS) {
+                                                            Navigator.pop(_buildContext);
+                                                          }
+                                                        },
+                                                        dataBuilder: (context, value) {
+                                                          return const SizedBox();
+                                                        }),
 
-                                                          ///Settings page
-                                                          ///Timeline page
-                                                          AppStreamBuilder<DashboardAnimatedPage>(
-                                                              stream: model.pageSwitchStream,
-                                                              initialData: DashboardAnimatedPage.NULL,
-                                                              dataBuilder: (context, switchedPage) {
-                                                                return AnimatedSwitcher(
-                                                                  duration: const Duration(milliseconds: 500),
-                                                                  reverseDuration:
-                                                                      const Duration(milliseconds: 400),
-                                                                  switchInCurve: Curves.easeInOut,
-                                                                  switchOutCurve: Curves.linearToEaseOut,
-                                                                  child:
-                                                                      switchedPage ==
-                                                                              DashboardAnimatedPage.SETTINGS
-                                                                          ? model.selectedDebitCard != null
-                                                                              ? DebitCardSettingsPage(DebitCardSettingsArguments(
-                                                                                  accountStatusEnum: cardData
-                                                                                          ?.data
-                                                                                          ?.dashboardDataContent
-                                                                                          ?.account
-                                                                                          ?.accountStatusEnum ??
-                                                                                      AccountStatusEnum.NONE,
-                                                                                  isPrimaryDebitCard: model
-                                                                                      .isPrimaryDebitCard,
-                                                                                  debitCard: model
-                                                                                      .selectedDebitCard!,
-                                                                                  debitCardRequestPhysicalCardEnabled: cardData
-                                                                                          ?.data
-                                                                                          ?.dashboardDataContent
-                                                                                          ?.dashboardFeatures
-                                                                                          ?.isDebitCardRequestPhysicalCardEnabled ??
-                                                                                      false))
-                                                                              : CreditCardSettingsPage(
-                                                                                  CreditCardSettingsArguments(
-                                                                                      creditCard: model
-                                                                                          .selectedCreditCard!,
-                                                                                      isChangePinEnabled: cardData
-                                                                                              ?.data
-                                                                                              ?.dashboardDataContent
-                                                                                              ?.dashboardFeatures
-                                                                                              ?.isPinChangeEnabled ??
-                                                                                          true))
-                                                                          : switchedPage ==
-                                                                                  DashboardAnimatedPage
-                                                                                      .TIMELINE
-                                                                              ? DebitCardTimeLinePage(TimeLinePageArguments(cardType: model.cardTypeList[currentStep].cardType, timeLineArguments: model.timeLineArguments))
-                                                                              : switchedPage == DashboardAnimatedPage.PAYBACK
-                                                                                  ? CreditCardPayBackPage(
-                                                                                      CreditCardPayBackArguments(
-                                                                                          accountHolderName: model
-                                                                                                  .selectedCreditCard
-                                                                                                  ?.name ??
-                                                                                              '',
-                                                                                          secureCode: model
-                                                                                                  .selectedCreditCard
-                                                                                                  ?.cardCode ??
-                                                                                              '',
-                                                                                          accountBalance: cardData!
-                                                                                                  .data!
-                                                                                                  .dashboardDataContent
-                                                                                                  ?.account
-                                                                                                  ?.availableBalance ??
-                                                                                              '0',
-                                                                                          minDuePayBackAmount:
-                                                                                              (model.selectedCreditCard
-                                                                                                          ?.paymentDueAmount ??
-                                                                                                      '')
-                                                                                                  .toString(),
-                                                                                          totalMinDueAmount: model
-                                                                                                  .selectedCreditCard
-                                                                                                  ?.usedBalance ??
-                                                                                              '0'),
-                                                                                    )
-                                                                                  : switchedPage == DashboardAnimatedPage.ACT_SETTING
-                                                                                      ? AppStreamBuilder<Resource<CreateAccountResponse>>(
-                                                                                          stream: model.createAccountStream,
-                                                                                          initialData: Resource.none(),
-                                                                                          onData: (event) {
-                                                                                            if (event
-                                                                                                    .status ==
-                                                                                                Status
-                                                                                                    .SUCCESS) {
-                                                                                              Navigator.pushNamed(
-                                                                                                      context,
-                                                                                                      RoutePaths
-                                                                                                          .OpenSubAccountSuccessPage,
-                                                                                                      arguments: OpenSubAccountSuccessPageArgument(
-                                                                                                          accountNo: model
-                                                                                                              .accountNo,
-                                                                                                          iban: model
-                                                                                                              .iban))
-                                                                                                  .then(
-                                                                                                      (value) {
-                                                                                                model
-                                                                                                    .closeSubAccountDialogAndRefreshPage();
-                                                                                              });
-                                                                                            }
-                                                                                          },
-                                                                                          dataBuilder: (context, createAccountResponse) {
-                                                                                            return Padding(
-                                                                                              padding: EdgeInsetsDirectional
-                                                                                                  .only(
-                                                                                                      start: 36.0
-                                                                                                          .w),
-                                                                                              child: Column(
-                                                                                                mainAxisAlignment:
-                                                                                                    MainAxisAlignment
-                                                                                                        .end,
-                                                                                                children: [
-                                                                                                  AddMoneyTile(),
-                                                                                                  TransferBetweenAccountTile(
-                                                                                                    isVisible: (cardData?.data?.dashboardDataContent?.dashboardFeatures?.transferBetweenAccountsFeature ??
-                                                                                                            false) &&
-                                                                                                        model
-                                                                                                            .hasSubAccount(
-                                                                                                          (cardData?.data?.dashboardDataContent?.accounts ??
-                                                                                                              []),
-                                                                                                        ),
-                                                                                                    onTap:
-                                                                                                        () {
-                                                                                                      var accounts =
-                                                                                                          (cardData?.data?.dashboardDataContent?.accounts ??
-                                                                                                              []);
-                                                                                                      Navigator
-                                                                                                          .pushNamed(
-                                                                                                        context,
-                                                                                                        RoutePaths
-                                                                                                            .SelectTransferPage,
-                                                                                                        arguments:
-                                                                                                            SelectTranferPageArgument(
-                                                                                                          selectedAccount:
-                                                                                                              model.selectedAccount,
-                                                                                                          allAccountsList: /*model.getAllMyAccounts()*/
-                                                                                                              accounts,
-                                                                                                        ),
-                                                                                                      );
-                                                                                                    },
-                                                                                                    isEnabled:
-                                                                                                        true,
-                                                                                                    isCardActivated:
-                                                                                                        true,
-                                                                                                  ),
-                                                                                                  OpenSubAccountTile(
-                                                                                                    isCardActivated: (cardData?.data?.dashboardDataContent?.dashboardFeatures?.subAccountFeature ??
-                                                                                                            false) &&
-                                                                                                        (cardData?.data?.dashboardDataContent?.allowSubAccount ??
-                                                                                                            false),
-                                                                                                    isEnabled: (cardData?.data?.dashboardDataContent?.dashboardFeatures?.subAccountFeature ??
-                                                                                                            false) &&
-                                                                                                        (cardData?.data?.dashboardDataContent?.allowSubAccount ??
-                                                                                                            false),
-                                                                                                    model:
-                                                                                                        model,
-                                                                                                  ),
-                                                                                                  ShareAccountTile(
-                                                                                                      context:
-                                                                                                          context,
-                                                                                                      model:
-                                                                                                          model),
-                                                                                                  SizedBox(
-                                                                                                      height: (cardData?.data?.dashboardDataContent?.dashboardFeatures?.transferBetweenAccountsFeature ?? false) &&
-                                                                                                              model.hasSubAccount(
-                                                                                                                (cardData?.data?.dashboardDataContent?.accounts ?? []),
-                                                                                                              )
-                                                                                                          ? 110.h
-                                                                                                          : 180.h),
-                                                                                                ],
+                                                    ///Settings page
+                                                    ///Timeline page
+                                                    AppStreamBuilder<DashboardAnimatedPage>(
+                                                        stream: model.pageSwitchStream,
+                                                        initialData: DashboardAnimatedPage.NULL,
+                                                        dataBuilder: (context, switchedPage) {
+                                                          return AnimatedSwitcher(
+                                                            duration: const Duration(milliseconds: 500),
+                                                            reverseDuration:
+                                                                const Duration(milliseconds: 400),
+                                                            switchInCurve: Curves.easeInOut,
+                                                            switchOutCurve: Curves.linearToEaseOut,
+                                                            child: switchedPage ==
+                                                                    DashboardAnimatedPage.SETTINGS
+                                                                ? model.selectedDebitCard != null
+                                                                    ? DebitCardSettingsPage(DebitCardSettingsArguments(
+                                                                        accountStatusEnum: cardData
+                                                                                ?.data
+                                                                                ?.dashboardDataContent
+                                                                                ?.account
+                                                                                ?.accountStatusEnum ??
+                                                                            AccountStatusEnum.NONE,
+                                                                        isPrimaryDebitCard:
+                                                                            model.isPrimaryDebitCard,
+                                                                        debitCard: model.selectedDebitCard!,
+                                                                        debitCardRequestPhysicalCardEnabled:
+                                                                            cardData
+                                                                                    ?.data
+                                                                                    ?.dashboardDataContent
+                                                                                    ?.dashboardFeatures
+                                                                                    ?.isDebitCardRequestPhysicalCardEnabled ??
+                                                                                false))
+                                                                    : CreditCardSettingsPage(
+                                                                        CreditCardSettingsArguments(
+                                                                            creditCard:
+                                                                                model.selectedCreditCard!,
+                                                                            isChangePinEnabled: cardData
+                                                                                    ?.data
+                                                                                    ?.dashboardDataContent
+                                                                                    ?.dashboardFeatures
+                                                                                    ?.isPinChangeEnabled ??
+                                                                                true))
+                                                                : switchedPage == DashboardAnimatedPage.TIMELINE
+                                                                    ? DebitCardTimeLinePage(TimeLinePageArguments(cardType: model.cardTypeList[currentStep].cardType, timeLineArguments: model.timeLineArguments))
+                                                                    : switchedPage == DashboardAnimatedPage.PAYBACK
+                                                                        ? CreditCardPayBackPage(
+                                                                            CreditCardPayBackArguments(
+                                                                                accountHolderName: model
+                                                                                        .selectedCreditCard
+                                                                                        ?.name ??
+                                                                                    '',
+                                                                                secureCode: model
+                                                                                        .selectedCreditCard
+                                                                                        ?.cardCode ??
+                                                                                    '',
+                                                                                accountBalance: cardData!
+                                                                                        .data!
+                                                                                        .dashboardDataContent
+                                                                                        ?.account
+                                                                                        ?.availableBalance ??
+                                                                                    '0',
+                                                                                minDuePayBackAmount: (model
+                                                                                            .selectedCreditCard
+                                                                                            ?.paymentDueAmount ??
+                                                                                        '')
+                                                                                    .toString(),
+                                                                                totalMinDueAmount: model
+                                                                                        .selectedCreditCard
+                                                                                        ?.usedBalance ??
+                                                                                    '0'),
+                                                                          )
+                                                                        : switchedPage == DashboardAnimatedPage.ACT_SETTING
+                                                                            ? AppStreamBuilder<Resource<CreateAccountResponse>>(
+                                                                                stream: model.createAccountStream,
+                                                                                initialData: Resource.none(),
+                                                                                onData: (event) {
+                                                                                  if (event.status ==
+                                                                                      Status.SUCCESS) {
+                                                                                    Navigator.pushNamed(
+                                                                                            context,
+                                                                                            RoutePaths
+                                                                                                .OpenSubAccountSuccessPage,
+                                                                                            arguments: OpenSubAccountSuccessPageArgument(
+                                                                                                accountNo: model
+                                                                                                    .accountNo,
+                                                                                                iban: model
+                                                                                                    .iban))
+                                                                                        .then((value) {
+                                                                                      model
+                                                                                          .closeSubAccountDialogAndRefreshPage();
+                                                                                    });
+                                                                                  }
+                                                                                },
+                                                                                dataBuilder: (context, createAccountResponse) {
+                                                                                  return Padding(
+                                                                                    padding:
+                                                                                        EdgeInsetsDirectional
+                                                                                            .only(
+                                                                                                start:
+                                                                                                    36.0.w),
+                                                                                    child: Column(
+                                                                                      mainAxisAlignment:
+                                                                                          MainAxisAlignment
+                                                                                              .end,
+                                                                                      children: [
+                                                                                        AddMoneyTile(),
+                                                                                        TransferBetweenAccountTile(
+                                                                                          isVisible: (cardData
+                                                                                                      ?.data
+                                                                                                      ?.dashboardDataContent
+                                                                                                      ?.dashboardFeatures
+                                                                                                      ?.transferBetweenAccountsFeature ??
+                                                                                                  false) &&
+                                                                                              model
+                                                                                                  .hasSubAccount(
+                                                                                                (cardData
+                                                                                                        ?.data
+                                                                                                        ?.dashboardDataContent
+                                                                                                        ?.accounts ??
+                                                                                                    []),
+                                                                                              ),
+                                                                                          onTap: () {
+                                                                                            var accounts = (cardData
+                                                                                                    ?.data
+                                                                                                    ?.dashboardDataContent
+                                                                                                    ?.accounts ??
+                                                                                                []);
+                                                                                            Navigator
+                                                                                                .pushNamed(
+                                                                                              context,
+                                                                                              RoutePaths
+                                                                                                  .SelectTransferPage,
+                                                                                              arguments:
+                                                                                                  SelectTranferPageArgument(
+                                                                                                selectedAccount:
+                                                                                                    model
+                                                                                                        .selectedAccount,
+                                                                                                allAccountsList: /*model.getAllMyAccounts()*/
+                                                                                                    accounts,
                                                                                               ),
                                                                                             );
-                                                                                          })
-                                                                                      : switchedPage == DashboardAnimatedPage.SUB_ACT_SETTING
-                                                                                          ? Padding(
-                                                                                              padding: EdgeInsetsDirectional
-                                                                                                  .only(
-                                                                                                      start: 36.0
-                                                                                                          .w),
-                                                                                              child: Column(
-                                                                                                mainAxisAlignment:
-                                                                                                    MainAxisAlignment
-                                                                                                        .end,
-                                                                                                children: [
-                                                                                                  TransferBetweenAccountTile(
-                                                                                                    isEnabled: (cardData
+                                                                                          },
+                                                                                          isEnabled: true,
+                                                                                          isCardActivated:
+                                                                                              true,
+                                                                                        ),
+                                                                                        OpenSubAccountTile(
+                                                                                          isCardActivated: (cardData
+                                                                                                      ?.data
+                                                                                                      ?.dashboardDataContent
+                                                                                                      ?.dashboardFeatures
+                                                                                                      ?.subAccountFeature ??
+                                                                                                  false) &&
+                                                                                              (cardData
+                                                                                                      ?.data
+                                                                                                      ?.dashboardDataContent
+                                                                                                      ?.allowSubAccount ??
+                                                                                                  false),
+                                                                                          isEnabled: (cardData
+                                                                                                      ?.data
+                                                                                                      ?.dashboardDataContent
+                                                                                                      ?.dashboardFeatures
+                                                                                                      ?.subAccountFeature ??
+                                                                                                  false) &&
+                                                                                              (cardData
+                                                                                                      ?.data
+                                                                                                      ?.dashboardDataContent
+                                                                                                      ?.allowSubAccount ??
+                                                                                                  false),
+                                                                                          model: model,
+                                                                                        ),
+                                                                                        ShareAccountTile(
+                                                                                            context: context,
+                                                                                            model: model),
+                                                                                        SizedBox(
+                                                                                            height: (cardData
                                                                                                             ?.data
                                                                                                             ?.dashboardDataContent
                                                                                                             ?.dashboardFeatures
                                                                                                             ?.transferBetweenAccountsFeature ??
-                                                                                                        false),
-                                                                                                    isCardActivated: (cardData
-                                                                                                            ?.data
-                                                                                                            ?.dashboardDataContent
-                                                                                                            ?.dashboardFeatures
-                                                                                                            ?.transferBetweenAccountsFeature ??
-                                                                                                        false),
-                                                                                                    onTap:
-                                                                                                        () {
-                                                                                                      var accounts =
-                                                                                                          (cardData?.data?.dashboardDataContent?.accounts ??
-                                                                                                              []);
-                                                                                                      Navigator
-                                                                                                          .pushNamed(
-                                                                                                        context,
-                                                                                                        RoutePaths
-                                                                                                            .SelectTransferPage,
-                                                                                                        arguments:
-                                                                                                            SelectTranferPageArgument(
-                                                                                                          selectedAccount:
-                                                                                                              model.selectedAccount,
-                                                                                                          allAccountsList:
-                                                                                                              accounts,
-                                                                                                        ),
-                                                                                                      );
-                                                                                                    },
-                                                                                                  ),
-                                                                                                  ShareAccountTile(
-                                                                                                    context:
-                                                                                                        context,
-                                                                                                    model:
-                                                                                                        model,
-                                                                                                    isCardActivated: (cardData
-                                                                                                            ?.data
-                                                                                                            ?.dashboardDataContent
-                                                                                                            ?.dashboardFeatures
-                                                                                                            ?.shareAccountInformationFeature ??
-                                                                                                        false),
-                                                                                                    isEnabled: (cardData
-                                                                                                            ?.data
-                                                                                                            ?.dashboardDataContent
-                                                                                                            ?.dashboardFeatures
-                                                                                                            ?.shareAccountInformationFeature ??
-                                                                                                        false),
-                                                                                                  ),
-                                                                                                  CloseSubAccount(
-                                                                                                    model:
-                                                                                                        model,
-                                                                                                    isCardActivated: (cardData
-                                                                                                            ?.data
-                                                                                                            ?.dashboardDataContent
-                                                                                                            ?.dashboardFeatures
-                                                                                                            ?.closeSubAccountFeature ??
-                                                                                                        false),
-                                                                                                    isEnabled: (cardData
-                                                                                                            ?.data
-                                                                                                            ?.dashboardDataContent
-                                                                                                            ?.dashboardFeatures
-                                                                                                            ?.closeSubAccountFeature ??
-                                                                                                        false),
-                                                                                                  ),
-                                                                                                  SizedBox(
-                                                                                                      height:
-                                                                                                          180.h),
-                                                                                                ],
+                                                                                                        false) &&
+                                                                                                    model
+                                                                                                        .hasSubAccount(
+                                                                                                      (cardData?.data?.dashboardDataContent?.accounts ??
+                                                                                                          []),
+                                                                                                    )
+                                                                                                ? 110.h
+                                                                                                : 180.h),
+                                                                                      ],
+                                                                                    ),
+                                                                                  );
+                                                                                })
+                                                                            : switchedPage == DashboardAnimatedPage.SUB_ACT_SETTING
+                                                                                ? Padding(
+                                                                                    padding:
+                                                                                        EdgeInsetsDirectional
+                                                                                            .only(
+                                                                                                start:
+                                                                                                    36.0.w),
+                                                                                    child: Column(
+                                                                                      mainAxisAlignment:
+                                                                                          MainAxisAlignment
+                                                                                              .end,
+                                                                                      children: [
+                                                                                        TransferBetweenAccountTile(
+                                                                                          isEnabled: (cardData
+                                                                                                  ?.data
+                                                                                                  ?.dashboardDataContent
+                                                                                                  ?.dashboardFeatures
+                                                                                                  ?.transferBetweenAccountsFeature ??
+                                                                                              false),
+                                                                                          isCardActivated: (cardData
+                                                                                                  ?.data
+                                                                                                  ?.dashboardDataContent
+                                                                                                  ?.dashboardFeatures
+                                                                                                  ?.transferBetweenAccountsFeature ??
+                                                                                              false),
+                                                                                          onTap: () {
+                                                                                            var accounts = (cardData
+                                                                                                    ?.data
+                                                                                                    ?.dashboardDataContent
+                                                                                                    ?.accounts ??
+                                                                                                []);
+                                                                                            Navigator
+                                                                                                .pushNamed(
+                                                                                              context,
+                                                                                              RoutePaths
+                                                                                                  .SelectTransferPage,
+                                                                                              arguments:
+                                                                                                  SelectTranferPageArgument(
+                                                                                                selectedAccount:
+                                                                                                    model
+                                                                                                        .selectedAccount,
+                                                                                                allAccountsList:
+                                                                                                    accounts,
                                                                                               ),
-                                                                                            )
-                                                                                          : const SizedBox(),
-                                                                );
-                                                              }),
-                                                          AnimatedBuilder(
-                                                            animation: model.translateTimelineDownController,
-                                                            child: AnimatedBuilder(
-                                                                animation:
-                                                                    model.translateSettingsUpController,
-                                                                child: AnimatedBuilder(
-                                                                  animation: model
-                                                                      .translateAccountSettingsUpController,
-                                                                  child: Container(
-                                                                    child: Column(
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment.stretch,
+                                                                                            );
+                                                                                          },
+                                                                                        ),
+                                                                                        ShareAccountTile(
+                                                                                          context: context,
+                                                                                          model: model,
+                                                                                          isCardActivated: (cardData
+                                                                                                  ?.data
+                                                                                                  ?.dashboardDataContent
+                                                                                                  ?.dashboardFeatures
+                                                                                                  ?.shareAccountInformationFeature ??
+                                                                                              false),
+                                                                                          isEnabled: (cardData
+                                                                                                  ?.data
+                                                                                                  ?.dashboardDataContent
+                                                                                                  ?.dashboardFeatures
+                                                                                                  ?.shareAccountInformationFeature ??
+                                                                                              false),
+                                                                                        ),
+                                                                                        CloseSubAccount(
+                                                                                          model: model,
+                                                                                          isCardActivated: (cardData
+                                                                                                  ?.data
+                                                                                                  ?.dashboardDataContent
+                                                                                                  ?.dashboardFeatures
+                                                                                                  ?.closeSubAccountFeature ??
+                                                                                              false),
+                                                                                          isEnabled: (cardData
+                                                                                                  ?.data
+                                                                                                  ?.dashboardDataContent
+                                                                                                  ?.dashboardFeatures
+                                                                                                  ?.closeSubAccountFeature ??
+                                                                                              false),
+                                                                                        ),
+                                                                                        SizedBox(
+                                                                                            height: 180.h),
+                                                                                      ],
+                                                                                    ),
+                                                                                  )
+                                                                                : const SizedBox(),
+                                                          );
+                                                        }),
+                                                    AnimatedBuilder(
+                                                      animation: model.translateTimelineDownController,
+                                                      child: AnimatedBuilder(
+                                                          animation: model.translateSettingsUpController,
+                                                          child: AnimatedBuilder(
+                                                            animation:
+                                                                model.translateAccountSettingsUpController,
+                                                            child: Container(
+                                                              child: Column(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment.stretch,
+                                                                children: [
+                                                                  /// To get rid of the unwanted card size changes....
+                                                                  AppStreamBuilder<DashboardAnimatedPage>(
+                                                                      stream: model.pageSwitchStream,
+                                                                      initialData: DashboardAnimatedPage.NULL,
+                                                                      dataBuilder: (context, switchedPage) {
+                                                                        return AnimatedCrossFade(
+                                                                          crossFadeState: switchedPage ==
+                                                                                      DashboardAnimatedPage
+                                                                                          .NULL ||
+                                                                                  switchedPage ==
+                                                                                      DashboardAnimatedPage
+                                                                                          .TIMELINE
+                                                                              ? CrossFadeState.showFirst
+                                                                              : CrossFadeState.showSecond,
+                                                                          firstChild: const SizedBox(),
+                                                                          secondChild: SizedBox(
+                                                                            height: MediaQuery.of(context)
+                                                                                        .size
+                                                                                        .height *
+                                                                                    0.03 +
+                                                                                MediaQuery.of(context)
+                                                                                        .size
+                                                                                        .height *
+                                                                                    (DeviceSizeHelper
+                                                                                            .isBigDevice
+                                                                                        ? 0.036
+                                                                                        : 0.02) +
+                                                                                117.h,
+                                                                          ),
+                                                                          duration: const Duration(
+                                                                              milliseconds: 500),
+                                                                        );
+                                                                      }),
+                                                                  AppStreamBuilder<DashboardAnimatedPage>(
+                                                                      stream: model.pageSwitchStream,
+                                                                      initialData: DashboardAnimatedPage.NULL,
+                                                                      dataBuilder: (context, switchedPage) {
+                                                                        return AnimatedOpacity(
+                                                                          duration: const Duration(
+                                                                              milliseconds: 250),
+                                                                          opacity: switchedPage !=
+                                                                                  DashboardAnimatedPage.NULL
+                                                                              ? 0
+                                                                              : 1,
+                                                                          child: AppHomePageWidgets
+                                                                              .totalBalance(StringUtils
+                                                                                  .formatBalance(cardData
+                                                                                          ?.data
+                                                                                          ?.dashboardDataContent
+                                                                                          ?.availableBalance ??
+                                                                                      "0.000")),
+                                                                        );
+                                                                      }),
+                                                                  Expanded(
+                                                                    child: Stack(
+                                                                      fit: StackFit.expand,
+                                                                      alignment: Alignment.topCenter,
                                                                       children: [
-                                                                        /// To get rid of the unwanted card size changes....
-                                                                        AppStreamBuilder<
-                                                                                DashboardAnimatedPage>(
-                                                                            stream: model.pageSwitchStream,
-                                                                            initialData:
-                                                                                DashboardAnimatedPage.NULL,
-                                                                            dataBuilder:
-                                                                                (context, switchedPage) {
-                                                                              return AnimatedCrossFade(
-                                                                                crossFadeState: switchedPage ==
-                                                                                            DashboardAnimatedPage
-                                                                                                .NULL ||
-                                                                                        switchedPage ==
-                                                                                            DashboardAnimatedPage
-                                                                                                .TIMELINE
-                                                                                    ? CrossFadeState.showFirst
-                                                                                    : CrossFadeState
-                                                                                        .showSecond,
-                                                                                firstChild: const SizedBox(),
-                                                                                secondChild: SizedBox(
-                                                                                  height: MediaQuery.of(
-                                                                                                  context)
-                                                                                              .size
-                                                                                              .height *
-                                                                                          0.03 +
-                                                                                      MediaQuery.of(context)
-                                                                                              .size
-                                                                                              .height *
-                                                                                          (DeviceSizeHelper
-                                                                                                  .isBigDevice
-                                                                                              ? 0.036
-                                                                                              : 0.02) +
-                                                                                      117.h,
-                                                                                ),
-                                                                                duration: const Duration(
-                                                                                    milliseconds: 500),
-                                                                              );
-                                                                            }),
-                                                                        AppStreamBuilder<
-                                                                                DashboardAnimatedPage>(
-                                                                            stream: model.pageSwitchStream,
-                                                                            initialData:
-                                                                                DashboardAnimatedPage.NULL,
-                                                                            dataBuilder:
-                                                                                (context, switchedPage) {
-                                                                              return AnimatedOpacity(
-                                                                                duration: const Duration(
-                                                                                    milliseconds: 250),
-                                                                                opacity: switchedPage !=
-                                                                                        DashboardAnimatedPage
-                                                                                            .NULL
-                                                                                    ? 0
-                                                                                    : 1,
-                                                                                child: AppHomePageWidgets
-                                                                                    .totalBalance(StringUtils
-                                                                                        .formatBalance(cardData
-                                                                                                ?.data
-                                                                                                ?.dashboardDataContent
-                                                                                                ?.availableBalance ??
-                                                                                            "0.000")),
-                                                                              );
-                                                                            }),
-                                                                        Expanded(
-                                                                          child: Stack(
-                                                                            fit: StackFit.expand,
-                                                                            alignment: Alignment.topCenter,
-                                                                            children: [
-                                                                              DashboardSwiper(
-                                                                                pages: pagesList,
-                                                                                appSwiperController:
-                                                                                    model.appSwiperController,
-                                                                                onIndexChanged: (index) {
-                                                                                  model.updatePage(index);
-                                                                                },
-                                                                                currentStep: currentStep,
-                                                                                translateSidewaysController: model
-                                                                                    .translateSidewaysController,
-                                                                                model: model,
-                                                                              ),
+                                                                        DashboardSwiper(
+                                                                          pages: pagesList,
+                                                                          appSwiperController:
+                                                                              model.appSwiperController,
+                                                                          onIndexChanged: (index) {
+                                                                            model.updatePage(index);
+                                                                          },
+                                                                          currentStep: currentStep,
+                                                                          translateSidewaysController: model
+                                                                              .translateSidewaysController,
+                                                                          model: model,
+                                                                        ),
 
-                                                                              ///Timeline Button
-                                                                              ///For My Account and My credit card
-                                                                              /*Positioned(
+                                                                        ///Timeline Button
+                                                                        ///For My Account and My credit card
+                                                                        /*Positioned(
                                                                                 top: MediaQuery.of(context)
                                                                                             .size
                                                                                             .height *
@@ -765,209 +771,8 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                 ),
                                                                               ),*/
 
-                                                                              ///Transactions button
-                                                                              ///For My Account and My credit card
-                                                                              AppStreamBuilder<
-                                                                                      DashboardAnimatedPage>(
-                                                                                  stream:
-                                                                                      model.pageSwitchStream,
-                                                                                  initialData:
-                                                                                      DashboardAnimatedPage
-                                                                                          .NULL,
-                                                                                  dataBuilder: (context,
-                                                                                      switchedPage) {
-                                                                                    return Positioned(
-                                                                                      bottom: 20,
-                                                                                      child:
-
-                                                                                          ///No transaction button for debit card
-                                                                                          switchedPage ==
-                                                                                                      DashboardAnimatedPage
-                                                                                                          .SETTINGS &&
-                                                                                                  (model.isDebitCard(
-                                                                                                          currentStep) ||
-                                                                                                      model.isCreditCard(
-                                                                                                          currentStep))
-                                                                                              ? Container(
-                                                                                                  child:
-                                                                                                      AnimatedCrossFade(
-                                                                                                    duration: const Duration(
-                                                                                                        milliseconds:
-                                                                                                            500),
-                                                                                                    reverseDuration:
-                                                                                                        const Duration(
-                                                                                                            milliseconds: 500),
-                                                                                                    firstCurve:
-                                                                                                        Curves
-                                                                                                            .easeIn,
-                                                                                                    secondCurve:
-                                                                                                        Curves
-                                                                                                            .easeIn,
-                                                                                                    alignment:
-                                                                                                        Alignment
-                                                                                                            .center,
-                                                                                                    crossFadeState: switchedPage ==
-                                                                                                            DashboardAnimatedPage
-                                                                                                                .SETTINGS
-                                                                                                        ? CrossFadeState
-                                                                                                            .showFirst
-                                                                                                        : CrossFadeState
-                                                                                                            .showSecond,
-                                                                                                    firstChild:
-                                                                                                        InkWell(
-                                                                                                      onTap:
-                                                                                                          () {
-                                                                                                        model.showSettingPage(
-                                                                                                            false,
-                                                                                                            updateDashboard: true,
-                                                                                                            currentStep: currentStep);
-                                                                                                      },
-                                                                                                      child: Container(
-                                                                                                          width: 48,
-                                                                                                          height: 48,
-                                                                                                          margin: EdgeInsets.only(bottom: 4),
-                                                                                                          decoration: BoxDecoration(
-                                                                                                            color: Colors.white,
-                                                                                                            border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
-                                                                                                            borderRadius: BorderRadius.circular(100),
-                                                                                                            boxShadow: [
-                                                                                                              BoxShadow(color: Theme.of(context).colorScheme.inverseSurface, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 2))
-                                                                                                            ],
-                                                                                                          ),
-                                                                                                          padding: EdgeInsets.all(10),
-                                                                                                          child: AppSvg.asset(
-                                                                                                            AssetUtils.down,
-                                                                                                            color: AppColor.light_acccent_blue,
-                                                                                                          )),
-                                                                                                    ),
-                                                                                                    secondChild:
-                                                                                                        const SizedBox(),
-                                                                                                  ),
-                                                                                                )
-                                                                                              : model.cardTypeList[currentStep].swipeUpEnum ==
-                                                                                                      SwipeUpEnum
-                                                                                                          .SWIPE_UP_YES
-                                                                                                  ? InkWell(
-                                                                                                      splashColor:
-                                                                                                          Colors.transparent,
-                                                                                                      highlightColor:
-                                                                                                          Colors.transparent,
-                                                                                                      onTap:
-                                                                                                          () {
-                                                                                                        if (model
-                                                                                                            .isCreditCard(currentStep)) {
-                                                                                                          if (switchedPage ==
-                                                                                                              DashboardAnimatedPage.SETTINGS) {
-                                                                                                            model.showSettingPage(false);
-                                                                                                            return;
-                                                                                                          }
-
-                                                                                                          if (switchedPage ==
-                                                                                                              DashboardAnimatedPage.PAYBACK) {
-                                                                                                            model.goToPayBackView(false);
-                                                                                                            return;
-                                                                                                          }
-
-                                                                                                          if (model.showButtonsInCreditCard) {
-                                                                                                            model.goToTransactionPage(context, currentStep);
-                                                                                                            return;
-                                                                                                          }
-                                                                                                        }
-
-                                                                                                        if (model
-                                                                                                            .isMyAccount(currentStep)) {
-                                                                                                          if (switchedPage ==
-                                                                                                              DashboardAnimatedPage.ACT_SETTING) {
-                                                                                                            model.showHideAccountSettings(false);
-                                                                                                          } else {
-                                                                                                            model.goToAccountTransactionPage(context, model.cardTypeList[currentStep].object as Account);
-                                                                                                          }
-                                                                                                        }
-
-                                                                                                        if (model
-                                                                                                            .isMySubAccount(currentStep)) {
-                                                                                                          if (switchedPage ==
-                                                                                                              DashboardAnimatedPage.SUB_ACT_SETTING) {
-                                                                                                            model.showHideSubAccountSettings(false);
-                                                                                                          } else if (switchedPage == DashboardAnimatedPage.TRANSACTIONS) {
-                                                                                                            model.showHideAccountSettings(false);
-                                                                                                          } else {
-                                                                                                            model.goToAccountTransactionPage(context, model.cardTypeList[currentStep].object as Account);
-                                                                                                          }
-                                                                                                        }
-                                                                                                      },
-                                                                                                      child:
-                                                                                                          AnimatedOpacity(
-                                                                                                        ///For credit card
-                                                                                                        duration:
-                                                                                                            const Duration(milliseconds: 500),
-                                                                                                        opacity: (!model.showButtonsInCreditCard && model.isCreditCard(currentStep))
-                                                                                                            ? 0
-                                                                                                            : 1,
-                                                                                                        child:
-                                                                                                            AnimatedBuilder(
-                                                                                                          animation:
-                                                                                                              model.appSwiperController,
-                                                                                                          builder:
-                                                                                                              (BuildContext context, Widget? child) {
-                                                                                                            double opacity = 0;
-                                                                                                            if (model.appSwiperController.hasClients && model.appSwiperController.positions.isNotEmpty) if (model.appSwiperController.position.hasContentDimensions) {
-                                                                                                              opacity = currentStep - (model.appSwiperController.page ?? 0);
-                                                                                                            }
-                                                                                                            return Transform.translate(
-                                                                                                              offset: Offset(0, 1),
-                                                                                                              child: Opacity(
-                                                                                                                opacity: (opacity.abs() - 1).abs(),
-                                                                                                                child: child!,
-                                                                                                              ),
-                                                                                                            );
-                                                                                                          },
-
-                                                                                                          ///For credit card
-                                                                                                          child:
-                                                                                                              AnimatedContainer(
-                                                                                                            duration: const Duration(milliseconds: 500),
-                                                                                                            curve: Curves.easeInOut,
-                                                                                                            width: switchedPage == DashboardAnimatedPage.SETTINGS || switchedPage == DashboardAnimatedPage.PAYBACK || switchedPage == DashboardAnimatedPage.ACT_SETTING || switchedPage == DashboardAnimatedPage.SUB_ACT_SETTING ? 48 : 150,
-                                                                                                            height: switchedPage == DashboardAnimatedPage.SETTINGS || switchedPage == DashboardAnimatedPage.PAYBACK || switchedPage == DashboardAnimatedPage.ACT_SETTING || switchedPage == DashboardAnimatedPage.SUB_ACT_SETTING ? 48 : 36,
-                                                                                                            alignment: Alignment.center,
-                                                                                                            margin: switchedPage == DashboardAnimatedPage.SETTINGS || switchedPage == DashboardAnimatedPage.PAYBACK || switchedPage == DashboardAnimatedPage.ACT_SETTING || switchedPage == DashboardAnimatedPage.SUB_ACT_SETTING ? EdgeInsets.zero : EdgeInsets.only(bottom: 4),
-                                                                                                            decoration: BoxDecoration(
-                                                                                                              color: Colors.white,
-                                                                                                              border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
-                                                                                                              borderRadius: BorderRadius.circular(100),
-                                                                                                              boxShadow: [
-                                                                                                                BoxShadow(color: Theme.of(context).colorScheme.inverseSurface, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))
-                                                                                                              ],
-                                                                                                            ),
-                                                                                                            child: AnimatedCrossFade(
-                                                                                                              duration: const Duration(milliseconds: 500),
-                                                                                                              reverseDuration: const Duration(milliseconds: 500),
-                                                                                                              firstCurve: Curves.easeIn,
-                                                                                                              secondCurve: Curves.easeIn,
-                                                                                                              alignment: Alignment.center,
-                                                                                                              crossFadeState: switchedPage == DashboardAnimatedPage.SETTINGS || switchedPage == DashboardAnimatedPage.PAYBACK || switchedPage == DashboardAnimatedPage.ACT_SETTING || switchedPage == DashboardAnimatedPage.SUB_ACT_SETTING ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-                                                                                                              firstChild: Padding(
-                                                                                                                padding: const EdgeInsets.all(10.0),
-                                                                                                                child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue, height: 40, width: 40),
-                                                                                                              ),
-                                                                                                              secondChild: Text(
-                                                                                                                S.current.transactions,
-                                                                                                                style: TextStyle(color: AppColor.skyblue, fontSize: 12, fontWeight: FontWeight.w600),
-                                                                                                              ),
-                                                                                                            ),
-                                                                                                          ),
-                                                                                                        ),
-                                                                                                      ),
-                                                                                                    )
-                                                                                                  : SizedBox(),
-                                                                                    );
-                                                                                  }),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-
-                                                                        /// INDICATOR...
+                                                                        ///Transactions button
+                                                                        ///For My Account and My credit card
                                                                         AppStreamBuilder<
                                                                                 DashboardAnimatedPage>(
                                                                             stream: model.pageSwitchStream,
@@ -975,91 +780,380 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                 DashboardAnimatedPage.NULL,
                                                                             dataBuilder:
                                                                                 (context, switchedPage) {
-                                                                              return AnimatedCrossFade(
-                                                                                crossFadeState: switchedPage !=
-                                                                                        DashboardAnimatedPage
-                                                                                            .NULL
-                                                                                    ? CrossFadeState.showFirst
-                                                                                    : CrossFadeState
-                                                                                        .showSecond,
-                                                                                firstChild: const SizedBox(),
-                                                                                secondChild: SizedBox(
-                                                                                  height:
-                                                                                      MediaQuery.of(context)
-                                                                                              .size
-                                                                                              .height *
-                                                                                          0.04,
-                                                                                  child: Padding(
-                                                                                    padding: EdgeInsets.only(
-                                                                                        bottom: 17.h),
-                                                                                    child: Row(
-                                                                                      mainAxisAlignment:
-                                                                                          MainAxisAlignment
-                                                                                              .center,
-                                                                                      children: model
-                                                                                          .buildPageIndicator(
-                                                                                              currentStep,
-                                                                                              cardData!
-                                                                                                  .data!
-                                                                                                  .dashboardDataContent!
-                                                                                                  .debitCard!
-                                                                                                  .length),
-                                                                                    ),
-                                                                                  ),
-                                                                                ),
-                                                                                duration: const Duration(
-                                                                                    milliseconds: 500),
+                                                                              return Positioned(
+                                                                                bottom: 20,
+                                                                                child:
+
+                                                                                    ///No transaction button for debit card
+                                                                                    switchedPage ==
+                                                                                                DashboardAnimatedPage
+                                                                                                    .SETTINGS &&
+                                                                                            (model.isDebitCard(
+                                                                                                    currentStep) ||
+                                                                                                model.isCreditCard(
+                                                                                                    currentStep))
+                                                                                        ? Container(
+                                                                                            child:
+                                                                                                AnimatedCrossFade(
+                                                                                              duration:
+                                                                                                  const Duration(
+                                                                                                      milliseconds:
+                                                                                                          500),
+                                                                                              reverseDuration:
+                                                                                                  const Duration(
+                                                                                                      milliseconds:
+                                                                                                          500),
+                                                                                              firstCurve:
+                                                                                                  Curves
+                                                                                                      .easeIn,
+                                                                                              secondCurve:
+                                                                                                  Curves
+                                                                                                      .easeIn,
+                                                                                              alignment:
+                                                                                                  Alignment
+                                                                                                      .center,
+                                                                                              crossFadeState: switchedPage ==
+                                                                                                      DashboardAnimatedPage
+                                                                                                          .SETTINGS
+                                                                                                  ? CrossFadeState
+                                                                                                      .showFirst
+                                                                                                  : CrossFadeState
+                                                                                                      .showSecond,
+                                                                                              firstChild:
+                                                                                                  InkWell(
+                                                                                                onTap: () {
+                                                                                                  model.showSettingPage(
+                                                                                                      false,
+                                                                                                      updateDashboard:
+                                                                                                          true,
+                                                                                                      currentStep:
+                                                                                                          currentStep);
+                                                                                                },
+                                                                                                child: Container(
+                                                                                                    width: 48,
+                                                                                                    height: 48,
+                                                                                                    margin: EdgeInsets.only(bottom: 4),
+                                                                                                    decoration: BoxDecoration(
+                                                                                                      color: Colors
+                                                                                                          .white,
+                                                                                                      border: Border.all(
+                                                                                                          color:
+                                                                                                              Theme.of(context).colorScheme.inverseSurface,
+                                                                                                          width: 1),
+                                                                                                      borderRadius:
+                                                                                                          BorderRadius.circular(100),
+                                                                                                      boxShadow: [
+                                                                                                        BoxShadow(
+                                                                                                            color: Theme.of(context).colorScheme.inverseSurface,
+                                                                                                            blurRadius: 5,
+                                                                                                            spreadRadius: 0.1,
+                                                                                                            offset: Offset(0, 2))
+                                                                                                      ],
+                                                                                                    ),
+                                                                                                    padding: EdgeInsets.all(10),
+                                                                                                    child: AppSvg.asset(
+                                                                                                      AssetUtils
+                                                                                                          .down,
+                                                                                                      color: AppColor
+                                                                                                          .light_acccent_blue,
+                                                                                                    )),
+                                                                                              ),
+                                                                                              secondChild:
+                                                                                                  const SizedBox(),
+                                                                                            ),
+                                                                                          )
+                                                                                        : model
+                                                                                                    .cardTypeList[
+                                                                                                        currentStep]
+                                                                                                    .swipeUpEnum ==
+                                                                                                SwipeUpEnum
+                                                                                                    .SWIPE_UP_YES
+                                                                                            ? InkWell(
+                                                                                                splashColor:
+                                                                                                    Colors
+                                                                                                        .transparent,
+                                                                                                highlightColor:
+                                                                                                    Colors
+                                                                                                        .transparent,
+                                                                                                onTap: () {
+                                                                                                  if (model
+                                                                                                      .isCreditCard(
+                                                                                                          currentStep)) {
+                                                                                                    if (switchedPage ==
+                                                                                                        DashboardAnimatedPage
+                                                                                                            .SETTINGS) {
+                                                                                                      model.showSettingPage(
+                                                                                                          false);
+                                                                                                      return;
+                                                                                                    }
+
+                                                                                                    if (switchedPage ==
+                                                                                                        DashboardAnimatedPage
+                                                                                                            .PAYBACK) {
+                                                                                                      model.goToPayBackView(
+                                                                                                          false);
+                                                                                                      return;
+                                                                                                    }
+
+                                                                                                    if (model
+                                                                                                        .showButtonsInCreditCard) {
+                                                                                                      model.goToTransactionPage(
+                                                                                                          context,
+                                                                                                          currentStep);
+                                                                                                      return;
+                                                                                                    }
+                                                                                                  }
+
+                                                                                                  if (model
+                                                                                                      .isMyAccount(
+                                                                                                          currentStep)) {
+                                                                                                    if (switchedPage ==
+                                                                                                        DashboardAnimatedPage
+                                                                                                            .ACT_SETTING) {
+                                                                                                      model.showHideAccountSettings(
+                                                                                                          false);
+                                                                                                    } else {
+                                                                                                      model.goToAccountTransactionPage(
+                                                                                                          context,
+                                                                                                          model.cardTypeList[currentStep].object
+                                                                                                              as Account);
+                                                                                                    }
+                                                                                                  }
+
+                                                                                                  if (model
+                                                                                                      .isMySubAccount(
+                                                                                                          currentStep)) {
+                                                                                                    if (switchedPage ==
+                                                                                                        DashboardAnimatedPage
+                                                                                                            .SUB_ACT_SETTING) {
+                                                                                                      model.showHideSubAccountSettings(
+                                                                                                          false);
+                                                                                                    } else if (switchedPage ==
+                                                                                                        DashboardAnimatedPage
+                                                                                                            .TRANSACTIONS) {
+                                                                                                      model.showHideAccountSettings(
+                                                                                                          false);
+                                                                                                    } else {
+                                                                                                      model.goToAccountTransactionPage(
+                                                                                                          context,
+                                                                                                          model.cardTypeList[currentStep].object
+                                                                                                              as Account);
+                                                                                                    }
+                                                                                                  }
+                                                                                                },
+                                                                                                child:
+                                                                                                    AnimatedOpacity(
+                                                                                                  ///For credit card
+                                                                                                  duration: const Duration(
+                                                                                                      milliseconds:
+                                                                                                          500),
+                                                                                                  opacity:
+                                                                                                      (!model.showButtonsInCreditCard &&
+                                                                                                              model.isCreditCard(currentStep))
+                                                                                                          ? 0
+                                                                                                          : 1,
+                                                                                                  child:
+                                                                                                      AnimatedBuilder(
+                                                                                                    animation:
+                                                                                                        model
+                                                                                                            .appSwiperController,
+                                                                                                    builder: (BuildContext
+                                                                                                            context,
+                                                                                                        Widget?
+                                                                                                            child) {
+                                                                                                      double
+                                                                                                          opacity =
+                                                                                                          0;
+                                                                                                      if (model.appSwiperController.hasClients &&
+                                                                                                          model
+                                                                                                              .appSwiperController.positions.isNotEmpty) if (model
+                                                                                                          .appSwiperController
+                                                                                                          .position
+                                                                                                          .hasContentDimensions) {
+                                                                                                        opacity =
+                                                                                                            currentStep - (model.appSwiperController.page ?? 0);
+                                                                                                      }
+                                                                                                      return Transform
+                                                                                                          .translate(
+                                                                                                        offset: Offset(
+                                                                                                            0,
+                                                                                                            1),
+                                                                                                        child:
+                                                                                                            Opacity(
+                                                                                                          opacity:
+                                                                                                              (opacity.abs() - 1).abs(),
+                                                                                                          child:
+                                                                                                              child!,
+                                                                                                        ),
+                                                                                                      );
+                                                                                                    },
+
+                                                                                                    ///For credit card
+                                                                                                    child:
+                                                                                                        AnimatedContainer(
+                                                                                                      duration:
+                                                                                                          const Duration(milliseconds: 500),
+                                                                                                      curve: Curves
+                                                                                                          .easeInOut,
+                                                                                                      width: switchedPage == DashboardAnimatedPage.SETTINGS ||
+                                                                                                              switchedPage == DashboardAnimatedPage.PAYBACK ||
+                                                                                                              switchedPage == DashboardAnimatedPage.ACT_SETTING ||
+                                                                                                              switchedPage == DashboardAnimatedPage.SUB_ACT_SETTING
+                                                                                                          ? 48
+                                                                                                          : 150,
+                                                                                                      height: switchedPage == DashboardAnimatedPage.SETTINGS ||
+                                                                                                              switchedPage == DashboardAnimatedPage.PAYBACK ||
+                                                                                                              switchedPage == DashboardAnimatedPage.ACT_SETTING ||
+                                                                                                              switchedPage == DashboardAnimatedPage.SUB_ACT_SETTING
+                                                                                                          ? 48
+                                                                                                          : 36,
+                                                                                                      alignment:
+                                                                                                          Alignment.center,
+                                                                                                      margin: switchedPage == DashboardAnimatedPage.SETTINGS ||
+                                                                                                              switchedPage == DashboardAnimatedPage.PAYBACK ||
+                                                                                                              switchedPage == DashboardAnimatedPage.ACT_SETTING ||
+                                                                                                              switchedPage == DashboardAnimatedPage.SUB_ACT_SETTING
+                                                                                                          ? EdgeInsets.zero
+                                                                                                          : EdgeInsets.only(bottom: 4),
+                                                                                                      decoration:
+                                                                                                          BoxDecoration(
+                                                                                                        color:
+                                                                                                            Colors.white,
+                                                                                                        border: Border.all(
+                                                                                                            color: Theme.of(context).colorScheme.inverseSurface,
+                                                                                                            width: 1),
+                                                                                                        borderRadius:
+                                                                                                            BorderRadius.circular(100),
+                                                                                                        boxShadow: [
+                                                                                                          BoxShadow(
+                                                                                                              color: Theme.of(context).colorScheme.inverseSurface,
+                                                                                                              blurRadius: 5,
+                                                                                                              spreadRadius: 0.1,
+                                                                                                              offset: Offset(0, 4))
+                                                                                                        ],
+                                                                                                      ),
+                                                                                                      child:
+                                                                                                          AnimatedCrossFade(
+                                                                                                        duration:
+                                                                                                            const Duration(milliseconds: 500),
+                                                                                                        reverseDuration:
+                                                                                                            const Duration(milliseconds: 500),
+                                                                                                        firstCurve:
+                                                                                                            Curves.easeIn,
+                                                                                                        secondCurve:
+                                                                                                            Curves.easeIn,
+                                                                                                        alignment:
+                                                                                                            Alignment.center,
+                                                                                                        crossFadeState: switchedPage == DashboardAnimatedPage.SETTINGS || switchedPage == DashboardAnimatedPage.PAYBACK || switchedPage == DashboardAnimatedPage.ACT_SETTING || switchedPage == DashboardAnimatedPage.SUB_ACT_SETTING
+                                                                                                            ? CrossFadeState.showFirst
+                                                                                                            : CrossFadeState.showSecond,
+                                                                                                        firstChild:
+                                                                                                            Padding(
+                                                                                                          padding:
+                                                                                                              const EdgeInsets.all(10.0),
+                                                                                                          child: AppSvg.asset(AssetUtils.down,
+                                                                                                              color: AppColor.light_acccent_blue,
+                                                                                                              height: 40,
+                                                                                                              width: 40),
+                                                                                                        ),
+                                                                                                        secondChild:
+                                                                                                            Text(
+                                                                                                          S.current.transactions,
+                                                                                                          style: TextStyle(
+                                                                                                              color: AppColor.skyblue,
+                                                                                                              fontSize: 12,
+                                                                                                              fontWeight: FontWeight.w600),
+                                                                                                        ),
+                                                                                                      ),
+                                                                                                    ),
+                                                                                                  ),
+                                                                                                ),
+                                                                                              )
+                                                                                            : SizedBox(),
                                                                               );
                                                                             }),
                                                                       ],
                                                                     ),
                                                                   ),
-                                                                  builder:
-                                                                      (BuildContext context, Widget? child) {
-                                                                    return Transform.translate(
-                                                                      offset: Offset(
-                                                                          0,
-                                                                          (model.accountSettingsAnimation
-                                                                                  .value *
-                                                                              (-MediaQuery.of(context)
-                                                                                      .size
-                                                                                      .height *
-                                                                                  0.5))),
-                                                                      child: child,
-                                                                    );
-                                                                  },
-                                                                ),
-                                                                builder: (context, child) {
-                                                                  return Transform.translate(
-                                                                    offset: Offset(
-                                                                        0,
-                                                                        (model.settingsAnimation.value *
-                                                                            (-MediaQuery.of(context)
+
+                                                                  /// INDICATOR...
+                                                                  AppStreamBuilder<DashboardAnimatedPage>(
+                                                                      stream: model.pageSwitchStream,
+                                                                      initialData: DashboardAnimatedPage.NULL,
+                                                                      dataBuilder: (context, switchedPage) {
+                                                                        return AnimatedCrossFade(
+                                                                          crossFadeState: switchedPage !=
+                                                                                  DashboardAnimatedPage.NULL
+                                                                              ? CrossFadeState.showFirst
+                                                                              : CrossFadeState.showSecond,
+                                                                          firstChild: const SizedBox(),
+                                                                          secondChild: SizedBox(
+                                                                            height: MediaQuery.of(context)
                                                                                     .size
                                                                                     .height *
-                                                                                0.78))),
-                                                                    child: child,
-                                                                  );
-                                                                }),
-                                                            builder: (context, child) {
-                                                              ///Timeline animation
+                                                                                0.04,
+                                                                            child: Padding(
+                                                                              padding: EdgeInsets.only(
+                                                                                  bottom: 17.h),
+                                                                              child: Row(
+                                                                                mainAxisAlignment:
+                                                                                    MainAxisAlignment.center,
+                                                                                children:
+                                                                                    model.buildPageIndicator(
+                                                                                        currentStep,
+                                                                                        cardData!
+                                                                                            .data!
+                                                                                            .dashboardDataContent!
+                                                                                            .debitCard!
+                                                                                            .length),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          duration: const Duration(
+                                                                              milliseconds: 500),
+                                                                        );
+                                                                      }),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            builder: (BuildContext context, Widget? child) {
                                                               return Transform.translate(
                                                                 offset: Offset(
                                                                     0,
-                                                                    model.translateTimelineDownController
-                                                                            .value *
-                                                                        (MediaQuery.of(context).size.height *
-                                                                            0.65)),
+                                                                    (model.accountSettingsAnimation.value *
+                                                                        (-MediaQuery.of(context).size.height *
+                                                                            0.5))),
                                                                 child: child,
                                                               );
                                                             },
                                                           ),
-                                                        ],
-                                                      );
-                                                    });
-                                              },
-                                            );
-                                          });
+                                                          builder: (context, child) {
+                                                            return Transform.translate(
+                                                              offset: Offset(
+                                                                  0,
+                                                                  (model.settingsAnimation.value *
+                                                                      (-MediaQuery.of(context).size.height *
+                                                                          0.78))),
+                                                              child: child,
+                                                            );
+                                                          }),
+                                                      builder: (context, child) {
+                                                        ///Timeline animation
+                                                        return Transform.translate(
+                                                          offset: Offset(
+                                                              0,
+                                                              model.translateTimelineDownController.value *
+                                                                  (MediaQuery.of(context).size.height *
+                                                                      0.65)),
+                                                          child: child,
+                                                        );
+                                                      },
+                                                    ),
+                                                  ],
+                                                );
+                                              });
+                                        },
+                                      );
                                     });
                               });
                         });

@@ -175,7 +175,6 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
           AppConstantsUtils.resetCacheLists();
 
           if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
-            AppConstantsUtils.isApplePayPopUpShown = false;
             AntelopHelper.walletDisconnect();
           }
           Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding, (route) => false);
@@ -216,13 +215,11 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
           AppProgress(context);
           isLoading = true;
         }
-
       } else {
         if (isLoading) {
           Navigator.pop(context);
           isLoading = false;
         }
-
       }
     });
     onModelReady(model);

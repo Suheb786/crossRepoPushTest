@@ -533,12 +533,6 @@ class AppHomeViewModel extends BasePageViewModel {
     if (!showPopUp) {
       showPopUp = true;
       getCurrentUser();
-
-      ///show apple pay pop up button
-      if (!AppConstantsUtils.isApplePayPopUpShown) {
-        showApplePayPopUp(true);
-        AppConstantsUtils.isApplePayPopUpShown = true;
-      }
     }
   }
 
@@ -1114,18 +1108,6 @@ class AppHomeViewModel extends BasePageViewModel {
   }
 
   ///--------------------Antelop Cards List-----------------///
-
-  ///--------------------Apple Pay PopUp -------------------///
-
-  PublishSubject<bool> _showApplePayPopUpRequest = PublishSubject();
-
-  Stream<bool> get applePayPopUpStream => _showApplePayPopUpRequest.stream;
-
-  void showApplePayPopUp(bool value) {
-    _showApplePayPopUpRequest.safeAdd(value);
-  }
-
-  ///--------------------Apple Pay PopUp -------------------///
 
   ///--------------------Account dormant status -------------------///
 

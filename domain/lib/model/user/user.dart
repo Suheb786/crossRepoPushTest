@@ -24,6 +24,7 @@ class User {
   bool? isRJPopUPClicked;
   bool? isEfawateerPopUPClicked;
   bool? isEVoucherPopUPClicked;
+  bool? isApplePayPopUpClicked;
 
   User(
       {this.token,
@@ -50,36 +51,37 @@ class User {
       this.allCardsAddedToAppleWallet,
       this.isRJPopUPClicked,
       this.isEfawateerPopUPClicked,
-      this.isEVoucherPopUPClicked});
+      this.isEVoucherPopUPClicked,
+      this.isApplePayPopUpClicked});
 
   String get profileName => "${firstName?[0] ?? ""} ${lastName?[0] ?? ""}";
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        token: json["token"],
-        id: json["id"],
-        firstName: json["firstName"],
-        lastName: json["lastName"],
-        email: json["email"],
-        mobile: json["mobile"],
-        mobileCode: json["mobileCode"],
-        isCurrent: json["isCurrent"],
-        refreshToken: json["refreshToken"],
-        tokenType: json["tokenType"],
-        expiredIn: json["expiredIn"],
-        isExisting: json["isExisting"],
-        publicPEM: json["publicPEM"],
-        privatePEM: json["privatePEM"],
-        cifNumber: json["cifNumber"],
-        accountNumber: json["accountNumber"],
-        newDevice: json["newDevice"],
-        isBiometricEnabled: json["isBiometricEnabled"],
-        applicationId: json["applicationId"],
-        allCardsAddedToAppleWallet: json["allCardsAddedToAppleWallet"],
-        selectedLanguage: json["selectedLanguage"],
-        isRJPopUPClicked: json["isRJPopUPClicked"],
-        isEfawateerPopUPClicked: json["isEfawateerPopUPClicked"],
-        isEVoucherPopUPClicked: json["isEVoucherPopUPClicked"],
-      );
+      token: json["token"],
+      id: json["id"],
+      firstName: json["firstName"],
+      lastName: json["lastName"],
+      email: json["email"],
+      mobile: json["mobile"],
+      mobileCode: json["mobileCode"],
+      isCurrent: json["isCurrent"],
+      refreshToken: json["refreshToken"],
+      tokenType: json["tokenType"],
+      expiredIn: json["expiredIn"],
+      isExisting: json["isExisting"],
+      publicPEM: json["publicPEM"],
+      privatePEM: json["privatePEM"],
+      cifNumber: json["cifNumber"],
+      accountNumber: json["accountNumber"],
+      newDevice: json["newDevice"],
+      isBiometricEnabled: json["isBiometricEnabled"],
+      applicationId: json["applicationId"],
+      allCardsAddedToAppleWallet: json["allCardsAddedToAppleWallet"],
+      selectedLanguage: json["selectedLanguage"],
+      isRJPopUPClicked: json["isRJPopUPClicked"],
+      isEfawateerPopUPClicked: json["isEfawateerPopUPClicked"],
+      isEVoucherPopUPClicked: json["isEVoucherPopUPClicked"],
+      isApplePayPopUpClicked: json["isApplePayPopUpClicked"]);
 
   Map<String, dynamic> toJson() => {
         "token": token,
@@ -106,5 +108,6 @@ class User {
         "isRJPopUPClicked": isRJPopUPClicked,
         "isEfawateerPopUPClicked": isEfawateerPopUPClicked,
         "isEVoucherPopUPClicked": isEVoucherPopUPClicked,
+        "isApplePayPopUpClicked": isApplePayPopUpClicked
       };
 }
