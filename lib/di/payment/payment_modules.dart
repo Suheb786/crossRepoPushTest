@@ -81,11 +81,13 @@ final addSendMoneyContactViewModelProvider = ChangeNotifierProvider.autoDispose<
   (ref) => AddSendMoneyContactViewModel(),
 );
 
-final addRequestMoneyContactViewModelProvider = ChangeNotifierProvider.autoDispose<AddRequestMoneyContactViewModel>(
+final addRequestMoneyContactViewModelProvider =
+    ChangeNotifierProvider.autoDispose<AddRequestMoneyContactViewModel>(
   (ref) => AddRequestMoneyContactViewModel(),
 );
 
-final sendAmountToContactViewModelProvider = ChangeNotifierProvider.autoDispose.family<SendAmountToContactViewModel, Beneficiary>(
+final sendAmountToContactViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<SendAmountToContactViewModel, Beneficiary>(
   (ref, args) => SendAmountToContactViewModel(
     args,
     ref.read(checkSendMoneyUseCaseProvider),
@@ -93,19 +95,24 @@ final sendAmountToContactViewModelProvider = ChangeNotifierProvider.autoDispose.
   ),
 );
 
-final sendAmountToContactSuccessViewModelProvider = ChangeNotifierProvider.autoDispose.family<SendAmountToContactSuccessViewModel, TransferSuccessContent>(
+final sendAmountToContactSuccessViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<SendAmountToContactSuccessViewModel, TransferSuccessContent>(
   (ref, args) => SendAmountToContactSuccessViewModel(args),
 );
 
-final requestAmountFromContactViewModelProvider = ChangeNotifierProvider.autoDispose.family<RequestAmountFromContactViewModel, Beneficiary>(
-  (ref, args) => RequestAmountFromContactViewModel(ref.read(requestAmountFromContactUseCaseProvider), ref.read(getAccountByAliasUseCaseProvider), args),
+final requestAmountFromContactViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<RequestAmountFromContactViewModel, Beneficiary>(
+  (ref, args) => RequestAmountFromContactViewModel(
+      ref.read(requestAmountFromContactUseCaseProvider), ref.read(getAccountByAliasUseCaseProvider), args),
 );
 
-final requestAmountFromContactSuccessViewModelProvider = ChangeNotifierProvider.autoDispose.family<RequestAmountFromContactSuccessViewModel, List<String>>(
+final requestAmountFromContactSuccessViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<RequestAmountFromContactSuccessViewModel, List<String>>(
   (ref, args) => RequestAmountFromContactSuccessViewModel(args),
 );
 
-final sendMoneyFailureViewModelProvider = ChangeNotifierProvider.autoDispose.family<SendMoneyFailureViewModel, SendMoneyFailurePageArgument>(
+final sendMoneyFailureViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<SendMoneyFailureViewModel, SendMoneyFailurePageArgument>(
   (ref, arg) => SendMoneyFailureViewModel(arg),
 );
 
@@ -119,85 +126,115 @@ final requestMoneyViewModelProvider = ChangeNotifierProvider.autoDispose<Request
 
 final sendToNewRecipientViewModelProvider = ChangeNotifierProvider.autoDispose<SendToNewRecipientViewModel>(
   (ref) => SendToNewRecipientViewModel(
-      ref.read(sendToNewRecipientUseCaseProvider), ref.read(uploadDocumentUseCaseProvider), ref.read(checkSendMoneyUseCaseProvider), ref.read(transferVerifyUseCaseProvider), ref.read(getPurposeUseCaseProvider)),
+      ref.read(sendToNewRecipientUseCaseProvider),
+      ref.read(uploadDocumentUseCaseProvider),
+      ref.read(checkSendMoneyUseCaseProvider),
+      ref.read(transferVerifyUseCaseProvider),
+      ref.read(getPurposeUseCaseProvider)),
 );
 
 final enterOtpViewModelProvider = ChangeNotifierProvider.autoDispose<EnterOtpViewModel>(
-  (ref) => EnterOtpViewModel(ref.read(enterOtpUseCaseProvider), ref.read(transferUseCaseProvider), ref.read(transferVerifyUseCaseProvider)),
+  (ref) => EnterOtpViewModel(ref.read(enterOtpUseCaseProvider), ref.read(transferUseCaseProvider),
+      ref.read(transferVerifyUseCaseProvider)),
 );
 
-final requestFromNewRecipientViewModelProvider = ChangeNotifierProvider.autoDispose<RequestFromNewRecipientViewModel>(
-  (ref) => RequestFromNewRecipientViewModel(ref.read(requestFromNewRecipientUseCaseProvider), ref.read(uploadDocumentUseCaseProvider), ref.read(getAccountByAliasUseCaseProvider), ref.read(getPurposeUseCaseProvider)),
+final requestFromNewRecipientViewModelProvider =
+    ChangeNotifierProvider.autoDispose<RequestFromNewRecipientViewModel>(
+  (ref) => RequestFromNewRecipientViewModel(
+      ref.read(requestFromNewRecipientUseCaseProvider),
+      ref.read(uploadDocumentUseCaseProvider),
+      ref.read(getAccountByAliasUseCaseProvider),
+      ref.read(getPurposeUseCaseProvider)),
 );
 
-final paymentToNewRecipientViewModelProvider = ChangeNotifierProvider.autoDispose<PaymentToNewRecipientViewModel>(
+final paymentToNewRecipientViewModelProvider =
+    ChangeNotifierProvider.autoDispose<PaymentToNewRecipientViewModel>(
   (ref) => PaymentToNewRecipientViewModel(),
 );
 
 /// credit card pay back
-final creditCardPayBackViewModelProvider = ChangeNotifierProvider.autoDispose.family<CreditCardPayBackPageModel, CreditCardPayBackArguments>(
+final creditCardPayBackViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<CreditCardPayBackPageModel, CreditCardPayBackArguments>(
   (ref, args) => CreditCardPayBackPageModel(ref.read(payBackCreditCardUseCaseProvider), args),
 );
 
 /// credit card pay back success
-final creditCardPayBackSuccessViewModelProvider = ChangeNotifierProvider.autoDispose.family<CreditCardPayBackSuccessViewModel, CreditCardPayBackSuccessArguments>(
+final creditCardPayBackSuccessViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<CreditCardPayBackSuccessViewModel, CreditCardPayBackSuccessArguments>(
   (ref, args) => CreditCardPayBackSuccessViewModel(args),
 );
 
 final requestPaymentFromNewRecipientViewModelProvider =
     ChangeNotifierProvider.autoDispose<RequestPaymentFromNewRecipientViewModel>(
   (ref) => RequestPaymentFromNewRecipientViewModel(),
-final requestPaymentFromNewRecipientViewModelProvider = ChangeNotifierProvider.autoDispose.family<RequestPaymentFromNewRecipientViewModel, String>(
-  (ref, args) => RequestPaymentFromNewRecipientViewModel(args),
 );
 
 ///edit transaction purpose dialog view model provider
-final editTransactionPurposeDialogViewModelProvider =
-    ChangeNotifierProvider.autoDispose.family<EditTransactionPurposeDialogViewModel, List<dynamic>>((ref, args) => EditTransactionPurposeDialogViewModel(ref.read(getPurposeUseCaseProvider), args));
+final editTransactionPurposeDialogViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<EditTransactionPurposeDialogViewModel, List<dynamic>>(
+        (ref, args) => EditTransactionPurposeDialogViewModel(ref.read(getPurposeUseCaseProvider), args));
 
 ///iban dialog view model provider
-final ibanDialogViewModelProvider = ChangeNotifierProvider.autoDispose<IbanDialogViewModel>((ref) => IbanDialogViewModel());
+final ibanDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<IbanDialogViewModel>((ref) => IbanDialogViewModel());
 
 ///transaction purpose Detail dialog view model provider
-final purposeDetailDialogViewModelProvider = ChangeNotifierProvider.autoDispose.family<PurposeDetailDialogViewModel, List<PurposeDetail>>((ref, args) => PurposeDetailDialogViewModel(args));
+final purposeDetailDialogViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<PurposeDetailDialogViewModel, List<PurposeDetail>>(
+        (ref, args) => PurposeDetailDialogViewModel(args));
 
 ///transaction purpose dialog view model provider
-final purposeDialogViewModelProvider = ChangeNotifierProvider.autoDispose.family<PurposeDialogViewModel, List<Purpose>>((ref, args) => PurposeDialogViewModel(args));
+final purposeDialogViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<PurposeDialogViewModel, List<Purpose>>((ref, args) => PurposeDialogViewModel(args));
 
 ///payment activity filter dialog view model provider
-final paymentActivityFilterDialogViewModelProvider = ChangeNotifierProvider.autoDispose<PaymentActivityFilterDialogViewModel>((
+final paymentActivityFilterDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<PaymentActivityFilterDialogViewModel>((
   ref,
 ) =>
-    PaymentActivityFilterDialogViewModel());
+        PaymentActivityFilterDialogViewModel());
 
 ///request money QR code generation view model
 final requestMoneyQrGenerationViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<RequestMoneyQrGenerationPageViewModel, RequestMoneyQrGenerationPageArguments>((ref, args) => RequestMoneyQrGenerationPageViewModel(args, ref.read(generateQRUseCaseProvider)));
+    .family<RequestMoneyQrGenerationPageViewModel, RequestMoneyQrGenerationPageArguments>(
+        (ref, args) => RequestMoneyQrGenerationPageViewModel(args, ref.read(generateQRUseCaseProvider)));
 
 ///accounts dialog view model provider
-final accountsDialogViewModelProvider = ChangeNotifierProvider.autoDispose<AccountsDialogViewModel>((ref) => AccountsDialogViewModel());
+final accountsDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<AccountsDialogViewModel>((ref) => AccountsDialogViewModel());
 
-final dominationDialogViewModelProvider = ChangeNotifierProvider.autoDispose<DenominationsDialogViewModel>((ref) => DenominationsDialogViewModel());
+final dominationDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<DenominationsDialogViewModel>((ref) => DenominationsDialogViewModel());
 
 ///qr screen view model provider
-final qrScreenViewModelProvider = ChangeNotifierProvider.autoDispose.family<QrScreenPageViewModel, QrScreenPageArguments>((ref, args) => QrScreenPageViewModel(args, ref.read(createDynamicLinkUseCaseProvider)));
+final qrScreenViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<QrScreenPageViewModel, QrScreenPageArguments>(
+        (ref, args) => QrScreenPageViewModel(args, ref.read(createDynamicLinkUseCaseProvider)));
 
 ///send money qr scanning view model provider
-final sendMoneyQrScanningViewModelProvider = ChangeNotifierProvider.autoDispose<SendMoneyQRScanningPageViewModel>((ref) => SendMoneyQRScanningPageViewModel());
+final sendMoneyQrScanningViewModelProvider =
+    ChangeNotifierProvider.autoDispose<SendMoneyQRScanningPageViewModel>(
+        (ref) => SendMoneyQRScanningPageViewModel());
 
 ///qr scan account selection
-final qrScanAccountSelectionViewModelProvider = ChangeNotifierProvider.autoDispose<QRScanAccountSelectionPageViewModel>((ref) => QRScanAccountSelectionPageViewModel(ref.read(qrScanOTPUseCaseProvider)));
+final qrScanAccountSelectionViewModelProvider =
+    ChangeNotifierProvider.autoDispose<QRScanAccountSelectionPageViewModel>(
+        (ref) => QRScanAccountSelectionPageViewModel(ref.read(qrScanOTPUseCaseProvider)));
 
 ///qr scan account selection
-final qrScanOTPViewModelProvider = ChangeNotifierProvider.autoDispose<QRScanOTPPageViewModel>((ref) => QRScanOTPPageViewModel(ref.read(qrScanOTPUseCaseProvider), ref.read(transferQRUseCaseProvider)));
+final qrScanOTPViewModelProvider = ChangeNotifierProvider.autoDispose<QRScanOTPPageViewModel>(
+    (ref) => QRScanOTPPageViewModel(ref.read(qrScanOTPUseCaseProvider), ref.read(transferQRUseCaseProvider)));
 
 ///send money qr success view model provider
-final sendMoneyQrSuccessViewModelProvider = ChangeNotifierProvider.autoDispose.family<SendMoneyViaQrSuccessPageViewModel, SendMoneyViaQRSuccessPageArguments>((ref, args) => SendMoneyViaQrSuccessPageViewModel(args));
+final sendMoneyQrSuccessViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<SendMoneyViaQrSuccessPageViewModel, SendMoneyViaQRSuccessPageArguments>(
+        (ref, args) => SendMoneyViaQrSuccessPageViewModel(args));
 
 class SelectedBillsToPaidWidgetViewModelProvider {
   provide() {
     ///selected bills to paid widget view model provider
-    final selectedBillsToPaidWidgetViewModelProvider = ChangeNotifierProvider.autoDispose<SelectedBillsToPaidWidgetViewModel>(
+    final selectedBillsToPaidWidgetViewModelProvider =
+        ChangeNotifierProvider.autoDispose<SelectedBillsToPaidWidgetViewModel>(
       (ref) => SelectedBillsToPaidWidgetViewModel(),
     );
     return selectedBillsToPaidWidgetViewModelProvider;
@@ -205,7 +242,8 @@ class SelectedBillsToPaidWidgetViewModelProvider {
 }
 
 ///paySelectedBillsPostPaidBillsPageViewModelProvider
-final paySelectedBillsPostPaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose.family<PaySelectedBillsPostPaidBillsPageViewModel, PaySelectedBillsPostPaidBillsPageArguments>(
+final paySelectedBillsPostPaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<PaySelectedBillsPostPaidBillsPageViewModel, PaySelectedBillsPostPaidBillsPageArguments>(
   (ref, args) => PaySelectedBillsPostPaidBillsPageViewModel(
     ref.read(payPostPaidBillUseCaseProvider),
     args,
@@ -213,7 +251,8 @@ final paySelectedBillsPostPaidBillsPageViewModelProvider = ChangeNotifierProvide
 );
 
 ///payAllPostPaidBillsPageViewModelProvider
-final payAllPostPaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose.family<PayAllPostPaidBillsPageViewModel, PayAllPostPaidBillsPageArguments>(
+final payAllPostPaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<PayAllPostPaidBillsPageViewModel, PayAllPostPaidBillsPageArguments>(
   (ref, args) => PayAllPostPaidBillsPageViewModel(
     ref.read(getPostpaidBillerUseCaseProvider),
     ref.read(removeCustomerBillingUseCaseProvider),
@@ -223,7 +262,8 @@ final payAllPostPaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDisp
 );
 
 ///postPaidBillsSuccessPageViewModelProvider
-final postPaidBillsSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose.family<PostPaidBillsSuccessPageViewModel, PostPaidBillsSuccessPageArguments>(
+final postPaidBillsSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<PostPaidBillsSuccessPageViewModel, PostPaidBillsSuccessPageArguments>(
   (ref, args) => PostPaidBillsSuccessPageViewModel(args),
 );
 
@@ -239,11 +279,13 @@ final payBillPageViewModelProvider = ChangeNotifierProvider.autoDispose<PayBillP
 
 ///payBillDetailPageViewModelProvider
 final payBillDetailPageViewModelProvider = ChangeNotifierProvider.autoDispose<PayBillDetailPageViewModel>(
-  (ref) => PayBillDetailPageViewModel(ref.read(getPrePaidCategoriesListUseCaseProvider), ref.read(getBillerLookupListUseCaseProvider)),
+  (ref) => PayBillDetailPageViewModel(
+      ref.read(getPrePaidCategoriesListUseCaseProvider), ref.read(getBillerLookupListUseCaseProvider)),
 );
 
 ///confirmBillPaymentAmountPageViewModelProvider
-final confirmBillPaymentAmountPageViewModelProvider = ChangeNotifierProvider.autoDispose<ConfirmBillPaymentAmountPageViewModel>(
+final confirmBillPaymentAmountPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ConfirmBillPaymentAmountPageViewModel>(
   (ref) => ConfirmBillPaymentAmountPageViewModel(
     ref.read(validatePrePaidBillUseCaseProvider),
     ref.read(getPayPrePaidBillUseCaseProvider),
@@ -259,7 +301,8 @@ final payBillDialogViewModelProvider = ChangeNotifierProvider.autoDispose<PayBil
 );
 
 ///paidBillsSuccessPageViewModelProvider
-final paidBillsSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose.family<PaidBillsSuccessPageViewModel, PaidBillsSuccessPageArguments>(
+final paidBillsSuccessPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<PaidBillsSuccessPageViewModel, PaidBillsSuccessPageArguments>(
   (ref, args) => PaidBillsSuccessPageViewModel(args, ref.read(addNewPostpaidBillerUseCaseProvider)),
 );
 
@@ -269,7 +312,8 @@ final selectServiceDialogViewModelProvider = ChangeNotifierProvider.autoDispose<
 );
 
 ///payMyPrePaidBillsPageViewModelProvider
-final payMyPrePaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose<PayMyPrePaidBillsPageViewModel>(
+final payMyPrePaidBillsPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<PayMyPrePaidBillsPageViewModel>(
   (ref) => PayMyPrePaidBillsPageViewModel(
     ref.read(getPrepaidBillerUseCaseProvider),
     ref.read(getPrePaidCategoriesListUseCaseProvider),
@@ -285,20 +329,23 @@ final payMyPrePaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispos
 // );
 
 ///prePaidBillsSuccessPageViewModelProvider
-final prePaidBillsSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose.family<PrePaidBillsSuccessPageViewModel, PrePaidBillsSuccessPageArguments>(
+final prePaidBillsSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<PrePaidBillsSuccessPageViewModel, PrePaidBillsSuccessPageArguments>(
   (ref, args) => PrePaidBillsSuccessPageViewModel(args, ref.read(addNewPrepaidBillerUseCaseProvider)),
 );
 
 ///howMuchLikeToPayPrePaidBillsPageViewModelProvider
-final howMuchLikeToPayPrePaidBillsPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose.family<HowMuchLikeToPayPrePaidBillsPageViewModel, HowMuchLikeToPayPrePaidBillsPageArgument>((ref, args) => HowMuchLikeToPayPrePaidBillsPageViewModel(
-          args,
-          ref.read(validatePrePaidBillUseCaseProvider),
-          ref.read(getPayPrePaidBillUseCaseProvider),
-        ));
+final howMuchLikeToPayPrePaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<HowMuchLikeToPayPrePaidBillsPageViewModel, HowMuchLikeToPayPrePaidBillsPageArgument>(
+        (ref, args) => HowMuchLikeToPayPrePaidBillsPageViewModel(
+              args,
+              ref.read(validatePrePaidBillUseCaseProvider),
+              ref.read(getPayPrePaidBillUseCaseProvider),
+            ));
 
 ///enterOtpBillPaymentsViewModelProvider
-final enterOtpBillPaymentsViewModelProvider = ChangeNotifierProvider.autoDispose<EnterOtpBillPaymentsViewModel>(
+final enterOtpBillPaymentsViewModelProvider =
+    ChangeNotifierProvider.autoDispose<EnterOtpBillPaymentsViewModel>(
   (ref) => EnterOtpBillPaymentsViewModel(
     ref.read(enterOtpBillPaymentsUseCaseProvider),
     ref.read(getPayPrePaidBillUseCaseProvider),
@@ -307,15 +354,23 @@ final enterOtpBillPaymentsViewModelProvider = ChangeNotifierProvider.autoDispose
 );
 
 ///enterOtpBillPaymentsViewModelProvider
-final billPaymentsTransactionViewModelProvider = ChangeNotifierProvider.autoDispose<BillPaymentsTransactionViewModel>(
+final billPaymentsTransactionViewModelProvider =
+    ChangeNotifierProvider.autoDispose<BillPaymentsTransactionViewModel>(
   (ref) => BillPaymentsTransactionViewModel(ref.read(billPaymentsTransactionUseCaseProvider)),
 );
 
 ///qr scanning screen view model provider
-final qrScanningScreenViewModelProvider = ChangeNotifierProvider.autoDispose<QrScanningScreenPageViewModel>((ref) => QrScanningScreenPageViewModel(ref.read(verifyQRUseCaseProvider)));
+final qrScanningScreenViewModelProvider = ChangeNotifierProvider.autoDispose<QrScanningScreenPageViewModel>(
+    (ref) => QrScanningScreenPageViewModel(ref.read(verifyQRUseCaseProvider)));
 
-final returnPaymentSelectionPageViewModelProvider = ChangeNotifierProvider.autoDispose<ReturnPaymentReasonSelectionPageViewModel>(
-  (ref) => ReturnPaymentReasonSelectionPageViewModel(ref.read(returnPaymentActivityTransactionUseCaseProvider), ref.read(getReasonToReturUseCaseProvider), ref.read(returnRTPrequestOTPUseCaseProivder)),
+final returnPaymentSelectionPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ReturnPaymentReasonSelectionPageViewModel>(
+  (ref) => ReturnPaymentReasonSelectionPageViewModel(
+      ref.read(returnPaymentActivityTransactionUseCaseProvider),
+      ref.read(getReasonToReturUseCaseProvider),
+      ref.read(returnRTPrequestOTPUseCaseProivder)),
 );
 
-final returnReasonsPaymentDialogPageViewModelProvider = ChangeNotifierProvider.autoDispose<ReturnReasonsPaymentDialogViewModel>((ref) => ReturnReasonsPaymentDialogViewModel());
+final returnReasonsPaymentDialogPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ReturnReasonsPaymentDialogViewModel>(
+        (ref) => ReturnReasonsPaymentDialogViewModel());

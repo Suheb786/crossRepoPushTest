@@ -40,7 +40,8 @@ class PaymentHomeViewModel extends BasePageViewModel {
 
   PublishSubject<GetBeneficiaryUseCaseParams> _getBeneficiaryRequest = PublishSubject();
 
-  BehaviorSubject<Resource<GetBeneficiaryListResponse>> _getBeneficiaryResponse = BehaviorSubject.seeded(Resource.success(data: GetBeneficiaryListResponse()));
+  BehaviorSubject<Resource<GetBeneficiaryListResponse>> _getBeneficiaryResponse =
+      BehaviorSubject.seeded(Resource.success(data: GetBeneficiaryListResponse()));
 
   List<Beneficiary> smBeneficiaries = [];
 
@@ -52,7 +53,8 @@ class PaymentHomeViewModel extends BasePageViewModel {
 
   BehaviorSubject<Resource<List<RequestMoneyActivityList>>> _paymentActivityListResponse = BehaviorSubject();
 
-  Stream<Resource<List<RequestMoneyActivityList>>> get paymentActivityListStream => _paymentActivityListResponse.stream;
+  Stream<Resource<List<RequestMoneyActivityList>>> get paymentActivityListStream =>
+      _paymentActivityListResponse.stream;
 
   List<RequestMoneyActivityList> paymentActivityData = [];
 
@@ -76,7 +78,9 @@ class PaymentHomeViewModel extends BasePageViewModel {
 
   PaymentHomeViewModel(this._getBeneficiaryUseCase, this._requestMoneyActivityUseCase) {
     _getBeneficiaryRequest.listen((value) {
-      RequestManager(value, createCall: () => _getBeneficiaryUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _getBeneficiaryUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _getBeneficiaryResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -84,6 +88,9 @@ class PaymentHomeViewModel extends BasePageViewModel {
         } else if (event.status == Status.SUCCESS) {
           if (value.beneType == "SM") {
             getBeneficiaries(appLevelKey.currentContext!, 'RTP');
+          }
+          if (value.beneType == "RTP") {
+            getRequestMoneyActivity(true, 30, "ALL");
           }
           if ((event.data?.beneficiaryList ?? []).isNotEmpty) {
             if (value.beneType == 'SM') {
@@ -111,15 +118,15 @@ class PaymentHomeViewModel extends BasePageViewModel {
             if (appSwiperController.hasClients) appSwiperController.jumpToPage(getInitialNavigation(navigationType, value.context!));
 
           });
-
-
         }
       });
     });
 
     _requestMoneyActivityRequest.listen(
       (value) {
-        RequestManager(value, createCall: () => _requestMoneyActivityUseCase.execute(params: value)).asFlow().listen(
+        RequestManager(value, createCall: () => _requestMoneyActivityUseCase.execute(params: value))
+            .asFlow()
+            .listen(
           (event) {
             updateLoader();
 
@@ -139,11 +146,12 @@ class PaymentHomeViewModel extends BasePageViewModel {
   }
 
   void getRequestMoneyActivity(
-      bool getToken,
-      int FilterDays,
-      String TransactionType,
-      ) {
-    _requestMoneyActivityRequest.safeAdd(RequestMoneyActivityParams(getToken: getToken, FilterDays: FilterDays, TransactionType: TransactionType));
+    bool getToken,
+    int FilterDays,
+    String TransactionType,
+  ) {
+    _requestMoneyActivityRequest.safeAdd(RequestMoneyActivityParams(
+        getToken: getToken, FilterDays: FilterDays, TransactionType: TransactionType));
   }
 
   void getPaymentActivityList(List<PaymentActivityContent> content) {
@@ -170,9 +178,24 @@ class PaymentHomeViewModel extends BasePageViewModel {
         return 1;
       case NavigationType.REQUEST_MONEY:
       case NavigationType.REQUEST_MONEY:
-        if (ProviderScope.containerOf(appLevelKey.currentContext!).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.blinkRetailAppBillPayment ?? true) {
-          if ((ProviderScope.containerOf(appLevelKey.currentContext!).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.appBillPaymentPostpaid ?? true) ||
-              (ProviderScope.containerOf(appLevelKey.currentContext!).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.appBillPaymentPrepaid ?? true)) {
+        if (ProviderScope.containerOf(appLevelKey.currentContext!)
+                .read(appHomeViewModelProvider)
+                .dashboardDataContent
+                .dashboardFeatures
+                ?.blinkRetailAppBillPayment ??
+            true) {
+          if ((ProviderScope.containerOf(appLevelKey.currentContext!)
+                      .read(appHomeViewModelProvider)
+                      .dashboardDataContent
+                      .dashboardFeatures
+                      ?.appBillPaymentPostpaid ??
+                  true) ||
+              (ProviderScope.containerOf(appLevelKey.currentContext!)
+                      .read(appHomeViewModelProvider)
+                      .dashboardDataContent
+                      .dashboardFeatures
+                      ?.appBillPaymentPrepaid ??
+                  true)) {
             return 2;
           }
         }
@@ -224,4 +247,13 @@ class PaymentHomeWidgetFeature {
 
 enum PaymentWidgetType { SEND_MONEY, REQUEST_MONEY, POST_PAID_BILL, PRE_PAID_BILL, CLIQ_TRANSACTIONS }
 
-enum AnimatedPage { SEND_MONEY, REQUEST_MONEY, SEND_TO_SPECIFIC_PERSON, REQUEST_FROM_SPECIFIC_PERSON, PAY_NEW_BILL, REQUEST_MONEY_VIA_QR, PAYMENT_ACTIVITY, NULL }
+enum AnimatedPage {
+  SEND_MONEY,
+  REQUEST_MONEY,
+  SEND_TO_SPECIFIC_PERSON,
+  REQUEST_FROM_SPECIFIC_PERSON,
+  PAY_NEW_BILL,
+  REQUEST_MONEY_VIA_QR,
+  PAYMENT_ACTIVITY,
+  NULL
+}

@@ -14,6 +14,8 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../di/payment/payment_modules.dart';
+
 class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewModel> {
   PaymentActivityPageView(ProviderBase model) : super(model);
 
@@ -46,7 +48,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
               Expanded(
                 child: AppStreamBuilder<Resource<List<RequestMoneyActivityList>>>(
                     stream: ProviderScope.containerOf(context)
-                        .read(activityHomeViewModelProvider)
+                        .read(paymentHomeViewModelProvider)
                         .paymentActivityListStream,
                     initialData: Resource.none(),
                     dataBuilder: (context, activity) {
@@ -280,7 +282,10 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                           return Container();
                       }
                     }),
-              )
+              ),
+              SizedBox(
+                height: 24.0.h,
+              ),
             ],
           ),
         ),

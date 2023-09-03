@@ -1866,5 +1866,6 @@
   "noDataToDisplay": "No Data to Display",
   "insufficientBalanceAccountTransfer": "You do not have sufficient balance to transfer.",
   "selectAnyOption": "Select atleast one filter option",
-  "insufficientBalanceSubAccount": "Oops! Transaction failed; you have insufficient balance in your account."
+  "insufficientBalanceSubAccount": "Oops! Transaction failed; you have insufficient balance in your account.",
+  "cliqTransactions": "CliQ Transactions"
 }

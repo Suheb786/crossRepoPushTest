@@ -71,7 +71,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                   )
                 : CircleAvatar(
                     radius: 28.w,
-                    backgroundColor: Theme.of(context).canvasColor,
+                    backgroundColor: Theme.of(context).primaryColor,
                     child: Text(
                       StringUtils.getFirstInitials(model.beneficiary.fullName),
                       style: TextStyle(

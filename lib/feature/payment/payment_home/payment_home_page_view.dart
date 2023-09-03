@@ -55,8 +55,6 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
           if (data.status == Status.ERROR) {
             model.showToastWithError(data.appError!);
             Navigator.pop(context);
-          } else if (data.status == Status.SUCCESS) {
-            model.getRequestMoneyActivity(true, 30, "ALL");
           }
         },
         dataBuilder: (context, data) {
@@ -64,33 +62,65 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
             pages.clear();
             model.paymentWidgetTypeFeature.clear();
             pages.add(AddSendMoneyContactPage(beneficiaries: model.smBeneficiaries));
-            model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(paymentWidgetType: PaymentWidgetType.SEND_MONEY, isEnabled: true));
-            if (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.rtpFeatureEnabled ?? false) {
+            model.paymentWidgetTypeFeature.add(
+                PaymentHomeWidgetFeature(paymentWidgetType: PaymentWidgetType.SEND_MONEY, isEnabled: true));
+            if (ProviderScope.containerOf(context)
+                    .read(appHomeViewModelProvider)
+                    .dashboardDataContent
+                    .dashboardFeatures
+                    ?.rtpFeatureEnabled ??
+                false) {
               pages.add(AddRequestMoneyContactPage(beneficiaries: model.rtpBeneficiaries));
-              model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(paymentWidgetType: PaymentWidgetType.REQUEST_MONEY, isEnabled: true));
+              model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(
+                  paymentWidgetType: PaymentWidgetType.REQUEST_MONEY, isEnabled: true));
             }
-            if ((ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.blinkRetailAppBillPayment ?? true) &&
-                (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.appBillPaymentPostpaid ?? true)) {
+            if ((ProviderScope.containerOf(context)
+                        .read(appHomeViewModelProvider)
+                        .dashboardDataContent
+                        .dashboardFeatures
+                        ?.blinkRetailAppBillPayment ??
+                    true) &&
+                (ProviderScope.containerOf(context)
+                        .read(appHomeViewModelProvider)
+                        .dashboardDataContent
+                        .dashboardFeatures
+                        ?.appBillPaymentPostpaid ??
+                    true)) {
               pages.add(PostPaidBillCardWidget());
-              model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(paymentWidgetType: PaymentWidgetType.POST_PAID_BILL, isEnabled: true));
+              model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(
+                  paymentWidgetType: PaymentWidgetType.POST_PAID_BILL, isEnabled: true));
             }
 
-            if ((ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.blinkRetailAppBillPayment ?? true) &&
-                (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.appBillPaymentPrepaid ?? true)) {
+            if ((ProviderScope.containerOf(context)
+                        .read(appHomeViewModelProvider)
+                        .dashboardDataContent
+                        .dashboardFeatures
+                        ?.blinkRetailAppBillPayment ??
+                    true) &&
+                (ProviderScope.containerOf(context)
+                        .read(appHomeViewModelProvider)
+                        .dashboardDataContent
+                        .dashboardFeatures
+                        ?.appBillPaymentPrepaid ??
+                    true)) {
               pages.add(PrePaidBillCardWidget());
-              model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(paymentWidgetType: PaymentWidgetType.PRE_PAID_BILL, isEnabled: true));
+              model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(
+                  paymentWidgetType: PaymentWidgetType.PRE_PAID_BILL, isEnabled: true));
             }
 
             return AppStreamBuilder<Resource<List<RequestMoneyActivityList>>>(
                 stream: model.paymentActivityListStream,
                 initialData: Resource.none(),
-                onData: (paymentActivity) {
-                  if (model.paymentWidgetTypeFeature.last.paymentWidgetType != PaymentWidgetType.CLIQ_TRANSACTIONS) {
-                    pages.add(PaymentActivityPage());
-                    model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(paymentWidgetType: PaymentWidgetType.CLIQ_TRANSACTIONS, isEnabled: true));
-                  }
-                },
+                onData: (paymentActivity) {},
                 dataBuilder: (context, currentStep) {
+                  if (model.paymentWidgetTypeFeature.last.paymentWidgetType !=
+                          PaymentWidgetType.CLIQ_TRANSACTIONS &&
+                      pages.length < 5) {
+                    pages.add(PaymentActivityPage());
+                    model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(
+                        paymentWidgetType: PaymentWidgetType.CLIQ_TRANSACTIONS, isEnabled: true));
+                  }
+
                   return AppStreamBuilder<int>(
                     stream: model.currentStep,
                     initialData: model.getInitialNavigation(navigationType!, context),
@@ -114,16 +144,25 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                           : switchedPage == AnimatedPage.REQUEST_MONEY
                                               ? RequestMoneyPage()
                                               : switchedPage == AnimatedPage.SEND_TO_SPECIFIC_PERSON
-                                                  ? SendAmountToContactPage(SendAmountToContactPageArgument(model.selectedBenificiary)) /*SendAmountToContactPage()*/
+                                                  ? SendAmountToContactPage(SendAmountToContactPageArgument(
+                                                      model
+                                                          .selectedBenificiary)) /*SendAmountToContactPage()*/
                                                   : switchedPage == AnimatedPage.REQUEST_FROM_SPECIFIC_PERSON
-                                                      ? RequestAmountFromContactPage(RequestAmountToContactPageArgument(model.selectedBenificiary))
+                                                      ? RequestAmountFromContactPage(
+                                                          RequestAmountToContactPageArgument(
+                                                              model.selectedBenificiary))
                                                       : switchedPage == AnimatedPage.REQUEST_MONEY_VIA_QR
                                                           ? RequestMoneyQrGenerationPage(
-                                                              RequestMoneyQrGenerationPageArguments(ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.account!))
+                                                              RequestMoneyQrGenerationPageArguments(
+                                                                  ProviderScope.containerOf(context)
+                                                                      .read(appHomeViewModelProvider)
+                                                                      .dashboardDataContent
+                                                                      .account!))
                                                           : switchedPage == AnimatedPage.PAYMENT_ACTIVITY
                                                               ? PaymentActivityTransactionPage(
                                                                   PaymentActivityTransactionPageArgument(
-                                                                    backgroundColor: Theme.of(context).canvasColor,
+                                                                    backgroundColor:
+                                                                        Theme.of(context).canvasColor,
                                                                     title: S.of(context).paymentActivity,
                                                                     titleColor: AppColor.black,
                                                                   ),
@@ -134,36 +173,57 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                           AnimatedBuilder(
                             animation: model.translateUpController,
                             child: Padding(
-                              padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.058 : 0.033)),
+                              padding: EdgeInsets.only(
+                                  top: MediaQuery.of(context).size.height *
+                                      (DeviceSizeHelper.isBigDevice ? 0.058 : 0.033)),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   if (currentStep == 0)
-                                    ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.appBillPaymentQrCode ?? true
+                                    ProviderScope.containerOf(context)
+                                                .read(appHomeViewModelProvider)
+                                                .dashboardDataContent
+                                                .dashboardFeatures
+                                                ?.appBillPaymentQrCode ??
+                                            true
                                         ? Column(
                                             crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
                                               InkWell(
                                                   onTap: () async {
                                                     ///LOG EVENT TO FIREBASE
-                                                    await FirebaseAnalytics.instance.logEvent(name: "pay_via_qr", parameters: {"pay_via_qr_clicked": true.toString()});
+                                                    await FirebaseAnalytics.instance.logEvent(
+                                                        name: "pay_via_qr",
+                                                        parameters: {"pay_via_qr_clicked": true.toString()});
 
                                                     InformationDialog.show(context,
                                                         image: AssetUtils.payRequestViaQRBlackIcon,
                                                         title: S.of(context).payViaQR,
-                                                        descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
-                                                        onDismissed: () {
+                                                        descriptionWidget: Text(
+                                                            S.of(context).payAndRequestMoneyViaQR,
+                                                            style: TextStyle(
+                                                                fontFamily: StringUtils.appFont,
+                                                                fontWeight: FontWeight.w400,
+                                                                fontSize: 14.0.t)), onDismissed: () {
                                                       Navigator.pop(context);
                                                     }, onSelected: () {
                                                       Navigator.pop(context);
-                                                      Navigator.of(context).push(CustomRoute.swipeUpRoute(QrScanningScreenPage()));
+                                                      Navigator.of(context).push(
+                                                          CustomRoute.swipeUpRoute(QrScanningScreenPage()));
                                                     });
                                                   },
-                                                  child: AppSvg.asset(AssetUtils.payViaQrIcon)),
+                                                  child: Padding(
+                                                    padding: EdgeInsets.symmetric(vertical: 5.0.h),
+                                                    child: AppSvg.asset(AssetUtils.payViaQrIcon,
+                                                        height: 45.h, width: 45.h),
+                                                  )),
                                               Text(
                                                 S.of(context).payViaQR,
                                                 textAlign: TextAlign.center,
-                                                style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
+                                                style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 18.0.t),
                                               ),
                                             ],
                                           )
@@ -171,49 +231,66 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                             crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsets.symmetric(vertical: 10.0.h),
-                                                child: AppSvg.asset(AssetUtils.payments),
+                                                padding: EdgeInsets.symmetric(vertical: 0.0.h),
+                                                child: AppSvg.asset(AssetUtils.payments,
+                                                    height: 35.h, width: 35.h),
                                               ),
                                               Text(
                                                 S.of(context).billsAndPayments,
-                                                style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
+                                                style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 18.0.t),
                                               )
                                             ],
                                           )
                                   else if (currentStep == 1)
-                                    if (model.paymentWidgetTypeFeature[1].paymentWidgetType == PaymentWidgetType.REQUEST_MONEY)
-                                      ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.dashboardFeatures?.appBillPaymentQrCode ?? true
+                                    if (model.paymentWidgetTypeFeature[1].paymentWidgetType ==
+                                        PaymentWidgetType.REQUEST_MONEY)
+                                      ProviderScope.containerOf(context)
+                                                  .read(appHomeViewModelProvider)
+                                                  .dashboardDataContent
+                                                  .dashboardFeatures
+                                                  ?.appBillPaymentQrCode ??
+                                              true
                                           ? Column(
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 InkWell(
                                                     onTap: () async {
                                                       ///LOG EVENT TO FIREBASE
-                                                      await FirebaseAnalytics.instance.logEvent(name: "request_via_qr", parameters: {"request_via_qr_clicked": true.toString()});
+                                                      await FirebaseAnalytics.instance.logEvent(
+                                                          name: "request_via_qr",
+                                                          parameters: {
+                                                            "request_via_qr_clicked": true.toString()
+                                                          });
                                                       InformationDialog.show(context,
                                                           image: AssetUtils.payRequestViaQRBlackIcon,
                                                           title: S.of(context).requestViaQR,
-                                                          descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14.0.t)),
-                                                          onDismissed: () {
+                                                          descriptionWidget: Text(
+                                                              S.of(context).payAndRequestMoneyViaQR,
+                                                              style: TextStyle(
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontWeight: FontWeight.w400,
+                                                                  fontSize: 14.0.t)), onDismissed: () {
                                                         Navigator.pop(context);
                                                       }, onSelected: () {
                                                         Navigator.pop(context);
                                                         model.animatePage(AnimatedPage.REQUEST_MONEY_VIA_QR);
-                                                        /*
-                                                      Navigator.pushNamed(
-                                                          context, RoutePaths.RequestMoneyQrGeneration,
-                                                          arguments: RequestMoneyQrGenerationPageArguments(
-                                                              ProviderScope.containerOf(context)
-                                                                  .read(appHomeViewModelProvider)
-                                                                  .dashboardDataContent
-                                                                  .account!));*/
                                                       });
                                                     },
-                                                    child: AppSvg.asset(AssetUtils.requestViaQrIcon)),
+                                                    child: Padding(
+                                                      padding: EdgeInsets.symmetric(vertical: 5.0.h),
+                                                      child: AppSvg.asset(AssetUtils.requestViaQrIcon,
+                                                          height: 45.h, width: 45.h),
+                                                    )),
                                                 Text(
                                                   S.of(context).requestViaQR,
                                                   textAlign: TextAlign.center,
-                                                  style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
+                                                  style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 18.0.t),
                                                 ),
                                               ],
                                             )
@@ -222,11 +299,15 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                               children: [
                                                 Padding(
                                                   padding: EdgeInsets.symmetric(vertical: 10.0.h),
-                                                  child: AppSvg.asset(AssetUtils.payments),
+                                                  child: AppSvg.asset(AssetUtils.payments,
+                                                      height: 35.h, width: 35.h),
                                                 ),
                                                 Text(
                                                   S.of(context).billsAndPayments,
-                                                  style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
+                                                  style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 18.0.t),
                                                 )
                                               ],
                                             )
@@ -236,25 +317,49 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                         children: [
                                           Padding(
                                             padding: EdgeInsets.symmetric(vertical: 10.0.h),
-                                            child: AppSvg.asset(AssetUtils.payments),
+                                            child:
+                                                AppSvg.asset(AssetUtils.payments, height: 35.h, width: 35.h),
                                           ),
                                           Text(
                                             S.of(context).billsAndPayments,
-                                            style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 18.0.t),
                                           )
                                         ],
                                       )
+                                  else if (currentStep == 4)
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(vertical: 10.0.h),
+                                          child: AppSvg.asset(AssetUtils.payments, height: 35.h, width: 35.h),
+                                        ),
+                                        Text(
+                                          S.of(context).cliqTransactions,
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18.0.t),
+                                        )
+                                      ],
+                                    )
                                   else
                                     Column(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         Padding(
                                           padding: EdgeInsets.symmetric(vertical: 10.0.h),
-                                          child: AppSvg.asset(AssetUtils.payments),
+                                          child: AppSvg.asset(AssetUtils.payments, height: 35.h, width: 35.h),
                                         ),
                                         Text(
                                           S.of(context).billsAndPayments,
-                                          style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18.0.t),
                                         )
                                       ],
                                     ),
@@ -267,10 +372,15 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                             initialData: AnimatedPage.NULL,
                                             dataBuilder: (context, switchedPage) {
                                               return AnimatedCrossFade(
-                                                crossFadeState: switchedPage == AnimatedPage.NULL ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                                                crossFadeState: switchedPage == AnimatedPage.NULL
+                                                    ? CrossFadeState.showFirst
+                                                    : CrossFadeState.showSecond,
                                                 firstChild: const SizedBox(),
                                                 secondChild: SizedBox(
-                                                  height: MediaQuery.of(context).size.height * 0.03 + MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.036 : 0.02) + 100.h,
+                                                  height: MediaQuery.of(context).size.height * 0.03 +
+                                                      MediaQuery.of(context).size.height *
+                                                          (DeviceSizeHelper.isBigDevice ? 0.036 : 0.02) +
+                                                      100.h,
                                                 ),
                                                 duration: const Duration(milliseconds: 500),
                                               );
@@ -289,7 +399,8 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                 },
                                                 currentStep: currentStep,
                                                 model: model,
-                                                translateSidewaysController: model.translateSidewaysController,
+                                                translateSidewaysController:
+                                                    model.translateSidewaysController,
                                               ),
 
                                               ///Transactions button
@@ -323,8 +434,12 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                             animation: model.appSwiperController,
                                                             builder: (BuildContext context, Widget? child) {
                                                               double opacity = 0;
-                                                              if (model.appSwiperController.hasClients) if (model.appSwiperController.position.hasContentDimensions) {
-                                                                opacity = currentStep! - (model.appSwiperController.page ?? 0);
+                                                              if (model.appSwiperController.hasClients) if (model
+                                                                  .appSwiperController
+                                                                  .position
+                                                                  .hasContentDimensions) {
+                                                                opacity = currentStep! -
+                                                                    (model.appSwiperController.page ?? 0);
                                                               }
                                                               return Transform.translate(
                                                                 offset: Offset(0, 1),
@@ -340,36 +455,84 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                               padding: const EdgeInsets.all(10.0),
                                                               width: switchedPage != AnimatedPage.NULL
                                                                   ? 48
-                                                                  : (model.paymentWidgetTypeFeature[currentStep!].paymentWidgetType == PaymentWidgetType.SEND_MONEY) ||
-                                                                          (model.paymentWidgetTypeFeature[currentStep].paymentWidgetType == PaymentWidgetType.REQUEST_MONEY)
+                                                                  : (model
+                                                                                  .paymentWidgetTypeFeature[
+                                                                                      currentStep!]
+                                                                                  .paymentWidgetType ==
+                                                                              PaymentWidgetType.SEND_MONEY) ||
+                                                                          (model
+                                                                                  .paymentWidgetTypeFeature[
+                                                                                      currentStep]
+                                                                                  .paymentWidgetType ==
+                                                                              PaymentWidgetType.REQUEST_MONEY)
                                                                       ? 110
                                                                       : 125,
-                                                              height: switchedPage != AnimatedPage.NULL ? 48 : 36,
+                                                              height:
+                                                                  switchedPage != AnimatedPage.NULL ? 48 : 36,
                                                               alignment: Alignment.center,
                                                               decoration: BoxDecoration(
                                                                 color: Colors.white,
-                                                                border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
+                                                                border: Border.all(
+                                                                    color: Theme.of(context)
+                                                                        .colorScheme
+                                                                        .inverseSurface,
+                                                                    width: 1),
                                                                 borderRadius: BorderRadius.circular(100),
-                                                                boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.inverseSurface, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))],
+                                                                boxShadow: [
+                                                                  BoxShadow(
+                                                                      color: Theme.of(context)
+                                                                          .colorScheme
+                                                                          .inverseSurface,
+                                                                      blurRadius: 5,
+                                                                      spreadRadius: 0.1,
+                                                                      offset: Offset(0, 4))
+                                                                ],
                                                               ),
                                                               child: AnimatedCrossFade(
                                                                 duration: const Duration(milliseconds: 500),
-                                                                reverseDuration: const Duration(milliseconds: 500),
+                                                                reverseDuration:
+                                                                    const Duration(milliseconds: 500),
                                                                 firstCurve: Curves.easeIn,
                                                                 secondCurve: Curves.easeIn,
                                                                 alignment: Alignment.center,
-                                                                crossFadeState: switchedPage != AnimatedPage.NULL ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-                                                                firstChild: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue, height: 40, width: 40),
+                                                                crossFadeState:
+                                                                    switchedPage != AnimatedPage.NULL
+                                                                        ? CrossFadeState.showFirst
+                                                                        : CrossFadeState.showSecond,
+                                                                firstChild: AppSvg.asset(AssetUtils.down,
+                                                                    color: AppColor.light_acccent_blue,
+                                                                    height: 40,
+                                                                    width: 40),
                                                                 secondChild: AutoSizeText(
-                                                                  (model.paymentWidgetTypeFeature[currentStep!].paymentWidgetType == PaymentWidgetType.SEND_MONEY) ||
-                                                                          (model.paymentWidgetTypeFeature[currentStep].paymentWidgetType == PaymentWidgetType.REQUEST_MONEY)
+                                                                  (model
+                                                                                  .paymentWidgetTypeFeature[
+                                                                                      currentStep!]
+                                                                                  .paymentWidgetType ==
+                                                                              PaymentWidgetType.SEND_MONEY) ||
+                                                                          (model
+                                                                                  .paymentWidgetTypeFeature[
+                                                                                      currentStep]
+                                                                                  .paymentWidgetType ==
+                                                                              PaymentWidgetType.REQUEST_MONEY)
                                                                       ? S.current.newPayment
-                                                                      : model.paymentWidgetTypeFeature[currentStep].paymentWidgetType == PaymentWidgetType.POST_PAID_BILL
+                                                                      : model
+                                                                                  .paymentWidgetTypeFeature[
+                                                                                      currentStep]
+                                                                                  .paymentWidgetType ==
+                                                                              PaymentWidgetType.POST_PAID_BILL
                                                                           ? S.current.newPostPaidBill
-                                                                          : model.paymentWidgetTypeFeature[currentStep].paymentWidgetType == PaymentWidgetType.CLIQ_TRANSACTIONS
+                                                                          : model
+                                                                                      .paymentWidgetTypeFeature[
+                                                                                          currentStep]
+                                                                                      .paymentWidgetType ==
+                                                                                  PaymentWidgetType
+                                                                                      .CLIQ_TRANSACTIONS
                                                                               ? S.current.view_more
                                                                               : S.current.newPrePaidBill,
-                                                                  style: TextStyle(color: AppColor.light_acccent_blue, fontSize: 12, fontWeight: FontWeight.w600),
+                                                                  style: TextStyle(
+                                                                      color: AppColor.light_acccent_blue,
+                                                                      fontSize: 12,
+                                                                      fontWeight: FontWeight.w600),
                                                                   maxLines: 1,
                                                                 ),
                                                               ),
@@ -389,7 +552,9 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                             initialData: AnimatedPage.NULL,
                                             dataBuilder: (context, switchedPage) {
                                               return AnimatedCrossFade(
-                                                crossFadeState: switchedPage != AnimatedPage.NULL ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                                                crossFadeState: switchedPage != AnimatedPage.NULL
+                                                    ? CrossFadeState.showFirst
+                                                    : CrossFadeState.showSecond,
                                                 firstChild: const SizedBox(),
                                                 secondChild: SizedBox(
                                                   height: MediaQuery.of(context).size.height * 0.03,
@@ -397,7 +562,8 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                     padding: EdgeInsets.only(bottom: 17.h),
                                                     child: Row(
                                                       mainAxisAlignment: MainAxisAlignment.center,
-                                                      children: buildPageIndicator(currentStep!, pages.length),
+                                                      children:
+                                                          buildPageIndicator(currentStep!, pages.length),
                                                     ),
                                                   ),
                                                 ),
@@ -413,7 +579,9 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                               return AnimatedCrossFade(
                                                 duration: Duration(milliseconds: 500),
                                                 firstChild: Padding(
-                                                  padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.036 : 0.02)),
+                                                  padding: EdgeInsets.only(
+                                                      top: MediaQuery.of(context).size.height *
+                                                          (DeviceSizeHelper.isBigDevice ? 0.036 : 0.02)),
                                                   child: Align(
                                                     alignment: Alignment.bottomCenter,
                                                     child: BottomBarWidget(
@@ -434,7 +602,9 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                   ),
                                                 ),
                                                 secondChild: const SizedBox(),
-                                                crossFadeState: switchedPage == AnimatedPage.NULL ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                                                crossFadeState: switchedPage == AnimatedPage.NULL
+                                                    ? CrossFadeState.showFirst
+                                                    : CrossFadeState.showSecond,
                                               );
                                             })
                                       ],
@@ -445,7 +615,10 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                             ),
                             builder: (BuildContext context, Widget? child) {
                               return Transform.translate(
-                                offset: Offset(0, model.translateUpAnimation.value * (-MediaQuery.of(context).size.height * 0.84)),
+                                offset: Offset(
+                                    0,
+                                    model.translateUpAnimation.value *
+                                        (-MediaQuery.of(context).size.height * 0.84)),
                                 child: child,
                               );
                             },
@@ -500,7 +673,9 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
   List<Widget> buildPageIndicator(int currentPage, int totalPage) {
     List<Widget> list = [];
     for (int i = 0; i < totalPage; i++) {
-      list.add(i == currentPage ? indicator(true, i, currentPage, totalPage) : indicator(false, i, currentPage, totalPage));
+      list.add(i == currentPage
+          ? indicator(true, i, currentPage, totalPage)
+          : indicator(false, i, currentPage, totalPage));
     }
     return list;
   }

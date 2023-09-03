@@ -18449,6 +18449,16 @@ class S {
       args: [],
     );
   }
+
+  /// `CliQ Transactions`
+  String get cliqTransactions {
+    return Intl.message(
+      'CliQ Transactions',
+      name: 'cliqTransactions',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
