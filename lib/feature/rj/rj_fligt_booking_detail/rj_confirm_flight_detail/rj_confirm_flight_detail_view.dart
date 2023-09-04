@@ -16,6 +16,8 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../../main/navigation/route_paths.dart';
+
 class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetailViewModel> {
   RjConfirmFlightDetailView(ProviderBase model) : super(model);
 
@@ -60,7 +62,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                         .account
                                         ?.accountNo ??
                                     '',
-                                '1000',
+                                1000,
                                 'JOD',
                                 true)
                           ]);
@@ -84,7 +86,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                         .account
                                         ?.accountNo ??
                                     '',
-                                '1000',
+                                1000,
                                 'JOD',
                                 true)
                           ]);
@@ -247,13 +249,18 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                 });
                                 //  Navigator.pop(context);
                               },
-                              child: Text(
-                                S.of(context).cancel,
-                                style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).colorScheme.onSecondaryContainer,
-                                  fontSize: 14.t,
-                                  fontWeight: FontWeight.w600,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(context, RoutePaths.AppHome);
+                                },
+                                child: Text(
+                                  S.of(context).cancel,
+                                  style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    color: Theme.of(context).colorScheme.onSecondaryContainer,
+                                    fontSize: 14.t,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ),
                             ),

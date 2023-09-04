@@ -16,7 +16,9 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
   Widget build(BuildContext context, model) {
     return GestureDetector(
       onHorizontalDragEnd: (details) {
-        if (details.primaryVelocity!.isNegative) {}
+        if (details.primaryVelocity!.isNegative) {
+          // Navigator.pushNamed(context, RoutePaths.RJBookingConfirmedInAppWebViewPage);
+        }
       },
       child: SingleChildScrollView(
         padding: EdgeInsets.only(top: 72.h),

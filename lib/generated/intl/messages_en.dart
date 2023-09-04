@@ -448,7 +448,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookNow": MessageLookupByLibrary.simpleMessage("Book Now"),
         "bookYourFlight":
             MessageLookupByLibrary.simpleMessage("Book Your Flight"),
+        "bookingConfirmation":
+            MessageLookupByLibrary.simpleMessage("Booking Confirmation"),
+        "bookingConfirmed":
+            MessageLookupByLibrary.simpleMessage(" BookingConfirmed!"),
+        "bookingConfirmedDescription": MessageLookupByLibrary.simpleMessage(
+            "You got the best deal. You will receive your booking details on your email. Enjoy your trip and travel safe!"),
         "bookingRefNo": MessageLookupByLibrary.simpleMessage("Booking Ref No."),
+        "bookingUnsuccessDescription": MessageLookupByLibrary.simpleMessage(
+            "We\'re sorry, but we\'re unable to complete your flight booking at this time due toan error. Please try again later."),
+        "bookingunsuccessful":
+            MessageLookupByLibrary.simpleMessage("Booking Unsuccessful"),
         "bornBlink":
             MessageLookupByLibrary.simpleMessage("Born blink.\nBe Blink."),
         "brightPlace": MessageLookupByLibrary.simpleMessage(
@@ -2249,6 +2259,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! The QR code is expired."),
         "oopsTheQRisInvalid": MessageLookupByLibrary.simpleMessage(
             "Oops! The QR code is invalid. Please try again."),
+        "oopsTransactionFailed":
+            MessageLookupByLibrary.simpleMessage("OOPS! TRANSACTION FAILED"),
         "oopsYouCanOnlyCreate5CliqIds": MessageLookupByLibrary.simpleMessage(
             "Oops! You can only create 5 CliQ IDs"),
         "oopsYouCantSendMoneyToYourOwnAccount":
@@ -3184,6 +3196,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Upload ID instead"),
         "uploadSignature":
             MessageLookupByLibrary.simpleMessage("Upload Signature"),
+        "url": MessageLookupByLibrary.simpleMessage("URL"),
         "usIDNumber": MessageLookupByLibrary.simpleMessage(
             "U.S. tax payer identification number "),
         "usTaxPayerIdentificationNumber": MessageLookupByLibrary.simpleMessage(
@@ -3341,6 +3354,9 @@ class MessageLookup extends MessageLookupByLibrary {
                 "You cannot use your CliQ ID to send money."),
         "youEitherChangePinOrUnBlocked": MessageLookupByLibrary.simpleMessage(
             "You either changed your PIN or unblocked it, please visit the nearest ATM to activate your new PIN"),
+        "youHaveInsufficientBalanceInYourAccount":
+            MessageLookupByLibrary.simpleMessage(
+                "You have insufficient balance in your account"),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
         "youPaid": MessageLookupByLibrary.simpleMessage("You paid"),
