@@ -144,7 +144,7 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
                 ProviderScope.containerOf(context).read(cliqIdListViewModelProvider).getAlias(true);
                 Navigator.pop(context);
               },
-              text: S.of(context).done,
+              text: S.of(context).backToManageCliq,
             ),
           ),
         ],

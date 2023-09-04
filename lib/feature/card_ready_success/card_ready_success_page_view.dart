@@ -89,7 +89,7 @@ class CardReadySuccessPageView extends BasePageViewWidget<CardReadySuccessPageVi
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 24.h),
                   child: AppSecondaryButton(
-                    text: S.of(context).done,
+                    text: S.of(context).backToDashboard,
                     onPressed: () {
                       Navigator.pushNamed(context, RoutePaths.AppHome);
                     },

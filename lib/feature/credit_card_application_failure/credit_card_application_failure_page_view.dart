@@ -65,8 +65,7 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
               start: 40.w,
               end: 40.w,
             ),
-            child: Text(
-                getSubTitle(context, model.creditCardApplicationFailureArguments.creditFailureState),
+            child: Text(getSubTitle(context, model.creditCardApplicationFailureArguments.creditFailureState),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
@@ -78,25 +77,26 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
             child: AppSecondaryButton(
-                text: S.of(context).okey,
-                onPressed: () {
-                  if (model.creditCardApplicationFailureArguments.creditFailureState ==
-                          CreditFailureState.InEligible ||
-                      model.creditCardApplicationFailureArguments.creditFailureState ==
-                          CreditFailureState.ZERO_BALANCE ||
-                      model.creditCardApplicationFailureArguments.creditFailureState ==
-                          CreditFailureState.AccountDormant) {
-                    Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-                    ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
-                  } else if (model.creditCardApplicationFailureArguments.creditFailureState ==
-                      CreditFailureState.EngagementTeamRejection) {
-                    Navigator.pushNamed(context, RoutePaths.AppHome);
-                  } else if (model.creditCardApplicationFailureArguments.creditFailureState ==
-                      CreditFailureState.FATCA) {
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
-                  }
-                }),
+              text: S.of(context).backToDashboard,
+              onPressed: () {
+                if (model.creditCardApplicationFailureArguments.creditFailureState ==
+                        CreditFailureState.InEligible ||
+                    model.creditCardApplicationFailureArguments.creditFailureState ==
+                        CreditFailureState.ZERO_BALANCE ||
+                    model.creditCardApplicationFailureArguments.creditFailureState ==
+                        CreditFailureState.AccountDormant) {
+                  Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+                  ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+                } else if (model.creditCardApplicationFailureArguments.creditFailureState ==
+                    CreditFailureState.EngagementTeamRejection) {
+                  Navigator.pushNamed(context, RoutePaths.AppHome);
+                } else if (model.creditCardApplicationFailureArguments.creditFailureState ==
+                    CreditFailureState.FATCA) {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
+                }
+              },
+            ),
           ),
         ],
       ),

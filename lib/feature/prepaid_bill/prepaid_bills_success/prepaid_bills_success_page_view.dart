@@ -272,7 +272,7 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24.w),
                 child: AppSecondaryButton(
-                  text: S.of(context).done,
+                  text: S.of(context).backToPayments,
                   onPressed: () {
                     Navigator.of(context)
                       ..pop()

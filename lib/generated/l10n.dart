@@ -18449,6 +18449,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Back to History`
+  String get backToHistory {
+    return Intl.message(
+      'Back to History',
+      name: 'backToHistory',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
