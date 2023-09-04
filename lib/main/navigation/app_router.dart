@@ -150,6 +150,8 @@ import 'package:neo_bank/utils/navgition_type.dart';
 import '../../feature/evoucher/evoucher/evoucher_page.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page.dart';
 import '../../feature/rj/rj_book_flight/rj_book_flight_page.dart';
+import '../../feature/rj/rj_booking_confirmed_in_app_web_view/rj_booking_confirmed_in_app_web_view_page.dart';
+import '../../feature/rj/rj_booking_success/rj_booking_success_page.dart';
 import '../../feature/sub_account/open_sub_account/open_sub_account_success/open_sub_account_success_page.dart';
 import '../../feature/sub_account/transfer/select_transfer/select_transfer_page.dart';
 import '../../feature/sub_account/transfer/transfer_success/transfer_success_page.dart';
@@ -852,6 +854,19 @@ class AppRouter {
             builder: (context) =>
                 RjFlightBookingDetailPage(settings.arguments as RJFlightDetailsPageArguments),
             settings: RouteSettings(name: RoutePaths.RjFlightBookingDetailPage));
+
+      /// Rj Flight Booking Success Page
+      case RoutePaths.RJBookingSuccessPage:
+        return CupertinoPageRoute(
+            builder: (context) => RJBookingSuccessPage(settings.arguments as RJBookingSuccessPageArguments),
+            settings:
+                RouteSettings(name: RoutePaths.RJBookingSuccessPage, arguments: RjBookingPageArguments));
+
+      /// Rj Flight Booking Confirmation InAppWeb Page
+      case RoutePaths.RJBookingConfirmedInAppWebViewPage:
+        return CupertinoPageRoute(
+            builder: (context) => RJBookingConfirmedInAppWebViewPage(),
+            settings: RouteSettings(name: RoutePaths.RJBookingConfirmedInAppWebViewPage));
 
       case RoutePaths.LinkAccountPage:
         return CupertinoPageRoute(
