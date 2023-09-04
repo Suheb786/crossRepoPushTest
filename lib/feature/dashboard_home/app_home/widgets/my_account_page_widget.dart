@@ -168,7 +168,7 @@ class MyAccountPageViewWidget extends StatelessWidget {
 
   bottomWidget(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.symmetric(horizontal: 18.w, vertical: 32.h),
+      padding: EdgeInsetsDirectional.symmetric(horizontal: 23.w, vertical: 32.h),
       child: InkWell(
         onTap: () {
           if (account.isSubAccount ?? false) {
