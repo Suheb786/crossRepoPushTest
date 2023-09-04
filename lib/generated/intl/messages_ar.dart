@@ -445,8 +445,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookNow": MessageLookupByLibrary.simpleMessage("احجز الان"),
         "bookYourFlight":
             MessageLookupByLibrary.simpleMessage("Book Your Flight"),
+        "bookingConfirmation":
+            MessageLookupByLibrary.simpleMessage("Booking Confirmation"),
+        "bookingConfirmed":
+            MessageLookupByLibrary.simpleMessage(" BookingConfirmed!"),
+        "bookingConfirmedDescription": MessageLookupByLibrary.simpleMessage(
+            "You got the best deal. You will receive your booking details on your email. Enjoy your trip and travel safe!"),
         "bookingRefNo":
             MessageLookupByLibrary.simpleMessage("الرقم المرجعي للحجز"),
+        "bookingUnsuccessDescription": MessageLookupByLibrary.simpleMessage(
+            "We\'re sorry, but we\'re unable to complete your flight booking at this time due toan error. Please try again later."),
+        "bookingunsuccessful":
+            MessageLookupByLibrary.simpleMessage("Booking Unsuccessful"),
         "bornBlink": MessageLookupByLibrary.simpleMessage("تاريخ تأسيس بلينك "),
         "brightPlace": MessageLookupByLibrary.simpleMessage(
             "تأكد من إضاءة المكان اللي إنت فيه"),
@@ -2194,6 +2204,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفوا! انتهت صلاحية رمز الاستجابة السريع QR "),
         "oopsTheQRisInvalid": MessageLookupByLibrary.simpleMessage(
             "عفوا! رمز الاستجابة السريع QR غير صالح للاستخدام. حاول مرة أخرى"),
+        "oopsTransactionFailed":
+            MessageLookupByLibrary.simpleMessage("OOPS! TRANSACTION FAILED"),
         "oopsYouCanOnlyCreate5CliqIds": MessageLookupByLibrary.simpleMessage(
             "عفوا!ممكن تسجل 5 أسماء مستعارة/أرقام هواتف فقط على كليك "),
         "oopsYouCantSendMoneyToYourOwnAccount":
@@ -3093,6 +3105,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أو حمّل صورة هويتك"),
         "uploadSignature":
             MessageLookupByLibrary.simpleMessage("تحميل التوقيع"),
+        "url": MessageLookupByLibrary.simpleMessage("URL"),
         "usIDNumber": MessageLookupByLibrary.simpleMessage(
             "رقم تعريف دافع الضريبة في أمريكا"),
         "usTaxPayerIdentificationNumber": MessageLookupByLibrary.simpleMessage(
@@ -3251,6 +3264,9 @@ class MessageLookup extends MessageLookupByLibrary {
                 "لا يمكن استخدام اسم المستعار (كليك) الخاص بك لإرسال حوالة"),
         "youEitherChangePinOrUnBlocked": MessageLookupByLibrary.simpleMessage(
             "الرقم السري تغير، زور أقرب صراف آلي لحتى تفعله"),
+        "youHaveInsufficientBalanceInYourAccount":
+            MessageLookupByLibrary.simpleMessage(
+                "You have insufficient balance in your account"),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
         "youPaid": MessageLookupByLibrary.simpleMessage("You paid"),

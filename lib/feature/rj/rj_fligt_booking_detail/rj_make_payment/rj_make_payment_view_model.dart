@@ -74,7 +74,7 @@ class RjMakePaymentViewModel extends BasePageViewModel {
 class MakePaymentCard {
   final String cardName;
   final String cardNo;
-  final String amt;
+  final int amt;
   final String currency;
   bool isSelected;
 
