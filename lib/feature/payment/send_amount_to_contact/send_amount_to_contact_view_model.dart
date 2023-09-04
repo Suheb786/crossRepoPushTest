@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/payment/check_send_money_response.dart';
 import 'package:domain/model/payment/transfer_respone.dart';
@@ -16,7 +17,7 @@ import 'package:rxdart/rxdart.dart';
 class SendAmountToContactViewModel extends BasePageViewModel {
   final CheckSendMoneyUseCase _checkSendMoneyUseCase;
   final TransferUseCase _transferUseCase;
-
+  Account selectedAccount = Account();
   final Beneficiary beneficiary;
 
   PublishSubject<String> _purposeSubject = PublishSubject();
@@ -51,6 +52,8 @@ class SendAmountToContactViewModel extends BasePageViewModel {
 
   List<Purpose>? purposeList = [];
 
+  bool showBackButton = false;
+
   SendAmountToContactViewModel(this.beneficiary, this._checkSendMoneyUseCase, this._transferUseCase) {
     _checkSendMoneyRequest.listen((value) {
       RequestManager(value, createCall: () => _checkSendMoneyUseCase.execute(params: value))
@@ -77,6 +80,10 @@ class SendAmountToContactViewModel extends BasePageViewModel {
         }
       });
     });
+  }
+
+  setShowBackButton(bool needBackButton) {
+    this.showBackButton = needBackButton;
   }
 
   List<String> myList = [];
@@ -137,6 +144,7 @@ class SendAmountToContactViewModel extends BasePageViewModel {
 
   void checkSendMoney() {
     _checkSendMoneyRequest.safeAdd(CheckSendMoneyUseCaseParams(
+        fromAccount: selectedAccount.accountNo,
         toAccount: beneficiary.identifier ?? '',
         toAmount: double.parse(currentPinValue),
         beneficiaryId: beneficiary.id ?? ''));
@@ -146,6 +154,7 @@ class SendAmountToContactViewModel extends BasePageViewModel {
     _transferRequest.safeAdd(TransferUseCaseParams(
         otpCode: '576824',
         toAmount: transferResponse.toAmount,
+        fromAccount: selectedAccount.accountNo,
         toAccount: transferResponse.toAccount,
         limit: purposeDetail == null ? beneficiary.limit : purposeDetail!.limit,
         memo: purposeDetail == null

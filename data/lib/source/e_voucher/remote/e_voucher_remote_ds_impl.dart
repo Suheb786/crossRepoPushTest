@@ -3,6 +3,7 @@ import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/e_voucher/get_settlement_amount/get_settlement_amount_request_entity.dart';
 import 'package:data/entity/remote/e_voucher/get_voucher_details/get_voucher_details_request_entity.dart';
+import 'package:data/entity/remote/e_voucher/place_order/evoucher_otp_request_entity.dart';
 import 'package:data/entity/remote/e_voucher/place_order/place_order_request_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_category/voucher_categories_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_detail_request.dart';
@@ -13,6 +14,8 @@ import 'package:data/entity/remote/e_voucher/voucher_min_max_value/voucher_min_m
 import 'package:data/entity/remote/e_voucher/voucher_min_max_value/voucher_min_max_value_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_region_by_categories/voucher_region_by_categories_request.dart';
 import 'package:data/entity/remote/e_voucher/voucher_region_by_categories/voucher_region_by_categories_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_region_min_max_value/voucher_region_min_max_value_request.dart';
+import 'package:data/entity/remote/e_voucher/voucher_region_min_max_value/voucher_region_min_max_value_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_category_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_filter_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_search_request.dart';
@@ -147,7 +150,8 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
   Future<HttpResponse<EVoucherOtpResponseEntity>> eVoucherOtp(
       {required EVoucherUsecaseOTPParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.eVoucherOtp(BaseRequest(baseData: baseData.toJson()));
+    return _apiService.eVoucherOtp(EVoucherOtpRequestEntity(
+        baseData: baseData.toJson(), getToken: true, voucherName: params.voucherName));
   }
 
   Future<HttpResponse<VoucherMinMaxValueResponseEntity>> getMinMaxRange(
@@ -167,6 +171,16 @@ class EVoucherRemoteDSImpl extends EVoucherRemoteDS {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getVoucherDetailsApi(
       GetVoucherDetailsRequestEntity(baseData: baseData.toJson(), OrderIdentifier: params.OrderIdentifier),
+    );
+  }
+
+  @override
+  Future<HttpResponse<VoucherRegionMinMaxValueResponseEntity>> regionsAndMinMax() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.regionsAndMinMax(
+      VoucherRegionMinMaxValueRequest(
+        baseData: baseData.toJson(),
+      ),
     );
   }
 }

@@ -8,7 +8,6 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/firebase_log_util.dart';
@@ -17,6 +16,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../../ui/molecules/button/app_primary_button.dart';
 import 'accept_request_money_otp_page_view_model.dart';
 
 class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMoneyOtpPageViewModel> {
@@ -131,62 +131,42 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
                                 }
                               },
                               dataBuilder: (context, otpValidationResponse) {
-                                return GestureDetector(
-                                  onHorizontalDragEnd: (details) {
-                                    if (details.primaryVelocity!.isNegative) {
-                                      model.validateOtp();
-                                    } else {
-                                      Navigator.pop(context);
-                                    }
-                                  },
-                                  child: Card(
-                                    child: Container(
-                                      padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              AppOtpFields(
-                                                length: 6,
-                                                controller: model.otpController,
-                                                key: model.otpControllerKey,
-                                                onChanged: (val) {
-                                                  model.validate(val);
-                                                },
-                                              ),
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              CountdownTimer(
-                                                controller: model.countDownController,
-                                                onEnd: () {},
-                                                endTime: model.endTime,
-                                                textStyle: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    fontSize: 16.t,
-                                                    color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                                widgetBuilder: (context, currentTimeRemaining) {
-                                                  return currentTimeRemaining == null
-                                                      ? TextButton(
-                                                          onPressed: () {
-                                                            model.makeApproveRTPOtpRequest();
-                                                          },
-                                                          child: Text(
-                                                            S.of(context).resendCode,
-                                                            style: TextStyle(
-                                                                fontFamily: StringUtils.appFont,
-                                                                fontSize: 14.t,
-                                                                fontWeight: FontWeight.w600,
-                                                                color: Theme.of(context)
-                                                                    .textTheme
-                                                                    .bodyLarge!
-                                                                    .color!),
-                                                          ))
-                                                      : Text(
-                                                          S.of(context).resendIn(
-                                                              '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                return Card(
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Column(
+                                          children: [
+                                            AppOtpFields(
+                                              length: 6,
+                                              controller: model.otpController,
+                                              key: model.otpControllerKey,
+                                              onChanged: (val) {
+                                                model.validate(val);
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          children: [
+                                            CountdownTimer(
+                                              controller: model.countDownController,
+                                              onEnd: () {},
+                                              endTime: model.endTime,
+                                              textStyle: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontSize: 16.t,
+                                                  color: Theme.of(context).textTheme.bodyLarge!.color!),
+                                              widgetBuilder: (context, currentTimeRemaining) {
+                                                return currentTimeRemaining == null
+                                                    ? TextButton(
+                                                        onPressed: () {
+                                                          model.makeApproveRTPOtpRequest();
+                                                        },
+                                                        child: Text(
+                                                          S.of(context).resendCode,
                                                           style: TextStyle(
                                                               fontFamily: StringUtils.appFont,
                                                               fontSize: 14.t,
@@ -195,29 +175,53 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
                                                                   .textTheme
                                                                   .bodyLarge!
                                                                   .color!),
-                                                        );
-                                                },
+                                                        ))
+                                                    : Text(
+                                                        S.of(context).resendIn(
+                                                            '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                                        style: TextStyle(
+                                                            fontFamily: StringUtils.appFont,
+                                                            fontSize: 14.t,
+                                                            fontWeight: FontWeight.w600,
+                                                            color: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyLarge!
+                                                                .color!),
+                                                      );
+                                              },
+                                            ),
+                                            AppStreamBuilder<bool>(
+                                              stream: model.showButtonStream,
+                                              initialData: false,
+                                              dataBuilder: (BuildContext context, isValid) {
+                                                return Padding(
+                                                  padding: EdgeInsets.only(top: 26.0.h, bottom: 16.0.h),
+                                                  child: AppPrimaryButton(
+                                                      isDisabled: !isValid!,
+                                                      onPressed: () {
+                                                        model.validateOtp();
+                                                      },
+                                                      text: S.of(context).next),
+                                                );
+                                              },
+                                            ),
+                                            InkWell(
+                                              onTap: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text(
+                                                S.current.back,
+                                                style: TextStyle(
+                                                  color: AppColor.brightBlue,
+                                                  fontSize: 14.t,
+                                                  letterSpacing: 1.0,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
                                               ),
-                                              AppStreamBuilder<bool>(
-                                                stream: model.showButtonStream,
-                                                initialData: false,
-                                                dataBuilder: (BuildContext context, isValid) {
-                                                  return Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: 26.0.h,
-                                                    ),
-                                                    child: Visibility(
-                                                      visible: isValid!,
-                                                      child: AnimatedButton(
-                                                          buttonText: S.of(context).swipeToProceed),
-                                                    ),
-                                                  );
-                                                },
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
                                     ),
                                   ),
                                 );

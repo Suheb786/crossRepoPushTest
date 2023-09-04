@@ -5,6 +5,7 @@ import 'package:domain/model/bill_payments/get_biller_lookup_list/get_biller_loo
 import 'package:domain/model/bill_payments/get_biller_lookup_list/get_biller_lookup_list_content.dart';
 import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_categories_model.dart';
 import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_categories_model_data.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/usecase/bill_payment/get_biller_lookup_list_usecase.dart';
 import 'package:domain/usecase/bill_payment/get_prepaid_categories_usecase.dart';
 import 'package:domain/utils/validator.dart';
@@ -57,10 +58,12 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
 
   void callFromPage() {}
 
+  Account? selectedAccount;
+
   setData() {
     AppConstantsUtils.SELECTED_BILLING_NUMBER = billingNumberTextControl.text;
     AppConstantsUtils.NICK_NAME = nicknameTextControl.text;
-    AppConstantsUtils.ACCOUNT_NUMBER = payFromController.text;
+    AppConstantsUtils.ACCOUNT_NUMBER = selectedAccount?.accountNo ?? '';
     AddNewDetailsBillPaymentsModel addNewDetailsBillPaymentsModel = AddNewDetailsBillPaymentsModel();
 
     addNewDetailsBillPaymentsModel.amount = amountTextControl.text;
@@ -69,11 +72,10 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
     addNewDetailsBillPaymentsModel.refNo = billingNumberTextControl.text;
     addNewDetailsBillPaymentsModel.service = serviceTypeTextControl.text;
     addNewDetailsBillPaymentsModel.isPrepaidCategoryListEmpty = isPrepaidCategoryListEmpty;
-    addNewDetailsBillPaymentsModel.accountNumber = payFromController.text;
+    addNewDetailsBillPaymentsModel.accountNumber = selectedAccount?.accountNo ?? '';
     return addNewDetailsBillPaymentsModel;
   }
 
-//////////////////
   final BehaviorSubject<bool> isShowAmount = BehaviorSubject<bool>.seeded(false);
 
   Stream<bool> get isShowAmountStream => isShowAmount.stream;

@@ -1,10 +1,25 @@
 import 'package:domain/constants/enum/request_money_activity_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
+import 'package:intl/intl.dart';
 import 'package:neo_bank/generated/l10n.dart';
 
 class StringUtils {
   StringUtils._();
+
+  /// seperate numbers with commas and ends with 3 digit of decimal eg. "555,555,555.000"
+  static String formatBalance(String balance) {
+    double? balanceValue = double.tryParse(balance);
+
+    if (balance.isEmpty || balanceValue == 0.0) {
+      return "0.000";
+    } else if (balanceValue != null) {
+      String formattedBalance = NumberFormat('#,##0.000').format(balanceValue);
+      return formattedBalance.startsWith('.') ? '0$formattedBalance' : formattedBalance;
+    } else {
+      return balance;
+    }
+  }
 
   /// first initials
   static String getFirstInitials(String? name) {

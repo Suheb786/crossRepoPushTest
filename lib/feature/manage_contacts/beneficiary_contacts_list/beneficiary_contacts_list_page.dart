@@ -9,6 +9,7 @@ import 'package:neo_bank/utils/extension/string_casing_extension.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
+import '../../../utils/color_utils.dart';
 import 'beneficiary_contacts_list_page_view_model.dart';
 import 'beneficiary_request_money_list_tab/beneficiary_request_money_list_page_view.dart';
 import 'beneficiary_send_money_list_tab/beneficiary_send_money_list_page_view.dart';
@@ -39,51 +40,6 @@ class BeneficiaryContactListPageState
   late final _tabController = TabController(length: 2, vsync: this, initialIndex: 0);
 
   @override
-  PreferredSizeWidget? buildAppbar() {
-    return PreferredSize(
-      preferredSize: Size(double.maxFinite, 85.0.h),
-      child: GestureDetector(
-          onVerticalDragEnd: (details) {
-            Navigator.pop(context);
-          },
-          behavior: HitTestBehavior.translucent,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Padding(
-                  padding: EdgeInsetsDirectional.only(start: 24.0.w),
-                  child: AppSvg.asset(AssetUtils.leftArrow,
-                      matchTextDirection: true,
-                      color: widget.navigationType == NavigationType.REQUEST_MONEY
-                          ? Theme.of(context).colorScheme.surfaceVariant
-                          : Theme.of(context).colorScheme.secondary),
-                ),
-              ),
-              Text(
-                S.of(context).manageContacts,
-                style: TextStyle(
-                    fontSize: 14.t,
-                    fontWeight: FontWeight.w600,
-                    color: widget.navigationType == NavigationType.REQUEST_MONEY
-                        ? Theme.of(context).colorScheme.surfaceVariant
-                        : Theme.of(context).colorScheme.secondary),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.only(end: 18.0.w),
-                child: Container(
-                  width: 28.w,
-                ),
-              )
-            ],
-          )),
-    );
-  }
-
-  @override
   bool extendBodyBehindAppBar() {
     return false;
   }
@@ -93,6 +49,11 @@ class BeneficiaryContactListPageState
     return widget.navigationType == NavigationType.REQUEST_MONEY
         ? Theme.of(context).canvasColor
         : Theme.of(context).primaryColor;
+  }
+
+  @override
+  bool? resizeToAvoidBottomInset() {
+    return false;
   }
 
   @override
@@ -122,67 +83,119 @@ class BeneficiaryContactListPageState
     super.onModelReady(model);
   }
 
+  Widget? _sendMoneyBeneficiary;
+  Widget? _requestMoneyBeneficiary;
+
   @override
   Widget buildView(BuildContext context, BeneficiaryContactListPageViewModel model) {
-    return Container(
-      decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(16.w), topRight: Radius.circular(16.w))),
-      child: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.only(
-              top: 8.h,
-            ),
-            height: 4.h,
-            width: 64.w,
-            decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.onBackground, borderRadius: BorderRadius.circular(4.w)),
+    if (_sendMoneyBeneficiary == null) {
+      _sendMoneyBeneficiary = BeneficiarySendMoneyListPageView(provideBase());
+    }
+    if (_requestMoneyBeneficiary == null) {
+      _requestMoneyBeneficiary = BeneficiaryRequestMoneyListPageView(provideBase());
+    }
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.only(top: 52.0.h, bottom: 0.h),
+          height: 80.h,
+          child: Text(
+            S.of(context).manageContacts,
+            textAlign: TextAlign.center,
+            softWrap: false,
+            style: TextStyle(
+                fontSize: 14.t, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
           ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              width: MediaQuery.of(context).size.width * 0.7.w,
-              child: TabBar(
-                labelColor: Theme.of(context).colorScheme.surfaceVariant,
-                isScrollable: true,
-                labelPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 8.h, top: 27.h),
-                padding: EdgeInsets.zero,
-                unselectedLabelColor: Theme.of(context).colorScheme.onInverseSurface,
-                indicatorSize: TabBarIndicatorSize.label,
-                indicator: UnderlineTabIndicator(
-                    borderSide: BorderSide(
-                      width: 4.0.w,
-                      color: Theme.of(context).primaryColor,
+        ),
+        Expanded(
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                margin: EdgeInsetsDirectional.only(top: 24.h),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    borderRadius:
+                        BorderRadius.only(topLeft: Radius.circular(16.w), topRight: Radius.circular(16.w))),
+                child: Column(
+                  children: [
+                    SizedBox(height: 47.h),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.7.w,
+                        child: TabBar(
+                          labelColor: Theme.of(context).colorScheme.surfaceVariant,
+                          isScrollable: true,
+                          labelPadding: EdgeInsets.only(
+                            left: 24.w,
+                            right: 24.w,
+                            bottom: 8.h,
+                          ),
+                          padding: EdgeInsets.zero,
+                          unselectedLabelColor: Theme.of(context).colorScheme.onInverseSurface,
+                          indicatorSize: TabBarIndicatorSize.label,
+                          indicator: UnderlineTabIndicator(
+                              borderSide: BorderSide(
+                                width: 4.0.w,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                              borderRadius: BorderRadius.all(Radius.circular(3.0.w))),
+                          controller: _tabController,
+                          tabs: [
+                            Text(
+                              S.of(context).sendMoney,
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontSize: 14.t,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            Text(
+                              S.of(context).requestMoney.toTitleCase(),
+                              textAlign: TextAlign.start,
+                              style: TextStyle(fontSize: 14.t, fontWeight: FontWeight.w600),
+                            )
+                          ],
+                        ),
+                      ),
                     ),
-                    borderRadius: BorderRadius.all(Radius.circular(3.0.w))),
-                controller: _tabController,
-                tabs: [
-                  Text(
-                    S.of(context).sendMoney,
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 14.t,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  Text(
-                    S.of(context).requestMoney.toTitleCase(),
-                    textAlign: TextAlign.start,
-                    style: TextStyle(fontSize: 14.t, fontWeight: FontWeight.w600),
-                  )
-                ],
+                    Expanded(
+                      child: TabBarView(controller: _tabController, children: [
+                        _sendMoneyBeneficiary!,
+                        _requestMoneyBeneficiary!,
+                      ]),
+                    )
+                  ],
+                ),
               ),
-            ),
+              Positioned(
+                top: 0.h,
+                child: InkWell(
+                  onTap: () {
+                    // ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animateBackToMainPage();
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    height: 48.h,
+                    width: 48.h,
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white,
+                        border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black26, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))
+                        ]),
+                    child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue),
+                  ),
+                ),
+              ),
+            ],
           ),
-          Expanded(
-            child: TabBarView(controller: _tabController, children: [
-              BeneficiarySendMoneyListPageView(provideBase()),
-              BeneficiaryRequestMoneyListPageView(provideBase())
-            ]),
-          )
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -20,20 +20,22 @@ class ValidatePrePaidBillRequestEntity {
   bool? billingNumberRequired;
   @JsonKey(name: "GetToken")
   final bool? getToken;
+  @JsonKey(name: "FromAccount")
+  final String? fromAccount;
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  ValidatePrePaidBillRequestEntity({
-    this.billerCode,
-    this.amount,
-    this.serviceType,
-    this.billingNumber,
-    this.prepaidCategoryCode,
-    this.prepaidCategoryType,
-    this.billingNumberRequired,
-    this.getToken,
-    required this.baseData,
-  });
+  ValidatePrePaidBillRequestEntity(
+      {this.billerCode,
+      this.amount,
+      this.serviceType,
+      this.billingNumber,
+      this.prepaidCategoryCode,
+      this.prepaidCategoryType,
+      this.billingNumberRequired,
+      this.getToken,
+      required this.baseData,
+      this.fromAccount});
 
   factory ValidatePrePaidBillRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$ValidatePrePaidBillRequestEntityFromJson(json);

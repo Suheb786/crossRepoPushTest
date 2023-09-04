@@ -1,5 +1,3 @@
-import 'package:card_swiper/card_swiper.dart';
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:domain/usecase/account_setting/get_profile_info/get_profile_info_usecase.dart';
@@ -19,44 +17,73 @@ class SettingsDialogViewModel extends BasePageViewModel {
   final LogoutUseCase _logoutUseCase;
   final GetProfileInfoUseCase _getProfileInfoUseCase;
 
-  final SwiperController pageController = SwiperController();
-
-  final CarouselController controller = CarouselController();
-
+  ///--------------- current page index response ----------------------///
   PublishSubject<int> _currentStep = PublishSubject();
 
   Stream<int> get currentStep => _currentStep.stream;
 
-  List<PagesWidget> pages = [];
+  void updatePage(int index) {
+    _currentStep.safeAdd(index);
+  }
+
+  ///--------------- current page index response ----------------------///
 
   List<PagesWidget> showPages = [];
 
-  /// get profile info  request
+  ///--------------- profile response ----------------------///
   PublishSubject<GetProfileInfoUseCaseParams> _getProfileInfoRequest = PublishSubject();
 
-  /// get profile info response
   PublishSubject<Resource<ProfileInfoResponse>> _getProfileInfoResponse = PublishSubject();
 
-  /// get profile info response stream
   Stream<Resource<ProfileInfoResponse>> get getProfileInfoStream => _getProfileInfoResponse.stream;
 
-  /// logout request holder
+  void getProfileDetails() {
+    _getProfileInfoRequest.safeAdd(GetProfileInfoUseCaseParams());
+  }
+
+  ///--------------- profile response ----------------------///
+
+  ///---------------logout response ------------------------///
   PublishSubject<LogoutUseCaseParams> _logoutRequest = PublishSubject();
 
-  /// logout response holder
   PublishSubject<Resource<LogoutResponse>> _logoutResponse = PublishSubject();
 
-  /// logout response stream
   Stream<Resource<LogoutResponse>> get logoutStream => _logoutResponse.stream;
 
+  void logout() {
+    _logoutRequest.safeAdd(LogoutUseCaseParams());
+  }
+
+  ///---------------logout response ------------------------///
+
+  ///---------------initial name  -------------------///
   BehaviorSubject<String> _textResponse = BehaviorSubject();
 
   Stream<String> get textStream => _textResponse.stream;
 
-  ///onclick
+  ///---------------initial name  -------------------///
+
+  ///-------------------Menu tapped-------------------------///
+  final BehaviorSubject<int> _menuTappedIndexSubject = BehaviorSubject.seeded(-1);
+
+  Stream<int> get menuTappedIndexStream => _menuTappedIndexSubject.stream;
+
+  void menuTapped(int value) {
+    _menuTappedIndexSubject.safeAdd(value);
+  }
+
+  ///-------------------Menu tapped-------------------------///
+
+  ///------------------initial onclick-----------------------///
   final BehaviorSubject<bool> _onClickSubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get onClickStream => _onClickSubject.stream;
+
+  void updateOnClickValue(bool) {
+    _onClickSubject.safeAdd(bool);
+  }
+
+  ///------------------initial onclick-----------------------///
 
   SettingsDialogViewModel(this._logoutUseCase, this._getProfileInfoUseCase) {
     _logoutRequest.listen((value) {
@@ -89,28 +116,12 @@ class SettingsDialogViewModel extends BasePageViewModel {
     getProfileDetails();
   }
 
-  void updatePage(int index) {
-    _currentStep.safeAdd(index);
-  }
-
-  ///get profile details
-  void getProfileDetails() {
-    _getProfileInfoRequest.safeAdd(GetProfileInfoUseCaseParams());
-  }
-
-  void logout() {
-    _logoutRequest.safeAdd(LogoutUseCaseParams());
-  }
-
-  void updateOnClickValue(bool) {
-    _onClickSubject.safeAdd(bool);
-  }
-
   void updateShowPages({required BuildContext context, required List<PagesWidget> pages}) {
     int index = 0;
     showPages.clear();
     pages.forEach((currentPage) {
-      var element = PagesWidget(key: currentPage.key, child: currentPage.child, index: index);
+      var element =
+          PagesWidget(key: currentPage.key, child: currentPage.child, index: index, onTap: currentPage.onTap);
       if (element.key == 'CLIQ') {
         if ((ProviderScope.containerOf(context)
                 .read(appHomeViewModelProvider)
@@ -158,18 +169,18 @@ class SettingsDialogViewModel extends BasePageViewModel {
     return key;
   }
 
-  BehaviorSubject<List<PagesWidget>> _currentPages = BehaviorSubject.seeded([]);
-
-  Stream<List<PagesWidget>> get currentPages => _currentPages.stream;
-
-  void getCurrentPages(List<PagesWidget> pages) {
-    _currentPages.safeAdd(pages);
-  }
-
   @override
   void dispose() {
     _logoutRequest.close();
     _logoutResponse.close();
+    _currentStep.close();
+    _getProfileInfoRequest.close();
+    _getProfileInfoResponse.close();
+    _logoutRequest.close();
+    _logoutResponse.close();
+    _textResponse.close();
+    _menuTappedIndexSubject.close();
+    _onClickSubject.close();
     super.dispose();
   }
 }

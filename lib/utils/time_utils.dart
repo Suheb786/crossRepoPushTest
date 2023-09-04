@@ -144,12 +144,6 @@ class TimeUtils {
     return formatter.format(dateTime);
   }
 
-  static String getFormattedTimeFor12HrsFormat(String date) {
-    DateTime dateTime = DateTime.parse(date).toLocal();
-    final DateFormat formatter = DateFormat('hh:mm aa');
-    return formatter.format(dateTime);
-  }
-
   static String convertDateTimeToDate(String date) {
     final DateTime dateTime = DateFormat('yyyy-MM-ddTHH:mm:ss', 'en').parse(date).toLocal();
     return DateFormat('dd MMMM yyyy').format(dateTime);
@@ -169,5 +163,21 @@ class TimeUtils {
   static String convertDateTimeToDMY(String date) {
     final DateTime dateTime = DateTime.parse(date).toLocal();
     return DateFormat('dd MMM yyyy').format(dateTime);
+  }
+
+  static String getFormattedTimeFor12HrsFormat(String date) {
+    DateTime dateTime = DateTime.parse(date).toLocal();
+    final DateFormat formatter = DateFormat('hh:mm aa');
+    return formatter.format(dateTime);
+  }
+
+  static String convertUTCDateToLocal(String date) {
+    try {
+      final DateTime dateTime = DateFormat('yyyy-MM-dd HH:mm:ss', 'en').parse(date, true).toLocal();
+      final DateFormat formatter = DateFormat('hh:mm aa');
+      return formatter.format(dateTime);
+    } catch (e) {
+      return '';
+    }
   }
 }

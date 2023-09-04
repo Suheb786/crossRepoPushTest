@@ -155,8 +155,9 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
     });
   }
 
-  void getDocument(DocumentTypeEnum type) {
-    _getDocumentRequest.safeAdd(UploadDocumentUseCaseParams(documentType: type));
+  void getDocument(DocumentTypeEnum type, {String cameraPhotoFile = ""}) {
+    _getDocumentRequest
+        .safeAdd(UploadDocumentUseCaseParams(documentType: type, cameraPhotoFile: cameraPhotoFile));
   }
 
   void updateSignatureField(String value) {

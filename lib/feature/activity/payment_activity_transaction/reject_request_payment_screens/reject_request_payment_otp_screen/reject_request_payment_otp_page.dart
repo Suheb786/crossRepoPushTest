@@ -31,6 +31,7 @@ class RejectRequestPaymentOtpPageState
   @override
   void onModelReady(RejectRequestPaymentOtpPageViewModel model) {
     model.countDownController = CountdownTimerController(endTime: model.endTime);
+    super.onModelReady(model);
   }
 
   @override

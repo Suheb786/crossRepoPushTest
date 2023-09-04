@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/enum/account_status_enum.dart';
 import 'package:domain/constants/enum/card_type.dart';
+import 'package:domain/constants/enum/evoucher_landing_page_navigation_type_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/model/qr/verify_qr_response.dart';
@@ -16,6 +17,7 @@ import 'package:neo_bank/feature/apple_pay/selected_card_for_apple_pay/selected_
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_page.dart';
+import 'package:neo_bank/feature/evoucher/evoucher/evoucher_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -77,7 +79,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                       if (data.status == Status.SUCCESS) {
                         ///RJ Pop up
                         if (!(data.data?.isRJPopUPClicked ?? false) &&
-                            (model.dashboardDataContent.dashboardFeatures?.isRJFeatureEnabled ?? true)) {
+                            (model.dashboardDataContent.dashboardFeatures?.isRJFeatureEnabled ?? false)) {
                           RjDialog.show(
                             context,
                             image: AssetUtils.flight,
@@ -102,7 +104,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                         ///Efawateer pop up
                         if (!(data.data?.isEfawateerPopUPClicked ?? false) &&
                             (model.dashboardDataContent.dashboardFeatures?.blinkRetailAppBillPayment ??
-                                true)) {
+                                false)) {
                           EfawateerLandingDialog.show(context,
                               title: S.current.payYourBillswithBlink,
                               descriptionWidget: Text(S.current.youCanPayAllYourBillsNow),
@@ -124,7 +126,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
 
                         ///e-voucher pop up
                         if (!(data.data?.isEVoucherPopUPClicked ?? false) &&
-                            (model.dashboardDataContent.dashboardFeatures?.eVouchers ?? true)) {
+                            (model.dashboardDataContent.dashboardFeatures?.eVouchers ?? false)) {
                           EvoucherDialog.show(context, isSwipeToCancel: true, onDismissed: () {
                             Navigator.pop(context);
                             data.data?.isEVoucherPopUPClicked = true;
@@ -133,7 +135,9 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                             Navigator.pop(context);
                             data.data?.isEVoucherPopUPClicked = true;
                             model.saveCurrentUserData(user: data.data!);
-                            Navigator.pushNamed(context, RoutePaths.Evoucher);
+                            Navigator.pushNamed(context, RoutePaths.Evoucher,
+                                arguments: EvoucherPageArguments(
+                                    EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING));
                           });
                         }
 
@@ -179,17 +183,24 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                 },
                                 dataBuilder: (context, accountStatus) {
                                   return AppStreamBuilder<bool>(
-                                      stream: model.applePayPopUpStream,
+                                      stream: model.showAddAnotherCardToApplePayPopUpStream,
                                       initialData: false,
                                       onData: (value) {
                                         if (value &&
                                             Platform.isIOS &&
                                             AppConstantsUtils.isApplePayFeatureEnabled &&
-                                            isAllCardsInApplePay &&
-                                            (model.debitCards.isNotEmpty || model.creditCards.isNotEmpty)) {
-                                          ApplePayDialog.show(context,
-                                              image: AssetUtils.applePayLogo,
-                                              title: S.of(context).blinkWithApplePay, onSelected: () {
+                                            isAllCardsInApplePay) {
+                                          AddOtherCardToAppleWalletDialog.show(context,
+                                              title: S.of(context).addOtherCardToAppleWallet,
+                                              image: AssetUtils.applePayButton,
+                                              descriptionWidget: Text(
+                                                S.of(context).addOtherCardToAppleWalletDialogDescription,
+                                                style: TextStyle(
+                                                    color: AppColor.veryDarkGray1,
+                                                    fontFamily: StringUtils.appFont,
+                                                    fontSize: 14.t,
+                                                    fontWeight: FontWeight.w400),
+                                              ), onSelected: () {
                                             Navigator.pop(context);
                                             Navigator.pushNamed(
                                                 context, RoutePaths.SelectedCardForApplePayPage,
@@ -198,224 +209,174 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     creditCards: model.creditCards));
                                           }, onDismissed: () {
                                             Navigator.pop(context);
-                                          },
-                                              descriptionWidget: Text(
-                                                S.of(context).blinkWithApplePayLandingDialogDescription,
-                                                style: TextStyle(
-                                                    color: AppColor.veryDarkGray2,
-                                                    fontFamily: StringUtils.appFont,
-                                                    fontSize: 14.t,
-                                                    fontWeight: FontWeight.w400),
-                                              ));
+                                          });
                                         }
                                       },
-                                      dataBuilder: (context, value) {
+                                      dataBuilder: (context, addAnotherCardToAppleWallet) {
                                         return AppStreamBuilder<bool>(
-                                            stream: model.showAddAnotherCardToApplePayPopUpStream,
-                                            initialData: false,
-                                            onData: (value) {
-                                              if (value &&
-                                                  Platform.isIOS &&
-                                                  AppConstantsUtils.isApplePayFeatureEnabled &&
-                                                  isAllCardsInApplePay) {
-                                                AddOtherCardToAppleWalletDialog.show(context,
-                                                    title: S.of(context).addOtherCardToAppleWallet,
-                                                    image: AssetUtils.applePayButton,
-                                                    descriptionWidget: Text(
-                                                      S
-                                                          .of(context)
-                                                          .addOtherCardToAppleWalletDialogDescription,
-                                                      style: TextStyle(
-                                                          color: AppColor.veryDarkGray1,
-                                                          fontFamily: StringUtils.appFont,
-                                                          fontSize: 14.t,
-                                                          fontWeight: FontWeight.w400),
-                                                    ), onSelected: () {
-                                                  Navigator.pop(context);
-                                                  Navigator.pushNamed(
-                                                      context, RoutePaths.SelectedCardForApplePayPage,
-                                                      arguments: SelectedCardsForApplePayPageArguments(
-                                                          debitCards: model.debitCards,
-                                                          creditCards: model.creditCards));
-                                                }, onDismissed: () {
-                                                  Navigator.pop(context);
-                                                });
-                                              }
-                                            },
-                                            dataBuilder: (context, addAnotherCardToAppleWallet) {
-                                              return AppStreamBuilder<bool>(
-                                                stream: model.showTimeLineStream,
-                                                initialData: false,
-                                                dataBuilder: (context, showTimeLine) {
-                                                  return GestureDetector(
-                                                    behavior: HitTestBehavior.translucent,
-                                                    onHorizontalDragEnd: (details) {},
-                                                    onVerticalDragEnd: (details) {
-                                                      if (details.primaryVelocity!.isNegative) {
-                                                        if (model.cardTypeList[currentStep!].cardType ==
-                                                            CardType.ACCOUNT) {
-                                                          Navigator.pushNamed(
-                                                              context, RoutePaths.AccountTransaction);
-                                                        } else if (model.cardTypeList[currentStep].cardType ==
-                                                                CardType.CREDIT &&
-                                                            model.cardTypeList[currentStep].swipeUpEnum ==
-                                                                SwipeUpEnum.SWIPE_UP_YES) {
-                                                          Navigator.pushNamed(
-                                                              context, RoutePaths.CardTransaction,
-                                                              arguments: GetCreditCardTransactionArguments(
-                                                                  cardId: model
-                                                                      .timeLineListArguments[currentStep - 1]
-                                                                      .cardId));
-                                                        }
-                                                      } else {
-                                                        if (details.primaryVelocity! > 0.5) {
-                                                          if (!showTimeLine!) {
-                                                            Navigator.pushNamed(
-                                                                context, RoutePaths.TimeLinePage,
-                                                                arguments: TimeLinePageArguments(
-                                                                    cardType: model
-                                                                        .cardTypeList[currentStep!].cardType,
-                                                                    timeLineArguments:
-                                                                        model.timeLineArguments));
-                                                          }
-                                                        }
-                                                      }
-                                                    },
-                                                    child: Column(
-                                                      mainAxisSize: MainAxisSize.min,
+                                          stream: model.showTimeLineStream,
+                                          initialData: false,
+                                          dataBuilder: (context, showTimeLine) {
+                                            return GestureDetector(
+                                              behavior: HitTestBehavior.translucent,
+                                              onHorizontalDragEnd: (details) {},
+                                              onVerticalDragEnd: (details) {
+                                                if (details.primaryVelocity!.isNegative) {
+                                                  if (model.cardTypeList[currentStep!].cardType ==
+                                                      CardType.ACCOUNT) {
+                                                    Navigator.pushNamed(
+                                                        context, RoutePaths.AccountTransaction);
+                                                  } else if (model.cardTypeList[currentStep].cardType ==
+                                                          CardType.CREDIT &&
+                                                      model.cardTypeList[currentStep].swipeUpEnum ==
+                                                          SwipeUpEnum.SWIPE_UP_YES) {
+                                                    Navigator.pushNamed(context, RoutePaths.CardTransaction,
+                                                        arguments: GetCreditCardTransactionArguments(
+                                                            isIssuedFromCMS: model
+                                                                    .timeLineListArguments[currentStep - 1]
+                                                                    .isIssuedFromCMS ??
+                                                                false,
+                                                            secureCode: model
+                                                                    .timeLineListArguments[currentStep - 1]
+                                                                    .secureCode ??
+                                                                '',
+                                                            cardId: model
+                                                                .timeLineListArguments[currentStep - 1]
+                                                                .cardId));
+                                                  }
+                                                } else {
+                                                  if (details.primaryVelocity! > 0.5) {
+                                                    if (!showTimeLine!) {
+                                                      Navigator.pushNamed(context, RoutePaths.TimeLinePage,
+                                                          arguments: TimeLinePageArguments(
+                                                              cardType:
+                                                                  model.cardTypeList[currentStep!].cardType,
+                                                              timeLineArguments: model.timeLineArguments));
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Text(
+                                                    S.of(context).totalBalance,
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: 18.0.t,
+                                                        color: AppColor.black),
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(top: 5.0.h),
+                                                    child: Row(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      crossAxisAlignment: CrossAxisAlignment.center,
                                                       children: [
                                                         Text(
-                                                          S.of(context).totalBalance,
-                                                          style: TextStyle(
-                                                              fontFamily: StringUtils.appFont,
-                                                              fontWeight: FontWeight.w400,
-                                                              fontSize: 18.0.t,
-                                                              color: AppColor.black),
-                                                        ),
+                                                            '${cardData!.data!.dashboardDataContent!.account!.availableBalance!} ',
+                                                            style: TextStyle(
+                                                                fontFamily: StringUtils.appFont,
+                                                                fontSize: 24.0.t,
+                                                                fontWeight: FontWeight.w700,
+                                                                color: Theme.of(context).primaryColorDark)),
                                                         Padding(
-                                                          padding: EdgeInsets.only(top: 5.0.h),
-                                                          child: Row(
-                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                                            children: [
-                                                              Text(
-                                                                  '${cardData!.data!.dashboardDataContent!.account!.availableBalance!} ',
-                                                                  style: TextStyle(
-                                                                      fontFamily: StringUtils.appFont,
-                                                                      fontSize: 24.0.t,
-                                                                      fontWeight: FontWeight.w700,
-                                                                      color: Theme.of(context)
-                                                                          .primaryColorDark)),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsets.only(top: 5.0.h, left: 5.0.w),
-                                                                child: Text(S.of(context).JOD,
-                                                                    style: TextStyle(
-                                                                        fontFamily: StringUtils.appFont,
-                                                                        fontWeight: FontWeight.w700,
-                                                                        fontSize: 14.0.t,
-                                                                        color: AppColor.verLightGray4)),
-                                                              )
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        Expanded(
-                                                          child: Column(
-                                                            mainAxisSize: MainAxisSize.min,
-                                                            children: [
-                                                              Padding(
-                                                                  padding: EdgeInsets.only(top: 18.0.h),
-                                                                  child: LottieBuilder.asset(
-                                                                    'assets/animation/Swipe_Down.json',
-                                                                    width: 28.0.w,
-                                                                    height: 28.0.h,
-                                                                  )),
-                                                              Expanded(
-                                                                child: Padding(
-                                                                  padding: EdgeInsets.only(top: 4.0.h),
-                                                                  child: AppStreamBuilder<List>(
-                                                                      stream: model.pageStream,
-                                                                      initialData: [Container()],
-                                                                      dataBuilder: (context, pagesList) {
-                                                                        return AppStreamBuilder<
-                                                                                GetDashboardDataContent>(
-                                                                            stream: ProviderScope.containerOf(
-                                                                                    context)
-                                                                                .read(
-                                                                                    appHomeViewModelProvider)
-                                                                                .getDashboardCardDataStream,
-                                                                            initialData:
-                                                                                GetDashboardDataContent(),
-                                                                            dataBuilder: (context, cardData) {
-                                                                              if (cardData!
-                                                                                      .account!.accountNo ==
-                                                                                  null) {
-                                                                                return SizedBox();
-                                                                              }
-                                                                              return DashboardSwiper(
-                                                                                pages: pagesList,
-                                                                                appSwiperController:
-                                                                                    model.appSwiperController,
-                                                                                pageController:
-                                                                                    model.pageController,
-                                                                                onIndexChanged: (index) {
-                                                                                  model.updatePage(index);
-                                                                                  model
-                                                                                      .updatePageControllerStream(
-                                                                                          index);
-                                                                                },
-                                                                                currentStep: currentStep,
-                                                                              );
-                                                                            });
-                                                                      }),
-                                                                ),
-                                                              ),
-                                                              const SizedBox(height: 0.0),
-                                                              SizedBox(
-                                                                height:
-                                                                    MediaQuery.of(context).size.height * 0.03,
-                                                                child: Row(
-                                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                                  children: model.buildPageIndicator(
-                                                                      currentStep!,
-                                                                      cardData.data!.dashboardDataContent!
-                                                                          .debitCard!.length),
-                                                                ),
-                                                              ),
-                                                              Align(
-                                                                alignment: Alignment.bottomCenter,
-                                                                child: Padding(
-                                                                  padding: EdgeInsets.only(
-                                                                      top: 24.0.h, bottom: 0.0.h),
-                                                                  child: BottomBarWidget(
-                                                                    onHomeTap: () {
-                                                                      model.moveToPage(0);
-                                                                    },
-                                                                    onMoreTap: () {
-                                                                      SettingsDialog.show(
-                                                                        context,
-                                                                      );
-                                                                    },
-                                                                    onContactUsTap: () {
-                                                                      EngagementTeamDialog.show(context,
-                                                                          onDismissed: () {
-                                                                        Navigator.pop(context);
-                                                                      }, onSelected: (value) {
-                                                                        Navigator.pop(context);
-                                                                      });
-                                                                    },
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
+                                                          padding: EdgeInsets.only(top: 5.0.h, left: 5.0.w),
+                                                          child: Text(S.of(context).JOD,
+                                                              style: TextStyle(
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontWeight: FontWeight.w700,
+                                                                  fontSize: 14.0.t,
+                                                                  color: AppColor.verLightGray4)),
+                                                        )
                                                       ],
                                                     ),
-                                                  );
-                                                },
-                                              );
-                                            });
+                                                  ),
+                                                  Padding(
+                                                      padding: EdgeInsets.only(top: 18.0.h),
+                                                      child: LottieBuilder.asset(
+                                                        'assets/animation/Swipe_Down.json',
+                                                        width: 28.0.w,
+                                                        height: 28.0.h,
+                                                      )),
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding: EdgeInsets.only(top: 4.0.h),
+                                                      child: AppStreamBuilder<List>(
+                                                          stream: model.pageStream,
+                                                          initialData: [Container()],
+                                                          dataBuilder: (context, pagesList) {
+                                                            return AppStreamBuilder<GetDashboardDataContent>(
+                                                                stream: ProviderScope.containerOf(context)
+                                                                    .read(appHomeViewModelProvider)
+                                                                    .getDashboardCardDataStream,
+                                                                initialData: GetDashboardDataContent(),
+                                                                dataBuilder: (context, cardData) {
+                                                                  if (cardData!.account!.accountNo == null) {
+                                                                    return SizedBox();
+                                                                  }
+
+                                                                  // return getPageController(model);
+                                                                  return InkWell(
+                                                                    onTap: () {
+                                                                      print("dsadadasdasdasfd asd");
+                                                                    },
+                                                                    child: DashboardSwiper(
+                                                                      pages: pagesList,
+                                                                      appSwiperController:
+                                                                          model.appSwiperController,
+                                                                      // pageController: model.pageController,
+                                                                      onIndexChanged: (index) {
+                                                                        model.updatePage(index);
+                                                                        model.updatePageControllerStream(
+                                                                            index);
+                                                                      },
+                                                                      currentStep: currentStep,
+                                                                      translateSidewaysController:
+                                                                          model.translateSidewaysController,
+                                                                      model: model,
+                                                                    ),
+                                                                  );
+                                                                });
+                                                          }),
+                                                    ),
+                                                  ),
+                                                  // const SizedBox(height: 0.0),
+                                                  SizedBox(
+                                                    height: MediaQuery.of(context).size.height * 0.03,
+                                                    child: Row(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      children: model.buildPageIndicator(
+                                                          currentStep!,
+                                                          cardData
+                                                              .data!.dashboardDataContent!.debitCard!.length),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(top: 24.0.h, bottom: 0.0.h),
+                                                    child: BottomBarWidget(
+                                                      onHomeTap: () {
+                                                        model.moveToPage(0);
+                                                      },
+                                                      onMoreTap: () {
+                                                        SettingsDialog.show(
+                                                          context,
+                                                        );
+                                                      },
+                                                      onContactUsTap: () {
+                                                        EngagementTeamDialog.show(context, onDismissed: () {
+                                                          Navigator.pop(context);
+                                                        }, onSelected: (value) {
+                                                          Navigator.pop(context);
+                                                        });
+                                                      },
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        );
                                       });
                                 });
                           });

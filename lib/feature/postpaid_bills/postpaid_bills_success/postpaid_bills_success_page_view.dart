@@ -5,7 +5,7 @@ import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/button/app_secondary_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -16,25 +16,9 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
 
   @override
   Widget build(BuildContext context, PostPaidBillsSuccessPageViewModel model) {
-    return GestureDetector(
-      onHorizontalDragEnd: (details) {
-        if (StringUtils.isDirectionRTL(context)) {
-          if (!details.primaryVelocity!.isNegative) {
-            Navigator.of(context)
-              ..pop()
-              ..pop()
-              ..pop();
-          }
-        } else {
-          if (details.primaryVelocity!.isNegative) {
-            Navigator.of(context)
-              ..pop()
-              ..pop()
-              ..pop();
-          }
-        }
-      },
-      child: SingleChildScrollView(
+    return SingleChildScrollView(
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -274,30 +258,19 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
             //         : Container(),
             //   ),
             // ),
-            SizedBox(
+            /*SizedBox(
               height: 85.h,
-            ),
-            AnimatedButton(
-              buttonText: S.of(context).swipeToProceed,
-              textColor: Theme.of(context).colorScheme.secondary,
-              borderColor: Theme.of(context).colorScheme.secondary,
-            ),
-            SizedBox(
-              height: 8.h,
-            ),
+            ),*/
+            Spacer(),
             Padding(
-              padding: EdgeInsetsDirectional.only(
-                bottom: 56.h,
-              ),
-              child: Center(
-                child: Text(
-                  S.of(context).toPayments,
-                  style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12.t,
-                      color: AppColor.white),
-                ),
+              padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+              child: AppSecondaryButton(
+                text: S.of(context).done,
+                onPressed: () {
+                  Navigator.of(context)
+                    ..pop()
+                    ..pop(true);
+                },
               ),
             ),
           ],

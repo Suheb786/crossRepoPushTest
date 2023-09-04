@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/qr/qr_response.dart';
 import 'package:domain/usecase/payment/generate_qr_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -11,6 +12,7 @@ import 'package:rxdart/rxdart.dart';
 class RequestMoneyQrGenerationPageViewModel extends BasePageViewModel {
   final RequestMoneyQrGenerationPageArguments arguments;
   final GenerateQRUseCase generateQRUseCase;
+  Account? selectedAccount;
 
   ///---------------Generate QR----------------------///
   PublishSubject<GenerateQRUseCaseParams> _generateQRRequest = PublishSubject();
@@ -20,8 +22,9 @@ class RequestMoneyQrGenerationPageViewModel extends BasePageViewModel {
   Stream<Resource<QrResponse>> get generateQRStream => _generateQRResponse.stream;
 
   void generateQR() {
-    _generateQRRequest
-        .safeAdd(GenerateQRUseCaseParams(amount: double.parse(currentPinValue).toStringAsFixed(3)));
+    _generateQRRequest.safeAdd(GenerateQRUseCaseParams(
+        amount: double.parse(currentPinValue).toStringAsFixed(3),
+        fromAccount: selectedAccount?.accountNo ?? ''));
   }
 
   ///---------------Generate QR----------------------///

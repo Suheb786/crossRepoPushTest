@@ -195,6 +195,7 @@ import 'package:data/entity/remote/device_change/send_otp_token_email_request_en
 import 'package:data/entity/remote/device_change/verify_device_change_otp_request_entity.dart';
 import 'package:data/entity/remote/e_voucher/get_settlement_amount/get_settlement_amount_request_entity.dart';
 import 'package:data/entity/remote/e_voucher/get_settlement_amount/get_settlement_amount_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/place_order/evoucher_otp_request_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_category/voucher_categories_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_detail_request.dart';
 import 'package:data/entity/remote/e_voucher/voucher_detail/voucher_details_response_entity.dart';
@@ -204,6 +205,8 @@ import 'package:data/entity/remote/e_voucher/voucher_min_max_value/voucher_min_m
 import 'package:data/entity/remote/e_voucher/voucher_min_max_value/voucher_min_max_value_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/voucher_region_by_categories/voucher_region_by_categories_request.dart';
 import 'package:data/entity/remote/e_voucher/voucher_region_by_categories/voucher_region_by_categories_response_entity.dart';
+import 'package:data/entity/remote/e_voucher/voucher_region_min_max_value/voucher_region_min_max_value_request.dart';
+import 'package:data/entity/remote/e_voucher/voucher_region_min_max_value/voucher_region_min_max_value_response_entity.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_category_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_filter_request.dart';
 import 'package:data/entity/remote/e_voucher/vouchers_filters/voucher_by_search_request.dart';
@@ -310,6 +313,10 @@ import '../entity/remote/e_voucher/get_voucher_details/get_voucher_details_reque
 import '../entity/remote/e_voucher/get_voucher_details/get_voucher_details_response_entity.dart';
 import '../entity/remote/e_voucher/place_order/place_order_request_entity.dart';
 import '../entity/remote/e_voucher/place_order/place_order_response_entity.dart';
+import '../entity/remote/sub_account/close_sub_account/close_sub_account_request_entity.dart';
+import '../entity/remote/sub_account/transfer_account/response/account_to_account_transfer_response_entity.dart';
+import '../entity/remote/sub_account/transfer_account/transfer_account_request_entity.dart';
+import '../entity/remote/sub_account/update_nick_name/update_nick_name_request_entity.dart';
 
 part 'api_service.g.dart';
 
@@ -381,7 +388,7 @@ abstract class ApiService {
   Future<HttpResponse<GetAccountResponseEntity>> getAccount(
       @Body() GetAccountRequestEntity getAccountRequestEntity);
 
-  @POST("/BankSmart/CreateAccountV1")
+  @POST("/BankSmart/CreateAccountV3")
   Future<HttpResponse<CreateAccountResponseEntity>> createAccount(
       @Body() CreateAccountRequestEntity createAccountRequestEntity);
 
@@ -512,15 +519,15 @@ abstract class ApiService {
   Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeMobile(
       @Body() VerifyChangeMobileRequestEntity verifyChangeMobileRequestEntity);
 
-  @POST("/Dashboard/GetDashboardDataV4")
+  @POST("/Dashboard/GetDashboardDataV5")
   Future<HttpResponse<DashboardDataResponseEntity>> getDashboardData(
       @Body() DashboardDataRequest dashboardDataRequest);
 
-  @POST("/TransactionHistory/GetDebitCardTransactionsList")
+  @POST("/TransactionHistory/GetDebitCardTransactionsListV2")
   Future<HttpResponse<CardTransactionResponseEntity>> getDebitCardTransactions(
       @Body() GetDebitCardTransactionRequest debitCardTransactionRequest);
 
-  @POST("/TransactionHistory/GetCreditCardTransactionsList")
+  @POST("/TransactionHistory/GetCreditCardTransactionsListV1")
   Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
       @Body() GetCreditCardTransactionListRequestEntity getCreditCardTransactionListRequestEntity);
 
@@ -530,11 +537,11 @@ abstract class ApiService {
   @POST("/CardTracking/CreditCardReqV2")
   Future<HttpResponse<ResponseEntity>> requestCreditCard(@Body() RequestCardRequest requestCardRequest);
 
-  @POST("/CardTracking/GetCreditCardStatementV1")
+  @POST("/CardTracking/GetCreditCardStatementV2")
   Future<HttpResponse<CardStatementResponseEntity>> getCreditCardStatement(
       @Body() CreditCardStatementRequest cardStatementRequest);
 
-  @POST("/CardTracking/GetDebitCardStatement")
+  @POST("/CardTracking/GetDebitCardStatementV2")
   Future<HttpResponse<AccountCardStatementResponseEntity>> getDebitCardStatement(
       @Body() DebitCardStatementRequest cardStatementRequest);
 
@@ -555,11 +562,11 @@ abstract class ApiService {
   @POST("/RuleEngine/PinUnblock")
   Future<HttpResponse<ResponseEntity>> creditCardPinUnBlock(@Body() BaseRequest baseRequest);
 
-  @POST("/RuleEngine/FreezeCreditCard")
+  @POST("/RuleEngine/FreezeCreditCardV1")
   Future<HttpResponse<ResponseEntity>> freezeCreditCard(
       @Body() FreezeCreditCardRequestEntity freezeCreditCardRequestEntity);
 
-  @POST("/RuleEngine/UnfreezeCreditCard")
+  @POST("/RuleEngine/UnfreezeCreditCardV1")
   Future<HttpResponse<ResponseEntity>> unFreezeCreditCard(
       @Body() FreezeCreditCardRequestEntity unFreezeCreditCardRequestEntity);
 
@@ -583,19 +590,19 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> unblockDebitCardPin(
       @Body() UnblockDebitCardPinRequest unblockDebitCardPinRequest);
 
-  @POST("/transfer/GetAccountByAlisas")
+  @POST("/transfer/GetAccountByAlisasV2")
   Future<HttpResponse<GetAccountByAliasContentResponseEntity>> getAccountByAlias(
       @Body() GetAccountByAliasRequestEntity getAccountByAliasRequestEntity);
 
-  @POST("/transfer/CheckSendMoneyV3")
+  @POST("/transfer/CheckSendMoneyV4")
   Future<HttpResponse<CheckSendMoneyResponseEntity>> checkSendMoney(
       @Body() CheckSendMoneyRequestEntity checkSendMoneyRequestEntity);
 
-  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ContactCenter/TransferAPI")
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ContactCenter/TransferAPIV2")
   Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
       @Body() TransferRequestEntity transferRequestEntity);
 
-  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ContactCenter/RequestToPay")
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ContactCenter/RequestToPayV2")
   Future<HttpResponse<RequestToPayContentResponseEntity>> requestToPay(
       @Body() RequestToPayRequestEntity requestToPayRequestEntity);
 
@@ -791,7 +798,7 @@ abstract class ApiService {
   @POST("/DashBoard/GetAdPlaceholder")
   Future<HttpResponse<PlaceholderResponseEntity>> getPlaceholder(@Body() GetPlaceholderRequestEntity request);
 
-  @POST("/CardTracking/UpdateSettlement")
+  @POST("/CardTracking/UpdateSettlementV1")
   Future<HttpResponse<ResponseEntity>> updateSettlement(@Body() CcUpdateSettlementRequestEntity request);
 
   @POST("/CardTracking/GetLimitV2")
@@ -861,10 +868,10 @@ abstract class ApiService {
   Future<HttpResponse<GetPrepaidBillerListEntityResponse>> getPrepaidBillerListData(
       @Body() BaseRequest request);
 
-  @POST("/BillPayment/PayPrepaidBill")
+  @POST("/BillPayment/PayPrepaidBillV2")
   Future<HttpResponse<PayPrePaidResponse>> payPrePaidBillData(@Body() PayPrePaidRequest payPrePaidRequest);
 
-  @POST("/BillPayment/PayPostPaidBillV1")
+  @POST("/BillPayment/PayPostPaidBillV2")
   Future<HttpResponse<PayPostPaidBillResponse>> payPostPaidBillV1(
     @Body() PayPostPaidBillRequestEntity ecGetRegisterRequest,
   );
@@ -993,12 +1000,12 @@ abstract class ApiService {
   @POST("/Cliq/GetAlias")
   Future<HttpResponse<GetAliasResponseEntity>> getAlias(@Body() CliqGetAliasRequestEntity request);
 
-  @POST("/Cliq/ConfirmCreateCLidID")
+  @POST("/Cliq/ConfirmCreateCLidIDV2")
   Future<HttpResponse<ConfirmCreateCliqIdResponseEntity>> confirmCreateCLidID(
     @Body() ConfirmCreateCliqIdRequestEntity request,
   );
 
-  @POST("/Cliq/CreateCliqIdOtp")
+  @POST("/Cliq/CreateCliqIdOtpV2")
   Future<HttpResponse<CreateCliqIdOtpResponseEntity>> createCliqIdOtp(
     @Body() CreateCliqIdOtpRequestEntity request,
   );
@@ -1097,6 +1104,10 @@ abstract class ApiService {
   Future<HttpResponse<QRTransferResponseEntity>> transferQR(
       @Body() TransferQRRequestEntity transferQRRequestEntity);
 
+  @POST("/Transfer/AccountToAccountTransfer")
+  Future<HttpResponse<AccountToAccountTransferResponseEntity>> accountToAccountTransfer(
+      @Body() AccountToAccountTransferRequestEntity request);
+
   /// Manage Contacts
 
   @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/ShowContactCard")
@@ -1168,6 +1179,10 @@ abstract class ApiService {
   Future<HttpResponse<VoucherMinMaxValueResponseEntity>> getMinMaxRange(
       @Body() VoucherMinMaxValueRequest voucherMinMaxValueRequest);
 
+  @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/GetRegionsAndMinMax")
+  Future<HttpResponse<VoucherRegionMinMaxValueResponseEntity>> regionsAndMinMax(
+      @Body() VoucherRegionMinMaxValueRequest voucherRegionMinMaxValueRequest);
+
   ///Voucher Items By Category
   @POST("/Vouchers/GetItemByCategory")
   Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByCategory(
@@ -1196,9 +1211,16 @@ abstract class ApiService {
       @Body() GetSettlementAmountRequestEntity request);
 
   @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/EVoucherOtp")
-  Future<HttpResponse<EVoucherOtpResponseEntity>> eVoucherOtp(@Body() BaseRequest request);
+  Future<HttpResponse<EVoucherOtpResponseEntity>> eVoucherOtp(@Body() EVoucherOtpRequestEntity request);
 
   @POST("${NetworkProperties.BASE_EV0UCHER_URL}/Voucher/GetVoucherDetails")
   Future<HttpResponse<GetVoucherDetailResponseEntity>> getVoucherDetailsApi(
       @Body() GetVoucherDetailsRequestEntity request);
+
+  @POST("/BankSmart/CloseAccount")
+  Future<HttpResponse<ResponseEntity>> closeSubAccount(@Body() CloseSubAccountRequestEntity request);
+
+  @POST("/Dashboard/UpdateNickName")
+  Future<HttpResponse<ResponseEntity>> updateNickNameSubAccount(
+      @Body() UpdateNickNameSubAccountRequestEntity request);
 }

@@ -10,13 +10,15 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../../../utils/color_utils.dart';
 
 class RejectRequestPaymentOtpPageView extends BasePageViewWidget<RejectRequestPaymentOtpPageViewModel> {
   RejectRequestPaymentOtpPageView(ProviderBase model) : super(model);
@@ -99,113 +101,98 @@ class RejectRequestPaymentOtpPageView extends BasePageViewWidget<RejectRequestPa
                         }
                       },
                       dataBuilder: (context, enterOtpForCliqResponse) {
-                        return GestureDetector(
-                          onHorizontalDragEnd: (details) {
-                            if (ProviderScope.containerOf(context)
-                                    .read(rejectRequestPaymentPageViewModelProvider)
-                                    .appSwiperController
-                                    .page ==
-                                1.0) {
-                              FocusScope.of(context).unfocus();
-                              if (StringUtils.isDirectionRTL(context)) {
-                                if (!details.primaryVelocity!.isNegative) {
-                                  model.validateOtp();
-                                } else {
-                                  model.otpController.clear();
-                                  ProviderScope.containerOf(context)
-                                      .read(rejectRequestPaymentPageViewModelProvider)
-                                      .previousPage();
-                                }
-                              } else {
-                                if (details.primaryVelocity!.isNegative) {
-                                  model.validateOtp();
-                                } else {
-                                  model.otpController.clear();
-                                  ProviderScope.containerOf(context)
-                                      .read(rejectRequestPaymentPageViewModelProvider)
-                                      .previousPage();
-                                }
-                              }
-                            }
-                          },
-                          child: Card(
-                            margin: EdgeInsets.zero,
-                            child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    SingleChildScrollView(
-                                      physics: ClampingScrollPhysics(),
-                                      child: Column(
-                                        children: [
-                                          AppOtpFields(
-                                            length: 6,
-                                            controller: model.otpController,
-                                            key: model.otpControllerKey,
-                                            onChanged: (val) {
-                                              model.validate(val);
-                                            },
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Column(
+                        return Card(
+                          margin: EdgeInsets.zero,
+                          child: Container(
+                              padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SingleChildScrollView(
+                                    physics: ClampingScrollPhysics(),
+                                    child: Column(
                                       children: [
-                                        CountdownTimer(
-                                          controller: model.countDownController,
-                                          onEnd: () {},
-                                          endTime: model.endTime,
-                                          textStyle: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontSize: 16.t,
-                                              color: Theme.of(context).textTheme.bodyMedium!.color!),
-                                          widgetBuilder: (context, currentTimeRemaining) {
-                                            return currentTimeRemaining == null
-                                                ? TextButton(
-                                                    onPressed: () {
-                                                      model.makeRejectOtpRequest();
-                                                    },
-                                                    child: Text(
-                                                      S.of(context).resendCode,
-                                                      style: TextStyle(
-                                                          fontFamily: StringUtils.appFont,
-                                                          fontSize: 14.t,
-                                                          fontWeight: FontWeight.w600,
-                                                          color:
-                                                              Theme.of(context).textTheme.bodyLarge!.color!),
-                                                    ))
-                                                : Text(
-                                                    S.of(context).resendIn(
-                                                        '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                        AppOtpFields(
+                                          length: 6,
+                                          controller: model.otpController,
+                                          key: model.otpControllerKey,
+                                          onChanged: (val) {
+                                            model.validate(val);
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Column(
+                                    children: [
+                                      CountdownTimer(
+                                        controller: model.countDownController,
+                                        onEnd: () {},
+                                        endTime: model.endTime,
+                                        textStyle: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontSize: 16.t,
+                                            color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                        widgetBuilder: (context, currentTimeRemaining) {
+                                          return currentTimeRemaining == null
+                                              ? TextButton(
+                                                  onPressed: () {
+                                                    model.makeRejectOtpRequest();
+                                                  },
+                                                  child: Text(
+                                                    S.of(context).resendCode,
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
                                                         fontSize: 14.t,
                                                         fontWeight: FontWeight.w600,
                                                         color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                                  );
-                                          },
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 16.0.h),
-                                          child: AppStreamBuilder<bool>(
-                                              stream: model.showButtonStream,
-                                              initialData: false,
-                                              dataBuilder: (context, isValid) {
-                                                return Visibility(
-                                                  visible: isValid!,
-                                                  child: AnimatedButton(
-                                                    buttonHeight: 50.h,
-                                                    buttonText: S.of(context).swipeToProceed,
-                                                  ),
+                                                  ))
+                                              : Text(
+                                                  S.of(context).resendIn(
+                                                      '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                                  style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      fontSize: 14.t,
+                                                      fontWeight: FontWeight.w600,
+                                                      color: Theme.of(context).textTheme.bodyLarge!.color!),
                                                 );
-                                              }),
+                                        },
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 16.0.h, bottom: 16.0.h),
+                                        child: AppStreamBuilder<bool>(
+                                            stream: model.showButtonStream,
+                                            initialData: false,
+                                            dataBuilder: (context, isValid) {
+                                              return AppPrimaryButton(
+                                                text: S.of(context).next,
+                                                isDisabled: !isValid!,
+                                                onPressed: () {
+                                                  model.validateOtp();
+                                                },
+                                              );
+                                            }),
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          ProviderScope.containerOf(context)
+                                              .read(rejectRequestPaymentPageViewModelProvider)
+                                              .previousPage();
+                                        },
+                                        child: Text(
+                                          S.current.back,
+                                          style: TextStyle(
+                                            color: AppColor.brightBlue,
+                                            fontSize: 14.t,
+                                            letterSpacing: 1.0,
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                         ),
-                                      ],
-                                    ),
-                                  ],
-                                )),
-                          ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              )),
                         );
                       });
                 }),

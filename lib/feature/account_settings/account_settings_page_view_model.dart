@@ -249,8 +249,9 @@ class AccountSettingPageViewModel extends BasePageViewModel {
     }
   }
 
-  void uploadProfilePhoto(DocumentTypeEnum type) {
-    _uploadProfilePhotoRequest.safeAdd(UploadDocumentUseCaseParams(documentType: type));
+  void uploadProfilePhoto(DocumentTypeEnum type, {String cameraPhotoFile = ""}) {
+    _uploadProfilePhotoRequest
+        .safeAdd(UploadDocumentUseCaseParams(documentType: type, cameraPhotoFile: cameraPhotoFile));
   }
 
   void addImage(String image) {

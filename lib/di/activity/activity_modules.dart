@@ -19,6 +19,8 @@ import 'package:neo_bank/feature/activity/payment_activity_transaction/return_pa
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_transaction_slider_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/reject_reason_inward_request/reject_reason_inward_request_dialog_view_model.dart';
 
+import '../../ui/molecules/dialog/account_selection/account_selection_dialog_model.dart';
+
 final notificationViewModelProvider = ChangeNotifierProvider.autoDispose<NotificationViewModel>(
   (ref) => NotificationViewModel(),
 );
@@ -88,4 +90,9 @@ final paymentTransationSuccessPageViewModelProvider = ChangeNotifierProvider.aut
 final rejectReasonInwardRequestDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<RejectReasonInwardRequestDialogViewModel>(
   (ref) => RejectReasonInwardRequestDialogViewModel(),
+);
+
+final accountSelectionDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<AccountSelectionDialogModel>(
+  (ref) => AccountSelectionDialogModel(),
 );

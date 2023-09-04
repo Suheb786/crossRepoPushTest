@@ -1,5 +1,6 @@
 class CustomerAccountDetails {
   final String? createBy;
+  final String? nickName;
   final String? ourBranchID;
   final String? clientID;
   final String? productID;
@@ -45,6 +46,7 @@ class CustomerAccountDetails {
 
   CustomerAccountDetails(
       {this.createBy,
+      this.nickName,
       this.ourBranchID,
       this.clientID,
       this.productID,

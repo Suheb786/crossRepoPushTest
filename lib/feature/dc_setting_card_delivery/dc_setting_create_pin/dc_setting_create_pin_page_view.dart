@@ -7,12 +7,14 @@ import 'package:neo_bank/feature/dc_setting_card_delivery/dc_setting_create_pin/
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../utils/color_utils.dart';
 
 class DcSettingCreatePinPageView extends BasePageViewWidget<DcSettingCreatePinPageViewModel> {
   DcSettingCreatePinPageView(ProviderBase model) : super(model);
@@ -96,15 +98,35 @@ class DcSettingCreatePinPageView extends BasePageViewWidget<DcSettingCreatePinPa
                                   stream: model.showButtonStream,
                                   initialData: false,
                                   dataBuilder: (context, isValid) {
-                                    return Visibility(
-                                      visible: isValid!,
-                                      child: AnimatedButton(
-                                        buttonHeight: 50,
-                                        buttonText: S.of(context).swipeToProceed,
-                                      ),
+                                    return AppPrimaryButton(
+                                      text: S.of(context).swipeToProceed,
+                                      isDisabled: !isValid!,
+                                      onPressed: () {
+                                        model.validatePin();
+                                      },
                                     );
                                   }),
                             ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 16.h),
+                              child: Center(
+                                child: InkWell(
+                                  onTap: () {
+                                    ProviderScope.containerOf(context)
+                                        .read(dcSettingCardDeliveryViewModelProvider)
+                                        .previousPage();
+                                  },
+                                  child: Text(
+                                    S.of(context).back,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: AppColor.brightBlue,
+                                        fontSize: 14.t,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ),
+                              ),
+                            )
                           ],
                         )),
                   ),

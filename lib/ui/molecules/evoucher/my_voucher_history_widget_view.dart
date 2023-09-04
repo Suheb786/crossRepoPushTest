@@ -73,7 +73,7 @@ class MyVoucherHistoryWidget extends StatelessWidget {
                         ),
                         SizedBox(height: 4.h),
                         Text(
-                          TimeUtils.getFormattedTimeForTransaction(data.creationDate.toString()),
+                          TimeUtils.convertUTCDateToLocal(data.creationDate.toString()),
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: Theme.of(context).colorScheme.onInverseSurface,

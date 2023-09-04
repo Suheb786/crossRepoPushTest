@@ -15,8 +15,7 @@ class PaymentHomePage extends BasePage<PaymentHomeViewModel> {
   PaymentHomePageState createState() => PaymentHomePageState();
 }
 
-class PaymentHomePageState extends BaseStatefulPage<PaymentHomeViewModel, PaymentHomePage>
-    with AutomaticKeepAliveClientMixin {
+class PaymentHomePageState extends BaseStatefulPage<PaymentHomeViewModel, PaymentHomePage> with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
   @override
   ProviderBase provideBase() {
     return paymentHomeViewModelProvider;
@@ -33,10 +32,35 @@ class PaymentHomePageState extends BaseStatefulPage<PaymentHomeViewModel, Paymen
     return stateBuild(context);
   }
 
+
   @override
   void onModelReady(PaymentHomeViewModel model) {
     model.navigationType = widget.navigationType ?? NavigationType.DASHBOARD;
-    model.getBeneficiaries(context, "SM");
+    // model.getBeneficiaries(context, "SM");
+    if (!model.animationInitialized) {
+      model.animationInitialized = true;
+      model.getBeneficiaries(context, "SM");
+      model.translateUpController = AnimationController(
+        vsync: this,
+        duration: const Duration(milliseconds: 500),
+      );
+
+      model.translateUpAnimation = Tween<double>(begin: 0, end: 1).animate(
+        CurvedAnimation(
+          parent: model.translateUpController,
+          curve: Curves.easeInOut,
+          reverseCurve: Curves.easeInOut,
+        ),
+      );
+
+      model.translateSidewaysController = AnimationController(
+        vsync: this,
+        duration: const Duration(milliseconds: 500),
+      );
+
+
+
+    }
     super.onModelReady(model);
   }
 

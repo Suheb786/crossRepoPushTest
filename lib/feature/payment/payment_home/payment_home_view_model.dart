@@ -1,4 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
 import 'package:domain/usecase/manage_contacts/get_beneficiary_usecase.dart';
@@ -16,6 +17,7 @@ import 'package:rxdart/rxdart.dart';
 
 class PaymentHomeViewModel extends BasePageViewModel {
   final SwiperController pageController = SwiperController();
+  final Account selectedAccount = Account();
 
   NavigationType navigationType = NavigationType.DASHBOARD;
 
@@ -23,7 +25,6 @@ class PaymentHomeViewModel extends BasePageViewModel {
 
   GetBeneficiaryUseCase _getBeneficiaryUseCase;
 
-  PageController controller = PageController(viewportFraction: 0.8, keepPage: true, initialPage: 0);
   PublishSubject<int> _currentStep = PublishSubject();
 
   Stream<int> get currentStep => _currentStep.stream;
@@ -47,10 +48,19 @@ class PaymentHomeViewModel extends BasePageViewModel {
     _currentStep.safeAdd(index);
   }
 
-  void updatePageControllerStream(int index) {
-    controller = PageController(initialPage: index, viewportFraction: 0.8, keepPage: true);
-    _pageControllerSubject.safeAdd(controller);
-  }
+  bool animationInitialized = false;
+  late AnimationController translateUpController;
+  late Animation<double> translateUpAnimation;
+
+  BehaviorSubject<AnimatedPage> pageSwitchSubject = BehaviorSubject.seeded(AnimatedPage.NULL);
+
+  Stream<AnimatedPage> get pageSwitchStream => pageSwitchSubject.stream;
+
+  late AnimationController translateSidewaysController;
+
+  late Beneficiary selectedBenificiary;
+
+  // (SendAmountToContactPage(settings.arguments as Beneficiary)
 
   PaymentHomeViewModel(this._getBeneficiaryUseCase) {
     _getBeneficiaryRequest.listen((value) {
@@ -140,6 +150,32 @@ class PaymentHomeViewModel extends BasePageViewModel {
     _currentStep.close();
     super.dispose();
   }
+
+  void animatePage(AnimatedPage animatedPage) {
+    if (pageSwitchSubject.value == AnimatedPage.NULL && animatedPage != AnimatedPage.NULL) {
+      animateToNewPage();
+      pageSwitchSubject.safeAdd(animatedPage);
+    } else {
+      animateBackToMainPage();
+      pageSwitchSubject.safeAdd(AnimatedPage.NULL);
+    }
+  }
+
+  void animateToNewPage() {
+    translateUpController.forward();
+    translateSidewaysController.forward();
+  }
+
+  void animateBackToMainPage() {
+    translateUpController.reverse();
+    translateSidewaysController.reverse();
+  }
+
+  setSelectedBenificiary(Beneficiary selectedBenificiary) {
+    this.selectedBenificiary = selectedBenificiary;
+  }
+
+  void animateToRequestMoneyViaQR() {}
 }
 
 class PaymentHomeWidgetFeature {
@@ -150,3 +186,13 @@ class PaymentHomeWidgetFeature {
 }
 
 enum PaymentWidgetType { SEND_MONEY, REQUEST_MONEY, POST_PAID_BILL, PRE_PAID_BILL }
+
+enum AnimatedPage {
+  SEND_MONEY,
+  REQUEST_MONEY,
+  SEND_TO_SPECIFIC_PERSON,
+  REQUEST_FROM_SPECIFIC_PERSON,
+  PAY_NEW_BILL,
+  REQUEST_MONEY_VIA_QR,
+  NULL
+}

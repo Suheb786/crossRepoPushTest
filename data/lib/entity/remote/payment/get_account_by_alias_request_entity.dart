@@ -4,6 +4,8 @@ part "get_account_by_alias_request_entity.g.dart";
 
 @JsonSerializable()
 class GetAccountByAliasRequestEntity {
+  @JsonKey(name: "FromAccount")
+  final String? fromAccount;
   @JsonKey(name: "Value")
   final String? value;
   @JsonKey(name: "Currency")
@@ -18,6 +20,7 @@ class GetAccountByAliasRequestEntity {
   GetAccountByAliasRequestEntity({
     required this.baseData,
     this.value,
+    this.fromAccount,
     this.currency,
     this.getToken = true,
     required this.beneficiaryId,

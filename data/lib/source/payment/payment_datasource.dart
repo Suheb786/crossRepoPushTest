@@ -12,14 +12,15 @@ import 'package:retrofit/dio.dart';
 
 abstract class PaymentRemoteDs {
   Future<HttpResponse<GetAccountByAliasContentResponseEntity>> getAccountByAlias(
-      String value, String currency, String? beneficiaryId);
+      String fromAccount, String value, String currency, String? beneficiaryId);
 
   Future<HttpResponse<CheckSendMoneyResponseEntity>> checkSendMoney(
-      {String toAccount, num toAmount, String beneficiaryId});
+      {String? fromAccount, String toAccount, num toAmount, String beneficiaryId});
 
   Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
       {String beneficiaryId,
       String? otpCode,
+      String? fromAccount,
       String transferType,
       String beneficiaryImage,
       bool isFriend,
@@ -34,6 +35,7 @@ abstract class PaymentRemoteDs {
       String? recipientAddress});
 
   Future<HttpResponse<RequestToPayContentResponseEntity>> requestToPay(
+      String fromAccount,
       String ctgyPurp,
       num amount,
       String dbtrBic,
@@ -57,12 +59,16 @@ abstract class PaymentRemoteDs {
 
   Future<HttpResponse<ResponseEntity>> payBackCreditCard({String? secureCode, String? payBackAmount});
 
-  Future<HttpResponse<QRResponseEntity>> generateQR({required String amount});
+  Future<HttpResponse<QRResponseEntity>> generateQR({required String amount, required String fromAccount});
 
   Future<HttpResponse<VerifyQRResponseEntity>> verifyQR({required String requestId, required String source});
 
   Future<HttpResponse<QRTransferResponseEntity>> transferQR(
-      {required String requestId, required String toAmount, required String toAccount, required String otp});
+      {String? fromAccount,
+      required String requestId,
+      required String toAmount,
+      required String toAccount,
+      required String otp});
 
   Future<HttpResponse<GetRejectionReasonResponseEntity>> getReturnRejectionReason({
     required bool getToken,

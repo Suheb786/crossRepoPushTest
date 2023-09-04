@@ -5,7 +5,7 @@ import 'package:retrofit/dio.dart';
 abstract class UploadDocumentLocalDS {
   Future<String> pickUploadDocument();
 
-  Future<String> clickDocumentImage();
+  Future<String> clickDocumentImage(String cameraPhotoFile);
 
   Future<String> pickImage();
 }

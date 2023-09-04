@@ -16,6 +16,8 @@ class DebitCardReplacementPageViewModel extends BasePageViewModel {
 
   PageController appSwiperController = PageController(viewportFraction: 0.90);
 
+  bool isFirstTime = true;
+
   void navigateToPage(int index) {
     swiperController.move(index, animation: false);
   }

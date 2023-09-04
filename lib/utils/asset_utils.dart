@@ -221,5 +221,22 @@ class AssetUtils {
   static const String contactUs = svg + "contact_us.svg";
   static const String homeOutlineButton = svg + "home_outlined.svg";
   static const String blinkLogo1 = svg + "blink_logo1.svg";
+  static const String blinkLogo2 = svg + "blink_logo2.svg";
   static const String eVouchersLanding = drawable + "evoucher_landing.png";
+  static const String timelineButton = svg + "time_line.svg";
+  static const String spin = svg + "spin.svg";
+  static const String down = svg + "down.svg";
+  static const String clock = svg + "clock.svg";
+  static const String swipeUpSmall = svg + "swipe_up_small.svg";
+  static const String moreMenu = svg + "more_menu.svg";
+
+  ///account
+  static const String addMoneyIcon = svg + "add_money.svg";
+  static const String openSubAccountIcon = svg + "sub_account.svg";
+  static const String shareAccountInfoIcon = svg + "share_account_info.svg";
+  static const String transferBetweenAccountIcon = svg + "transfer_between_account.svg";
+  static const String closeSubAccountIcon = svg + "close_sub_account.svg";
+
+  ///dialog png
+  static const String close_bold = drawable + "close_bold.png";
 }

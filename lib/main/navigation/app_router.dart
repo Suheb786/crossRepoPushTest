@@ -1,4 +1,3 @@
-import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/payment/transfer_success_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
@@ -145,6 +144,7 @@ import 'package:neo_bank/feature/video_kyc/video_kyc_page.dart';
 import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_subscription_page.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/ui/molecules/camera_capture/camera_capture_page.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 
 import '../../feature/evoucher/evoucher/evoucher_page.dart';
@@ -152,6 +152,9 @@ import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evouche
 import '../../feature/rj/rj_book_flight/rj_book_flight_page.dart';
 import '../../feature/rj/rj_booking_confirmed_in_app_web_view/rj_booking_confirmed_in_app_web_view_page.dart';
 import '../../feature/rj/rj_booking_success/rj_booking_success_page.dart';
+import '../../feature/sub_account/open_sub_account/open_sub_account_success/open_sub_account_success_page.dart';
+import '../../feature/sub_account/transfer/select_transfer/select_transfer_page.dart';
+import '../../feature/sub_account/transfer/transfer_success/transfer_success_page.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -287,7 +290,8 @@ class AppRouter {
             CardTransactionPage(settings.arguments as GetCreditCardTransactionArguments));
 
       case RoutePaths.AccountTransaction:
-        return CustomRoute.createRoute(AccountTransactionPage());
+        return CustomRoute.createRoute(
+            AccountTransactionPage(settings.arguments as AccountTransactionPageArgument));
 
       case RoutePaths.DebitCardVerificationSuccess:
         return CupertinoPageRoute(
@@ -310,10 +314,11 @@ class AppRouter {
 
       case RoutePaths.RequestAmountFromContact:
         return CustomRoute.createRoute(
-            RequestAmountFromContactPage(beneficiary: settings.arguments as Beneficiary));
+            RequestAmountFromContactPage(settings.arguments as RequestAmountToContactPageArgument));
 
       case RoutePaths.SendAmountToContact:
-        return CustomRoute.createRoute(SendAmountToContactPage(settings.arguments as Beneficiary));
+        return CustomRoute.createRoute(
+            SendAmountToContactPage(settings.arguments as SendAmountToContactPageArgument));
 
       case RoutePaths.SendAmountToContactSuccess:
         return CupertinoPageRoute(
@@ -337,13 +342,15 @@ class AppRouter {
 
       case RoutePaths.RequestPaymentFromNewRecipient:
         return CupertinoPageRoute(
-            builder: (context) =>
-                RequestPaymentFromNewRecipientPage(requestValue: settings.arguments as String),
+            builder: (context) => RequestPaymentFromNewRecipientPage(
+                  argument: settings.arguments as RequestPaymentFromNewRecipientArgument,
+                ),
             settings: RouteSettings(name: RoutePaths.RequestPaymentFromNewRecipient));
 
       case RoutePaths.PaymentToNewRecipient:
         return CupertinoPageRoute(
-            builder: (context) => PaymentToNewRecipientPage(),
+            builder: (context) =>
+                PaymentToNewRecipientPage(settings.arguments as PaymentToNewRecipentPageArgument),
             settings: RouteSettings(name: RoutePaths.PaymentToNewRecipient));
 
       case RoutePaths.VideoKyc:
@@ -749,7 +756,10 @@ class AppRouter {
 
       case RoutePaths.NewBillsPage:
         return CupertinoPageRoute(
-            builder: (context) => NewBillsPage(), settings: RouteSettings(name: RoutePaths.NewBillsPage));
+            builder: (context) => NewBillsPage(
+                  needBackButton: settings.arguments as bool,
+                ),
+            settings: RouteSettings(name: RoutePaths.NewBillsPage));
 
       case RoutePaths.PayBillPage:
         return CupertinoPageRoute(
@@ -921,6 +931,28 @@ class AppRouter {
                 settings.arguments as BeneficiaryTransactionHistoryListPageArguments),
             settings: RouteSettings(name: RoutePaths.BeneficiaryTransactionHistoryList));
 
+      case RoutePaths.CameraCapturePage:
+        return CupertinoPageRoute(
+            builder: (context) => CameraCapturePage(),
+            settings: RouteSettings(name: RoutePaths.CameraCapturePage));
+
+      ///------------[Sub-Account-Router]---------///
+
+      case RoutePaths.OpenSubAccountSuccessPage:
+        return CupertinoPageRoute(
+            builder: (context) =>
+                OpenSubAccountSuccessPage(settings.arguments as OpenSubAccountSuccessPageArgument),
+            settings: RouteSettings(name: RoutePaths.OpenSubAccountSuccessPage));
+      case RoutePaths.SelectTransferPage:
+        return CupertinoPageRoute(
+            builder: (context) => SelectTransferPage(
+                  argument: settings.arguments as SelectTranferPageArgument,
+                ),
+            settings: RouteSettings(name: RoutePaths.SelectTransferPage));
+      case RoutePaths.TransferSuccessPage:
+        return CupertinoPageRoute(
+            builder: (context) => TransferSuccessPage(settings.arguments as TransferSuccessPageArgument),
+            settings: RouteSettings(name: RoutePaths.TransferSuccessPage));
       default:
         return CupertinoPageRoute(
           builder: (context) => Container(),

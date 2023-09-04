@@ -456,7 +456,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/BankSmart/CreateAccountV1',
+              '/BankSmart/CreateAccountV3',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1251,7 +1251,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/Dashboard/GetDashboardDataV4',
+              '/Dashboard/GetDashboardDataV5',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1277,7 +1277,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/TransactionHistory/GetDebitCardTransactionsList',
+              '/TransactionHistory/GetDebitCardTransactionsListV2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1304,7 +1304,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/TransactionHistory/GetCreditCardTransactionsList',
+              '/TransactionHistory/GetCreditCardTransactionsListV1',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1382,7 +1382,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/CardTracking/GetCreditCardStatementV1',
+              '/CardTracking/GetCreditCardStatementV2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1410,7 +1410,7 @@ class _ApiService implements ApiService {
     )
                 .compose(
                   _dio.options,
-                  '/CardTracking/GetDebitCardStatement',
+                  '/CardTracking/GetDebitCardStatementV2',
                   queryParameters: queryParameters,
                   data: _data,
                 )
@@ -1566,7 +1566,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/RuleEngine/FreezeCreditCard',
+              '/RuleEngine/FreezeCreditCardV1',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1592,7 +1592,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/RuleEngine/UnfreezeCreditCard',
+              '/RuleEngine/UnfreezeCreditCardV1',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1750,7 +1750,7 @@ class _ApiService implements ApiService {
     )
                 .compose(
                   _dio.options,
-                  '/transfer/GetAccountByAlisas',
+                  '/transfer/GetAccountByAlisasV2',
                   queryParameters: queryParameters,
                   data: _data,
                 )
@@ -1777,7 +1777,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/transfer/CheckSendMoneyV3',
+              '/transfer/CheckSendMoneyV4',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1803,7 +1803,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ContactCenter/TransferAPI',
+              'http://10.6.13.2:2186/contactcenter/api/ContactCenter/TransferAPIV2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1829,7 +1829,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ContactCenter/RequestToPay',
+              'http://10.6.13.2:2186/contactcenter/api/ContactCenter/RequestToPayV2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -3171,7 +3171,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/CardTracking/UpdateSettlement',
+              '/CardTracking/UpdateSettlementV1',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -3620,7 +3620,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/BillPayment/PayPrepaidBill',
+              '/BillPayment/PayPrepaidBillV2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -3646,7 +3646,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/BillPayment/PayPostPaidBillV1',
+              '/BillPayment/PayPostPaidBillV2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4432,7 +4432,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/Cliq/ConfirmCreateCLidID',
+              '/Cliq/ConfirmCreateCLidIDV2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4458,7 +4458,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/Cliq/CreateCliqIdOtp',
+              '/Cliq/CreateCliqIdOtpV2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4992,6 +4992,35 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<HttpResponse<AccountToAccountTransferResponseEntity>>
+      accountToAccountTransfer(
+          AccountToAccountTransferRequestEntity request) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<AccountToAccountTransferResponseEntity>>(
+            Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+                .compose(
+                  _dio.options,
+                  '/Transfer/AccountToAccountTransfer',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value =
+        AccountToAccountTransferResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
   Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(
       BeneficiaryFavoriteRequest baseRequest) async {
     const _extra = <String, dynamic>{};
@@ -5389,6 +5418,34 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<HttpResponse<VoucherRegionMinMaxValueResponseEntity>> regionsAndMinMax(
+      VoucherRegionMinMaxValueRequest voucherRegionMinMaxValueRequest) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(voucherRegionMinMaxValueRequest.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<VoucherRegionMinMaxValueResponseEntity>>(
+            Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+                .compose(
+                  _dio.options,
+                  'http://10.6.13.2:2186/Voucher/api/Voucher/GetRegionsAndMinMax',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value =
+        VoucherRegionMinMaxValueResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
   Future<HttpResponse<VoucherFilterResponseEntity>> getVoucherItemsByCategory(
       VoucherByCategoryRequest voucherByCategoryRequest) async {
     const _extra = <String, dynamic>{};
@@ -5548,7 +5605,7 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<EVoucherOtpResponseEntity>> eVoucherOtp(
-      BaseRequest request) async {
+      EVoucherOtpRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -5594,6 +5651,58 @@ class _ApiService implements ApiService {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetVoucherDetailResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> closeSubAccount(
+      CloseSubAccountRequestEntity request) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/BankSmart/CloseAccount',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> updateNickNameSubAccount(
+      UpdateNickNameSubAccountRequestEntity request) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/Dashboard/UpdateNickName',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

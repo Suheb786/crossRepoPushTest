@@ -3,6 +3,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:domain/constants/enum/evoucher_history_status_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:html/parser.dart';
+import 'package:intl/intl.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -26,7 +28,7 @@ class EvoucherDetailView extends BasePageViewWidget<EVoucherDetailViewModel> {
     return Stack(
       children: [
         Container(
-          height: 180,
+          height: 180.h,
           width: double.infinity,
           color: Colors.transparent,
           child: Stack(
@@ -49,9 +51,9 @@ class EvoucherDetailView extends BasePageViewWidget<EVoucherDetailViewModel> {
                   onTap: () => Navigator.pop(context),
                   child: Container(
                     height: 56.h,
-                    width: 56.h,
+                    width: 56.w,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
+                        borderRadius: BorderRadius.circular(100.w),
                         color: Theme.of(context).colorScheme.secondary),
                     child: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSecondaryContainer),
                   ),
@@ -61,12 +63,13 @@ class EvoucherDetailView extends BasePageViewWidget<EVoucherDetailViewModel> {
           ),
         ),
         Padding(
-          padding: const EdgeInsetsDirectional.only(top: 168),
+          padding: EdgeInsetsDirectional.only(top: 168.h),
           child: Container(
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
+                borderRadius:
+                    BorderRadius.only(topLeft: Radius.circular(16.w), topRight: Radius.circular(16.w))),
             child: PageDetail(
               model: model,
             ),
@@ -87,6 +90,8 @@ class PageDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var htmlDecodedString =
+        parse(model.argument.selectedVoucherData?.termsAndConditions ?? "").body?.text ?? '';
     return Column(
       children: [
         Expanded(
@@ -109,17 +114,20 @@ class PageDetail extends StatelessWidget {
                   textWeight: FontWeight.w600,
                   textColor: Theme.of(context).colorScheme.shadow,
                 ),
-                SizedBox(height: 8.h),
-                EVoucherTextWidget(
-                  alignment: AlignmentDirectional.topStart,
-                  text: S.of(context).validUntil + " " + "--",
-                  textSize: 14.t,
-                  textWeight: FontWeight.w400,
-                  textColor: Theme.of(context).colorScheme.shadow,
+                //  SizedBox(height: 8.h),
+                Visibility(
+                  visible: false,
+                  child: EVoucherTextWidget(
+                    alignment: AlignmentDirectional.topStart,
+                    text: S.of(context).validUntil + " " + "--",
+                    textSize: 14.t,
+                    textWeight: FontWeight.w400,
+                    textColor: Theme.of(context).colorScheme.shadow,
+                  ),
                 ),
                 SizedBox(height: 24.h),
                 Padding(
-                  padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
+                  padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w),
                   child: Container(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -134,7 +142,7 @@ class PageDetail extends StatelessWidget {
                               fontWeight: FontWeight.w700),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.only(start: 8.0, bottom: 4),
+                          padding: EdgeInsetsDirectional.only(start: 8.0.w, bottom: 4.h),
                           child: Text(
                             model.argument.selectedVoucherData?.currency ?? "",
                             style: TextStyle(
@@ -152,7 +160,7 @@ class PageDetail extends StatelessWidget {
                 EVoucherTextWidget(
                   alignment: AlignmentDirectional.topStart,
                   text: S.of(context).termsAndConditionsSetting,
-                  textSize: 14,
+                  textSize: 14.t,
                   textWeight: FontWeight.w600,
                   textColor: Theme.of(context).colorScheme.shadow,
                 ),
@@ -160,21 +168,14 @@ class PageDetail extends StatelessWidget {
                   padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.w, top: 16.h),
                   child: Column(
                     children: [
-                      CustomBulletWithTitle(
-                        title: model.argument.selectedVoucherData?.termsAndConditions ?? "",
-                        fontSize: 14.t,
-                        lineHeight: 1.5,
+                      Text(
+                        Bidi.stripHtmlIfNeeded(htmlDecodedString),
+                        style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          fontSize: 14.t,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
-                      // CustomBulletWithTitle(
-                      //   title: "",
-                      //   fontSize: 14.t,
-                      //   lineHeight: 1.5,
-                      // ),
-                      // CustomBulletWithTitle(
-                      //   title: "",
-                      //   fontSize: 14.t,
-                      //   lineHeight: 1.5,
-                      // ),
                     ],
                   ),
                 ),
@@ -182,7 +183,7 @@ class PageDetail extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 24),
+        SizedBox(height: 24.h),
         ViewVoucherBtb(
           model: model,
         ),
@@ -203,7 +204,7 @@ class ViewVoucherBtb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 24.0, end: 24.0),
+      padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.0.w),
       child: GestureDetector(
         onTap: () {
           // Navigator.pushNamed(context, RoutePaths.ShareVoucher);
@@ -219,7 +220,7 @@ class ViewVoucherBtb extends StatelessWidget {
                 title: S.of(context).evoucherUnderProcessing,
                 descriptionWidget: Text(
                   S.of(context).viewVoucherDialogDescription,
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                  style: TextStyle(fontSize: 14.t, fontWeight: FontWeight.w400),
                 ), onSelected: () {
               Navigator.pop(context);
             }, onDismissed: () {
@@ -228,19 +229,19 @@ class ViewVoucherBtb extends StatelessWidget {
           }
         },
         child: Container(
-          height: 56,
+          height: 56.h,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               EVoucherTextWidget(
                 alignment: AlignmentDirectional.center,
                 text: S.of(context).viewVoucher,
-                textSize: 14,
+                textSize: 14.t,
                 textWeight: FontWeight.w600,
                 textColor: Theme.of(context).colorScheme.onSecondaryContainer,
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.only(end: 24.0),
+                padding: EdgeInsetsDirectional.only(end: 24.0.w),
                 child: InkWell(onTap: () {}, child: AppSvg.asset(AssetUtils.view_voucher_icon)),
               )
             ],
@@ -249,7 +250,7 @@ class ViewVoucherBtb extends StatelessWidget {
               border: Border.all(color: Theme.of(context).colorScheme.inverseSurface),
               color: Theme.of(context).colorScheme.secondary,
               borderRadius: BorderRadius.all(
-                Radius.circular(40),
+                Radius.circular(40.w),
               )),
         ),
       ),

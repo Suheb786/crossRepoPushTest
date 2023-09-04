@@ -24,6 +24,8 @@ class PayPostPaidBillRequestEntity {
   String? nickName;
   @JsonKey(name: "CardId")
   String? CardId;
+  @JsonKey(name: "FromAccount")
+  String? fromAccount;
   @JsonKey(name: "GetToken")
   final bool? getToken;
   @JsonKey(name: "BaseClass")
@@ -41,6 +43,7 @@ class PayPostPaidBillRequestEntity {
       this.CardId,
       this.nickName,
       this.getToken = true,
+      this.fromAccount,
       required this.baseData});
 
   factory PayPostPaidBillRequestEntity.fromJson(Map<String, dynamic> json) =>

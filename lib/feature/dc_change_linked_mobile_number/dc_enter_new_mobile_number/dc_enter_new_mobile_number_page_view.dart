@@ -11,7 +11,7 @@ import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_enter_new_mob
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/mobile_number_dialog/mobile_number_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -47,192 +47,164 @@ class DcEnterNewMobileNumberPageView extends BasePageViewWidget<DcEnterNewMobile
                   duration: Duration(milliseconds: 100),
                   shakeAngle: Rotation.deg(z: 1),
                   curve: Curves.easeInOutSine,
-                  child: GestureDetector(
-                    onHorizontalDragEnd: (details) {
-                      if (ProviderScope.containerOf(context)
-                              .read(dcChangeLinkedMobileNumberViewModelProvider)
-                              .appSwiperController
-                              .page ==
-                          0.0) {
-                        if (StringUtils.isDirectionRTL(context)) {
-                          if (!details.primaryVelocity!.isNegative) {
-                            FocusScope.of(context).unfocus();
-                            model.validateMobile(
+                  child: Card(
+                    margin: EdgeInsets.zero,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                      child: Column(
+                        children: [
+                          AppStreamBuilder<Resource<AllowedCountryListResponse>>(
+                            initialData: Resource.success(data: AllowedCountryListResponse()),
+                            onData: (data) {
+                              if (data.status == Status.SUCCESS) {
                                 ProviderScope.containerOf(context)
-                                    .read(dcChangeLinkedMobileNumberViewModelProvider)
-                                    .arguments!
-                                    .tokenizedPan,
-                                ProviderScope.containerOf(context)
-                                    .read(dcChangeLinkedMobileNumberViewModelProvider)
-                                    .arguments!
-                                    .cardType);
-                          } else {}
-                        } else {
-                          if (details.primaryVelocity!.isNegative) {
-                            FocusScope.of(context).unfocus();
-                            model.validateMobile(
-                                ProviderScope.containerOf(context)
-                                    .read(dcChangeLinkedMobileNumberViewModelProvider)
-                                    .arguments!
-                                    .tokenizedPan,
-                                ProviderScope.containerOf(context)
-                                    .read(dcChangeLinkedMobileNumberViewModelProvider)
-                                    .arguments!
-                                    .cardType);
-                          } else {}
-                        }
-                      }
-                    },
-                    child: Card(
-                      margin: EdgeInsets.zero,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
-                        child: Column(
-                          children: [
-                            AppStreamBuilder<Resource<AllowedCountryListResponse>>(
-                              initialData: Resource.success(data: AllowedCountryListResponse()),
-                              onData: (data) {
-                                if (data.status == Status.SUCCESS) {
-                                  ProviderScope.containerOf(context)
-                                      .read(accountRegistrationViewModelProvider)
-                                      .countryDataList = data.data!.contentData!.countryData!;
-                                }
-                              },
-                              stream: model.getAllowedCountryStream,
-                              dataBuilder: (context, country) {
-                                return AppStreamBuilder<CountryData>(
-                                  initialData: CountryData(isoCode3: 'JOR', phoneCode: '962'),
-                                  stream: model.getSelectedCountryStream,
-                                  dataBuilder: (context, selectedCountry) {
-                                    return AppTextField(
-                                      labelText: S.of(context).newMobileNumber.toUpperCase(),
-                                      hintText: S.of(context).mobileNumberHint,
-                                      inputType: TextInputType.phone,
-                                      inputAction: TextInputAction.done,
-                                      inputFormatters: [
-                                        LengthLimitingTextInputFormatter(model.countryData.mobileMax),
-                                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                                      ],
-                                      controller: model.mobileNumberController,
-                                      key: model.mobileNumberKey,
-                                      onChanged: (value) {
-                                        model.validate();
-                                      },
-                                      prefixIcon: () {
-                                        return InkWell(
-                                          onTap: () {
-                                            MobileNumberDialog.show(context,
-                                                title: S.of(context).mobileNumber,
-                                                selectedCountryData: model.countryData, onSelected: (data) {
-                                              Navigator.pop(context);
-                                              model.countryData = data;
-                                              model.setSelectedCountry(data);
-                                            }, onDismissed: () {
-                                              Navigator.pop(context);
-                                            },
-                                                countryDataList: country!.status == Status.SUCCESS
-                                                    ? country.data!.contentData!.countryData
-                                                    : []);
+                                    .read(accountRegistrationViewModelProvider)
+                                    .countryDataList = data.data!.contentData!.countryData!;
+                              }
+                            },
+                            stream: model.getAllowedCountryStream,
+                            dataBuilder: (context, country) {
+                              return AppStreamBuilder<CountryData>(
+                                initialData: CountryData(isoCode3: 'JOR', phoneCode: '962'),
+                                stream: model.getSelectedCountryStream,
+                                dataBuilder: (context, selectedCountry) {
+                                  return AppTextField(
+                                    labelText: S.of(context).newMobileNumber.toUpperCase(),
+                                    hintText: S.of(context).mobileNumberHint,
+                                    inputType: TextInputType.phone,
+                                    inputAction: TextInputAction.done,
+                                    inputFormatters: [
+                                      LengthLimitingTextInputFormatter(model.countryData.mobileMax),
+                                      FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                    ],
+                                    controller: model.mobileNumberController,
+                                    key: model.mobileNumberKey,
+                                    onChanged: (value) {
+                                      model.validate();
+                                    },
+                                    prefixIcon: () {
+                                      return InkWell(
+                                        onTap: () {
+                                          MobileNumberDialog.show(context,
+                                              title: S.of(context).mobileNumber,
+                                              selectedCountryData: model.countryData, onSelected: (data) {
+                                            Navigator.pop(context);
+                                            model.countryData = data;
+                                            model.setSelectedCountry(data);
+                                          }, onDismissed: () {
+                                            Navigator.pop(context);
                                           },
-                                          child: Padding(
-                                            padding: EdgeInsets.only(top: 8.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: <Widget>[
-                                                Container(
-                                                  height: 16,
-                                                  width: 16,
-                                                  decoration: BoxDecoration(
-                                                    color: Theme.of(context).primaryColorDark,
-                                                    shape: BoxShape.circle,
-                                                  ),
-                                                  child: AppSvg.asset(selectedCountry!.isoCode3 != null
-                                                      ? "${AssetUtils.flags}${selectedCountry.isoCode3?.toLowerCase()}.svg"
-                                                      : "assets/flags/jor.svg"),
+                                              countryDataList: country!.status == Status.SUCCESS
+                                                  ? country.data!.contentData!.countryData
+                                                  : []);
+                                        },
+                                        child: Padding(
+                                          padding: EdgeInsets.only(top: 8.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: <Widget>[
+                                              Container(
+                                                height: 16,
+                                                width: 16,
+                                                decoration: BoxDecoration(
+                                                  color: Theme.of(context).primaryColorDark,
+                                                  shape: BoxShape.circle,
                                                 ),
-                                                Padding(
-                                                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                                  child: Directionality(
-                                                    textDirection: TextDirection.ltr,
-                                                    child: Text(
-                                                      selectedCountry.phoneCode!.isNotEmpty
-                                                          ? '+${selectedCountry.phoneCode!}'
-                                                          : "",
-                                                      style: TextStyle(
-                                                        fontFamily: StringUtils.appFont,
-                                                        color: Theme.of(context).textTheme.bodyLarge?.color,
-                                                        fontSize: 14,
-                                                        fontWeight: FontWeight.w600,
-                                                      ),
+                                                child: AppSvg.asset(selectedCountry!.isoCode3 != null
+                                                    ? "${AssetUtils.flags}${selectedCountry.isoCode3?.toLowerCase()}.svg"
+                                                    : "assets/flags/jor.svg"),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                                child: Directionality(
+                                                  textDirection: TextDirection.ltr,
+                                                  child: Text(
+                                                    selectedCountry.phoneCode!.isNotEmpty
+                                                        ? '+${selectedCountry.phoneCode!}'
+                                                        : "",
+                                                    style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      color: Theme.of(context).textTheme.bodyLarge?.color,
+                                                      fontSize: 14,
+                                                      fontWeight: FontWeight.w600,
                                                     ),
                                                   ),
                                                 ),
-                                                Container(
-                                                    height: 16,
-                                                    width: 16,
-                                                    margin: EdgeInsetsDirectional.only(end: 8),
-                                                    child: AppSvg.asset(AssetUtils.downArrow,
-                                                        color: Theme.of(context)
-                                                            .primaryTextTheme
-                                                            .bodyLarge
-                                                            ?.color))
-                                              ],
-                                            ),
+                                              ),
+                                              Container(
+                                                  height: 16,
+                                                  width: 16,
+                                                  margin: EdgeInsetsDirectional.only(end: 8),
+                                                  child: AppSvg.asset(AssetUtils.downArrow,
+                                                      color: Theme.of(context)
+                                                          .primaryTextTheme
+                                                          .bodyLarge
+                                                          ?.color))
+                                            ],
                                           ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                );
-                              },
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 16.0),
-                              child: Text(
-                                S.of(context).changeMobileNumberInfo,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    color: AppColor.dark_gray_1,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                            Spacer(),
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 12.0),
-                              child: AppStreamBuilder<bool>(
-                                  stream: model.showButtonStream,
-                                  initialData: false,
-                                  dataBuilder: (context, isValid) {
-                                    return Visibility(
-                                      visible: isValid!,
-                                      child: AnimatedButton(
-                                        buttonText: S.of(context).swipeToProceed,
-                                      ),
-                                    );
-                                  }),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: Text(
-                                S.of(context).backToCardSettings,
-                                style: TextStyle(
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 16.0),
+                            child: Text(
+                              S.of(context).changeMobileNumberInfo,
+                              style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  color: AppColor.brightBlue,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                                  color: AppColor.dark_gray_1,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                          Spacer(),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 12.0),
+                            child: AppStreamBuilder<bool>(
+                                stream: model.showButtonStream,
+                                initialData: false,
+                                dataBuilder: (context, isValid) {
+                                  return AppPrimaryButton(
+                                    isDisabled: !isValid!,
+                                    text: S.of(context).next,
+                                    onPressed: () {
+                                      model.validateMobile(
+                                          ProviderScope.containerOf(context)
+                                              .read(dcChangeLinkedMobileNumberViewModelProvider)
+                                              .arguments!
+                                              .tokenizedPan,
+                                          ProviderScope.containerOf(context)
+                                              .read(dcChangeLinkedMobileNumberViewModelProvider)
+                                              .arguments!
+                                              .cardType);
+                                    },
+                                  );
+                                }),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text(
+                              S.of(context).back,
+                              style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                color: AppColor.brightBlue,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
+                          ),
 
-                            // SizedBox(
-                            //   height:
-                            //       MediaQuery.of(context).viewInsets.bottom,
-                            // ),
-                          ],
-                        ),
+                          // SizedBox(
+                          //   height:
+                          //       MediaQuery.of(context).viewInsets.bottom,
+                          // ),
+                        ],
                       ),
                     ),
                   ),

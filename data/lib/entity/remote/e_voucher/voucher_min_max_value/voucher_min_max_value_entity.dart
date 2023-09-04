@@ -8,11 +8,11 @@ part 'voucher_min_max_value_entity.g.dart';
 class VoucherMinMaxValueEntity
     implements BaseLayerDataTransformer<VoucherMinMaxValueEntity, VoucherMinMaxValue> {
   @JsonKey(name: "minRange", defaultValue: 0.0)
-  num? minRange;
+  final num? minRange;
   @JsonKey(name: "maxRange", defaultValue: 0.0)
-  num? maxRange;
+  final num? maxRange;
 
-  VoucherMinMaxValueEntity({
+  const VoucherMinMaxValueEntity({
     this.minRange,
     this.maxRange,
   });
@@ -30,8 +30,8 @@ class VoucherMinMaxValueEntity
   @override
   VoucherMinMaxValue transform() {
     return VoucherMinMaxValue(
-      minRange: this.minRange,
-      maxRange: this.maxRange,
+      minRange: this.minRange ?? 0.0,
+      maxRange: this.maxRange ?? 0.0,
     );
   }
 }

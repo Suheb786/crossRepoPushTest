@@ -9,9 +9,7 @@ class BottomBarWidget extends StatelessWidget {
   final Function() onMoreTap;
   final Function() onContactUsTap;
 
-  const BottomBarWidget(
-      {Key? key, required this.onHomeTap, required this.onMoreTap, required this.onContactUsTap})
-      : super(key: key);
+  const BottomBarWidget({Key? key, required this.onHomeTap, required this.onMoreTap, required this.onContactUsTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +24,8 @@ class BottomBarWidget extends StatelessWidget {
             bottom: BorderSide(color: Theme.of(context).colorScheme.background, width: 1),
           )),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
         children: [
           BottomBarWidgetItem(
             onTap: () {
@@ -38,6 +37,7 @@ class BottomBarWidget extends StatelessWidget {
           SizedBox(
             width: 40.w,
           ),
+          // Spacer(),
           BottomBarWidgetItem(
             onTap: () {
               onMoreTap.call();
@@ -48,6 +48,7 @@ class BottomBarWidget extends StatelessWidget {
           SizedBox(
             width: 40.w,
           ),
+          // Spacer(),
           BottomBarWidgetItem(
             onTap: () {
               onContactUsTap.call();

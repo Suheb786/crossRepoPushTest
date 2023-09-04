@@ -19,7 +19,6 @@ import 'package:domain/usecase/card_delivery/get_card_application_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_card_statement_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_limit_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_relationship_list_usecase.dart';
-import 'package:domain/usecase/card_delivery/get_credit_card_statement_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_transactions_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_years_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_debit_card_transactions_usecase.dart';
@@ -64,10 +63,6 @@ final creditCardTransactionUseCaseProvider = Provider.autoDispose<GetCreditCardT
 ///[GetCardStatementUseCase] provider
 final cardStatementUseCaseProvider = Provider.autoDispose<GetCardStatementUseCase>(
     (ref) => GetCardStatementUseCase(ref.read(cardRepositoryProvider)));
-
-///[GetCreditCardStatementUseCase] provider
-final creditCardStatementUseCaseProvider = Provider.autoDispose<GetCreditCardStatementUseCase>(
-    (ref) => GetCreditCardStatementUseCase(ref.read(cardRepositoryProvider)));
 
 ///[GetDebitYearsUseCase] provider
 final getDebitYearsUseCaseProvider = Provider.autoDispose<GetDebitYearsUseCase>(

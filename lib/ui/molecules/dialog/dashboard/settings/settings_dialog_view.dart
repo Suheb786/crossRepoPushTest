@@ -1,6 +1,6 @@
 import 'dart:io';
+import 'dart:math' as math;
 
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/enum/evoucher_landing_page_navigation_type_enum.dart';
 import 'package:domain/constants/error_types.dart';
@@ -12,11 +12,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/evoucher/evoucher/evoucher_page.dart';
+import 'package:neo_bank/feature/manage_contacts/beneficiary_contacts_list/beneficiary_contacts_list_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_progress.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_menu_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -31,9 +31,32 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-class SettingsDialogView extends StatelessWidget {
+import '../../../../../feature/activity/activity_home/activity_home_page.dart';
+import '../../../../../feature/manage_cliq_id/cliq_id_list/cliq_id_list_page.dart';
+import '../../../../../main/navigation/cutom_route.dart';
+
+class SettingsDialogView extends StatefulWidget {
+  @override
+  State<SettingsDialogView> createState() => _SettingsDialogViewState();
+}
+
+class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTickerProviderStateMixin {
   ProviderBase providerBase() {
     return settingsDialogViewModelProvider;
+  }
+
+  late PageController pageController;
+  late AnimationController animationController;
+
+  @override
+  void initState() {
+    pageController = PageController(initialPage: 0, viewportFraction: 0.3);
+    animationController = AnimationController(
+      duration: const Duration(milliseconds: 250),
+      reverseDuration: const Duration(milliseconds: 100),
+      vsync: this,
+    );
+    super.initState();
   }
 
   @override
@@ -47,7 +70,6 @@ class SettingsDialogView extends StatelessWidget {
               if (response.status == Status.SUCCESS) {
                 AppConstantsUtils.resetCacheLists();
                 if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
-                  AppConstantsUtils.isApplePayPopUpShown = false;
                   AntelopHelper.walletDisconnect();
                 }
                 Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding, (route) => false);
@@ -63,29 +85,29 @@ class SettingsDialogView extends StatelessWidget {
                       ///Bill payments
                       PagesWidget(
                           key: 'BILL_PAYMENTS',
+                          onTap: () async {
+                            ///LOG EVENT TO FIREBASE
+                            await FirebaseAnalytics.instance
+                                .logEvent(name: "payments_opened", parameters: {"is_payment_opened": "true"});
+                            Navigator.pushNamed(context, RoutePaths.PaymentHome,
+                                arguments: NavigationType.DASHBOARD);
+                          },
                           child: SettingsMenuWidget(
                             model: model,
                             title: S.of(context).billsAndPayments,
                             image: AssetUtils.paymentCircle,
                             mKey: 'BILL_PAYMENTS',
-                            onTap: () async {
-                              ///LOG EVENT TO FIREBASE
-                              await FirebaseAnalytics.instance.logEvent(
-                                  name: "payments_opened", parameters: {"is_payment_opened": "true"});
-                              Navigator.pushNamed(context, RoutePaths.PaymentHome,
-                                  arguments: NavigationType.DASHBOARD);
-                            },
                           )),
 
                       ///Activity home
                       PagesWidget(
+                        onTap: () {
+                          Navigator.of(context).push(CustomRoute.swipeUpRoute(ActivityHomePage()));
+                        },
                         key: 'ACTIVITY',
                         child: SettingsMenuWidget(
                           model: model,
                           title: S.of(context).activity,
-                          onTap: () {
-                            Navigator.pushNamed(context, RoutePaths.ActivityHome);
-                          },
                           image: AssetUtils.activityCircle,
                           mKey: 'ACTIVITY',
                         ),
@@ -93,13 +115,15 @@ class SettingsDialogView extends StatelessWidget {
 
                       ///Manage Contacts
                       PagesWidget(
+                        onTap: () {
+                          Navigator.of(context).push(CustomRoute.swipeUpRoute(
+                              BeneficiaryContactListPage(navigationType: NavigationType.SEND_MONEY)));
+
+                          // Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList, arguments: NavigationType.SEND_MONEY);
+                        },
                         key: 'MANAGE_CONTACTS',
                         child: SettingsMenuWidget(
                           model: model,
-                          onTap: () {
-                            Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList,
-                                arguments: NavigationType.SEND_MONEY);
-                          },
                           mKey: 'MANAGE_CONTACTS',
                           title: S.of(context).manageContactsSettings,
                           image: AssetUtils.contacts,
@@ -108,68 +132,85 @@ class SettingsDialogView extends StatelessWidget {
 
                       ///CLIQ
                       PagesWidget(
+                        onTap: () {
+                          Navigator.of(context).push(
+                              CustomRoute.swipeUpRoute(CliqIdListPage(), routeName: RoutePaths.CliqIdList));
+                        },
                         key: 'CLIQ',
                         child: SettingsMenuWidget(
                           model: model,
                           mKey: 'CLIQ',
                           image: AssetUtils.cliqLogoSvg,
                           title: S.of(context).manageCliqIdRoute,
-                          onTap: () {
-                            Navigator.pushNamed(context, RoutePaths.CliqIdList);
-                          },
                         ),
                       ),
 
                       ///E-VOUCHERS
                       PagesWidget(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            CustomRoute.swipeUpRoute(
+                                EvoucherPage(EvoucherPageArguments(
+                                    EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING)),
+                                routeName: RoutePaths.Evoucher),
+                          );
+                          /*Navigator.pushNamed(context, RoutePaths.Evoucher,
+                              arguments: EvoucherPageArguments(
+                                  EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING));*/
+                        },
                         key: 'E-VOUCHERS',
                         child: SettingsMenuWidget(
                           model: model,
                           title: S.of(context).eVouchers,
                           image: AssetUtils.e_voucher,
                           mKey: 'E-VOUCHERS',
-                          onTap: () {
-                            Navigator.pushNamed(context, RoutePaths.Evoucher,
-                                arguments: EvoucherPageArguments(
-                                    EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING));
-                          },
                         ),
                       ),
 
                       ///Profile settings
                       PagesWidget(
+                        onTap: () {
+                          Navigator.pushNamed(context, RoutePaths.AccountSetting);
+                        },
                         key: 'SettingsMenuWidget',
                         child: SettingsMenuWidget(
                           model: model,
                           mKey: 'SettingsMenuWidget',
                           title: S.of(context).profileSettings,
                           image: AssetUtils.dummyProfile,
-                          onTap: () {
-                            Navigator.pushNamed(context, RoutePaths.AccountSetting);
-                          },
                           dynamicChild: (profileData.data?.content?.profileImage == null ||
                                   profileData.data?.content?.profileImage.isEmpty)
                               ? Center(
                                   child: Container(
                                     child: AppStreamBuilder<int>(
-                                        stream: model.currentStep,
-                                        initialData: 0,
-                                        dataBuilder: (context, currentValue) {
-                                          return AppStreamBuilder<String>(
-                                              stream: model.textStream,
-                                              initialData: "",
-                                              dataBuilder: (context, text) {
-                                                return Text(
-                                                  StringUtils.getFirstInitials(text),
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      fontWeight: FontWeight.w700,
-                                                      fontSize: 18.0.t,
-                                                      color: model.getKeyByIndex(currentValue ?? 0) ==
-                                                              'SettingsMenuWidget'
-                                                          ? Theme.of(context).colorScheme.secondary
-                                                          : Theme.of(context).primaryColorDark),
-                                                );
+                                        stream: model.menuTappedIndexStream,
+                                        initialData: -1,
+                                        dataBuilder: (context, tappedMenuIndex) {
+                                          return AppStreamBuilder<int>(
+                                              stream: model.currentStep,
+                                              initialData: 0,
+                                              dataBuilder: (context, currentValue) {
+                                                return AppStreamBuilder<String>(
+                                                    stream: model.textStream,
+                                                    initialData: "",
+                                                    dataBuilder: (context, text) {
+                                                      return Text(
+                                                        StringUtils.getFirstInitials(text),
+                                                        style: TextStyle(
+                                                            fontFamily: StringUtils.appFont,
+                                                            fontWeight: FontWeight.w700,
+                                                            fontSize: 18.0.t,
+                                                            color: (currentValue == tappedMenuIndex &&
+                                                                    "SettingsMenuWidget" ==
+                                                                        model.getKeyByIndex(
+                                                                            tappedMenuIndex ?? -1))
+                                                                ? Theme.of(context).colorScheme.secondary
+                                                                : Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyLarge!
+                                                                    .color!),
+                                                      );
+                                                    });
                                               });
                                         }),
                                   ),
@@ -186,63 +227,84 @@ class SettingsDialogView extends StatelessWidget {
 
                       ///logout
                       PagesWidget(
+                        onTap: () {
+                          model.logout();
+                        },
                         key: 'LOGOUT',
                         child: SettingsMenuWidget(
                           model: model,
                           image: AssetUtils.logout,
                           title: S.of(context).logout,
                           mKey: 'LOGOUT',
-                          onTap: () {
-                            model.logout();
-                          },
                         ),
                       ),
                     ];
                     model.updateShowPages(context: context, pages: currentPages);
-                    model.pages = currentPages;
                   },
                   dataBuilder: (context, profileData) {
-                    return AppStreamBuilder<List<PagesWidget>>(
-                        stream: model.currentPages,
-                        initialData: [],
-                        dataBuilder: (context, pagesData) {
+                    return AppStreamBuilder<int>(
+                        stream: model.currentStep,
+                        initialData: 0,
+                        dataBuilder: (context, currentValue) {
                           return Dialog(
                             elevation: 0.0,
                             insetPadding: EdgeInsets.zero,
-                            backgroundColor: Colors.transparent,
+                            backgroundColor: Theme.of(context).primaryColorDark.withOpacity(0.4),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.bottomCenter,
-                                    child: CarouselSlider.builder(
-                                      itemCount: model.showPages.length,
-                                      carouselController: model.controller,
-                                      itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
-                                          AppStreamBuilder<int>(
-                                              stream: model.currentStep,
-                                              initialData: 0,
-                                              dataBuilder: (context, currentValue) {
-                                                return Padding(
-                                                    padding: EdgeInsets.only(bottom: 5.0.h),
-                                                    child: AppTiltCard(
-                                                      pageViewIndex: pageViewIndex,
-                                                      degree: 8,
-                                                      currentPage: currentValue,
-                                                      child: model.showPages[itemIndex].child,
-                                                    ));
-                                              }),
-                                      options: CarouselOptions(
-                                        height: 180.0.h,
-                                        pageSnapping: true,
-                                        viewportFraction: 0.4,
-                                        enableInfiniteScroll: false,
-                                        onPageChanged: (index, reason) {
-                                          model.updatePage(index);
+                                Container(
+                                  height: 180.h,
+                                  child: PageView.builder(
+                                    itemCount: (model.showPages).length,
+                                    controller: pageController,
+                                    physics: const ClampingScrollPhysics(),
+                                    onPageChanged: (int value) {
+                                      model.updatePage(value);
+                                    },
+                                    itemBuilder: (context, index) {
+                                      return AnimatedBuilder(
+                                        animation: pageController,
+                                        builder: (context, child) {
+                                          double value = 0;
+
+                                          ///Y coordinate
+                                          double translateValue = 0;
+
+                                          ///Checking pageController is ready to use
+                                          if (pageController.position.hasContentDimensions) {
+                                            ///For current page value = 0, so rotation and translation value is zero
+                                            double indexFinal = index.toDouble();
+                                            value = indexFinal - (pageController.page ?? 0);
+                                            value = (value * 0.01);
+
+                                            if (value.abs() >= 0.02) {
+                                              translateValue = value.abs() * 500;
+                                            } else if (value.abs() >= 0.018) {
+                                              translateValue = value.abs() * 460;
+                                            } else if (value.abs() >= 0.016) {
+                                              translateValue = value.abs() * 420;
+                                            } else if (value.abs() >= 0.014) {
+                                              translateValue = value.abs() * 380;
+                                            } else if (value.abs() >= 0.012) {
+                                              translateValue = value.abs() * 340;
+                                            } else {
+                                              translateValue = value.abs() * 300;
+                                            }
+                                          }
+                                          return Transform.rotate(
+                                            angle: StringUtils.isDirectionRTL(context)
+                                                ? (math.pi * -value)
+                                                : (math.pi * value),
+                                            child: Transform.translate(
+                                              offset: Offset(0, translateValue),
+                                              child: _cards(
+                                                  index, model, model.showPages[index], currentValue ?? -1),
+                                            ),
+                                          );
                                         },
-                                      ),
-                                    ),
+                                      );
+                                    },
                                   ),
                                 ),
                                 SizedBox(
@@ -359,12 +421,46 @@ class SettingsDialogView extends StatelessWidget {
         reverseAnimationDuration: Duration(milliseconds: 500),
         animationDuration: Duration(milliseconds: 700));
   }
+
+  _cards(int index, SettingsDialogViewModel model, PagesWidget pageWidget, int currentPage) {
+    return AppStreamBuilder<bool>(
+        stream: model.onClickStream,
+        initialData: false,
+        dataBuilder: (context, onClick) {
+          return GestureDetector(
+            onTap: (onClick ?? false)
+                ? () async {
+                    model.menuTapped(index);
+                    animationController.forward();
+                    await Future.delayed(const Duration(milliseconds: 100), () {
+                      model.menuTapped(-1);
+                      animationController.reverse();
+                      pageWidget.onTap?.call();
+                    });
+                  }
+                : null,
+            child: ScaleTransition(
+              scale: Tween<double>(begin: 1.0, end: index == currentPage ? 0.95 : 1)
+                  .animate(animationController),
+              child: pageWidget.child,
+            ),
+          );
+        });
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    animationController.dispose();
+    super.dispose();
+  }
 }
 
 class PagesWidget {
   final String key;
   final Widget child;
   int? index;
+  Function()? onTap;
 
-  PagesWidget({required this.key, required this.child, this.index = 0});
+  PagesWidget({required this.key, required this.child, this.index = 0, this.onTap});
 }

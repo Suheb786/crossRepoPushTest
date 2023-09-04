@@ -9,12 +9,14 @@ part of 'dashboard_account_entity.dart';
 DashboardAccountEntity _$DashboardAccountEntityFromJson(
         Map<String, dynamic> json) =>
     DashboardAccountEntity(
-      accountTitle: json['accountTitle'] as String? ?? "",
+      accountTitle: json['accountTitle'] as String?,
       availableBalance: json['availableBalance'] as num? ?? 0.0,
       accountNo: json['accountNo'] as String? ?? "",
       iban: json['iban'] as String? ?? "",
       cardNo: json['cardNo'] as String? ?? "",
-      status: json['status'] as String? ?? "",
+      status: json['status'] as String?,
+      isSubAccount: json['isSubAccount'] as bool?,
+      nickName: json['nickName'] as String?,
     );
 
 Map<String, dynamic> _$DashboardAccountEntityToJson(
@@ -26,4 +28,6 @@ Map<String, dynamic> _$DashboardAccountEntityToJson(
       'iban': instance.iban,
       'cardNo': instance.cardNo,
       'status': instance.status,
+      'nickName': instance.nickName,
+      'isSubAccount': instance.isSubAccount,
     };

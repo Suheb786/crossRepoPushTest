@@ -5,6 +5,7 @@ import 'package:domain/model/dashboard/transactions/transactions_content.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_transactions_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_years_usecase.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
 import 'package:neo_bank/model/transaction_item.dart';
@@ -13,6 +14,8 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+
+import '../../../di/dashboard/dashboard_modules.dart';
 
 class CardTransactionViewModel extends BasePageViewModel {
   final GetCreditYearsUseCase _creditYearsUseCase;
@@ -70,12 +73,9 @@ class CardTransactionViewModel extends BasePageViewModel {
 
   List<TransactionContent> searchTransactionList = [];
 
-  CardTransactionViewModel(
-      this._cardTransactionsUseCase, this._creditYearsUseCase, this.cardTransactionArguments) {
+  CardTransactionViewModel(this._cardTransactionsUseCase, this._creditYearsUseCase, this.cardTransactionArguments) {
     _getTransactionsRequest.listen((value) {
-      RequestManager(value, createCall: () => _cardTransactionsUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
+      RequestManager(value, createCall: () => _cardTransactionsUseCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
         _getTransactionsResponse.safeAdd(event);
         transactionsResponse = event;
@@ -91,9 +91,7 @@ class CardTransactionViewModel extends BasePageViewModel {
     });
 
     _getCreditYearsRequest.listen((value) {
-      RequestManager(value, createCall: () => _creditYearsUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
+      RequestManager(value, createCall: () => _creditYearsUseCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
         _getCreditYearsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -122,12 +120,10 @@ class CardTransactionViewModel extends BasePageViewModel {
 
       filteredTransactionList.forEach((element) {
         List<Transactions>? nestedFilteredTransaction = element.transactions?.where((transaction) {
-          return (((transaction.amount ?? 0.0).toString().toLowerCase().contains(tag.toLowerCase())) ||
-              ((transaction.memo ?? '').toLowerCase().contains(tag.toLowerCase())));
+          return (((transaction.amount ?? 0.0).toString().toLowerCase().contains(tag.toLowerCase())) || ((transaction.memo ?? '').toLowerCase().contains(tag.toLowerCase())));
         }).toList();
         if ((nestedFilteredTransaction ?? []).isNotEmpty) {
-          TransactionContent content =
-              TransactionContent(label: element.label, transactions: nestedFilteredTransaction);
+          TransactionContent content = TransactionContent(label: element.label, transactions: nestedFilteredTransaction);
 
           tempList.add(content);
         }
@@ -138,18 +134,19 @@ class CardTransactionViewModel extends BasePageViewModel {
 
     searchTextList = tempSearchTextList;
     _searchTextSubject.add(searchTextList);
-    searchTransactionResponse =
-        Resource.success(data: GetTransactionsResponse(transactionResponse: filteredTransactionList));
-    _getTransactionsResponse
-        .add(Resource.success(data: GetTransactionsResponse(transactionResponse: filteredTransactionList)));
+    searchTransactionResponse = Resource.success(data: GetTransactionsResponse(transactionResponse: filteredTransactionList));
+    _getTransactionsResponse.add(Resource.success(data: GetTransactionsResponse(transactionResponse: filteredTransactionList)));
   }
 
   void getTransactions({
     required String cardId,
     required num noOfDays,
   }) {
-    _getTransactionsRequest
-        .safeAdd(GetCreditCardTransactionsUseCaseParams(cardId: cardId, noOfDays: noOfDays));
+    _getTransactionsRequest.safeAdd(GetCreditCardTransactionsUseCaseParams(
+        cardId: cardId,
+        noOfDays: noOfDays,
+        secureCode: cardTransactionArguments.secureCode,
+        isIssuedFromCMS: cardTransactionArguments.isIssuedFromCMS));
   }
 
   int getFilterDays(String value) {
@@ -169,6 +166,14 @@ class CardTransactionViewModel extends BasePageViewModel {
       default:
         return 180;
     }
+  }
+
+  void animateBackToDashboard(BuildContext context) {
+    final dashboardProvider = ProviderScope.containerOf(context).read(
+      appHomeViewModelProvider,
+    );
+
+    dashboardProvider.animateReverseTransactionPage();
   }
 
   @override

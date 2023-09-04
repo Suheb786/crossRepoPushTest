@@ -14,14 +14,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_bill/paid_bills_success/paid_bills_success_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -31,6 +29,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../../ui/molecules/button/app_primary_button.dart';
 import 'confirm_bill_payment_amount_page_view_model.dart';
 
 class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPaymentAmountPageViewModel> {
@@ -279,59 +278,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                               duration: Duration(milliseconds: 100),
                                               shakeAngle: Rotation.deg(z: 1),
                                               curve: Curves.easeInOutSine,
-                                              child: GestureDetector(
-                                                onHorizontalDragEnd: (details) {
-                                                  if (ProviderScope.containerOf(context)
-                                                          .read(payBillPageViewModelProvider)
-                                                          .appSwiperController
-                                                          .page ==
-                                                      1.0) {
-                                                    FocusScope.of(context).unfocus();
-                                                    if (StringUtils.isDirectionRTL(context)) {
-                                                      if (details.primaryVelocity!.isNegative) {
-                                                        ProviderScope.containerOf(context)
-                                                            .read(payBillPageViewModelProvider)
-                                                            .previousPage();
-                                                      } else {
-                                                        if (AppConstantsUtils.POST_PAID_FLOW) {
-                                                          if (isValid == true) {
-                                                            _navigatePostPaid(model, context);
-                                                          } else {
-                                                            model.amountGreaterThanZeroMessage(model);
-                                                          }
-                                                        } else if (AppConstantsUtils.PRE_PAID_FLOW) {
-                                                          if (isValid == true) {
-                                                            _navigatePrePaid(model, context);
-                                                          } else {
-                                                            model.amountGreaterThanZeroMessage(model);
-                                                          }
-                                                        }
-                                                      }
-                                                    } else {
-                                                      if (details.primaryVelocity!.isNegative) {
-                                                        if (AppConstantsUtils.POST_PAID_FLOW) {
-                                                          if (isValid == true) {
-                                                            _navigatePostPaid(model, context);
-                                                          } else {
-                                                            model.amountGreaterThanZeroMessage(model);
-                                                          }
-                                                        } else if (AppConstantsUtils.PRE_PAID_FLOW) {
-                                                          if (isValid == true) {
-                                                            _navigatePrePaid(model, context);
-                                                          } else {
-                                                            model.amountGreaterThanZeroMessage(model);
-                                                          }
-                                                        }
-                                                      } else {
-                                                        ProviderScope.containerOf(context)
-                                                            .read(payBillPageViewModelProvider)
-                                                            .previousPage();
-                                                      }
-                                                    }
-                                                  }
-                                                },
-                                                child: _cardWidget(model, context),
-                                              ));
+                                              child: _cardWidget(model, context));
                                         });
                                   },
                                 );
@@ -719,11 +666,24 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
               stream: model.showButtonStream,
               initialData: false,
               dataBuilder: (context, isValid) {
-                return Visibility(
-                  visible: isValid!,
-                  child: AnimatedButton(
-                    buttonText: S.of(context).swipeToProceed,
-                  ),
+                return AppPrimaryButton(
+                  text: S.of(context).next,
+                  isDisabled: !isValid!,
+                  onPressed: () {
+                    if (AppConstantsUtils.POST_PAID_FLOW) {
+                      if (isValid == true) {
+                        _navigatePostPaid(model, context);
+                      } else {
+                        model.amountGreaterThanZeroMessage(model);
+                      }
+                    } else if (AppConstantsUtils.PRE_PAID_FLOW) {
+                      if (isValid == true) {
+                        _navigatePrePaid(model, context);
+                      } else {
+                        model.amountGreaterThanZeroMessage(model);
+                      }
+                    }
+                  },
                 );
               }),
           SizedBox(
@@ -734,7 +694,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
               ProviderScope.containerOf(context).read(payBillPageViewModelProvider).previousPage();
             },
             child: Text(
-              S.of(context).backToPayments,
+              S.of(context).back,
               style: TextStyle(
                 fontFamily: StringUtils.appFont,
                 color: AppColor.brightBlue,
@@ -750,9 +710,8 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
 
   void _navigatePostPaid(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
     if (double.parse(ProviderScope.containerOf(context)
-                .read(appHomeViewModelProvider)
-                .dashboardDataContent
-                .account
+                .read(payBillDetailPageViewModelProvider)
+                .selectedAccount
                 ?.availableBalance ??
             '-1') >=
         double.parse(model.totalAmountToPay() ?? "0")) {
@@ -771,9 +730,8 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
 
   void _navigatePrePaid(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
     if (double.parse(ProviderScope.containerOf(context)
-                .read(appHomeViewModelProvider)
-                .dashboardDataContent
-                .account
+                .read(payBillDetailPageViewModelProvider)
+                .selectedAccount
                 ?.availableBalance ??
             '-1') >=
         double.parse(model.dueAmtController ?? "0")) {

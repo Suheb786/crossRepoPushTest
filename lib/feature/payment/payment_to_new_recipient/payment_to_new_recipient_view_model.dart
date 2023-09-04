@@ -1,10 +1,13 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/payment/payment_to_new_recipient/payment_to_new_recipient_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
 class PaymentToNewRecipientViewModel extends BasePageViewModel {
+  PaymentToNewRecipentPageArgument? argument;
+
   final SwiperController pageController = SwiperController();
 
   PublishSubject<int> _currentStep = PublishSubject();

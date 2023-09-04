@@ -6,6 +6,8 @@ part 'account_details_entity.g.dart';
 
 @JsonSerializable()
 class AccountDetailsEntity extends BaseLayerDataTransformer<AccountDetailsEntity, CustomerAccountDetails> {
+  @JsonKey(name: "NickName")
+  final String? nickName;
   @JsonKey(name: "createBy")
   final String? createBy;
   @JsonKey(name: "ourBranchID")
@@ -97,6 +99,7 @@ class AccountDetailsEntity extends BaseLayerDataTransformer<AccountDetailsEntity
 
   AccountDetailsEntity(
       {this.createBy,
+      this.nickName,
       this.ourBranchID,
       this.clientID,
       this.productID,
@@ -145,6 +148,7 @@ class AccountDetailsEntity extends BaseLayerDataTransformer<AccountDetailsEntity
   @override
   CustomerAccountDetails transform() {
     return CustomerAccountDetails(
+        nickName: this.nickName ?? "",
         createBy: this.createBy,
         ourBranchID: this.ourBranchID,
         clientID: this.clientID,

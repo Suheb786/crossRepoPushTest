@@ -11,7 +11,7 @@ class ActivityHomePage extends BasePage<ActivityHomeViewModel> {
 }
 
 class ActivityHomePageState extends BaseStatefulPage<ActivityHomeViewModel, ActivityHomePage>
-    with AutomaticKeepAliveClientMixin {
+    with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
   @override
   ProviderBase provideBase() {
     return activityHomeViewModelProvider;
@@ -25,6 +25,24 @@ class ActivityHomePageState extends BaseStatefulPage<ActivityHomeViewModel, Acti
   @override
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).colorScheme.secondary;
+  }
+
+  @override
+  void onModelReady(ActivityHomeViewModel model) {
+    if (!model.animationInitialized) {
+      model.animationInitialized = true;
+      model.translateSettingsUpController = AnimationController(
+        vsync: this,
+        duration: const Duration(milliseconds: 500),
+      );
+
+      model.translateSidewaysController = AnimationController(
+        vsync: this,
+        duration: const Duration(milliseconds: 500),
+      );
+    }
+
+    super.onModelReady(model);
   }
 
   @override

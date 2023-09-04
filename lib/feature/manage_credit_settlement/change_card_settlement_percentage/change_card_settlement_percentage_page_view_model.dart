@@ -20,7 +20,7 @@ class ChangeCardSettlementPercentagePageViewModel extends BasePageViewModel {
   List<String> percentageList = ["25 %", "50 %", "100 %"];
 
   /// button subject
-  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(true);
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
@@ -47,8 +47,10 @@ class ChangeCardSettlementPercentagePageViewModel extends BasePageViewModel {
 
   void updateSettlement() {
     _updateSettlementRequest.safeAdd(UpdateSettlementUseCaseParams(
-        cardId: arguments!.creditCard.cardId,
-        rate: int.parse(settlementPercentageController.text.replaceAll("%", ""))));
+        cardId: arguments?.creditCard.cardId ?? '',
+        rate: int.parse(settlementPercentageController.text.replaceAll("%", "")),
+        secureCode: arguments?.creditCard.cardCode ?? '',
+        isIssuedFromCMS: arguments?.creditCard.issuedFromCms ?? false));
   }
 
   void validate() {

@@ -8,190 +8,139 @@ import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_t
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../../ui/molecules/button/app_primary_button.dart';
 
 class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransationSuccessPageViewModel> {
   PaymentTransationSuccessPageView(ProviderBase model) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
-    return GestureDetector(
-      onHorizontalDragEnd: (details) {
-        if (details.primaryVelocity!.isNegative) {
-          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
-        }
-      },
-      child: Padding(
-        padding: EdgeInsets.only(top: 92.0.h),
-        child: Column(
-          children: [
-            Stack(
-              alignment: Alignment.center,
+    return Padding(
+      padding: EdgeInsets.only(top: 92.0.h),
+      child: Column(
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              AppSvg.asset(AssetUtils.line_white),
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  height: 111.37.h,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColor.brightRed,
+                  ),
+                  child: Center(child: AppSvg.asset(AssetUtils.right, color: AppColor.white)),
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 11.0.h),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AppSvg.asset(AssetUtils.line_white),
-                Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    height: 111.37.h,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColor.brightRed,
-                    ),
-                    child: Center(child: AppSvg.asset(AssetUtils.right, color: AppColor.white)),
+                Text(
+                  double.parse(model.paymentTransationSuccessArgument.ammount ?? '0.0').toStringAsFixed(3),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      color: AppColor.black,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 28.0.t),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 8.0.h, left: 5.0.w),
+                  child: Text(
+                    S.of(context).JOD,
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        color: AppColor.gray_black,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14.0.t),
                   ),
                 ),
               ],
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 11.0.h),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 6.0.h),
+            child: Text(
+              model.paymentTransationSuccessArgument.statusInfo ?? "",
+              maxLines: 3,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  color: AppColor.black,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 24.0.t),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 16.0.h),
+            child: Text(
+              model.paymentTransationSuccessArgument.name ?? "",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  color: AppColor.black,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14.0.t),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 4.0.h),
+            child: Text(
+              model.paymentTransationSuccessArgument.iban ?? "",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  color: AppColor.gray_black,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12.0.t),
+            ),
+          ),
+          Visibility(
+            visible: false,
+            child: Padding(
+              padding: EdgeInsets.only(top: 23.0.h),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    double.parse(model.paymentTransationSuccessArgument.ammount ?? '0.0').toStringAsFixed(3),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        color: AppColor.black,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 28.0.t),
-                  ),
+                  AppSvg.asset(AssetUtils.share, color: Theme.of(context).textTheme.bodyLarge!.color!),
                   Padding(
-                    padding: EdgeInsets.only(top: 8.0.h, left: 5.0.w),
+                    padding: EdgeInsetsDirectional.only(start: 11.0.w),
                     child: Text(
-                      S.of(context).JOD,
+                      S.of(context).shareMyReceipt,
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          color: AppColor.gray_black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 14.0.t),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 6.0.h),
-              child: Text(
-                model.paymentTransationSuccessArgument.statusInfo ?? "",
-                maxLines: 3,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    color: AppColor.black,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 24.0.t),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 16.0.h),
-              child: Text(
-                model.paymentTransationSuccessArgument.name ?? "",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    color: AppColor.black,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14.0.t),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 4.0.h),
-              child: Text(
-                model.paymentTransationSuccessArgument.iban ?? "",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    color: AppColor.gray_black,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 12.0.t),
-              ),
-            ),
-            Visibility(
-              visible: false,
-              child: Padding(
-                padding: EdgeInsets.only(top: 23.0.h),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AppSvg.asset(AssetUtils.share, color: Theme.of(context).textTheme.bodyLarge!.color!),
-                    Padding(
-                      padding: EdgeInsetsDirectional.only(start: 11.0.w),
-                      child: Text(
-                        S.of(context).shareMyReceipt,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14.0.t,
-                            color: Theme.of(context).textTheme.bodyLarge!.color!),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Spacer(),
-            Padding(
-              padding: EdgeInsets.only(top: 76),
-              child: AnimatedButton(
-                buttonText: S.of(context).swipeToProceed,
-                borderColor: Theme.of(context).textTheme.bodyLarge!.color!,
-                textColor: Theme.of(context).textTheme.bodyLarge!.color!,
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: Padding(
-                padding: EdgeInsets.only(top: 9.0.h),
-                child: Text(
-                  S.of(context).toDashboard,
-                  style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      color: Theme.of(context).textTheme.bodyLarge!.color!,
-                      fontSize: 12.0.t,
-                      fontWeight: FontWeight.w600),
-                ),
-              ),
-            ),
-            Visibility(
-              visible: false,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 33.0.h),
-                    child: Text(
-                      S.of(context).undoTransaction,
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          fontSize: 14.0.t,
                           fontWeight: FontWeight.w600,
+                          fontSize: 14.0.t,
                           color: Theme.of(context).textTheme.bodyLarge!.color!),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 4.0.h),
-                    child: Text(
-                      "0:07",
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          fontSize: 14.0.t,
-                          fontWeight: FontWeight.w600,
-                          color: Theme.of(context).colorScheme.secondary),
-                    ),
-                  ),
+                  )
                 ],
               ),
             ),
-            SizedBox(
-              height: 40.0.h,
-            )
-          ],
-        ),
+          ),
+          Spacer(),
+          Padding(
+            padding: EdgeInsets.only(top: 76, left: 24.w, right: 24.w, bottom: 24.h),
+            child: AppPrimaryButton(
+              text: S.of(context).done,
+              onPressed: () {
+                Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+                ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

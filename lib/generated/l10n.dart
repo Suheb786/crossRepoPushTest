@@ -1730,16 +1730,6 @@ class S {
     );
   }
 
-  /// `Select any Option`
-  String get selectAnyOption {
-    return Intl.message(
-      'Select any Option',
-      name: 'selectAnyOption',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Storage`
   String get storage {
     return Intl.message(
@@ -14890,10 +14880,10 @@ class S {
     );
   }
 
-  /// `When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ.`
+  /// `By creating your CliQ Alias, you acknowledge and agree to the following:\n\nSome or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) will be revealed to the originator of the remittance through CliQ.\n\nIt is strictly prohibited to create any Alias name that belongs to a trademarks or trade names not intended for you or is deemed unacceptable on political, ideological, or social grounds.`
   String get whenAcceptingCreationOfYourCliqId {
     return Intl.message(
-      'When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ.',
+      'By creating your CliQ Alias, you acknowledge and agree to the following:\n\nSome or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) will be revealed to the originator of the remittance through CliQ.\n\nIt is strictly prohibited to create any Alias name that belongs to a trademarks or trade names not intended for you or is deemed unacceptable on political, ideological, or social grounds.',
       name: 'whenAcceptingCreationOfYourCliqId',
       desc: '',
       args: [],
@@ -18180,6 +18170,76 @@ class S {
     );
   }
 
+  /// `E-voucher under processing`
+  String get evoucherUnderProcessing {
+    return Intl.message(
+      'E-voucher under processing',
+      name: 'evoucherUnderProcessing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transactions`
+  String get transactions {
+    return Intl.message(
+      'Transactions',
+      name: 'transactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay a New Bill`
+  String get payNewBill {
+    return Intl.message(
+      'Pay a New Bill',
+      name: 'payNewBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Payment`
+  String get newPayment {
+    return Intl.message(
+      'New Payment',
+      name: 'newPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Postpaid Bill`
+  String get newPostPaidBill {
+    return Intl.message(
+      'New Postpaid Bill',
+      name: 'newPostPaidBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Prepaid Bill`
+  String get newPrePaidBill {
+    return Intl.message(
+      'New Prepaid Bill',
+      name: 'newPrePaidBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Oops! Transaction failed; your account is inactive. Call us on 06-5200100 to activate your account.`
   String get dormantAccountTransactionFailed {
     return Intl.message(
@@ -18220,11 +18280,251 @@ class S {
     );
   }
 
-  /// `E-voucher under processing`
-  String get evoucherUnderProcessing {
+  /// `Transfer`
+  String get transfer {
     return Intl.message(
-      'E-voucher under processing',
-      name: 'evoucherUnderProcessing',
+      'Transfer',
+      name: 'transfer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your transfer details`
+  String get transferHeader {
+    return Intl.message(
+      'Enter your transfer details',
+      name: 'transferHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer from`
+  String get transferFrom {
+    return Intl.message(
+      'Transfer from',
+      name: 'transferFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main Account`
+  String get mainAccount {
+    return Intl.message(
+      'Main Account',
+      name: 'mainAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer To`
+  String get transferTo {
+    return Intl.message(
+      'Transfer To',
+      name: 'transferTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sub Account`
+  String get subAccount {
+    return Intl.message(
+      'Sub Account',
+      name: 'subAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Success!`
+  String get successExclmn {
+    return Intl.message(
+      'Success!',
+      name: 'successExclmn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Congratulations, your new account has been opened successfully!`
+  String get openAccountSucessDescription {
+    return Intl.message(
+      'Congratulations, your new account has been opened successfully!',
+      name: 'openAccountSucessDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go to Dashboard`
+  String get goToDashboard {
+    return Intl.message(
+      'Go to Dashboard',
+      name: 'goToDashboard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Transaction failed; your account is inactive.`
+  String get accountInactive {
+    return Intl.message(
+      'Oops! Transaction failed; your account is inactive.',
+      name: 'accountInactive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Transaction failed; your account cannot be debited.`
+  String get accountCannotBeDebited {
+    return Intl.message(
+      'Oops! Transaction failed; your account cannot be debited.',
+      name: 'accountCannotBeDebited',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share Account Information`
+  String get shareAccountInformation {
+    return Intl.message(
+      'Share Account Information',
+      name: 'shareAccountInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open Sub Account`
+  String get openSubAccount {
+    return Intl.message(
+      'Open Sub Account',
+      name: 'openSubAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to open a new account?`
+  String get openSubAccountDescription {
+    return Intl.message(
+      'Are you sure you want to open a new account?',
+      name: 'openSubAccountDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to close this sub account?`
+  String get closeSubAccountDescription {
+    return Intl.message(
+      'Are you sure you want to close this sub account?',
+      name: 'closeSubAccountDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer Between Accounts`
+  String get transferBetweenAccount {
+    return Intl.message(
+      'Transfer Between Accounts',
+      name: 'transferBetweenAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close Sub Account`
+  String get closeSubAccount {
+    return Intl.message(
+      'Close Sub Account',
+      name: 'closeSubAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please transfer the remaining balance to complete the account closure`
+  String get transferRemainingBalanceForAccountClosure {
+    return Intl.message(
+      'Please transfer the remaining balance to complete the account closure',
+      name: 'transferRemainingBalanceForAccountClosure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Done`
+  String get done {
+    return Intl.message(
+      'Done',
+      name: 'done',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Okay`
+  String get okey {
+    return Intl.message(
+      'Okay',
+      name: 'okey',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View More`
+  String get view_more {
+    return Intl.message(
+      'View More',
+      name: 'view_more',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Data to Display`
+  String get noDataToDisplay {
+    return Intl.message(
+      'No Data to Display',
+      name: 'noDataToDisplay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You do not have sufficient balance to transfer.`
+  String get insufficientBalanceAccountTransfer {
+    return Intl.message(
+      'You do not have sufficient balance to transfer.',
+      name: 'insufficientBalanceAccountTransfer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select atleast one filter option`
+  String get selectAnyOption {
+    return Intl.message(
+      'Select atleast one filter option',
+      name: 'selectAnyOption',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Transaction failed; you have insufficient balance in your account.`
+  String get insufficientBalanceSubAccount {
+    return Intl.message(
+      'Oops! Transaction failed; you have insufficient balance in your account.',
+      name: 'insufficientBalanceSubAccount',
       desc: '',
       args: [],
     );

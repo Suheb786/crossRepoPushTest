@@ -20,7 +20,7 @@ class VoucherSearchAndFilterWidget extends StatelessWidget {
         return _buildItem(voucherItems[index]);
       },
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          mainAxisExtent: 176.h,
+          mainAxisExtent: 185.h,
           crossAxisCount: 2,
           crossAxisSpacing: 0.2,
           mainAxisSpacing: 40.h,
@@ -36,6 +36,8 @@ class VoucherSearchAndFilterWidget extends StatelessWidget {
         },
         child: Container(
           child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 padding: EdgeInsets.zero,
@@ -53,36 +55,43 @@ class VoucherSearchAndFilterWidget extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 12.h),
-              Flexible(
-                child: Padding(
-                  padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w),
-                  child: Align(
-                      alignment: AlignmentDirectional.centerStart,
-                      child: Text(
-                        voucherItem.brand,
-                        maxLines: 1,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            color: Theme.of(context).colorScheme.inversePrimary,
-                            fontSize: 12.t,
-                            fontWeight: FontWeight.w600),
-                      )),
+              Padding(
+                padding: EdgeInsetsDirectional.only(end: 5.w),
+                child: Text(
+                  voucherItem.brand,
+                  maxLines: 1,
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                      fontSize: 12.t,
+                      fontWeight: FontWeight.w600),
                 ),
               ),
-              Flexible(
+              Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w),
-                  child: Align(
-                      alignment: AlignmentDirectional.centerStart,
-                      child: Text(
-                        voucherItem.name,
-                        maxLines: 2,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            color: Theme.of(context).colorScheme.shadow,
-                            fontSize: 14.t,
-                            fontWeight: FontWeight.w600),
-                      )),
+                  padding: EdgeInsetsDirectional.only(end: 5.w),
+                  child: Text(
+                    voucherItem.name,
+                    maxLines: 2,
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        color: Theme.of(context).colorScheme.shadow,
+                        fontSize: 14.t,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
+              SizedBox(height: 8.h),
+              Padding(
+                padding: EdgeInsetsDirectional.only(end: 5.w),
+                child: Text(
+                  voucherItem.fromValue.toStringAsFixed(3) + " " + voucherItem.currency,
+                  maxLines: 1,
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      color: Theme.of(context).colorScheme.shadow,
+                      fontSize: 14.t,
+                      fontWeight: FontWeight.w700),
                 ),
               ),
             ],

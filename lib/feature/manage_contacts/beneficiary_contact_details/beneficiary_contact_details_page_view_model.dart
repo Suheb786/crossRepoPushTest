@@ -80,6 +80,8 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
 
   bool isUpdateProfile = false;
 
+  String? updatedName;
+
   ///--------------------------public-other-methods-------------------------------------///
 
   void addImage(String image) {
@@ -91,8 +93,9 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
     ));
   }
 
-  void uploadProfilePhoto(DocumentTypeEnum type) {
-    _uploadProfilePhotoRequest.safeAdd(UploadDocumentUseCaseParams(documentType: type));
+  void uploadProfilePhoto(DocumentTypeEnum type, {String cameraPhotoFile = ""}) {
+    _uploadProfilePhotoRequest
+        .safeAdd(UploadDocumentUseCaseParams(documentType: type, cameraPhotoFile: cameraPhotoFile));
   }
 
   void deleteBeneficiary() {
@@ -147,12 +150,12 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => _updateBeneficiaryUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        updateLoader();
         if (event.status == Status.SUCCESS) {
           isUpdateProfile = true;
-          _nameEditableNotifierSubject.safeAdd(true);
+          // _nameEditableNotifierSubject.safeAdd(true);
         } else if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
+          // _nameEditableNotifierSubject.safeAdd(true);
         }
         _updateBeneficiaryResponse.safeAdd(event);
       });
@@ -203,11 +206,28 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
       FocusScope.of(context).requestFocus(nickNameFocus);
       _nameEditableNotifierSubject.safeAdd(false);
     } else {
-      setNickNameReadOnly();
+      FocusScope.of(context).unfocus();
+      _nameEditableNotifierSubject.safeAdd(true);
+      if (updatedName != null) {
+        if (nickNameController.text != updatedName) {
+          setNickNameReadOnly();
+        }
+      } else {
+        setNickNameReadOnly();
+      }
+    }
+  }
+
+  onlyToggleNickName(BuildContext context) {
+    if (_nameEditableNotifierSubject.value) {
+      FocusScope.of(context).requestFocus(nickNameFocus);
+    } else {
+      FocusScope.of(context).unfocus();
     }
   }
 
   setNickNameReadOnly() {
+    updatedName = nickNameController.text;
     _updateBeneficiaryRequest.safeAdd(UpdateBeneficiaryUseCaseParams(
         beneficiaryId: argument.beneficiaryInformation.id ?? '',
         nickName: nickNameController.text,

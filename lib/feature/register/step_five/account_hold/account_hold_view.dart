@@ -75,7 +75,9 @@ class AccountHoldView extends BasePageViewWidget<AccountHoldViewModel> {
               height: 34.h,
             ),
             AccountReadyHeader(
-                title: S.of(context).oneFinalStop, subTitle: S.of(context).yourApplicationInReviewNote),
+                descriptionVisibility: true,
+                title: S.of(context).oneFinalStop,
+                subTitle: S.of(context).yourApplicationInReviewNote),
             SizedBox(
               height: 40.h,
             ),

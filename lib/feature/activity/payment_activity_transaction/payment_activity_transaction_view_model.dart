@@ -62,7 +62,9 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
       },
     );
 
-    getRequestMoneyActivity(true, 30, "All");
+    Future.delayed(Duration(milliseconds: 500), () {
+      getRequestMoneyActivity(true, 30, "All");
+    });
 
     _approveRTPOtpRequest.listen(
       (value) {

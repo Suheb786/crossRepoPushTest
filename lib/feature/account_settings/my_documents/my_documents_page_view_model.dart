@@ -294,8 +294,9 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
     //checkOtherNationality();
   }
 
-  void uploadIncomeDocument(DocumentTypeEnum type) {
-    _uploadIncomePoofRequest.safeAdd(UploadDocumentUseCaseParams(documentType: type));
+  void uploadIncomeDocument(DocumentTypeEnum type, {String cameraPhotoFile = ""}) {
+    _uploadIncomePoofRequest
+        .safeAdd(UploadDocumentUseCaseParams(documentType: type, cameraPhotoFile: cameraPhotoFile));
   }
 
   void updateIncomeDocumentField(String value) {
@@ -309,8 +310,9 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
     _documentIncomeRequest.safeAdd(value);
   }
 
-  void uploadAdditionalNationalityDocument(DocumentTypeEnum type) {
-    _additionalNationalityProofRequest.safeAdd(UploadDocumentUseCaseParams(documentType: type));
+  void uploadAdditionalNationalityDocument(DocumentTypeEnum type, {String cameraPhotoFile = ""}) {
+    _additionalNationalityProofRequest
+        .safeAdd(UploadDocumentUseCaseParams(documentType: type, cameraPhotoFile: cameraPhotoFile));
   }
 
   void updateAdditionalNationalityUploadedStream(bool value) {
@@ -323,8 +325,9 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
     updateAdditionalNationalityUploadedStream(true);
   }
 
-  void uploadAddressDocument(DocumentTypeEnum type) {
-    _uploadAddressPoofRequest.safeAdd(UploadDocumentUseCaseParams(documentType: type));
+  void uploadAddressDocument(DocumentTypeEnum type, {String cameraPhotoFile = ""}) {
+    _uploadAddressPoofRequest
+        .safeAdd(UploadDocumentUseCaseParams(documentType: type, cameraPhotoFile: cameraPhotoFile));
   }
 
   void updateAddressDocumentField(String value) {

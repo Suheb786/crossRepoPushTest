@@ -4,11 +4,14 @@ import 'package:domain/model/e_voucher/voucher_by_date.dart';
 import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:domain/model/e_voucher/voucher_detail.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
+import 'package:domain/model/e_voucher/voucher_region_min_max_value.dart';
 import 'package:domain/usecase/evouchers/evoucher_categories_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_history_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_item_filter_usecase.dart';
+import 'package:domain/usecase/evouchers/evoucher_region_min_max_value_usecase.dart';
 import 'package:domain/usecase/evouchers/get_voucher_details_usecase.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/model/transaction_period.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -27,6 +30,7 @@ class EvoucherViewModel extends BasePageViewModel {
   EVoucherCategoriesUseCase eVoucherCategoriesUseCase;
   EVoucherHistoryUseCase eVoucherHistoryUseCase;
   EVoucherItemFilterUseCase eVoucherItemFilterUseCase;
+  EVoucherRegionMinMaxValueUseCase eVoucherRegionMinMaxValueUseCase;
   EvoucherFilterOption evoucherFilterOption = EvoucherFilterOption.FROM_SEARCH_FILTER;
 
   ///---------------------Filter option for date-------------------------------------
@@ -52,30 +56,44 @@ class EvoucherViewModel extends BasePageViewModel {
   ValueNotifier<int> tabChangeNotifier = ValueNotifier(0);
 
   List<TransactionPeriod> transactionPeriods = [];
-  BehaviorSubject<Resource<List<VoucherCategories>>> voucherCategoriesResponseSubject = BehaviorSubject();
-  PublishSubject<Resource<List<VoucherItem>>> voucherItemFilterResponseSubject = PublishSubject();
 
   /// get voucher details subjects ----
-  BehaviorSubject<GetVoucherDetailsUseCaseParams> _getvoucherDetailsRequest = BehaviorSubject();
+  PublishSubject<GetVoucherDetailsUseCaseParams> _getvoucherDetailsRequest = PublishSubject();
 
-  BehaviorSubject<Resource<GetVoucherDetails>> _getvoucherDetailsResponse = BehaviorSubject();
+  PublishSubject<Resource<GetVoucherDetails>> _getvoucherDetailsResponse = PublishSubject();
 
-  /// ------------- my vouchers stream -----------------------
-  BehaviorSubject<Resource<List<VouchersByDate>>> _myVoucherResponseSubject = BehaviorSubject();
+  Stream<Resource<GetVoucherDetails>> get getvoucherDetiailsStream => _getvoucherDetailsResponse.stream;
 
-  /// ------------- voucher by Filter & Search stream -----------------------
-  BehaviorSubject<Resource<List<VoucherItem>>> _voucherByFilterAndSearchResponseSubject = BehaviorSubject();
+  BehaviorSubject<Resource<List<VoucherCategories>>> voucherCategoriesResponseSubject = BehaviorSubject();
 
   BehaviorSubject<EVoucherCategoriesUseCaseParams> _voucherCategoriesRequestSubject = BehaviorSubject();
+
+  Stream<Resource<List<VoucherCategories>>> get voucherCategoriesResponseStream =>
+      voucherCategoriesResponseSubject.stream;
+
   BehaviorSubject<EVoucherHistoryUseCaseParams> _voucherHistoryRequestSubject = BehaviorSubject();
   BehaviorSubject<Resource<List<VouchersByDate>>> _voucherHistoryResponseSubject = BehaviorSubject();
+
+  Stream<Resource<List<VouchersByDate>>> get voucherHistoryResponseStream =>
+      _voucherHistoryResponseSubject.stream;
+
   PublishSubject<EVoucherItemFilterUseCaseParams> _voucherItemFilterRequestSubject = PublishSubject();
+
+  PublishSubject<Resource<List<VoucherItem>>> voucherItemFilterResponseSubject = PublishSubject();
+
+  Stream<Resource<List<VoucherItem>>> get voucherItemFilterResponseStream =>
+      voucherItemFilterResponseSubject.stream;
+
+  PublishSubject<int> switchTabSubject = PublishSubject();
+
+  Stream<int> get switchTabStream => switchTabSubject.stream;
 
   EvoucherViewModel({
     required this.getVoucherDetailsUseCase,
     required this.eVoucherCategoriesUseCase,
     required this.eVoucherHistoryUseCase,
     required this.eVoucherItemFilterUseCase,
+    required this.eVoucherRegionMinMaxValueUseCase,
   }) {
     getVoucherCategories();
     getVoucherCategoriesSubject();
@@ -86,25 +104,9 @@ class EvoucherViewModel extends BasePageViewModel {
     getVoucherItemFilterSubject();
 
     listenGetVoucherDetials();
+
+    getVoucherRegionMinMaxValueSubject();
   }
-
-  @override
-  void dispose() {
-    _voucherCategoriesRequestSubject.close();
-    voucherCategoriesResponseSubject.close();
-    _myVoucherResponseSubject.close();
-    _voucherByFilterAndSearchResponseSubject.close();
-    tabChangeNotifier.dispose();
-    scrollController.dispose();
-    super.dispose();
-  }
-
-  Stream<Resource<GetVoucherDetails>> get getvoucherDetiailsStream => _getvoucherDetailsResponse.stream;
-
-  Stream<Resource<List<VouchersByDate>>> get myVoucherResponseStream => _myVoucherResponseSubject.stream;
-
-  Stream<Resource<List<VoucherItem>>> get voucherByFilterAndSearchResponseStream =>
-      _voucherByFilterAndSearchResponseSubject.stream;
 
   listenGetVoucherDetials() {
     _getvoucherDetailsRequest.listen((value) {
@@ -113,7 +115,6 @@ class EvoucherViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _getvoucherDetailsResponse.safeAdd(event);
-        categoriesDisplayToggleNotifier.value = false;
         if (event.status == Status.ERROR) {
           showErrorState();
 
@@ -125,6 +126,58 @@ class EvoucherViewModel extends BasePageViewModel {
       });
     });
   }
+
+  /// ------------- voucher region and min,max value stream -------------------------------------------
+
+  PublishSubject<EVoucherRegionMinMaxValueUseCaseParams> _voucherRegionsAndMinMaxRequestSubject =
+      PublishSubject();
+
+  PublishSubject<Resource<VoucherRegionsAndMinMax>> _voucherRegionsAndMinMaxResponseSubject =
+      PublishSubject();
+
+  Stream<Resource<VoucherRegionsAndMinMax>> get voucherRegionsAndMinMaxResponseStream =>
+      _voucherRegionsAndMinMaxResponseSubject.stream;
+
+  void getVoucherRegionMinMaxValueSubject() {
+    _voucherRegionsAndMinMaxRequestSubject.listen((value) {
+      RequestManager(value, createCall: () => eVoucherRegionMinMaxValueUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _voucherRegionsAndMinMaxResponseSubject.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+
+          showToastWithError(event.appError!);
+        }
+        if (event.status == Status.SUCCESS) {}
+      });
+    });
+  }
+
+  getVoucherRegionsAndMinMax() {
+    _voucherRegionsAndMinMaxRequestSubject.safeAdd(EVoucherRegionMinMaxValueUseCaseParams());
+  }
+
+  generateListForMinMax(num minRange, num maxRange) {
+    rangeList.add(minRange.ceil().toString());
+
+    if (maxRange <= 50 && maxRange > -1) {
+      int result = (maxRange / 5).ceil();
+
+      for (int i = 0; i < result; i++) {
+        rangeList.add("${(i + 1) * 5}");
+      }
+    } else if (maxRange > 50) {
+      int result = (maxRange / 10).ceil();
+
+      for (int i = 0; i < result; i++) {
+        rangeList.add("${(i + 1) * 10}");
+      }
+    }
+  }
+
+  List<String> rangeList = [];
 
   /// ------------- voucher categories stream -------------------------------------------
 
@@ -151,9 +204,6 @@ class EvoucherViewModel extends BasePageViewModel {
   getVoucherCategories() {
     _voucherCategoriesRequestSubject.safeAdd(EVoucherCategoriesUseCaseParams());
   }
-
-  Stream<Resource<List<VoucherCategories>>> get voucherCategoriesResponseStream =>
-      voucherCategoriesResponseSubject.stream;
 
   /// ------------- voucher History  -------------------------------------------
 
@@ -212,9 +262,6 @@ class EvoucherViewModel extends BasePageViewModel {
     _voucherHistoryRequestSubject.safeAdd(EVoucherHistoryUseCaseParams(
         pageNo: pageNo, rangeOfMonths: rangeOfMonths, searchPhrase: searchPhrase, totalRecord: totalRecord));
   }
-
-  Stream<Resource<List<VouchersByDate>>> get voucherHistoryResponseStream =>
-      _voucherHistoryResponseSubject.stream;
 
   void getMoreScrollListener() {
     if (scrollController.hasListeners) return;
@@ -277,9 +324,6 @@ class EvoucherViewModel extends BasePageViewModel {
         category: category, region: region, maxValue: maxValue, minValue: minValue, searchText: searchText));
   }
 
-  Stream<Resource<List<VoucherItem>>> get voucherItemFilterResponseStream =>
-      voucherItemFilterResponseSubject.stream;
-
   int getFilterDays(String value) {
     switch (value) {
       case "Last 30 days":
@@ -318,5 +362,19 @@ class EvoucherViewModel extends BasePageViewModel {
 
   void setSelectedCategory(VoucherCategories category) {
     this.selectedVoucherCategories = category;
+  }
+
+  void switchTab(TabController tabController, int tab) {
+    tabController.animateTo(1, duration: const Duration(milliseconds: 300));
+  }
+
+  @override
+  void dispose() {
+    _voucherCategoriesRequestSubject.close();
+    voucherCategoriesResponseSubject.close();
+
+    tabChangeNotifier.dispose();
+    scrollController.dispose();
+    super.dispose();
   }
 }

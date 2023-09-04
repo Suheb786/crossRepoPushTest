@@ -4,6 +4,7 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_categories_model_data.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/pay_prepaid.dart';
 import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prepaid_biller.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/usecase/bill_payment/pay_prepaid_bill_usecase.dart';
 import 'package:domain/usecase/bill_payment/validate_prepaid_bill_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,10 +28,10 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
   final ValidatePrePaidUseCase validatePrePaidUseCase;
   final PayPrePaidUseCase payPrePaidUseCase;
   bool isPrepaidCategoryListEmpty = false;
+  Account? selectedAccount;
 
   TextEditingController amtController = TextEditingController(text: "0.0");
   final GlobalKey<AppTextFieldState> amtKey = GlobalKey(debugLabel: "amtKey");
-  TextEditingController savingAccountController = TextEditingController();
 
   String? serviceDescriptionEn = "";
   String? billerCode = "";
@@ -76,6 +77,7 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("new_pre_paid_inquire_bill", {"new_pre_paid_inquire_bill_call": true});
     _validatePrePaidRequest.safeAdd(ValidatePrePaidUseCaseParams(
+        fromAccount: selectedAccount?.accountNo ?? '',
         billerCode: argument.payMyPrePaidBillsPageDataList[0].billerCode,
         amount: isPrepaidCategoryListEmpty == true
             ? (amtController.text.isNotEmpty ? double.parse(amtController.text).toStringAsFixed(3) : '')
@@ -126,13 +128,7 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
   ///already saved flow.
   void payPrePaidBill(BuildContext context) {
     if (_showButtonSubject.value) {
-      if (double.parse(ProviderScope.containerOf(context)
-                  .read(appHomeViewModelProvider)
-                  .dashboardDataContent
-                  .account
-                  ?.availableBalance ??
-              '-1') >=
-          double.parse(amtController.text)) {
+      if (double.parse(selectedAccount?.availableBalance ?? '-1') >= double.parse(amtController.text)) {
         if (validatePrepaidCall) {
           ///LOG EVENT TO FIREBASE
           FireBaseLogUtil.fireBaseLog("pay_pre_paid_saved_bill", {"pay_pre_paid_saved_bill_call": true});
@@ -145,16 +141,15 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
               serviceType: argument.payMyPrePaidBillsPageDataList[0].serviceType,
               amount:
                   amtController.text.isNotEmpty ? double.parse(amtController.text).toStringAsFixed(3) : '',
-              /* isPrepaidCategoryListEmpty == true ? double.parse(amtController.text).toStringAsFixed(3) : "",*/
               fees: double.parse(feesAmt ?? "0").toStringAsFixed(3),
-              /*isPrepaidCategoryListEmpty == true ? double.parse(feesAmt ?? "0").toStringAsFixed(3) : "",*/
               validationCode: validationCode ?? "",
               currencyCode: "JOD",
-              accountNo: savingAccountController.text,
+              accountNo: selectedAccount?.accountNo ?? '',
               otpCode: "",
               isNewBiller: false,
               nickName: argument.payMyPrePaidBillsPageDataList[0].nickname ?? "",
-              // only need to be added in case of new biller added request
+
+              /// only need to be added in case of new biller added request
               prepaidCategoryCode:
                   isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_CODE : "",
               prepaidCategoryType:
@@ -181,14 +176,11 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
         RequestManager(params, createCall: () => payPrePaidUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
-          //to do
           updateLoader();
           _payPrePaidResponse.safeAdd(event);
           if (event.status == Status.ERROR) {
             showToastWithError(event.appError!);
-          } else if (event.status == Status.SUCCESS) {
-            _payPrePaidResponse.safeAdd(event);
-          }
+          } else if (event.status == Status.SUCCESS) {}
         });
       },
     );
@@ -201,11 +193,7 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
 
   validate(String? amount) {
     if ((double.tryParse(amount ?? "0") ?? 0.0) > 0.0) {
-      if (savingAccountController.text.isNotEmpty) {
-        _showButtonSubject.safeAdd(true);
-      }
-    } else {
-      _showButtonSubject.safeAdd(false);
+      _showButtonSubject.safeAdd(true);
     }
   }
 }

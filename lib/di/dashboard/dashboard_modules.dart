@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/account_setting/account_setting_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/apple_pay/apple_pay_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/bank_smart/bank_smart_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/card_delivery/card_delivery_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/dashboard/dashboard_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/dc_change_linked_mobile_number/dc_change_linked_mobile_number_usecase_provider.dart';
@@ -25,7 +26,6 @@ import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_t
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_view_model.dart';
-import 'package:neo_bank/feature/dashboard_home/home/home_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_payment_account/change_card_payment_account_page_view_model.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_settlement_percentage/change_card_settlement_percentage_page_view_model.dart';
@@ -37,6 +37,9 @@ import 'package:neo_bank/ui/molecules/dialog/dashboard/biometric_login/biometric
 import 'package:neo_bank/ui/molecules/dialog/dashboard/download_transaction_dialog/download_transaction_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog_view_model.dart';
+
+import '../../feature/dashboard_home/account_transaction/account_transaction_page.dart';
+import '../usecase/sub_account/sub_account_usecase_provider.dart';
 
 final dashboardViewModelProvider = ChangeNotifierProvider.autoDispose<DashboardPageViewModel>(
   (ref) => DashboardPageViewModel(
@@ -53,13 +56,18 @@ final biometricLoginViewModelProvider = ChangeNotifierProvider.autoDispose<Biome
 
 final appHomeViewModelProvider = ChangeNotifierProvider.autoDispose<AppHomeViewModel>(
   (ref) => AppHomeViewModel(
-      ref.read(getDashboardDataUseCaseProvider),
-      ref.read(getPlaceHolderUseCaseProvider),
-      ref.read(initDynamicLinkUseCaseProvider),
-      ref.read(currentUserUseCaseProvider),
-      ref.read(saveDataUserUseCaseProvider),
-      ref.read(verifyQRUseCaseProvider),
-      ref.read(getAntelopCardListUseCaseProvider)),
+    ref.read(getDashboardDataUseCaseProvider),
+    ref.read(getPlaceHolderUseCaseProvider),
+    ref.read(initDynamicLinkUseCaseProvider),
+    ref.read(currentUserUseCaseProvider),
+    ref.read(saveDataUserUseCaseProvider),
+    ref.read(verifyQRUseCaseProvider),
+    ref.read(getAntelopCardListUseCaseProvider),
+    ref.read(getAccountUseCaseProvider),
+    ref.read(createAccountUseCaseProvider),
+    ref.read(deactivateSubAccountUseCaseProvider),
+    ref.read(updateNickNameSubAccountUseCaseProvider),
+  ),
 );
 
 final filterTransactionDialogViewModelProvier =
@@ -67,7 +75,9 @@ final filterTransactionDialogViewModelProvier =
         (ref) => FilterTransactionDialogViewModel());
 
 final myAccountViewModelProvider = ChangeNotifierProvider.autoDispose<MyAccountViewModel>(
-  (ref) => MyAccountViewModel(),
+  (ref) => MyAccountViewModel(
+    ref.read(updateNickNameSubAccountUseCaseProvider),
+  ),
 );
 
 final debitCardVerificationSuccessViewModelProvider =
@@ -81,13 +91,10 @@ final cardTransactionViewModelProvider =
       ref.read(creditCardTransactionUseCaseProvider), ref.read(getCreditYearsUseCaseProvider), args),
 );
 
-final accountTransactionViewModelProvider = ChangeNotifierProvider.autoDispose<AccountTransactionViewModel>(
-  (ref) => AccountTransactionViewModel(
-      ref.read(debitCardTransactionUseCaseProvider), ref.read(getDebitYearsUseCaseProvider)),
-);
-
-final homeViewModelProvider = ChangeNotifierProvider.autoDispose<HomeViewModel>(
-  (ref) => HomeViewModel(),
+final accountTransactionViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<AccountTransactionViewModel, AccountTransactionPageArgument>(
+  (ref, argument) => AccountTransactionViewModel(
+      ref.read(debitCardTransactionUseCaseProvider), ref.read(getDebitYearsUseCaseProvider), argument),
 );
 
 final debitCardTimeLineViewModelProvider =
@@ -195,6 +202,12 @@ final changeCreditLimitPageViewModelProvider =
 
 ///convert purchase to installments page view model
 final convertPurchaseToInstallmentsPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ConvertPurchaseToInstallmentsPageViewModel>(
+  (ref) => ConvertPurchaseToInstallmentsPageViewModel(),
+);
+
+/// animated dashboard design viewmodel
+final animatedLayoutViewModelProvider =
     ChangeNotifierProvider.autoDispose<ConvertPurchaseToInstallmentsPageViewModel>(
   (ref) => ConvertPurchaseToInstallmentsPageViewModel(),
 );

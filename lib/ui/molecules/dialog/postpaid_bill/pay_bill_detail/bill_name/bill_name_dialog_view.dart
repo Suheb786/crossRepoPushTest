@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_progress.dart';
 import 'package:neo_bank/ui/molecules/app_scollable_list_view_widget.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -53,23 +54,18 @@ class PayBillDialogView extends StatelessWidget {
             stream: model!.getBillerLookupStream,
             initialData: Resource.none(),
             onData: (value) {
-              if (value.status == Status.SUCCESS) {
-                // model.billerDetailsList =
-                //     value.data!.content!.billerDetailsList!;
-              }
+              if (value.status == Status.SUCCESS) {}
             },
             dataBuilder: (context, snapshot) {
               return Dialog(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
                   insetPadding: EdgeInsets.only(
-                      left: 24.w, right: 24.w, bottom: 36.h, top: _keyboardVisible ? 36.h : 204.h),
-                  child: GestureDetector(
-                      onVerticalDragEnd: (details) {
-                        if (details.primaryVelocity! > 0) {
-                          onDismissed?.call();
-                        }
-                      },
-                      child: AppStreamBuilder<int>(
+                      left: 24.w, right: 24.w, bottom: 56.h, top: _keyboardVisible ? 36.h : 204.h),
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    clipBehavior: Clip.none,
+                    children: [
+                      AppStreamBuilder<int>(
                         stream: model.currentIndexStream,
                         initialData: 0,
                         dataBuilder: (BuildContext context, index) {
@@ -87,14 +83,34 @@ class PayBillDialogView extends StatelessWidget {
                                     _searchWidget(model, context, billList),
                                     _billerListWidget(model, context, billList),
                                     _tickWidget(context, billList, index),
-                                    _swipeDownToCancelWidget(context),
                                   ],
                                 ),
                               );
                             },
                           );
                         },
-                      )));
+                      ),
+                      Positioned(
+                        bottom: -24.h,
+                        child: InkWell(
+                          onTap: () {
+                            onDismissed?.call();
+                          },
+                          child: Container(
+                              height: 48.h,
+                              width: 48.h,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Theme.of(context).colorScheme.onBackground),
+                                  shape: BoxShape.circle,
+                                  color: Theme.of(context).colorScheme.secondary),
+                              child: Image.asset(
+                                AssetUtils.close_bold,
+                                scale: 3.5,
+                              )),
+                        ),
+                      )
+                    ],
+                  ));
             },
           );
         },
@@ -227,41 +243,16 @@ class PayBillDialogView extends StatelessWidget {
 
   ///tick widget
   _tickWidget(BuildContext context, List<BillerDetailsList>? billList, int? index) {
-    return InkWell(
-      onTap: () {
-        if (billList != null && billList.length > 0) {
-          onSelected!.call(billList[index ?? 0]);
-        }
-        Navigator.pop(context);
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
-        height: 57.h,
-        width: 57.w,
-        decoration:
-            BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyLarge!.color!),
-        child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
-      ),
-    );
-  }
-
-  _swipeDownToCancelWidget(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 8.0.h, bottom: 16.h),
-      child: Center(
-        child: InkWell(
-          onTap: () {
-            onDismissed?.call();
-          },
-          child: Text(
-            S.of(context).swipeDownToCancel,
-            style: TextStyle(
-                fontFamily: StringUtils.appFont,
-                fontSize: 10.t,
-                fontWeight: FontWeight.w400,
-                color: AppColor.dark_gray_1),
-          ),
-        ),
+      padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 40.h),
+      child: AppPrimaryButton(
+        onPressed: () {
+          if (billList != null && billList.length > 0) {
+            onSelected!.call(billList[index ?? 0]);
+          }
+          Navigator.pop(context);
+        },
+        text: S.of(context).confirm,
       ),
     );
   }

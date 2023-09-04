@@ -141,6 +141,10 @@ class AppViewModel extends BaseViewModel {
                 color: AppColor.very_dark_gray,
                 fontFamily: StringUtils.appFont,
               ),
+              titleSmall: TextStyle(
+                color: AppColor.very_light_red,
+                fontFamily: StringUtils.appFont,
+              ),
               displayLarge: TextStyle(
                 color: AppColor.very_dark_gray,
                 fontFamily: StringUtils.appFont,
