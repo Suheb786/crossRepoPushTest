@@ -29,9 +29,7 @@ class ActivityHomeViewModel extends BasePageViewModel {
   ActivityHomeViewModel(this._notificationUseCase, this._requestMoneyActivityUseCase) {
     _requestMoneyActivityRequest.listen(
       (value) {
-        RequestManager(value, createCall: () => _requestMoneyActivityUseCase.execute(params: value))
-            .asFlow()
-            .listen(
+        RequestManager(value, createCall: () => _requestMoneyActivityUseCase.execute(params: value)).asFlow().listen(
           (event) {
             updateLoader();
             _requestMoneyActivityResponse.safeAdd(event);
@@ -124,18 +122,12 @@ class ActivityHomeViewModel extends BasePageViewModel {
 
   Stream<int> get currentStep => _currentStep.stream;
 
-  Stream<Resource<PaymentActivityResponse>> get paymentActivityTransactionResponse =>
-      _paymentActivityTransactionResponse.stream;
-
-  Stream<Resource<PaymentActivityResponse>> get requestMoneyActivity => _requestMoneyActivityResponse.stream;
-
   void getRequestMoneyActivity(
     bool getToken,
     int FilterDays,
     String TransactionType,
   ) {
-    _requestMoneyActivityRequest.safeAdd(RequestMoneyActivityParams(
-        getToken: getToken, FilterDays: FilterDays, TransactionType: TransactionType));
+    _requestMoneyActivityRequest.safeAdd(RequestMoneyActivityParams(getToken: getToken, FilterDays: FilterDays, TransactionType: TransactionType));
   }
 
   Stream<Resource<ActivityResponse>> get activityResponse => _activityResponse.stream;
@@ -171,8 +163,7 @@ class ActivityHomeViewModel extends BasePageViewModel {
 
   BehaviorSubject<Resource<List<RequestMoneyActivityList>>> _paymentActivityListResponse = BehaviorSubject();
 
-  Stream<Resource<List<RequestMoneyActivityList>>> get paymentActivityListStream =>
-      _paymentActivityListResponse.stream;
+  Stream<Resource<List<RequestMoneyActivityList>>> get paymentActivityListStream => _paymentActivityListResponse.stream;
 
   void getPaymentActivityList(List<PaymentActivityContent> content) {
     paymentActivityData.clear();

@@ -24,143 +24,140 @@ class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransaction
 
   @override
   Widget build(BuildContext context, model) {
-    return AppKeyBoardHide(
-      child: Padding(
-        padding: EdgeInsets.only(top: 52.0.h),
-        child: GestureDetector(
-          onVerticalDragUpdate: (details) {
-            if (details.primaryDelta!.isNegative) {
-            } else {
-              Navigator.pop(context);
-            }
-          },
-          child: Column(
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.only(top: 52.0.h, bottom: 0.h),
+          height: 80.h,
+          child: Text(
+            model.arguments.transactionDate + " ${S.of(context).statement}",
+            textAlign: TextAlign.center,
+            softWrap: false,
+            style: TextStyle(
+                fontSize: 14.t, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+          ),
+        ),
+        Expanded(
+          child: Stack(
+            alignment: Alignment.center,
             children: [
-              Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 48.0.w),
-                  child: Center(
-                    child: Text(
-                      model.arguments.transactionDate + " ${S.of(context).statement}",
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          color: Theme.of(context).colorScheme.secondary,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14.0.t),
-                    ),
-                  )),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.only(top: 35.0.h),
-                  child: Container(
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondary,
-                        borderRadius:
-                            BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16))),
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 8.0.h),
-                      child: Column(
-                        children: [
-                          Center(
-                            child: Container(
-                              height: 4.0.h,
-                              width: 64.0.w,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4), color: AppColor.white_gray),
+              AppKeyBoardHide(
+                child: Container(
+                  height: double.infinity,
+                  margin: EdgeInsetsDirectional.only(top: 24.h),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.secondary,
+                      borderRadius:
+                          BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16))),
+                  child: AppStreamBuilder<Resource<CardStatementResponse>>(
+                      stream: model.cardStatementStream,
+                      initialData: Resource.none(),
+                      dataBuilder: (context, statementResponse) {
+                        return Column(
+                          children: [
+                            SizedBox(height: 47.h),
+                            statementResponse!.status == Status.SUCCESS
+                                ? Padding(
+                                    padding:
+                                        EdgeInsetsDirectional.only(top: 0.0.h, start: 24.0.w, end: 24.0.w),
+                                    child: Container(
+                                      height: MediaQuery.of(context).size.height / 2,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(color: AppColor.white_gray, width: 1)),
+                                      width: double.infinity,
+                                      child: SfPdfViewer.memory(
+                                        statementResponse.data!.cardStatementContent!.pdfUint8List,
+                                      ),
+                                    ),
+                                  )
+                                : Container(
+                                    height: MediaQuery.of(context).size.height / 2,
+                                    width: double.infinity,
+                                  ),
+                            InkWell(
+                              onTap: () async {
+                                if (statementResponse.status == Status.SUCCESS) {
+                                  _shareFiles(context,
+                                      await statementResponse.data!.cardStatementContent!.pdfBase64String);
+                                }
+                              },
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.only(top: 32.0.h, start: 48.0.w, end: 48.0.w),
+                                child: Container(
+                                  height: 50.0.h,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      border:
+                                          Border.all(color: Theme.of(context).textTheme.bodyLarge!.color!)),
+                                  padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 17.0.h),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        S.of(context).sharePdf,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontSize: 12.0.t,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                      AppSvg.asset(AssetUtils.share,
+                                          color: Theme.of(context).primaryColorDark)
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                          AppStreamBuilder<Resource<CardStatementResponse>>(
-                              stream: model.cardStatementStream,
-                              initialData: Resource.none(),
-                              dataBuilder: (context, statementResponse) {
-                                return Column(
-                                  children: [
-                                    statementResponse!.status == Status.SUCCESS
-                                        ? Padding(
-                                            padding: EdgeInsetsDirectional.only(
-                                                top: 38.0.h, start: 24.0.w, end: 24.0.w),
-                                            child: Container(
-                                              height: MediaQuery.of(context).size.height / 2,
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(color: AppColor.white_gray, width: 1)),
-                                              width: double.infinity,
-                                              child: SfPdfViewer.memory(
-                                                statementResponse.data!.cardStatementContent!.pdfUint8List,
-                                              ),
-                                            ),
-                                          )
-                                        : Container(
-                                            height: MediaQuery.of(context).size.height / 2,
-                                            width: double.infinity,
-                                          ),
-                                    InkWell(
-                                      onTap: () async {
-                                        if (statementResponse.status == Status.SUCCESS) {
-                                          _shareFiles(
-                                              context,
-                                              await statementResponse
-                                                  .data!.cardStatementContent!.pdfBase64String);
-                                        }
-                                      },
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.only(
-                                            top: 32.0.h, start: 48.0.w, end: 48.0.w),
-                                        child: Container(
-                                          height: 50.0.h,
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(8),
-                                              border: Border.all(
-                                                  color: Theme.of(context).textTheme.bodyLarge!.color!)),
-                                          padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 17.0.h),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                S.of(context).sharePdf,
-                                                style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    fontSize: 12.0.t,
-                                                    fontWeight: FontWeight.w600),
-                                              ),
-                                              AppSvg.asset(AssetUtils.share,
-                                                  color: Theme.of(context).primaryColorDark)
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 24.0.h),
-                                      child: InkWell(
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Container(
-                                          height: 57.0.h,
-                                          width: 57.0.w,
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                          child: Center(
-                                            child: AppSvg.asset(AssetUtils.tick,
-                                                color: Theme.of(context).colorScheme.secondary),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              })
-                        ],
-                      ),
-                    ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 24.0.h),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Container(
+                                  height: 57.0.h,
+                                  width: 57.0.w,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Theme.of(context).textTheme.bodyLarge!.color!),
+                                  child: Center(
+                                    child: AppSvg.asset(AssetUtils.tick,
+                                        color: Theme.of(context).colorScheme.secondary),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      }),
+                ),
+              ),
+              Positioned(
+                top: 0.h,
+                child: InkWell(
+                  onTap: () {
+                    // ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animateBackToMainPage();
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    height: 48.h,
+                    width: 48.h,
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white,
+                        border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black26, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))
+                        ]),
+                    child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
-      ),
+      ],
     );
   }
 
