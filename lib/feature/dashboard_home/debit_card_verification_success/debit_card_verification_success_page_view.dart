@@ -66,7 +66,7 @@ class DebitCardVerificationSuccessPageView extends BasePageViewWidget<DebitCardV
             Padding(
               padding: EdgeInsets.only(top: 10.h, left: 24.w, right: 24.w, bottom: 24.h),
               child: AppSecondaryButton(
-                text: S.of(context).done,
+                text: S.of(context).backToDashboard,
                 onPressed: () {
                   Navigator.of(context)
                     ..pop()
