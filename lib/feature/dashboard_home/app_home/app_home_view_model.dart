@@ -39,6 +39,7 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/widgets/my_account_page_widget.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
+import 'package:neo_bank/feature/offer_campaign/offer/offer_for_you_page.dart';
 import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/ui/molecules/card/apply_credit_card_widget.dart';
@@ -50,6 +51,7 @@ import 'package:neo_bank/ui/molecules/card/debit_card_error_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/dormant_account_debit_card_disbaled_widget.dart';
 import 'package:neo_bank/ui/molecules/card/get_credit_card_now_widget.dart';
+import 'package:neo_bank/ui/molecules/card/offer_for_you_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/resume_credit_card_application_view.dart';
 import 'package:neo_bank/ui/molecules/card/rj_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/verify_credit_card_videocall_widget.dart';
@@ -59,7 +61,6 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/screen_size_utils.dart';
 import 'package:neo_bank/utils/status.dart';
-import 'package:neo_bank/utils/string_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../account_transaction/account_transaction_page.dart';
@@ -288,6 +289,10 @@ class AppHomeViewModel extends BasePageViewModel {
 
   bool isDebitCard(int index) {
     return cardTypeList[index].cardType == CardType.DEBIT;
+  }
+
+  bool isOffer(int index) {
+    return cardTypeList[index].cardType == CardType.OFFER;
   }
 
   ///--------------- Some Other params that i will name later on  ----------------------///
@@ -914,8 +919,16 @@ class AppHomeViewModel extends BasePageViewModel {
     if ((dashboardDataContent.dashboardFeatures?.isRJFeatureEnabled ?? true)) {
       pages.add(RjCardWidget());
 
-      cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+      cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.RJ, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
     }
+
+    ///adding  offer for u card
+
+    pages.add(OfferForYouCardWidget());
+
+    cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.OFFER, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
+
+//------------
     addPages(pages);
     blinkTimeLineListArguments.addAll(timeLineListArguments);
     timeLineArguments.timelineListArguments = blinkTimeLineListArguments;
@@ -1297,6 +1310,12 @@ class AppHomeViewModel extends BasePageViewModel {
         AccountTransactionPage(AccountTransactionPageArgument(accountCardAccountNo?.accountNo))));
   }
 
+  goToOfferForYouPage(BuildContext context) {
+    translateSettingsUpController.forward();
+    scaleAnimationController.forward();
+    Navigator.of(context).push(CustomRoute.swipeUpRoute(OfferForYouPage()));
+  }
+
   animateForwardTransactionPage() {
     pageSwitchSubject.add(DashboardAnimatedPage.TRANSACTIONS);
 
@@ -1361,6 +1380,15 @@ enum TimeLineEnum {
   TIMELINE_NO, // don't show time line
 }
 
-enum DashboardAnimatedPage { TIMELINE, PAYBACK, SETTINGS, TRANSACTIONS, ACT_SETTING, SUB_ACT_SETTING, NULL }
+enum DashboardAnimatedPage {
+  TIMELINE,
+  PAYBACK,
+  SETTINGS,
+  TRANSACTIONS,
+  ACT_SETTING,
+  SUB_ACT_SETTING,
+  OFFER,
+  NULL
+}
 
 enum DashboardCardType { account, credit, debit, subAccount, rj }
