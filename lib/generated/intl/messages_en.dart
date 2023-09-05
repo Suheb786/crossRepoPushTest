@@ -376,6 +376,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Back to Contact"),
         "backToDashboard":
             MessageLookupByLibrary.simpleMessage("Back to Dashboard"),
+        "backToHistory":
+            MessageLookupByLibrary.simpleMessage("Back to History"),
         "backToLogin": MessageLookupByLibrary.simpleMessage("Back to Login"),
         "backToManageCliq":
             MessageLookupByLibrary.simpleMessage("Back to Manage CliQ"),

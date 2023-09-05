@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
-import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
-import 'package:neo_bank/utils/status.dart';
 
 import '../../../../base/base_page.dart';
 import '../../../../generated/l10n.dart';
@@ -103,7 +100,7 @@ class OpenSubAccountSuccessPageView extends BasePageViewWidget<OpenSubAccountSuc
                     },
                     activeBackgroundColor: Theme.of(context).colorScheme.secondary,
                     textColor: Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue,
-                    text: S.current.done,
+                    text: S.current.backToDashboard,
                   )),
             ],
           )

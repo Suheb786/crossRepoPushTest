@@ -98,7 +98,7 @@ class DcChangeMobileNumberSuccessPageView extends BasePageViewWidget<DcChangeMob
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24.0),
                 child: AppPrimaryButton(
-                    text: S.of(context).done,
+                    text: S.of(context).backToDashboard,
                     onPressed: () {
                       Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
                       ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();

@@ -113,7 +113,7 @@ class ChangeCardPinSuccessPageView extends BasePageViewWidget<ChangeCardPinSucce
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 24.h),
                   child: AppPrimaryButton(
-                    text: S.of(context).done,
+                    text: S.of(context).backToDashboard,
                     onPressed: () {
                       Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
                       ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();

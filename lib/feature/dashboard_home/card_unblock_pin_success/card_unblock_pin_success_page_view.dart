@@ -115,7 +115,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                     ? Padding(
                         padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                         child: AppPrimaryButton(
-                          text: S.of(context).next,
+                          text: S.of(context).backToDashboard,
                           onPressed: () {
                             Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
                             ProviderScope.containerOf(context)
@@ -127,7 +127,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                     : Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                         child: AppSecondaryButton(
-                          text: S.of(context).done,
+                          text: S.of(context).backToDashboard,
                           onPressed: () {
                             Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
                             ProviderScope.containerOf(context)
