@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/enum/cliq_id_type_enum.dart';
 import 'package:domain/model/cliq/create_cliq_id/create_cliq_id_otp.dart';
@@ -12,6 +10,7 @@ import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/link_bank_account_cliqId/link_bank_account_cliqId_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/dialog/account_selection/account_selection_dialog.dart';
 import 'package:neo_bank/ui/molecules/register/app_switch_label_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -19,9 +18,9 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../../ui/molecules/button/app_primary_button.dart';
-import '../../../payment/account_swiching/payment_account_switcher.dart';
 
 class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCliqIdPageViewModel> {
   LinkBankAccountCliqIdPageView(ProviderBase model) : super(model);
@@ -44,7 +43,6 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                   if (otpResponse.status == Status.SUCCESS) {
                     model.mobileNumber = otpResponse.data?.mobileNumber ?? '';
                     model.mobileCode = otpResponse.data?.mobileCode ?? '';
-                    log('model.mobileNumber---->${model.mobileNumber}');
                     ProviderScope.containerOf(context).read(enterOtpFortCliqIdViewModelProvider).updateTime();
                     ProviderScope.containerOf(context).read(createCliqIdViewModelProvider).nextPage();
                   }
@@ -57,9 +55,6 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                         if (data.status == Status.SUCCESS) {
                           model.makeOtpRequest(
                             accountNumber: model.selectedAccount?.accountNo ?? '',
-                            /*accountNumber: model.linkBankAccountCliqIdList.isNotEmpty
-                                ? (model.linkBankAccountCliqIdList.first.accountNumber ?? '')
-                                : "",*/
                             isAlias: ProviderScope.containerOf(context)
                                     .read(cliqIdTypeSelectionViewModelProvider)
                                     .cliqIdTypeSubject
@@ -106,20 +101,123 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                                 child: SingleChildScrollView(
                                                   controller: model.controller,
                                                   child: Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
-                                                      Padding(
-                                                        padding: EdgeInsets.only(bottom: 20.0.h),
-                                                        child: PaymentAccountSwitcher(
-                                                            title: S.of(context).linkedAccount,
-                                                            onDefaultSelectedAccount: (Account account) {
-                                                              model.selectedAccount = account;
-                                                            },
-                                                            onSelectAccount: (Account account) {
-                                                              model.selectedAccount = account;
-                                                            },
-                                                            isSingleLineView: false,
-                                                            isShowAmount: true),
+                                                      Text(
+                                                        S.of(context).linkedAccount,
+                                                        style: TextStyle(
+                                                            fontSize: 14.t,
+                                                            fontWeight: FontWeight.w600,
+                                                            fontFamily: StringUtils.appFont),
                                                       ),
+                                                      SizedBox(
+                                                        height: 16.h,
+                                                      ),
+                                                      AppStreamBuilder<Account>(
+                                                          stream: model.selectedAccountValue,
+                                                          initialData: Account(
+                                                              isSubAccount: false,
+                                                              nickName: '',
+                                                              accountNo: '',
+                                                              accountTitle: '',
+                                                              availableBalance: ''),
+                                                          dataBuilder: (context, selectedAccount) {
+                                                            return InkWell(
+                                                              onTap: () {
+                                                                AccountSelectionDialog.show(context,
+                                                                    title: S.of(context).linkedAccount,
+                                                                    onDismissed: () {
+                                                                  Navigator.pop(context);
+                                                                }, onSelected: (selectedAccount) {
+                                                                  model
+                                                                      .updateSelectedAccount(selectedAccount);
+                                                                  Navigator.pop(context);
+                                                                },
+                                                                    showBalance: false,
+                                                                    accountList:
+                                                                        model.linkBankAccountCliqIdList);
+                                                              },
+                                                              child: Padding(
+                                                                padding: EdgeInsets.only(bottom: 20.0.h),
+                                                                child: Container(
+                                                                  width: double.infinity,
+                                                                  padding: EdgeInsets.symmetric(
+                                                                      horizontal: 16.w, vertical: 16.h),
+                                                                  decoration: BoxDecoration(
+                                                                      border: Border.all(
+                                                                        color: Theme.of(context)
+                                                                            .colorScheme
+                                                                            .onBackground,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(8.w)),
+                                                                  child: Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment.spaceBetween,
+                                                                    children: [
+                                                                      Column(
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
+                                                                        children: [
+                                                                          Text(
+                                                                            selectedAccount?.isSubAccount ==
+                                                                                    false
+                                                                                ? (selectedAccount
+                                                                                                ?.nickName ==
+                                                                                            null ||
+                                                                                        selectedAccount
+                                                                                                ?.nickName ==
+                                                                                            ""
+                                                                                    ? (S.current.mainAccount)
+                                                                                    : (S.current.mainAccount +
+                                                                                        " - " +
+                                                                                        (selectedAccount
+                                                                                                ?.nickName ??
+                                                                                            "")))
+                                                                                : (selectedAccount
+                                                                                                ?.nickName ==
+                                                                                            null ||
+                                                                                        selectedAccount
+                                                                                                ?.nickName ==
+                                                                                            ""
+                                                                                    ? (S.current.subAccount)
+                                                                                    : (S.current.subAccount +
+                                                                                        " - " +
+                                                                                        (selectedAccount
+                                                                                                ?.nickName ??
+                                                                                            ""))),
+                                                                            style: TextStyle(
+                                                                                fontSize: 14.t,
+                                                                                fontWeight: FontWeight.w600,
+                                                                                fontFamily:
+                                                                                    StringUtils.appFont),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height: 4.h,
+                                                                          ),
+                                                                          Text(
+                                                                            selectedAccount?.accountNo ?? '-',
+                                                                            style: TextStyle(
+                                                                                fontSize: 12.t,
+                                                                                fontWeight: FontWeight.w600,
+                                                                                fontFamily:
+                                                                                    StringUtils.appFont),
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                      Container(
+                                                                          padding: EdgeInsets.symmetric(
+                                                                              horizontal: 7.w),
+                                                                          child: AppSvg.asset(
+                                                                              AssetUtils.downArrow,
+                                                                              color: Theme.of(context)
+                                                                                  .primaryColorDark))
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }),
                                                       AppStreamBuilder<bool>(
                                                           stream: model.switchValue,
                                                           initialData: model.isSetDefault,

@@ -50,18 +50,6 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                             ProviderScope.containerOf(context).read(createCliqIdViewModelProvider).nextPage();
                           }
                         }
-
-                        // LinkAccountDialog.show(context,
-                        //     label: S.of(context).addLinkAccount,
-                        //     onSelected: (linkBankAccountItemSelected) {
-                        //       Navigator.pop(context);
-                        //       model.updateLinkAccount(
-                        //           linkBankAccountItemSelected);
-                        //     }, onDismissed: () {
-                        //       Navigator.pop(context);
-                        //     },
-                        //     accountsList:
-                        //     getAccountByCustomerIdResponse.data);
                       }
                     },
                     initialData: Resource.none(),

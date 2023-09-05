@@ -52,8 +52,13 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
 
   void updateLinkAccount(List<GetAccountByCustomerId> data) {
     _linkBankAccountCliqIdListRequest.safeAdd(data);
-    linkBankAccountCliqIdList = data;
-    debugPrint('linkBankAccountCliqIdList --> ${linkBankAccountCliqIdList.length}');
+    linkBankAccountCliqIdList = data
+        .map((e) => Account(accountNo: e.accountNumber, nickName: e.nickName, isSubAccount: e.isSubAccount))
+        .toList();
+    var mainAccount = linkBankAccountCliqIdList.firstWhere((element) => !(element.isSubAccount ?? true),
+        orElse: () => linkBankAccountCliqIdList.first);
+    selectedAccount = mainAccount;
+    _selectedAccountSubject.safeAdd(mainAccount);
   }
 
   void termAndConditionSelected(bool value) {
@@ -63,7 +68,7 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
   void validate() {
     _linkBankAccountCliqIdValidationRequest.safeAdd(LinkBankAccountCliqIdValidationUseCaseParams(
         isSelected: _isSelectedRequest.value,
-        listOfCustomerAccount: linkBankAccountCliqIdList,
+        selectedAccount: selectedAccount,
         cliqListActionTypeEnum: CliqListActionTypeEnum.CREATECLIQ));
   }
 
@@ -105,7 +110,7 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
   String mobileNumber = '';
   String mobileCode = '';
 
-  List<GetAccountByCustomerId> linkBankAccountCliqIdList = [];
+  List<Account> linkBankAccountCliqIdList = [];
 
   ///---------for otp subject-----------------------------------
 
@@ -135,4 +140,15 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
   Stream<bool> get isSelectedStream => _isSelectedRequest.stream;
 
   ///-------------------Get Account By Customer ID----------------///
+  ///-------------------Selected Account-------------------------///
+  final BehaviorSubject<Account> _selectedAccountSubject = BehaviorSubject();
+
+  Stream<Account> get selectedAccountValue => _selectedAccountSubject.stream;
+
+  void updateSelectedAccount(Account account) {
+    selectedAccount = account;
+    _selectedAccountSubject.safeAdd(account);
+  }
+
+  ///-------------------Selected Account-------------------------///
 }

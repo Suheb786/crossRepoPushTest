@@ -6,20 +6,19 @@ import 'package:neo_bank/ui/molecules/dialog/account_selection/account_selection
 class AccountSelectionDialog {
   AccountSelectionDialog._();
 
-  static show(
-    BuildContext mContext, {
-    Function? onDismissed,
-    Function(Account)? onSelected,
-    required String title,
-    required List<Account> accountList,
-  }) {
+  static show(BuildContext mContext,
+      {Function? onDismissed,
+      Function(Account)? onSelected,
+      required String title,
+      required List<Account> accountList,
+      bool showBalance = true}) {
     AppDialog.show(mContext,
         isDismissible: false,
         builder: (context) => AccountSelectionDialogView(
-              onDismissed: onDismissed,
-              title: title,
-              accountList: accountList,
-              onSelected: onSelected,
-            ));
+            showBalances: showBalance,
+            onDismissed: onDismissed,
+            title: title,
+            accountList: accountList,
+            onSelected: onSelected));
   }
 }
