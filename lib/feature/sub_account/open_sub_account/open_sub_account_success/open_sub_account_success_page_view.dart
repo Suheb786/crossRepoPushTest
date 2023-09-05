@@ -58,7 +58,7 @@ class OpenSubAccountSuccessPageView extends BasePageViewWidget<OpenSubAccountSuc
                           ],
                         ),
                       ),
-                      SizedBox(height: 34.h),
+                      StringUtils.isDirectionRTL(context) ? SizedBox.shrink() : SizedBox(height: 34.h),
                       AccountReadyHeader(
                           descriptionVisibility: true,
                           title: StringUtils.isDirectionRTL(context) ? '' : S.of(context).successExclmn,
