@@ -74,11 +74,11 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                     left: 0,
                     right: 0,
                   ),
-                  PositionedDirectional(
+                  Positioned(
                     child: bottomWidget(context),
                     bottom: 0,
-                    end: 0,
-                    start: 0,
+                    left: 0,
+                    right: 0,
                   ),
                   Positioned.fill(
                     child: Align(
@@ -604,7 +604,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                 height: 40.0.h,
                 width: 104.0.w,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20.h),
                     color: Theme.of(context).textTheme.bodyLarge!.color!),
                 child: Center(
                   child: Text(
