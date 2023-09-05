@@ -79,6 +79,12 @@ class DashboardFeaturesEntity
   @JsonKey(name: 'blink-retail-app-Sub-Accounts-Share-Account-Information')
   final bool? shareAccountInformationFeature;
 
+  @JsonKey(name: 'blink-retail-app-Offers')
+  final bool? offers;
+
+  @JsonKey(name: 'blink-retail-app-Referrals')
+  final bool? referrals;
+
   DashboardFeaturesEntity(
       {this.blinkRetailAppBillPayment,
       this.blinkRetailAppBillPaymentPayPostpaid,
@@ -103,7 +109,9 @@ class DashboardFeaturesEntity
       this.subAccountFeature,
       this.closeSubAccountFeature,
       this.shareAccountInformationFeature,
-      this.transferBetweenAccountsFeature});
+      this.transferBetweenAccountsFeature,
+      this.offers,
+      this.referrals});
 
   factory DashboardFeaturesEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardFeaturesEntityFromJson(json);
@@ -140,6 +148,8 @@ class DashboardFeaturesEntity
         subAccountFeature: /*this.subAccountFeature ?? false*/ true,
         transferBetweenAccountsFeature: /*this.transferBetweenAccountsFeature ?? false*/ true,
         closeSubAccountFeature: /*this.closeSubAccountFeature ?? false*/ true,
-        shareAccountInformationFeature: /*this.shareAccountInformationFeature ?? false*/ true);
+        shareAccountInformationFeature: /*this.shareAccountInformationFeature ?? false*/ true,
+        offers: this.offers ?? false,
+        referrals: this.referrals ?? false);
   }
 }

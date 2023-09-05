@@ -31,7 +31,6 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-import '../../../../../feature/activity/activity_home/activity_home_page.dart';
 import '../../../../../feature/manage_cliq_id/cliq_id_list/cliq_id_list_page.dart';
 import '../../../../../main/navigation/cutom_route.dart';
 
