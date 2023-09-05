@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -147,10 +148,11 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                                                     height: 16.h,
                                                                   ),
                                                                   Text(
-                                                                    "${model.makePaymentCardList[index].amt}  ${model.makePaymentCardList[index].currency}",
+                                                                    "${model.makePaymentCardList[index].amt.toStringAsFixed(3)}  ${model.makePaymentCardList[index].currency}",
                                                                     style: TextStyle(
                                                                         fontFamily: StringUtils.appFont,
-                                                                        color: Theme.of(context).primaryColor,
+                                                                        color: Theme.of(context)
+                                                                            .primaryColorDark,
                                                                         fontWeight: FontWeight.w600,
                                                                         fontSize: 14.t),
                                                                   ),
@@ -163,9 +165,8 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                                                       child: Padding(
                                                                         padding:
                                                                             EdgeInsetsDirectional.all(10),
-                                                                        child: AppSvg.asset(
-                                                                          AssetUtils.right,
-                                                                        ),
+                                                                        child: AppSvg.asset(AssetUtils.check,
+                                                                            color: AppColor.black),
                                                                       ),
                                                                       decoration: BoxDecoration(
                                                                           color:
@@ -231,10 +232,10 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                           height: 31.h,
                                         ),
                                         Visibility(
-                                          visible: false,
+                                          visible: true,
                                           child: InkWell(
                                             onTap: () {
-                                              Navigator.pop(context);
+                                              // Navigator.pop(context);
                                             },
                                             child: Text(
                                               S.of(context).cancel,

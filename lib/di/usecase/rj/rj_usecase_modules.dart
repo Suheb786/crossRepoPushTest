@@ -14,12 +14,12 @@ final getDestinationUseCaseProvider = Provider.autoDispose<GetDestinationUseCase
 
 ///[GetOneWayTripLinkUseCase] provider
 final getOneWayTripLinkUseCaseProvider = Provider.autoDispose<GetOneWayTripLinkUseCase>(
-      (ref) => GetOneWayTripLinkUseCase(ref.read(rjRepositoryProvider)),
+  (ref) => GetOneWayTripLinkUseCase(ref.read(rjRepositoryProvider)),
 );
 
 ///[GetTwoWayTripLinkUseCase] provider
 final getTwoWayTripLinkUseCaseProvider = Provider.autoDispose<GetTwoWayTripLinkUseCase>(
-      (ref) => GetTwoWayTripLinkUseCase(ref.read(rjRepositoryProvider)),
+  (ref) => GetTwoWayTripLinkUseCase(ref.read(rjRepositoryProvider)),
 );
 
 ///[GetFlightDetailsUseCase] provider

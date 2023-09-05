@@ -100,7 +100,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                           )),
 
                       ///Activity home
-                      PagesWidget(
+                      /*PagesWidget(
                         onTap: () {
                           Navigator.of(context).push(CustomRoute.swipeUpRoute(ActivityHomePage()));
                         },
@@ -111,7 +111,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                           image: AssetUtils.activityCircle,
                           mKey: 'ACTIVITY',
                         ),
-                      ),
+                      ),*/
 
                       ///Manage Contacts
                       PagesWidget(

@@ -7,6 +7,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -72,13 +73,15 @@ class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionVi
                                         Navigator.pop(context);
                                       }, onSelected: (value) {
                                         Navigator.pop(context);
-                                        Navigator.pushNamed(context, RoutePaths.DownloadTransaction,
-                                            arguments: DownloadStatementArguments(
-                                                accountNo: model.argument.accountNo,
-                                                issuedFromCms: false,
-                                                secureCode: '',
-                                                statementType: StatementType.Debit,
-                                                transactionDate: value));
+                                        Navigator.of(context).push(CustomRoute.swipeUpRoute(
+                                          DownloadTransactionPage(DownloadStatementArguments(
+                                              accountNo: model.argument.accountNo,
+                                              issuedFromCms: false,
+                                              secureCode: '',
+                                              statementType: StatementType.Debit,
+                                              transactionDate: value)),
+                                          routeName: RoutePaths.DownloadTransaction,
+                                        ));
                                       });
                                     }
                                   },

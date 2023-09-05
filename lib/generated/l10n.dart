@@ -17320,11 +17320,71 @@ class S {
     );
   }
 
-  /// `Contact nickname has been updated`
-  String get nickNameUpdated {
+  /// `Booking Confirmation`
+  String get bookingConfirmation {
     return Intl.message(
-      'Contact nickname has been updated',
-      name: 'nickNameUpdated',
+      'Booking Confirmation',
+      name: 'bookingConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OOPS! TRANSACTION FAILED`
+  String get oopsTransactionFailed {
+    return Intl.message(
+      'OOPS! TRANSACTION FAILED',
+      name: 'oopsTransactionFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have insufficient balance in your account`
+  String get youHaveInsufficientBalanceInYourAccount {
+    return Intl.message(
+      'You have insufficient balance in your account',
+      name: 'youHaveInsufficientBalanceInYourAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` BookingConfirmed!`
+  String get bookingConfirmed {
+    return Intl.message(
+      ' BookingConfirmed!',
+      name: 'bookingConfirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Booking Unsuccessful`
+  String get bookingunsuccessful {
+    return Intl.message(
+      'Booking Unsuccessful',
+      name: 'bookingunsuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You got the best deal. You will receive your booking details on your email. Enjoy your trip and travel safe!`
+  String get bookingConfirmedDescription {
+    return Intl.message(
+      'You got the best deal. You will receive your booking details on your email. Enjoy your trip and travel safe!',
+      name: 'bookingConfirmedDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We're sorry, but we're unable to complete your flight booking at this time due toan error. Please try again later.`
+  String get bookingUnsuccessDescription {
+    return Intl.message(
+      'We\'re sorry, but we\'re unable to complete your flight booking at this time due toan error. Please try again later.',
+      name: 'bookingUnsuccessDescription',
       desc: '',
       args: [],
     );
@@ -17345,6 +17405,26 @@ class S {
     return Intl.message(
       'returned',
       name: 'returned',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `URL`
+  String get url {
+    return Intl.message(
+      'URL',
+      name: 'url',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact nickname has been updated`
+  String get nickNameUpdated {
+    return Intl.message(
+      'Contact nickname has been updated',
+      name: 'nickNameUpdated',
       desc: '',
       args: [],
     );
@@ -18450,11 +18530,11 @@ class S {
     );
   }
 
-  /// `Back to History`
-  String get backToHistory {
+  /// `CliQ Transactions`
+  String get cliqTransactions {
     return Intl.message(
-      'Back to History',
-      name: 'backToHistory',
+      'CliQ Transactions',
+      name: 'cliqTransactions',
       desc: '',
       args: [],
     );
