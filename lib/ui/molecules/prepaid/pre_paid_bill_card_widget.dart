@@ -63,9 +63,7 @@ class PrePaidBillCardWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 66.h,
-              ),
+              Spacer(),
               Container(
                 height: 112.h,
                 width: 112.w,
@@ -81,9 +79,7 @@ class PrePaidBillCardWidget extends StatelessWidget {
                       fontSize: 14.0.t,
                       fontWeight: FontWeight.w600,
                       color: AppColor.white)),
-              SizedBox(
-                height: 40.h,
-              ),
+
               Spacer(),
               InkWell(
                 onTap: () {

@@ -64,9 +64,7 @@ class PostPaidBillCardWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 50.h,
-              ),
+              Spacer(),
               Container(
                 height: 112.h,
                 width: 112.w,

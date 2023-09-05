@@ -64,16 +64,18 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                 shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                 child: Stack(
                   fit: StackFit.expand,
-                  alignment: AlignmentDirectional.centerStart,
                   children: [
                     Positioned(
                       child: topWidget(context),
                       top: 0,
+                      left: 0,
+                      right: 0,
                     ),
                     PositionedDirectional(
                       child: bottomWidget(context),
                       bottom: 0,
                       end: 0,
+                      start: 0,
                     ),
                     Positioned.fill(
                       child: Align(
@@ -84,27 +86,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       ),
                     ),
                   ],
-                )
-
-                /* SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    topWidget(context),
-
-                    */ /*SizedBox(
-                      height: DeviceSizeHelper.isSmallDevice ? 0 : 20.h,
-                    ),*/ /*
-                    Image.asset(
-                      AssetUtils.line_black_white,
-                    ),
-
-                    bottomWidget(context),
-
-                  ],
-                ),
-              ),*/
-                )),
+                ))),
         back: Container(
           key: ValueKey(false),
           child: Card(
@@ -400,16 +382,16 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
 
   topWidget(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           padding: EdgeInsets.only(top: 26.0.h, right: 23.0.w, left: 23.0.w),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.max,
             children: [
               Container(
-                width: 100,
                 padding: EdgeInsets.only(
                   top: widget.creditCard.cardStatus == FreezeCardStatusEnum.F ? 15.0 : 0,
                   bottom: widget.creditCard.cardStatus == FreezeCardStatusEnum.F ? 20.0 : 0,
@@ -425,6 +407,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       color: Colors.white),
                 ),
               ),
+              Spacer(),
               Container(
                 child: widget.creditCard.cardStatus == FreezeCardStatusEnum.F
                     ? Container(
@@ -442,7 +425,6 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                         ),
                       )
                     : Container(
-                        color: AppColor.blurr,
                         child: InkWell(
                           splashFactory: NoSplash.splashFactory,
                           onTap: () async {
@@ -544,14 +526,6 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                 ? [
                     InkWell(
                       onTap: () {
-                        // Navigator.pushNamed(context, RoutePaths.CreditCardPayBack,
-                        //     arguments: CreditCardPayBackArguments(
-                        //         accountHolderName: widget.creditCard.name!,
-                        //         secureCode: widget.creditCard.cardCode!,
-                        //         accountBalance: widget.accountBalance!,
-                        //         minDuePayBackAmount:
-                        //             widget.creditCard.paymentDueAmount.toString(),
-                        //         totalMinDueAmount: widget.creditCard.usedBalance!));
                         widget.onPayBackClick();
                       },
                       child: Container(
@@ -560,8 +534,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: MediaQuery.of(context).size.height * 0.008, horizontal: 25.0.w),
+                          padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 25.0.w),
                           child: Text(
                             S.of(context).payBack,
                             style: TextStyle(
@@ -687,13 +660,6 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                     InkWell(
                       onTap: () {
                         widget.onPayBackClick();
-                        /*Navigator.pushNamed(context, RoutePaths.CreditCardPayBack,
-                                        arguments: CreditCardPayBackArguments(
-                                            accountHolderName: widget.creditCard.name!,
-                                            secureCode: widget.creditCard.cardCode!,
-                                            accountBalance: widget.accountBalance!,
-                                            minDuePayBackAmount: widget.creditCard.paymentDueAmount.toString(),
-                                            totalMinDueAmount: widget.creditCard.usedBalance!));*/
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -701,8 +667,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: MediaQuery.of(context).size.height * 0.008, horizontal: 25.0.w),
+                          padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 25.0.w),
                           child: Text(
                             S.of(context).payBack,
                             style: TextStyle(
@@ -723,7 +688,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
             top: MediaQuery.of(context).size.height * 0.019,
             left: 24.0.w,
             right: 23.0.w,
-            bottom: MediaQuery.of(context).size.height * 0.044,
+            bottom: 32.h,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -733,14 +698,6 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                     InkWell(
                         onTap: () async {
                           widget.onSettingsTap();
-                          /*var result = await Navigator.pushNamed(context, RoutePaths.CreditCardSettings,
-                                          arguments: CreditCardSettingsArguments(creditCard: widget.creditCard, isChangePinEnabled: widget.isChangePinEnabled));
-                                      if (result != null) {
-                                        bool value = result as bool;
-                                        if (value) {
-                                          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
-                                        }
-                                      }*/
                         },
                         child: Container(
                             height: 50,
@@ -840,14 +797,6 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                     InkWell(
                         onTap: () async {
                           widget.onSettingsTap();
-                          /*var result = await Navigator.pushNamed(context, RoutePaths.CreditCardSettings,
-                                          arguments: CreditCardSettingsArguments(creditCard: widget.creditCard, isChangePinEnabled: widget.isChangePinEnabled));
-                                      if (result != null) {
-                                        bool value = result as bool;
-                                        if (value) {
-                                          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
-                                        }
-                                      }*/
                         },
                         child: Container(
                             height: 50,

@@ -115,7 +115,7 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                               )
                             : CircleAvatar(
                                 radius: 32.w,
-                                backgroundColor: Theme.of(context).primaryColor,
+                                backgroundColor: Theme.of(context).canvasColor,
                                 child: Text(
                                   StringUtils.getFirstInitials(model.beneficiary!.fullName),
                                   style: TextStyle(
