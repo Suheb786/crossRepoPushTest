@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -18445,6 +18446,56 @@ class S {
     return Intl.message(
       'Oops! Transaction failed; you have insufficient balance in your account.',
       name: 'insufficientBalanceSubAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `For You`
+  String get forYou {
+    return Intl.message(
+      'For You',
+      name: 'forYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Refer A Friend`
+  String get referFriend {
+    return Intl.message(
+      'Refer A Friend',
+      name: 'referFriend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invite your friends and family to enjoy the Blink experience. Start earning up to Start earning up to {referFriendDescription}. The more you refer, the more you earn.`
+  String referFriendDescription(Object referFriendDescription) {
+    return Intl.message(
+      'Invite your friends and family to enjoy the Blink experience. Start earning up to Start earning up to $referFriendDescription. The more you refer, the more you earn.',
+      name: 'referFriendDescription',
+      desc: 'referFriendDescription',
+      args: [referFriendDescription],
+    );
+  }
+
+  /// `Invite`
+  String get invite {
+    return Intl.message(
+      'Invite',
+      name: 'invite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View All Offers`
+  String get viewAllOffers {
+    return Intl.message(
+      'View All Offers',
+      name: 'viewAllOffers',
       desc: '',
       args: [],
     );

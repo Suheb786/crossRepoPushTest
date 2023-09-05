@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/enum/account_status_enum.dart';
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/constants/enum/evoucher_landing_page_navigation_type_enum.dart';
 import 'package:domain/model/bank_smart/create_account_response.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
@@ -940,6 +941,13 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                               as Account);
                                                                                                     }
                                                                                                   }
+
+                                                                                                  if (model
+                                                                                                      .isOffer(
+                                                                                                          currentStep)) {
+                                                                                                    model.goToOfferForYouPage(
+                                                                                                        context);
+                                                                                                  }
                                                                                                 },
                                                                                                 child:
                                                                                                     AnimatedOpacity(
@@ -1058,7 +1066,9 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                         ),
                                                                                                         secondChild:
                                                                                                             Text(
-                                                                                                          S.current.transactions,
+                                                                                                          model.cardTypeList[currentStep].cardType == CardType.OFFER
+                                                                                                              ? S.current.viewAllOffers
+                                                                                                              : S.current.transactions,
                                                                                                           style: TextStyle(
                                                                                                               color: AppColor.skyblue,
                                                                                                               fontSize: 12,

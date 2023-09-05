@@ -86,6 +86,8 @@ import 'package:neo_bank/feature/manage_credit_settlement/manage_credit_settleme
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
 import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_page.dart';
 import 'package:neo_bank/feature/notify_success/notify_success_page.dart';
+import 'package:neo_bank/feature/offer_campaign/offer/offer_for_you_page.dart';
+import 'package:neo_bank/feature/offer_campaign/offer_detail/offer_detail_page.dart';
 import 'package:neo_bank/feature/onboarding/onboarding_page.dart';
 import 'package:neo_bank/feature/payment/payment_home/payment_home_page.dart';
 import 'package:neo_bank/feature/payment/payment_to_new_recipient/payment_to_new_recipient_page.dart';
@@ -938,6 +940,17 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => TransferSuccessPage(settings.arguments as TransferSuccessPageArgument),
             settings: RouteSettings(name: RoutePaths.TransferSuccessPage));
+
+      case RoutePaths.OfferForYouPage:
+        return CupertinoPageRoute(
+            builder: (context) => OfferForYouPage(),
+            settings: RouteSettings(name: RoutePaths.OfferForYouPage));
+
+      case RoutePaths.OfferDetailPage:
+        return CupertinoPageRoute(
+            builder: (context) => OfferDetailPage(),
+            settings: RouteSettings(name: RoutePaths.OfferDetailPage));
+
       default:
         return CupertinoPageRoute(
           builder: (context) => Container(),
