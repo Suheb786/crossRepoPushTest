@@ -239,4 +239,7 @@ class AssetUtils {
 
   ///dialog png
   static const String close_bold = drawable + "close_bold.png";
+
+  //Refer
+  static const String referIcon = svg + "refer_icon.svg";
 }
