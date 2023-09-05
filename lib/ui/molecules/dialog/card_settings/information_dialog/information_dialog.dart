@@ -13,6 +13,7 @@ class InformationDialog {
     bool? isSwipeToCancel,
     double? imageHight,
     double? imageWidth,
+    String? btnTitle,
     required String title,
     required Widget descriptionWidget,
     String? doneImage,
@@ -20,13 +21,14 @@ class InformationDialog {
     AppDialog.show(mContext,
         isDismissible: false,
         builder: (context) => InformationDialogView(
-              onDismissed: onDismissed,
+          onDismissed: onDismissed,
               onSelected: onSelected,
               isSwipeToCancel: isSwipeToCancel,
               image: image,
               imageHight: imageHight,
               imageWidth: imageWidth,
               title: title,
+              btnTitle: btnTitle,
               descriptionWidget: descriptionWidget,
               doneImage: doneImage,
             ));

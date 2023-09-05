@@ -13,16 +13,18 @@ class InformationDialogView extends StatelessWidget {
   final Function? onSelected;
   final String? image;
   final String title;
+  final String? btnTitle;
   final Widget descriptionWidget;
   final double? imageHight;
   final double? imageWidth;
   final String? doneImage;
 
-  const InformationDialogView(
+  InformationDialogView(
       {this.onDismissed,
       this.onSelected,
       required this.image,
       required this.title,
+      this.btnTitle,
       required this.descriptionWidget,
       this.isSwipeToCancel = true,
       this.imageHight = 40,
@@ -50,13 +52,13 @@ class InformationDialogView extends StatelessWidget {
                         SizedBox(height: 32.h),
                         image != null
                             ? Padding(
-                                padding: EdgeInsets.only(bottom: 25.0.h),
-                                child: AppSvg.asset(
-                                  image!,
-                                  height: imageHight?.h,
-                                  width: imageWidth?.w,
-                                ),
-                              )
+                          padding: EdgeInsets.only(bottom: 25.0.h),
+                          child: AppSvg.asset(
+                            image!,
+                            height: imageHight?.h,
+                            width: imageWidth?.w,
+                          ),
+                        )
                             : Container(),
                         Padding(
                           padding: const EdgeInsetsDirectional.only(start: 28.0, end: 28.0),
@@ -80,7 +82,7 @@ class InformationDialogView extends StatelessWidget {
                           onPressed: () {
                             onSelected?.call();
                           },
-                          text: S.of(context).confirm,
+                          text: btnTitle ?? S.of(context).confirm,
                         ),
                         SizedBox(height: 40.h),
                       ],
