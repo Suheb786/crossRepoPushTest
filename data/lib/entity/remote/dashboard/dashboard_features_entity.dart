@@ -149,7 +149,7 @@ class DashboardFeaturesEntity
         transferBetweenAccountsFeature: /*this.transferBetweenAccountsFeature ?? false*/ true,
         closeSubAccountFeature: /*this.closeSubAccountFeature ?? false*/ true,
         shareAccountInformationFeature: /*this.shareAccountInformationFeature ?? false*/ true,
-        offers: this.offers ?? false,
-        referrals: this.referrals ?? false);
+        offers: /*this.offers ?? false*/true,
+        referrals: /*this.referrals ?? false*/true);
   }
 }

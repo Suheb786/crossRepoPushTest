@@ -240,6 +240,9 @@ class AssetUtils {
   ///dialog png
   static const String close_bold = drawable + "close_bold.png";
 
-  //Refer
+  ///Refer
   static const String referIcon = svg + "refer_icon.svg";
+
+  ///Offers
+  static const String forYou = svg + "for_you.svg";
 }

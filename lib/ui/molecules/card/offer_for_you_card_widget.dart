@@ -57,55 +57,58 @@ class OfferForYouCardWidget extends StatelessWidget {
                         SizedBox(
                           width: 16.w,
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Gerard",
-                              style: TextStyle(
-                                  fontSize: 14.t,
-                                  fontWeight: FontWeight.w600,
-                                  color: Theme.of(context).scaffoldBackgroundColor),
-                            ),
-                            SizedBox(
-                              height: 4.w,
-                            ),
-                            Text(
-                              "15% discount on Debit Card",
-                              style: TextStyle(
-                                  fontSize: 12.t,
-                                  fontWeight: FontWeight.w600,
-                                  color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7)),
-                            ),
-                            SizedBox(
-                              height: 16.w,
-                            ),
-                            Text(
-                              "Ends on 27th Sep",
-                              style: TextStyle(
-                                  fontSize: 12.t,
-                                  fontWeight: FontWeight.w600,
-                                  color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7)),
-                            ),
-                            SizedBox(
-                              height: 2.h,
-                            ),
-                            Container(
-                              padding: EdgeInsetsDirectional.only(
-                                  start: 8.0.w, end: 8.0.w, top: 3.5.h, bottom: 1.5.h),
-                              decoration: BoxDecoration(
-                                  color: getColor(OfferType.EARLY), borderRadius: BorderRadius.circular(100)),
-                              child: Text(
-                                "2 days left",
+                        Flexible(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Gerard",
                                 style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    color: Theme.of(context).scaffoldBackgroundColor,
+                                    fontSize: 14.t,
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 12.0.t),
+                                    color: Theme.of(context).scaffoldBackgroundColor),
                               ),
-                            ),
-                          ],
+                              SizedBox(
+                                height: 4.w,
+                              ),
+                              Text(
+                                "15% discount on Debit Card",
+                                style: TextStyle(
+                                    fontSize: 12.t,
+                                    fontWeight: FontWeight.w600,
+                                    color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7)),
+                              ),
+                              SizedBox(
+                                height: 16.w,
+                              ),
+                              Text(
+                                "Ends on 27th Sep",
+                                style: TextStyle(
+                                    fontSize: 12.t,
+                                    fontWeight: FontWeight.w600,
+                                    color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7)),
+                              ),
+                              SizedBox(
+                                height: 2.h,
+                              ),
+                              Container(
+                                padding: EdgeInsetsDirectional.only(
+                                    start: 8.0.w, end: 8.0.w, top: 3.5.h, bottom: 1.5.h),
+                                decoration: BoxDecoration(
+                                    color: getColor(OfferType.EARLY),
+                                    borderRadius: BorderRadius.circular(100)),
+                                child: Text(
+                                  "2 days left",
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      color: Theme.of(context).scaffoldBackgroundColor,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 12.0.t),
+                                ),
+                              ),
+                            ],
+                          ),
                         )
                       ],
                     ),

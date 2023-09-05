@@ -13,10 +13,12 @@ import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/evoucher/evoucher/evoucher_page.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contacts_list/beneficiary_contacts_list_page.dart';
+import 'package:neo_bank/feature/offer_campaign/offer/offer_for_you_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_progress.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_menu_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -98,19 +100,48 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                             mKey: 'BILL_PAYMENTS',
                           )),
 
-                      ///Activity home
-                      /*PagesWidget(
+                      ///Refer a friend
+                      PagesWidget(
                         onTap: () {
-                          Navigator.of(context).push(CustomRoute.swipeUpRoute(ActivityHomePage()));
+                          InformationDialog.show(context,
+                              image: AssetUtils.referIcon,
+                              title: S.of(context).referFriend,
+                              btnTitle: S.of(context).invite,
+                              descriptionWidget: Text(
+                                S.of(context).referFriendDescription("100 JOD"),
+                                style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 14.t,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ), onSelected: () {
+                            Navigator.pop(context);
+                          }, onDismissed: () {
+                            Navigator.pop(context);
+                          });
                         },
-                        key: 'ACTIVITY',
+                        key: 'REFER_A_FRIEND',
                         child: SettingsMenuWidget(
                           model: model,
-                          title: S.of(context).activity,
-                          image: AssetUtils.activityCircle,
-                          mKey: 'ACTIVITY',
+                          title: S.of(context).referFriend,
+                          image: AssetUtils.referIcon,
+                          mKey: 'REFER_A_FRIEND',
                         ),
-                      ),*/
+                      ),
+
+                      ///Offers
+                      PagesWidget(
+                        onTap: () {
+                          Navigator.of(context).push(CustomRoute.swipeUpRoute(OfferForYouPage()));
+                        },
+                        key: 'OFFERS',
+                        child: SettingsMenuWidget(
+                          model: model,
+                          title: S.of(context).forYou,
+                          image: AssetUtils.forYou,
+                          mKey: 'OFFERS',
+                        ),
+                      ),
 
                       ///Manage Contacts
                       PagesWidget(
