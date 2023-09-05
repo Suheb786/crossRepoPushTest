@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -18535,6 +18536,16 @@ class S {
     return Intl.message(
       'CliQ Transactions',
       name: 'cliqTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to History`
+  String get backToHistory {
+    return Intl.message(
+      'Back to History',
+      name: 'backToHistory',
       desc: '',
       args: [],
     );
