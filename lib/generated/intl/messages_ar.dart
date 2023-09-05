@@ -342,16 +342,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("عندك إقامة بأمريكا؟"),
         "areYourToChangeDefaultAccountOfYourCliqId":
             MessageLookupByLibrary.simpleMessage(
-                "هل انت متأكد انك تريد تغيير حسابك الرئيسي لحساب كليك؟ يرجى تزويدنا بموافقتك للاستمرار"),
+            "هل انت متأكد انك تريد تغيير حسابك الرئيسي لحساب كليك؟ يرجى تزويدنا بموافقتك للاستمرار"),
         "area": MessageLookupByLibrary.simpleMessage("المنطقة"),
         "areaSmall": MessageLookupByLibrary.simpleMessage("المنطقة"),
-        "armexApiError":
-            MessageLookupByLibrary.simpleMessage("خطأ في API أرامكس"),
+        "armexApiError": MessageLookupByLibrary.simpleMessage("خطأ في API أرامكس"),
         "asperhisrequestconfirmthisaction":
-            MessageLookupByLibrary.simpleMessage(
-                "حسب الطلب، الموافقة على الطلب"),
-        "assignTokenError": MessageLookupByLibrary.simpleMessage(
-            "خطأ أثناء تعيين الرمز المميز vkey"),
+            MessageLookupByLibrary.simpleMessage("حسب الطلب، الموافقة على الطلب"),
+        "assignTokenError": MessageLookupByLibrary.simpleMessage("خطأ أثناء تعيين الرمز المميز vkey"),
         "atmLimitExceeded": MessageLookupByLibrary.simpleMessage("تم تجاوز سقف السحب من الصراف الآلي"),
         "atmWithDrawal": MessageLookupByLibrary.simpleMessage("سحب من صراف آلي"),
         "attention": MessageLookupByLibrary.simpleMessage("تنويه"),
@@ -382,14 +379,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لا يمكن اختيار هذه الفاتورة بسبب انتهاء صلاحيتها"),
         "billDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الفاتورة"),
         "billName": MessageLookupByLibrary.simpleMessage("اسم الفاتورة"),
-        "billNotFound":
-            MessageLookupByLibrary.simpleMessage("رقم الفاتورة غير موجود"),
+        "billNotFound": MessageLookupByLibrary.simpleMessage("رقم الفاتورة غير موجود"),
         "billPaymentSorryMessage": MessageLookupByLibrary.simpleMessage(
             "متأسفين. لم نتمكن من اتمام العملية. يرجى العودة إلى كشف حركات حسابك في بلينك وعند المفوتر لمعرفة حالة العملية. فريقنا موجود لمساعدتك عند الحاجة"),
-        "billerAddedSuccessfully":
-            MessageLookupByLibrary.simpleMessage("تم اضافة الفاتورة بنجاح"),
-        "billerAlreadyExistsMessage": MessageLookupByLibrary.simpleMessage(
-            "يوجد لديك فاتورة مخزنة بنفس الرقم المرجعي"),
+        "billerAddedSuccessfully": MessageLookupByLibrary.simpleMessage("تم اضافة الفاتورة بنجاح"),
+        "billerAlreadyExistsMessage":
+            MessageLookupByLibrary.simpleMessage("يوجد لديك فاتورة مخزنة بنفس الرقم المرجعي"),
         "billerName": MessageLookupByLibrary.simpleMessage("اسم المفوتر"),
         "billingNumberReachedItsMaxAmt": MessageLookupByLibrary.simpleMessage(
             "لقد وصلت للحد الأعلى ل للدفع على رقم الفاتورة"),
@@ -624,15 +619,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "اضغط لتعديل الخانات، ممكن يتم تعطيل بعضها."),
         "cliqAliasMobileNoUpdate": MessageLookupByLibrary.simpleMessage(
             "تم تحديث رقم الموبايل المربوط بخدمة كليك"),
-        "cliqAliasUpdate": MessageLookupByLibrary.simpleMessage(
-            "تم تحديث الاسم المستعار لخدمة كليك"),
-        "cliqCustomerAlreadyRegistered":
-            MessageLookupByLibrary.simpleMessage("الاسم المستعار مسجل مسبقا"),
+        "cliqAliasUpdate": MessageLookupByLibrary.simpleMessage("تم تحديث الاسم المستعار لخدمة كليك"),
+        "cliqCustomerAlreadyRegistered": MessageLookupByLibrary.simpleMessage("الاسم المستعار مسجل مسبقا"),
         "cliqID": MessageLookupByLibrary.simpleMessage("معرف CLIQ"),
-        "cliqIDisSuspended": MessageLookupByLibrary.simpleMessage(
-            "عفوا! الاسم المستعار المدخل غير مسجل"),
-        "cliqIDmobileNOUpdated": MessageLookupByLibrary.simpleMessage(
-            "تم تحديث رقم الموبايل المربوط بخدمة كليك"),
+        "cliqIDisSuspended": MessageLookupByLibrary.simpleMessage("عفوا! الاسم المستعار المدخل غير مسجل"),
+        "cliqIDmobileNOUpdated":
+            MessageLookupByLibrary.simpleMessage("تم تحديث رقم الموبايل المربوط بخدمة كليك"),
         "cliqIdAlreadyExists": MessageLookupByLibrary.simpleMessage(
             "الاسم المستعار أو الرقم في كليك مسجل، استخدم رقم أو اسم مستعار آخر"),
         "cliqIdCreateSuccessFully": MessageLookupByLibrary.simpleMessage("تم إنشاء CliQ بنجاح"),
@@ -666,14 +658,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirmDetailsHeader": MessageLookupByLibrary.simpleMessage("الرجاء تأكيد معلوماتك التالية"),
         "confirmInfoTC": MessageLookupByLibrary.simpleMessage(
             "أؤكد على أن المعلومات المزوّدة مني صحيحة وأقر بأنني قرأت وفهمت ووافقت على الشروط والأحكام العامة لـ Blink"),
-        "confirmNewPin": MessageLookupByLibrary.simpleMessage(
-            "تأكيد الرمز السري PIN الجديد"),
-        "confirmPassword":
-            MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
-        "confirmPasswordNotMatch": MessageLookupByLibrary.simpleMessage(
-            "تأكد من مطابقة كلمات المرور "),
-        "confirmTermsCondError":
-            MessageLookupByLibrary.simpleMessage("وافق الشروط والأحكام"),
+        "confirmNewPin": MessageLookupByLibrary.simpleMessage("تأكيد الرمز السري PIN الجديد"),
+        "confirmPassword": MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
+        "confirmPasswordNotMatch": MessageLookupByLibrary.simpleMessage("تأكد من مطابقة كلمات المرور "),
+        "confirmTermsCondError": MessageLookupByLibrary.simpleMessage("وافق الشروط والأحكام"),
         "confirmYourInformation":
             MessageLookupByLibrary.simpleMessage("راجع وأكّد المعلومات"),
         "confirmYourPaymentAmtBelow":
