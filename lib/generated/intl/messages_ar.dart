@@ -352,48 +352,34 @@ class MessageLookup extends MessageLookupByLibrary {
                 "حسب الطلب، الموافقة على الطلب"),
         "assignTokenError": MessageLookupByLibrary.simpleMessage(
             "خطأ أثناء تعيين الرمز المميز vkey"),
-        "atmLimitExceeded": MessageLookupByLibrary.simpleMessage(
-            "تم تجاوز سقف السحب من الصراف الآلي"),
-        "atmWithDrawal":
-            MessageLookupByLibrary.simpleMessage("سحب من صراف آلي"),
+        "atmLimitExceeded": MessageLookupByLibrary.simpleMessage("تم تجاوز سقف السحب من الصراف الآلي"),
+        "atmWithDrawal": MessageLookupByLibrary.simpleMessage("سحب من صراف آلي"),
         "attention": MessageLookupByLibrary.simpleMessage("تنويه"),
         "authorization": MessageLookupByLibrary.simpleMessage("تفويض"),
         "authorize": MessageLookupByLibrary.simpleMessage(
             "أقر بأنني قرأت وفهمت ووافقت على الشروط والأحكام العامة لبطاقات Blink الائتمانية"),
-        "availableAmount":
-            MessageLookupByLibrary.simpleMessage("المبلغ المتوفر"),
-        "availableBalance":
-            MessageLookupByLibrary.simpleMessage("الرصيد المتوفر"),
-        "avatarUpdateFailure": MessageLookupByLibrary.simpleMessage(
-            "عفوا! لا يمكن تحميل الصورة، حاول مرة ثانية لاحقا"),
+        "availableAmount": MessageLookupByLibrary.simpleMessage("المبلغ المتوفر"),
+        "availableBalance": MessageLookupByLibrary.simpleMessage("الرصيد المتوفر"),
+        "avatarUpdateFailure":
+            MessageLookupByLibrary.simpleMessage("عفوا! لا يمكن تحميل الصورة، حاول مرة ثانية لاحقا"),
         "awesome": MessageLookupByLibrary.simpleMessage("ممتاز!"),
         "back": MessageLookupByLibrary.simpleMessage("الرجوع"),
-        "backToCardSettings":
-            MessageLookupByLibrary.simpleMessage("العودة لإعدادات البطاقة"),
+        "backToCardSettings": MessageLookupByLibrary.simpleMessage("العودة لإعدادات البطاقة"),
         "backToContact": MessageLookupByLibrary.simpleMessage("الرجوع"),
-        "backToDashboard":
-            MessageLookupByLibrary.simpleMessage("العودة لشاشة التحكم"),
-        "backToHistory":
-            MessageLookupByLibrary.simpleMessage("Back to History"),
-        "backToLogin":
-            MessageLookupByLibrary.simpleMessage("العودة إلى تسجيل الدخول"),
-        "backToManageCliq":
-            MessageLookupByLibrary.simpleMessage("العودة الى ادارة حساب كليك"),
+        "backToDashboard": MessageLookupByLibrary.simpleMessage("العودة لشاشة التحكم"),
+        "backToHistory": MessageLookupByLibrary.simpleMessage("الرجوع"),
+        "backToLogin": MessageLookupByLibrary.simpleMessage("العودة إلى تسجيل الدخول"),
+        "backToManageCliq": MessageLookupByLibrary.simpleMessage("العودة الى ادارة حساب كليك"),
         "backToPayments": MessageLookupByLibrary.simpleMessage("العودة"),
-        "backToRegistration":
-            MessageLookupByLibrary.simpleMessage("العودة إلى التسجيل"),
+        "backToRegistration": MessageLookupByLibrary.simpleMessage("العودة إلى التسجيل"),
         "bankName": MessageLookupByLibrary.simpleMessage("اسم البنك"),
         "banks": MessageLookupByLibrary.simpleMessage("البنوك"),
-        "beneficialOwnerIsAResidenceOf":
-            MessageLookupByLibrary.simpleMessage("صاحب الحساب المنتفع مقيم في"),
-        "beneficiaryNotFound": MessageLookupByLibrary.simpleMessage(
-            "المستقبِل غير موجود. حاول مع حدا جديد."),
+        "beneficialOwnerIsAResidenceOf": MessageLookupByLibrary.simpleMessage("صاحب الحساب المنتفع مقيم في"),
+        "beneficiaryNotFound": MessageLookupByLibrary.simpleMessage("المستقبِل غير موجود. حاول مع حدا جديد."),
         "billCannotBeCheckedDueToClosedBill":
-            MessageLookupByLibrary.simpleMessage(
-                "لا يمكن اختيار هذه الفاتورة بسبب انتهاء صلاحيتها"),
+            MessageLookupByLibrary.simpleMessage("لا يمكن اختيار هذه الفاتورة بسبب انتهاء صلاحيتها"),
         "billCannotBeCheckedDueToExpiredBill":
-            MessageLookupByLibrary.simpleMessage(
-                "لا يمكن اختيار هذه الفاتورة بسبب انتهاء صلاحيتها"),
+            MessageLookupByLibrary.simpleMessage("لا يمكن اختيار هذه الفاتورة بسبب انتهاء صلاحيتها"),
         "billDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الفاتورة"),
         "billName": MessageLookupByLibrary.simpleMessage("اسم الفاتورة"),
         "billNotFound":
@@ -649,41 +635,35 @@ class MessageLookup extends MessageLookupByLibrary {
             "تم تحديث رقم الموبايل المربوط بخدمة كليك"),
         "cliqIdAlreadyExists": MessageLookupByLibrary.simpleMessage(
             "الاسم المستعار أو الرقم في كليك مسجل، استخدم رقم أو اسم مستعار آخر"),
-        "cliqIdCreateSuccessFully":
-            MessageLookupByLibrary.simpleMessage("تم إنشاء CliQ بنجاح"),
+        "cliqIdCreateSuccessFully": MessageLookupByLibrary.simpleMessage("تم إنشاء CliQ بنجاح"),
         "cliqIdType": MessageLookupByLibrary.simpleMessage("نوع حساب CliQ"),
-        "cliqIdUpdate":
-            MessageLookupByLibrary.simpleMessage("تحديث الاسم المستعار"),
-        "cliqIdUpdatedSuccessfully":
-            MessageLookupByLibrary.simpleMessage("تم تحديث CliqID بنجاح"),
+        "cliqIdUpdate": MessageLookupByLibrary.simpleMessage("تحديث الاسم المستعار"),
+        "cliqIdUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage("تم تحديث CliqID بنجاح"),
         "cliqMobileNumberUpdate": MessageLookupByLibrary.simpleMessage(
             "تعديل حساب كليك\nتم تحديث رقم الهاتف المحمول الخاص بمعرف CliQ"),
-        "cliqOutwardOffline": MessageLookupByLibrary.simpleMessage(
-            "Cliq Outward currently offline and will be back shortly!"),
-        "cliqRTPOffline": MessageLookupByLibrary.simpleMessage(
-            "Cliq RTP currently offline and will be back shortly!"),
+        "cliqOutwardOffline":
+            MessageLookupByLibrary.simpleMessage("Cliq Outward currently offline and will be back shortly!"),
+        "cliqRTPOffline":
+            MessageLookupByLibrary.simpleMessage("Cliq RTP currently offline and will be back shortly!"),
         "cliqReturnPaymentOffline": MessageLookupByLibrary.simpleMessage(
             "عفوًا، إرسال الحوالات عبر خدمة  Cliq غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بنا على 06-5200100"),
         "cliqSendPaymentOffline": MessageLookupByLibrary.simpleMessage(
             "عفوًا، إرسال الحوالات عبر خدمة  Cliq غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بنا على 06-5200100"),
-        "cliqTransactions":
-            MessageLookupByLibrary.simpleMessage("CliQ Transactions"),
+        "cliqTransactions": MessageLookupByLibrary.simpleMessage("الحركات السابقة"),
         "cliqType": MessageLookupByLibrary.simpleMessage("نوع CLIQ"),
-        "closeDateIssueMessage": MessageLookupByLibrary.simpleMessage(
-            "تم رفض دفع الفاتوره بسبب انتهاء صلاحية الفاتورة"),
+        "closeDateIssueMessage":
+            MessageLookupByLibrary.simpleMessage("تم رفض دفع الفاتوره بسبب انتهاء صلاحية الفاتورة"),
         "closeSubAccount": MessageLookupByLibrary.simpleMessage("إغلاق الحساب"),
-        "closeSubAccountDescription": MessageLookupByLibrary.simpleMessage(
-            "هل أنت متأكد من عملية إغلاق الحساب؟"),
-        "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
-            "أكمل معلومات تقريرك الضريبي التالية:"),
+        "closeSubAccountDescription":
+            MessageLookupByLibrary.simpleMessage("هل أنت متأكد من عملية إغلاق الحساب؟"),
+        "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage("أكمل معلومات تقريرك الضريبي التالية:"),
         "confirm": MessageLookupByLibrary.simpleMessage("تم"),
         "confirmDelete": MessageLookupByLibrary.simpleMessage("تأكيد الحذف؟"),
-        "confirmDeliveryError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "confirmDetailsConfirmation": MessageLookupByLibrary.simpleMessage(
-            "أؤكد وأوافق على صحة جميع معلومات هويتي الشخصية"),
-        "confirmDetailsHeader": MessageLookupByLibrary.simpleMessage(
-            "الرجاء تأكيد معلوماتك التالية"),
+        "confirmDeliveryError":
+            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "confirmDetailsConfirmation":
+            MessageLookupByLibrary.simpleMessage("أؤكد وأوافق على صحة جميع معلومات هويتي الشخصية"),
+        "confirmDetailsHeader": MessageLookupByLibrary.simpleMessage("الرجاء تأكيد معلوماتك التالية"),
         "confirmInfoTC": MessageLookupByLibrary.simpleMessage(
             "أؤكد على أن المعلومات المزوّدة مني صحيحة وأقر بأنني قرأت وفهمت ووافقت على الشروط والأحكام العامة لـ Blink"),
         "confirmNewPin": MessageLookupByLibrary.simpleMessage(

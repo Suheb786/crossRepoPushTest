@@ -1729,8 +1729,6 @@
   "returned": "ارجع",
   "url": "URL",
   "nickNameUpdated": "لقد تم تعديل الاسم المستعار بنجاج",
-  "dormantAccountCCFailedTitle": "لم تتم عملية طلبك للبطاقة الائتمانية بنجاح",
-  "returned": "ارجع",
   "creditContactlessLimitExceeded": "تم تجاوز حد الدفع اللاتلامسي.",
   "favouriteContactLimitExceeded": "عفوا! ما بتقدر تختار أكثر من ٩ أصدقاء مفضلين",
   "nicknameAlreadyExistsM": "عفوا! اسم المستعار مسجل، ادخل اسم مستعار آخر ",
@@ -1850,6 +1848,6 @@
   "insufficientBalanceAccountTransfer": "ليس لديك رصيد كافي للتحويل.",
   "selectAnyOption": "حدد خيار تصفية واحدًا على الأقل",
   "insufficientBalanceSubAccount": "عفوا! لم تتم العملية بنجاح لأنه الرصيد المتوفر غير كاف",
-  "cliqTransactions": "CliQ Transactions",
-  "backToHistory": "Back to History"
+  "cliqTransactions": "الحركات السابقة",
+  "backToHistory": "الرجوع"
 }
