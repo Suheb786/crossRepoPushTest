@@ -94,29 +94,14 @@ class DcSettingCardReadyPageView extends BasePageViewWidget<DcSettingCardReadyVi
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24.w),
                   child: AppPrimaryButton(
-                      text: S.of(context).done,
+                      text: S.of(context).backToDashboard,
                       onPressed: () {
                         Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
                         ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
                       }),
                 ),
                 SizedBox(
-                  height: 5.h,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    bottom: 32.h,
-                  ),
-                  child: Center(
-                    child: Text(
-                      S.of(context).toDashboard,
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          fontSize: 12.t,
-                          fontWeight: FontWeight.w400,
-                          color: Theme.of(context).textTheme.bodyLarge!.color!),
-                    ),
-                  ),
+                  height: 24.h,
                 ),
               ],
             )

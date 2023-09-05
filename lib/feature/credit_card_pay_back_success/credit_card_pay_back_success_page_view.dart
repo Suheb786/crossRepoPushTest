@@ -136,22 +136,11 @@ class CreditCardPayBackSuccessPageView extends BasePageViewWidget<CreditCardPayB
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.0.w),
               child: AppSecondaryButton(
-                text: S.of(context).done,
+                text: S.of(context).backToDashboard,
                 onPressed: () {
                   Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
                   ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
                 },
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 9.h, bottom: 16.h),
-              child: Text(
-                S.of(context).toDashboard,
-                style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    color: Theme.of(context).colorScheme.secondary,
-                    fontSize: 12.t,
-                    fontWeight: FontWeight.w600),
               ),
             ),
             Visibility(

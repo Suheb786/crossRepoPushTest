@@ -126,7 +126,7 @@ class ApplePaySuccessAndErrorPageView extends BasePageViewWidget<ApplePaySuccess
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.w),
                   child: AppPrimaryButton(
-                    text: S.of(context).done,
+                    text: S.of(context).backToDashboard,
                     onPressed: () {
                       Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
                       model.getAntelopCardsList();
