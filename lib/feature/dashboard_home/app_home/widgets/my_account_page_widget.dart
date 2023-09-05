@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -53,9 +54,9 @@ class MyAccountPageViewWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
               image: DecorationImage(
                   image: AssetImage(AssetUtils.zigzagRed),
-                  alignment: AlignmentDirectional.topEnd,
+                  alignment: Alignment.topRight,
                   scale: 1,
-                  matchTextDirection: true),
+                  matchTextDirection: false),
             ),
             child: Directionality(
               textDirection: TextDirection.ltr,
@@ -71,10 +72,11 @@ class MyAccountPageViewWidget extends StatelessWidget {
                           child: topWidget(context),
                           top: 0,
                         ),
-                        PositionedDirectional(
+                        Positioned(
                           child: bottomWidget(context),
                           bottom: 0,
-                          end: 0,
+                          left: StringUtils.isDirectionRTL(context) ? 0 : null,
+                          right: StringUtils.isDirectionRTL(context) ? null : 0,
                         ),
                         Positioned.fill(
                           child: Align(
@@ -167,8 +169,8 @@ class MyAccountPageViewWidget extends StatelessWidget {
   }
 
   bottomWidget(BuildContext context) {
-    return Padding(
-      padding: EdgeInsetsDirectional.symmetric(horizontal: 18.w, vertical: 32.h),
+    return Container(
+      padding: EdgeInsetsDirectional.only(end: 23.w, start: 23.w, bottom: 32.h),
       child: InkWell(
         onTap: () {
           if (account.isSubAccount ?? false) {
