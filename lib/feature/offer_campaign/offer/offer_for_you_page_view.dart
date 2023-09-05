@@ -7,7 +7,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -112,7 +112,7 @@ class OfferForYouPageView extends BasePageViewWidget<OfferForYouPageViewModel> {
                   hintText: S.of(context).lookingFor,
                   onChanged: (value) {
                     if (value.isEmpty) {
-                      //  FocusScope.of(context).unfocus();
+                      FocusScope.of(context).unfocus();
                     }
                   },
                   onFieldSubmitted: (data) {
@@ -137,30 +137,30 @@ class OfferForYouPageView extends BasePageViewWidget<OfferForYouPageViewModel> {
               ),
               InkWell(
                 onTap: () {
-                  FilterTransactionDialog.show(
-                    context,
-                    onDismissed: () => Navigator.pop(context),
-                    onSelected: (value) {
-                      Navigator.pop(context);
-                    },
-                  );
+                  // FilterTransactionDialog.show(
+                  //   context,
+                  //   onDismissed: () => Navigator.pop(context),
+                  //   onSelected: (value) {
+                  //     Navigator.pop(context);
+                  //   },
+                  // );
 
-                  // InformationDialog.show(context,
-                  //     image: AssetUtils.referIcon,
-                  //     title: S.of(context).referFriend,
-                  //     btnTitle: S.of(context).invite,
-                  //     descriptionWidget: Text(
-                  //       S.of(context).referFriendDescription("100 JOD"),
-                  //       style: TextStyle(
-                  //         fontFamily: StringUtils.appFont,
-                  //         fontSize: 14.t,
-                  //         fontWeight: FontWeight.w400,
-                  //       ),
-                  //     ), onSelected: () {
-                  //   Navigator.pop(context);
-                  // }, onDismissed: () {
-                  //   Navigator.pop(context);
-                  // });
+                  InformationDialog.show(context,
+                      image: AssetUtils.referIcon,
+                      title: S.of(context).referFriend,
+                      btnTitle: S.of(context).invite,
+                      descriptionWidget: Text(
+                        S.of(context).referFriendDescription("100 JOD"),
+                        style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          fontSize: 14.t,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ), onSelected: () {
+                    Navigator.pop(context);
+                  }, onDismissed: () {
+                    Navigator.pop(context);
+                  });
                 },
                 child: AppSvg.asset(
                   AssetUtils.filter,
@@ -190,47 +190,6 @@ class OfferForYouPageView extends BasePageViewWidget<OfferForYouPageViewModel> {
       separatorBuilder: (BuildContext context, int index) {
         return AppDivider();
       },
-    );
-  }
-
-  noDataFound(context, OfferForYouPageViewModel model) {
-    return Expanded(
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 96.h,
-              width: 96.w,
-              margin: EdgeInsetsDirectional.only(bottom: 12.h),
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Theme.of(context).inputDecorationTheme.hintStyle!.color!)),
-              child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.h),
-                  child: AppSvg.asset(AssetUtils.contacts)),
-            ),
-            GestureDetector(
-              onTap: () async {},
-              child: Container(
-                margin: EdgeInsets.only(top: 16.h),
-                padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 16.w),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20.w),
-                  color: Theme.of(context).colorScheme.onSecondaryContainer,
-                ),
-                child: Text(S.of(context).addContact,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        fontSize: 12.t,
-                        fontWeight: FontWeight.w600,
-                        color: Theme.of(context).colorScheme.secondary)),
-              ),
-            )
-          ],
-        ),
-      ),
     );
   }
 }
