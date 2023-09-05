@@ -1729,8 +1729,6 @@
   "returned": "ارجع",
   "url": "URL",
   "nickNameUpdated": "لقد تم تعديل الاسم المستعار بنجاج",
-  "dormantAccountCCFailedTitle": "لم تتم عملية طلبك للبطاقة الائتمانية بنجاح",
-  "returned": "ارجع",
   "creditContactlessLimitExceeded": "تم تجاوز حد الدفع اللاتلامسي.",
   "favouriteContactLimitExceeded": "عفوا! ما بتقدر تختار أكثر من ٩ أصدقاء مفضلين",
   "nicknameAlreadyExistsM": "عفوا! اسم المستعار مسجل، ادخل اسم مستعار آخر ",
@@ -1851,8 +1849,7 @@
   "selectAnyOption": "حدد خيار تصفية واحدًا على الأقل",
   "insufficientBalanceSubAccount": "عفوا! لم تتم العملية بنجاح لأنه الرصيد المتوفر غير كاف",
   "cliqTransactions": "CliQ Transactions",
-  "backToHistory": "Back to History"
-  "insufficientBalanceSubAccount": "عفوا! لم تتم العملية بنجاح لأنه الرصيد المتوفر غير كاف",
+  "backToHistory": "Back to History",
   "forYou": "For You",
   "referFriend": "Refer A Friend",
   "referFriendDescription": "Invite your friends and family to enjoy the Blink experience. Start earning up to {referFriendDescription}. The more you refer, the more you earn.",

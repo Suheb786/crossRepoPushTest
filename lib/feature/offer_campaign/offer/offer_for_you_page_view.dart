@@ -7,7 +7,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -137,30 +137,30 @@ class OfferForYouPageView extends BasePageViewWidget<OfferForYouPageViewModel> {
               ),
               InkWell(
                 onTap: () {
-                  /*  FilterTransactionDialog.show(
+                  FilterTransactionDialog.show(
                     context,
                     onDismissed: () => Navigator.pop(context),
                     onSelected: (value) {
                       Navigator.pop(context);
                     },
-                  );*/
+                  );
 
-                  InformationDialog.show(context,
-                      image: AssetUtils.referIcon,
-                      title: S.of(context).referFriend,
-                      btnTitle: S.of(context).invite,
-                      descriptionWidget: Text(
-                        S.of(context).referFriendDescription("100 JOD"),
-                        style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          fontSize: 14.t,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ), onSelected: () {
-                    Navigator.pop(context);
-                  }, onDismissed: () {
-                    Navigator.pop(context);
-                  });
+                  // InformationDialog.show(context,
+                  //     image: AssetUtils.referIcon,
+                  //     title: S.of(context).referFriend,
+                  //     btnTitle: S.of(context).invite,
+                  //     descriptionWidget: Text(
+                  //       S.of(context).referFriendDescription("100 JOD"),
+                  //       style: TextStyle(
+                  //         fontFamily: StringUtils.appFont,
+                  //         fontSize: 14.t,
+                  //         fontWeight: FontWeight.w400,
+                  //       ),
+                  //     ), onSelected: () {
+                  //   Navigator.pop(context);
+                  // }, onDismissed: () {
+                  //   Navigator.pop(context);
+                  // });
                 },
                 child: AppSvg.asset(
                   AssetUtils.filter,
