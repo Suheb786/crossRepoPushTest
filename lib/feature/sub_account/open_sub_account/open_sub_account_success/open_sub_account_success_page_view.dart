@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../../base/base_page.dart';
 import '../../../../generated/l10n.dart';
@@ -60,7 +61,7 @@ class OpenSubAccountSuccessPageView extends BasePageViewWidget<OpenSubAccountSuc
                       SizedBox(height: 34.h),
                       AccountReadyHeader(
                           descriptionVisibility: true,
-                          title: S.of(context).successExclmn,
+                          title: StringUtils.isDirectionRTL(context) ? '' : S.of(context).successExclmn,
                           subTitle: S.of(context).openAccountSucessDescription),
                       SizedBox(height: 40.h),
                       Container(
