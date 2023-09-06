@@ -38,7 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m7(noOfBills) => "تسديد ${noOfBills} فاتورة";
 
   static String m8(referFriendDescription) =>
-      "Invite your friends and family to enjoy the Blink experience. Start earning up to ${referFriendDescription}. The more you refer, the more you earn.";
+      ". قم بدعوة اصدقائك و عائلتك للتمتع بتجربة بلينك. إبدأ بكسب ما يصل إلى ${referFriendDescription} د.أ. يمكنك إحالة الكثير من الأفراد لتزود ربحك";
 
   static String m9(resendTime) => "إعادة الإرسال خلال ${resendTime}";
 
@@ -1409,7 +1409,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "flipCard": MessageLookupByLibrary.simpleMessage("اقلب البطاقة"),
         "forThisProductCannotProceed": MessageLookupByLibrary.simpleMessage(
             "الحد الأدنى للعمر هو 18 سنة. بنستناك بعيد ميلادك الـ 18."),
-        "forYou": MessageLookupByLibrary.simpleMessage("For You"),
+        "forYou": MessageLookupByLibrary.simpleMessage("عروضات لك"),
         "foreignTaxIdNumber":
             MessageLookupByLibrary.simpleMessage("رقم تعريف الضريبة الأجنبية"),
         "forgetPasswordError": MessageLookupByLibrary.simpleMessage(
@@ -1859,7 +1859,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل اسم مستخدم صحيح"),
         "invalidUserNamePassword": MessageLookupByLibrary.simpleMessage(
             "خطأ في اسم المستخدم أو كلمة المرور. حاول مرة ثانية. "),
-        "invite": MessageLookupByLibrary.simpleMessage("Invite"),
+        "invite": MessageLookupByLibrary.simpleMessage("الدعوة"),
         "ipAddressCallInternalServerError":
             MessageLookupByLibrary.simpleMessage("خطأ في عنوان IP"),
         "iphoneLoginError": MessageLookupByLibrary.simpleMessage(
@@ -2192,6 +2192,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("نوع العمل/ الوظيفة"),
         "occupationSmall": MessageLookupByLibrary.simpleMessage("الوظيفة"),
         "ofTheBank": MessageLookupByLibrary.simpleMessage("من البنك"),
+        "offersCategory": MessageLookupByLibrary.simpleMessage("الفئات"),
         "okey": MessageLookupByLibrary.simpleMessage("Okay"),
         "onIdFit": MessageLookupByLibrary.simpleMessage(
             "رح يتم مسح الهوية تلقائياً لما تحطها داخل المستطيل"),
@@ -2524,7 +2525,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "refNoDummyData": MessageLookupByLibrary.simpleMessage("984893922"),
         "refNumber": MessageLookupByLibrary.simpleMessage("984893922"),
         "refTitle": MessageLookupByLibrary.simpleMessage("رقم المرجع"),
-        "referFriend": MessageLookupByLibrary.simpleMessage("Refer A Friend"),
+        "referFriend": MessageLookupByLibrary.simpleMessage("إحالة صديق"),
         "referFriendDescription": m8,
         "referenceNo": MessageLookupByLibrary.simpleMessage("الرقم المرجعي"),
         "referenceNumber": MessageLookupByLibrary.simpleMessage("رقم المرجع"),
@@ -3174,8 +3175,7 @@ class MessageLookup extends MessageLookupByLibrary {
             " صار وقت مكالمة مرئية (فيديو) للتحقق من شخصيتك "),
         "videoCallScheduledDateTime": MessageLookupByLibrary.simpleMessage(
             "تم تحديد موعد مكالمتك بتاريخ 15/11/2022 على الساعة 10 صباحاً"),
-        "viewAllOffers":
-            MessageLookupByLibrary.simpleMessage("View All Offers"),
+        "viewAllOffers": MessageLookupByLibrary.simpleMessage("جميع العروضات"),
         "viewAndPayYourDueBills":
             MessageLookupByLibrary.simpleMessage("عرض ودفع الفواتير المستحقة"),
         "viewCardSubSubscription":
