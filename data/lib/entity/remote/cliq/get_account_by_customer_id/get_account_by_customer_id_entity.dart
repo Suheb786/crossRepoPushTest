@@ -61,6 +61,18 @@ class GetAccountByCustomerIdEntity
   )
   final String? accountNumber;
 
+  @JsonKey(
+    name: "isSubAccount",
+    defaultValue: false,
+  )
+  final bool? isSubAccount;
+
+  @JsonKey(
+    name: "nickName",
+    defaultValue: "",
+  )
+  final String? nickName;
+
   GetAccountByCustomerIdEntity(
       {this.recordId,
       this.acciban,
@@ -70,7 +82,9 @@ class GetAccountByCustomerIdEntity
       this.currency,
       this.type,
       this.accountType,
-      this.accountNumber});
+      this.accountNumber,
+      this.isSubAccount,
+      this.nickName});
 
   factory GetAccountByCustomerIdEntity.fromJson(Map<String, dynamic> json) =>
       _$GetAccountByCustomerIdEntityFromJson(json);
@@ -93,6 +107,8 @@ class GetAccountByCustomerIdEntity
         currency: this.currency,
         type: this.type,
         accountType: this.accountType,
-        accountNumber: this.accountNumber);
+        accountNumber: this.accountNumber??'',
+        isSubAccount: this.isSubAccount??false,
+        nickName: this.nickName??'');
   }
 }

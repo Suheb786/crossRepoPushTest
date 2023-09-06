@@ -18,6 +18,8 @@ GetAccountByCustomerIdEntity _$GetAccountByCustomerIdEntityFromJson(
       type: json['type'] as String? ?? '',
       accountType: json['accountType'] as String? ?? '',
       accountNumber: json['accountNumber'] as String? ?? '',
+      isSubAccount: json['isSubAccount'] as bool? ?? false,
+      nickName: json['nickName'] as String? ?? '',
     );
 
 Map<String, dynamic> _$GetAccountByCustomerIdEntityToJson(
@@ -32,4 +34,6 @@ Map<String, dynamic> _$GetAccountByCustomerIdEntityToJson(
       'type': instance.type,
       'accountType': instance.accountType,
       'accountNumber': instance.accountNumber,
+      'isSubAccount': instance.isSubAccount,
+      'nickName': instance.nickName,
     };

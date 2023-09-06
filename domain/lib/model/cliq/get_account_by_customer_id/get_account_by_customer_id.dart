@@ -8,6 +8,8 @@ class GetAccountByCustomerId {
   final String? type;
   final String? accountType;
   final String? accountNumber;
+  final String? nickName;
+  final bool? isSubAccount;
 
   GetAccountByCustomerId(
       {this.recordId,
@@ -18,5 +20,7 @@ class GetAccountByCustomerId {
       this.currency,
       this.type,
       this.accountType,
-      this.accountNumber});
+      this.accountNumber,
+      this.nickName,
+      this.isSubAccount});
 }

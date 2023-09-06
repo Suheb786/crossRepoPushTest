@@ -19,9 +19,14 @@ class AccountSelectionDialogView extends StatelessWidget {
   final Function(Account)? onSelected;
   final List<Account> accountList;
   final String title;
+  final bool showBalances;
 
   AccountSelectionDialogView(
-      {this.onDismissed, required this.onSelected, required this.title, required this.accountList});
+      {this.onDismissed,
+      required this.onSelected,
+      required this.title,
+      required this.accountList,
+      this.showBalances = true});
 
   ProviderBase providerBase() {
     return accountSelectionDialogViewModelProvider;
@@ -69,7 +74,7 @@ class AccountSelectionDialogView extends StatelessWidget {
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                                 child: Container(
-                                  height: 90.h,
+                                  height: showBalances ? 90.h : 70.h,
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(16.w),
@@ -81,14 +86,14 @@ class AccountSelectionDialogView extends StatelessWidget {
                                 key: ValueKey(model.allCategories.length),
                                 child: ClickableListWheelScrollView(
                                   scrollController: model.scrollController,
-                                  itemHeight: 90.h,
+                                  itemHeight: showBalances ? 90.h : 70.h,
                                   itemCount: model.allCategories.length,
                                   onItemTapCallback: (index) {
                                     model.currentIndexUpdate(index);
                                   },
                                   child: ListWheelScrollView.useDelegate(
                                       controller: model.scrollController,
-                                      itemExtent: 100.h,
+                                      itemExtent: showBalances ? 100.h : 70.h,
                                       onSelectedItemChanged: (int index) {
                                         model.currentIndexUpdate(index);
                                       },
@@ -107,7 +112,19 @@ class AccountSelectionDialogView extends StatelessWidget {
                                                     children: [
                                                       SizedBox(height: 17.h),
                                                       Text(
-                                                        "${account.isSubAccount! ? "${account.nickName == null ? S.of(context).subAccount : "${S.of(context).subAccount} - ${account.nickName}"}" : "${account.nickName == null ? S.of(context).mainAccount : "${S.of(context).mainAccount} - ${account.nickName}"}"}",
+                                                        account.isSubAccount == false
+                                                            ? (account.nickName == null ||
+                                                                    account.nickName == ""
+                                                                ? (S.current.mainAccount)
+                                                                : (S.current.mainAccount +
+                                                                    " - " +
+                                                                    (account.nickName ?? "")))
+                                                            : (account.nickName == null ||
+                                                                    account.nickName == ""
+                                                                ? (S.current.subAccount)
+                                                                : (S.current.subAccount +
+                                                                    " - " +
+                                                                    (account.nickName ?? ""))),
                                                         style: TextStyle(
                                                             fontFamily: StringUtils.appFont,
                                                             fontSize: 14.0.t,
@@ -127,38 +144,43 @@ class AccountSelectionDialogView extends StatelessWidget {
                                                                 : Theme.of(context).colorScheme.surfaceTint,
                                                             fontWeight: FontWeight.w600),
                                                       ),
-                                                      SizedBox(height: 15.h),
-                                                      RichText(
-                                                        text: TextSpan(
-                                                          children: [
-                                                            TextSpan(
-                                                              text: StringUtils.formatBalance(
-                                                                  account.availableBalance ?? '0.00'),
-                                                              style: TextStyle(
-                                                                fontFamily: StringUtils.appFont,
-                                                                fontSize: 14.0.t,
-                                                                color: index == currentIndex
-                                                                    ? Theme.of(context).primaryColorDark
-                                                                    : Theme.of(context)
-                                                                        .colorScheme
-                                                                        .surfaceTint,
-                                                                fontWeight: FontWeight.w700,
+                                                      Visibility(
+                                                          visible: showBalances,
+                                                          child: SizedBox(height: 15.h)),
+                                                      Visibility(
+                                                        visible: showBalances,
+                                                        child: RichText(
+                                                          text: TextSpan(
+                                                            children: [
+                                                              TextSpan(
+                                                                text: StringUtils.formatBalance(
+                                                                    account.availableBalance ?? '0.00'),
+                                                                style: TextStyle(
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  color: index == currentIndex
+                                                                      ? Theme.of(context).primaryColorDark
+                                                                      : Theme.of(context)
+                                                                          .colorScheme
+                                                                          .surfaceTint,
+                                                                  fontWeight: FontWeight.w700,
+                                                                ),
                                                               ),
-                                                            ),
-                                                            TextSpan(
-                                                              text: " " + S.current.JOD.toUpperCase(),
-                                                              style: TextStyle(
-                                                                fontFamily: StringUtils.appFont,
-                                                                fontSize: 12.0.t,
-                                                                color: index == currentIndex
-                                                                    ? Theme.of(context).primaryColorDark
-                                                                    : Theme.of(context)
-                                                                        .colorScheme
-                                                                        .surfaceTint,
-                                                                fontWeight: FontWeight.w600,
+                                                              TextSpan(
+                                                                text: " " + S.current.JOD.toUpperCase(),
+                                                                style: TextStyle(
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 12.0.t,
+                                                                  color: index == currentIndex
+                                                                      ? Theme.of(context).primaryColorDark
+                                                                      : Theme.of(context)
+                                                                          .colorScheme
+                                                                          .surfaceTint,
+                                                                  fontWeight: FontWeight.w600,
+                                                                ),
                                                               ),
-                                                            ),
-                                                          ],
+                                                            ],
+                                                          ),
                                                         ),
                                                       )
                                                     ],

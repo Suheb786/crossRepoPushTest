@@ -152,6 +152,26 @@ class SettingsDialogViewModel extends BasePageViewModel {
           index = index + 1;
           showPages.add(element);
         }
+      } else if (element.key == 'REFER_A_FRIEND') {
+        if ((ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .dashboardDataContent
+                .dashboardFeatures
+                ?.referrals ??
+            false)) {
+          index = index + 1;
+          showPages.add(element);
+        }
+      } else if (element.key == 'OFFERS') {
+        if ((ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .dashboardDataContent
+                .dashboardFeatures
+                ?.offers ??
+            false)) {
+          index = index + 1;
+          showPages.add(element);
+        }
       } else {
         index = index + 1;
         showPages.add(element);

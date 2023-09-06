@@ -47,6 +47,8 @@ DashboardFeaturesEntity _$DashboardFeaturesEntityFromJson(
       transferBetweenAccountsFeature:
           json['blink-retail-app-Sub-Accounts-Transfer-Between-Accounts']
               as bool?,
+      offers: json['blink-retail-app-Offers'] as bool?,
+      referrals: json['blink-retail-app-Referrals'] as bool?,
     );
 
 Map<String, dynamic> _$DashboardFeaturesEntityToJson(
@@ -86,4 +88,6 @@ Map<String, dynamic> _$DashboardFeaturesEntityToJson(
           instance.closeSubAccountFeature,
       'blink-retail-app-Sub-Accounts-Share-Account-Information':
           instance.shareAccountInformationFeature,
+      'blink-retail-app-Offers': instance.offers,
+      'blink-retail-app-Referrals': instance.referrals,
     };

@@ -131,7 +131,6 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                               stream: model.pageSwitchStream,
                               initialData: AnimatedPage.NULL,
                               dataBuilder: (context, switchedPage) {
-                                print("something ${switchedPage}");
                                 return AnimatedSwitcher(
                                   duration: const Duration(milliseconds: 500),
                                   reverseDuration: const Duration(milliseconds: 400),
@@ -393,7 +392,6 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                               PaymentSwiper(
                                                 appSwiperController: model.appSwiperController,
                                                 pages: pages,
-                                                // pageController: model.pageController,
                                                 onIndexChanged: (index) {
                                                   model.updatePage(index);
                                                 },
@@ -644,7 +642,6 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
 
         ///LOG EVENT TO FIREBASE
         FireBaseLogUtil.fireBaseLog("new_pre_paid", {"new_pre_paid_clicked": true});
-        // Navigator.pushNamed(context, RoutePaths.NewBillsPage);
         model.animatePage(AnimatedPage.PAY_NEW_BILL);
         AppConstantsUtils.PRE_PAID_FLOW = true;
         AppConstantsUtils.POST_PAID_FLOW = false;
@@ -654,7 +651,6 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
 
         ///LOG EVENT TO FIREBASE
         FireBaseLogUtil.fireBaseLog("new_post_paid", {"new_post_paid_clicked": true});
-        // Navigator.pushNamed(context, RoutePaths.NewBillsPage);
         model.animatePage(AnimatedPage.PAY_NEW_BILL);
         AppConstantsUtils.POST_PAID_FLOW = true;
         AppConstantsUtils.PRE_PAID_FLOW = false;

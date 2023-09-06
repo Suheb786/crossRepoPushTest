@@ -35,6 +35,8 @@ class DashboardFeatures {
   final bool? transferBetweenAccountsFeature;
   final bool? closeSubAccountFeature;
   final bool? shareAccountInformationFeature;
+  final bool? offers;
+  final bool? referrals;
 
   DashboardFeatures(
       {this.appBillPaymentPostpaid,
@@ -72,5 +74,7 @@ class DashboardFeatures {
       this.transferBetweenAccountsFeature,
       this.shareAccountInformationFeature,
       this.closeSubAccountFeature,
-      this.subAccountFeature});
+      this.subAccountFeature,
+      this.referrals,
+      this.offers});
 }

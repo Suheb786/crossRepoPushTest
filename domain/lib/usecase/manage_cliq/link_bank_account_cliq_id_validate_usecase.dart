@@ -4,7 +4,7 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/base_error.dart';
 import 'package:domain/model/base/error_info.dart';
-import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
@@ -19,17 +19,17 @@ class LinkBankAccountCliqIdValidationUseCase
 
 class LinkBankAccountCliqIdValidationUseCaseParams extends Params {
   final bool isSelected;
-  final List<GetAccountByCustomerId> listOfCustomerAccount;
+  final Account? selectedAccount;
   final CliqListActionTypeEnum cliqListActionTypeEnum;
 
   LinkBankAccountCliqIdValidationUseCaseParams(
-      {required this.isSelected, required this.listOfCustomerAccount, required this.cliqListActionTypeEnum});
+      {required this.isSelected, required this.selectedAccount, required this.cliqListActionTypeEnum});
 
   @override
   Either<AppError, bool> verify() {
     switch (cliqListActionTypeEnum) {
       case CliqListActionTypeEnum.LINKACCOUNT:
-        if (listOfCustomerAccount.isEmpty) {
+        if ((selectedAccount?.accountNo ?? '').isEmpty) {
           return Left(AppError(
               error: ErrorInfo(message: ''), type: ErrorType.PLEASE_ADD_LINK_ACCOUNT, cause: Exception()));
         } else if (isSelected == false) {

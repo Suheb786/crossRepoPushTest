@@ -144,23 +144,6 @@ class OfferForYouPageView extends BasePageViewWidget<OfferForYouPageViewModel> {
                   //     Navigator.pop(context);
                   //   },
                   // );
-
-                  InformationDialog.show(context,
-                      image: AssetUtils.referIcon,
-                      title: S.of(context).referFriend,
-                      btnTitle: S.of(context).invite,
-                      descriptionWidget: Text(
-                        S.of(context).referFriendDescription("100 JOD"),
-                        style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          fontSize: 14.t,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ), onSelected: () {
-                    Navigator.pop(context);
-                  }, onDismissed: () {
-                    Navigator.pop(context);
-                  });
                 },
                 child: AppSvg.asset(
                   AssetUtils.filter,

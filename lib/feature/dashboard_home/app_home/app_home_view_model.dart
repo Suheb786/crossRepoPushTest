@@ -75,7 +75,6 @@ class AppHomeViewModel extends BasePageViewModel {
   final CreateAccountUseCase _createAccountUseCase;
   final CloseSubAccountUseCase _closeSubAccountUsecase;
 
-  // final DeactivateSubAccountUseCase _closeSubAccountUsecase;
   final UpdateNickNameSubAccountUseCase _updateNickNameSubAccountUseCase;
 
   String? accountNo = "";
@@ -923,12 +922,12 @@ class AppHomeViewModel extends BasePageViewModel {
     }
 
     ///adding  offer for u card
+    if ((dashboardDataContent.dashboardFeatures?.offers ?? true)) {
+      pages.add(OfferForYouCardWidget());
 
-    pages.add(OfferForYouCardWidget());
+      cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.OFFER, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
+    }
 
-    cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.OFFER, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
-
-//------------
     addPages(pages);
     blinkTimeLineListArguments.addAll(timeLineListArguments);
     timeLineArguments.timelineListArguments = blinkTimeLineListArguments;
