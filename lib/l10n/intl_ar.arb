@@ -1599,7 +1599,7 @@
   "amountShouldBetween": "المبلغ يجب ان يكون بين",
   "amountShouldBeMoreThan": "المبلغ يجب ان يكون اكثر من",
   "amountShouldBeLessThanOrEqualTo": "المبلغ يجب ان يكون اقل او يساوي",
-  "viewHistory": "عرض السجل",
+  "viewHistory": "الحركات السابقة",
   "billsHistory": "سِجِل الفواتير",
   "rejectedDueToExpiryDate": "تم رفض دفع الفاتوره بسبب انتهاء صلاحية الفاتورة",
   "billCannotBeCheckedDueToExpiredBill": "لا يمكن اختيار هذه الفاتورة بسبب انتهاء صلاحيتها",
