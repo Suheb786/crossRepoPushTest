@@ -113,7 +113,7 @@ class PageDetail extends StatelessWidget {
                   textColor: Theme.of(context).colorScheme.surfaceTint,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 24.0.w),
+                  padding: EdgeInsetsDirectional.only(start: 24.0.w),
                   child: Container(
                     padding: EdgeInsetsDirectional.only(start: 8.0.w, end: 8.0.w, top: 3.5.h, bottom: 1.5.h),
                     decoration: BoxDecoration(
