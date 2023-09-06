@@ -18599,6 +18599,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Profile Settings`
+  String get profileSettings_ {
+    return Intl.message(
+      'Profile Settings',
+      name: 'profileSettings_',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

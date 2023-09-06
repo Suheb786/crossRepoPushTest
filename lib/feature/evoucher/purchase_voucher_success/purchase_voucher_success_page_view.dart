@@ -215,7 +215,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                 // to switch to history tab...
                 provider.switchTabSubject.safeAdd(1);
               },
-              text: S.of(context).backToHistory,
+              text: S.of(context).viewHistory,
             ),
             SizedBox(height: 24.h),
           ],

@@ -35,7 +35,7 @@ class AccountSettingPageState extends BaseStatefulPage<AccountSettingPageViewMod
     return Theme.of(context).primaryColor;
   }
 
-  @override
+  /*@override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
         preferredSize: Size(double.maxFinite, 85.0.h),
@@ -68,7 +68,7 @@ class AccountSettingPageState extends BaseStatefulPage<AccountSettingPageViewMod
             )
           ],
         ));
-  }
+  }*/
 
   @override
   Widget buildView(BuildContext context, AccountSettingPageViewModel model) {
