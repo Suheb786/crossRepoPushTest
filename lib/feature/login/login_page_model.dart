@@ -134,7 +134,6 @@ class LoginViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         }
       });
-
     });
 
     if (kDebugMode) {

@@ -29,9 +29,10 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                           android: AndroidInAppWebViewOptions(useHybridComposition: true),
                           ios: IOSInAppWebViewOptions(allowsInlineMediaPlayback: true),
                           crossPlatform: InAppWebViewOptions(
-                            transparentBackground: true,
-                            javaScriptEnabled: true,
-                          )),
+                              transparentBackground: true,
+                              javaScriptEnabled: true,
+                              cacheEnabled: false,
+                              clearCache: true)),
                       androidOnPermissionRequest: (controller, origin, resource) async {
                         return PermissionRequestResponse(
                             resources: resource, action: PermissionRequestResponseAction.GRANT);

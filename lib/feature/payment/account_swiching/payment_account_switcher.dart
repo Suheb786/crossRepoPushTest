@@ -37,21 +37,22 @@ class _PaymentAccountSwitcherState extends State<PaymentAccountSwitcher> {
 
   @override
   void initState() {
+    super.initState();
     totalAccounts = ProviderScope.containerOf(appLevelKey.currentContext!)
         .read(appHomeViewModelProvider)
         .getAllMyAccounts();
 
     /// default selected account put to the main account..
-    selectedAccount = totalAccounts.firstWhere((element) => !(element.isSubAccount ?? true));
+    selectedAccount = totalAccounts.firstWhere((element) => !(element.isSubAccount ?? true),
+        orElse: () => Account(
+            isSubAccount: false, nickName: '', accountNo: '', accountTitle: '', availableBalance: ''));
     accountChangeNotifier = ValueNotifier(selectedAccount);
 
     widget.onDefaultSelectedAccount(selectedAccount);
-
-    super.initState();
   }
 
   onSelectedAccount(Account selectedAccount) {
-    // to update the ui.
+    /// to update the ui.
     this.selectedAccount = selectedAccount;
     accountChangeNotifier.value = selectedAccount;
     widget.onSelectAccount(selectedAccount);
