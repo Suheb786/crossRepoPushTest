@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -2434,10 +2435,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم تحديث صورتك بنجاح"),
         "profileSettings":
             MessageLookupByLibrary.simpleMessage("الإعدادات الشخصية"),
+        "profileSettings_":
+            MessageLookupByLibrary.simpleMessage("الإعدادات الشخصية"),
         "profileStatusNotFound": MessageLookupByLibrary.simpleMessage(
             "في معلومات ناقصة. تأكد وحاول كمان مرة أو تواصل معنا على 06-5200100 "),
-        "profile_settings":
-            MessageLookupByLibrary.simpleMessage("Profile Settings"),
         "proofOfAddress":
             MessageLookupByLibrary.simpleMessage("إثبات مكان السكن"),
         "proofOfAddressDesc": MessageLookupByLibrary.simpleMessage(
@@ -3181,7 +3182,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("استعراض اشتراكات البطاقة"),
         "viewCardSubscription":
             MessageLookupByLibrary.simpleMessage("استعراض اشتراكات البطاقة"),
-        "viewHistory": MessageLookupByLibrary.simpleMessage("عرض السجل"),
+        "viewHistory": MessageLookupByLibrary.simpleMessage("الحركات السابقة"),
         "viewMyBills": MessageLookupByLibrary.simpleMessage("عرض الفواتير"),
         "viewTransactions":
             MessageLookupByLibrary.simpleMessage("الحوالات السابقة"),

@@ -34,7 +34,7 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
           padding: EdgeInsets.only(top: 52.0.h, bottom: 0.h),
           height: 80.h,
           child: Text(
-            S.of(context).profile_settings,
+            S.of(context).profileSettings_,
             textAlign: TextAlign.center,
             softWrap: false,
             style: TextStyle(

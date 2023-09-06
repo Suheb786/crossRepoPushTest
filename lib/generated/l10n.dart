@@ -18601,10 +18601,10 @@ class S {
   }
 
   /// `Profile Settings`
-  String get profile_settings {
+  String get profileSettings_ {
     return Intl.message(
       'Profile Settings',
-      name: 'profile_settings',
+      name: 'profileSettings_',
       desc: '',
       args: [],
     );
