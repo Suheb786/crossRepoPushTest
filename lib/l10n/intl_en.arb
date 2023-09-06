@@ -1868,8 +1868,6 @@
   "transferBetweenAccount": "Transfer Between Accounts",
   "closeSubAccount": "Close Sub Account",
   "transferRemainingBalanceForAccountClosure": "Please transfer the remaining balance to complete the account closure",
-  "done": "Done",
-  "okey": "Okay",
   "view_more": "View More",
   "noDataToDisplay": "No Data to Display",
   "insufficientBalanceAccountTransfer": "You do not have sufficient balance to transfer.",

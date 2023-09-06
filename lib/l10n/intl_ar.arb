@@ -1841,8 +1841,6 @@
   "transferBetweenAccount": "التحويل بين حساباتي",
   "closeSubAccount": "إغلاق الحساب",
   "transferRemainingBalanceForAccountClosure": "يجب أن يكون رصيد الحساب صفر ليتم إغلاقة.",
-  "done": "Done",
-  "okey": "Okay",
   "view_more": "المزيد",
   "noDataToDisplay": "لا يوجد",
   "insufficientBalanceAccountTransfer": "ليس لديك رصيد كافي للتحويل.",

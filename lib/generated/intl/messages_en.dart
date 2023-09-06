@@ -942,7 +942,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "dobHint": MessageLookupByLibrary.simpleMessage("DD/MM/YYYY"),
         "documentsNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-081)"),
-        "done": MessageLookupByLibrary.simpleMessage("Done"),
         "dontNeedMyCardAnymore": MessageLookupByLibrary.simpleMessage(
             "I don\'t need my card anymore"),
         "dormantAccountCCFailedTitle": MessageLookupByLibrary.simpleMessage(
@@ -2248,7 +2247,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "ofTheBank": MessageLookupByLibrary.simpleMessage("of the bank."),
         "offersCategory":
             MessageLookupByLibrary.simpleMessage("Offers Category"),
-        "okey": MessageLookupByLibrary.simpleMessage("Okay"),
         "onIdFit": MessageLookupByLibrary.simpleMessage(
             "Once fit, your ID will be scanned automatically"),
         "oneFinalStop":
