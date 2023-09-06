@@ -1848,16 +1848,17 @@
   "insufficientBalanceAccountTransfer": "ليس لديك رصيد كافي للتحويل.",
   "selectAnyOption": "حدد خيار تصفية واحدًا على الأقل",
   "insufficientBalanceSubAccount": "عفوا! لم تتم العملية بنجاح لأنه الرصيد المتوفر غير كاف",
-  "forYou": "For You",
-  "referFriend": "Refer A Friend",
-  "referFriendDescription": "Invite your friends and family to enjoy the Blink experience. Start earning up to {referFriendDescription}. The more you refer, the more you earn.",
+  "forYou": "عروضات لك",
+  "referFriend": "إحالة صديق",
+  "referFriendDescription": ". قم بدعوة اصدقائك و عائلتك للتمتع بتجربة بلينك. إبدأ بكسب ما يصل إلى {referFriendDescription} د.أ. يمكنك إحالة الكثير من الأفراد لتزود ربحك",
   "@referFriendDescription": {
     "description": "referFriendDescription",
     "type": "string"
   },
-  "invite": "Invite",
-  "viewAllOffers": "View All Offers",
+  "invite": "الدعوة",
+  "viewAllOffers": "جميع العروضات",
   "cliqTransactions": "الحركات السابقة",
   "backToHistory": "الرجوع",
-  "profileSettings_" : "الإعدادات الشخصية"
+  "profileSettings_": "الإعدادات الشخصية",
+  "offersCategory": "الفئات"
 }

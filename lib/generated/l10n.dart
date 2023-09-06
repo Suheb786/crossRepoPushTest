@@ -18570,10 +18570,10 @@ class S {
     );
   }
 
-  /// `Invite your friends and family to enjoy the Blink experience. Start earning up to Start earning up to {referFriendDescription}. The more you refer, the more you earn.`
+  /// `Invite your friends and family to enjoy the Blink experience. Start earning up to Start earning up to {referFriendDescription} JOD. The more you refer, the more you earn.`
   String referFriendDescription(Object referFriendDescription) {
     return Intl.message(
-      'Invite your friends and family to enjoy the Blink experience. Start earning up to Start earning up to $referFriendDescription. The more you refer, the more you earn.',
+      'Invite your friends and family to enjoy the Blink experience. Start earning up to Start earning up to $referFriendDescription JOD. The more you refer, the more you earn.',
       name: 'referFriendDescription',
       desc: 'referFriendDescription',
       args: [referFriendDescription],
@@ -18605,6 +18605,16 @@ class S {
     return Intl.message(
       'Profile Settings',
       name: 'profileSettings_',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Offers Category`
+  String get offersCategory {
+    return Intl.message(
+      'Offers Category',
+      name: 'offersCategory',
       desc: '',
       args: [],
     );

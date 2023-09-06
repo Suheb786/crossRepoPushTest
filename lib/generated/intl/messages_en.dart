@@ -39,7 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m7(noOfBills) => "Paying ${noOfBills} bills";
 
   static String m8(referFriendDescription) =>
-      "Invite your friends and family to enjoy the Blink experience. Start earning up to Start earning up to ${referFriendDescription}. The more you refer, the more you earn.";
+      "Invite your friends and family to enjoy the Blink experience. Start earning up to Start earning up to ${referFriendDescription} JOD. The more you refer, the more you earn.";
 
   static String m9(resendTime) => "Resend in ${resendTime}";
 
@@ -2246,6 +2246,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Occupation/Business Type"),
         "occupationSmall": MessageLookupByLibrary.simpleMessage("Occupation"),
         "ofTheBank": MessageLookupByLibrary.simpleMessage("of the bank."),
+        "offersCategory":
+            MessageLookupByLibrary.simpleMessage("Offers Category"),
         "okey": MessageLookupByLibrary.simpleMessage("Okay"),
         "onIdFit": MessageLookupByLibrary.simpleMessage(
             "Once fit, your ID will be scanned automatically"),

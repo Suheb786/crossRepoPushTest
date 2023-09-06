@@ -109,7 +109,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                               title: S.of(context).referFriend,
                               btnTitle: S.of(context).invite,
                               descriptionWidget: Text(
-                                S.of(context).referFriendDescription("100 JOD"),
+                                S.of(context).referFriendDescription("100"),
                                 style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontSize: 14.t,
