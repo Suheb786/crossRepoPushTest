@@ -3,7 +3,6 @@ import 'package:domain/model/e_voucher/e_voucher_otp.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/select_account_usecase.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -11,7 +10,6 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../../../di/dashboard/dashboard_modules.dart';
 import '../purchase_evoucher_without_region_page.dart';
 
 class SettlementAmountPageViewModel extends BasePageViewModel {

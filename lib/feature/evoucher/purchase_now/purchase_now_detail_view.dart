@@ -39,10 +39,7 @@ class PurchaseNowDetailView extends BasePageViewWidget<PurchaseNowDetailViewMode
                 width: double.infinity,
                 child: CachedNetworkImage(
                   imageUrl: model.argument.selectedVoucherItem.cardFaceImage,
-                  placeholder: (context, url) =>
-                      Container(color: Theme
-                          .of(context)
-                          .primaryColor),
+                  placeholder: (context, url) => Container(color: Theme.of(context).primaryColor),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                   fit: BoxFit.fill,
                 ),
@@ -58,14 +55,8 @@ class PurchaseNowDetailView extends BasePageViewWidget<PurchaseNowDetailViewMode
                     width: 56.w,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100.w),
-                        color: Theme
-                            .of(context)
-                            .colorScheme
-                            .secondary),
-                    child: Icon(Icons.arrow_back, color: Theme
-                        .of(context)
-                        .colorScheme
-                        .onSecondaryContainer),
+                        color: Theme.of(context).colorScheme.secondary),
+                    child: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSecondaryContainer),
                   ),
                 ),
               )
@@ -75,14 +66,11 @@ class PurchaseNowDetailView extends BasePageViewWidget<PurchaseNowDetailViewMode
         Padding(
           padding: EdgeInsetsDirectional.only(top: 168.h),
           child: Container(
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius:
-                BorderRadius.only(topLeft: Radius.circular(16.w), topRight: Radius.circular(16.w))),
+                    BorderRadius.only(topLeft: Radius.circular(16.w), topRight: Radius.circular(16.w))),
             child: PageDetail(
               model: model,
             ),
@@ -130,10 +118,7 @@ class PageDetail extends StatelessWidget {
                         text: model.argument.selectedVoucherItem.brand,
                         textSize: 12.t,
                         textWeight: FontWeight.w600,
-                        textColor: Theme
-                            .of(context)
-                            .colorScheme
-                            .inversePrimary,
+                        textColor: Theme.of(context).colorScheme.inversePrimary,
                       ),
                       SizedBox(height: 8.h),
                       EVoucherTextWidget(
@@ -167,10 +152,7 @@ class PageDetail extends StatelessWidget {
                                     .toStringAsFixed(3),
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
-                                    color: Theme
-                                        .of(context)
-                                        .colorScheme
-                                        .onSecondaryContainer,
+                                    color: Theme.of(context).colorScheme.onSecondaryContainer,
                                     fontSize: 24.t,
                                     fontWeight: FontWeight.w700),
                               ),
@@ -192,15 +174,10 @@ class PageDetail extends StatelessWidget {
                       SizedBox(height: 16.h),
                       EVoucherTextWidget(
                         alignment: AlignmentDirectional.topStart,
-                        text: S
-                            .of(context)
-                            .termsAndConditionsSetting,
+                        text: S.of(context).termsAndConditionsSetting,
                         textSize: 14,
                         textWeight: FontWeight.w600,
-                        textColor: Theme
-                            .of(context)
-                            .colorScheme
-                            .shadow,
+                        textColor: Theme.of(context).colorScheme.shadow,
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.w, top: 16.h),
@@ -244,15 +221,22 @@ class PurchaseNowBtn extends StatelessWidget {
       child: AppPrimaryButton(
         isDisabled: false,
         onPressed: () {
-          model.getSettlementAmmount(
-              Amount: (model.argument.selectedVoucherItem.fromValue.toDouble() *
-                  double.parse(model.argument.selectedVoucherItem.exchangeRate)).toString(),
-              FromCurrency: AppConstantsUtils.usdCurrency,
-              ToCurrency: AppConstantsUtils.jodCurrency);
+          if (model.argument.selectedVoucherItem.currency == AppConstantsUtils.jodCurrency) {
+            Navigator.pushNamed(context, RoutePaths.PurchaseEVoucherWithoutRegionPage,
+                arguments: PurchaseEVoucherWithoutRegionPageArgument(
+                  settlementAmount: (model.argument.selectedVoucherItem.fromValue.toDouble()),
+                  selectedItem: model.argument.selectedVoucherItem,
+                ));
+          } else {
+            model.getSettlementAmmount(
+                Amount: (model.argument.selectedVoucherItem.fromValue.toDouble() *
+                        double.parse(model.argument.selectedVoucherItem.exchangeRate))
+                    .toString(),
+                FromCurrency: AppConstantsUtils.usdCurrency,
+                ToCurrency: AppConstantsUtils.jodCurrency);
+          }
         },
-        text: S
-            .of(context)
-            .purchaseNow,
+        text: S.of(context).purchaseNow,
       ),
     );
   }

@@ -4,10 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-import '../../../feature/activity/activity_home/activity_home_view_model.dart';
-import '../../../feature/dashboard_home/app_home/app_home_view_model.dart';
 import '../../../utils/device_size_helper.dart';
-import '../stream_builder/app_stream_builder.dart';
 
 class ActivitySwiper extends StatefulWidget {
   final List? pages;

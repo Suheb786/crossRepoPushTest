@@ -24,84 +24,106 @@ class EfawateerLandingDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-        insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-        child: Stack(
-          clipBehavior: Clip.none,
-          alignment: Alignment.bottomCenter,
+    return Align(
+      alignment: AlignmentDirectional.bottomCenter,
+      child: Container(
+        margin: EdgeInsets.only(bottom: 56.h),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            WillPopScope(
-              onWillPop: () async => false,
-              child: Container(
-                  child: SingleChildScrollView(
-                physics: ClampingScrollPhysics(),
-                child: Column(
+            Dialog(
+                insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, top: 204.h),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  alignment: Alignment.bottomCenter,
                   children: [
-                    image != null
-                        ? ClipRRect(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(15.0),
-                              topRight: Radius.circular(15.0),
-                            ),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              child: Image.asset(
-                                image ?? AssetUtils.apple,
-                                fit: BoxFit.fill,
+                    WillPopScope(
+                      onWillPop: () async => false,
+                      child: Container(
+                          child: SingleChildScrollView(
+                        physics: ClampingScrollPhysics(),
+                        child: Column(
+                          children: [
+                            image != null
+                                ? ClipRRect(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(15.0),
+                                      topRight: Radius.circular(15.0),
+                                    ),
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: Image.asset(
+                                        image ?? AssetUtils.apple,
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                  )
+                                : Container(),
+                            SizedBox(height: 25.h),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+                              child: Text(
+                                title,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    fontSize: 20.t,
+                                    fontWeight: FontWeight.w600),
                               ),
                             ),
-                          )
-                        : Container(),
-                    SizedBox(height: 25.h),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 24.0.w),
-                      child: Text(
-                        title,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont, fontSize: 20.t, fontWeight: FontWeight.w600),
-                      ),
+                            SizedBox(height: 31.h),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+                              child: descriptionWidget,
+                            ),
+                            SizedBox(height: 30.h),
+                            Padding(
+                              padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 40.h),
+                              child: AppPrimaryButton(
+                                onPressed: () {
+                                  onSelected!.call();
+                                },
+                                text: S.of(context).confirm,
+                              ),
+                            )
+                          ],
+                        ),
+                      )),
                     ),
-                    SizedBox(height: 31.h),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 24.0.w),
-                      child: descriptionWidget,
-                    ),
-                    SizedBox(height: 30.h),
-                    Padding(
-                      padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 40.h),
-                      child: AppPrimaryButton(
-                        onPressed: () {
-                          onSelected!.call();
+                    Positioned(
+                      bottom: -24.h,
+                      child: InkWell(
+                        onTap: () {
+                          onDismissed?.call();
                         },
-                        text: S.of(context).confirm,
+                        child: Container(
+                            height: 48.h,
+                            width: 48.h,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Theme.of(context).colorScheme.onBackground),
+                                shape: BoxShape.circle,
+                                color: Theme.of(context).colorScheme.secondary),
+                            child: Image.asset(
+                              AssetUtils.close_bold,
+                              scale: 3.5,
+                            )),
                       ),
                     )
                   ],
-                ),
-              )),
-            ),
-            Positioned(
-              bottom: -24.h,
-              child: InkWell(
-                onTap: () {
-                  onDismissed?.call();
-                },
-                child: Container(
-                    height: 48.h,
-                    width: 48.h,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Theme.of(context).colorScheme.onBackground),
-                        shape: BoxShape.circle,
-                        color: Theme.of(context).colorScheme.secondary),
-                    child: Image.asset(
-                      AssetUtils.close_bold,
-                      scale: 3.5,
-                    )),
+                )),
+            GestureDetector(
+              onTap: () {
+                onDismissed?.call();
+              },
+              child: Container(
+                height: 24.h,
+                color: Colors.transparent,
               ),
             )
           ],
-        ));
+        ),
+      ),
+    );
   }
 }

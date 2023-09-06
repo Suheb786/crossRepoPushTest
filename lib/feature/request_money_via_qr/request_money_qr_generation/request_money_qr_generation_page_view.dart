@@ -8,7 +8,6 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
-import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/payment/account_swiching/payment_account_switcher.dart';
 import 'package:neo_bank/feature/request_money_via_qr/qr_screen/qr_screen_page.dart';
@@ -25,8 +24,6 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-
-import '../../../di/dashboard/dashboard_modules.dart';
 
 class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQrGenerationPageViewModel> {
   RequestMoneyQrGenerationPageView(ProviderBase model) : super(model);

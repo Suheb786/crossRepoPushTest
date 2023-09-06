@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:domain/constants/enum/evoucher_history_status_enum.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,6 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/custom_bullet_with_title_widget.dart';
 import 'package:neo_bank/ui/molecules/evoucher/evoucher_text_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';

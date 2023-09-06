@@ -1,7 +1,4 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:domain/constants/error_types.dart';
-import 'package:domain/error/app_error.dart';
-import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

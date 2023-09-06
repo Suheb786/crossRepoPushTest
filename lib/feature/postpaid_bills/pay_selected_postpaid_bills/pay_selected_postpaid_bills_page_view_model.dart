@@ -8,9 +8,7 @@ import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/usecase/bill_payment/pay_post_paid_bill_usecase.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';

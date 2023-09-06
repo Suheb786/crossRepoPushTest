@@ -18,7 +18,6 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-import '../../di/payment/payment_modules.dart';
 import '../../ui/molecules/app_svg.dart';
 import '../../utils/asset_utils.dart';
 

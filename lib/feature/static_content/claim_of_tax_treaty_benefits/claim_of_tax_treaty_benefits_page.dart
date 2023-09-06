@@ -4,9 +4,6 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/static_content/static_content_modules.dart';
 import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/claim_of_tax_treaty_benefits_page_view.dart';
 import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/claim_of_tax_treaty_benefits_page_view_model.dart';
-import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 
 class ClaimOfTaxTreatyBenefitsPage extends BasePage<ClaimOfTaxTreatyBenefitsPageViewModel> {
   final ClaimOfTaxTreatyBenefitsArguments _taxTreatyBenefitsArguments;

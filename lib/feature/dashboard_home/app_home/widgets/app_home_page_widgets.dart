@@ -5,6 +5,7 @@ import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -12,7 +13,6 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../../../main/navigation/route_paths.dart';
 import '../../../../ui/molecules/card/settings_tile.dart';
-import '../../../../ui/molecules/dialog/sub_accounts_dialogs/confirmation_dialog/confirmation_dialog.dart';
 import '../../../../utils/asset_utils.dart';
 
 class AppHomePageWidgets {
@@ -138,12 +138,12 @@ class OpenSubAccountTile extends StatelessWidget {
       tileIcon: AssetUtils.openSubAccountIcon,
       title: S.current.openSubAccount,
       onTap: () {
-        return ConfirmationDialog.show(context,
+        return InformationDialog.show(context,
             title: S.current.openSubAccount,
             descriptionWidget: Text(S.current.openSubAccountDescription),
             image: AssetUtils.openSubAccountIcon,
             imageHight: 40.h,
-            imageWidth: 40.w, onConfirmed: () {
+            imageWidth: 40.w, onSelected: () {
           Navigator.pop(context);
           model.getAccount();
         }, onDismissed: () {
@@ -197,12 +197,12 @@ class CloseSubAccount extends StatelessWidget {
               error: ErrorInfo(message: ''),
               type: ErrorType.TRANSFER_REMAINING_BALANCE_TO_CLOSE_ACCOUNT));
         } else {
-          ConfirmationDialog.show(context,
+          InformationDialog.show(context,
               title: S.current.closeSubAccount,
               descriptionWidget: Text(S.current.closeSubAccountDescription),
               image: AssetUtils.closeSubAccountIcon,
               imageHight: 40.h,
-              imageWidth: 40.w, onConfirmed: () {
+              imageWidth: 40.w, onSelected: () {
             Navigator.pop(context);
             model.closeSubAccount(
                 iban: model.selectedAccount?.iban ?? "",

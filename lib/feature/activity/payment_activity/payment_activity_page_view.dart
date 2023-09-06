@@ -4,7 +4,6 @@ import 'package:domain/model/cliq/request_money_activity/request_money_activity_
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/activity/activity_modules.dart';
 import 'package:neo_bank/feature/activity/payment_activity/payment_activity_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';

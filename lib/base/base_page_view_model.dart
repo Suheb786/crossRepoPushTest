@@ -11,7 +11,6 @@ import 'package:neo_bank/base/base_view_model.dart';
 import 'package:neo_bank/di/usecase/app_flyer/app_flyer_usecase-provider.dart';
 import 'package:neo_bank/di/usecase/apple_pay/apple_pay_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/help_center/help_center_usecase_provider.dart';
-import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';

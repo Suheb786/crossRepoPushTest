@@ -11,7 +11,6 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pay_all_postpaid_bills_page_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -31,7 +30,6 @@ import '../../../di/payment/payment_modules.dart';
 import '../../../ui/molecules/app_keyboard_hide.dart';
 import '../../../utils/app_constants.dart';
 import '../../payment/payment_home/payment_home_view_model.dart';
-import '../new_bill/new_bills_page.dart';
 
 class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBillsPageViewModel> {
   PayAllPostPaidBillsPageView(ProviderBase model) : super(model);
