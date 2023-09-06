@@ -6,7 +6,6 @@ import 'package:neo_bank/feature/sub_account/transfer/select_transfer/select_tra
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 import '../../../../base/base_page_view_model.dart';
-import '../../../../generated/l10n.dart';
 import '../../../../ui/molecules/textfield/app_textfield.dart';
 import '../../../../utils/request_manager.dart';
 import '../../../../utils/resource.dart';

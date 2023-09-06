@@ -1,4 +1,3 @@
-import 'package:card_swiper/card_swiper.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/activity/activity_response.dart';
 import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';

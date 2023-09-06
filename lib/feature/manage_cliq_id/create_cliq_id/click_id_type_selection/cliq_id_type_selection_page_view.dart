@@ -243,6 +243,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                       text: S.of(context).next,
                                                       isDisabled: !isValid!,
                                                       onPressed: () {
+                                                        FocusScope.of(context).unfocus();
                                                         model.validateUserInput();
                                                       },
                                                     );

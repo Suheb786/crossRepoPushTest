@@ -18460,26 +18460,6 @@ class S {
     );
   }
 
-  /// `Done`
-  String get done {
-    return Intl.message(
-      'Done',
-      name: 'done',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Okay`
-  String get okey {
-    return Intl.message(
-      'Okay',
-      name: 'okey',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `View More`
   String get view_more {
     return Intl.message(

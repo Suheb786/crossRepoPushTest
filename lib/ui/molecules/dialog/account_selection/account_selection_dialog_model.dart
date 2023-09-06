@@ -1,8 +1,6 @@
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
-import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/generated/l10n.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AccountSelectionDialogModel extends BasePageViewModel {
