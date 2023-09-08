@@ -1,3 +1,5 @@
+import 'package:data/network/utils/get_error.dart';
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/sub_account/account_to_account_transfer_response.dart';
 import 'package:domain/usecase/sub_account/add_account_usecase.dart';
@@ -41,6 +43,9 @@ class SelectTransferPageViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
+          if (event.appError!.type == ErrorType.ZERO_AMOUNT) {
+            amountKey.currentState!.isValid = false;
+          }
         } else if (event.status == Status.SUCCESS) {}
       });
     });
