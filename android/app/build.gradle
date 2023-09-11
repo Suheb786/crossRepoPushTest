@@ -28,8 +28,8 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdkVersion 33
-
+    compileSdk 33
+    //namespace 'com.codebaseneo.neo_bank'
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
