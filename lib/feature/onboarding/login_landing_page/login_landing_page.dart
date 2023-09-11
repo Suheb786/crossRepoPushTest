@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:data/helper/secure_storage_helper.dart';
 import 'package:data/helper/shared_preference_helper.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +39,16 @@ class LoginLandingPageState extends BaseStatefulPage<LoginLandingPageViewModel, 
         } else {
           getViewModel().getCurrentUser();
         }
+      }
+      if (Platform.isIOS) {
+        getViewModel().timer = new Timer(
+          const Duration(milliseconds: 1000),
+          () {
+            getViewModel().onResumeDynamicLink();
+          },
+        );
+      } else {
+        getViewModel().initDynamicLink();
       }
     }
     super.didChangeAppLifecycleState(state);

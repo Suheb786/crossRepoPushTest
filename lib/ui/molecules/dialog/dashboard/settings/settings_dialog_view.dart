@@ -31,6 +31,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../../../../feature/account_settings/account_settings_page.dart';
@@ -115,7 +116,15 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                                   fontSize: 14.t,
                                   fontWeight: FontWeight.w400,
                                 ),
-                              ), onSelected: () {
+                              ), onSelected: () async {
+                            String userPromoCode = ProviderScope.containerOf(context)
+                                    .read(appHomeViewModelProvider)
+                                    .dashboardDataContent
+                                    .userPromoCode ??
+                                "";
+
+                            model.getReferCode(userPromoCode: userPromoCode);
+
                             Navigator.pop(context);
                           }, onDismissed: () {
                             Navigator.pop(context);
@@ -274,98 +283,110 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                     model.updateShowPages(context: context, pages: currentPages);
                   },
                   dataBuilder: (context, profileData) {
-                    return AppStreamBuilder<int>(
-                        stream: model.currentStep,
-                        initialData: 0,
-                        dataBuilder: (context, currentValue) {
-                          return Dialog(
-                            elevation: 0.0,
-                            insetPadding: EdgeInsets.zero,
-                            backgroundColor: Theme.of(context).primaryColorDark.withOpacity(0.4),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Container(
-                                  height: 180.h,
-                                  child: PageView.builder(
-                                    itemCount: (model.showPages).length,
-                                    controller: pageController,
-                                    physics: const ClampingScrollPhysics(),
-                                    onPageChanged: (int value) {
-                                      model.updatePage(value);
-                                    },
-                                    itemBuilder: (context, index) {
-                                      return AnimatedBuilder(
-                                        animation: pageController,
-                                        builder: (context, child) {
-                                          double value = 0;
+                    return AppStreamBuilder<Resource<String>>(
+                        initialData: Resource.none(),
+                        stream: model.referDynamicLinkStream,
+                        onData: (data) async {
+                          if (data.status == Status.SUCCESS) {
+                            if (data.data != null) {
+                              await Share.share(data.data ?? '');
+                            }
+                          }
+                        },
+                        dataBuilder: (context, snapshot) {
+                          return AppStreamBuilder<int>(
+                              stream: model.currentStep,
+                              initialData: 0,
+                              dataBuilder: (context, currentValue) {
+                                return Dialog(
+                                  elevation: 0.0,
+                                  insetPadding: EdgeInsets.zero,
+                                  backgroundColor: Theme.of(context).primaryColorDark.withOpacity(0.4),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Container(
+                                        height: 180.h,
+                                        child: PageView.builder(
+                                          itemCount: (model.showPages).length,
+                                          controller: pageController,
+                                          physics: const ClampingScrollPhysics(),
+                                          onPageChanged: (int value) {
+                                            model.updatePage(value);
+                                          },
+                                          itemBuilder: (context, index) {
+                                            return AnimatedBuilder(
+                                              animation: pageController,
+                                              builder: (context, child) {
+                                                double value = 0;
 
-                                          ///Y coordinate
-                                          double translateValue = 0;
+                                                ///Y coordinate
+                                                double translateValue = 0;
 
-                                          ///Checking pageController is ready to use
-                                          if (pageController.position.hasContentDimensions) {
-                                            ///For current page value = 0, so rotation and translation value is zero
-                                            double indexFinal = index.toDouble();
-                                            value = indexFinal - (pageController.page ?? 0);
-                                            value = (value * 0.01);
+                                                ///Checking pageController is ready to use
+                                                if (pageController.position.hasContentDimensions) {
+                                                  ///For current page value = 0, so rotation and translation value is zero
+                                                  double indexFinal = index.toDouble();
+                                                  value = indexFinal - (pageController.page ?? 0);
+                                                  value = (value * 0.01);
 
-                                            if (value.abs() >= 0.02) {
-                                              translateValue = value.abs() * 500;
-                                            } else if (value.abs() >= 0.018) {
-                                              translateValue = value.abs() * 460;
-                                            } else if (value.abs() >= 0.016) {
-                                              translateValue = value.abs() * 420;
-                                            } else if (value.abs() >= 0.014) {
-                                              translateValue = value.abs() * 380;
-                                            } else if (value.abs() >= 0.012) {
-                                              translateValue = value.abs() * 340;
-                                            } else {
-                                              translateValue = value.abs() * 300;
-                                            }
-                                          }
-                                          return Transform.rotate(
-                                            angle: StringUtils.isDirectionRTL(context)
-                                                ? (math.pi * -value)
-                                                : (math.pi * value),
-                                            child: Transform.translate(
-                                              offset: Offset(0, translateValue),
-                                              child: _cards(
-                                                  index, model, model.showPages[index], currentValue ?? -1),
-                                            ),
-                                          );
+                                                  if (value.abs() >= 0.02) {
+                                                    translateValue = value.abs() * 500;
+                                                  } else if (value.abs() >= 0.018) {
+                                                    translateValue = value.abs() * 460;
+                                                  } else if (value.abs() >= 0.016) {
+                                                    translateValue = value.abs() * 420;
+                                                  } else if (value.abs() >= 0.014) {
+                                                    translateValue = value.abs() * 380;
+                                                  } else if (value.abs() >= 0.012) {
+                                                    translateValue = value.abs() * 340;
+                                                  } else {
+                                                    translateValue = value.abs() * 300;
+                                                  }
+                                                }
+                                                return Transform.rotate(
+                                                  angle: StringUtils.isDirectionRTL(context)
+                                                      ? (math.pi * -value)
+                                                      : (math.pi * value),
+                                                  child: Transform.translate(
+                                                    offset: Offset(0, translateValue),
+                                                    child: _cards(index, model, model.showPages[index],
+                                                        currentValue ?? -1),
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 30.h,
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.pop(context);
                                         },
-                                      );
-                                    },
+                                        child: Container(
+                                          padding: EdgeInsets.all(15),
+                                          height: 80.w,
+                                          width: 80.w,
+                                          decoration: BoxDecoration(
+                                            color: Theme.of(context).colorScheme.secondary,
+                                            border: Border.all(
+                                                color: Theme.of(context).primaryColorDark, width: 12),
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: AppSvg.asset(AssetUtils.close,
+                                              color: Theme.of(context).textTheme.bodyLarge?.color),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 24.0.h,
+                                      ),
+                                    ],
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 30.h,
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Container(
-                                    padding: EdgeInsets.all(15),
-                                    height: 80.w,
-                                    width: 80.w,
-                                    decoration: BoxDecoration(
-                                      color: Theme.of(context).colorScheme.secondary,
-                                      border:
-                                          Border.all(color: Theme.of(context).primaryColorDark, width: 12),
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: AppSvg.asset(AssetUtils.close,
-                                        color: Theme.of(context).textTheme.bodyLarge?.color),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 24.0.h,
-                                ),
-                              ],
-                            ),
-                          );
+                                );
+                              });
                         });
                   });
             });

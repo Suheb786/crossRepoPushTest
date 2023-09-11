@@ -46,14 +46,16 @@ abstract class UserRepository {
       {String? mobileNumber, String? countryCode});
 
   /// register prospect user
-  Future<Either<NetworkError, User>> registerProspectUser(
-      {String? countryName,
-      String? email,
-      String? mobileNumber,
-      String? mobileCode,
-      String? password,
-      String? confirmPassword,
-      String? userName});
+  Future<Either<NetworkError, User>> registerProspectUser({
+    String? countryName,
+    String? email,
+    String? mobileNumber,
+    String? mobileCode,
+    String? password,
+    String? confirmPassword,
+    String? userName,
+    String? referralCode,
+  });
 
   /// verify mobile otp
   Future<Either<NetworkError, bool>> verifyMobileOtp({String? otpCode});

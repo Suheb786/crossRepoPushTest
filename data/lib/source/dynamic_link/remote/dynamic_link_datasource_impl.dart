@@ -25,4 +25,9 @@ class DynamicLinkDataSourceImpl extends DynamicLinkDataSource {
   Future<Uri> initDynamicLinks() {
     return _dynamicLinkService.initDynamicLinks();
   }
+
+  @override
+  Future<String> referDynamicLink({required String userPromoCode}) {
+    return _dynamicLinkService.referDynamicLink(userPromoCode: userPromoCode);
+  }
 }
