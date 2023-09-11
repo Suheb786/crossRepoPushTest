@@ -30,9 +30,6 @@ class DynamicLinksService {
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: uriPrefix,
       link: Uri.parse('${uriPrefix}/payments?requestId=${requestId}'),
-      navigationInfoParameters: NavigationInfoParameters(
-        forcedRedirectEnabled: false,
-      ),
       androidParameters: AndroidParameters(
         packageName: packageInfo.packageName,
         minimumVersion: 21,
