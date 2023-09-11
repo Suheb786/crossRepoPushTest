@@ -218,6 +218,7 @@ class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewMo
                                       dataBuilder: (context, isValid) {
                                         return AppPrimaryButton(
                                           onPressed: () {
+                                            FocusScope.of(context).unfocus();
                                             model.accountToAccountTransfer();
                                           },
                                           isDisabled: !isValid!,

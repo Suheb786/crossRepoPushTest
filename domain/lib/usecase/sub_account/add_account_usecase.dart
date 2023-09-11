@@ -38,7 +38,9 @@ class AccountToAccountTransferUseCaseParams extends Params {
 
   @override
   Either<AppError, bool> verify() {
-    if ((fromAccountAvailableBalance ?? 0) < (TransferAmount ?? 0)) {
+    if ((TransferAmount ?? 0.0) <= 0) {
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.ZERO_AMOUNT, cause: Exception()));
+    } else if ((fromAccountAvailableBalance ?? 0) < (TransferAmount ?? 0)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.INSUFFICIENT_BALANCE_ACCOUNT_TRANSFER,
