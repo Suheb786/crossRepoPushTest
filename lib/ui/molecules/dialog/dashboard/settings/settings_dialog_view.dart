@@ -289,7 +289,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                         onData: (data) async {
                           if (data.status == Status.SUCCESS) {
                             if (data.data != null) {
-                              await Share.share(data.data ?? '');
+                              await Share.share(S.of(context).shareReferDescription(data.data ?? ''));
                             }
                           }
                         },

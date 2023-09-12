@@ -1853,6 +1853,11 @@
     "description": "referFriendDescription",
     "type": "string"
   },
+  "shareReferDescription": "مرحبا! انضم لعائلة بلينك اليوم. \n\nحمل التطبيق من خلال الرابط {shareReferDescription}",
+  "@shareReferDescription": {
+    "description": "shareReferDescription",
+    "type": "string"
+  },
   "invite": "الدعوة",
   "viewAllOffers": "جميع العروضات",
   "cliqTransactions": "الحركات السابقة",

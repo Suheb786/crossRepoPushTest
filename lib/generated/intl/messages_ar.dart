@@ -48,16 +48,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m12(scrollToSetDate) => "اختار التاريخ ${scrollToSetDate}";
 
-  static String m13(noOfTransaction) => "نوع الحركة ${noOfTransaction}";
+  static String m13(shareReferDescription) =>
+      "مرحبا! انضم لعائلة بلينك اليوم. \n\nحمل التطبيق من خلال الرابط ${shareReferDescription}";
+
+  static String m14(noOfTransaction) => "نوع الحركة ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "AccountIsLinkedToTheAlias": MessageLookupByLibrary.simpleMessage(
             "الحساب مربوط الى الاسم المستعار، لكن لم ننجح من جعله الحساب الرئيسي"),
         "ContactMarkFavouriteFailure": MessageLookupByLibrary.simpleMessage(
             "عفوا! لم يتم إضافة الصديق إلى قائمة المفضلين، حاول مرة ثانية لاحقا"),
-        "CustomerOfInvalidAlias":
-            MessageLookupByLibrary.simpleMessage("الاسم المستعار غير صحيح"),
+        "CustomerOfInvalidAlias": MessageLookupByLibrary.simpleMessage("الاسم المستعار غير صحيح"),
         "Default": MessageLookupByLibrary.simpleMessage("افتراضي"),
         "ErrorOnRequestToPayResult":
             MessageLookupByLibrary.simpleMessage("حدث خطأ عند طلب الاموال"),
@@ -2813,25 +2816,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "setupAndPersonalizeYourNewDebitCard":
             MessageLookupByLibrary.simpleMessage("اصدر بطاقة الدفع المباشر"),
         "share": MessageLookupByLibrary.simpleMessage("شارك"),
-        "shareAccountInfo":
-            MessageLookupByLibrary.simpleMessage("شارك معلومات حسابك"),
-        "shareAccountInformation":
-            MessageLookupByLibrary.simpleMessage("مشاركة تفاصيل الحساب"),
+        "shareAccountInfo": MessageLookupByLibrary.simpleMessage("شارك معلومات حسابك"),
+        "shareAccountInformation": MessageLookupByLibrary.simpleMessage("مشاركة تفاصيل الحساب"),
         "shareCliqId": MessageLookupByLibrary.simpleMessage("شارك CliQ"),
         "shareId": MessageLookupByLibrary.simpleMessage("مشاركة معلومات CLIQ"),
         "shareMyReceipt": MessageLookupByLibrary.simpleMessage("مشاركة الوصل"),
         "sharePdf": MessageLookupByLibrary.simpleMessage("مشاركة ملف PDF"),
         "shareQr": MessageLookupByLibrary.simpleMessage("شارك رمز QR"),
-        "showQrForScanning":
-            MessageLookupByLibrary.simpleMessage("اعرض رمز QR لمسحه"),
+        "shareReferDescription": m13,
+        "showQrForScanning": MessageLookupByLibrary.simpleMessage("اعرض رمز QR لمسحه"),
         "signatureUploadDes": MessageLookupByLibrary.simpleMessage(
             "وقّع على ورقة بيضاء وحمّل التوقيع كإفصاح عن معلوماتك حسب قانون الامتثال الضريبي للحسابات الأجنبية "),
-        "socialSecurityCard":
-            MessageLookupByLibrary.simpleMessage("بطاقة الضمان الاجتماعي"),
-        "socialSecurityCardDesc": MessageLookupByLibrary.simpleMessage(
-            "بنحتاج منك صورة عن بطاقة الضمان الاجتماعي"),
-        "socialSecurityHintText":
-            MessageLookupByLibrary.simpleMessage("###-##-####"),
+        "socialSecurityCard": MessageLookupByLibrary.simpleMessage("بطاقة الضمان الاجتماعي"),
+        "socialSecurityCardDesc":
+            MessageLookupByLibrary.simpleMessage("بنحتاج منك صورة عن بطاقة الضمان الاجتماعي"),
+        "socialSecurityHintText": MessageLookupByLibrary.simpleMessage("###-##-####"),
         "somethingWentWrong":
             MessageLookupByLibrary.simpleMessage("هناك خطأ ما"),
         "spendJod": MessageLookupByLibrary.simpleMessage(
@@ -3039,28 +3038,20 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-118)"),
         "transictionHistory":
             MessageLookupByLibrary.simpleMessage("الحوالات السابقة"),
-        "travelAndTransportation":
-            MessageLookupByLibrary.simpleMessage("السفر و التنقل"),
-        "treatyClaimRate": MessageLookupByLibrary.simpleMessage(
-            "معدل مطالبة الاتفاق الضريبي (%)"),
+        "travelAndTransportation": MessageLookupByLibrary.simpleMessage("السفر و التنقل"),
+        "treatyClaimRate": MessageLookupByLibrary.simpleMessage("معدل مطالبة الاتفاق الضريبي (%)"),
         "tryAgainLater": MessageLookupByLibrary.simpleMessage(
             "في مشكلة بدفعتك، حاول كمان مرة. إذا بدك مساعدة، تواصل معنا."),
-        "typeOfExpectedTransactions":
-            MessageLookupByLibrary.simpleMessage("نوع الحركات المتوقعة"),
+        "typeOfExpectedTransactions": MessageLookupByLibrary.simpleMessage("نوع الحركات المتوقعة"),
         "typeOfIncome": MessageLookupByLibrary.simpleMessage("نوع الدخل"),
-        "typeOfTransactions":
-            MessageLookupByLibrary.simpleMessage("نوع الحركات"),
-        "typeOfTransactionsSmall": m13,
-        "unBlockPin":
-            MessageLookupByLibrary.simpleMessage("فك حظر الرمز السري PIN"),
+        "typeOfTransactions": MessageLookupByLibrary.simpleMessage("نوع الحركات"),
+        "typeOfTransactionsSmall": m14,
+        "unBlockPin": MessageLookupByLibrary.simpleMessage("فك حظر الرمز السري PIN"),
         "unBlockPinDescription": MessageLookupByLibrary.simpleMessage(
             "لقد تم ايقاف الرمز السري للبطاقة لإحتياطات أمنية. للاستمرار باستخدام الرمز السري لاجراء عمليات الشراء يرجى القيام باعادة تفعيل الرمز السري. عند اعادة تفعيل الرمز السري، قد يتم رفض أول عملية باستخدامه."),
-        "unLinkAccountWithCliqId": MessageLookupByLibrary.simpleMessage(
-            "الغاء ربط الحساب مع حساب كليك"),
-        "unableToCompleteTransaction": MessageLookupByLibrary.simpleMessage(
-            "خطأ! الحركة غير ممكنة حالياً."),
-        "unableToProceedTransaction": MessageLookupByLibrary.simpleMessage(
-            "خطأ! الحركة غير ممكنة حالياً."),
+        "unLinkAccountWithCliqId": MessageLookupByLibrary.simpleMessage("الغاء ربط الحساب مع حساب كليك"),
+        "unableToCompleteTransaction": MessageLookupByLibrary.simpleMessage("خطأ! الحركة غير ممكنة حالياً."),
+        "unableToProceedTransaction": MessageLookupByLibrary.simpleMessage("خطأ! الحركة غير ممكنة حالياً."),
         "unableToVerifyIDCard": MessageLookupByLibrary.simpleMessage(
             "عملينا العزيز، ما قدرنا نتحقق من رقم هويتك الشخصية. حاول امسح الهوية كمان مرة أو تواصل مع مركز خدمات الزبائن على 06-5200100"),
         "unauthorize": MessageLookupByLibrary.simpleMessage(
