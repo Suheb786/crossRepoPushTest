@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -18557,6 +18558,16 @@ class S {
       name: 'referFriendDescription',
       desc: 'referFriendDescription',
       args: [referFriendDescription],
+    );
+  }
+
+  /// `Hey! Let’s join and grow Blink community, today!\n \n Download yours at {shareReferDescription}`
+  String shareReferDescription(Object shareReferDescription) {
+    return Intl.message(
+      'Hey! Let’s join and grow Blink community, today!\n \n Download yours at $shareReferDescription',
+      name: 'shareReferDescription',
+      desc: 'shareReferDescription',
+      args: [shareReferDescription],
     );
   }
 

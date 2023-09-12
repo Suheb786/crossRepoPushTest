@@ -115,7 +115,8 @@ class UserRepositoryImpl extends UserRepository {
       String? mobileCode,
       String? password,
       String? confirmPassword,
-      String? userName}) async {
+      String? userName,
+      String? referralCode}) async {
     final result = await safeApiCall(
       _remoteDS.registerProspectUser(
           countryName: countryName,
@@ -124,7 +125,8 @@ class UserRepositoryImpl extends UserRepository {
           mobileCode: mobileCode,
           password: password,
           confirmPassword: confirmPassword,
-          userName: userName),
+          userName: userName,
+          referralCode: referralCode),
     );
     return result!.fold(
       (l) => Left(l),

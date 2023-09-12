@@ -13,4 +13,8 @@ abstract class DynamicLinkRepository {
 
   /// log events
   Future<Either<BaseError, Uri>> initDynamicLinks();
+
+  Future<Either<BaseError, String>> referDynamicLink({
+    required String userPromoCode,
+  });
 }

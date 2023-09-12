@@ -38,14 +38,16 @@ abstract class UserRemoteDS {
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
       {String? mobileNumber, String? countryCode});
 
-  Future<HttpResponse<RegisterResponseEntity>> registerProspectUser(
-      {String? countryName,
-      String? email,
-      String? mobileNumber,
-      String? mobileCode,
-      String? password,
-      String? confirmPassword,
-      String? userName});
+  Future<HttpResponse<RegisterResponseEntity>> registerProspectUser({
+    String? countryName,
+    String? email,
+    String? mobileNumber,
+    String? mobileCode,
+    String? password,
+    String? confirmPassword,
+    String? userName,
+    String? referralCode,
+  });
 
   Future<HttpResponse<SaveIdInfoResponseEntity>> saveIdInfo(
       {String? id,
