@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -18606,6 +18605,16 @@ class S {
     return Intl.message(
       'Offers Category',
       name: 'offersCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `One-Way`
+  String get oneWay {
+    return Intl.message(
+      'One-Way',
+      name: 'oneWay',
       desc: '',
       args: [],
     );

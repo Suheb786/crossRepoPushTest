@@ -1890,5 +1890,6 @@
   "invite": "Invite",
   "viewAllOffers": "View All Offers",
   "profileSettings_": "Profile Settings",
-  "offersCategory": "Offers Category"
+  "offersCategory": "Offers Category",
+  "oneWay": "One-Way"
 }
