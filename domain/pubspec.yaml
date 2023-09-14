@@ -15,7 +15,6 @@ dependencies:
   dartz: ^0.10.1
   rxdart: ^0.27.7
   riverpod: ^2.4.0
-  device_info: ^2.0.3
 
 dev_dependencies:
   flutter_test:

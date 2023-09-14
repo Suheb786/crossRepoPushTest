@@ -38,7 +38,7 @@ dependencies:
   encrypt: ^5.0.1
   path_provider: ^2.1.1
   infobip_mobilemessaging: ^1.4.0
-  permission_handler: ^10.4.5
+  permission_handler: ^11.0.0
   tuple: ^2.0.2
   flutter_jailbreak_detection: ^1.10.0
   http_certificate_pinning: any
