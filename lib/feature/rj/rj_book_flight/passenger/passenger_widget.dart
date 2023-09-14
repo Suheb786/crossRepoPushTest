@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/rj/rj_modules.dart';
-import 'package:neo_bank/feature/rj/rj_book_flight/passenger_view_%20model.dart';
+import 'package:neo_bank/feature/rj/rj_book_flight/passenger/passenger_view_%20model.dart';
 import 'package:neo_bank/feature/rj/rj_book_flight/rj_book_flight_page_view_model.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
-import '../../../base/base_widget.dart';
-import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
-import '../../../utils/string_utils.dart';
+import '../../../../base/base_widget.dart';
+import '../../../../ui/molecules/stream_builder/app_stream_builder.dart';
+import '../../../../utils/string_utils.dart';
 
 class PassengerWidget extends StatelessWidget {
   var count = 0;
@@ -62,14 +62,17 @@ class PassengerWidget extends StatelessWidget {
                     onTap.call(passengerViewModel.passengerList);
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                    height: 32.w,
+                    width: 32.w,
+                    alignment: Alignment.center,
                     child: Text(
                       '-',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 20.t,
-                          color: Theme.of(context).colorScheme.onSecondaryContainer),
+                        fontSize: 20.t,
+                        height: 1.59,
+                        color: Theme.of(context).colorScheme.onSecondaryContainer,
+                      ),
                     ),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
@@ -80,17 +83,17 @@ class PassengerWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 16.w,
-                ),
-                Text(data.toString(),
-                    style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20.t,
-                        color: Theme.of(context).colorScheme.surfaceVariant)),
-                SizedBox(
-                  width: 16.w,
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 16.w),
+                  width: 22.w,
+                  alignment: Alignment.center,
+                  child: Text(data.toString(),
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20.t,
+                          height: 1.65,
+                          color: Theme.of(context).colorScheme.surfaceVariant)),
                 ),
                 GestureDetector(
                   onTap: () {
@@ -98,11 +101,17 @@ class PassengerWidget extends StatelessWidget {
                     onTap.call(passengerViewModel.passengerList);
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                    height: 32.w,
+                    width: 32.w,
+                    alignment: Alignment.center,
                     child: Text(
                       '+',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 20.t, color: Theme.of(context).colorScheme.onSecondaryContainer),
+                        fontSize: 20.t,
+                        height: 1.59,
+                        color: Theme.of(context).colorScheme.onSecondaryContainer,
+                      ),
                     ),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,

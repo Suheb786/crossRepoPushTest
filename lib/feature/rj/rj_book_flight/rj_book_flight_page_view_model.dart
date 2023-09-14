@@ -87,18 +87,14 @@ class RjFlightBookingViewModel extends BasePageViewModel {
 
   ///Controllers and Keys
   TextEditingController fromController = new TextEditingController();
-  GlobalKey<AppTextFieldState> fromKey = GlobalKey(debugLabel: "from");
 
   TextEditingController toController = new TextEditingController();
-  GlobalKey<AppTextFieldState> toKey = GlobalKey(debugLabel: "to");
 
   ///date selected for depart on
   TextEditingController selectedDepartOnDateController = new TextEditingController();
-  GlobalKey<AppTextFieldState> selectedDepartOnDateKey = GlobalKey(debugLabel: "departOn");
 
   ///date selected for return on
   TextEditingController selectedReturnOnDateController = new TextEditingController();
-  GlobalKey<AppTextFieldState> selectedReturnOnDateKey = GlobalKey(debugLabel: "returnOn");
 
   ScrollController scrollController = new ScrollController();
 
@@ -112,6 +108,14 @@ class RjFlightBookingViewModel extends BasePageViewModel {
     Passenger('Children', '2 to 12 years'),
     Passenger('Infant', 'Below 2 years'),
   ];
+
+  /// ------------- tabChange listener -----------------------
+
+  ValueNotifier<int> tabChangeNotifier = ValueNotifier(0);
+
+  PublishSubject<int> switchTabSubject = PublishSubject();
+
+  Stream<int> get switchTabStream => switchTabSubject.stream;
 
   RjFlightBookingViewModel(
       this._getDestinationUseCase, this._getOneWayTripLinkUseCase, this._getTwoWayTripLinkUseCase) {
@@ -150,6 +154,8 @@ class RjFlightBookingViewModel extends BasePageViewModel {
         }
       });
     });
+
+    getDestination();
   }
 
   /// selectedTab

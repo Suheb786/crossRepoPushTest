@@ -18619,6 +18619,16 @@ class S {
       args: [],
     );
   }
+
+  /// `One-Way`
+  String get oneWay {
+    return Intl.message(
+      'One-Way',
+      name: 'oneWay',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
