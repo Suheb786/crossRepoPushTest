@@ -19,7 +19,8 @@ class GetDashboardDataContent {
       this.allowSubAccount,
       this.email,
       this.accounts,
-      this.availableBalance});
+      this.availableBalance,
+      this.userPromoCode});
 
   Account? account;
   final bool? somethingWrong;
@@ -36,4 +37,5 @@ class GetDashboardDataContent {
   final String? email;
   final List<Account>? accounts;
   final String? availableBalance;
+  final String? userPromoCode;
 }

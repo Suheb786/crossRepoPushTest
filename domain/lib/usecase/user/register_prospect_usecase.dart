@@ -21,7 +21,8 @@ class RegisterProspectUseCase extends BaseUseCase<BaseError, RegisterProspectUse
               userName: params.userName,
               password: params.password,
               confirmPassword: params.confirmPassword,
-              email: params.email))
+              email: params.email,
+              referralCode: params.referralCode))
           .fold((l) => Left(l), (user) async {
         user.email = params.email;
         return _repository.saveUser(user);
@@ -46,6 +47,7 @@ class RegisterProspectUseCaseParams extends Params {
   final String? password;
   final String? confirmPassword;
   final String? userName;
+  final String? referralCode;
 
   RegisterProspectUseCaseParams(
       {this.countryName,
@@ -54,7 +56,8 @@ class RegisterProspectUseCaseParams extends Params {
       this.mobileCode,
       this.password,
       this.confirmPassword,
-      this.userName});
+      this.userName,
+      this.referralCode});
 
   @override
   Either<AppError, bool> verify() {

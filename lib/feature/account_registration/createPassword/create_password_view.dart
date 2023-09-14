@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
+import 'package:neo_bank/di/login/login_module.dart';
 import 'package:neo_bank/feature/account_registration/createPassword/create_password_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -66,7 +67,11 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                         if (passwordData.status == Status.SUCCESS) {
                           model.passwordKey.currentState!.isValid = true;
                           model.confirmPasswordKey.currentState!.isValid = true;
+
                           model.registerUser(
+                            referralCode: ProviderScope.containerOf(context)
+                                .read(loginLandingViewModelProvider)
+                                .userPromoCode,
                             email: ProviderScope.containerOf(context)
                                 .read(addNumberViewModelProvider)
                                 .emailController
@@ -78,8 +83,8 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                 .text,
                             mobileCode: ProviderScope.containerOf(context)
                                     .read(addNumberViewModelProvider)
-                                    .countryData
-                                    .phoneCode ??
+                                .countryData
+                                .phoneCode ??
                                 '',
                           );
                         } else if (passwordData.status == Status.ERROR) {

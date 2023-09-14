@@ -1,6 +1,7 @@
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:domain/usecase/account_setting/get_profile_info/get_profile_info_usecase.dart';
+import 'package:domain/usecase/dashboard/refer_dynamic_link_usecase.dart';
 import 'package:domain/usecase/user/logout_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -85,7 +86,7 @@ class SettingsDialogViewModel extends BasePageViewModel {
 
   ///------------------initial onclick-----------------------///
 
-  SettingsDialogViewModel(this._logoutUseCase, this._getProfileInfoUseCase) {
+  SettingsDialogViewModel(this._logoutUseCase, this._getProfileInfoUseCase, this._referDynamicLinkUseCase) {
     _logoutRequest.listen((value) {
       RequestManager(value, createCall: () => _logoutUseCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
@@ -113,6 +114,19 @@ class SettingsDialogViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _referDynamicLinkRequest.listen((value) {
+      RequestManager(value, createCall: () => _referDynamicLinkUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        //  updateLoader();
+        _referDynamicLinkResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
     getProfileDetails();
   }
 
@@ -187,6 +201,18 @@ class SettingsDialogViewModel extends BasePageViewModel {
       }
     });
     return key;
+  }
+
+  ///Refer And Earn
+  final ReferDynamicLinkUseCase _referDynamicLinkUseCase;
+  PublishSubject<ReferDynamicLinkUseCaseParams> _referDynamicLinkRequest = PublishSubject();
+
+  PublishSubject<Resource<String>> _referDynamicLinkResponse = PublishSubject();
+
+  Stream<Resource<String>> get referDynamicLinkStream => _referDynamicLinkResponse.stream;
+
+  getReferCode({required String userPromoCode}) {
+    _referDynamicLinkRequest.safeAdd(ReferDynamicLinkUseCaseParams(userPromoCode: userPromoCode));
   }
 
   @override

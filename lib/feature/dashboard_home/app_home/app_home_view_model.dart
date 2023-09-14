@@ -1076,7 +1076,7 @@ class AppHomeViewModel extends BasePageViewModel {
   }
 
   void verifyQRData({required Uri uri}) {
-    if (uri.path.isNotEmpty && uri.queryParameters.isNotEmpty) {
+    if (uri.path.isNotEmpty && uri.queryParameters.isNotEmpty && uri.path.contains("/payments")) {
       isLinkOpened = true;
       var requestId = uri.queryParameters['requestId']?.replaceAll(' ', '+');
       verifyQR(requestId: requestId ?? '');

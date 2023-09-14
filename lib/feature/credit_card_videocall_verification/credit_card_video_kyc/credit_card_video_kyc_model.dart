@@ -11,7 +11,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:wakelock/wakelock.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 class CreditCardVideoKycViewModel extends BasePageViewModel {
   final CreditCardCallStatusUpdateUseCase _callStatusUpdateUseCase;
@@ -272,7 +272,7 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
     _callEndStatusUpdateRequest.close();
     _callEndStatusUpdateResponse.close();
     leaveAgoraChannel();
-    Wakelock.disable();
+    WakelockPlus.disable();
     super.dispose();
   }
 }
