@@ -62,14 +62,17 @@ class PassengerWidget extends StatelessWidget {
                     onTap.call(passengerViewModel.passengerList);
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                    height: 32.w,
+                    width: 32.w,
+                    alignment: Alignment.center,
                     child: Text(
                       '-',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 20.t,
-                          color: Theme.of(context).colorScheme.onSecondaryContainer),
+                        fontSize: 20.t,
+                        height: 1.59,
+                        color: Theme.of(context).colorScheme.onSecondaryContainer,
+                      ),
                     ),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
@@ -89,6 +92,7 @@ class PassengerWidget extends StatelessWidget {
                           fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w600,
                           fontSize: 20.t,
+                          height: 1.65,
                           color: Theme.of(context).colorScheme.surfaceVariant)),
                 ),
                 GestureDetector(
@@ -97,11 +101,17 @@ class PassengerWidget extends StatelessWidget {
                     onTap.call(passengerViewModel.passengerList);
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                    height: 32.w,
+                    width: 32.w,
+                    alignment: Alignment.center,
                     child: Text(
                       '+',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 20.t, color: Theme.of(context).colorScheme.onSecondaryContainer),
+                        fontSize: 20.t,
+                        height: 1.59,
+                        color: Theme.of(context).colorScheme.onSecondaryContainer,
+                      ),
                     ),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,

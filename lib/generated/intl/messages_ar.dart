@@ -2202,7 +2202,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "oneSymbol": MessageLookupByLibrary.simpleMessage("رمز"),
         "oneUpperCaseLetter":
             MessageLookupByLibrary.simpleMessage("1 حرف كبير"),
-        "oneWay": MessageLookupByLibrary.simpleMessage("One-Way"),
+        "oneWay": MessageLookupByLibrary.simpleMessage("ذهابا"),
         "onlinePurchase":
             MessageLookupByLibrary.simpleMessage("الشراء أونلاين"),
         "onlinePurchaseExceeded":

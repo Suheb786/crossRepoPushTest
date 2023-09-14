@@ -12,6 +12,7 @@ import '../../../../generated/l10n.dart';
 import '../../../../main/navigation/route_paths.dart';
 import '../../../../ui/molecules/app_svg.dart';
 import '../../../../ui/molecules/button/animated_button.dart';
+import '../../../../ui/molecules/button/app_primary_button.dart';
 import '../../../../ui/molecules/date_picker.dart';
 import '../../../../ui/molecules/dialog/rj/rj_flight_booking_to_dialog/to_dialog.dart';
 import '../../../../ui/molecules/stream_builder/app_stream_builder.dart';
@@ -173,6 +174,7 @@ class _RJBookingWidgetViewState extends State<RJBookingWidgetView> {
               Container(
                 height: 90.h,
                 child: ListView.separated(
+                  physics: const NeverScrollableScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return GestureDetector(
@@ -181,74 +183,44 @@ class _RJBookingWidgetViewState extends State<RJBookingWidgetView> {
                         model.selectedCabinClass(index);
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width / 2.15.w,
+                        width: (MediaQuery.of(context).size.width / 2) - 20.00 - 8.w,
                         child: AppStreamBuilder<int>(
                           stream: model.selectedCabinClassSubjectStream,
                           initialData: 0,
                           dataBuilder: (BuildContext context, data) {
                             ///based on index changing cabin class container border color
-                            return data == index
-                                ? Container(
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: Theme.of(context).colorScheme.onSecondaryContainer,
-                                        ),
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(8.w),
-                                        )),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          model.cabinClassOptionList[index].icon,
-                                          height: 24.h,
-                                          width: 24.h,
-                                        ),
-                                        SizedBox(
-                                          height: 10.h,
-                                        ),
-                                        Text(
-                                          model.cabinClassOptionList[index].option,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontSize: 12.t,
-                                              fontWeight: FontWeight.w600,
-                                              color: Theme.of(context).indicatorColor),
-                                        )
-                                      ],
-                                    ),
+                            return Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: data == index
+                                        ? Theme.of(context).colorScheme.onSecondaryContainer
+                                        : Theme.of(context).colorScheme.inverseSurface,
+                                  ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8.w),
+                                  )),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  AppSvg.asset(
+                                    model.cabinClassOptionList[index].icon,
+                                    height: 24,
+                                    width: 24,
+                                  ),
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
+                                  Text(
+                                    model.cabinClassOptionList[index].option,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontSize: 12.t,
+                                        fontWeight: FontWeight.w600,
+                                        color: Theme.of(context).indicatorColor),
                                   )
-                                : Container(
-                                    // width: 142.w,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: Theme.of(context).colorScheme.inverseSurface,
-                                        ),
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(8.w),
-                                        )),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          model.cabinClassOptionList[index].icon,
-                                          height: 24.h,
-                                          width: 24.h,
-                                        ),
-                                        SizedBox(
-                                          height: 10.h,
-                                        ),
-                                        Text(
-                                          model.cabinClassOptionList[index].option,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontSize: 12.t,
-                                              fontWeight: FontWeight.w600,
-                                              color: Theme.of(context).indicatorColor),
-                                        )
-                                      ],
-                                    ),
-                                  );
+                                ],
+                              ),
+                            );
                           },
                         ),
                       ),
@@ -295,53 +267,49 @@ class _RJBookingWidgetViewState extends State<RJBookingWidgetView> {
                   },
                   itemCount: model.passengerList.length),
               SizedBox(
-                height: 32.h,
+                height: 24.h,
               ),
-              GestureDetector(
-                onHorizontalDragEnd: (details) {
-                  if (details.primaryVelocity!.isNegative) {
-                    model.getTripLink(context);
-                  }
-                },
-                child: AppStreamBuilder<Resource<GetTripResponse>>(
-                    stream: model.getTwoWayLinkStream,
-                    initialData: Resource.none(),
-                    onData: (data) {
-                      if (data.status == Status.SUCCESS) {
-                        Navigator.pushNamed(context, RoutePaths.RjBookingInAppWebView,
-                            arguments: RjBookingPageArguments(url: data.data?.content?.content?.link));
-                      }
-                    },
-                    dataBuilder: (context, getOneWayTripLinkResponse) {
-                      return AppStreamBuilder<Resource<GetTripResponse>>(
-                          stream: model.getOneWayLinkStream,
-                          initialData: Resource.none(),
-                          onData: (data) {
-                            if (data.status == Status.SUCCESS) {
-                              Navigator.pushNamed(
-                                context,
-                                RoutePaths.RjBookingInAppWebView,
-                                arguments: RjBookingPageArguments(
-                                  url: data.data?.content?.content?.link,
-                                ),
-                              );
-                            }
-                          },
-                          dataBuilder: (context, getOneWayTripLinkResponse) {
-                            return AppStreamBuilder<bool>(
-                                stream: model.allFieldValidatorStream,
-                                initialData: false,
-                                dataBuilder: (context, isValid) {
-                                  return (isValid!)
-                                      ? AnimatedButton(
-                                          buttonText: S.of(context).swipeToProceed,
-                                          borderColor: Theme.of(context).colorScheme.onSecondaryContainer,
-                                          textColor: Theme.of(context).colorScheme.onSecondaryContainer,
-                                        )
-                                      : Container();
-                                });
-                          });
-                    }),
+              AppStreamBuilder<Resource<GetTripResponse>>(
+                  stream: model.getTwoWayLinkStream,
+                  initialData: Resource.none(),
+                  onData: (data) {
+                    if (data.status == Status.SUCCESS) {
+                      Navigator.pushNamed(context, RoutePaths.RjBookingInAppWebView,
+                          arguments: RjBookingPageArguments(url: data.data?.content?.content?.link));
+                    }
+                  },
+                  dataBuilder: (context, getOneWayTripLinkResponse) {
+                    return AppStreamBuilder<Resource<GetTripResponse>>(
+                        stream: model.getOneWayLinkStream,
+                        initialData: Resource.none(),
+                        onData: (data) {
+                          if (data.status == Status.SUCCESS) {
+                            Navigator.pushNamed(
+                              context,
+                              RoutePaths.RjBookingInAppWebView,
+                              arguments: RjBookingPageArguments(
+                                url: data.data?.content?.content?.link,
+                              ),
+                            );
+                          }
+                        },
+                        dataBuilder: (context, getOneWayTripLinkResponse) {
+                          return AppStreamBuilder<bool>(
+                              stream: model.allFieldValidatorStream,
+                              initialData: false,
+                              dataBuilder: (context, isValid) {
+                                return AppPrimaryButton(
+                                  isDisabled: !isValid!,
+                                  onPressed: () {
+                                    model.getTripLink(context);
+                                  },
+                                  text: S.of(context).next,
+                                );
+                              });
+                        });
+                  }),
+              SizedBox(
+                height: 24.h,
               ),
             ],
           ),

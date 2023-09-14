@@ -154,6 +154,8 @@ class RjFlightBookingViewModel extends BasePageViewModel {
         }
       });
     });
+
+    getDestination();
   }
 
   /// selectedTab

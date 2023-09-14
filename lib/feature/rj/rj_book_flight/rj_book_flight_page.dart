@@ -37,19 +37,16 @@ class RjFlightBookingStatefulPage extends BaseStatefulPage<RjFlightBookingViewMo
 
   @override
   Color? scaffoldBackgroundColor() {
-    return AppColor.light_acccent_blue;
+    return Theme.of(context).colorScheme.onPrimaryContainer;
   }
 
   @override
   void onModelReady(RjFlightBookingViewModel model) {
-    model.getDestination();
 
     if (!_tabController.hasListeners) {
       _tabController.addListener(() {
         if (model.tabChangeNotifier.value != _tabController.index)
           model.tabChangeNotifier.value = _tabController.index;
-        // model.voucherItemFilterResponseSubject.safeAdd(Resource.success(data: model.filterList));
-        // model.voucherCategoriesResponseSubject.safeAdd(Resource.success(data: model.categoriesList));
       });
 
       model.switchTabStream.listen((event) {
