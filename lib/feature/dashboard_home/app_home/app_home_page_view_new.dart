@@ -45,6 +45,7 @@ import '../../../ui/molecules/app_progress.dart';
 import '../../../ui/molecules/app_svg.dart';
 import '../../../utils/device_size_helper.dart';
 import '../../credit_card_pay_back/credit_card_pay_back_page.dart';
+import '../../rj/rj_book_flight/rj_book_flight_page.dart';
 import '../../sub_account/transfer/select_transfer/select_transfer_page.dart';
 import '../credit_card_settings/credit_card_settings_page.dart';
 
@@ -948,6 +949,14 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                     model.goToOfferForYouPage(
                                                                                                         context);
                                                                                                   }
+
+                                                                                                  if (model.isRJ(
+                                                                                                      currentStep)) {
+                                                                                                    Navigator.of(context).push(CustomRoute.swipeUpRoute(
+                                                                                                        RjFlightBookingPage(),
+                                                                                                        routeName:
+                                                                                                            RoutePaths.RjFlightBookingPage));
+                                                                                                  }
                                                                                                 },
                                                                                                 child:
                                                                                                     AnimatedOpacity(
@@ -1008,7 +1017,9 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                               switchedPage == DashboardAnimatedPage.ACT_SETTING ||
                                                                                                               switchedPage == DashboardAnimatedPage.SUB_ACT_SETTING
                                                                                                           ? 48
-                                                                                                          : 150,
+                                                                                                          : model.isRJ(currentStep)
+                                                                                                              ? 110
+                                                                                                              : 150,
                                                                                                       height: switchedPage == DashboardAnimatedPage.SETTINGS ||
                                                                                                               switchedPage == DashboardAnimatedPage.PAYBACK ||
                                                                                                               switchedPage == DashboardAnimatedPage.ACT_SETTING ||
@@ -1068,7 +1079,9 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                             Text(
                                                                                                           model.cardTypeList[currentStep].cardType == CardType.OFFER
                                                                                                               ? S.current.viewAllOffers
-                                                                                                              : S.current.transactions,
+                                                                                                              : model.cardTypeList[currentStep].cardType == CardType.RJ
+                                                                                                                  ? S.current.bookNow
+                                                                                                                  : S.current.transactions,
                                                                                                           style: TextStyle(
                                                                                                               color: AppColor.skyblue,
                                                                                                               fontSize: 12,

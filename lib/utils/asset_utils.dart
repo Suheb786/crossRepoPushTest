@@ -183,6 +183,11 @@ class AssetUtils {
   static const String cancelFlightIcon = svg + "cancel_flight.svg";
   static const String EconomySeat = svg + "economy_seat.svg";
   static const String BusinessSeat = svg + "business_seat.svg";
+  static const String BestDealsWithBlink = svg + "best_deals_with_blink.svg";
+  static const String GoRj = svg + "go_rj.svg";
+  static const String BookNow = svg + "book_now.svg";
+  static const String WalkingLady = svg + "walking_lady.svg";
+
 
   ///Cliq
   static const String walletIcon = svg + "wallet.svg";

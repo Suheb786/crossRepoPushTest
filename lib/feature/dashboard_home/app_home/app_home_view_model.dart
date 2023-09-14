@@ -294,6 +294,10 @@ class AppHomeViewModel extends BasePageViewModel {
     return cardTypeList[index].cardType == CardType.OFFER;
   }
 
+  bool isRJ(int index) {
+    return cardTypeList[index].cardType == CardType.RJ;
+  }
+
   ///--------------- Some Other params that i will name later on  ----------------------///
   DebitCard? selectedDebitCard;
   CreditCard? selectedCreditCard;
@@ -918,7 +922,7 @@ class AppHomeViewModel extends BasePageViewModel {
     if ((dashboardDataContent.dashboardFeatures?.isRJFeatureEnabled ?? true)) {
       pages.add(RjCardWidget());
 
-      cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.RJ, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+      cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.RJ, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
     }
 
     ///adding  offer for u card
