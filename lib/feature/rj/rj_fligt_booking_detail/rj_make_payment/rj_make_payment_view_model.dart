@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/usecase/rj/rj_otp_validate.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -15,6 +16,26 @@ class RjMakePaymentViewModel extends BasePageViewModel {
   PublishSubject<Resource<bool>> _rjOtpValidateResponse = PublishSubject();
 
   Stream<Resource<bool>> get rjOtpValidateStream => _rjOtpValidateResponse.stream;
+
+  BehaviorSubject<Account> _selectedFromAccountSubject = BehaviorSubject();
+
+  Stream<Account> get selectedFromAccountStream => _selectedFromAccountSubject.stream;
+
+  List<Account> allAccountList = [];
+  List<Account> _fromAccountList = [];
+  List<Account> get getAllFromList => _fromAccountList;
+
+  void addFromAccountData({Account? selectedAccount}) {
+    _selectedFromAccountSubject.safeAdd(selectedAccount);
+    validateIfEmpty();
+  }
+
+  void validateIfEmpty() {
+    if (_selectedFromAccountSubject.hasValue) {
+      _showButtonSubject.safeAdd(true);
+    } else
+      _showButtonSubject.safeAdd(false);
+  }
 
   void rjOtpValidate() {
     _rjOtpValidateRequest.safeAdd(RJOtpValidateUseCaseParams());

@@ -13,9 +13,7 @@ import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_to_dialog/to_d
 
 import '../../feature/rj/rj_book_flight/rj_book_flight_page_view_model.dart';
 import '../../feature/rj/rj_booking_confirmed_in_app_web_view/rj_booking_confirmed_in_app_web_view_page_view_model.dart';
-import '../../feature/rj/rj_booking_fail/rj_booking_fail_page.dart';
 import '../../feature/rj/rj_booking_fail/rj_booking_fail_page_view_model.dart';
-import '../../feature/rj/rj_booking_success/rj_booking_success_page.dart';
 import '../../feature/rj/rj_booking_success/rj_booking_success_page_view_model.dart';
 import '../../ui/molecules/dialog/rj/rj_flight_booking_dialog/rj_flight_booking_dialog_view_model.dart';
 
@@ -66,14 +64,16 @@ final rjMakePaymentViewModelProvider = ChangeNotifierProvider.autoDispose<RjMake
 );
 
 ///[rjSuccessViewModelProvider]
-final rJBookingSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<RJBookingSuccessPageViewModel, RJBookingSuccessPageArguments>(
-        (ref, args) => RJBookingSuccessPageViewModel(args));
+final rJBookingSuccessPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<RJBookingSuccessPageViewModel>((
+  ref,
+) =>
+        RJBookingSuccessPageViewModel());
 
 ///[rjFailureViewModelProvider]
-final rJBookingFailurePageViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<RJBookingFailurePageViewModel, RJBookingFailurePageArguments>(
-        (ref, args) => RJBookingFailurePageViewModel(args));
+final rJBookingFailurePageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<RJBookingFailurePageViewModel>(
+        (ref) => RJBookingFailurePageViewModel());
 
 ///[RjOtpValidateViewModel] provider
 final rjOtpValidateViewModelProvider = ChangeNotifierProvider.autoDispose<RjOtpValidateViewModel>(

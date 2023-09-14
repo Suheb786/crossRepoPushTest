@@ -39,7 +39,7 @@ class RJBookingConfirmedInAppWebViewPageState extends BaseStatefulPage<
     return PreferredSize(
       preferredSize: Size(double.maxFinite, 90),
       child: Container(
-        color: Theme.of(context).colorScheme.onSurface,
+        color: Theme.of(context).colorScheme.onPrimaryContainer,
         child: Padding(
           padding: EdgeInsetsDirectional.only(top: 52.0.h, bottom: 30.h),
           child: Stack(
@@ -66,7 +66,7 @@ class RJBookingConfirmedInAppWebViewPageState extends BaseStatefulPage<
                         height: 32.h,
                         width: 32.h,
                         decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.onSurface,
+                            color: Theme.of(context).colorScheme.onPrimaryContainer,
                             borderRadius: BorderRadius.circular(100),
                             boxShadow: [
                               BoxShadow(

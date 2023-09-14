@@ -4,10 +4,11 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/rj/rj_booking_purchase/rj_booking_purchase_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../ui/molecules/button/app_primary_button.dart';
 
 class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePageViewModel> {
   RjBookingPurchasePageView(ProviderBase model) : super(model);
@@ -29,7 +30,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
               children: [
                 Image.asset(
                   AssetUtils.line,
-                  color: Theme.of(context).colorScheme.tertiaryContainer,
+                  color: Theme.of(context).colorScheme.outlineVariant,
                   fit: BoxFit.fitWidth,
                   width: MediaQuery.of(context).size.width,
                 ),
@@ -309,30 +310,31 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 76.h),
-              child: AnimatedButton(
-                buttonText: S.of(context).swipeToProceed,
-                borderColor: Theme.of(context).colorScheme.secondary,
-                textColor: Theme.of(context).colorScheme.secondary,
-              ),
-            ),
-            InkWell(
-              onTap: () {
-                // Navigator.pushNamed(context, RoutePaths.RjFlightBookingPage);
-              },
-              child: Padding(
-                padding: EdgeInsets.only(top: 9.h),
-                child: Text(
-                  S.of(context).toBookingSummary,
-                  style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      color: Theme.of(context).colorScheme.secondary,
-                      fontSize: 12.t,
-                      fontWeight: FontWeight.w500),
+            // Padding(
+            //   padding: EdgeInsets.only(top: 76.h),
+            //   child: AnimatedButton(
+            //     buttonText: S.of(context).swipeToProceed,
+            //     borderColor: Theme.of(context).colorScheme.secondary,
+            //     textColor: Theme.of(context).colorScheme.secondary,
+            //   ),
+            // ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.only(start: 24..w, end: 24.w),
+                  child: AppPrimaryButton(
+                    text: S.of(context).done,
+                    onPressed: () {},
+                    activeBackgroundColor: Theme.of(context).colorScheme.secondary,
+                    textColor: Theme.of(context).colorScheme.onSecondaryContainer,
+                  ),
                 ),
-              ),
-            ),
+                SizedBox(
+                  height: 56.h,
+                ),
+              ],
+            )
           ],
         ),
       ),

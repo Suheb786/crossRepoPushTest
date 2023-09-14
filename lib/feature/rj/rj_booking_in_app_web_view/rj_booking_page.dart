@@ -51,7 +51,7 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
                   S.current.bookYourFlight,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: Theme.of(context).colorScheme.onPrimaryContainer,
                       fontFamily: StringUtils.appFont,
                       fontWeight: FontWeight.w600,
                       fontSize: 14.t),
@@ -67,7 +67,7 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
                         height: 32.h,
                         width: 32.h,
                         decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.onSurface,
+                            color: Theme.of(context).colorScheme.onPrimaryContainer,
                             borderRadius: BorderRadius.circular(100),
                             boxShadow: [
                               BoxShadow(

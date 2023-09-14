@@ -23,7 +23,7 @@ class RjBookingPurchasePageState
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).colorScheme.onSurface;
+    return Theme.of(context).colorScheme.onPrimaryContainer;
   }
 
   @override

@@ -1251,7 +1251,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/Dashboard/GetDashboardDataV5',
+              '/Dashboard/GetDashboardDataV4',
               queryParameters: queryParameters,
               data: _data,
             )

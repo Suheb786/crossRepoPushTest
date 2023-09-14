@@ -8,7 +8,7 @@ import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_confirm_flight_de
 import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_make_payment/rj_make_payment_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/rj/rj_confirm_flight_detail_depart_and_return_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -224,8 +224,31 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                               ],
                             ),
                             Spacer(),
-                            AnimatedButton(
-                              buttonText: S.of(context).swipeToProceed,
+                            AppPrimaryButton(
+                              text: S.of(context).next,
+                              onPressed: () {
+                                ProviderScope.containerOf(context)
+                                    .read(rjFlightBookingDetailViewModelProvider)
+                                    .nextPage();
+                                ProviderScope.containerOf(context)
+                                    .read(rjMakePaymentViewModelProvider)
+                                    .addMakePaymentItem(cardList: [
+                                  MakePaymentCard(
+                                      S.of(context).accountCard,
+                                      ProviderScope.containerOf(context)
+                                              .read(appHomeViewModelProvider)
+                                              .dashboardDataContent
+                                              .account
+                                              ?.accountNo ??
+                                          '',
+                                      1000,
+                                      'JOD',
+                                      true)
+                                ]);
+                                ProviderScope.containerOf(context)
+                                    .read(rjMakePaymentViewModelProvider)
+                                    .selectedItem(0);
+                              },
                             ),
                             SizedBox(
                               height: 31.h,
