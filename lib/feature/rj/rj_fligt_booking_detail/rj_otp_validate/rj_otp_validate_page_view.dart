@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/rj/rj_modules.dart';
 import 'package:neo_bank/feature/rj/rj_booking_purchase/rj_booking_purchase_page.dart';
 import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_otp_validate/rj_otp_validate_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -16,6 +15,8 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../../di/rj/rj_modules.dart';
 
 class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
   RjOtpValidatePageView(ProviderBase model) : super(model);
@@ -46,7 +47,7 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                   shakeAngle: Rotation.deg(z: 1),
                   curve: Curves.easeInOutSine,
                   child: GestureDetector(
-                    onHorizontalDragEnd: (details) {
+                    /*    onHorizontalDragEnd: (details) {
                       if (ProviderScope.containerOf(context)
                               .read(rjFlightBookingDetailViewModelProvider)
                               .appSwiperController
@@ -108,7 +109,7 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                           }
                         }
                       }
-                    },
+                    }, */
                     child: Card(
                       margin: EdgeInsets.zero,
                       child: Container(
@@ -170,15 +171,55 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                                         // initialData: false,
                                         initialData: true,
                                         dataBuilder: (context, isValid) {
-                                          return Visibility(
-                                            visible: isValid!,
-                                            child: AppPrimaryButton(
-                                              text: S.of(context).next,
-                                              onPressed: () {},
-                                            ),
+                                          return AppPrimaryButton(
+                                            text: S.of(context).next,
+                                            isDisabled: !isValid!,
+                                            onPressed: () {
+                                              model.makeTicketPayment(
+                                                accountNo: ProviderScope.containerOf(context)
+                                                        .read(rjMakePaymentViewModelProvider)
+                                                        .selectedCard
+                                                        ?.cardNo ??
+                                                    '',
+                                                otpCode: model.otpController.text,
+                                                referenceNumber: ProviderScope.containerOf(context)
+                                                        .read(rjFlightBookingDetailViewModelProvider)
+                                                        .arguments
+                                                        ?.referenceNumber ??
+                                                    '',
+                                                amount: ProviderScope.containerOf(context)
+                                                        .read(rjMakePaymentViewModelProvider)
+                                                        .selectedCard
+                                                        ?.amt
+                                                        .toString() ??
+                                                    '',
+                                              );
+                                            },
                                           );
                                         }),
-                                  )
+                                  ),
+                                  SizedBox(
+                                    height: 31.h,
+                                  ),
+                                  Visibility(
+                                    visible: true,
+                                    child: InkWell(
+                                      onTap: () {
+                                        ProviderScope.containerOf(context)
+                                            .read(rjFlightBookingDetailViewModelProvider)
+                                            .previousPage();
+                                      },
+                                      child: Text(
+                                        S.of(context).back,
+                                        style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: Theme.of(context).colorScheme.onSecondaryContainer,
+                                          fontSize: 14.t,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ],

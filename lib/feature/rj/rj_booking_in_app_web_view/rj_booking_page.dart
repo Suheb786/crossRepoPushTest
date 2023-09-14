@@ -39,7 +39,7 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
     return PreferredSize(
       preferredSize: Size(double.maxFinite, 90),
       child: Container(
-        color: Theme.of(context).colorScheme.onSurface,
+        color: Theme.of(context).colorScheme.onPrimaryContainer,
         child: Padding(
           padding: EdgeInsetsDirectional.only(top: 57.0.h, bottom: 30.0.h),
           child: Stack(
@@ -51,7 +51,7 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
                   S.current.bookYourFlight,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      color: Theme.of(context).colorScheme.secondary,
                       fontFamily: StringUtils.appFont,
                       fontWeight: FontWeight.w600,
                       fontSize: 14.t),
@@ -64,8 +64,8 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
                   padding: EdgeInsetsDirectional.only(end: 12.w),
                   child: InkWell(
                       child: Container(
-                        height: 32.h,
-                        width: 32.h,
+                        height: 25.h,
+                        width: 25.h,
                         decoration: BoxDecoration(
                             color: Theme.of(context).colorScheme.onPrimaryContainer,
                             borderRadius: BorderRadius.circular(100),
@@ -74,12 +74,12 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
                                   color: AppColor.black_15,
                                   spreadRadius: 1.28,
                                   blurRadius: 2.56,
-                                  offset: Offset(0, 1.28))
+                                  offset: Offset(0, 1.30))
                             ]),
                         child: Center(
                           child: Icon(
                             Icons.clear,
-                            color: Theme.of(context).colorScheme.onTertiaryContainer,
+                            color: Theme.of(context).colorScheme.secondary,
                             size: 16,
                             weight: 1.5,
                           ),

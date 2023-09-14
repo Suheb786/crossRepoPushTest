@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
@@ -14,6 +13,8 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+
 
 class SplashPageView extends BasePageViewWidget<SplashViewModel> {
   SplashPageView(ProviderBase model) : super(model);
@@ -47,7 +48,7 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
           onData: (data) async {
             if (data == 1) {
               //model.checkDeviceCompatibility();
-              Navigator.pushReplacementNamed(context, RoutePaths.OnBoarding);
+              Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingPurchasePage);
             }
           },
           dataBuilder: (context, data) {

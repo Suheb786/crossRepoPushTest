@@ -48,7 +48,7 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
                       activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       activeColor: Theme.of(context).colorScheme.secondary,
                       // color: Theme.of(context).primaryColorLight.withOpacity(0.3)
-                      color: Theme.of(context).colorScheme.onSecondary),
+                      color: Theme.of(context).colorScheme.onSecondary.withOpacity(0.3)),
                 );
               },
             ),
@@ -71,8 +71,7 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
                           fontWeight: FontWeight.w600),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.only(
-                          top: 8.0.h, bottom: currentStep == 2 ? 0 : 32.h, start: 24.w, end: 24.w),
+                      padding: EdgeInsetsDirectional.only(top: 8.0.h, bottom: 32.h, start: 24.w, end: 24.w),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),

@@ -6,9 +6,9 @@ import 'package:neo_bank/feature/rj/rj_booking_purchase/rj_booking_purchase_page
 import 'package:neo_bank/feature/rj/rj_booking_purchase/rj_booking_purchase_page_view_model.dart';
 
 class RjBookingPurchasePage extends BasePage<RjBookingPurchasePageViewModel> {
-  final RjBookingPurchasePageArgument arguments;
+  // final RjBookingPurchasePageArgument arguments;
 
-  RjBookingPurchasePage({required this.arguments});
+  // RjBookingPurchasePage({required this.arguments});
 
   @override
   RjBookingPurchasePageState createState() => RjBookingPurchasePageState();
@@ -18,7 +18,7 @@ class RjBookingPurchasePageState
     extends BaseStatefulPage<RjBookingPurchasePageViewModel, RjBookingPurchasePage> {
   @override
   ProviderBase provideBase() {
-    return rjBookingPurchasePageViewModelProvider.call(widget.arguments);
+    return rjBookingPurchasePageViewModelProvider /* .call(widget.arguments) */;
   }
 
   @override

@@ -847,8 +847,7 @@ class AppRouter {
       /// Rj Flight Booking PurchasePage
       case RoutePaths.RjFlightBookingPurchasePage:
         return CupertinoPageRoute(
-            builder: (context) =>
-                RjBookingPurchasePage(arguments: settings.arguments as RjBookingPurchasePageArgument),
+            builder: (context) => RjBookingPurchasePage(),
             settings: RouteSettings(name: RoutePaths.RjFlightBookingPurchasePage));
 
       /// Rj Flight Booking Detail Page

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/rj/rj_modules.dart';
-import 'package:neo_bank/feature/rj/rj_booking_in_app_web_view/rj_booking_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_progress.dart';
@@ -455,9 +454,10 @@ class RjFlightBookingDialogView extends StatelessWidget {
                                 initialData: Resource.none(),
                                 onData: (data) {
                                   if (data.status == Status.SUCCESS) {
-                                    Navigator.pushNamed(context, RoutePaths.RjBookingInAppWebView,
-                                        arguments:
+                                    Navigator.pushNamed(context, RoutePaths.RjBookingInAppWebView);
+                                    /*           arguments:
                                             RjBookingPageArguments(url: data.data?.content?.content?.link));
+                                */
                                   }
                                 },
                                 dataBuilder: (context, getOneWayTripLinkResponse) {
@@ -466,9 +466,10 @@ class RjFlightBookingDialogView extends StatelessWidget {
                                       initialData: Resource.none(),
                                       onData: (data) {
                                         if (data.status == Status.SUCCESS) {
-                                          Navigator.pushNamed(context, RoutePaths.RjBookingInAppWebView,
-                                              arguments: RjBookingPageArguments(
+                                          Navigator.pushNamed(context, RoutePaths.RjBookingInAppWebView);
+                                          /*             arguments: RjBookingPageArguments(
                                                   url: data.data?.content?.content?.link));
+                                    */
                                         }
                                       },
                                       dataBuilder: (context, getOneWayTripLinkResponse) {

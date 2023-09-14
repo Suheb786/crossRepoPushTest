@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/rj/rj_usecase_modules.dart';
 import 'package:neo_bank/feature/rj/rj_book_flight/passenger/passenger_view_%20model.dart';
-import 'package:neo_bank/feature/rj/rj_booking_in_app_web_view/rj_booking_page.dart';
 import 'package:neo_bank/feature/rj/rj_booking_in_app_web_view/rj_booking_page_view_model.dart';
 import 'package:neo_bank/feature/rj/rj_booking_purchase/rj_booking_purchase_page.dart';
 import 'package:neo_bank/feature/rj/rj_booking_purchase/rj_booking_purchase_page_view_model.dart';
@@ -14,6 +13,7 @@ import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_to_dialog/to_d
 import '../../feature/rj/rj_book_flight/rj_book_flight_page_view_model.dart';
 import '../../feature/rj/rj_booking_confirmed_in_app_web_view/rj_booking_confirmed_in_app_web_view_page_view_model.dart';
 import '../../feature/rj/rj_booking_fail/rj_booking_fail_page_view_model.dart';
+import '../../feature/rj/rj_booking_in_app_web_view/rj_booking_page.dart';
 import '../../feature/rj/rj_booking_success/rj_booking_success_page_view_model.dart';
 import '../../ui/molecules/dialog/rj/rj_flight_booking_dialog/rj_flight_booking_dialog_view_model.dart';
 
@@ -45,8 +45,8 @@ final rjBookingPageViewModelProvider =
 );
 
 final rjBookingPurchasePageViewModelProvider =
-    ChangeNotifierProvider.autoDispose.family<RjBookingPurchasePageViewModel, RjBookingPurchasePageArgument>(
-  (ref, args) => RjBookingPurchasePageViewModel(args),
+    ChangeNotifierProvider.autoDispose<RjBookingPurchasePageViewModel >(
+  (ref, ) => RjBookingPurchasePageViewModel(),
 );
 
 final rjFlightBookingDetailViewModelProvider =

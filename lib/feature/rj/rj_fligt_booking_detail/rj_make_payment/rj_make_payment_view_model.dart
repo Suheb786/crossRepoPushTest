@@ -87,17 +87,17 @@ class RjMakePaymentViewModel extends BasePageViewModel {
       makePaymentCardList[index].isSelected = true;
     }
     _itemSelectedSubject.safeAdd(makePaymentCardList);
-    selectedCard = makePaymentCardList.firstWhere((element) => element.isSelected);
+    selectedCard = makePaymentCardList.firstWhere((element) => element.isSelected ?? false);
     _showButtonSubject.safeAdd(true);
   }
 }
 
 class MakePaymentCard {
-  final String cardName;
-  final String cardNo;
-  final int amt;
-  final String currency;
-  bool isSelected;
+  final String? cardName;
+  final String? cardNo;
+  final int? amt;
+  final String? currency;
+  bool? isSelected;
 
-  MakePaymentCard(this.cardName, this.cardNo, this.amt, this.currency, this.isSelected);
+  MakePaymentCard({this.cardName, this.cardNo, this.amt, this.currency, this.isSelected});
 }
