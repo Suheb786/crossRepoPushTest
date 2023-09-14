@@ -7,7 +7,6 @@ import 'package:intl/intl.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/evoucher/evoucher_text_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -228,21 +227,12 @@ class ViewVoucherBtb extends StatelessWidget {
         },
         child: Container(
           height: 56.h,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              EVoucherTextWidget(
-                alignment: AlignmentDirectional.center,
-                text: S.of(context).viewVoucher,
-                textSize: 14.t,
-                textWeight: FontWeight.w600,
-                textColor: Theme.of(context).colorScheme.onSecondaryContainer,
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.only(end: 24.0.w),
-                child: InkWell(onTap: () {}, child: AppSvg.asset(AssetUtils.view_voucher_icon)),
-              )
-            ],
+          child: EVoucherTextWidget(
+            alignment: AlignmentDirectional.center,
+            text: S.of(context).viewVoucher,
+            textSize: 14.t,
+            textWeight: FontWeight.w600,
+            textColor: Theme.of(context).colorScheme.onSecondaryContainer,
           ),
           decoration: BoxDecoration(
               border: Border.all(color: Theme.of(context).colorScheme.inverseSurface),
