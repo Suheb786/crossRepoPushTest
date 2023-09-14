@@ -26,7 +26,6 @@ import 'package:data/source/user/local/user_local_ds_impl.dart';
 import 'package:data/source/user/user_data_sources.dart';
 import 'package:data/source/utility/local/utility_datasource_impl.dart';
 import 'package:data/source/utility/utility_datasource.dart';
-import 'package:device_info/device_info.dart';
 import 'package:infobip_plugin/infobip_plugin.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:riverpod/riverpod.dart';
@@ -43,10 +42,6 @@ final bioMetricSourceProvider = Provider<BioMetricService>(
 
 var userLocalDSProvider = Provider<UserLocalDS>(
   (ref) => UserLocalDSImpl(ref.read(bioMetricSourceProvider), ref.read(secureStorageProvider)),
-);
-
-var deviceInfoPluginProvider = Provider<DeviceInfoPlugin>(
-  (ref) => DeviceInfoPlugin(),
 );
 
 var countryLocalDataProvider = Provider<CountryLocalDs>(
