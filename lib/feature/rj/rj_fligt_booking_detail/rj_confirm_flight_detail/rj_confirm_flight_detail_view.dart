@@ -2,21 +2,17 @@ import 'package:animated_widgets/animated_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/rj/rj_modules.dart';
 import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_confirm_flight_detail/rj_confirm_fight_detail_view_model.dart';
-import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_make_payment/rj_make_payment_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/rj/rj_confirm_flight_detail_depart_and_return_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-
-import '../../../../main/navigation/route_paths.dart';
 
 class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetailViewModel> {
   RjConfirmFlightDetailView(ProviderBase model) : super(model);
@@ -34,7 +30,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                 shakeAngle: Rotation.deg(z: 1),
                 curve: Curves.easeInOutSine,
                 child: GestureDetector(
-                  onHorizontalDragEnd: (details) {
+                  /*   onHorizontalDragEnd: (details) {
                     if (ProviderScope.containerOf(context)
                             .read(rjFlightBookingDetailViewModelProvider)
                             .appSwiperController
@@ -55,16 +51,16 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                               .read(rjMakePaymentViewModelProvider)
                               .addMakePaymentItem(cardList: [
                             MakePaymentCard(
-                                S.of(context).accountCard,
-                                ProviderScope.containerOf(context)
+                                cardName: S.of(context).accountCard,
+                                cardNo: ProviderScope.containerOf(context)
                                         .read(appHomeViewModelProvider)
                                         .dashboardDataContent
                                         .account
                                         ?.accountNo ??
                                     '',
-                                1000,
-                                'JOD',
-                                true)
+                                amt: 1000,
+                                currency: 'JOD',
+                                isSelected: true)
                           ]);
                           ProviderScope.containerOf(context)
                               .read(rjMakePaymentViewModelProvider)
@@ -79,16 +75,16 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                               .read(rjMakePaymentViewModelProvider)
                               .addMakePaymentItem(cardList: [
                             MakePaymentCard(
-                                S.of(context).accountCard,
-                                ProviderScope.containerOf(context)
+                                cardName: S.of(context).accountCard,
+                                cardNo: ProviderScope.containerOf(context)
                                         .read(appHomeViewModelProvider)
                                         .dashboardDataContent
                                         .account
                                         ?.accountNo ??
                                     '',
-                                1000,
-                                'JOD',
-                                true)
+                                amt: 1000,
+                                currency: 'JOD',
+                                isSelected: true)
                           ]);
                           ProviderScope.containerOf(context)
                               .read(rjMakePaymentViewModelProvider)
@@ -100,7 +96,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                         }
                       }
                     }
-                  },
+                  }, */
                   child: Card(
                     margin: EdgeInsets.zero,
                     child: Container(
@@ -224,8 +220,31 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                               ],
                             ),
                             Spacer(),
-                            AnimatedButton(
-                              buttonText: S.of(context).swipeToProceed,
+                            AppPrimaryButton(
+                              text: S.of(context).next,
+                              onPressed: () {
+                                ProviderScope.containerOf(context)
+                                    .read(rjFlightBookingDetailViewModelProvider)
+                                    .nextPage();
+                                // ProviderScope.containerOf(context)
+                                //     .read(rjMakePaymentViewModelProvider)
+                                //     .addMakePaymentItem(cardList: [
+                                //   MakePaymentCard(
+                                //       cardName: S.of(context).accountCard,
+                                //       cardNo: ProviderScope.containerOf(context)
+                                //               .read(appHomeViewModelProvider)
+                                //               .dashboardDataContent
+                                //               .account
+                                //               ?.accountNo ??
+                                //           '',
+                                //       amt: 1000,
+                                //       currency: 'JOD',
+                                //       isSelected: true)
+                                // ]);
+                                // ProviderScope.containerOf(context)
+                                //     .read(rjMakePaymentViewModelProvider)
+                                //     .selectedItem(0);
+                              },
                             ),
                             SizedBox(
                               height: 31.h,
@@ -251,7 +270,21 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                               },
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.pushNamed(context, RoutePaths.AppHome);
+                                  InformationDialog.show(context,
+                                      title: S.current.cancelBooking,
+                                      onDismissed: () => Navigator.pop(context),
+                                      isSwipeToCancel: true,
+                                      image: AssetUtils.cancelFlightIcon,
+                                      onSelected: () {},
+                                      descriptionWidget: Text(
+                                        S.current.cancelBookingDetail,
+                                        style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: Theme.of(context).colorScheme.surface,
+                                          fontSize: 14.t,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ));
                                 },
                                 child: Text(
                                   S.of(context).cancel,

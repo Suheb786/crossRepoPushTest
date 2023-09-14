@@ -129,7 +129,8 @@ class DashboardFeaturesEntity
         isCreditCardFeatureEnabled: isCreditCardEnabled ?? false,
         isLoginFeatureEnabled: isLoginEnabled ?? false,
         isRegisterFeatureEnabled: isRegisterEnabled ?? false,
-        isRJFeatureEnabled: true ,
+        // isRJFeatureEnabled: isGoRJEnabled ?? false,
+        isRJFeatureEnabled: true,
         isPinChangeEnabled: this.isCreditCardPinChangeEnabled ?? false,
         isDebitCardRequestPhysicalCardEnabled: this.isDebitCardPhysicalCardRequestEnabled ?? false,
         blinkRetailAppBillPayment: this.blinkRetailAppBillPayment ?? false,
@@ -149,7 +150,7 @@ class DashboardFeaturesEntity
         transferBetweenAccountsFeature: /*this.transferBetweenAccountsFeature ?? false*/ true,
         closeSubAccountFeature: /*this.closeSubAccountFeature ?? false*/ true,
         shareAccountInformationFeature: /*this.shareAccountInformationFeature ?? false*/ true,
-        offers: /*this.offers ?? false*/true,
-        referrals: /*this.referrals ?? false*/true);
+        offers: /*this.offers ?? false*/ true,
+        referrals: /*this.referrals ?? false*/ true);
   }
 }

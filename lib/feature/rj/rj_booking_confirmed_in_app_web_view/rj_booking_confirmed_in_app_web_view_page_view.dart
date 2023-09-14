@@ -39,7 +39,7 @@ class RJBookingConfirmedInAppWebViewPageView
                     color: Theme.of(context).colorScheme.secondary,
                   ),
                   InAppWebView(
-                    initialUrlRequest: URLRequest(url: Uri.parse("")),
+                    initialUrlRequest: URLRequest(url: Uri.parse("www.amazon.com")),
                     onWebViewCreated: (controller) {},
                     onPageCommitVisible: (con, uri) {
                       debugPrint("url ${uri.toString()}");
@@ -145,8 +145,8 @@ class RJBookingConfirmedInAppWebViewPageView
                 alignment: Alignment.centerRight,
                 child: IconButton(
                   padding: EdgeInsetsDirectional.only(end: 20.w),
-                  icon: AppSvg.asset(AssetUtils.share,
-                      color: Theme.of(context).colorScheme.onTertiaryContainer),
+                  icon:
+                      AppSvg.asset(AssetUtils.share, color: Theme.of(context).colorScheme.onPrimaryContainer),
                   onPressed: () {
                     _shareFiles(context);
                   },

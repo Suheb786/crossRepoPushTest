@@ -8,9 +8,9 @@ import '../../../base/base_page.dart';
 import '../../../di/rj/rj_modules.dart';
 
 class RJBookingFailurePage extends BasePage<RJBookingFailurePageViewModel> {
-  final RJBookingFailurePageArguments _rjBookingFailurePageArguments;
+  // final RJBookingFailurePageArguments _rjBookingFailurePageArguments;
 
-  RJBookingFailurePage(this._rjBookingFailurePageArguments);
+  // RJBookingFailurePage(this._rjBookingFailurePageArguments);
   @override
   State<StatefulWidget> createState() => RJBookingFailurePageState();
 }
@@ -24,7 +24,7 @@ class RJBookingFailurePageState
 
   @override
   ProviderBase provideBase() {
-    return rJBookingFailurePageViewModelProvider.call(widget._rjBookingFailurePageArguments);
+    return rJBookingFailurePageViewModelProvider;
   }
 }
 

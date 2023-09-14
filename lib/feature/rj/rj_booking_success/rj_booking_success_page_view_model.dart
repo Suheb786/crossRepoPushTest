@@ -5,9 +5,9 @@ import '../../../base/base_page_view_model.dart';
 import '../../../generated/l10n.dart';
 
 class RJBookingSuccessPageViewModel extends BasePageViewModel {
-  final RJBookingSuccessPageArguments rjBookingSuccessPageArguments;
+  // final RJBookingSuccessPageArguments rjBookingSuccessPageArguments;
 
-  RJBookingSuccessPageViewModel(this.rjBookingSuccessPageArguments);
+  // RJBookingSuccessPageViewModel(this.rjBookingSuccessPageArguments);
 
   /// get String Title according to Enum
   String getTitle(BuildContext context, RJBookingSuccessState rjBookingSuccessState) {

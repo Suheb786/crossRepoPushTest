@@ -10,7 +10,7 @@ import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/in
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:wakelock/wakelock.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 class VideoKycPage extends BasePage<VideoKycViewModel> {
   final VideKycCredentials credentials;
@@ -40,7 +40,7 @@ class VideoKycPageState extends BaseStatefulPage<VideoKycViewModel, VideoKycPage
 
   @override
   void onModelReady(VideoKycViewModel model) {
-    Wakelock.enable();
+    WakelockPlus.enable();
     ProviderScope.containerOf(context).read(appViewModel).getToken();
     super.onModelReady(model);
   }

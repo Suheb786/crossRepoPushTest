@@ -18610,11 +18610,31 @@ class S {
     );
   }
 
+  /// `Done`
+  String get done {
+    return Intl.message(
+      'Done',
+      name: 'done',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `One-Way`
   String get oneWay {
     return Intl.message(
       'One-Way',
       name: 'oneWay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `d`
+  String get d {
+    return Intl.message(
+      'd',
+      name: 'd',
       desc: '',
       args: [],
     );

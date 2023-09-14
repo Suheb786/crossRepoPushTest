@@ -165,4 +165,5 @@ class RoutePaths {
   static const String CameraCapturePage = "cameraCapturePage";
   static const String OfferForYouPage = "offerForYouPage";
   static const String OfferDetailPage = "OfferDetailPage";
+  static const String RJBookingFailurePage = "/RJBookingFailurePage";
 }
