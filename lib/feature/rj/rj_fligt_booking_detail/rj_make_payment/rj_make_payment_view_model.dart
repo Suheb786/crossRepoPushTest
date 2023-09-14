@@ -27,15 +27,15 @@ class RjMakePaymentViewModel extends BasePageViewModel {
 
   void addFromAccountData({Account? selectedAccount}) {
     _selectedFromAccountSubject.safeAdd(selectedAccount);
-    validateIfEmpty();
+    // validateIfEmpty();
   }
 
-  void validateIfEmpty() {
-    if (_selectedFromAccountSubject.hasValue) {
-      _showButtonSubject.safeAdd(true);
-    } else
-      _showButtonSubject.safeAdd(false);
-  }
+  // void validateIfEmpty() {
+  //   if (selectedFromAccountSubject.hasValue) {
+  //     _showButtonSubject.safeAdd(true);
+  //   } else
+  //     _showButtonSubject.safeAdd(false);
+  // }
 
   void rjOtpValidate() {
     _rjOtpValidateRequest.safeAdd(RJOtpValidateUseCaseParams());
@@ -61,8 +61,6 @@ class RjMakePaymentViewModel extends BasePageViewModel {
   List<MakePaymentCard> makePaymentCardList = [];
   PublishSubject<List<MakePaymentCard>> _itemSelectedSubject = PublishSubject();
 
-  Stream<List<MakePaymentCard>> get itemSelectedStream => _itemSelectedSubject.stream;
-
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject();
 
   Stream<bool> get showButtonSubjectStream => _showButtonSubject.stream;
@@ -79,17 +77,17 @@ class RjMakePaymentViewModel extends BasePageViewModel {
     _itemSelectedSubject.safeAdd(cardList);
   }
 
-  void selectedItem(int index) {
-    if (makePaymentCardList.isNotEmpty) {
-      makePaymentCardList.forEach((element) {
-        element.isSelected = false;
-      });
-      makePaymentCardList[index].isSelected = true;
-    }
-    _itemSelectedSubject.safeAdd(makePaymentCardList);
-    selectedCard = makePaymentCardList.firstWhere((element) => element.isSelected ?? false);
-    _showButtonSubject.safeAdd(true);
-  }
+  // void selectedItem(int index) {
+  //   if (makePaymentCardList.isNotEmpty) {
+  //     makePaymentCardList.forEach((element) {
+  //       element.isSelected = false;
+  //     });
+  //     makePaymentCardList[index].isSelected = true;
+  //   }
+  //   _itemSelectedSubject.safeAdd(makePaymentCardList);
+  //   selectedCard = makePaymentCardList.firstWhere((element) => element.isSelected ?? false);
+  //   _showButtonSubject.safeAdd(true);
+  // }
 }
 
 class MakePaymentCard {

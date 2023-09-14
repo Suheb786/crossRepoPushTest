@@ -584,6 +584,24 @@ class AppHomeViewModel extends BasePageViewModel {
     return accounts.any((account) => account.isSubAccount == true);
   }
 
+  getMainAccount() {
+    List<Account> mainAccounts =
+        yourAllAccounts.where((account) => (account.isSelectedAccount == false)).toList();
+
+    for (var account in mainAccounts) {
+      return account;
+    }
+  }
+
+  getMainAccountAvailableBalance() {
+    List<Account> mainAccounts =
+        yourAllAccounts.where((account) => (account.isSelectedAccount == false)).toList();
+
+    for (var account in mainAccounts) {
+      return account.availableBalance;
+    }
+  }
+
   List<Account> yourAllAccounts = [];
 
   List<Account> getAllMyAccounts() => yourAllAccounts;

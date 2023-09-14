@@ -275,7 +275,10 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                       onDismissed: () => Navigator.pop(context),
                                       isSwipeToCancel: true,
                                       image: AssetUtils.cancelFlightIcon,
-                                      onSelected: () {},
+                                      onSelected: () {
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      },
                                       descriptionWidget: Text(
                                         S.current.cancelBookingDetail,
                                         style: TextStyle(
