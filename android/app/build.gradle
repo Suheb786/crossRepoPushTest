@@ -29,7 +29,6 @@ apply plugin: 'com.google.firebase.crashlytics'
 
 android {
     compileSdk 33
-    //namespace 'com.codebaseneo.neo_bank'
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
