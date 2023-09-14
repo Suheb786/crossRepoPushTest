@@ -16,7 +16,7 @@ class DynamicLinksService {
   factory DynamicLinksService() {
     return _instance;
   }
-
+// For QR
   Future<String> createDynamicLink({
     required String accountTitle,
     required String accountNo,
@@ -47,6 +47,33 @@ class DynamicLinksService {
     return shortUrl.toString();
   }
 
+// For Refer and Earn
+  Future<String> referDynamicLink({
+    required String userPromoCode,
+  }) async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    String uriPrefix = KeyHelper.DevDynamicLinkPrefix;
+
+    final DynamicLinkParameters parameters = DynamicLinkParameters(
+      uriPrefix: uriPrefix,
+      link: Uri.parse('${uriPrefix}/refer?userPromoCode=${userPromoCode}'),
+      androidParameters: AndroidParameters(
+        packageName: packageInfo.packageName,
+        minimumVersion: 21,
+      ),
+      iosParameters: IOSParameters(
+        bundleId: packageInfo.packageName,
+        minimumVersion: packageInfo.version,
+        appStoreId: '1607969058',
+      ),
+    );
+
+    final ShortDynamicLink shortDynamicLink = await FirebaseDynamicLinks.instance.buildShortLink(parameters);
+    final Uri shortUrl = shortDynamicLink.shortUrl;
+
+    return shortUrl.toString();
+  }
+
   Future<Uri> initDynamicLinks() async {
     Uri? deepLink;
     debugPrint('-----Anything----');
@@ -60,6 +87,7 @@ class DynamicLinksService {
       _initDynamicLinkRequestResponse.add(deepPendingLink);
       debugPrint("==========>Get Initial Path${deepPendingLink.path}");
       debugPrint("==========>Get Initial${deepPendingLink.queryParameters['accountNo']}");
+      debugPrint("==========>Get Initial${deepPendingLink.queryParameters['userPromoCode']}");
     } else {
       _initDynamicLinkRequestResponse.add(Uri());
     }

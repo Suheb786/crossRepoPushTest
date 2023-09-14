@@ -1882,6 +1882,11 @@
     "description": "referFriendDescription",
     "type": "string"
   },
+  "shareReferDescription": "Hey! Let’s join and grow Blink community, today!\n \n Download yours at {shareReferDescription}",
+  "@shareReferDescription": {
+    "description": "shareReferDescription",
+    "type": "string"
+  },
   "invite": "Invite",
   "viewAllOffers": "View All Offers",
   "profileSettings_": "Profile Settings",

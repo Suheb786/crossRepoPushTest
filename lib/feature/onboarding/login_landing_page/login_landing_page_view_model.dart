@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:data/helper/dynamic_link.dart';
 import 'package:data/helper/secure_storage_helper.dart';
 import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
@@ -241,6 +242,32 @@ class LoginLandingPageViewModel extends BasePageViewModel {
         }
       });
     });
+    initDynamicLink();
+  }
+
+  // For Refer Dynamic Link
+  Timer? timer;
+
+  initDynamicLink() async {
+    Uri uri = await DynamicLinksService().initDynamicLinks();
+    referData(uri: uri);
+  }
+
+  onResumeDynamicLink() {
+    DynamicLinksService().onLink().distinct().listen((event) async {
+      referData(uri: event.link);
+    });
+  }
+
+  String userPromoCode = "";
+
+  void referData({required Uri uri}) {
+    if (uri.path.isNotEmpty && uri.queryParameters.isNotEmpty && uri.path.contains("/refer")) {
+      userPromoCode = uri.queryParameters['userPromoCode']?.replaceAll(' ', '+') ?? '';
+      debugPrint("userPromoCode--> $userPromoCode");
+    } else {
+      debugPrint("No UserPromoCode-->");
+    }
   }
 
   @override
@@ -260,7 +287,9 @@ class LoginLandingPageViewModel extends BasePageViewModel {
     _androidLoginResponse.close();
     _kycStatusRequest.close();
     _kycStatusResponse.close();
-
+    if (timer != null) {
+      timer?.cancel();
+    }
     super.dispose();
   }
 }

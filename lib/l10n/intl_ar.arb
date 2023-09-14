@@ -1846,17 +1846,22 @@
   "insufficientBalanceAccountTransfer": "ليس لديك رصيد كافي للتحويل.",
   "selectAnyOption": "حدد خيار تصفية واحدًا على الأقل",
   "insufficientBalanceSubAccount": "عفوا! لم تتم العملية بنجاح لأنه الرصيد المتوفر غير كاف",
-  "forYou": "عروضات لك",
-  "referFriend": "إحالة صديق",
-  "referFriendDescription": ". قم بدعوة اصدقائك و عائلتك للتمتع بتجربة بلينك. إبدأ بكسب ما يصل إلى {referFriendDescription} د.أ. يمكنك إحالة الكثير من الأفراد لتزود ربحك",
+  "forYou": "منّا لإلك",
+  "referFriend": "دعوة صديق",
+  "referFriendDescription": "!وبطلعلك لغاية {referFriendDescription} دينار كاش بحسابك. كل ما دعيت ناس أكثر، كلما كسبت أكتر blink قم بدعوة أصدقائك وعائلتك للاستمتاع بتجربة",
   "@referFriendDescription": {
     "description": "referFriendDescription",
     "type": "string"
   },
-  "invite": "الدعوة",
-  "viewAllOffers": "جميع العروضات",
+  "shareReferDescription": "مرحبا! انضم لعائلة بلينك اليوم. \n\nحمل التطبيق من خلال الرابط {shareReferDescription}",
+  "@shareReferDescription": {
+    "description": "shareReferDescription",
+    "type": "string"
+  },
+  "invite": "قم بدعوة أصدقائك",
+  "viewAllOffers": "كل المزايا والعروض",
   "cliqTransactions": "الحركات السابقة",
   "backToHistory": "الرجوع",
   "profileSettings_": "الإعدادات الشخصية",
-  "offersCategory": "الفئات"
+  "offersCategory": "فئة العروض"
 }

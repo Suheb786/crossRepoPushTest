@@ -55,4 +55,20 @@ class DynamicLinkRepositoryImpl extends DynamicLinkRepository {
       );
     }
   }
+
+  @override
+  Future<Either<BaseError, String>> referDynamicLink({required String userPromoCode}) async {
+    final result = await _dynamicLinkDataSource.referDynamicLink(userPromoCode: userPromoCode);
+    if (result.isNotEmpty) {
+      return Right(result);
+    } else {
+      return Left(
+        LocalError(
+          cause: Exception(),
+          localError: 3,
+          message: '',
+        ),
+      );
+    }
+  }
 }

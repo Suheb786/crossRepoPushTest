@@ -22,6 +22,7 @@ RegisterProspectUserRequest _$RegisterProspectUserRequestFromJson(
       fireBaseToken: json['fireBaseToken'] as String?,
       vkeySessionId: json['vkeySessionId'] as String?,
       platform: json['platform'] as String?,
+      referralCode: json['Referral Code'] as String?,
       getToken: json['getToken'] as bool?,
       baseData: json['baseClass'] as Map<String, dynamic>,
     );
@@ -42,6 +43,7 @@ Map<String, dynamic> _$RegisterProspectUserRequestToJson(
       'fireBaseToken': instance.fireBaseToken,
       'vkeySessionId': instance.vkeySessionId,
       'platform': instance.platform,
+      'Referral Code': instance.referralCode,
       'getToken': instance.getToken,
       'baseClass': instance.baseData,
     };
