@@ -16,17 +16,22 @@ import 'package:neo_bank/utils/string_utils.dart';
 import '../../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../../ui/molecules/textfield/app_textfield.dart';
 
-class MyAccountPageViewWidget extends StatelessWidget {
+class MyAccountPageViewWidget extends StatefulWidget {
   Account account;
 
   MyAccountPageViewWidget(this.account);
 
+  @override
+  State<MyAccountPageViewWidget> createState() => _MyAccountPageViewWidgetState();
+}
+
+class _MyAccountPageViewWidgetState extends State<MyAccountPageViewWidget> {
   TextEditingController accountTextController = TextEditingController();
 
   ValueNotifier<bool> nameEditableNotifier = ValueNotifier(false);
 
   String showNickName() {
-    if (account.nickName == null || account.nickName?.isEmpty == true) {
+    if (widget.account.nickName == null || widget.account.nickName?.isEmpty == true) {
       if (accountTextController.text == "") {
         return S.current.addNickName.toTitleCase();
       } else {
@@ -35,8 +40,14 @@ class MyAccountPageViewWidget extends StatelessWidget {
     } else if (accountTextController.text.isNotEmpty) {
       return "";
     } else {
-      return account.nickName ?? "";
+      return /*account.nickName ??*/ "";
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    accountTextController.text = widget.account.nickName ?? "";
   }
 
   @override
@@ -99,7 +110,7 @@ class MyAccountPageViewWidget extends StatelessWidget {
         Padding(
           padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 32.h),
           child: Text(
-            account.isSubAccount == false ? S.current.mainAccount : S.current.subAccount,
+            widget.account.isSubAccount == false ? S.current.mainAccount : S.current.subAccount,
             style: TextStyle(
                 fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
@@ -111,56 +122,63 @@ class MyAccountPageViewWidget extends StatelessWidget {
         Padding(
           padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w),
           child: IntrinsicWidth(
-            child: AppTextField(
-              labelText: "",
-              readOnly: false,
-              fontSize: 12.t,
-              maxLength: 10,
-              hintText: showNickName(),
-              controller: accountTextController,
-              textCapitalization: TextCapitalization.words,
-              inputType: TextInputType.name,
-              containerPadding: EdgeInsets.only(left: 12.w, right: 3.w, top: 3.h, bottom: 0.h),
-              textColor: Theme.of(context).colorScheme.secondary,
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(100),
-              textFieldBorderColor: Theme.of(context).colorScheme.surface,
-              hintTextColor: Theme.of(context).colorScheme.secondary,
-              textFieldFocusBorderColor: Theme.of(context).colorScheme.surface,
-              onChanged: (p0) {
-                nameEditableNotifier.value = true;
+            child: Focus(
+              onFocusChange: (focus) {
+                accountTextController.selection =
+                    TextSelection.fromPosition(TextPosition(offset: accountTextController.text.length));
               },
-              suffixIcon: (selectedCard, value) {
-                if (nameEditableNotifier.value &&
-                    accountTextController.text != account.nickName &&
-                    accountTextController.text.isNotEmpty) {
-                  return GestureDetector(
-                    onTap: () {
-                      FocusScope.of(context).unfocus();
-                      nameEditableNotifier.value = false;
-                      Future.delayed(Duration(milliseconds: 200), () {
-                        ProviderScope.containerOf(context).read(appHomeViewModelProvider).updateNickName(
-                            SubAccountNo: account.accountNo ?? "", NickName: accountTextController.text);
-                      });
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: 4.0.h, left: 4.h, right: 4.h, top: 2.h),
+              child: AppTextField(
+                labelText: "",
+                readOnly: false,
+                fontSize: 12.t,
+                maxLength: 10,
+                hintText: showNickName(),
+                controller: accountTextController,
+                textCapitalization: TextCapitalization.words,
+                inputType: TextInputType.name,
+                containerPadding: EdgeInsets.only(left: 12.w, right: 3.w, top: 3.h, bottom: 0.h),
+                textColor: Theme.of(context).colorScheme.secondary,
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(100),
+                textFieldBorderColor: Theme.of(context).colorScheme.surface,
+                hintTextColor: Theme.of(context).colorScheme.secondary,
+                textFieldFocusBorderColor: Theme.of(context).colorScheme.surface,
+                onChanged: (p0) {
+                  nameEditableNotifier.value = true;
+                },
+                suffixIcon: (selectedCard, value) {
+                  if (nameEditableNotifier.value &&
+                      accountTextController.text != widget.account.nickName &&
+                      accountTextController.text.isNotEmpty) {
+                    return GestureDetector(
+                      onTap: () {
+                        FocusScope.of(context).unfocus();
+                        nameEditableNotifier.value = false;
+                        Future.delayed(Duration(milliseconds: 200), () {
+                          ProviderScope.containerOf(context).read(appHomeViewModelProvider).updateNickName(
+                              SubAccountNo: widget.account.accountNo ?? "",
+                              NickName: accountTextController.text);
+                        });
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 4.0.h, left: 4.h, right: 4.h, top: 2.h),
+                        child: AppSvg.asset(
+                          AssetUtils.check,
+                          color: Theme.of(context).colorScheme.onSecondaryContainer,
+                        ),
+                      ),
+                    );
+                  } else {
+                    return Padding(
+                      padding: EdgeInsets.only(bottom: 8.0.h, left: 8.h, right: 9.h, top: 6.h),
                       child: AppSvg.asset(
-                        AssetUtils.check,
+                        AssetUtils.editNickName,
                         color: Theme.of(context).colorScheme.onSecondaryContainer,
                       ),
-                    ),
-                  );
-                } else {
-                  return Padding(
-                    padding: EdgeInsets.only(bottom: 8.0.h, left: 8.h, right: 9.h, top: 6.h),
-                    child: AppSvg.asset(
-                      AssetUtils.editNickName,
-                      color: Theme.of(context).colorScheme.onSecondaryContainer,
-                    ),
-                  );
-                }
-              },
+                    );
+                  }
+                },
+              ),
             ),
           ),
         ),
@@ -173,14 +191,14 @@ class MyAccountPageViewWidget extends StatelessWidget {
       padding: EdgeInsetsDirectional.only(end: 23.w, start: 23.w, bottom: 32.h),
       child: InkWell(
         onTap: () {
-          if (account.isSubAccount ?? false) {
+          if (widget.account.isSubAccount ?? false) {
             ProviderScope.containerOf(context)
                 .read(appHomeViewModelProvider)
-                .showHideSubAccountSettings(true, account: account);
+                .showHideSubAccountSettings(true, account: widget.account);
           } else {
             ProviderScope.containerOf(context)
                 .read(appHomeViewModelProvider)
-                .showHideAccountSettings(true, account: account);
+                .showHideAccountSettings(true, account: widget.account);
           }
         },
         child: Container(
@@ -223,7 +241,7 @@ class MyAccountPageViewWidget extends StatelessWidget {
                     style: TextStyle(fontSize: 20.t, fontWeight: FontWeight.w700),
                     children: [
                       TextSpan(
-                          text: StringUtils.formatBalance(account.availableBalance ?? '0.000'),
+                          text: StringUtils.formatBalance(widget.account.availableBalance ?? '0.000'),
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               fontSize: 20.0.t,
@@ -267,7 +285,7 @@ class MyAccountPageViewWidget extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  account.accountNo ?? '',
+                  widget.account.accountNo ?? '',
                   maxLines: 2,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
@@ -278,7 +296,7 @@ class MyAccountPageViewWidget extends StatelessWidget {
                 SizedBox(width: 8.w),
                 InkWell(
                   onTap: () {
-                    Clipboard.setData(ClipboardData(text: account.accountNo ?? ''))
+                    Clipboard.setData(ClipboardData(text: widget.account.accountNo ?? ''))
                         .then((value) => Fluttertoast.showToast(msg: S.of(context).accountNoCopied));
                   },
                   child: Padding(
@@ -305,7 +323,7 @@ class MyAccountPageViewWidget extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    account.iban ?? '',
+                    widget.account.iban ?? '',
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         overflow: TextOverflow.ellipsis,
@@ -317,7 +335,7 @@ class MyAccountPageViewWidget extends StatelessWidget {
                 SizedBox(width: 8.w),
                 InkWell(
                   onTap: () {
-                    Clipboard.setData(ClipboardData(text: account.iban ?? ''))
+                    Clipboard.setData(ClipboardData(text: widget.account.iban ?? ''))
                         .then((value) => Fluttertoast.showToast(msg: S.of(context).ibanCopied));
                   },
                   child: Padding(
