@@ -831,6 +831,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "customerService":
             MessageLookupByLibrary.simpleMessage("خدمة زبائن 24/7"),
         "cvv": MessageLookupByLibrary.simpleMessage("CVV"),
+        "d": MessageLookupByLibrary.simpleMessage("d"),
         "dailyLimit": MessageLookupByLibrary.simpleMessage("السقف اليومي"),
         "dailyLimitExceededorTryLater": MessageLookupByLibrary.simpleMessage(
             " .في مشكلة بدفعتك، يمكن تكون تجاوزت حد التحويل اليومي. حاول كمان مرة. إذا بدك مساعدة تواصل معنا"),
