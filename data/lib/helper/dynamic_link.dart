@@ -16,7 +16,8 @@ class DynamicLinksService {
   factory DynamicLinksService() {
     return _instance;
   }
-// For QR
+
+  /// For QR Payments
   Future<String> createDynamicLink({
     required String accountTitle,
     required String accountNo,
@@ -47,7 +48,7 @@ class DynamicLinksService {
     return shortUrl.toString();
   }
 
-// For Refer and Earn
+  /// For Refer and Earn
   Future<String> referDynamicLink({
     required String userPromoCode,
   }) async {

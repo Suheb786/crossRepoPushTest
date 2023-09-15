@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -18551,10 +18550,10 @@ class S {
     );
   }
 
-  /// `Invite your friends and family to enjoy the Blink experience. Start earning up to Start earning up to {referFriendDescription} JOD. The more you refer, the more you earn.`
+  /// `Invite your friends and family to enjoy the Blink experience. Start earning up to {referFriendDescription} JOD. The more you refer, the more you earn.`
   String referFriendDescription(Object referFriendDescription) {
     return Intl.message(
-      'Invite your friends and family to enjoy the Blink experience. Start earning up to Start earning up to $referFriendDescription JOD. The more you refer, the more you earn.',
+      'Invite your friends and family to enjoy the Blink experience. Start earning up to $referFriendDescription JOD. The more you refer, the more you earn.',
       name: 'referFriendDescription',
       desc: 'referFriendDescription',
       args: [referFriendDescription],
@@ -18606,6 +18605,36 @@ class S {
     return Intl.message(
       'Offers Category',
       name: 'offersCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose the account you\nwant to pay from`
+  String get chooseTheAccountToPay {
+    return Intl.message(
+      'Choose the account you\nwant to pay from',
+      name: 'chooseTheAccountToPay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `success`
+  String get readyToUseSuccess {
+    return Intl.message(
+      'success',
+      name: 'readyToUseSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Referral link`
+  String get referralLink {
+    return Intl.message(
+      'Referral link',
+      name: 'referralLink',
       desc: '',
       args: [],
     );

@@ -11,8 +11,6 @@ import '../stream_builder/app_stream_builder.dart';
 class DashboardSwiper extends StatefulWidget {
   final List? pages;
   final int? currentStep;
-
-  // final SwiperController? pagesController;
   final Function(int)? onIndexChanged;
   PageController appSwiperController;
   AnimationController? translateSidewaysController;
