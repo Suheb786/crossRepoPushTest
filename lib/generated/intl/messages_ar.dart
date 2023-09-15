@@ -831,6 +831,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "customerService":
             MessageLookupByLibrary.simpleMessage("خدمة زبائن 24/7"),
         "cvv": MessageLookupByLibrary.simpleMessage("CVV"),
+        "d": MessageLookupByLibrary.simpleMessage("d"),
         "dailyLimit": MessageLookupByLibrary.simpleMessage("السقف اليومي"),
         "dailyLimitExceededorTryLater": MessageLookupByLibrary.simpleMessage(
             " .في مشكلة بدفعتك، يمكن تكون تجاوزت حد التحويل اليومي. حاول كمان مرة. إذا بدك مساعدة تواصل معنا"),
@@ -925,6 +926,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dobHint": MessageLookupByLibrary.simpleMessage("يوم/شهر/سنة"),
         "documentsNotFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-081)"),
+        "done": MessageLookupByLibrary.simpleMessage("Done"),
         "dontNeedMyCardAnymore":
             MessageLookupByLibrary.simpleMessage("بطلت محتاج بطاقتي "),
         "dormantAccountCCFailedTitle": MessageLookupByLibrary.simpleMessage(

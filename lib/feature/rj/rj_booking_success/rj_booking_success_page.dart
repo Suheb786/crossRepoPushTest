@@ -9,9 +9,9 @@ import '../../../base/base_page.dart';
 import '../../../di/rj/rj_modules.dart';
 
 class RJBookingSuccessPage extends BasePage<RJBookingSuccessPageViewModel> {
-  final RJBookingSuccessPageArguments rjBookingSuccessPageArguments;
+  // final RJBookingSuccessPageArguments rjBookingSuccessPageArguments;
 
-  RJBookingSuccessPage(this.rjBookingSuccessPageArguments);
+  // RJBookingSuccessPage(this.rjBookingSuccessPageArguments);
   @override
   State<StatefulWidget> createState() => RJBookingSuccessPageState();
 }
@@ -25,7 +25,7 @@ class RJBookingSuccessPageState
 
   @override
   ProviderBase provideBase() {
-    return rJBookingSuccessPageViewModelProvider.call(widget.rjBookingSuccessPageArguments);
+    return rJBookingSuccessPageViewModelProvider;
   }
 }
 
