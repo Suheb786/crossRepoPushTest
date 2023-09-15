@@ -154,12 +154,15 @@ class PageDetail extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 16.h),
-                EVoucherTextWidget(
-                  alignment: AlignmentDirectional.topStart,
-                  text: S.of(context).termsAndConditionsSetting,
-                  textSize: 14.t,
-                  textWeight: FontWeight.w600,
-                  textColor: Theme.of(context).colorScheme.shadow,
+                Visibility(
+                  visible: (model.argument.selectedVoucherData?.termsAndConditions ?? '').isNotEmpty,
+                  child: EVoucherTextWidget(
+                    alignment: AlignmentDirectional.topStart,
+                    text: S.of(context).termsAndConditionsSetting,
+                    textSize: 14.t,
+                    textWeight: FontWeight.w600,
+                    textColor: Theme.of(context).colorScheme.shadow,
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.w, top: 16.h),

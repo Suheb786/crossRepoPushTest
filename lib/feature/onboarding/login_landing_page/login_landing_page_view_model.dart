@@ -245,7 +245,7 @@ class LoginLandingPageViewModel extends BasePageViewModel {
     initDynamicLink();
   }
 
-  // For Refer Dynamic Link
+  /// For Refer Dynamic Link
   Timer? timer;
 
   initDynamicLink() async {
@@ -262,7 +262,7 @@ class LoginLandingPageViewModel extends BasePageViewModel {
   String userPromoCode = "";
 
   void referData({required Uri uri}) {
-    if (uri.path.isNotEmpty && uri.queryParameters.isNotEmpty && uri.path.contains("/refer")) {
+    if (uri.path.isNotEmpty && uri.path.contains("/refer") && uri.queryParameters.isNotEmpty) {
       userPromoCode = uri.queryParameters['userPromoCode']?.replaceAll(' ', '+') ?? '';
       debugPrint("userPromoCode--> $userPromoCode");
     } else {

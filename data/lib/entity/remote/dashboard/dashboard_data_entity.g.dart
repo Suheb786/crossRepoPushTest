@@ -32,12 +32,14 @@ DashboardDataEntity _$DashboardDataEntityFromJson(Map<String, dynamic> json) =>
           : DashboardFeaturesEntity.fromJson(
               json['features'] as Map<String, dynamic>),
       debitCard: (json['debitCard'] as List<dynamic>?)
-          ?.map((e) => DashboardDebitCardEntity.fromJson(e as Map<String, dynamic>))
+          ?.map((e) =>
+              DashboardDebitCardEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
       email: json['email'] as String?,
       allowSubAccount: json['allowSubAccount'] as bool?,
       accounts: (json['accounts'] as List<dynamic>?)
-          ?.map((e) => DashboardAccountEntity.fromJson(e as Map<String, dynamic>))
+          ?.map(
+              (e) => DashboardAccountEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
       availableBalance: json['availableBalance'] as num?,
       userPromoCode: json['userPromoCode'] as String?,
