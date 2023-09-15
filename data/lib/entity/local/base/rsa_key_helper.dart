@@ -66,7 +66,7 @@ class RsaKeyHelper {
     } else {
       var publicKeyBitString = topLevelSeq.elements[1];
 
-      var publicKeyAsn = new ASN1Parser(publicKeyBitString.contentBytes()!);
+      var publicKeyAsn = new ASN1Parser(publicKeyBitString.contentBytes());
       ASN1Sequence publicKeySeq = publicKeyAsn.nextObject() as ASN1Sequence;
       modulus = publicKeySeq.elements[0] as ASN1Integer;
       exponent = publicKeySeq.elements[1] as ASN1Integer;
@@ -103,11 +103,10 @@ class RsaKeyHelper {
     var topLevelSeq = asn1Parser.nextObject() as ASN1Sequence;
 
     var modulus, privateExponent, p, q;
-    //Use either PKCS1 or PKCS8 depending on the number of ELEMENTS
     if (topLevelSeq.elements.length == 3) {
       var privateKey = topLevelSeq.elements[2];
 
-      asn1Parser = new ASN1Parser(privateKey.contentBytes()!);
+      asn1Parser = new ASN1Parser(privateKey.contentBytes());
       var pkSeq = asn1Parser.nextObject() as ASN1Sequence;
 
       modulus = pkSeq.elements[1] as ASN1Integer;

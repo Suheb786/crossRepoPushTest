@@ -70,8 +70,10 @@ class AppConstantsUtils {
     billPostpaidCategoriesCacheList = [];
     billPrepaidCategoriesCacheList = [];
     billerDetailsCacheList = Map<String, List<BillerDetailsList>?>();
+    userPromoCode = '';
   }
 
   static String jodCurrency = 'JOD';
   static String usdCurrency = 'USD';
+  static String userPromoCode = "";
 }

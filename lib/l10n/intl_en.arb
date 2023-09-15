@@ -1877,7 +1877,7 @@
   "insufficientBalanceSubAccount": "Oops! Transaction failed; you have insufficient balance in your account.",
   "forYou": "For You",
   "referFriend": "Refer A Friend",
-  "referFriendDescription": "Invite your friends and family to enjoy the Blink experience. Start earning up to Start earning up to {referFriendDescription} JOD. The more you refer, the more you earn.",
+  "referFriendDescription": "Invite your friends and family to enjoy the Blink experience. Start earning up to {referFriendDescription} JOD. The more you refer, the more you earn.",
   "@referFriendDescription": {
     "description": "referFriendDescription",
     "type": "string"
