@@ -289,7 +289,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                           if (data.status == Status.SUCCESS) {
                             if (data.data != null) {
                               await Share.share(S.of(context).shareReferDescription(data.data ?? ''),
-                                  subject: 'Referral link');
+                                  subject: S.of(context).referralLink);
                             }
                           }
                         },

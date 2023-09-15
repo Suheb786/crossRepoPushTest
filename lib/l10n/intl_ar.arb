@@ -1863,5 +1863,8 @@
   "cliqTransactions": "الحركات السابقة",
   "backToHistory": "الرجوع",
   "profileSettings_": "الإعدادات الشخصية",
-  "offersCategory": "فئة العروض"
+  "offersCategory": "فئة العروض",
+  "chooseTheAccountToPay": "اختر الحساب الي بدك تدفع منه",
+  "readyToUseSuccess": "جاهز للاستخدام",
+  "referralLink": "رابط الدعوة"
 }

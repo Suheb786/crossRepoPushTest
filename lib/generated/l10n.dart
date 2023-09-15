@@ -18609,6 +18609,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Choose the account you\nwant to pay from`
+  String get chooseTheAccountToPay {
+    return Intl.message(
+      'Choose the account you\nwant to pay from',
+      name: 'chooseTheAccountToPay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `success`
+  String get readyToUseSuccess {
+    return Intl.message(
+      'success',
+      name: 'readyToUseSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Referral link`
+  String get referralLink {
+    return Intl.message(
+      'Referral link',
+      name: 'referralLink',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

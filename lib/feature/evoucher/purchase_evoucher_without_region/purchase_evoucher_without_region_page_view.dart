@@ -84,7 +84,7 @@ class PurchaseEVoucherWithoutRegionPageView
                         child: Text(
                           StepTextHelper.changeEmailAddressTextHelper(
                             currentStep ?? 0,
-                            S.of(context).howWouldLikeToPay,
+                            S.of(context).chooseTheAccountToPay,
                             S.of(context).enterOtpHeader,
                           ),
                           textAlign: TextAlign.center,

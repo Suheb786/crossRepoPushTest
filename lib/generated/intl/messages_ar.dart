@@ -634,6 +634,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "checkVideoCallStatusError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "chooseTheAccountToPay": MessageLookupByLibrary.simpleMessage(
+            "اختر الحساب الي بدك تدفع منه"),
         "city": MessageLookupByLibrary.simpleMessage("المدينة"),
         "citySmall": MessageLookupByLibrary.simpleMessage("المدينة"),
         "claimOfTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
@@ -2498,6 +2500,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "يا ريت تكون بمكان هادي وفيه خصوصية"),
         "reactivateCliqId":
             MessageLookupByLibrary.simpleMessage("اعادة تفعيل حساب كليك"),
+        "readyToUseSuccess":
+            MessageLookupByLibrary.simpleMessage("جاهز للاستخدام"),
         "reason": MessageLookupByLibrary.simpleMessage("سبب"),
         "reasonOfCancellation":
             MessageLookupByLibrary.simpleMessage("سبب الإلغاء"),
@@ -2531,6 +2535,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "referenceNumber": MessageLookupByLibrary.simpleMessage("رقم المرجع"),
         "referenceNumberSmall":
             MessageLookupByLibrary.simpleMessage("رقم المرجع"),
+        "referralLink": MessageLookupByLibrary.simpleMessage("رابط الدعوة"),
         "refno": MessageLookupByLibrary.simpleMessage("رقم المرجع"),
         "region": MessageLookupByLibrary.simpleMessage("المنطقة "),
         "registerInterestError": MessageLookupByLibrary.simpleMessage(
