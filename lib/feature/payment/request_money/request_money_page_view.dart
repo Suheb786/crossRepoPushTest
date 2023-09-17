@@ -73,7 +73,7 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                                   color: AppColor.black),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.only(top: 15.0.h, start: 4.0.w),
+                              padding: EdgeInsetsDirectional.only(top: 6.0.h, start: 4.0.w),
                               child: Text(
                                 S.of(context).JOD,
                                 style: TextStyle(
