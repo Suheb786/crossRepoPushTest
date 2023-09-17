@@ -60,7 +60,7 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                             color: AppColor.black),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 15.0.h, left: 4.0.w),
+                        padding: EdgeInsets.only(top: 6.0.h, left: 4.0.w),
                         child: Text(
                           S.of(context).JOD,
                           style: TextStyle(

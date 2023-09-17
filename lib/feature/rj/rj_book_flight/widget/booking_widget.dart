@@ -256,6 +256,7 @@ class _RJBookingWidgetViewState extends State<RJBookingWidgetView> {
                     return PassengerWidget(
                         onTap: (data) {
                           model.passengerList = data;
+                          model.isValid();
                         },
                         passengerList: model.passengerList,
                         index: index);

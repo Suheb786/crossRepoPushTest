@@ -26,7 +26,7 @@ class RjCardWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           Flexible(
-            flex: 9,
+            flex: 10,
             child: Container(
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
@@ -51,11 +51,15 @@ class RjCardWidget extends StatelessWidget {
               height: double.infinity,
               alignment: Alignment.bottomCenter,
               color: Theme.of(context).colorScheme.onPrimaryContainer,
-              child: AppSvg.asset(AssetUtils.WalkingLady, fit: BoxFit.fitHeight),
+              child: AppSvg.asset(
+                AssetUtils.WalkingLady,
+                fit: BoxFit.fitHeight,
+                alignment: Alignment.bottomCenter,
+              ),
             ),
           ),
           Flexible(
-            flex: 11,
+            flex: 10,
             child: Container(
               color: AppColor.softRed1,
               child: Row(
@@ -65,11 +69,10 @@ class RjCardWidget extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(left: 20.0),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Spacer(),
                         AppSvg.asset(AssetUtils.BestDealsWithBlink,
                             width: DeviceSizeHelper.isSmallDevice ? 100 : 115),
-                        Spacer(),
                       ],
                     ),
                   ),

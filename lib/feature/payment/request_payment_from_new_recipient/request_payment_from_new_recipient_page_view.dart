@@ -126,7 +126,7 @@ class RequestPaymentFromNewRecipientPageView
                                               );
                                       }),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 8.0.h),
+                                    padding: EdgeInsets.only(top: 6.0.h),
                                     child: Text(
                                       S.of(context).JOD,
                                       style: TextStyle(
