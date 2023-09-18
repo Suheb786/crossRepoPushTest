@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -947,6 +948,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dobHint": MessageLookupByLibrary.simpleMessage("DD/MM/YYYY"),
         "documentsNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-081)"),
+        "done": MessageLookupByLibrary.simpleMessage("Done"),
         "dontNeedMyCardAnymore": MessageLookupByLibrary.simpleMessage(
             "I don\'t need my card anymore"),
         "dormantAccountCCFailedTitle": MessageLookupByLibrary.simpleMessage(
@@ -2154,6 +2156,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("New Postpaid Bill"),
         "newPrePaidBill":
             MessageLookupByLibrary.simpleMessage("New Prepaid Bill"),
+        "newRequest": MessageLookupByLibrary.simpleMessage("New Request"),
         "newSettlementAccount":
             MessageLookupByLibrary.simpleMessage("New settlement account"),
         "newSettlementPercentage":
@@ -2260,6 +2263,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "oneSymbol": MessageLookupByLibrary.simpleMessage("1 symbol"),
         "oneUpperCaseLetter":
             MessageLookupByLibrary.simpleMessage("1 uppercase letter"),
+        "oneWay": MessageLookupByLibrary.simpleMessage("One-Way"),
         "onlinePurchase":
             MessageLookupByLibrary.simpleMessage("Online Purchase"),
         "onlinePurchaseExceeded": MessageLookupByLibrary.simpleMessage(

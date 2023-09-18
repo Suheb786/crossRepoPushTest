@@ -109,7 +109,7 @@ class FilterTransactionDialogView extends StatelessWidget {
                             ],
                           )),
                           Padding(
-                            padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 40.h),
+                            padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 42.h),
                             child: AppPrimaryButton(
                               onPressed: () {
                                 onSelected!.call(StringUtils.isDirectionRTL(context)

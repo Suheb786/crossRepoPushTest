@@ -149,7 +149,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 147.h, bottom: 40.h),
+                          padding: EdgeInsets.only(top: 147.h, bottom: 42.h),
                           child: AppPrimaryButton(
                             onPressed: () {
                               if (model.purpose != null && model.purposeDetail != null) {

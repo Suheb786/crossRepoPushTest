@@ -154,18 +154,22 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                                                           radius: 48.w,
                                                                           backgroundColor:
                                                                               Theme.of(context).primaryColor,
-                                                                          child: Text(
-                                                                            StringUtils.getFirstInitials(
-                                                                                profileData
-                                                                                    .data!.content!.fullName),
-                                                                            style: TextStyle(
-                                                                                fontFamily:
-                                                                                    StringUtils.appFont,
-                                                                                fontWeight: FontWeight.w700,
-                                                                                fontSize: 18.t,
-                                                                                color: Theme.of(context)
-                                                                                    .colorScheme
-                                                                                    .secondary),
+                                                                          child: Padding(
+                                                                            padding:
+                                                                                EdgeInsets.only(top: 9.0.t),
+                                                                            child: Text(
+                                                                              StringUtils.getFirstInitials(
+                                                                                  profileData.data!.content!
+                                                                                      .fullName),
+                                                                              style: TextStyle(
+                                                                                  fontFamily:
+                                                                                      StringUtils.appFont,
+                                                                                  fontWeight: FontWeight.w700,
+                                                                                  fontSize: 18.t,
+                                                                                  color: Theme.of(context)
+                                                                                      .colorScheme
+                                                                                      .secondary),
+                                                                            ),
                                                                           ),
                                                                         ))
                                                                   : CircleAvatar(

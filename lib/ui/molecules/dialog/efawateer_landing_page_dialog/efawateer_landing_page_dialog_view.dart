@@ -79,7 +79,7 @@ class EfawateerLandingDialogView extends StatelessWidget {
                             ),
                             SizedBox(height: 30.h),
                             Padding(
-                              padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 40.h),
+                              padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 42.h),
                               child: AppPrimaryButton(
                                 onPressed: () {
                                   onSelected!.call();

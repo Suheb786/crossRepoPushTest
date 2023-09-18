@@ -157,7 +157,7 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                     ),
                     Center(
                       child: Padding(
-                          padding: EdgeInsets.only(top: 16.0.h,bottom: 16.0.h),
+                          padding: EdgeInsets.only(top: 16.0.h,bottom: 20.0.h),
                           child: AppPrimaryButton(
                             text: S.of(context).next,
                             onPressed: () {
@@ -189,7 +189,7 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                           style: TextStyle(
                             color: AppColor.brightBlue,
                             fontSize: 14.t,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),

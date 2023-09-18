@@ -259,7 +259,6 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                   style: TextStyle(
                                                     color: AppColor.brightBlue,
                                                     fontSize: 14.t,
-                                                    letterSpacing: 1.0,
                                                     fontFamily: StringUtils.appFont,
                                                     fontWeight: FontWeight.w600,
                                                   ),

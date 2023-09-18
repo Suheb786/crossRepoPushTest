@@ -116,7 +116,7 @@ class CliqInformationDialogView extends StatelessWidget {
                                 );
                               },
                             ),
-                            SizedBox(height: 32.h),
+                            SizedBox(height: 42.h),
                           ],
                         ),
                       )),

@@ -1,2 +1,2 @@
-pub global deactivate fvm
-pub global activate fvm
+dart pub global deactivate fvm
+dart pub global activate fvm

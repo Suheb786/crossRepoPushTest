@@ -163,7 +163,7 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                                                                     fontFamily: StringUtils.appFont,
                                                                     color: AppColor.brightBlue,
                                                                     fontSize: 14.t,
-                                                                    fontWeight: FontWeight.w500,
+                                                                    fontWeight: FontWeight.w600,
                                                                   ),
                                                                 ),
                                                               ),

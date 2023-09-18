@@ -197,7 +197,6 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
                                                     style: TextStyle(
                                                       color: AppColor.brightBlue,
                                                       fontSize: 14.t,
-                                                      letterSpacing: 1.0,
                                                       fontWeight: FontWeight.w600,
                                                     ),
                                                   ),

@@ -92,6 +92,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                             ///LOG EVENT TO FIREBASE
                             await FirebaseAnalytics.instance
                                 .logEvent(name: "payments_opened", parameters: {"is_payment_opened": "true"});
+                            Navigator.pop(context);
                             Navigator.pushNamed(context, RoutePaths.PaymentHome,
                                 arguments: NavigationType.DASHBOARD);
                           },
@@ -146,6 +147,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                       ///Offers
                       PagesWidget(
                         onTap: () {
+                          Navigator.pop(context);
                           Navigator.of(context).push(CustomRoute.swipeUpRoute(OfferForYouPage()));
                         },
                         key: 'OFFERS',
@@ -160,6 +162,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                       ///Manage Contacts
                       PagesWidget(
                         onTap: () {
+                          Navigator.pop(context);
                           Navigator.of(context).push(CustomRoute.swipeUpRoute(
                               BeneficiaryContactListPage(navigationType: NavigationType.SEND_MONEY)));
                         },
@@ -175,6 +178,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                       ///CLIQ
                       PagesWidget(
                         onTap: () {
+                          Navigator.pop(context);
                           Navigator.of(context).push(
                               CustomRoute.swipeUpRoute(CliqIdListPage(), routeName: RoutePaths.CliqIdList));
                         },
@@ -190,6 +194,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                       ///E-VOUCHERS
                       PagesWidget(
                         onTap: () {
+                          Navigator.pop(context);
                           Navigator.of(context).push(
                             CustomRoute.swipeUpRoute(
                                 EvoucherPage(EvoucherPageArguments(
@@ -209,6 +214,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                       ///Profile settings
                       PagesWidget(
                         onTap: () {
+                          Navigator.pop(context);
                           Navigator.of(context).push(CustomRoute.swipeUpRoute(AccountSettingPage(),
                               routeName: RoutePaths.AccountSetting));
                         },

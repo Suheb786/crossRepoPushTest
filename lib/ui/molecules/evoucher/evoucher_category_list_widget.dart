@@ -20,7 +20,7 @@ class EVoucherCategoryListWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.symmetric(vertical: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
