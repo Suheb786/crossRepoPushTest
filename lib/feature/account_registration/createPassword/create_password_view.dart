@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
-import 'package:neo_bank/di/login/login_module.dart';
 import 'package:neo_bank/feature/account_registration/createPassword/create_password_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -14,6 +13,7 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/register/password_hint_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -67,11 +67,9 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                         if (passwordData.status == Status.SUCCESS) {
                           model.passwordKey.currentState!.isValid = true;
                           model.confirmPasswordKey.currentState!.isValid = true;
-
+                          print('Promo Code ---->${AppConstantsUtils.userPromoCode}');
                           model.registerUser(
-                            referralCode: ProviderScope.containerOf(context)
-                                .read(loginLandingViewModelProvider)
-                                .userPromoCode,
+                            referralCode: AppConstantsUtils.userPromoCode,
                             email: ProviderScope.containerOf(context)
                                 .read(addNumberViewModelProvider)
                                 .emailController
@@ -83,8 +81,8 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                 .text,
                             mobileCode: ProviderScope.containerOf(context)
                                     .read(addNumberViewModelProvider)
-                                .countryData
-                                .phoneCode ??
+                                    .countryData
+                                    .phoneCode ??
                                 '',
                           );
                         } else if (passwordData.status == Status.ERROR) {

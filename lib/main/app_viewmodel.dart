@@ -25,8 +25,6 @@ class AppViewModel extends BaseViewModel {
   ThemeData _themeData = ThemeData();
   AppTheme _appTheme = AppTheme.light;
 
-  // static Timer? tokenTimer;
-
   AppTheme get appTheme => _appTheme;
 
   Locale _currentLocale = Locale('en');
@@ -199,10 +197,6 @@ class AppViewModel extends BaseViewModel {
               borderSide: BorderSide(width: 4.0, color: AppColor.brightRed),
             ),
           ),
-
-          /*colorScheme: ColorScheme.fromSwatch(accentColor: AppColor.white)
-                .copyWith(background: AppColor.lightGray)
-                .copyWith(error: AppColor.vivid_red)*/
         );
         break;
     }
@@ -287,17 +281,6 @@ class AppViewModel extends BaseViewModel {
     });
 
     initAppFlyerSDK();
-
-    //
-    // FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    //   print('Got a message whilst in the foreground!');
-    //   print('Message data: ${message.data}');
-    //
-    //   if (message.notification != null) {
-    //     print('Message also contained a notification: ${message.notification}');
-    //   }
-    // });
-    //initInfobipMessagePlugin();
   }
 
   void getToken() async {
@@ -319,23 +302,6 @@ class AppViewModel extends BaseViewModel {
     });
   }
 
-  // void pauseRefreshToken() {
-  //   if (_isolate != null) {
-  //     print('inside pause token');
-  //     _isolate!.pause(_isolate!.pauseCapability!);
-  //     //_receivePort.close();
-  //   }
-  // }
-  //
-  // void resumeRefreshToken() {
-  //   if (_isolate != null) {
-  //     print('inside resume token');
-  //     _isolate!.resume(_isolate!.pauseCapability!);
-  //   } else {
-  //     getToken();
-  //   }
-  // }
-  //
   void stopRefreshToken() {
     if (_isolate != null) {
       _isolate!.kill(priority: 0);

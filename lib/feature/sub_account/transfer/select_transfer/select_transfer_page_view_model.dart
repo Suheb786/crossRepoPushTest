@@ -1,4 +1,3 @@
-import 'package:data/network/utils/get_error.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/sub_account/account_to_account_transfer_response.dart';

@@ -18550,10 +18550,10 @@ class S {
     );
   }
 
-  /// `Invite your friends and family to enjoy the Blink experience. Start earning up to Start earning up to {referFriendDescription} JOD. The more you refer, the more you earn.`
+  /// `Invite your friends and family to enjoy the Blink experience. Start earning up to {referFriendDescription} JOD. The more you refer, the more you earn.`
   String referFriendDescription(Object referFriendDescription) {
     return Intl.message(
-      'Invite your friends and family to enjoy the Blink experience. Start earning up to Start earning up to $referFriendDescription JOD. The more you refer, the more you earn.',
+      'Invite your friends and family to enjoy the Blink experience. Start earning up to $referFriendDescription JOD. The more you refer, the more you earn.',
       name: 'referFriendDescription',
       desc: 'referFriendDescription',
       args: [referFriendDescription],
@@ -18614,7 +18614,12 @@ class S {
   String get done {
     return Intl.message(
       'Done',
-      name: 'done',
+      name: 'done');}
+  /// `Choose the account you\nwant to pay from`
+  String get chooseTheAccountToPay {
+    return Intl.message(
+      'Choose the account you\nwant to pay from',
+      name: 'chooseTheAccountToPay',
       desc: '',
       args: [],
     );
@@ -18624,17 +18629,22 @@ class S {
   String get oneWay {
     return Intl.message(
       'One-Way',
-      name: 'oneWay',
+      name: 'oneWay',);}
+  /// `success`
+  String get readyToUseSuccess {
+    return Intl.message(
+      'success',
+      name: 'readyToUseSuccess',
       desc: '',
       args: [],
     );
   }
 
-  /// `d`
-  String get d {
+  /// `Referral link`
+  String get referralLink {
     return Intl.message(
-      'd',
-      name: 'd',
+      'Referral link',
+      name: 'referralLink',
       desc: '',
       args: [],
     );

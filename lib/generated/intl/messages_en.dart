@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -40,7 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m7(noOfBills) => "Paying ${noOfBills} bills";
 
   static String m8(referFriendDescription) =>
-      "Invite your friends and family to enjoy the Blink experience. Start earning up to Start earning up to ${referFriendDescription} JOD. The more you refer, the more you earn.";
+      "Invite your friends and family to enjoy the Blink experience. Start earning up to ${referFriendDescription} JOD. The more you refer, the more you earn.";
 
   static String m9(resendTime) => "Resend in ${resendTime}";
 
@@ -649,6 +648,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "checkVideoCallStatusError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "chooseTheAccountToPay": MessageLookupByLibrary.simpleMessage(
+            "Choose the account you\nwant to pay from"),
         "city": MessageLookupByLibrary.simpleMessage("CITY"),
         "citySmall": MessageLookupByLibrary.simpleMessage("City"),
         "claimOfTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
@@ -2573,6 +2574,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Best if your surrounding is quiet and private"),
         "reactivateCliqId":
             MessageLookupByLibrary.simpleMessage("Reactivate CliQ ID"),
+        "readyToUseSuccess": MessageLookupByLibrary.simpleMessage("success"),
         "reason": MessageLookupByLibrary.simpleMessage("Reason"),
         "reasonOfCancellation":
             MessageLookupByLibrary.simpleMessage("Reason of Cancellation"),
@@ -2609,6 +2611,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("REFERENCE NUMBER"),
         "referenceNumberSmall":
             MessageLookupByLibrary.simpleMessage("Reference Number"),
+        "referralLink": MessageLookupByLibrary.simpleMessage("Referral link"),
         "refno": MessageLookupByLibrary.simpleMessage("Ref No."),
         "region": MessageLookupByLibrary.simpleMessage("REGION"),
         "registerInterestError": MessageLookupByLibrary.simpleMessage(
