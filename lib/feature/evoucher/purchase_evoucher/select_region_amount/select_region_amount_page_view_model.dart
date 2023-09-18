@@ -150,7 +150,8 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
 
   void getVoucherValue() {
     List<String> prices = [];
-    for (var value in voucherItems) {
+    for (var value
+        in voucherItems.where((value) => value.countryCode.isoCode == selectedRegion.isoCode).toList()) {
       prices.add(value.fromValue.toStringAsFixed(3) + " " + value.currency);
     }
 

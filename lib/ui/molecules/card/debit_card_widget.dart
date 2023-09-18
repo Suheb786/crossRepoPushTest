@@ -501,7 +501,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                     : InkWell(
                         splashFactory: NoSplash.splashFactory,
                         onTap: () {
-                          widget.flipCardController!.toggleCard();
+                          widget.flipCardController?.toggleCard();
                         },
                         child: Container(
                           height: 50,

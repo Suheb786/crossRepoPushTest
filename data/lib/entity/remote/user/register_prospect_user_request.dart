@@ -31,7 +31,7 @@ class RegisterProspectUserRequest {
   @JsonKey(name: "platform")
   final String? platform;
 
-  @JsonKey(name: "Referral Code")
+  @JsonKey(name: "RefferalPromo")
   final String? referralCode;
 
   @JsonKey(name: "getToken")

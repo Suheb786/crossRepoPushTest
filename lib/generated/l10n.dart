@@ -27,15 +27,15 @@ class S {
 
   static Future<S> load(Locale locale) {
     final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
-    final localeName = Intl.canonicalizedLocale(name); 
+    final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
       final instance = S();
       S._current = instance;
- 
+
       return instance;
     });
-  } 
+  }
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
@@ -18547,10 +18547,10 @@ class S {
     );
   }
 
-  /// `Invite your friends and family to enjoy the Blink experience. Start earning up to Start earning up to {referFriendDescription} JOD. The more you refer, the more you earn.`
+  /// `Invite your friends and family to enjoy the Blink experience. Start earning up to {referFriendDescription} JOD. The more you refer, the more you earn.`
   String referFriendDescription(Object referFriendDescription) {
     return Intl.message(
-      'Invite your friends and family to enjoy the Blink experience. Start earning up to Start earning up to $referFriendDescription JOD. The more you refer, the more you earn.',
+      'Invite your friends and family to enjoy the Blink experience. Start earning up to $referFriendDescription JOD. The more you refer, the more you earn.',
       name: 'referFriendDescription',
       desc: 'referFriendDescription',
       args: [referFriendDescription],

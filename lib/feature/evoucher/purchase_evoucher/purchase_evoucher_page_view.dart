@@ -84,7 +84,7 @@ class PurchaseEVoucherPageView extends BasePageViewWidget<PurchaseEVoucherPageVi
                           StepTextHelper.evoucherPurchaseTextHelper(
                             currentStep ?? 0,
                             S.of(context).selectPreferredRegionAmount,
-                            S.of(context).howWouldLikeToPay,
+                            S.of(context).chooseTheAccountToPay,
                             S.of(context).enterOtpHeader,
                           ),
                           textAlign: TextAlign.center,

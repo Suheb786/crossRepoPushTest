@@ -112,10 +112,14 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                               descriptionWidget: Text(
                                 S.of(context).referFriendDescription("100"),
                                 style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontSize: 14.t,
-                                  fontWeight: FontWeight.w400,
-                                ),
+                                    fontFamily: StringUtils.appFont,
+                                    fontSize: 14.t,
+                                    fontWeight: FontWeight.w400,
+                                    color: Theme.of(context)
+                                        .inputDecorationTheme
+                                        .focusedBorder
+                                        ?.borderSide
+                                        .color),
                               ), onSelected: () async {
                             String userPromoCode = ProviderScope.containerOf(context)
                                     .read(appHomeViewModelProvider)
@@ -158,8 +162,6 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                         onTap: () {
                           Navigator.of(context).push(CustomRoute.swipeUpRoute(
                               BeneficiaryContactListPage(navigationType: NavigationType.SEND_MONEY)));
-
-                          // Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList, arguments: NavigationType.SEND_MONEY);
                         },
                         key: 'MANAGE_CONTACTS',
                         child: SettingsMenuWidget(
@@ -194,9 +196,6 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                                     EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING)),
                                 routeName: RoutePaths.Evoucher),
                           );
-                          /*Navigator.pushNamed(context, RoutePaths.Evoucher,
-                              arguments: EvoucherPageArguments(
-                                  EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING));*/
                         },
                         key: 'E-VOUCHERS',
                         child: SettingsMenuWidget(
@@ -289,7 +288,8 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                         onData: (data) async {
                           if (data.status == Status.SUCCESS) {
                             if (data.data != null) {
-                              await Share.share(S.of(context).shareReferDescription(data.data ?? ''));
+                              await Share.share(S.of(context).shareReferDescription(data.data ?? ''),
+                                  subject: S.of(context).referralLink);
                             }
                           }
                         },

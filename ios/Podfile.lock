@@ -14,57 +14,55 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
-  - agora_rtc_engine (6.2.1):
-    - AgoraIrisRTC_iOS (= 4.2.1-build.1)
-    - AgoraRtcEngine_iOS (= 4.2.1)
+  - agora_rtc_engine (6.2.2):
+    - AgoraIrisRTC_iOS (= 4.2.2-build.1)
+    - AgoraRtcEngine_iOS (= 4.2.2)
     - Flutter
-  - AgoraIrisRTC_iOS (4.2.1-build.1)
-  - AgoraRtcEngine_iOS (4.2.1):
-    - AgoraRtcEngine_iOS/AIAEC (= 4.2.1)
-    - AgoraRtcEngine_iOS/AINS (= 4.2.1)
-    - AgoraRtcEngine_iOS/AudioBeauty (= 4.2.1)
-    - AgoraRtcEngine_iOS/ClearVision (= 4.2.1)
-    - AgoraRtcEngine_iOS/ContentInspect (= 4.2.1)
-    - AgoraRtcEngine_iOS/DRM (= 4.2.1)
-    - AgoraRtcEngine_iOS/FaceDetection (= 4.2.1)
-    - AgoraRtcEngine_iOS/ReplayKit (= 4.2.1)
-    - AgoraRtcEngine_iOS/RtcBasic (= 4.2.1)
-    - AgoraRtcEngine_iOS/SpatialAudio (= 4.2.1)
-    - AgoraRtcEngine_iOS/VideoCodecDec (= 4.2.1)
-    - AgoraRtcEngine_iOS/VideoCodecEnc (= 4.2.1)
-    - AgoraRtcEngine_iOS/VirtualBackground (= 4.2.1)
-    - AgoraRtcEngine_iOS/VQA (= 4.2.1)
-  - AgoraRtcEngine_iOS/AIAEC (4.2.1)
-  - AgoraRtcEngine_iOS/AINS (4.2.1)
-  - AgoraRtcEngine_iOS/AudioBeauty (4.2.1)
-  - AgoraRtcEngine_iOS/ClearVision (4.2.1)
-  - AgoraRtcEngine_iOS/ContentInspect (4.2.1)
-  - AgoraRtcEngine_iOS/DRM (4.2.1)
-  - AgoraRtcEngine_iOS/FaceDetection (4.2.1)
-  - AgoraRtcEngine_iOS/ReplayKit (4.2.1)
-  - AgoraRtcEngine_iOS/RtcBasic (4.2.1)
-  - AgoraRtcEngine_iOS/SpatialAudio (4.2.1)
-  - AgoraRtcEngine_iOS/VideoCodecDec (4.2.1)
-  - AgoraRtcEngine_iOS/VideoCodecEnc (4.2.1)
-  - AgoraRtcEngine_iOS/VirtualBackground (4.2.1)
-  - AgoraRtcEngine_iOS/VQA (4.2.1)
+  - AgoraIrisRTC_iOS (4.2.2-build.1)
+  - AgoraRtcEngine_iOS (4.2.2):
+    - AgoraRtcEngine_iOS/AIAEC (= 4.2.2)
+    - AgoraRtcEngine_iOS/AINS (= 4.2.2)
+    - AgoraRtcEngine_iOS/AudioBeauty (= 4.2.2)
+    - AgoraRtcEngine_iOS/ClearVision (= 4.2.2)
+    - AgoraRtcEngine_iOS/ContentInspect (= 4.2.2)
+    - AgoraRtcEngine_iOS/DRM (= 4.2.2)
+    - AgoraRtcEngine_iOS/FaceDetection (= 4.2.2)
+    - AgoraRtcEngine_iOS/ReplayKit (= 4.2.2)
+    - AgoraRtcEngine_iOS/RtcBasic (= 4.2.2)
+    - AgoraRtcEngine_iOS/SpatialAudio (= 4.2.2)
+    - AgoraRtcEngine_iOS/VideoCodecDec (= 4.2.2)
+    - AgoraRtcEngine_iOS/VideoCodecEnc (= 4.2.2)
+    - AgoraRtcEngine_iOS/VirtualBackground (= 4.2.2)
+    - AgoraRtcEngine_iOS/VQA (= 4.2.2)
+  - AgoraRtcEngine_iOS/AIAEC (4.2.2)
+  - AgoraRtcEngine_iOS/AINS (4.2.2)
+  - AgoraRtcEngine_iOS/AudioBeauty (4.2.2)
+  - AgoraRtcEngine_iOS/ClearVision (4.2.2)
+  - AgoraRtcEngine_iOS/ContentInspect (4.2.2)
+  - AgoraRtcEngine_iOS/DRM (4.2.2)
+  - AgoraRtcEngine_iOS/FaceDetection (4.2.2)
+  - AgoraRtcEngine_iOS/ReplayKit (4.2.2)
+  - AgoraRtcEngine_iOS/RtcBasic (4.2.2)
+  - AgoraRtcEngine_iOS/SpatialAudio (4.2.2)
+  - AgoraRtcEngine_iOS/VideoCodecDec (4.2.2)
+  - AgoraRtcEngine_iOS/VideoCodecEnc (4.2.2)
+  - AgoraRtcEngine_iOS/VirtualBackground (4.2.2)
+  - AgoraRtcEngine_iOS/VQA (4.2.2)
   - Alamofire (4.9.1)
   - app_links (0.0.1):
     - Flutter
   - appsflyer_sdk (6.8.0):
-    - AppsFlyerFramework (= 6.11.2)
+    - AppsFlyerFramework (= 6.12.2)
     - Flutter
-  - AppsFlyerFramework (6.11.2):
-    - AppsFlyerFramework/Main (= 6.11.2)
-  - AppsFlyerFramework/Main (6.11.2)
+  - AppsFlyerFramework (6.12.2):
+    - AppsFlyerFramework/Main (= 6.12.2)
+  - AppsFlyerFramework/Main (6.12.2)
   - blinkid_flutter (6.1.1):
     - Flutter
     - PPBlinkID (~> 6.1.2)
   - camera_avfoundation (0.0.1):
     - Flutter
   - CryptoSwift (1.7.1)
-  - device_info (0.0.1):
-    - Flutter
   - device_info_plus (0.0.1):
     - Flutter
   - DKImagePickerController/Core (4.3.4):
@@ -117,22 +115,22 @@ PODS:
   - Firebase/Performance (10.12.0):
     - Firebase/CoreOnly
     - FirebasePerformance (~> 10.12.0)
-  - firebase_analytics (10.4.4):
+  - firebase_analytics (10.4.5):
     - Firebase/Analytics (= 10.12.0)
     - firebase_core
     - Flutter
-  - firebase_core (2.15.0):
+  - firebase_core (2.15.1):
     - Firebase/CoreOnly (= 10.12.0)
     - Flutter
-  - firebase_crashlytics (3.3.4):
+  - firebase_crashlytics (3.3.5):
     - Firebase/Crashlytics (= 10.12.0)
     - firebase_core
     - Flutter
-  - firebase_dynamic_links (5.3.4):
+  - firebase_dynamic_links (5.3.5):
     - Firebase/DynamicLinks (= 10.12.0)
     - firebase_core
     - Flutter
-  - firebase_performance (0.9.2-4):
+  - firebase_performance (0.9.2-5):
     - Firebase/Performance (= 10.12.0)
     - firebase_core
     - Flutter
@@ -283,11 +281,11 @@ PODS:
     - TOCropViewController (~> 2.6.1)
   - image_picker_ios (0.0.1):
     - Flutter
-  - infobip_mobilemessaging (1.3.0):
+  - infobip_mobilemessaging (1.4.0):
     - Flutter
-    - MobileMessaging/Core (= 10.20.0)
-    - MobileMessaging/Geofencing (= 10.20.0)
-    - MobileMessaging/InAppChat (= 10.20.0)
+    - MobileMessaging/Core (= 10.23.1)
+    - MobileMessaging/Geofencing (= 10.23.1)
+    - MobileMessaging/InAppChat (= 10.23.1)
   - infobip_plugin (0.0.1):
     - AFNetworking
     - Flutter
@@ -299,10 +297,10 @@ PODS:
     - Flutter
   - local_auth_ios (0.0.1):
     - Flutter
-  - MobileMessaging/Core (10.20.0)
-  - MobileMessaging/Geofencing (10.20.0):
+  - MobileMessaging/Core (10.23.1)
+  - MobileMessaging/Geofencing (10.23.1):
     - MobileMessaging/Core
-  - MobileMessaging/InAppChat (10.20.0):
+  - MobileMessaging/InAppChat (10.23.1):
     - MobileMessaging/Core
   - MTBBarcodeScanner (5.0.11)
   - nanopb (2.30909.0):
@@ -346,7 +344,7 @@ PODS:
   - TOCropViewController (2.6.1)
   - url_launcher_ios (0.0.1):
     - Flutter
-  - wakelock (0.0.1):
+  - wakelock_plus (0.0.1):
     - Flutter
 
 DEPENDENCIES:
@@ -355,7 +353,6 @@ DEPENDENCIES:
   - appsflyer_sdk (from `.symlinks/plugins/appsflyer_sdk/ios`)
   - blinkid_flutter (from `.symlinks/plugins/blinkid_flutter/ios`)
   - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
-  - device_info (from `.symlinks/plugins/device_info/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
@@ -379,16 +376,16 @@ DEPENDENCIES:
   - iris_method_channel (from `.symlinks/plugins/iris_method_channel/ios`)
   - local_auth_ios (from `.symlinks/plugins/local_auth_ios/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
-  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - qr_code_scanner (from `.symlinks/plugins/qr_code_scanner/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
-  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/ios`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sms_autofill (from `.symlinks/plugins/sms_autofill/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - syncfusion_flutter_pdfviewer (from `.symlinks/plugins/syncfusion_flutter_pdfviewer/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
-  - wakelock (from `.symlinks/plugins/wakelock/ios`)
+  - wakelock_plus (from `.symlinks/plugins/wakelock_plus/ios`)
 
 SPEC REPOS:
   trunk:
@@ -443,8 +440,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/blinkid_flutter/ios"
   camera_avfoundation:
     :path: ".symlinks/plugins/camera_avfoundation/ios"
-  device_info:
-    :path: ".symlinks/plugins/device_info/ios"
   device_info_plus:
     :path: ".symlinks/plugins/device_info_plus/ios"
   file_picker:
@@ -492,7 +487,7 @@ EXTERNAL SOURCES:
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider_foundation:
-    :path: ".symlinks/plugins/path_provider_foundation/ios"
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
   permission_handler_apple:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
   qr_code_scanner:
@@ -500,7 +495,7 @@ EXTERNAL SOURCES:
   share_plus:
     :path: ".symlinks/plugins/share_plus/ios"
   shared_preferences_foundation:
-    :path: ".symlinks/plugins/shared_preferences_foundation/ios"
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   sms_autofill:
     :path: ".symlinks/plugins/sms_autofill/ios"
   sqflite:
@@ -509,32 +504,31 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/syncfusion_flutter_pdfviewer/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
-  wakelock:
-    :path: ".symlinks/plugins/wakelock/ios"
+  wakelock_plus:
+    :path: ".symlinks/plugins/wakelock_plus/ios"
 
 SPEC CHECKSUMS:
   AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
-  agora_rtc_engine: ee927652b7d3c80661fc1a053e1ac86ef78856fa
-  AgoraIrisRTC_iOS: 4c6cb9df772dacba4e0dccb00178378454d03fde
-  AgoraRtcEngine_iOS: bbbacbf4797a6f85532c6023b72c4d66f2b49227
+  agora_rtc_engine: 667a7de14f35858a31b0c64cd54042a2158ef198
+  AgoraIrisRTC_iOS: 7e71322c06db6c29ceaf89a964fb8b2700a75001
+  AgoraRtcEngine_iOS: c510de329cd905daff3f01fa4c872ea6d5eaee23
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   app_links: 5ef33d0d295a89d9d16bb81b0e3b0d5f70d6c875
-  appsflyer_sdk: 301fff96f8ba453ea23156e8fded79ab8853742a
-  AppsFlyerFramework: e22e8f0e746b4f568d9bb0b078180c6ad95e2609
+  appsflyer_sdk: beae2edc91c51ca92cad637534b45b22ff35d287
+  AppsFlyerFramework: 6eb4d89d2eb9a6632317f1055b359d9fd85fd5ff
   blinkid_flutter: d4cb7f6a93a741132b1359b2e50f527811cf2775
   camera_avfoundation: 3125e8cd1a4387f6f31c6c63abb8a55892a9eeeb
   CryptoSwift: d3d18dc357932f7e6d580689e065cf1f176007c1
-  device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
-  device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
+  device_info_plus: 7545d84d8d1b896cb16a4ff98c19f07ec4b298ea
   DKImagePickerController: b512c28220a2b8ac7419f21c491fc8534b7601ac
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
   file_picker: ce3938a0df3cc1ef404671531facef740d03f920
   Firebase: 07150e75d142fb9399f6777fa56a187b17f833a0
-  firebase_analytics: 3ff822ee2e90f95b61f0da300df20b378d380fbb
-  firebase_core: e477125798fc37cd4ab43ca6a8536bf7e0929c00
-  firebase_crashlytics: 6043ce85800f96e53f15ee5051f9cfad10cce73d
-  firebase_dynamic_links: d85cf455646322fd101c8a5a5942c3d47132fe80
-  firebase_performance: 32e9164da8ae1cc69ee3edff231e2f020be9b6c2
+  firebase_analytics: 3bdcd8b68b7b8ccf28bbcdcfb994309f6232f873
+  firebase_core: 4a3246a02f828a01c74a2c26427037786d90f17f
+  firebase_crashlytics: df144edf7d04ace42beb3a3e29d825bfa49dd04b
+  firebase_dynamic_links: cc3fd36190c7b58c27353915271d2c0d031ee11b
+  firebase_performance: 9277c037aba44142df6dc5f5b1b184168f36973a
   FirebaseABTesting: e1535073fac4ff55c7537a6e041155c72d9e6906
   FirebaseAnalytics: 0270389efbe3022b54ec4588862dabec3477ee98
   FirebaseCore: f86a1394906b97ac445ae49c92552a9425831bed
@@ -562,13 +556,13 @@ SPEC CHECKSUMS:
   IBGoogleWebRTC: 4dc0e8b0bf16bc473caff8797152af80385d3402
   image_cropper: a3291c624a953049bc6a02e1f8c8ceb162a24b25
   image_picker_ios: 4a8aadfbb6dc30ad5141a2ce3832af9214a705b5
-  infobip_mobilemessaging: 295291f50efa4fffb2218612fe2cb16d4d3f3dbb
+  infobip_mobilemessaging: ac180491feee95a7c4ac9e21a3c42538dbe0f18c
   infobip_plugin: 04f0e6f190421989e1c15a061e682170cfc7c3dd
   InfobipRTC: 3cd60d4688d0a12ab9847fc8cd961962504b22c7
   IOSSecuritySuite: 72c55371aafe586196c325a8348319c36d385ce4
   iris_method_channel: 0617c689164d8154c020c50f63ca79f92b8a7b9d
   local_auth_ios: c6cf091ded637a88f24f86a8875d8b0f526e2605
-  MobileMessaging: b8644df14730a47ba5207e46da5b4733502717fd
+  MobileMessaging: 1775558cdce47d209ae3eca222786ec237ae2927
   MTBBarcodeScanner: f453b33c4b7dfe545d8c6484ed744d55671788cb
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
@@ -590,7 +584,7 @@ SPEC CHECKSUMS:
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
   url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
-  wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
+  wakelock_plus: 8b09852c8876491e4b6d179e17dfe2a0b5f60d47
 
 PODFILE CHECKSUM: e7150298bdc7b2dfc097da04f0a61456330c9904
 

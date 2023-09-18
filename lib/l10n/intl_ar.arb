@@ -1867,4 +1867,8 @@
   "done": "Done",
   "oneWay": "ذهابا",
   "newRequest": "New Request"
+  "offersCategory": "فئة العروض",
+  "chooseTheAccountToPay": "اختر الحساب الي بدك تدفع منه",
+  "readyToUseSuccess": "جاهز للاستخدام",
+  "referralLink": "رابط الدعوة"
 }
