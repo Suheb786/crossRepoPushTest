@@ -67,48 +67,55 @@ class CardCancelDialogView extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 24.0.w),
                       child: InkWell(
-                        onTap: () {
-                          CancellationReasonDialog.show(
-                            context,
-                            title: S.of(context).reasonOfCancellation,
-                            onDismissed: () {
-                              Navigator.pop(context);
-                            },
-                            onSelected: (value) {
-                              model!.reasonCancellationController.text = value;
-                              Navigator.pop(context);
-                            },
-                            reasons: reasons,
-                          );
-                        },
-                        child: AppTextField(
-                          labelText: S.of(context).reasonOfCancellation.toUpperCase(),
-                          hintText: S.of(context).pleaseSelect,
-                          readOnly: true,
-                          key: model!.reasonKey,
-                          controller: model.reasonCancellationController,
-                          onPressed: () {
-                            CancellationReasonDialog.show(context,
-                                onDismissed: () {
-                                  Navigator.pop(context);
-                                },
-                                title: S.of(context).reasonOfCancellation,
-                                reasons: reasons,
-                                onSelected: (value) {
-                                  Navigator.pop(context);
-                                  model.reasonCancellationController.text = value;
-                                });
-                          },
-                          suffixIcon: (isChecked, value) {
-                            return Container(
-                              width: 16.w,
-                              height: 16.h,
-                              padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
-                              child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1),
+                          onTap: () {
+                            CancellationReasonDialog.show(
+                              context,
+                              title: S.of(context).reasonOfCancellation,
+                              onDismissed: () {
+                                Navigator.pop(context);
+                              },
+                              onSelected: (value) {
+                                model!.reasonCancellationController.text = value;
+                                Navigator.pop(context);
+                              },
+                              reasons: reasons,
                             );
                           },
-                        ),
-                      ),
+                          child: AppTextField(
+                            labelText: S.of(context).reasonOfCancellation.toUpperCase(),
+                            hintText: S.of(context).pleaseSelect,
+                            readOnly: true,
+                            key: model!.reasonKey,
+                            controller: model.reasonCancellationController,
+                            autoFocus: false,
+                            onPressed: () {
+                              CancellationReasonDialog.show(context,
+                                  onDismissed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  title: S.of(context).reasonOfCancellation,
+                                  reasons: reasons,
+                                  onSelected: (value) {
+                                    Navigator.pop(context);
+                                    model.reasonCancellationController.text = value;
+                                  });
+                            },
+                            suffixIcon: (isChecked, value) {
+                              return Container(
+                                width: 16.w,
+                                height: 16.h,
+                                padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
+                                child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1),
+                              );
+                            },
+                            /*textHintWidget: (hasFocus, isValid, value) {
+                              if (value.isEmpty) {
+                                print("empty-----");
+                                model.reasonKey.currentState! = false;
+                              }
+                              return SizedBox.shrink();
+                            },*/
+                          )),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),

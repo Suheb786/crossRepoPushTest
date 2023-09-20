@@ -130,6 +130,7 @@ class _MyAccountPageViewWidgetState extends State<MyAccountPageViewWidget> {
               onFocusChange: (focus) {
                 accountTextController.selection =
                     TextSelection.fromPosition(TextPosition(offset: accountTextController.text.length));
+                nameEditableNotifier.value = focus;
               },
               child: AppTextField(
                 labelText: "",
@@ -152,7 +153,7 @@ class _MyAccountPageViewWidgetState extends State<MyAccountPageViewWidget> {
                 },
                 suffixIcon: (selectedCard, value) {
                   if (nameEditableNotifier.value &&
-                      accountTextController.text != widget.account.nickName &&
+                      // accountTextController.text != widget.account.nickName &&
                       accountTextController.text.isNotEmpty) {
                     return GestureDetector(
                       onTap: () {
