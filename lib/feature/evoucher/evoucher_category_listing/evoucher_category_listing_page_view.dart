@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page_view_model.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_region_amount/select_region_amount_page.dart';
 
 import 'package:neo_bank/ui/molecules/app_divider.dart';
@@ -73,6 +72,7 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
                                   onTap: () {
                                     Navigator.pushNamed(context, RoutePaths.SelectRegionAmountPage,
                                         arguments: SelectRegionAmountPageArgument(
+                                            category: model.argument.voucherCategory.categoryName,
                                             voucherItems: categoryVouchers?.data?[index] ?? []));
                                   },
                                   categoryVoucherName: categoryVouchers?.data?[index].first.brand,

@@ -97,12 +97,11 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                                           child: BrowserByCategoryItemWidget(
                                             categoryData!.data!,
                                             onSelectCategory: (category, index) {
-                                              model.setSelectedCategory(category);
                                               Navigator.pushNamed(
                                                 context,
                                                 RoutePaths.EVouchersListing,
                                                 arguments: CategoryListArgument(
-                                                    id: categoryData.data?[index].id ?? 0.0),
+                                                    voucherCategory: categoryData.data![index]),
                                               );
                                             },
                                           ),

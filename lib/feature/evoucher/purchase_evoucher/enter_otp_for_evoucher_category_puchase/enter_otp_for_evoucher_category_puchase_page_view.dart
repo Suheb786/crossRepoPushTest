@@ -6,13 +6,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/enter_otp_for_evoucher_category_puchase/enter_otp_for_evoucher_category_puchase_page_view_model.dart';
-import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_voucher_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
-import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -41,16 +38,16 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                 stream: model.placeOrderStream,
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
-                    Navigator.pushNamed(context, RoutePaths.EVouchersPurchaseSuccess,
-                        arguments: PurchaseVoucherSuccessArgument(
-                            placeOrder: data.data,
-                            settlementAmount: ProviderScope.containerOf(context)
-                                .read(selectAmountRegionViewModelProvider)
-                                .settlementAmount
-                                .toString(),
-                            selectedItem: ProviderScope.containerOf(context)
-                                .read(selectAmountRegionViewModelProvider)
-                                .selectedItem));
+                    // Navigator.pushNamed(context, RoutePaths.EVouchersPurchaseSuccess,
+                    //     arguments: PurchaseVoucherSuccessArgument(
+                    //         placeOrder: data.data,
+                    //         settlementAmount: ProviderScope.containerOf(context)
+                    //             .read(selectAmountRegionViewModelProvider)
+                    //             .settlementAmount
+                    //             .toString(),
+                    //         selectedItem: ProviderScope.containerOf(context)
+                    //             .read(selectAmountRegionViewModelProvider)
+                    //             .selectedItem));
                   }
                 },
                 dataBuilder: (context, placeOrderData) {
@@ -58,32 +55,32 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                     stream: model.enterOtpStream,
                     initialData: Resource.none(),
                     onData: (data) {
-                      if (data.status == Status.SUCCESS) {
-                        var item = ProviderScope.containerOf(context)
-                            .read(selectAmountRegionViewModelProvider)
-                            .selectedItem;
-                        model.placeOrder(
-                            sourceAccount: ProviderScope.containerOf(context)
-                                    .read(evoucherSettlementAccountViewModelProvider)
-                                    .selectedAccount
-                                    ?.iban ??
-                                '',
-                            sourceCurrency: AppConstantsUtils.jodCurrency,
-                            cardItemId: item.id,
-                            exchangeRate: double.parse(item.exchangeRate),
-                            voucherCurrency: item.currency,
-                            reconciliationCurrency: item.reconciliationCurrency,
-                            equivalentAmount:
-                                (item.fromValue.toDouble() * double.parse(item.exchangeRate)).toString(),
-                            denomination: item.fromValue.toInt(),
-                            discount: item.discount.replaceAll('%', ''),
-                            categories: item.categories.join(','),
-                            voucherName: item.name,
-                            productId: item.productId.toString(),
-                            productName: "",
-                            otpCode: model.otpController.text,
-                            getToken: true);
-                      }
+                      // if (data.status == Status.SUCCESS) {
+                      //   var item = ProviderScope.containerOf(context)
+                      //       .read(selectAmountRegionViewModelProvider)
+                      //       .selectedItem;
+                      //   model.placeOrder(
+                      //       sourceAccount: ProviderScope.containerOf(context)
+                      //               .read(evoucherSettlementAccountViewModelProvider)
+                      //               .selectedAccount
+                      //               ?.iban ??
+                      //           '',
+                      //       sourceCurrency: AppConstantsUtils.jodCurrency,
+                      //       cardItemId: item.id,
+                      //       exchangeRate: double.parse(item.exchangeRate),
+                      //       voucherCurrency: item.currency,
+                      //       reconciliationCurrency: item.reconciliationCurrency,
+                      //       equivalentAmount:
+                      //           (item.fromValue.toDouble() * double.parse(item.exchangeRate)).toString(),
+                      //       denomination: item.fromValue.toInt(),
+                      //       discount: item.discount.replaceAll('%', ''),
+                      //       categories: item.categories.join(','),
+                      //       voucherName: item.name,
+                      //       productId: item.productId.toString(),
+                      //       productName: "",
+                      //       otpCode: model.otpController.text,
+                      //       getToken: true);
+                      // }
                     },
                     dataBuilder: (context, isOtpVerified) {
                       return Card(
@@ -121,11 +118,11 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                                         return currentTimeRemaining == null
                                             ? TextButton(
                                                 onPressed: () {
-                                                  model.makeOTPRequest(
-                                                      voucherName: ProviderScope.containerOf(context)
-                                                          .read(selectAmountRegionViewModelProvider)
-                                                          .selectedItem
-                                                          .name);
+                                                  // model.makeOTPRequest(
+                                                  //     voucherName: ProviderScope.containerOf(context)
+                                                  //         .read(selectAmountRegionViewModelProvider)
+                                                  //         .selectedItem
+                                                  //         .name);
                                                 },
                                                 child: Text(
                                                   S.of(context).resendCode,

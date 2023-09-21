@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_region_amount/select_region_amount_page_view.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_region_amount/select_region_amount_page_view_model.dart';
 
@@ -27,8 +26,8 @@ class SelectRegionAmountPageState
 
   @override
   void onModelReady(SelectRegionAmountPageViewModel model) {
+    super.onModelReady(model);
     model.argument = widget.argument;
-    // model.voucherItems.clear();
     model.voucherItems = model.argument?.voucherItems ?? [];
     model.getRegionFromVoucherIds(context);
   }
@@ -41,6 +40,7 @@ class SelectRegionAmountPageState
 
 class SelectRegionAmountPageArgument {
   List<VoucherItem> voucherItems;
+  String category;
 
-  SelectRegionAmountPageArgument({required this.voucherItems});
+  SelectRegionAmountPageArgument({required this.voucherItems, required this.category});
 }

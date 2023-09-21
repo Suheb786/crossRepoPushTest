@@ -1,17 +1,13 @@
 import 'package:domain/model/rj/destination_response.dart';
 import 'package:domain/model/rj/get_trip_response.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
-
-import '../../../../base/base_page.dart';
 import '../../../../di/rj/rj_modules.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../main/navigation/route_paths.dart';
 import '../../../../ui/molecules/app_svg.dart';
-import '../../../../ui/molecules/button/animated_button.dart';
 import '../../../../ui/molecules/button/app_primary_button.dart';
 import '../../../../ui/molecules/date_picker.dart';
 import '../../../../ui/molecules/dialog/rj/rj_flight_booking_to_dialog/to_dialog.dart';

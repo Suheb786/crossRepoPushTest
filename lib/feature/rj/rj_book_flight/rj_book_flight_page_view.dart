@@ -1,26 +1,12 @@
-import 'package:domain/model/rj/destination_response.dart';
-import 'package:domain/model/rj/get_trip_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/feature/rj/rj_book_flight/rj_book_flight_page_view_model.dart';
-import 'package:neo_bank/feature/rj/rj_booking_in_app_web_view/rj_booking_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
-import 'package:neo_bank/ui/molecules/date_picker.dart';
-import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_to_dialog/to_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
-import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
-import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:neo_bank/utils/time_utils.dart';
 
 import '../../../base/base_page.dart';
-import 'passenger/passenger_widget.dart';
 
 class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
   final Function? onDismissed;

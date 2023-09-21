@@ -6,8 +6,8 @@ import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_cat
 import 'package:neo_bank/feature/evoucher/evoucher_detail/evoucher_detail_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/enter_otp_for_evoucher_category_puchase/enter_otp_for_evoucher_category_puchase_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/evoucher_settlement_select_account/evoucher_settlement_account_page_view_model.dart.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_by_denomination_amount/purchase_by_denomination_amount_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_by_denomination_amount/purchase_by_denomination_amount_page_view_model.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_region_amount/select_region_amount_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_now/purchase_now_detail_model.dart';
@@ -75,14 +75,13 @@ final purchaseEVoucherWithoutRegionPageViewModel = ChangeNotifierProvider.autoDi
 
 ///select region amount view model
 final selectAmountRegionViewModelProvider =
-    ChangeNotifierProvider.autoDispose<SelectRegionAmountPageViewModel>((ref) =>
-        SelectRegionAmountPageViewModel(
-            ref.read(selectRegionAmountUseCaseProvider), ref.read(getSettlementAmountUseCaseProvider)));
+    ChangeNotifierProvider.autoDispose<SelectRegionAmountPageViewModel>(
+        (ref) => SelectRegionAmountPageViewModel(ref.read(selectRegionAmountUseCaseProvider)));
 
 ///Purchase By Denomination Amount ViewModel
-final purchaseByDenominationAmountPageViewModel =
-    ChangeNotifierProvider.autoDispose<PurchaseByDenominationAmountPageViewModel>(
-        (ref) => PurchaseByDenominationAmountPageViewModel());
+final purchaseByDenominationAmountPageViewModel = ChangeNotifierProvider.autoDispose
+    .family<PurchaseByDenominationAmountPageViewModel, PurchaseByDenominationAmountPageArgument>(
+        (ref,args) => PurchaseByDenominationAmountPageViewModel(args));
 
 ///settlement
 final evoucherSettlementAccountViewModelProvider =

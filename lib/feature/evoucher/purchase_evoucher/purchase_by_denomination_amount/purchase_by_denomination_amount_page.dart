@@ -10,6 +10,7 @@ class PurchaseByDenominationAmountPage extends BasePage<PurchaseByDenominationAm
   final PurchaseByDenominationAmountPageArgument argument;
 
   PurchaseByDenominationAmountPage({required this.argument});
+
   @override
   State<StatefulWidget> createState() => PurchaseByDenominationAmountPageState();
 }
@@ -23,19 +24,13 @@ class PurchaseByDenominationAmountPageState
 
   @override
   ProviderBase provideBase() {
-    return purchaseByDenominationAmountPageViewModel;
-  }
-
-  @override
-  void onModelReady(PurchaseByDenominationAmountPageViewModel model) {
-    // TODO: implement onModelReady
-    super.onModelReady(model);
-    model.argument = widget.argument;
+    return purchaseByDenominationAmountPageViewModel.call(widget.argument);
   }
 }
 
 class PurchaseByDenominationAmountPageArgument {
   List<VoucherItem> voucherItems;
+  String category;
 
-  PurchaseByDenominationAmountPageArgument({required this.voucherItems});
+  PurchaseByDenominationAmountPageArgument({required this.voucherItems, required this.category});
 }

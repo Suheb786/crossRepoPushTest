@@ -47,12 +47,12 @@ class PurchaseNowDetailView extends BasePageViewWidget<PurchaseNowDetailViewMode
               Positioned.directional(
                 textDirection: Directionality.of(context),
                 top: 47.h,
-                start: 33.w,
+                start: 24.w,
                 child: GestureDetector(
                   onTap: () => Navigator.pop(context),
                   child: Container(
-                    height: 56.h,
-                    width: 56.w,
+                    height: 48.w,
+                    width: 48.w,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100.w),
                         color: Theme.of(context).colorScheme.secondary),
