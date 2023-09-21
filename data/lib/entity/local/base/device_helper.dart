@@ -7,9 +7,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_jailbreak_detection/flutter_jailbreak_detection.dart';
 import 'package:flutter_udid/flutter_udid.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:rxdart/rxdart.dart';
+
+BehaviorSubject<DeviceCompatibilityEnum> deviceJailBroken =
+    BehaviorSubject.seeded(DeviceCompatibilityEnum.NONE);
+
+Stream<DeviceCompatibilityEnum> get deviceJailBrokenStream => deviceJailBroken.stream;
+
+bool isJailBreakPopUpShown = false;
 
 class DeviceInfoHelper extends DeviceInfoService {
-
   String platformType() {
     return Platform.isAndroid ? 'A' : 'I';
   }

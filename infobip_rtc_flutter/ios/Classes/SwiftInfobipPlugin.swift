@@ -2,21 +2,22 @@ import Flutter
 import UIKit
 import InfobipRTC
 import WebRTC
-import AFNetworking
 import Foundation
-
 protocol EventListener {
     func handleEvent(event: String) -> ()
 }
 
-public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterStreamHandler {
-    
+public class InfobippluginPlugin:  NSObject, FlutterPlugin,  FlutterStreamHandler {
+
+
     var identity: String? = ""
     var displayName: String? = ""
     var applicationId: String? = ""
-//    var authorizationToken = "26b9894709b15ac31ff40161e599a955-30ec6c16-04da-4f20-8dc6-9a35f1067eb2"
     var appKey: String? = ""
     var baseUrl: String? = ""
+    var appIdToken: String? = ""
+    var appKeyToken: String? = ""
+    var baseUrlToken: String? = ""
     var callToken: String? = nil
     var callExpirationTime: String? = nil
     var resString: String? = nil
@@ -27,36 +28,38 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
     var callStartTime: Date? = nil
     var callEstablishTime: Date? = nil
     var callEndTime: Date? = nil
-    var outgoingCall: OutgoingCall? = nil
+    var outgoingCall: WebrtcCall? = nil
     var isApicall = false
     var gettoken = String()
     var eventSink:FlutterEventSink?
-    
-    let RandomNumberStreamHandle = SwiftStreamHandler()
-    
-    
+
+    //let Rand0omNumberStreamHandle = SwiftStreamHandler()
+
+
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "infobip_plugin", binaryMessenger: registrar.messenger())
-        let instance = SwiftInfobipPlugin()
+        let instance = InfobippluginPlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)
-        
+      
         print(object.EVENT_CHANNEL)
         let evenChannel = FlutterEventChannel(name:"infobip_plugin_event", binaryMessenger: registrar.messenger())
         evenChannel.setStreamHandler(instance)
     }
-    
+
     public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         print("On Listen Start")
+      print(events)
         eventSink = events
+        UserDefaults.standard.set(applicationId, forKey: "eventSink")
         return nil
     }
-    
+
     public func onCancel(withArguments arguments: Any?) -> FlutterError? {
         print("OnCancel")
         eventSink = nil
         return nil
     }
-    
+
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         print(call.method);
         switch call.method {
@@ -70,8 +73,8 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
             UserDefaults.standard.set(baseUrl, forKey: "baseUrl")
             UserDefaults.standard.set(appKey, forKey: "appKey")
             UserDefaults.standard.set(applicationId, forKey: "applicationId")
-            print("app_base_url", baseUrl!)
-            result(true)
+            print("app_base_url", baseUrl)
+            result("ios method channel initialize")
 
         case object.FETCH_TOKEN:
             print("Arguments ",call.arguments ?? "")
@@ -79,57 +82,151 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
             let dicData = call.arguments as? [String : Any]
             displayName = dicData?["displayName"] as? String
             identity = dicData?["identity"] as? String
-            outgoingCall?.delegate = self
-            let manager = AFHTTPSessionManager()
-            let serializer = AFJSONRequestSerializer()
-            serializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            serializer.setValue("App " + appKey!, forHTTPHeaderField: "Authorization")
-            manager.requestSerializer = serializer
-
-            let paraamDic = ["identity":identity,
-                             "applicationId":applicationId,
-                             "displayName":displayName]
-
-            manager.post(baseUrl! + "/webrtc/1/token", parameters: paraamDic, headers: [:], progress: nil) { (Operation, Response) in
+            appIdToken = dicData?["applicationId"] as? String
+            baseUrlToken = dicData?["baseUrl"] as? String
+            appKeyToken = dicData?["appKey"] as? String
+            let parameters = ["identity": identity,
+                          "applicationId": appIdToken,
+                          "displayName": displayName,
+                          "capabilities":"",
+                          "timeToLive":""]
 
 
-                let data = Response as? [String : String]
-                let token = data?["token"]
-                self.gettoken = token ?? ""
-                let encoder = JSONEncoder()
-                if let jsonData = try? encoder.encode(data) {
-                    if let jsonString = String(data: jsonData, encoding: .utf8) {
-                        print(jsonString)
-                        self.resString = jsonString
-                        result(jsonString)
+                let session = URLSession.shared
+                let url = URL(string:(baseUrlToken ?? "") + "/webrtc/1/token")!
+                var request = URLRequest(url: url)
+                request.httpMethod = "POST"
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+                request.setValue("App " + (appKeyToken ?? ""), forHTTPHeaderField: "Authorization")
+
+            if let param = parameters as? [String : Any] {
+                        let jsonData = try! JSONSerialization.data(withJSONObject: param, options:JSONSerialization.WritingOptions.prettyPrinted)
+
+                        let json = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)
+                        if let json = json {
+                            print(json)
+                        }
+                        request.httpBody = json!.data(using: String.Encoding.utf8.rawValue)
                     }
+
+
+
+                let task = session.dataTask(with: request) { data, response, error in
+                    if let data = data, let dataString = String(data: data, encoding: .utf8) {
+
+                        print(dataString)
+                        do {
+                            let json = try JSONSerialization.jsonObject(with: data, options: [])
+                            print(json)
+
+                            let value = json as? [String:Any]
+                            let token = (value?["token"] as? String) ?? ""
+                            self.gettoken = token
+                            result(token);
+                        } catch {
+                            print("JSON error: \(error.localizedDescription)")
+                        }
+                    }
+
+                    if error != nil || data == nil {
+                        NotificationCenter.default.post(name: Notification.Name("presentError"), object: nil, userInfo: ["message":"Check your internet connection."])
+
+                        print("Client error!")
+                        return
+                    }
+
+                    guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                        NotificationCenter.default.post(name: Notification.Name("presentError"), object: nil, userInfo: ["message":"Server error"])
+
+                        print("Server error!")
+                        return
+                    }
+
+                    guard let mime = response.mimeType, mime == "application/json" else {
+                        print("Wrong MIME type!")
+                        return
+                    }
+
+
                 }
 
-
-            } failure: { (Operation, Error) in
-                print(Error.localizedDescription)
-            }
+                task.resume()
 
         case object.DIAL_CALL:
             print(call.arguments ?? "")
-            dialCall(token: gettoken)
-
+            let dicData = call.arguments as? [String : Any]
+           let tokenCall = dicData?["token"] as? String
+                       let audioSession = AVAudioSession.sharedInstance()
+                       switch audioSession.recordPermission {
+                       case .granted:
+                           dialCall(token: tokenCall ?? "")
+                           result("Done")
+                       case .denied:
+                           audioSession.requestRecordPermission { granted in
+                               if granted {
+                                   self.dialCall(token: tokenCall ?? "")
+                                   
+                                   result("Done")
+                               } else {
+                                   result("Microphone permission is denied.")
+                               }
+                           }
+                       case .undetermined:
+                           audioSession.requestRecordPermission { granted in
+                               if granted {
+                                   self.dialCall(token: tokenCall ?? "")
+                                   result("Done")
+                               } else {
+                                   result("Microphone permission is denied.")
+                               }
+                           }
+                       @unknown default:
+                           // Handle any future cases here.
+                           break
+                       }
+            
         case object.FINAL_CALL_STATUS:
-            print("FINAL_CALL_STATUS")
+//            print("FINAL_CALL_STATUS  ==> " )
+            print(callStatus)
+            result(callStatus)
+            
 
         case object.MUTE_CALL:
+            //print(outgoingCall?.muted())
             let muteUnmuteCall = outgoingCall?.muted()
-            outgoingCall?.mute(!muteUnmuteCall!)
-            print(!muteUnmuteCall! as Any)
-            result(outgoingCall?.muted())
+            do {
+               // code that can throw an error
+               try outgoingCall?.mute(!muteUnmuteCall!)
+            } catch {
+               // Handle the error here
+            }
+            
+            if(muteUnmuteCall != nil){
+                print(!muteUnmuteCall! as Any)
+                result(outgoingCall?.muted())
+            }
+            else
+            {
+                result("call not started")
+            }
+            
+           
 
         case object.CALL_SPEAKER_PHONE:
-            let callOnSpeaker = outgoingCall?.speakerphone()
-            outgoingCall?.speakerphone(!callOnSpeaker!)
-            result(!(outgoingCall?.speakerphone())!)
+            
+        
+                     guard  let callOnSpeaker = outgoingCall?.speakerphone() else {return}
+                     print(callOnSpeaker)
+                     outgoingCall?.speakerphone(!callOnSpeaker, { error in
+                         print(error.debugDescription)
+                         
+                     })
+            result(!(outgoingCall!.speakerphone()))
 
         case object.CALL_DURATION:
-            getCallDuration()
+           print(outgoingCall?.duration())
+           callDuration = (outgoingCall?.duration()) ?? 2
             result(callDuration)
 
         case object.CALL_START_TIME:
@@ -152,47 +249,18 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
         }
     }
 
-    /* func obtainToken(identity: String, displayName: String, result: FlutterResult)
-     {
-     //        print(object.APP_KEY)
-     let manager = AFHTTPSessionManager()
-     let serializer = AFJSONRequestSerializer()
-     serializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
-     serializer.setValue("App " + authorizationToken, forHTTPHeaderField: "Authorization")
-     manager.requestSerializer = serializer
-
-     let paraamDic = ["identity":identity,
-     "applicationId":applicationId,
-     "displayName":displayName]
-
-     manager.post(baseUrl! + "/webrtc/1/token", parameters: paraamDic, headers: [:], progress: nil) { (Operation, Response) in
 
 
-     let data = Response as? [String : String]
-     let encoder = JSONEncoder()
-     if let jsonData = try? encoder.encode(data) {
-     if let jsonString = String(data: jsonData, encoding: .utf8) {
-     print(jsonString)
-     self.resString = jsonString
-     result(jsonString)
-     //self.isApicall = true
-     }
-     }
-
-
-     } failure: { (Operation, Error) in
-     print(Error.localizedDescription)
-     }
-     }*/
-
-    //MARK:- *** Function for Dial Call ***
+    //MARK: - *** Function for Dial Call ***
     func dialCall(token: String)
     {
         print(token)
-        let callRequest = CallConversationsRequest(token, self)
+        let infobipRTC: InfobipRTC = getInfobipRTCInstance();
         do {
-            try outgoingCall =  InfobipRTC.callConversations(callRequest)
+            let callWebrtcRequest = CallWebrtcRequest(token, destination: "conversations", webrtcCallEventListener: self)
+            try outgoingCall = infobipRTC.callWebrtc(callWebrtcRequest)
             print("Dial Call")
+    
         } catch _ {
             print("Error")
         }
@@ -223,18 +291,21 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
         callDuration = (outgoingCall?.duration()) ?? 0
     }
 
+   
     /*** call on speaker event*/
     func callSpeakerPhone() {
         let callOnSpeaker = outgoingCall?.speakerphone()
-        outgoingCall?.speakerphone(!callOnSpeaker!)
+        outgoingCall?.speakerphone(true, { Error in
+            
+        })
     }
 
     /*** call mute event*/
     func muteCall() {
-        
+
     }
 
-    //MARK:- *** call clear method ***
+    //MARK: - *** call clear method ***
     func clearCallFinished()
     {
         if !callToken!.isEmpty{
@@ -268,52 +339,8 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
 
 
 
-    //MARK:- *** call listeners for call event ***
-    public func onRinging(_ callRingingEvent: CallRingingEvent) {
-        print("Call is ringing.")
-        callStatus = object.ON_RINGING
-        eventSink!(callStatus)
 
-    }
-
-    public func onEarlyMedia(_ callEarlyMediaEvent: CallEarlyMediaEvent) {
-        print("Received early media.")
-        callStatus = object.ON_EARLY_MEDIA
-        eventSink!(callStatus)
-
-    }
-
-    public func onEstablished(_ callEstablishedEvent: CallEstablishedEvent) {
-        print("Call established.")
-        callStatus = object.ON_ESTABLISHED
-        eventSink!(callStatus)
-
-    }
-
-    public func onUpdated(_ callUpdatedEvent: CallUpdatedEvent) {
-        print("Call updated.")
-        callStatus = object.ON_UPDATED
-        eventSink!(callStatus)
-
-    }
-
-    public func onHangup(_ callHangupEvent: CallHangupEvent) {
-        print("Call hangupEvent.")
-        callStatus = object.ON_HANGUP
-
-        eventSink!(callStatus)
-
-        //strem.sink!(object.ON_HANGUP)
-
-    }
-
-    public func onError(_ callErrorEvent: CallErrorEvent) {
-        print("Call ended with error.")
-        callStatus = object.ON_ERROR
-        eventSink!(callStatus)
-    }
-
-    //MARK:- *** Function for toString() ***
+    //MARK: - *** Function for toString() ***
     func toString(date : Date) -> String
     {
         let dateFormatter = DateFormatter()
@@ -323,7 +350,7 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
 
 
 }
-//MARK:- *** struct for Object Variables ***
+//MARK:  - *** struct for Object Variables ***
 struct object {
 
     static var TAG = "InfobipPlugin"
@@ -350,4 +377,120 @@ struct object {
     static var ON_ERROR = "onError"
     static var EVENT_CHANNEL = "call_event"
 }
+//MARK: - *** call listeners for call event ***
 
+extension InfobippluginPlugin : WebrtcCallEventListener {
+   
+    
+    public func onScreenShareRemoved(_ screenShareRemovedEvent: ScreenShareRemovedEvent) {
+        print("onScreenShareRemoved")
+    }
+
+    public func onRinging(_ callRingingEvent: CallRingingEvent) {
+        print("onRinging")
+        callStatus = object.ON_RINGING
+        print(callStatus)
+        print(eventSink);
+            // Use optionalValue safely here
+            eventSink!(callStatus)
+       
+
+    }
+
+    public  func onEarlyMedia(_ callEarlyMediaEvent: CallEarlyMediaEvent) {
+        print("onEarlyMedia")
+        callStatus = object.ON_EARLY_MEDIA
+      
+            // Use optionalValue safely here
+            eventSink!(callStatus)
+       
+        
+
+    }
+
+    public func onEstablished(_ callEstablishedEvent: CallEstablishedEvent) {
+        print("onEstablished")
+        callStatus = object.ON_ESTABLISHED
+        
+            // Use optionalValue safely here
+            eventSink!(callStatus)
+       
+
+    }
+
+    public func onCameraVideoAdded(_ cameraVideoAddedEvent: CameraVideoAddedEvent) {
+        print("onCameraVideoAdded")
+
+    }
+
+    public func onCameraVideoUpdated(_ cameraVideoUpdatedEvent: CameraVideoUpdatedEvent) {
+        print("onCameraVideoUpdated")
+
+    }
+
+    public  func onCameraVideoRemoved() {
+        print("onCameraVideoRemoved")
+
+    }
+
+    public  func onScreenShareAdded(_ screenShareAddedEvent: ScreenShareAddedEvent) {
+        print("onScreenShareAdded")
+
+    }
+
+    public func onScreenShareRemoved() {
+        print("onScreenShareRemoved")
+
+    }
+
+    public  func onRemoteCameraVideoAdded(_ cameraVideoAddedEvent: CameraVideoAddedEvent) {
+        print("onRemoteCameraVideoAdded")
+
+    }
+
+    public  func onRemoteCameraVideoRemoved() {
+        print("onRemoteCameraVideoRemoved")
+
+    }
+
+    public func onRemoteScreenShareAdded(_ screenShareAddedEvent: ScreenShareAddedEvent) {
+        print("onRemoteScreenShareAdded")
+
+    }
+
+    public  func onRemoteScreenShareRemoved() {
+        print("onRemoteScreenShareRemoved")
+
+    }
+
+    public func onRemoteMuted() {
+        print("onRemoteMuted")
+
+    }
+
+    public  func onRemoteUnmuted() {
+        print("onRemoteUnmuted")
+
+    }
+
+    public  func onHangup(_ callHangupEvent: CallHangupEvent) {
+        print("onHangup")
+        callStatus = object.ON_HANGUP + "-" + callHangupEvent.errorCode.name
+
+        
+            // Use optionalValue safely here
+            eventSink!(callStatus)
+      
+
+
+    }
+
+    public func onError(_ errorEvent: ErrorEvent) {
+        print("onError")
+        callStatus = object.ON_ERROR
+            // Use optionalValue safely here
+            eventSink!(callStatus)
+    
+
+    }
+}

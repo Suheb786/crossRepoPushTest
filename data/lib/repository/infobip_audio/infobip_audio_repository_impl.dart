@@ -41,8 +41,8 @@ class InfobipAudioRepositoryImpl extends HelpCenterRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> establishCall() async {
-    var result = await _infobipAudioDS.establishCall();
+  Future<Either<NetworkError, bool>> establishCall(String token) async {
+    var result = await _infobipAudioDS.establishCall(token);
     if (!result) {
       return Left(NetworkError(httpError: 1503, cause: Exception(), message: ''));
     } else {
@@ -79,6 +79,17 @@ class InfobipAudioRepositoryImpl extends HelpCenterRepository {
       return Left(NetworkError(httpError: 1504, cause: Exception(), message: ''));
     } else {
       return Right(result);
+    }
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> listenCallStatus(Function(InfobipCallStatusEnum) callback) async {
+    var infobipResult = await _infobipAudioDS.listenCallStatus(callback);
+
+    if (!infobipResult) {
+      return Left(NetworkError(httpError: 1501, cause: Exception(), message: ''));
+    } else {
+      return Right(true);
     }
   }
 }

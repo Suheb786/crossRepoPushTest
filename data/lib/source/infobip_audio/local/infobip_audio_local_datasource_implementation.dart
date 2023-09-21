@@ -14,13 +14,18 @@ class InfobipAudioDSImpl with InfobipAudioLocalDs {
   }
 
   @override
+  Future<bool> listenCallStatus(Function(InfobipCallStatusEnum) callback) {
+    return _infobipAudioService.listenCallStatus(onCallBack: callback);
+  }
+
+  @override
   Future<String> obtainToken(ObtainToken parameter) async {
     return await _infobipAudioService.obtainToken(parameter: parameter);
   }
 
   @override
-  Future<bool> establishCall() async {
-    return await _infobipAudioService.call();
+  Future<bool> establishCall(String token) async {
+    return await _infobipAudioService.call(token);
   }
 
   @override

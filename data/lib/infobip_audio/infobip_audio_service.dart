@@ -1,24 +1,40 @@
+import 'dart:async';
+
 import 'package:data/helper/key_helper.dart';
 import 'package:domain/constants/enum/infobip_call_status_enum.dart';
 import 'package:domain/model/infobip_audio/obtain_token.dart';
-import 'package:infobip_plugin/infobip_plugin.dart';
+import 'package:infobip_plugin/infobipplugin.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class InfoBipAudioService {
-  final InfobipPlugin _infobipPlugin;
+  final InfoBip _infobipPlugin;
 
   InfoBipAudioService(this._infobipPlugin);
 
   Future<bool> initPlugin({required Function(InfobipCallStatusEnum) callback}) async {
-    var result = await _infobipPlugin.init(
-        applicationId: "75154e24-1e99-48e4-a25d-9f561df4d101",
-        appKey: KeyHelper.INFOBIP_APP_KEY,
-        baseUrl: "https://wpx36d.api.infobip.com",
+    var result = await _infobipPlugin.sdkInit(
+        applicationId: "default",
+        appKey: 'f0004048eeb567f17f2a2e5732864489-31202bf5-693e-4a38-85e2-5974f5e93640',
+        baseUrl: "https://zjyln2.api.infobip.com",
         callStatus: (String status) {
-          print(status);
           callback(status.fromCallStatusValue());
         });
-    return result!;
+    return result != null;
+  }
+
+  // StreamController<String> _callStatusController = StreamController<String>.broadcast();
+
+  // Stream<String> getCallStatusStream() => _callStatusController.stream;
+  //_callStatusController.add(event ?? '');
+
+  listenCallStatus({required Function(InfobipCallStatusEnum) onCallBack}) {
+    _infobipPlugin.listenCallStatus.listen((event) {
+      print("service $event");
+      if (event != null) {
+        onCallBack(event.fromCallStatusValue());
+      }
+    });
+    return Future.value(true);
   }
 
   ///
@@ -38,7 +54,6 @@ class InfoBipAudioService {
   ///
   Future<void> requestPermission() async {
     final status = await Permission.microphone.request();
-    print(status);
     if (status == PermissionStatus.permanentlyDenied) {
       final status = await Permission.microphone.request();
     }
@@ -47,10 +62,11 @@ class InfoBipAudioService {
   ///
   /// This method is used to call agent
   ///
-  Future<bool> call() async {
+  Future<bool> call(String token) async {
     try {
       return requestPermission().then((value) async {
-        return await _infobipPlugin.callConversations();
+        String result = await _infobipPlugin.callDial(token: token);
+        return result != null;
       });
     } catch (e) {
       rethrow;
@@ -62,8 +78,7 @@ class InfoBipAudioService {
   ///
   Future<bool> mute() async {
     try {
-      var muteStatus = await _infobipPlugin.muteUnMute();
-      print('--------' + muteStatus.toString());
+      var muteStatus = await _infobipPlugin.muteUnmute();
       return muteStatus!;
     } catch (e) {
       rethrow;
@@ -75,7 +90,7 @@ class InfoBipAudioService {
   ///
   Future<bool> toggleSpeaker() async {
     try {
-      var speakerStatus = await _infobipPlugin.toggleSpeaker();
+      var speakerStatus = await _infobipPlugin.speakerPhone();
       return speakerStatus!;
     } catch (e) {
       rethrow;
@@ -87,7 +102,7 @@ class InfoBipAudioService {
   ///
   Future<int> getCallDuration() async {
     try {
-      var callDuration = await _infobipPlugin.getCallDuration();
+      var callDuration = await _infobipPlugin.callDuration();
       return callDuration!;
     } catch (e) {
       rethrow;
@@ -99,8 +114,7 @@ class InfoBipAudioService {
   ///
   Future<bool> callHangUp() async {
     try {
-      var result = await _infobipPlugin.hangUpCall();
-      print("HANGUP FROM SERVICE " + result.toString());
+      var result = await _infobipPlugin.callHang();
       return result!;
     } catch (e) {
       rethrow;

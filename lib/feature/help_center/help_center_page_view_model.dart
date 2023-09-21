@@ -2,6 +2,7 @@ import 'package:domain/constants/enum/infobip_call_status_enum.dart';
 import 'package:domain/model/infobip_audio/obtain_token.dart';
 import 'package:domain/usecase/infobip_audio/establish_call_usecase.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_audio_usecase.dart';
+import 'package:domain/usecase/infobip_audio/listen_callstatus_usecase.dart';
 import 'package:domain/usecase/infobip_audio/obtain_token_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -19,13 +20,15 @@ class HelpCenterPageViewModel extends BasePageViewModel {
   PublishSubject<Resource<bool>> _initInfobipResponseSubject = PublishSubject();
   PublishSubject<Resource<bool>> _establishCallResponseSubject = PublishSubject();
   PublishSubject<Resource<String>> _obtainTokenResponseSubject = PublishSubject();
+  PublishSubject<ListenCallStatusUseCaseParams> _listenCallStatusSubject = PublishSubject();
 
+  ListenCallStatusUseCase _listenCallStatusUseCase;
   final InfobipAudioPluginUseCase _infobipAudioPluginUseCase;
   final ObtainTokenUseCase _obtainTokenUseCase;
   final EstablishCallUseCase _establishCallUseCase;
 
-  HelpCenterPageViewModel(
-      this._infobipAudioPluginUseCase, this._obtainTokenUseCase, this._establishCallUseCase) {
+  HelpCenterPageViewModel(this._infobipAudioPluginUseCase, this._obtainTokenUseCase,
+      this._establishCallUseCase, this._listenCallStatusUseCase) {
     _initInfobipRequestSubject.listen((value) {
       RequestManager(value, createCall: () {
         return _infobipAudioPluginUseCase.execute(params: value);
@@ -53,6 +56,13 @@ class HelpCenterPageViewModel extends BasePageViewModel {
       });
     });
 
+    _listenCallStatusSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _listenCallStatusUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        updateLoader();
+      });
+    });
     initInfobipPlugin();
   }
 
@@ -71,12 +81,19 @@ class HelpCenterPageViewModel extends BasePageViewModel {
     }));
   }
 
+  listenCallStatus() {
+    _listenCallStatusSubject
+        .safeAdd(ListenCallStatusUseCaseParams(callback: (InfobipCallStatusEnum callStatus) {
+      print("printDAatHERE ---- ${callStatus}");
+    }));
+  }
+
   obtainTokenForCall() {
     _obtainTokenRequestSubject.safeAdd(ObtainTokenUseCaseParams(parameter: ObtainToken()));
   }
 
-  establishCall() {
-    _establishCallRequestSubject.safeAdd(EstablishCallUseCaseParams());
+  establishCall(String token) {
+    _establishCallRequestSubject.safeAdd(EstablishCallUseCaseParams(token: token));
   }
 
   @override

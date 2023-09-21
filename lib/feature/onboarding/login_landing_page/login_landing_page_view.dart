@@ -382,7 +382,8 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                                               //       Navigator.pop(context);
                                               //     });
 
-                                              Navigator.pushNamed(context, RoutePaths.Login);
+                                              // Navigator.pushNamed(context, RoutePaths.Login);
+                                              Navigator.pushNamed(context, RoutePaths.HelpCenter);
                                             },
                                             text: S.of(context).loginWithEmail,
                                           ),

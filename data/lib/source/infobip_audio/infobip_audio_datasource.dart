@@ -4,9 +4,11 @@ import 'package:domain/model/infobip_audio/obtain_token.dart';
 abstract class InfobipAudioLocalDs {
   Future<bool> initInfobipAudio(Function(InfobipCallStatusEnum) callback);
 
+  Future<bool> listenCallStatus(Function(InfobipCallStatusEnum) callback);
+
   Future<String> obtainToken(ObtainToken parameter);
 
-  Future<bool> establishCall();
+  Future<bool> establishCall(String token);
 
   Future<bool> toggleMute();
 

@@ -14,6 +14,8 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
+import '../../utils/status.dart';
+
 class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
   HelpCenterPageView(ProviderBase model) : super(model);
 
@@ -33,7 +35,7 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
               initialData: Resource.none(),
               onData: (value) {
                 if (value.data != null) {
-                  model.establishCall();
+                  model.establishCall(value.data!);
                 }
               },
               dataBuilder: (context, currentStep) {
@@ -43,6 +45,9 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                     onData: (value) {
                       // Navigator.pushReplacementNamed(
                       //     context, RoutePaths.ActiveCallPage);
+                      if (value.status == Status.SUCCESS) {
+                        model.listenCallStatus();
+                      }
                     },
                     dataBuilder: (context, currentStep) {
                       return AppStreamBuilder<InfobipCallStatusEnum>(
