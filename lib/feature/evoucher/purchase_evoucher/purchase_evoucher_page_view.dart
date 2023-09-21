@@ -22,7 +22,6 @@ class PurchaseEVoucherPageView extends BasePageViewWidget<PurchaseEVoucherPageVi
   @override
   Widget build(BuildContext context, model) {
     final pages = [
-      SelectRegionAmountPage(),
       EvoucherSettlementAccountPage(),
       EnterOtpForEVoucherCategoryPurchasePage(),
     ];
@@ -83,7 +82,6 @@ class PurchaseEVoucherPageView extends BasePageViewWidget<PurchaseEVoucherPageVi
                         child: Text(
                           StepTextHelper.evoucherPurchaseTextHelper(
                             currentStep ?? 0,
-                            S.of(context).selectPreferredRegionAmount,
                             S.of(context).chooseTheAccountToPay,
                             S.of(context).enterOtpHeader,
                           ),
