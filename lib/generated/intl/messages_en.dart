@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -852,7 +853,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "customerService": MessageLookupByLibrary.simpleMessage(
             "24/7 Customer Service Service"),
         "cvv": MessageLookupByLibrary.simpleMessage("CVV"),
-        "d": MessageLookupByLibrary.simpleMessage("d"),
         "dailyLimit": MessageLookupByLibrary.simpleMessage("Daily Limit"),
         "dailyLimitExceededorTryLater": MessageLookupByLibrary.simpleMessage(
             " There was an issue with your payment. You may have exceeded the transfer daily limit. Please try again later, or contact Blink engagement team if you need any help "),
@@ -2156,6 +2156,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("New Postpaid Bill"),
         "newPrePaidBill":
             MessageLookupByLibrary.simpleMessage("New Prepaid Bill"),
+        "newRequest": MessageLookupByLibrary.simpleMessage("New Request"),
         "newSettlementAccount":
             MessageLookupByLibrary.simpleMessage("New settlement account"),
         "newSettlementPercentage":

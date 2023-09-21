@@ -110,7 +110,7 @@ class ReturnReasonPaymentDialogView extends StatelessWidget {
                             ],
                           )),
                           Padding(
-                            padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 40.h, top: 16),
+                            padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 42.h, top: 16),
                             child: AppPrimaryButton(
                               onPressed: () {
                                 onSelected!.call(returnReasonsPayment!.rejectReasons[currentIndex!]);

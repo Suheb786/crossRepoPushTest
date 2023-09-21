@@ -81,19 +81,21 @@ class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, Cliq
               ),
               PositionedDirectional(
                 end: 24.0.w,
-                child: InkWell(
-                  onTap: () async {
-                    Navigator.pushNamed(context, RoutePaths.CreateCliqId);
+                top: 0,
+                bottom: 8,
+                child: Container(
+                  child: InkWell(
+                    onTap: () async {
+                      Navigator.pushNamed(context, RoutePaths.CreateCliqId);
 
-                    ///LOG EVENT TO FIREBASE
-                    await FireBaseLogUtil.fireBaseLog("navigation_alias_creation", {"navigated_alias_creation": true});
-                  },
-                  child: Container(
-                      padding: EdgeInsets.only(bottom: 16),
-                      child: Icon(
-                        Icons.add,
-                        color: Theme.of(context).colorScheme.secondary,
-                      )),
+                      ///LOG EVENT TO FIREBASE
+                      await FireBaseLogUtil.fireBaseLog("navigation_alias_creation", {"navigated_alias_creation": true});
+                    },
+                    child: Icon(
+                      Icons.add,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  ),
                 ),
               ),
             ],

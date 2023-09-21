@@ -223,7 +223,7 @@ class PaySelectedBillsPostPaidBillsPageView
                                                   }),
                                             ),
                                             SizedBox(
-                                              height: 24.h,
+                                              height: 20.h,
                                             ),
                                             GestureDetector(
                                               onTap: () {

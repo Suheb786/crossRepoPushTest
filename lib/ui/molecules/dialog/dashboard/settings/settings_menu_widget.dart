@@ -37,20 +37,19 @@ class SettingsMenuWidget extends StatelessWidget {
                   width: 112.0.w,
                   margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 20),
                   decoration: BoxDecoration(
-                      color: (currentStep == tappedMenuIndex &&
+                      color: (/*currentStep == tappedMenuIndex &&*/
                               mKey == model.getKeyByIndex(tappedMenuIndex ?? -1))
                           ? Theme.of(context).textTheme.bodyLarge!.color!
                           : Theme.of(context).colorScheme.secondary,
                       borderRadius: BorderRadius.circular(8)),
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
                     children: [
                       Container(
                           height: 64.0.h,
                           width: 64.0.w,
                           padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
-                          margin: EdgeInsets.only(bottom: 16.0.h),
+                          margin: EdgeInsets.only(top: 22.h),
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(color: AppColor.whiteGrey, width: 1)),
@@ -59,22 +58,25 @@ class SettingsMenuWidget extends StatelessWidget {
                               : AppSvg.asset(image,
                                   width: 24,
                                   height: 24,
-                                  color: (currentStep == tappedMenuIndex &&
+                                  color: (/*currentStep == tappedMenuIndex &&*/
                                           mKey == model.getKeyByIndex(tappedMenuIndex ?? -1))
                                       ? Theme.of(context).colorScheme.secondary
                                       : Theme.of(context).textTheme.bodyLarge!.color!)),
+
+                      Spacer(),
                       Text(
                         title,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w600,
-                            color: (currentStep == tappedMenuIndex &&
+                            color: (/*currentStep == tappedMenuIndex &&*/
                                     mKey == model.getKeyByIndex(tappedMenuIndex ?? -1))
                                 ? Theme.of(context).colorScheme.secondary
                                 : Theme.of(context).primaryColorDark,
                             fontSize: 12.0.t),
-                      )
+                      ),
+                      Spacer(),
                     ],
                   ),
                 );

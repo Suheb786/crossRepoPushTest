@@ -91,7 +91,7 @@ class InformationDialogView extends StatelessWidget {
                                   },
                                   text: btnTitle ?? S.of(context).confirm,
                                 ),
-                                SizedBox(height: 40.h),
+                                SizedBox(height: 42.h),
                               ],
                             ),
                           )),

@@ -33,33 +33,30 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
           borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
       child: Column(
         children: [
-          Padding(
-            padding: EdgeInsetsDirectional.all(16),
-            child: Focus(
-              child: AppTextField(
-                labelText: "",
-                controller: model.categorayListController,
-                hintText: S.of(context).eVoucherSearchLabel,
-                hintTextColor: Theme.of(context).inputDecorationTheme.hintStyle?.color,
-                containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-                onChanged: (value) {
-                  model.searchItems();
-                },
-                suffixIcon: (value, data) {
-                  return InkWell(
-                    onTap: () async {
-                      FocusScope.of(context).unfocus();
-                    },
-                    child: Container(
-                        height: 16.0.h,
-                        width: 16.0.h,
-                        padding: const EdgeInsets.all(6),
-                        child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
-                  );
-                },
-              ),
-              onFocusChange: (focus) {},
+          Focus(
+            child: AppTextField(
+              labelText: "",
+              controller: model.categorayListController,
+              hintText: S.of(context).eVoucherSearchLabel,
+              hintTextColor: Theme.of(context).inputDecorationTheme.hintStyle?.color,
+              containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+              onChanged: (value) {
+                model.searchItems();
+              },
+              suffixIcon: (value, data) {
+                return InkWell(
+                  onTap: () async {
+                    FocusScope.of(context).unfocus();
+                  },
+                  child: Container(
+                      height: 16.0.h,
+                      width: 16.0.h,
+                      padding: const EdgeInsets.all(6),
+                      child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
+                );
+              },
             ),
+            onFocusChange: (focus) {},
           ),
           Expanded(
             child: AppStreamBuilder<Resource<List<List<VoucherItem>>>>(

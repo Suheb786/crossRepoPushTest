@@ -237,7 +237,6 @@ class SelectTransferPageView extends BasePageViewWidget<SelectTransferPageViewMo
                                 style: TextStyle(
                                   color: Theme.of(context).colorScheme.onSecondaryContainer,
                                   fontSize: 14.t,
-                                  letterSpacing: 1.0,
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w600,
                                 ),

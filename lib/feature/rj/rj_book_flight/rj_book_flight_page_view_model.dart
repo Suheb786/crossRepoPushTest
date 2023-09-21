@@ -198,6 +198,14 @@ class RjFlightBookingViewModel extends BasePageViewModel {
         selectedReturnOnDateController.text.isNotEmpty) {
       valid = true;
     }
+    int passengerType = 0;
+    passengerList.forEach((element) {
+      if (element.count == 0) {
+        passengerType++;
+      }
+    });
+    valid = passengerType != passengerList.length;
+
     _allFieldValidatorSubject.safeAdd(valid);
     return valid;
   }

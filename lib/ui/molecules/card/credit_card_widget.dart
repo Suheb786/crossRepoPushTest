@@ -62,6 +62,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                 margin: EdgeInsets.zero,
                 shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                 child: Stack(
+                  key: ValueKey(true),
                   fit: StackFit.expand,
                   children: [
                     Positioned(

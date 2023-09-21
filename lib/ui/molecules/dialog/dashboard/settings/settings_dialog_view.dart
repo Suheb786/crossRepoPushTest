@@ -19,6 +19,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_progress.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/card_item_widget.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_menu_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -43,22 +44,17 @@ class SettingsDialogView extends StatefulWidget {
   State<SettingsDialogView> createState() => _SettingsDialogViewState();
 }
 
-class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTickerProviderStateMixin {
+class _SettingsDialogViewState extends State<SettingsDialogView> {
   ProviderBase providerBase() {
     return settingsDialogViewModelProvider;
   }
 
   late PageController pageController;
-  late AnimationController animationController;
 
   @override
   void initState() {
     pageController = PageController(initialPage: 0, viewportFraction: 0.3);
-    animationController = AnimationController(
-      duration: const Duration(milliseconds: 250),
-      reverseDuration: const Duration(milliseconds: 100),
-      vsync: this,
-    );
+
     super.initState();
   }
 
@@ -92,6 +88,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                             ///LOG EVENT TO FIREBASE
                             await FirebaseAnalytics.instance
                                 .logEvent(name: "payments_opened", parameters: {"is_payment_opened": "true"});
+                            Navigator.pop(context);
                             Navigator.pushNamed(context, RoutePaths.PaymentHome,
                                 arguments: NavigationType.DASHBOARD);
                           },
@@ -146,6 +143,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                       ///Offers
                       PagesWidget(
                         onTap: () {
+                          Navigator.pop(context);
                           Navigator.of(context).push(CustomRoute.swipeUpRoute(OfferForYouPage()));
                         },
                         key: 'OFFERS',
@@ -160,6 +158,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                       ///Manage Contacts
                       PagesWidget(
                         onTap: () {
+                          Navigator.pop(context);
                           Navigator.of(context).push(CustomRoute.swipeUpRoute(
                               BeneficiaryContactListPage(navigationType: NavigationType.SEND_MONEY)));
                         },
@@ -175,6 +174,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                       ///CLIQ
                       PagesWidget(
                         onTap: () {
+                          Navigator.pop(context);
                           Navigator.of(context).push(
                               CustomRoute.swipeUpRoute(CliqIdListPage(), routeName: RoutePaths.CliqIdList));
                         },
@@ -190,6 +190,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                       ///E-VOUCHERS
                       PagesWidget(
                         onTap: () {
+                          Navigator.pop(context);
                           Navigator.of(context).push(
                             CustomRoute.swipeUpRoute(
                                 EvoucherPage(EvoucherPageArguments(
@@ -209,6 +210,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
                       ///Profile settings
                       PagesWidget(
                         onTap: () {
+                          Navigator.pop(context);
                           Navigator.of(context).push(CustomRoute.swipeUpRoute(AccountSettingPage(),
                               routeName: RoutePaths.AccountSetting));
                         },
@@ -476,16 +478,23 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
   }
 
   _cards(int index, SettingsDialogViewModel model, PagesWidget pageWidget, int currentPage) {
-    return AppStreamBuilder<bool>(
+    return CardItemWidget(
+      model,
+      pageWidget,
+      index,
+      key: ValueKey(index),
+    ); /*AppStreamBuilder<bool>(
         stream: model.onClickStream,
         initialData: false,
         dataBuilder: (context, onClick) {
           return GestureDetector(
             onTap: (onClick ?? false)
                 ? () async {
+                    model.tappedIndex = index;
                     model.menuTapped(index);
                     animationController.forward();
                     await Future.delayed(const Duration(milliseconds: 100), () {
+                      model.tappedIndex = -1;
                       model.menuTapped(-1);
                       animationController.reverse();
                       pageWidget.onTap?.call();
@@ -498,13 +507,13 @@ class _SettingsDialogViewState extends State<SettingsDialogView> with SingleTick
               child: pageWidget.child,
             ),
           );
-        });
+        })*/
   }
 
   @override
   void dispose() {
     pageController.dispose();
-    animationController.dispose();
+
     super.dispose();
   }
 }

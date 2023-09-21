@@ -73,6 +73,9 @@ class SettingsDialogViewModel extends BasePageViewModel {
     _menuTappedIndexSubject.safeAdd(value);
   }
 
+  ///this is for tapping effect condition...
+  int tappedIndex = -1;
+
   ///-------------------Menu tapped-------------------------///
 
   ///------------------initial onclick-----------------------///

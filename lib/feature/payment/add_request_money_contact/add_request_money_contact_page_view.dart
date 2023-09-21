@@ -53,12 +53,15 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                           width: 4.w,
                         ),
                         Expanded(
-                          child: Text(S.of(context).requestMoneyFrom,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12.0.t,
-                                  color: Theme.of(context).primaryColorDark)),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 6.0),
+                            child: Text(S.of(context).requestMoneyFrom,
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12.0.t,
+                                    color: Theme.of(context).primaryColorDark)),
+                          ),
                         ),
                         Visibility(
                           visible: (ProviderScope.containerOf(context)
@@ -144,7 +147,9 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                                   false),
                               child: InkWell(
                                 onTap: () {
-                                  Navigator.of(context).push(CustomRoute.swipeUpRoute(BeneficiaryContactListPage(navigationType: NavigationType.REQUEST_MONEY)));
+                                  Navigator.of(context).push(CustomRoute.swipeUpRoute(
+                                      BeneficiaryContactListPage(
+                                          navigationType: NavigationType.REQUEST_MONEY)));
                                   // Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList, arguments: NavigationType.REQUEST_MONEY);
                                 },
                                 child: Align(

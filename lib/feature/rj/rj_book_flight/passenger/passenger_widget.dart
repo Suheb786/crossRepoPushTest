@@ -7,6 +7,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../../base/base_widget.dart';
 import '../../../../ui/molecules/stream_builder/app_stream_builder.dart';
+import '../../../../utils/color_utils.dart';
 import '../../../../utils/string_utils.dart';
 
 class PassengerWidget extends StatelessWidget {
@@ -36,6 +37,7 @@ class PassengerWidget extends StatelessWidget {
           dataBuilder: (BuildContext context, data) {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
                   child: Column(
@@ -84,15 +86,15 @@ class PassengerWidget extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 16.w),
-                  width: 22.w,
+                  margin: EdgeInsets.symmetric(horizontal: 8.w),
+                  padding: EdgeInsets.only(top: 5.h),
+                  width: 36.w,
                   alignment: Alignment.center,
                   child: Text(data.toString(),
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w600,
                           fontSize: 20.t,
-                          height: 1.65,
                           color: Theme.of(context).colorScheme.surfaceVariant)),
                 ),
                 GestureDetector(

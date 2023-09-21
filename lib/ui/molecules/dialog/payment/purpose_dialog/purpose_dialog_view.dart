@@ -105,7 +105,7 @@ class PurposeDialogView extends StatelessWidget {
                             ],
                           )),
                           Padding(
-                            padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 16.0.w, bottom: 40.h),
+                            padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 16.0.w, bottom: 42.h),
                             child: AppPrimaryButton(
                               text: S.of(context).confirm,
                               onPressed: () {

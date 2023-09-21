@@ -153,7 +153,7 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
                   children: [
                     SizedBox(height: 47.h),
                     Padding(
-                      padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w),
+                      padding: EdgeInsetsDirectional.only(start: 8.w, end: 8.w),
                       child: Align(
                         alignment: AlignmentDirectional.centerStart,
                         child: TabBar(

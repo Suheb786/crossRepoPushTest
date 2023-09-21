@@ -63,11 +63,6 @@ class _MyAccountPageViewWidgetState extends State<MyAccountPageViewWidget> {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              image: DecorationImage(
-                  image: AssetImage(AssetUtils.zigzagRed),
-                  alignment: Alignment.topRight,
-                  scale: 1,
-                  matchTextDirection: false),
             ),
             child: Directionality(
               textDirection: TextDirection.ltr,
@@ -95,6 +90,15 @@ class _MyAccountPageViewWidgetState extends State<MyAccountPageViewWidget> {
                             child: middleWidget(context),
                           ),
                         ),
+                        Positioned.fill(
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: Image.asset(
+                              AssetUtils.zigzagRed,
+                              height: 180.h,
+                            ),
+                          ),
+                        ),
                       ],
                     );
                   }),
@@ -108,7 +112,7 @@ class _MyAccountPageViewWidgetState extends State<MyAccountPageViewWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 32.h),
+          padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 42.h),
           child: Text(
             widget.account.isSubAccount == false ? S.current.mainAccount : S.current.subAccount,
             style: TextStyle(
@@ -126,6 +130,7 @@ class _MyAccountPageViewWidgetState extends State<MyAccountPageViewWidget> {
               onFocusChange: (focus) {
                 accountTextController.selection =
                     TextSelection.fromPosition(TextPosition(offset: accountTextController.text.length));
+                nameEditableNotifier.value = focus;
               },
               child: AppTextField(
                 labelText: "",
@@ -148,7 +153,7 @@ class _MyAccountPageViewWidgetState extends State<MyAccountPageViewWidget> {
                 },
                 suffixIcon: (selectedCard, value) {
                   if (nameEditableNotifier.value &&
-                      accountTextController.text != widget.account.nickName &&
+                      // accountTextController.text != widget.account.nickName &&
                       accountTextController.text.isNotEmpty) {
                     return GestureDetector(
                       onTap: () {

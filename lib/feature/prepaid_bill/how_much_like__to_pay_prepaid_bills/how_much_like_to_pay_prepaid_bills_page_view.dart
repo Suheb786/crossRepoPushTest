@@ -360,7 +360,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                           });
                                     }),
                                 SizedBox(
-                                  height: 24.h,
+                                  height: 20.h,
                                 ),
                                 InkWell(
                                   onTap: () {

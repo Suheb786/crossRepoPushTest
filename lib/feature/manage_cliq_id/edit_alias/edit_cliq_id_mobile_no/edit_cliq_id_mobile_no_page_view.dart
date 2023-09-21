@@ -193,8 +193,7 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
                                                     style: TextStyle(
                                                       color: AppColor.brightBlue,
                                                       fontSize: 14.t,
-                                                      letterSpacing: 1.0,
-                                                      fontWeight: FontWeight.w500,
+                                                      fontWeight: FontWeight.w600,
                                                     ),
                                                   ),
                                                 ),

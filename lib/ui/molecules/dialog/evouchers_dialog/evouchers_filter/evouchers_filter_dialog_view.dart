@@ -107,6 +107,9 @@ class EVouchersFilterDialogView extends StatelessWidget {
                                       title: S.of(context).category,
                                       categoriesList: categoriesList ?? [], onDismissed: () {
                                     Navigator.pop(context);
+                                    Future.delayed(Duration(milliseconds: 100), () {
+                                      FocusManager.instance.primaryFocus?.unfocus();
+                                    });
                                   }, onSelected: (value) {
                                     Navigator.pop(context);
                                     model.categoryController.text = value.categoryName;
@@ -139,6 +142,9 @@ class EVouchersFilterDialogView extends StatelessWidget {
                                       title: S.of(context).preferredRegion,
                                       regionByCategoriesList: regionList ?? [], onDismissed: () {
                                     Navigator.pop(context);
+                                    Future.delayed(Duration(milliseconds: 100), () {
+                                      FocusManager.instance.primaryFocus?.unfocus();
+                                    });
                                   }, onSelected: (value) {
                                     Navigator.pop(context);
                                     model.preferredRegionController.text = value.countryName ?? '';
@@ -170,6 +176,9 @@ class EVouchersFilterDialogView extends StatelessWidget {
                                       title: S.of(context).minPrice,
                                       relationSHipWithCardHolder: rangeList ?? [], onDismissed: () {
                                     Navigator.pop(context);
+                                    Future.delayed(Duration(milliseconds: 100), () {
+                                      FocusManager.instance.primaryFocus?.unfocus();
+                                    });
                                   }, onSelected: (value) {
                                     Navigator.pop(context);
                                     model.minPriceController.text = value;
@@ -199,6 +208,9 @@ class EVouchersFilterDialogView extends StatelessWidget {
                                       title: S.of(context).maxPrice,
                                       relationSHipWithCardHolder: rangeList ?? [], onDismissed: () {
                                     Navigator.pop(context);
+                                    Future.delayed(Duration(milliseconds: 100), () {
+                                      FocusManager.instance.primaryFocus?.unfocus();
+                                    });
                                   }, onSelected: (value) {
                                     Navigator.pop(context);
                                     model.maxPriceController.text = value;
