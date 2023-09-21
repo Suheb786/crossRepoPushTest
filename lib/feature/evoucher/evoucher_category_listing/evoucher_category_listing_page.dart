@@ -49,7 +49,7 @@ class EVoucherCategoryListingPageState
               ),
             ),
             Text(
-              provider.selectedVoucherCategories.categoryName,
+              provider.selectedVoucherCategories.categoryName,  
               style: TextStyle(
                   fontSize: 14.t,
                   fontWeight: FontWeight.w600,
