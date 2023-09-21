@@ -92,6 +92,9 @@ class CardCancelDialogView extends StatelessWidget {
                               CancellationReasonDialog.show(context,
                                   onDismissed: () {
                                     Navigator.pop(context);
+                                    Future.delayed(Duration(milliseconds: 100), () {
+                                      FocusManager.instance.primaryFocus?.unfocus();
+                                    });
                                   },
                                   title: S.of(context).reasonOfCancellation,
                                   reasons: reasons,
@@ -108,13 +111,6 @@ class CardCancelDialogView extends StatelessWidget {
                                 child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1),
                               );
                             },
-                            /*textHintWidget: (hasFocus, isValid, value) {
-                              if (value.isEmpty) {
-                                print("empty-----");
-                                model.reasonKey.currentState! = false;
-                              }
-                              return SizedBox.shrink();
-                            },*/
                           )),
                     ),
                     Padding(
