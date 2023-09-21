@@ -294,6 +294,10 @@ class AppHomeViewModel extends BasePageViewModel {
     return cardTypeList[index].cardType == CardType.OFFER;
   }
 
+  bool isRJ(int index) {
+    return cardTypeList[index].cardType == CardType.RJ;
+  }
+
   ///--------------- Some Other params that i will name later on  ----------------------///
   DebitCard? selectedDebitCard;
   CreditCard? selectedCreditCard;
@@ -582,6 +586,24 @@ class AppHomeViewModel extends BasePageViewModel {
 
   bool hasSubAccount(List<Account> accounts) {
     return accounts.any((account) => account.isSubAccount == true);
+  }
+
+  getMainAccount() {
+    List<Account> mainAccounts =
+        yourAllAccounts.where((account) => (account.isSelectedAccount == false)).toList();
+
+    for (var account in mainAccounts) {
+      return account;
+    }
+  }
+
+  getMainAccountAvailableBalance() {
+    List<Account> mainAccounts =
+        yourAllAccounts.where((account) => (account.isSelectedAccount == false)).toList();
+
+    for (var account in mainAccounts) {
+      return account.availableBalance;
+    }
   }
 
   List<Account> yourAllAccounts = [];
@@ -918,7 +940,7 @@ class AppHomeViewModel extends BasePageViewModel {
     if ((dashboardDataContent.dashboardFeatures?.isRJFeatureEnabled ?? true)) {
       pages.add(RjCardWidget());
 
-      cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.RJ, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+      cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.RJ, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
     }
 
     ///adding  offer for u card

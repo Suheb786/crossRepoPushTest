@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/feature/rj/rj_booking_success/rj_booking_success_page_view_model.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../base/base_page.dart';
 import '../../../generated/l10n.dart';
 import '../../../ui/molecules/app_svg.dart';
-import '../../../ui/molecules/button/animated_button.dart';
 import '../../../utils/asset_utils.dart';
 import '../../../utils/string_utils.dart';
 
@@ -25,7 +25,7 @@ class RJBookingSuccessPageView extends BasePageViewWidget<RJBookingSuccessPageVi
       child: Container(
           height: double.infinity,
           width: double.infinity,
-          color: Theme.of(context).colorScheme.onSurface,
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -42,7 +42,7 @@ class RJBookingSuccessPageView extends BasePageViewWidget<RJBookingSuccessPageVi
                             AssetUtils.line,
                             fit: BoxFit.fitWidth,
                             width: MediaQuery.of(context).size.width,
-                            color: Theme.of(context).colorScheme.tertiaryContainer,
+                            color: Theme.of(context).colorScheme.outlineVariant,
                           ),
                           Align(
                             alignment: Alignment.center,
@@ -94,29 +94,17 @@ class RJBookingSuccessPageView extends BasePageViewWidget<RJBookingSuccessPageVi
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  AnimatedButton(
-                    buttonText: S.of(context).swipeToProceed,
-                    textColor: Theme.of(context).colorScheme.secondary,
-                    borderColor: Theme.of(context).colorScheme.secondary,
+                  Padding(
+                    padding: EdgeInsetsDirectional.only(start: 24..w, end: 24.w),
+                    child: AppPrimaryButton(
+                      text: S.of(context).done,
+                      onPressed: () {},
+                      activeBackgroundColor: Theme.of(context).colorScheme.secondary,
+                      textColor: Theme.of(context).colorScheme.onSecondaryContainer,
+                    ),
                   ),
                   SizedBox(
-                    height: 5.h,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      bottom: 32.h,
-                    ),
-                    child: Center(
-                      child: Text(
-                        S.of(context).toDashboard,
-                        style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          color: Theme.of(context).colorScheme.secondary,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12.t,
-                        ),
-                      ),
-                    ),
+                    height: 56.h,
                   ),
                 ],
               )

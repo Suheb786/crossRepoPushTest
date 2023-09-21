@@ -212,6 +212,7 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                                                           [])
                                                       .isNotEmpty,
                                                   child: ListView.builder(
+                                                    padding: EdgeInsets.zero,
                                                     itemBuilder: (context, index) {
                                                       ///send data from api response once updated
                                                       return BeneficiaryListWidget(
@@ -247,7 +248,7 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                                                       );
                                                     },
                                                     shrinkWrap: true,
-                                                    physics: ClampingScrollPhysics(),
+                                                    physics: NeverScrollableScrollPhysics(),
                                                     itemCount: beneficiaryList
                                                         ?.data
                                                         ?.beneficiarySendMoneyContact
@@ -282,6 +283,7 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                                                           [])
                                                       .isNotEmpty,
                                                   child: ListView.builder(
+                                                    padding: EdgeInsets.zero,
                                                     itemBuilder: (context, index) {
                                                       ///send data from api response once updated
                                                       return BeneficiaryListWidget(
@@ -317,7 +319,7 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                                                       );
                                                     },
                                                     shrinkWrap: true,
-                                                    physics: ClampingScrollPhysics(),
+                                                    physics: NeverScrollableScrollPhysics(),
                                                     itemCount: beneficiaryList
                                                         ?.data
                                                         ?.beneficiarySendMoneyContact

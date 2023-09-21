@@ -1891,6 +1891,9 @@
   "viewAllOffers": "View All Offers",
   "profileSettings_": "Profile Settings",
   "offersCategory": "Offers Category",
+  "done": "Done",
+  "oneWay": "One-Way",
+  "newRequest": "New Request",
   "chooseTheAccountToPay": "Choose the account you\nwant to pay from",
   "readyToUseSuccess": "success",
  "referralLink": "Referral link"

@@ -503,30 +503,32 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                                     width: 40),
                                                                 secondChild: AutoSizeText(
                                                                   (model
-                                                                                  .paymentWidgetTypeFeature[
-                                                                                      currentStep!]
-                                                                                  .paymentWidgetType ==
-                                                                              PaymentWidgetType.SEND_MONEY) ||
-                                                                          (model
+                                                                              .paymentWidgetTypeFeature[
+                                                                                  currentStep!]
+                                                                              .paymentWidgetType ==
+                                                                          PaymentWidgetType.SEND_MONEY)
+                                                                      ? S.current.newPayment
+                                                                      : (model
                                                                                   .paymentWidgetTypeFeature[
                                                                                       currentStep]
                                                                                   .paymentWidgetType ==
                                                                               PaymentWidgetType.REQUEST_MONEY)
-                                                                      ? S.current.newPayment
-                                                                      : model
-                                                                                  .paymentWidgetTypeFeature[
-                                                                                      currentStep]
-                                                                                  .paymentWidgetType ==
-                                                                              PaymentWidgetType.POST_PAID_BILL
-                                                                          ? S.current.newPostPaidBill
+                                                                          ? S.current.newRequest
                                                                           : model
                                                                                       .paymentWidgetTypeFeature[
                                                                                           currentStep]
                                                                                       .paymentWidgetType ==
                                                                                   PaymentWidgetType
-                                                                                      .CLIQ_TRANSACTIONS
-                                                                              ? S.current.view_more
-                                                                              : S.current.newPrePaidBill,
+                                                                                      .POST_PAID_BILL
+                                                                              ? S.current.newPostPaidBill
+                                                                              : model
+                                                                                          .paymentWidgetTypeFeature[
+                                                                                              currentStep]
+                                                                                          .paymentWidgetType ==
+                                                                                      PaymentWidgetType
+                                                                                          .CLIQ_TRANSACTIONS
+                                                                                  ? S.current.view_more
+                                                                                  : S.current.newPrePaidBill,
                                                                   style: TextStyle(
                                                                       color: AppColor.light_acccent_blue,
                                                                       fontSize: 12,

@@ -65,53 +65,56 @@ class CardCancelDialogView extends StatelessWidget {
                     ),
                     SizedBox(height: 35.h),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.0.w),
+                      padding: EdgeInsets.symmetric(horizontal: 24.0.w),
                       child: InkWell(
-                        onTap: () {
-                          CancellationReasonDialog.show(
-                            context,
-                            title: S.of(context).reasonOfCancellation,
-                            onDismissed: () {
-                              Navigator.pop(context);
-                            },
-                            onSelected: (value) {
-                              model!.reasonCancellationController.text = value;
-                              Navigator.pop(context);
-                            },
-                            reasons: reasons,
-                          );
-                        },
-                        child: AppTextField(
-                          labelText: S.of(context).reasonOfCancellation.toUpperCase(),
-                          hintText: S.of(context).pleaseSelect,
-                          readOnly: true,
-                          key: model!.reasonKey,
-                          controller: model.reasonCancellationController,
-                          onPressed: () {
-                            CancellationReasonDialog.show(context,
-                                onDismissed: () {
-                                  Navigator.pop(context);
-                                },
-                                title: S.of(context).reasonOfCancellation,
-                                reasons: reasons,
-                                onSelected: (value) {
-                                  Navigator.pop(context);
-                                  model.reasonCancellationController.text = value;
-                                });
-                          },
-                          suffixIcon: (isChecked, value) {
-                            return Container(
-                              width: 16.w,
-                              height: 16.h,
-                              padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
-                              child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1),
+                          onTap: () {
+                            CancellationReasonDialog.show(
+                              context,
+                              title: S.of(context).reasonOfCancellation,
+                              onDismissed: () {
+                                Navigator.pop(context);
+                              },
+                              onSelected: (value) {
+                                model!.reasonCancellationController.text = value;
+                                Navigator.pop(context);
+                              },
+                              reasons: reasons,
                             );
                           },
-                        ),
-                      ),
+                          child: AppTextField(
+                            labelText: S.of(context).reasonOfCancellation.toUpperCase(),
+                            hintText: S.of(context).pleaseSelect,
+                            readOnly: true,
+                            key: model!.reasonKey,
+                            controller: model.reasonCancellationController,
+                            autoFocus: false,
+                            onPressed: () {
+                              CancellationReasonDialog.show(context,
+                                  onDismissed: () {
+                                    Navigator.pop(context);
+                                    Future.delayed(Duration(milliseconds: 100), () {
+                                      FocusManager.instance.primaryFocus?.unfocus();
+                                    });
+                                  },
+                                  title: S.of(context).reasonOfCancellation,
+                                  reasons: reasons,
+                                  onSelected: (value) {
+                                    Navigator.pop(context);
+                                    model.reasonCancellationController.text = value;
+                                  });
+                            },
+                            suffixIcon: (isChecked, value) {
+                              return Container(
+                                width: 16.w,
+                                height: 16.h,
+                                padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
+                                child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1),
+                              );
+                            },
+                          )),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+                      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
                       child: Text(
                         S.of(context).cancelCardDesc,
                         style: TextStyle(
@@ -126,7 +129,7 @@ class CardCancelDialogView extends StatelessWidget {
                     Visibility(
                       visible: isPrimaryDebitCard ?? true,
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20.0.w),
+                        padding: EdgeInsets.symmetric(horizontal: 24.0.w),
                         child: AppStreamBuilder<bool>(
                           stream: model.declarationSelectedStream,
                           initialData: false,
@@ -147,7 +150,7 @@ class CardCancelDialogView extends StatelessWidget {
                       height: 24.h,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 30.h),
+                      padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 42.h),
                       child: AppPrimaryButton(
                         onPressed: () {
                           if (isPrimaryDebitCard ?? true) {
@@ -167,9 +170,6 @@ class CardCancelDialogView extends StatelessWidget {
                         },
                         text: S.of(context).confirm,
                       ),
-                    ),
-                    SizedBox(
-                      height: 24.h,
                     ),
                   ],
                 ),

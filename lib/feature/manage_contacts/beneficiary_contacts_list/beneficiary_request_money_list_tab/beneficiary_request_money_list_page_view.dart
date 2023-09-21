@@ -214,6 +214,7 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                                                           [])
                                                       .isNotEmpty,
                                                   child: ListView.builder(
+                                                    padding: EdgeInsets.zero,
                                                     itemBuilder: (context, index) {
                                                       ///send data from api response once updated
                                                       return BeneficiaryListWidget(
@@ -288,6 +289,7 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                                                           [])
                                                       .isNotEmpty,
                                                   child: ListView.builder(
+                                                    padding: EdgeInsets.zero,
                                                     itemBuilder: (context, index) {
                                                       ///send data from api response once updated
                                                       return BeneficiaryListWidget(

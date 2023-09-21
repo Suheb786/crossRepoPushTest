@@ -110,7 +110,7 @@ class SelectAccountListDialogPageView extends StatelessWidget {
                           ],
                         )),
                         Padding(
-                          padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w, vertical: 56),
+                          padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w, vertical: 42.h),
                           child: AppPrimaryButton(
                               text: S.current.confirm,
                               onPressed: () {

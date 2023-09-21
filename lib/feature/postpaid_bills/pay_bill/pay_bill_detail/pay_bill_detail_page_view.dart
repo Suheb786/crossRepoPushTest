@@ -406,7 +406,7 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
       },
       child: Padding(
         padding: EdgeInsetsDirectional.only(
-          top: 23.0.h,
+          top: 20.0.h,
         ),
         child: Text(S.of(context).backToPayments,
             style: TextStyle(

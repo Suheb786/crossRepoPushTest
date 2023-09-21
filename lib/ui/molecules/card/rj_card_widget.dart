@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
+import '../../../feature/rj/rj_book_flight/rj_book_flight_page.dart';
 import '../../../utils/asset_utils.dart';
+import '../../../utils/color_utils.dart';
+import '../../../utils/device_size_helper.dart';
 import '../../../utils/string_utils.dart';
 
 class RjCardWidget extends StatelessWidget {
@@ -17,65 +22,76 @@ class RjCardWidget extends StatelessWidget {
       elevation: 2,
       margin: EdgeInsets.zero,
       shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
-      child: Center(
-        child: Stack(
-          children: [
-            Container(
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Flexible(
+            flex: 10,
+            child: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.onSurface,
-                image: DecorationImage(
-                  alignment: Alignment.topCenter,
-                  image: AssetImage(AssetUtils.New_RJ_BG),
-                  fit: BoxFit.contain,
-                  scale: 0.92,
-                  matchTextDirection: true,
-                ),
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                      color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      blurRadius: 15.0,
+                      offset: Offset(0.0, 0.75))
+                ],
+              ),
+              padding: EdgeInsets.only(top: 12.h),
+              alignment: Alignment.center,
+              child: AppSvg.asset(
+                AssetUtils.GoRj,
+                height: 60.h,
               ),
             ),
-            PositionedDirectional(
-              bottom: 45,
-              child: Align(
-                alignment: AlignmentDirectional.bottomStart,
-                child: Padding(
-                  padding: EdgeInsetsDirectional.only(
-                    top: 32.h,
-                    start: 24.w,
-                  ),
-                  child: InkWell(
-                    onTap: () {
-                      Future.delayed(Duration(milliseconds: 200), () {
-                        Navigator.pushNamed(context, RoutePaths.RjFlightBookingPage);
-                      });
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width / 3.4,
-                      padding: EdgeInsetsDirectional.only(top: 11.h, bottom: 9.h),
-                      decoration: BoxDecoration(color: Theme.of(context).textTheme.bodyLarge!.color!, borderRadius: BorderRadius.circular(100.w)),
-                      child: Center(
-                        child: Text(
-                          S.of(context).bookNow,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
-                        ),
-                      ),
+          ),
+          Flexible(
+            flex: 20,
+            child: Container(
+              height: double.infinity,
+              alignment: Alignment.bottomCenter,
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
+              child: AppSvg.asset(
+                AssetUtils.WalkingLady,
+                fit: BoxFit.fitHeight,
+                alignment: Alignment.bottomCenter,
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 10,
+            child: Container(
+              color: AppColor.softRed1,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 20.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        AppSvg.asset(AssetUtils.BestDealsWithBlink,
+                            width: DeviceSizeHelper.isSmallDevice ? 100 : 115),
+                      ],
                     ),
                   ),
-                ),
+                  Spacer(),
+                  Container(
+                    alignment: Alignment.bottomRight,
+                    padding: EdgeInsets.only(right: 4.0),
+                    child: Image.asset(
+                      AssetUtils.AirplaneTail,
+                      height: 118.h,
+                      width: 123.w,
+                      alignment: Alignment.bottomRight,
+                    ),
+                  ),
+                ],
               ),
             ),
-            PositionedDirectional(
-              bottom: 0.01,
-              end: 15,
-              child: Align(
-                alignment: AlignmentDirectional.bottomEnd,
-                child: Image.asset(
-                  AssetUtils.AirplaneTail,
-                  scale: 3,
-                ),
-              ),
-            )
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

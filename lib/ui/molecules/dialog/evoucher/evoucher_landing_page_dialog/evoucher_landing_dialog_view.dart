@@ -63,7 +63,7 @@ class EvoucherLandingDialogView extends StatelessWidget {
                             ),
                             SizedBox(height: 30.h),
                             Padding(
-                              padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 40.h),
+                              padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 42.h),
                               child: AppPrimaryButton(
                                 onPressed: () {
                                   onSelected!.call();

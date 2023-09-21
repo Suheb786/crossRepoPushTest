@@ -225,7 +225,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                                 color: AppColor.black),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.only(top: 15.h, start: 4.w),
+                            padding: EdgeInsetsDirectional.only(top: 6.0.h, start: 4.w),
                             child: Text(
                               S.of(context).JOD,
                               style: TextStyle(

@@ -71,7 +71,9 @@ class AppViewModel extends BaseViewModel {
               tertiary: AppColor.dark_violet_4,
               tertiaryContainer: AppColor.dark_Grayish_Blue,
               onTertiary: AppColor.light_grayish_violet,
-              scrim: AppColor.dark_brown),
+              scrim: AppColor.dark_brown,
+              onPrimaryContainer: AppColor.cerulean_Blue,
+              outlineVariant: AppColor.azure_blue),
           // backgroundColor: AppColor.lightGray,
           cardTheme: CardTheme(
               color: AppColor.veryLightGray,

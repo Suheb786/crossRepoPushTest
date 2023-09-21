@@ -92,13 +92,16 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                                         color: Theme.of(context).primaryColor, shape: BoxShape.circle),
                                     margin: EdgeInsets.only(
                                         left: index == 0 ? 4.w : 0, right: index == 1.w ? 4.w : 0),
-                                    child: Text(model.languageValue[index],
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            fontSize: 15.t,
-                                            fontWeight: FontWeight.w600,
-                                            color: Theme.of(context).colorScheme.secondary)),
+                                    child: Padding(
+                                      padding: EdgeInsets.only(top: index == 0 ? 5.t : 0),
+                                      child: Text(model.languageValue[index],
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontSize: 15.t,
+                                              fontWeight: FontWeight.w600,
+                                              color: Theme.of(context).colorScheme.secondary)),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -117,6 +120,7 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                                   borderRadius: BorderRadius.circular(100.w),
                                 ),
                               ),
+                              padding: EdgeInsets.only(top: (streamValue ?? true) ? 4.t : 0),
                               alignment: Alignment.center,
                               child: Text(
                                   (streamValue ?? true) ? model.languageValue[0] : model.languageValue[1],

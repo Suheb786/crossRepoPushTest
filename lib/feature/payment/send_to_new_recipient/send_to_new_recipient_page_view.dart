@@ -649,15 +649,15 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                         Navigator.pop(context);
                                                       },
                                                       child: Padding(
-                                                        padding: EdgeInsets.only(top: 16.0.h, bottom: 20),
+                                                        padding: EdgeInsets.only(top: 20.0.h, bottom: 20.h),
                                                         child: Center(
                                                           child: Text(
                                                             S.of(context).backToPayments,
                                                             style: TextStyle(
                                                               fontFamily: StringUtils.appFont,
                                                               color: AppColor.brightBlue,
-                                                              fontSize: 12.0.t,
-                                                              fontWeight: FontWeight.w500,
+                                                              fontSize: 14.0.t,
+                                                              fontWeight: FontWeight.w600,
                                                             ),
                                                           ),
                                                         ),

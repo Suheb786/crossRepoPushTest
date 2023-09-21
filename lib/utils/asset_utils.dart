@@ -176,14 +176,18 @@ class AssetUtils {
   ///Rj PNG Images
 
   static const String flight = drawable + "flight.png";
-  static const String EconomySeat = drawable + "economy_seat.png";
-  static const String BusinessSeat = drawable + "business_icon.png";
   static const String BigSearchIcon = drawable + "big_search_icon.png";
-  static const String New_RJ_BG = drawable + "new_rj_background.png";
   static const String AirplaneTail = drawable + "airplane_tail.png";
 
   ///Rj svg
   static const String cancelFlightIcon = svg + "cancel_flight.svg";
+  static const String EconomySeat = svg + "economy_seat.svg";
+  static const String BusinessSeat = svg + "business_seat.svg";
+  static const String BestDealsWithBlink = svg + "best_deals_with_blink.svg";
+  static const String GoRj = svg + "go_rj.svg";
+  static const String BookNow = svg + "book_now.svg";
+  static const String WalkingLady = svg + "walking_lady.svg";
+
 
   ///Cliq
   static const String walletIcon = svg + "wallet.svg";

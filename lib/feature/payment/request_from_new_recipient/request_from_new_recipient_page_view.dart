@@ -479,8 +479,8 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                           style: TextStyle(
                                             fontFamily: StringUtils.appFont,
                                             color: AppColor.brightBlue,
-                                            fontSize: 12.0.t,
-                                            fontWeight: FontWeight.w500,
+                                            fontSize: 14.0.t,
+                                            fontWeight: FontWeight.w600,
                                           ),
                                         ),
                                       ),

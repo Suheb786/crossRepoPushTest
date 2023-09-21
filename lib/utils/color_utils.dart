@@ -128,4 +128,7 @@ class AppColor {
   static const very_dark_gray2 = const Color(0xff090909);
   static const dark_yellow1 = const Color(0xff80740B);
   static const borderColorNew = const Color(0xff3d3d3d);
+  static const cerulean_Blue = const Color(0xff33B3E4); // Theme.of(context).colorScheme.onPrimaryContainer
+  static const azure_blue = const Color(0xff5CC9F5);
+  static const silver_gray = const Color(0xffC8C8C8);
 }

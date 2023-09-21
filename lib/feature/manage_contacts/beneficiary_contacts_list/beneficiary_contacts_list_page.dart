@@ -104,7 +104,11 @@ class BeneficiaryContactListPageState
             textAlign: TextAlign.center,
             softWrap: false,
             style: TextStyle(
-                fontSize: 14.t, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+                fontSize: 14.t,
+                fontWeight: FontWeight.w600,
+                color: model.navigationType == NavigationType.REQUEST_MONEY
+                    ? Theme.of(context).colorScheme.shadow
+                    : Theme.of(context).colorScheme.secondary),
           ),
         ),
         Expanded(
@@ -123,7 +127,6 @@ class BeneficiaryContactListPageState
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.7.w,
                         child: TabBar(
                           labelColor: Theme.of(context).colorScheme.surfaceVariant,
                           isScrollable: true,

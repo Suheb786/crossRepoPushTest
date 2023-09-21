@@ -105,7 +105,7 @@ class PurposeDetailDialogView extends StatelessWidget {
                             ],
                           )),
                           Padding(
-                            padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 16.h, bottom: 40.h),
+                            padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 16.h, bottom: 42.h),
                             child: AppPrimaryButton(
                               onPressed: () {
                                 onSelected!.call(model.purposeDetailList![currentIndex!]);
