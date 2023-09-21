@@ -18614,32 +18614,7 @@ class S {
   String get done {
     return Intl.message(
       'Done',
-      name: 'done',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `One-Way`
-  String get oneWay {
-    return Intl.message(
-      'One-Way',
-      name: 'oneWay',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `New Request`
-  String get newRequest {
-    return Intl.message(
-      'New Request',
-      name: 'newRequest',
-      desc: '',
-      args: [],
-    );
-  }
-
+      name: 'done');}
   /// `Choose the account you\nwant to pay from`
   String get chooseTheAccountToPay {
     return Intl.message(
@@ -18650,6 +18625,11 @@ class S {
     );
   }
 
+  /// `One-Way`
+  String get oneWay {
+    return Intl.message(
+      'One-Way',
+      name: 'oneWay',);}
   /// `success`
   String get readyToUseSuccess {
     return Intl.message(
