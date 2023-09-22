@@ -143,7 +143,7 @@ class _RJBookingWidgetViewState extends State<RJBookingWidgetView> {
                           width: 16.w,
                           padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
                           child: AppSvg.asset(AssetUtils.calendar,
-                              color: Theme.of(context).colorScheme.surfaceTint),
+                              height: 16.h, width: 16.w, color: Theme.of(context).primaryColorDark),
                         );
                       },
                     ),
@@ -187,6 +187,13 @@ class _RJBookingWidgetViewState extends State<RJBookingWidgetView> {
                             ///based on index changing cabin class container border color
                             return Container(
                               decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Color.fromRGBO(0, 0, 0, 0.08),
+                                        blurRadius: 4,
+                                        offset: Offset(0, 4))
+                                  ],
+                                  color: Theme.of(context).colorScheme.secondary,
                                   border: Border.all(
                                     color: data == index
                                         ? Theme.of(context).colorScheme.onSecondaryContainer

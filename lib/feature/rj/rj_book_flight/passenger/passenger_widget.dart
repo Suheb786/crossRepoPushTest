@@ -7,7 +7,6 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../../base/base_widget.dart';
 import '../../../../ui/molecules/stream_builder/app_stream_builder.dart';
-import '../../../../utils/color_utils.dart';
 import '../../../../utils/string_utils.dart';
 
 class PassengerWidget extends StatelessWidget {

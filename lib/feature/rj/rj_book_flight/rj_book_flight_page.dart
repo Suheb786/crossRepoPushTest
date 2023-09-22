@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:neo_bank/feature/rj/rj_book_flight/rj_book_flight_page_view.dart';
 import 'package:neo_bank/feature/rj/rj_book_flight/rj_book_flight_page_view_model.dart';
 import 'package:neo_bank/feature/rj/rj_book_flight/widget/booking_widget.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/app_progress.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:riverpod/src/framework.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../../base/base_page.dart';
 import '../../../di/rj/rj_modules.dart';
 import '../../../ui/molecules/app_svg.dart';
 import '../../../utils/asset_utils.dart';
 import '../../../utils/color_utils.dart';
-import '../../../utils/parser/error_parser.dart';
 
 class RjFlightBookingPage extends BasePage<RjFlightBookingViewModel> {
   @override

@@ -57,7 +57,6 @@ import 'package:neo_bank/feature/evoucher/enter_code_evoucher_puchase/enter_code
 import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_detail/evoucher_detail_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_by_denomination_amount/purchase_by_denomination_amount_page.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_region_amount/select_region_amount_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_now/purchase_now_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_voucher_success_page.dart';
@@ -696,12 +695,6 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => EVoucherCategoryListingPage(settings.arguments as CategoryListArgument),
             settings: RouteSettings(name: RoutePaths.EVouchersListing));
-
-      case RoutePaths.EVouchersPurchase:
-        return CupertinoPageRoute(
-            builder: (context) =>
-                PurchaseEVoucherPage(argument: settings.arguments as PurchaseEVoucherPageArgument),
-            settings: RouteSettings(name: RoutePaths.EVouchersPurchase));
 
       case RoutePaths.EVouchersPurchaseSuccess:
         return CupertinoPageRoute(
