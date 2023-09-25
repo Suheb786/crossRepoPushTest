@@ -18,6 +18,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../di/payment/payment_modules.dart';
+import '../../../ui/no_data_widget.dart';
 import 'new_bills_page_view_model.dart';
 
 class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
@@ -136,16 +137,7 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                                   },
                                   itemCount: snapshot.data!.length),
                             )
-                          : Center(
-                              child: Text(
-                                S.of(context).noDataFound,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                    color: Theme.of(context).primaryColorDark),
-                              ),
-                            ),
+                          : NoDataWidget(),
                     ),
                   ],
                 ),

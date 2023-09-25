@@ -18,6 +18,7 @@ class AssetUtils {
   static const String delete = svg + "delete.svg";
   static const String upload = svg + "upload.svg";
   static const String search = svg + "search.svg";
+  static const String searchThin = svg + "search_thin.svg";
   static const String calendar = svg + "calendar.svg";
   static const String earphone = svg + "earphone.svg";
   static const String edit = svg + "edit.svg";

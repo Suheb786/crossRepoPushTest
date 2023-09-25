@@ -16,6 +16,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 
+import '../../../ui/no_data_widget.dart';
 import '../../../utils/color_utils.dart';
 import 'beneficiary_transaction_history_list_page_view_model.dart';
 
@@ -228,22 +229,9 @@ class BeneficiaryTransactionHistoryListPageView
                         ],
                       ),
                     )
-                  : Expanded(
-                      child: Center(
-                        child: Text(
-                          S.of(context).noDataFound,
-                          style: TextStyle(color: Theme.of(context).primaryColorDark),
-                        ),
-                      ),
-                    );
+                  : NoDataWidget();
             case Status.ERROR:
-              return Expanded(
-                child: Center(
-                  child: Text(
-                    S.of(context).noDataFound,
-                  ),
-                ),
-              );
+              return NoDataWidget();
             default:
               return Container();
           }

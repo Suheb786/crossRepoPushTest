@@ -95,7 +95,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                           child: SettingsMenuWidget(
                             model: model,
                             title: S.of(context).billsAndPayments,
-                            image: AssetUtils.paymentCircle,
+                            image: AssetUtils.sendMoneyIcon,
                             mKey: 'BILL_PAYMENTS',
                           )),
 

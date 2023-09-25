@@ -19,6 +19,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../ui/no_data_widget.dart';
 import '../../payment/account_swiching/payment_account_switcher.dart';
 
 class PaySelectedBillsPostPaidBillsPageView
@@ -107,16 +108,7 @@ class PaySelectedBillsPostPaidBillsPageView
                           child: Card(
                             child: model.postPaidBillInquiryData == null ||
                                     model.postPaidBillInquiryData!.isEmpty
-                                ? Center(
-                                    child: Text(
-                                      S.of(context).noDataFound,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400,
-                                          color: Theme.of(context).primaryColorDark),
-                                    ),
-                                  )
+                                ? NoDataWidget()
                                 : GestureDetector(
                                     behavior: HitTestBehavior.opaque,
                                     onPanDown: (_) {

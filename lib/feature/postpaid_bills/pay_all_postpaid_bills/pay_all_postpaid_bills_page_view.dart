@@ -28,6 +28,7 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../../di/payment/payment_modules.dart';
 import '../../../ui/molecules/app_keyboard_hide.dart';
+import '../../../ui/no_data_widget.dart';
 import '../../../utils/app_constants.dart';
 import '../../payment/payment_home/payment_home_view_model.dart';
 
@@ -409,16 +410,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                             return AppDivider();
                                                           },
                                                         )
-                                                      : Center(
-                                                          child: Text(
-                                                            S.of(context).noDataFound,
-                                                            style: TextStyle(
-                                                                fontFamily: StringUtils.appFont,
-                                                                fontSize: 14,
-                                                                fontWeight: FontWeight.w400,
-                                                                color: Theme.of(context).primaryColorDark),
-                                                          ),
-                                                        ),
+                                                      : NoDataWidget(),
                                                 ),
                                               ),
                                             ],

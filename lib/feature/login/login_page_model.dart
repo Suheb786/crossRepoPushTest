@@ -137,8 +137,8 @@ class LoginViewModel extends BasePageViewModel {
     });
 
     if (kDebugMode) {
-      emailController.text = "amta101@g.com";
-      passwordController.text = "Amta@123";
+      emailController.text = "team169@g.com";
+      passwordController.text = "Test@123";
     }
   }
 
