@@ -4,7 +4,6 @@ import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/enum/account_status_enum.dart';
 import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/constants/enum/evoucher_landing_page_navigation_type_enum.dart';
-import 'package:domain/model/bank_smart/create_account_response.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/model/qr/verify_qr_response.dart';
@@ -21,7 +20,6 @@ import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_s
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher/evoucher_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
-import 'package:neo_bank/feature/sub_account/open_sub_account/open_sub_account_success/open_sub_account_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -48,7 +46,6 @@ import '../../../ui/molecules/app_svg.dart';
 import '../../../utils/device_size_helper.dart';
 import '../../credit_card_pay_back/credit_card_pay_back_page.dart';
 import '../../rj/rj_book_flight/rj_book_flight_page.dart';
-import '../../sub_account/transfer/select_transfer/select_transfer_page.dart';
 import '../credit_card_settings/credit_card_settings_page.dart';
 
 class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {

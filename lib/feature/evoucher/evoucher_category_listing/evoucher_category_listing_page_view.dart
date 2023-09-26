@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_region_amount/select_region_amount_page.dart';
-
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/evoucher/evoucher_category_list_widget.dart';
@@ -18,7 +17,6 @@ import '../../../generated/l10n.dart';
 import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../ui/no_data_widget.dart';
-import '../../../utils/color_utils.dart';
 
 class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategoryListingPageViewModel> {
   EVoucherCategoryListingPageView(ProviderBase model) : super(model);

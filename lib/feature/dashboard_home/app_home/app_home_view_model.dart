@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:isolate';
-
-import 'package:card_swiper/card_swiper.dart';
 import 'package:data/helper/dynamic_link.dart';
 import 'package:domain/constants/enum/account_status_enum.dart';
 import 'package:domain/constants/enum/card_type.dart';
