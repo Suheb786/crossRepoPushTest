@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/cutom_route.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
-import '../../../feature/rj/rj_book_flight/rj_book_flight_page.dart';
 import '../../../utils/asset_utils.dart';
 import '../../../utils/color_utils.dart';
 import '../../../utils/device_size_helper.dart';
-import '../../../utils/string_utils.dart';
 
 class RjCardWidget extends StatelessWidget {
   const RjCardWidget({Key? key}) : super(key: key);

@@ -56,7 +56,8 @@ import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_repla
 import 'package:neo_bank/feature/evoucher/enter_code_evoucher_puchase/enter_code_evoucher_puchase_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_detail/evoucher_detail_page.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_by_denomination_amount/purchase_by_denomination_amount_page.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_region_amount/select_region_amount_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_now/purchase_now_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_voucher_success_page.dart';
 import 'package:neo_bank/feature/evoucher/share_voucher/share_voucher_page.dart';
@@ -695,12 +696,6 @@ class AppRouter {
             builder: (context) => EVoucherCategoryListingPage(settings.arguments as CategoryListArgument),
             settings: RouteSettings(name: RoutePaths.EVouchersListing));
 
-      case RoutePaths.EVouchersPurchase:
-        return CupertinoPageRoute(
-            builder: (context) =>
-                PurchaseEVoucherPage(argument: settings.arguments as PurchaseEVoucherPageArgument),
-            settings: RouteSettings(name: RoutePaths.EVouchersPurchase));
-
       case RoutePaths.EVouchersPurchaseSuccess:
         return CupertinoPageRoute(
             builder: (context) =>
@@ -716,6 +711,18 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => EnterCodeEVoucherPurchasePage(),
             settings: RouteSettings(name: RoutePaths.EnterCodeEVoucherPurchase));
+
+      case RoutePaths.SelectRegionAmountPage:
+        return CupertinoPageRoute(
+            builder: (context) =>
+                SelectRegionAmountPage(argument: settings.arguments as SelectRegionAmountPageArgument),
+            settings: RouteSettings(name: RoutePaths.SelectRegionAmountPage));
+
+      case RoutePaths.PurchaseByDenominationAmountPage:
+        return CupertinoPageRoute(
+            builder: (context) => PurchaseByDenominationAmountPage(
+                argument: settings.arguments as PurchaseByDenominationAmountPageArgument),
+            settings: RouteSettings(name: RoutePaths.PurchaseByDenominationAmountPage));
 
       case RoutePaths.SelectedCardForApplePayPage:
         return CupertinoPageRoute(

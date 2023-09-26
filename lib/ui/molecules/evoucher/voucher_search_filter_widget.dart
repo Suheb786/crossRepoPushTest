@@ -22,7 +22,7 @@ class VoucherSearchAndFilterWidget extends StatelessWidget {
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           mainAxisExtent: 185.h,
           crossAxisCount: 2,
-          crossAxisSpacing: 0.2,
+          crossAxisSpacing: 15.5.w,
           mainAxisSpacing: 40.h,
           childAspectRatio: 1),
     );

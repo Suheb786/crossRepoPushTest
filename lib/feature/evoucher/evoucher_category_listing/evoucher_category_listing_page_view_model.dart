@@ -80,7 +80,7 @@ class EVoucherCategoryListingPageViewModel extends BasePageViewModel {
       });
     });
     getVoucherItemFilter(
-      category: argument.id.toString(),
+      category: argument.voucherCategory.id.toString(),
       region: '',
       maxValue: 0.0,
       minValue: 0.0,
@@ -94,7 +94,7 @@ class EVoucherCategoryListingPageViewModel extends BasePageViewModel {
     } else {
       List<List<VoucherItem>> searchedItems = filteredVoucherItems
           .where((element) =>
-              element.first.name.toLowerCase().contains(categorayListController.text.toLowerCase().trim()))
+              element.first.brand.toLowerCase().contains(categorayListController.text.toLowerCase().trim()))
           .toList();
       voucherItemFilterResponseSubject.safeAdd(Resource.success(data: searchedItems));
     }

@@ -1,17 +1,13 @@
 import 'package:domain/model/rj/destination_response.dart';
 import 'package:domain/model/rj/get_trip_response.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
-
-import '../../../../base/base_page.dart';
 import '../../../../di/rj/rj_modules.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../main/navigation/route_paths.dart';
 import '../../../../ui/molecules/app_svg.dart';
-import '../../../../ui/molecules/button/animated_button.dart';
 import '../../../../ui/molecules/button/app_primary_button.dart';
 import '../../../../ui/molecules/date_picker.dart';
 import '../../../../ui/molecules/dialog/rj/rj_flight_booking_to_dialog/to_dialog.dart';
@@ -147,7 +143,7 @@ class _RJBookingWidgetViewState extends State<RJBookingWidgetView> {
                           width: 16.w,
                           padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
                           child: AppSvg.asset(AssetUtils.calendar,
-                              color: Theme.of(context).colorScheme.surfaceTint),
+                              height: 16.h, width: 16.w, color: Theme.of(context).primaryColorDark),
                         );
                       },
                     ),
@@ -191,6 +187,13 @@ class _RJBookingWidgetViewState extends State<RJBookingWidgetView> {
                             ///based on index changing cabin class container border color
                             return Container(
                               decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Color.fromRGBO(0, 0, 0, 0.08),
+                                        blurRadius: 4,
+                                        offset: Offset(0, 4))
+                                  ],
+                                  color: Theme.of(context).colorScheme.secondary,
                                   border: Border.all(
                                     color: data == index
                                         ? Theme.of(context).colorScheme.onSecondaryContainer

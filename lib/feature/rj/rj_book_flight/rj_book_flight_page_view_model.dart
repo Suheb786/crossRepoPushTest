@@ -9,7 +9,6 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../base/base_page_view_model.dart';
-import '../../../ui/molecules/textfield/app_textfield.dart';
 import '../../../utils/asset_utils.dart';
 import '../../../utils/request_manager.dart';
 import '../../../utils/resource.dart';

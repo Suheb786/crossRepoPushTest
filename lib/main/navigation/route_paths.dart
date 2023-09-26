@@ -104,14 +104,14 @@ class RoutePaths {
   static const String ManageCreditCardLimits = "/manageCreditCardLimits";
   static const String SupplementaryDebitCardPinSet = "/supplementaryDebitCardPinSet";
   static const String EVouchersListing = "/eVouchersListing";
-  static const String EVouchersPurchase = "/eVouchersPurchase";
   static const String EVouchersPurchaseSuccess = "/eVouchersPurchaseSuccess";
   static const String ShareVoucher = "/shareVoucher";
   static const String Evoucher = "/evoucher";
   static const String EvoucherDetail = "/evoucherDetail";
   static const String PurchaseNowDetail = "/purchaseNowDetail";
   static const String PurchaseEVoucherWithoutRegionPage = "/purchaseEVoucherWithoutRegionPage";
-
+  static const String SelectRegionAmountPage = "/selectRegionAmountPage";
+  static const String PurchaseByDenominationAmountPage = "/purchaseByDenominationAmountPage";
   static const String EnterCodeEVoucherPurchase = "/enterCodeEVoucherPurchase";
   static const String SelectedCardForApplePayPage = "/selectedCardForApplePayPage";
   static const String ApplePaySuccessAndErrorPage = "/applePaySuccessAndErrorPage";

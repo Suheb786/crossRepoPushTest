@@ -10,7 +10,6 @@ import 'package:domain/usecase/evouchers/evoucher_history_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_item_filter_usecase.dart';
 import 'package:domain/usecase/evouchers/evoucher_region_min_max_value_usecase.dart';
 import 'package:domain/usecase/evouchers/get_voucher_details_usecase.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/model/transaction_period.dart';
@@ -47,7 +46,6 @@ class EvoucherViewModel extends BasePageViewModel {
   int pageNo = 1;
   final ScrollController scrollController = ScrollController();
   late int selectedTransactionHistoryPeriod;
-  late VoucherCategories selectedVoucherCategories;
 
   late VoucherDetail historyData;
 
@@ -358,10 +356,6 @@ class EvoucherViewModel extends BasePageViewModel {
             searchText: buyVoucherSearchController.text);
       }
     }
-  }
-
-  void setSelectedCategory(VoucherCategories category) {
-    this.selectedVoucherCategories = category;
   }
 
   void switchTab(TabController tabController, int tab) {

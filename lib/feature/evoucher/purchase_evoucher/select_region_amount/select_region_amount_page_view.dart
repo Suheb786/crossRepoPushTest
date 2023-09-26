@@ -1,16 +1,14 @@
-import 'package:animated_widgets/animated_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
-import 'package:domain/model/e_voucher/get_settlement_amount.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/evoucher_settlement_select_account/evoucher_settlement_account_page_view_model.dart.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_by_denomination_amount/purchase_by_denomination_amount_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_region_amount/select_region_amount_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
@@ -18,7 +16,6 @@ import 'package:neo_bank/ui/molecules/dialog/card_settings/relationship_with_car
 import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/region_filter/region_filter_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
-import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/extension/string_casing_extension.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -36,58 +33,48 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
           initialData: false,
           stream: model.errorDetectorStream,
           dataBuilder: (context, isError) {
-            return ShakeAnimatedWidget(
-              enabled: isError ?? false,
-              duration: Duration(milliseconds: 100),
-              shakeAngle: Rotation.deg(z: 1),
-              curve: Curves.easeInOutSine,
-              child: AppStreamBuilder<Resource<bool>>(
-                stream: model.selectRegionAmountStream,
-                initialData: Resource.none(),
-                onData: (data) {
-                  if (data.status == Status.SUCCESS) {
-                    var item = model.getSelectedItem();
-                    if (item.currency == AppConstantsUtils.jodCurrency) {
-                      ProviderScope.containerOf(context)
-                          .read(evoucherSettlementAccountViewModelProvider)
-                          .setVoucherInformation(SelectedVoucherInformation(
-                              settlementValue: item.fromValue.toDouble(),
-                              voucherFaceImage: model.selectedItem.cardFaceImage,
-                              voucherName: model.selectedItem.name));
-                      model.settlementAmount = item.fromValue.toDouble();
-                      ProviderScope.containerOf(context).read(purchaseEVouchersViewModelProvider).nextPage();
-                    } else {
-                      var amount = (item.fromValue.toDouble() * double.parse(item.exchangeRate)).toString();
-                      model.getSettlementAmmount(
-                          Amount: amount,
-                          FromCurrency: AppConstantsUtils.usdCurrency,
-                          ToCurrency: AppConstantsUtils.jodCurrency);
-                    }
-                  } else if (data.status == Status.ERROR) {
-                    model.showToastWithError(data.appError!);
-                  }
-                },
-                dataBuilder: (context, data) {
-                  return AppStreamBuilder<Resource<GetSettlementAmount>>(
-                      initialData: Resource.none(),
-                      stream: model.getSettlementAmountStream,
-                      onData: (data) {
-                        if (data.status == Status.SUCCESS) {
-                          ProviderScope.containerOf(context)
-                              .read(evoucherSettlementAccountViewModelProvider)
-                              .setVoucherInformation(SelectedVoucherInformation(
-                                  settlementValue: data.data?.content ?? 0.0,
-                                  voucherFaceImage: model.selectedItem.cardFaceImage,
-                                  voucherName: model.selectedItem.name));
-
-                          ProviderScope.containerOf(context)
-                              .read(purchaseEVouchersViewModelProvider)
-                              .nextPage();
-                        }
-                      },
-                      dataBuilder: (context, settlementAmmount) {
-                        return Card(
-                          margin: EdgeInsets.zero,
+            return AppStreamBuilder<Resource<bool>>(
+              stream: model.selectRegionAmountStream,
+              initialData: Resource.none(),
+              onData: (data) {
+                if (data.status == Status.SUCCESS) {
+                  model.getFilteredVoucherList();
+                  Navigator.pushNamed(context, RoutePaths.PurchaseByDenominationAmountPage,
+                      arguments: PurchaseByDenominationAmountPageArgument(
+                          voucherItems: model.filteredVouchers, category: model.argument?.category ?? ''));
+                } else if (data.status == Status.ERROR) {
+                  model.showToastWithError(data.appError!);
+                }
+              },
+              dataBuilder: (context, data) {
+                return Container(
+                  color: Theme.of(context).primaryColor,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 96.h,
+                      ),
+                      Text(
+                        S.of(context).eVouchers.toUpperCase(),
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontSize: 10.t,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      SizedBox(height: 8.h),
+                      Text(
+                        S.of(context).selectPreferredRegionAmount,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontSize: 20.t,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      Expanded(
+                        child: Card(
+                          margin: EdgeInsetsDirectional.only(top: 32.h, bottom: 56.h, start: 24.w, end: 24.w),
                           child: Container(
                               padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                               child: Column(
@@ -103,7 +90,8 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                               height: 72.h,
                                               width: 72.w,
                                               child: CachedNetworkImage(
-                                                imageUrl: model.voucherItems.first.cardFaceImage,
+                                                imageUrl:
+                                                    model.argument?.voucherItems.first.cardFaceImage ?? "",
                                                 placeholder: (context, url) =>
                                                     Container(color: Theme.of(context).primaryColor),
                                                 errorWidget: (context, url, error) => Icon(Icons.error),
@@ -115,7 +103,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                             height: 16.h,
                                           ),
                                           Text(
-                                            model.voucherItems.first.brand,
+                                            model.argument?.voucherItems.first.brand ?? "",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontFamily: StringUtils.appFont,
@@ -236,10 +224,12 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                   ),
                                 ],
                               )),
-                        );
-                      });
-                },
-              ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
             );
           }),
     );

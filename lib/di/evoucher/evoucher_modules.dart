@@ -4,9 +4,8 @@ import 'package:neo_bank/feature/evoucher/enter_code_evoucher_puchase/enter_code
 import 'package:neo_bank/feature/evoucher/evoucher/evoucher_view_model.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_detail/evoucher_detail_page_view_model.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/enter_otp_for_evoucher_category_puchase/enter_otp_for_evoucher_category_puchase_page_view_model.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/evoucher_settlement_select_account/evoucher_settlement_account_page_view_model.dart.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page_view_model.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_by_denomination_amount/purchase_by_denomination_amount_page.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_by_denomination_amount/purchase_by_denomination_amount_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_region_amount/select_region_amount_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_now/purchase_now_detail_model.dart';
 import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_voucher_success_page.dart';
@@ -62,10 +61,6 @@ final eVouchersCategoryListingViewModelProvider = ChangeNotifierProvider.autoDis
               ref.read(eVoucherItemFilterUseCaseProvider),
             ));
 
-///purchase e-vouchers view model
-final purchaseEVouchersViewModelProvider = ChangeNotifierProvider.autoDispose<PurchaseEVoucherPageViewModel>(
-    (ref) => PurchaseEVoucherPageViewModel());
-
 ///PurchaseEVoucherWithoutRegionPageViewModel
 final purchaseEVoucherWithoutRegionPageViewModel = ChangeNotifierProvider.autoDispose
     .family<PurchaseEVoucherWithoutRegionPageViewModel, PurchaseEVoucherWithoutRegionPageArgument>(
@@ -74,16 +69,12 @@ final purchaseEVoucherWithoutRegionPageViewModel = ChangeNotifierProvider.autoDi
 ///select region amount view model
 final selectAmountRegionViewModelProvider =
     ChangeNotifierProvider.autoDispose<SelectRegionAmountPageViewModel>(
-        (ref) => SelectRegionAmountPageViewModel(
-              ref.read(selectRegionAmountUseCaseProvider),
-              ref.read(getSettlementAmountUseCaseProvider),
-            ));
+        (ref) => SelectRegionAmountPageViewModel(ref.read(selectRegionAmountUseCaseProvider)));
 
-///settlement
-final evoucherSettlementAccountViewModelProvider =
-    ChangeNotifierProvider.autoDispose<EvoucherSettlementAccountPageViewModel>((ref) =>
-        EvoucherSettlementAccountPageViewModel(
-            ref.read(selectAccountUseCaseProvider), ref.read(eVoucherOtpCaseProvider)));
+///Purchase By Denomination Amount ViewModel
+final purchaseByDenominationAmountPageViewModel = ChangeNotifierProvider.autoDispose
+    .family<PurchaseByDenominationAmountPageViewModel, PurchaseByDenominationAmountPageArgument>(
+        (ref, args) => PurchaseByDenominationAmountPageViewModel(args));
 
 ///settlement account
 final settlementAccountViewModelProvider = ChangeNotifierProvider.autoDispose
@@ -99,14 +90,6 @@ final categoriesFilterDialogViewModelProvider =
 ///e-vouchers region by categories dialog
 final regionFilterDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<RegionFilterDialogViewModel>((ref) => RegionFilterDialogViewModel());
-
-///enter otp for category evoucher purchase view model
-final enterOtpForEVoucherCategoryPurchaseViewModelProvider =
-    ChangeNotifierProvider.autoDispose<EnterOtpForEVoucherCategoryPurchasePageViewModel>((ref) =>
-        EnterOtpForEVoucherCategoryPurchasePageViewModel(
-            ref.read(enterOtpForEVoucherCategoryPurchaseUseCaseUseCaseProvider),
-            ref.read(placeOrderUseCaseProvider),
-            ref.read(eVoucherOtpCaseProvider)));
 
 ///otpPurchaseEvoucherWithoutRegionPageViewModelProvider
 final otpPurchaseEvoucherWithoutRegionPageViewModelProvider = ChangeNotifierProvider.autoDispose

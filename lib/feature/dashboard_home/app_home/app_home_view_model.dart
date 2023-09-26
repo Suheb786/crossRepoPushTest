@@ -90,8 +90,6 @@ class AppHomeViewModel extends BasePageViewModel {
   ///Init Dynamic links
   PublishSubject<InitDynamicLinkUseCaseParams> _initDynamicLinkRequestRequest = PublishSubject();
 
-  final SwiperController pageController = SwiperController();
-
   final PageController appSwiperController = PageController(viewportFraction: 0.8);
 
   BehaviorSubject<int> _currentStep = BehaviorSubject();
@@ -619,21 +617,30 @@ class AppHomeViewModel extends BasePageViewModel {
     cardTypeList.clear();
     yourAllAccounts.clear();
 
-    /// this is to be removed when proper data comes from the apis....
+    ///Extracting Main Account
+    var mainAccount =
+        dashboardDataContent.accounts?.firstWhere((element) => !(element.isSubAccount ?? false));
 
-    for (Account selectedAccount in (dashboardDataContent.accounts ?? [])) {
-      pages.add(MyAccountPageViewWidget(selectedAccount));
-      cardTypeList.add(TimeLineSwipeUpArgs(
-          object: selectedAccount,
-          cardType: selectedAccount.isSubAccount ?? false ? CardType.SUBACCOUNT : CardType.ACCOUNT,
-          swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
-          timeLineEnum: TimeLineEnum.TIMELINE_YES));
-      if (!(selectedAccount.isSubAccount ?? true)) {
-        dashboardDataContent.account = selectedAccount;
+    ///Adding subAccount into pages list first
+    for (Account subAccount in (dashboardDataContent.accounts ?? [])) {
+      if ((subAccount.isSubAccount ?? false)) {
+        pages.add(MyAccountPageViewWidget(subAccount));
+        cardTypeList.add(TimeLineSwipeUpArgs(
+            object: subAccount,
+            cardType: subAccount.isSubAccount ?? false ? CardType.SUBACCOUNT : CardType.ACCOUNT,
+            swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
+            timeLineEnum: TimeLineEnum.TIMELINE_YES));
       }
-
-      /// may be we will have conditions here for multiple account switching in the whole application....
     }
+
+    ///Adding main account
+    dashboardDataContent.account = mainAccount;
+    pages.add(MyAccountPageViewWidget(mainAccount!));
+    cardTypeList.add(TimeLineSwipeUpArgs(
+        object: mainAccount,
+        cardType: mainAccount.isSubAccount ?? false ? CardType.SUBACCOUNT : CardType.ACCOUNT,
+        swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES,
+        timeLineEnum: TimeLineEnum.TIMELINE_YES));
 
     /// Adding all the accounts for the other pages to access so that we can show selection for the user to interact with the acocounts...
     yourAllAccounts.addAll(dashboardDataContent.accounts ?? []);
@@ -951,6 +958,11 @@ class AppHomeViewModel extends BasePageViewModel {
     }
 
     addPages(pages);
+
+    ///Showing main Account first on login
+    var mainAccountIndex = cardTypeList.lastIndexWhere((element) => element.cardType == CardType.ACCOUNT);
+    appSwiperController.animateToPage(mainAccountIndex, duration: Duration(milliseconds: 500), curve: Curves.linear);
+
     blinkTimeLineListArguments.addAll(timeLineListArguments);
     timeLineArguments.timelineListArguments = blinkTimeLineListArguments;
     sortTimeLineArgumentsList();
