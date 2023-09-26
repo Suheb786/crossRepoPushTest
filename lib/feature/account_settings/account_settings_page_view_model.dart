@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
 import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
@@ -11,6 +12,8 @@ import 'package:domain/usecase/user/disable_finger_print_usecase.dart';
 import 'package:domain/usecase/user/enable_biometric_usecase.dart';
 import 'package:domain/usecase/user/generate_key_pair_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -150,6 +153,13 @@ class AccountSettingPageViewModel extends BasePageViewModel {
         createCall: () => _checkBioMetricSupportUseCase.execute(params: value),
       ).asFlow().listen((event) {
         _checkBioMetricResponse.safeAdd(event);
+        if (event.status == Status.SUCCESS) {
+          authenticateBioMetric(
+              title: S.of(appLevelKey.currentContext!).enableBiometricLoginTitle,
+              localisedReason: Platform.isAndroid
+                  ? S.of(appLevelKey.currentContext!).enableBiometricLoginDescriptionAndroid
+                  : S.of(appLevelKey.currentContext!).enableBiometricLoginDescriptionIos);
+        }
       });
     });
 
@@ -263,7 +273,6 @@ class AccountSettingPageViewModel extends BasePageViewModel {
   }
 
   void checkBiometric() {
-    print('called');
     _checkBioMetricRequest.safeAdd(
       CheckBioMetricSupportUseCaseParams(),
     );

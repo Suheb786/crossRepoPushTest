@@ -19,6 +19,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 import '../../../../main/navigation/route_paths.dart';
+import '../../../../ui/no_data_widget.dart';
 import '../../evoucher_detail/evoucher_detail_page.dart';
 
 class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
@@ -188,12 +189,7 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
                             },
                             itemCount: (voucherHistory?.data ?? []).length,
                           )
-                        : Center(
-                            child: Text(
-                              S.of(context).noDataFound,
-                              style: TextStyle(color: Theme.of(context).primaryColorDark),
-                            ),
-                          );
+                        : NoDataWidget();
 
                   default:
                     return Container();

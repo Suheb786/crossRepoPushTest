@@ -322,17 +322,6 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                                             initialData: Resource.none(),
                                                             onData: (data) {
                                                               if (data.status == Status.SUCCESS) {
-                                                                model.authenticateBioMetric(
-                                                                    title: S
-                                                                        .of(context)
-                                                                        .enableBiometricLoginTitle,
-                                                                    localisedReason: Platform.isAndroid
-                                                                        ? S
-                                                                            .of(context)
-                                                                            .enableBiometricLoginDescriptionAndroid
-                                                                        : S
-                                                                            .of(context)
-                                                                            .enableBiometricLoginDescriptionIos);
                                                               }
                                                             },
                                                             dataBuilder: (context, isAvailable) {

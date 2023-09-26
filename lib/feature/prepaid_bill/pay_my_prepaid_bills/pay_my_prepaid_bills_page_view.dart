@@ -25,6 +25,8 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
+import '../../../ui/no_data_widget.dart';
+
 class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPageViewModel> {
   PayMyPrePaidBillsPageView(ProviderBase model) : super(model);
 
@@ -272,16 +274,7 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
                                                             return AppDivider();
                                                           },
                                                         )
-                                                      : Center(
-                                                          child: Text(
-                                                            S.of(context).noDataFound,
-                                                            style: TextStyle(
-                                                                fontFamily: StringUtils.appFont,
-                                                                fontSize: 14,
-                                                                fontWeight: FontWeight.w400,
-                                                                color: Theme.of(context).primaryColorDark),
-                                                          ),
-                                                        ),
+                                                      : NoDataWidget(),
                                                 ),
                                               ),
                                             ],

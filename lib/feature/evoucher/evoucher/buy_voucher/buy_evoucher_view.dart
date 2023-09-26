@@ -20,6 +20,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../../ui/no_data_widget.dart';
 import '../../evoucher_category_listing/evoucher_category_listing_page.dart';
 import '../../purchase_now/purchase_now_page.dart';
 
@@ -108,7 +109,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                                         ),
                                       ],
                                     )
-                                  : Center(child: Text(S.of(context).noDataFound));
+                                  : NoDataWidget();
                             default:
                               return Container();
                           }
@@ -134,14 +135,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                                   }),
                                 );
                               } else {
-                                return Center(
-                                  child: Text(
-                                    S.of(context).noDataFound,
-                                    style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        color: Theme.of(context).primaryColorDark),
-                                  ),
-                                );
+                                return NoDataWidget();
                               }
                             default:
                               return Container();

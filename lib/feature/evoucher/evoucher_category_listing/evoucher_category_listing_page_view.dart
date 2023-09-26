@@ -17,6 +17,8 @@ import 'package:neo_bank/utils/status.dart';
 import '../../../generated/l10n.dart';
 import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
+import '../../../ui/no_data_widget.dart';
+import '../../../utils/color_utils.dart';
 
 class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategoryListingPageViewModel> {
   EVoucherCategoryListingPageView(ProviderBase model) : super(model);
@@ -83,13 +85,7 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
                               },
                               itemCount: categoryVouchers?.data?.length ?? 0,
                             )
-                          : Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Text(
-                                S.of(context).noDataFound,
-                                style: TextStyle(color: Theme.of(context).primaryColorDark),
-                              ),
-                            );
+                          : NoDataWidget();
 
                     default:
                       return SizedBox();
