@@ -17,6 +17,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../di/dashboard/dashboard_modules.dart';
 import '../../../ui/molecules/button/app_primary_button.dart';
 
 class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPageViewModel> {
@@ -176,9 +177,13 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
                       child: InkWell(
                         onTap: () {
                           Navigator.pop(context);
+                          ProviderScope.containerOf(context)
+                              .read(appHomeViewModelProvider)
+                              .showSettingPage(false);
+                          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
                         },
                         child: Text(
-                          S.of(context).backToCardSettings,
+                          S.of(context).back,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: AppColor.brightBlue,

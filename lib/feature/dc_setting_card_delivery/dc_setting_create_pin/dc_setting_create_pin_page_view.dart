@@ -43,93 +43,63 @@ class DcSettingCreatePinPageView extends BasePageViewWidget<DcSettingCreatePinPa
                 }
               },
               dataBuilder: (context, isOtpVerified) {
-                return GestureDetector(
-                  onHorizontalDragEnd: (details) {
-                    if (ProviderScope.containerOf(context)
-                            .read(dcSettingCardDeliveryViewModelProvider)
-                            .appSwiperController
-                            .page ==
-                        1.0) {
-                      FocusScope.of(context).unfocus();
-                      if (StringUtils.isDirectionRTL(context)) {
-                        if (!details.primaryVelocity!.isNegative) {
-                          model.validatePin();
-                        } else {
-                          ProviderScope.containerOf(context)
-                              .read(dcSettingCardDeliveryViewModelProvider)
-                              .previousPage();
-                          // .previous(animation: true);
-                        }
-                      } else {
-                        if (details.primaryVelocity!.isNegative) {
-                          model.validatePin();
-                        } else {
-                          ProviderScope.containerOf(context)
-                              .read(dcSettingCardDeliveryViewModelProvider)
-                              .previousPage();
-                          // .previous(animation: true);
-                        }
-                      }
-                    }
-                  },
-                  child: Card(
-                    margin: EdgeInsets.zero,
-                    child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: SingleChildScrollView(
-                                physics: ClampingScrollPhysics(),
-                                child: AppOtpFields(
-                                  length: 4,
-                                  fieldWidth: MediaQuery.of(context).size.width / 6.4,
-                                  fieldHeight: 52.h,
-                                  onChanged: (val) {
-                                    model.validate(val);
-                                  },
+                return Card(
+                  margin: EdgeInsets.zero,
+                  child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: SingleChildScrollView(
+                              physics: ClampingScrollPhysics(),
+                              child: AppOtpFields(
+                                length: 4,
+                                fieldWidth: MediaQuery.of(context).size.width / 6.4,
+                                fieldHeight: 52.h,
+                                onChanged: (val) {
+                                  model.validate(val);
+                                },
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 16.0.h),
+                            child: AppStreamBuilder<bool>(
+                                stream: model.showButtonStream,
+                                initialData: false,
+                                dataBuilder: (context, isValid) {
+                                  return AppPrimaryButton(
+                                    text: S.of(context).next,
+                                    isDisabled: !isValid!,
+                                    onPressed: () {
+                                      model.validatePin();
+                                    },
+                                  );
+                                }),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 16.h),
+                            child: Center(
+                              child: InkWell(
+                                onTap: () {
+                                  ProviderScope.containerOf(context)
+                                      .read(dcSettingCardDeliveryViewModelProvider)
+                                      .previousPage();
+                                },
+                                child: Text(
+                                  S.of(context).back,
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      color: AppColor.brightBlue,
+                                      fontSize: 14.t,
+                                      fontWeight: FontWeight.w600),
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 16.0.h),
-                              child: AppStreamBuilder<bool>(
-                                  stream: model.showButtonStream,
-                                  initialData: false,
-                                  dataBuilder: (context, isValid) {
-                                    return AppPrimaryButton(
-                                      text: S.of(context).swipeToProceed,
-                                      isDisabled: !isValid!,
-                                      onPressed: () {
-                                        model.validatePin();
-                                      },
-                                    );
-                                  }),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 16.h),
-                              child: Center(
-                                child: InkWell(
-                                  onTap: () {
-                                    ProviderScope.containerOf(context)
-                                        .read(dcSettingCardDeliveryViewModelProvider)
-                                        .previousPage();
-                                  },
-                                  child: Text(
-                                    S.of(context).back,
-                                    style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        color: AppColor.brightBlue,
-                                        fontSize: 14.t,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        )),
-                  ),
+                          )
+                        ],
+                      )),
                 );
               },
             ),

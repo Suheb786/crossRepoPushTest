@@ -432,7 +432,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                   onData: (data) {
                                     if (data.status == Status.SUCCESS) {
                                       if (model.needsReplacement) {
-                                        Navigator.pushReplacementNamed(
+                                        Navigator.pushNamed(
                                             context, RoutePaths.DebitCardReplacement,
                                             arguments: DebitCardReplacementArguments(
                                                 debitRoutes: DebitRoutes.DEBIT_SETTING,
