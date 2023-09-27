@@ -1,13 +1,17 @@
 package com.example.infobipplugin
 
 import android.app.Activity
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import androidx.annotation.NonNull
 import com.example.infobipplugin.utils.ApiManager
 import com.example.infobipplugin.utils.ReturnTokenCallBack
+import com.google.gson.GsonBuilder
 import com.infobip.webrtc.sdk.api.InfobipRTC
 import com.infobip.webrtc.sdk.api.event.call.CallEstablishedEvent
 import com.infobip.webrtc.sdk.api.event.call.CallHangupEvent
@@ -96,6 +100,18 @@ class InfobippluginPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             object : StreamHandler(), EventChannel.StreamHandler {
                 override fun onListen(p0: Any?, sink: EventChannel.EventSink) {
                     eventSink = sink
+                    val receiver = StatusChangeBroadcastReceiver()
+
+                    receiver.setListener(object : StatusChangeListener() {
+
+                        override fun onStatusChange(callStatusString: String?) {
+                            val json: String? = callStatusString
+                            eventSink.success(json)
+                        }
+                    })
+
+                    val filter = IntentFilter("action.Call_Status_Change")
+                    applicationContext.registerReceiver(receiver, filter)
                 }
 
                 override fun onCancel(p0: Any?) {
@@ -117,9 +133,8 @@ class InfobippluginPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
                 baseUrl = call.argument<String>("app_base_url")!!
                 Log.e(InfobippluginPlugin.TAG, "onMethodCall: baseUrl1 -> $baseUrl")
-                result.success("Android method channel Initialize")
+                result.success(true);
             }
-
             InfobippluginPlugin.FETCH_TOKEN -> {
                 identity = call.argument<String>("identity")!!
                 displayName = call.argument<String>("displayName")!!
@@ -146,16 +161,14 @@ class InfobippluginPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                     }
                 )
             }
-
             InfobippluginPlugin.DIAL_CALL -> {
                 dialcall(callToken!!)
                 Log.e(
                     InfobippluginPlugin.TAG,
                     "onMethodCall: callParameters --> callToken -> $callToken identity -> $identity"
                 )
-                result.success("Done")
+                result.success(true)
             }
-
             InfobippluginPlugin.FINAL_CALL_STATUS -> {
                 result.success(callStatus)
                 Log.e(
@@ -163,42 +176,34 @@ class InfobippluginPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                     "onMethodCall: finalCallStatus -> callStatus -> $callStatus"
                 )
             }
-
             InfobippluginPlugin.MUTE_CALL -> {
                 callMuted()
                 result.success(callWeb?.muted())
             }
-
             InfobippluginPlugin.CALL_SPEAKER_PHONE -> {
                 callSpeakerPhone()
                 result.success(callWeb?.speakerphone())
             }
-
             InfobippluginPlugin.CALL_DURATION -> {
                 callDuration()
                 result.success(callDuration)
             }
-
             InfobippluginPlugin.CALL_START_TIME -> {
                 callStartTime()
                 result.success(callStartTime.toString())
             }
-
             InfobippluginPlugin.CALL_ESTABLISH_TIME -> {
                 callEstablishTime()
                 result.success(callEstablishTime.toString())
             }
-
             InfobippluginPlugin.CALL_END_TIME -> {
                 callEndTime()
                 result.success(callEndTime.toString())
             }
-
             InfobippluginPlugin.CALL_HANG_UP -> {
                 callHangUp()
                 result.success(true)
             }
-
             else -> result.notImplemented()
         }
     }
@@ -235,23 +240,30 @@ class InfobippluginPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                 override fun onRinging(callRingingEvent: CallRingingEvent?) {
                     super.onRinging(callRingingEvent)
                     callStatus = InfobippluginPlugin.ON_RINGING;
+                    onStatusUpdate(callStatus, applicationContext)
                 }
 
                 override fun onEstablished(callEstablishedEvent: CallEstablishedEvent?) {
                     super.onEstablished(callEstablishedEvent)
                     callStatus = InfobippluginPlugin.ON_ESTABLISHED;
+                    onStatusUpdate(callStatus, applicationContext)
+
                 }
 
                 override fun onHangup(callHangupEvent: CallHangupEvent?) {
                     super.onHangup(callHangupEvent)
                     callStatus =
                         InfobippluginPlugin.ON_HANGUP + "-" + callHangupEvent?.errorCode?.name;
+                    onStatusUpdate(callStatus, applicationContext)
+
 
                 }
 
                 override fun onError(errorEvent: ErrorEvent?) {
                     super.onError(errorEvent)
                     callStatus = InfobippluginPlugin.ON_ERROR;
+                    onStatusUpdate(callStatus, applicationContext)
+
                 }
 
             }
@@ -349,5 +361,41 @@ class InfobippluginPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         const val ON_ERROR = "onError"
         const val DESTINATION = "conversations"
     }
+
+    fun onStatusUpdate(callStatusString: String, context: Context) {
+
+        // save to shared preference
+
+        Intent().also { intent ->
+            intent.action = "action.Call_Status_Change"
+            intent.putExtra("callStatusString", callStatusString)
+            context.sendBroadcast(intent)
+        }
+    }
+
+
+}
+
+
+abstract class StatusChangeListener {
+    abstract fun onStatusChange(callStatusString: String?);
+}
+
+class StatusChangeBroadcastReceiver : BroadcastReceiver() {
+
+    private lateinit var callback: StatusChangeListener
+
+    fun setListener(callback: StatusChangeListener) {
+        this.callback = callback;
+    }
+
+    override fun onReceive(context: Context?, intent: Intent?) {
+
+        if (intent != null && intent.action == "action.Call_Status_Change") {
+            val info = intent.getStringExtra("callStatusString")
+            callback.onStatusChange(info)
+        }
+    }
+
 
 }

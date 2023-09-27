@@ -50,7 +50,8 @@ public class InfobippluginPlugin:  NSObject, FlutterPlugin,  FlutterStreamHandle
         print("On Listen Start")
       print(events)
         eventSink = events
-        UserDefaults.standard.set(applicationId, forKey: "eventSink")
+        UserDefaults.standard.set(callStatus, forKey: "eventSink")
+        events(callStatus)
         return nil
     }
 
@@ -74,7 +75,7 @@ public class InfobippluginPlugin:  NSObject, FlutterPlugin,  FlutterStreamHandle
             UserDefaults.standard.set(appKey, forKey: "appKey")
             UserDefaults.standard.set(applicationId, forKey: "applicationId")
             print("app_base_url", baseUrl)
-            result("ios method channel initialize")
+            result(true)
 
         case object.FETCH_TOKEN:
             print("Arguments ",call.arguments ?? "")
@@ -126,25 +127,27 @@ public class InfobippluginPlugin:  NSObject, FlutterPlugin,  FlutterStreamHandle
                             result(token);
                         } catch {
                             print("JSON error: \(error.localizedDescription)")
+                            result("Error -- \(error)")
                         }
                     }
 
                     if error != nil || data == nil {
                         NotificationCenter.default.post(name: Notification.Name("presentError"), object: nil, userInfo: ["message":"Check your internet connection."])
 
-                        print("Client error!")
+                        result("Error -- \(error)")
                         return
                     }
 
                     guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
                         NotificationCenter.default.post(name: Notification.Name("presentError"), object: nil, userInfo: ["message":"Server error"])
 
-                        print("Server error!")
+                        result("Error -- \(error)")
                         return
                     }
 
                     guard let mime = response.mimeType, mime == "application/json" else {
                         print("Wrong MIME type!")
+                        result("Error -- \(error)")
                         return
                     }
 
@@ -161,24 +164,24 @@ public class InfobippluginPlugin:  NSObject, FlutterPlugin,  FlutterStreamHandle
                        switch audioSession.recordPermission {
                        case .granted:
                            dialCall(token: tokenCall ?? "")
-                           result("Done")
+                           result(true)
                        case .denied:
                            audioSession.requestRecordPermission { granted in
                                if granted {
                                    self.dialCall(token: tokenCall ?? "")
                                    
-                                   result("Done")
+                                   result(true)
                                } else {
-                                   result("Microphone permission is denied.")
+                                   result(false)
                                }
                            }
                        case .undetermined:
                            audioSession.requestRecordPermission { granted in
                                if granted {
                                    self.dialCall(token: tokenCall ?? "")
-                                   result("Done")
+                                   result(true)
                                } else {
-                                   result("Microphone permission is denied.")
+                                   result(false)
                                }
                            }
                        @unknown default:
@@ -208,7 +211,7 @@ public class InfobippluginPlugin:  NSObject, FlutterPlugin,  FlutterStreamHandle
             }
             else
             {
-                result("call not started")
+                result("Error")
             }
             
            

@@ -24,7 +24,7 @@ class InfoBip {
     });
     var parameter = {'application_id': applicationId, "app_key": appKey, "app_base_url": baseUrl};
     try {
-      var data = await channel.invokeMethod(MethodKeys.init, parameter);
+      final bool? data = await channel.invokeMethod(MethodKeys.init, parameter);
       return data;
     } catch (e) {
       if (kDebugMode) {
@@ -53,7 +53,7 @@ class InfoBip {
     try {
       Map parameter = {"token": token};
 
-      final String? callMake = await channel.invokeMethod(MethodKeys.makeCall, parameter);
+      final bool? callMake = await channel.invokeMethod(MethodKeys.makeCall, parameter);
 
       return callMake;
     } catch (e) {
@@ -193,4 +193,5 @@ class InfoBip {
       }
     });
   }
+
 }

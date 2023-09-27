@@ -29,7 +29,7 @@ class ApiManager {
                     applicationId
                 )
             } catch (e: Exception) {
-
+                callBack.returnToken("Error - $e")
             }
             val mediaType = "application/json; charset=utf-8".toMediaType()
             val body = jObject.toString().toRequestBody(mediaType)
@@ -50,6 +50,7 @@ class ApiManager {
             client.newCall(request).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     Log.d("MAIN ACT", "onFailure:e -> $e")
+                    callBack.returnToken("Error - $e")
                 }
 
                 override fun onResponse(call: Call, response: Response) {
@@ -63,6 +64,7 @@ class ApiManager {
                         Log.e(InfobippluginPlugin.TAG, "onResponse: callToken -> $callToken")
                     } catch (e: Exception) {
                         Log.e("MAIN ACT", "onResponse:11 ${e.toString()}")
+                        callBack.returnToken("Error - $e")
                     }
                 }
             })

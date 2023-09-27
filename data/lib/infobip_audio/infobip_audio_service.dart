@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:data/helper/key_helper.dart';
 import 'package:domain/constants/enum/infobip_call_status_enum.dart';
 import 'package:domain/model/infobip_audio/obtain_token.dart';
 import 'package:infobip_plugin/infobipplugin.dart';
@@ -19,17 +18,11 @@ class InfoBipAudioService {
         callStatus: (String status) {
           callback(status.fromCallStatusValue());
         });
-    return result != null;
+    return result;
   }
-
-  // StreamController<String> _callStatusController = StreamController<String>.broadcast();
-
-  // Stream<String> getCallStatusStream() => _callStatusController.stream;
-  //_callStatusController.add(event ?? '');
 
   listenCallStatus({required Function(InfobipCallStatusEnum) onCallBack}) {
     _infobipPlugin.listenCallStatus.listen((event) {
-      print("service $event");
       if (event != null) {
         onCallBack(event.fromCallStatusValue());
       }
@@ -65,11 +58,12 @@ class InfoBipAudioService {
   Future<bool> call(String token) async {
     try {
       return requestPermission().then((value) async {
-        String result = await _infobipPlugin.callDial(token: token);
-        return result != null;
+        bool result = await _infobipPlugin.callDial(token: token);
+        print("Call stutus $result");
+        return result;
       });
     } catch (e) {
-      rethrow;
+      return false;
     }
   }
 

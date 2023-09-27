@@ -26,11 +26,10 @@ class InfobipAudioRepositoryImpl extends HelpCenterRepository {
   @override
   Future<Either<NetworkError, String>> obtainToken(ObtainToken parameter) async {
     var tokenDetails;
-    return (await _repository.getCurrentUser())
+     return (await _repository.getCurrentUser())
         .fold((l) => Left(NetworkError(httpError: 1502, cause: Exception(), message: '')), (user) async {
       parameter.displayName = user.firstName! + ' ' + user.lastName!;
       parameter.identity = user.firstName!;
-      print("DISPLAY NAME ::: " + parameter.displayName!);
       tokenDetails = await _infobipAudioDS.obtainToken(parameter);
       if (tokenDetails == null) {
         return Left(NetworkError(httpError: 1502, cause: Exception(), message: ''));
