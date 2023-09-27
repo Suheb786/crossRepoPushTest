@@ -8,7 +8,7 @@ import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_a
 class PaymentActivityTransactionPage extends BasePage<PaymentActivityTransactionViewModel> {
   final PaymentActivityTransactionPageArgument paymentActivityTransactionPageArgument;
 
-  PaymentActivityTransactionPage(this.paymentActivityTransactionPageArgument);
+  PaymentActivityTransactionPage(this.paymentActivityTransactionPageArgument, {Key? key}) : super(key: key);
 
   @override
   PaymentActivityTransactionPageState createState() => PaymentActivityTransactionPageState();

@@ -82,7 +82,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                                 fontSize: 24.t,
                                 color: model.manageCardPinArguments.cardType == CardType.CREDIT
                                     ? Theme.of(context).colorScheme.secondary
-                                    : Theme.of(context).textTheme.bodyLarge?.color),
+                                    : Theme.of(context).colorScheme.shadow),
                           ),
                         ),
                         SizedBox(
@@ -99,7 +99,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                                 fontSize: 14.t,
                                 color: model.manageCardPinArguments.cardType == CardType.CREDIT
                                     ? Theme.of(context).colorScheme.secondary
-                                    : Theme.of(context).textTheme.bodyLarge?.color),
+                                    : Theme.of(context).colorScheme.shadow),
                           ),
                         ),
                       ],
@@ -120,6 +120,9 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                             Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
                             ProviderScope.containerOf(context)
                                 .read(appHomeViewModelProvider)
+                                .showSettingPage(false);
+                            ProviderScope.containerOf(context)
+                                .read(appHomeViewModelProvider)
                                 .getDashboardData();
                           },
                         ),
@@ -130,6 +133,9 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                           text: S.of(context).backToDashboard,
                           onPressed: () {
                             Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+                            ProviderScope.containerOf(context)
+                                .read(appHomeViewModelProvider)
+                                .showSettingPage(false);
                             ProviderScope.containerOf(context)
                                 .read(appHomeViewModelProvider)
                                 .getDashboardData();

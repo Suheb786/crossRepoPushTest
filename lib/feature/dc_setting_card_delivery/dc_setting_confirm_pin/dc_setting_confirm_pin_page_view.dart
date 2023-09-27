@@ -92,7 +92,7 @@ class DcSettingConfirmPinPageView extends BasePageViewWidget<DcSettingConfirmPin
                                       .previousPage();
                                 },
                                 child: Text(
-                                  S.of(context).backToCardSettings,
+                                  S.of(context).back,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       color: AppColor.brightBlue,

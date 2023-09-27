@@ -34,7 +34,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://10.6.13.1:2186/api/auth/CheckUserName',
+              'https://routuat1.theblink.com:1443/api/auth/CheckUserName',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -64,7 +64,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://10.6.13.1:2186/api/auth/CheckUserNameMobile',
+              'https://routuat1.theblink.com:1443/api/auth/CheckUserNameMobile',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -983,7 +983,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'https://10.6.13.1:2186/api/Country/GetAllowedCode',
+              'https://routuat1.theblink.com:1443/api/Country/GetAllowedCode',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -2071,7 +2071,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ContactCenter/TransferAPIV2',
+              'https://mobwebuat1.theblink.com:3443/contactcenter/api/ContactCenter/TransferAPIV2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -2101,7 +2101,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ContactCenter/RequestToPayV2',
+              'https://mobwebuat1.theblink.com:3443/contactcenter/api/ContactCenter/RequestToPayV2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5796,7 +5796,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/ShowContactCard',
+              'https://mobwebuat1.theblink.com:3443/contactcenter/api/ManageContacts/ShowContactCard',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5826,7 +5826,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/AddContact',
+              'https://mobwebuat1.theblink.com:3443/contactcenter/api/ManageContacts/AddContact',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5856,7 +5856,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/UpdateContact',
+              'https://mobwebuat1.theblink.com:3443/contactcenter/api/ManageContacts/UpdateContact',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5886,7 +5886,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/RemoveContact',
+              'https://mobwebuat1.theblink.com:3443/contactcenter/api/ManageContacts/RemoveContact',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5916,7 +5916,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/UpdateContactImage',
+              'https://mobwebuat1.theblink.com:3443/contactcenter/api/ManageContacts/UpdateContactImage',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5946,7 +5946,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/RemoveContactImage',
+              'https://mobwebuat1.theblink.com:3443/contactcenter/api/ManageContacts/RemoveContactImage',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -5978,7 +5978,7 @@ class _ApiService implements ApiService {
     )
                 .compose(
                   _dio.options,
-                  'http://10.6.13.2:2186/contactcenter/api/ManageContacts/AddContactOtp',
+                  'https://mobwebuat1.theblink.com:3443/contactcenter/api/ManageContacts/AddContactOtp',
                   queryParameters: queryParameters,
                   data: _data,
                 )
@@ -6009,7 +6009,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/SearchListContact',
+              'https://mobwebuat1.theblink.com:3443/contactcenter/api/ManageContacts/SearchListContact',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -6039,7 +6039,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/MarkFavorite',
+              'https://mobwebuat1.theblink.com:3443/contactcenter/api/ManageContacts/MarkFavorite',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -6069,7 +6069,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/SearchContact',
+              'https://mobwebuat1.theblink.com:3443/contactcenter/api/ManageContacts/SearchContact',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -6099,7 +6099,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/Voucher/api/Voucher/GetCategories',
+              'https://mobwebuat1.theblink.com:3443/Voucher/api/Voucher/GetCategories',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -6129,7 +6129,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/Voucher/api/Voucher/GetMyVouchers',
+              'https://mobwebuat1.theblink.com:3443/Voucher/api/Voucher/GetMyVouchers',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -6159,7 +6159,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/Voucher/api/Voucher/GetItemsByFilter',
+              'https://mobwebuat1.theblink.com:3443/Voucher/api/Voucher/GetItemsByFilter',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -6192,7 +6192,7 @@ class _ApiService implements ApiService {
     )
                 .compose(
                   _dio.options,
-                  'http://10.6.13.2:2186/Voucher/api/Voucher/GetRegionsByCategories',
+                  'https://mobwebuat1.theblink.com:3443/Voucher/api/Voucher/GetRegionsByCategories',
                   queryParameters: queryParameters,
                   data: _data,
                 )
@@ -6223,7 +6223,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/Voucher/api/Voucher/GetMinMaxRange',
+              'https://mobwebuat1.theblink.com:3443/Voucher/api/Voucher/GetMinMaxRange',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -6254,7 +6254,7 @@ class _ApiService implements ApiService {
     )
                 .compose(
                   _dio.options,
-                  'http://10.6.13.2:2186/Voucher/api/Voucher/GetRegionsAndMinMax',
+                  'https://mobwebuat1.theblink.com:3443/Voucher/api/Voucher/GetRegionsAndMinMax',
                   queryParameters: queryParameters,
                   data: _data,
                 )
@@ -6376,7 +6376,7 @@ class _ApiService implements ApiService {
     )
         .compose(
           _dio.options,
-          'http://10.6.13.2:2186/contactcenter/api/ManageContacts/GetTransactionHistory',
+          'https://mobwebuat1.theblink.com:3443/contactcenter/api/ManageContacts/GetTransactionHistory',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -6407,7 +6407,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/Voucher/api/Voucher/PlaceOrder',
+              'https://mobwebuat1.theblink.com:3443/Voucher/api/Voucher/PlaceOrder',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -6437,7 +6437,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/Voucher/api/Voucher/GetSettlementAmount',
+              'https://mobwebuat1.theblink.com:3443/Voucher/api/Voucher/GetSettlementAmount',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -6467,7 +6467,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/Voucher/api/Voucher/EVoucherOtp',
+              'https://mobwebuat1.theblink.com:3443/Voucher/api/Voucher/EVoucherOtp',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -6497,7 +6497,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/Voucher/api/Voucher/GetVoucherDetails',
+              'https://mobwebuat1.theblink.com:3443/Voucher/api/Voucher/GetVoucherDetails',
               queryParameters: queryParameters,
               data: _data,
             )

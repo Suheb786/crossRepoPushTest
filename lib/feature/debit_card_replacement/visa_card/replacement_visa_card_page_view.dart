@@ -18,6 +18,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/button/app_primary_button.dart';
 
 class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCardPageViewModel> {
@@ -168,24 +169,17 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                     Center(
                       child: InkWell(
                         onTap: () {
-                          if (ProviderScope.containerOf(context)
-                              .read(debitCardReplacementViewModelProvider)
-                              .debitCardReplacementArguments
-                              .debitRoutes ==
-                              DebitRoutes.DASHBOARD) {
-                            Navigator.pop(context);
-                          } else {
-                            Navigator.of(context)
-                              ..pop
-                              ..pop();
-                          }
+                          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+                          ProviderScope.containerOf(context)
+                              .read(appHomeViewModelProvider)
+                              .showSettingPage(false);
 
                           ProviderScope.containerOf(context)
                               .read(appHomeViewModelProvider)
                               .getDashboardData();
                         },
                         child: Text(
-                          S.of(context).backToDashboard,
+                          S.of(context).back,
                           style: TextStyle(
                             color: AppColor.brightBlue,
                             fontSize: 14.t,
