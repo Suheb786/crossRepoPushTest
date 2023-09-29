@@ -162,12 +162,14 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
                     child: Padding(
                       padding: EdgeInsets.only(top: 16.0.h),
                       child: AppPrimaryButton(
-                        text: S.of(context).next, onPressed: () {
-                        if (data.status == Status.SUCCESS) {
-                          ProviderScope.containerOf(context).read(dcSettingCardDeliveryViewModelProvider).nextPage();
-                          // .next(animation: true);
-                        }
-                      },
+                        text: S.of(context).next,
+                        onPressed: () {
+                          if (data.status == Status.SUCCESS) {
+                            ProviderScope.containerOf(context)
+                                .read(dcSettingCardDeliveryViewModelProvider)
+                                .nextPage();
+                          }
+                        },
                       ),
                     ),
                   ),
@@ -180,10 +182,12 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
                           ProviderScope.containerOf(context)
                               .read(appHomeViewModelProvider)
                               .showSettingPage(false);
-                          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+                          ProviderScope.containerOf(context)
+                              .read(appHomeViewModelProvider)
+                              .getDashboardData();
                         },
                         child: Text(
-                          S.of(context).back,
+                          S.of(context).backToDashboard,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: AppColor.brightBlue,
@@ -198,42 +202,5 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
         );
       },
     );
-  }
-
-  Widget popUpWidget(BuildContext context, String image) {
-    return Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(height: 30.h),
-            Container(
-              height: 530.h,
-              padding: EdgeInsets.symmetric(horizontal: 10.w),
-              child: Image.asset(
-                image,
-                fit: BoxFit.fill,
-              ),
-            ),
-            SizedBox(height: 30.h),
-            GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Container(
-                  height: 55.h,
-                  width: 55.w,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColor.white,
-                  ),
-                  child: Icon(
-                    Icons.close,
-                    color: AppColor.brightBlue,
-                  )),
-            )
-          ],
-        ));
   }
 }

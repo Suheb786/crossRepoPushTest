@@ -130,8 +130,8 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                                     Align(
                                       alignment: AlignmentDirectional.centerEnd,
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.only(
-                                            top: 5.0.t, bottom: 15.2.h, end: 20.w),
+                                        padding:
+                                            EdgeInsetsDirectional.only(top: 5.0.t, bottom: 15.2.h, end: 20.w),
                                         child: Text(
                                           'Debit',
                                           style: TextStyle(
@@ -158,11 +158,13 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                     ),
                     Center(
                       child: Padding(
-                          padding: EdgeInsets.only(top: 16.0.h,bottom: 20.0.h),
+                          padding: EdgeInsets.only(top: 16.0.h, bottom: 20.0.h),
                           child: AppPrimaryButton(
                             text: S.of(context).next,
                             onPressed: () {
-                              ProviderScope.containerOf(context).read(debitCardReplacementViewModelProvider).nextPage();
+                              ProviderScope.containerOf(context)
+                                  .read(debitCardReplacementViewModelProvider)
+                                  .nextPage();
                             },
                           )),
                     ),
@@ -179,7 +181,7 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                               .getDashboardData();
                         },
                         child: Text(
-                          S.of(context).back,
+                          S.of(context).backToDashboard,
                           style: TextStyle(
                             color: AppColor.brightBlue,
                             fontSize: 14.t,
