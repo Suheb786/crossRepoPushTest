@@ -21,20 +21,14 @@ class InfoBipAudioService {
     return result;
   }
 
-  listenCallStatus({required Function(InfobipCallStatusEnum) onCallBack}) {
-    _infobipPlugin.listenCallStatus.listen((event) {
-      if (event != null) {
-        onCallBack(event.fromCallStatusValue());
-      }
-    });
-    return Future.value(true);
-  }
-
   ///
   /// This method used for get your token with
   ///
   Future<String> obtainToken({required ObtainToken parameter}) async {
     try {
+      parameter.applicationId = 'default';
+      parameter.baseUrl = 'https://zjyln2.api.infobip.com';
+      parameter.appKey = 'f0004048eeb567f17f2a2e5732864489-31202bf5-693e-4a38-85e2-5974f5e93640';
       var tokenDetail = await _infobipPlugin.getToken(parameter: parameter.toJson());
       return tokenDetail!;
     } catch (e) {
@@ -59,7 +53,6 @@ class InfoBipAudioService {
     try {
       return requestPermission().then((value) async {
         bool result = await _infobipPlugin.callDial(token: token);
-        print("Call stutus $result");
         return result;
       });
     } catch (e) {

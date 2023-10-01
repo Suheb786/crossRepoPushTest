@@ -80,15 +80,4 @@ class InfobipAudioRepositoryImpl extends HelpCenterRepository {
       return Right(result);
     }
   }
-
-  @override
-  Future<Either<NetworkError, bool>> listenCallStatus(Function(InfobipCallStatusEnum) callback) async {
-    var infobipResult = await _infobipAudioDS.listenCallStatus(callback);
-
-    if (!infobipResult) {
-      return Left(NetworkError(httpError: 1501, cause: Exception(), message: ''));
-    } else {
-      return Right(true);
-    }
-  }
 }

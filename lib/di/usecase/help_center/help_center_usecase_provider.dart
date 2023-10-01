@@ -5,7 +5,6 @@ import 'package:domain/usecase/infobip_audio/establish_call_usecase.dart';
 import 'package:domain/usecase/infobip_audio/hangup_call_usecase.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_audio_usecase.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
-import 'package:domain/usecase/infobip_audio/listen_callstatus_usecase.dart';
 import 'package:domain/usecase/infobip_audio/mute_unmute_usecase.dart';
 import 'package:domain/usecase/infobip_audio/obtain_token_usecase.dart';
 import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
@@ -18,10 +17,6 @@ final infobipAudioPluginUseCaseProvider = Provider.autoDispose<InfobipAudioPlugi
   (ref) => InfobipAudioPluginUseCase(ref.read(helpCenterRepositoryProvider)),
 );
 
-///[ListenCallStatusUseCase] provider
-final listenCallStatusUseCaseProvider = Provider.autoDispose<ListenCallStatusUseCase>(
-  (ref) => ListenCallStatusUseCase(ref.read(helpCenterRepositoryProvider)),
-);
 
 ///[ObtainTokenUseCase] provider
 final obtainTokenUseCaseProvider = Provider.autoDispose<ObtainTokenUseCase>(

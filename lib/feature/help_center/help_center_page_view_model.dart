@@ -71,11 +71,7 @@ class HelpCenterPageViewModel extends BasePageViewModel {
   }
 
   obtainTokenForCall() {
-    _obtainTokenRequestSubject.safeAdd(ObtainTokenUseCaseParams(
-        parameter: ObtainToken(
-            applicationId: 'default',
-            appKey: 'f0004048eeb567f17f2a2e5732864489-31202bf5-693e-4a38-85e2-5974f5e93640',
-            baseUrl: 'https://zjyln2.api.infobip.com')));
+    _obtainTokenRequestSubject.safeAdd(ObtainTokenUseCaseParams(parameter: ObtainToken()));
   }
 
   establishCall(String token) {
