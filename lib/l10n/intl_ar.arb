@@ -1869,5 +1869,9 @@
   "newRequest": "New Request",
   "chooseTheAccountToPay": "اختر الحساب الي بدك تدفع منه",
   "readyToUseSuccess": "جاهز للاستخدام",
-  "referralLink": "رابط الدعوة"
+  "referralLink": "رابط الدعوة",
+  "ourAgentsAreOccupied": "Our agents are occupied!",
+  "ourAgentsAreOccupiedDescription": "Thank you for calling us, our agents are occupied in the current moment. Please try to call us again later.",
+  "lostConnection": "Lost connection",
+  "lostConnectionDescription": "Apologies, but you lost connection as the network is poor. Please try to call us again later."
 }

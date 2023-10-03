@@ -51,6 +51,12 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                           onData: (value) {
                             if (value == InfobipCallStatusEnum.ON_ESTABLISHED) {
                               Navigator.pushReplacementNamed(context, RoutePaths.ActiveCallPage);
+                            } else if (value == InfobipCallStatusEnum.ON_HANGUP_REQUEST_TIMEOUT) {
+                              Navigator.pushReplacementNamed(context, RoutePaths.HelpCenterErrorPage,
+                                  arguments: value);
+                            } else if (value == InfobipCallStatusEnum.ON_HANGUP_NETWORK_ERROR) {
+                              Navigator.pushReplacementNamed(context, RoutePaths.HelpCenterErrorPage,
+                                  arguments: value);
                             }
                           },
                           dataBuilder: (context, currentStep) {

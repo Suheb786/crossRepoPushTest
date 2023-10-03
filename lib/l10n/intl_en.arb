@@ -1850,6 +1850,10 @@
   "whenYouFreezeYourCard": "When you freeze your card, your card cannot be used for any transaction including direct debit on your card such as your online subscriptions directly linked to your card, for example: Netflix, Careem, OSN, etc.",
   "youCanUnFreeze": "You can unfreeze and activate your card anytime from the app.",
   "unavailable": "Unavailable",
+  "ourAgentsAreOccupied": "Our agents are occupied!",
+  "ourAgentsAreOccupiedDescription": "Thank you for calling us, our agents are occupied in the current moment. Please try to call us again later.",
+  "lostConnection": "Lost connection",
+  "lostConnectionDescription": "Apologies, but you lost connection as the network is poor. Please try to call us again later."
   "transfer": "Transfer",
   "transferHeader": "Enter your transfer details",
   "transferFrom": "Transfer from",

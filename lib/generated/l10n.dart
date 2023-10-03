@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -18665,6 +18666,46 @@ class S {
     return Intl.message(
       'Referral link',
       name: 'referralLink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Our agents are occupied!`
+  String get ourAgentsAreOccupied {
+    return Intl.message(
+      'Our agents are occupied!',
+      name: 'ourAgentsAreOccupied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thank you for calling us, our agents are occupied in the current moment. Please try to call us again later.`
+  String get ourAgentsAreOccupiedDescription {
+    return Intl.message(
+      'Thank you for calling us, our agents are occupied in the current moment. Please try to call us again later.',
+      name: 'ourAgentsAreOccupiedDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lost connection`
+  String get lostConnection {
+    return Intl.message(
+      'Lost connection',
+      name: 'lostConnection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apologies, but you lost connection as the network is poor. Please try to call us again later.`
+  String get lostConnectionDescription {
+    return Intl.message(
+      'Apologies, but you lost connection as the network is poor. Please try to call us again later.',
+      name: 'lostConnectionDescription',
       desc: '',
       args: [],
     );

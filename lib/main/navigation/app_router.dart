@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/infobip_call_status_enum.dart';
 import 'package:domain/model/payment/transfer_success_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
@@ -152,6 +153,7 @@ import 'package:neo_bank/utils/navgition_type.dart';
 
 import '../../feature/evoucher/evoucher/evoucher_page.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page.dart';
+import '../../feature/help_center/error_screen/help_center_error_page.dart';
 import '../../feature/rj/rj_book_flight/rj_book_flight_page.dart';
 import '../../feature/rj/rj_booking_confirmed_in_app_web_view/rj_booking_confirmed_in_app_web_view_page.dart';
 import '../../feature/rj/rj_booking_fail/rj_booking_fail_page.dart';
@@ -347,8 +349,8 @@ class AppRouter {
       case RoutePaths.RequestPaymentFromNewRecipient:
         return CupertinoPageRoute(
             builder: (context) => RequestPaymentFromNewRecipientPage(
-                  argument: settings.arguments as RequestPaymentFromNewRecipientArgument,
-                ),
+              argument: settings.arguments as RequestPaymentFromNewRecipientArgument,
+            ),
             settings: RouteSettings(name: RoutePaths.RequestPaymentFromNewRecipient));
 
       case RoutePaths.PaymentToNewRecipient:
@@ -378,6 +380,11 @@ class AppRouter {
       case RoutePaths.HelpCenter:
         return CupertinoPageRoute(
             builder: (context) => HelpCenterPage(), settings: RouteSettings(name: RoutePaths.HelpCenter));
+
+      case RoutePaths.HelpCenterErrorPage:
+        return CupertinoPageRoute(
+            builder: (context) => HelpCenterErrorPage(settings.arguments as InfobipCallStatusEnum),
+            settings: RouteSettings(name: RoutePaths.HelpCenterErrorPage));
 
       case RoutePaths.ActiveCallPage:
         return CupertinoPageRoute(
@@ -840,7 +847,7 @@ class AppRouter {
             builder: (context) => QrScanningScreenPage(),
             settings: RouteSettings(name: RoutePaths.QRScanningScreen));
 
-      /// for web view for RJ Flight Booking
+    /// for web view for RJ Flight Booking
       case RoutePaths.RjBookingInAppWebView:
         return CupertinoPageRoute(
             builder: (context) => RjBookingPage(settings.arguments as RjBookingPageArguments),
@@ -851,26 +858,26 @@ class AppRouter {
             builder: (context) => RjFlightBookingPage(),
             settings: RouteSettings(name: RoutePaths.RjFlightBookingPage));
 
-      /// Rj Flight Booking PurchasePage
+    /// Rj Flight Booking PurchasePage
       case RoutePaths.RjFlightBookingPurchasePage:
         return CupertinoPageRoute(
             builder: (context) => RjBookingPurchasePage(),
             settings: RouteSettings(name: RoutePaths.RjFlightBookingPurchasePage));
 
-      /// Rj Flight Booking Detail Page
+    /// Rj Flight Booking Detail Page
       case RoutePaths.RjFlightBookingDetailPage:
         return CupertinoPageRoute(
             builder: (context) => RjFlightBookingDetailPage(),
             settings: RouteSettings(name: RoutePaths.RjFlightBookingDetailPage));
 
-      /// Rj Flight Booking Success Page
+    /// Rj Flight Booking Success Page
       case RoutePaths.RJBookingSuccessPage:
         return CupertinoPageRoute(
             builder: (context) => RJBookingSuccessPage(),
             settings:
-                RouteSettings(name: RoutePaths.RJBookingSuccessPage, arguments: RjBookingPageArguments));
+            RouteSettings(name: RoutePaths.RJBookingSuccessPage, arguments: RjBookingPageArguments));
 
-      /// Rj Flight Booking Confirmation InAppWeb Page
+    /// Rj Flight Booking Confirmation InAppWeb Page
       case RoutePaths.RJBookingConfirmedInAppWebViewPage:
         return CupertinoPageRoute(
             builder: (context) => RJBookingConfirmedInAppWebViewPage(),
@@ -916,7 +923,7 @@ class AppRouter {
                 PaymentTransationSuccessPage(settings.arguments as PaymentTransationSuccessArgument),
             settings: RouteSettings(name: RoutePaths.PaymentTransationSuccess));
 
-      /// [Manage Contact]
+    /// [Manage Contact]
       case RoutePaths.AddContactsIBANManageContactsPage:
         return CupertinoPageRoute(
             builder: (context) =>
@@ -944,7 +951,7 @@ class AppRouter {
             builder: (context) => CameraCapturePage(),
             settings: RouteSettings(name: RoutePaths.CameraCapturePage));
 
-      ///------------[Sub-Account-Router]---------///
+    ///------------[Sub-Account-Router]---------///
 
       case RoutePaths.OpenSubAccountSuccessPage:
         return CupertinoPageRoute(
@@ -954,8 +961,8 @@ class AppRouter {
       case RoutePaths.SelectTransferPage:
         return CupertinoPageRoute(
             builder: (context) => SelectTransferPage(
-                  argument: settings.arguments as SelectTranferPageArgument,
-                ),
+              argument: settings.arguments as SelectTranferPageArgument,
+            ),
             settings: RouteSettings(name: RoutePaths.SelectTransferPage));
       case RoutePaths.TransferSuccessPage:
         return CupertinoPageRoute(
