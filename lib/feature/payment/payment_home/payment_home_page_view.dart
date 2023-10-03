@@ -165,6 +165,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                                     title: S.of(context).paymentActivity,
                                                                     titleColor: AppColor.black,
                                                                   ),
+                                                                  key: ValueKey("1"),
                                                                 )
                                                               : const SizedBox(),
                                 );

@@ -13,6 +13,8 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
+import '../../../main/navigation/route_paths.dart';
+
 class CreditCardVideoKycPage extends BasePage<CreditCardVideoKycViewModel> {
   final CreditCardVideKycCredentials credentials;
 
@@ -67,10 +69,7 @@ class CreditCardVideoKycPageState
           onDismissed: () {}, onSelected: () {
         getViewModel().leaveAgoraChannel();
         ProviderScope.containerOf(context).read(appViewModel).stopRefreshToken();
-        Navigator.of(context)
-          ..pop()
-          ..pop()
-          ..pop();
+        Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
         ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
       });
     }

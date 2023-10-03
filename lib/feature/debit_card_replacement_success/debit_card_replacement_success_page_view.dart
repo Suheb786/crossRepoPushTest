@@ -11,6 +11,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../ui/molecules/button/app_primary_button.dart';
+import '../../main/navigation/route_paths.dart';
 
 class DebitCardReplacementSuccessPageView
     extends BasePageViewWidget<DebitCardReplacementSuccessPageViewModel> {
@@ -100,13 +101,16 @@ class DebitCardReplacementSuccessPageView
                     text: S.of(context).backToDashboard,
                     onPressed: () {
                       if (model.debitCardReplacementArguments.type == DebitReplacementEnum.Normal) {
-                        Navigator.of(context)..pop();
+                        Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+                        ProviderScope.containerOf(context)
+                            .read(appHomeViewModelProvider)
+                            .showSettingPage(false);
                         ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
                       } else {
-                        Navigator.of(context)
-                          ..pop
-                          ..pop()
-                          ..pop();
+                        Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+                        ProviderScope.containerOf(context)
+                            .read(appHomeViewModelProvider)
+                            .showSettingPage(false);
                         ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
                       }
                     },

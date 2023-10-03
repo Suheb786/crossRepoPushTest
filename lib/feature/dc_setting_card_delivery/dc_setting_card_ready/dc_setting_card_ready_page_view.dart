@@ -97,6 +97,9 @@ class DcSettingCardReadyPageView extends BasePageViewWidget<DcSettingCardReadyVi
                       text: S.of(context).backToDashboard,
                       onPressed: () {
                         Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+                        ProviderScope.containerOf(context)
+                            .read(appHomeViewModelProvider)
+                            .showSettingPage(false);
                         ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
                       }),
                 ),

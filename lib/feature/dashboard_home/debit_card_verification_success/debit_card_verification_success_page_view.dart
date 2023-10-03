@@ -11,6 +11,8 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../main/navigation/route_paths.dart';
+
 class DebitCardVerificationSuccessPageView extends BasePageViewWidget<DebitCardVerificationSuccessViewModel> {
   DebitCardVerificationSuccessPageView(ProviderBase model) : super(model);
 
@@ -68,10 +70,10 @@ class DebitCardVerificationSuccessPageView extends BasePageViewWidget<DebitCardV
               child: AppSecondaryButton(
                 text: S.of(context).backToDashboard,
                 onPressed: () {
-                  Navigator.of(context)
-                    ..pop()
-                    ..pop()
-                    ..pop();
+                  ProviderScope.containerOf(context)
+                      .read(appHomeViewModelProvider)
+                      .showSettingPage(false);
+                  Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
                   ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
                 },
               ),

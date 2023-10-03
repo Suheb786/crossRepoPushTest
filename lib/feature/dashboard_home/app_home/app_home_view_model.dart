@@ -959,11 +959,18 @@ class AppHomeViewModel extends BasePageViewModel {
 
     ///Showing main Account first on login
     var mainAccountIndex = cardTypeList.lastIndexWhere((element) => element.cardType == CardType.ACCOUNT);
-    appSwiperController.animateToPage(mainAccountIndex, duration: Duration(milliseconds: 500), curve: Curves.linear);
+    appSwiperController.animateToPage(mainAccountIndex,
+        duration: Duration(milliseconds: 500), curve: Curves.linear);
 
     blinkTimeLineListArguments.addAll(timeLineListArguments);
     timeLineArguments.timelineListArguments = blinkTimeLineListArguments;
     sortTimeLineArgumentsList();
+
+    // if (pageSwitchSubject.value != DashboardAnimatedPage.NULL) {
+    //   if (pageSwitchSubject.value != DashboardAnimatedPage.SETTINGS) {
+    //     showSettingPage(false);
+    //   }
+    // }
 
     /// get Antelop Cards
     if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {

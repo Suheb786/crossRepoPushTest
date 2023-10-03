@@ -416,7 +416,6 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                               initialData: Resource.none(),
                               onData: (reapply) {
                                 if (reapply.status == Status.SUCCESS) {
-                                  // Navigator.pop(context, true);
                                   ProviderScope.containerOf(context)
                                       .read(appHomeViewModelProvider)
                                       .showSettingPage(false);
@@ -432,14 +431,12 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                   onData: (data) {
                                     if (data.status == Status.SUCCESS) {
                                       if (model.needsReplacement) {
-                                        Navigator.pushReplacementNamed(
-                                            context, RoutePaths.DebitCardReplacement,
+                                        Navigator.pushNamed(context, RoutePaths.DebitCardReplacement,
                                             arguments: DebitCardReplacementArguments(
                                                 debitRoutes: DebitRoutes.DEBIT_SETTING,
                                                 isPinSet: true,
                                                 type: DebitReplacementEnum.Normal));
                                       } else {
-                                        // Navigator.pop(context, true);
                                         ProviderScope.containerOf(context)
                                             .read(appHomeViewModelProvider)
                                             .showSettingPage(false);

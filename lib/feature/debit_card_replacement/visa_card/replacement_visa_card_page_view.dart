@@ -18,6 +18,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/button/app_primary_button.dart';
 
 class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCardPageViewModel> {
@@ -129,8 +130,8 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                                     Align(
                                       alignment: AlignmentDirectional.centerEnd,
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.only(
-                                            top: 5.0.t, bottom: 15.2.h, end: 20.w),
+                                        padding:
+                                            EdgeInsetsDirectional.only(top: 5.0.t, bottom: 15.2.h, end: 20.w),
                                         child: Text(
                                           'Debit',
                                           style: TextStyle(
@@ -157,28 +158,23 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                     ),
                     Center(
                       child: Padding(
-                          padding: EdgeInsets.only(top: 16.0.h,bottom: 20.0.h),
+                          padding: EdgeInsets.only(top: 16.0.h, bottom: 20.0.h),
                           child: AppPrimaryButton(
                             text: S.of(context).next,
                             onPressed: () {
-                              ProviderScope.containerOf(context).read(debitCardReplacementViewModelProvider).nextPage();
+                              ProviderScope.containerOf(context)
+                                  .read(debitCardReplacementViewModelProvider)
+                                  .nextPage();
                             },
                           )),
                     ),
                     Center(
                       child: InkWell(
                         onTap: () {
-                          if (ProviderScope.containerOf(context)
-                              .read(debitCardReplacementViewModelProvider)
-                              .debitCardReplacementArguments
-                              .debitRoutes ==
-                              DebitRoutes.DASHBOARD) {
-                            Navigator.pop(context);
-                          } else {
-                            Navigator.of(context)
-                              ..pop
-                              ..pop();
-                          }
+                          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+                          ProviderScope.containerOf(context)
+                              .read(appHomeViewModelProvider)
+                              .showSettingPage(false);
 
                           ProviderScope.containerOf(context)
                               .read(appHomeViewModelProvider)

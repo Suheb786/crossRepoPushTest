@@ -15,7 +15,8 @@ class PaymentHomePage extends BasePage<PaymentHomeViewModel> {
   PaymentHomePageState createState() => PaymentHomePageState();
 }
 
-class PaymentHomePageState extends BaseStatefulPage<PaymentHomeViewModel, PaymentHomePage> with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
+class PaymentHomePageState extends BaseStatefulPage<PaymentHomeViewModel, PaymentHomePage>
+    with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
   @override
   ProviderBase provideBase() {
     return paymentHomeViewModelProvider;
@@ -32,6 +33,10 @@ class PaymentHomePageState extends BaseStatefulPage<PaymentHomeViewModel, Paymen
     return stateBuild(context);
   }
 
+  @override
+  bool? resizeToAvoidBottomInset() {
+    return true;
+  }
 
   @override
   void onModelReady(PaymentHomeViewModel model) {
@@ -57,9 +62,6 @@ class PaymentHomePageState extends BaseStatefulPage<PaymentHomeViewModel, Paymen
         vsync: this,
         duration: const Duration(milliseconds: 500),
       );
-
-
-
     }
     super.onModelReady(model);
   }
