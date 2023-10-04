@@ -37,6 +37,8 @@ import 'package:data/source/id_card/id_card_datasource.dart';
 import 'package:data/source/id_card/remote/id_card_remote_ds_impl.dart';
 import 'package:data/source/kyc/kyc_datasource.dart';
 import 'package:data/source/kyc/remote/kyc_remote_ds_impl.dart';
+import 'package:data/source/offer_campaign/offer_campaign_datasource.dart';
+import 'package:data/source/offer_campaign/remote/offer_campaign_remote_datasource_impl.dart';
 import 'package:data/source/payment/payment_datasource.dart';
 import 'package:data/source/payment/remote/payment_remote_datasource_impl.dart';
 import 'package:data/source/register/register_datasource.dart';
@@ -200,3 +202,7 @@ var cliqDataSourceProvider = Provider<CliqDataSource>(
 ///Sub-Account remote DS
 var subAccountDataSourceProvider = Provider<SubAccountDataSource>(
     (ref) => SubAccountDataSourceImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+///Offer & Campaign remote DS
+var offerCampaignRemoteDataSourceImplProvider = Provider<OfferCampaignRemoteDataSource>((ref) =>
+    OfferCampaignRemoteDataSourceImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));

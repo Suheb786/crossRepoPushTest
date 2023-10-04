@@ -969,7 +969,7 @@ class AppRouter {
 
       case RoutePaths.OfferDetailPage:
         return CupertinoPageRoute(
-            builder: (context) => OfferDetailPage(),
+            builder: (context) => OfferDetailPage(settings.arguments as OfferDetailPageArgument),
             settings: RouteSettings(name: RoutePaths.OfferDetailPage));
 
       case RoutePaths.RJBookingFailurePage:

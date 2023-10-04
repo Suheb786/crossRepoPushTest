@@ -227,6 +227,10 @@ import 'package:data/entity/remote/forget_password/verify_forget_password_otp_re
 import 'package:data/entity/remote/forget_password/verify_forget_password_otp_response_entity.dart';
 import 'package:data/entity/remote/kyc/check_kyc_status_response_entity.dart';
 import 'package:data/entity/remote/kyc/kyc_status_request.dart';
+import 'package:data/entity/remote/offer_campaign/offer/offers_request_entity.dart';
+import 'package:data/entity/remote/offer_campaign/offer/offers_response_entity.dart';
+import 'package:data/entity/remote/offer_campaign/offer_categories/offers_categories_request_entity.dart';
+import 'package:data/entity/remote/offer_campaign/offer_categories/offers_categories_response_entity.dart';
 import 'package:data/entity/remote/payment/check_send_money_request_entity.dart';
 import 'package:data/entity/remote/payment/check_send_money_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_content_response_entity.dart';
@@ -1223,4 +1227,11 @@ abstract class ApiService {
   @POST("/Dashboard/UpdateNickName")
   Future<HttpResponse<ResponseEntity>> updateNickNameSubAccount(
       @Body() UpdateNickNameSubAccountRequestEntity request);
+
+  @POST("${NetworkProperties.BASE_OFFER_CAMPAIGN_URL}/Offers/GetAllOffers")
+  Future<HttpResponse<OffersResponseEntity>> getAllOffers(@Body() OffersRequestEntity request);
+
+  @POST("${NetworkProperties.BASE_OFFER_CAMPAIGN_URL}/Offers/GetOfferCategories")
+  Future<HttpResponse<OffersCategoriesResponseEntity>> getOfferCategories(
+      @Body() OffersCategoriesRequestEntity request);
 }

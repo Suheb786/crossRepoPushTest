@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:isolate';
+
 import 'package:data/helper/dynamic_link.dart';
 import 'package:domain/constants/enum/account_status_enum.dart';
 import 'package:domain/constants/enum/card_type.dart';
@@ -19,6 +20,7 @@ import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_con
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/model/dashboard/get_placeholder/get_placeholder_response.dart';
 import 'package:domain/model/dashboard/get_placeholder/placeholder_data.dart';
+import 'package:domain/model/offer_campaign/offer/offers.dart';
 import 'package:domain/model/qr/verify_qr_response.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/apple_pay/get_antelop_cards_list_usecase.dart';
@@ -27,6 +29,7 @@ import 'package:domain/usecase/bank_smart/get_account_usecase.dart';
 import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
 import 'package:domain/usecase/dashboard/get_placeholder_usecase.dart';
 import 'package:domain/usecase/dynamic_link/init_dynamic_link_usecase.dart';
+import 'package:domain/usecase/offer_campaign/offer_usecase.dart';
 import 'package:domain/usecase/payment/verify_qr_usecase.dart';
 import 'package:domain/usecase/sub_account/deactivate_sub_account_usecase.dart';
 import 'package:domain/usecase/sub_account/update_nick_name_sub_account_usecase.dart';
@@ -72,6 +75,7 @@ class AppHomeViewModel extends BasePageViewModel {
   final GetAccountUseCase _getAccountUseCase;
   final CreateAccountUseCase _createAccountUseCase;
   final CloseSubAccountUseCase _closeSubAccountUsecase;
+  final OfferUseCase _offerUseCase;
 
   final UpdateNickNameSubAccountUseCase _updateNickNameSubAccountUseCase;
 
@@ -318,6 +322,14 @@ class AppHomeViewModel extends BasePageViewModel {
 
   bool isSmallDevices = false;
 
+  /// ---------------------- Get All Offer -------------------------------- ///
+  PublishSubject<OfferUseCaseParams> _getOfferRequest = PublishSubject();
+
+  BehaviorSubject<Resource<List<Offers>>> _getOfferResponse = BehaviorSubject();
+
+  Stream<Resource<List<Offers>>> get getOfferStream => _getOfferResponse.stream;
+  List<Offers> listOfOffer = [];
+
   AppHomeViewModel(
     this._getDashboardDataUseCase,
     this._getPlaceholderUseCase,
@@ -330,6 +342,7 @@ class AppHomeViewModel extends BasePageViewModel {
     this._createAccountUseCase,
     this._closeSubAccountUsecase,
     this._updateNickNameSubAccountUseCase,
+    this._offerUseCase,
   ) {
     isShowBalenceUpdatedToast = false;
     deviceSize = MediaQuery.of(appLevelKey.currentContext!).size;
@@ -352,7 +365,31 @@ class AppHomeViewModel extends BasePageViewModel {
           }
           dashboardDataContent = event.data!.dashboardDataContent!;
           _dashboardCardResponse.safeAdd(event.data!.dashboardDataContent);
+
           getDashboardPages(event.data!.dashboardDataContent!);
+        }
+      });
+    });
+
+    _getOfferRequest.listen((value) {
+      RequestManager(value, createCall: () => _offerUseCase.execute(params: value)).asFlow().listen((event) {
+        updateLoader();
+        _getOfferResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          ///adding  offer for u card
+          if ((dashboardDataContent.dashboardFeatures?.offers ?? false)) {
+            if (event.data != null && (event.data ?? []).isNotEmpty) {
+              listOfOffer = event.data!;
+              pages.add(OfferForYouCardWidget(event.data!));
+
+              cardTypeList
+                  .add(TimeLineSwipeUpArgs(cardType: CardType.OFFER, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
+              addPages(pages);
+            }
+          }
         }
       });
     });
@@ -369,12 +406,28 @@ class AppHomeViewModel extends BasePageViewModel {
           ///fetching antelop cards
           initDynamicLink();
           timeLineArguments.placeholderData = timelinePlaceholderData;
+          if (dashboardDataContent.dashboardFeatures?.offers ?? false) {
+            _getOfferRequest.safeAdd(OfferUseCaseParams(
+              searchTxt: '',
+              categoryId: 0,
+              pageNo: 1,
+              totalRecord: 3,
+            ));
+          }
         } else if (event.status == Status.SUCCESS) {
           ///fetching antelop cards
           triggerRequestMoneyPopup();
           initDynamicLink();
           timelinePlaceholderData = event.data!.data!;
           timeLineArguments.placeholderData = event.data!.data;
+          if (dashboardDataContent.dashboardFeatures?.offers ?? false) {
+            _getOfferRequest.safeAdd(OfferUseCaseParams(
+              searchTxt: '',
+              categoryId: 0,
+              pageNo: 1,
+              totalRecord: 3,
+            ));
+          }
         }
       });
     });
@@ -948,12 +1001,12 @@ class AppHomeViewModel extends BasePageViewModel {
       cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.RJ, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
     }
 
-    ///adding  offer for u card
-    if ((dashboardDataContent.dashboardFeatures?.offers ?? true)) {
-      pages.add(OfferForYouCardWidget());
-
-      cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.OFFER, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
-    }
+    // ///adding  offer for u card
+    // if ((dashboardDataContent.dashboardFeatures?.offers ?? false)) {
+    //   pages.add(OfferForYouCardWidget());
+    //
+    //   cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.OFFER, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
+    // }
 
     addPages(pages);
 
