@@ -75,7 +75,7 @@ class HelpCenterErrorPageView extends BasePageViewWidget<HelpCenterErrorPageView
           Padding(
             padding: EdgeInsets.only(left: 40.w, right: 40.w),
             child: AppSecondaryButton(
-              text: S.of(context).toDashboard,
+              text: S.of(context).backToDashboard,
               onPressed: () {
                 Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
               },

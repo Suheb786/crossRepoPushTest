@@ -18281,6 +18281,46 @@ class S {
     );
   }
 
+  /// `All our agents are currently assisting other blinkers`
+  String get ourAgentsAreOccupied {
+    return Intl.message(
+      'All our agents are currently assisting other blinkers',
+      name: 'ourAgentsAreOccupied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thank you for your patience, our agents are occupied in assisting other blinkers. Please try to call us again later or chat with us from the app or call us on 06-5200100.`
+  String get ourAgentsAreOccupiedDescription {
+    return Intl.message(
+      'Thank you for your patience, our agents are occupied in assisting other blinkers. Please try to call us again later or chat with us from the app or call us on 06-5200100.',
+      name: 'ourAgentsAreOccupiedDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Poor Network Connection`
+  String get lostConnection {
+    return Intl.message(
+      'Poor Network Connection',
+      name: 'lostConnection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apologies, due to poor network connection, we’ve lost you.  Please try to call us again later or chat with us from the app or call us on 06-5200100.`
+  String get lostConnectionDescription {
+    return Intl.message(
+      'Apologies, due to poor network connection, we’ve lost you.  Please try to call us again later or chat with us from the app or call us on 06-5200100.',
+      name: 'lostConnectionDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Transfer`
   String get transfer {
     return Intl.message(
@@ -18666,46 +18706,6 @@ class S {
     return Intl.message(
       'Referral link',
       name: 'referralLink',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Our agents are occupied!`
-  String get ourAgentsAreOccupied {
-    return Intl.message(
-      'Our agents are occupied!',
-      name: 'ourAgentsAreOccupied',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Thank you for calling us, our agents are occupied in the current moment. Please try to call us again later.`
-  String get ourAgentsAreOccupiedDescription {
-    return Intl.message(
-      'Thank you for calling us, our agents are occupied in the current moment. Please try to call us again later.',
-      name: 'ourAgentsAreOccupiedDescription',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Lost connection`
-  String get lostConnection {
-    return Intl.message(
-      'Lost connection',
-      name: 'lostConnection',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Apologies, but you lost connection as the network is poor. Please try to call us again later.`
-  String get lostConnectionDescription {
-    return Intl.message(
-      'Apologies, but you lost connection as the network is poor. Please try to call us again later.',
-      name: 'lostConnectionDescription',
       desc: '',
       args: [],
     );

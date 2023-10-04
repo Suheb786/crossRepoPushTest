@@ -21,6 +21,11 @@ class InfoBipAudioService {
     return result;
   }
 
+  /*applicationId: "75154e24-1e99-48e4-a25d-9f561df4d101",
+  appKey: KeyHelper.INFOBIP_APP_KEY,
+  baseUrl: "https://wpx36d.api.infobip.com",
+*/
+
   ///
   /// This method used for get your token with
   ///
