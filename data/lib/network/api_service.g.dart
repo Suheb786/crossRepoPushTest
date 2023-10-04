@@ -6572,14 +6572,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<OffersResponseEntity>> getAllOffers(OffersRequestEntity request) async {
+  Future<HttpResponse<OffersResponseEntity>> getAllOffers(
+      OffersRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<OffersResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<OffersResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -6608,8 +6609,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<OffersCategoriesResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<OffersCategoriesResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,

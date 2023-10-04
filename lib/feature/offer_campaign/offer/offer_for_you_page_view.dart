@@ -45,7 +45,8 @@ class OfferForYouPageView extends BasePageViewWidget<OfferForYouPageViewModel> {
                         onDismissed: () => Navigator.pop(context),
                         onSelected: (offerCategories) {
                           model.categoryID = offerCategories.categoryId ?? 0;
-                          //for getting new list of offer after filter
+
+                          ///for getting new list of offer after filter
                           model.allOfferList = [];
                           model.getOffer(
                               categoryId: model.categoryID,
@@ -84,20 +85,22 @@ class OfferForYouPageView extends BasePageViewWidget<OfferForYouPageViewModel> {
                                               color: Theme.of(context).primaryColorDark,
                                               borderRadius: BorderRadius.circular(100),
                                             ),
-                                            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
+                                            padding: EdgeInsets.only(
+                                                left: 8.w, right: 8.w, top: 3.5.h, bottom: 2.h),
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 Text(searchList[index],
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                         fontSize: 12.t,
+                                                        fontFamily: StringUtils.appFont,
                                                         fontWeight: FontWeight.w600,
                                                         color: Theme.of(context).scaffoldBackgroundColor)),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional.only(
-                                                    start: 4.0.w,
-                                                  ),
+                                                  padding:
+                                                      EdgeInsetsDirectional.only(start: 4.0.w, bottom: 2.5.h),
                                                   child: InkWell(
                                                     onTap: () {
                                                       model.removeSearchTextList(
@@ -143,13 +146,11 @@ class OfferForYouPageView extends BasePageViewWidget<OfferForYouPageViewModel> {
                 controller: model.offerSearchController,
                 textFieldBorderColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.3),
                 hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
+                containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                 textColor: Theme.of(context).primaryColorDark,
                 hintText: S.of(context).lookingFor,
-                onChanged: (value) {
-                  // if (value.isEmpty) {
-                  //   FocusScope.of(context).unfocus();
-                  // }
-                },
+                inputAction: TextInputAction.done,
+                onChanged: (value) {},
                 onFieldSubmitted: (data) {
                   if (data.isNotEmpty &&
                       offerList?.status == Status.SUCCESS &&
@@ -163,7 +164,7 @@ class OfferForYouPageView extends BasePageViewWidget<OfferForYouPageViewModel> {
                     child: Container(
                         height: 16.h,
                         width: 16.w,
-                        padding: EdgeInsetsDirectional.only(end: 8.w),
+                        padding: const EdgeInsets.all(6),
                         child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
                   );
                 },
@@ -173,9 +174,6 @@ class OfferForYouPageView extends BasePageViewWidget<OfferForYouPageViewModel> {
               ),
               InkWell(
                 onTap: () {
-                  // if (offerList?.status == Status.SUCCESS && (offerList?.data ?? []).isNotEmpty) {
-                  //   model.getFilterCategories();
-                  // }
                   model.getFilterCategories();
                 },
                 child: AppSvg.asset(
@@ -187,6 +185,9 @@ class OfferForYouPageView extends BasePageViewWidget<OfferForYouPageViewModel> {
               )
             ],
           ),
+        ),
+        SizedBox(
+          height: 8.h,
         )
       ],
     );
@@ -201,6 +202,7 @@ class OfferForYouPageView extends BasePageViewWidget<OfferForYouPageViewModel> {
                 child: ListView.separated(
                   itemCount: offerList!.data!.length,
                   shrinkWrap: true,
+                  padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return InkWell(
@@ -214,7 +216,10 @@ class OfferForYouPageView extends BasePageViewWidget<OfferForYouPageViewModel> {
                     );
                   },
                   separatorBuilder: (BuildContext context, int index) {
-                    return AppDivider();
+                    return Padding(
+                      padding: EdgeInsets.symmetric(vertical: 16.0.h),
+                      child: AppDivider(),
+                    );
                   },
                 ),
               )
@@ -236,79 +241,85 @@ class OfferListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-        child: Row(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(16.w)),
-              child: Image.memory(
-                offers.image,
-                fit: BoxFit.fill,
-                height: 104.h,
-                width: 104.w,
-              ),
+    return Row(
+      children: [
+        Container(
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.w), boxShadow: [
+            BoxShadow(offset: Offset(0, 8), blurRadius: 10, color: Color.fromRGBO(0, 0, 0, 0.10))
+          ]),
+          child: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(16.w)),
+            child: Image.memory(
+              offers.image,
+              fit: BoxFit.fill,
+              height: 104.h,
+              width: 104.w,
             ),
-            SizedBox(
-              width: 16.w,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  offers.campaignName ?? '',
-                  style: TextStyle(
-                    fontSize: 14.t,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                SizedBox(
-                  height: 4.w,
-                ),
-                Text(
-                  offers.descriptions ?? '',
-                  style: TextStyle(
-                      fontSize: 12.t,
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).colorScheme.surfaceTint),
-                ),
-                SizedBox(
-                  height: 16.w,
-                ),
-                Text(
-                  "Ends on " + TimeUtils.getFormattedDateForTransaction(offers.campaignValidTill ?? ''),
-                  style: TextStyle(
-                      fontSize: 12.t,
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).colorScheme.surfaceTint),
-                ),
-                SizedBox(
-                  height: 2.h,
-                ),
-                Container(
-                  padding: EdgeInsetsDirectional.only(start: 8.0.w, end: 8.0.w, top: 3.5.h, bottom: 1.5.h),
-                  decoration: BoxDecoration(
-                      color: TimeUtils.differentBetweenTwoDateInDays(offers.campaignValidTill ?? '') <= 9
-                          ? getColor(OfferType.EARLY)
-                          : getColor(OfferType.LATER),
-                      borderRadius: BorderRadius.circular(100)),
-                  child: Text(
-                    TimeUtils.differentBetweenTwoDateInDays(offers.campaignValidTill ?? '').toString() +
-                        " days left",
-                    style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).colorScheme.secondary,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12.0.t),
-                  ),
-                ),
-              ],
-            )
-          ],
+          ),
         ),
-      ),
+        SizedBox(
+          width: 16.w,
+        ),
+        Flexible(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                offers.campaignName ?? '',
+                style: TextStyle(
+                  fontSize: 14.t,
+                  fontFamily: StringUtils.appFont,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              SizedBox(
+                height: 4.h,
+              ),
+              Text(
+                offers.descriptions ?? '',
+                style: TextStyle(
+                    fontSize: 12.t,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: StringUtils.appFont,
+                    color: Theme.of(context).colorScheme.surfaceTint),
+              ),
+              SizedBox(
+                height: 16.h,
+              ),
+              Text(
+                S
+                    .of(context)
+                    .endsOn(TimeUtils.getFormattedDateForTransaction(offers.campaignValidTill ?? '')),
+                style: TextStyle(
+                    fontSize: 12.t,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).colorScheme.surfaceTint),
+              ),
+              SizedBox(
+                height: 2.h,
+              ),
+              Container(
+                padding: EdgeInsetsDirectional.only(start: 8.0.w, end: 8.0.w, top: 3.5.h, bottom: 1.5.h),
+                decoration: BoxDecoration(
+                    color: TimeUtils.differentBetweenTwoDateInDays(offers.campaignValidTill ?? '') <= 9
+                        ? getColor(OfferType.EARLY)
+                        : getColor(OfferType.LATER),
+                    borderRadius: BorderRadius.circular(100)),
+                child: Text(
+                  S.of(context).daysLeft(
+                      TimeUtils.differentBetweenTwoDateInDays(offers.campaignValidTill ?? '').toString()),
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      color: Theme.of(context).colorScheme.secondary,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12.0.t),
+                ),
+              ),
+            ],
+          ),
+        )
+      ],
     );
   }
 

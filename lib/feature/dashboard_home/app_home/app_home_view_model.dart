@@ -378,8 +378,16 @@ class AppHomeViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
+
+          ///Trigger pop-ups
+          triggerRequestMoneyPopup();
+          initDynamicLink();
         } else if (event.status == Status.SUCCESS) {
-          ///adding  offer for u card
+          ///Trigger pop-ups
+          triggerRequestMoneyPopup();
+          initDynamicLink();
+
+          ///adding  offer for you card
           if ((dashboardDataContent.dashboardFeatures?.offers ?? false)) {
             if (event.data != null && (event.data ?? []).isNotEmpty) {
               listOfOffer = event.data!;
@@ -401,10 +409,6 @@ class AppHomeViewModel extends BasePageViewModel {
         updateLoader();
         _getPlaceHolderResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
-          triggerRequestMoneyPopup();
-
-          ///fetching antelop cards
-          initDynamicLink();
           timeLineArguments.placeholderData = timelinePlaceholderData;
           if (dashboardDataContent.dashboardFeatures?.offers ?? false) {
             _getOfferRequest.safeAdd(OfferUseCaseParams(
@@ -415,9 +419,6 @@ class AppHomeViewModel extends BasePageViewModel {
             ));
           }
         } else if (event.status == Status.SUCCESS) {
-          ///fetching antelop cards
-          triggerRequestMoneyPopup();
-          initDynamicLink();
           timelinePlaceholderData = event.data!.data!;
           timeLineArguments.placeholderData = event.data!.data;
           if (dashboardDataContent.dashboardFeatures?.offers ?? false) {
@@ -484,6 +485,7 @@ class AppHomeViewModel extends BasePageViewModel {
         }
       });
     });
+
     _closeSubAccountRequest.listen((value) {
       RequestManager(value, createCall: () => _closeSubAccountUsecase.execute(params: value))
           .asFlow()

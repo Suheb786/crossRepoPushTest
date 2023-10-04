@@ -44,13 +44,19 @@ class OfferForYouCardWidget extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
                     child: Row(
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(16.w)),
-                          child: Image.memory(
-                            data[index].image,
-                            fit: BoxFit.fill,
-                            width: 104.w,
-                            height: 104.h,
+                        Container(
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.w), boxShadow: [
+                            BoxShadow(
+                                offset: Offset(0, 8), blurRadius: 10, color: Color.fromRGBO(0, 0, 0, 0.16))
+                          ]),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.all(Radius.circular(16.w)),
+                            child: Image.memory(
+                              data[index].image,
+                              fit: BoxFit.fill,
+                              width: 104.w,
+                              height: 104.h,
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -58,7 +64,7 @@ class OfferForYouCardWidget extends StatelessWidget {
                         ),
                         Flexible(
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
@@ -66,32 +72,22 @@ class OfferForYouCardWidget extends StatelessWidget {
                                 style: TextStyle(
                                     fontSize: 14.t,
                                     fontWeight: FontWeight.w600,
+                                    fontFamily: StringUtils.appFont,
                                     color: Theme.of(context).scaffoldBackgroundColor),
                               ),
                               SizedBox(
-                                height: 4.w,
+                                height: 4.h,
                               ),
                               Text(
                                 data[index].descriptions ?? '',
                                 style: TextStyle(
                                     fontSize: 12.t,
+                                    fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.w600,
                                     color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7)),
                               ),
                               SizedBox(
-                                height: 16.w,
-                              ),
-                              Text(
-                                "Ends on " +
-                                    TimeUtils.getFormattedDateForTransaction(
-                                        data[index].campaignValidTill ?? ''),
-                                style: TextStyle(
-                                    fontSize: 12.t,
-                                    fontWeight: FontWeight.w600,
-                                    color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7)),
-                              ),
-                              SizedBox(
-                                height: 2.h,
+                                height: 8.h,
                               ),
                               Container(
                                 padding: EdgeInsetsDirectional.only(
@@ -104,9 +100,9 @@ class OfferForYouCardWidget extends StatelessWidget {
                                         : getColor(OfferType.LATER),
                                     borderRadius: BorderRadius.circular(100)),
                                 child: Text(
-                                  TimeUtils.differentBetweenTwoDateInDays(data[index].campaignValidTill ?? '')
-                                          .toString() +
-                                      " days left",
+                                  S.of(context).daysLeft(TimeUtils.differentBetweenTwoDateInDays(
+                                          data[index].campaignValidTill ?? '')
+                                      .toString()),
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       color: Theme.of(context).scaffoldBackgroundColor,

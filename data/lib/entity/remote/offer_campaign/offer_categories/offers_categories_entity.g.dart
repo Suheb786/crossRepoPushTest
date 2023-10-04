@@ -6,7 +6,9 @@ part of 'offers_categories_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-OffersCategoriesEntity _$OffersCategoriesEntityFromJson(Map<String, dynamic> json) => OffersCategoriesEntity(
+OffersCategoriesEntity _$OffersCategoriesEntityFromJson(
+        Map<String, dynamic> json) =>
+    OffersCategoriesEntity(
       id: json['id'] as num? ?? 0,
       categoryId: json['categoryId'] as num? ?? 0,
       categoryNameEn: json['categoryNameEn'] as String? ?? '',
@@ -14,7 +16,9 @@ OffersCategoriesEntity _$OffersCategoriesEntityFromJson(Map<String, dynamic> jso
       isActive: json['isActive'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$OffersCategoriesEntityToJson(OffersCategoriesEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$OffersCategoriesEntityToJson(
+        OffersCategoriesEntity instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'categoryId': instance.categoryId,
       'categoryNameEn': instance.categoryNameEn,

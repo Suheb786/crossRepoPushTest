@@ -6,7 +6,8 @@ part of 'offers_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-OffersRequestEntity _$OffersRequestEntityFromJson(Map<String, dynamic> json) => OffersRequestEntity(
+OffersRequestEntity _$OffersRequestEntityFromJson(Map<String, dynamic> json) =>
+    OffersRequestEntity(
       baseData: json['BaseClass'] as Map<String, dynamic>,
       getToken: json['GetToken'] as bool? ?? true,
       categoryId: json['CategoryId'] as num,
@@ -15,7 +16,9 @@ OffersRequestEntity _$OffersRequestEntityFromJson(Map<String, dynamic> json) => 
       totalRecord: json['TotalRecord'] as int,
     );
 
-Map<String, dynamic> _$OffersRequestEntityToJson(OffersRequestEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$OffersRequestEntityToJson(
+        OffersRequestEntity instance) =>
+    <String, dynamic>{
       'CategoryId': instance.categoryId,
       'SearchText': instance.searchText,
       'PageNo': instance.pageNo,

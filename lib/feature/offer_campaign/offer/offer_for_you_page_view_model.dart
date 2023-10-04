@@ -97,20 +97,22 @@ class OfferForYouPageViewModel extends BasePageViewModel {
   bool hasMore = true;
 
   void removeSearchTextList({required int index, required num categoryId}) {
-    //Removing search text from list and sending in api
+    ///Removing search text from list and sending in api
     searchTextList.removeAt(index);
     _searchTextListRequest.safeAdd(searchTextList);
-    //for getting new list of offer after filter
+
+    ///for getting new list of offer after filter
     allOfferList = [];
     _getOfferRequest.safeAdd(OfferUseCaseParams(
         searchTxt: searchTextList.join(','), categoryId: categoryId, pageNo: 1, totalRecord: 10));
   }
 
   void addSearchTextList({required num categoryId, required String searchTxt}) {
-    //Adding search text in the list and sending in api
+    ///Adding search text in the list and sending in api
     searchTextList.add(searchTxt);
     _searchTextListRequest.safeAdd(searchTextList);
-    //for getting new list of offer after filter
+
+    ///for getting new list of offer after filter
     allOfferList = [];
     _getOfferRequest.safeAdd(OfferUseCaseParams(
         searchTxt: searchTextList.join(','), categoryId: categoryId, pageNo: 1, totalRecord: 10));

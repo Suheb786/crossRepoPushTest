@@ -22,7 +22,8 @@ OffersEntity _$OffersEntityFromJson(Map<String, dynamic> json) => OffersEntity(
       image: json['image'] ?? '',
     );
 
-Map<String, dynamic> _$OffersEntityToJson(OffersEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$OffersEntityToJson(OffersEntity instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'label': instance.label,
       'campaignId': instance.campaignId,

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/offer_campaign/offer/offer_for_you_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/custom_bullet_with_title_widget.dart';
 import 'package:neo_bank/ui/molecules/evoucher/evoucher_text_widget.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -94,6 +95,9 @@ class PageDetail extends StatelessWidget {
                   textWeight: FontWeight.w600,
                   textColor: Theme.of(context).colorScheme.shadow,
                 ),
+                SizedBox(
+                  height: 4.h,
+                ),
                 EVoucherTextWidget(
                   alignment: AlignmentDirectional.topStart,
                   text: model.argument.offers.descriptions ?? '',
@@ -104,11 +108,13 @@ class PageDetail extends StatelessWidget {
                 SizedBox(height: 16.h),
                 EVoucherTextWidget(
                   alignment: AlignmentDirectional.topStart,
-                  text: "Ends on 27th Sep",
+                  text: S.of(context).endsOn(TimeUtils.getFormattedDateForTransaction(
+                      model.argument.offers.campaignValidTill ?? '')),
                   textSize: 14.t,
                   textWeight: FontWeight.w600,
                   textColor: Theme.of(context).colorScheme.surfaceTint,
                 ),
+                SizedBox(height: 8.h),
                 Padding(
                   padding: EdgeInsetsDirectional.only(start: 24.0.w),
                   child: Container(
@@ -132,26 +138,31 @@ class PageDetail extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 32.h,
-                ),
-                EVoucherTextWidget(
-                  alignment: AlignmentDirectional.topStart,
-                  text: S.of(context).termsAndConditionsSetting,
-                  textSize: 14.t,
-                  textWeight: FontWeight.w600,
-                  textColor: Theme.of(context).colorScheme.shadow,
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.w, top: 16.h),
+                Visibility(
+                  visible: (model.argument.offers.termsAndConditions ?? '').isNotEmpty,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        model.argument.offers.termsAndConditions ?? '',
-                        style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          fontSize: 14.t,
-                          fontWeight: FontWeight.w400,
+                      SizedBox(
+                        height: 32.h,
+                      ),
+                      EVoucherTextWidget(
+                        alignment: AlignmentDirectional.topStart,
+                        text: S.of(context).termsAndConditionsSetting,
+                        textSize: 14.t,
+                        textWeight: FontWeight.w600,
+                        textColor: Theme.of(context).colorScheme.shadow,
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.w, top: 16.h),
+                        child: Column(
+                          children: [
+                            CustomBulletWithTitle(
+                              title: model.argument.offers.termsAndConditions ?? '',
+                              fontSize: 14.t,
+                              lineHeight: 1.7,
+                            ),
+                          ],
                         ),
                       ),
                     ],
