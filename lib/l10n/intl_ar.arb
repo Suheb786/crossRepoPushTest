@@ -1869,5 +1869,7 @@
   "newRequest": "New Request",
   "chooseTheAccountToPay": "اختر الحساب الي بدك تدفع منه",
   "readyToUseSuccess": "جاهز للاستخدام",
-  "referralLink": "رابط الدعوة"
+  "referralLink": "رابط الدعوة",
+  "timeOutText1": "You are being timed-out due to inactivity, your session will expire in ",
+  "timeOutText2": "from now. Select continue to extend your session."
 }

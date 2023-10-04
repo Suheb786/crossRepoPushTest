@@ -57,6 +57,7 @@ import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:riverpod/riverpod.dart';
 
+import '../network/local_session_service.dart';
 import '../source/sub_account/sub_account_datasource.dart';
 
 final baseOptions = Provider<BaseOptions>((ref) => BaseOptions(baseUrl: NetworkProperties.BASE_CHANNEL_URL));
@@ -80,7 +81,7 @@ final dioProvider = Provider<Dio>(
     dio.interceptors.add(
       ref.read(prettyDioLoggerProvider),
     );
-    dio.interceptors.add(ApiInterceptor(dio));
+    dio.interceptors.add(ApiInterceptor(dio, ref.read(localSessionService)));
     return dio;
   },
 );

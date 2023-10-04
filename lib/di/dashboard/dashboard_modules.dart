@@ -41,10 +41,11 @@ import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog_view_model.dart';
 
 import '../../feature/dashboard_home/account_transaction/account_transaction_page.dart';
+import '../../ui/molecules/dialog/session_timeout/session_timeout_dialog_model.dart';
 import '../usecase/sub_account/sub_account_usecase_provider.dart';
 
 final dashboardViewModelProvider = ChangeNotifierProvider.autoDispose<DashboardPageViewModel>(
-      (ref) => DashboardPageViewModel(
+  (ref) => DashboardPageViewModel(
       ref.read(logoutUseCaseProvider),
       ref.read(checkBioMetricSupportUseCaseProvider),
       ref.read(authenticateBioMetricUseCaseProvider),
@@ -53,11 +54,11 @@ final dashboardViewModelProvider = ChangeNotifierProvider.autoDispose<DashboardP
 );
 
 final biometricLoginViewModelProvider = ChangeNotifierProvider.autoDispose<BiometricLoginDialogViewModel>(
-      (ref) => BiometricLoginDialogViewModel(),
+  (ref) => BiometricLoginDialogViewModel(),
 );
 
 final appHomeViewModelProvider = ChangeNotifierProvider.autoDispose<AppHomeViewModel>(
-      (ref) => AppHomeViewModel(
+  (ref) => AppHomeViewModel(
     ref.read(getDashboardDataUseCaseProvider),
     ref.read(getPlaceHolderUseCaseProvider),
     ref.read(initDynamicLinkUseCaseProvider),
@@ -73,74 +74,75 @@ final appHomeViewModelProvider = ChangeNotifierProvider.autoDispose<AppHomeViewM
 );
 
 final filterTransactionDialogViewModelProvier =
-ChangeNotifierProvider.autoDispose<FilterTransactionDialogViewModel>(
+    ChangeNotifierProvider.autoDispose<FilterTransactionDialogViewModel>(
         (ref) => FilterTransactionDialogViewModel());
 
 final myAccountViewModelProvider = ChangeNotifierProvider.autoDispose<MyAccountViewModel>(
-      (ref) => MyAccountViewModel(
+  (ref) => MyAccountViewModel(
     ref.read(updateNickNameSubAccountUseCaseProvider),
   ),
 );
 
 final debitCardVerificationSuccessViewModelProvider =
-ChangeNotifierProvider.autoDispose<DebitCardVerificationSuccessViewModel>(
-      (ref) => DebitCardVerificationSuccessViewModel(),
+    ChangeNotifierProvider.autoDispose<DebitCardVerificationSuccessViewModel>(
+  (ref) => DebitCardVerificationSuccessViewModel(),
 );
 
 final cardTransactionViewModelProvider =
-ChangeNotifierProvider.autoDispose.family<CardTransactionViewModel, GetCreditCardTransactionArguments>(
-      (ref, args) => CardTransactionViewModel(
+    ChangeNotifierProvider.autoDispose.family<CardTransactionViewModel, GetCreditCardTransactionArguments>(
+  (ref, args) => CardTransactionViewModel(
       ref.read(creditCardTransactionUseCaseProvider), ref.read(getCreditYearsUseCaseProvider), args),
 );
 
 final accountTransactionViewModelProvider =
-ChangeNotifierProvider.autoDispose.family<AccountTransactionViewModel, AccountTransactionPageArgument>(
-      (ref, argument) => AccountTransactionViewModel(
+    ChangeNotifierProvider.autoDispose.family<AccountTransactionViewModel, AccountTransactionPageArgument>(
+  (ref, argument) => AccountTransactionViewModel(
       ref.read(debitCardTransactionUseCaseProvider), ref.read(getDebitYearsUseCaseProvider), argument),
 );
 
 final debitCardTimeLineViewModelProvider =
-ChangeNotifierProvider.autoDispose.family<DebitCardTimeLineViewModel, TimeLinePageArguments>(
-      (ref, args) => DebitCardTimeLineViewModel(args),
+    ChangeNotifierProvider.autoDispose.family<DebitCardTimeLineViewModel, TimeLinePageArguments>(
+  (ref, args) => DebitCardTimeLineViewModel(args),
 );
 
 ///add money option selector view model
 final addMoneyOptionSelectorViewModelProvider =
-ChangeNotifierProvider.autoDispose<AddMoneyOptionSelectorViewModel>(
-      (ref) => AddMoneyOptionSelectorViewModel(ref.read(getPlaceHolderUseCaseProvider)),
+    ChangeNotifierProvider.autoDispose<AddMoneyOptionSelectorViewModel>(
+  (ref) => AddMoneyOptionSelectorViewModel(ref.read(getPlaceHolderUseCaseProvider)),
 );
 
 ///settings dialog view model
 final settingsDialogViewModelProvider = ChangeNotifierProvider.autoDispose<SettingsDialogViewModel>(
-      (ref) =>
-      SettingsDialogViewModel(
-        ref.read(logoutUseCaseProvider),
-        ref.read(getProfileInfoUseCaseProvider),
-        ref.read(referDynamicLinkUseCaseProvider),
-      ),
+  (ref) => SettingsDialogViewModel(
+    ref.read(logoutUseCaseProvider),
+    ref.read(getProfileInfoUseCaseProvider),
+    ref.read(referDynamicLinkUseCaseProvider),
+  ),
 );
 final referDynamicLinkUseCaseProvider = Provider.autoDispose<ReferDynamicLinkUseCase>(
-      (ref) => ReferDynamicLinkUseCase(ref.read(dynamicLinkRepositoryProvider)),
+  (ref) => ReferDynamicLinkUseCase(ref.read(dynamicLinkRepositoryProvider)),
 );
 
 final downloadTransactionDialogViewModelProvider =
-ChangeNotifierProvider.autoDispose<DownloadTransactionDialogViewModel>(
+    ChangeNotifierProvider.autoDispose<DownloadTransactionDialogViewModel>(
         (ref) => DownloadTransactionDialogViewModel());
 
 final downloadTransactionViewModelProvider =
-ChangeNotifierProvider.autoDispose.family<DownloadTransactionViewModel, DownloadStatementArguments>(
-      (ref,
-      args,) =>
+    ChangeNotifierProvider.autoDispose.family<DownloadTransactionViewModel, DownloadStatementArguments>(
+  (
+    ref,
+    args,
+  ) =>
       DownloadTransactionViewModel(
-        ref.read(cardStatementUseCaseProvider),
-        args,
-      ),
+    ref.read(cardStatementUseCaseProvider),
+    args,
+  ),
 );
 
 /// DEBIT CArd Settings
 final debitCardSettingsViewModelProvider =
-ChangeNotifierProvider.autoDispose.family<DebitCardSettingsViewModel, DebitCardSettingsArguments>(
-      (ref, args) => DebitCardSettingsViewModel(
+    ChangeNotifierProvider.autoDispose.family<DebitCardSettingsViewModel, DebitCardSettingsArguments>(
+  (ref, args) => DebitCardSettingsViewModel(
       ref.read(freezeDebitCardUseCaseProvider),
       ref.read(unFreezeDebitCardUseCaseProvider),
       ref.read(cancelDebitCardUseCaseProvider),
@@ -153,8 +155,8 @@ ChangeNotifierProvider.autoDispose.family<DebitCardSettingsViewModel, DebitCardS
 
 /// Credit CArd Settings
 final creditCardSettingsViewModelProvider =
-ChangeNotifierProvider.autoDispose.family<CreditCardSettingsViewModel, CreditCardSettingsArguments>(
-      (ref, args) => CreditCardSettingsViewModel(
+    ChangeNotifierProvider.autoDispose.family<CreditCardSettingsViewModel, CreditCardSettingsArguments>(
+  (ref, args) => CreditCardSettingsViewModel(
       ref.read(freezeCreditCardUseCaseProvider),
       ref.read(unFreezeCreditCardUseCaseProvider),
       ref.read(cancelCreditCardUseCaseProvider),
@@ -167,52 +169,57 @@ ChangeNotifierProvider.autoDispose.family<CreditCardSettingsViewModel, CreditCar
 /// check rescheduled video call
 final checkRescheduledVideoCallViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<CheckScheduledVideoCallPageViewModel, CheckVideoCallScheduledArguments>(
-      (ref, args) => CheckScheduledVideoCallPageViewModel(ref.read(logoutUseCaseProvider), args),
+  (ref, args) => CheckScheduledVideoCallPageViewModel(ref.read(logoutUseCaseProvider), args),
 );
 
 ///change country restriction page view model
 final changeCountryRestrictionPageViewModelProvider =
-ChangeNotifierProvider.autoDispose<ChangeCountryRestrictionPageViewModel>(
-      (ref) => ChangeCountryRestrictionPageViewModel(),
+    ChangeNotifierProvider.autoDispose<ChangeCountryRestrictionPageViewModel>(
+  (ref) => ChangeCountryRestrictionPageViewModel(),
 );
 
 ///manage credit settlement page view model
 final manageCreditSettlementPageViewModelProvider =
-ChangeNotifierProvider.autoDispose<ManageCreditSettlementViewModel>(
-      (ref) => ManageCreditSettlementViewModel(),
+    ChangeNotifierProvider.autoDispose<ManageCreditSettlementViewModel>(
+  (ref) => ManageCreditSettlementViewModel(),
 );
 
 ///change card payment page view model
 final changeCardPaymentPageViewModelProvider =
-ChangeNotifierProvider.autoDispose<ChangeCardPaymentAccountPageViewModel>(
-      (ref) => ChangeCardPaymentAccountPageViewModel(),
+    ChangeNotifierProvider.autoDispose<ChangeCardPaymentAccountPageViewModel>(
+  (ref) => ChangeCardPaymentAccountPageViewModel(),
 );
 
 ///change card settlement percentage page view model
 final changeCardSettlementPercentagePageViewModelProvider =
-ChangeNotifierProvider.autoDispose<ChangeCardSettlementPercentagePageViewModel>(
-      (ref) => ChangeCardSettlementPercentagePageViewModel(ref.read(updateSettlementUseCaseProvider)),
+    ChangeNotifierProvider.autoDispose<ChangeCardSettlementPercentagePageViewModel>(
+  (ref) => ChangeCardSettlementPercentagePageViewModel(ref.read(updateSettlementUseCaseProvider)),
 );
 
 ///renew credit card page view model
 final renewCreditCardPageViewModelProvider = ChangeNotifierProvider.autoDispose<RenewCreditCardPageViewModel>(
-      (ref) => RenewCreditCardPageViewModel(),
+  (ref) => RenewCreditCardPageViewModel(),
 );
 
 ///change credit limit page view model
 final changeCreditLimitPageViewModelProvider =
-ChangeNotifierProvider.autoDispose<ChangeCreditLimitPageViewModel>(
-      (ref) => ChangeCreditLimitPageViewModel(),
+    ChangeNotifierProvider.autoDispose<ChangeCreditLimitPageViewModel>(
+  (ref) => ChangeCreditLimitPageViewModel(),
 );
 
 ///convert purchase to installments page view model
 final convertPurchaseToInstallmentsPageViewModelProvider =
-ChangeNotifierProvider.autoDispose<ConvertPurchaseToInstallmentsPageViewModel>(
-      (ref) => ConvertPurchaseToInstallmentsPageViewModel(),
+    ChangeNotifierProvider.autoDispose<ConvertPurchaseToInstallmentsPageViewModel>(
+  (ref) => ConvertPurchaseToInstallmentsPageViewModel(),
 );
 
 /// animated dashboard design viewmodel
 final animatedLayoutViewModelProvider =
-ChangeNotifierProvider.autoDispose<ConvertPurchaseToInstallmentsPageViewModel>(
-      (ref) => ConvertPurchaseToInstallmentsPageViewModel(),
+    ChangeNotifierProvider.autoDispose<ConvertPurchaseToInstallmentsPageViewModel>(
+  (ref) => ConvertPurchaseToInstallmentsPageViewModel(),
+);
+
+final sessionTimeoutDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<SessionTimeoutDialogViewModel>(
+  (ref) => SessionTimeoutDialogViewModel(),
 );

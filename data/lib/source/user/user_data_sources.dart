@@ -166,4 +166,10 @@ abstract class UserLocalDS {
   Future<bool> authenticateBioMetric(String title, String localisedReason);
 
   Future<bool> clearWalletId();
+
+  bool startLocalSession();
+
+  bool endLocalSession();
+
+  bool getLocalSessionWarning(Function() onSessionEndWarning, Function() onSessionTimeOut);
 }

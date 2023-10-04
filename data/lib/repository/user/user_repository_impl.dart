@@ -612,4 +612,20 @@ class UserRepositoryImpl extends UserRepository {
     final cleared = await safeDbCall(_localDS.clearWalletId());
     return cleared.fold((l) => Left(l), (r) => Right(r));
   }
+
+  @override
+  Future<Either<BaseError, bool>> startLocalSession() {
+    return Future.value(Right(_localDS.startLocalSession()));
+  }
+
+  @override
+  Future<Either<BaseError, bool>> endLocalSession() {
+    return Future.value(Right(_localDS.endLocalSession()));
+  }
+
+  @override
+  Future<Either<BaseError, bool>> getLocalSessionWarning(
+      Function() onSessionEndWarning, Function() onSessionTimeOut) {
+    return Future.value(Right(_localDS.getLocalSessionWarning(onSessionEndWarning, onSessionTimeOut)));
+  }
 }

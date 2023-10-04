@@ -18669,6 +18669,26 @@ class S {
       args: [],
     );
   }
+
+  /// `You are being timed-out due to inactivity, your session will expire in `
+  String get timeOutText1 {
+    return Intl.message(
+      'You are being timed-out due to inactivity, your session will expire in ',
+      name: 'timeOutText1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `from now. Select continue to extend your session.`
+  String get timeOutText2 {
+    return Intl.message(
+      'from now. Select continue to extend your session.',
+      name: 'timeOutText2',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

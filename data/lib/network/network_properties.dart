@@ -1,4 +1,10 @@
 class NetworkProperties {
+
+  /// TIME OUT...
+  static const Duration MAIN_TIMEOUT = Duration(seconds : 120);
+  static const Duration WARNING_TIMEOUT = Duration(seconds : 60);
+
+
   /// UAT(RELEASE) CONFIGURATION FOR CHANNEL & ROUTER API
   // static const String BASE_CHANNEL_URL =
   //     "https://MobWeb-uat.theblink.com:2821/api";

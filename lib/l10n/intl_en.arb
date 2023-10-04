@@ -1896,5 +1896,7 @@
   "newRequest": "New Request",
   "chooseTheAccountToPay": "Choose the account you\nwant to pay from",
   "readyToUseSuccess": "success",
- "referralLink": "Referral link"
+  "referralLink": "Referral link",
+  "timeOutText1": "You are being timed-out due to inactivity, your session will expire in ",
+  "timeOutText2": "from now. Select continue to extend your session."
 }

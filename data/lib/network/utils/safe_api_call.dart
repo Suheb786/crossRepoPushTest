@@ -18,17 +18,17 @@ Future<Either<NetworkError, T>?> safeApiCall<T>(Future<T> apiCall) async {
   } on Exception catch (throwable) {
     // debugPrint(throwable.toString());
     switch (throwable.runtimeType) {
-      case DioError:
-        switch ((throwable as DioError).type) {
-          case DioErrorType.sendTimeout:
+      case DioException:
+        switch ((throwable as DioException).type) {
+          case DioExceptionType.sendTimeout:
             return Left(getError(apiResponse: throwable.response));
-          case DioErrorType.receiveTimeout:
+          case DioExceptionType.receiveTimeout:
             return Left(getError(apiResponse: throwable.response));
-          case DioErrorType.cancel:
+          case DioExceptionType.cancel:
             return Left(getError(apiResponse: throwable.response));
-          case DioErrorType.connectionTimeout:
-          case DioErrorType.badCertificate:
-          case DioErrorType.connectionError:
+          case DioExceptionType.connectionTimeout:
+          case DioExceptionType.badCertificate:
+          case DioExceptionType.connectionError:
             return Left(
               NetworkError(
                   message: "Connection to API server failed due to internet connection",
@@ -36,10 +36,10 @@ Future<Either<NetworkError, T>?> safeApiCall<T>(Future<T> apiCall) async {
                   cause: throwable),
             );
 
-          case DioErrorType.badResponse:
+          case DioExceptionType.badResponse:
             return Left(getError(apiResponse: throwable.response));
 
-          case DioErrorType.unknown:
+          case DioExceptionType.unknown:
             return Left(getError(apiResponse: throwable.response));
         }
 

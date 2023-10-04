@@ -1,23 +1,36 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:isolate';
 
+import 'package:data/di/local_module.dart';
+import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/app_constants_domain.dart';
 import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/usecase/app_flyer/init_app_flyer_sdk.dart';
 import 'package:domain/usecase/app_flyer/log_app_flyers_events.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
+import 'package:domain/usecase/user/local_session_usecase.dart';
 
 //import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_view_model.dart';
+import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
+import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sms_autofill/sms_autofill.dart';
+
+import '../ui/molecules/dialog/session_timeout/session_timeout_dailog.dart';
+import 'navigation/route_paths.dart';
 
 GlobalKey<NavigatorState> appLevelKey = GlobalKey(debugLabel: 'app-key');
 
@@ -210,6 +223,7 @@ class AppViewModel extends BaseViewModel {
   final GetTokenUseCase _getTokenUseCase;
   final InitAppFlyerSDKUseCase _initAppFlyerSDKUseCase;
   final LogAppFlyerSDKEventsUseCase _logAppFlyerSDKEventsUseCase;
+  final LocalSessionUseCase _localSessionUseCase;
 
   static PublishSubject<GetTokenUseCaseParams> _getTokenRequest = PublishSubject();
 
@@ -245,7 +259,8 @@ class AppViewModel extends BaseViewModel {
   }
 
   ///---------------log app flyers events------------------///
-  AppViewModel(this._getTokenUseCase, this._initAppFlyerSDKUseCase, this._logAppFlyerSDKEventsUseCase) {
+  AppViewModel(this._getTokenUseCase, this._initAppFlyerSDKUseCase, this._logAppFlyerSDKEventsUseCase,
+      this._localSessionUseCase) {
     _getTokenRequest.listen((value) {
       RequestManager(value, createCall: () => _getTokenUseCase.execute(params: value))
           .asFlow()
@@ -281,6 +296,52 @@ class AppViewModel extends BaseViewModel {
     });
 
     initAppFlyerSDK();
+  }
+
+  BehaviorSubject<bool>? sessionWarningStream;
+  StreamSubscription<bool>? sessionWarningStreamSubscription;
+  BehaviorSubject<bool>? sessionEndStream;
+  StreamSubscription<bool>? sessionEndStreamSubscription;
+
+  startSessionWarningStream() {
+    sessionEndStream?.close();
+    sessionWarningStream?.close();
+    sessionWarningStreamSubscription?.cancel();
+    sessionEndStreamSubscription?.cancel();
+
+    sessionWarningStream = ProviderScope.containerOf(appLevelKey.currentState!.context)
+        .read(localSessionService)
+        .warningStreamSubject;
+
+    sessionWarningStreamSubscription = sessionWarningStream?.stream.listen((event) {
+      if (event) {
+        SessionTimeoutDialog.show(
+          appLevelKey.currentState!.context,
+          title: S.of(appLevelKey.currentState!.context).activity,
+          onSelected: () {
+            /// continue button call api to restart timer...
+            _callGetToken();
+            Navigator.pop(appLevelKey.currentState!.context);
+          },
+        );
+      }
+    });
+
+    sessionEndStream = ProviderScope.containerOf(appLevelKey.currentState!.context)
+        .read(localSessionService)
+        .sessionStreamSubject;
+
+    sessionEndStreamSubscription = sessionEndStream?.stream.listen((event) {
+      if (event) {
+        AppConstantsUtils.resetCacheLists();
+
+        if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+          AntelopHelper.walletDisconnect();
+        }
+        Navigator.pushNamedAndRemoveUntil(
+            appLevelKey.currentContext!, RoutePaths.OnBoarding, (route) => false);
+      }
+    });
   }
 
   void getToken() async {
