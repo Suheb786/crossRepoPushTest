@@ -26,7 +26,6 @@ import 'package:data/source/user/local/user_local_ds_impl.dart';
 import 'package:data/source/user/user_data_sources.dart';
 import 'package:data/source/utility/local/utility_datasource_impl.dart';
 import 'package:data/source/utility/utility_datasource.dart';
-import 'package:infobip_plugin/infobipplugin.dart';
 import 'package:infobipplugin/infobipplugin.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:riverpod/riverpod.dart';

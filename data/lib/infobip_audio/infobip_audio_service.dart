@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:domain/constants/enum/infobip_call_status_enum.dart';
 import 'package:domain/model/infobip_audio/obtain_token.dart';
-import 'package:infobip_plugin/infobipplugin.dart';
+import 'package:infobipplugin/infobipplugin.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class InfoBipAudioService {
