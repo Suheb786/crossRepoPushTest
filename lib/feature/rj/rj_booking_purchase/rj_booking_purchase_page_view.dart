@@ -135,14 +135,14 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                         fontWeight: FontWeight.w700,
                                         fontSize: 32.t),
                                   ),
-                                  // Text(
-                                  //   S.of(context).jordan,
-                                  //   style: TextStyle(
-                                  //       fontFamily: StringUtils.appFont,
-                                  //       color: Theme.of(context).primaryColorDark,
-                                  //       fontWeight: FontWeight.w400,
-                                  //       fontSize: 12.t),
-                                  // ),
+                                  Text(
+                                    "-",
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: Theme.of(context).primaryColorDark,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12.t),
+                                  ),
                                 ],
                               ),
                             ),
@@ -171,15 +171,15 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                         fontWeight: FontWeight.w700,
                                         fontSize: 32.t),
                                   ),
-                                  // Text(
-                                  //   S.of(context).japan,
-                                  //   textAlign: TextAlign.start,
-                                  //   style: TextStyle(
-                                  //       fontFamily: StringUtils.appFont,
-                                  //       color: Theme.of(context).primaryColorDark,
-                                  //       fontWeight: FontWeight.w400,
-                                  //       fontSize: 12.t),
-                                  // ),
+                                  Text(
+                                    "-",
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: Theme.of(context).primaryColorDark,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12.t),
+                                  ),
                                 ],
                               ),
                             ),
