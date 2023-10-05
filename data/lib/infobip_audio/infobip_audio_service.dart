@@ -5,6 +5,8 @@ import 'package:domain/model/infobip_audio/obtain_token.dart';
 import 'package:infobipplugin/infobipplugin.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../helper/key_helper.dart';
+
 class InfoBipAudioService {
   final InfoBip _infobipPlugin;
 
@@ -12,28 +14,23 @@ class InfoBipAudioService {
 
   Future<bool> initPlugin({required Function(InfobipCallStatusEnum) callback}) async {
     var result = await _infobipPlugin.sdkInit(
-        applicationId: "default",
-        appKey: 'f0004048eeb567f17f2a2e5732864489-31202bf5-693e-4a38-85e2-5974f5e93640',
-        baseUrl: "https://zjyln2.api.infobip.com",
+        applicationId: "75154e24-1e99-48e4-a25d-9f561df4d101",
+        appKey: KeyHelper.INFOBIP_APP_KEY,
+        baseUrl: "https://wpx36d.api.infobip.com",
         callStatus: (String status) {
           callback(status.fromCallStatusValue());
         });
     return result;
   }
 
-  /*applicationId: "75154e24-1e99-48e4-a25d-9f561df4d101",
-  appKey: KeyHelper.INFOBIP_APP_KEY,
-  baseUrl: "https://wpx36d.api.infobip.com",
-*/
-
   ///
   /// This method used for get your token with
   ///
   Future<String> obtainToken({required ObtainToken parameter}) async {
     try {
-      parameter.applicationId = 'default';
-      parameter.baseUrl = 'https://zjyln2.api.infobip.com';
-      parameter.appKey = 'f0004048eeb567f17f2a2e5732864489-31202bf5-693e-4a38-85e2-5974f5e93640';
+      parameter.applicationId = "75154e24-1e99-48e4-a25d-9f561df4d101";
+      parameter.appKey = KeyHelper.INFOBIP_APP_KEY;
+      parameter.baseUrl = "https://wpx36d.api.infobip.com";
       var tokenDetail = await _infobipPlugin.getToken(parameter: parameter.toJson());
       return tokenDetail!;
     } catch (e) {
