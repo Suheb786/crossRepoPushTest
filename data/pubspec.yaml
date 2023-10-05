@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  infobip_plugin:
+  infobipplugin:
     path: ../infobip_rtc_flutter
 
   retrofit: ^4.0.1

@@ -33,7 +33,7 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
               initialData: Resource.none(),
               onData: (value) {
                 if (value.data != null) {
-                  model.establishCall();
+                  model.establishCall(value.data!);
                 }
               },
               dataBuilder: (context, currentStep) {
@@ -51,6 +51,12 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                           onData: (value) {
                             if (value == InfobipCallStatusEnum.ON_ESTABLISHED) {
                               Navigator.pushReplacementNamed(context, RoutePaths.ActiveCallPage);
+                            } else if (value == InfobipCallStatusEnum.ON_HANGUP_REQUEST_TIMEOUT) {
+                              Navigator.pushReplacementNamed(context, RoutePaths.HelpCenterErrorPage,
+                                  arguments: value);
+                            } else if (value == InfobipCallStatusEnum.ON_HANGUP_NETWORK_ERROR) {
+                              Navigator.pushReplacementNamed(context, RoutePaths.HelpCenterErrorPage,
+                                  arguments: value);
                             }
                           },
                           dataBuilder: (context, currentStep) {
@@ -150,25 +156,35 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                                                                 fontWeight: FontWeight.w400),
                                                           ),
                                                           Spacer(),
-                                                          Padding(
-                                                            padding: EdgeInsets.only(bottom: 26.h),
-                                                            child: InkWell(
-                                                              onTap: () {
-                                                                Navigator.pop(context);
+                                                          AppStreamBuilder<Resource<bool>>(
+                                                              stream: model.hangupResponseStream,
+                                                              initialData: Resource.none(),
+                                                              onData: (value) {
+                                                                if (value.data!) {
+                                                                  Navigator.pop(context);
+                                                                }
                                                               },
-                                                              child: Center(
-                                                                child: Text(
-                                                                  S.of(context).backToDashboard,
-                                                                  style: TextStyle(
-                                                                    fontFamily: StringUtils.appFont,
-                                                                    color: AppColor.brightBlue,
-                                                                    fontSize: 14.t,
-                                                                    fontWeight: FontWeight.w600,
+                                                              dataBuilder: (context, data) {
+                                                                return Padding(
+                                                                  padding: EdgeInsets.only(bottom: 26.h),
+                                                                  child: InkWell(
+                                                                    onTap: () {
+                                                                      model.hangup();
+                                                                    },
+                                                                    child: Center(
+                                                                      child: Text(
+                                                                        S.of(context).backToDashboard,
+                                                                        style: TextStyle(
+                                                                          fontFamily: StringUtils.appFont,
+                                                                          color: AppColor.brightBlue,
+                                                                          fontSize: 14.t,
+                                                                          fontWeight: FontWeight.w600,
+                                                                        ),
+                                                                      ),
+                                                                    ),
                                                                   ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
+                                                                );
+                                                              }),
                                                         ],
                                                       )),
                                                 ),

@@ -21,7 +21,9 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
         stream: model.callStatusStream,
         initialData: InfobipCallStatusEnum.ON_RINGING,
         onData: (value) {
-          if (value == InfobipCallStatusEnum.ON_HANGUP) {
+          if (value == InfobipCallStatusEnum.ON_HANGUP_NORMAL ||
+              value == InfobipCallStatusEnum.ON_HANGUP_NETWORK_ERROR ||
+              value == InfobipCallStatusEnum.ON_HANGUP_REQUEST_TIMEOUT) {
             Navigator.pushReplacementNamed(context, RoutePaths.CallEndedPage);
           }
         },

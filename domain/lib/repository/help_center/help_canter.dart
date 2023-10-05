@@ -8,7 +8,7 @@ abstract class HelpCenterRepository {
 
   Future<Either<NetworkError, String>> obtainToken(ObtainToken parameter);
 
-  Future<Either<NetworkError, bool>> establishCall();
+  Future<Either<NetworkError, bool>> establishCall(String token);
 
   Future<Either<NetworkError, bool>> muteUnMute();
 
