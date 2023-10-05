@@ -101,6 +101,11 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
                           categoriesList: model.categoriesList,
                           rangeList: model.rangeList.toSet().toList(),
                           regionList: data.data?.allowedRegions, onSelected: (value) {
+                        ///Making search to empty
+                        model.buyVoucherSearchController.clear();
+                        model.searchCategory(searchText: '');
+
+                        model.filterSelectData = value;
                         model.evoucherFilterOption = value.filterOption;
                         model.getVoucherItemFilter(
                             category: value.categryId,

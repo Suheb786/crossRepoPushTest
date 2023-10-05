@@ -22,35 +22,39 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(additionalIncomeList) =>
       "إضافة دخل\n${additionalIncomeList}";
 
-  static String m1(estimatedTime) => "وقت الانتظار المتوقع \n${estimatedTime}";
+  static String m1(String) => "${String} يوم متبقي";
 
-  static String m2(Name) => "من {الاسم}";
+  static String m2(String) => "ينتهي في  ${String}";
 
-  static String m3(String) => "${String} تم تفعيل خدمة كليك على الاسم المستعار";
+  static String m3(estimatedTime) => "وقت الانتظار المتوقع \n${estimatedTime}";
 
-  static String m4(String) => "${String} تم حذف خدمة كليك على الاسم المستعار";
+  static String m4(Name) => "من {الاسم}";
 
-  static String m5(String) => "${String} تم إيقاف خدمة كليك على الاسم المستعار";
+  static String m5(String) => "${String} تم تفعيل خدمة كليك على الاسم المستعار";
 
-  static String m6(maximumLimit) => "أقصى ${maximumLimit} دينار";
+  static String m6(String) => "${String} تم حذف خدمة كليك على الاسم المستعار";
 
-  static String m7(noOfBills) => "تسديد ${noOfBills} فاتورة";
+  static String m7(String) => "${String} تم إيقاف خدمة كليك على الاسم المستعار";
 
-  static String m8(referFriendDescription) =>
+  static String m8(maximumLimit) => "أقصى ${maximumLimit} دينار";
+
+  static String m9(noOfBills) => "تسديد ${noOfBills} فاتورة";
+
+  static String m10(referFriendDescription) =>
       "!وبطلعلك لغاية ${referFriendDescription} دينار كاش بحسابك. كل ما دعيت ناس أكثر، كلما كسبت أكتر blink قم بدعوة أصدقائك وعائلتك للاستمتاع بتجربة";
 
-  static String m9(resendTime) => "إعادة الإرسال خلال ${resendTime}";
+  static String m11(resendTime) => "إعادة الإرسال خلال ${resendTime}";
 
-  static String m10(accountNo) => "حساب التوفير ${accountNo}";
+  static String m12(accountNo) => "حساب التوفير ${accountNo}";
 
-  static String m11(String) => "حساب التوفير ${String}";
+  static String m13(String) => "حساب التوفير ${String}";
 
-  static String m12(scrollToSetDate) => "اختار التاريخ ${scrollToSetDate}";
+  static String m14(scrollToSetDate) => "اختار التاريخ ${scrollToSetDate}";
 
-  static String m13(shareReferDescription) =>
+  static String m15(shareReferDescription) =>
       "مرحبا! انضم لعائلة بلينك اليوم. \n\nحمل التطبيق من خلال الرابط ${shareReferDescription}";
 
-  static String m14(noOfTransaction) => "نوع الحركة ${noOfTransaction}";
+  static String m16(noOfTransaction) => "نوع الحركة ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -845,6 +849,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dateOfBirth": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
         "dateOfBirthSmall":
             MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
+        "daysLeft": m1,
         "dcEnterOtpHeader": MessageLookupByLibrary.simpleMessage(
             "أدخل كلمة مرور OTP المكونة من 6 أرقام"),
         "dcMobileNumberUpdated": MessageLookupByLibrary.simpleMessage(
@@ -1081,6 +1086,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تفعيل تسجيل الدخول بالبصمة"),
         "enableFingerPrintError": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال تفعيل التسجيل بالبصمة. حاول كمان مرة بعدين."),
+        "endsOn": m2,
         "engagementTeam": MessageLookupByLibrary.simpleMessage("فريق التواصل "),
         "engagementTeamDescription": MessageLookupByLibrary.simpleMessage(
             "الرجاء اختيار طريقة التواصل المفضلة. رح يتم مراقبة أو تسجيل مكالمتك أو محادثتك لضمان الجودة."),
@@ -1309,7 +1315,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "حدث خطأ أثناء حدوث خطأ في ESettlement API"),
         "establishCallError":
             MessageLookupByLibrary.simpleMessage("خطأ خلال بدء المكالمة"),
-        "estimatedTime": m1,
+        "estimatedTime": m3,
         "evoucherUnderProcessing": MessageLookupByLibrary.simpleMessage(
             "القسيمة الإلكترونية قيد الإنتظار"),
         "exceptionExecutingGetPaymentReasons":
@@ -1442,7 +1448,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fromSavedBills":
             MessageLookupByLibrary.simpleMessage("من فواتيرك المخزنة"),
         "fromSingleLine": MessageLookupByLibrary.simpleMessage("من"),
-        "fromStrin": m2,
+        "fromStrin": m4,
         "fromYou": MessageLookupByLibrary.simpleMessage("منك"),
         "fromYouWouldYouLikeToAcceptIt":
             MessageLookupByLibrary.simpleMessage("منك، هل تريد الموافقة"),
@@ -1537,9 +1543,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خدمات حكومية"),
         "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage(
             "للاستمرار، لازم يكون العمر أكبر من 18 سنة."),
-        "hasBeenActivated": m3,
-        "hasBeenDeleted": m4,
-        "hasbeenSuspended": m5,
+        "hasBeenActivated": m5,
+        "hasBeenDeleted": m6,
+        "hasbeenSuspended": m7,
         "hello": MessageLookupByLibrary.simpleMessage("مرحباً"),
         "helloE": MessageLookupByLibrary.simpleMessage("مرحبا!"),
         "helloHereMyBlinkAccount": MessageLookupByLibrary.simpleMessage(
@@ -2006,7 +2012,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "وصلت للحد الأقصى من عدد الحسابات. للأسف ما رح تقدر تفتح حساب جديد."),
         "maximumAgeOfUser": MessageLookupByLibrary.simpleMessage(
             "الحد الأدنى للعمر هو 18 سنة. بنستناك بعيد ميلادك الـ 18."),
-        "maximumLimit": m6,
+        "maximumLimit": m8,
         "mayBeLater": MessageLookupByLibrary.simpleMessage("خليها لبعدين"),
         "merchantPaymentValueExceeded": MessageLookupByLibrary.simpleMessage(
             "تم تجاوز سقف الدفع في المتاجر"),
@@ -2290,7 +2296,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "الدفع و طلب الأموال من خلال رمز الاستجابة السريع  متاح حاليا فقط للتحويل بين عملاء بلينك ، سنعلمك في حال أصبحت جاهزة و فعالة للجميع"),
         "payBack": MessageLookupByLibrary.simpleMessage("سداد"),
         "payBill": MessageLookupByLibrary.simpleMessage("تسديد الفاتورة"),
-        "payBills": m7,
+        "payBills": m9,
         "payFrom": MessageLookupByLibrary.simpleMessage("تسديد من"),
         "payMyBill": MessageLookupByLibrary.simpleMessage("تسديد فاتورتي"),
         "payNewBill": MessageLookupByLibrary.simpleMessage("ادفع فاتورة جديدة"),
@@ -2536,7 +2542,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "refNumber": MessageLookupByLibrary.simpleMessage("984893922"),
         "refTitle": MessageLookupByLibrary.simpleMessage("رقم المرجع"),
         "referFriend": MessageLookupByLibrary.simpleMessage("دعوة صديق"),
-        "referFriendDescription": m8,
+        "referFriendDescription": m10,
         "referenceNo": MessageLookupByLibrary.simpleMessage("الرقم المرجعي"),
         "referenceNumber": MessageLookupByLibrary.simpleMessage("رقم المرجع"),
         "referenceNumberSmall":
@@ -2648,7 +2654,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "rescheduleTheCall":
             MessageLookupByLibrary.simpleMessage("تحديد موعد للمكالمة"),
         "resendCode": MessageLookupByLibrary.simpleMessage("أعد إرسال الرمز"),
-        "resendIn": m9,
+        "resendIn": m11,
         "resendOtpError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "resetFilter": MessageLookupByLibrary.simpleMessage("إلغاء الفلتر"),
@@ -2704,8 +2710,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "saveEarningsDigitally":
             MessageLookupByLibrary.simpleMessage("احفظ أرباحك رقمياً وبأمان"),
-        "savingAccount": m10,
-        "savingAccountList": m11,
+        "savingAccount": m12,
+        "savingAccountList": m13,
         "savingCountryResidenceError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-006)"),
         "savingFatcaDetailsError": MessageLookupByLibrary.simpleMessage(
@@ -2726,7 +2732,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("امسح هويتك عشان تكمّل"),
         "scheduleLater":
             MessageLookupByLibrary.simpleMessage("تحديد موعد لاحق"),
-        "scrollToSetDate": m12,
+        "scrollToSetDate": m14,
         "searchAgain": MessageLookupByLibrary.simpleMessage("البحث مرة أخرى"),
         "searchBill": MessageLookupByLibrary.simpleMessage("البحث عن فاتورة"),
         "searchCategory": MessageLookupByLibrary.simpleMessage("البحث عن فئة"),
@@ -2835,7 +2841,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "shareMyReceipt": MessageLookupByLibrary.simpleMessage("مشاركة الوصل"),
         "sharePdf": MessageLookupByLibrary.simpleMessage("مشاركة ملف PDF"),
         "shareQr": MessageLookupByLibrary.simpleMessage("شارك رمز QR"),
-        "shareReferDescription": m13,
+        "shareReferDescription": m15,
         "showQrForScanning":
             MessageLookupByLibrary.simpleMessage("اعرض رمز QR لمسحه"),
         "signatureUploadDes": MessageLookupByLibrary.simpleMessage(
@@ -3065,7 +3071,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeOfIncome": MessageLookupByLibrary.simpleMessage("نوع الدخل"),
         "typeOfTransactions":
             MessageLookupByLibrary.simpleMessage("نوع الحركات"),
-        "typeOfTransactionsSmall": m14,
+        "typeOfTransactionsSmall": m16,
         "unBlockPin":
             MessageLookupByLibrary.simpleMessage("فك حظر الرمز السري PIN"),
         "unBlockPinDescription": MessageLookupByLibrary.simpleMessage(

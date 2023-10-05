@@ -1,11 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/offer_campaign/offer/offer_for_you_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/custom_bullet_with_title_widget.dart';
 import 'package:neo_bank/ui/molecules/evoucher/evoucher_text_widget.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
+import 'package:neo_bank/utils/time_utils.dart';
 
 import '../../../utils/string_utils.dart';
 import 'offer_detail_page_view_model.dart';
@@ -20,16 +23,13 @@ class OfferDetailPageView extends BasePageViewWidget<OfferDetailPageViewModel> {
         Container(
           height: 180.h,
           width: double.infinity,
-          color: Colors.red,
           child: Stack(
             alignment: AlignmentDirectional.centerStart,
             children: [
               Container(
                 width: double.infinity,
-                child: CachedNetworkImage(
-                  imageUrl: "",
-                  placeholder: (context, url) => Container(color: Theme.of(context).primaryColor),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                child: Image.memory(
+                  model.argument.offers.image,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -80,8 +80,6 @@ class PageDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var htmlDecodedString =
-    //     parse(model.argument.selectedVoucherData?.termsAndConditions ?? "").body?.text ?? '';
     return Column(
       children: [
         Expanded(
@@ -92,14 +90,17 @@ class PageDetail extends StatelessWidget {
                 SizedBox(height: 40.h),
                 EVoucherTextWidget(
                   alignment: AlignmentDirectional.topStart,
-                  text: "Gerard",
+                  text: model.argument.offers.campaignName ?? '',
                   textSize: 20.t,
                   textWeight: FontWeight.w600,
                   textColor: Theme.of(context).colorScheme.shadow,
                 ),
+                SizedBox(
+                  height: 4.h,
+                ),
                 EVoucherTextWidget(
                   alignment: AlignmentDirectional.topStart,
-                  text: "15% discount on Debit Card",
+                  text: model.argument.offers.descriptions ?? '',
                   textSize: 14.t,
                   textWeight: FontWeight.w600,
                   textColor: Theme.of(context).colorScheme.surfaceTint,
@@ -107,20 +108,28 @@ class PageDetail extends StatelessWidget {
                 SizedBox(height: 16.h),
                 EVoucherTextWidget(
                   alignment: AlignmentDirectional.topStart,
-                  text: "Ends on 27th Sep",
+                  text: S.of(context).endsOn(TimeUtils.getFormattedDateForTransaction(
+                      model.argument.offers.campaignValidTill ?? '')),
                   textSize: 14.t,
                   textWeight: FontWeight.w600,
                   textColor: Theme.of(context).colorScheme.surfaceTint,
                 ),
+                SizedBox(height: 8.h),
                 Padding(
                   padding: EdgeInsetsDirectional.only(start: 24.0.w),
                   child: Container(
                     padding: EdgeInsetsDirectional.only(start: 8.0.w, end: 8.0.w, top: 3.5.h, bottom: 1.5.h),
                     decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondaryContainer,
+                        color: TimeUtils.differentBetweenTwoDateInDays(
+                                    model.argument.offers.campaignValidTill ?? '') <=
+                                9
+                            ? getColor(OfferType.EARLY)
+                            : getColor(OfferType.LATER),
                         borderRadius: BorderRadius.circular(100)),
                     child: Text(
-                      "2 days left",
+                      TimeUtils.differentBetweenTwoDateInDays(model.argument.offers.campaignValidTill ?? '')
+                              .toString() +
+                          " days left",
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           color: Theme.of(context).colorScheme.secondary,
@@ -129,26 +138,31 @@ class PageDetail extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 32.h,
-                ),
-                EVoucherTextWidget(
-                  alignment: AlignmentDirectional.topStart,
-                  text: S.of(context).termsAndConditionsSetting,
-                  textSize: 14.t,
-                  textWeight: FontWeight.w600,
-                  textColor: Theme.of(context).colorScheme.shadow,
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.w, top: 16.h),
+                Visibility(
+                  visible: (model.argument.offers.termsAndConditions ?? '').isNotEmpty,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo",
-                        style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          fontSize: 14.t,
-                          fontWeight: FontWeight.w400,
+                      SizedBox(
+                        height: 32.h,
+                      ),
+                      EVoucherTextWidget(
+                        alignment: AlignmentDirectional.topStart,
+                        text: S.of(context).termsAndConditionsSetting,
+                        textSize: 14.t,
+                        textWeight: FontWeight.w600,
+                        textColor: Theme.of(context).colorScheme.shadow,
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.w, top: 16.h),
+                        child: Column(
+                          children: [
+                            CustomBulletWithTitle(
+                              title: model.argument.offers.termsAndConditions ?? '',
+                              fontSize: 14.t,
+                              lineHeight: 1.7,
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -160,5 +174,15 @@ class PageDetail extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Color getColor(OfferType value) {
+    switch (value) {
+      case OfferType.EARLY:
+        return AppColor.dark_orange;
+
+      default:
+        return AppColor.darkModerateLimeGreen;
+    }
   }
 }

@@ -12,12 +12,14 @@ class EstablishCallUseCase extends BaseUseCase<BaseError, EstablishCallUseCasePa
 
   @override
   Future<Either<BaseError, bool>> execute({required EstablishCallUseCaseParams params}) {
-    return _helpCenterRepository.establishCall();
+    return _helpCenterRepository.establishCall(params.token);
   }
 }
 
 class EstablishCallUseCaseParams extends Params {
-  EstablishCallUseCaseParams();
+  String token;
+
+  EstablishCallUseCaseParams({required this.token});
 
   @override
   Either<AppError, bool> verify() {

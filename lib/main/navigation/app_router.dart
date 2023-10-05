@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/infobip_call_status_enum.dart';
 import 'package:domain/model/payment/transfer_success_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
@@ -152,6 +153,7 @@ import 'package:neo_bank/utils/navgition_type.dart';
 
 import '../../feature/evoucher/evoucher/evoucher_page.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page.dart';
+import '../../feature/help_center/error_screen/help_center_error_page.dart';
 import '../../feature/rj/rj_book_flight/rj_book_flight_page.dart';
 import '../../feature/rj/rj_booking_confirmed_in_app_web_view/rj_booking_confirmed_in_app_web_view_page.dart';
 import '../../feature/rj/rj_booking_fail/rj_booking_fail_page.dart';
@@ -378,6 +380,11 @@ class AppRouter {
       case RoutePaths.HelpCenter:
         return CupertinoPageRoute(
             builder: (context) => HelpCenterPage(), settings: RouteSettings(name: RoutePaths.HelpCenter));
+
+      case RoutePaths.HelpCenterErrorPage:
+        return CupertinoPageRoute(
+            builder: (context) => HelpCenterErrorPage(settings.arguments as InfobipCallStatusEnum),
+            settings: RouteSettings(name: RoutePaths.HelpCenterErrorPage));
 
       case RoutePaths.ActiveCallPage:
         return CupertinoPageRoute(
@@ -955,12 +962,14 @@ class AppRouter {
             builder: (context) =>
                 OpenSubAccountSuccessPage(settings.arguments as OpenSubAccountSuccessPageArgument),
             settings: RouteSettings(name: RoutePaths.OpenSubAccountSuccessPage));
+
       case RoutePaths.SelectTransferPage:
         return CupertinoPageRoute(
             builder: (context) => SelectTransferPage(
                   argument: settings.arguments as SelectTranferPageArgument,
                 ),
             settings: RouteSettings(name: RoutePaths.SelectTransferPage));
+
       case RoutePaths.TransferSuccessPage:
         return CupertinoPageRoute(
             builder: (context) => TransferSuccessPage(settings.arguments as TransferSuccessPageArgument),
@@ -973,13 +982,14 @@ class AppRouter {
 
       case RoutePaths.OfferDetailPage:
         return CupertinoPageRoute(
-            builder: (context) => OfferDetailPage(),
+            builder: (context) => OfferDetailPage(settings.arguments as OfferDetailPageArgument),
             settings: RouteSettings(name: RoutePaths.OfferDetailPage));
 
       case RoutePaths.RJBookingFailurePage:
         return CupertinoPageRoute(
             builder: (context) => RJBookingFailurePage(),
             settings: RouteSettings(name: RoutePaths.RJBookingFailurePage));
+
       default:
         return CupertinoPageRoute(
           builder: (context) => Container(),
