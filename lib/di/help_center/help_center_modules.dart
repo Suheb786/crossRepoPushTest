@@ -8,8 +8,11 @@ import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/
 import '../../feature/help_center/error_screen/help_center_error_page_view_model.dart';
 
 final helpCenterViewModelProvider = ChangeNotifierProvider.autoDispose<HelpCenterPageViewModel>(
-  (ref) => HelpCenterPageViewModel(ref.read(infobipAudioPluginUseCaseProvider),
-      ref.read(obtainTokenUseCaseProvider), ref.read(establishCallUseCaseProvider)),
+  (ref) => HelpCenterPageViewModel(
+      ref.read(infobipAudioPluginUseCaseProvider),
+      ref.read(obtainTokenUseCaseProvider),
+      ref.read(establishCallUseCaseProvider),
+      ref.read(hangupCallUseCaseProvider)),
 );
 
 final helpCenterErrorViewModelProvider = ChangeNotifierProvider.autoDispose<HelpCenterErrorPageViewModel>(

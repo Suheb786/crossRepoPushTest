@@ -1,6 +1,7 @@
 import 'package:domain/constants/enum/infobip_call_status_enum.dart';
 import 'package:domain/model/infobip_audio/obtain_token.dart';
 import 'package:domain/usecase/infobip_audio/establish_call_usecase.dart';
+import 'package:domain/usecase/infobip_audio/hangup_call_usecase.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_audio_usecase.dart';
 import 'package:domain/usecase/infobip_audio/obtain_token_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -15,17 +16,22 @@ class HelpCenterPageViewModel extends BasePageViewModel {
   PublishSubject<InfobipAudioPluginUseCaseParams> _initInfobipRequestSubject = PublishSubject();
   PublishSubject<ObtainTokenUseCaseParams> _obtainTokenRequestSubject = PublishSubject();
   PublishSubject<EstablishCallUseCaseParams> _establishCallRequestSubject = PublishSubject();
+  PublishSubject<HangupCallUseCaseParams> _hangupRequestSubject = PublishSubject();
 
   PublishSubject<Resource<bool>> _initInfobipResponseSubject = PublishSubject();
   PublishSubject<Resource<bool>> _establishCallResponseSubject = PublishSubject();
   PublishSubject<Resource<String>> _obtainTokenResponseSubject = PublishSubject();
+  PublishSubject<Resource<bool>> _hangupResponseSubject = PublishSubject();
+
+  Stream<Resource<bool>> get hangupResponseStream => _hangupResponseSubject.stream;
 
   final InfobipAudioPluginUseCase _infobipAudioPluginUseCase;
   final ObtainTokenUseCase _obtainTokenUseCase;
   final EstablishCallUseCase _establishCallUseCase;
+  final HangupCallUseCase _hangupCallUseCase;
 
-  HelpCenterPageViewModel(
-      this._infobipAudioPluginUseCase, this._obtainTokenUseCase, this._establishCallUseCase) {
+  HelpCenterPageViewModel(this._infobipAudioPluginUseCase, this._obtainTokenUseCase,
+      this._establishCallUseCase, this._hangupCallUseCase) {
     _initInfobipRequestSubject.listen((value) {
       RequestManager(value, createCall: () {
         return _infobipAudioPluginUseCase.execute(params: value);
@@ -52,6 +58,16 @@ class HelpCenterPageViewModel extends BasePageViewModel {
         _establishCallResponseSubject.safeAdd(event);
       });
     });
+
+    _hangupRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _hangupCallUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        updateLoader();
+        _hangupResponseSubject.safeAdd(event);
+      });
+    });
+
     initInfobipPlugin();
   }
 
@@ -78,6 +94,10 @@ class HelpCenterPageViewModel extends BasePageViewModel {
     _establishCallRequestSubject.safeAdd(EstablishCallUseCaseParams(token: token));
   }
 
+  hangup() {
+    _hangupRequestSubject.safeAdd(HangupCallUseCaseParams());
+  }
+
   @override
   void dispose() {
     _initInfobipResponseSubject.close();
@@ -86,6 +106,8 @@ class HelpCenterPageViewModel extends BasePageViewModel {
     _obtainTokenRequestSubject.close();
     _establishCallRequestSubject.close();
     _establishCallResponseSubject.close();
+    _hangupResponseSubject.close();
+    _hangupRequestSubject.close();
     _callStatusSubject.close();
     super.dispose();
   }
