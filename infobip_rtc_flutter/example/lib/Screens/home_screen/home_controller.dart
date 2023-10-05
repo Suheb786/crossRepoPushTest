@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:infobipplugin/infobipplugin.dart';
 import 'package:infobipplugin_example/Screens/call_screen/call_screen.dart';
@@ -68,10 +69,10 @@ class HomeController extends GetxController {
           await getToken();
         }
       }
-      print("===================online status=================${onlineStatus}");
+      debugPrint("===================online status=================$onlineStatus");
     } else {
       onlineStatus = false;
-      print("===================online status=================${onlineStatus}");
+      debugPrint("===================online status=================$onlineStatus");
 
       Get.snackbar("Error", "Please Check Internet Connection",
           backgroundColor: ColorConstatnts.red, colorText: ColorConstatnts.white);
@@ -126,7 +127,7 @@ class HomeController extends GetxController {
       // app. The only way to change the permission's status now is to let the
       // user manually enable it in the system settings.
 
-      Permission.microphone.request().then((value) => print("===========$value"));
+      Permission.microphone.request().then((value) => debugPrint("===========$value"));
     } else {}
   }
 
@@ -145,7 +146,7 @@ class HomeController extends GetxController {
             time.cancel();
           }
         } else {
-          Get.snackbar("Error", "$callMake", backgroundColor: ColorConstatnts.red);
+          Get.snackbar("Error", callMake, backgroundColor: ColorConstatnts.red);
         }
       } else {
         Get.snackbar("Error", "Please get token first", backgroundColor: ColorConstatnts.red);

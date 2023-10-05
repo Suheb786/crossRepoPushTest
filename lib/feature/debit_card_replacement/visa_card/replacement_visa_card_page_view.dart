@@ -10,7 +10,6 @@ import 'package:neo_bank/di/debit_card_replacement/debit_card_replacement_module
 import 'package:neo_bank/feature/debit_card_replacement/visa_card/replacement_visa_card_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/card/apply_debit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';

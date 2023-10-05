@@ -349,8 +349,8 @@ class AppRouter {
       case RoutePaths.RequestPaymentFromNewRecipient:
         return CupertinoPageRoute(
             builder: (context) => RequestPaymentFromNewRecipientPage(
-              argument: settings.arguments as RequestPaymentFromNewRecipientArgument,
-            ),
+                  argument: settings.arguments as RequestPaymentFromNewRecipientArgument,
+                ),
             settings: RouteSettings(name: RoutePaths.RequestPaymentFromNewRecipient));
 
       case RoutePaths.PaymentToNewRecipient:
@@ -847,7 +847,7 @@ class AppRouter {
             builder: (context) => QrScanningScreenPage(),
             settings: RouteSettings(name: RoutePaths.QRScanningScreen));
 
-    /// for web view for RJ Flight Booking
+      /// for web view for RJ Flight Booking
       case RoutePaths.RjBookingInAppWebView:
         return CupertinoPageRoute(
             builder: (context) => RjBookingPage(settings.arguments as RjBookingPageArguments),
@@ -858,26 +858,26 @@ class AppRouter {
             builder: (context) => RjFlightBookingPage(),
             settings: RouteSettings(name: RoutePaths.RjFlightBookingPage));
 
-    /// Rj Flight Booking PurchasePage
+      /// Rj Flight Booking PurchasePage
       case RoutePaths.RjFlightBookingPurchasePage:
         return CupertinoPageRoute(
             builder: (context) => RjBookingPurchasePage(),
             settings: RouteSettings(name: RoutePaths.RjFlightBookingPurchasePage));
 
-    /// Rj Flight Booking Detail Page
+      /// Rj Flight Booking Detail Page
       case RoutePaths.RjFlightBookingDetailPage:
         return CupertinoPageRoute(
             builder: (context) => RjFlightBookingDetailPage(),
             settings: RouteSettings(name: RoutePaths.RjFlightBookingDetailPage));
 
-    /// Rj Flight Booking Success Page
+      /// Rj Flight Booking Success Page
       case RoutePaths.RJBookingSuccessPage:
         return CupertinoPageRoute(
             builder: (context) => RJBookingSuccessPage(),
             settings:
-            RouteSettings(name: RoutePaths.RJBookingSuccessPage, arguments: RjBookingPageArguments));
+                RouteSettings(name: RoutePaths.RJBookingSuccessPage, arguments: RjBookingPageArguments));
 
-    /// Rj Flight Booking Confirmation InAppWeb Page
+      /// Rj Flight Booking Confirmation InAppWeb Page
       case RoutePaths.RJBookingConfirmedInAppWebViewPage:
         return CupertinoPageRoute(
             builder: (context) => RJBookingConfirmedInAppWebViewPage(),
@@ -923,7 +923,7 @@ class AppRouter {
                 PaymentTransationSuccessPage(settings.arguments as PaymentTransationSuccessArgument),
             settings: RouteSettings(name: RoutePaths.PaymentTransationSuccess));
 
-    /// [Manage Contact]
+      /// [Manage Contact]
       case RoutePaths.AddContactsIBANManageContactsPage:
         return CupertinoPageRoute(
             builder: (context) =>
@@ -951,19 +951,21 @@ class AppRouter {
             builder: (context) => CameraCapturePage(),
             settings: RouteSettings(name: RoutePaths.CameraCapturePage));
 
-    ///------------[Sub-Account-Router]---------///
+      ///------------[Sub-Account-Router]---------///
 
       case RoutePaths.OpenSubAccountSuccessPage:
         return CupertinoPageRoute(
             builder: (context) =>
                 OpenSubAccountSuccessPage(settings.arguments as OpenSubAccountSuccessPageArgument),
             settings: RouteSettings(name: RoutePaths.OpenSubAccountSuccessPage));
+
       case RoutePaths.SelectTransferPage:
         return CupertinoPageRoute(
             builder: (context) => SelectTransferPage(
-              argument: settings.arguments as SelectTranferPageArgument,
-            ),
+                  argument: settings.arguments as SelectTranferPageArgument,
+                ),
             settings: RouteSettings(name: RoutePaths.SelectTransferPage));
+
       case RoutePaths.TransferSuccessPage:
         return CupertinoPageRoute(
             builder: (context) => TransferSuccessPage(settings.arguments as TransferSuccessPageArgument),
@@ -983,6 +985,7 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => RJBookingFailurePage(),
             settings: RouteSettings(name: RoutePaths.RJBookingFailurePage));
+
       default:
         return CupertinoPageRoute(
           builder: (context) => Container(),
