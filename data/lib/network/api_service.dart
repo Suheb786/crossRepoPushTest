@@ -253,6 +253,7 @@ import 'package:data/entity/remote/qr/qr_transfer_response_entity.dart';
 import 'package:data/entity/remote/qr/verify_qr_response_entity.dart';
 import 'package:data/entity/remote/rj/get_destination/destination_response_entity.dart';
 import 'package:data/entity/remote/rj/get_destination/get_destination_request_entity.dart';
+import 'package:data/entity/remote/rj/get_flight_details/flight_details_response_entity.dart';
 import 'package:data/entity/remote/rj/get_flight_details/get_flight_details_request_entity.dart';
 import 'package:data/entity/remote/rj/get_flight_details/make_ticket_payment_request_entity.dart';
 import 'package:data/entity/remote/rj/trip/get_one_way_trip_link_request_entity.dart';
@@ -937,25 +938,26 @@ abstract class ApiService {
   );
 
   ///RJ
-  @POST("${NetworkProperties.RJ_URL}/RJ/GetDestinations")
+  @POST("${NetworkProperties.BASE_RJ_URL}/RJ/GetDestinations")
   Future<HttpResponse<DestinationResponseEntity>> getDestinations(
       @Body() GetDestinationRequestEntity request);
 
-  @POST("${NetworkProperties.RJ_URL}/RJ/GetOneWayLink")
+  @POST("${NetworkProperties.BASE_RJ_URL}/RJ/GetOneWayLink")
   Future<HttpResponse<GetTripResponseEntity>> getOneWayTripLink(
       @Body() GetOneWayTripLinkRequestEntity request);
 
-  @POST("${NetworkProperties.RJ_URL}/RJ/GetRoundTripLink")
+  @POST("${NetworkProperties.BASE_RJ_URL}/RJ/GetRoundTripLink")
   Future<HttpResponse<GetTripResponseEntity>> getTwoWayTripLink(
       @Body() GetTwoWayTripLinkRequestEntity request);
 
-  @POST("${NetworkProperties.RJ_URL}/RJ/MakeTicketPayment")
+  @POST("${NetworkProperties.BASE_RJ_URL}/RJ/MakeTicketPayment")
   Future<HttpResponse<ResponseEntity>> makeTicketPayment(@Body() MakeTicketPaymentRequestEntity request);
 
-  @POST("${NetworkProperties.RJ_URL}/RJ/GetFlightDetails")
-  Future<HttpResponse<ResponseEntity>> getFlightDetails(@Body() GetFlightDetailsRequestEntity request);
+  @POST("${NetworkProperties.BASE_RJ_URL}/RJ/GetFlightDetails")
+  Future<HttpResponse<FlightDetailsResponseEntity>> getFlightDetails(
+      @Body() GetFlightDetailsRequestEntity request);
 
-  @POST("${NetworkProperties.RJ_URL}/RJ/MakeTicketPaymentOtp")
+  @POST("${NetworkProperties.BASE_RJ_URL}/RJ/MakeTicketPaymentOtp")
   Future<HttpResponse<ResponseEntity>> rjOtpValidate(@Body() BaseRequest request);
 
   ///CLIQ

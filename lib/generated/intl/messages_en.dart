@@ -462,7 +462,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookingConfirmation":
             MessageLookupByLibrary.simpleMessage("Booking Confirmation"),
         "bookingConfirmed":
-            MessageLookupByLibrary.simpleMessage(" BookingConfirmed!"),
+            MessageLookupByLibrary.simpleMessage(" Booking Confirmed!"),
         "bookingConfirmedDescription": MessageLookupByLibrary.simpleMessage(
             "You got the best deal. You will receive your booking details on your email. Enjoy your trip and travel safe!"),
         "bookingRefNo": MessageLookupByLibrary.simpleMessage("Booking Ref No."),
@@ -725,6 +725,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Review and confirm\nyour details"),
         "confirmYourPaymentAmtBelow": MessageLookupByLibrary.simpleMessage(
             "Confirm your payment\namount below"),
+        "confirmationURL":
+            MessageLookupByLibrary.simpleMessage("Confirmation URL"),
         "confrimCreditCardDeliveryError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "congratulations":
@@ -1414,6 +1416,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "explainReason": MessageLookupByLibrary.simpleMessage("EXPLAIN REASON"),
         "explanation": MessageLookupByLibrary.simpleMessage("EXPLANATION"),
         "failed": MessageLookupByLibrary.simpleMessage("Failed"),
+        "fare": MessageLookupByLibrary.simpleMessage("Fare"),
         "fatca": MessageLookupByLibrary.simpleMessage("FATCA "),
         "fatcaCertification":
             MessageLookupByLibrary.simpleMessage("FATCA Certification"),
@@ -3035,6 +3038,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "I confirm that my tax residency is accurate and agree to the Terms and Conditions of the bank."),
         "taxationDetailsDescription": MessageLookupByLibrary.simpleMessage(
             "By law, you are needed to declare your taxation details"),
+        "taxesAndFee": MessageLookupByLibrary.simpleMessage("Taxes & Fees"),
         "telecommunication":
             MessageLookupByLibrary.simpleMessage("Telecommunication"),
         "tellUsAboutImportantInformations":

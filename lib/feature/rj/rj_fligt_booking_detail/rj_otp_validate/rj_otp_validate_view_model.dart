@@ -88,14 +88,12 @@ class RjOtpValidateViewModel extends BasePageViewModel {
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
-  BehaviorSubject<String> _otpSubject = BehaviorSubject.seeded("");
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   void validate(String value) {
     if (value.isNotEmpty && value.length == 6) {
       _showButtonSubject.safeAdd(true);
-      _otpSubject.safeAdd(value);
     } else {
       _showButtonSubject.safeAdd(false);
     }
@@ -110,7 +108,6 @@ class RjOtpValidateViewModel extends BasePageViewModel {
   void dispose() {
     countDownController.disposeTimer();
     _showButtonSubject.close();
-    _otpSubject.close();
     super.dispose();
   }
 }

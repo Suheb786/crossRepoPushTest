@@ -1721,7 +1721,7 @@
   "bookingConfirmation": "Booking Confirmation",
   "oopsTransactionFailed": "OOPS! TRANSACTION FAILED",
   "youHaveInsufficientBalanceInYourAccount": "You have insufficient balance in your account",
-  "bookingConfirmed": " BookingConfirmed!",
+  "bookingConfirmed": " Booking Confirmed!",
   "bookingunsuccessful": "Booking Unsuccessful",
   "bookingConfirmedDescription": "You got the best deal. You will receive your booking details on your email. Enjoy your trip and travel safe!",
   "bookingUnsuccessDescription": "We're sorry, but we're unable to complete your flight booking at this time due toan error. Please try again later.",
@@ -1873,7 +1873,10 @@
   "ourAgentsAreOccupiedDescription": "شكرا لانتظارك! فريقنا مشغول حاليا بمساعدة أصدقائك في بلينك. يرجى الاتصال معنا لاحقا أو دردش معنا من خلال التطبيق أو تواصل معنا على الرقم 5200100-06.",
   "lostConnection": "الشبكة ضعيفة",
   "lostConnectionDescription": "شكرا لتفهمك! الشبكة ضعيفة وما عم نقدر نتواصل معك. يرجى الاتصال معنا لاحقا أو دردش معنا من  خلال التطبيق أو تواصل معنا على الرقم 5200100-06."
-  "referralLink": "رابط الدعوة",
   "daysLeft": "{String} يوم متبقي",
-  "endsOn": "ينتهي في  {String}"
+  "endsOn": "ينتهي في  {String}",
+  "referralLink": "رابط الدعوة",
+  "fare": "Fare",
+  "taxesAndFee": "Taxes & Fees",
+  "confirmationURL": "Confirmation URL"
 }

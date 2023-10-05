@@ -861,13 +861,16 @@ class AppRouter {
       /// Rj Flight Booking PurchasePage
       case RoutePaths.RjFlightBookingPurchasePage:
         return CupertinoPageRoute(
-            builder: (context) => RjBookingPurchasePage(),
+            builder: (context) => RjBookingPurchasePage(
+                  arguments: settings.arguments as RjBookingPurchasePageArgument,
+                ),
             settings: RouteSettings(name: RoutePaths.RjFlightBookingPurchasePage));
 
       /// Rj Flight Booking Detail Page
       case RoutePaths.RjFlightBookingDetailPage:
         return CupertinoPageRoute(
-            builder: (context) => RjFlightBookingDetailPage(),
+            builder: (context) =>
+                RjFlightBookingDetailPage(settings.arguments as RJFlightDetailsPageArguments),
             settings: RouteSettings(name: RoutePaths.RjFlightBookingDetailPage));
 
       /// Rj Flight Booking Success Page
@@ -880,7 +883,8 @@ class AppRouter {
       /// Rj Flight Booking Confirmation InAppWeb Page
       case RoutePaths.RJBookingConfirmedInAppWebViewPage:
         return CupertinoPageRoute(
-            builder: (context) => RJBookingConfirmedInAppWebViewPage(),
+            builder: (context) => RJBookingConfirmedInAppWebViewPage(
+                settings.arguments as RJBookingConfirmedInAppWebViewPageArguments),
             settings: RouteSettings(name: RoutePaths.RJBookingConfirmedInAppWebViewPage));
 
       case RoutePaths.LinkAccountPage:

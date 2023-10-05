@@ -28,22 +28,20 @@ class RJBookingConfirmedInAppWebViewPageView
           topRight: Radius.circular(16),
         ),
       ),
-      child: Padding(
-        padding: EdgeInsets.only(top: 30.h),
-        child: Column(
-          children: [
-            Expanded(
-              child: Stack(
-                children: [
-                  Container(
-                    color: Theme.of(context).colorScheme.secondary,
-                  ),
-                  InAppWebView(
-                    initialUrlRequest: URLRequest(url: Uri.parse("www.amazon.com")),
+      child: Column(
+        children: [
+          Expanded(
+            child: Stack(
+              children: [
+                Container(
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 30.h),
+                  child: InAppWebView(
+                    initialUrlRequest: URLRequest(url: Uri.parse(model.arguments.url)),
                     onWebViewCreated: (controller) {},
-                    onPageCommitVisible: (con, uri) {
-                      debugPrint("url ${uri.toString()}");
-                    },
+                    onPageCommitVisible: (con, uri) {},
                     onProgressChanged: (controller, progress) {
                       model.setIndicatorProgressValue(progress / 100);
                     },
@@ -123,51 +121,48 @@ class RJBookingConfirmedInAppWebViewPageView
                       );
                     },
                   ),
-                  AppStreamBuilder<double>(
-                    stream: model.indicatorProgressStream,
-                    initialData: 0.0,
-                    dataBuilder: (context, data) {
-                      return (data ?? 0.0) < 1.0
-                          ? LinearProgressIndicator(
-                              value: data,
-                            )
-                          : Container();
-                    },
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height / 18,
-              decoration:
-                  BoxDecoration(border: Border(top: BorderSide(color: AppColor.very_light_grayish_blue))),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: IconButton(
-                  padding: EdgeInsetsDirectional.only(end: 20.w),
-                  icon:
-                      AppSvg.asset(AssetUtils.share, color: Theme.of(context).colorScheme.onPrimaryContainer),
-                  onPressed: () {
-                    _shareFiles(context);
+                ),
+                AppStreamBuilder<double>(
+                  stream: model.indicatorProgressStream,
+                  initialData: 0.0,
+                  dataBuilder: (context, data) {
+                    return (data ?? 0.0) < 1.0
+                        ? LinearProgressIndicator(
+                            value: data,
+                          )
+                        : Container();
                   },
                 ),
+              ],
+            ),
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height / 18,
+            decoration:
+                BoxDecoration(border: Border(top: BorderSide(color: AppColor.very_light_grayish_blue))),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: IconButton(
+                padding: EdgeInsetsDirectional.only(end: 20.w),
+                icon: AppSvg.asset(AssetUtils.share, color: Theme.of(context).colorScheme.onPrimaryContainer),
+                onPressed: () {
+                  _shareFiles(context, model.arguments.url);
+                },
               ),
             ),
-            SizedBox(
-              height: 45.h,
-            )
-          ],
-        ),
+          ),
+          SizedBox(
+            height: 45.h,
+          )
+        ],
       ),
     );
   }
 
-  void _shareFiles(
-    BuildContext context,
-  ) async {
+  void _shareFiles(BuildContext context, String url) async {
     await Share.share(
-      S.current.url,
-      subject: 'booking confirmed',
+      url,
+      subject: S.of(context).confirmationURL,
     );
   }
 }

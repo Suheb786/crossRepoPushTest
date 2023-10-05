@@ -1393,6 +1393,8 @@ class ErrorParser {
         return localisedHelper.selectAnyOption;
       case ErrorType.INSUFFICIENT_BALANCE_SUBACCOUNT:
         return localisedHelper.insufficientBalanceSubAccount;
+      case ErrorType.NO_BALANCE_ACCOUNT:
+        return localisedHelper.youHaveInsufficientBalanceInYourAccount;
       default:
         return "";
     }

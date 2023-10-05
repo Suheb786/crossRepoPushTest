@@ -23,7 +23,7 @@ class RjFlightBookingViewModel extends BasePageViewModel {
   ///----------------Get Destination--------------///
   PublishSubject<GetDestinationUseCaseParams> _getDestinationRequest = PublishSubject();
 
-  PublishSubject<Resource<DestinationResponse>> _getDestinationResponse = PublishSubject();
+  BehaviorSubject<Resource<DestinationResponse>> _getDestinationResponse = BehaviorSubject();
 
   Stream<Resource<DestinationResponse>> get getDestinationStream => _getDestinationResponse.stream;
 
@@ -228,7 +228,8 @@ class RjFlightBookingViewModel extends BasePageViewModel {
   ];
 
   void getTripLink(BuildContext context) {
-    if (_selectedTabSubject.value == 0) {
+    print('Get trip link---->${tabChangeNotifier.value}');
+    if (tabChangeNotifier.value == 0) {
       getOneWayLink(context);
     } else {
       getTwoWayLink(context);
