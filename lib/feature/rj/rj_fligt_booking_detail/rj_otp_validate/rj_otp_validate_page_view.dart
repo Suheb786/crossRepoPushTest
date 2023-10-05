@@ -37,8 +37,8 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                       arguments: RjBookingPurchasePageArgument(1111111));
                 }
                 //Todo remove from code
-                Navigator.pushNamed(context, RoutePaths.RjFlightBookingPurchasePage,
-                    arguments: RjBookingPurchasePageArgument(1111111));
+                // Navigator.pushNamed(context, RoutePaths.RjFlightBookingPurchasePage,
+                //     arguments: RjBookingPurchasePageArgument(1111111));
               },
               dataBuilder: (context, data) {
                 return ShakeAnimatedWidget(
@@ -188,7 +188,7 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                                                           .arguments
                                                           ?.referenceNumber ??
                                                       '',
-                                                  amount: "1500"
+                                                  amount: "1000.0"
 
                                                   /* ProviderScope.containerOf(context)
                                                         .read(rjMakePaymentViewModelProvider)
