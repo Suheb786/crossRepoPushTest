@@ -1900,5 +1900,7 @@
   "newRequest": "New Request",
   "chooseTheAccountToPay": "Choose the account you\nwant to pay from",
   "readyToUseSuccess": "success",
- "referralLink": "Referral link"
+  "referralLink": "Referral link",
+  "daysLeft": "{String} days left",
+  "endsOn": "Ends on {String}"
 }

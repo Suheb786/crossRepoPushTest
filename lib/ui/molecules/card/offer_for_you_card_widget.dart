@@ -1,14 +1,17 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:domain/model/offer_campaign/offer/offers.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/feature/offer_campaign/offer/offer_for_you_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
+import 'package:neo_bank/utils/time_utils.dart';
 
 import '../../../utils/string_utils.dart';
 
 class OfferForYouCardWidget extends StatelessWidget {
-  const OfferForYouCardWidget({Key? key}) : super(key: key);
+  final List<Offers> data;
+
+  const OfferForYouCardWidget(this.data, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,16 +45,18 @@ class OfferForYouCardWidget extends StatelessWidget {
                     child: Row(
                       children: [
                         Container(
-                          width: 104.w,
-                          height: 104.h,
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).primaryColor,
-                              borderRadius: BorderRadius.circular(16.w)),
-                          child: CachedNetworkImage(
-                            imageUrl: "",
-                            placeholder: (context, url) => Container(color: Theme.of(context).primaryColor),
-                            errorWidget: (context, url, error) => Icon(Icons.error),
-                            fit: BoxFit.fill,
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.w), boxShadow: [
+                            BoxShadow(
+                                offset: Offset(0, 8), blurRadius: 10, color: Color.fromRGBO(0, 0, 0, 0.16))
+                          ]),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.all(Radius.circular(16.w)),
+                            child: Image.memory(
+                              data[index].image,
+                              fit: BoxFit.fill,
+                              width: 104.w,
+                              height: 104.h,
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -59,47 +64,45 @@ class OfferForYouCardWidget extends StatelessWidget {
                         ),
                         Flexible(
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Gerard",
+                                data[index].campaignName ?? '',
                                 style: TextStyle(
                                     fontSize: 14.t,
                                     fontWeight: FontWeight.w600,
+                                    fontFamily: StringUtils.appFont,
                                     color: Theme.of(context).scaffoldBackgroundColor),
                               ),
                               SizedBox(
-                                height: 4.w,
+                                height: 4.h,
                               ),
                               Text(
-                                "15% discount on Debit Card",
+                                data[index].descriptions ?? '',
                                 style: TextStyle(
                                     fontSize: 12.t,
+                                    fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.w600,
                                     color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7)),
                               ),
                               SizedBox(
-                                height: 16.w,
-                              ),
-                              Text(
-                                "Ends on 27th Sep",
-                                style: TextStyle(
-                                    fontSize: 12.t,
-                                    fontWeight: FontWeight.w600,
-                                    color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7)),
-                              ),
-                              SizedBox(
-                                height: 2.h,
+                                height: 8.h,
                               ),
                               Container(
                                 padding: EdgeInsetsDirectional.only(
                                     start: 8.0.w, end: 8.0.w, top: 3.5.h, bottom: 1.5.h),
                                 decoration: BoxDecoration(
-                                    color: getColor(OfferType.EARLY),
+                                    color: TimeUtils.differentBetweenTwoDateInDays(
+                                                data[index].campaignValidTill ?? '') <=
+                                            9
+                                        ? getColor(OfferType.EARLY)
+                                        : getColor(OfferType.LATER),
                                     borderRadius: BorderRadius.circular(100)),
                                 child: Text(
-                                  "2 days left",
+                                  S.of(context).daysLeft(TimeUtils.differentBetweenTwoDateInDays(
+                                          data[index].campaignValidTill ?? '')
+                                      .toString()),
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       color: Theme.of(context).scaffoldBackgroundColor,
@@ -115,7 +118,7 @@ class OfferForYouCardWidget extends StatelessWidget {
                   ),
                 );
               },
-              itemCount: 3,
+              itemCount: data.length,
             ),
           ),
         ],
@@ -126,7 +129,7 @@ class OfferForYouCardWidget extends StatelessWidget {
   Color getColor(OfferType value) {
     switch (value) {
       case OfferType.EARLY:
-        return AppColor.darkModerateLimeGreen;
+        return AppColor.dark_orange;
 
       default:
         return AppColor.darkModerateLimeGreen;

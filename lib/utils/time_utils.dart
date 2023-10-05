@@ -171,6 +171,13 @@ class TimeUtils {
     return formatter.format(dateTime);
   }
 
+  static int differentBetweenTwoDateInDays(String date) {
+    DateTime dateTimeCreatedAt = DateTime.parse(date).toLocal();
+    DateTime dateTimeNow = DateTime.now();
+    final differenceInDays = dateTimeCreatedAt.difference(dateTimeNow).inDays;
+    return differenceInDays;
+  }
+
   static String convertUTCDateToLocal(String date) {
     try {
       final DateTime dateTime = DateFormat('yyyy-MM-dd HH:mm:ss', 'en').parse(date, true).toLocal();

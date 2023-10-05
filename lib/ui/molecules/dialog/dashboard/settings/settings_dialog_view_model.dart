@@ -181,11 +181,12 @@ class SettingsDialogViewModel extends BasePageViewModel {
         }
       } else if (element.key == 'OFFERS') {
         if ((ProviderScope.containerOf(context)
-                .read(appHomeViewModelProvider)
-                .dashboardDataContent
-                .dashboardFeatures
-                ?.offers ??
-            false)) {
+                    .read(appHomeViewModelProvider)
+                    .dashboardDataContent
+                    .dashboardFeatures
+                    ?.offers ??
+                false) &&
+            (ProviderScope.containerOf(context).read(appHomeViewModelProvider).listOfOffer.isNotEmpty)) {
           index = index + 1;
           showPages.add(element);
         }

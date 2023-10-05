@@ -18710,6 +18710,26 @@ class S {
       args: [],
     );
   }
+
+  /// `{String} days left`
+  String daysLeft(Object String) {
+    return Intl.message(
+      '$String days left',
+      name: 'daysLeft',
+      desc: '',
+      args: [String],
+    );
+  }
+
+  /// `Ends on {String}`
+  String endsOn(Object String) {
+    return Intl.message(
+      'Ends on $String',
+      name: 'endsOn',
+      desc: '',
+      args: [String],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
