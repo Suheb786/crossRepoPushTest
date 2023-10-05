@@ -18280,6 +18280,46 @@ class S {
     );
   }
 
+  /// `All our agents are currently assisting other blinkers`
+  String get ourAgentsAreOccupied {
+    return Intl.message(
+      'All our agents are currently assisting other blinkers',
+      name: 'ourAgentsAreOccupied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thank you for your patience, our agents are occupied in assisting other blinkers. Please try to call us again later or chat with us from the app or call us on 06-5200100.`
+  String get ourAgentsAreOccupiedDescription {
+    return Intl.message(
+      'Thank you for your patience, our agents are occupied in assisting other blinkers. Please try to call us again later or chat with us from the app or call us on 06-5200100.',
+      name: 'ourAgentsAreOccupiedDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Poor Network Connection`
+  String get lostConnection {
+    return Intl.message(
+      'Poor Network Connection',
+      name: 'lostConnection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apologies, due to poor network connection, we’ve lost you.  Please try to call us again later or chat with us from the app or call us on 06-5200100.`
+  String get lostConnectionDescription {
+    return Intl.message(
+      'Apologies, due to poor network connection, we’ve lost you.  Please try to call us again later or chat with us from the app or call us on 06-5200100.',
+      name: 'lostConnectionDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Transfer`
   String get transfer {
     return Intl.message(
@@ -18687,6 +18727,26 @@ class S {
       name: 'timeOutText2',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `{String} days left`
+  String daysLeft(Object String) {
+    return Intl.message(
+      '$String days left',
+      name: 'daysLeft',
+      desc: '',
+      args: [String],
+    );
+  }
+
+  /// `Ends on {String}`
+  String endsOn(Object String) {
+    return Intl.message(
+      'Ends on $String',
+      name: 'endsOn',
+      desc: '',
+      args: [String],
     );
   }
 }

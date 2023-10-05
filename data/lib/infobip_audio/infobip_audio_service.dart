@@ -1,24 +1,26 @@
-import 'package:data/helper/key_helper.dart';
+import 'dart:async';
+
 import 'package:domain/constants/enum/infobip_call_status_enum.dart';
 import 'package:domain/model/infobip_audio/obtain_token.dart';
-import 'package:infobip_plugin/infobip_plugin.dart';
+import 'package:infobipplugin/infobipplugin.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../helper/key_helper.dart';
+
 class InfoBipAudioService {
-  final InfobipPlugin _infobipPlugin;
+  final InfoBip _infobipPlugin;
 
   InfoBipAudioService(this._infobipPlugin);
 
   Future<bool> initPlugin({required Function(InfobipCallStatusEnum) callback}) async {
-    var result = await _infobipPlugin.init(
+    var result = await _infobipPlugin.sdkInit(
         applicationId: "75154e24-1e99-48e4-a25d-9f561df4d101",
         appKey: KeyHelper.INFOBIP_APP_KEY,
         baseUrl: "https://wpx36d.api.infobip.com",
         callStatus: (String status) {
-          print(status);
           callback(status.fromCallStatusValue());
         });
-    return result!;
+    return result;
   }
 
   ///
@@ -26,6 +28,9 @@ class InfoBipAudioService {
   ///
   Future<String> obtainToken({required ObtainToken parameter}) async {
     try {
+      parameter.applicationId = "75154e24-1e99-48e4-a25d-9f561df4d101";
+      parameter.appKey = KeyHelper.INFOBIP_APP_KEY;
+      parameter.baseUrl = "https://wpx36d.api.infobip.com";
       var tokenDetail = await _infobipPlugin.getToken(parameter: parameter.toJson());
       return tokenDetail!;
     } catch (e) {
@@ -38,7 +43,6 @@ class InfoBipAudioService {
   ///
   Future<void> requestPermission() async {
     final status = await Permission.microphone.request();
-    print(status);
     if (status == PermissionStatus.permanentlyDenied) {
       final status = await Permission.microphone.request();
     }
@@ -47,13 +51,14 @@ class InfoBipAudioService {
   ///
   /// This method is used to call agent
   ///
-  Future<bool> call() async {
+  Future<bool> call(String token) async {
     try {
       return requestPermission().then((value) async {
-        return await _infobipPlugin.callConversations();
+        bool result = await _infobipPlugin.callDial(token: token);
+        return result;
       });
     } catch (e) {
-      rethrow;
+      return false;
     }
   }
 
@@ -62,8 +67,7 @@ class InfoBipAudioService {
   ///
   Future<bool> mute() async {
     try {
-      var muteStatus = await _infobipPlugin.muteUnMute();
-      print('--------' + muteStatus.toString());
+      var muteStatus = await _infobipPlugin.muteUnmute();
       return muteStatus!;
     } catch (e) {
       rethrow;
@@ -75,7 +79,7 @@ class InfoBipAudioService {
   ///
   Future<bool> toggleSpeaker() async {
     try {
-      var speakerStatus = await _infobipPlugin.toggleSpeaker();
+      var speakerStatus = await _infobipPlugin.speakerPhone();
       return speakerStatus!;
     } catch (e) {
       rethrow;
@@ -87,7 +91,7 @@ class InfoBipAudioService {
   ///
   Future<int> getCallDuration() async {
     try {
-      var callDuration = await _infobipPlugin.getCallDuration();
+      var callDuration = await _infobipPlugin.callDuration();
       return callDuration!;
     } catch (e) {
       rethrow;
@@ -99,8 +103,7 @@ class InfoBipAudioService {
   ///
   Future<bool> callHangUp() async {
     try {
-      var result = await _infobipPlugin.hangUpCall();
-      print("HANGUP FROM SERVICE " + result.toString());
+      var result = await _infobipPlugin.callHang();
       return result!;
     } catch (e) {
       rethrow;

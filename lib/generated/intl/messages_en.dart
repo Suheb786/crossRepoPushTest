@@ -23,37 +23,41 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(additionalIncomeList) =>
       "Add. Income \n${additionalIncomeList}";
 
-  static String m15(String) => "Back to ${String}";
+  static String m17(String) => "Back to ${String}";
 
-  static String m1(estimatedTime) => "Estimated wait time \n${estimatedTime}";
+  static String m1(String) => "${String} days left";
 
-  static String m2(Name) => "from ${Name}";
+  static String m2(String) => "Ends on ${String}";
 
-  static String m3(String) => "${String} has been activated";
+  static String m3(estimatedTime) => "Estimated wait time \n${estimatedTime}";
 
-  static String m4(String) => "${String} has been deleted";
+  static String m4(Name) => "from ${Name}";
 
-  static String m5(String) => "${String} has been suspended";
+  static String m5(String) => "${String} has been activated";
 
-  static String m6(maximumLimit) => "Maximum ${maximumLimit} JOD";
+  static String m6(String) => "${String} has been deleted";
 
-  static String m7(noOfBills) => "Paying ${noOfBills} bills";
+  static String m7(String) => "${String} has been suspended";
 
-  static String m8(referFriendDescription) =>
+  static String m8(maximumLimit) => "Maximum ${maximumLimit} JOD";
+
+  static String m9(noOfBills) => "Paying ${noOfBills} bills";
+
+  static String m10(referFriendDescription) =>
       "Invite your friends and family to enjoy the Blink experience. Start earning up to ${referFriendDescription} JOD. The more you refer, the more you earn.";
 
-  static String m9(resendTime) => "Resend in ${resendTime}";
+  static String m11(resendTime) => "Resend in ${resendTime}";
 
-  static String m10(accountNo) => "Savings Account ${accountNo}";
+  static String m12(accountNo) => "Savings Account ${accountNo}";
 
-  static String m11(String) => "Savings Account ${String}";
+  static String m13(String) => "Savings Account ${String}";
 
-  static String m12(scrollToSetDate) => "Scroll to set ${scrollToSetDate}";
+  static String m14(scrollToSetDate) => "Scroll to set ${scrollToSetDate}";
 
-  static String m13(shareReferDescription) =>
+  static String m15(shareReferDescription) =>
       "Hey! Let’s join and grow Blink community, today!\n \n Download yours at ${shareReferDescription}";
 
-  static String m14(noOfTransaction) =>
+  static String m16(noOfTransaction) =>
       "Type of Transactions ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -377,7 +381,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "backToCardSettings":
             MessageLookupByLibrary.simpleMessage("Back to Card Settings"),
-        "backToCategory": m15,
+        "backToCategory": m17,
         "backToContact":
             MessageLookupByLibrary.simpleMessage("Back to Contact"),
         "backToDashboard":
@@ -864,6 +868,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dateOfBirth": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
         "dateOfBirthSmall":
             MessageLookupByLibrary.simpleMessage("Date of Birth"),
+        "daysLeft": m1,
         "dcEnterOtpHeader":
             MessageLookupByLibrary.simpleMessage("Enter 6-digit OTP sent to"),
         "dcMobileNumberUpdated": MessageLookupByLibrary.simpleMessage(
@@ -1107,6 +1112,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enable Biometric Login"),
         "enableFingerPrintError": MessageLookupByLibrary.simpleMessage(
             "An error occurred while enabling biometric login. Please try again later."),
+        "endsOn": m2,
         "engagementTeam":
             MessageLookupByLibrary.simpleMessage("Engagement Team"),
         "engagementTeamDescription": MessageLookupByLibrary.simpleMessage(
@@ -1341,7 +1347,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "An Error has Occured while ESettlement API get wrong"),
         "establishCallError": MessageLookupByLibrary.simpleMessage(
             "Error occurred while establish call"),
-        "estimatedTime": m1,
+        "estimatedTime": m3,
         "evoucherUnderProcessing":
             MessageLookupByLibrary.simpleMessage("E-voucher under processing"),
         "exceptionExecutingGetPaymentReasons":
@@ -1476,7 +1482,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fromSavedBills":
             MessageLookupByLibrary.simpleMessage("from Saved Bills?"),
         "fromSingleLine": MessageLookupByLibrary.simpleMessage("from"),
-        "fromStrin": m2,
+        "fromStrin": m4,
         "fromYou": MessageLookupByLibrary.simpleMessage("from you"),
         "fromYouWouldYouLikeToAcceptIt": MessageLookupByLibrary.simpleMessage(
             " from you. Would you like to accept?"),
@@ -1571,9 +1577,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Government Service"),
         "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage(
             "Age must be greater than 18 to proceed."),
-        "hasBeenActivated": m3,
-        "hasBeenDeleted": m4,
-        "hasbeenSuspended": m5,
+        "hasBeenActivated": m5,
+        "hasBeenDeleted": m6,
+        "hasbeenSuspended": m7,
         "hello": MessageLookupByLibrary.simpleMessage("Hello,"),
         "helloE": MessageLookupByLibrary.simpleMessage("Hello!"),
         "helloHereMyBlinkAccount": MessageLookupByLibrary.simpleMessage(
@@ -2051,7 +2057,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "You have reached the maximum number of accounts permitted. Unfortunately, you cannot open a new account."),
         "maximumAgeOfUser":
             MessageLookupByLibrary.simpleMessage("Maximum age of User must be"),
-        "maximumLimit": m6,
+        "maximumLimit": m8,
         "mayBeLater": MessageLookupByLibrary.simpleMessage("Maybe later"),
         "merchantPaymentValueExceeded": MessageLookupByLibrary.simpleMessage(
             "Merchant payment limit exceeded."),
@@ -2347,7 +2353,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Pay and request money via QR code is only available within Blink at the moment. We will let you know if it is ready and available for everyone."),
         "payBack": MessageLookupByLibrary.simpleMessage("Pay back"),
         "payBill": MessageLookupByLibrary.simpleMessage("PAY BILL"),
-        "payBills": m7,
+        "payBills": m9,
         "payFrom": MessageLookupByLibrary.simpleMessage("Pay from"),
         "payMyBill": MessageLookupByLibrary.simpleMessage("Pay My Bill"),
         "payNewBill": MessageLookupByLibrary.simpleMessage("Pay a New Bill"),
@@ -2606,7 +2612,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "refNumber": MessageLookupByLibrary.simpleMessage("984893922"),
         "refTitle": MessageLookupByLibrary.simpleMessage("Ref No."),
         "referFriend": MessageLookupByLibrary.simpleMessage("Refer A Friend"),
-        "referFriendDescription": m8,
+        "referFriendDescription": m10,
         "referenceNo": MessageLookupByLibrary.simpleMessage("Reference No."),
         "referenceNumber":
             MessageLookupByLibrary.simpleMessage("REFERENCE NUMBER"),
@@ -2718,7 +2724,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "rescheduleTheCall":
             MessageLookupByLibrary.simpleMessage("Reschedule the call"),
         "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
-        "resendIn": m9,
+        "resendIn": m11,
         "resendOtpError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "resetFilter": MessageLookupByLibrary.simpleMessage("Reset Filter"),
@@ -2777,8 +2783,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "saveEarningsDigitally": MessageLookupByLibrary.simpleMessage(
             "Save your earnings digitally and securely"),
-        "savingAccount": m10,
-        "savingAccountList": m11,
+        "savingAccount": m12,
+        "savingAccountList": m13,
         "savingCountryResidenceError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "savingFatcaDetailsError": MessageLookupByLibrary.simpleMessage(
@@ -2799,7 +2805,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Scan your Id to proceed further."),
         "scheduleLater":
             MessageLookupByLibrary.simpleMessage("Schedule for later"),
-        "scrollToSetDate": m12,
+        "scrollToSetDate": m14,
         "searchAgain": MessageLookupByLibrary.simpleMessage("Search Again"),
         "searchBill": MessageLookupByLibrary.simpleMessage("Search bill"),
         "searchCategory":
@@ -2916,7 +2922,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Share my receipt"),
         "sharePdf": MessageLookupByLibrary.simpleMessage("Share PDF"),
         "shareQr": MessageLookupByLibrary.simpleMessage("Share QR"),
-        "shareReferDescription": m13,
+        "shareReferDescription": m15,
         "shareVoucher": MessageLookupByLibrary.simpleMessage("Share Voucher"),
         "showQrForScanning": MessageLookupByLibrary.simpleMessage(
             "Please show your QR\nfor scanning"),
@@ -3156,7 +3162,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeOfIncome": MessageLookupByLibrary.simpleMessage("Type of Income"),
         "typeOfTransactions":
             MessageLookupByLibrary.simpleMessage("TYPE OF TRANSACTIONS"),
-        "typeOfTransactionsSmall": m14,
+        "typeOfTransactionsSmall": m16,
         "unBlockPin": MessageLookupByLibrary.simpleMessage("Unblock PIN?"),
         "unBlockPinDescription": MessageLookupByLibrary.simpleMessage(
             "Your card PIN has been blocked due to security measures. To continue using your PIN and payment services, please proceed to unblock your PIN. Once you unblock your PIN, your first transaction will be rejected due to technical limitations."),

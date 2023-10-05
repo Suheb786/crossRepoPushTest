@@ -1850,6 +1850,10 @@
   "whenYouFreezeYourCard": "When you freeze your card, your card cannot be used for any transaction including direct debit on your card such as your online subscriptions directly linked to your card, for example: Netflix, Careem, OSN, etc.",
   "youCanUnFreeze": "You can unfreeze and activate your card anytime from the app.",
   "unavailable": "Unavailable",
+  "ourAgentsAreOccupied": "All our agents are currently assisting other blinkers",
+  "ourAgentsAreOccupiedDescription": "Thank you for your patience, our agents are occupied in assisting other blinkers. Please try to call us again later or chat with us from the app or call us on 06-5200100.",
+  "lostConnection": "Poor Network Connection",
+  "lostConnectionDescription": "Apologies, due to poor network connection, we’ve lost you.  Please try to call us again later or chat with us from the app or call us on 06-5200100.",
   "transfer": "Transfer",
   "transferHeader": "Enter your transfer details",
   "transferFrom": "Transfer from",
@@ -1898,5 +1902,7 @@
   "readyToUseSuccess": "success",
   "referralLink": "Referral link",
   "timeOutText1": "You are being timed-out due to inactivity, your session will expire in ",
-  "timeOutText2": "from now. Select continue to extend your session."
+  "timeOutText2": "from now. Select continue to extend your session.",
+  "daysLeft": "{String} days left",
+  "endsOn": "Ends on {String}"
 }

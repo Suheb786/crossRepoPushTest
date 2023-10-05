@@ -23,6 +23,7 @@ import 'package:data/repository/infobip_audio/infobip_audio_repository_impl.dart
 import 'package:data/repository/infobip_audio/infobip_message_repository_impl.dart';
 import 'package:data/repository/kyc/kyc_repository_impl.dart';
 import 'package:data/repository/manage_contacts/manage_contacts_repository_impl.dart';
+import 'package:data/repository/offer_campaign/offer_campaign_repository_impl.dart';
 import 'package:data/repository/payment/payment_repository_impl.dart';
 import 'package:data/repository/register/register_repository_impl.dart';
 import 'package:data/repository/register/register_step_four_repository_impl.dart';
@@ -54,6 +55,7 @@ import 'package:domain/repository/help_center/infobip_message_repository.dart';
 import 'package:domain/repository/id_card/id_card_repository.dart';
 import 'package:domain/repository/kyc/kyc_repository.dart';
 import 'package:domain/repository/manage_contact/manage_contact_repository.dart';
+import 'package:domain/repository/offer_campaign/offer_campaign_repository.dart';
 import 'package:domain/repository/payment/payment_repository.dart';
 import 'package:domain/repository/register/register_repository.dart';
 import 'package:domain/repository/register/register_step_four_repository.dart';
@@ -201,3 +203,6 @@ var cliqRepositoryProvider =
 /// inject [SubAccount] provider
 var subAccountRepository =
     Provider<SubAccountRepository>((ref) => SubAccountRepositoryImpl(ref.read(subAccountDataSourceProvider)));
+
+var offerCampaignRepositoryProvider = Provider<OfferCampaignRepository>(
+    (ref) => OfferCampaignRepositoryImpl(ref.read(offerCampaignRemoteDataSourceImplProvider)));

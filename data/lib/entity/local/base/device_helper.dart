@@ -9,7 +9,6 @@ import 'package:flutter_udid/flutter_udid.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class DeviceInfoHelper extends DeviceInfoService {
-
   String platformType() {
     return Platform.isAndroid ? 'A' : 'I';
   }

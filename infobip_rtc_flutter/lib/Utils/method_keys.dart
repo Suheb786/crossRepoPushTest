@@ -1,4 +1,6 @@
 class MethodKeys {
+  static const TAG = "infobip_plugin";
+  static const CHANNEL = "infobip_plugin_event";
   static const init = 'initialisation';
   static const getToken = 'fetch_token';
   static const makeCall = 'dial_call';

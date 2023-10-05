@@ -1872,4 +1872,10 @@
   "referralLink": "رابط الدعوة",
   "timeOutText1": "You are being timed-out due to inactivity, your session will expire in ",
   "timeOutText2": "from now. Select continue to extend your session."
+  "ourAgentsAreOccupied": "فريقنا مشغول حاليا بمساعدة أصدقائك في بلينك",
+  "ourAgentsAreOccupiedDescription": "شكرا لانتظارك! فريقنا مشغول حاليا بمساعدة أصدقائك في بلينك. يرجى الاتصال معنا لاحقا أو دردش معنا من خلال التطبيق أو تواصل معنا على الرقم 5200100-06.",
+  "lostConnection": "الشبكة ضعيفة",
+  "lostConnectionDescription": "شكرا لتفهمك! الشبكة ضعيفة وما عم نقدر نتواصل معك. يرجى الاتصال معنا لاحقا أو دردش معنا من  خلال التطبيق أو تواصل معنا على الرقم 5200100-06.",
+  "daysLeft": "{String} يوم متبقي",
+  "endsOn": "ينتهي في  {String}"
 }
