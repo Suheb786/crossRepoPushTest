@@ -5,7 +5,7 @@ import 'package:neo_bank/feature/help_center/call_ended/call_ended_page_view_mod
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
+import 'package:neo_bank/ui/molecules/button/app_secondary_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -77,11 +77,14 @@ class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
           Spacer(),
           Column(
             children: [
-              AppPrimaryButton(
-                text: S.of(context).backToDashboard,
-                onPressed: () {
-                  Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-                },
+              Padding(
+                padding: EdgeInsets.only(left: 24.w, right: 24.w),
+                child: AppSecondaryButton(
+                  text: S.of(context).backToDashboard,
+                  onPressed: () {
+                    Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+                  },
+                ),
               ),
               SizedBox(
                 height: 32.h,

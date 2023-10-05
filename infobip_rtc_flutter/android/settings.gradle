@@ -1,1 +1,3 @@
-rootProject.name = 'infobip_plugin'
+package android
+
+rootProject.name = 'infobipplugin'
