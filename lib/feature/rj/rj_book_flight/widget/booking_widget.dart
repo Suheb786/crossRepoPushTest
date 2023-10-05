@@ -2,9 +2,9 @@ import 'package:domain/model/rj/destination_response.dart';
 import 'package:domain/model/rj/get_trip_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_fligt_booking_page.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
+
 import '../../../../di/rj/rj_modules.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../main/navigation/route_paths.dart';
@@ -279,11 +279,8 @@ class _RJBookingWidgetViewState extends State<RJBookingWidgetView> {
                   initialData: Resource.none(),
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
-                      // Navigator.pushNamed(context, RoutePaths.RjBookingInAppWebView,
-                      //     arguments: RjBookingPageArguments(url: data.data?.content?.content?.link));
-
-                      Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
-                          arguments: RJFlightDetailsPageArguments(referenceNumber: "BLNKY239UKFW01"));
+                      Navigator.pushNamed(context, RoutePaths.RjBookingInAppWebView,
+                          arguments: RjBookingPageArguments(url: data.data?.content?.content?.link));
                     }
                   },
                   dataBuilder: (context, getOneWayTripLinkResponse) {
@@ -292,16 +289,13 @@ class _RJBookingWidgetViewState extends State<RJBookingWidgetView> {
                         initialData: Resource.none(),
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
-                            // Navigator.pushNamed(
-                            //   context,
-                            //   RoutePaths.RjBookingInAppWebView,
-                            //   arguments: RjBookingPageArguments(
-                            //     url: data.data?.content?.content?.link,
-                            //   ),
-                            // );
-
-                            Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
-                                arguments: RJFlightDetailsPageArguments(referenceNumber: "BLNKY239UKFW01"));
+                            Navigator.pushNamed(
+                              context,
+                              RoutePaths.RjBookingInAppWebView,
+                              arguments: RjBookingPageArguments(
+                                url: data.data?.content?.content?.link,
+                              ),
+                            );
                           }
                         },
                         dataBuilder: (context, getOneWayTripLinkResponse) {

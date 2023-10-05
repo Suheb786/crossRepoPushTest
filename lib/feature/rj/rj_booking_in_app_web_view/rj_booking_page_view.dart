@@ -17,19 +17,15 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16),
-          topRight: Radius.circular(16),
-        ),
       ),
-      child: Padding(
-        padding: EdgeInsets.only(top: 30.h),
-        child: Stack(
-          children: [
-            Container(
-              color: Theme.of(context).colorScheme.secondary,
-            ),
-            InAppWebView(
+      child: Stack(
+        children: [
+          Container(
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 30.h),
+            child: InAppWebView(
               initialUrlRequest: URLRequest(url: Uri.parse(model.rjBookingPageArguments.url ?? '')),
               onWebViewCreated: (controller) {
                 model.webViewController = controller;
@@ -61,38 +57,40 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
               onLoadStart: (controller, url) {
                 debugPrint('-----onload start ---->${url}');
               },
-              onLoadStop: (controller, url) {
+              onLoadStop: (controller, url) async {
                 debugPrint('-----onload stop ---->${url}');
                 debugPrint('-----onload path ---->${url?.path}');
-                if ((url?.path ?? '').contains('http://10.6.13.2:2186/RJFlightConfirmation/Index')) {
-                  debugPrint('------RJ DETAILS----');
-                  debugPrint('-----onload path ---->${url}');
-                  String referenceNumber = url?.queryParameters['referenceNumber'] ?? '';
+                // if ((url?.path ?? '').contains('http://10.6.13.2:2186/RJFlightConfirmation/Index')) {
+                //   debugPrint('------RJ DETAILS----');
+                //   debugPrint('-----onload path ---->${url}');
+                //   String referenceNumber = url?.queryParameters['referenceNumber'] ?? '';
+                //   Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
+                //       arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
+                //   debugPrint('------RJ DETAILS----');
+                // }
+
+                /// FOR MOCK
+                String referenceNumber = "BLNKY239UKFW02";
+                if ((url?.path ?? '').contains('/main/start/')) {
+                  await Future.delayed(Duration(seconds: 2));
                   Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
                       arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
-                  debugPrint('------RJ DETAILS----');
                 }
-
-                // //Todo need to remove from code
-                // String referenceNumber = url?.queryParameters['referenceNumber'] ?? '';
-
-                // Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
-                //     arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
               },
             ),
-            AppStreamBuilder<double>(
-              stream: model.indicatorProgressStream,
-              initialData: 0.0,
-              dataBuilder: (context, data) {
-                return (data ?? 0.0) < 1.0
-                    ? LinearProgressIndicator(
-                        value: data,
-                      )
-                    : Container();
-              },
-            ),
-          ],
-        ),
+          ),
+          AppStreamBuilder<double>(
+            stream: model.indicatorProgressStream,
+            initialData: 0.0,
+            dataBuilder: (context, data) {
+              return (data ?? 0.0) < 1.0
+                  ? LinearProgressIndicator(
+                      value: data,
+                    )
+                  : Container();
+            },
+          ),
+        ],
       ),
     );
   }

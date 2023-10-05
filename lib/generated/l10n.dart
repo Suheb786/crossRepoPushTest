@@ -17350,10 +17350,10 @@ class S {
     );
   }
 
-  /// ` BookingConfirmed!`
+  /// ` Booking Confirmed!`
   String get bookingConfirmed {
     return Intl.message(
-      ' BookingConfirmed!',
+      ' Booking Confirmed!',
       name: 'bookingConfirmed',
       desc: '',
       args: [],
@@ -18665,6 +18665,36 @@ class S {
     return Intl.message(
       'Referral link',
       name: 'referralLink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fare`
+  String get fare {
+    return Intl.message(
+      'Fare',
+      name: 'fare',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Taxes & Fees`
+  String get taxesAndFee {
+    return Intl.message(
+      'Taxes & Fees',
+      name: 'taxesAndFee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirmation URL`
+  String get confirmationURL {
+    return Intl.message(
+      'Confirmation URL',
+      name: 'confirmationURL',
       desc: '',
       args: [],
     );

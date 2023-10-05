@@ -1757,7 +1757,7 @@
   "bookingConfirmation": "Booking Confirmation",
   "oopsTransactionFailed": "OOPS! TRANSACTION FAILED",
   "youHaveInsufficientBalanceInYourAccount": "You have insufficient balance in your account",
-  "bookingConfirmed": " BookingConfirmed!",
+  "bookingConfirmed": " Booking Confirmed!",
   "bookingunsuccessful": "Booking Unsuccessful",
   "bookingConfirmedDescription": "You got the best deal. You will receive your booking details on your email. Enjoy your trip and travel safe!",
   "bookingUnsuccessDescription": "We're sorry, but we're unable to complete your flight booking at this time due toan error. Please try again later.",
@@ -1896,5 +1896,8 @@
   "newRequest": "New Request",
   "chooseTheAccountToPay": "Choose the account you\nwant to pay from",
   "readyToUseSuccess": "success",
- "referralLink": "Referral link"
+  "referralLink": "Referral link",
+  "fare": "Fare",
+  "taxesAndFee": "Taxes & Fees",
+  "confirmationURL": "Confirmation URL"
 }

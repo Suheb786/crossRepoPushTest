@@ -13,6 +13,10 @@ import '../../../utils/string_utils.dart';
 import '../rj_booking_success/rj_booking_success_page.dart';
 
 class RJBookingConfirmedInAppWebViewPage extends BasePage<RJBookingConfirmedInAppWebViewPageViewModel> {
+  final RJBookingConfirmedInAppWebViewPageArguments arguments;
+
+  RJBookingConfirmedInAppWebViewPage(this.arguments);
+
   @override
   State<StatefulWidget> createState() => RJBookingConfirmedInAppWebViewPageState();
 }
@@ -24,7 +28,7 @@ class RJBookingConfirmedInAppWebViewPageState extends BaseStatefulPage<
       RJBookingConfirmedInAppWebViewPageView(provideBase());
 
   @override
-  ProviderBase provideBase() => rjBookingConfirmedInAppWebViewPageViewModel;
+  ProviderBase provideBase() => rjBookingConfirmedInAppWebViewPageViewModel.call(widget.arguments);
 
   @override
   void onModelReady(RJBookingConfirmedInAppWebViewPageViewModel model) {}
@@ -42,9 +46,13 @@ class RJBookingConfirmedInAppWebViewPageState extends BaseStatefulPage<
         color: Theme.of(context).colorScheme.onPrimaryContainer,
         child: Padding(
           padding: EdgeInsetsDirectional.only(top: 52.0.h, bottom: 30.h),
-          child: Stack(
-            alignment: AlignmentDirectional.centerStart,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              SizedBox(
+                width: 50.w,
+              ),
               Align(
                 alignment: Alignment.center,
                 child: Text(
@@ -57,39 +65,36 @@ class RJBookingConfirmedInAppWebViewPageState extends BaseStatefulPage<
                       fontSize: 14.t),
                 ),
               ),
-              Align(
-                alignment: AlignmentDirectional.topEnd,
-                child: Padding(
-                  padding: EdgeInsetsDirectional.only(end: 12.w),
-                  child: InkWell(
-                      child: Container(
-                        height: 25.h,
-                        width: 25.h,
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.onPrimaryContainer,
-                            borderRadius: BorderRadius.circular(100),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: AppColor.black_15,
-                                  spreadRadius: 1.28,
-                                  blurRadius: 2.56,
-                                  offset: Offset(0, 1.28))
-                            ]),
-                        child: Center(
-                          child: Icon(
-                            Icons.check,
-                            color: Theme.of(context).colorScheme.secondary,
-                            size: 16,
-                            weight: 1.5,
-                          ),
+              Padding(
+                padding: EdgeInsetsDirectional.only(end: 12.w),
+                child: InkWell(
+                    child: Container(
+                      height: 25.h,
+                      width: 25.h,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.onPrimaryContainer,
+                          borderRadius: BorderRadius.circular(100),
+                          boxShadow: [
+                            BoxShadow(
+                                color: AppColor.black_15,
+                                spreadRadius: 1.28,
+                                blurRadius: 2.56,
+                                offset: Offset(0, 1.28))
+                          ]),
+                      child: Center(
+                        child: Icon(
+                          Icons.check,
+                          color: Theme.of(context).colorScheme.secondary,
+                          size: 16,
+                          weight: 1.5,
                         ),
                       ),
-                      onTap: () {
-                        Navigator.pushNamed(context, RoutePaths.RJBookingSuccessPage,
-                            arguments: RJBookingSuccessPageArguments(
-                                rjBookingSuccessState: RJBookingSuccessState.BOOKING_SUCCESS));
-                      }),
-                ),
+                    ),
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, RoutePaths.RJBookingSuccessPage,
+                          arguments: RJBookingSuccessPageArguments(
+                              rjBookingSuccessState: RJBookingSuccessState.BOOKING_SUCCESS));
+                    }),
               ),
             ],
           ),
@@ -102,4 +107,10 @@ class RJBookingConfirmedInAppWebViewPageState extends BaseStatefulPage<
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).colorScheme.onPrimaryContainer;
   }
+}
+
+class RJBookingConfirmedInAppWebViewPageArguments {
+  final String url;
+
+  RJBookingConfirmedInAppWebViewPageArguments({required this.url});
 }

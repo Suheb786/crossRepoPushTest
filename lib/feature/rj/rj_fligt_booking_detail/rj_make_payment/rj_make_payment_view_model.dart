@@ -23,30 +23,19 @@ class RjMakePaymentViewModel extends BasePageViewModel {
 
   List<Account> allAccountList = [];
   List<Account> _fromAccountList = [];
+
   List<Account> get getAllFromList => _fromAccountList;
 
-  void addFromAccountData({Account? selectedAccount}) {
+  void addFromAccountData({Account? account}) {
+    selectedAccount = account;
     _selectedFromAccountSubject.safeAdd(selectedAccount);
-    // validateIfEmpty();
-  }
-
-  // void validateIfEmpty() {
-  //   if (selectedFromAccountSubject.hasValue) {
-  //     _showButtonSubject.safeAdd(true);
-  //   } else
-  //     _showButtonSubject.safeAdd(false);
-  // }
-
-  void validateIfEmpty(double value) {
-    if (value == 15309.145) {
-      _showButtonSubject.safeAdd(true);
-    } else
-      _showButtonSubject.safeAdd(false);
   }
 
   void rjOtpValidate() {
     _rjOtpValidateRequest.safeAdd(RJOtpValidateUseCaseParams());
   }
+
+  Account? selectedAccount;
 
   ///---------------Rj OTP Validate Details----------------------///
 
@@ -84,17 +73,17 @@ class RjMakePaymentViewModel extends BasePageViewModel {
     _itemSelectedSubject.safeAdd(cardList);
   }
 
-  // void selectedItem(int index) {
-  //   if (makePaymentCardList.isNotEmpty) {
-  //     makePaymentCardList.forEach((element) {
-  //       element.isSelected = false;
-  //     });
-  //     makePaymentCardList[index].isSelected = true;
-  //   }
-  //   _itemSelectedSubject.safeAdd(makePaymentCardList);
-  //   selectedCard = makePaymentCardList.firstWhere((element) => element.isSelected ?? false);
-  //   _showButtonSubject.safeAdd(true);
-  // }
+// void selectedItem(int index) {
+//   if (makePaymentCardList.isNotEmpty) {
+//     makePaymentCardList.forEach((element) {
+//       element.isSelected = false;
+//     });
+//     makePaymentCardList[index].isSelected = true;
+//   }
+//   _itemSelectedSubject.safeAdd(makePaymentCardList);
+//   selectedCard = makePaymentCardList.firstWhere((element) => element.isSelected ?? false);
+//   _showButtonSubject.safeAdd(true);
+// }
 }
 
 class MakePaymentCard {

@@ -43,15 +43,14 @@ class ToDialogView extends StatelessWidget {
           return Align(
             alignment: AlignmentDirectional.bottomCenter,
             child: AnimatedContainer(
-              margin: EdgeInsets.only(bottom: _keyboardVisible ? 0 : 56.h),
               duration: Duration(milliseconds: 100),
               child: Dialog(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
                   insetPadding: EdgeInsets.only(
-                      left: 24.w,
-                      right: 24.w,
-                      bottom: _keyboardVisible ? 30.h : 56.h,
-                      top: MediaQuery.of(context).padding.top + 35.h /*top: _keyboardVisible ? 36.h : 204.h*/
+                      left: 24.0.w,
+                      right: 24.0.w,
+                      bottom: 56.0.h,
+                      top: _keyboardVisible ? 36.0.h : 204.0.h /*top: _keyboardVisible ? 36.h : 204.h*/
                       ),
                   child: AppStreamBuilder<Resource<List<Destinations>>>(
                     stream: model!.toSearchCountryStream,
