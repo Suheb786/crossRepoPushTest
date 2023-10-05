@@ -25,7 +25,7 @@ class OfferForYouCardWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 24.0.w, top: 32.h),
+            padding: EdgeInsetsDirectional.only(start: 24.0.w, top: 32.h),
             child: Text(
               S.of(context).forYou,
               style: TextStyle(
