@@ -93,7 +93,11 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
                           context,
                           image: AssetUtils.flight,
                           title: S.of(context).bookFligtWithUs,
-                          onSelected: () {},
+                          onSelected: () {
+                            Navigator.pop(context);
+                            Navigator.of(context).push(CustomRoute.swipeUpRoute(RjFlightBookingPage(),
+                                routeName: RoutePaths.RjFlightBookingPage));
+                          },
                           onDismissed: () {
                             Navigator.pop(context);
                             data.data?.isRJPopUPClicked = true;

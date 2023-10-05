@@ -10,6 +10,7 @@ class NetworkProperties {
   static const String BASE_ROUTER_URL = "https://10.6.13.1:2186/api";
   static const String BASE_BENEFICIARY_URL = "http://10.6.13.2:2186/contactcenter/api";
   static const String BASE_EV0UCHER_URL = "http://10.6.13.2:2186/Voucher/api";
+  static const String BASE_RJ_URL = "http://10.6.13.2:2186/RJAPI/api";
 
   ///VAPT / PREPROD CONFIGURATION
 // static const String BASE_CHANNEL_URL = "https://mobwebuat1.theblink.com:3443/api";

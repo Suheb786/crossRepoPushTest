@@ -7,6 +7,10 @@ import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_flight_detail_pag
 
 class RjFlightBookingDetailPage extends BasePage<RjFlightBookingDetailPageViewModel> {
 
+final RJFlightDetailsPageArguments arguments;
+
+  RjFlightBookingDetailPage(this.arguments);
+
 
   @override
   RjFlightBookingDetailPageState createState() => RjFlightBookingDetailPageState();
@@ -21,7 +25,7 @@ class RjFlightBookingDetailPageState
 
   @override
   void onModelReady(RjFlightBookingDetailPageViewModel model) {
-    // model.arguments = widget.arguments;
+    model.arguments = widget.arguments;
     super.onModelReady(model);
   }
 

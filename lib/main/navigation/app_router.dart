@@ -860,7 +860,8 @@ class AppRouter {
       /// Rj Flight Booking Detail Page
       case RoutePaths.RjFlightBookingDetailPage:
         return CupertinoPageRoute(
-            builder: (context) => RjFlightBookingDetailPage(),
+            builder: (context) =>
+                RjFlightBookingDetailPage(settings.arguments as RJFlightDetailsPageArguments),
             settings: RouteSettings(name: RoutePaths.RjFlightBookingDetailPage));
 
       /// Rj Flight Booking Success Page

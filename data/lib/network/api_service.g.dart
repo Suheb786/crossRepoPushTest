@@ -4587,7 +4587,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/RJ/GetDestinations',
+              'http://10.6.13.2:2186/RJAPI/api/RJ/GetDestinations',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4617,7 +4617,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/RJ/GetOneWayLink',
+              'http://10.6.13.2:2186/RJAPI/api/RJ/GetOneWayLink',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4647,7 +4647,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/RJ/GetRoundTripLink',
+              'http://10.6.13.2:2186/RJAPI/api/RJ/GetRoundTripLink',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4677,7 +4677,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/RJ/MakeTicketPayment',
+              'http://10.6.13.2:2186/RJAPI/api/RJ/MakeTicketPayment',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4707,7 +4707,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/RJ/GetFlightDetails',
+              'http://10.6.13.2:2186/RJAPI/api/RJ/GetFlightDetails',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4737,7 +4737,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/RJ/MakeTicketPaymentOtp',
+              'http://10.6.13.2:2186/RJAPI/api/RJ/MakeTicketPaymentOtp',
               queryParameters: queryParameters,
               data: _data,
             )

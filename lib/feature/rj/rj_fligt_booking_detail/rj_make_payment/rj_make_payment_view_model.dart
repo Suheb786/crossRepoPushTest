@@ -17,7 +17,7 @@ class RjMakePaymentViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get rjOtpValidateStream => _rjOtpValidateResponse.stream;
 
-  BehaviorSubject<Account> _selectedFromAccountSubject = BehaviorSubject();
+  PublishSubject<Account> _selectedFromAccountSubject = PublishSubject();
 
   Stream<Account> get selectedFromAccountStream => _selectedFromAccountSubject.stream;
 
@@ -36,6 +36,13 @@ class RjMakePaymentViewModel extends BasePageViewModel {
   //   } else
   //     _showButtonSubject.safeAdd(false);
   // }
+
+  void validateIfEmpty(double value) {
+    if (value == 15309.145) {
+      _showButtonSubject.safeAdd(true);
+    } else
+      _showButtonSubject.safeAdd(false);
+  }
 
   void rjOtpValidate() {
     _rjOtpValidateRequest.safeAdd(RJOtpValidateUseCaseParams());

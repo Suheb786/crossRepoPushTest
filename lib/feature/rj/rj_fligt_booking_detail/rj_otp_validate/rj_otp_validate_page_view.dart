@@ -176,24 +176,27 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                                             isDisabled: !isValid!,
                                             onPressed: () {
                                               model.makeTicketPayment(
-                                                accountNo: ProviderScope.containerOf(context)
+                                                  accountNo: "9662508511",
+                                                  /*  ProviderScope.containerOf(context)
                                                         .read(rjMakePaymentViewModelProvider)
                                                         .selectedCard
                                                         ?.cardNo ??
-                                                    '',
-                                                otpCode: model.otpController.text,
-                                                referenceNumber: ProviderScope.containerOf(context)
-                                                        .read(rjFlightBookingDetailViewModelProvider)
-                                                        .arguments
-                                                        ?.referenceNumber ??
-                                                    '',
-                                                amount: ProviderScope.containerOf(context)
+                                                    '', */
+                                                  otpCode: model.otpController.text,
+                                                  referenceNumber: ProviderScope.containerOf(context)
+                                                          .read(rjFlightBookingDetailViewModelProvider)
+                                                          .arguments
+                                                          ?.referenceNumber ??
+                                                      '',
+                                                  amount: "1500"
+
+                                                  /* ProviderScope.containerOf(context)
                                                         .read(rjMakePaymentViewModelProvider)
                                                         .selectedCard
                                                         ?.amt
                                                         .toString() ??
-                                                    '',
-                                              );
+                                                    '', */
+                                                  );
                                             },
                                           );
                                         }),

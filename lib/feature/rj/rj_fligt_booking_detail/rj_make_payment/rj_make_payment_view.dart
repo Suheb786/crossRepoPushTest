@@ -98,6 +98,10 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                               .read(appHomeViewModelProvider)
                                               .getMainAccount(),
                                           stream: model.selectedFromAccountStream,
+                                          onData: (value) {
+                                            model.validateIfEmpty(
+                                                double.tryParse(value.availableBalance ?? "") ?? 0);
+                                          },
                                           dataBuilder: (context, selectedFromAccount) {
                                             // model.validateAmount(ProviderScope.containerOf(context)
                                             //     .read(appHomeViewModelProvider)
@@ -114,7 +118,9 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                                   onDismissed: () => Navigator.pop(context),
                                                   onConfirm: (value) {
                                                     Navigator.pop(context);
-
+                                                    // model.validateIfEmpty(double.tryParse(
+                                                    //         selectedFromAccount?.availableBalance ?? "") ??
+                                                    //     0);
                                                     model.addFromAccountData(selectedAccount: value);
                                                   },
                                                 );
@@ -208,7 +214,7 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                             text: S.of(context).next,
                                             isDisabled: !data!,
                                             onPressed: () {
-                                              // model.rjOtpValidate();
+                                              model.rjOtpValidate();
                                               ProviderScope.containerOf(context)
                                                   .read(rjFlightBookingDetailViewModelProvider)
                                                   .nextPage();

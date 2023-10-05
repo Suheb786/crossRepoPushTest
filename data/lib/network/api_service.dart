@@ -812,14 +812,12 @@ abstract class ApiService {
   @POST("/DebitCard/RemoveOrReApplySuppDebitCard")
   Future<HttpResponse<CardIssuanceResponseEntity>> removeOrReApplySupplementaryDebitCardwithResponse(
       @Body()
-          RemoveOrReApplySupplementaryDebitCardRequestEnity
-              removeOrReApplySupplementaryDebitCardRequestEnity);
+      RemoveOrReApplySupplementaryDebitCardRequestEnity removeOrReApplySupplementaryDebitCardRequestEnity);
 
   @POST("/DebitCard/RemoveOrReApplySuppDebitCard")
   Future<HttpResponse<ResponseEntity>> removeOrReApplySupplementaryDebitCard(
       @Body()
-          RemoveOrReApplySupplementaryDebitCardRequestEnity
-              removeOrReApplySupplementaryDebitCardRequestEnity);
+      RemoveOrReApplySupplementaryDebitCardRequestEnity removeOrReApplySupplementaryDebitCardRequestEnity);
 
   @POST("/CardTracking/GetCardInProcess")
   Future<HttpResponse<ResponseEntity>> getCardInProcess(
@@ -935,25 +933,25 @@ abstract class ApiService {
   );
 
   ///RJ
-  @POST("/RJ/GetDestinations")
+  @POST("${NetworkProperties.BASE_RJ_URL}/RJ/GetDestinations")
   Future<HttpResponse<DestinationResponseEntity>> getDestinations(
       @Body() GetDestinationRequestEntity request);
 
-  @POST("/RJ/GetOneWayLink")
+  @POST("${NetworkProperties.BASE_RJ_URL}/RJ/GetOneWayLink")
   Future<HttpResponse<GetTripResponseEntity>> getOneWayTripLink(
       @Body() GetOneWayTripLinkRequestEntity request);
 
-  @POST("/RJ/GetRoundTripLink")
+  @POST("${NetworkProperties.BASE_RJ_URL}/RJ/GetRoundTripLink")
   Future<HttpResponse<GetTripResponseEntity>> getTwoWayTripLink(
       @Body() GetTwoWayTripLinkRequestEntity request);
 
-  @POST("/RJ/MakeTicketPayment")
+  @POST("${NetworkProperties.BASE_RJ_URL}/RJ/MakeTicketPayment")
   Future<HttpResponse<ResponseEntity>> makeTicketPayment(@Body() MakeTicketPaymentRequestEntity request);
 
-  @POST("/RJ/GetFlightDetails")
+  @POST("${NetworkProperties.BASE_RJ_URL}/RJ/GetFlightDetails")
   Future<HttpResponse<ResponseEntity>> getFlightDetails(@Body() GetFlightDetailsRequestEntity request);
 
-  @POST("/RJ/MakeTicketPaymentOtp")
+  @POST("${NetworkProperties.BASE_RJ_URL}/RJ/MakeTicketPaymentOtp")
   Future<HttpResponse<ResponseEntity>> rjOtpValidate(@Body() BaseRequest request);
 
   ///CLIQ
