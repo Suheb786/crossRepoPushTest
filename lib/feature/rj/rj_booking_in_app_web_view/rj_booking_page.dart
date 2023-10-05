@@ -6,7 +6,6 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-import '../../../main/navigation/route_paths.dart';
 import '../../../utils/color_utils.dart';
 import 'rj_booking_page_view.dart';
 import 'rj_booking_page_view_model.dart';
