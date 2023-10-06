@@ -1878,5 +1878,6 @@
   "referralLink": "رابط الدعوة",
   "fare": "Fare",
   "taxesAndFee": "Taxes & Fees",
-  "confirmationURL": "Confirmation URL"
+  "confirmationURL": "Confirmation URL",
+  "yourAccountBalanceSuccessFullyUpdated": "تم تحديث رصيد حسابك بنجاح"
 }

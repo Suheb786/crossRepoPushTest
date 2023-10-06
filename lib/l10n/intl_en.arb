@@ -1905,5 +1905,6 @@
   "endsOn": "Ends on {String}",
   "fare": "Fare",
   "taxesAndFee": "Taxes & Fees",
-  "confirmationURL": "Confirmation URL"
+  "confirmationURL": "Confirmation URL",
+  "yourAccountBalanceSuccessFullyUpdated": "Your account balance is successfully updated."
 }
