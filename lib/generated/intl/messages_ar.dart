@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -1957,26 +1958,21 @@ class MessageLookup extends MessageLookupByLibrary {
             "الرمز منتهي الصلاحية، غير مصرح بتسجيل الدخول"),
         "loginRegisterDisabled": MessageLookupByLibrary.simpleMessage(
             "الخدمة غير متاحة حالياً، يرجى المحاولة لاحقاً"),
-        "loginWithEmail": MessageLookupByLibrary.simpleMessage(
-            "الدخول باستخدام البريد الإلكتروني"),
+        "loginWithEmail": MessageLookupByLibrary.simpleMessage("الدخول باستخدام البريد الإلكتروني"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
-        "logoutAndContinueLater": MessageLookupByLibrary.simpleMessage(
-            "تسجيل الخروج والاستمرار لاحقاً"),
-        "logoutError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "logoutAndContinueLater": MessageLookupByLibrary.simpleMessage("تسجيل الخروج والاستمرار لاحقاً"),
+        "logoutError": MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "lookingFor": MessageLookupByLibrary.simpleMessage("البحث عن حوالة"),
-        "lookingForAvailableAgent":
-            MessageLookupByLibrary.simpleMessage("البحث عن موظف متاح"),
-        "loyaltyRewards":
-            MessageLookupByLibrary.simpleMessage("استمتع بنقاط مكافآت أكتر"),
+        "lookingForAvailableAgent": MessageLookupByLibrary.simpleMessage("البحث عن موظف متاح"),
+        "lostConnection": MessageLookupByLibrary.simpleMessage("الشبكة ضعيفة"),
+        "lostConnectionDescription": MessageLookupByLibrary.simpleMessage(
+            "شكرا لتفهمك! الشبكة ضعيفة وما عم نقدر نتواصل معك. يرجى الاتصال معنا لاحقا أو دردش معنا من  خلال التطبيق أو تواصل معنا على الرقم 5200100-06."),
+        "loyaltyRewards": MessageLookupByLibrary.simpleMessage("استمتع بنقاط مكافآت أكتر"),
         "mailingAddressDifferentFromResidence":
-            MessageLookupByLibrary.simpleMessage(
-                "العنوان البريدي مختلف على عنوان الإقامة"),
-        "mailingAddressLine":
-            MessageLookupByLibrary.simpleMessage("العنوان البريدي"),
+            MessageLookupByLibrary.simpleMessage("العنوان البريدي مختلف على عنوان الإقامة"),
+        "mailingAddressLine": MessageLookupByLibrary.simpleMessage("العنوان البريدي"),
         "mainAccount": MessageLookupByLibrary.simpleMessage("الحساب الرئيسي"),
-        "mainAnnualIncome":
-            MessageLookupByLibrary.simpleMessage("الدخل السنوي الرئيسي"),
+        "mainAnnualIncome": MessageLookupByLibrary.simpleMessage("الدخل السنوي الرئيسي"),
         "mainAnnualIncomeSmall":
             MessageLookupByLibrary.simpleMessage("الدخل السنوي الرئيسي"),
         "mainSourceIncome":
@@ -2261,28 +2257,28 @@ class MessageLookup extends MessageLookupByLibrary {
         "otherIncome": MessageLookupByLibrary.simpleMessage("دخل آخر"),
         "otherNationality": MessageLookupByLibrary.simpleMessage("جنسية ثانية"),
         "others": MessageLookupByLibrary.simpleMessage("باقي الأصدقاء"),
-        "otpExpired": MessageLookupByLibrary.simpleMessage(
-            "انتهت صلاحية كلمة المرور لمرة واحدة OTP. اطلب كلمة جديدة."),
-        "otpExpiredNetwork": MessageLookupByLibrary.simpleMessage(
-            "الكود منتهي الصلاحية. حاول كمان مرة."),
-        "otpLimitExceed": MessageLookupByLibrary.simpleMessage(
-            "تجاوزت الحد الاعلى لكلمة مرور OTP. حاول بعدين."),
+        "otpExpired": MessageLookupByLibrary.simpleMessage("انتهت صلاحية كلمة المرور لمرة واحدة OTP. اطلب كلمة جديدة."),
+        "otpExpiredNetwork": MessageLookupByLibrary.simpleMessage("الكود منتهي الصلاحية. حاول كمان مرة."),
+        "otpLimitExceed":
+            MessageLookupByLibrary.simpleMessage("تجاوزت الحد الاعلى لكلمة مرور OTP. حاول بعدين."),
         "otpLimitExceedNetwork": MessageLookupByLibrary.simpleMessage(
             "تجاوزت عدد المرات المسموحة لطلب الكود. حاول بعدين أو تواصل معنا على التطبيق أو بالاتصال على 5200100-06"),
         "otpNull": MessageLookupByLibrary.simpleMessage("أدخل الكود الصحيح"),
         "otpRequestedManyTime": MessageLookupByLibrary.simpleMessage(
             "تجاوزت عدد المرات المسموح فيها لإدخال الكود. حاول بعد فترة أو تواصل معنا على التطبيق أو بالاتصال على 5200100-06"),
+        "ourAgentsAreOccupied":
+            MessageLookupByLibrary.simpleMessage("فريقنا مشغول حاليا بمساعدة أصدقائك في بلينك"),
+        "ourAgentsAreOccupiedDescription": MessageLookupByLibrary.simpleMessage(
+            "شكرا لانتظارك! فريقنا مشغول حاليا بمساعدة أصدقائك في بلينك. يرجى الاتصال معنا لاحقا أو دردش معنا من خلال التطبيق أو تواصل معنا على الرقم 5200100-06."),
         "paidTo": MessageLookupByLibrary.simpleMessage("الدفع الى"),
         "passengers": MessageLookupByLibrary.simpleMessage("ركاب"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "passwordDialogContent": MessageLookupByLibrary.simpleMessage(
             "كلمة المرور لازم تتكون من 8 خانات على الأقل، حرف كبير ورمز."),
-        "passwordDialogHeader":
-            MessageLookupByLibrary.simpleMessage("أنشئ كلمة مرور"),
-        "passwordMismatch": MessageLookupByLibrary.simpleMessage(
-            "كلمة المرور غير صحيحة، حاول كمان مرة."),
-        "passwordMismatchError": MessageLookupByLibrary.simpleMessage(
-            "كلمة المرور غير مطابقة. حاول كمان مرة."),
+        "passwordDialogHeader": MessageLookupByLibrary.simpleMessage("أنشئ كلمة مرور"),
+        "passwordMismatch": MessageLookupByLibrary.simpleMessage("كلمة المرور غير صحيحة، حاول كمان مرة."),
+        "passwordMismatchError":
+            MessageLookupByLibrary.simpleMessage("كلمة المرور غير مطابقة. حاول كمان مرة."),
         "passwordNotMeetCriteria": MessageLookupByLibrary.simpleMessage(
             "كلمة المرور ما حققت الحد الأدنى من المتطلبات. حاول كمان مرة."),
         "passwordUpdate":
@@ -3306,22 +3302,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "youSent": MessageLookupByLibrary.simpleMessage(" تم الارسال"),
         "youWillBeNotified": MessageLookupByLibrary.simpleMessage(
             "رح نذكرك بمجرد الموافقة على طلبك ورح يتم إضافة المبلغ لحسابك"),
-        "youWillReceiveCardPinViaSms": MessageLookupByLibrary.simpleMessage(
-            "ما وصلتك رسالة SMS؟ تواصل معنا."),
-        "youareabouttoreject":
-            MessageLookupByLibrary.simpleMessage("انت على وشك ان ترفض"),
-        "youareabouttosend":
-            MessageLookupByLibrary.simpleMessage("انت على وشك ان ترسل"),
-        "yourAccountInactive":
-            MessageLookupByLibrary.simpleMessage("حسابك غير فعال"),
+        "youWillReceiveCardPinViaSms":
+            MessageLookupByLibrary.simpleMessage("ما وصلتك رسالة SMS؟ تواصل معنا."),
+        "youareabouttoreject": MessageLookupByLibrary.simpleMessage("انت على وشك ان ترفض"),
+        "youareabouttosend": MessageLookupByLibrary.simpleMessage("انت على وشك ان ترسل"),
+        "yourAccountBalanceSuccessFullyUpdated":
+            MessageLookupByLibrary.simpleMessage("تم تحديث رصيد حسابك بنجاح"),
+        "yourAccountInactive": MessageLookupByLibrary.simpleMessage("حسابك غير فعال"),
         "yourAddOtherCardFromCardSettings": MessageLookupByLibrary.simpleMessage(
             "بامكانك أضافة بطاقات بلينك الأخرى التابعة لك من خلال خدمة اعدادات البطاقة"),
-        "yourApplicationInReview":
-            MessageLookupByLibrary.simpleMessage("طلبك قيد المراجعة"),
-        "yourApplicationInReviewNote": MessageLookupByLibrary.simpleMessage(
-            "طلبك قيد المراجعة، رح نخبرك قريباً."),
-        "yourBillHasBeenRemoved":
-            MessageLookupByLibrary.simpleMessage("نم حذف الفاتورة"),
+        "yourApplicationInReview": MessageLookupByLibrary.simpleMessage("طلبك قيد المراجعة"),
+        "yourApplicationInReviewNote":
+            MessageLookupByLibrary.simpleMessage("طلبك قيد المراجعة، رح نخبرك قريباً."),
+        "yourBillHasBeenRemoved": MessageLookupByLibrary.simpleMessage("نم حذف الفاتورة"),
         "yourCardAddedToApplePay": MessageLookupByLibrary.simpleMessage(
             "تمت إضافة بطاقتك إلى Apple Wallet"),
         "yourCardAddedToApplePayDesc1": MessageLookupByLibrary.simpleMessage(

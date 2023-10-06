@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -2001,27 +2002,22 @@ class MessageLookup extends MessageLookupByLibrary {
             "YOur Token is Expired, Login is Not Allowed"),
         "loginRegisterDisabled": MessageLookupByLibrary.simpleMessage(
             "We\'re currently offline and will be back shortly!"),
-        "loginWithEmail":
-            MessageLookupByLibrary.simpleMessage("Login with Email"),
+        "loginWithEmail": MessageLookupByLibrary.simpleMessage("Login with Email"),
         "logout": MessageLookupByLibrary.simpleMessage("Log out"),
-        "logoutAndContinueLater":
-            MessageLookupByLibrary.simpleMessage("Log out and continue later"),
+        "logoutAndContinueLater": MessageLookupByLibrary.simpleMessage("Log out and continue later"),
         "logoutError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "lookingFor":
-            MessageLookupByLibrary.simpleMessage("What are you looking for?"),
-        "lookingForAvailableAgent": MessageLookupByLibrary.simpleMessage(
-            "Looking for available agent.."),
-        "loyaltyRewards": MessageLookupByLibrary.simpleMessage(
-            "Enjoy loyalty rewards with great multiplier"),
+        "lookingFor": MessageLookupByLibrary.simpleMessage("What are you looking for?"),
+        "lookingForAvailableAgent": MessageLookupByLibrary.simpleMessage("Looking for available agent.."),
+        "lostConnection": MessageLookupByLibrary.simpleMessage("Poor Network Connection"),
+        "lostConnectionDescription": MessageLookupByLibrary.simpleMessage(
+            "Apologies, due to poor network connection, we’ve lost you.  Please try to call us again later or chat with us from the app or call us on 06-5200100."),
+        "loyaltyRewards": MessageLookupByLibrary.simpleMessage("Enjoy loyalty rewards with great multiplier"),
         "mailingAddressDifferentFromResidence":
-            MessageLookupByLibrary.simpleMessage(
-                "Mailing address different from residence address?"),
-        "mailingAddressLine":
-            MessageLookupByLibrary.simpleMessage("MAILING address Line"),
+            MessageLookupByLibrary.simpleMessage("Mailing address different from residence address?"),
+        "mailingAddressLine": MessageLookupByLibrary.simpleMessage("MAILING address Line"),
         "mainAccount": MessageLookupByLibrary.simpleMessage("Main Account"),
-        "mainAnnualIncome":
-            MessageLookupByLibrary.simpleMessage("MAIN ANNUAL INCOME"),
+        "mainAnnualIncome": MessageLookupByLibrary.simpleMessage("MAIN ANNUAL INCOME"),
         "mainAnnualIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Main Annual Income"),
         "mainSourceIncome":
@@ -2324,23 +2320,24 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your OTP code is expired, please request for a new OTP code"),
         "otpExpiredNetwork": MessageLookupByLibrary.simpleMessage(
             "The code you have entered is expired. Please re-send code and try again."),
-        "otpLimitExceed": MessageLookupByLibrary.simpleMessage(
-            "Otp Limit Exceeds, Please Try again Later"),
+        "otpLimitExceed": MessageLookupByLibrary.simpleMessage("Otp Limit Exceeds, Please Try again Later"),
         "otpLimitExceedNetwork": MessageLookupByLibrary.simpleMessage(
             "You have exceed the number of times allowed to request a code. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
-        "otpNull":
-            MessageLookupByLibrary.simpleMessage("Please enter valid code."),
+        "otpNull": MessageLookupByLibrary.simpleMessage("Please enter valid code."),
         "otpRequestedManyTime": MessageLookupByLibrary.simpleMessage(
             "You have exceed the number of times allowed to enter the code. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
+        "ourAgentsAreOccupied":
+            MessageLookupByLibrary.simpleMessage("All our agents are currently assisting other blinkers"),
+        "ourAgentsAreOccupiedDescription": MessageLookupByLibrary.simpleMessage(
+            "Thank you for your patience, our agents are occupied in assisting other blinkers. Please try to call us again later or chat with us from the app or call us on 06-5200100."),
         "paidTo": MessageLookupByLibrary.simpleMessage("Paid to"),
         "passengers": MessageLookupByLibrary.simpleMessage("Passengers"),
         "password": MessageLookupByLibrary.simpleMessage("PASSWORD"),
         "passwordDialogContent": MessageLookupByLibrary.simpleMessage(
             "Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol."),
-        "passwordDialogHeader":
-            MessageLookupByLibrary.simpleMessage("Create Password"),
-        "passwordMismatch": MessageLookupByLibrary.simpleMessage(
-            "The passwords you entered do not match. Please try again."),
+        "passwordDialogHeader": MessageLookupByLibrary.simpleMessage("Create Password"),
+        "passwordMismatch":
+            MessageLookupByLibrary.simpleMessage("The passwords you entered do not match. Please try again."),
         "passwordMismatchError": MessageLookupByLibrary.simpleMessage(
             "The passwords you entered do not match. Please check and try again."),
         "passwordNotMeetCriteria": MessageLookupByLibrary.simpleMessage(
@@ -3397,23 +3394,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "youSent": MessageLookupByLibrary.simpleMessage("You sent "),
         "youWillBeNotified": MessageLookupByLibrary.simpleMessage(
             "You will be notified once your request \n is accepted and money is \n added into your account."),
-        "youWillReceiveCardPinViaSms": MessageLookupByLibrary.simpleMessage(
-            "Didn\'t receive an SMS? Contact our Engagement Team."),
-        "youareabouttoreject":
-            MessageLookupByLibrary.simpleMessage("You are about to reject "),
-        "youareabouttosend":
-            MessageLookupByLibrary.simpleMessage("You are about to send "),
-        "yourAccountInactive":
-            MessageLookupByLibrary.simpleMessage("Your account is inactive"),
+        "youWillReceiveCardPinViaSms":
+            MessageLookupByLibrary.simpleMessage("Didn\'t receive an SMS? Contact our Engagement Team."),
+        "youareabouttoreject": MessageLookupByLibrary.simpleMessage("You are about to reject "),
+        "youareabouttosend": MessageLookupByLibrary.simpleMessage("You are about to send "),
+        "yourAccountBalanceSuccessFullyUpdated":
+            MessageLookupByLibrary.simpleMessage("Your account balance is successfully updated."),
+        "yourAccountInactive": MessageLookupByLibrary.simpleMessage("Your account is inactive"),
         "yourAddOtherCardFromCardSettings":
-            MessageLookupByLibrary.simpleMessage(
-                "You can add your other cards from\nCard Settings."),
-        "yourApplicationInReview": MessageLookupByLibrary.simpleMessage(
-            "Your application is under review"),
+            MessageLookupByLibrary.simpleMessage("You can add your other cards from\nCard Settings."),
+        "yourApplicationInReview": MessageLookupByLibrary.simpleMessage("Your application is under review"),
         "yourApplicationInReviewNote": MessageLookupByLibrary.simpleMessage(
             "Your application is under review,\nwe will notify you soon."),
-        "yourBillHasBeenRemoved":
-            MessageLookupByLibrary.simpleMessage("Your bill has been removed."),
+        "yourBillHasBeenRemoved": MessageLookupByLibrary.simpleMessage("Your bill has been removed."),
         "yourCardAddedToApplePay": MessageLookupByLibrary.simpleMessage(
             "Your card has been added\nto Apple Wallet."),
         "yourCardAddedToApplePayDesc1": MessageLookupByLibrary.simpleMessage(

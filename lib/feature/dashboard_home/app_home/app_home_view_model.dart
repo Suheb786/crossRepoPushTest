@@ -64,6 +64,7 @@ import 'package:neo_bank/utils/screen_size_utils.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../../generated/l10n.dart';
 import '../account_transaction/account_transaction_page.dart';
 import '../card_transaction/card_transaction_page.dart';
 
@@ -360,7 +361,7 @@ class AppHomeViewModel extends BasePageViewModel {
         } else if (event.status == Status.SUCCESS) {
           getTimelinePlaceholder();
           if (isShowBalenceUpdatedToast) {
-            showSuccessToast("Your account balance is successfully updated.");
+            showSuccessToast(S.current.yourAccountBalanceSuccessFullyUpdated);
             isShowBalenceUpdatedToast = false;
           }
           dashboardDataContent = event.data!.dashboardDataContent!;
