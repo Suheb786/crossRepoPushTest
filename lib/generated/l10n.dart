@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -18755,6 +18756,16 @@ class S {
     return Intl.message(
       'Confirmation URL',
       name: 'confirmationURL',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account balance is successfully updated.`
+  String get yourAccountBalanceSuccessFullyUpdated {
+    return Intl.message(
+      'Your account balance is successfully updated.',
+      name: 'yourAccountBalanceSuccessFullyUpdated',
       desc: '',
       args: [],
     );
