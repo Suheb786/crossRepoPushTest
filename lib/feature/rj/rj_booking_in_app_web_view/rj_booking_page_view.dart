@@ -30,11 +30,7 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
               onWebViewCreated: (controller) {
                 model.webViewController = controller;
               },
-              onPageCommitVisible: (con, uri) {
-                debugPrint("url ${uri.toString()}");
-                // Navigator.pushNamed(context, RoutePaths.RjFlightBookingDetailPage);
-                //  con.goBack();
-              },
+              onPageCommitVisible: (con, uri) {},
               onProgressChanged: (controller, progress) {
                 model.setIndicatorProgressValue(progress / 100);
               },
@@ -54,12 +50,10 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
                 return PermissionRequestResponse(
                     resources: resource, action: PermissionRequestResponseAction.GRANT);
               },
-              onLoadStart: (controller, url) {
-                debugPrint('-----onload start ---->${url}');
-              },
+              onLoadStart: (controller, url) {},
               onLoadStop: (controller, url) async {
-                debugPrint('-----onload stop ---->${url}');
-                debugPrint('-----onload path ---->${url?.path}');
+                // debugPrint('-----onload stop ---->${url}');
+                // debugPrint('-----onload path ---->${url?.path}');
                 // if ((url?.path ?? '').contains('http://10.6.13.2:2186/RJFlightConfirmation/Index')) {
                 //   debugPrint('------RJ DETAILS----');
                 //   debugPrint('-----onload path ---->${url}');

@@ -67,9 +67,7 @@ class RJBookingConfirmedInAppWebViewPageView
                       return PermissionRequestResponse(
                           resources: resource, action: PermissionRequestResponseAction.GRANT);
                     },
-                    onLoadStart: (controller, url) async {
-                      debugPrint('-----onload start ---->${url}');
-                    },
+                    onLoadStart: (controller, url) async {},
                     onLoadStop: (controller, url) {},
                   ),
                 ),

@@ -18779,6 +18779,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Your account balance is successfully updated.`
+  String get yourAccountBalanceSuccessFullyUpdated {
+    return Intl.message(
+      'Your account balance is successfully updated.',
+      name: 'yourAccountBalanceSuccessFullyUpdated',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
