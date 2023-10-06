@@ -1907,5 +1907,6 @@
   "twoToTwelve": "2 to 12 years",
   "infant": "Infant",
   "belowTwoYears": "Below 2 years",
-  "payFromRJ": "Pay from"
+  "payFromRJ": "Pay from",
+  "yourAccountBalanceSuccessFullyUpdated": "Your account balance is successfully updated."
 }

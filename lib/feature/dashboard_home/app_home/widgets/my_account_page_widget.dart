@@ -32,26 +32,19 @@ class _MyAccountPageViewWidgetState extends State<MyAccountPageViewWidget> {
 
   String showNickName() {
     if (widget.account.nickName == null || widget.account.nickName?.isEmpty == true) {
-      if (accountTextController.text == "") {
-        return S.current.addNickName.toTitleCase();
-      } else {
-        return "";
-      }
-    } else if (accountTextController.text.isNotEmpty) {
-      return "";
-    } else {
-      return /*account.nickName ??*/ "";
+      return S.current.addNickName.toTitleCase();
     }
+    return "";
   }
 
   @override
   void initState() {
     super.initState();
-    accountTextController.text = widget.account.nickName ?? "";
   }
 
   @override
   Widget build(BuildContext context) {
+    accountTextController.text = widget.account.nickName ?? "";
     return AppKeyBoardHide(
       child: Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
