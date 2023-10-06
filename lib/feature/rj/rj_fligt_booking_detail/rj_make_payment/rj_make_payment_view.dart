@@ -45,6 +45,10 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                         ProviderScope.containerOf(context)
                             .read(rjFlightBookingDetailViewModelProvider)
                             .nextPage();
+                        ProviderScope.containerOf(context)
+                            .read(rjOtpValidateViewModelProvider)
+                            .otpController
+                            .clear();
                       }
                     },
                     dataBuilder: (BuildContext context, data) {
@@ -57,7 +61,7 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                 Align(
                                   alignment: AlignmentDirectional.topStart,
                                   child: Text(
-                                    S.of(context).payFrom,
+                                    S.of(context).payFromRJ,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         color: Theme.of(context).colorScheme.surfaceVariant,
@@ -82,7 +86,7 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                             onTap: () {
                                               SelectAccountListDialog.show(
                                                 context,
-                                                title: S.current.payFrom,
+                                                title: S.current.payFromRJ,
                                                 accountList: ProviderScope.containerOf(context)
                                                     .read(appHomeViewModelProvider)
                                                     .getAllMyAccounts(),
@@ -116,7 +120,7 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                                       crossAxisAlignment: CrossAxisAlignment.start,
                                                       children: [
                                                         Text(
-                                                          S.current.payFrom.toUpperCase(),
+                                                          S.current.payFromRJ.toUpperCase(),
                                                           style: TextStyle(
                                                               fontFamily: StringUtils.appFont,
                                                               fontSize: 10.0.t,

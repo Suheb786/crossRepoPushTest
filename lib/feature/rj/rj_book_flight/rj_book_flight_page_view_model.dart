@@ -5,6 +5,7 @@ import 'package:domain/usecase/rj/get_destination_usecase.dart';
 import 'package:domain/usecase/rj/get_one_way_trip_link_usecase.dart';
 import 'package:domain/usecase/rj/get_two_way_trip_link_usecase.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -102,10 +103,10 @@ class RjFlightBookingViewModel extends BasePageViewModel {
 
   DateTime initialDate = DateTime.now();
   List<Passenger> passengerList = [
-    Passenger('Adult', '16 years +'),
-    Passenger('Youth', '13 to 16 years'),
-    Passenger('Children', '2 to 12 years'),
-    Passenger('Infant', 'Below 2 years'),
+    Passenger(S.current.adult, S.current.sixTeenYearsPlus),
+    Passenger(S.current.youth, S.current.threeToSixteenYears),
+    Passenger(S.current.children, S.current.twoToTwelve),
+    Passenger(S.current.infant, S.current.belowTwoYears),
   ];
 
   /// ------------- tabChange listener -----------------------
@@ -223,12 +224,11 @@ class RjFlightBookingViewModel extends BasePageViewModel {
   ];
 
   List<CabinClassOption> cabinClassOptionList = [
-    CabinClassOption('Economy', AssetUtils.EconomySeat),
-    CabinClassOption('Business', AssetUtils.BusinessSeat)
+    CabinClassOption(S.current.economy, AssetUtils.EconomySeat),
+    CabinClassOption(S.current.business, AssetUtils.BusinessSeat)
   ];
 
   void getTripLink(BuildContext context) {
-    print('Get trip link---->${tabChangeNotifier.value}');
     if (tabChangeNotifier.value == 0) {
       getOneWayLink(context);
     } else {

@@ -72,7 +72,8 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
                           fontWeight: FontWeight.w600),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.only(top: 8.0.h, bottom: 32.h, start: 24.w, end: 24.w),
+                      padding: EdgeInsetsDirectional.only(
+                          top: 8.0.h, bottom: currentStep == 2 ? 0 : 32.h, start: 24.w, end: 24.w),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),
@@ -85,7 +86,7 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
                             currentStep ?? 0,
                             S.of(context).pleaseConfirmFlightDetail,
                             S.of(context).howYouLikeToPayment,
-                            '${S.of(context).enterOtpHeader} \n ${"${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode != null ? (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.isNotEmpty ? ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.replaceAll('00', '+') : '+') : ""}" + " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}"}',
+                            S.of(context).enterOtpHeader,
                           ),
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -93,6 +94,32 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
                               color: Theme.of(context).colorScheme.secondary,
                               fontSize: 20.t,
                               fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ),
+                    Visibility(
+                      visible: currentStep == 2,
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 32.h),
+                        child: ShowUpAnimation(
+                          delayStart: Duration(milliseconds: 500),
+                          animationDuration: Duration(milliseconds: 750),
+                          curve: Curves.bounceIn,
+                          direction: Direction.vertical,
+                          offset: 0.5,
+                          child: Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: Text(
+                              "${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode != null ? (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.isNotEmpty ? ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.replaceAll('00', '+') : '+') : ""}" +
+                                  " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  color: Theme.of(context).colorScheme.secondary,
+                                  fontSize: 20.t,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
                         ),
                       ),
                     ),

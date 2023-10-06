@@ -14560,46 +14560,6 @@ class S {
     );
   }
 
-  /// `AMM`
-  String get aMM {
-    return Intl.message(
-      'AMM',
-      name: 'aMM',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `NRT`
-  String get nRT {
-    return Intl.message(
-      'NRT',
-      name: 'nRT',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Jordan`
-  String get jordan {
-    return Intl.message(
-      'Jordan',
-      name: 'jordan',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Japan`
-  String get japan {
-    return Intl.message(
-      'Japan',
-      name: 'japan',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Depart On`
   String get departOnForPurchasePage {
     return Intl.message(
@@ -14630,36 +14590,6 @@ class S {
     );
   }
 
-  /// `31 Jul 2022 `
-  String get purchaseDummyDate {
-    return Intl.message(
-      '31 Jul 2022 ',
-      name: 'purchaseDummyDate',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `- 3:30PM`
-  String get purchaseDummyTime {
-    return Intl.message(
-      '- 3:30PM',
-      name: 'purchaseDummyTime',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `984893922`
-  String get refNoDummyData {
-    return Intl.message(
-      '984893922',
-      name: 'refNoDummyData',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `to Booking Summary`
   String get toBookingSummary {
     return Intl.message(
@@ -14675,16 +14605,6 @@ class S {
     return Intl.message(
       'Total Amount',
       name: 'totalAmount',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `659.570`
-  String get dummyAmount {
-    return Intl.message(
-      '659.570',
-      name: 'dummyAmount',
       desc: '',
       args: [],
     );
@@ -14730,10 +14650,10 @@ class S {
     );
   }
 
-  /// `How would you like to\nmake the payment`
+  /// `Proceed with your payment`
   String get howYouLikeToPayment {
     return Intl.message(
-      'How would you like to\nmake the payment',
+      'Proceed with your payment',
       name: 'howYouLikeToPayment',
       desc: '',
       args: [],
@@ -14775,16 +14695,6 @@ class S {
     return Intl.message(
       'Are you sure you want to cancel your booking? You’ll have to start over again if you cancel.',
       name: 'cancelBookingDetail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Amman, Jordan (AMM)\nto Tokyo, Japan (NRT) \n31 Jul 2022 - 3:30PM`
-  String get departDescription {
-    return Intl.message(
-      'Amman, Jordan (AMM)\nto Tokyo, Japan (NRT) \n31 Jul 2022 - 3:30PM',
-      name: 'departDescription',
       desc: '',
       args: [],
     );
@@ -18755,6 +18665,116 @@ class S {
     return Intl.message(
       'Confirmation URL',
       name: 'confirmationURL',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Economy`
+  String get economy {
+    return Intl.message(
+      'Economy',
+      name: 'economy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Business`
+  String get business {
+    return Intl.message(
+      'Business',
+      name: 'business',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Adult`
+  String get adult {
+    return Intl.message(
+      'Adult',
+      name: 'adult',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `16 years +`
+  String get sixTeenYearsPlus {
+    return Intl.message(
+      '16 years +',
+      name: 'sixTeenYearsPlus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Youth`
+  String get youth {
+    return Intl.message(
+      'Youth',
+      name: 'youth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `13 to 16 years`
+  String get threeToSixteenYears {
+    return Intl.message(
+      '13 to 16 years',
+      name: 'threeToSixteenYears',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Children`
+  String get children {
+    return Intl.message(
+      'Children',
+      name: 'children',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `2 to 12 years`
+  String get twoToTwelve {
+    return Intl.message(
+      '2 to 12 years',
+      name: 'twoToTwelve',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Infant`
+  String get infant {
+    return Intl.message(
+      'Infant',
+      name: 'infant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Below 2 years`
+  String get belowTwoYears {
+    return Intl.message(
+      'Below 2 years',
+      name: 'belowTwoYears',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay from`
+  String get payFromRJ {
+    return Intl.message(
+      'Pay from',
+      name: 'payFromRJ',
       desc: '',
       args: [],
     );

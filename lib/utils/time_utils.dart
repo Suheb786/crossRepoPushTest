@@ -134,13 +134,13 @@ class TimeUtils {
 
   static String getFormattedDateForRJ(DateTime date) {
     DateTime dateTime = DateTime.parse(date.toString()).toLocal();
-    final DateFormat formatter = DateFormat('yyyyMMdd');
+    final DateFormat formatter = DateFormat('yyyyMMdd', 'en');
     return formatter.format(dateTime);
   }
 
   static String getFormattedDateForRTP(String date) {
     DateTime dateTime = DateTime.parse(date).toLocal();
-    final DateFormat formatter = DateFormat('dd MMMM');
+    final DateFormat formatter = DateFormat('dd MMMM', 'en');
     return formatter.format(dateTime);
   }
 

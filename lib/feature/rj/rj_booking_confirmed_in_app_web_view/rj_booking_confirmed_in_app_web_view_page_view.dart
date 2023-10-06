@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/feature/rj/rj_booking_confirmed_in_app_web_view/rj_booking_confirmed_in_app_web_view_page_view_model.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../base/base_page.dart';
 import '../../../generated/l10n.dart';
-import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/app_svg.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../utils/asset_utils.dart';
 import '../../../utils/color_utils.dart';
-import '../rj_fligt_booking_detail/rj_fligt_booking_page.dart';
 
 class RJBookingConfirmedInAppWebViewPageView
     extends BasePageViewWidget<RJBookingConfirmedInAppWebViewPageViewModel> {
@@ -63,20 +61,6 @@ class RJBookingConfirmedInAppWebViewPageView
                         javaScriptEnabled: true,
                         useOnLoadResource: true,
                         clearCache: true,
-                        contentBlockers: [
-                          ContentBlocker(
-                            trigger: ContentBlockerTrigger(
-                              urlFilter: 'https://example.com/*',
-                              resourceType: [
-                                ContentBlockerTriggerResourceType.SCRIPT,
-                                ContentBlockerTriggerResourceType.IMAGE,
-                              ],
-                            ),
-                            action: ContentBlockerAction(
-                              type: ContentBlockerActionType.BLOCK,
-                            ),
-                          ),
-                        ],
                       ),
                     ),
                     androidOnPermissionRequest: (controller, origin, resource) async {
@@ -86,40 +70,7 @@ class RJBookingConfirmedInAppWebViewPageView
                     onLoadStart: (controller, url) async {
                       debugPrint('-----onload start ---->${url}');
                     },
-                    onLoadStop: (controller, url) {
-                      debugPrint('-----onload stop ---->${url}');
-                      debugPrint('-----onload path ---->${url?.path}');
-                      if ((url?.path ?? '').contains('http://10.6.13.2:2186/RJFlightConfirmation/Index')) {
-                        debugPrint('------RJ DETAILS----');
-                        debugPrint('-----onload path ---->${url}');
-                        String referenceNumber = url?.queryParameters['referenceNumber'] ?? '';
-                        Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
-                            arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
-                        debugPrint('------RJ DETAILS----');
-                      }
-                    },
-                    shouldOverrideUrlLoading: (controller, navigationAction) async {
-                      if (!navigationAction.request.url.toString().startsWith('https://')) {
-                        // Redirect to HTTPS if the URL is not secure
-                        return NavigationActionPolicy.ALLOW;
-                      }
-                      return NavigationActionPolicy.ALLOW;
-                    },
-                    onLoadResource: (controller, resource) {
-                      if (!resource.url.toString().startsWith('https://')) {
-                        // Log or handle insecure resource loading
-                      }
-                    },
-                    onReceivedHttpAuthRequest: (controller, challenge) async {
-                      // Handle HTTP authentication requests
-                      return HttpAuthResponse(action: HttpAuthResponseAction.CANCEL);
-                    },
-                    onReceivedServerTrustAuthRequest: (controller, challenge) async {
-                      // Handle server trust authentication requests
-                      return ServerTrustAuthResponse(
-                        action: ServerTrustAuthResponseAction.CANCEL,
-                      );
-                    },
+                    onLoadStop: (controller, url) {},
                   ),
                 ),
                 AppStreamBuilder<double>(
