@@ -4,6 +4,7 @@ import 'dart:isolate';
 
 import 'package:data/di/local_module.dart';
 import 'package:data/helper/antelop_helper.dart';
+import 'package:data/helper/secure_storage_helper.dart';
 import 'package:domain/constants/app_constants_domain.dart';
 import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/usecase/app_flyer/init_app_flyer_sdk.dart';
@@ -29,6 +30,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
+import '../ui/molecules/app_progress.dart';
 import '../ui/molecules/dialog/session_timeout/session_timeout_dailog.dart';
 import 'navigation/route_paths.dart';
 
@@ -227,6 +229,8 @@ class AppViewModel extends BaseViewModel {
 
   static PublishSubject<GetTokenUseCaseParams> _getTokenRequest = PublishSubject();
 
+  PublishSubject<GetTokenUseCaseParams> _getTokenWithLoaderRequest = PublishSubject();
+
   PublishSubject<Resource<bool>> _initInfobipMessageResponseSubject = PublishSubject();
 
   static PublishSubject<Resource<bool>> _getTokenResponse = PublishSubject();
@@ -269,6 +273,19 @@ class AppViewModel extends BaseViewModel {
           //print("error");
         }
         _getTokenResponse.safeAdd(event);
+      });
+    });
+
+    /// For the session timeout...
+    _getTokenWithLoaderRequest.listen((value) {
+      RequestManager(value, createCall: () => _getTokenUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        if (event.status == Status.SUCCESS || event.status == Status.ERROR) {
+          Navigator.pop(appLevelKey.currentContext!);
+        } else if (event.status == Status.LOADING) {
+          AppProgress(appLevelKey.currentContext!);
+        }
       });
     });
 
@@ -320,7 +337,7 @@ class AppViewModel extends BaseViewModel {
           title: S.of(appLevelKey.currentState!.context).activity,
           onSelected: () {
             /// continue button call api to restart timer...
-            _callGetToken();
+            _callGetTokenWithLoader();
             Navigator.pop(appLevelKey.currentState!.context);
           },
         );
@@ -374,6 +391,17 @@ class AppViewModel extends BaseViewModel {
     _getTokenRequest.add(GetTokenUseCaseParams());
   }
 
+  void _callGetTokenWithLoader() {
+    _getTokenWithLoaderRequest.add(GetTokenUseCaseParams());
+  }
+
+  Future<void> userActivityDetected() async {
+    String? token = await SecureStorageHelper.instance.getToken();
+    if (token != null) {
+      ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).startTimer();
+    }
+  }
+
   ThemeData toggleTheme() {
     if (appTheme == AppTheme.dark) {
       _appTheme = AppTheme.light;
@@ -387,6 +415,8 @@ class AppViewModel extends BaseViewModel {
   void dispose() {
     _receivePort.close();
     _isolate?.kill();
+    _getTokenWithLoaderRequest.close();
+    _getTokenRequest.close();
     super.dispose();
   }
 

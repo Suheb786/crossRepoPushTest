@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:focus_detector/focus_detector.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/base/base_widget.dart';
+import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_progress.dart';
@@ -62,17 +63,13 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
   }
 
   Widget stateBuild(BuildContext context) {
-    return subscribeVisibilityEvents
-        ? FocusDetector(
-            onFocusLost: () => onFocusLost(),
-            onFocusGained: () => onFocusGained(),
-            onVisibilityLost: () => onVisibilityLost(),
-            onVisibilityGained: () => onVisibilityGained(),
-            onForegroundLost: () => onForegroundLost(),
-            onForegroundGained: () => onForegroundGained(),
-            child: _getLayout(),
-          )
-        : _getLayout();
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      child: _getLayout(),
+      onTap: () => ProviderScope.containerOf(context).read(appViewModel).userActivityDetected(),
+      onPanDown: (details) => ProviderScope.containerOf(context).read(appViewModel).userActivityDetected(),
+      onScaleStart: (details) => ProviderScope.containerOf(context).read(appViewModel).userActivityDetected(),
+    );
   }
 
   /// Returns viewModel of the screen

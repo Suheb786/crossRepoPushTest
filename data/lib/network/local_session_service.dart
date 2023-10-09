@@ -61,18 +61,4 @@ class LocalSessionService {
     _stopwatch.stop();
     return true;
   }
-
-  bool getLocalSessionWarning({Function()? onSessionEndWarning, Function()? onSessionTimeout}) {
-    debugPrint('timer started ');
-    if (_warningTimer != null) {
-      _warningTimer!.cancel();
-      _warningTimer = null;
-    }
-    if (_sessionTimer != null) {
-      _sessionTimer!.cancel();
-      _sessionTimer = null;
-    }
-
-    return true;
-  }
 }
