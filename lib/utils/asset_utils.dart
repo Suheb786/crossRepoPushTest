@@ -18,6 +18,7 @@ class AssetUtils {
   static const String delete = svg + "delete.svg";
   static const String upload = svg + "upload.svg";
   static const String search = svg + "search.svg";
+  static const String searchThin = svg + "search_thin.svg";
   static const String calendar = svg + "calendar.svg";
   static const String earphone = svg + "earphone.svg";
   static const String edit = svg + "edit.svg";
@@ -177,14 +178,18 @@ class AssetUtils {
   ///Rj PNG Images
 
   static const String flight = drawable + "flight.png";
-  static const String EconomySeat = drawable + "economy_seat.png";
-  static const String BusinessSeat = drawable + "business_icon.png";
   static const String BigSearchIcon = drawable + "big_search_icon.png";
-  static const String New_RJ_BG = drawable + "new_rj_background.png";
   static const String AirplaneTail = drawable + "airplane_tail.png";
 
   ///Rj svg
   static const String cancelFlightIcon = svg + "cancel_flight.svg";
+  static const String EconomySeat = svg + "economy_seat.svg";
+  static const String BusinessSeat = svg + "business_seat.svg";
+  static const String BestDealsWithBlink = svg + "best_deals_with_blink.svg";
+  static const String GoRj = svg + "go_rj.svg";
+  static const String BookNow = svg + "book_now.svg";
+  static const String WalkingLady = svg + "walking_lady.svg";
+
 
   ///Cliq
   static const String walletIcon = svg + "wallet.svg";
@@ -222,5 +227,28 @@ class AssetUtils {
   static const String contactUs = svg + "contact_us.svg";
   static const String homeOutlineButton = svg + "home_outlined.svg";
   static const String blinkLogo1 = svg + "blink_logo1.svg";
+  static const String blinkLogo2 = svg + "blink_logo2.svg";
   static const String eVouchersLanding = drawable + "evoucher_landing.png";
+  static const String timelineButton = svg + "time_line.svg";
+  static const String spin = svg + "spin.svg";
+  static const String down = svg + "down.svg";
+  static const String clock = svg + "clock.svg";
+  static const String swipeUpSmall = svg + "swipe_up_small.svg";
+  static const String moreMenu = svg + "more_menu.svg";
+
+  ///account
+  static const String addMoneyIcon = svg + "add_money.svg";
+  static const String openSubAccountIcon = svg + "sub_account.svg";
+  static const String shareAccountInfoIcon = svg + "share_account_info.svg";
+  static const String transferBetweenAccountIcon = svg + "transfer_between_account.svg";
+  static const String closeSubAccountIcon = svg + "close_sub_account.svg";
+
+  ///dialog png
+  static const String close_bold = drawable + "close_bold.png";
+
+  ///Refer
+  static const String referIcon = svg + "refer_icon.svg";
+
+  ///Offers
+  static const String forYou = svg + "for_you.svg";
 }

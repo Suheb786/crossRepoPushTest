@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 
 import 'how_much_like_to_pay_prepaid_bills_page_view.dart';
@@ -35,12 +34,6 @@ class HowMuchLikeToPayPrePaidBillsPageState
   void onModelReady(HowMuchLikeToPayPrePaidBillsPageViewModel model) {
     final providerModel = ProviderScope.containerOf(context).read(payMyPrePaidBillsPageViewModelProvider);
     model.isPrepaidCategoryListEmpty = providerModel.isPrePaidCategoryEmpty;
-    model.savingAccountController.text = ProviderScope.containerOf(context)
-            .read(appHomeViewModelProvider)
-            .dashboardDataContent
-            .account
-            ?.accountNo ??
-        '';
     super.onModelReady(model);
   }
 

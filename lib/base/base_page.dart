@@ -175,7 +175,6 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
           AppConstantsUtils.resetCacheLists();
 
           if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
-            AppConstantsUtils.isApplePayPopUpShown = false;
             AntelopHelper.walletDisconnect();
           }
           Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding, (route) => false);
@@ -192,6 +191,8 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
         }
       }
     });
+
+    bool isLoading = false;
 
     model.errorStringStream.listen((event) {
       if (mounted) {
@@ -210,9 +211,15 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
     });
     model.loadingStream.listen((value) {
       if (mounted) if (value) {
-        AppProgress(context);
+        if (!isLoading) {
+          AppProgress(context);
+          isLoading = true;
+        }
       } else {
-        Navigator.pop(context);
+        if (isLoading) {
+          Navigator.pop(context);
+          isLoading = false;
+        }
       }
     });
     onModelReady(model);

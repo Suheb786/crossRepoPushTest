@@ -13,9 +13,11 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_transaction_history_list/beneficiary_transaction_history_list_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
+import 'package:neo_bank/ui/molecules/app_progress.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/manage_contacts/edit_profile_pic_bottom_sheet_widget.dart';
@@ -28,6 +30,8 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../payment/request_amount_from_contact/request_amount_from_contact_page.dart';
+import '../../payment/send_amount_to_contact/send_amount_to_contact_page.dart';
 import 'beneficiary_contact_details_page_view_model.dart';
 
 class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryContactDetailsPageViewModel> {
@@ -100,9 +104,15 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                                 }, onSelectFromLibrary: () {
                                   model.uploadProfilePhoto(DocumentTypeEnum.PICK_IMAGE);
                                   Navigator.pop(context);
-                                }, onTakePhoto: () {
-                                  model.uploadProfilePhoto(DocumentTypeEnum.CAMERA);
+                                }, onTakePhoto: () async {
                                   Navigator.pop(context);
+
+                                  final dynamic filePath =
+                                      await Navigator.pushNamed(context, RoutePaths.CameraCapturePage);
+
+                                  if (filePath.toString().isNotEmpty)
+                                    model.uploadProfilePhoto(DocumentTypeEnum.CAMERA,
+                                        cameraPhotoFile: filePath);
                                 }, title: S.current.pleaseSelectYourAction);
                               },
                               child: Stack(
@@ -186,14 +196,19 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
+                  Navigator.pop(context);
                   model.addNickName(nickName: model.nickNameController.text);
                   model.showSuccessTitleandDescriptionToast(
                       ToastwithTitleandDescription(title: '', description: S.of(context).nickNameUpdated));
+                } else if (data.status == Status.ERROR) {
+                  Navigator.pop(context);
+                } else if (data.status == Status.LOADING) {
+                  AppProgress(context);
                 }
               },
               dataBuilder: (context, data) {
                 return Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w) + EdgeInsets.only(top: 10.h, bottom: 6.h),
+                  padding: EdgeInsetsDirectional.only(start: 16.w, end: 10.w),
                   decoration: BoxDecoration(
                       border: Border.all(
                         color: AppColor.white_gray,
@@ -213,31 +228,34 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                                     model.toggleNickName(context);
                                   }
                                 },
-                                child: AutoSizeTextField(
-                                  controller: model.nickNameController,
-                                  focusNode: model.nickNameFocus,
-                                  fullwidth: false,
-                                  textAlign: TextAlign.center,
-                                  cursorWidth: 1.w,
-                                  minWidth: 40.w,
-                                  readOnly: isEditable ?? false,
-                                  decoration: InputDecoration(
-                                    isDense: true,
-                                    contentPadding: const EdgeInsets.only(right: 6.0, left: 0.0),
-                                    isCollapsed: false,
+                                child: Padding(
+                                  padding: EdgeInsets.only(top: 10.h, bottom: 6.h),
+                                  child: AutoSizeTextField(
+                                    controller: model.nickNameController,
+                                    focusNode: model.nickNameFocus,
+                                    fullwidth: false,
+                                    textAlign: TextAlign.center,
+                                    cursorWidth: 1.w,
+                                    minWidth: 40.w,
+                                    readOnly: isEditable ?? false,
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      contentPadding: const EdgeInsets.only(right: 6.0, left: 0.0),
+                                      isCollapsed: false,
+                                    ),
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: AppColor.brightBlue,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 16.0.t),
+                                    onSubmitted: (value) {},
                                   ),
-                                  style: TextStyle(
-                                      fontFamily: StringUtils.appFont,
-                                      color: AppColor.brightBlue,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 16.0.t),
-                                  onSubmitted: (value) {},
                                 ),
                               );
                             }),
                       ),
                       SizedBox(
-                        width: 5.w,
+                        width: 1.w,
                       ),
                       AppStreamBuilder<bool>(
                           stream: model.nameEditableNotifierStream,
@@ -245,13 +263,18 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                           dataBuilder: (context, isEditable) {
                             return GestureDetector(
                               onTap: () {
-                                model.toggleNickName(context);
+                                model.onlyToggleNickName(context);
                               },
-                              child: AppSvg.asset(
-                                (isEditable ?? false) ? AssetUtils.editNickName : AssetUtils.checkIcon,
-                                color: AppColor.brightBlue,
-                                width: isEditable ?? false ? 14.h : 12.h,
-                                height: isEditable ?? false ? 14.h : 12.h,
+                              child: Container(
+                                alignment: Alignment.center,
+                                padding:
+                                    EdgeInsetsDirectional.only(top: 6.h, bottom: 6.h, start: 4.w, end: 6.w),
+                                child: AppSvg.asset(
+                                  (isEditable ?? false) ? AssetUtils.editNickName : AssetUtils.checkIcon,
+                                  color: AppColor.brightBlue,
+                                  width: isEditable ?? false ? 14.h : 12.h,
+                                  height: isEditable ?? false ? 14.h : 12.h,
+                                ),
                               ),
                             );
                           })
@@ -398,11 +421,13 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, RoutePaths.BeneficiaryTransactionHistoryList,
-                          arguments: BeneficiaryTransactionHistoryListPageArguments(
-                            navigationType: model.argument.navigationType,
-                            beneficiaryId: model.argument.beneficiaryInformation.id ?? '',
-                          ));
+                      Navigator.of(context).push(CustomRoute.swipeUpRoute(
+                        BeneficiaryTransactionHistoryListPage(BeneficiaryTransactionHistoryListPageArguments(
+                          navigationType: model.argument.navigationType,
+                          beneficiaryId: model.argument.beneficiaryInformation.id ?? '',
+                        )),
+                        routeName: RoutePaths.BeneficiaryTransactionHistoryList,
+                      ));
                     },
                     child: Container(
                       height: 64.h,
@@ -452,27 +477,30 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                     Navigator.pushNamed(
                       context,
                       RoutePaths.RequestAmountFromContact,
-                      arguments: Beneficiary(
-                          userId: model.argument.beneficiaryInformation.userId,
-                          accountHolderName: model.argument.beneficiaryInformation.fullName,
-                          accountNo: model.argument.beneficiaryInformation.accountNo,
-                          bankName: model.argument.beneficiaryInformation.bankName,
-                          beneType: model.argument.beneficiaryInformation.beneficiaryType,
-                          beneficiaryAddress: "",
-                          detCustomerType: model.argument.beneficiaryInformation.detCustomerType,
-                          fullName: model.argument.beneficiaryInformation.fullName,
-                          iban: model.argument.beneficiaryInformation.accountNo,
-                          id: model.argument.beneficiaryInformation.id,
-                          imageUrl: model.argument.beneficiaryInformation.image,
-                          limit: model.argument.beneficiaryInformation.limit,
-                          mobileNumber: model.argument.beneficiaryInformation.mobileNumber,
-                          nickName: model.argument.beneficiaryInformation.nickName,
-                          purpose: model.argument.beneficiaryInformation.purpose,
-                          purposeDetails: model.argument.beneficiaryInformation.purposeDetails,
-                          purposeParent: model.argument.beneficiaryInformation.purposeParent,
-                          purposeParentDetails: model.argument.beneficiaryInformation.purposeParentDetails,
-                          purposeType: model.argument.beneficiaryInformation.purposeType,
-                          identifier: model.argument.beneficiaryInformation.identifier),
+                      arguments: RequestAmountToContactPageArgument(
+                          Beneficiary(
+                              userId: model.argument.beneficiaryInformation.userId,
+                              accountHolderName: model.argument.beneficiaryInformation.fullName,
+                              accountNo: model.argument.beneficiaryInformation.accountNo,
+                              bankName: model.argument.beneficiaryInformation.bankName,
+                              beneType: model.argument.beneficiaryInformation.beneficiaryType,
+                              beneficiaryAddress: "",
+                              detCustomerType: model.argument.beneficiaryInformation.detCustomerType,
+                              fullName: model.argument.beneficiaryInformation.fullName,
+                              iban: model.argument.beneficiaryInformation.accountNo,
+                              id: model.argument.beneficiaryInformation.id,
+                              imageUrl: model.argument.beneficiaryInformation.image,
+                              limit: model.argument.beneficiaryInformation.limit,
+                              mobileNumber: model.argument.beneficiaryInformation.mobileNumber,
+                              nickName: model.argument.beneficiaryInformation.nickName,
+                              purpose: model.argument.beneficiaryInformation.purpose,
+                              purposeDetails: model.argument.beneficiaryInformation.purposeDetails,
+                              purposeParent: model.argument.beneficiaryInformation.purposeParent,
+                              purposeParentDetails:
+                                  model.argument.beneficiaryInformation.purposeParentDetails,
+                              purposeType: model.argument.beneficiaryInformation.purposeType,
+                              identifier: model.argument.beneficiaryInformation.identifier),
+                          needBackButton: true),
                     );
                   },
                   child: Container(
@@ -523,27 +551,30 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                     Navigator.pushNamed(
                       context,
                       RoutePaths.SendAmountToContact,
-                      arguments: Beneficiary(
-                          userId: model.argument.beneficiaryInformation.userId,
-                          accountHolderName: model.argument.beneficiaryInformation.fullName,
-                          accountNo: model.argument.beneficiaryInformation.accountNo,
-                          bankName: model.argument.beneficiaryInformation.bankName,
-                          beneType: model.argument.beneficiaryInformation.beneficiaryType,
-                          beneficiaryAddress: "",
-                          detCustomerType: model.argument.beneficiaryInformation.detCustomerType,
-                          fullName: model.argument.beneficiaryInformation.fullName,
-                          iban: model.argument.beneficiaryInformation.accountNo,
-                          id: model.argument.beneficiaryInformation.id,
-                          imageUrl: model.argument.beneficiaryInformation.image,
-                          limit: model.argument.beneficiaryInformation.limit,
-                          mobileNumber: model.argument.beneficiaryInformation.mobileNumber,
-                          nickName: model.argument.beneficiaryInformation.nickName,
-                          purpose: model.argument.beneficiaryInformation.purpose,
-                          purposeDetails: model.argument.beneficiaryInformation.purposeDetails,
-                          purposeParent: model.argument.beneficiaryInformation.purposeParent,
-                          purposeParentDetails: model.argument.beneficiaryInformation.purposeParentDetails,
-                          purposeType: model.argument.beneficiaryInformation.purposeType,
-                          identifier: model.argument.beneficiaryInformation.identifier),
+                      arguments: SendAmountToContactPageArgument(
+                          Beneficiary(
+                              userId: model.argument.beneficiaryInformation.userId,
+                              accountHolderName: model.argument.beneficiaryInformation.fullName,
+                              accountNo: model.argument.beneficiaryInformation.accountNo,
+                              bankName: model.argument.beneficiaryInformation.bankName,
+                              beneType: model.argument.beneficiaryInformation.beneficiaryType,
+                              beneficiaryAddress: "",
+                              detCustomerType: model.argument.beneficiaryInformation.detCustomerType,
+                              fullName: model.argument.beneficiaryInformation.fullName,
+                              iban: model.argument.beneficiaryInformation.accountNo,
+                              id: model.argument.beneficiaryInformation.id,
+                              imageUrl: model.argument.beneficiaryInformation.image,
+                              limit: model.argument.beneficiaryInformation.limit,
+                              mobileNumber: model.argument.beneficiaryInformation.mobileNumber,
+                              nickName: model.argument.beneficiaryInformation.nickName,
+                              purpose: model.argument.beneficiaryInformation.purpose,
+                              purposeDetails: model.argument.beneficiaryInformation.purposeDetails,
+                              purposeParent: model.argument.beneficiaryInformation.purposeParent,
+                              purposeParentDetails:
+                                  model.argument.beneficiaryInformation.purposeParentDetails,
+                              purposeType: model.argument.beneficiaryInformation.purposeType,
+                              identifier: model.argument.beneficiaryInformation.identifier),
+                          needBackButton: true),
                     );
                   },
                   child: Container(

@@ -74,7 +74,10 @@ class VideoCallScheduledView extends BasePageViewWidget<VideoCallScheduledViewMo
             SizedBox(
               height: 34.h,
             ),
-            AccountReadyHeader(title: S.of(context).callScheduled, subTitle: S.of(context).callScheduledNote),
+            AccountReadyHeader(
+                descriptionVisibility: true,
+                title: S.of(context).callScheduled,
+                subTitle: S.of(context).callScheduledNote),
             SizedBox(
               height: 40.h,
             ),

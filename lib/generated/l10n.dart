@@ -1731,16 +1731,6 @@ class S {
     );
   }
 
-  /// `Select any Option`
-  String get selectAnyOption {
-    return Intl.message(
-      'Select any Option',
-      name: 'selectAnyOption',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Storage`
   String get storage {
     return Intl.message(
@@ -14571,46 +14561,6 @@ class S {
     );
   }
 
-  /// `AMM`
-  String get aMM {
-    return Intl.message(
-      'AMM',
-      name: 'aMM',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `NRT`
-  String get nRT {
-    return Intl.message(
-      'NRT',
-      name: 'nRT',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Jordan`
-  String get jordan {
-    return Intl.message(
-      'Jordan',
-      name: 'jordan',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Japan`
-  String get japan {
-    return Intl.message(
-      'Japan',
-      name: 'japan',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Depart On`
   String get departOnForPurchasePage {
     return Intl.message(
@@ -14641,36 +14591,6 @@ class S {
     );
   }
 
-  /// `31 Jul 2022 `
-  String get purchaseDummyDate {
-    return Intl.message(
-      '31 Jul 2022 ',
-      name: 'purchaseDummyDate',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `- 3:30PM`
-  String get purchaseDummyTime {
-    return Intl.message(
-      '- 3:30PM',
-      name: 'purchaseDummyTime',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `984893922`
-  String get refNoDummyData {
-    return Intl.message(
-      '984893922',
-      name: 'refNoDummyData',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `to Booking Summary`
   String get toBookingSummary {
     return Intl.message(
@@ -14686,16 +14606,6 @@ class S {
     return Intl.message(
       'Total Amount',
       name: 'totalAmount',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `659.570`
-  String get dummyAmount {
-    return Intl.message(
-      '659.570',
-      name: 'dummyAmount',
       desc: '',
       args: [],
     );
@@ -14741,10 +14651,10 @@ class S {
     );
   }
 
-  /// `How would you like to\nmake the payment`
+  /// `Proceed with your payment`
   String get howYouLikeToPayment {
     return Intl.message(
-      'How would you like to\nmake the payment',
+      'Proceed with your payment',
       name: 'howYouLikeToPayment',
       desc: '',
       args: [],
@@ -14786,16 +14696,6 @@ class S {
     return Intl.message(
       'Are you sure you want to cancel your booking? You’ll have to start over again if you cancel.',
       name: 'cancelBookingDetail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Amman, Jordan (AMM)\nto Tokyo, Japan (NRT) \n31 Jul 2022 - 3:30PM`
-  String get departDescription {
-    return Intl.message(
-      'Amman, Jordan (AMM)\nto Tokyo, Japan (NRT) \n31 Jul 2022 - 3:30PM',
-      name: 'departDescription',
       desc: '',
       args: [],
     );
@@ -14891,10 +14791,10 @@ class S {
     );
   }
 
-  /// `When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ.`
+  /// `By creating your CliQ Alias, you acknowledge and agree to the following:\n\nSome or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) will be revealed to the originator of the remittance through CliQ.\n\nIt is strictly prohibited to create any Alias name that belongs to a trademarks or trade names not intended for you or is deemed unacceptable on political, ideological, or social grounds.`
   String get whenAcceptingCreationOfYourCliqId {
     return Intl.message(
-      'When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ.',
+      'By creating your CliQ Alias, you acknowledge and agree to the following:\n\nSome or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) will be revealed to the originator of the remittance through CliQ.\n\nIt is strictly prohibited to create any Alias name that belongs to a trademarks or trade names not intended for you or is deemed unacceptable on political, ideological, or social grounds.',
       name: 'whenAcceptingCreationOfYourCliqId',
       desc: '',
       args: [],
@@ -17331,11 +17231,71 @@ class S {
     );
   }
 
-  /// `Contact nickname has been updated`
-  String get nickNameUpdated {
+  /// `Booking Confirmation`
+  String get bookingConfirmation {
     return Intl.message(
-      'Contact nickname has been updated',
-      name: 'nickNameUpdated',
+      'Booking Confirmation',
+      name: 'bookingConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OOPS! TRANSACTION FAILED`
+  String get oopsTransactionFailed {
+    return Intl.message(
+      'OOPS! TRANSACTION FAILED',
+      name: 'oopsTransactionFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have insufficient balance in your account`
+  String get youHaveInsufficientBalanceInYourAccount {
+    return Intl.message(
+      'You have insufficient balance in your account',
+      name: 'youHaveInsufficientBalanceInYourAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Booking Confirmed!`
+  String get bookingConfirmed {
+    return Intl.message(
+      ' Booking Confirmed!',
+      name: 'bookingConfirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Booking Unsuccessful`
+  String get bookingunsuccessful {
+    return Intl.message(
+      'Booking Unsuccessful',
+      name: 'bookingunsuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You got the best deal. You will receive your booking details on your email. Enjoy your trip and travel safe!`
+  String get bookingConfirmedDescription {
+    return Intl.message(
+      'You got the best deal. You will receive your booking details on your email. Enjoy your trip and travel safe!',
+      name: 'bookingConfirmedDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We're sorry, but we're unable to complete your flight booking at this time due toan error. Please try again later.`
+  String get bookingUnsuccessDescription {
+    return Intl.message(
+      'We\'re sorry, but we\'re unable to complete your flight booking at this time due toan error. Please try again later.',
+      name: 'bookingUnsuccessDescription',
       desc: '',
       args: [],
     );
@@ -17356,6 +17316,26 @@ class S {
     return Intl.message(
       'returned',
       name: 'returned',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `URL`
+  String get url {
+    return Intl.message(
+      'URL',
+      name: 'url',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact nickname has been updated`
+  String get nickNameUpdated {
+    return Intl.message(
+      'Contact nickname has been updated',
+      name: 'nickNameUpdated',
       desc: '',
       args: [],
     );
@@ -18101,6 +18081,76 @@ class S {
     );
   }
 
+  /// `E-voucher under processing`
+  String get evoucherUnderProcessing {
+    return Intl.message(
+      'E-voucher under processing',
+      name: 'evoucherUnderProcessing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transactions`
+  String get transactions {
+    return Intl.message(
+      'Transactions',
+      name: 'transactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay a New Bill`
+  String get payNewBill {
+    return Intl.message(
+      'Pay a New Bill',
+      name: 'payNewBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Payment`
+  String get newPayment {
+    return Intl.message(
+      'New Payment',
+      name: 'newPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Postpaid Bill`
+  String get newPostPaidBill {
+    return Intl.message(
+      'New Postpaid Bill',
+      name: 'newPostPaidBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Prepaid Bill`
+  String get newPrePaidBill {
+    return Intl.message(
+      'New Prepaid Bill',
+      name: 'newPrePaidBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Oops! Transaction failed; your account is inactive. Call us on 06-5200100 to activate your account.`
   String get dormantAccountTransactionFailed {
     return Intl.message(
@@ -18141,11 +18191,601 @@ class S {
     );
   }
 
-  /// `E-voucher under processing`
-  String get evoucherUnderProcessing {
+  /// `All our agents are currently assisting other blinkers`
+  String get ourAgentsAreOccupied {
     return Intl.message(
-      'E-voucher under processing',
-      name: 'evoucherUnderProcessing',
+      'All our agents are currently assisting other blinkers',
+      name: 'ourAgentsAreOccupied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thank you for your patience, our agents are occupied in assisting other blinkers. Please try to call us again later or chat with us from the app or call us on 06-5200100.`
+  String get ourAgentsAreOccupiedDescription {
+    return Intl.message(
+      'Thank you for your patience, our agents are occupied in assisting other blinkers. Please try to call us again later or chat with us from the app or call us on 06-5200100.',
+      name: 'ourAgentsAreOccupiedDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Poor Network Connection`
+  String get lostConnection {
+    return Intl.message(
+      'Poor Network Connection',
+      name: 'lostConnection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apologies, due to poor network connection, we’ve lost you.  Please try to call us again later or chat with us from the app or call us on 06-5200100.`
+  String get lostConnectionDescription {
+    return Intl.message(
+      'Apologies, due to poor network connection, we’ve lost you.  Please try to call us again later or chat with us from the app or call us on 06-5200100.',
+      name: 'lostConnectionDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer`
+  String get transfer {
+    return Intl.message(
+      'Transfer',
+      name: 'transfer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your transfer details`
+  String get transferHeader {
+    return Intl.message(
+      'Enter your transfer details',
+      name: 'transferHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer from`
+  String get transferFrom {
+    return Intl.message(
+      'Transfer from',
+      name: 'transferFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main Account`
+  String get mainAccount {
+    return Intl.message(
+      'Main Account',
+      name: 'mainAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer To`
+  String get transferTo {
+    return Intl.message(
+      'Transfer To',
+      name: 'transferTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sub Account`
+  String get subAccount {
+    return Intl.message(
+      'Sub Account',
+      name: 'subAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Success!`
+  String get successExclmn {
+    return Intl.message(
+      'Success!',
+      name: 'successExclmn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Congratulations, your new account has been opened successfully!`
+  String get openAccountSucessDescription {
+    return Intl.message(
+      'Congratulations, your new account has been opened successfully!',
+      name: 'openAccountSucessDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go to Dashboard`
+  String get goToDashboard {
+    return Intl.message(
+      'Go to Dashboard',
+      name: 'goToDashboard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Transaction failed; your account is inactive.`
+  String get accountInactive {
+    return Intl.message(
+      'Oops! Transaction failed; your account is inactive.',
+      name: 'accountInactive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Transaction failed; your account cannot be debited.`
+  String get accountCannotBeDebited {
+    return Intl.message(
+      'Oops! Transaction failed; your account cannot be debited.',
+      name: 'accountCannotBeDebited',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share Account Information`
+  String get shareAccountInformation {
+    return Intl.message(
+      'Share Account Information',
+      name: 'shareAccountInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open Sub Account`
+  String get openSubAccount {
+    return Intl.message(
+      'Open Sub Account',
+      name: 'openSubAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to open a new account?`
+  String get openSubAccountDescription {
+    return Intl.message(
+      'Are you sure you want to open a new account?',
+      name: 'openSubAccountDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to close this sub account?`
+  String get closeSubAccountDescription {
+    return Intl.message(
+      'Are you sure you want to close this sub account?',
+      name: 'closeSubAccountDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer Between Accounts`
+  String get transferBetweenAccount {
+    return Intl.message(
+      'Transfer Between Accounts',
+      name: 'transferBetweenAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close Sub Account`
+  String get closeSubAccount {
+    return Intl.message(
+      'Close Sub Account',
+      name: 'closeSubAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please transfer the remaining balance to complete the account closure`
+  String get transferRemainingBalanceForAccountClosure {
+    return Intl.message(
+      'Please transfer the remaining balance to complete the account closure',
+      name: 'transferRemainingBalanceForAccountClosure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View More`
+  String get view_more {
+    return Intl.message(
+      'View More',
+      name: 'view_more',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Data to Display`
+  String get noDataToDisplay {
+    return Intl.message(
+      'No Data to Display',
+      name: 'noDataToDisplay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You do not have sufficient balance to transfer.`
+  String get insufficientBalanceAccountTransfer {
+    return Intl.message(
+      'You do not have sufficient balance to transfer.',
+      name: 'insufficientBalanceAccountTransfer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select atleast one filter option`
+  String get selectAnyOption {
+    return Intl.message(
+      'Select atleast one filter option',
+      name: 'selectAnyOption',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CliQ Transactions`
+  String get cliqTransactions {
+    return Intl.message(
+      'CliQ Transactions',
+      name: 'cliqTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to History`
+  String get backToHistory {
+    return Intl.message(
+      'Back to History',
+      name: 'backToHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Transaction failed; you have insufficient balance in your account.`
+  String get insufficientBalanceSubAccount {
+    return Intl.message(
+      'Oops! Transaction failed; you have insufficient balance in your account.',
+      name: 'insufficientBalanceSubAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `For You`
+  String get forYou {
+    return Intl.message(
+      'For You',
+      name: 'forYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Refer A Friend`
+  String get referFriend {
+    return Intl.message(
+      'Refer A Friend',
+      name: 'referFriend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invite your friends and family to enjoy the Blink experience. Start earning up to {referFriendDescription} JOD. The more you refer, the more you earn.`
+  String referFriendDescription(Object referFriendDescription) {
+    return Intl.message(
+      'Invite your friends and family to enjoy the Blink experience. Start earning up to $referFriendDescription JOD. The more you refer, the more you earn.',
+      name: 'referFriendDescription',
+      desc: 'referFriendDescription',
+      args: [referFriendDescription],
+    );
+  }
+
+  /// `Hey! Let’s join and grow Blink community, today!\n \n Download yours at {shareReferDescription}`
+  String shareReferDescription(Object shareReferDescription) {
+    return Intl.message(
+      'Hey! Let’s join and grow Blink community, today!\n \n Download yours at $shareReferDescription',
+      name: 'shareReferDescription',
+      desc: 'shareReferDescription',
+      args: [shareReferDescription],
+    );
+  }
+
+  /// `Invite`
+  String get invite {
+    return Intl.message(
+      'Invite',
+      name: 'invite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View All Offers`
+  String get viewAllOffers {
+    return Intl.message(
+      'View All Offers',
+      name: 'viewAllOffers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile Settings`
+  String get profileSettings_ {
+    return Intl.message(
+      'Profile Settings',
+      name: 'profileSettings_',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Offers Category`
+  String get offersCategory {
+    return Intl.message(
+      'Offers Category',
+      name: 'offersCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Done`
+  String get done {
+    return Intl.message(
+      'Done',
+      name: 'done',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `One-Way`
+  String get oneWay {
+    return Intl.message(
+      'One-Way',
+      name: 'oneWay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Request`
+  String get newRequest {
+    return Intl.message(
+      'New Request',
+      name: 'newRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose the account you\nwant to pay from`
+  String get chooseTheAccountToPay {
+    return Intl.message(
+      'Choose the account you\nwant to pay from',
+      name: 'chooseTheAccountToPay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `success`
+  String get readyToUseSuccess {
+    return Intl.message(
+      'success',
+      name: 'readyToUseSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Referral link`
+  String get referralLink {
+    return Intl.message(
+      'Referral link',
+      name: 'referralLink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{String} days left`
+  String daysLeft(Object String) {
+    return Intl.message(
+      '$String days left',
+      name: 'daysLeft',
+      desc: '',
+      args: [String],
+    );
+  }
+
+  /// `Ends on {String}`
+  String endsOn(Object String) {
+    return Intl.message(
+      'Ends on $String',
+      name: 'endsOn',
+      desc: '',
+      args: [String],
+    );
+  }
+
+  /// `Fare`
+  String get fare {
+    return Intl.message(
+      'Fare',
+      name: 'fare',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Taxes & Fees`
+  String get taxesAndFee {
+    return Intl.message(
+      'Taxes & Fees',
+      name: 'taxesAndFee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirmation URL`
+  String get confirmationURL {
+    return Intl.message(
+      'Confirmation URL',
+      name: 'confirmationURL',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Economy`
+  String get economy {
+    return Intl.message(
+      'Economy',
+      name: 'economy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Business`
+  String get business {
+    return Intl.message(
+      'Business',
+      name: 'business',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Adult`
+  String get adult {
+    return Intl.message(
+      'Adult',
+      name: 'adult',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `16 years +`
+  String get sixTeenYearsPlus {
+    return Intl.message(
+      '16 years +',
+      name: 'sixTeenYearsPlus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Youth`
+  String get youth {
+    return Intl.message(
+      'Youth',
+      name: 'youth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `13 to 16 years`
+  String get threeToSixteenYears {
+    return Intl.message(
+      '13 to 16 years',
+      name: 'threeToSixteenYears',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Children`
+  String get children {
+    return Intl.message(
+      'Children',
+      name: 'children',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `2 to 12 years`
+  String get twoToTwelve {
+    return Intl.message(
+      '2 to 12 years',
+      name: 'twoToTwelve',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Infant`
+  String get infant {
+    return Intl.message(
+      'Infant',
+      name: 'infant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Below 2 years`
+  String get belowTwoYears {
+    return Intl.message(
+      'Below 2 years',
+      name: 'belowTwoYears',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay from`
+  String get payFromRJ {
+    return Intl.message(
+      'Pay from',
+      name: 'payFromRJ',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account balance is successfully updated.`
+  String get yourAccountBalanceSuccessFullyUpdated {
+    return Intl.message(
+      'Your account balance is successfully updated.',
+      name: 'yourAccountBalanceSuccessFullyUpdated',
       desc: '',
       args: [],
     );

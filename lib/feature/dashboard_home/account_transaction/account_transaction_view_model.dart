@@ -5,6 +5,7 @@ import 'package:domain/model/dashboard/transactions/transactions_content.dart';
 import 'package:domain/usecase/card_delivery/get_debit_card_transactions_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_debit_years_usecase.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/model/transaction_item.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -13,10 +14,17 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../../di/dashboard/dashboard_modules.dart';
+import 'account_transaction_page.dart';
+
 class AccountTransactionViewModel extends BasePageViewModel {
+  final AccountTransactionPageArgument argument;
   final GetDebitCardTransactionsUseCase _cardTransactionsUseCase;
   final GetDebitYearsUseCase _debitYearsUseCase;
   TextEditingController searchController = TextEditingController();
+
+  bool hasTransactions = false;
+  bool hasDebitYears = false;
 
   ///get transaction request
   PublishSubject<GetDebitCardTransactionsUseCaseParams> _getTransactionsRequest = PublishSubject();
@@ -67,7 +75,7 @@ class AccountTransactionViewModel extends BasePageViewModel {
 
   List<TransactionContent> searchTransactionList = [];
 
-  AccountTransactionViewModel(this._cardTransactionsUseCase, this._debitYearsUseCase) {
+  AccountTransactionViewModel(this._cardTransactionsUseCase, this._debitYearsUseCase, this.argument) {
     _getTransactionsRequest.listen((value) {
       RequestManager(value, createCall: () => _cardTransactionsUseCase.execute(params: value))
           .asFlow()
@@ -81,6 +89,7 @@ class AccountTransactionViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           onSearchTransaction();
+          hasTransactions = event.data?.transactionResponse?.isEmpty == false;
           _getDebitYearsRequest.safeAdd(GetDebitYearsUseCaseParams());
         }
       });
@@ -95,11 +104,13 @@ class AccountTransactionViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          hasDebitYears = event.data?.years.isEmpty == false;
         }
       });
     });
 
-    getTransactions(noOfDays: 180);
+    getTransactions(noOfDays: 180, accountNo: argument.accountNo);
   }
 
   onSearchTransaction({String? searchText}) {
@@ -142,12 +153,13 @@ class AccountTransactionViewModel extends BasePageViewModel {
         .add(Resource.success(data: GetTransactionsResponse(transactionResponse: filteredTransactionList)));
   }
 
-  void getTransactions({num? noOfDays}) {
-    _getTransactionsRequest.safeAdd(GetDebitCardTransactionsUseCaseParams(noOfDays: noOfDays ?? 180));
+  void getTransactions({num? noOfDays, String? accountNo}) {
+    _getTransactionsRequest
+        .safeAdd(GetDebitCardTransactionsUseCaseParams(accountNo: accountNo, noOfDays: noOfDays ?? 180));
   }
 
-  void getFilteredData(String value) {
-    getTransactions(noOfDays: getFilterDays(value));
+  void getFilteredData(String value, accountNo) {
+    getTransactions(noOfDays: getFilterDays(value), accountNo: accountNo);
   }
 
   int getFilterDays(String value) {
@@ -167,6 +179,14 @@ class AccountTransactionViewModel extends BasePageViewModel {
       default:
         return 180;
     }
+  }
+
+  void animateBackToDashboard(BuildContext context) {
+    final dashboardProvider = ProviderScope.containerOf(context).read(
+      appHomeViewModelProvider,
+    );
+
+    dashboardProvider.animateReverseTransactionPage();
   }
 
   @override

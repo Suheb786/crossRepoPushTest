@@ -6,21 +6,23 @@ import 'package:neo_bank/utils/string_utils.dart';
 @immutable
 class AppPrimaryButton extends StatelessWidget {
   AppPrimaryButton({
-    this.textColor,
-    this.backgroundColor,
     Key? key,
     required this.onPressed,
     this.text = 'Next',
     this.width = double.infinity,
     this.isDisabled = false,
+    this.textColor,
+    this.activeBackgroundColor,
+    this.disableBackgroundColor,
   }) : super(key: key);
 
   final VoidCallback? onPressed;
   final String text;
   final double width;
-  final bool isDisabled;
-  final MaterialStateProperty<Color?>? backgroundColor;
   final Color? textColor;
+  final bool isDisabled;
+  final Color? activeBackgroundColor;
+  final Color? disableBackgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +36,16 @@ class AppPrimaryButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(100),
             ),
           ),
-          backgroundColor: backgroundColor ??
-              MaterialStateProperty.resolveWith((Set<MaterialState> states) {
-                if (states.contains(MaterialState.disabled)) {
-                  return Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5);
-                }
-                return isDisabled
-                    ? Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5)
-                    : Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue;
-              }),
+          backgroundColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+            if (states.contains(MaterialState.disabled)) {
+              return Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5);
+            }
+            return isDisabled
+                ? disableBackgroundColor ?? Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5)
+                : activeBackgroundColor ??
+                    Theme.of(context).textTheme.bodyLarge?.color ??
+                    AppColor.brightBlue;
+          }),
         ),
         onPressed: !isDisabled ? onPressed : null,
         child: Text(

@@ -106,6 +106,7 @@ class CreatePasswordViewModel extends BasePageViewModel {
     String? phone,
     String? country,
     String? mobileCode,
+    String? referralCode,
   }) {
     _registerUserRequest.safeAdd(RegisterProspectUseCaseParams(
         email: email,
@@ -113,6 +114,7 @@ class CreatePasswordViewModel extends BasePageViewModel {
         mobileNumber: phone,
         mobileCode: '00$mobileCode',
         userName: email,
+        referralCode: referralCode,
         password: createPasswordController.text,
         confirmPassword: confirmPasswordController.text));
   }

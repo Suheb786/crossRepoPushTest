@@ -12,13 +12,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/main/app.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+void main() {
   // runZoned(() {
   //   HttpOverrides.global = AppHttpOverrides();
   //   runApp(ProviderScope(child: MyApp()));
   // });
-  await runZonedGuarded(() async {
+  runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
     HttpOverrides.global = AppHttpOverrides();
     await Firebase.initializeApp();
     if (kReleaseMode) {

@@ -26,6 +26,12 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
+import '../../../di/payment/payment_modules.dart';
+import '../../../ui/molecules/app_keyboard_hide.dart';
+import '../../../ui/no_data_widget.dart';
+import '../../../utils/app_constants.dart';
+import '../../payment/payment_home/payment_home_view_model.dart';
+
 class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBillsPageViewModel> {
   PayAllPostPaidBillsPageView(ProviderBase model) : super(model);
 
@@ -55,426 +61,567 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                     model.payPostPaidBillsDataList = data;
                   },
                   dataBuilder: (BuildContext context, data) {
-                    return GestureDetector(
-                      onHorizontalDragEnd: (details) {
-                        if (details.primaryVelocity!.isNegative) {
-                          Navigator.pop(context);
-                        }
-                      },
-                      child: Stack(
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                                color: AppColor.white,
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(16), topRight: Radius.circular(16))),
-                            child: Padding(
-                                padding: EdgeInsetsDirectional.only(top: 8.0.h, bottom: 56.h),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                        width: 64.0.w,
-                                        height: 4.h,
-                                        decoration: BoxDecoration(
-                                            color: AppColor.whiteGrey,
-                                            borderRadius: BorderRadius.all(Radius.circular(4.0)))),
-                                    SizedBox(height: 24.0.h),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.only(
-                                        end: 24.0.w,
-                                        start: 24.0.w,
-                                      ),
-                                      child: AppTextField(
-                                        labelText: '',
-                                        hintText: S.of(context).searchBill,
-                                        controller: model.searchBillController,
-                                        readOnly: false,
-                                        onPressed: () {},
-                                        onChanged: (val) {
-                                          model.searchPostPaidBillerList(val);
-                                        },
-                                        suffixIcon: (value, data) {
-                                          return Container(
-                                              height: 16.h,
-                                              width: 16.w,
-                                              padding: EdgeInsetsDirectional.only(end: 8.w),
-                                              child: AppSvg.asset(AssetUtils.search,
-                                                  color: AppColor.dark_gray_1));
-                                        },
-                                      ),
-                                    ),
-                                    model.arguments.paidBillsPayTypeOptionEnum ==
-                                                PostPaidBillsPayTypeOptionEnum.PAYALLBILLS ||
-                                            model.payPostPaidBillsDataList.length <= 0
-                                        ? Container()
-                                        : Padding(
-                                            padding: EdgeInsetsDirectional.only(
-                                                start: 50.0, end: 50.0, top: 16.0, bottom: 16.0),
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 8.0.h),
-                                              decoration: BoxDecoration(
-                                                  color: AppColor.lightGray,
-                                                  borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                children: [
-                                                  AppSvg.asset(AssetUtils.bulbIcon,
-                                                      height: 16.h, width: 16.w),
-                                                  SizedBox(width: 8.w),
-                                                  Padding(
-                                                    padding: EdgeInsetsDirectional.only(top: 4.0.h),
-                                                    child: Text(
-                                                      S.of(context).swipeAnyBillerToTheLeftToRemove,
-                                                      style: TextStyle(
-                                                          fontFamily: StringUtils.appFont,
-                                                          color: AppColor.very_dark_gray1,
-                                                          fontWeight: FontWeight.w400,
-                                                          fontSize: 12.0.t),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
+                    return AppKeyBoardHide(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.only(top: 52.0.h),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(bottom: 16.0.h),
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Text(
                                     model.arguments.paidBillsPayTypeOptionEnum ==
                                             PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
-                                        ? Container()
-                                        : AppDivider(),
-                                    Expanded(
+                                        ? S.of(context).viewAndPayYourDueBills
+                                        : S.of(context).myBills,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontSize: 14.t,
+                                        fontWeight: FontWeight.w600,
+                                        color: Theme.of(context).colorScheme.secondary),
+                                  ),
+                                  model.arguments.paidBillsPayTypeOptionEnum ==
+                                          PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+                                      ? Padding(
+                                          padding: EdgeInsetsDirectional.only(end: 18.0.w),
+                                          child: Container(
+                                            width: 28.w,
+                                          ),
+                                        )
+                                      : Container(),
+                                  Visibility(
+                                    visible: model.arguments.paidBillsPayTypeOptionEnum ==
+                                            PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+                                        ? false
+                                        : true,
+                                    child: PositionedDirectional(
+                                      end: 0,
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.only(
-                                            top: model.arguments.paidBillsPayTypeOptionEnum ==
-                                                    PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
-                                                ? 24.0.h
-                                                : 8.0.h,
-                                            bottom: 24.0.h),
-                                        child: model.payPostPaidBillsDataList.length > 0
-                                            ? ListView.separated(
-                                                shrinkWrap: true,
-                                                itemCount: model.payPostPaidBillsDataList.length,
-                                                itemBuilder: (context, index) {
-                                                  return InkWell(
-                                                    onTap: () {
-                                                      if (model.isDisabledConditions(
-                                                          model.payPostPaidBillsDataList[index])) {
-                                                        showErrorMethod(context, model, index);
-                                                      } else {
-                                                        showErrorMessageForPartialBillMethod(model, index);
-                                                      }
-                                                      if (!model.payPostPaidBillsDataList[index]
-                                                          .noDataFoundForBill) {
-                                                        model.selectedItem(index, true);
-                                                      } else {
-                                                        model.showToastWithError(AppError(
-                                                            error: ErrorInfo(message: ''),
-                                                            type: ErrorType.NETWORK,
-                                                            cause: Exception()));
-                                                      }
-                                                    },
-                                                    child: model.arguments.paidBillsPayTypeOptionEnum ==
-                                                            PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
-                                                        ? PayBillsMultipleListSelectionWidget(
-                                                            icon: model.payPostPaidBillsDataList[index]
-                                                                    .iconCode ??
-                                                                "",
-                                                            isPartial: model.payPostPaidBillsDataList[index]
-                                                                    .isPartial ??
-                                                                false,
-                                                            isDisabled: model.isDisabledConditions(
-                                                                model.payPostPaidBillsDataList[index]),
-                                                            maxValue: double.parse(model
-                                                                        .payPostPaidBillsDataList[index]
-                                                                        .maxValue ??
-                                                                    "0")
-                                                                .toStringAsFixed(3),
-                                                            biller: StringUtils.isDirectionRTL(context)
-                                                                ? model.payPostPaidBillsDataList[index]
-                                                                        .billerNameAR ??
-                                                                    ""
-                                                                : model.payPostPaidBillsDataList[index]
-                                                                        .billerNameEN ??
-                                                                    "",
-                                                            billAmtDue: double.parse(model
-                                                                        .payPostPaidBillsDataList[index]
-                                                                        .actualdueAmountFromApi ??
-                                                                    "0")
-                                                                .toStringAsFixed(3),
-                                                            fees: double.parse(model
-                                                                        .payPostPaidBillsDataList[index]
-                                                                        .fees ??
-                                                                    "0")
-                                                                .toStringAsFixed(3),
-                                                            isSelected: model.payPostPaidBillsDataList[index]
-                                                                    .isChecked ??
-                                                                false,
-                                                            nickName: model.payPostPaidBillsDataList[index]
-                                                                    .nickName ??
-                                                                "",
-                                                            paidBillsPayTypeOptionEnum:
-                                                                model.arguments.paidBillsPayTypeOptionEnum,
-                                                          )
-                                                        : Slidable(
-                                                            endActionPane: ActionPane(
-                                                              extentRatio: 0.25,
-                                                              motion: DrawerMotion(),
-                                                              children: [
-                                                                SlidableAction(
-                                                                  onPressed: (context1) => {
-                                                                    InformationDialog.show(context,
-                                                                        image: AssetUtils.deleteBlackIcon,
-                                                                        isSwipeToCancel: true,
-                                                                        title: S.of(context).areYouSure,
-                                                                        descriptionWidget: Text(
-                                                                          "${S.of(context).doYouReallyWantToDelete} ${StringUtils.isDirectionRTL(context) ? model.payPostPaidBillsDataList[index].billerNameAR : model.payPostPaidBillsDataList[index].billerNameEN} ${S.of(context).fromSavedBills}",
-                                                                          style: TextStyle(
-                                                                              fontFamily: StringUtils.appFont,
-                                                                              fontSize: 14.t,
-                                                                              fontWeight: FontWeight.w400),
-                                                                        ), onDismissed: () {
-                                                                      Navigator.pop(context);
-                                                                    }, onSelected: () {
-                                                                      Navigator.pop(context);
-                                                                      var billerCode = model
-                                                                          .payPostPaidBillsDataList[index]
-                                                                          .billerCode;
-                                                                      var billingNo = model
-                                                                          .payPostPaidBillsDataList[index]
-                                                                          .billingNo;
-                                                                      var serviceType = model
-                                                                          .payPostPaidBillsDataList[index]
-                                                                          .serviceType;
-                                                                      model.removeCustomerBilling(
-                                                                          billerCode, billingNo, serviceType);
-                                                                    })
-                                                                  },
-                                                                  backgroundColor: AppColor.dark_brown,
-                                                                  foregroundColor: Colors.white,
-                                                                  icon: Icons.delete,
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            child: PayBillsMultipleListSelectionWidget(
-                                                              icon: model.payPostPaidBillsDataList[index]
-                                                                      .iconCode ??
-                                                                  "",
-                                                              isPartial: model.payPostPaidBillsDataList[index]
-                                                                      .isPartial ??
-                                                                  false,
-                                                              isDisabled: model.isDisabledConditions(
-                                                                  model.payPostPaidBillsDataList[index]),
-                                                              maxValue: double.parse(model
-                                                                          .payPostPaidBillsDataList[index]
-                                                                          .maxValue ??
-                                                                      "0")
-                                                                  .toStringAsFixed(3),
-                                                              biller: StringUtils.isDirectionRTL(context)
-                                                                  ? model.payPostPaidBillsDataList[index]
-                                                                          .billerNameAR ??
-                                                                      ""
-                                                                  : model.payPostPaidBillsDataList[index]
-                                                                          .billerNameEN ??
-                                                                      "",
-                                                              billAmtDue: double.parse(model
-                                                                          .payPostPaidBillsDataList[index]
-                                                                          .actualdueAmountFromApi ??
-                                                                      "0")
-                                                                  .toStringAsFixed(3),
-                                                              fees: double.parse(model
-                                                                          .payPostPaidBillsDataList[index]
-                                                                          .fees ??
-                                                                      "0")
-                                                                  .toStringAsFixed(3),
-                                                              isSelected: model
-                                                                      .payPostPaidBillsDataList[index]
-                                                                      .isChecked ??
-                                                                  false,
-                                                              nickName: model.payPostPaidBillsDataList[index]
-                                                                      .nickName ??
-                                                                  "",
-                                                              paidBillsPayTypeOptionEnum:
-                                                                  model.arguments.paidBillsPayTypeOptionEnum,
-                                                            ),
-                                                          ),
-                                                  );
-                                                },
-                                                separatorBuilder: (context, index) {
-                                                  return AppDivider();
-                                                },
-                                              )
-                                            : Center(
-                                                child: Text(
-                                                  S.of(context).noDataFound,
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w400,
-                                                      color: Theme.of(context).primaryColorDark),
-                                                ),
-                                              ),
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                          ),
-                          Visibility(
-                            visible: true,
-                            child: AppStreamBuilder<double>(
-                              initialData: 0.0,
-                              stream: model.totalBillAmtDueStream,
-                              dataBuilder: (BuildContext context, amt) {
-                                return Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.only(
-                                        bottom: 36.0.h, start: 24.0.w, end: 24.0.w),
-                                    child: InkWell(
-                                      onTap: () {
-                                        if (model.payPostPaidBillsDataList.isEmpty) return;
+                                        padding: EdgeInsetsDirectional.only(end: 24.0.w),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.pushNamed(context, RoutePaths.NewBillsPage,
+                                                arguments: true);
 
-                                        bool isAnyChecked = false;
-                                        for (var item1 in model.payPostPaidBillsDataList) {
-                                          if (item1.isChecked == true && !model.isDisabledConditions(item1)) {
-                                            isAnyChecked = true;
-                                            break;
-                                          }
-                                        }
-                                        if (isAnyChecked == false) return;
-
-                                        List<PostPaidBillInquiryData> temPostPaidBillInquiryData = [];
-
-                                        /// temporary selected list
-                                        List<GetPostpaidBillerListModelData> tempSelectedPostPaidBillsList =
-                                            [];
-
-                                        tempSelectedPostPaidBillsList = model.payPostPaidBillsDataList
-                                            .where((element) => ((element.isChecked ?? false) &&
-                                                !model.isDisabledConditions(element)))
-                                            .toList();
-
-                                        tempSelectedPostPaidBillsList =
-                                            tempSelectedPostPaidBillsList.toSet().toList();
-
-                                        for (var payPostPaidBillsDataListItem
-                                            in tempSelectedPostPaidBillsList) {
-                                          for (var item in model.postPaidBillInquiryData!) {
-                                            var dueAmt = double.parse(item.dueAmount ?? "0");
-
-                                            if (item.billingNo == payPostPaidBillsDataListItem.billingNo &&
-                                                item.serviceType ==
-                                                    payPostPaidBillsDataListItem.serviceType &&
-                                                payPostPaidBillsDataListItem.isAmountUpdatedFromApi == true) {
-                                              dueAmt = double.parse(
-                                                  payPostPaidBillsDataListItem.actualdueAmountFromApi ?? "0");
-                                            }
-
-                                            if (dueAmt > 0.0 ||
-                                                dueAmt == 0.0 &&
-                                                    item.isPartial == true &&
-                                                    double.parse(item.maxValue ?? "0") > 0.0 ||
-                                                item.success == true) {
-                                              ///resetting dueAmount back to actual api dueAmount
-                                              item.dueAmount = dueAmt.toStringAsFixed(3);
-                                              item.actualDueAmountFromApi = dueAmt.toStringAsFixed(3);
-                                              item.minMaxValidationMessage = "";
-
-                                              if (item.billingNo != null &&
-                                                  item.billingNo!.isNotEmpty &&
-                                                  item.serviceType != null &&
-                                                  item.serviceType!.isNotEmpty) {
-                                                if (payPostPaidBillsDataListItem.billingNo ==
-                                                        item.billingNo &&
-                                                    payPostPaidBillsDataListItem.serviceType ==
-                                                        item.serviceType &&
-                                                    payPostPaidBillsDataListItem.isChecked == true) {
-                                                  temPostPaidBillInquiryData.add(item);
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-
-                                        for (var item in tempSelectedPostPaidBillsList) {
-                                          if (item.isChecked == false) {
-                                            temPostPaidBillInquiryData.removeWhere((element) =>
-                                                element.billingNo == item.billingNo &&
-                                                element.serviceType == item.serviceType);
-                                            tempSelectedPostPaidBillsList.removeWhere((element) =>
-                                                element.billingNo == item.billingNo &&
-                                                element.serviceType == item.serviceType);
-                                          }
-
-                                          if (item.expDateStatus == false) {
-                                            temPostPaidBillInquiryData.removeWhere((element) =>
-                                                element.billingNo == item.billingNo &&
-                                                element.serviceType == item.serviceType);
-                                            tempSelectedPostPaidBillsList.removeWhere((element) =>
-                                                element.billingNo == item.billingNo &&
-                                                element.serviceType == item.serviceType);
-                                          }
-                                          if (item.isChecked == null || item.isChecked == false) {
-                                            temPostPaidBillInquiryData.remove(item);
-                                            tempSelectedPostPaidBillsList.remove(item);
-                                          }
-                                        }
-
-                                        temPostPaidBillInquiryData =
-                                            temPostPaidBillInquiryData.toSet().toList();
-
-                                        if (temPostPaidBillInquiryData.isNotEmpty &&
-                                            temPostPaidBillInquiryData.isNotEmpty) {
-                                          Navigator.pushNamed(
-                                              context, RoutePaths.PaySelectedBillsPostPaidBillsPage,
-                                              arguments: PaySelectedBillsPostPaidBillsPageArguments(
-                                                  model.postPaidBillInquiryData!.length.toString(),
-                                                  amt ?? 0.0,
-                                                  tempSelectedPostPaidBillsList,
-                                                  temPostPaidBillInquiryData));
-                                        } else {
-                                          model.showToastWithError(AppError(
-                                              cause: Exception(),
-                                              error: ErrorInfo(message: ""),
-                                              type: ErrorType.SELECT_AT_LEAST_ONE_BILL));
-                                        }
-                                      },
-                                      child: Container(
-                                        width: double.maxFinite,
-                                        height: 56.h,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(100.0),
-                                          color: model.payPostPaidBillsDataList.isEmpty
-                                              ? AppColor.very_dark_gray1.withOpacity(0.5)
-                                              : (model.payPostPaidBillsDataList.any((item) =>
-                                                      item.isChecked == true &&
-                                                      !model.isDisabledConditions(item)))
-                                                  ? Theme.of(context).textTheme.bodyLarge!.color!
-                                                  : AppColor.very_dark_gray1.withOpacity(0.5),
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                              S.of(context).pay +
-                                                  " " +
-                                                  "${amt == null || amt.toString().isEmpty ? double.parse("0").toStringAsFixed(3) : amt.toStringAsFixed(3)}" +
-                                                  " " +
-                                                  S.of(context).JOD,
-                                              maxLines: 1,
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  fontSize: 14.t,
-                                                  fontWeight: FontWeight.w600,
-                                                  letterSpacing: 1,
-                                                  color: Theme.of(context).colorScheme.secondary)),
+                                            AppConstantsUtils.PRE_PAID_FLOW = false;
+                                            AppConstantsUtils.POST_PAID_FLOW = true;
+                                            AppConstantsUtils.IS_NEW_PAYMENT = true;
+                                          },
+                                          child: AppSvg.asset(
+                                            AssetUtils.plusIcon,
+                                            color: AppColor.white,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                );
-                              },
+                                ],
+                              ),
                             ),
-                          )
-                        ],
+                            Expanded(
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.only(top: 24.0.h),
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      decoration: BoxDecoration(
+                                          color: AppColor.white,
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(16), topRight: Radius.circular(16))),
+                                      child: Padding(
+                                          padding: EdgeInsetsDirectional.only(top: 24.0.h) +
+                                              EdgeInsetsDirectional.symmetric(horizontal: 24.0.h),
+                                          child: Column(
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional.only(
+                                                  top: 24.0.h,
+                                                ),
+                                                child: AppTextField(
+                                                  labelText: '',
+                                                  hintText: S.of(context).searchBill,
+                                                  controller: model.searchBillController,
+                                                  readOnly: false,
+                                                  onPressed: () {},
+                                                  onChanged: (val) {
+                                                    model.searchPostPaidBillerList(val);
+                                                  },
+                                                  suffixIcon: (value, data) {
+                                                    return Container(
+                                                        height: 16.h,
+                                                        width: 16.w,
+                                                        padding: EdgeInsetsDirectional.only(end: 8.w),
+                                                        child: AppSvg.asset(AssetUtils.search,
+                                                            color: AppColor.dark_gray_1));
+                                                  },
+                                                ),
+                                              ),
+                                              model.arguments.paidBillsPayTypeOptionEnum ==
+                                                          PostPaidBillsPayTypeOptionEnum.PAYALLBILLS ||
+                                                      model.payPostPaidBillsDataList.length <= 0
+                                                  ? Container()
+                                                  : Padding(
+                                                      padding: EdgeInsetsDirectional.only(
+                                                          start: 24.0, end: 24.0, top: 16.0, bottom: 16.0),
+                                                      child: Container(
+                                                        padding: EdgeInsets.symmetric(
+                                                            horizontal: 16.0.w, vertical: 8.0.h),
+                                                        decoration: BoxDecoration(
+                                                            color: AppColor.lightGray,
+                                                            borderRadius:
+                                                                BorderRadius.all(Radius.circular(8.0))),
+                                                        child: Row(
+                                                          mainAxisAlignment: MainAxisAlignment.center,
+                                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                                          children: [
+                                                            AppSvg.asset(AssetUtils.bulbIcon,
+                                                                height: 16.h, width: 16.w),
+                                                            SizedBox(width: 8.w),
+                                                            Padding(
+                                                              padding: EdgeInsetsDirectional.only(top: 4.0.h),
+                                                              child: Text(
+                                                                S.of(context).swipeAnyBillerToTheLeftToRemove,
+                                                                style: TextStyle(
+                                                                    fontFamily: StringUtils.appFont,
+                                                                    color: AppColor.very_dark_gray1,
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: 12.0.t),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                              model.arguments.paidBillsPayTypeOptionEnum ==
+                                                      PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+                                                  ? Container()
+                                                  : AppDivider(),
+                                              Expanded(
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional.only(
+                                                      top: model.arguments.paidBillsPayTypeOptionEnum ==
+                                                              PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+                                                          ? 24.0.h
+                                                          : 8.0.h,
+                                                      bottom: 24.0.h),
+                                                  child: model.payPostPaidBillsDataList.length > 0
+                                                      ? ListView.separated(
+                                                          shrinkWrap: true,
+                                                          itemCount: model.payPostPaidBillsDataList.length,
+                                                          itemBuilder: (context, index) {
+                                                            return InkWell(
+                                                              onTap: () {
+                                                                if (model.isDisabledConditions(
+                                                                    model.payPostPaidBillsDataList[index])) {
+                                                                  showErrorMethod(context, model, index);
+                                                                } else {
+                                                                  showErrorMessageForPartialBillMethod(
+                                                                      model, index);
+                                                                }
+                                                                if (!model.payPostPaidBillsDataList[index]
+                                                                    .noDataFoundForBill) {
+                                                                  model.selectedItem(index, true);
+                                                                } else {
+                                                                  model.showToastWithError(AppError(
+                                                                      error: ErrorInfo(message: ''),
+                                                                      type: ErrorType.NETWORK,
+                                                                      cause: Exception()));
+                                                                }
+                                                              },
+                                                              child: model.arguments
+                                                                          .paidBillsPayTypeOptionEnum ==
+                                                                      PostPaidBillsPayTypeOptionEnum
+                                                                          .PAYALLBILLS
+                                                                  ? PayBillsMultipleListSelectionWidget(
+                                                                      icon: model
+                                                                              .payPostPaidBillsDataList[index]
+                                                                              .iconCode ??
+                                                                          "",
+                                                                      isPartial: model
+                                                                              .payPostPaidBillsDataList[index]
+                                                                              .isPartial ??
+                                                                          false,
+                                                                      isDisabled: model.isDisabledConditions(
+                                                                          model.payPostPaidBillsDataList[
+                                                                              index]),
+                                                                      maxValue: double.parse(model
+                                                                                  .payPostPaidBillsDataList[
+                                                                                      index]
+                                                                                  .maxValue ??
+                                                                              "0")
+                                                                          .toStringAsFixed(3),
+                                                                      biller: StringUtils.isDirectionRTL(
+                                                                              context)
+                                                                          ? model
+                                                                                  .payPostPaidBillsDataList[
+                                                                                      index]
+                                                                                  .billerNameAR ??
+                                                                              ""
+                                                                          : model
+                                                                                  .payPostPaidBillsDataList[
+                                                                                      index]
+                                                                                  .billerNameEN ??
+                                                                              "",
+                                                                      billAmtDue: double.parse(model
+                                                                                  .payPostPaidBillsDataList[
+                                                                                      index]
+                                                                                  .actualdueAmountFromApi ??
+                                                                              "0")
+                                                                          .toStringAsFixed(3),
+                                                                      fees: double.parse(model
+                                                                                  .payPostPaidBillsDataList[
+                                                                                      index]
+                                                                                  .fees ??
+                                                                              "0")
+                                                                          .toStringAsFixed(3),
+                                                                      isSelected: model
+                                                                              .payPostPaidBillsDataList[index]
+                                                                              .isChecked ??
+                                                                          false,
+                                                                      nickName: model
+                                                                              .payPostPaidBillsDataList[index]
+                                                                              .nickName ??
+                                                                          "",
+                                                                      paidBillsPayTypeOptionEnum: model
+                                                                          .arguments
+                                                                          .paidBillsPayTypeOptionEnum,
+                                                                    )
+                                                                  : Slidable(
+                                                                      endActionPane: ActionPane(
+                                                                        extentRatio: 0.25,
+                                                                        motion: DrawerMotion(),
+                                                                        children: [
+                                                                          SlidableAction(
+                                                                            onPressed: (context1) => {
+                                                                              InformationDialog.show(context,
+                                                                                  image: AssetUtils
+                                                                                      .deleteBlackIcon,
+                                                                                  isSwipeToCancel: true,
+                                                                                  title: S
+                                                                                      .of(context)
+                                                                                      .areYouSure,
+                                                                                  descriptionWidget: Text(
+                                                                                    "${S.of(context).doYouReallyWantToDelete} ${StringUtils.isDirectionRTL(context) ? model.payPostPaidBillsDataList[index].billerNameAR : model.payPostPaidBillsDataList[index].billerNameEN} ${S.of(context).fromSavedBills}",
+                                                                                    style: TextStyle(
+                                                                                        fontFamily:
+                                                                                            StringUtils
+                                                                                                .appFont,
+                                                                                        fontSize: 14.t,
+                                                                                        fontWeight:
+                                                                                            FontWeight.w400),
+                                                                                  ), onDismissed: () {
+                                                                                Navigator.pop(context);
+                                                                              }, onSelected: () {
+                                                                                Navigator.pop(context);
+                                                                                var billerCode = model
+                                                                                    .payPostPaidBillsDataList[
+                                                                                        index]
+                                                                                    .billerCode;
+                                                                                var billingNo = model
+                                                                                    .payPostPaidBillsDataList[
+                                                                                        index]
+                                                                                    .billingNo;
+                                                                                var serviceType = model
+                                                                                    .payPostPaidBillsDataList[
+                                                                                        index]
+                                                                                    .serviceType;
+                                                                                model.removeCustomerBilling(
+                                                                                    billerCode,
+                                                                                    billingNo,
+                                                                                    serviceType);
+                                                                              })
+                                                                            },
+                                                                            backgroundColor:
+                                                                                AppColor.dark_brown,
+                                                                            foregroundColor: Colors.white,
+                                                                            icon: Icons.delete,
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                      child:
+                                                                          PayBillsMultipleListSelectionWidget(
+                                                                        icon: model
+                                                                                .payPostPaidBillsDataList[
+                                                                                    index]
+                                                                                .iconCode ??
+                                                                            "",
+                                                                        isPartial: model
+                                                                                .payPostPaidBillsDataList[
+                                                                                    index]
+                                                                                .isPartial ??
+                                                                            false,
+                                                                        isDisabled:
+                                                                            model.isDisabledConditions(model
+                                                                                    .payPostPaidBillsDataList[
+                                                                                index]),
+                                                                        maxValue: double.parse(model
+                                                                                    .payPostPaidBillsDataList[
+                                                                                        index]
+                                                                                    .maxValue ??
+                                                                                "0")
+                                                                            .toStringAsFixed(3),
+                                                                        biller: StringUtils.isDirectionRTL(
+                                                                                context)
+                                                                            ? model
+                                                                                    .payPostPaidBillsDataList[
+                                                                                        index]
+                                                                                    .billerNameAR ??
+                                                                                ""
+                                                                            : model
+                                                                                    .payPostPaidBillsDataList[
+                                                                                        index]
+                                                                                    .billerNameEN ??
+                                                                                "",
+                                                                        billAmtDue: double.parse(model
+                                                                                    .payPostPaidBillsDataList[
+                                                                                        index]
+                                                                                    .actualdueAmountFromApi ??
+                                                                                "0")
+                                                                            .toStringAsFixed(3),
+                                                                        fees: double.parse(model
+                                                                                    .payPostPaidBillsDataList[
+                                                                                        index]
+                                                                                    .fees ??
+                                                                                "0")
+                                                                            .toStringAsFixed(3),
+                                                                        isSelected: model
+                                                                                .payPostPaidBillsDataList[
+                                                                                    index]
+                                                                                .isChecked ??
+                                                                            false,
+                                                                        nickName: model
+                                                                                .payPostPaidBillsDataList[
+                                                                                    index]
+                                                                                .nickName ??
+                                                                            "",
+                                                                        paidBillsPayTypeOptionEnum: model
+                                                                            .arguments
+                                                                            .paidBillsPayTypeOptionEnum,
+                                                                      ),
+                                                                    ),
+                                                            );
+                                                          },
+                                                          separatorBuilder: (context, index) {
+                                                            return AppDivider();
+                                                          },
+                                                        )
+                                                      : NoDataWidget(),
+                                                ),
+                                              ),
+                                            ],
+                                          )),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: true,
+                                    child: AppStreamBuilder<double>(
+                                      initialData: 0.0,
+                                      stream: model.totalBillAmtDueStream,
+                                      dataBuilder: (BuildContext context, amt) {
+                                        return Align(
+                                          alignment: Alignment.bottomCenter,
+                                          child: Padding(
+                                            padding: EdgeInsetsDirectional.only(
+                                                bottom: 36.0.h, start: 24.0.w, end: 24.0.w),
+                                            child: InkWell(
+                                              onTap: () {
+                                                if (model.payPostPaidBillsDataList.isEmpty) return;
+
+                                                bool isAnyChecked = false;
+                                                for (var item1 in model.payPostPaidBillsDataList) {
+                                                  if (item1.isChecked == true &&
+                                                      !model.isDisabledConditions(item1)) {
+                                                    isAnyChecked = true;
+                                                    break;
+                                                  }
+                                                }
+                                                if (isAnyChecked == false) return;
+
+                                                List<PostPaidBillInquiryData> temPostPaidBillInquiryData = [];
+
+                                                /// temporary selected list
+                                                List<GetPostpaidBillerListModelData>
+                                                    tempSelectedPostPaidBillsList = [];
+
+                                                tempSelectedPostPaidBillsList = model.payPostPaidBillsDataList
+                                                    .where((element) => ((element.isChecked ?? false) &&
+                                                        !model.isDisabledConditions(element)))
+                                                    .toList();
+
+                                                tempSelectedPostPaidBillsList =
+                                                    tempSelectedPostPaidBillsList.toSet().toList();
+
+                                                for (var payPostPaidBillsDataListItem
+                                                    in tempSelectedPostPaidBillsList) {
+                                                  for (var item in model.postPaidBillInquiryData!) {
+                                                    var dueAmt = double.parse(item.dueAmount ?? "0");
+
+                                                    if (item.billingNo ==
+                                                            payPostPaidBillsDataListItem.billingNo &&
+                                                        item.serviceType ==
+                                                            payPostPaidBillsDataListItem.serviceType &&
+                                                        payPostPaidBillsDataListItem.isAmountUpdatedFromApi ==
+                                                            true) {
+                                                      dueAmt = double.parse(payPostPaidBillsDataListItem
+                                                              .actualdueAmountFromApi ??
+                                                          "0");
+                                                    }
+
+                                                    if (dueAmt > 0.0 ||
+                                                        dueAmt == 0.0 &&
+                                                            item.isPartial == true &&
+                                                            double.parse(item.maxValue ?? "0") > 0.0 ||
+                                                        item.success == true) {
+                                                      ///resetting dueAmount back to actual api dueAmount
+                                                      item.dueAmount = dueAmt.toStringAsFixed(3);
+                                                      item.actualDueAmountFromApi = dueAmt.toStringAsFixed(3);
+                                                      item.minMaxValidationMessage = "";
+
+                                                      if (item.billingNo != null &&
+                                                          item.billingNo!.isNotEmpty &&
+                                                          item.serviceType != null &&
+                                                          item.serviceType!.isNotEmpty) {
+                                                        if (payPostPaidBillsDataListItem.billingNo ==
+                                                                item.billingNo &&
+                                                            payPostPaidBillsDataListItem.serviceType ==
+                                                                item.serviceType &&
+                                                            payPostPaidBillsDataListItem.isChecked == true) {
+                                                          temPostPaidBillInquiryData.add(item);
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+
+                                                for (var item in tempSelectedPostPaidBillsList) {
+                                                  if (item.isChecked == false) {
+                                                    temPostPaidBillInquiryData.removeWhere((element) =>
+                                                        element.billingNo == item.billingNo &&
+                                                        element.serviceType == item.serviceType);
+                                                    tempSelectedPostPaidBillsList.removeWhere((element) =>
+                                                        element.billingNo == item.billingNo &&
+                                                        element.serviceType == item.serviceType);
+                                                  }
+
+                                                  if (item.expDateStatus == false) {
+                                                    temPostPaidBillInquiryData.removeWhere((element) =>
+                                                        element.billingNo == item.billingNo &&
+                                                        element.serviceType == item.serviceType);
+                                                    tempSelectedPostPaidBillsList.removeWhere((element) =>
+                                                        element.billingNo == item.billingNo &&
+                                                        element.serviceType == item.serviceType);
+                                                  }
+                                                  if (item.isChecked == null || item.isChecked == false) {
+                                                    temPostPaidBillInquiryData.remove(item);
+                                                    tempSelectedPostPaidBillsList.remove(item);
+                                                  }
+                                                }
+
+                                                temPostPaidBillInquiryData =
+                                                    temPostPaidBillInquiryData.toSet().toList();
+
+                                                if (temPostPaidBillInquiryData.isNotEmpty &&
+                                                    temPostPaidBillInquiryData.isNotEmpty) {
+                                                  Navigator.pushNamed(context,
+                                                          RoutePaths.PaySelectedBillsPostPaidBillsPage,
+                                                          arguments:
+                                                              PaySelectedBillsPostPaidBillsPageArguments(
+                                                                  model.postPaidBillInquiryData!.length
+                                                                      .toString(),
+                                                                  amt ?? 0.0,
+                                                                  tempSelectedPostPaidBillsList,
+                                                                  temPostPaidBillInquiryData))
+                                                      .then((value) {
+                                                    if (value != null && value is bool && value) {
+                                                      ProviderScope.containerOf(context)
+                                                          .read(paymentHomeViewModelProvider)
+                                                          .animatePage(AnimatedPage.NULL);
+                                                      Navigator.of(context).pop();
+                                                    }
+                                                  });
+                                                } else {
+                                                  model.showToastWithError(AppError(
+                                                      cause: Exception(),
+                                                      error: ErrorInfo(message: ""),
+                                                      type: ErrorType.SELECT_AT_LEAST_ONE_BILL));
+                                                }
+                                              },
+                                              child: Container(
+                                                width: double.maxFinite,
+                                                height: 56.h,
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(100.0),
+                                                  color: model.payPostPaidBillsDataList.isEmpty
+                                                      ? AppColor.very_dark_gray1.withOpacity(0.5)
+                                                      : (model.payPostPaidBillsDataList.any((item) =>
+                                                              item.isChecked == true &&
+                                                              !model.isDisabledConditions(item)))
+                                                          ? Theme.of(context).textTheme.bodyLarge!.color!
+                                                          : AppColor.very_dark_gray1.withOpacity(0.5),
+                                                ),
+                                                child: Center(
+                                                  child: Text(
+                                                      S.of(context).pay +
+                                                          " " +
+                                                          "${amt == null || amt.toString().isEmpty ? double.parse("0").toStringAsFixed(3) : amt.toStringAsFixed(3)}" +
+                                                          " " +
+                                                          S.of(context).JOD,
+                                                      maxLines: 1,
+                                                      style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
+                                                          fontSize: 14.t,
+                                                          fontWeight: FontWeight.w600,
+                                                          letterSpacing: 1,
+                                                          color: Theme.of(context).colorScheme.secondary)),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 0,
+                                    child: InkWell(
+                                      onTap: () {
+                                        ProviderScope.containerOf(context)
+                                            .read(paymentHomeViewModelProvider)
+                                            .animateBackToMainPage();
+                                        Navigator.pop(context);
+                                      },
+                                      child: Container(
+                                        height: 48.h,
+                                        width: 48.h,
+                                        padding: const EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.white,
+                                            border: Border.all(
+                                                color: Theme.of(context).colorScheme.inverseSurface,
+                                                width: 1),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                  color: Colors.black26,
+                                                  blurRadius: 5,
+                                                  spreadRadius: 0.1,
+                                                  offset: Offset(0, 4))
+                                            ]),
+                                        child:
+                                            AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   },

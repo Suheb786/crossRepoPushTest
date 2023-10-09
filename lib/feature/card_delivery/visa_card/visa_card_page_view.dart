@@ -9,7 +9,7 @@ import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
 import 'package:neo_bank/feature/card_delivery/visa_card/visa_card_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -34,154 +34,145 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
         }
       },
       dataBuilder: (context, data) {
-        return GestureDetector(
-          onHorizontalDragEnd: (details) {
-            if (ProviderScope.containerOf(context)
-                    .read(cardDeliveryViewModelProvider)
-                    .appSwiperController
-                    .page ==
-                0.0) {
-              if (data!.status == Status.SUCCESS) {
-                ProviderScope.containerOf(context).read(cardDeliveryViewModelProvider).nextPage();
-                // .next(animation: true);
-              }
-            }
-          },
-          child: Card(
-            margin: EdgeInsets.zero,
-            child: Container(
-                padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: FlipCard(
-                        controller: model.cardController,
-                        fill: Fill.fillBack,
-                        direction: FlipDirection.HORIZONTAL,
-                        front: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            ClipRRect(
-                                borderRadius: BorderRadius.circular(16.w),
-                                child: AppSvg.asset(AssetUtils.visaCard)),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30.w),
-                              clipBehavior: Clip.antiAlias,
-                              child: InkWell(
-                                  onTap: () {
-                                    model.cardController.toggleCard();
-                                  },
-                                  child: BackdropFilter(
-                                    filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
-                                    child: Container(
-                                      height: 60.w,
-                                      width: 60.w,
-                                      child: AppSvg.asset(AssetUtils.flipButton),
-                                    ),
-                                  )),
-                            )
-                          ],
-                        ),
-                        back: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Container(
-                                decoration: BoxDecoration(
-                                  color: AppColor.vividYellow,
-                                  borderRadius: BorderRadius.circular(16.w),
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 18.52.h, bottom: 52.h),
-                                      child: Container(
-                                        height: 42.h,
-                                        color: Theme.of(context).primaryColorDark,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 20.0.w),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Flexible(
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional.only(end: 8.0.w),
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    data!.data?.cardHolderName ?? "-",
-                                                    overflow: TextOverflow.ellipsis,
-                                                    maxLines: 1,
-                                                    style: TextStyle(
-                                                        fontFamily: StringUtils.appFont,
-                                                        fontWeight: FontWeight.w700,
-                                                        fontSize: 12.t,
-                                                        color: Theme.of(context).primaryColorDark),
-                                                  ),
-                                                  Text(
-                                                    (data.data?.cardNumber != null &&
-                                                            data.data!.cardNumber.isNotEmpty)
-                                                        ? StringUtils.getLastFourDigitOfCardNo(
-                                                            data.data!.cardNumber)
-                                                        : "XXXX",
-                                                    maxLines: 1,
-                                                    style: TextStyle(
-                                                        fontFamily: StringUtils.appFont,
-                                                        fontWeight: FontWeight.w700,
-                                                        fontSize: 10.t,
-                                                        color: Theme.of(context).primaryColorDark),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          Image.asset(AssetUtils.birdPng)
-                                        ],
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: AlignmentDirectional.centerEnd,
-                                      child: Padding(
-                                        padding:
-                                            EdgeInsetsDirectional.only(top: 5.0.h, bottom: 15.2.h, end: 20.w),
-                                        child: Text(
-                                          'Debit',
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 10.t,
-                                              color: Theme.of(context).primaryColorDark),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                            InkWell(
+        return Card(
+          margin: EdgeInsets.zero,
+          child: Container(
+              padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: FlipCard(
+                      controller: model.cardController,
+                      fill: Fill.fillBack,
+                      direction: FlipDirection.HORIZONTAL,
+                      front: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          ClipRRect(
+                              borderRadius: BorderRadius.circular(16.w),
+                              child: AppSvg.asset(AssetUtils.visaCard)),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(30.w),
+                            clipBehavior: Clip.antiAlias,
+                            child: InkWell(
                                 onTap: () {
                                   model.cardController.toggleCard();
                                 },
-                                child: AppSvg.asset(AssetUtils.flipButton, width: 50.w, height: 50.h))
-                          ],
-                        ),
+                                child: BackdropFilter(
+                                  filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
+                                  child: Container(
+                                    height: 60.w,
+                                    width: 60.w,
+                                    child: AppSvg.asset(AssetUtils.flipButton),
+                                  ),
+                                )),
+                          )
+                        ],
+                      ),
+                      back: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                              decoration: BoxDecoration(
+                                color: AppColor.vividYellow,
+                                borderRadius: BorderRadius.circular(16.w),
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 18.52.h, bottom: 52.h),
+                                    child: Container(
+                                      height: 42.h,
+                                      color: Theme.of(context).primaryColorDark,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 20.0.w),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Flexible(
+                                          child: Padding(
+                                            padding: EdgeInsetsDirectional.only(end: 8.0.w),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  data!.data?.cardHolderName ?? "-",
+                                                  overflow: TextOverflow.ellipsis,
+                                                  maxLines: 1,
+                                                  style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      fontWeight: FontWeight.w700,
+                                                      fontSize: 12.t,
+                                                      color: Theme.of(context).primaryColorDark),
+                                                ),
+                                                Text(
+                                                  (data.data?.cardNumber != null &&
+                                                          data.data!.cardNumber.isNotEmpty)
+                                                      ? StringUtils.getLastFourDigitOfCardNo(
+                                                          data.data!.cardNumber)
+                                                      : "XXXX",
+                                                  maxLines: 1,
+                                                  style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      fontWeight: FontWeight.w700,
+                                                      fontSize: 10.t,
+                                                      color: Theme.of(context).primaryColorDark),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Image.asset(AssetUtils.birdPng)
+                                      ],
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional.centerEnd,
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsetsDirectional.only(top: 5.0.h, bottom: 15.2.h, end: 20.w),
+                                      child: Text(
+                                        'Debit',
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 10.t,
+                                            color: Theme.of(context).primaryColorDark),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )),
+                          InkWell(
+                              onTap: () {
+                                model.cardController.toggleCard();
+                              },
+                              child: AppSvg.asset(AssetUtils.flipButton, width: 50.w, height: 50.h))
+                        ],
                       ),
                     ),
-                    Center(
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 16.0.h),
-                        child: AnimatedButton(
-                          buttonHeight: 50,
-                          buttonText: S.of(context).swipeToProceed,
-                        ),
+                  ),
+                  Center(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 16.0.h),
+                      child: AppPrimaryButton(
+                        text: S.of(context).next,
+                        onPressed: () {
+                          if (data.status == Status.SUCCESS) {
+                            ProviderScope.containerOf(context).read(cardDeliveryViewModelProvider).nextPage();
+                            // .next(animation: true);
+                          }
+                        },
                       ),
                     ),
-                  ],
-                )),
-          ),
+                  ),
+                ],
+              )),
         );
       },
     );

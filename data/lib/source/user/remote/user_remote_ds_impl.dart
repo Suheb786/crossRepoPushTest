@@ -111,14 +111,16 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<RegisterResponseEntity>> registerProspectUser(
-      {String? countryName,
-      String? email,
-      String? mobileNumber,
-      String? mobileCode,
-      String? password,
-      String? confirmPassword,
-      String? userName}) async {
+  Future<HttpResponse<RegisterResponseEntity>> registerProspectUser({
+    String? countryName,
+    String? email,
+    String? mobileNumber,
+    String? mobileCode,
+    String? password,
+    String? confirmPassword,
+    String? userName,
+    String? referralCode,
+  }) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.registerProspectUser(RegisterProspectUserRequest(
         baseData: baseData.toJson(),
@@ -135,6 +137,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
         platform: baseData.platform,
         uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
         userName: userName,
+        referralCode: referralCode,
         vkeySessionId: baseData.vKeySessionId));
   }
 

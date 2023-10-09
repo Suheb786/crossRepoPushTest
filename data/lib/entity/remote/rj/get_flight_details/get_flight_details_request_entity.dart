@@ -11,7 +11,7 @@ class GetFlightDetailsRequestEntity {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  GetFlightDetailsRequestEntity({required this.baseData, this.getToken = true, this.referenceNumber});
+  GetFlightDetailsRequestEntity({required this.baseData, this.getToken: true, this.referenceNumber});
 
   factory GetFlightDetailsRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$GetFlightDetailsRequestEntityFromJson(json);

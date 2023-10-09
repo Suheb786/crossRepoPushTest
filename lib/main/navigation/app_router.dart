@@ -1,4 +1,4 @@
-import 'package:domain/model/manage_contacts/beneficiary.dart';
+import 'package:domain/constants/enum/infobip_call_status_enum.dart';
 import 'package:domain/model/payment/transfer_success_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
@@ -57,7 +57,8 @@ import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_repla
 import 'package:neo_bank/feature/evoucher/enter_code_evoucher_puchase/enter_code_evoucher_puchase_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_detail/evoucher_detail_page.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_by_denomination_amount/purchase_by_denomination_amount_page.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_region_amount/select_region_amount_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_now/purchase_now_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_voucher_success_page.dart';
 import 'package:neo_bank/feature/evoucher/share_voucher/share_voucher_page.dart';
@@ -87,6 +88,8 @@ import 'package:neo_bank/feature/manage_credit_settlement/manage_credit_settleme
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
 import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_page.dart';
 import 'package:neo_bank/feature/notify_success/notify_success_page.dart';
+import 'package:neo_bank/feature/offer_campaign/offer/offer_for_you_page.dart';
+import 'package:neo_bank/feature/offer_campaign/offer_detail/offer_detail_page.dart';
 import 'package:neo_bank/feature/onboarding/onboarding_page.dart';
 import 'package:neo_bank/feature/payment/payment_home/payment_home_page.dart';
 import 'package:neo_bank/feature/payment/payment_to_new_recipient/payment_to_new_recipient_page.dart';
@@ -145,13 +148,21 @@ import 'package:neo_bank/feature/video_kyc/video_kyc_page.dart';
 import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_subscription_page.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/ui/molecules/camera_capture/camera_capture_page.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 
 import '../../feature/account_registration/failure_scenarios/failure_scenarios_page.dart';
 import '../../feature/account_registration/manage_idwise_status/manage_idwise_status_page.dart';
 import '../../feature/evoucher/evoucher/evoucher_page.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page.dart';
+import '../../feature/help_center/error_screen/help_center_error_page.dart';
 import '../../feature/rj/rj_book_flight/rj_book_flight_page.dart';
+import '../../feature/rj/rj_booking_confirmed_in_app_web_view/rj_booking_confirmed_in_app_web_view_page.dart';
+import '../../feature/rj/rj_booking_fail/rj_booking_fail_page.dart';
+import '../../feature/rj/rj_booking_success/rj_booking_success_page.dart';
+import '../../feature/sub_account/open_sub_account/open_sub_account_success/open_sub_account_success_page.dart';
+import '../../feature/sub_account/transfer/select_transfer/select_transfer_page.dart';
+import '../../feature/sub_account/transfer/transfer_success/transfer_success_page.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -292,7 +303,8 @@ class AppRouter {
             CardTransactionPage(settings.arguments as GetCreditCardTransactionArguments));
 
       case RoutePaths.AccountTransaction:
-        return CustomRoute.createRoute(AccountTransactionPage());
+        return CustomRoute.createRoute(
+            AccountTransactionPage(settings.arguments as AccountTransactionPageArgument));
 
       case RoutePaths.DebitCardVerificationSuccess:
         return CupertinoPageRoute(
@@ -315,10 +327,11 @@ class AppRouter {
 
       case RoutePaths.RequestAmountFromContact:
         return CustomRoute.createRoute(
-            RequestAmountFromContactPage(beneficiary: settings.arguments as Beneficiary));
+            RequestAmountFromContactPage(settings.arguments as RequestAmountToContactPageArgument));
 
       case RoutePaths.SendAmountToContact:
-        return CustomRoute.createRoute(SendAmountToContactPage(settings.arguments as Beneficiary));
+        return CustomRoute.createRoute(
+            SendAmountToContactPage(settings.arguments as SendAmountToContactPageArgument));
 
       case RoutePaths.SendAmountToContactSuccess:
         return CupertinoPageRoute(
@@ -342,13 +355,15 @@ class AppRouter {
 
       case RoutePaths.RequestPaymentFromNewRecipient:
         return CupertinoPageRoute(
-            builder: (context) =>
-                RequestPaymentFromNewRecipientPage(requestValue: settings.arguments as String),
+            builder: (context) => RequestPaymentFromNewRecipientPage(
+                  argument: settings.arguments as RequestPaymentFromNewRecipientArgument,
+                ),
             settings: RouteSettings(name: RoutePaths.RequestPaymentFromNewRecipient));
 
       case RoutePaths.PaymentToNewRecipient:
         return CupertinoPageRoute(
-            builder: (context) => PaymentToNewRecipientPage(),
+            builder: (context) =>
+                PaymentToNewRecipientPage(settings.arguments as PaymentToNewRecipentPageArgument),
             settings: RouteSettings(name: RoutePaths.PaymentToNewRecipient));
 
       case RoutePaths.VideoKyc:
@@ -372,6 +387,11 @@ class AppRouter {
       case RoutePaths.HelpCenter:
         return CupertinoPageRoute(
             builder: (context) => HelpCenterPage(), settings: RouteSettings(name: RoutePaths.HelpCenter));
+
+      case RoutePaths.HelpCenterErrorPage:
+        return CupertinoPageRoute(
+            builder: (context) => HelpCenterErrorPage(settings.arguments as InfobipCallStatusEnum),
+            settings: RouteSettings(name: RoutePaths.HelpCenterErrorPage));
 
       case RoutePaths.ActiveCallPage:
         return CupertinoPageRoute(
@@ -690,12 +710,6 @@ class AppRouter {
             builder: (context) => EVoucherCategoryListingPage(settings.arguments as CategoryListArgument),
             settings: RouteSettings(name: RoutePaths.EVouchersListing));
 
-      case RoutePaths.EVouchersPurchase:
-        return CupertinoPageRoute(
-            builder: (context) =>
-                PurchaseEVoucherPage(argument: settings.arguments as PurchaseEVoucherPageArgument),
-            settings: RouteSettings(name: RoutePaths.EVouchersPurchase));
-
       case RoutePaths.EVouchersPurchaseSuccess:
         return CupertinoPageRoute(
             builder: (context) =>
@@ -711,6 +725,18 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => EnterCodeEVoucherPurchasePage(),
             settings: RouteSettings(name: RoutePaths.EnterCodeEVoucherPurchase));
+
+      case RoutePaths.SelectRegionAmountPage:
+        return CupertinoPageRoute(
+            builder: (context) =>
+                SelectRegionAmountPage(argument: settings.arguments as SelectRegionAmountPageArgument),
+            settings: RouteSettings(name: RoutePaths.SelectRegionAmountPage));
+
+      case RoutePaths.PurchaseByDenominationAmountPage:
+        return CupertinoPageRoute(
+            builder: (context) => PurchaseByDenominationAmountPage(
+                argument: settings.arguments as PurchaseByDenominationAmountPageArgument),
+            settings: RouteSettings(name: RoutePaths.PurchaseByDenominationAmountPage));
 
       case RoutePaths.SelectedCardForApplePayPage:
         return CupertinoPageRoute(
@@ -754,7 +780,10 @@ class AppRouter {
 
       case RoutePaths.NewBillsPage:
         return CupertinoPageRoute(
-            builder: (context) => NewBillsPage(), settings: RouteSettings(name: RoutePaths.NewBillsPage));
+            builder: (context) => NewBillsPage(
+                  needBackButton: settings.arguments as bool,
+                ),
+            settings: RouteSettings(name: RoutePaths.NewBillsPage));
 
       case RoutePaths.PayBillPage:
         return CupertinoPageRoute(
@@ -839,8 +868,9 @@ class AppRouter {
       /// Rj Flight Booking PurchasePage
       case RoutePaths.RjFlightBookingPurchasePage:
         return CupertinoPageRoute(
-            builder: (context) =>
-                RjBookingPurchasePage(arguments: settings.arguments as RjBookingPurchasePageArgument),
+            builder: (context) => RjBookingPurchasePage(
+                  arguments: settings.arguments as RjBookingPurchasePageArgument,
+                ),
             settings: RouteSettings(name: RoutePaths.RjFlightBookingPurchasePage));
 
       /// Rj Flight Booking Detail Page
@@ -849,6 +879,20 @@ class AppRouter {
             builder: (context) =>
                 RjFlightBookingDetailPage(settings.arguments as RJFlightDetailsPageArguments),
             settings: RouteSettings(name: RoutePaths.RjFlightBookingDetailPage));
+
+      /// Rj Flight Booking Success Page
+      case RoutePaths.RJBookingSuccessPage:
+        return CupertinoPageRoute(
+            builder: (context) => RJBookingSuccessPage(),
+            settings:
+                RouteSettings(name: RoutePaths.RJBookingSuccessPage, arguments: RjBookingPageArguments));
+
+      /// Rj Flight Booking Confirmation InAppWeb Page
+      case RoutePaths.RJBookingConfirmedInAppWebViewPage:
+        return CupertinoPageRoute(
+            builder: (context) => RJBookingConfirmedInAppWebViewPage(
+                settings.arguments as RJBookingConfirmedInAppWebViewPageArguments),
+            settings: RouteSettings(name: RoutePaths.RJBookingConfirmedInAppWebViewPage));
 
       case RoutePaths.LinkAccountPage:
         return CupertinoPageRoute(
@@ -912,6 +956,46 @@ class AppRouter {
             builder: (context) => BeneficiaryTransactionHistoryListPage(
                 settings.arguments as BeneficiaryTransactionHistoryListPageArguments),
             settings: RouteSettings(name: RoutePaths.BeneficiaryTransactionHistoryList));
+
+      case RoutePaths.CameraCapturePage:
+        return CupertinoPageRoute(
+            builder: (context) => CameraCapturePage(),
+            settings: RouteSettings(name: RoutePaths.CameraCapturePage));
+
+      ///------------[Sub-Account-Router]---------///
+
+      case RoutePaths.OpenSubAccountSuccessPage:
+        return CupertinoPageRoute(
+            builder: (context) =>
+                OpenSubAccountSuccessPage(settings.arguments as OpenSubAccountSuccessPageArgument),
+            settings: RouteSettings(name: RoutePaths.OpenSubAccountSuccessPage));
+
+      case RoutePaths.SelectTransferPage:
+        return CupertinoPageRoute(
+            builder: (context) => SelectTransferPage(
+                  argument: settings.arguments as SelectTranferPageArgument,
+                ),
+            settings: RouteSettings(name: RoutePaths.SelectTransferPage));
+
+      case RoutePaths.TransferSuccessPage:
+        return CupertinoPageRoute(
+            builder: (context) => TransferSuccessPage(settings.arguments as TransferSuccessPageArgument),
+            settings: RouteSettings(name: RoutePaths.TransferSuccessPage));
+
+      case RoutePaths.OfferForYouPage:
+        return CupertinoPageRoute(
+            builder: (context) => OfferForYouPage(),
+            settings: RouteSettings(name: RoutePaths.OfferForYouPage));
+
+      case RoutePaths.OfferDetailPage:
+        return CupertinoPageRoute(
+            builder: (context) => OfferDetailPage(settings.arguments as OfferDetailPageArgument),
+            settings: RouteSettings(name: RoutePaths.OfferDetailPage));
+
+      case RoutePaths.RJBookingFailurePage:
+        return CupertinoPageRoute(
+            builder: (context) => RJBookingFailurePage(),
+            settings: RouteSettings(name: RoutePaths.RJBookingFailurePage));
 
       case RoutePaths.OnboardingFailurScenariosPage:
         return CupertinoPageRoute(

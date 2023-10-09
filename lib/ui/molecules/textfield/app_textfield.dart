@@ -51,6 +51,7 @@ class AppTextField extends StatefulWidget {
   final double? suffixIconSize;
   final Color? color;
   final EdgeInsets? containerPadding;
+  final BorderRadiusGeometry? borderRadius;
 
   AppTextField({
     this.height,
@@ -99,6 +100,7 @@ class AppTextField extends StatefulWidget {
     this.textHintWidget,
     this.suffixIconSize,
     this.containerPadding,
+    this.borderRadius,
   }) : super(key: key);
 
   @override
@@ -153,7 +155,7 @@ class AppTextFieldState extends State<AppTextField> {
                       widget.containerPadding ?? EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 16.0.h),
                   decoration: BoxDecoration(
                       color: widget.color,
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: widget.borderRadius ?? BorderRadius.circular(8),
                       border: Border.all(
                           width: 1,
                           color: !isValid

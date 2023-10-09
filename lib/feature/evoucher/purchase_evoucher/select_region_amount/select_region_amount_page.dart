@@ -1,3 +1,4 @@
+import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -6,13 +7,16 @@ import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_region_amount
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_region_amount/select_region_amount_page_view_model.dart';
 
 class SelectRegionAmountPage extends BasePage<SelectRegionAmountPageViewModel> {
+  final SelectRegionAmountPageArgument argument;
+
+  SelectRegionAmountPage({required this.argument});
+
   @override
   SelectRegionAmountPageState createState() => SelectRegionAmountPageState();
 }
 
 class SelectRegionAmountPageState
-    extends BaseStatefulPage<SelectRegionAmountPageViewModel, SelectRegionAmountPage>
-    with AutomaticKeepAliveClientMixin {
+    extends BaseStatefulPage<SelectRegionAmountPageViewModel, SelectRegionAmountPage> {
   SelectRegionAmountPageState() : super(subscribeVisibilityEvents: true);
 
   @override
@@ -21,29 +25,22 @@ class SelectRegionAmountPageState
   }
 
   @override
-  Color? scaffoldBackgroundColor() {
-    return Colors.transparent;
-  }
-
-  @override
   void onModelReady(SelectRegionAmountPageViewModel model) {
-    model.voucherItems.clear();
-    model.voucherItems =
-        ProviderScope.containerOf(context).read(purchaseEVouchersViewModelProvider).voucherItems ?? [];
+    super.onModelReady(model);
+    model.argument = widget.argument;
+    model.voucherItems = model.argument?.voucherItems ?? [];
     model.getRegionFromVoucherIds(context);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    super.build(context);
-    return stateBuild(context);
   }
 
   @override
   Widget buildView(BuildContext context, SelectRegionAmountPageViewModel model) {
     return SelectRegionAmountPageView(provideBase());
   }
+}
 
-  @override
-  bool get wantKeepAlive => true;
+class SelectRegionAmountPageArgument {
+  List<VoucherItem> voucherItems;
+  String category;
+
+  SelectRegionAmountPageArgument({required this.voucherItems, required this.category});
 }

@@ -22,6 +22,8 @@ class NewBillsPageViewModel extends BasePageViewModel {
   String billerCategory = "";
   String billerCategoryApiValue = "";
 
+  bool showBackButton = false;
+
   NewBillsPageViewModel(this.getBillCategoriesUseCase) {
     _getCategoriesRequest.listen(
       (params) {
@@ -50,6 +52,10 @@ class NewBillsPageViewModel extends BasePageViewModel {
       },
     );
     getCategories();
+  }
+
+  setShowBackButton(bool needBackButton) {
+    this.showBackButton = needBackButton;
   }
 
   /// ---------------------- Get Category -------------------------------- ///

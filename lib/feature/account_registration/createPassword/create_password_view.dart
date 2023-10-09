@@ -13,6 +13,7 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/register/password_hint_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -66,7 +67,13 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                         if (passwordData.status == Status.SUCCESS) {
                           model.passwordKey.currentState!.isValid = true;
                           model.confirmPasswordKey.currentState!.isValid = true;
+                          print('Promo Code ---->${AppConstantsUtils.userPromoCode}');
                           model.registerUser(
+                            referralCode: AppConstantsUtils.userPromoCode,
+                            email: ProviderScope.containerOf(context)
+                                .read(addNumberViewModelProvider)
+                                .emailController
+                                .text,
                             email: "",
                             country: "Jordan",
                             phone: ProviderScope.containerOf(context)

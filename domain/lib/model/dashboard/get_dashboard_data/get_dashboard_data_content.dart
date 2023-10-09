@@ -15,9 +15,14 @@ class GetDashboardDataContent {
       this.blinkWasBorn,
       this.debitCardSomethingWrong = false,
       this.isCreditCard = true,
-      this.dashboardFeatures});
+      this.dashboardFeatures,
+      this.allowSubAccount,
+      this.email,
+      this.accounts,
+      this.availableBalance,
+      this.userPromoCode});
 
-  final Account? account;
+  Account? account;
   final bool? somethingWrong;
   final List<CreditCard>? creditCard;
   final List<DebitCard>? debitCard;
@@ -28,4 +33,9 @@ class GetDashboardDataContent {
   final bool? debitCardSomethingWrong;
   final bool? isCreditCard;
   final DashboardFeatures? dashboardFeatures;
+  final bool? allowSubAccount;
+  final String? email;
+  final List<Account>? accounts;
+  final String? availableBalance;
+  final String? userPromoCode;
 }

@@ -134,19 +134,13 @@ class TimeUtils {
 
   static String getFormattedDateForRJ(DateTime date) {
     DateTime dateTime = DateTime.parse(date.toString()).toLocal();
-    final DateFormat formatter = DateFormat('yyyyMMdd');
+    final DateFormat formatter = DateFormat('yyyyMMdd', 'en');
     return formatter.format(dateTime);
   }
 
   static String getFormattedDateForRTP(String date) {
     DateTime dateTime = DateTime.parse(date).toLocal();
-    final DateFormat formatter = DateFormat('dd MMMM');
-    return formatter.format(dateTime);
-  }
-
-  static String getFormattedTimeFor12HrsFormat(String date) {
-    DateTime dateTime = DateTime.parse(date).toLocal();
-    final DateFormat formatter = DateFormat('hh:mm aa');
+    final DateFormat formatter = DateFormat('dd MMMM', 'en');
     return formatter.format(dateTime);
   }
 
@@ -169,6 +163,19 @@ class TimeUtils {
   static String convertDateTimeToDMY(String date) {
     final DateTime dateTime = DateTime.parse(date).toLocal();
     return DateFormat('dd MMM yyyy').format(dateTime);
+  }
+
+  static String getFormattedTimeFor12HrsFormat(String date) {
+    DateTime dateTime = DateTime.parse(date).toLocal();
+    final DateFormat formatter = DateFormat('hh:mm aa');
+    return formatter.format(dateTime);
+  }
+
+  static int differentBetweenTwoDateInDays(String date) {
+    DateTime dateTimeCreatedAt = DateTime.parse(date).toLocal();
+    DateTime dateTimeNow = DateTime.now();
+    final differenceInDays = dateTimeCreatedAt.difference(dateTimeNow).inDays;
+    return differenceInDays;
   }
 
   static String convertUTCDateToLocal(String date) {

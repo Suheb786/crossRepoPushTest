@@ -7,7 +7,7 @@ import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_scollable_list_view_widget.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -37,14 +37,12 @@ class SelectServiceDialogView extends StatelessWidget {
           return Dialog(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
               insetPadding: EdgeInsets.only(
-                  left: 24.w, right: 24.w, bottom: 36.h, top: _keyboardVisible ? 36.h : 204.h),
-              child: GestureDetector(
-                  onVerticalDragEnd: (details) {
-                    if (details.primaryVelocity! > 0) {
-                      onDismissed?.call();
-                    }
-                  },
-                  child: AppStreamBuilder<int>(
+                  left: 24.w, right: 24.w, bottom: 56.h, top: _keyboardVisible ? 36.h : 204.h),
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                clipBehavior: Clip.none,
+                children: [
+                  AppStreamBuilder<int>(
                     initialData: 0,
                     stream: model!.currentIndexStream,
                     dataBuilder: (BuildContext context, selectedIndex) {
@@ -150,47 +148,44 @@ class SelectServiceDialogView extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                            InkWell(
-                              onTap: () {
-                                if (billerService != null && billerService!.length > 0) {
-                                  onSelected!.call(billerService![selectedIndex ?? 0]);
-                                }
-                                Navigator.pop(context);
-                              },
-                              child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
-                                height: 57.h,
-                                width: 57.w,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                child: AppSvg.asset(AssetUtils.tick,
-                                    color: Theme.of(context).colorScheme.secondary),
-                              ),
-                            ),
                             Padding(
-                              padding: EdgeInsets.only(top: 8.0.h, bottom: 16.h),
-                              child: Center(
-                                child: InkWell(
-                                  onTap: () {
-                                    onDismissed?.call();
-                                  },
-                                  child: Text(
-                                    S.of(context).swipeDownToCancel,
-                                    style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 10.t,
-                                        fontWeight: FontWeight.w400,
-                                        color: AppColor.dark_gray_1),
-                                  ),
-                                ),
+                              padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 42.h),
+                              child: AppPrimaryButton(
+                                onPressed: () {
+                                  if (billerService != null && billerService!.length > 0) {
+                                    onSelected!.call(billerService![selectedIndex ?? 0]);
+                                  }
+                                  Navigator.pop(context);
+                                },
+                                text: S.of(context).confirm,
                               ),
-                            ),
+                            )
                           ],
                         ),
                       );
                     },
-                  )));
+                  ),
+                  Positioned(
+                    bottom: -24.h,
+                    child: InkWell(
+                      onTap: () {
+                        onDismissed?.call();
+                      },
+                      child: Container(
+                          height: 48.h,
+                          width: 48.h,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Theme.of(context).colorScheme.onBackground),
+                              shape: BoxShape.circle,
+                              color: Theme.of(context).colorScheme.secondary),
+                          child: Image.asset(
+                            AssetUtils.close_bold,
+                            scale: 3.5,
+                          )),
+                    ),
+                  )
+                ],
+              ));
         },
         providerBase: providerBase());
   }

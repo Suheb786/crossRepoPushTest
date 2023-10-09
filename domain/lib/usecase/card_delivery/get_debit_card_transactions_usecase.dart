@@ -15,14 +15,18 @@ class GetDebitCardTransactionsUseCase
   @override
   Future<Either<NetworkError, GetTransactionsResponse>> execute(
       {required GetDebitCardTransactionsUseCaseParams params}) {
-    return _repository.getDebitCardTransactions(noOfDays: params.noOfDays);
+    return _repository.getDebitCardTransactions(noOfDays: params.noOfDays, accountNo: params.accountNo);
   }
 }
 
 class GetDebitCardTransactionsUseCaseParams extends Params {
   final num noOfDays;
+  final String? accountNo;
 
-  GetDebitCardTransactionsUseCaseParams({required this.noOfDays});
+  GetDebitCardTransactionsUseCaseParams({
+    required this.noOfDays,
+    required this.accountNo,
+  });
 
   @override
   Either<AppError, bool> verify() {

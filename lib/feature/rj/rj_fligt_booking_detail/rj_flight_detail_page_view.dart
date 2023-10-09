@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_confirm_flight_detail/rj_confirm_flight_detail_page.dart';
 import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_flight_booking_detail_page_view_model.dart';
 import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_make_payment/rj_make_payment_page.dart';
@@ -26,7 +27,7 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
   @override
   Widget build(BuildContext context, model) {
     return Container(
-      color: Theme.of(context).colorScheme.onSurface,
+      color: Theme.of(context).colorScheme.onPrimaryContainer,
       padding: EdgeInsets.only(top: 56.h),
       child: Column(
         children: [
@@ -48,7 +49,7 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
                       activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       activeColor: Theme.of(context).colorScheme.secondary,
                       // color: Theme.of(context).primaryColorLight.withOpacity(0.3)
-                      color: Theme.of(context).colorScheme.onSecondary),
+                      color: Theme.of(context).colorScheme.onSecondary.withOpacity(0.3)),
                 );
               },
             ),
@@ -85,7 +86,7 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
                             currentStep ?? 0,
                             S.of(context).pleaseConfirmFlightDetail,
                             S.of(context).howYouLikeToPayment,
-                            '${S.of(context).enterOtpHeader} \n +962 79 322 8080',
+                            S.of(context).enterOtpHeader,
                           ),
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -93,6 +94,32 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
                               color: Theme.of(context).colorScheme.secondary,
                               fontSize: 20.t,
                               fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ),
+                    Visibility(
+                      visible: currentStep == 2,
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 32.h),
+                        child: ShowUpAnimation(
+                          delayStart: Duration(milliseconds: 500),
+                          animationDuration: Duration(milliseconds: 750),
+                          curve: Curves.bounceIn,
+                          direction: Direction.vertical,
+                          offset: 0.5,
+                          child: Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: Text(
+                              "${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode != null ? (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.isNotEmpty ? ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.replaceAll('00', '+') : '+') : ""}" +
+                                  " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  color: Theme.of(context).colorScheme.secondary,
+                                  fontSize: 20.t,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
                         ),
                       ),
                     ),

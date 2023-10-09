@@ -31,7 +31,14 @@ class CreditCard {
       this.isCallPending = false,
       this.parentId = "",
       this.isCardInApplePay = false,
-      this.getStatus = false});
+      this.getStatus = false,
+      this.issuedFromCms = false,
+      this.creditlimit,
+      this.loanValueId,
+      this.nextpaymentdate,
+      this.reserved4,
+      this.settleAmount,
+      this.usedbalance});
 
   String? name;
   String? cardNumber;
@@ -61,4 +68,11 @@ class CreditCard {
   bool? isCallPending;
   bool isCardInApplePay;
   bool getStatus;
+  bool issuedFromCms;
+  String? reserved4;
+  int? loanValueId;
+  String? creditlimit;
+  String? usedbalance;
+  String? nextpaymentdate;
+  String? settleAmount;
 }

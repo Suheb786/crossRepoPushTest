@@ -17,26 +17,13 @@ class ManageCreditSettlementPageView extends BasePageViewWidget<ManageCreditSett
 
   @override
   Widget build(BuildContext context, model) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        SizedBox(
-          height: 50.h,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Padding(
-                padding: EdgeInsetsDirectional.only(start: 24.0.w),
-                child: AppSvg.asset(AssetUtils.leftArrow,
-                    matchTextDirection: true, color: Theme.of(context).colorScheme.secondary),
-              ),
-            ),
-            Text(
+    return Padding(
+      padding: EdgeInsetsDirectional.only(top: 52.0.h),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(bottom: 16.0.h),
+            child: Text(
               S.of(context).manageSettlement,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
@@ -44,95 +31,113 @@ class ManageCreditSettlementPageView extends BasePageViewWidget<ManageCreditSett
                   fontWeight: FontWeight.w600,
                   fontSize: 14.t),
             ),
-            Padding(
-              padding: EdgeInsetsDirectional.only(end: 18.0.w),
-              child: Container(
-                width: 28.w,
-              ),
-            )
-          ],
-        ),
-        SizedBox(
-          height: 35.h,
-        ),
-        Expanded(
-            child: Container(
-          decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.secondary,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
-          child: Column(
-            children: [
-              // Container(
-              //   height: 4,
-              //   width: 64,
-              //   margin: EdgeInsets.only(top: 8),
-              //   decoration: BoxDecoration(
-              //       borderRadius: BorderRadius.circular(4),
-              //       color: AppColor.whiteGray),
-              // ),
-              Card(
-                color: Theme.of(context).colorScheme.secondary,
-                margin: EdgeInsets.all(24),
-                child: Column(children: [
-                  IgnorePointer(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pushReplacementNamed(context, RoutePaths.ChangeCardPayment);
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.all(24),
-                        child: Row(
-                          children: [
-                            Expanded(
-                                child: Text(
-                              S.of(context).changeCardPaymentAccount,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 14.t,
-                                  color: Theme.of(context).inputDecorationTheme.hintStyle!.color ??
-                                      AppColor.gray1),
-                            )),
-                            AppSvg.asset(AssetUtils.rightChevron,
-                                width: 20.w,
-                                height: 20.h,
-                                color: Theme.of(context).primaryTextTheme.bodyLarge?.color)
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  AppDivider(),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushReplacementNamed(context, RoutePaths.ChangeCardSettlementPercentage,
-                          arguments: ChangeCardSettlementPercentageArguments(
-                              creditCard: model.arguments!.creditCard));
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 24.0.h),
-                      child: Row(
-                        children: [
-                          Expanded(
-                              child: Text(
-                            S.of(context).changeSettlementOptions,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 14.t),
-                          )),
-                          AppSvg.asset(AssetUtils.rightChevron,
-                              width: 20.w,
-                              height: 20.t,
-                              color: Theme.of(context).primaryTextTheme.bodyLarge?.color)
-                        ],
-                      ),
-                    ),
-                  ),
-                ]),
-              ),
-            ],
           ),
-        ))
-      ],
+          Expanded(
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.only(top: 24.0.h),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.secondary,
+                        borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
+                    padding: EdgeInsetsDirectional.only(top: 42.0.h, bottom: 30.h) +
+                        EdgeInsetsDirectional.symmetric(horizontal: 30.0.h),
+                    child: Column(
+                      children: [
+                        Card(
+                          color: Theme.of(context).colorScheme.secondary,
+                          child: Column(children: [
+                            IgnorePointer(
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.pushReplacementNamed(context, RoutePaths.ChangeCardPayment);
+                                },
+                                child: Padding(
+                                  padding: EdgeInsets.all(24),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                          child: Text(
+                                        S.of(context).changeCardPaymentAccount,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 14.t,
+                                            color: Theme.of(context).inputDecorationTheme.hintStyle!.color ??
+                                                AppColor.gray1),
+                                      )),
+                                      AppSvg.asset(AssetUtils.rightChevron,
+                                          width: 20.w,
+                                          height: 20.h,
+                                          color: Theme.of(context).primaryTextTheme.bodyLarge?.color)
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            AppDivider(),
+                            InkWell(
+                              onTap: () {
+                                Navigator.pushReplacementNamed(
+                                    context, RoutePaths.ChangeCardSettlementPercentage,
+                                    arguments: ChangeCardSettlementPercentageArguments(
+                                        creditCard: model.arguments!.creditCard));
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 24.0.h),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                        child: Text(
+                                      S.of(context).changeSettlementOptions,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 14.t),
+                                    )),
+                                    AppSvg.asset(AssetUtils.rightChevron,
+                                        width: 20.w,
+                                        height: 20.t,
+                                        color: Theme.of(context).primaryTextTheme.bodyLarge?.color)
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ]),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 0,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      height: 48.h,
+                      width: 48.h,
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                          border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black26, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))
+                          ]),
+                      child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }

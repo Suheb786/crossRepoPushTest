@@ -103,7 +103,6 @@ class RsaKeyHelper {
     var topLevelSeq = asn1Parser.nextObject() as ASN1Sequence;
 
     var modulus, privateExponent, p, q;
-    //Use either PKCS1 or PKCS8 depending on the number of ELEMENTS
     if (topLevelSeq.elements.length == 3) {
       var privateKey = topLevelSeq.elements[2];
 

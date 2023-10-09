@@ -22,15 +22,17 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, bool>> setCardPin(String currentPin, String cardNUmber);
 
-  Future<Either<NetworkError, GetTransactionsResponse>> getDebitCardTransactions({num? noOfDays});
+  Future<Either<NetworkError, GetTransactionsResponse>> getDebitCardTransactions(
+      {num? noOfDays, String? accountNo});
 
   Future<Either<NetworkError, GetTransactionsResponse>> getCreditCardTransactions(
-      {required String cardId, num? noOfDays});
+      {required String cardId, num? noOfDays, required String secureCode, required bool isIssuedFromCMS});
 
-  Future<Either<NetworkError, CardStatementResponse>> getDebitCardStatement(String monthYear);
+  Future<Either<NetworkError, CardStatementResponse>> getDebitCardStatement(
+      String monthYear, String? accountNo);
 
   Future<Either<NetworkError, CardStatementResponse>> getCreditCardStatement(
-      String monthYear, String? cardId);
+      String monthYear, String? cardId, String? secureCode, bool? issuedFromCms);
 
   Future<Either<NetworkError, bool>> requestCreditCard({required String cardId});
 
@@ -38,9 +40,11 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, GetDebitYearsResponse>> getDebitYears();
 
-  Future<Either<NetworkError, bool>> freezeCreditCard({String cardId});
+  Future<Either<NetworkError, bool>> freezeCreditCard(
+      {String cardId, String secureCode, bool? isIssuedFromCMS});
 
-  Future<Either<NetworkError, bool>> unFreezeCreditCard({String cardId});
+  Future<Either<NetworkError, bool>> unFreezeCreditCard(
+      {String cardId, String secureCode, bool? isIssuedFromCMS});
 
   Future<Either<NetworkError, bool>> cancelCreditCard({String reason});
 

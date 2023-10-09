@@ -71,7 +71,10 @@ import 'package:neo_bank/ui/molecules/dialog/postpaid_bill/pay_bill_detail/servi
 import 'package:neo_bank/ui/molecules/postpaid_bills/pay_selected_postpaid_bills/selected_bills_to_paid_widget_model.dart';
 
 final paymentHomeViewModelProvider = ChangeNotifierProvider.autoDispose<PaymentHomeViewModel>(
-  (ref) => PaymentHomeViewModel(ref.read(getBeneficiaryUseCaseProvider)),
+  (ref) => PaymentHomeViewModel(
+    ref.read(getBeneficiaryUseCaseProvider),
+    ref.read(requestMoneyActivityUseCaseProvider),
+  ),
 );
 
 final addSendMoneyContactViewModelProvider = ChangeNotifierProvider.autoDispose<AddSendMoneyContactViewModel>(
@@ -162,8 +165,8 @@ final creditCardPayBackSuccessViewModelProvider = ChangeNotifierProvider.autoDis
 );
 
 final requestPaymentFromNewRecipientViewModelProvider =
-    ChangeNotifierProvider.autoDispose.family<RequestPaymentFromNewRecipientViewModel, String>(
-  (ref, args) => RequestPaymentFromNewRecipientViewModel(args),
+    ChangeNotifierProvider.autoDispose<RequestPaymentFromNewRecipientViewModel>(
+  (ref) => RequestPaymentFromNewRecipientViewModel(),
 );
 
 ///edit transaction purpose dialog view model provider

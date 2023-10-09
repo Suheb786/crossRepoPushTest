@@ -1,4 +1,3 @@
-import 'package:domain/constants/enum/evoucher_filter_option_enum.dart';
 import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:domain/model/e_voucher/voucher_item.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +17,8 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
-import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../../ui/no_data_widget.dart';
 import '../../evoucher_category_listing/evoucher_category_listing_page.dart';
 import '../../purchase_now/purchase_now_page.dart';
 
@@ -44,7 +43,9 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                 hintTextColor: Theme.of(context).inputDecorationTheme.hintStyle?.color,
                 containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                 onChanged: (value) {
-                  if (model.buyVoucherSearchController.text.isEmpty) {
+                  if (model.categoriesDisplayToggleNotifier.value) {
+                    model.searchCategory(searchText: value);
+                  } else {
                     model.toggleSearch(true);
                   }
                 },
@@ -62,9 +63,9 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                 },
               ),
               onFocusChange: (focus) {
-                if (model.evoucherFilterOption == EvoucherFilterOption.FROM_SEARCH_FILTER) {
-                  model.toggleSearch(focus);
-                } else if (model.buyVoucherSearchController.text.isNotEmpty) {
+                if (model.categoriesDisplayToggleNotifier.value) {
+                  model.searchCategory(searchText: model.buyVoucherSearchController.text);
+                } else {
                   model.toggleSearch(focus);
                 }
               },
@@ -97,19 +98,18 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                                           child: BrowserByCategoryItemWidget(
                                             categoryData!.data!,
                                             onSelectCategory: (category, index) {
-                                              model.setSelectedCategory(category);
                                               Navigator.pushNamed(
                                                 context,
                                                 RoutePaths.EVouchersListing,
                                                 arguments: CategoryListArgument(
-                                                    id: categoryData.data?[index].id ?? 0.0),
+                                                    voucherCategory: categoryData.data![index]),
                                               );
                                             },
                                           ),
                                         ),
                                       ],
                                     )
-                                  : Center(child: Text(S.of(context).noDataFound));
+                                  : NoDataWidget();
                             default:
                               return Container();
                           }
@@ -135,14 +135,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                                   }),
                                 );
                               } else {
-                                return Center(
-                                  child: Text(
-                                    S.of(context).noDataFound,
-                                    style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        color: Theme.of(context).primaryColorDark),
-                                  ),
-                                );
+                                return NoDataWidget();
                               }
                             default:
                               return Container();

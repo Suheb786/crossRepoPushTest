@@ -1,4 +1,3 @@
-import 'package:card_swiper/card_swiper.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/activity/activity_response.dart';
 import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
@@ -15,12 +14,21 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ActivityHomeViewModel extends BasePageViewModel {
+  ///--------------- Animated Pages streams ----------------------///
+
+  BehaviorSubject<ActivityAnimatedPage> pageSwitchSubject = BehaviorSubject.seeded(ActivityAnimatedPage.NULL);
+
+  Stream<ActivityAnimatedPage> get pageSwitchStream => pageSwitchSubject.stream;
+
+  late AnimationController translateSidewaysController;
+  late AnimationController translateSettingsUpController;
+
+  bool animationInitialized = false;
+
   ActivityHomeViewModel(this._notificationUseCase, this._requestMoneyActivityUseCase) {
     _requestMoneyActivityRequest.listen(
       (value) {
-        RequestManager(value, createCall: () => _requestMoneyActivityUseCase.execute(params: value))
-            .asFlow()
-            .listen(
+        RequestManager(value, createCall: () => _requestMoneyActivityUseCase.execute(params: value)).asFlow().listen(
           (event) {
             updateLoader();
             _requestMoneyActivityResponse.safeAdd(event);
@@ -81,9 +89,6 @@ class ActivityHomeViewModel extends BasePageViewModel {
   }
 
   PageController appSwiperController = PageController(viewportFraction: 0.8);
-  PageController controller = PageController(viewportFraction: 0.8, keepPage: true, initialPage: 0);
-
-  final SwiperController pageController = SwiperController();
 
   List<RequestMoneyActivityList> paymentActivityData = [];
 
@@ -95,7 +100,6 @@ class ActivityHomeViewModel extends BasePageViewModel {
   BehaviorSubject<NotificationUseCaseParams> _notificationRequest = BehaviorSubject();
 
   NotificationUseCase _notificationUseCase;
-  PublishSubject<PageController> _pageControllerSubject = PublishSubject();
 
   BehaviorSubject<Resource<PaymentActivityResponse>> _paymentActivityTransactionResponse = BehaviorSubject();
 
@@ -110,25 +114,19 @@ class ActivityHomeViewModel extends BasePageViewModel {
   @override
   void dispose() {
     _currentStep.close();
+    translateSidewaysController.dispose();
+    translateSettingsUpController.dispose();
     super.dispose();
   }
 
   Stream<int> get currentStep => _currentStep.stream;
-
-  Stream<PageController> get pageControllerStream => _pageControllerSubject.stream;
-
-  Stream<Resource<PaymentActivityResponse>> get paymentActivityTransactionResponse =>
-      _paymentActivityTransactionResponse.stream;
-
-  Stream<Resource<PaymentActivityResponse>> get requestMoneyActivity => _requestMoneyActivityResponse.stream;
 
   void getRequestMoneyActivity(
     bool getToken,
     int FilterDays,
     String TransactionType,
   ) {
-    _requestMoneyActivityRequest.safeAdd(RequestMoneyActivityParams(
-        getToken: getToken, FilterDays: FilterDays, TransactionType: TransactionType));
+    _requestMoneyActivityRequest.safeAdd(RequestMoneyActivityParams(getToken: getToken, FilterDays: FilterDays, TransactionType: TransactionType));
   }
 
   Stream<Resource<ActivityResponse>> get activityResponse => _activityResponse.stream;
@@ -137,21 +135,34 @@ class ActivityHomeViewModel extends BasePageViewModel {
     _currentStep.safeAdd(index);
   }
 
-  void updatePageControllerStream(int index) {
-    controller = PageController(initialPage: index, viewportFraction: 0.8, keepPage: true);
-    _pageControllerSubject.safeAdd(controller);
-  }
-
   void getActivity() {
     _notificationRequest.safeAdd(NotificationUseCaseParams(noOfDays: 90, isDebit: "true"));
+  }
+
+  showHideAllTransactionsPage(bool value) {
+    if (value) {
+      animateToTransactionPage();
+    } else {
+      animateBackToTransactionPage();
+    }
+    pageSwitchSubject.add(value ? ActivityAnimatedPage.PAYMENT_ACTIVITY : ActivityAnimatedPage.NULL);
+  }
+
+  animateToTransactionPage() {
+    translateSidewaysController.forward();
+    translateSettingsUpController.forward();
+  }
+
+  animateBackToTransactionPage() {
+    translateSidewaysController.reverse();
+    translateSettingsUpController.reverse();
   }
 
   ///----------activity filtered list for cards-----------///
 
   BehaviorSubject<Resource<List<RequestMoneyActivityList>>> _paymentActivityListResponse = BehaviorSubject();
 
-  Stream<Resource<List<RequestMoneyActivityList>>> get paymentActivityListStream =>
-      _paymentActivityListResponse.stream;
+  Stream<Resource<List<RequestMoneyActivityList>>> get paymentActivityListStream => _paymentActivityListResponse.stream;
 
   void getPaymentActivityList(List<PaymentActivityContent> content) {
     paymentActivityData.clear();
@@ -167,3 +178,5 @@ class ActivityHomeViewModel extends BasePageViewModel {
 
   ///----------activity filtered list for cards-----------///
 }
+
+enum ActivityAnimatedPage { PAYMENT_ACTIVITY, NULL }

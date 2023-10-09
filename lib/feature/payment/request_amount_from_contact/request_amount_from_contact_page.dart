@@ -7,9 +7,9 @@ import 'package:neo_bank/feature/payment/request_amount_from_contact/request_amo
 import 'package:neo_bank/feature/payment/request_amount_from_contact/request_amount_from_contact_view_model.dart';
 
 class RequestAmountFromContactPage extends BasePage<RequestAmountFromContactViewModel> {
-  Beneficiary? beneficiary;
+  RequestAmountToContactPageArgument requestAmountToContactPageArgument;
 
-  RequestAmountFromContactPage({this.beneficiary});
+  RequestAmountFromContactPage(this.requestAmountToContactPageArgument);
 
   @override
   RequestAmountFromContactPageState createState() => RequestAmountFromContactPageState();
@@ -19,7 +19,14 @@ class RequestAmountFromContactPageState
     extends BaseStatefulPage<RequestAmountFromContactViewModel, RequestAmountFromContactPage> {
   @override
   ProviderBase provideBase() {
-    return requestAmountFromContactViewModelProvider.call(widget.beneficiary!);
+    return requestAmountFromContactViewModelProvider
+        .call(widget.requestAmountToContactPageArgument.beneficiary);
+  }
+
+  @override
+  void onModelReady(RequestAmountFromContactViewModel model) {
+    model.setShowBackButton(widget.requestAmountToContactPageArgument.needBackButton);
+    super.onModelReady(model);
   }
 
   @override
@@ -31,4 +38,11 @@ class RequestAmountFromContactPageState
   Widget buildView(BuildContext context, RequestAmountFromContactViewModel model) {
     return RequestAmountFromContactPageView(provideBase());
   }
+}
+
+class RequestAmountToContactPageArgument {
+  final Beneficiary beneficiary;
+  final bool needBackButton;
+
+  RequestAmountToContactPageArgument(this.beneficiary, {this.needBackButton = false});
 }

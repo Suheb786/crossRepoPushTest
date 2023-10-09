@@ -39,8 +39,6 @@ class EVoucherDetailViewModel extends BasePageViewModel {
       return _eVoucherDetailsPageUseCase.execute(params: value);
     }).asFlow().listen((event) {
       if (event.status == Status.SUCCESS) {
-        // done...
-        print("its fone...");
       } else if (event.status == Status.ERROR) {
         showToastWithError(event.appError!);
       }

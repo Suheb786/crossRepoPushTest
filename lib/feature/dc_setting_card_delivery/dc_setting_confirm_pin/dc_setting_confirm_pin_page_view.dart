@@ -8,12 +8,14 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../utils/color_utils.dart';
 
 class DcSettingConfirmPinPageView extends BasePageViewWidget<DcSettingConfirmPinPageViewModel> {
   DcSettingConfirmPinPageView(ProviderBase model) : super(model);
@@ -41,83 +43,67 @@ class DcSettingConfirmPinPageView extends BasePageViewWidget<DcSettingConfirmPin
                 }
               },
               dataBuilder: (context, isOtpVerified) {
-                return GestureDetector(
-                  onHorizontalDragEnd: (details) {
-                    if (ProviderScope.containerOf(context)
-                            .read(dcSettingCardDeliveryViewModelProvider)
-                            .appSwiperController
-                            .page ==
-                        2.0) {
-                      FocusScope.of(context).unfocus();
-                      if (StringUtils.isDirectionRTL(context)) {
-                        if (!details.primaryVelocity!.isNegative) {
-                          model.validatePin(
-                              ProviderScope.containerOf(context)
-                                  .read(dcSettingCreatePinViewModelProvider)
-                                  .currentPin,
-                              context);
-                        } else {
-                          ProviderScope.containerOf(context)
-                              .read(dcSettingCardDeliveryViewModelProvider)
-                              .previousPage();
-                          // .previous(animation: true);
-                        }
-                      } else {
-                        if (details.primaryVelocity!.isNegative) {
-                          print(
-                              'currentPin--->${ProviderScope.containerOf(context).read(dcSettingCreatePinViewModelProvider).currentPin}');
-                          model.validatePin(
-                              ProviderScope.containerOf(context)
-                                  .read(dcSettingCreatePinViewModelProvider)
-                                  .currentPin,
-                              context);
-                        } else {
-                          ProviderScope.containerOf(context)
-                              .read(dcSettingCardDeliveryViewModelProvider)
-                              .previousPage();
-                          // .previous(animation: true);
-                        }
-                      }
-                    }
-                  },
-                  child: Card(
-                    margin: EdgeInsets.zero,
-                    child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: SingleChildScrollView(
-                                physics: ClampingScrollPhysics(),
-                                child: AppOtpFields(
-                                  length: 4,
-                                  fieldWidth: MediaQuery.of(context).size.width / 6.4,
-                                  fieldHeight: 52.h,
-                                  onChanged: (val) {
-                                    model.validate(val);
-                                  },
+                return Card(
+                  margin: EdgeInsets.zero,
+                  child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: SingleChildScrollView(
+                              physics: ClampingScrollPhysics(),
+                              child: AppOtpFields(
+                                length: 4,
+                                fieldWidth: MediaQuery.of(context).size.width / 6.4,
+                                fieldHeight: 52.h,
+                                onChanged: (val) {
+                                  model.validate(val);
+                                },
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 16.0.h),
+                            child: AppStreamBuilder<bool>(
+                                stream: model.showButtonStream,
+                                initialData: false,
+                                dataBuilder: (context, isValid) {
+                                  return AppPrimaryButton(
+                                    isDisabled: !isValid!,
+                                    text: S.of(context).next,
+                                    onPressed: () {
+                                      model.validatePin(
+                                          ProviderScope.containerOf(context)
+                                              .read(dcSettingCreatePinViewModelProvider)
+                                              .currentPin,
+                                          context);
+                                    },
+                                  );
+                                }),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 16.h),
+                            child: Center(
+                              child: InkWell(
+                                onTap: () {
+                                  ProviderScope.containerOf(context)
+                                      .read(dcSettingCardDeliveryViewModelProvider)
+                                      .previousPage();
+                                },
+                                child: Text(
+                                  S.of(context).back,
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      color: AppColor.brightBlue,
+                                      fontSize: 14.t,
+                                      fontWeight: FontWeight.w600),
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 16.0.h),
-                              child: AppStreamBuilder<bool>(
-                                  stream: model.showButtonStream,
-                                  initialData: false,
-                                  dataBuilder: (context, isValid) {
-                                    return Visibility(
-                                      visible: isValid!,
-                                      child: AnimatedButton(
-                                        buttonHeight: 50,
-                                        buttonText: S.of(context).swipeToProceed,
-                                      ),
-                                    );
-                                  }),
-                            ),
-                          ],
-                        )),
-                  ),
+                          )
+                        ],
+                      )),
                 );
               },
             ),

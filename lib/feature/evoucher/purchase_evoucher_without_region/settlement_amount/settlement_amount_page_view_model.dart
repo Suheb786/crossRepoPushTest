@@ -1,8 +1,8 @@
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/model/e_voucher/e_voucher_otp.dart';
 import 'package:domain/usecase/evouchers/e_voucher_otp_usecase.dart';
 import 'package:domain/usecase/evouchers/select_account_usecase.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -10,7 +10,6 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../../../di/dashboard/dashboard_modules.dart';
 import '../purchase_evoucher_without_region_page.dart';
 
 class SettlementAmountPageViewModel extends BasePageViewModel {
@@ -39,9 +38,11 @@ class SettlementAmountPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get selectAccountStream => _selectAccountResponse.stream;
 
   /// button subject
-  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(true);
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
+
+  Account? selectedAccount;
 
   SettlementAmountPageViewModel(this._selectAccountUseCase, this.argument, this.eVoucherOtpUseCase) {
     _selectAccountRequest.listen((value) {
@@ -80,7 +81,7 @@ class SettlementAmountPageViewModel extends BasePageViewModel {
   String mobileNumber = "";
 
   void getOTP() {
-    _evoucherOtpRequest.safeAdd(EVoucherUsecaseOTPParams(GetToken: true));
+    _evoucherOtpRequest.safeAdd(EVoucherUsecaseOTPParams(voucherName: argument.selectedItem.name));
   }
 
   void check(bool value) {
@@ -97,12 +98,7 @@ class SettlementAmountPageViewModel extends BasePageViewModel {
   validateFields(BuildContext context) {
     _selectAccountRequest.safeAdd(GetSettlementValidationUseCaseParams(
         isChecked: _isCheckedRequest.value,
-        totalAmountString: ProviderScope.containerOf(context)
-                .read(appHomeViewModelProvider)
-                .dashboardDataContent
-                .account
-                ?.availableBalance ??
-            "",
+        totalAmountString: selectedAccount?.availableBalance ?? "",
         itemValueString: argument.settlementAmount));
   }
 

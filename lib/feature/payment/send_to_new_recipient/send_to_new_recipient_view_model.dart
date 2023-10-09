@@ -234,9 +234,9 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
     purposeDetaiList.addAll(list);
   }
 
-  void checkSendMoney({required String iban, required String amount}) {
-    _checkSendMoneyRequest.safeAdd(
-        CheckSendMoneyUseCaseParams(toAccount: iban, toAmount: double.parse(amount), beneficiaryId: ''));
+  void checkSendMoney({required String iban, required String amount, required String fromAccount}) {
+    _checkSendMoneyRequest.safeAdd(CheckSendMoneyUseCaseParams(
+        toAccount: iban, toAmount: double.parse(amount), beneficiaryId: '', fromAccount: fromAccount));
   }
 
   void sendToNewRecipient(BuildContext context) {
@@ -258,8 +258,9 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
     _selectedImageSubject.safeAdd(image);
   }
 
-  void uploadProfilePhoto(DocumentTypeEnum type) {
-    _uploadProfilePhotoRequest.safeAdd(UploadDocumentUseCaseParams(documentType: type));
+  void uploadProfilePhoto(DocumentTypeEnum type, {String cameraPhotoFile = ""}) {
+    _uploadProfilePhotoRequest
+        .safeAdd(UploadDocumentUseCaseParams(documentType: type, cameraPhotoFile: cameraPhotoFile));
   }
 
   void updatePurpose(Purpose value) {

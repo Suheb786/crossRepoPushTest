@@ -12,13 +12,15 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../utils/color_utils.dart';
 
 class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
   EnterOtpPageView(ProviderBase model) : super(model);
@@ -130,8 +132,16 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                                 .read(sendToNewRecipientViewModelProvider)
                                 .limit!,
                             amount: ProviderScope.containerOf(context)
-                                .read(sendMoneyViewModelProvider)
-                                .currentPinValue,
+                                    .read(paymentToNewRecipientViewModelProvider)
+                                    .argument
+                                    ?.currentPinValue ??
+                                "",
+                            fromAccount: ProviderScope.containerOf(context)
+                                    .read(paymentToNewRecipientViewModelProvider)
+                                    .argument
+                                    ?.account
+                                    .accountNo ??
+                                "",
                             recipientName: ProviderScope.containerOf(context)
                                 .read(sendToNewRecipientViewModelProvider)
                                 .recipientNameController
@@ -145,118 +155,105 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                       }
                     },
                     dataBuilder: (context, isOtpVerified) {
-                      return GestureDetector(
-                        onHorizontalDragEnd: (details) {
-                          if (ProviderScope.containerOf(context)
-                                  .read(paymentToNewRecipientViewModelProvider)
-                                  .appSwiperController
-                                  .page ==
-                              1.0) {
-                            FocusScope.of(context).unfocus();
-                            if (StringUtils.isDirectionRTL(context)) {
-                              if (!details.primaryVelocity!.isNegative) {
-                                model.enterOtp();
-                              } else {
-                                ProviderScope.containerOf(context)
-                                    .read(paymentToNewRecipientViewModelProvider)
-                                    .previousPage();
-                                // .previous(animation: true);
-                              }
-                            } else {
-                              if (details.primaryVelocity!.isNegative) {
-                                model.enterOtp();
-                              } else {
-                                ProviderScope.containerOf(context)
-                                    .read(paymentToNewRecipientViewModelProvider)
-                                    .previousPage();
-                                // .previous(animation: true);
-                              }
-                            }
-                          }
-                        },
-                        child: Card(
-                          margin: EdgeInsets.zero,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                                bottom: MediaQuery.of(context).viewInsets.bottom - 50.0.h <= 0
-                                    ? 0
-                                    : MediaQuery.of(context).viewInsets.bottom - 48.0.h),
-                            child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 32.0.h, horizontal: 24.0.w),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    SingleChildScrollView(
-                                      physics: ClampingScrollPhysics(),
-                                      child: Column(
-                                        children: [
-                                          AppOtpFields(
-                                            length: 6,
-                                            controller: model.otpController,
-                                            onChanged: (val) {
-                                              model.validate(val);
-                                            },
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Column(
+                      return Card(
+                        margin: EdgeInsets.zero,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).viewInsets.bottom - 50.0.h <= 0
+                                  ? 0
+                                  : MediaQuery.of(context).viewInsets.bottom - 48.0.h),
+                          child: Container(
+                              padding: EdgeInsets.symmetric(vertical: 32.0.h, horizontal: 24.0.w),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SingleChildScrollView(
+                                    physics: ClampingScrollPhysics(),
+                                    child: Column(
                                       children: [
-                                        CountdownTimer(
-                                          controller: model.countDownController,
-                                          onEnd: () {},
-                                          endTime: model.endTime,
-                                          textStyle: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontSize: 16.0.t,
-                                              color: Theme.of(context).textTheme.bodyMedium!.color!),
-                                          widgetBuilder: (context, currentTimeRemaining) {
-                                            return currentTimeRemaining == null
-                                                ? TextButton(
-                                                    onPressed: () {
-                                                      model.updateTime(
-                                                          amount: ProviderScope.containerOf(context)
-                                                              .read(sendMoneyViewModelProvider)
-                                                              .currentPinValue);
-                                                    },
-                                                    child: Text(
-                                                      S.of(context).resendCode,
-                                                      style: TextStyle(
-                                                          fontFamily: StringUtils.appFont,
-                                                          fontSize: 14.0.t,
-                                                          color:
-                                                              Theme.of(context).textTheme.bodyLarge!.color!),
-                                                    ))
-                                                : Text(
-                                                    S.of(context).resendIn(
-                                                        '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                        AppOtpFields(
+                                          length: 6,
+                                          controller: model.otpController,
+                                          onChanged: (val) {
+                                            model.validate(val);
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Column(
+                                    children: [
+                                      CountdownTimer(
+                                        controller: model.countDownController,
+                                        onEnd: () {},
+                                        endTime: model.endTime,
+                                        textStyle: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontSize: 16.0.t,
+                                            color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                        widgetBuilder: (context, currentTimeRemaining) {
+                                          return currentTimeRemaining == null
+                                              ? TextButton(
+                                                  onPressed: () {
+                                                    model.updateTime(
+                                                        amount: ProviderScope.containerOf(context)
+                                                                .read(paymentToNewRecipientViewModelProvider)
+                                                                .argument
+                                                                ?.currentPinValue ??
+                                                            "");
+                                                  },
+                                                  child: Text(
+                                                    S.of(context).resendCode,
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
                                                         fontSize: 14.0.t,
                                                         color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                                  );
-                                          },
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 16.0.t),
-                                          child: AppStreamBuilder<bool>(
-                                              stream: model.showButtonStream,
-                                              initialData: false,
-                                              dataBuilder: (context, isValid) {
-                                                return Visibility(
-                                                  visible: isValid!,
-                                                  child: AnimatedButton(
-                                                    buttonHeight: 50,
-                                                    buttonText: S.of(context).swipeToProceed,
-                                                  ),
+                                                  ))
+                                              : Text(
+                                                  S.of(context).resendIn(
+                                                      '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                                  style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      fontSize: 14.0.t,
+                                                      color: Theme.of(context).textTheme.bodyLarge!.color!),
                                                 );
-                                              }),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                )),
-                          ),
+                                        },
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 16.0.h, bottom: 16.0.h),
+                                        child: AppStreamBuilder<bool>(
+                                            stream: model.showButtonStream,
+                                            initialData: false,
+                                            dataBuilder: (context, isValid) {
+                                              return AppPrimaryButton(
+                                                isDisabled: !isValid!,
+                                                text: S.of(context).next,
+                                                onPressed: () {
+                                                  model.enterOtp();
+                                                },
+                                              );
+                                            }),
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          ProviderScope.containerOf(context)
+                                              .read(paymentToNewRecipientViewModelProvider)
+                                              .previousPage();
+                                        },
+                                        child: Text(
+                                          S.of(context).back,
+                                          style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            color: AppColor.brightBlue,
+                                            fontSize: 12.0.t,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              )),
                         ),
                       );
                     },

@@ -10,4 +10,8 @@ abstract class DynamicLinkDataSource {
 
   /// listen for dynamic link
   Future<Uri> initDynamicLinks();
+
+  Future<String> referDynamicLink({
+    required String userPromoCode,
+  });
 }

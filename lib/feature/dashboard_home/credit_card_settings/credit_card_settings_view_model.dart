@@ -6,8 +6,12 @@ import 'package:domain/usecase/card_delivery/freeze_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_supplementary_credit_card_application_usecase.dart';
 import 'package:domain/usecase/card_delivery/report_lost_stolen_cc_usecase.dart';
 import 'package:domain/usecase/card_delivery/unfreeze_credit_card_usecase.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_page.dart';
+import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -22,6 +26,7 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
   final GetSupplementaryCreditCardApplicationUseCase _getSupplementaryCreditCardApplicationUseCase;
   final ReportLostStolenCCUseCase _reportLostStolenCCUseCase;
   final PushAntelopCardsUseCase _pushAntelopCardsUseCase;
+  final ScrollController controller = ScrollController();
 
   PublishSubject<bool> _toggleFreezeCardSubject = PublishSubject();
 
@@ -41,9 +46,7 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get cancelCreditCardStream => _cancelCreditCardResponseSubject.stream;
 
-  bool isFreezed = false;
-  bool isUnFreezed = false;
-  bool isCancelled = false;
+
 
   ///show dialog
   PublishSubject<bool> _showDialogRequestSubject = PublishSubject();
@@ -127,7 +130,7 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           _toggleFreezeCardSubject.safeAdd(true);
-          isFreezed = true;
+          ProviderScope.containerOf(appLevelKey.currentContext!).read(appHomeViewModelProvider).creditCardIsFreezed = true;
         }
       });
     });
@@ -143,7 +146,8 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           _toggleFreezeCardSubject.safeAdd(false);
-          isUnFreezed = true;
+          ProviderScope.containerOf(appLevelKey.currentContext!).read(appHomeViewModelProvider).creditCardIsUnFreezed = true;
+
         }
       });
     });
@@ -157,7 +161,8 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          isCancelled = true;
+          ProviderScope.containerOf(appLevelKey.currentContext!).read(appHomeViewModelProvider).creditCardIsCancelled = true;
+
         }
       });
     });
@@ -220,24 +225,23 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
   }
 
   void freezeCard(String cardID) {
-    _freezeCardRequestSubject.safeAdd(FreezeCreditCardUseCaseParams(cardId: cardID));
+    _freezeCardRequestSubject.safeAdd(FreezeCreditCardUseCaseParams(
+        cardId: cardID,
+        secureCode: creditCardSettingsArguments.creditCard.cardCode ?? '',
+        isIssuedFromCMS: creditCardSettingsArguments.creditCard.issuedFromCms));
   }
 
   void unFreezeCard(String cardID) {
-    _unFreezeCardRequestSubject.safeAdd(UnFreezeCreditCardUseCaseParams(cardId: cardID));
+    _unFreezeCardRequestSubject.safeAdd(UnFreezeCreditCardUseCaseParams(
+        cardId: cardID,
+        secureCode: creditCardSettingsArguments.creditCard.cardCode ?? '',
+        isIssuedFromCMS: creditCardSettingsArguments.creditCard.issuedFromCms));
   }
 
   void cancelCard(String reason) {
     _cancelCreditCardRequestSubject.safeAdd(CancelCreditCardUseCaseParams(reason: reason));
   }
 
-  bool willPop() {
-    bool pop = false;
-    if (isFreezed || isUnFreezed || isCancelled) {
-      pop = true;
-    }
-    return pop;
-  }
 
   void updateShowDialog(bool value) {
     _showDialogRequestSubject.safeAdd(value);

@@ -1,9 +1,5 @@
 import 'package:domain/constants/enum/evoucher_filter_option_enum.dart';
-import 'package:domain/constants/error_types.dart';
-import 'package:domain/error/app_error.dart';
-import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/e_voucher/voucher_categories.dart';
-import 'package:domain/model/e_voucher/voucher_min_max_value.dart';
 import 'package:domain/model/e_voucher/voucher_region_by_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,6 +21,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../../../../utils/status.dart';
+import '../../../button/app_primary_button.dart';
 import 'categories_filter/categories_filter_dialog.dart';
 
 class EVouchersFilterDialogView extends StatelessWidget {
@@ -32,12 +29,16 @@ class EVouchersFilterDialogView extends StatelessWidget {
   final Function(FilterSelectedData)? onSelected;
   final String? title;
   final List<VoucherCategories>? categoriesList;
+  final List<String>? rangeList;
+  final List<VoucherRegionByCategories>? regionList;
 
   EVouchersFilterDialogView({
     this.onDismissed,
     this.onSelected,
     this.title,
     this.categoriesList,
+    this.rangeList,
+    this.regionList,
   });
 
   ProviderBase providerBase() {
@@ -69,300 +70,240 @@ class EVouchersFilterDialogView extends StatelessWidget {
       builder: (context, model, child) {
         return Dialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0.w)),
-            insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
-            child: GestureDetector(
-              onVerticalDragEnd: (details) {
-                if (details.primaryVelocity! > 0) {
-                  onDismissed?.call();
-                }
-              },
-              behavior: HitTestBehavior.translucent,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.only(top: 32.0.h, bottom: 40.h),
-                    child: Center(
-                      child: Text(
-                        title ?? '',
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 24.w),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            AppTextField(
-                              labelText: S.of(context).category.toUpperCase(),
-                              hintText: S.of(context).pleaseSelect,
-                              readOnly: true,
-                              controller: model!.categoryController,
-                              key: model.categoryKey,
-                              onPressed: () {
-                                CategoriesFilterDialog.show(context,
-                                    title: S.of(context).category,
-                                    categoriesList: categoriesList ?? [], onDismissed: () {
-                                  Navigator.pop(context);
-                                }, onSelected: (value) {
-                                  Navigator.pop(context);
-                                  model.categoryController.text = value.categoryName;
-                                  model.categryId = value.id == 0 ? "" : value.id.toString();
-                                  model.getRegionByCategories(model.categryId);
-
-                                  model.showResetFilterButton();
-                                });
-                              },
-                              suffixIcon: (value, data) {
-                                return Container(
-                                    height: 16.h,
-                                    width: 16.w,
-                                    padding: EdgeInsetsDirectional.only(end: 8.w),
-                                    child: AppSvg.asset(AssetUtils.downArrow,
-                                        color: Theme.of(context).colorScheme.surfaceTint));
-                              },
-                            ),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            AppStreamBuilder<Resource<List<VoucherRegionByCategories>>>(
-                                initialData: Resource.none(),
-                                stream: model.voucherRegionByCategoriesResponseStream,
-                                onData: (regionByCategoriesValue) {},
-                                dataBuilder: (context, regionByCategories) {
-                                  return AppTextField(
-                                    labelText: S.of(context).preferredRegion.toUpperCase(),
-                                    hintText: S.of(context).pleaseSelect,
-                                    readOnly: true,
-                                    controller: model.preferredRegionController,
-                                    key: model.preferredRegionKey,
-                                    onPressed: () {
-                                      if (model.categoryController.text.isEmpty) {
-                                        model.categoryKey.currentState!.isValid = false;
-                                        model.showToastWithError(AppError(
-                                            cause: Exception(),
-                                            error: ErrorInfo(message: ''),
-                                            type: ErrorType.SELECT_CATEGORY_FIRST));
-                                      } else if (regionByCategories?.status == Status.SUCCESS) {
-                                        if ((regionByCategories?.data ?? []).isNotEmpty) {
-                                          RegionFilterDialog.show(context,
-                                              isFromPurchaseFlow: false,
-                                              title: S.of(context).preferredRegion,
-                                              regionByCategoriesList: regionByCategories?.data ?? [],
-                                              onDismissed: () {
-                                            Navigator.pop(context);
-                                          }, onSelected: (value) {
-                                            Navigator.pop(context);
-                                            model.preferredRegionController.text = value.countryName ?? '';
-                                            model.region = value.isoCode ?? "";
-                                            model.getMinMaxValue(model.categryId, model.region);
-                                            model.showResetFilterButton();
-                                          });
-                                        }
-                                      }
-                                    },
-                                    suffixIcon: (value, data) {
-                                      return Container(
-                                          height: 16.h,
-                                          width: 16.w,
-                                          padding: EdgeInsetsDirectional.only(end: 8.w),
-                                          child: AppSvg.asset(AssetUtils.downArrow,
-                                              color: Theme.of(context).colorScheme.surfaceTint));
-                                    },
-                                  );
-                                }),
-                            SizedBox(
-                              height: 16,
-                            ),
-                            AppStreamBuilder<Resource<VoucherMinMaxValue>>(
-                                initialData: Resource.none(),
-                                stream: model.voucherMinMaxResponseStream,
-                                dataBuilder: (context, voucherMinMaxResponse) {
-                                  return AppTextField(
-                                    labelText: S.of(context).minPrice.toUpperCase(),
-                                    hintText: S.of(context).pleaseSelect,
-                                    readOnly: true,
-                                    controller: model.minPriceController,
-                                    key: model.minPriceKey,
-                                    onPressed: () {
-                                      if (model.categoryController.text.isEmpty) {
-                                        model.categoryKey.currentState!.isValid = false;
-                                        model.showToastWithError(AppError(
-                                            cause: Exception(),
-                                            error: ErrorInfo(message: ''),
-                                            type: ErrorType.SELECT_CATEGORY_FIRST));
-                                      } else if (model.preferredRegionController.text.isEmpty) {
-                                        model.preferredRegionKey.currentState!.isValid = false;
-                                        model.showToastWithError(AppError(
-                                            cause: Exception(),
-                                            error: ErrorInfo(message: ''),
-                                            type: ErrorType.SELECT_REGION_FIRST));
-                                      } else if (voucherMinMaxResponse?.status == Status.SUCCESS) {
-                                        RelationshipWithCardHolderDialog.show(context,
-                                            title: S.of(context).minPrice,
-                                            relationSHipWithCardHolder: model.rangeList, onDismissed: () {
-                                          Navigator.pop(context);
-                                        }, onSelected: (value) {
-                                          Navigator.pop(context);
-                                          model.minPriceController.text = value;
-                                          model.showResetFilterButton();
-                                        });
-                                      }
-                                    },
-                                    suffixIcon: (value, data) {
-                                      return Container(
-                                          height: 16.h,
-                                          width: 16.w,
-                                          padding: EdgeInsetsDirectional.only(end: 8.w),
-                                          child: AppSvg.asset(AssetUtils.downArrow,
-                                              color: Theme.of(context).colorScheme.surfaceTint));
-                                    },
-                                  );
-                                }),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            AppStreamBuilder<Resource<VoucherMinMaxValue>>(
-                                initialData: Resource.none(),
-                                stream: model.voucherMinMaxResponseStream,
-                                dataBuilder: (context, voucherMinMaxResponse) {
-                                  return AppTextField(
-                                    labelText: S.of(context).maxPrice.toUpperCase(),
-                                    hintText: S.of(context).pleaseSelect,
-                                    readOnly: true,
-                                    controller: model.maxPriceController,
-                                    key: model.maxPriceKey,
-                                    onPressed: () {
-                                      if (model.categoryController.text.isEmpty) {
-                                        model.categoryKey.currentState!.isValid = false;
-                                        model.showToastWithError(AppError(
-                                            cause: Exception(),
-                                            error: ErrorInfo(message: ''),
-                                            type: ErrorType.SELECT_CATEGORY_FIRST));
-                                      } else if (model.preferredRegionController.text.isEmpty) {
-                                        model.preferredRegionKey.currentState!.isValid = false;
-                                        model.showToastWithError(AppError(
-                                            cause: Exception(),
-                                            error: ErrorInfo(message: ''),
-                                            type: ErrorType.SELECT_REGION_FIRST));
-                                      } else if (voucherMinMaxResponse?.status == Status.SUCCESS) {
-                                        RelationshipWithCardHolderDialog.show(context,
-                                            title: S.of(context).maxPrice,
-                                            relationSHipWithCardHolder: model.rangeList, onDismissed: () {
-                                          Navigator.pop(context);
-                                        }, onSelected: (value) {
-                                          Navigator.pop(context);
-                                          model.maxPriceController.text = value;
-                                          model.showResetFilterButton();
-                                        });
-                                      }
-                                    },
-                                    suffixIcon: (value, data) {
-                                      return Container(
-                                          height: 16.h,
-                                          width: 16.w,
-                                          padding: EdgeInsetsDirectional.only(end: 8.w),
-                                          child: AppSvg.asset(AssetUtils.downArrow,
-                                              color: Theme.of(context).colorScheme.surfaceTint));
-                                    },
-                                  );
-                                }),
-                            AppStreamBuilder<bool>(
-                                stream: model.showButtonStream,
-                                initialData: false,
-                                dataBuilder: (context, isVisible) {
-                                  return Visibility(
-                                    visible: isVisible!,
-                                    child: InkWell(
-                                      onTap: () => model.resetFilter(),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.only(top: 32.0.h),
-                                        child: Text(
-                                          S.of(context).resetFilter,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontSize: 14.t,
-                                              fontWeight: FontWeight.w600,
-                                              color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                }),
-                            SizedBox(
-                              height: 40.h,
-                            ),
-                            AppStreamBuilder<Resource<bool>>(
-                                initialData: Resource.none(),
-                                stream: model.eVoucherFilterValidationResponseStream,
-                                onData: (status) {
-                                  if (status.status == Status.SUCCESS) {
-                                    this.onSelected?.call(FilterSelectedData(
-                                        filterOption: EvoucherFilterOption.FROM_FILTER_DIALOG,
-                                        categryId: model.categryId,
-                                        region: model.region,
-                                        maxValue: model.maxPriceController.text.trim(),
-                                        minValue: model.minPriceController.text.trim()));
-                                  }
-                                },
-                                dataBuilder: (context, validationStatus) {
-                                  return Container(
-                                    color: Theme.of(context).dialogBackgroundColor.withOpacity(0),
-                                    child: Column(
-                                      children: <Widget>[
-                                        InkWell(
-                                          onTap: () {
-                                            model.getFilterValidated();
-                                          },
-                                          child: Container(
-                                            padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
-                                            height: 57.h,
-                                            width: 57.w,
-                                            decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                            child: AppSvg.asset(AssetUtils.tick,
-                                                color: Theme.of(context).colorScheme.secondary),
-                                          ),
-                                        ),
-                                        GestureDetector(
-                                          onVerticalDragEnd: (details) {
-                                            if (details.primaryVelocity! > 0) {
-                                              onDismissed?.call();
-                                            }
-                                          },
-                                          behavior: HitTestBehavior.translucent,
-                                          child: Padding(
-                                            padding: EdgeInsetsDirectional.only(top: 8.0.h, bottom: 16.h),
-                                            child: Center(
-                                              child: Text(
-                                                S.of(context).swipeDownToCancel,
-                                                style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    fontSize: 10.t,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Theme.of(context).colorScheme.surfaceTint),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                })
-                          ],
+            insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 180.h),
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              clipBehavior: Clip.none,
+              children: [
+                Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.only(top: 32.0.h, bottom: 16.h),
+                      child: Center(
+                        child: Text(
+                          title ?? '',
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w600),
                         ),
                       ),
                     ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        physics: ClampingScrollPhysics(),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 24.w),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              AppTextField(
+                                labelText: S.of(context).category.toUpperCase(),
+                                hintText: S.of(context).pleaseSelect,
+                                readOnly: true,
+                                controller: model!.categoryController,
+                                key: model.categoryKey,
+                                onPressed: () {
+                                  CategoriesFilterDialog.show(context,
+                                      title: S.of(context).category,
+                                      categoriesList: categoriesList ?? [], onDismissed: () {
+                                    Navigator.pop(context);
+                                    Future.delayed(Duration(milliseconds: 100), () {
+                                      FocusManager.instance.primaryFocus?.unfocus();
+                                    });
+                                  }, onSelected: (value) {
+                                    Navigator.pop(context);
+                                    model.categoryController.text = value.categoryName;
+                                    model.categryId = value.id == 0 ? "" : value.id.toString();
+
+                                    model.showResetFilterButton();
+                                  });
+                                },
+                                suffixIcon: (value, data) {
+                                  return Container(
+                                      height: 16.h,
+                                      width: 16.w,
+                                      padding: EdgeInsetsDirectional.only(end: 8.w),
+                                      child: AppSvg.asset(AssetUtils.downArrow,
+                                          color: Theme.of(context).colorScheme.surfaceTint));
+                                },
+                              ),
+                              SizedBox(
+                                height: 16.h,
+                              ),
+                              AppTextField(
+                                labelText: S.of(context).preferredRegion.toUpperCase(),
+                                hintText: S.of(context).pleaseSelect,
+                                readOnly: true,
+                                controller: model.preferredRegionController,
+                                key: model.preferredRegionKey,
+                                onPressed: () {
+                                  RegionFilterDialog.show(context,
+                                      isFromPurchaseFlow: false,
+                                      title: S.of(context).preferredRegion,
+                                      regionByCategoriesList: regionList ?? [], onDismissed: () {
+                                    Navigator.pop(context);
+                                    Future.delayed(Duration(milliseconds: 100), () {
+                                      FocusManager.instance.primaryFocus?.unfocus();
+                                    });
+                                  }, onSelected: (value) {
+                                    Navigator.pop(context);
+                                    model.preferredRegionController.text = value.countryName ?? '';
+                                    model.region = value.isoCode ?? "";
+
+                                    model.showResetFilterButton();
+                                  });
+                                },
+                                suffixIcon: (value, data) {
+                                  return Container(
+                                      height: 16.h,
+                                      width: 16.w,
+                                      padding: EdgeInsetsDirectional.only(end: 8.w),
+                                      child: AppSvg.asset(AssetUtils.downArrow,
+                                          color: Theme.of(context).colorScheme.surfaceTint));
+                                },
+                              ),
+                              SizedBox(
+                                height: 16.h,
+                              ),
+                              AppTextField(
+                                labelText: S.of(context).minPrice.toUpperCase(),
+                                hintText: S.of(context).pleaseSelect,
+                                readOnly: true,
+                                controller: model.minPriceController,
+                                key: model.minPriceKey,
+                                onPressed: () {
+                                  RelationshipWithCardHolderDialog.show(context,
+                                      title: S.of(context).minPrice,
+                                      relationSHipWithCardHolder: rangeList ?? [], onDismissed: () {
+                                    Navigator.pop(context);
+                                    Future.delayed(Duration(milliseconds: 100), () {
+                                      FocusManager.instance.primaryFocus?.unfocus();
+                                    });
+                                  }, onSelected: (value) {
+                                    Navigator.pop(context);
+                                    model.minPriceController.text = value;
+                                    model.showResetFilterButton();
+                                  });
+                                },
+                                suffixIcon: (value, data) {
+                                  return Container(
+                                      height: 16.h,
+                                      width: 16.w,
+                                      padding: EdgeInsetsDirectional.only(end: 8.w),
+                                      child: AppSvg.asset(AssetUtils.downArrow,
+                                          color: Theme.of(context).colorScheme.surfaceTint));
+                                },
+                              ),
+                              SizedBox(
+                                height: 16.h,
+                              ),
+                              AppTextField(
+                                labelText: S.of(context).maxPrice.toUpperCase(),
+                                hintText: S.of(context).pleaseSelect,
+                                readOnly: true,
+                                controller: model.maxPriceController,
+                                key: model.maxPriceKey,
+                                onPressed: () {
+                                  RelationshipWithCardHolderDialog.show(context,
+                                      title: S.of(context).maxPrice,
+                                      relationSHipWithCardHolder: rangeList ?? [], onDismissed: () {
+                                    Navigator.pop(context);
+                                    Future.delayed(Duration(milliseconds: 100), () {
+                                      FocusManager.instance.primaryFocus?.unfocus();
+                                    });
+                                  }, onSelected: (value) {
+                                    Navigator.pop(context);
+                                    model.maxPriceController.text = value;
+                                    model.showResetFilterButton();
+                                  });
+                                },
+                                suffixIcon: (value, data) {
+                                  return Container(
+                                      height: 16.h,
+                                      width: 16.w,
+                                      padding: EdgeInsetsDirectional.only(end: 8.w),
+                                      child: AppSvg.asset(AssetUtils.downArrow,
+                                          color: Theme.of(context).colorScheme.surfaceTint));
+                                },
+                              ),
+                              AppStreamBuilder<bool>(
+                                  stream: model.showButtonStream,
+                                  initialData: false,
+                                  dataBuilder: (context, isVisible) {
+                                    return Visibility(
+                                      visible: isVisible!,
+                                      child: InkWell(
+                                        onTap: () => model.resetFilter(),
+                                        child: Padding(
+                                          padding: EdgeInsetsDirectional.only(top: 32.0.h),
+                                          child: Text(
+                                            S.of(context).resetFilter,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                fontSize: 14.t,
+                                                fontWeight: FontWeight.w600,
+                                                color: Theme.of(context).textTheme.bodyLarge!.color!),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    AppStreamBuilder<Resource<bool>>(
+                        initialData: Resource.none(),
+                        stream: model.eVoucherFilterValidationResponseStream,
+                        onData: (status) {
+                          if (status.status == Status.SUCCESS) {
+                            this.onSelected?.call(FilterSelectedData(
+                                filterOption: EvoucherFilterOption.FROM_FILTER_DIALOG,
+                                categryId: model.categryId,
+                                region: model.region,
+                                maxValue: model.maxPriceController.text.isEmpty
+                                    ? "0.0"
+                                    : model.maxPriceController.text.trim(),
+                                minValue: model.minPriceController.text.isEmpty
+                                    ? "0.0"
+                                    : model.minPriceController.text.trim()));
+                          }
+                        },
+                        dataBuilder: (context, validationStatus) {
+                          return Padding(
+                            padding: EdgeInsets.only(bottom: 40.h, left: 24.w, right: 24.w),
+                            child: AppPrimaryButton(
+                              onPressed: () {
+                                model.getFilterValidated();
+                              },
+                              text: S.of(context).confirm,
+                            ),
+                          );
+                        })
+                  ],
+                ),
+                Positioned(
+                  bottom: -24.h,
+                  child: InkWell(
+                    onTap: () {
+                      onDismissed?.call();
+                    },
+                    child: Container(
+                        height: 48.h,
+                        width: 48.h,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Theme.of(context).colorScheme.onBackground),
+                            shape: BoxShape.circle,
+                            color: Theme.of(context).colorScheme.secondary),
+                        child: Image.asset(
+                          AssetUtils.close_bold,
+                          scale: 3.5,
+                        )),
                   ),
-                ],
-              ),
+                ),
+              ],
             ));
       },
     );

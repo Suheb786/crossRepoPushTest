@@ -1381,6 +1381,20 @@ class ErrorParser {
         return localisedHelper.maxValueGreaterThanMin;
       case ErrorType.SELECT_CATEGORY_FIRST:
         return localisedHelper.selectCategoryFirst;
+      case ErrorType.ACCOUNT_INACTIVE:
+        return localisedHelper.accountInactive;
+      case ErrorType.ACCOUNT_CANNOT_BE_DEBITED:
+        return localisedHelper.accountCannotBeDebited;
+      case ErrorType.TRANSFER_REMAINING_BALANCE_TO_CLOSE_ACCOUNT:
+        return localisedHelper.transferRemainingBalanceForAccountClosure;
+      case ErrorType.INSUFFICIENT_BALANCE_ACCOUNT_TRANSFER:
+        return localisedHelper.insufficientBalanceAccountTransfer;
+      case ErrorType.SELECT_ANY_OPTION:
+        return localisedHelper.selectAnyOption;
+      case ErrorType.INSUFFICIENT_BALANCE_SUBACCOUNT:
+        return localisedHelper.insufficientBalanceSubAccount;
+      case ErrorType.NO_BALANCE_ACCOUNT:
+        return localisedHelper.youHaveInsufficientBalanceInYourAccount;
       default:
         return "";
     }

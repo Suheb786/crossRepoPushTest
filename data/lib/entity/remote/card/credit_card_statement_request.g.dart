@@ -13,6 +13,8 @@ CreditCardStatementRequest _$CreditCardStatementRequestFromJson(
       getToken: json['getToken'] as bool? ?? true,
       date: json['Date'] as String? ?? '',
       cardId: json['CardId'] as String? ?? "",
+      secureCode: json['SecureCode'] as String? ?? '',
+      issuedFromCms: json['IssuedFromCms'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$CreditCardStatementRequestToJson(
@@ -21,5 +23,7 @@ Map<String, dynamic> _$CreditCardStatementRequestToJson(
       'Date': instance.date,
       'CardId': instance.cardId,
       'getToken': instance.getToken,
+      'SecureCode': instance.secureCode,
+      'IssuedFromCms': instance.issuedFromCms,
       'baseClass': instance.baseData,
     };

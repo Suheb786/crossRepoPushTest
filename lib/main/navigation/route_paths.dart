@@ -46,6 +46,7 @@ class RoutePaths {
   static const String HelpCenter = "/helpCenter";
   static const String ActiveCallPage = "/activeCallPage";
   static const String CallEndedPage = "/callEndedPage";
+  static const String HelpCenterErrorPage = "/helpCenterErrorPage";
   static const String ManageCardPin = "/manageCardPin";
   static const String CardPinUnBlockSuccess = "/cardPinUnBlockSuccessPage";
   static const String DebitCardReplacement = "/debitCardReplacement";
@@ -105,14 +106,14 @@ class RoutePaths {
   static const String ManageCreditCardLimits = "/manageCreditCardLimits";
   static const String SupplementaryDebitCardPinSet = "/supplementaryDebitCardPinSet";
   static const String EVouchersListing = "/eVouchersListing";
-  static const String EVouchersPurchase = "/eVouchersPurchase";
   static const String EVouchersPurchaseSuccess = "/eVouchersPurchaseSuccess";
   static const String ShareVoucher = "/shareVoucher";
   static const String Evoucher = "/evoucher";
   static const String EvoucherDetail = "/evoucherDetail";
   static const String PurchaseNowDetail = "/purchaseNowDetail";
   static const String PurchaseEVoucherWithoutRegionPage = "/purchaseEVoucherWithoutRegionPage";
-
+  static const String SelectRegionAmountPage = "/selectRegionAmountPage";
+  static const String PurchaseByDenominationAmountPage = "/purchaseByDenominationAmountPage";
   static const String EnterCodeEVoucherPurchase = "/enterCodeEVoucherPurchase";
   static const String SelectedCardForApplePayPage = "/selectedCardForApplePayPage";
   static const String ApplePaySuccessAndErrorPage = "/applePaySuccessAndErrorPage";
@@ -159,4 +160,13 @@ class RoutePaths {
   static const String RjFlightBookingPage = "/rjFlightBookingPage";
   static const String BeneficiaryTransactionHistoryList = "beneficiaryTransactionHistoryListPage";
   static const String OnboardingFailurScenariosPage = "onboardingFailurScenariosPage";
+  static const String RJBookingSuccessPage = "rjBookingSuccessPage";
+  static const String RJBookingConfirmedInAppWebViewPage = "rjBookingConfirmedInAppWebViewPage";
+  static const String SelectTransferPage = "/SelectTransferPage";
+  static const String TransferSuccessPage = "/TransferSuccessPage";
+  static const String OpenSubAccountSuccessPage = "/OpenSubAccountSuccessPage";
+  static const String CameraCapturePage = "cameraCapturePage";
+  static const String OfferForYouPage = "offerForYouPage";
+  static const String OfferDetailPage = "OfferDetailPage";
+  static const String RJBookingFailurePage = "/RJBookingFailurePage";
 }

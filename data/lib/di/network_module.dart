@@ -37,6 +37,8 @@ import 'package:data/source/id_card/id_card_datasource.dart';
 import 'package:data/source/id_card/remote/id_card_remote_ds_impl.dart';
 import 'package:data/source/kyc/kyc_datasource.dart';
 import 'package:data/source/kyc/remote/kyc_remote_ds_impl.dart';
+import 'package:data/source/offer_campaign/offer_campaign_datasource.dart';
+import 'package:data/source/offer_campaign/remote/offer_campaign_remote_datasource_impl.dart';
 import 'package:data/source/payment/payment_datasource.dart';
 import 'package:data/source/payment/remote/payment_remote_datasource_impl.dart';
 import 'package:data/source/register/register_datasource.dart';
@@ -47,6 +49,7 @@ import 'package:data/source/register/remote/register_step_four_remote_ds_impl.da
 import 'package:data/source/register/remote/register_step_three_remote_ds_impl.dart';
 import 'package:data/source/rj/remote/rj_remote_ds_impl.dart';
 import 'package:data/source/rj/rj_datasource.dart';
+import 'package:data/source/sub_account/remote/sub_account_datasource_impl.dart';
 import 'package:data/source/upload_document/remote/upload_document_remote_ds_impl.dart';
 import 'package:data/source/upload_document/upload_document_datasource.dart';
 import 'package:data/source/user/remote/user_remote_ds_impl.dart';
@@ -55,6 +58,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:riverpod/riverpod.dart';
+
+import '../source/sub_account/sub_account_datasource.dart';
 
 final baseOptions = Provider<BaseOptions>((ref) => BaseOptions(baseUrl: NetworkProperties.BASE_CHANNEL_URL));
 
@@ -193,3 +198,11 @@ var rjDataSourceProvider = Provider<RJRemoteDS>(
 ///Cliq remote DS
 var cliqDataSourceProvider = Provider<CliqDataSource>(
     (ref) => CliqRemoteDataSourceImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+///Sub-Account remote DS
+var subAccountDataSourceProvider = Provider<SubAccountDataSource>(
+    (ref) => SubAccountDataSourceImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+///Offer & Campaign remote DS
+var offerCampaignRemoteDataSourceImplProvider = Provider<OfferCampaignRemoteDataSource>((ref) =>
+    OfferCampaignRemoteDataSourceImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));

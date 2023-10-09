@@ -28,6 +28,7 @@ class ValidatePrePaidUseCaseParams extends Params {
   final String? prepaidCategoryCode;
   final String? prepaidCategoryType;
   final bool? billingNumberRequired;
+  final String fromAccount;
 
   ValidatePrePaidUseCaseParams(
       {this.billerCode,
@@ -36,7 +37,8 @@ class ValidatePrePaidUseCaseParams extends Params {
       this.billingNumber,
       this.prepaidCategoryCode,
       this.prepaidCategoryType,
-      this.billingNumberRequired});
+      this.billingNumberRequired,
+      required this.fromAccount});
 
   @override
   Either<AppError, bool> verify() {

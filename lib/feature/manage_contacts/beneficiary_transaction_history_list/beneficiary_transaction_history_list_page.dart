@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
-import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
-import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import 'beneficiary_transaction_history_list_page_view.dart';
 import 'beneficiary_transaction_history_list_page_view_model.dart';
@@ -27,7 +23,7 @@ class BeneficiaryTransactionHistoryListPageState extends BaseStatefulPage<
     return beneficiaryTransactionHistoryListPageViewModelProvider.call(widget.arguments);
   }
 
-  @override
+/*  @override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
       preferredSize: Size(double.maxFinite, 85.0.h),
@@ -67,7 +63,7 @@ class BeneficiaryTransactionHistoryListPageState extends BaseStatefulPage<
         ),
       ),
     );
-  }
+  }*/
 
   @override
   bool extendBodyBehindAppBar() {

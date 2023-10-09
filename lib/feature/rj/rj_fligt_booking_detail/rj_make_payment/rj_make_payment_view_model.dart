@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/usecase/rj/rj_otp_validate.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -16,9 +17,25 @@ class RjMakePaymentViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get rjOtpValidateStream => _rjOtpValidateResponse.stream;
 
+  PublishSubject<Account> _selectedFromAccountSubject = PublishSubject();
+
+  Stream<Account> get selectedFromAccountStream => _selectedFromAccountSubject.stream;
+
+  List<Account> allAccountList = [];
+  List<Account> _fromAccountList = [];
+
+  List<Account> get getAllFromList => _fromAccountList;
+
+  void addFromAccountData({Account? account}) {
+    selectedAccount = account;
+    _selectedFromAccountSubject.safeAdd(selectedAccount);
+  }
+
   void rjOtpValidate() {
     _rjOtpValidateRequest.safeAdd(RJOtpValidateUseCaseParams());
   }
+
+  Account? selectedAccount;
 
   ///---------------Rj OTP Validate Details----------------------///
 
@@ -40,8 +57,6 @@ class RjMakePaymentViewModel extends BasePageViewModel {
   List<MakePaymentCard> makePaymentCardList = [];
   PublishSubject<List<MakePaymentCard>> _itemSelectedSubject = PublishSubject();
 
-  Stream<List<MakePaymentCard>> get itemSelectedStream => _itemSelectedSubject.stream;
-
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject();
 
   Stream<bool> get showButtonSubjectStream => _showButtonSubject.stream;
@@ -58,25 +73,25 @@ class RjMakePaymentViewModel extends BasePageViewModel {
     _itemSelectedSubject.safeAdd(cardList);
   }
 
-  void selectedItem(int index) {
-    if (makePaymentCardList.isNotEmpty) {
-      makePaymentCardList.forEach((element) {
-        element.isSelected = false;
-      });
-      makePaymentCardList[index].isSelected = true;
-    }
-    _itemSelectedSubject.safeAdd(makePaymentCardList);
-    selectedCard = makePaymentCardList.firstWhere((element) => element.isSelected);
-    _showButtonSubject.safeAdd(true);
-  }
+// void selectedItem(int index) {
+//   if (makePaymentCardList.isNotEmpty) {
+//     makePaymentCardList.forEach((element) {
+//       element.isSelected = false;
+//     });
+//     makePaymentCardList[index].isSelected = true;
+//   }
+//   _itemSelectedSubject.safeAdd(makePaymentCardList);
+//   selectedCard = makePaymentCardList.firstWhere((element) => element.isSelected ?? false);
+//   _showButtonSubject.safeAdd(true);
+// }
 }
 
 class MakePaymentCard {
-  final String cardName;
-  final String cardNo;
-  final String amt;
-  final String currency;
-  bool isSelected;
+  final String? cardName;
+  final String? cardNo;
+  final int? amt;
+  final String? currency;
+  bool? isSelected;
 
-  MakePaymentCard(this.cardName, this.cardNo, this.amt, this.currency, this.isSelected);
+  MakePaymentCard({this.cardName, this.cardNo, this.amt, this.currency, this.isSelected});
 }

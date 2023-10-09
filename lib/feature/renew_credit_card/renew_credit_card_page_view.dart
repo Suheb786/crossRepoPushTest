@@ -4,7 +4,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/renew_credit_card/renew_credit_card_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -45,204 +45,192 @@ class RenewCreditCardPageView extends BasePageViewWidget<RenewCreditCardPageView
               child: Card(
             child: Container(
               padding: EdgeInsets.symmetric(vertical: 32),
-              child: GestureDetector(
-                onHorizontalDragEnd: (details) {
-                  if (details.primaryVelocity!.isNegative) {
-                    Navigator.pushNamed(context, RoutePaths.CreditCardActivationStatus);
-                  } else {}
-                },
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 24),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: double.infinity,
-                                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .cursorColor!
-                                            .withOpacity(0.1))),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      S.of(context).creditLimit.toUpperCase(),
-                                      style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w400,
-                                      ),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .cursorColor!
+                                          .withOpacity(0.1))),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    S.of(context).creditLimit.toUpperCase(),
+                                    style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w400,
                                     ),
-                                    SizedBox(
-                                      height: 8,
+                                  ),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  Text(
+                                    "JOD 1,000",
+                                    style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 14,
+                                      color:
+                                          Theme.of(context).textSelectionTheme.cursorColor!.withOpacity(0.4),
+                                      fontWeight: FontWeight.w600,
                                     ),
-                                    Text(
-                                      "JOD 1,000",
-                                      style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 14,
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .cursorColor!
-                                            .withOpacity(0.4),
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              SizedBox(
-                                height: 16,
+                            ),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            Container(
+                              width: double.infinity,
+                              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .cursorColor!
+                                          .withOpacity(0.1))),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    S.of(context).cardSettlementAccount.toUpperCase(),
+                                    style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  Text(
+                                    "Savings Account",
+                                    style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 14,
+                                      color:
+                                          Theme.of(context).textSelectionTheme.cursorColor!.withOpacity(0.4),
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 3,
+                                  ),
+                                  Text(
+                                    "5669 4900 2111",
+                                    style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 10,
+                                      color:
+                                          Theme.of(context).textSelectionTheme.cursorColor!.withOpacity(0.4),
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Container(
-                                width: double.infinity,
-                                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .cursorColor!
-                                            .withOpacity(0.1))),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      S.of(context).cardSettlementAccount.toUpperCase(),
-                                      style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w400,
-                                      ),
+                            ),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            Container(
+                              width: double.infinity,
+                              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                      color: Theme.of(context)
+                                          .textSelectionTheme
+                                          .cursorColor!
+                                          .withOpacity(0.1))),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    S.of(context).minimumSettlement.toUpperCase(),
+                                    style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w400,
                                     ),
-                                    SizedBox(
-                                      height: 8,
+                                  ),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  Text(
+                                    "3%",
+                                    style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 14,
+                                      color:
+                                          Theme.of(context).textSelectionTheme.cursorColor!.withOpacity(0.4),
+                                      fontWeight: FontWeight.w600,
                                     ),
-                                    Text(
-                                      "Savings Account",
-                                      style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 14,
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .cursorColor!
-                                            .withOpacity(0.4),
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 3,
-                                    ),
-                                    Text(
-                                      "5669 4900 2111",
-                                      style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 10,
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .cursorColor!
-                                            .withOpacity(0.4),
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              SizedBox(
-                                height: 16,
-                              ),
-                              Container(
-                                width: double.infinity,
-                                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .cursorColor!
-                                            .withOpacity(0.1))),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      S.of(context).minimumSettlement.toUpperCase(),
-                                      style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Text(
-                                      "3%",
-                                      style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 14,
-                                        color: Theme.of(context)
-                                            .textSelectionTheme
-                                            .cursorColor!
-                                            .withOpacity(0.4),
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(
-                                height: 16,
-                              ),
-                              Text(
-                                S.of(context).youCanChangeCardDetailsInSettings,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                    color: AppColor.gray),
-                              ),
-                            ],
-                          ),
+                            ),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            Text(
+                              S.of(context).youCanChangeCardDetailsInSettings,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColor.gray),
+                            ),
+                          ],
                         ),
                       ),
-                      Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 12.0),
-                            child: AnimatedButton(
-                              buttonText: S.of(context).swipeToProceed,
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.pop(context);
+                    ),
+                    Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 12.0),
+                          child: AppPrimaryButton(
+                            text: S.of(context).swipeToProceed,
+                            onPressed: () {
+                              Navigator.pushNamed(context, RoutePaths.CreditCardActivationStatus);
                             },
-                            child: Center(
-                              child: Text(
-                                S.of(context).backToCardSettings,
-                                style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: AppColor.brightBlue,
-                                  letterSpacing: 1,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Center(
+                            child: Text(
+                              S.of(context).backToCardSettings,
+                              style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                color: AppColor.brightBlue,
+                                letterSpacing: 1,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),

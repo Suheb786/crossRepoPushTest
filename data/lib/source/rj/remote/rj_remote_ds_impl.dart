@@ -3,6 +3,7 @@ import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/rj/get_destination/destination_response_entity.dart';
 import 'package:data/entity/remote/rj/get_destination/get_destination_request_entity.dart';
+import 'package:data/entity/remote/rj/get_flight_details/flight_details_response_entity.dart';
 import 'package:data/entity/remote/rj/get_flight_details/get_flight_details_request_entity.dart';
 import 'package:data/entity/remote/rj/get_flight_details/make_ticket_payment_request_entity.dart';
 import 'package:data/entity/remote/rj/trip/get_one_way_trip_link_request_entity.dart';
@@ -76,7 +77,7 @@ class RJRemoteDSImpl extends RJRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getFlightDetails({required String referenceNumber}) async {
+  Future<HttpResponse<FlightDetailsResponseEntity>> getFlightDetails({required String referenceNumber}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getFlightDetails(GetFlightDetailsRequestEntity(
         baseData: baseData.toJson(), getToken: true, referenceNumber: referenceNumber));

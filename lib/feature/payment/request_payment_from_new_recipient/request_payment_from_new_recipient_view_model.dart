@@ -1,11 +1,13 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/payment/request_payment_from_new_recipient/request_payment_from_new_recipient_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RequestPaymentFromNewRecipientViewModel extends BasePageViewModel {
   final SwiperController pageController = SwiperController();
+  RequestPaymentFromNewRecipientArgument? argument;
 
   PublishSubject<int> _currentStep = PublishSubject();
 
@@ -13,7 +15,7 @@ class RequestPaymentFromNewRecipientViewModel extends BasePageViewModel {
 
   Stream<int> get currentStep => _currentStep.stream;
 
-  String? sendValue;
+  // String? sendValue;
 
   PublishSubject<bool> _editAmountSubject = PublishSubject();
 
@@ -33,9 +35,9 @@ class RequestPaymentFromNewRecipientViewModel extends BasePageViewModel {
     _editAmountSubject.safeAdd(value);
   }
 
-  RequestPaymentFromNewRecipientViewModel(this.sendValue) {
-    editAmountController.text = double.parse(this.sendValue!).toStringAsFixed(2);
-  }
+  // RequestPaymentFromNewRecipientViewModel(this.sendValue) {
+  //   editAmountController.text = double.parse(this.sendValue!).toStringAsFixed(2);
+  // }
 
   void updatePage(int index) {
     _currentStep.safeAdd(index);

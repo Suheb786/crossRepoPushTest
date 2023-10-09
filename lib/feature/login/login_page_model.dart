@@ -6,6 +6,7 @@ import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/device_change/send_otp_token_device_change_usecase.dart';
 import 'package:domain/usecase/kyc/check_kyc_status_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -134,6 +135,11 @@ class LoginViewModel extends BasePageViewModel {
         }
       });
     });
+
+    if (kDebugMode) {
+      emailController.text = "wahaj98@g.com";
+      passwordController.text = "Wahaj@123";
+    }
   }
 
   @override

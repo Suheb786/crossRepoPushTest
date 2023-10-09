@@ -7,7 +7,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/relationship_with_cardholder/relationship_with_cardholder_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -69,151 +69,139 @@ class ChangeCardSettlementPercentagePageView
                     return Card(
                       child: Container(
                         padding: EdgeInsets.symmetric(vertical: 32.h),
-                        child: GestureDetector(
-                          onHorizontalDragEnd: (details) {
-                            if (StringUtils.isDirectionRTL(context)) {
-                              if (!details.primaryVelocity!.isNegative) {
-                                model.updateSettlement();
-                              }
-                            } else {
-                              if (details.primaryVelocity!.isNegative) {
-                                model.updateSettlement();
-                              } else {}
-                            }
-                          },
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 24.w,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 24.w,
+                                  ),
+                                  child: Text(
+                                    S.of(context).currentSettlementPercentage,
+                                    style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14.t,
                                     ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 16.h),
+                                  child: AppDivider(
+                                    color: AppColor.lightGrayishBlue,
+                                    indent: 12.w,
+                                    endIndent: 8.w,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
+                                        decoration: BoxDecoration(
+                                            color: Theme.of(context).colorScheme.background,
+                                            shape: BoxShape.circle),
+                                        child: AppSvg.asset(
+                                          AssetUtils.percentage,
+                                          color: Theme.of(context).primaryColorDark,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 8.w,
+                                      ),
+                                      Text(
+                                        model.arguments?.creditCard.minimumSettlement != null
+                                            ? model.arguments!.creditCard.minimumSettlement.toString() + "%"
+                                            : "",
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontSize: 14.t,
+                                            fontWeight: FontWeight.w400),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 16.h),
+                                  child: AppDivider(
+                                    color: AppColor.lightGrayishBlue,
+                                    indent: 12.w,
+                                    endIndent: 8.w,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                                  child: AppTextField(
+                                    labelText: S.of(context).newSettlementPercentage.toUpperCase(),
+                                    hintText: S.of(context).pleaseSelect,
+                                    readOnly: true,
+                                    controller: model.settlementPercentageController,
+                                    key: model.settlementPercentageKey,
+                                    onPressed: () {
+                                      RelationshipWithCardHolderDialog.show(context,
+                                          title: S.of(context).settlementPercentage,
+                                          relationSHipWithCardHolder: model.percentageList,
+                                          onSelected: (value) {
+                                        Navigator.pop(context);
+                                        model.settlementPercentageController.text = value;
+                                        model.validate();
+                                      }, onDismissed: () {
+                                        Navigator.pop(context);
+                                      });
+                                    },
+                                    suffixIcon: (value, data) {
+                                      return Container(
+                                          height: 16.h,
+                                          width: 16.w,
+                                          padding: EdgeInsetsDirectional.only(end: 8.w),
+                                          child: AppSvg.asset(AssetUtils.downArrow,
+                                              color: AppColor.dark_gray_1));
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 12.0.h, horizontal: 24.0.w),
+                                  child: AppStreamBuilder<bool>(
+                                      stream: model.showButtonStream,
+                                      initialData: false,
+                                      dataBuilder: (context, isValid) {
+                                        return AppPrimaryButton(
+                                          text: S.of(context).next,
+                                          isDisabled: !isValid!,
+                                          onPressed: () {
+                                            model.updateSettlement();
+                                          },
+                                        );
+                                      }),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Center(
                                     child: Text(
-                                      S.of(context).currentSettlementPercentage,
+                                      S.of(context).backToCardSettings,
                                       style: TextStyle(
                                         fontFamily: StringUtils.appFont,
-                                        fontWeight: FontWeight.w600,
+                                        color: AppColor.brightBlue,
+                                        letterSpacing: 1,
                                         fontSize: 14.t,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 16.h),
-                                    child: AppDivider(
-                                      color: AppColor.lightGrayishBlue,
-                                      indent: 12.w,
-                                      endIndent: 8.w,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 24.w),
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
-                                          decoration: BoxDecoration(
-                                              color: Theme.of(context).colorScheme.background,
-                                              shape: BoxShape.circle),
-                                          child: AppSvg.asset(
-                                            AssetUtils.percentage,
-                                            color: Theme.of(context).primaryColorDark,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 8.w,
-                                        ),
-                                        Text(
-                                          model.arguments?.creditCard.minimumSettlement != null
-                                              ? model.arguments!.creditCard.minimumSettlement.toString() + "%"
-                                              : "",
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontSize: 14.t,
-                                              fontWeight: FontWeight.w400),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 16.h),
-                                    child: AppDivider(
-                                      color: AppColor.lightGrayishBlue,
-                                      indent: 12.w,
-                                      endIndent: 8.w,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 24.w),
-                                    child: AppTextField(
-                                      labelText: S.of(context).newSettlementPercentage.toUpperCase(),
-                                      hintText: S.of(context).pleaseSelect,
-                                      readOnly: true,
-                                      controller: model.settlementPercentageController,
-                                      key: model.settlementPercentageKey,
-                                      onPressed: () {
-                                        RelationshipWithCardHolderDialog.show(context,
-                                            title: S.of(context).settlementPercentage,
-                                            relationSHipWithCardHolder: model.percentageList,
-                                            onSelected: (value) {
-                                          Navigator.pop(context);
-                                          model.settlementPercentageController.text = value;
-                                          model.validate();
-                                        }, onDismissed: () {
-                                          Navigator.pop(context);
-                                        });
-                                      },
-                                      suffixIcon: (value, data) {
-                                        return Container(
-                                            height: 16.h,
-                                            width: 16.w,
-                                            padding: EdgeInsetsDirectional.only(end: 8.w),
-                                            child: AppSvg.asset(AssetUtils.downArrow,
-                                                color: AppColor.dark_gray_1));
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 12.0.h),
-                                    child: AppStreamBuilder<bool>(
-                                        stream: model.showButtonStream,
-                                        initialData: false,
-                                        dataBuilder: (context, isValid) {
-                                          return Visibility(
-                                            visible: isValid!,
-                                            child: AnimatedButton(
-                                              buttonText: S.of(context).swipeToProceed,
-                                            ),
-                                          );
-                                        }),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Center(
-                                      child: Text(
-                                        S.of(context).backToCardSettings,
-                                        style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: AppColor.brightBlue,
-                                          letterSpacing: 1,
-                                          fontSize: 14.t,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     );

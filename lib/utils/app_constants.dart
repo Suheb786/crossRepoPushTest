@@ -23,8 +23,6 @@ class AppConstantsUtils {
 
   static bool isApplePayFeatureEnabled = false;
 
-  static bool isApplePayPopUpShown = false;
-
   static String RJRouteLink = '/RJFlightConfirmation/Index';
 
   static String SELECTED_BILLER_CODE = "";
@@ -72,5 +70,10 @@ class AppConstantsUtils {
     billPostpaidCategoriesCacheList = [];
     billPrepaidCategoriesCacheList = [];
     billerDetailsCacheList = Map<String, List<BillerDetailsList>?>();
+    userPromoCode = '';
   }
+
+  static String jodCurrency = 'JOD';
+  static String usdCurrency = 'USD';
+  static String userPromoCode = "";
 }

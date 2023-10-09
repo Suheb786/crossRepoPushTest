@@ -6,7 +6,7 @@ import 'package:domain/model/upload_document/file_upload_response.dart';
 import 'package:domain/model/upload_document/save_upload_document_response.dart';
 
 abstract class UploadDocumentRepository {
-  Future<Either<BaseError, String>> pickUploadDocument({DocumentTypeEnum type});
+  Future<Either<BaseError, String>> pickUploadDocument({DocumentTypeEnum type, String cameraPhotoFile = ''});
 
   Future<Either<NetworkError, FileUploadResponse>> uploadDocument({String path});
 

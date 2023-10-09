@@ -45,9 +45,10 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, GetTransactionsResponse>> getDebitCardTransactions({num? noOfDays}) async {
+  Future<Either<NetworkError, GetTransactionsResponse>> getDebitCardTransactions(
+      {num? noOfDays, String? accountNo}) async {
     final result = await safeApiCall(
-      _remoteDs.getDebitCardTransactions(noOfDays: noOfDays),
+      _remoteDs.getDebitCardTransactions(noOfDays: noOfDays, accountNo: accountNo),
     );
     return result!.fold(
       (l) => Left(l),
@@ -57,9 +58,13 @@ class CardRepositoryImpl extends CardRepository {
 
   @override
   Future<Either<NetworkError, GetTransactionsResponse>> getCreditCardTransactions(
-      {required String cardId, num? noOfDays}) async {
+      {required String cardId,
+      num? noOfDays,
+      required String secureCode,
+      required bool isIssuedFromCMS}) async {
     final result = await safeApiCall(
-      _remoteDs.getCreditCardTransactions(cardId: cardId, noOfDays: noOfDays),
+      _remoteDs.getCreditCardTransactions(
+          cardId: cardId, noOfDays: noOfDays, isIssuedFromCMS: isIssuedFromCMS, secureCode: secureCode),
     );
     return result!.fold(
       (l) => Left(l),
@@ -68,9 +73,10 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, CardStatementResponse>> getDebitCardStatement(String monthYear) async {
+  Future<Either<NetworkError, CardStatementResponse>> getDebitCardStatement(
+      String monthYear, String? accountNo) async {
     final result = await safeApiCall(
-      _remoteDs.getDebitCardStatement(monthYear: monthYear),
+      _remoteDs.getDebitCardStatement(monthYear: monthYear, accountNo: accountNo),
     );
     return result!.fold(
       (l) => Left(l),
@@ -80,9 +86,10 @@ class CardRepositoryImpl extends CardRepository {
 
   @override
   Future<Either<NetworkError, CardStatementResponse>> getCreditCardStatement(
-      String monthYear, String? cardId) async {
+      String monthYear, String? cardId, String? secureCode, bool? issuedFromCms) async {
     final result = await safeApiCall(
-      _remoteDs.getCreditCardStatement(monthYear: monthYear, cardId: cardId),
+      _remoteDs.getCreditCardStatement(
+          monthYear: monthYear, cardId: cardId, secureCode: secureCode, issuedFromCms: issuedFromCms),
     );
     return result!.fold(
       (l) => Left(l),
@@ -146,9 +153,11 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> freezeCreditCard({String? cardId}) async {
+  Future<Either<NetworkError, bool>> freezeCreditCard(
+      {String? cardId, String? secureCode, bool? isIssuedFromCMS}) async {
     final result = await safeApiCall(
-      _remoteDs.freezeCreditCard(cardId: cardId!),
+      _remoteDs.freezeCreditCard(
+          cardId: cardId ?? '', secureCode: secureCode ?? '', isIssuedFromCMS: isIssuedFromCMS),
     );
     return result!.fold(
       (l) => Left(l),
@@ -157,9 +166,11 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> unFreezeCreditCard({String? cardId}) async {
+  Future<Either<NetworkError, bool>> unFreezeCreditCard(
+      {String? cardId, String? secureCode, bool? isIssuedFromCMS}) async {
     final result = await safeApiCall(
-      _remoteDs.unFreezeCreditCard(cardId: cardId!),
+      _remoteDs.unFreezeCreditCard(
+          cardId: cardId ?? '', secureCode: secureCode, isIssuedFromCMS: isIssuedFromCMS),
     );
     return result!.fold(
       (l) => Left(l),

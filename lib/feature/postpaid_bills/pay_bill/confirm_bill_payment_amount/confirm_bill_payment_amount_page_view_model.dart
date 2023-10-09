@@ -213,7 +213,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   Stream<Resource<ValidatePrePaidBill>> get validatePrePaidStream => _validatePrePaidResponse.stream;
 
-  void validatePrePaidBill({String? amount = "0"}) {
+  void validatePrePaidBill({String? amount = "0", required String fromAccount}) {
     if (double.parse(amount ?? "0") > 0.0) {
       amtController.text = double.parse(amount ?? "0").toStringAsFixed(3);
     }
@@ -221,6 +221,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("validate_pre_paid_saved_bill", {"validate_pre_paid_saved_bill_call": true});
     _validatePrePaidRequest.safeAdd(ValidatePrePaidUseCaseParams(
+        fromAccount: fromAccount,
         billerCode: AppConstantsUtils.SELECTED_BILLER_CODE,
         amount: AppConstantsUtils.IS_PRE_PAID_CATEGORY_LIST_EMPTY == true ? amtController.text : "",
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,

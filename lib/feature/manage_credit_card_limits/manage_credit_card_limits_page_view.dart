@@ -17,6 +17,9 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../ui/molecules/app_svg.dart';
+import '../../utils/asset_utils.dart';
+
 class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCardLimitsPageViewModel> {
   ManageCreditCardLimitsPageView(ProviderBase model) : super(model);
 
@@ -48,56 +51,39 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
             }
           },
           dataBuilder: (context, creditCardLimitResponse) {
-            return GestureDetector(
-              onVerticalDragEnd: (details) {
-                int sensitivity = 8;
-                if (details.primaryVelocity! > sensitivity) {
-                  Navigator.pop(context);
-                } else if (details.primaryVelocity! < -sensitivity) {}
-              },
-              child: Container(
-                color: Theme.of(context).primaryColor,
-                child: Column(
-                  children: [
-                    Column(
-                      children: [
-                        SizedBox(
-                          height: 50.h,
-                        ),
-                        Text(
-                          S.of(context).manageCardLimits,
-                          style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).colorScheme.secondary,
-                            fontSize: 13.t,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 35.h,
-                        ),
-                      ],
+            return Container(
+              color: Theme.of(context).primaryColor,
+              padding: EdgeInsetsDirectional.only(top: 52.0.h),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 16.0.h),
+                    child: Text(
+                      S.of(context).manageCardLimits,
+                      style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.secondary,
+                        fontSize: 13.t,
+                      ),
                     ),
-                    Expanded(
-                      child: Stack(
-                        children: [
-                          Container(
+                  ),
+                  Expanded(
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.only(top: 24.0.h),
+                          child: Container(
                               decoration: BoxDecoration(
                                   color: Theme.of(context).colorScheme.secondary,
                                   borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(25), topRight: Radius.circular(25))),
-                              padding:
-                                  EdgeInsetsDirectional.only(start: 30.w, end: 30.w, bottom: 30.h, top: 5.h),
+                              padding: EdgeInsetsDirectional.only(top: 42.0.h, bottom: 30.h) +
+                                  EdgeInsetsDirectional.symmetric(horizontal: 30.0.h),
                               child: Column(
                                 children: [
-                                  Container(
-                                    width: 60.w,
-                                    height: 3.h,
-                                    color: AppColor.whiteGrey,
-                                  ),
-                                  SizedBox(
-                                    height: 45.h,
-                                  ),
+
                                   creditCardLimitResponse!.status == Status.SUCCESS
                                       ? Flexible(
                                           child: Card(
@@ -127,9 +113,9 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                                                 model.atmWithdrawalInitialValue;
                                                             model.showSaveButton();
                                                           },
-                                                          initialValue: creditCardLimitResponse
-                                                                  .data?.cardLimit?.isATM ??
-                                                              false,
+                                                          initialValue:
+                                                              creditCardLimitResponse.data?.cardLimit?.isATM ??
+                                                                  false,
                                                           title: S.of(context).atmWithDrawal,
                                                           amountSet: creditCardLimitResponse
                                                                       .data?.cardLimit?.atmCurrentLimit ==
@@ -160,12 +146,12 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                                           initialValue: creditCardLimitResponse
                                                                   .data!.cardLimit!.isMerchant ??
                                                               false,
-                                                          amountSet: creditCardLimitResponse.data?.cardLimit
-                                                                      ?.merchantCurrentLimit ==
+                                                          amountSet: creditCardLimitResponse
+                                                                      .data?.cardLimit?.merchantCurrentLimit ==
                                                                   '.001'
                                                               ? '0'
-                                                              : creditCardLimitResponse.data?.cardLimit
-                                                                      ?.merchantCurrentLimit ??
+                                                              : creditCardLimitResponse
+                                                                      .data?.cardLimit?.merchantCurrentLimit ??
                                                                   '0',
                                                           maxAmount: creditCardLimitResponse
                                                                   .data?.cardLimit?.merchantMaxLimit ??
@@ -238,83 +224,109 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                       : Container()
                                 ],
                               )),
-                          AppStreamBuilder<bool>(
-                              stream: model.showSaveButtonStream,
-                              initialData: false,
-                              dataBuilder: (context, isVisible) {
-                                return Visibility(
-                                  visible: isVisible!,
-                                  child: Align(
-                                    alignment: Alignment.bottomCenter,
-                                    child: InkWell(
-                                      onTap: () {
-                                        if (model.atmWithdrawalValue >
-                                            num.parse(creditCardLimitResponse.data?.cardLimit?.atmMaxLimit ??
-                                                '0')) {
-                                          model.showToastWithError(AppError(
-                                              cause: Exception(),
-                                              error: ErrorInfo(message: ''),
-                                              type: ErrorType.ATM_WITHDRAWAL_VALUE_EXCEEDED));
-                                        } else if (model.merchantPaymentValue >
-                                            num.parse(
-                                                creditCardLimitResponse.data?.cardLimit?.merchantMaxLimit ??
-                                                    '0')) {
-                                          model.showToastWithError(AppError(
-                                              cause: Exception(),
-                                              error: ErrorInfo(message: ''),
-                                              type: ErrorType.MERCHANT_PAYMENT_EXCEEDED));
-                                        } else if (model.onlinePurchaseValue >
-                                            num.parse(creditCardLimitResponse
-                                                    .data?.cardLimit?.onlinePurchaseMaxLimit ??
-                                                '0')) {
-                                          model.showToastWithError(AppError(
-                                              cause: Exception(),
-                                              error: ErrorInfo(message: ''),
-                                              type: ErrorType.ONLINE_PURCHASE_VALUE_EXCEEDED));
-                                        } else if (model.contactlessPaymentsValue >
-                                            num.parse(creditCardLimitResponse
-                                                    .data?.cardLimit?.contactLessMaxLimit ??
-                                                '0')) {
-                                          model.showToastWithError(AppError(
-                                              cause: Exception(),
-                                              error: ErrorInfo(message: ''),
-                                              type: ErrorType.CREDIT_CONTACTLESS_PAYMENT_EXCEEDED));
-                                        } else {
-                                          model.updateCreditCardLimits(
-                                              atmWithdrawalPayment: model.atmWithdrawalValue,
-                                              merchantPayment: model.merchantPaymentValue,
-                                              onlinePurchase: model.onlinePurchaseValue,
-                                              contactlessPayments: model.contactlessPaymentsValue);
-                                        }
-                                      },
-                                      child: Container(
-                                        margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-                                        padding: EdgeInsets.all(18),
-                                        height: 56,
-                                        width: double.maxFinite,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(100),
-                                          color: Theme.of(context).textTheme.bodyLarge?.color,
-                                        ),
-                                        child: Center(
-                                          child: Text(S.of(context).saveChanges,
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600,
-                                                  letterSpacing: 1,
-                                                  color: Theme.of(context).colorScheme.secondary)),
-                                        ),
+                        ),
+                        AppStreamBuilder<bool>(
+                            stream: model.showSaveButtonStream,
+                            initialData: false,
+                            dataBuilder: (context, isVisible) {
+                              return Visibility(
+                                visible: isVisible!,
+                                child: Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: InkWell(
+                                    onTap: () {
+                                      if (model.atmWithdrawalValue >
+                                          num.parse(
+                                              creditCardLimitResponse.data?.cardLimit?.atmMaxLimit ?? '0')) {
+                                        model.showToastWithError(AppError(
+                                            cause: Exception(),
+                                            error: ErrorInfo(message: ''),
+                                            type: ErrorType.ATM_WITHDRAWAL_VALUE_EXCEEDED));
+                                      } else if (model.merchantPaymentValue >
+                                          num.parse(
+                                              creditCardLimitResponse.data?.cardLimit?.merchantMaxLimit ??
+                                                  '0')) {
+                                        model.showToastWithError(AppError(
+                                            cause: Exception(),
+                                            error: ErrorInfo(message: ''),
+                                            type: ErrorType.MERCHANT_PAYMENT_EXCEEDED));
+                                      } else if (model.onlinePurchaseValue >
+                                          num.parse(creditCardLimitResponse
+                                                  .data?.cardLimit?.onlinePurchaseMaxLimit ??
+                                              '0')) {
+                                        model.showToastWithError(AppError(
+                                            cause: Exception(),
+                                            error: ErrorInfo(message: ''),
+                                            type: ErrorType.ONLINE_PURCHASE_VALUE_EXCEEDED));
+                                      } else if (model.contactlessPaymentsValue >
+                                          num.parse(
+                                              creditCardLimitResponse.data?.cardLimit?.contactLessMaxLimit ??
+                                                  '0')) {
+                                        model.showToastWithError(AppError(
+                                            cause: Exception(),
+                                            error: ErrorInfo(message: ''),
+                                            type: ErrorType.CREDIT_CONTACTLESS_PAYMENT_EXCEEDED));
+                                      } else {
+                                        model.updateCreditCardLimits(
+                                            atmWithdrawalPayment: model.atmWithdrawalValue,
+                                            merchantPayment: model.merchantPaymentValue,
+                                            onlinePurchase: model.onlinePurchaseValue,
+                                            contactlessPayments: model.contactlessPaymentsValue);
+                                      }
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                                      padding: EdgeInsets.all(18),
+                                      height: 56,
+                                      width: double.maxFinite,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(100),
+                                        color: Theme.of(context).textTheme.bodyLarge?.color,
+                                      ),
+                                      child: Center(
+                                        child: Text(S.of(context).saveChanges,
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
+                                                letterSpacing: 1,
+                                                color: Theme.of(context).colorScheme.secondary)),
                                       ),
                                     ),
                                   ),
-                                );
-                              }),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                                ),
+                              );
+                            }),
+                        Positioned(
+                          top: 0,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              height: 48.h,
+                              width: 48.h,
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.white,
+                                  border: Border.all(
+                                      color: Theme.of(context).colorScheme.inverseSurface, width: 1),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        color: Colors.black26,
+                                        blurRadius: 5,
+                                        spreadRadius: 0.1,
+                                        offset: Offset(0, 4))
+                                  ]),
+                              child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
             );
           }),

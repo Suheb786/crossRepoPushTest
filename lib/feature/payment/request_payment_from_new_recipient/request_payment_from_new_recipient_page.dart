@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -6,9 +7,12 @@ import 'package:neo_bank/feature/payment/request_payment_from_new_recipient/requ
 import 'package:neo_bank/feature/payment/request_payment_from_new_recipient/request_payment_from_new_recipient_view_model.dart';
 
 class RequestPaymentFromNewRecipientPage extends BasePage<RequestPaymentFromNewRecipientViewModel> {
+  final RequestPaymentFromNewRecipientArgument argument;
   String? requestValue;
 
-  RequestPaymentFromNewRecipientPage({this.requestValue});
+  RequestPaymentFromNewRecipientPage({
+    required this.argument,
+  });
 
   @override
   RequestPaymentFromNewRecipientPageState createState() => RequestPaymentFromNewRecipientPageState();
@@ -18,7 +22,7 @@ class RequestPaymentFromNewRecipientPageState
     extends BaseStatefulPage<RequestPaymentFromNewRecipientViewModel, RequestPaymentFromNewRecipientPage> {
   @override
   ProviderBase provideBase() {
-    return requestPaymentFromNewRecipientViewModelProvider.call(widget.requestValue!);
+    return requestPaymentFromNewRecipientViewModelProvider;
   }
 
   @override
@@ -27,7 +31,20 @@ class RequestPaymentFromNewRecipientPageState
   }
 
   @override
+  void onModelReady(RequestPaymentFromNewRecipientViewModel model) {
+    super.onModelReady(model);
+    model.argument = widget.argument;
+    model.editAmountController.text = double.parse(model.argument?.currentPin ?? "").toStringAsFixed(2);
+  }
+
+  @override
   Widget buildView(BuildContext context, RequestPaymentFromNewRecipientViewModel model) {
     return RequestPaymentFromNewRecipientPageView(provideBase());
   }
+}
+
+class RequestPaymentFromNewRecipientArgument {
+  Account account;
+  String currentPin;
+  RequestPaymentFromNewRecipientArgument({required this.account, required this.currentPin});
 }

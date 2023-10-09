@@ -30,6 +30,10 @@ class RegisterProspectUserRequest {
   final String? vkeySessionId;
   @JsonKey(name: "platform")
   final String? platform;
+
+  @JsonKey(name: "RefferalPromo")
+  final String? referralCode;
+
   @JsonKey(name: "getToken")
   final bool? getToken;
   @JsonKey(name: "baseClass")
@@ -40,17 +44,18 @@ class RegisterProspectUserRequest {
       this.languageCode,
       this.uniqueId = "",
       this.companyId,
-      this.email,
-      this.mobileNumber,
-      this.mobileCode,
-      this.password,
-      this.confirmPassword,
-      this.userName,
-      this.fireBaseToken,
-      this.vkeySessionId,
-      this.platform,
-      this.getToken,
-      required this.baseData});
+    this.email,
+    this.mobileNumber,
+    this.mobileCode,
+    this.password,
+    this.confirmPassword,
+    this.userName,
+    this.fireBaseToken,
+    this.vkeySessionId,
+    this.platform,
+    this.referralCode,
+    this.getToken,
+    required this.baseData});
 
   factory RegisterProspectUserRequest.fromJson(Map<String, dynamic> json) =>
       _$RegisterProspectUserRequestFromJson(json);

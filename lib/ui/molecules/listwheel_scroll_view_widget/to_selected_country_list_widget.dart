@@ -20,7 +20,7 @@ class ToSelectedCountryListWidget extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                item.name ?? '',
+                item.airportName ?? '',
                 softWrap: true,
                 maxLines: 2,
                 style: TextStyle(

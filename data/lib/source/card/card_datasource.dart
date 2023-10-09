@@ -23,10 +23,11 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<ResponseEntity>> setCardPin(String pin, String cardNumber);
 
-  Future<HttpResponse<CardTransactionResponseEntity>> getDebitCardTransactions({num? noOfDays});
+  Future<HttpResponse<CardTransactionResponseEntity>> getDebitCardTransactions(
+      {num? noOfDays, String? accountNo});
 
   Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
-      {required String cardId, num? noOfDays});
+      {required String cardId, num? noOfDays, required String secureCode, required bool isIssuedFromCMS});
 
   Future<HttpResponse<ResponseEntity>> requestCreditCard({required String cardId});
 
@@ -39,13 +40,16 @@ abstract class CardRemoteDs {
   Future<HttpResponse<GetCreditCardLimitResponseEntity>> getCreditCardLimit({required String? secureCode});
 
   Future<HttpResponse<CardStatementResponseEntity>> getCreditCardStatement(
-      {String? monthYear, String? cardId});
+      {String? monthYear, String? cardId, String? secureCode, bool? issuedFromCms});
 
-  Future<HttpResponse<AccountCardStatementResponseEntity>> getDebitCardStatement({String monthYear});
+  Future<HttpResponse<AccountCardStatementResponseEntity>> getDebitCardStatement(
+      {String monthYear, String? accountNo});
 
-  Future<HttpResponse<ResponseEntity>> freezeCreditCard({String cardId});
+  Future<HttpResponse<ResponseEntity>> freezeCreditCard(
+      {String cardId, String? secureCode, bool? isIssuedFromCMS});
 
-  Future<HttpResponse<ResponseEntity>> unFreezeCreditCard({String cardId});
+  Future<HttpResponse<ResponseEntity>> unFreezeCreditCard(
+      {String cardId, String? secureCode, bool? isIssuedFromCMS});
 
   Future<HttpResponse<ResponseEntity>> cancelCreditCard({String? reason});
 

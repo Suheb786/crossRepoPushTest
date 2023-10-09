@@ -4,6 +4,8 @@ part 'get_debit_card_transaction_request.g.dart';
 
 @JsonSerializable()
 class GetDebitCardTransactionRequest {
+  @JsonKey(name: "AccountNo")
+  final String? accountNo;
   @JsonKey(name: "IsDebit")
   final bool? isDebit;
   @JsonKey(name: "NoOfDays")
@@ -13,8 +15,13 @@ class GetDebitCardTransactionRequest {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  GetDebitCardTransactionRequest(
-      {required this.baseData, this.noOfDays = 90, this.getToken = true, this.isDebit = true});
+  GetDebitCardTransactionRequest({
+    required this.baseData,
+    this.noOfDays = 90,
+    this.getToken = true,
+    this.isDebit = true,
+    this.accountNo,
+  });
 
   factory GetDebitCardTransactionRequest.fromJson(Map<String, dynamic> json) =>
       _$GetDebitCardTransactionRequestFromJson(json);

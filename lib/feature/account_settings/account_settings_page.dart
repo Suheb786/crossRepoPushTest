@@ -4,11 +4,6 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/account_settings/account_settings_modules.dart';
 import 'package:neo_bank/feature/account_settings/account_settings_page_view.dart';
 import 'package:neo_bank/feature/account_settings/account_settings_page_view_model.dart';
-import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/sizer_helper_util.dart';
-import 'package:neo_bank/utils/string_utils.dart';
 
 class AccountSettingPage extends BasePage<AccountSettingPageViewModel> {
   @override
@@ -35,7 +30,7 @@ class AccountSettingPageState extends BaseStatefulPage<AccountSettingPageViewMod
     return Theme.of(context).primaryColor;
   }
 
-  @override
+  /*@override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
         preferredSize: Size(double.maxFinite, 85.0.h),
@@ -68,7 +63,7 @@ class AccountSettingPageState extends BaseStatefulPage<AccountSettingPageViewMod
             )
           ],
         ));
-  }
+  }*/
 
   @override
   Widget buildView(BuildContext context, AccountSettingPageViewModel model) {

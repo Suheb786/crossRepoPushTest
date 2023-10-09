@@ -91,6 +91,7 @@ class AppColor {
   static const vividYellow = const Color(0xffFFE816); // Theme.of(context).canvasColor
   static const brightBlue = const Color(0xff3CB4E5); // Theme.of(context).colorScheme.onSecondaryContainer
   static const veryLightGray = const Color(0xffFBFBFB); //
+  static const lightYellowColor = Color(0XFFFFED4E);
   static const lightGray = const Color(0xffF5F5F5);
   static const verLightGray4 = const Color(0xffBCBCBC);
   static const veryLightGray1 = const Color(0xffE8E8E8);
@@ -120,7 +121,14 @@ class AppColor {
   static const rj_gray = const Color(0xff95979A);
   static const dark_Grayish_Blue = const Color(0xffA6A9AC);
   static const light_gray_4 = const Color(0xffCFCFCF);
+  static const black_15 = const Color(0x26000000);
+  static const very_light_blue = const Color(0xff6FD5FF);
+  static const very_light_grayish_blue = const Color(0x5c3C3C435C);
   static const card_shadow_color = const Color(0x14000000);
   static const very_dark_gray2 = const Color(0xff090909);
   static const dark_yellow1 = const Color(0xff80740B);
+  static const borderColorNew = const Color(0xff3d3d3d);
+  static const cerulean_Blue = const Color(0xff33B3E4); // Theme.of(context).colorScheme.onPrimaryContainer
+  static const azure_blue = const Color(0xff5CC9F5);
+  static const silver_gray = const Color(0xffC8C8C8);
 }

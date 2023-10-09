@@ -64,6 +64,27 @@ class DashboardFeaturesEntity
   @JsonKey(name: "blink-retail-app-E-vouchers")
   final bool? eVouchers;
 
+  @JsonKey(name: 'blink-retail-app-applepay')
+  final bool? blinkRetailAppApplePay;
+
+  @JsonKey(name: 'blink-retail-app-Sub-Accounts')
+  final bool? subAccountFeature;
+
+  @JsonKey(name: 'blink-retail-app-Sub-Accounts-Transfer-Between-Accounts')
+  final bool? transferBetweenAccountsFeature;
+
+  @JsonKey(name: 'blink-retail-app-Sub-Accounts-Close-Sub-Account')
+  final bool? closeSubAccountFeature;
+
+  @JsonKey(name: 'blink-retail-app-Sub-Accounts-Share-Account-Information')
+  final bool? shareAccountInformationFeature;
+
+  @JsonKey(name: 'blink-retail-app-Offers')
+  final bool? offers;
+
+  @JsonKey(name: 'blink-retail-app-Referrals')
+  final bool? referrals;
+
   DashboardFeaturesEntity(
       {this.blinkRetailAppBillPayment,
       this.blinkRetailAppBillPaymentPayPostpaid,
@@ -83,7 +104,14 @@ class DashboardFeaturesEntity
       this.returnPaymentFeatureEnabled,
       this.manageContactEnabled,
       this.manageContactHistory,
-      this.eVouchers});
+      this.eVouchers,
+      this.blinkRetailAppApplePay,
+      this.subAccountFeature,
+      this.closeSubAccountFeature,
+      this.shareAccountInformationFeature,
+      this.transferBetweenAccountsFeature,
+      this.offers,
+      this.referrals});
 
   factory DashboardFeaturesEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardFeaturesEntityFromJson(json);
@@ -101,7 +129,8 @@ class DashboardFeaturesEntity
         isCreditCardFeatureEnabled: isCreditCardEnabled ?? false,
         isLoginFeatureEnabled: isLoginEnabled ?? false,
         isRegisterFeatureEnabled: isRegisterEnabled ?? false,
-        isRJFeatureEnabled: isGoRJEnabled ?? false,
+        // isRJFeatureEnabled: isGoRJEnabled ?? false,
+        isRJFeatureEnabled: true,
         isPinChangeEnabled: this.isCreditCardPinChangeEnabled ?? false,
         isDebitCardRequestPhysicalCardEnabled: this.isDebitCardPhysicalCardRequestEnabled ?? false,
         blinkRetailAppBillPayment: this.blinkRetailAppBillPayment ?? false,
@@ -116,6 +145,12 @@ class DashboardFeaturesEntity
         returnPaymentFeatureEnabled: returnPaymentFeatureEnabled ?? false,
         manageContactEnabled: /*this.manageContactEnabled ?? false*/ true,
         manageContactHistory: /*this.manageContactHistory ?? false*/ true,
-        eVouchers: /*this.eVouchers ?? false*/ true);
+        eVouchers: /*this.eVouchers ?? false*/ true,
+        subAccountFeature: /*this.subAccountFeature ?? false*/ true,
+        transferBetweenAccountsFeature: /*this.transferBetweenAccountsFeature ?? false*/ true,
+        closeSubAccountFeature: /*this.closeSubAccountFeature ?? false*/ true,
+        shareAccountInformationFeature: /*this.shareAccountInformationFeature ?? false*/ true,
+        offers: /*this.offers ?? false*/ true,
+        referrals: /*this.referrals ?? false*/ true);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:domain/model/rj/get_flight_detail/flight_detail_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -23,7 +24,7 @@ class RjBookingPurchasePageState
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).colorScheme.onSurface;
+    return Theme.of(context).colorScheme.onPrimaryContainer;
   }
 
   @override
@@ -33,7 +34,7 @@ class RjBookingPurchasePageState
 }
 
 class RjBookingPurchasePageArgument {
-  int amount;
+  final FlightDetailResponse flightDetailResponse;
 
-  RjBookingPurchasePageArgument(this.amount);
+  RjBookingPurchasePageArgument({required this.flightDetailResponse});
 }

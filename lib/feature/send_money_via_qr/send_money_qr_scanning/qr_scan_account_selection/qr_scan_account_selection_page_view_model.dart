@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/usecase/payment/qr_scan_otp_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -10,6 +11,7 @@ import 'package:rxdart/rxdart.dart';
 
 class QRScanAccountSelectionPageViewModel extends BasePageViewModel {
   final QRScanOTPUseCase _qrScanOTPUseCase;
+  Account selectedAccount = Account();
 
   ///-----------------------------------------generate otp----------------------------------------------///
   PublishSubject<QRScanOTPUseCaseParams> _generateOtpRequest = PublishSubject();
@@ -49,7 +51,7 @@ class QRScanAccountSelectionPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   void validate() {
-    if (payFromController.text.isNotEmpty) {
+    if (selectedAccount.accountNo?.isNotEmpty == true) {
       _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);

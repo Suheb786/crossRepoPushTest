@@ -20,7 +20,9 @@ class CreateAccountUseCase extends BaseUseCase<BaseError, CreateAccountUseCasePa
       {required CreateAccountUseCaseParams params}) async {
     return Future.value(
       (await _bankSmartRepository.createAccount(
+              cif: params.cif,
               getToken: true,
+              isSubAccount: params.isSubAccount,
               customerInformation: params.customerInformation,
               accountDetails: params.accountDetails))
           .fold((l) => Left(l), (response) async {
@@ -40,8 +42,15 @@ class CreateAccountUseCase extends BaseUseCase<BaseError, CreateAccountUseCasePa
 class CreateAccountUseCaseParams extends Params {
   final CustomerInformation customerInformation;
   final CustomerAccountDetails accountDetails;
+  final String? cif;
+  final bool? isSubAccount;
 
-  CreateAccountUseCaseParams({required this.customerInformation, required this.accountDetails});
+  CreateAccountUseCaseParams({
+    required this.customerInformation,
+    required this.accountDetails,
+    this.cif,
+    this.isSubAccount,
+  });
 
   @override
   Either<AppError, bool> verify() {
