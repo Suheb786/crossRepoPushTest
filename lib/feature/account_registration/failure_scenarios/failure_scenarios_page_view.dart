@@ -83,14 +83,12 @@ class OnboardingFailureScenariosPageView extends BasePageViewWidget<OnboardingFa
           Padding(
             padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w, vertical: 56.0.h),
             child: AppPrimaryButton(
-                onPressed: () {
-                  Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding, (route) => false);
-                },
-                text: S.current.okay,
-                textColor: Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue,
-                backgroundColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
-                  return Theme.of(context).colorScheme.secondary;
-                })),
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding, (route) => false);
+              },
+              text: S.current.okay,
+              textColor: Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue,
+            ),
           )
         ],
       ),

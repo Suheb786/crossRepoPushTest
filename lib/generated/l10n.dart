@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -18801,16 +18800,6 @@ class S {
     );
   }
 
-  /// `Next`
-  String get next {
-    return Intl.message(
-      'Next',
-      name: 'next',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Change My Email`
   String get changeMyEmail {
     return Intl.message(
@@ -18846,16 +18835,6 @@ class S {
     return Intl.message(
       'Validating your selfie',
       name: 'validatingYourSelfie',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Done`
-  String get done {
-    return Intl.message(
-      'Done',
-      name: 'done',
       desc: '',
       args: [],
     );

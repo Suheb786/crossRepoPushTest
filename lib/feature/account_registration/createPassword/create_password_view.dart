@@ -70,10 +70,6 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                           print('Promo Code ---->${AppConstantsUtils.userPromoCode}');
                           model.registerUser(
                             referralCode: AppConstantsUtils.userPromoCode,
-                            email: ProviderScope.containerOf(context)
-                                .read(addNumberViewModelProvider)
-                                .emailController
-                                .text,
                             email: "",
                             country: "Jordan",
                             phone: ProviderScope.containerOf(context)

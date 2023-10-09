@@ -12,6 +12,7 @@ class NetworkProperties {
   static const String BASE_EV0UCHER_URL = "http://10.6.13.2:2186/Voucher/api";
   static const String BASE_RJ_URL = "http://10.6.13.2:2186/RJAPI/api";
   static const String BASE_OFFER_CAMPAIGN_URL = "http://10.6.13.2:2186/Offers/api";
+  static const String BASE_ONBOARDING_URL = "http://10.6.13.2:2186/Onboarding";
 
   ///VAPT / PREPROD CONFIGURATION (UAT 1 )
 // static const String BASE_CHANNEL_URL = "https://mobwebuat1.theblink.com:3443/api";
