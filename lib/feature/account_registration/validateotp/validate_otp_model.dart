@@ -1,9 +1,13 @@
+import 'package:domain/usecase/account/send_mobile_otp_usecase.dart';
+import 'package:domain/usecase/account/verify_mobile_otp_usecase.dart';
 import 'package:domain/usecase/user/change_my_number_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -14,8 +18,9 @@ import 'package:sms_autofill/sms_autofill.dart';
 
 class ValidateOtpViewModel extends BasePageViewModel {
   final VerifyOtpUseCase _verifyOtpUseCase;
-
+  final OnboardingVerifyMobileOtpUsecase _onboardingVerifyMobileOtpUsecase;
   final GetTokenUseCase _getTokenUseCase;
+  final SendMobileOTPUsecase _sendMobileOTPUsecase;
 
   final ChangeMyNumberUseCase _changeMyNumberUseCase;
 
@@ -36,9 +41,9 @@ class ValidateOtpViewModel extends BasePageViewModel {
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
 
-  void updateTime() {
+  void updateTime(BuildContext context) {
     otpController.clear();
-    resendOtp();
+    sendMobileOtp(context);
   }
 
   ///verify otp request subject holder
@@ -78,7 +83,22 @@ class ValidateOtpViewModel extends BasePageViewModel {
   ///change my number stream
   Stream<Resource<bool>> get changeMyNumberStream => _changeMyNumberResponse.stream;
 
-  ValidateOtpViewModel(this._verifyOtpUseCase, this._getTokenUseCase, this._changeMyNumberUseCase) {
+  ///-------send Mobile Otp--------->
+  PublishSubject<SendMobileOTPUsecaseParams> _sendMobileOTPRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _sendMobileOTPResponse = PublishSubject();
+
+  Stream<Resource<bool>> get sendMobileOTPResponseStream => _sendMobileOTPResponse.stream;
+
+  ///-------verify Mobile Otp--------->
+  PublishSubject<OnboardingVerifyMobileOtpUsecaseParams> _verifyMobileOtpRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _verifyMobileOtpResponse = PublishSubject();
+
+  Stream<Resource<bool>> get verifyMobileOtpResponseStream => _verifyMobileOtpResponse.stream;
+
+  ValidateOtpViewModel(this._verifyOtpUseCase, this._getTokenUseCase, this._changeMyNumberUseCase,
+      this._sendMobileOTPUsecase, this._onboardingVerifyMobileOtpUsecase) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value, createCall: () => _verifyOtpUseCase.execute(params: value))
           .asFlow()
@@ -118,6 +138,34 @@ class ValidateOtpViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _sendMobileOTPRequest.listen((value) {
+      RequestManager(value, createCall: () => _sendMobileOTPUsecase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _sendMobileOTPResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+
+          notifyListeners();
+          listenForSmsCode();
+        }
+      });
+    });
+    _verifyMobileOtpRequest.listen((value) {
+      RequestManager(value, createCall: () => _onboardingVerifyMobileOtpUsecase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _verifyMobileOtpResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
   }
 
   void validateOtp() {
@@ -131,6 +179,20 @@ class ValidateOtpViewModel extends BasePageViewModel {
   void changeMyNumber(String mobileNo, String countryCode) {
     _changeMyNumberRequest
         .safeAdd(ChangeMyNumberUseCaseParams(mobileNumber: mobileNo, countryCode: '00$countryCode'));
+  }
+
+  void sendMobileOtp(BuildContext context) {
+    _sendMobileOTPRequest.safeAdd(SendMobileOTPUsecaseParams(
+      GetToken: true,
+      MobileNumber:
+          ProviderScope.containerOf(context).read(addNumberViewModelProvider).mobileNumberController.text,
+      MobileCode:
+          ProviderScope.containerOf(context).read(addNumberViewModelProvider).countryData.phoneCode ?? "",
+    ));
+  }
+
+  void verifyMobileOtp({required String? OTPCode}) {
+    _verifyMobileOtpResponse.safeAdd(OnboardingVerifyMobileOtpUsecaseParams(OTPCode: OTPCode));
   }
 
   void validate(String value) {

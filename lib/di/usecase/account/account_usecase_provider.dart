@@ -8,6 +8,8 @@ import 'package:domain/usecase/account/check_videocall_status_usecase.dart';
 import 'package:domain/usecase/account/get_call_status_usecase.dart';
 import 'package:domain/usecase/account/get_call_time_slots_usecase.dart';
 import 'package:domain/usecase/account/request_call_usecase.dart';
+import 'package:domain/usecase/account/send_mobile_otp_usecase.dart';
+import 'package:domain/usecase/account/verify_mobile_otp_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_five/schedule_call_time_dialog/schedule_call_time_dialog_viewmodel.dart';
 
@@ -50,3 +52,11 @@ final getCallStatusUsecaseProvider = Provider.autoDispose<GetCallStatusUseCase>(
 ///schedule call time dialog view model provider
 final scheduleCallTimeDialogViwModelProvider =
     ChangeNotifierProvider.autoDispose<ScheduleCallTimeViewModel>((ref) => ScheduleCallTimeViewModel());
+
+///[SendMobileOTPUsecase] Provider
+final sendMobileOTPUsecaseProvider = Provider.autoDispose<SendMobileOTPUsecase>(
+    (ref) => SendMobileOTPUsecase(ref.read(accountRepositoryProvider)));
+
+///[OnboardingVerifyMobileOtpUsecase] Provider
+final onboardingVerifyMobileOtpUsecase = Provider.autoDispose<OnboardingVerifyMobileOtpUsecase>(
+    (ref) => OnboardingVerifyMobileOtpUsecase(ref.read(accountRepositoryProvider)));

@@ -309,6 +309,8 @@ import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../entity/remote/account/onboarding_mobile_otp_request_entity.dart';
+import '../entity/remote/account/verify_mobile_otp_request_entity.dart';
 import '../entity/remote/contact/add_beneficiary_response_entity.dart';
 import '../entity/remote/contact/remove_avatar_request.dart';
 import '../entity/remote/contact/send_otp_add_beneficiary_data_response_entity.dart';
@@ -1242,4 +1244,11 @@ abstract class ApiService {
   @POST("${NetworkProperties.BASE_OFFER_CAMPAIGN_URL}/Offers/GetOfferCategories")
   Future<HttpResponse<OffersCategoriesResponseEntity>> getOfferCategories(
       @Body() OffersCategoriesRequestEntity request);
+
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/SendMobileOtp")
+  Future<HttpResponse<ResponseEntity>> sendMobileOTP(@Body() OnboardingSendMobileOTPRequestEntity request);
+
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/VerifyMobileOtp")
+  Future<HttpResponse<ResponseEntity>> verifyMobileOTP(
+      @Body() OnboardingVerifyMobileOtpRequestEntity request);
 }
