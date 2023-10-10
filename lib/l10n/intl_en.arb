@@ -1803,7 +1803,7 @@
   "dormantAccountPhysicalCardReq": "Oops! You cannot request your physical card as your account is inactive. Call us on 06-5200100 to activate your account.",
   "yourAccountInactive": "Your account is inactive",
   "callToActivate": "Call us on 06-5200100 to activate your account and get your debit card.",
-  "notEnoughAmountToPurchase": "You have insufficient balance in your account",
+  "notEnoughAmountToPurchase": "Oops! Transaction failed; you have insufficient balance in your account.",
   "validUntil": "Valid Until",
   "currentAccount": "Current Account",
   "copied": "Copied",

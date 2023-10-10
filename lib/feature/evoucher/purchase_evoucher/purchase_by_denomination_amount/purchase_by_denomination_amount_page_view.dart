@@ -63,6 +63,7 @@ class PurchaseByDenominationAmountPageView
             ),
             Expanded(
               child: Card(
+                color: Theme.of(context).colorScheme.secondary,
                 child: Container(
                   color: Theme.of(context).colorScheme.secondary,
                   margin: EdgeInsetsDirectional.only(top: 40.h, bottom: 24.h, start: 24.w, end: 24.w),

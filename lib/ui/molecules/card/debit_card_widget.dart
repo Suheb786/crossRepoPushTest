@@ -501,30 +501,3 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
     );
   }
 }
-
-/*
-*  ///delivered button
-                Visibility(
-                  visible: false,
-                  // visible: !(widget.debitCard.isDebitDelivered != null && widget.debitCard.isDebitDelivered!),
-                  child: Positioned(
-                    top: 0,
-                    child: Container(
-                      height: 24.0.h,
-                      width: 125.0.w,
-                      decoration:
-                          BoxDecoration(color: AppColor.darkGrey, borderRadius: BorderRadius.circular(100)),
-                      child: Center(
-                        child: Text(
-                          S.of(context).cardDelivered,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              color: Theme.of(context).colorScheme.secondary,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 12.0.t),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-* */

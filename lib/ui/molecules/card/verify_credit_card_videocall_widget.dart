@@ -80,71 +80,7 @@ class VerifyCreditCardVideoCallWidget extends StatelessWidget {
                       ),
                     ),
                   ],
-                ) /*SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.only(top: 23.0.h, end: 23.0.w, start: 23.0.w),
-                      child: AppSvg.asset(AssetUtils.blink_updated_logo, height: 33.64.h, width: 72.0.w),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.only(top: 58.0.h),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: AppSvg.asset(AssetUtils.cardCircle, height: 96.0.h),
-                      ),
-                    ),
-                    Padding(
-                        padding: EdgeInsetsDirectional.only(top: 10.0.h, start: 23.0.w, end: 23.0.w),
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            getDescription(creditCard.callStatus, context),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                fontSize: 14.0.t,
-                                fontWeight: FontWeight.w600,
-                                color: Theme.of(context).colorScheme.secondary),
-                          ),
-                        )),
-                    Padding(
-                      padding: EdgeInsetsDirectional.only(
-                          top: 88.0.h,
-                          // bottom: isSmallDevices ? 30 : 50,
-                          start: 24.0.w,
-                          end: 24.0.w),
-                      child: Center(
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(context, RoutePaths.CreditCardVideoCallInitiate,
-                                arguments: CreditCardVideoCallInitiateArgs(creditCard: creditCard));
-                          },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 17.0.h),
-                            decoration: BoxDecoration(
-                                color: Theme.of(context).textTheme.bodyLarge!.color!,
-                                borderRadius: BorderRadius.circular(100)),
-                            child: Center(
-                              child: Text(
-                                S.of(context).verifyNow,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    fontSize: 14.0.t,
-                                    fontWeight: FontWeight.w600,
-                                    color: Theme.of(context).colorScheme.secondary),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
-              )*/
-                ,
               ),
             ),
           );
@@ -157,7 +93,6 @@ class VerifyCreditCardVideoCallWidget extends StatelessWidget {
       child: AppSvg.asset(AssetUtils.blink_updated_logo, height: 33.64.h, width: 72.0.w),
     );
   }
-
 
   bottomWidget(BuildContext context) {
     return Padding(
@@ -172,11 +107,16 @@ class VerifyCreditCardVideoCallWidget extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 17.0.h),
             decoration: BoxDecoration(
               color: Theme.of(context).textTheme.bodyLarge!.color!,
-              borderRadius: BorderRadius.circular(100),),
+              borderRadius: BorderRadius.circular(100),
+            ),
             child: Center(
               child: Text(
                 S.of(context).verifyNow,
-                style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+                style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    fontSize: 14.0.t,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).colorScheme.secondary),
               ),
             ),
           ),

@@ -2244,7 +2244,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "notAllowedToOpenAccount": MessageLookupByLibrary.simpleMessage(
             "You cannot proceed with this request. Please contact our Engagement Team on 06-5200100 for more information."),
         "notEnoughAmountToPurchase": MessageLookupByLibrary.simpleMessage(
-            "You have insufficient balance in your account"),
+            "Oops! Transaction failed; you have insufficient balance in your account."),
         "notRegisteredBank": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-059)"),
         "notSetUpCountryRestrictionYet": MessageLookupByLibrary.simpleMessage(

@@ -84,131 +84,7 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                             ),
                           ),
                         ],
-                      ) /*SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: 30.0.h,
-                              right: 23.0.w,
-                              left: 23.0.w,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  S.of(context).myCreditCard,
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12.0.t, color: Colors.white),
-                                ),
-                                InkWell(
-                                  splashFactory: NoSplash.splashFactory,
-                                  onTap: () async {
-                                    widget.flipCardController!.toggleCard();
-                                  },
-                                  child: Container(
-                                    height: 50,
-                                    width: 50,
-                                    padding: const EdgeInsets.all(10),
-                                    margin: EdgeInsetsDirectional.only(end: 0.0.w),
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Theme.of(context).primaryColor,
-                                      border: Border.all(color: AppColor.softRed1),
-                                      boxShadow: const [
-                                        BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 0.1),
-                                      ],
-                                    ),
-                                    child: AppSvg.asset(AssetUtils.spin, height: 24.w, width: 24.w),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 23.0.w, vertical: 5.0.h),
-                            child: AppSvg.asset(AssetUtils.blink_updated_logo, height: 33.64.h, width: 72.0.w),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 23.0.w, vertical: 5.0.h),
-                            child: Text(
-                              widget.creditCard.name ?? "",
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 14.0.t,
-                                  color: Colors.white),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 30.0.h,
-                          ),
-                          Image.asset(
-                            AssetUtils.line_black_white,
-                            // fit: BoxFit.fill,
-                            // height: widget.isSmallDevice ? 93 : 118,
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.only(top: 8.0.h, start: 23.0.w),
-                            child: Text(
-                              S.of(context).cardRequiresActivation,
-                              style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).colorScheme.secondary,
-                                fontSize: 14.0.t,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 4.0.h,
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.only(top: 8.0.h, start: 23.0.w, bottom: 40.0.h, end: 23.0.w),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    S.of(context).cardRequiresActivationDesc,
-                                    style: TextStyle(
-                                      fontFamily: StringUtils.appFont,
-                                      color: AppColor.veryLightRed,
-                                      fontSize: 14.0.t,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 25.0.w,
-                                ),
-                                InkWell(
-                                    onTap: () async {
-                                      widget.onSettingsTap();
-                                      // await Navigator.pushNamed(context, RoutePaths.CreditCardSettings, arguments: CreditCardSettingsArguments(creditCard: widget.creditCard, isChangePinEnabled: widget.isChangePinEnabled));
-                                    },
-                                    child: Container(
-                                        height: 50,
-                                        width: 50,
-                                        padding: const EdgeInsets.all(12),
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Theme.of(context).primaryColor,
-                                          border: Border.all(color: AppColor.strongRed),
-                                          boxShadow: const [
-                                            BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 0.1),
-                                          ],
-                                        ),
-                                        child: AppSvg.asset(AssetUtils.settingsRed,
-                                            color: AppColor.light_acccent_blue))),
-                              ],
-                            ),
-                          ),
-                        ],
                       ),
-                    )*/
-                      ,
                     )),
               );
             }),
@@ -437,8 +313,7 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                           BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 0.1),
                         ],
                       ),
-                      child: AppSvg.asset(AssetUtils.settingsRed,
-                          color: AppColor.light_acccent_blue))),
+                      child: AppSvg.asset(AssetUtils.settingsRed, color: AppColor.light_acccent_blue))),
             ],
           ),
         )
