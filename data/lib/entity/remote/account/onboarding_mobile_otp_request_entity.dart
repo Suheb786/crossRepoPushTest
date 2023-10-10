@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'onboarding_mobile_otp_request_entity.g.dart';
 
 @JsonSerializable()
@@ -14,7 +15,7 @@ class OnboardingSendMobileOTPRequestEntity {
   final Map<String, dynamic>? BaseClass;
 
   factory OnboardingSendMobileOTPRequestEntity.fromJson(Map<String, dynamic> json) =>
-      _$OnboardingMobileOTPRequestEntityFromJson(json);
+      _$OnboardingSendMobileOTPRequestEntityFromJson(json);
 
   OnboardingSendMobileOTPRequestEntity({
     required this.GetToken,
@@ -22,5 +23,6 @@ class OnboardingSendMobileOTPRequestEntity {
     required this.MobileCode,
     required this.BaseClass,
   });
-  Map<String, dynamic> toJson() => _$OnboardingMobileOTPRequestEntityToJson(this);
+
+  Map<String, dynamic> toJson() => _$OnboardingSendMobileOTPRequestEntityToJson(this);
 }
