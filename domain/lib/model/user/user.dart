@@ -25,6 +25,7 @@ class User {
   bool? isEfawateerPopUPClicked;
   bool? isEVoucherPopUPClicked;
   bool? isApplePayPopUpClicked;
+  dynamic profileImage;
 
   User(
       {this.token,
@@ -52,7 +53,8 @@ class User {
       this.isRJPopUPClicked,
       this.isEfawateerPopUPClicked,
       this.isEVoucherPopUPClicked,
-      this.isApplePayPopUpClicked});
+      this.isApplePayPopUpClicked,
+      this.profileImage});
 
   String get profileName => "${firstName?[0] ?? ""} ${lastName?[0] ?? ""}";
 
@@ -81,7 +83,8 @@ class User {
       isRJPopUPClicked: json["isRJPopUPClicked"],
       isEfawateerPopUPClicked: json["isEfawateerPopUPClicked"],
       isEVoucherPopUPClicked: json["isEVoucherPopUPClicked"],
-      isApplePayPopUpClicked: json["isApplePayPopUpClicked"]);
+      isApplePayPopUpClicked: json["isApplePayPopUpClicked"],
+      profileImage: json["profileImage"]);
 
   Map<String, dynamic> toJson() => {
         "token": token,
@@ -108,6 +111,7 @@ class User {
         "isRJPopUPClicked": isRJPopUPClicked,
         "isEfawateerPopUPClicked": isEfawateerPopUPClicked,
         "isEVoucherPopUPClicked": isEVoucherPopUPClicked,
-        "isApplePayPopUpClicked": isApplePayPopUpClicked
+        "isApplePayPopUpClicked": isApplePayPopUpClicked,
+        "profileImage": profileImage
       };
 }

@@ -51,7 +51,7 @@ final getProfileInfoUseCaseProvider = Provider.autoDispose<GetProfileInfoUseCase
 
 ///[UploadProfileImageUseCase] provider
 final uploadProfileImageUseCaseProvider = Provider.autoDispose<UploadProfileImageUseCase>(
-  (ref) => UploadProfileImageUseCase(ref.read(accountSettingRepositoryProvider)),
+  (ref) => UploadProfileImageUseCase(ref.read(accountSettingRepositoryProvider), ref.read(userRepoProvider)),
 );
 
 ///[DeleteProfileImageUseCase] provider
