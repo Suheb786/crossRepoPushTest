@@ -22,6 +22,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../ui/no_data_widget.dart';
 import '../../../utils/status.dart';
 
 class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionViewModel> {
@@ -228,7 +229,9 @@ class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionVi
                                               physics: AlwaysScrollableScrollPhysics(),
                                             )
                                           : Center(
-                                              child: Text(S.of(context).noTransactionToDisplay),
+                                              child: NoDataWidget(
+                                                errorMessage: S.current.noTransactionToDisplay,
+                                              ),
                                             ),
                                     ),
                                   );

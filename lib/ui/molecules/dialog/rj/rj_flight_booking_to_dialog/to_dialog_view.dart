@@ -1,4 +1,4 @@
-import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
+import 'package:neo_bank/utils/clickable_scrall_view/list_wheel_scrall_view.dart';
 import 'package:domain/model/rj/destinations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,6 +18,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../../no_data_widget.dart';
 import '../../../app_scollable_list_view_widget.dart';
 import '../../../button/app_primary_button.dart';
 
@@ -124,14 +125,14 @@ class ToDialogView extends StatelessWidget {
                                                     key: ValueKey(data.data!.length),
                                                     child: ClickableListWheelScrollView(
                                                       scrollController: model.scrollController,
-                                                      itemHeight: 72.h,
+                                                      itemHeight: 70.h,
                                                       itemCount: data.data!.length,
                                                       onItemTapCallback: (index) {
                                                         model.selectCountry(index);
                                                       },
                                                       child: ListWheelScrollView.useDelegate(
                                                           controller: model.scrollController,
-                                                          itemExtent: 72,
+                                                          itemExtent: 70.h,
                                                           onSelectedItemChanged: (int index) {
                                                             model.selectCountry(index);
                                                           },
@@ -149,14 +150,7 @@ class ToDialogView extends StatelessWidget {
                                                 ],
                                               )
                                             : Center(
-                                                child: Text(
-                                                  S.of(context).noDataFound,
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      fontSize: 14.t,
-                                                      fontWeight: FontWeight.w400,
-                                                      color: Theme.of(context).primaryColorDark),
-                                                ),
+                                                child: NoDataWidget(),
                                               ))
                                     : Expanded(
                                         child: Container(

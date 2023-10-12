@@ -1,4 +1,4 @@
-import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
+import 'package:neo_bank/utils/clickable_scrall_view/list_wheel_scrall_view.dart';
 import 'package:domain/model/bill_payments/get_biller_lookup_list/biller_details.dart';
 import 'package:domain/model/bill_payments/get_biller_lookup_list/get_biller_lookup_list.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +20,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../../../no_data_widget.dart';
 import 'bill_name_dialog_view_model.dart';
 
 class PayBillDialogView extends StatelessWidget {
@@ -234,9 +235,7 @@ class PayBillDialogView extends StatelessWidget {
           ))
         : Expanded(
             child: Center(
-              child: Container(
-                child: Text(S.of(context).noDataFound),
-              ),
+              child: NoDataWidget(),
             ),
           );
   }
