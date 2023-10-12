@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/account/account_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/account_registration/account_regisration_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/bank_smart/bank_smart_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/country/country_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/fatca_crs/fatca_crs_usecase_provider.dart';
@@ -398,7 +399,12 @@ final videoCallScheduledViewModelProvider = ChangeNotifierProvider.autoDispose
 ///changeMy number dialog view model provider
 final changeMyNumberDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<ChangeMyNumberDialogViewModel>(
-        (ref) => ChangeMyNumberDialogViewModel());
+  (ref) => ChangeMyNumberDialogViewModel(
+      ref.read(checkUserNameMobileUseCaseProvider),
+      ref.read(registerNumberUseCaseProvider),
+      ref.read(getAllowedCodeCountriesListUseCaseProvider),
+      ref.read(sendMobileOTPUsecaseProvider)),
+);
 
 final changeMyEmailDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<ChangeMyEmailDialogViewModel>((ref) => ChangeMyEmailDialogViewModel());

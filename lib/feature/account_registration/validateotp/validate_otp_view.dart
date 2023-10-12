@@ -1,5 +1,4 @@
 import 'package:animated_widgets/animated_widgets.dart';
-import 'package:data/helper/id_wise_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +7,7 @@ import 'package:neo_bank/di/account_registration/account_registration_modules.da
 import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
 import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_one/change_my_number_dialog/change_my_number_dialog.dart';
@@ -19,6 +19,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../ui/molecules/button/app_primary_button.dart';
 import '../../../utils/color_utils.dart';
+import '../manage_idwise_status/manage_idwise_status_page.dart';
 
 class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
   ValidateOtpPageView(ProviderBase model) : super(model);
@@ -43,6 +44,8 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                     ProviderScope.containerOf(context)
                         .read(accountRegistrationViewModelProvider)
                         .updateMobileNumber(model.mobileNumberParams);
+                    Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
+                        arguments: ManageIDWiseStatusParams(journeyId: ''));
                   }
                 },
                 dataBuilder: (context, snapshot) {
@@ -54,14 +57,12 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                         model.saveUserData();
                         // Navigator.pushReplacementNamed(context, RoutePaths.Dashboard);
 
-                        IdWiseHelper idWiseHelper = IdWiseHelper();
+                        /* IdWiseHelper idWiseHelper = IdWiseHelper();
                         idWiseHelper.initializeIdWise();
                         var status = await idWiseHelper.startVerification('en');
                         debugPrint("STATUS : ${status.keys.first}");
-                        debugPrint("TEXT :  ${status.values.first}");
-                        //model.verifyMobileOtp(OTPCode: "");
-                        //  Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
-                        //     arguments: ManageIDWiseStatusParams(journeyId: ''));
+                        debugPrint("TEXT :  ${status.values.first}");*/
+                        model.verifyMobileOtp(OTPCode: model.otpController.text);
                       } else if (data.status == Status.ERROR) {
                         model.showToastWithError(data.appError!);
                       }
