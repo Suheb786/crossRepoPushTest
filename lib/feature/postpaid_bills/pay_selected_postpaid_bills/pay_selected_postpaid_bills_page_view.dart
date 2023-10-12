@@ -108,7 +108,7 @@ class PaySelectedBillsPostPaidBillsPageView
                           child: Card(
                             child: model.postPaidBillInquiryData == null ||
                                     model.postPaidBillInquiryData!.isEmpty
-                                ? NoDataWidget()
+                                ? Center(child: NoDataWidget())
                                 : GestureDetector(
                                     behavior: HitTestBehavior.opaque,
                                     onPanDown: (_) {

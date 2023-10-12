@@ -109,7 +109,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                                         ),
                                       ],
                                     )
-                                  : NoDataWidget();
+                                  : Center(child: NoDataWidget());
                             default:
                               return Container();
                           }
@@ -135,7 +135,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
                                   }),
                                 );
                               } else {
-                                return NoDataWidget();
+                                return Center(child: NoDataWidget());
                               }
                             default:
                               return Container();

@@ -23,6 +23,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../main/navigation/cutom_route.dart';
+import '../../../ui/no_data_widget.dart';
 
 class CardTransactionPageView extends BasePageViewWidget<CardTransactionViewModel> {
   CardTransactionPageView(ProviderBase model) : super(model);
@@ -228,7 +229,9 @@ class CardTransactionPageView extends BasePageViewWidget<CardTransactionViewMode
                                               itemCount: transaction.data!.transactionResponse!.length,
                                             )
                                           : Center(
-                                              child: Text(S.of(context).noTransactionToDisplay),
+                                              child: NoDataWidget(
+                                                errorMessage: S.of(context).noTransactionToDisplay,
+                                              ),
                                             ),
                                     ),
                                   );

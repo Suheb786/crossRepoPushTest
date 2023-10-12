@@ -1,4 +1,4 @@
-import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
+import 'package:neo_bank/utils/clickable_scrall_view/list_wheel_scrall_view.dart';
 import 'package:domain/constants/enum/employment_status_enum.dart';
 import 'package:domain/model/user/get_combo_values/get_combo_values_data.dart';
 import 'package:flutter/material.dart';

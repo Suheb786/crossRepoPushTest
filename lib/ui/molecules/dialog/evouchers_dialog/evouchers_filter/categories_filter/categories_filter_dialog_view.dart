@@ -1,4 +1,3 @@
-import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:domain/model/e_voucher/voucher_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,14 +5,15 @@ import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_scollable_list_view_widget.dart';
-import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/list_scroll_wheel_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../../../../utils/clickable_scrall_view/list_wheel_scrall_view.dart';
 import '../../../../button/app_primary_button.dart';
+import '../../../../listwheel_scroll_view_widget/list_scroll_wheel_widget.dart';
 import 'categories_filter_dialog_view_model.dart';
 
 class CategoriesFilterDialogView extends StatelessWidget {
@@ -85,6 +85,7 @@ class CategoriesFilterDialogView extends StatelessWidget {
                                   child: ClickableListWheelScrollView(
                                     scrollController: model.scrollController,
                                     itemHeight: 64.h,
+                                    scrollOnTap: true,
                                     itemCount: model.allCategories.length,
                                     onItemTapCallback: (index) {
                                       model.currentIndexUpdate(index);
