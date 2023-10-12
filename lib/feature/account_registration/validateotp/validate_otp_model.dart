@@ -192,7 +192,7 @@ class ValidateOtpViewModel extends BasePageViewModel {
   }
 
   void verifyMobileOtp({required String? OTPCode}) {
-    _verifyMobileOtpResponse.safeAdd(OnboardingVerifyMobileOtpUsecaseParams(OTPCode: OTPCode));
+    _verifyMobileOtpRequest.safeAdd(OnboardingVerifyMobileOtpUsecaseParams(OTPCode: OTPCode));
   }
 
   void validate(String value) {

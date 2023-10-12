@@ -10,6 +10,7 @@ import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_one/change_my_number_dialog/change_my_number_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/mobile_number_dialog/mobile_number_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -44,13 +45,11 @@ class ChangeMyNumberDialogView extends StatelessWidget {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
               insetPadding:
                   EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36, top: _keyboardVisible ? 36.h : 204.h),
-              child: GestureDetector(
-                  onVerticalDragEnd: (details) {
-                    if (details.primaryVelocity! > 0) {
-                      onDismissed?.call();
-                    }
-                  },
-                  child: AppKeyBoardHide(
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                clipBehavior: Clip.none,
+                children: [
+                  AppKeyBoardHide(
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
                       child: Column(
@@ -139,46 +138,53 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                             height: 16.h,
                           ),
                           Spacer(),
-                          InkWell(
-                            onTap: () {
-                              if (model.mobileNumberController.text.isEmpty ||
-                                  model.mobileNumberController.text.length < model.countryData.mobileMin!) {
-                                model.showToastWithError(AppError(
-                                    cause: Exception(),
-                                    error: ErrorInfo(message: ''),
-                                    type: ErrorType.INVALID_MOBILE));
-                              } else {
-                                onSelected?.call(model.countryData, model.mobileNumberController.text);
-                              }
-                            },
-                            child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-                              height: 57.h,
-                              width: 57.w,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Theme.of(context).textTheme.bodyLarge!.color!),
-                              child: AppSvg.asset(AssetUtils.tick,
-                                  color: Theme.of(context).colorScheme.secondary),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 8.0.h),
-                            child: Center(
-                              child: Text(
-                                S.of(context).swipeDownToCancel,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    fontSize: 10.t,
-                                    fontWeight: FontWeight.w400,
-                                    color: AppColor.dark_gray_1),
-                              ),
-                            ),
-                          ),
+                          AppStreamBuilder<bool>(
+                              initialData: false,
+                              stream: model.showButtonStream,
+                              dataBuilder: (context, isValid) {
+                                return AppPrimaryButton(
+                                  isDisabled: isValid!,
+                                  onPressed: () {
+                                    if (model.mobileNumberController.text.isEmpty ||
+                                        model.mobileNumberController.text.length <
+                                            model.countryData.mobileMin!) {
+                                      model.showToastWithError(AppError(
+                                          cause: Exception(),
+                                          error: ErrorInfo(message: ''),
+                                          type: ErrorType.INVALID_MOBILE));
+                                    } else {
+                                      onSelected?.call(model.countryData, model.mobileNumberController.text);
+                                    }
+                                  },
+                                  text: S.of(context).confirm,
+                                );
+                              }),
+                          SizedBox(height: 14.h),
                         ],
                       ),
                     ),
-                  )));
+                  ),
+                  Positioned(
+                    bottom: -24.h,
+                    child: InkWell(
+                      onTap: () {
+                        onDismissed?.call();
+                      },
+                      child: Container(
+                          height: 48.h,
+                          width: 48.h,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Theme.of(context).colorScheme.onBackground),
+                              shape: BoxShape.circle,
+                              color: Theme.of(context).colorScheme.secondary),
+                          child: Image.asset(
+                            AssetUtils.close_bold,
+                            scale: 3.5,
+                          )),
+                    ),
+                  ),
+                ],
+              ));
         },
         onModelReady: (model) {
           if (!model.initialDataSet) {

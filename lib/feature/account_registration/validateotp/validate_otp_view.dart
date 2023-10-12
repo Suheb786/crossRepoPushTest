@@ -44,6 +44,8 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                     ProviderScope.containerOf(context)
                         .read(accountRegistrationViewModelProvider)
                         .updateMobileNumber(model.mobileNumberParams);
+                    Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
+                        arguments: ManageIDWiseStatusParams(journeyId: ''));
                   }
                 },
                 dataBuilder: (context, snapshot) {
@@ -60,9 +62,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                         var status = await idWiseHelper.startVerification('en');
                         debugPrint("STATUS : ${status.keys.first}");
                         debugPrint("TEXT :  ${status.values.first}");*/
-                        model.verifyMobileOtp(OTPCode: "");
-                        Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
-                            arguments: ManageIDWiseStatusParams(journeyId: ''));
+                        model.verifyMobileOtp(OTPCode: model.otpController.text);
                       } else if (data.status == Status.ERROR) {
                         model.showToastWithError(data.appError!);
                       }

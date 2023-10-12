@@ -1245,10 +1245,10 @@ abstract class ApiService {
   Future<HttpResponse<OffersCategoriesResponseEntity>> getOfferCategories(
       @Body() OffersCategoriesRequestEntity request);
 
-  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/SendMobileOtp")
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/api/Onboarding/SendMobileOtp")
   Future<HttpResponse<ResponseEntity>> sendMobileOTP(@Body() OnboardingSendMobileOTPRequestEntity request);
 
-  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/VerifyMobileOtp")
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/api/Onboarding/VerifyMobileOtp")
   Future<HttpResponse<ResponseEntity>> verifyMobileOTP(
       @Body() OnboardingVerifyMobileOtpRequestEntity request);
 }
