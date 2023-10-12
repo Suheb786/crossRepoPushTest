@@ -17810,10 +17810,10 @@ class S {
     );
   }
 
-  /// `You have insufficient balance in your account`
+  /// `Oops! Transaction failed; you have insufficient balance in your account.`
   String get notEnoughAmountToPurchase {
     return Intl.message(
-      'You have insufficient balance in your account',
+      'Oops! Transaction failed; you have insufficient balance in your account.',
       name: 'notEnoughAmountToPurchase',
       desc: '',
       args: [],
