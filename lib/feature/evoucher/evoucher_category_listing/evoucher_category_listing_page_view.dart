@@ -83,7 +83,7 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
                               },
                               itemCount: categoryVouchers?.data?.length ?? 0,
                             )
-                          : NoDataWidget();
+                          : Center(child: NoDataWidget());
 
                     default:
                       return SizedBox();

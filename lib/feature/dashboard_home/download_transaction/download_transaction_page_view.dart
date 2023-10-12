@@ -163,6 +163,7 @@ class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransaction
 
   void _shareFiles(BuildContext context, File file) async {
     final box = context.findRenderObject() as RenderBox?;
+    print("FILE PATH ___ ${file.path}");
     await Share.shareXFiles([XFile(file.path)],
         subject: 'Statement PDF', sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
   }

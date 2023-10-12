@@ -189,7 +189,7 @@ class MyVoucherHistoryView extends BasePageViewWidget<EvoucherViewModel> {
                             },
                             itemCount: (voucherHistory?.data ?? []).length,
                           )
-                        : NoDataWidget();
+                        : Center(child: NoDataWidget());
 
                   default:
                     return Container();
