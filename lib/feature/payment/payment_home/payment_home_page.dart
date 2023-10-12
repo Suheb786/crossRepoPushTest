@@ -67,11 +67,6 @@ class PaymentHomePageState extends BaseStatefulPage<PaymentHomeViewModel, Paymen
   }
 
   @override
-  Future<bool> onBackPressed(PaymentHomeViewModel model, {param}) async {
-    return false;
-  }
-
-  @override
   Widget buildView(BuildContext context, PaymentHomeViewModel model) {
     return PaymentHomePageView(provideBase(), widget.navigationType);
   }

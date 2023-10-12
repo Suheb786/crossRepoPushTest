@@ -1754,7 +1754,6 @@
   "bookingUnsuccessDescription": "We're sorry, but we're unable to complete your flight booking at this time due toan error. Please try again later.",
   "dormantAccountCCFailedTitle": "Unfortunately, your credit card application has failed!",
   "returned": "returned",
-  "url": "URL",
   "nickNameUpdated": "Contact nickname has been updated",
   "creditContactlessLimitExceeded": "Contactless payment limit exceeded.",
   "favouriteContactLimitExceeded": "Oops! You can only select up to 9 favourite contacts",

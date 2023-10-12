@@ -81,27 +81,22 @@ class _ClickableListWheelScrollViewState extends State<ClickableListWheelScrollV
 
     return Listener(
       onPointerDown: (event) {
-        print("onPointerDown");
         _tapUpDetails = event.localPosition;
       },
       // onTapDown
       onPointerUp: (event) {
         if (!(timer?.isActive ?? false)) {
-          print("onPointerUp");
           _onTap();
         }
       },
 
       onPointerMove: (event) {
-        print("onPointerMove");
         timer?.cancel();
         timer = Timer(Duration(milliseconds: 10), () {
           timer?.cancel();
         });
       },
-      onPointerCancel: (event) {
-        print("onPointerCancel");
-      },
+      onPointerCancel: (event) {},
       /*onTap: (){
         _onTap();
       },
@@ -127,13 +122,9 @@ class _ClickableListWheelScrollViewState extends State<ClickableListWheelScrollV
     final indexOffset = (clickOffset / (widget.itemHeight)).round();
     final newIndex = currentIndex + indexOffset;
 
-    print("clickOffset -- ${clickOffset}");
-    print("widget.itemHeight -- ${widget.itemHeight}");
-
     if (newIndex < 0 || newIndex >= widget.itemCount) {
       return -1;
     }
-    print("newIndex -- ${newIndex}");
 
     if (widget.loop) {
       return newIndex % widget.itemCount;

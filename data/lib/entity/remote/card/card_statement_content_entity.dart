@@ -34,7 +34,6 @@ class CardStatementContentEntity
             ? ImageUtils.pdfFileFromBase64String(
                 this.pdfBase64String!, this.pdfFileName ?? 'Credit Statement')
             : File(''),
-        pdfFileName: this.pdfFileName ?? '',
         pdfUint8List:
             this.pdfBase64String != null ? ImageUtils.dataFromBase64String(this.pdfBase64String!) : "");
   }

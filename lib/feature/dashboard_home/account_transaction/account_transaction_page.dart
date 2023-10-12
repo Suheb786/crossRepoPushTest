@@ -32,12 +32,6 @@ class AccountTransactionPageState
       provideBase(),
     );
   }
-
-  @override
-  Future<bool> onBackPressed(AccountTransactionViewModel model, {param}) async {
-    model.animateBackToDashboard(context);
-    return true;
-  }
 }
 
 class AccountTransactionPageArgument {

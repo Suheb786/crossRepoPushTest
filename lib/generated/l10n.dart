@@ -17320,16 +17320,6 @@ class S {
     );
   }
 
-  /// `URL`
-  String get url {
-    return Intl.message(
-      'URL',
-      name: 'url',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Contact nickname has been updated`
   String get nickNameUpdated {
     return Intl.message(

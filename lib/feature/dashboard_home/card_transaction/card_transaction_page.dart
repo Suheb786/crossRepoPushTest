@@ -34,12 +34,6 @@ class DebitCardDeliveredPageState extends BaseStatefulPage<CardTransactionViewMo
   Widget buildView(BuildContext context, CardTransactionViewModel model) {
     return CardTransactionPageView(provideBase());
   }
-
-  @override
-  Future<bool> onBackPressed(CardTransactionViewModel model, {param}) async {
-    model.animateBackToDashboard(context);
-    return true;
-  }
 }
 
 class GetCreditCardTransactionArguments {

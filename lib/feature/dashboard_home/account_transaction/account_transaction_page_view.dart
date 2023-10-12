@@ -124,6 +124,8 @@ class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionVi
                                       hintText: S.of(context).lookingFor,
                                       controller: model.searchController,
                                       onPressed: () {},
+                                      containerPadding:
+                                          EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                                       onFieldSubmitted: (text) {
                                         if (text.trim().isNotEmpty) {
                                           if ((!model.searchTextList.contains(text.trim().toLowerCase())))
@@ -132,7 +134,7 @@ class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionVi
                                       },
                                       suffixIcon: (value, data) {
                                         return Padding(
-                                            padding: EdgeInsetsDirectional.only(start: 19.0.w),
+                                            padding: EdgeInsetsDirectional.only(end: 6.w, start: 6.w),
                                             child: AppSvg.asset(AssetUtils.search,
                                                 height: 16.0.h, width: 16.0.w));
                                       },

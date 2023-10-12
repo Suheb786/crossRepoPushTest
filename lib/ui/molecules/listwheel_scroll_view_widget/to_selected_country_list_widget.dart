@@ -12,22 +12,20 @@ class ToSelectedCountryListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70.h,
-      padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w),
+      height: 64.h,
+      padding: EdgeInsetsDirectional.only(top: 23.0.h, start: 32.0.w, bottom: 21.0.h),
+      margin: EdgeInsets.symmetric(horizontal: 16.0.w),
       alignment: AlignmentDirectional.centerStart,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.transparent),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0.w),
-        child: Text(
-          item.airportName ?? '',
-          softWrap: true,
-          maxLines: 2,
-          style: TextStyle(
-              fontFamily: StringUtils.appFont,
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-              color: item.isSelected ? Theme.of(context).primaryColorDark : AppColor.gray),
-        ),
+      child: Text(
+        item.airportName ?? '',
+        softWrap: true,
+        maxLines: 2,
+        style: TextStyle(
+            fontFamily: StringUtils.appFont,
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            color: item.isSelected ? Theme.of(context).primaryColorDark : AppColor.gray),
       ),
     );
   }
