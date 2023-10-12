@@ -74,7 +74,7 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                           if (data.status == Status.SUCCESS) {
                                             Navigator.pop(context);
                                             model.getProfileDetails();
-                                            model.showSuccessToast('Profile Image deleted.');
+                                            model.showSuccessToast(S.of(context).profileImageDeleted);
                                             model.selectedProfile = '';
                                             model.addImage(model.selectedProfile);
                                           }
@@ -321,8 +321,7 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                                             stream: model.checkBioMetricStream,
                                                             initialData: Resource.none(),
                                                             onData: (data) {
-                                                              if (data.status == Status.SUCCESS) {
-                                                              }
+                                                              if (data.status == Status.SUCCESS) {}
                                                             },
                                                             dataBuilder: (context, isAvailable) {
                                                               return BiometricSwitchWidget(

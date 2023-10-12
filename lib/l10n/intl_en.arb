@@ -1908,5 +1908,7 @@
   "infant": "Infant",
   "belowTwoYears": "Below 2 years",
   "payFromRJ": "Pay from",
-  "yourAccountBalanceSuccessFullyUpdated": "Your account balance is successfully updated."
+  "yourAccountBalanceSuccessFullyUpdated": "Your account balance is successfully updated.",
+  "accountSuccessfullyClosed": "Your account has been closed successfully.",
+  "profileImageDeleted": "Profile Image deleted."
 }

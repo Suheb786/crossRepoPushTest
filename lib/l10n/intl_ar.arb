@@ -1881,5 +1881,7 @@
   "infant": "الرضع",
   "belowTwoYears": "من 0 إلى 2 سنة",
   "payFromRJ": "ادفع من",
-  "yourAccountBalanceSuccessFullyUpdated": "تم تحديث رصيد حسابك بنجاح"
+  "yourAccountBalanceSuccessFullyUpdated": "تم تحديث رصيد حسابك بنجاح",
+  "accountSuccessfullyClosed": "لقد تم إغلاق الحساب بنجاح.",
+  "profileImageDeleted": "تم حذف صورة الملف الشخصي."
 }

@@ -152,6 +152,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تسجيل الحساب"),
         "accountRelatedQuestions": MessageLookupByLibrary.simpleMessage(
             "احكيلنا ليش بدك تفتح الحساب؟"),
+        "accountSuccessfullyClosed":
+            MessageLookupByLibrary.simpleMessage("لقد تم إغلاق الحساب بنجاح."),
         "accountSuccessfullyLinked": MessageLookupByLibrary.simpleMessage(
             "تم ربط الحساب بنجاح مع حساب كليك"),
         "accountSuccessfullyUnlinked":
@@ -2451,6 +2453,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("عندك أي احتياجات خاصة؟"),
         "profileDetailsQ3":
             MessageLookupByLibrary.simpleMessage("إنت صاحب عمل؟"),
+        "profileImageDeleted":
+            MessageLookupByLibrary.simpleMessage("تم حذف صورة الملف الشخصي."),
         "profilePhotoUpdated":
             MessageLookupByLibrary.simpleMessage("تم تحديث صورتك بنجاح"),
         "profileSettings":

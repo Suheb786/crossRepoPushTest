@@ -154,6 +154,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ACCOUNT REGISTRATION"),
         "accountRelatedQuestions": MessageLookupByLibrary.simpleMessage(
             "Now, tell us what\nthe account is for"),
+        "accountSuccessfullyClosed": MessageLookupByLibrary.simpleMessage(
+            "Your account has been closed successfully."),
         "accountSuccessfullyLinked": MessageLookupByLibrary.simpleMessage(
             "Account is successfully linked with CliQ ID"),
         "accountSuccessfullyUnlinked": MessageLookupByLibrary.simpleMessage(
@@ -2520,6 +2522,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Are you a special need person?"),
         "profileDetailsQ3":
             MessageLookupByLibrary.simpleMessage("Are you employed?"),
+        "profileImageDeleted":
+            MessageLookupByLibrary.simpleMessage("Profile Image deleted."),
         "profilePhotoUpdated": MessageLookupByLibrary.simpleMessage(
             "Your profile picture has been updated successfully"),
         "profileSettings":

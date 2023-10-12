@@ -18789,6 +18789,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Your account has been closed successfully.`
+  String get accountSuccessfullyClosed {
+    return Intl.message(
+      'Your account has been closed successfully.',
+      name: 'accountSuccessfullyClosed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile Image deleted.`
+  String get profileImageDeleted {
+    return Intl.message(
+      'Profile Image deleted.',
+      name: 'profileImageDeleted',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -161,7 +161,7 @@ class AppHomeViewModel extends BasePageViewModel {
 
   BehaviorSubject<Resource<bool>> _closeSubAccountResponse = BehaviorSubject();
 
-  Stream<Resource<bool>> get _closeSubAccountResponseStream => _closeSubAccountResponse.stream;
+  Stream<Resource<bool>> get closeSubAccountResponseStream => _closeSubAccountResponse.stream;
 
   ///subscription pop up stream
   PublishSubject<bool> _showSubSubscriptionPopUpStream = PublishSubject();
@@ -497,6 +497,7 @@ class AppHomeViewModel extends BasePageViewModel {
           showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
+          showSuccessToast(S.current.accountSuccessfullyClosed);
           showHideSubAccountSettings(false);
           Future.delayed(Duration(milliseconds: 500), () {
             getDashboardData();
