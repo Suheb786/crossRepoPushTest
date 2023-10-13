@@ -43,11 +43,13 @@ final addEmailViewModelProvider = ChangeNotifierProvider.autoDispose<AddEmailVie
 ///[ValidateOtpViewModel] provider
 final validateOtpViewModelProvider = ChangeNotifierProvider.autoDispose<ValidateOtpViewModel>(
   (ref) => ValidateOtpViewModel(
-      ref.read(verifyOtpUseCaseProvider),
-      ref.read(getTokenUseCaseProvider),
-      ref.read(changeMyNumberUseCaseProvider),
-      ref.read(sendMobileOTPUsecaseProvider),
-      ref.read(onboardingVerifyMobileOtpUsecase)),
+    ref.read(verifyOtpUseCaseProvider),
+    ref.read(getTokenUseCaseProvider),
+    ref.read(changeMyNumberUseCaseProvider),
+    ref.read(sendMobileOTPUsecaseProvider),
+    ref.read(onboardingVerifyMobileOtpUsecase),
+    ref.read(registerProspectUseCaseProvider),
+  ),
 );
 
 ///[ValidateOtpViewModel] provider

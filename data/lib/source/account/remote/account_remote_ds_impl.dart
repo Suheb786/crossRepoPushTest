@@ -134,6 +134,9 @@ class AccountRemoteDSImpl extends AccountRemoteDS {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
     return _apiService.verifyMobileOTP(OnboardingVerifyMobileOtpRequestEntity(
-        OTPCode: params.OTPCode, GetToken: params.GetToken, BaseClass: baseData.toJson()));
+        MobileNumber: params.MobileNo,
+        OTPCode: params.OTPCode,
+        GetToken: params.GetToken,
+        BaseClass: baseData.toJson()));
   }
 }

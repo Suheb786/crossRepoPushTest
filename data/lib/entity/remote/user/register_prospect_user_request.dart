@@ -4,39 +4,39 @@ part "register_prospect_user_request.g.dart";
 
 @JsonSerializable()
 class RegisterProspectUserRequest {
-  @JsonKey(name: "countryName")
+  @JsonKey(name: "CountryName")
   final String? countryName;
-  @JsonKey(name: "languageCode")
+  @JsonKey(name: "LanguageCode")
   final String? languageCode;
-  @JsonKey(name: "uniqueId")
+  @JsonKey(name: "UniqueId")
   final String? uniqueId;
-  @JsonKey(name: "companyId")
+  @JsonKey(name: "CompanyId")
   final int? companyId;
-  @JsonKey(name: "email")
+  @JsonKey(name: "Email")
   final String? email;
-  @JsonKey(name: "mobileNumber")
+  @JsonKey(name: "MobileNumber")
   final String? mobileNumber;
   @JsonKey(name: "MobileCode")
   final String? mobileCode;
-  @JsonKey(name: "password")
+  @JsonKey(name: "Password")
   final String? password;
-  @JsonKey(name: "confirmPassword")
+  @JsonKey(name: "ConfirmPassword")
   final String? confirmPassword;
-  @JsonKey(name: "userName")
+  @JsonKey(name: "UserName")
   final String? userName;
-  @JsonKey(name: "fireBaseToken")
+  @JsonKey(name: "FireBaseToken")
   final String? fireBaseToken;
-  @JsonKey(name: "vkeySessionId")
+  @JsonKey(name: "VkeySessionId")
   final String? vkeySessionId;
-  @JsonKey(name: "platform")
+  @JsonKey(name: "Platform")
   final String? platform;
 
   @JsonKey(name: "RefferalPromo")
   final String? referralCode;
 
-  @JsonKey(name: "getToken")
+  @JsonKey(name: "GetToken")
   final bool? getToken;
-  @JsonKey(name: "baseClass")
+  @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
   RegisterProspectUserRequest(
@@ -44,18 +44,18 @@ class RegisterProspectUserRequest {
       this.languageCode,
       this.uniqueId = "",
       this.companyId,
-    this.email,
-    this.mobileNumber,
-    this.mobileCode,
-    this.password,
-    this.confirmPassword,
-    this.userName,
-    this.fireBaseToken,
-    this.vkeySessionId,
-    this.platform,
-    this.referralCode,
-    this.getToken,
-    required this.baseData});
+      this.email,
+      this.mobileNumber,
+      this.mobileCode,
+      this.password,
+      this.confirmPassword,
+      this.userName,
+      this.fireBaseToken,
+      this.vkeySessionId,
+      this.platform,
+      this.referralCode,
+      this.getToken,
+      required this.baseData});
 
   factory RegisterProspectUserRequest.fromJson(Map<String, dynamic> json) =>
       _$RegisterProspectUserRequestFromJson(json);

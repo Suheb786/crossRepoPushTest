@@ -1,7 +1,9 @@
+import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/account/send_mobile_otp_usecase.dart';
 import 'package:domain/usecase/account/verify_mobile_otp_usecase.dart';
 import 'package:domain/usecase/user/change_my_number_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
+import 'package:domain/usecase/user/register_prospect_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
@@ -21,6 +23,7 @@ class ValidateOtpViewModel extends BasePageViewModel {
   final OnboardingVerifyMobileOtpUsecase _onboardingVerifyMobileOtpUsecase;
   final GetTokenUseCase _getTokenUseCase;
   final SendMobileOTPUsecase _sendMobileOTPUsecase;
+  final RegisterProspectUseCase _registerProspectUseCase;
 
   final ChangeMyNumberUseCase _changeMyNumberUseCase;
 
@@ -97,8 +100,16 @@ class ValidateOtpViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get verifyMobileOtpResponseStream => _verifyMobileOtpResponse.stream;
 
+  ///Register user request subject holder
+  PublishSubject<RegisterProspectUseCaseParams> _registerUserRequest = PublishSubject();
+
+  /// Register user response subject holder
+  PublishSubject<Resource<User>> _registerUserResponse = PublishSubject();
+
+  Stream<Resource<User>> get registerUserStream => _registerUserResponse.stream;
+
   ValidateOtpViewModel(this._verifyOtpUseCase, this._getTokenUseCase, this._changeMyNumberUseCase,
-      this._sendMobileOTPUsecase, this._onboardingVerifyMobileOtpUsecase) {
+      this._sendMobileOTPUsecase, this._onboardingVerifyMobileOtpUsecase, this._registerProspectUseCase) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value, createCall: () => _verifyOtpUseCase.execute(params: value))
           .asFlow()
@@ -133,6 +144,17 @@ class ValidateOtpViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _changeMyNumberResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+    _registerUserRequest.listen((value) {
+      RequestManager(value, createCall: () => _registerProspectUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _registerUserResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         }
@@ -191,8 +213,28 @@ class ValidateOtpViewModel extends BasePageViewModel {
     ));
   }
 
-  void verifyMobileOtp({required String? OTPCode}) {
-    _verifyMobileOtpRequest.safeAdd(OnboardingVerifyMobileOtpUsecaseParams(OTPCode: OTPCode));
+  void verifyMobileOtp({required String? OTPCode, required String? MobileNo}) {
+    _verifyMobileOtpRequest
+        .safeAdd(OnboardingVerifyMobileOtpUsecaseParams(OTPCode: OTPCode, MobileNo: MobileNo));
+  }
+
+  void registerUser(
+      {String? email,
+      String? phone,
+      String? country,
+      String? mobileCode,
+      String? referralCode,
+      String? password,
+      String? confirmPassword}) {
+    _registerUserRequest.safeAdd(RegisterProspectUseCaseParams(
+        email: email,
+        countryName: country,
+        mobileNumber: phone,
+        mobileCode: '00$mobileCode',
+        userName: email,
+        referralCode: referralCode,
+        password: password,
+        confirmPassword: confirmPassword));
   }
 
   void validate(String value) {
