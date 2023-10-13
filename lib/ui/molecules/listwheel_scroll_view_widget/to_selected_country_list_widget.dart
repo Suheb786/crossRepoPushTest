@@ -12,8 +12,7 @@ class ToSelectedCountryListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 64.h,
-      padding: EdgeInsetsDirectional.only(top: 23.0.h, start: 32.0.w, bottom: 21.0.h),
+      padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 20.0.w, top: 20.0.h, bottom: 20.0.h),
       margin: EdgeInsets.symmetric(horizontal: 16.0.w),
       alignment: AlignmentDirectional.centerStart,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.transparent),
@@ -23,7 +22,7 @@ class ToSelectedCountryListWidget extends StatelessWidget {
         maxLines: 2,
         style: TextStyle(
             fontFamily: StringUtils.appFont,
-            fontSize: 14,
+            fontSize: 14.t,
             fontWeight: FontWeight.w400,
             color: item.isSelected ? Theme.of(context).primaryColorDark : AppColor.gray),
       ),
