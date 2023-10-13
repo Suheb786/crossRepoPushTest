@@ -152,6 +152,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تسجيل الحساب"),
         "accountRelatedQuestions": MessageLookupByLibrary.simpleMessage(
             "احكيلنا ليش بدك تفتح الحساب؟"),
+        "accountSuccessfullyClosed":
+            MessageLookupByLibrary.simpleMessage("لقد تم إغلاق الحساب بنجاح."),
         "accountSuccessfullyLinked": MessageLookupByLibrary.simpleMessage(
             "تم ربط الحساب بنجاح مع حساب كليك"),
         "accountSuccessfullyUnlinked":
@@ -933,7 +935,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dobHint": MessageLookupByLibrary.simpleMessage("يوم/شهر/سنة"),
         "documentsNotFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-081)"),
-        "done": MessageLookupByLibrary.simpleMessage("Done"),
+        "done": MessageLookupByLibrary.simpleMessage("تم"),
         "dontNeedMyCardAnymore":
             MessageLookupByLibrary.simpleMessage("بطلت محتاج بطاقتي "),
         "dormantAccountCCFailedTitle": MessageLookupByLibrary.simpleMessage(
@@ -2112,7 +2114,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ادفع فاتورة جديدة"),
         "newPrePaidBill":
             MessageLookupByLibrary.simpleMessage("ادفع فاتورة جديدة"),
-        "newRequest": MessageLookupByLibrary.simpleMessage("New Request"),
+        "newRequest": MessageLookupByLibrary.simpleMessage("طلب دفع جديد"),
         "newSettlementAccount":
             MessageLookupByLibrary.simpleMessage("حساب التسوية الجديد"),
         "newSettlementPercentage":
@@ -2184,8 +2186,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "تسجيل الدخول غير مسموح إلك. تواصل معنا."),
         "notAllowedToOpenAccount": MessageLookupByLibrary.simpleMessage(
             "ما رح تقدر تكمّل طلبك. تواصل معنا على 5200100-06 لتعرف أكتر."),
-        "notEnoughAmountToPurchase":
-            MessageLookupByLibrary.simpleMessage("لديك رصيد غير كاف في حسابك"),
+        "notEnoughAmountToPurchase": MessageLookupByLibrary.simpleMessage(
+            "عفوا! لم تتم العملية بنجاح لأنه الرصيد المتوفر غير كاف"),
         "notRegisteredBank": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06  (Err-059)"),
         "notSetUpCountryRestrictionYet": MessageLookupByLibrary.simpleMessage(
@@ -2451,6 +2453,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("عندك أي احتياجات خاصة؟"),
         "profileDetailsQ3":
             MessageLookupByLibrary.simpleMessage("إنت صاحب عمل؟"),
+        "profileImageDeleted":
+            MessageLookupByLibrary.simpleMessage("تم حذف صورة الملف الشخصي."),
         "profilePhotoUpdated":
             MessageLookupByLibrary.simpleMessage("تم تحديث صورتك بنجاح"),
         "profileSettings":
@@ -2887,7 +2891,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "subscriptionPopUpInfo": MessageLookupByLibrary.simpleMessage(
             "تذكر إنه البطاقة اللي بلّغت عن سرقتها/ ضياعها عليها الاشتراك التالي. رح تحتاج تحدّث اشتراكك ببطاقتك الجديدة."),
         "success": MessageLookupByLibrary.simpleMessage("نجاح"),
-        "successExclmn": MessageLookupByLibrary.simpleMessage("Success!"),
+        "successExclmn": MessageLookupByLibrary.simpleMessage("نجاح!"),
         "successS": MessageLookupByLibrary.simpleMessage("نجاح"),
         "successfullyCreatedLoginAccount": MessageLookupByLibrary.simpleMessage(
             "تم إنشاء ملفك الشخصي بنجاح. خلينا نفتح حسابك ونشغله"),
@@ -3142,7 +3146,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أو حمّل صورة هويتك"),
         "uploadSignature":
             MessageLookupByLibrary.simpleMessage("تحميل التوقيع"),
-        "url": MessageLookupByLibrary.simpleMessage("URL"),
         "usIDNumber": MessageLookupByLibrary.simpleMessage(
             "رقم تعريف دافع الضريبة في أمريكا"),
         "usTaxPayerIdentificationNumber": MessageLookupByLibrary.simpleMessage(

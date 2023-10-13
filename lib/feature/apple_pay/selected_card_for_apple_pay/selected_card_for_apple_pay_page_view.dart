@@ -12,6 +12,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/ui/no_data_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -152,11 +153,9 @@ class SelectedCardForApplePayPageView extends BasePageViewWidget<SelectedCardFor
                                                         ((cardListData?.creditCards ?? []).isEmpty &&
                                                                 (cardListData?.debitCards ?? []).isEmpty)
                                                             ? Center(
-                                                                child: Text(
-                                                                  S.of(context).noCardsToDisplay,
-                                                                  style: TextStyle(
-                                                                      fontWeight: FontWeight.w400,
-                                                                      fontFamily: StringUtils.appFont),
+                                                                child: NoDataWidget(
+                                                                  errorMessage:
+                                                                      S.of(context).noCardsToDisplay,
                                                                 ),
                                                               )
                                                             : Column(

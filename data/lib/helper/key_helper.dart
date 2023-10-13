@@ -23,6 +23,8 @@ class KeyHelper {
   ///infobip audio service keys
   static String INFOBIP_APP_KEY = "";
   static String INFOBIP_APPLICATION_CODE = "";
+  static String INFOBIP_APPLICATION_ID = "";
+  static String INFOBIP_BASE_URL = "";
 
   ///Dynamic link
   static String DevDynamicLinkPrefix = 'https://blinkcbt.page.link';
@@ -38,12 +40,16 @@ class KeyHelper {
     IOS_BLINK_ID = mapContent['dynamicObject']['IOSKey'];
     INFOBIP_APP_KEY = mapContent['dynamicObject']['AppKey'];
     INFOBIP_APPLICATION_CODE = mapContent['dynamicObject']['ApplicationCode'];
+    INFOBIP_APPLICATION_ID = mapContent['dynamicObject']?['InfobipApplicationId'] ?? '';
+    INFOBIP_BASE_URL = mapContent['dynamicObject']?['InfobipBaseUrl'] ?? '';
     CREDIT_CARD_PIN_BLOCK_KEY = mapContent['dynamicObject']?['creditCardPinBlockKey'] ?? '';
     InfobipUtilsConstants.FIREBASE_API_KEY = mapContent['dynamicObject']['FIREBASE_API_KEY'];
     InfobipUtilsConstants.FIREBASE_APPLICATION_ID = mapContent['dynamicObject']['FIREBASE_APPLICATION_ID'];
     InfobipUtilsConstants.FIREBASE_PROJECT_ID = mapContent['dynamicObject']['FIREBASE_PROJECT_ID'];
 
     debugPrint('Infobip app key--->${INFOBIP_APP_KEY}');
+    debugPrint('Infobip app id--->${INFOBIP_APPLICATION_ID}');
+    debugPrint('Infobip baseurl--->${INFOBIP_BASE_URL}');
     debugPrint('infobip application code --->${INFOBIP_APPLICATION_CODE}');
     debugPrint('Application id--->${InfobipUtilsConstants.FIREBASE_APPLICATION_ID}');
   }

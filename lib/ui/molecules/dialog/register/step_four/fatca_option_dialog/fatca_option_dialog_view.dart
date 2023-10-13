@@ -1,4 +1,4 @@
-import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
+import 'package:neo_bank/utils/clickable_scrall_view/list_wheel_scrall_view.dart';
 import 'package:domain/model/fatca_crs/fatca_question_content_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,6 +16,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../../../no_data_widget.dart';
 import '../../../../app_scollable_list_view_widget.dart';
 
 class FatcaOptionDialogView extends StatelessWidget {
@@ -156,15 +157,9 @@ class FatcaOptionDialogView extends StatelessWidget {
                                       ],
                                     )
                                   : Center(
-                                      child: Text(
-                                        S.of(context).noDataFound,
-                                        style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            fontSize: 14.t,
-                                            fontWeight: FontWeight.w400,
-                                            color: Theme.of(context).primaryColorDark),
-                                      ),
-                                    )),
+                                child: NoDataWidget(
+                                ),
+                              ),),
                           Container(
                             color: AppColor.white.withOpacity(0),
                             child: Column(

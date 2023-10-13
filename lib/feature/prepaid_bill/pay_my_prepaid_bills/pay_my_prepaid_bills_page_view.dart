@@ -274,7 +274,7 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
                                                             return AppDivider();
                                                           },
                                                         )
-                                                      : NoDataWidget(),
+                                                      : Center(child: NoDataWidget()),
                                                 ),
                                               ),
                                             ],
