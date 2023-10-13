@@ -61,6 +61,8 @@ class AddEmailViewModel extends BasePageViewModel {
     _emailInputStream.stream.debounceTime(Duration(milliseconds: 800)).distinct().listen((email) {
       if (Validator.validateEmail(email)) {
         checkEmailAvailability();
+      } else {
+        isEmailAvailable = false;
       }
     });
 
@@ -72,6 +74,8 @@ class AddEmailViewModel extends BasePageViewModel {
         if (event.status == Status.SUCCESS) {
           isEmailAvailable = event.data?.isAvailable ?? false;
           isEmailExist = 0;
+        } else if (event.status == Status.ERROR) {
+          isEmailAvailable = false;
         }
         _checkUserNameResponse.safeAdd(event);
         validate();
