@@ -246,6 +246,8 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                       orElse: () => CheckKYCData()) ??
                                   CheckKYCData();
 
+                              print('KYC --->${kycData}');
+                              print('KYC --->${data.data?.content}');
                               if (kycData.type?.isNotEmpty ?? false) {
                                 if (kycData.type == 'MobileOTP') {
                                   Navigator.pushNamedAndRemoveUntil(
