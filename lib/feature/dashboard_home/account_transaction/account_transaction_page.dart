@@ -32,6 +32,12 @@ class AccountTransactionPageState
       provideBase(),
     );
   }
+
+  @override
+  Future<bool> onBackPressed(AccountTransactionViewModel model, {param}) {
+    model.animateBackToDashboard(context);
+    return super.onBackPressed(model);
+  }
 }
 
 class AccountTransactionPageArgument {

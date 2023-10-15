@@ -753,10 +753,9 @@ class AppHomePageViewNew extends BasePageViewWidget<AppHomeViewModel> {
 
                                                                                                   if (model.isRJ(
                                                                                                       currentStep)) {
-                                                                                                    Navigator.of(context).push(CustomRoute.swipeUpRoute(
-                                                                                                        RjFlightBookingPage(),
-                                                                                                        routeName:
-                                                                                                            RoutePaths.RjFlightBookingPage));
+                                                                                                    model.goToRJPage(
+                                                                                                        context);
+
                                                                                                   }
                                                                                                 },
                                                                                                 child:
