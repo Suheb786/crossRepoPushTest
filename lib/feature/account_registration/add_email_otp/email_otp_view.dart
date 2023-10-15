@@ -15,7 +15,6 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../ui/molecules/button/app_primary_button.dart';
-import '../../../ui/molecules/dialog/register/step_one/change_my_email_dialog/change_my_email_dialog.dart';
 import '../../../utils/color_utils.dart';
 
 class EmailOtpPageView extends BasePageViewWidget<EmailOtpViewModel> {
@@ -70,14 +69,19 @@ class EmailOtpPageView extends BasePageViewWidget<EmailOtpViewModel> {
                                   padding: EdgeInsets.only(top: 32.0.h),
                                   child: InkWell(
                                     onTap: () {
-                                      ChangeMyEmailDialog.show(context, onDismissed: () {
-                                        Navigator.pop(context);
-                                      }, onSelected: (email) {
-                                        Navigator.pop(context);
-                                        ProviderScope.containerOf(context)
-                                            .read(accountRegistrationViewModelProvider)
-                                            .updateEmail(email);
-                                      });
+                                      ProviderScope.containerOf(context)
+                                          .read(accountRegistrationViewModelProvider)
+                                          .previousPage();
+                                      model.otpController.clear();
+
+                                      // ChangeMyEmailDialog.show(context, onDismissed: () {
+                                      //   Navigator.pop(context);
+                                      // }, onSelected: (email) {
+                                      //   Navigator.pop(context);
+                                      //   ProviderScope.containerOf(context)
+                                      //       .read(accountRegistrationViewModelProvider)
+                                      //       .updateEmail(email);
+                                      // });
                                     },
                                     child: Text(
                                       S.of(context).changeMyEmail,
@@ -152,6 +156,7 @@ class EmailOtpPageView extends BasePageViewWidget<EmailOtpViewModel> {
                                   ProviderScope.containerOf(context)
                                       .read(accountRegistrationViewModelProvider)
                                       .previousPage();
+                                  model.otpController.clear();
                                 },
                                 child: Text(
                                   S.of(context).back,

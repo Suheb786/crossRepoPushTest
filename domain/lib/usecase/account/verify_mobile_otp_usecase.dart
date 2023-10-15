@@ -19,10 +19,11 @@ class OnboardingVerifyMobileOtpUsecase
 }
 
 class OnboardingVerifyMobileOtpUsecaseParams extends Params {
+  final String? MobileNo;
   final String? OTPCode;
   final bool? GetToken;
 
-  OnboardingVerifyMobileOtpUsecaseParams({this.OTPCode, this.GetToken = true});
+  OnboardingVerifyMobileOtpUsecaseParams({this.MobileNo, this.OTPCode, this.GetToken = true});
 
   @override
   Either<AppError, bool> verify() {

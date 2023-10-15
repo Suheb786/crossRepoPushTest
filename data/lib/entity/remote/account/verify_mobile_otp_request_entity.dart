@@ -3,6 +3,8 @@ part 'verify_mobile_otp_request_entity.g.dart';
 
 @JsonSerializable()
 class OnboardingVerifyMobileOtpRequestEntity {
+  @JsonKey(name: "MobileNumber")
+  final String? MobileNumber;
   @JsonKey(name: "OTPCode")
   final String? OTPCode;
   @JsonKey(name: "GetToken")
@@ -14,6 +16,7 @@ class OnboardingVerifyMobileOtpRequestEntity {
       _$OnboardingVerifyMobileOtpRequestEntityFromJson(json);
 
   OnboardingVerifyMobileOtpRequestEntity({
+    required this.MobileNumber,
     required this.OTPCode,
     required this.GetToken,
     required this.BaseClass,
