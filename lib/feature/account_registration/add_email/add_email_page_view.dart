@@ -53,8 +53,9 @@ class AddEmailPageView extends BasePageViewWidget<AddEmailViewModel> {
                     ProviderScope.containerOf(context)
                         .read(accountRegistrationViewModelProvider)
                         .updateEmail(model.emailController.text);
-
                     ProviderScope.containerOf(context).read(accountRegistrationViewModelProvider).nextPage();
+
+                    ProviderScope.containerOf(context).read(emailOtpViewModelProvider).updateTime();
                   } else if (passwordData.status == Status.ERROR) {
                     if (passwordData.appError!.type == ErrorType.PASSWORD_MISMATCH) {
                       model.passwordKey.currentState!.isValid = false;
@@ -229,7 +230,7 @@ class AddEmailPageView extends BasePageViewWidget<AddEmailViewModel> {
                                           );
                                         }),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(vertical: 16.0.h),
+                                      padding: EdgeInsets.symmetric(vertical: 24.0.h),
                                       child: InkWell(
                                         onTap: () {
                                           Navigator.pop(context);
