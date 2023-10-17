@@ -10,7 +10,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/step_two/student_job_income/student_job_income_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog.dart';
 import 'package:neo_bank/ui/molecules/register/add_income_widget.dart';
@@ -22,6 +21,8 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../../di/register/register_modules.dart';
+import '../../../../ui/molecules/button/app_primary_button.dart';
+import '../../../../utils/color_utils.dart';
 
 class StudentJobIncomePageView extends BasePageViewWidget<StudentJobIncomePageViewModel> {
   StudentJobIncomePageView(ProviderBase model) : super(model);
@@ -201,15 +202,32 @@ class StudentJobIncomePageView extends BasePageViewWidget<StudentJobIncomePageVi
                                       stream: model.allFieldValidatorStream,
                                       initialData: false,
                                       dataBuilder: (context, data) {
-                                        return Visibility(
-                                          visible: data!,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(top: 8.0.t),
-                                            child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
-                                          ),
+                                        return AppPrimaryButton(
+                                          text: S.of(context).next,
+                                          isDisabled: !data!,
+                                          onPressed: () {
+                                            FocusScope.of(context).unfocus();
+                                            model.jobIncomeDetails();
+                                          },
                                         );
                                       },
-                                    )
+                                    ),
+                                    Center(
+                                      child: Padding(
+                                        padding: EdgeInsets.only(top: 16.h),
+                                        child: InkWell(
+                                          onTap: () {},
+                                          child: Text(
+                                            S.current.back,
+                                            style: TextStyle(
+                                              color: AppColor.brightBlue,
+                                              fontSize: 14.t,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               )),

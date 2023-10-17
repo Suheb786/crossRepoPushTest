@@ -9,7 +9,6 @@ import 'package:neo_bank/feature/register/step_three/purpose_of_account_opening/
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/purpose_of_account_opening/purpose_of_account_opening_dialog.dart';
 import 'package:neo_bank/ui/molecules/register/expected_transactions_selector_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -20,6 +19,8 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../../ui/molecules/button/app_primary_button.dart';
 
 class PurposeOfAccountOpeningPageView extends BasePageViewWidget<PurposeOfAccountOpeningPageViewModel> {
   PurposeOfAccountOpeningPageView(ProviderBase model) : super(model);
@@ -197,19 +198,34 @@ class PurposeOfAccountOpeningPageView extends BasePageViewWidget<PurposeOfAccoun
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.only(top: 24.h),
+                                  padding: EdgeInsetsDirectional.only(top: 24.h, bottom: 16.h),
                                   child: AppStreamBuilder<bool>(
                                       stream: model.allFieldValidatorStream,
                                       initialData: false,
                                       dataBuilder: (context, isValid) {
-                                        return (isValid!)
-                                            ? AnimatedButton(
-                                                buttonText: S.of(context).swipeToProceed,
-                                                buttonHeight: 50,
-                                              )
-                                            : Container();
+                                        return AppPrimaryButton(
+                                          text: S.of(context).next,
+                                          isDisabled: !isValid!,
+                                          onPressed: () {
+                                            FocusScope.of(context).unfocus();
+                                            model.validatePurposeOfAccountOpening();
+                                          },
+                                        );
                                       }),
-                                )
+                                ),
+                                Center(
+                                  child: InkWell(
+                                    onTap: () {},
+                                    child: Text(
+                                      S.current.back,
+                                      style: TextStyle(
+                                        color: AppColor.brightBlue,
+                                        fontSize: 14.t,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ),

@@ -19,107 +19,99 @@ class CheckScheduledVideoCallPageView extends BasePageViewWidget<CheckScheduledV
 
   @override
   Widget build(BuildContext context, model) {
-    return GestureDetector(
-      onHorizontalDragUpdate: (details) {
-        if (details.primaryDelta!.isNegative) {
-          ///TODO: navigate according to status
-        }
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 24.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 24.w),
-                      child: AppSvg.asset(AssetUtils.swiggleHello, height: 241.h),
-                    ),
-                    AppStreamBuilder<Resource<LogoutResponse>>(
-                        stream: model.logoutStream,
-                        initialData: Resource.none(),
-                        onData: (response) {
-                          if (response.status == Status.SUCCESS) {
-                            Navigator.popUntil(context, ModalRoute.withName(RoutePaths.OnBoarding));
-                          }
-                        },
-                        dataBuilder: (context, data) {
-                          return Padding(
-                            padding: EdgeInsets.only(top: 62.0.h),
-                            child: InkWell(
-                              onTap: () {
-                                model.logOutUser();
-                              },
-                              child: AppSvg.asset(AssetUtils.logout),
-                            ),
-                          );
-                        }),
-                  ],
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 24.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24.w),
+                    child: AppSvg.asset(AssetUtils.swiggleHello, height: 241.h),
+                  ),
+                  AppStreamBuilder<Resource<LogoutResponse>>(
+                      stream: model.logoutStream,
+                      initialData: Resource.none(),
+                      onData: (response) {
+                        if (response.status == Status.SUCCESS) {
+                          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.OnBoarding));
+                        }
+                      },
+                      dataBuilder: (context, data) {
+                        return Padding(
+                          padding: EdgeInsets.only(top: 62.0.h),
+                          child: InkWell(
+                            onTap: () {
+                              model.logOutUser();
+                            },
+                            child: AppSvg.asset(AssetUtils.logout),
+                          ),
+                        );
+                      }),
+                ],
+              ),
+              SizedBox(
+                height: 40.h,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                child: Text(
+                  S.of(context).videoCallDueNow,
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      fontSize: 20.t,
+                      fontWeight: FontWeight.w500,
+                      color: Theme.of(context).colorScheme.secondary),
                 ),
-                SizedBox(
-                  height: 40.h,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.w),
-                  child: Text(
-                    S.of(context).videoCallDueNow,
-                    style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        fontSize: 20.t,
-                        fontWeight: FontWeight.w500,
-                        color: Theme.of(context).colorScheme.secondary),
+              ),
+              SizedBox(
+                height: 24.h,
+              ),
+            ],
+          ),
+          Spacer(),
+          Column(
+            children: [
+              Visibility(
+                visible: true,
+                child: Center(
+                  child: AnimatedButton(
+                    buttonText: S.of(context).swipeToProceed,
+                    borderColor: Theme.of(context).colorScheme.secondary,
+                    textColor: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
-                SizedBox(
-                  height: 24.h,
+              ),
+              SizedBox(
+                height: 50.h,
+              ),
+              InkWell(
+                onTap: () {
+                  ///TODO:take to reschedule call
+                },
+                child: Text(
+                  S.of(context).rescheduleTheCall,
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      fontSize: 14.t,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1,
+                      color: Theme.of(context).colorScheme.secondary),
                 ),
-              ],
-            ),
-            Spacer(),
-            Column(
-              children: [
-                Visibility(
-                  ///TODO:hide when call is missed
-                  visible: true,
-                  child: Center(
-                    child: AnimatedButton(
-                      buttonText: S.of(context).swipeToProceed,
-                      borderColor: Theme.of(context).colorScheme.secondary,
-                      textColor: Theme.of(context).colorScheme.secondary,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 50.h,
-                ),
-                InkWell(
-                  onTap: () {
-                    ///TODO:take to reschedule call
-                  },
-                  child: Text(
-                    S.of(context).rescheduleTheCall,
-                    style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        fontSize: 14.t,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 1,
-                        color: Theme.of(context).colorScheme.secondary),
-                  ),
-                ),
-                SizedBox(
-                  height: 36.h,
-                ),
-              ],
-            )
-          ],
-        ),
+              ),
+              SizedBox(
+                height: 36.h,
+              ),
+            ],
+          )
+        ],
       ),
     );
   }

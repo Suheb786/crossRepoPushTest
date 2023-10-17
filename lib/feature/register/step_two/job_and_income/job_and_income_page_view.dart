@@ -15,7 +15,6 @@ import 'package:neo_bank/feature/register/step_two/job_and_income/job_and_income
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialog/state_city_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog.dart';
@@ -32,6 +31,8 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../../ui/molecules/button/app_primary_button.dart';
 
 class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel> {
   JobAndIncomePageView(ProviderBase model) : super(model);
@@ -490,20 +491,35 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                           ),
                           Center(
                             child: Padding(
-                              padding: EdgeInsets.only(top: 32.h),
+                              padding: EdgeInsets.only(top: 32.h, bottom: 16.h),
                               child: AppStreamBuilder<bool>(
                                   stream: model.allFieldValidatorStream,
                                   initialData: false,
                                   dataBuilder: (context, isValid) {
-                                    return (isValid!)
-                                        ? AnimatedButton(
-                                            buttonText: S.of(context).swipeToProceed,
-                                            buttonHeight: 50,
-                                          )
-                                        : Container();
+                                    return AppPrimaryButton(
+                                      text: S.of(context).next,
+                                      isDisabled: !isValid!,
+                                      onPressed: () {
+                                        FocusScope.of(context).unfocus();
+                                        model.validateJobAndIncomeDetails();
+                                      },
+                                    );
                                   }),
                             ),
-                          )
+                          ),
+                          Center(
+                            child: InkWell(
+                              onTap: () {},
+                              child: Text(
+                                S.current.back,
+                                style: TextStyle(
+                                  color: AppColor.brightBlue,
+                                  fontSize: 14.t,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
