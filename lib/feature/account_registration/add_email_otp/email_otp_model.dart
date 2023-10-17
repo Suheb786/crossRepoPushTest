@@ -1,5 +1,9 @@
+import 'package:domain/usecase/user/change_my_number_usecase.dart';
+import 'package:domain/usecase/user/create_password_usecase.dart';
+import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:domain/usecase/user/resend_email_otp_usecase.dart';
 import 'package:domain/usecase/user/verify_email_otp_usecase.dart';
+import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,12 +32,8 @@ class EmailOtpViewModel extends BasePageViewModel {
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
 
-  void updateTime() {
-    endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
-    notifyListeners();
-  }
-
-  void resendOTP(BuildContext context) {
+  void updateTime(BuildContext context) {
+    otpController.clear();
     resendOtp(context);
   }
 
@@ -87,8 +87,6 @@ class EmailOtpViewModel extends BasePageViewModel {
         updateLoader();
         if (event.status == Status.ERROR) {
           showErrorState();
-        } else if (event.status == Status.SUCCESS) {
-          updateTime();
         }
       });
     });

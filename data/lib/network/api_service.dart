@@ -263,6 +263,7 @@ import 'package:data/entity/remote/upload_document/save_upload_document_request_
 import 'package:data/entity/remote/upload_document/save_upload_document_response_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_response_entity.dart';
+import 'package:data/entity/remote/user/account_registration/update_journey_request_entity.dart';
 import 'package:data/entity/remote/user/biometric_login/get_cipher_response_entity.dart';
 import 'package:data/entity/remote/user/change_my_number/change_my_number_request_entity.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
@@ -346,10 +347,10 @@ abstract class ApiService {
   @POST("/auth/loginV5")
   Future<HttpResponse<LoginResponseEntity>> loginUser(@Body() LoginUserRequest loginUserRequest);
 
-  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/api/Onboarding/SendEmailOtp")
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/SendEmailOtp")
   Future<HttpResponse<BaseResponse>> sendEmailOTP(@Body() SendEmailOTPRequest sendEmailOTPRequest);
 
-  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/api/Onboarding/VerifyEmailOtp")
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/VerifyEmailOtp")
   Future<HttpResponse<BaseResponse>> verifyEmailOTP(@Body() VerifyEmailOTPRequest sendEmailOTPRequest);
 
   @POST("/auth/RegisterV5")
@@ -1245,10 +1246,13 @@ abstract class ApiService {
   Future<HttpResponse<OffersCategoriesResponseEntity>> getOfferCategories(
       @Body() OffersCategoriesRequestEntity request);
 
-  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/api/Onboarding/SendMobileOtp")
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/SendMobileOtp")
   Future<HttpResponse<ResponseEntity>> sendMobileOTP(@Body() OnboardingSendMobileOTPRequestEntity request);
 
-  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/api/Onboarding/VerifyMobileOtp")
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/VerifyMobileOtp")
   Future<HttpResponse<ResponseEntity>> verifyMobileOTP(
       @Body() OnboardingVerifyMobileOtpRequestEntity request);
+
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/UpdateJourney")
+  Future<HttpResponse<ResponseEntity>> updateJourney(@Body() UpdateJourneyRequestEntity request);
 }
