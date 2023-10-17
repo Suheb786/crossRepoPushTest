@@ -32,7 +32,7 @@ class PurchaseVoucherSuccessPageState
   }
 
   @override
-  Future<bool> onBackPressed(PurchaseVoucherSuccessPageViewModel model, {param}) {
+  Future<bool> onBackPressed(PurchaseVoucherSuccessPageViewModel model, {param}) async {
     final provider = ProviderScope.containerOf(context).read(
       evoucherViewModelProvider,
     );
@@ -44,7 +44,7 @@ class PurchaseVoucherSuccessPageState
     provider.getVoucherCategories();
     // to switch to history tab...
     provider.switchTabSubject.safeAdd(1);
-    return super.onBackPressed(model);
+    return false;
   }
 }
 

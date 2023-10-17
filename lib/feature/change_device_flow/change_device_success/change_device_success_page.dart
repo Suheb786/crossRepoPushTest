@@ -21,4 +21,10 @@ class ChangeDeviceSuccessPageState
   Widget buildView(BuildContext context, ChangeDeviceSuccessPageViewModel model) {
     return ChangeDeviceSuccessPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(ChangeDeviceSuccessPageViewModel model, {param}) async {
+    model.checkKycStatus();
+    return false;
+  }
 }

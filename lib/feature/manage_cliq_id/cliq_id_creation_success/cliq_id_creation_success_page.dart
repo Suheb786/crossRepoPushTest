@@ -32,10 +32,10 @@ class CliqIdCreationSuccessPageState
   }
 
   @override
-  Future<bool> onBackPressed(CliqIdCreationSuccessPageViewModel model, {param}) {
+  Future<bool> onBackPressed(CliqIdCreationSuccessPageViewModel model, {param}) async {
     ProviderScope.containerOf(context).read(cliqIdListViewModelProvider).getAlias(true);
     Navigator.pop(context);
-    return super.onBackPressed(model);
+    return false;
   }
 }
 
