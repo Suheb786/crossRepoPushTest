@@ -49,6 +49,7 @@ final validateOtpViewModelProvider = ChangeNotifierProvider.autoDispose<Validate
     ref.read(sendMobileOTPUsecaseProvider),
     ref.read(onboardingVerifyMobileOtpUsecase),
     ref.read(registerProspectUseCaseProvider),
+    ref.read(updateJourneyUseCaseProvider),
   ),
 );
 

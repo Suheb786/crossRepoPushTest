@@ -8,6 +8,7 @@ import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/base/base_response.dart';
 import 'package:data/entity/remote/user/account_registration/send_email_otp_request.dart';
+import 'package:data/entity/remote/user/account_registration/update_journey_request_entity.dart';
 import 'package:data/entity/remote/user/additional_income.dart';
 import 'package:data/entity/remote/user/biometric_login/get_cipher_response_entity.dart';
 import 'package:data/entity/remote/user/change_my_number/change_my_number_request_entity.dart';
@@ -66,6 +67,7 @@ import 'package:domain/model/user/confirm_application_data_get/fatca_crs_info.da
 import 'package:domain/model/user/confirm_application_data_get/job_detail_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
 import 'package:domain/model/user/user.dart';
+import 'package:domain/usecase/user/update_journey_usecase.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../../entity/remote/user/account_registration/verify_email_otp_request.dart';
@@ -406,11 +408,9 @@ class UserRemoteDSImpl extends UserRemoteDS {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     User? user = await _userLocalDS.getCurrentUser();
     String userId = '';
-    if (user != null) {
-      userId = user.id ?? '';
-      // print('user private key--->${user.privatePEM}');
-      //userId = await decryptData(content: cipher, publicKey: user.publicPEM, privateKey: user.privatePEM);
-    }
+    userId = user.id ?? '';
+    // print('user private key--->${user.privatePEM}');
+    //userId = await decryptData(content: cipher, publicKey: user.publicPEM, privateKey: user.privatePEM);
 
     return _apiService.androidLogin(AndroidLoginRequestEntity(
       uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
@@ -467,6 +467,18 @@ class UserRemoteDSImpl extends UserRemoteDS {
       email: email,
       otpCode: otpCode,
       baseData: baseData.toJson(),
+    ));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> updateJourney({required UpdateJourneyUseCaseParams params}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.updateJourney(UpdateJourneyRequestEntity(
+      userID: params.userID,
+      refID: params.refID,
+      journeyID: params.journeyID,
+      status: params.status,
+      baseClass: baseData.toJson(),
     ));
   }
 }
