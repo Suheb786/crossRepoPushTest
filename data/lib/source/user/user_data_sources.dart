@@ -29,7 +29,7 @@ import 'package:domain/model/user/confirm_application_data_get/job_detail_info.d
 import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:retrofit/dio.dart';
-
+import 'package:domain/usecase/user/update_journey_usecase.dart';
 import '../../entity/remote/base/base_response.dart';
 
 abstract class UserRemoteDS {
@@ -55,55 +55,58 @@ abstract class UserRemoteDS {
     String? referralCode,
   });
 
-  Future<HttpResponse<SaveIdInfoResponseEntity>> saveIdInfo({String? id,
-    String? type,
-    String? fullName,
-    String? middleName,
-    String? firstName,
-    String? familyName,
-    String? idNumber,
-    String? dob,
-    String? nationality,
-    String? doe,
-    String? gender,
-    String? motherName,
-    String? documentCode,
-    String? documentNumber,
-    String? issuer,
-    String? optionalData1,
-    String? optionalData2,
-    String? mrtDraw,
-    String? frontCardImage,
-    String? backCardImage,
-    String? personFaceImage,
-    bool? getToken,
-    bool? isimtfBlacklist,
-    String? instanceID,
-    double? scanPercentage,
-    String? placeOfBirth,
-    String? doi});
+  Future<HttpResponse<SaveIdInfoResponseEntity>> saveIdInfo(
+      {String? id,
+      String? type,
+      String? fullName,
+      String? middleName,
+      String? firstName,
+      String? familyName,
+      String? idNumber,
+      String? dob,
+      String? nationality,
+      String? doe,
+      String? gender,
+      String? motherName,
+      String? documentCode,
+      String? documentNumber,
+      String? issuer,
+      String? optionalData1,
+      String? optionalData2,
+      String? mrtDraw,
+      String? frontCardImage,
+      String? backCardImage,
+      String? personFaceImage,
+      bool? getToken,
+      bool? isimtfBlacklist,
+      String? instanceID,
+      double? scanPercentage,
+      String? placeOfBirth,
+      String? doi});
 
-  Future<HttpResponse<SaveJobDetailsResponseEntity>> saveJobInformation({String? employeeName,
-    String? occupation,
-    String? annualIncome,
-    String? employerCountry,
-    String? employerCity,
-    String? employerContact,
-    bool? additionalIncome,
-    String? businessType,
-    String? specifyBusinessType,
-    String? mainSource,
-    List<AdditionalIncomeType>? additionalIncomeType});
+  Future<HttpResponse<SaveJobDetailsResponseEntity>> saveJobInformation(
+      {String? employeeName,
+      String? occupation,
+      String? annualIncome,
+      String? employerCountry,
+      String? employerCity,
+      String? employerContact,
+      bool? additionalIncome,
+      String? businessType,
+      String? specifyBusinessType,
+      String? mainSource,
+      List<AdditionalIncomeType>? additionalIncomeType});
 
-  Future<HttpResponse<SaveProfileStatusResponseEntity>> saveProfileInformation({bool? married,
-    bool? specialPerson,
-    bool? anyOtherNationality,
-    bool? beneficialOwnerAccount,
-    String? otherNationality,
-    String? employmentStatus,
-    String? spouseName,
-    bool? isEmployed,
-    String? natureOfSpecialNeeds});
+  Future<HttpResponse<SaveProfileStatusResponseEntity>> saveProfileInformation(
+      {bool? married,
+      bool? specialPerson,
+      bool? anyOtherNationality,
+      bool? beneficialOwnerAccount,
+      String? otherNationality,
+      String? employmentStatus,
+      String? spouseName,
+      bool? isEmployed,
+      String? natureOfSpecialNeeds});
 
   Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>> saveResidenceInformation({
     String? residentCountry,
@@ -129,11 +132,12 @@ abstract class UserRemoteDS {
 
   Future<HttpResponse<LogoutResponseEntity>> logout();
 
-  Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>> confirmApplicationDataSet({CountryResidenceInfo? countryResidenceInfo,
-    ProfileStatusInfo? profileStatusInfo,
-    JobDetailInfo? jobDetailInfo,
-    FatcaCrsInfo? fatcaCrsInfo,
-    AccountPurposeInfo? accountPurposeInfo});
+  Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>> confirmApplicationDataSet(
+      {CountryResidenceInfo? countryResidenceInfo,
+      ProfileStatusInfo? profileStatusInfo,
+      JobDetailInfo? jobDetailInfo,
+      FatcaCrsInfo? fatcaCrsInfo,
+      AccountPurposeInfo? accountPurposeInfo});
 
   Future<HttpResponse<ResponseEntity>> disableFingerPrint();
 
@@ -152,6 +156,7 @@ abstract class UserRemoteDS {
   Future<HttpResponse<ResponseEntity>> changeMyNumber({String mobileNo, String mobileCode});
 
   Future<HttpResponse<CurrentVersionResponseEntity>> checkVersionUpdate({String? clear});
+  Future<HttpResponse<ResponseEntity>> updateJourney({required UpdateJourneyUseCaseParams params});
 }
 
 abstract class UserLocalDS {
