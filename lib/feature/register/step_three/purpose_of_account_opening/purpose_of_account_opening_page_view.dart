@@ -46,105 +46,120 @@ class PurposeOfAccountOpeningPageView extends BasePageViewWidget<PurposeOfAccoun
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
                       Future.delayed(Duration(milliseconds: 500), () {
-                        ProviderScope.containerOf(context)
-                            .read(registerViewModelProvider)
-                            .registrationStepsController
-                            .nextPage(duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
+                        ProviderScope.containerOf(context).read(registerViewModelProvider).goToNextPage();
                       });
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
                   },
                   dataBuilder: (context, response) {
-                    return GestureDetector(
-                      onHorizontalDragEnd: (details) {
-                        FocusScope.of(context).unfocus();
-                        if (StringUtils.isDirectionRTL(context)) {
-                          if (!details.primaryVelocity!.isNegative) {
-                            model.validatePurposeOfAccountOpening();
-                          }
-                        } else {
-                          if (details.primaryVelocity!.isNegative) {
-                            model.validatePurposeOfAccountOpening();
-                          }
-                        }
-                      },
-                      child: Card(
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.only(
-                              bottom: MediaQuery.of(context).viewInsets.bottom - 50.h <= 0
-                                  ? 0
-                                  : MediaQuery.of(context).viewInsets.bottom - 48.h),
-                          child: SingleChildScrollView(
-                            padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                            physics: ClampingScrollPhysics(),
-                            child: Column(
-                              children: [
-                                AppTextField(
-                                  labelText: S.of(context).purposeOfAccountOpening,
-                                  hintText: S.of(context).pleaseSelect,
-                                  controller: model.purposeOfAccountOpeningController,
-                                  key: model.purposeOfAccountOpeningKey,
-                                  readOnly: true,
-                                  onPressed: () {
-                                    PurposeOfAccountOpeningDialog.show(context, onDismissed: () {
-                                      Navigator.pop(context);
-                                    }, onSelected: (value, englishValue) {
-                                      Navigator.pop(context);
-                                      model.updatePurposeOfAccountOpening(value, englishValue);
-                                      model.isValid();
-                                    });
-                                  },
-                                  suffixIcon: (value, data) {
-                                    return Container(
-                                        height: 16.h,
-                                        width: 16.w,
-                                        padding: EdgeInsetsDirectional.only(end: 8.w),
-                                        child:
-                                            AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
-                                  },
+                    return Card(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.only(
+                            bottom: MediaQuery.of(context).viewInsets.bottom - 50.h <= 0
+                                ? 0
+                                : MediaQuery.of(context).viewInsets.bottom - 48.h),
+                        child: SingleChildScrollView(
+                          padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+                          physics: ClampingScrollPhysics(),
+                          child: Column(
+                            children: [
+                              AppTextField(
+                                labelText: S.of(context).purposeOfAccountOpening,
+                                hintText: S.of(context).pleaseSelect,
+                                controller: model.purposeOfAccountOpeningController,
+                                key: model.purposeOfAccountOpeningKey,
+                                readOnly: true,
+                                onPressed: () {
+                                  PurposeOfAccountOpeningDialog.show(context, onDismissed: () {
+                                    Navigator.pop(context);
+                                  }, onSelected: (value, englishValue) {
+                                    Navigator.pop(context);
+                                    model.updatePurposeOfAccountOpening(value, englishValue);
+                                    model.isValid();
+                                  });
+                                },
+                                suffixIcon: (value, data) {
+                                  return Container(
+                                      height: 16.h,
+                                      width: 16.w,
+                                      padding: EdgeInsetsDirectional.only(end: 8.w),
+                                      child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
+                                },
+                              ),
+                              SizedBox(
+                                height: 24.h,
+                              ),
+                              AppStreamBuilder<Resource<List<ExpectedTransactions>>>(
+                                stream: model.getExpectedTransactionsStream,
+                                initialData: Resource.none(),
+                                dataBuilder: (context, expectedTransactions) {
+                                  return Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        S.of(context).typeOfExpectedTransactions,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            color: Theme.of(context).primaryColorDark,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 14.t),
+                                      ),
+                                      ListView.builder(
+                                        itemBuilder: (context, index) {
+                                          return ExpectedTransactionsSelectorWidget(
+                                            expectedTransactions: expectedTransactions!.data![index],
+                                            onTap: () {
+                                              model.selectExpectedTransactions(index);
+                                            },
+                                          );
+                                        },
+                                        physics: ClampingScrollPhysics(),
+                                        padding: EdgeInsetsDirectional.only(top: 16.h, bottom: 8.h),
+                                        itemCount: expectedTransactions!.data!.length,
+                                        shrinkWrap: true,
+                                      )
+                                    ],
+                                  );
+                                },
+                              ),
+                              AppTextField(
+                                labelText: S.of(context).expectedMonthlyAmount.toUpperCase(),
+                                hintText: '',
+                                controller: model.expectedMonthlyTransactionController,
+                                key: model.expectedMonthlyTransactionKey,
+                                inputType: TextInputType.number,
+                                inputAction: TextInputAction.done,
+                                prefixIcon: () {
+                                  return Padding(
+                                    padding: EdgeInsetsDirectional.only(top: 8.0.h, end: 8.w),
+                                    child: Text(
+                                      S.of(context).JOD,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 14.t,
+                                          fontWeight: FontWeight.w600,
+                                          color: Theme.of(context).primaryTextTheme.bodyMedium?.color!),
+                                    ),
+                                  );
+                                },
+                                onChanged: (value) {
+                                  model.isValid();
+                                },
+                              ),
+                              Visibility(
+                                visible: false,
+                                child: SizedBox(
+                                  height: 16.h,
                                 ),
-                                SizedBox(
-                                  height: 24.h,
-                                ),
-                                AppStreamBuilder<Resource<List<ExpectedTransactions>>>(
-                                  stream: model.getExpectedTransactionsStream,
-                                  initialData: Resource.none(),
-                                  dataBuilder: (context, expectedTransactions) {
-                                    return Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          S.of(context).typeOfExpectedTransactions,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              color: Theme.of(context).primaryColorDark,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 14.t),
-                                        ),
-                                        ListView.builder(
-                                          itemBuilder: (context, index) {
-                                            return ExpectedTransactionsSelectorWidget(
-                                              expectedTransactions: expectedTransactions!.data![index],
-                                              onTap: () {
-                                                model.selectExpectedTransactions(index);
-                                              },
-                                            );
-                                          },
-                                          physics: ClampingScrollPhysics(),
-                                          padding: EdgeInsetsDirectional.only(top: 16.h, bottom: 8.h),
-                                          itemCount: expectedTransactions!.data!.length,
-                                          shrinkWrap: true,
-                                        )
-                                      ],
-                                    );
-                                  },
-                                ),
-                                AppTextField(
-                                  labelText: S.of(context).expectedMonthlyAmount.toUpperCase(),
+                              ),
+                              Visibility(
+                                visible: false,
+                                child: AppTextField(
+                                  labelText: S.of(context).expectedAnnualTransactions,
                                   hintText: '',
-                                  controller: model.expectedMonthlyTransactionController,
-                                  key: model.expectedMonthlyTransactionKey,
+                                  controller: model.expectedAnnualTransactionController,
+                                  key: model.expectedAnnualTransactionKey,
                                   inputType: TextInputType.number,
                                   inputAction: TextInputAction.done,
                                   prefixIcon: () {
@@ -156,7 +171,7 @@ class PurposeOfAccountOpeningPageView extends BasePageViewWidget<PurposeOfAccoun
                                             fontFamily: StringUtils.appFont,
                                             fontSize: 14.t,
                                             fontWeight: FontWeight.w600,
-                                            color: Theme.of(context).primaryTextTheme.bodyMedium?.color!),
+                                            color: Theme.of(context).primaryTextTheme.bodyLarge?.color!),
                                       ),
                                     );
                                   },
@@ -164,70 +179,24 @@ class PurposeOfAccountOpeningPageView extends BasePageViewWidget<PurposeOfAccoun
                                     model.isValid();
                                   },
                                 ),
-                                Visibility(
-                                  visible: false,
-                                  child: SizedBox(
-                                    height: 16.h,
-                                  ),
-                                ),
-                                Visibility(
-                                  visible: false,
-                                  child: AppTextField(
-                                    labelText: S.of(context).expectedAnnualTransactions,
-                                    hintText: '',
-                                    controller: model.expectedAnnualTransactionController,
-                                    key: model.expectedAnnualTransactionKey,
-                                    inputType: TextInputType.number,
-                                    inputAction: TextInputAction.done,
-                                    prefixIcon: () {
-                                      return Padding(
-                                        padding: EdgeInsetsDirectional.only(top: 8.0.h, end: 8.w),
-                                        child: Text(
-                                          S.of(context).JOD,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontSize: 14.t,
-                                              fontWeight: FontWeight.w600,
-                                              color: Theme.of(context).primaryTextTheme.bodyLarge?.color!),
-                                        ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.only(top: 24.h, bottom: 16.h),
+                                child: AppStreamBuilder<bool>(
+                                    stream: model.allFieldValidatorStream,
+                                    initialData: false,
+                                    dataBuilder: (context, isValid) {
+                                      return AppPrimaryButton(
+                                        text: S.of(context).next,
+                                        isDisabled: !isValid!,
+                                        onPressed: () {
+                                          FocusScope.of(context).unfocus();
+                                          model.validatePurposeOfAccountOpening();
+                                        },
                                       );
-                                    },
-                                    onChanged: (value) {
-                                      model.isValid();
-                                    },
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.only(top: 24.h, bottom: 16.h),
-                                  child: AppStreamBuilder<bool>(
-                                      stream: model.allFieldValidatorStream,
-                                      initialData: false,
-                                      dataBuilder: (context, isValid) {
-                                        return AppPrimaryButton(
-                                          text: S.of(context).next,
-                                          isDisabled: !isValid!,
-                                          onPressed: () {
-                                            FocusScope.of(context).unfocus();
-                                            model.validatePurposeOfAccountOpening();
-                                          },
-                                        );
-                                      }),
-                                ),
-                                Center(
-                                  child: InkWell(
-                                    onTap: () {},
-                                    child: Text(
-                                      S.current.back,
-                                      style: TextStyle(
-                                        color: AppColor.brightBlue,
-                                        fontSize: 14.t,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                                    }),
+                              ),
+                            ],
                           ),
                         ),
                       ),

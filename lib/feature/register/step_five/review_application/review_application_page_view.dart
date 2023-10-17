@@ -734,19 +734,6 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                                     }),
                                                               ),
                                                             ),
-                                                            Center(
-                                                              child: InkWell(
-                                                                onTap: () {},
-                                                                child: Text(
-                                                                  S.current.back,
-                                                                  style: TextStyle(
-                                                                    color: AppColor.brightBlue,
-                                                                    fontSize: 14.t,
-                                                                    fontWeight: FontWeight.w600,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
                                                           ],
                                                         ),
                                                       ),

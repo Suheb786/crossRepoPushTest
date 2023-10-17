@@ -46,7 +46,7 @@ class ValidateOtpViewModel extends BasePageViewModel {
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
 
-  void updateTime() {
+  void updateTimer() {
     endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
     notifyListeners();
   }
@@ -191,8 +191,7 @@ class ValidateOtpViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
-          updateTime();
+          updateTimer();
           listenForSmsCode();
         }
       });

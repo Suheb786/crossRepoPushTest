@@ -16,7 +16,6 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
-import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../../ui/molecules/button/app_primary_button.dart';
 
@@ -153,18 +152,6 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                                 Navigator.pushReplacementNamed(context, RoutePaths.CardDelivery);
                               }
                             },
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 14.0.h),
-                            child: Text(
-                              S.of(context).cardDelivery,
-                              style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).colorScheme.secondary,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                              ),
-                            ),
                           ),
                           SizedBox(
                             height: 32.h,
