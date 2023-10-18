@@ -248,19 +248,12 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
 
                               if (kycData.type?.isNotEmpty ?? false) {
                                 if (kycData.type == 'MobileOTP') {
-                                  // Navigator.pushNamedAndRemoveUntil(
-                                  //     context, RoutePaths.AccountRegistration, (route) => false,
-                                  //     arguments: AccountRegistrationParams(
-                                  //         kycData: kycData,
-                                  //         mobileCode: loginData!.data!.mobileCode!,
-                                  //         mobileNumber: loginData.data!.mobile!));
-
                                   Navigator.pushNamedAndRemoveUntil(
-                                      context, RoutePaths.Registration, (route) => false,
-                                      arguments: RegisterPageParams(
-                                        applicationId: model.applicationId,
-                                        kycData: kycData,
-                                      ));
+                                      context, RoutePaths.AccountRegistration, (route) => false,
+                                      arguments: AccountRegistrationParams(
+                                          kycData: kycData,
+                                          mobileCode: loginData!.data!.mobileCode!,
+                                          mobileNumber: loginData.data!.mobile!));
                                 } else {
                                   Navigator.pushNamedAndRemoveUntil(
                                       context, RoutePaths.Registration, (route) => false,
