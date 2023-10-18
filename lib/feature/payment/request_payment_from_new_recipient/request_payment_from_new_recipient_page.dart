@@ -41,10 +41,23 @@ class RequestPaymentFromNewRecipientPageState
   Widget buildView(BuildContext context, RequestPaymentFromNewRecipientViewModel model) {
     return RequestPaymentFromNewRecipientPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(RequestPaymentFromNewRecipientViewModel model, {param}) async {
+    var parentModel =
+        ProviderScope.containerOf(context).read(requestPaymentFromNewRecipientViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }
 
 class RequestPaymentFromNewRecipientArgument {
   Account account;
   String currentPin;
+
   RequestPaymentFromNewRecipientArgument({required this.account, required this.currentPin});
 }

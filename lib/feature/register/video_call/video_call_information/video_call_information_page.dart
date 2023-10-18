@@ -26,4 +26,15 @@ class VideoCallInformationPageState
   Widget buildView(BuildContext context, VideoCallInformationPageViewModel model) {
     return VideoCallInformationPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(VideoCallInformationPageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(videoCallViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

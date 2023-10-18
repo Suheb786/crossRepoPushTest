@@ -164,7 +164,7 @@ class OtpPurchaseEvoucherWithoutRegionPageView
                                     InkWell(
                                       onTap: () {
                                         ProviderScope.containerOf(context)
-                                            .read(purchaseEVoucherWithoutRegionPageViewModel(model.argument))
+                                            .read(purchaseEVoucherWithoutRegionPageViewModel)
                                             .previousPage();
                                       },
                                       child: Text(
