@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
 import 'package:riverpod/src/framework.dart';
@@ -18,10 +19,7 @@ class AddBeneficiaryPage extends BasePage<AddBeneficiaryPageViewModel> {
   }
 }
 
-class AddBeneficiaryPageState extends BaseStatefulPage<AddBeneficiaryPageViewModel, AddBeneficiaryPage>
-    with AutomaticKeepAliveClientMixin {
-  AddBeneficiaryPageState() : super(subscribeVisibilityEvents: true);
-
+class AddBeneficiaryPageState extends BaseStatefulPage<AddBeneficiaryPageViewModel, AddBeneficiaryPage> {
   @override
   Widget buildView(BuildContext context, AddBeneficiaryPageViewModel model) {
     return AddBeneficiaryPageView(provideBase());
@@ -46,13 +44,15 @@ class AddBeneficiaryPageState extends BaseStatefulPage<AddBeneficiaryPageViewMod
   }
 
   @override
-  Widget build(BuildContext context) {
-    super.build(context);
-    return stateBuild(context);
+  Future<bool> onBackPressed(AddBeneficiaryPageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(addBeneficiaryViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
 
 class AddBeneficiaryPageArguments {

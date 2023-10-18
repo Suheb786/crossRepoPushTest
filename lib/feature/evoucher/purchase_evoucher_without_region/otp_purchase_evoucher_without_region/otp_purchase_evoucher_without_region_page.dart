@@ -58,9 +58,7 @@ class EnterOtpForEVoucherCategoryPurchasePageState
     super.initState();
     listenForCode();
 
-    SmsAutoFill().getAppSignature.then((signature) {
-      print('inside signature---->$signature');
-    });
+    SmsAutoFill().getAppSignature.then((signature) {});
   }
 
   @override
@@ -70,8 +68,18 @@ class EnterOtpForEVoucherCategoryPurchasePageState
 
   @override
   void dispose() {
-    print('inside dispose');
     super.dispose();
     cancel();
+  }
+
+  @override
+  Future<bool> onBackPressed(OtpPurchaseEvoucherWithoutRegionPageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(purchaseEVoucherWithoutRegionPageViewModel);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
   }
 }

@@ -10,8 +10,8 @@ class SendToNewRecipientPage extends BasePage<SendToNewRecipientViewModel> {
   SendToNewRecipientPageState createState() => SendToNewRecipientPageState();
 }
 
-class SendToNewRecipientPageState
-    extends BaseStatefulPage<SendToNewRecipientViewModel, SendToNewRecipientPage> {
+class SendToNewRecipientPageState extends BaseStatefulPage<
+    SendToNewRecipientViewModel, SendToNewRecipientPage> {
   @override
   ProviderBase provideBase() {
     return sendToNewRecipientViewModelProvider;
@@ -25,5 +25,17 @@ class SendToNewRecipientPageState
   @override
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).primaryColor;
+  }
+
+  @override
+  Future<bool> onBackPressed(SendToNewRecipientViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context)
+        .read(paymentToNewRecipientViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
   }
 }
