@@ -56,6 +56,8 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                     model.sendMobileOtp(
                         MobileNumber: model.mobileNumberController.text,
                         MobileCode: "${model.countryData.phoneCode} ");
+
+                    ProviderScope.containerOf(context).read(validateOtpViewModelProvider).updateTimer();
                   } else if (data.status == Status.ERROR) {
                     model.showToastWithError(data.appError!);
                   }

@@ -106,7 +106,7 @@ class EmailOtpPageView extends BasePageViewWidget<EmailOtpViewModel> {
                                     return currentTimeRemaining == null
                                         ? TextButton(
                                             onPressed: () {
-                                              model.updateTime(context);
+                                              model.resendOTP(context);
                                             },
                                             style: TextButton.styleFrom(
                                               padding: EdgeInsets.all(8.0),

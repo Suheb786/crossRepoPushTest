@@ -55,6 +55,8 @@ class AddEmailPageView extends BasePageViewWidget<AddEmailViewModel> {
                         .updateEmail(model.emailController.text);
 
                     ProviderScope.containerOf(context).read(accountRegistrationViewModelProvider).nextPage();
+
+                    ProviderScope.containerOf(context).read(emailOtpViewModelProvider).updateTimer();
                   } else if (passwordData.status == Status.ERROR) {
                     if (passwordData.appError!.type == ErrorType.PASSWORD_MISMATCH) {
                       model.passwordKey.currentState!.isValid = false;

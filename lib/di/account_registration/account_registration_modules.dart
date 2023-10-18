@@ -5,7 +5,6 @@ import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
 import 'package:neo_bank/feature/account_registration/addnumber/add_number_model.dart';
 import 'package:neo_bank/feature/account_registration/countryselection/country_selection_model.dart';
-import 'package:neo_bank/feature/account_registration/createPassword/create_password_model.dart';
 import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_model.dart';
 
 import '../../feature/account_registration/add_email/add_email_model.dart';
@@ -58,13 +57,6 @@ final emailOtpViewModelProvider = ChangeNotifierProvider.autoDispose<EmailOtpVie
   (ref) =>
       EmailOtpViewModel(ref.read(verifyEmailOtpUseCaseProvider), ref.read(resendEmailOTPUseCaseProvider)),
 );
-
-///[CreatePasswordViewModel] provider
-final createPasswordViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CreatePasswordViewModel>((ref) => CreatePasswordViewModel(
-          ref.read(createPasswordUseCaseProvider),
-          ref.read(registerProspectUseCaseProvider),
-        ));
 
 final manageIDWiseStatusViewModel =
     ChangeNotifierProvider.autoDispose<ManageIDWiseStatusViewModel>((ref) => ManageIDWiseStatusViewModel());

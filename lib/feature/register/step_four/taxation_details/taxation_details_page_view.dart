@@ -12,14 +12,14 @@ import 'package:neo_bank/feature/register/step_four/taxation_details/taxation_de
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/pep_dialog/pep_dialog.dart';
 import 'package:neo_bank/ui/molecules/register/taxation_switch_widget/taxation_switch_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
-import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../../ui/molecules/button/app_primary_button.dart';
 
 class TaxationDetailsPageView extends BasePageViewWidget<TaxationDetailsPageViewModel> {
   TaxationDetailsPageView(ProviderBase model) : super(model);
@@ -87,108 +87,99 @@ class TaxationDetailsPageView extends BasePageViewWidget<TaxationDetailsPageView
                         }
                       },
                       dataBuilder: (context, response) {
-                        return GestureDetector(
-                          onHorizontalDragEnd: (details) {
-                            if (ProviderScope.containerOf(context)
-                                    .read(registerStepFourViewModelProvider)
-                                    .appSwiperController
-                                    .page ==
-                                0.0) {
-                              //FocusScope.of(context).unfocus();
-                              if (StringUtils.isDirectionRTL(context)) {
-                                if (!details.primaryVelocity!.isNegative) {
-                                  model.setFatcaQuestionResponse();
-                                }
-                              } else {
-                                if (details.primaryVelocity!.isNegative) {
-                                  model.setFatcaQuestionResponse();
-                                }
-                              }
+                        return AppStreamBuilder<Resource<GetFatcaQuestionsResponse>>(
+                          stream: model.getFatcaQuestionsStream,
+                          initialData: Resource.none(),
+                          onData: (data) {
+                            if (data.status == Status.SUCCESS) {
+                              ProviderScope.containerOf(context)
+                                  .read(registerStepFourViewModelProvider)
+                                  .isGetFatca = true;
+                              // model.isFatcaGet = true;
                             }
                           },
-                          child: AppStreamBuilder<Resource<GetFatcaQuestionsResponse>>(
-                            stream: model.getFatcaQuestionsStream,
-                            initialData: Resource.none(),
-                            onData: (data) {
-                              if (data.status == Status.SUCCESS) {
-                                ProviderScope.containerOf(context)
-                                    .read(registerStepFourViewModelProvider)
-                                    .isGetFatca = true;
-                                // model.isFatcaGet = true;
-                              }
-                            },
-                            dataBuilder: (context, questions) {
-                              switch (questions!.status) {
-                                case Status.SUCCESS:
-                                  return Padding(
-                                    padding: EdgeInsets.only(
-                                        bottom: 20
-                                            .h /*MediaQuery.of(context).viewInsets.bottom - 50 <= 0
-                                            ? 0
-                                            : MediaQuery.of(context).viewInsets.bottom - 48*/
-                                        ),
-                                    child: SingleChildScrollView(
-                                      padding: EdgeInsets.symmetric(horizontal: 24.w),
-                                      physics: ClampingScrollPhysics(),
-                                      primary: true,
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                                        children: [
-                                          ListView.builder(
-                                              key: ValueKey(1),
-                                              physics: ClampingScrollPhysics(),
-                                              itemCount: questions.data!.getFatcaQuestionsResponseContent!
-                                                  .fatcaQuestionsList!.length,
-                                              itemBuilder: (context, index) {
-                                                return TaxationSwitchWidget(
-                                                  key: ValueKey(questions
-                                                      .data!
-                                                      .getFatcaQuestionsResponseContent!
-                                                      .fatcaQuestionsList![index]
-                                                      .orderNo),
-                                                  data: questions.data!.getFatcaQuestionsResponseContent!
-                                                      .fatcaQuestionsList![index],
-                                                  onToggle: (value) {
-                                                    model.toggleSelection(value, index);
-                                                    if (!value) {
-                                                      model.resetValue(index);
-                                                    }
-                                                  },
-                                                  onDropDownSelection: (selection, selectedAdditionalData) {
-                                                    model.setDropDownSelection(
-                                                        selectedAdditionalData, selection);
-                                                  },
-                                                  onTextUpdate: (selection, changedValue) {
-                                                    model.setOtherData(selection, changedValue);
-                                                  },
-                                                  onInfoClick: () {
-                                                    PEPDialog.show(context, onSelected: () {
-                                                      Navigator.pop(context);
-                                                    });
-                                                  },
-                                                );
-                                              },
-                                              shrinkWrap: true,
-                                              primary: false),
-                                          Center(
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(vertical: 32.h),
-                                              child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
-                                            ),
-                                          )
-                                        ],
+                          dataBuilder: (context, questions) {
+                            switch (questions!.status) {
+                              case Status.SUCCESS:
+                                return Padding(
+                                  padding: EdgeInsets.only(
+                                      bottom: 20
+                                          .h /*MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                                          ? 0
+                                          : MediaQuery.of(context).viewInsets.bottom - 48*/
                                       ),
+                                  child: SingleChildScrollView(
+                                    padding: EdgeInsets.symmetric(horizontal: 24.w),
+                                    physics: ClampingScrollPhysics(),
+                                    primary: true,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                                      children: [
+                                        ListView.builder(
+                                            key: ValueKey(1),
+                                            physics: ClampingScrollPhysics(),
+                                            itemCount: questions.data!.getFatcaQuestionsResponseContent!
+                                                .fatcaQuestionsList!.length,
+                                            itemBuilder: (context, index) {
+                                              return TaxationSwitchWidget(
+                                                key: ValueKey(questions
+                                                    .data!
+                                                    .getFatcaQuestionsResponseContent!
+                                                    .fatcaQuestionsList![index]
+                                                    .orderNo),
+                                                data: questions.data!.getFatcaQuestionsResponseContent!
+                                                    .fatcaQuestionsList![index],
+                                                onToggle: (value) {
+                                                  model.toggleSelection(value, index);
+                                                  if (!value) {
+                                                    model.resetValue(index);
+                                                  }
+                                                },
+                                                onDropDownSelection: (selection, selectedAdditionalData) {
+                                                  model.setDropDownSelection(
+                                                      selectedAdditionalData, selection);
+                                                },
+                                                onTextUpdate: (selection, changedValue) {
+                                                  model.setOtherData(selection, changedValue);
+                                                },
+                                                onInfoClick: () {
+                                                  PEPDialog.show(context, onSelected: () {
+                                                    Navigator.pop(context);
+                                                  });
+                                                },
+                                              );
+                                            },
+                                            shrinkWrap: true,
+                                            primary: false),
+                                        Center(
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(vertical: 32.h),
+                                            child: AppPrimaryButton(
+                                              text: S.of(context).next,
+                                              onPressed: () {
+                                                if (ProviderScope.containerOf(context)
+                                                        .read(registerStepFourViewModelProvider)
+                                                        .appSwiperController
+                                                        .page ==
+                                                    0.0) {
+                                                  model.setFatcaQuestionResponse();
+                                                }
+                                              },
+                                            ),
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                  );
-                                case Status.LOADING:
-                                  return Container();
-                                default:
-                                  return Center(
-                                    child: Text(S.of(context).somethingWentWrong),
-                                  );
-                              }
-                            },
-                          ),
+                                  ),
+                                );
+                              case Status.LOADING:
+                                return Container();
+                              default:
+                                return Center(
+                                  child: Text(S.of(context).somethingWentWrong),
+                                );
+                            }
+                          },
                         );
                       },
                     ),
