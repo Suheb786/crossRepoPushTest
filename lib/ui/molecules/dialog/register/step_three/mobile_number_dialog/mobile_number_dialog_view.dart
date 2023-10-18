@@ -20,6 +20,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../../app_scollable_list_view_widget.dart';
 
+// ignore: must_be_immutable
 class MobileNumberDialogView extends StatelessWidget {
   final Function? onDismissed;
   final Function(CountryData)? onSelected;
