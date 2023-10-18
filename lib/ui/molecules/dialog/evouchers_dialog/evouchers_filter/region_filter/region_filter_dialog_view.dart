@@ -22,10 +22,12 @@ class RegionFilterDialogView extends StatelessWidget {
   final List<VoucherRegionByCategories> regionByCategoriesList;
   final String title;
   final bool isFromPurchaseFlow;
+  final bool onWillPop;
 
   const RegionFilterDialogView(
       {this.onDismissed,
       this.onSelected,
+      this.onWillPop = true,
       required this.title,
       required this.regionByCategoriesList,
       required this.isFromPurchaseFlow});
@@ -36,17 +38,17 @@ class RegionFilterDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget<RegionFilterDialogViewModel>(
-        onModelReady: (RegionFilterDialogViewModel model) {
-          model.addRegionsData(regions: regionByCategoriesList, isFromPurchase: isFromPurchaseFlow);
-        },
-        builder: (context, model, child) {
-          return Dialog(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-              insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
-              child: WillPopScope(
-                onWillPop: () async => false,
-                child:Stack(
+    return WillPopScope(
+      onWillPop: () async => onWillPop,
+      child: BaseWidget<RegionFilterDialogViewModel>(
+          onModelReady: (RegionFilterDialogViewModel model) {
+            model.addRegionsData(regions: regionByCategoriesList, isFromPurchase: isFromPurchaseFlow);
+          },
+          builder: (context, model, child) {
+            return Dialog(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+                insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
+                child: Stack(
                   alignment: Alignment.bottomCenter,
                   clipBehavior: Clip.none,
                   children: [
@@ -150,9 +152,9 @@ class RegionFilterDialogView extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
-              ));
-        },
-        providerBase: providerBase());
+                ));
+          },
+          providerBase: providerBase()),
+    );
   }
 }

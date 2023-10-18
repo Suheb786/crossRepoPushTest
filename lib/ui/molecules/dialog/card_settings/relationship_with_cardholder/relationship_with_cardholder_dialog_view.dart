@@ -20,9 +20,14 @@ class RelationshipWithCardHolderDialogView extends StatelessWidget {
   final Function(String)? onSelected;
   final List<String> relationSHipWithCardHolder;
   final String title;
+  final bool onWillPop;
 
   const RelationshipWithCardHolderDialogView(
-      {this.onDismissed, this.onSelected, required this.title, required this.relationSHipWithCardHolder});
+      {this.onDismissed,
+      this.onSelected,
+      required this.title,
+      required this.relationSHipWithCardHolder,
+      this.onWillPop = true});
 
   ProviderBase providerBase() {
     return relationShipWithCardHolderDialogViewModelProvider;
@@ -30,13 +35,13 @@ class RelationshipWithCardHolderDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget<RelationshipWithCardHolderDialogViewModel>(
-        builder: (context, model, child) {
-          return Dialog(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-              insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
-              child: WillPopScope(
-                onWillPop: () async => false,
+    return WillPopScope(
+      onWillPop: () async => onWillPop,
+      child: BaseWidget<RelationshipWithCardHolderDialogViewModel>(
+          builder: (context, model, child) {
+            return Dialog(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+                insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
                 child: Stack(
                   alignment: Alignment.bottomCenter,
                   clipBehavior: Clip.none,
@@ -141,9 +146,9 @@ class RelationshipWithCardHolderDialogView extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
-              ));
-        },
-        providerBase: providerBase());
+                ));
+          },
+          providerBase: providerBase()),
+    );
   }
 }

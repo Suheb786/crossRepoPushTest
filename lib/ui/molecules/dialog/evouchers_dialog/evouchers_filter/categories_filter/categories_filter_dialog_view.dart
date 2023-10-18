@@ -21,9 +21,14 @@ class CategoriesFilterDialogView extends StatelessWidget {
   final Function(VoucherCategories)? onSelected;
   final List<VoucherCategories> categoriesList;
   final String title;
+  final bool onWillPop;
 
   const CategoriesFilterDialogView(
-      {this.onDismissed, this.onSelected, required this.title, required this.categoriesList});
+      {this.onDismissed,
+      this.onSelected,
+      required this.title,
+      required this.categoriesList,
+      this.onWillPop = true});
 
   ProviderBase providerBase() {
     return categoriesFilterDialogViewModelProvider;
@@ -31,16 +36,16 @@ class CategoriesFilterDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget<CategoriesFilterDialogViewModel>(
-        onModelReady: (CategoriesFilterDialogViewModel model) {
-          model.allCategories.addAll(categoriesList);
-        },
-        builder: (context, model, child) {
-          return Dialog(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0.w)),
-              insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
-              child: WillPopScope(
-                onWillPop: () async => false,
+    return WillPopScope(
+      onWillPop: () async => onWillPop,
+      child: BaseWidget<CategoriesFilterDialogViewModel>(
+          onModelReady: (CategoriesFilterDialogViewModel model) {
+            model.allCategories.addAll(categoriesList);
+          },
+          builder: (context, model, child) {
+            return Dialog(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0.w)),
+                insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
                 child: Stack(
                   alignment: Alignment.bottomCenter,
                   clipBehavior: Clip.none,
@@ -146,9 +151,9 @@ class CategoriesFilterDialogView extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
-              ));
-        },
-        providerBase: providerBase());
+                ));
+          },
+          providerBase: providerBase()),
+    );
   }
 }
