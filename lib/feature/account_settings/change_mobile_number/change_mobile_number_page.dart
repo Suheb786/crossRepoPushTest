@@ -10,15 +10,30 @@ class ChangeMobileNumberPage extends BasePage<ChangeMobileNumberPageViewModel> {
   ChangeMobileNumberPageState createState() => ChangeMobileNumberPageState();
 }
 
-class ChangeMobileNumberPageState
-    extends BaseStatefulPage<ChangeMobileNumberPageViewModel, ChangeMobileNumberPage> {
+class ChangeMobileNumberPageState extends BaseStatefulPage<
+    ChangeMobileNumberPageViewModel, ChangeMobileNumberPage> {
   @override
   ProviderBase provideBase() {
     return changeMobileNumberViewModelProvider;
   }
 
   @override
-  Widget buildView(BuildContext context, ChangeMobileNumberPageViewModel model) {
+  Widget buildView(
+      BuildContext context, ChangeMobileNumberPageViewModel model) {
     return ChangeMobileNumberPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(ChangeMobileNumberPageViewModel model,
+      {param}) async {
+    var parentModel = ProviderScope.containerOf(context)
+        .read(changeMobileNumberViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
+
 }

@@ -30,10 +30,15 @@ class DcSettingVisaCardPageState
     return DcSettingVisaCardPageView(provideBase());
   }
 
-  @override
-  Future<bool> onBackPressed(DcSettingVisaCardPageViewModel model, {param}) {
-    ProviderScope.containerOf(context).read(appHomeViewModelProvider).showSettingPage(false);
-    ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
-    return super.onBackPressed(model);
+  Future<bool> onBackPressed(DcSettingVisaCardPageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(dcSettingCardDeliveryViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      ProviderScope.containerOf(context).read(appHomeViewModelProvider).showSettingPage(false);
+      ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+      return super.onBackPressed(model);
+    }
   }
 }
