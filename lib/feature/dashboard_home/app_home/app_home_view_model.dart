@@ -331,6 +331,12 @@ class AppHomeViewModel extends BasePageViewModel {
   Stream<Resource<List<Offers>>> get getOfferStream => _getOfferResponse.stream;
   List<Offers> listOfOffer = [];
 
+  bool isSubAccountCanBeCreated() {
+    var availableBalance = num.parse(dashboardDataContent.account?.availableBalance ?? '0.0');
+    return (dashboardDataContent.account?.accountStatusEnum == AccountStatusEnum.ACTIVE) &&
+        availableBalance > 0;
+  }
+
   AppHomeViewModel(
     this._getDashboardDataUseCase,
     this._getPlaceholderUseCase,
