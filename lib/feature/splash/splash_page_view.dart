@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
@@ -29,6 +30,7 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
           InformationDialog.show(context,
               image: AssetUtils.mobile,
               title: S.of(context).deviceNotSupported,
+              onWillPop: false,
               descriptionWidget: Text(
                 S.of(context).deviceNotSupportedNote,
                 style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, height: 1.7),

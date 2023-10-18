@@ -17,7 +17,7 @@ class EvoucherLandingDialogView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false,
+      onWillPop: () async => onWillPop,
       child: Align(
         alignment: AlignmentDirectional.bottomCenter,
         child: Container(
