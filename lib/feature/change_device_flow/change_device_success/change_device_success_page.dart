@@ -4,6 +4,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/change_Device/change_device_modules.dart';
 import 'package:neo_bank/feature/change_device_flow/change_device_success/change_device_success_page_view.dart';
 import 'package:neo_bank/feature/change_device_flow/change_device_success/change_device_success_page_view_model.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 
 class ChangeDeviceSuccessPage extends BasePage<ChangeDeviceSuccessPageViewModel> {
   @override
@@ -23,8 +24,8 @@ class ChangeDeviceSuccessPageState
   }
 
   @override
-  Future<bool> onBackPressed(ChangeDeviceSuccessPageViewModel model, {param}) async {
-    model.checkKycStatus();
-    return false;
+  Future<bool> onBackPressed(ChangeDeviceSuccessPageViewModel model, {param}) {
+    Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding, (route) => false);
+    return super.onBackPressed(model);
   }
 }
