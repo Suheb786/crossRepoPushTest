@@ -41,7 +41,7 @@ class SettlementAmountPageView extends BasePageViewWidget<SettlementAmountPageVi
                   onData: (value) {
                     if (value.status == Status.SUCCESS) {
                       ProviderScope.containerOf(context)
-                          .read(purchaseEVoucherWithoutRegionPageViewModel(model.argument))
+                          .read(purchaseEVoucherWithoutRegionPageViewModel)
                           .nextPage();
                       ProviderScope.containerOf(context)
                           .read(otpPurchaseEvoucherWithoutRegionPageViewModelProvider(model.argument))

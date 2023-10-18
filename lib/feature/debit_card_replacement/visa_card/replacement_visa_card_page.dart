@@ -5,14 +5,15 @@ import 'package:neo_bank/di/debit_card_replacement/debit_card_replacement_module
 import 'package:neo_bank/feature/debit_card_replacement/visa_card/replacement_visa_card_page_view.dart';
 import 'package:neo_bank/feature/debit_card_replacement/visa_card/replacement_visa_card_page_view_model.dart';
 
-class ReplacementVisaCardPage extends BasePage<ReplacementVisaCardPageViewModel> {
+class ReplacementVisaCardPage
+    extends BasePage<ReplacementVisaCardPageViewModel> {
   @override
   ReplacementVisaCardPageState createState() => ReplacementVisaCardPageState();
 }
 
-class ReplacementVisaCardPageState
-    extends BaseStatefulPage<ReplacementVisaCardPageViewModel, ReplacementVisaCardPage>
-    with AutomaticKeepAliveClientMixin {
+class ReplacementVisaCardPageState extends BaseStatefulPage<
+    ReplacementVisaCardPageViewModel,
+    ReplacementVisaCardPage> with AutomaticKeepAliveClientMixin {
   @override
   ProviderBase provideBase() {
     return replacementVisaCardViewModelProvider;
@@ -24,7 +25,8 @@ class ReplacementVisaCardPageState
   }
 
   @override
-  Widget buildView(BuildContext context, ReplacementVisaCardPageViewModel model) {
+  Widget buildView(
+      BuildContext context, ReplacementVisaCardPageViewModel model) {
     return ReplacementVisaCardPageView(provideBase());
   }
 
@@ -36,4 +38,17 @@ class ReplacementVisaCardPageState
 
   @override
   bool get wantKeepAlive => true;
+
+  @override
+  Future<bool> onBackPressed(ReplacementVisaCardPageViewModel model,
+      {param}) async {
+    var parentModel = ProviderScope.containerOf(context)
+        .read(debitCardReplacementViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

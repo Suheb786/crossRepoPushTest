@@ -26,4 +26,15 @@ class QRScanAccountSelectionPageState
   Widget buildView(BuildContext context, QRScanAccountSelectionPageViewModel model) {
     return QRScanAccountSelectionPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(QRScanAccountSelectionPageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(sendMoneyQrScanningViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

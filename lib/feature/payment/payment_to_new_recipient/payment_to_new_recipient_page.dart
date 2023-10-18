@@ -36,6 +36,18 @@ class PaymentToNewRecipientPageState
   Widget buildView(BuildContext context, PaymentToNewRecipientViewModel model) {
     return PaymentToNewRecipientPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(PaymentToNewRecipientViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context)
+        .read(paymentToNewRecipientViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }
 
 class PaymentToNewRecipentPageArgument {

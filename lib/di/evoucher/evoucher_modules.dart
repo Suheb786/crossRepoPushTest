@@ -62,9 +62,9 @@ final eVouchersCategoryListingViewModelProvider = ChangeNotifierProvider.autoDis
             ));
 
 ///PurchaseEVoucherWithoutRegionPageViewModel
-final purchaseEVoucherWithoutRegionPageViewModel = ChangeNotifierProvider.autoDispose
-    .family<PurchaseEVoucherWithoutRegionPageViewModel, PurchaseEVoucherWithoutRegionPageArgument>(
-        (ref, args) => PurchaseEVoucherWithoutRegionPageViewModel(args));
+final purchaseEVoucherWithoutRegionPageViewModel =
+    ChangeNotifierProvider.autoDispose<PurchaseEVoucherWithoutRegionPageViewModel>(
+        (ref) => PurchaseEVoucherWithoutRegionPageViewModel());
 
 ///select region amount view model
 final selectAmountRegionViewModelProvider =

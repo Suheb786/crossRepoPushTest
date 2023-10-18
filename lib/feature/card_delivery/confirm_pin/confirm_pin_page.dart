@@ -10,7 +10,8 @@ class ConfirmPinPage extends BasePage<ConfirmPinPageViewModel> {
   ConfirmPinPageState createState() => ConfirmPinPageState();
 }
 
-class ConfirmPinPageState extends BaseStatefulPage<ConfirmPinPageViewModel, ConfirmPinPage> {
+class ConfirmPinPageState
+    extends BaseStatefulPage<ConfirmPinPageViewModel, ConfirmPinPage> {
   @override
   ProviderBase provideBase() {
     return confirmPinViewModelProvider;
@@ -24,5 +25,17 @@ class ConfirmPinPageState extends BaseStatefulPage<ConfirmPinPageViewModel, Conf
   @override
   Widget buildView(BuildContext context, ConfirmPinPageViewModel model) {
     return ConfirmPinPageView(provideBase());
+  }
+
+  @override
+  Future<bool> onBackPressed(ConfirmPinPageViewModel model, {param}) async {
+    var parentModel =
+        ProviderScope.containerOf(context).read(cardDeliveryViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
   }
 }
