@@ -14,7 +14,7 @@ class RjDialog {
       required String title,
       required Widget descriptionWidget}) {
     AppDialog.show(mContext,
-        isDismissible: false,
+        isDismissible: true,
         builder: (context) => RjDialogView(
             onDismissed: onDismissed,
             onSelected: onSelected,

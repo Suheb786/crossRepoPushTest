@@ -14,7 +14,7 @@ class ApplePayDialog {
       required String title,
       required Widget descriptionWidget}) {
     AppDialog.show(mContext,
-        isDismissible: false,
+        isDismissible: true,
         builder: (context) => ApplePayDialogView(
             onDismissed: onDismissed,
             onSelected: onSelected,

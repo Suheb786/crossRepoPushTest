@@ -14,7 +14,7 @@ class EfawateerLandingDialog {
       required String title,
       required Widget descriptionWidget}) {
     AppDialog.show(mContext,
-        isDismissible: false,
+        isDismissible: true,
         builder: (context) => EfawateerLandingDialogView(
             onDismissed: onDismissed,
             onSelected: onSelected,

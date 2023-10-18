@@ -19,9 +19,9 @@ class InformationDialog {
     String? doneImage,
   }) {
     AppDialog.show(mContext,
-        isDismissible: false,
+        isDismissible: true,
         builder: (context) => InformationDialogView(
-          onDismissed: onDismissed,
+              onDismissed: onDismissed,
               onSelected: onSelected,
               isSwipeToCancel: isSwipeToCancel,
               image: image,

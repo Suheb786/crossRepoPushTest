@@ -12,7 +12,7 @@ class ToDialog {
       String? title,
       List<Destinations>? destinationList}) {
     AppDialog.show(mContext,
-        isDismissible: false,
+        isDismissible: true,
         builder: (context) => ToDialogView(
               onDismissed: onDismissed,
               onSelected: onSelected,
