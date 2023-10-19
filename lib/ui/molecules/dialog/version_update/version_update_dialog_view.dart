@@ -20,13 +20,13 @@ class VersionUpdateDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-        insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-        child: WillPopScope(
-          onWillPop: () async {
-            return false;
-          },
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Dialog(
+          insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
           child: Container(
               padding: EdgeInsets.symmetric(horizontal: 20.0.w),
               child: SingleChildScrollView(
@@ -63,7 +63,7 @@ class VersionUpdateDialogView extends StatelessWidget {
                     SizedBox(height: 12.h),
                   ],
                 ),
-              )),
-        ));
+              ))),
+    );
   }
 }
