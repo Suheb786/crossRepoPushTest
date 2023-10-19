@@ -67,4 +67,15 @@ class ValidateOtpPageState extends BaseStatefulPage<ValidateOtpViewModel, Valida
     super.dispose();
     cancel();
   }
+
+  @override
+  Future<bool> onBackPressed(ValidateOtpViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(accountRegistrationViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

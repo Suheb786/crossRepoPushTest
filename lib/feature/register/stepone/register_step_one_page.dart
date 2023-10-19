@@ -25,4 +25,15 @@ class RegisterStepOnePageState extends BaseStatefulPage<RegisterStepOneViewModel
   Widget buildView(BuildContext context, RegisterStepOneViewModel model) {
     return RegisterStepOnePageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(RegisterStepOneViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(registerStepOneViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

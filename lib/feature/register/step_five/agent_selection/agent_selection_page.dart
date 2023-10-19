@@ -31,4 +31,15 @@ class AgentSelectionPageState extends BaseStatefulPage<AgentSelectionViewModel, 
   Widget buildView(BuildContext context, AgentSelectionViewModel model) {
     return AgentSelectionView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(AgentSelectionViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(registerStepFiveViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }
