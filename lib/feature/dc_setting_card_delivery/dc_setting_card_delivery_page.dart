@@ -5,6 +5,8 @@ import 'package:neo_bank/di/dc_setting_card_delivery/dc_setting_card_delivery_mo
 import 'package:neo_bank/feature/dc_setting_card_delivery/dc_setting_card_delivery_page_view.dart';
 import 'package:neo_bank/feature/dc_setting_card_delivery/dc_setting_card_delivery_page_view_model.dart';
 
+import '../../di/dashboard/dashboard_modules.dart';
+
 class DcSettingCardDeliveryPage
     extends BasePage<DcSettingCardDeliveryPageViewModel> {
   @override
@@ -39,6 +41,8 @@ class DcSettingCardDeliveryPageState extends BaseStatefulPage<
       parentModel.previousPage();
       return false;
     } else {
+      ProviderScope.containerOf(context).read(appHomeViewModelProvider).showSettingPage(false);
+      ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
       return super.onBackPressed(model);
     }
   }

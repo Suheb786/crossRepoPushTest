@@ -33,4 +33,15 @@ class JobAndIncomePageState extends BaseStatefulPage<JobAndIncomePageViewModel, 
   Widget buildView(BuildContext context, JobAndIncomePageViewModel model) {
     return JobAndIncomePageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(JobAndIncomePageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(registerStepTwoViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

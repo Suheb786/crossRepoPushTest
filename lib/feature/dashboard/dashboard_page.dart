@@ -30,4 +30,10 @@ class DashboardPageState extends BaseStatefulPage<DashboardPageViewModel, Dashbo
   Widget buildView(BuildContext context, DashboardPageViewModel model) {
     return DashboardPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(DashboardPageViewModel model, {param}) async {
+    model.logout();
+    return false;
+  }
 }
