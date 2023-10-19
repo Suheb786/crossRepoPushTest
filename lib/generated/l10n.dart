@@ -18799,6 +18799,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Oops! This recipient is already saved in your Blink contacts.`
+  String get receipientAlreadySaved {
+    return Intl.message(
+      'Oops! This recipient is already saved in your Blink contacts.',
+      name: 'receipientAlreadySaved',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

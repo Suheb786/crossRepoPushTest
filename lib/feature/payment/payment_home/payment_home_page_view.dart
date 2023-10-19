@@ -46,6 +46,9 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
 
   PaymentHomePageView(ProviderBase model, this.navigationType) : super(model);
 
+  Widget? paymentActivityTransactionPage;
+  Widget? newBillsPage;
+
   @override
   Widget build(BuildContext context, model) {
     return AppStreamBuilder<Resource<GetBeneficiaryListResponse>>(
@@ -131,13 +134,27 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                               stream: model.pageSwitchStream,
                               initialData: AnimatedPage.NULL,
                               dataBuilder: (context, switchedPage) {
+                                if (paymentActivityTransactionPage == null &&
+                                    switchedPage == AnimatedPage.PAYMENT_ACTIVITY) {
+                                  paymentActivityTransactionPage = PaymentActivityTransactionPage(
+                                    PaymentActivityTransactionPageArgument(
+                                      backgroundColor: Theme.of(context).canvasColor,
+                                      title: S.of(context).paymentActivity,
+                                      titleColor: AppColor.black,
+                                    ),
+                                  );
+                                }
+
+                                if (newBillsPage == null && switchedPage == AnimatedPage.PAY_NEW_BILL) {
+                                  newBillsPage = NewBillsPage();
+                                }
                                 return AnimatedSwitcher(
                                   duration: const Duration(milliseconds: 500),
                                   reverseDuration: const Duration(milliseconds: 400),
                                   switchInCurve: Curves.easeInOut,
                                   switchOutCurve: Curves.linearToEaseOut,
                                   child: switchedPage == AnimatedPage.PAY_NEW_BILL
-                                      ? NewBillsPage()
+                                      ? newBillsPage
                                       : switchedPage == AnimatedPage.SEND_MONEY
                                           ? SendMoneyPage()
                                           : switchedPage == AnimatedPage.REQUEST_MONEY
@@ -158,15 +175,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                                                       .dashboardDataContent
                                                                       .account!))
                                                           : switchedPage == AnimatedPage.PAYMENT_ACTIVITY
-                                                              ? PaymentActivityTransactionPage(
-                                                                  PaymentActivityTransactionPageArgument(
-                                                                    backgroundColor:
-                                                                        Theme.of(context).canvasColor,
-                                                                    title: S.of(context).paymentActivity,
-                                                                    titleColor: AppColor.black,
-                                                                  ),
-                                                                  key: ValueKey("1"),
-                                                                )
+                                                              ? paymentActivityTransactionPage
                                                               : const SizedBox(),
                                 );
                               }),

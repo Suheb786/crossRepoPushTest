@@ -1882,5 +1882,6 @@
   "payFromRJ": "ادفع من",
   "yourAccountBalanceSuccessFullyUpdated": "تم تحديث رصيد حسابك بنجاح",
   "accountSuccessfullyClosed": "لقد تم إغلاق الحساب بنجاح.",
-  "profileImageDeleted": "تم حذف صورة الملف الشخصي."
+  "profileImageDeleted": "تم حذف صورة الملف الشخصي.",
+  "receipientAlreadySaved": "عفوا! هذا المستفيد موجود في قائمة أصدقائك"
 }

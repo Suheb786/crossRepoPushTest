@@ -2531,6 +2531,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "reasonToreturn": MessageLookupByLibrary.simpleMessage("سبب العودة"),
         "rebelliousRedCreditCard": MessageLookupByLibrary.simpleMessage(
             "البطاقة الائتمانية الحمراء\nالبطاقةالائتمانية"),
+        "receipientAlreadySaved": MessageLookupByLibrary.simpleMessage(
+            "عفوا! هذا المستفيد موجود في قائمة أصدقائك"),
         "receiveMoneyFromOthers":
             MessageLookupByLibrary.simpleMessage("استقبال الأموال من الآخرين"),
         "receiveMoneyFromOthersDesc": MessageLookupByLibrary.simpleMessage(

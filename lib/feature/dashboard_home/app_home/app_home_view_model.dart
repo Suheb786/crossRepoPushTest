@@ -424,6 +424,10 @@ class AppHomeViewModel extends BasePageViewModel {
               pageNo: 1,
               totalRecord: 3,
             ));
+          } else {
+            ///Trigger pop-ups
+            triggerRequestMoneyPopup();
+            initDynamicLink();
           }
         } else if (event.status == Status.SUCCESS) {
           timelinePlaceholderData = event.data!.data!;
@@ -435,6 +439,10 @@ class AppHomeViewModel extends BasePageViewModel {
               pageNo: 1,
               totalRecord: 3,
             ));
+          } else {
+            ///Trigger pop-ups
+            triggerRequestMoneyPopup();
+            initDynamicLink();
           }
         }
       });

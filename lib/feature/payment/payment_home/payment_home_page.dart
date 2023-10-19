@@ -35,7 +35,7 @@ class PaymentHomePageState extends BaseStatefulPage<PaymentHomeViewModel, Paymen
 
   @override
   bool? resizeToAvoidBottomInset() {
-    return true;
+    return false;
   }
 
   @override
