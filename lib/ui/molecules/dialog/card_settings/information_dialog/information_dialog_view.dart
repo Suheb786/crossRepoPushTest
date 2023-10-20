@@ -85,12 +85,28 @@ class InformationDialogView extends StatelessWidget {
                                   child: descriptionWidget,
                                 ),
                                 SizedBox(height: 30.h),
-                                AppPrimaryButton(
-                                  onPressed: () {
-                                    onSelected?.call();
-                                  },
-                                  text: btnTitle ?? S.of(context).confirm,
-                                ),
+                                doneImage != null
+                                    ? InkWell(
+                                        onTap: () {
+                                          onSelected!.call();
+                                        },
+                                        child: Container(
+                                          padding: EdgeInsets.all(16),
+                                          height: 57.h,
+                                          width: 57.w,
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Theme.of(context).textTheme.bodyLarge!.color!),
+                                          child: AppSvg.asset(doneImage!,
+                                              color: Theme.of(context).colorScheme.secondary),
+                                        ),
+                                      )
+                                    : AppPrimaryButton(
+                                        onPressed: () {
+                                          onSelected?.call();
+                                        },
+                                        text: btnTitle ?? S.of(context).confirm,
+                                      ),
                                 SizedBox(height: 42.h),
                               ],
                             ),

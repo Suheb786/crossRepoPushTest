@@ -128,7 +128,7 @@ class ToDialogView extends StatelessWidget {
                                                       itemHeight: 72.h,
                                                       itemCount: data.data!.length,
                                                       onItemTapCallback: (index) {
-                                                        model.selectCountry(index);
+                                                        // model.selectCountry(index);
                                                       },
                                                       child: ListWheelScrollView.useDelegate(
                                                           controller: model.scrollController,
