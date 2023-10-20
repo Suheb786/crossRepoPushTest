@@ -7,7 +7,8 @@ class KeyHelper {
   KeyHelper._();
 
   ///current version PE decryption key
-  static String DECRYPTION_KEY = "Htyr3IvDoAhXLg0o";
+  static String DECRYPTION_KEY = "1a2b3c4d5e6f7a8b";
+  //static String DECRYPTION_KEY = "Htyr3IvDoAhXLg0o";
 
   ///microblink keys
   static String ANDROID_BLINK_ID = "";
