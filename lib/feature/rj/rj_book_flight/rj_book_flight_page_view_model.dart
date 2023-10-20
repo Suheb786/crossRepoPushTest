@@ -53,9 +53,9 @@ class RjFlightBookingViewModel extends BasePageViewModel {
         youths: '${passengerList[1].count}',
         infants: '${passengerList[3].count}',
         childs: '${passengerList[2].count}',
-        promoCode: 'BLINK-ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-        customerRef: 'CUST12345678901234567890',
-        cabin: _selectedCabinClassSubject == 0 ? 'E' : 'B'));
+        promoCode: '',
+        customerRef: '',
+        cabin: _selectedCabinClassSubject.value == 0 ? 'E' : 'B'));
   }
 
   ///----------------Get One Way Link--------------///
@@ -80,9 +80,9 @@ class RjFlightBookingViewModel extends BasePageViewModel {
         youths: '${passengerList[1].count}',
         infants: '${passengerList[3].count}',
         childs: '${passengerList[2].count}',
-        promoCode: 'BLINK-ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-        customerRef: 'CUST12345678901234567890',
-        cabin: _selectedCabinClassSubject == 0 ? 'E' : 'B'));
+        promoCode: '',
+        customerRef: '',
+        cabin: _selectedCabinClassSubject.value == 0 ? 'E' : 'B'));
   }
 
   ///----------------Get Two Way Link--------------///
@@ -172,7 +172,7 @@ class RjFlightBookingViewModel extends BasePageViewModel {
     _selectedTabSubject.add(selectedTabIndex);
   }
 
-  BehaviorSubject<int> _selectedCabinClassSubject = BehaviorSubject();
+  BehaviorSubject<int> _selectedCabinClassSubject = BehaviorSubject.seeded(0);
 
   Stream<int> get selectedCabinClassSubjectStream => _selectedCabinClassSubject.stream;
 

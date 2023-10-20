@@ -130,7 +130,8 @@ final sendToNewRecipientViewModelProvider = ChangeNotifierProvider.autoDispose<S
       ref.read(uploadDocumentUseCaseProvider),
       ref.read(checkSendMoneyUseCaseProvider),
       ref.read(transferVerifyUseCaseProvider),
-      ref.read(getPurposeUseCaseProvider)),
+      ref.read(getPurposeUseCaseProvider),
+      ref.read(transferUseCaseProvider)),
 );
 
 final enterOtpViewModelProvider = ChangeNotifierProvider.autoDispose<EnterOtpViewModel>(

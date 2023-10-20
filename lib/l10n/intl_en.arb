@@ -1909,5 +1909,6 @@
   "payFromRJ": "Pay from",
   "yourAccountBalanceSuccessFullyUpdated": "Your account balance is successfully updated.",
   "accountSuccessfullyClosed": "Your account has been closed successfully.",
-  "profileImageDeleted": "Profile Image deleted."
+  "profileImageDeleted": "Profile Image deleted.",
+  "receipientAlreadySaved": "Oops! This recipient is already saved in your Blink contacts."
 }

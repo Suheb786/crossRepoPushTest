@@ -23,7 +23,7 @@ class AppConstantsUtils {
 
   static bool isApplePayFeatureEnabled = false;
 
-  static String RJRouteLink = '/RJFlightConfirmation/Index';
+  static String RJRouteLink = 'rj/paymentRequest-redirect';
 
   static String SELECTED_BILLER_CODE = "";
   static String BILLER_NAME = "";

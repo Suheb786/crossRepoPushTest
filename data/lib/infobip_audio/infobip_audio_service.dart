@@ -14,9 +14,9 @@ class InfoBipAudioService {
 
   Future<bool> initPlugin({required Function(InfobipCallStatusEnum) callback}) async {
     var result = await _infobipPlugin.sdkInit(
-        applicationId: "75154e24-1e99-48e4-a25d-9f561df4d101",
+        applicationId: KeyHelper.INFOBIP_APPLICATION_ID,
         appKey: KeyHelper.INFOBIP_APP_KEY,
-        baseUrl: "https://wpx36d.api.infobip.com",
+        baseUrl: KeyHelper.INFOBIP_BASE_URL,
         callStatus: (String status) {
           callback(status.fromCallStatusValue());
         });
@@ -28,9 +28,9 @@ class InfoBipAudioService {
   ///
   Future<String> obtainToken({required ObtainToken parameter}) async {
     try {
-      parameter.applicationId = "75154e24-1e99-48e4-a25d-9f561df4d101";
+      parameter.applicationId = KeyHelper.INFOBIP_APPLICATION_ID;
       parameter.appKey = KeyHelper.INFOBIP_APP_KEY;
-      parameter.baseUrl = "https://wpx36d.api.infobip.com";
+      parameter.baseUrl = KeyHelper.INFOBIP_BASE_URL;
       var tokenDetail = await _infobipPlugin.getToken(parameter: parameter.toJson());
       return tokenDetail!;
     } catch (e) {

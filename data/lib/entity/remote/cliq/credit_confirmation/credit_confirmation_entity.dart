@@ -23,7 +23,7 @@ class CreditConfirmationEntity
   @override
   CreditConfirmation transform() {
     return CreditConfirmation(
-      pdf: this.pdf != null ? ImageUtils.pdfFileFromBase64String(this.pdf, 'Credit Confirmation') : File(''),
+      pdf: this.pdf != null ? ImageUtils.pdfFileFromBase64String(this.pdf, 'Credit_Confirmation') : File(''),
     );
   }
 }

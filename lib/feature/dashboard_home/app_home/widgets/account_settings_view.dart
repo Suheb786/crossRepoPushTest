@@ -83,11 +83,13 @@ class _AccountSettingsViewState extends State<AccountSettingsView> {
                         isCardActivated:
                             (cardData?.data?.dashboardDataContent?.dashboardFeatures?.subAccountFeature ??
                                     false) &&
-                                (cardData?.data?.dashboardDataContent?.allowSubAccount ?? false),
+                                (cardData?.data?.dashboardDataContent?.allowSubAccount ?? false) &&
+                                model.isSubAccountCanBeCreated(),
                         isEnabled:
                             (cardData?.data?.dashboardDataContent?.dashboardFeatures?.subAccountFeature ??
                                     false) &&
-                                (cardData?.data?.dashboardDataContent?.allowSubAccount ?? false),
+                                (cardData?.data?.dashboardDataContent?.allowSubAccount ?? false) &&
+                                model.isSubAccountCanBeCreated(),
                         model: model,
                       ),
                       ShareAccountTile(context: context, model: model),

@@ -32,7 +32,7 @@ class CardStatementContentEntity
     return CardStatementContent(
         pdfBase64String: this.pdfBase64String != null
             ? ImageUtils.pdfFileFromBase64String(
-                this.pdfBase64String!, this.pdfFileName ?? 'Credit Statement')
+                this.pdfBase64String!, this.pdfFileName ?? 'Credit_Statement')
             : File(''),
         pdfUint8List:
             this.pdfBase64String != null ? ImageUtils.dataFromBase64String(this.pdfBase64String!) : "");

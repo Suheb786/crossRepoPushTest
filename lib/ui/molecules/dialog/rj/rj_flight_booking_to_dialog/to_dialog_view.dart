@@ -53,7 +53,7 @@ class ToDialogView extends StatelessWidget {
                     insetPadding: EdgeInsets.only(
                         left: 24.0.w,
                         right: 24.0.w,
-                        bottom: 56.0.h,
+                        bottom: 36.0.h,
                         top: _keyboardVisible ? 36.0.h : 204.0.h /*top: _keyboardVisible ? 36.h : 204.h*/
                         ),
                     child: AppStreamBuilder<Resource<List<Destinations>>>(
@@ -129,14 +129,14 @@ class ToDialogView extends StatelessWidget {
                                                       key: ValueKey(data.data!.length),
                                                       child: ClickableListWheelScrollView(
                                                         scrollController: model.scrollController,
-                                                        itemHeight: 64.h,
+                                                        itemHeight: 72.h,
                                                         itemCount: data.data!.length,
                                                         onItemTapCallback: (index) {
                                                           model.selectCountry(index);
                                                         },
                                                         child: ListWheelScrollView.useDelegate(
                                                             controller: model.scrollController,
-                                                            itemExtent: 64.h,
+                                                            itemExtent: 72.h,
                                                             onSelectedItemChanged: (int index) {
                                                               model.selectCountry(index);
                                                             },

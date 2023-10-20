@@ -3,12 +3,14 @@ import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/payment/check_send_money_response.dart';
 import 'package:domain/model/payment/transfer_respone.dart';
+import 'package:domain/model/payment/transfer_success_response.dart';
 import 'package:domain/model/purpose/purpose.dart';
 import 'package:domain/model/purpose/purpose_detail.dart';
 import 'package:domain/model/purpose/purpose_response.dart';
 import 'package:domain/usecase/payment/check_send_money_usecase.dart';
 import 'package:domain/usecase/payment/get_purpose_usecase.dart';
 import 'package:domain/usecase/payment/send_to_new_recipient_usecase.dart';
+import 'package:domain/usecase/payment/transfer_usecase.dart';
 import 'package:domain/usecase/payment/transfer_verify_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +34,8 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   UploadDocumentUseCase _uploadDocumentUseCase;
 
   GetPurposeUseCase _getPurposeUseCase;
+
+  final TransferUseCase _transferUseCase;
 
   ScrollController scrollController = ScrollController();
 
@@ -86,6 +90,17 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   void updateSwitchValue(bool value) {
     _switchSubject.safeAdd(value);
   }
+
+  ///-----------------switch disabled-----------------///
+  final BehaviorSubject<bool> _switchDisabledSubject = BehaviorSubject.seeded(false);
+
+  Stream<bool> get switchDisabledValue => _switchDisabledSubject.stream;
+
+  void updateSwitchDisabledValue(bool value) {
+    _switchDisabledSubject.safeAdd(value);
+  }
+
+  ///-----------------switch disabled-----------------///
 
   ///selected image subject
   final BehaviorSubject<String> _selectedImageSubject = BehaviorSubject.seeded('');
@@ -149,8 +164,47 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   ///transfer verify response stream
   Stream<Resource<bool>> get transferVerifyStream => _transferVerifyResponse.stream;
 
+  ///-----------------------Transfer API ----------------------///
+  PublishSubject<TransferUseCaseParams> _transferRequest = PublishSubject();
+
+  PublishSubject<Resource<TransferSuccessResponse>> _transferResponse = PublishSubject();
+
+  Stream<Resource<TransferSuccessResponse>> get transferStream => _transferResponse.stream;
+
+  void transfer(
+      {required TransferResponse transferResponse,
+      required String memo,
+      required bool isFriend,
+      required String beneficiaryImage,
+      required String nickName,
+      required num limit,
+      required String amount,
+      required String fromAccount,
+      required String recipientName,
+      required String recipientAddress}) {
+    _transferRequest.safeAdd(TransferUseCaseParams(
+        limit: limit,
+        otpCode: '',
+        toAmount: double.parse(amount),
+        toAccount: transferResponse.toAccount,
+        memo: memo,
+        nickName: nickName,
+        isFriend: isFriend,
+        fromAccount: fromAccount,
+        transferType: transferResponse.transferType,
+        localEq: double.parse(amount),
+        beneficiaryId: transferResponse.beneficiaryId,
+        beneficiaryImage: beneficiaryImage,
+        type: "",
+        detCustomerType: "",
+        recipientName: recipientName,
+        recipientAddress: recipientAddress));
+  }
+
+  ///-----------------------Transfer API ----------------------///
+
   SendToNewRecipientViewModel(this._useCase, this._uploadDocumentUseCase, this._checkSendMoneyUseCase,
-      this._transferVerifyUseCase, this._getPurposeUseCase) {
+      this._transferVerifyUseCase, this._getPurposeUseCase, this._transferUseCase) {
     _sendToNewRecipientRequest.listen((value) {
       RequestManager(value, createCall: () => _useCase.execute(params: value)).asFlow().listen((event) {
         _sendToNewRecipientResponse.safeAdd(event);
@@ -214,6 +268,18 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
         } else if (event.status == Status.SUCCESS) {
           purposeList.clear();
           purposeList.addAll(event.data!.content!.transferPurposeResponse!.purposes!);
+        }
+      });
+    });
+
+    _transferRequest.listen((value) {
+      RequestManager(value, createCall: () => _transferUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _transferResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
         }
       });
     });

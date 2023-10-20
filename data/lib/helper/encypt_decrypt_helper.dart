@@ -10,6 +10,7 @@ import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:flutter/cupertino.dart';
 import 'package:string_validator/string_validator.dart';
 import 'package:tuple/tuple.dart';
+import 'package:pointycastle/export.dart';
 
 class EncryptDecryptHelper {
   EncryptDecryptHelper._();
@@ -75,13 +76,13 @@ class EncryptDecryptHelper {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     try {
       Tuple2 dataPair = _finalDataEncrypt(jsonEncode(request));
-      data['data'] = dataPair.item2;
 
       ///encrypted data
-      data['data1'] = dataPair.item1;
+      data['data'] = dataPair.item2;
 
       /// encrypted key
-      debugPrint("Request to encrypt " + jsonEncode(request));
+      data['data1'] = dataPair.item1;
+
       debugPrint('data1 ==>');
       debugPrint('Encrypted key ' + dataPair.item1.toString());
       debugPrint('data ==>');
@@ -95,10 +96,8 @@ class EncryptDecryptHelper {
     String randomKey = _generateRandomKey();
     Uint8List random = encrypt.Key.fromBase64(base64Encode(utf8.encode(randomKey))).bytes;
     var key = encrypt.Key(random);
-    var iv = encrypt.IV(random);
-
     String encryptedKey = _encryptPublicKey(key);
-    String encryptedData = _encryptRequestData(key, iv, data);
+    String encryptedData = _encryptRequestData(data, randomKey);
     return Tuple2(encryptedKey, encryptedData);
   }
 
@@ -121,14 +120,22 @@ class EncryptDecryptHelper {
         "MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAiEHA5NjFmyC6dw84pzbpIzhXqH5VjD/fyFBko4z27iD8ZgQ5jzWs4wEC1XnCrYbKdmys+82P8oY38gEJxLcZsjuyYuy64s/gOD173sh054gYqhds9lNT/93KrEjhBUFpGUi+fq3PFCh2qrxd/9XaiMLcmg8y1UuCWKVW+JQCpwaLGK74xdmumnpfzvKHEzAIW3Bgn1wJZAPwMwcMz+uSY9afer4mCTfRRheisAlOMRgq7sN5J21Fxs7KlhSpvDlLbUsUuZ+nsbWjRStlahAHbumoZjiqJmvgY5iu+k6YJyciZYWv2IzL1IZ3plJ7O/SujdEIDL+oJfsVMn63veVZeAT6kxM9itsepINci4MlGlNhwzncpGkOQJeMBRVIbkF4D2Oa/oHRv+N+Olcdw+6Bw3C1bYXZOhB3jYZL6vhAgxcJIMpnGHWItWftm3Rll5nbxoKMHJPVg2ig3kf2Fkbe//7FK3WwiiAsB24rf2jIExx+oFPT8cz68cKBmMxlMzpOTDLvsdGewye6Gszefzvudwx+NQvvpepKoMrwSvDvW0WYEVFisrRKzrdcZ+a+iJRzfdBXubgvoLfBMl8tKf2lb2B+GzKVDH6pYnGpCieHKRxgU7ETadVkpXp8GifzKmbwqqSoZcr/Ebzy0dCM0sGVC00K7ZzmJhM5jBdC5Zj2/2MCAwEAAQ==";
 
     ///RSA encrypt
-    final encrypter =
-        encrypt.Encrypter(encrypt.RSA(publicKey: RsaKeyHelper().parsePublicKeyFromPem(serverPublicKey)));
+    final encrypter = encrypt.Encrypter(encrypt.RSA(
+        publicKey: RsaKeyHelper().parsePublicKeyFromPem(serverPublicKey),
+        encoding: encrypt.RSAEncoding.OAEP));
 
     return encrypter.encrypt(utf8.decode(key.bytes)).base64;
   }
 
-  static String _encryptRequestData(encrypt.Key key, encrypt.IV iv, String data) {
-    final encrypter = encrypt.Encrypter(encrypt.AES(key, mode: encrypt.AESMode.cbc, padding: "PKCS7"));
-    return encrypter.encrypt(data, iv: iv).base64;
+  static String _encryptRequestData(String data, String key) {
+    Uint8List dataBytes = Uint8List.fromList(data.codeUnits);
+    Uint8List keyBytes = Uint8List.fromList(key.codeUnits);
+    KeyParameter keyParameter = KeyParameter(keyBytes);
+    final cbcCipher = AESEngine()..init(true, keyParameter);
+    final gcmCipher = GCMBlockCipher(cbcCipher);
+    final params = AEADParameters(keyParameter, 128, Uint8List(16), Uint8List(0));
+    gcmCipher.init(true, params);
+    final encrypted = gcmCipher.process(dataBytes);
+    return base64.encode(encrypted.toList());
   }
 }

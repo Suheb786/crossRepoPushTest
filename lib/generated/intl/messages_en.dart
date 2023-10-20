@@ -2607,6 +2607,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Reason to return"),
         "rebelliousRedCreditCard": MessageLookupByLibrary.simpleMessage(
             "Rebellious Red\nVisa Credit Card"),
+        "receipientAlreadySaved": MessageLookupByLibrary.simpleMessage(
+            "Oops! This recipient is already saved in your Blink contacts."),
         "receiveMoneyFromOthers":
             MessageLookupByLibrary.simpleMessage("Receive money from others"),
         "receiveMoneyFromOthersDesc": MessageLookupByLibrary.simpleMessage(
