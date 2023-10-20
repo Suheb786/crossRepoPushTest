@@ -166,12 +166,13 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
                                                   initialData: false,
                                                   dataBuilder: (BuildContext context, isValid) {
                                                     return Padding(
-                                                      padding: EdgeInsets.only(top: 26.0.h),
+                                                      padding: EdgeInsets.only(
+                                                          bottom: 26.0.h, left: 24.w, right: 24.w),
                                                       child: AppPrimaryButton(
                                                         text: S.of(context).next,
                                                         isDisabled: (data == true
-                                                            ? (isValid == true ? true : false)
-                                                            : false),
+                                                            ? (!isValid! == true ? true : false)
+                                                            : true),
                                                         onPressed: () {
                                                           model.validate();
                                                         },
