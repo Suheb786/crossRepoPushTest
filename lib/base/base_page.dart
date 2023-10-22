@@ -225,7 +225,7 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
     onModelReady(model);
   }
 
-  Future<bool> onBackPressed({dynamic param}) {
+  Future<bool> onBackPressed(VM model, {dynamic param}) {
     return _onWillPop(param);
   }
 

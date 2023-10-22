@@ -229,9 +229,9 @@ class BeneficiaryTransactionHistoryListPageView
                         ],
                       ),
                     )
-                  : NoDataWidget();
+                  : Expanded(child: Center(child: NoDataWidget()));
             case Status.ERROR:
-              return NoDataWidget();
+              return Expanded(child: Center(child: NoDataWidget()));
             default:
               return Container();
           }

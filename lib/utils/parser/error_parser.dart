@@ -1395,6 +1395,8 @@ class ErrorParser {
         return localisedHelper.insufficientBalanceSubAccount;
       case ErrorType.NO_BALANCE_ACCOUNT:
         return localisedHelper.youHaveInsufficientBalanceInYourAccount;
+      case ErrorType.RECIPIENT_ALREADY_SAVED:
+        return localisedHelper.receipientAlreadySaved;
       default:
         return "";
     }

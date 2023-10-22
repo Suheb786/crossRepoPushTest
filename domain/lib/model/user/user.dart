@@ -25,6 +25,8 @@ class User {
   bool? isEfawateerPopUPClicked;
   bool? isEVoucherPopUPClicked;
   bool? isApplePayPopUpClicked;
+  dynamic localProfileImageDB;
+  bool? isProfileApiCall;
 
   User(
       {this.token,
@@ -52,9 +54,11 @@ class User {
       this.isRJPopUPClicked,
       this.isEfawateerPopUPClicked,
       this.isEVoucherPopUPClicked,
-      this.isApplePayPopUpClicked});
+      this.isApplePayPopUpClicked,
+      this.localProfileImageDB,
+      this.isProfileApiCall});
 
-  String get profileName => "${firstName?[0] ?? ""} ${lastName?[0] ?? ""}";
+  String get profileName => "${firstName ?? ""} ${lastName ?? ""}";
 
   factory User.fromJson(Map<String, dynamic> json) => User(
       token: json["token"],
@@ -81,9 +85,12 @@ class User {
       isRJPopUPClicked: json["isRJPopUPClicked"],
       isEfawateerPopUPClicked: json["isEfawateerPopUPClicked"],
       isEVoucherPopUPClicked: json["isEVoucherPopUPClicked"],
-      isApplePayPopUpClicked: json["isApplePayPopUpClicked"]);
+      isApplePayPopUpClicked: json["isApplePayPopUpClicked"],
+      localProfileImageDB: json["localProfileImageDB"],
+      isProfileApiCall: json["isProfileApiCall"]);
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() =>
+      {
         "token": token,
         "id": id,
         "firstName": firstName,
@@ -108,6 +115,8 @@ class User {
         "isRJPopUPClicked": isRJPopUPClicked,
         "isEfawateerPopUPClicked": isEfawateerPopUPClicked,
         "isEVoucherPopUPClicked": isEVoucherPopUPClicked,
-        "isApplePayPopUpClicked": isApplePayPopUpClicked
+        "isApplePayPopUpClicked": isApplePayPopUpClicked,
+        "localProfileImageDB": localProfileImageDB,
+        "isProfileApiCall": isProfileApiCall
       };
 }

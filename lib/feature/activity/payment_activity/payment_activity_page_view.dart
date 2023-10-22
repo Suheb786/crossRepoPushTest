@@ -7,6 +7,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity/payment_activity_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/ui/no_data_widget.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -56,9 +57,8 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                           return ((activity.data ?? []).length > 0)
                               ? ListView.builder(
                                   padding: EdgeInsets.zero,
-                                  itemCount: ((activity.data ?? []).length > 4)
-                                      ? 5
-                                      : ((activity.data ?? []).length),
+                                  itemCount:
+                                      ((activity.data ?? []).length > 4) ? 5 : ((activity.data ?? []).length),
                                   shrinkWrap: true,
                                   itemBuilder: (mContext, index) {
                                     return Padding(
@@ -161,8 +161,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                                   activity.data?[index].paymentType ==
                                                                       PaymentTypeEnum.SEND_MONEY)
                                                               ? Text.rich(TextSpan(
-                                                                  text:
-                                                                      '${activity.data![index].dbtrName} ',
+                                                                  text: '${activity.data![index].dbtrName} ',
                                                                   style: TextStyle(
                                                                       fontFamily: StringUtils.appFont,
                                                                       fontWeight: FontWeight.w600,
@@ -178,52 +177,47 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                                                   .toLowerCase()
                                                                               : S.of(context).returned),
                                                                           style: TextStyle(
-                                                                              fontFamily:
-                                                                                  StringUtils.appFont,
+                                                                              fontFamily: StringUtils.appFont,
                                                                               fontWeight: FontWeight.w400,
                                                                               fontSize: 12.0.t)),
                                                                       TextSpan(
                                                                           text:
                                                                               ' ${activity.data![index].amount?.toStringAsFixed(3)} ${activity.data![index].curr} ',
                                                                           style: TextStyle(
-                                                                              fontFamily:
-                                                                                  StringUtils.appFont,
+                                                                              fontFamily: StringUtils.appFont,
                                                                               fontWeight: FontWeight.w600,
                                                                               fontSize: 12.0.t)),
                                                                       TextSpan(
                                                                           text: S.of(context).toYou,
                                                                           style: TextStyle(
-                                                                              fontFamily:
-                                                                                  StringUtils.appFont,
+                                                                              fontFamily: StringUtils.appFont,
                                                                               fontWeight: FontWeight.w400,
                                                                               fontSize: 12.0.t)),
                                                                     ]))
                                                               : (activity.data?[index].trxDir ==
                                                                           RequestMoneyActivityStatusEnum
                                                                               .TRANSACTION_DIRECTORY_OUTGOING &&
-                                                                      activity.data?[index].paymentType == PaymentTypeEnum.SEND_MONEY)
+                                                                      activity.data?[index].paymentType ==
+                                                                          PaymentTypeEnum.SEND_MONEY)
                                                                   ? Text.rich(TextSpan(text: S.of(context).youSent, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 12.0.t), children: [
                                                                       TextSpan(
                                                                           text:
                                                                               '${activity.data![index].amount?.toStringAsFixed(3)} ${activity.data![index].curr} ',
                                                                           style: TextStyle(
-                                                                              fontFamily:
-                                                                                  StringUtils.appFont,
+                                                                              fontFamily: StringUtils.appFont,
                                                                               fontWeight: FontWeight.w600,
                                                                               fontSize: 12.0.t)),
                                                                       TextSpan(
                                                                           text: S.of(context).to,
                                                                           style: TextStyle(
-                                                                              fontFamily:
-                                                                                  StringUtils.appFont,
+                                                                              fontFamily: StringUtils.appFont,
                                                                               fontWeight: FontWeight.w400,
                                                                               fontSize: 12.0.t)),
                                                                       TextSpan(
                                                                           text:
                                                                               ' ${activity.data![index].cdtrName}',
                                                                           style: TextStyle(
-                                                                              fontFamily:
-                                                                                  StringUtils.appFont,
+                                                                              fontFamily: StringUtils.appFont,
                                                                               fontWeight: FontWeight.w600,
                                                                               fontSize: 12.0.t)),
                                                                     ]))
@@ -271,9 +265,8 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                   },
                                 )
                               : Center(
-                                  child: Text(
-                                    S.of(context).noRTPActivityToDisplay,
-                                    textAlign: TextAlign.center,
+                                  child: NoDataWidget(
+                                    errorMessage: S.of(context).noRTPActivityToDisplay,
                                   ),
                                 );
 

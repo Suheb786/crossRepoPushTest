@@ -1,4 +1,4 @@
-import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
+import 'package:neo_bank/utils/clickable_scrall_view/list_wheel_scrall_view.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -86,7 +86,7 @@ class AccountSelectionDialogView extends StatelessWidget {
                                 key: ValueKey(model.allCategories.length),
                                 child: ClickableListWheelScrollView(
                                   scrollController: model.scrollController,
-                                  itemHeight: showBalances ? 90.h : 70.h,
+                                  itemHeight: showBalances ? 100.h : 70.h,
                                   itemCount: model.allCategories.length,
                                   onItemTapCallback: (index) {
                                     model.currentIndexUpdate(index);

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_fligt_booking_page.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../main/navigation/route_paths.dart';
@@ -52,24 +53,21 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
               },
               onLoadStart: (controller, url) {},
               onLoadStop: (controller, url) async {
-                // debugPrint('-----onload stop ---->${url}');
-                // debugPrint('-----onload path ---->${url?.path}');
-                // if ((url?.path ?? '').contains('http://10.6.13.2:2186/RJFlightConfirmation/Index')) {
-                //   debugPrint('------RJ DETAILS----');
-                //   debugPrint('-----onload path ---->${url}');
-                //   String referenceNumber = url?.queryParameters['referenceNumber'] ?? '';
-                //   Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
-                //       arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
-                //   debugPrint('------RJ DETAILS----');
-                // }
-
-                /// FOR MOCK
-                String referenceNumber = "BLNKY239UKFW02";
-                if ((url?.path ?? '').contains('/main/start/')) {
-                  await Future.delayed(Duration(seconds: 2));
+                debugPrint('-----onload stop ---->${url}');
+                debugPrint('-----onload path ---->${url?.path}');
+                if ((url?.path ?? '').toLowerCase().contains(AppConstantsUtils.RJRouteLink)) {
+                  String referenceNumber = url?.queryParameters['customerReferece'] ?? '';
                   Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
                       arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
                 }
+
+                /// FOR MOCK
+                // String referenceNumber = "BLNKY239UKFW02";
+                // if ((url?.path ?? '').contains('/main/start/')) {
+                //   await Future.delayed(Duration(seconds: 2));
+                //   Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
+                //       arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
+                // }
               },
             ),
           ),

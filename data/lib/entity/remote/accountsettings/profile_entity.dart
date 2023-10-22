@@ -45,6 +45,7 @@ class ProfileEntity extends BaseLayerDataTransformer<ProfileEntity, ProfileInfoC
         mobileCode: this.mobileCode ?? '',
         fullName: this.fullName ?? '',
         biometric: this.biometric,
-        profileImage: this.profileImage != null ? ImageUtils.dataFromBase64String(this.profileImage!) : '');
+        profileImage: this.profileImage != null ? ImageUtils.dataFromBase64String(this.profileImage!) : '',
+        localProfileImageDB: this.profileImage != null ? this.profileImage! : '');
   }
 }
