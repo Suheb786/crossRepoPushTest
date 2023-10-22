@@ -155,6 +155,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ACCOUNT REGISTRATION"),
         "accountRelatedQuestions": MessageLookupByLibrary.simpleMessage(
             "Now, tell us what\nthe account is for"),
+        "accountSuccessfullyClosed": MessageLookupByLibrary.simpleMessage(
+            "Your account has been closed successfully."),
         "accountSuccessfullyLinked": MessageLookupByLibrary.simpleMessage(
             "Account is successfully linked with CliQ ID"),
         "accountSuccessfullyUnlinked": MessageLookupByLibrary.simpleMessage(
@@ -2255,7 +2257,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "notAllowedToOpenAccount": MessageLookupByLibrary.simpleMessage(
             "You cannot proceed with this request. Please contact our Engagement Team on 06-5200100 for more information."),
         "notEnoughAmountToPurchase": MessageLookupByLibrary.simpleMessage(
-            "You have insufficient balance in your account"),
+            "Oops! Transaction failed; you have insufficient balance in your account."),
         "notRegisteredBank": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-059)"),
         "notSetUpCountryRestrictionYet": MessageLookupByLibrary.simpleMessage(
@@ -2534,6 +2536,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Are you a special need person?"),
         "profileDetailsQ3":
             MessageLookupByLibrary.simpleMessage("Are you employed?"),
+        "profileImageDeleted":
+            MessageLookupByLibrary.simpleMessage("Profile Image deleted."),
         "profilePhotoUpdated": MessageLookupByLibrary.simpleMessage(
             "Your profile picture has been updated successfully"),
         "profileSettings":
@@ -2616,6 +2620,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Reason to return"),
         "rebelliousRedCreditCard": MessageLookupByLibrary.simpleMessage(
             "Rebellious Red\nVisa Credit Card"),
+        "receipientAlreadySaved": MessageLookupByLibrary.simpleMessage(
+            "Oops! This recipient is already saved in your Blink contacts."),
         "receiveMoneyFromOthers":
             MessageLookupByLibrary.simpleMessage("Receive money from others"),
         "receiveMoneyFromOthersDesc": MessageLookupByLibrary.simpleMessage(
@@ -3261,7 +3267,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Upload ID instead"),
         "uploadSignature":
             MessageLookupByLibrary.simpleMessage("Upload Signature"),
-        "url": MessageLookupByLibrary.simpleMessage("URL"),
         "usIDNumber": MessageLookupByLibrary.simpleMessage(
             "U.S. tax payer identification number "),
         "usTaxPayerIdentificationNumber": MessageLookupByLibrary.simpleMessage(

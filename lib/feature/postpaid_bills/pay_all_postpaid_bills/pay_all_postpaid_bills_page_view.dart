@@ -410,7 +410,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                             return AppDivider();
                                                           },
                                                         )
-                                                      : NoDataWidget(),
+                                                      : Center(child: NoDataWidget()),
                                                 ),
                                               ),
                                             ],

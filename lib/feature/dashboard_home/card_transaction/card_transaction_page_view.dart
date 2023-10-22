@@ -23,6 +23,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../main/navigation/cutom_route.dart';
+import '../../../ui/no_data_widget.dart';
 
 class CardTransactionPageView extends BasePageViewWidget<CardTransactionViewModel> {
   CardTransactionPageView(ProviderBase model) : super(model);
@@ -121,6 +122,8 @@ class CardTransactionPageView extends BasePageViewWidget<CardTransactionViewMode
                                       hintText: S.of(context).lookingFor,
                                       controller: model.searchController,
                                       onPressed: () {},
+                                      containerPadding:
+                                          EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                                       onFieldSubmitted: (text) {
                                         if (text.trim().isNotEmpty) {
                                           if ((!model.searchTextList.contains(text.trim().toLowerCase())))
@@ -129,7 +132,7 @@ class CardTransactionPageView extends BasePageViewWidget<CardTransactionViewMode
                                       },
                                       suffixIcon: (value, data) {
                                         return Padding(
-                                            padding: EdgeInsetsDirectional.only(start: 19.0.w),
+                                            padding: EdgeInsetsDirectional.only(end: 6.w, start: 6.w),
                                             child: AppSvg.asset(AssetUtils.search,
                                                 height: 16.0.h, width: 16.0.w));
                                       },
@@ -228,7 +231,9 @@ class CardTransactionPageView extends BasePageViewWidget<CardTransactionViewMode
                                               itemCount: transaction.data!.transactionResponse!.length,
                                             )
                                           : Center(
-                                              child: Text(S.of(context).noTransactionToDisplay),
+                                              child: NoDataWidget(
+                                                errorMessage: S.of(context).noTransactionToDisplay,
+                                              ),
                                             ),
                                     ),
                                   );

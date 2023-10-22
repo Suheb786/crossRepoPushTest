@@ -1,6 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
+import 'package:neo_bank/utils/clickable_scrall_view/list_wheel_scrall_view.dart';
 import 'package:domain/model/payment/get_rejection_reason/get_rejection_reason_response.dart';
 import 'package:domain/model/payment/get_rejection_reason/reject_reasons_response.dart';
 import 'package:flutter/material.dart';

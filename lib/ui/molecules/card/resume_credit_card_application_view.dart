@@ -1,67 +1,86 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../di/dashboard/dashboard_modules.dart';
+
 class ResumeCreditCardApplicationView extends StatelessWidget {
   final bool isSmallDevices;
+  final int myIndex;
 
-  const ResumeCreditCardApplicationView({this.isSmallDevices = false, Key? key}) : super(key: key);
+  const ResumeCreditCardApplicationView({this.isSmallDevices = false, Key? key, required this.myIndex})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      elevation: 2,
-      color: Theme.of(context).primaryColor,
-      margin: EdgeInsets.zero,
-      shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
-      child: Container(
-        decoration: BoxDecoration(image: DecorationImage(image: AssetImage(AssetUtils.zigzagBackground), fit: BoxFit.cover, scale: isSmallDevices ? 1.3 : 1, matchTextDirection: true)),
-        child: Stack(
-          fit: StackFit.expand,
-          alignment: AlignmentDirectional.centerStart,
-          children: [
-            PositionedDirectional(
-              child: topWidget(context),
-              top: 0,
-              start: 0,
-            ),
-            PositionedDirectional(
-              child: bottomWidget(context),
-              bottom: 0,
-              end: 0,
-              start: 0,
-            ),
-            Positioned.fill(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AppSvg.asset(AssetUtils.cardCircle, height: 96.0.h),
-                  Padding(
-                      padding: EdgeInsetsDirectional.only(top: 12.0.h, start: 10.0.w, end: 10.0.w),
-                      child: Text(
-                        S.of(context).resumeCreditCardProcess,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontSize: 12.0.t,
-                            fontWeight: FontWeight.w600,
-                            color: Theme.of(context).colorScheme.secondary),
-                      )),
-                ],
+    return AppStreamBuilder<int>(
+        stream: ProviderScope.containerOf(context).read(appHomeViewModelProvider).currentStep,
+        initialData: 0,
+        dataBuilder: (context, myyCurrentStep) {
+          return AnimatedOpacity(
+            opacity: myyCurrentStep == myIndex ? 1 : 0.5,
+            duration: const Duration(milliseconds: 400),
+            child: Card(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              elevation: 2,
+              color: Theme.of(context).primaryColor,
+              margin: EdgeInsets.zero,
+              shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
+              child: Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(AssetUtils.zigzagBackground),
+                        fit: BoxFit.cover,
+                        scale: isSmallDevices ? 1.3 : 1,
+                        matchTextDirection: true)),
+                child: Stack(
+                  fit: StackFit.expand,
+                  alignment: AlignmentDirectional.centerStart,
+                  children: [
+                    PositionedDirectional(
+                      child: topWidget(context),
+                      top: 0,
+                      start: 0,
+                    ),
+                    PositionedDirectional(
+                      child: bottomWidget(context),
+                      bottom: 0,
+                      end: 0,
+                      start: 0,
+                    ),
+                    Positioned.fill(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AppSvg.asset(AssetUtils.cardCircle, height: 96.0.h),
+                          Padding(
+                              padding: EdgeInsetsDirectional.only(top: 12.0.h, start: 10.0.w, end: 10.0.w),
+                              child: Text(
+                                S.of(context).resumeCreditCardProcess,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    fontSize: 12.0.t,
+                                    fontWeight: FontWeight.w600,
+                                    color: Theme.of(context).colorScheme.secondary),
+                              )),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ],
-        ),
-      ),
-    );
+          );
+        });
   }
-
 
   topWidget(BuildContext context) {
     return Padding(
