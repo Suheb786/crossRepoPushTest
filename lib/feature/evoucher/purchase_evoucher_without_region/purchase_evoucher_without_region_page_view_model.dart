@@ -7,7 +7,7 @@ import 'package:rxdart/rxdart.dart';
 import '../../../base/base_page_view_model.dart';
 
 class PurchaseEVoucherWithoutRegionPageViewModel extends BasePageViewModel {
-  late final PurchaseEVoucherWithoutRegionPageArgument argument;
+  late PurchaseEVoucherWithoutRegionPageArgument argument;
 
   PurchaseEVoucherWithoutRegionPageViewModel();
 
