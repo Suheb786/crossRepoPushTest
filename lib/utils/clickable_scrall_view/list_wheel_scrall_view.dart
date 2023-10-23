@@ -119,7 +119,7 @@ class _ClickableListWheelScrollViewState extends State<ClickableListWheelScrollV
         ? (widget.scrollController as FixedExtentScrollController).selectedItem
         : widget.scrollController.offset ~/ widget.itemHeight;
     final clickOffset = _getClickedOffset();
-    final indexOffset = (clickOffset / (widget.itemHeight)).round();
+    final indexOffset = (clickOffset / (widget.itemHeight)).floor();
     final newIndex = currentIndex + indexOffset;
 
     if (newIndex < 0 || newIndex >= widget.itemCount) {
@@ -145,7 +145,7 @@ class _ClickableListWheelScrollViewState extends State<ClickableListWheelScrollV
     final offset = _getClickedOffset();
     final scrollOffset = widget.scrollController.offset + offset;
 
-    final index = (scrollOffset / widget.itemHeight).round();
+    final index = (scrollOffset / widget.itemHeight).floor();
     widget.onItemTapCallback?.call(index);
 
     if (widget.scrollOnTap) {
