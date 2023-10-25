@@ -42,7 +42,7 @@ void main() {
 
     runApp(ProviderScope(
       child: DevicePreview(
-        enabled: false,
+        enabled: true,
         builder: (context) => MyApp(),
       ),
     ));

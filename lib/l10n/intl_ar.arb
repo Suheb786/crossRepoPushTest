@@ -1898,5 +1898,6 @@
   "verifyingYourNationalID": "Verifying your National ID",
   "validatingYourSelfie": "Validating your selfie",
   "unableVerifyYourID": "Unable verify your ID",
-  "unableVerifyYourIDDescription": "Seems that we are unable to verify your\nNational ID. Please try again later."
+  "unableVerifyYourIDDescription": "Seems that we are unable to verify your\nNational ID. Please try again later.",
+  "getReadyToScanYourId": "Get ready to scan your ID\n and take a Selfie"
 }
