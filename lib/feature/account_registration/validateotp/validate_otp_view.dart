@@ -1,5 +1,4 @@
 import 'package:animated_widgets/animated_widgets.dart';
-import 'package:data/helper/id_wise_helper.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
@@ -21,7 +20,6 @@ import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../ui/molecules/button/app_primary_button.dart';
 import '../../../utils/color_utils.dart';
-import '../manage_idwise_status/manage_idwise_status_page.dart';
 
 class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
   ValidateOtpPageView(ProviderBase model) : super(model);
@@ -43,8 +41,9 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                 stream: model.updateJourneyStream,
                 onData: (value) {
                   if (value.status == Status.SUCCESS) {
-                    Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
-                        arguments: ManageIDWiseStatusParams(journeyId: ''));
+                    // Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
+                    //     arguments: ManageIDWiseStatusParams(journeyId: ''));
+                    Navigator.pushReplacementNamed(context, RoutePaths.Dashboard);
                   }
                 },
                 dataBuilder: (context, snapshot) {

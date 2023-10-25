@@ -14,6 +14,7 @@ class AppPrimaryButton extends StatelessWidget {
     this.textColor,
     this.activeBackgroundColor,
     this.disableBackgroundColor,
+    this.padding = EdgeInsets.zero,
   }) : super(key: key);
 
   final VoidCallback? onPressed;
@@ -23,38 +24,42 @@ class AppPrimaryButton extends StatelessWidget {
   final bool isDisabled;
   final Color? activeBackgroundColor;
   final Color? disableBackgroundColor;
+  final EdgeInsetsGeometry padding;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      height: 56.h,
-      child: ElevatedButton(
-        style: ButtonStyle(
-          shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(100),
+    return Padding(
+      padding: padding,
+      child: SizedBox(
+        width: width,
+        height: 56.h,
+        child: ElevatedButton(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(100),
+              ),
             ),
+            backgroundColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+              if (states.contains(MaterialState.disabled)) {
+                return Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5);
+              }
+              return isDisabled
+                  ? disableBackgroundColor ?? Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5)
+                  : activeBackgroundColor ??
+                      Theme.of(context).textTheme.bodyLarge?.color ??
+                      AppColor.brightBlue;
+            }),
           ),
-          backgroundColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
-            if (states.contains(MaterialState.disabled)) {
-              return Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5);
-            }
-            return isDisabled
-                ? disableBackgroundColor ?? Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5)
-                : activeBackgroundColor ??
-                    Theme.of(context).textTheme.bodyLarge?.color ??
-                    AppColor.brightBlue;
-          }),
-        ),
-        onPressed: !isDisabled ? onPressed : null,
-        child: Text(
-          text,
-          style: TextStyle(
-              fontFamily: StringUtils.appFont,
-              fontSize: 14.t,
-              fontWeight: FontWeight.w600,
-              color: textColor ?? Theme.of(context).colorScheme.secondary),
+          onPressed: !isDisabled ? onPressed : null,
+          child: Text(
+            text,
+            style: TextStyle(
+                fontFamily: StringUtils.appFont,
+                fontSize: 14.t,
+                fontWeight: FontWeight.w600,
+                color: textColor ?? Theme.of(context).colorScheme.secondary),
+          ),
         ),
       ),
     );
