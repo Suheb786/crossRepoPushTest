@@ -1536,6 +1536,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "الحصول على بطاقتي الائتمانية"),
         "getProfileInfoError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "getReadyToScanYourId": MessageLookupByLibrary.simpleMessage(
+            "Get ready to scan your ID\n and take a Selfie"),
         "getStatesError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "getTimeSlotsError": MessageLookupByLibrary.simpleMessage(

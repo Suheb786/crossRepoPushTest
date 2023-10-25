@@ -8,6 +8,7 @@ import 'package:neo_bank/di/usecase/id_card/id_card_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/register/register_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
+import 'package:neo_bank/feature/register/idwise_intial/idwise_intial_page_view_model.dart';
 import 'package:neo_bank/feature/register/register_page_model.dart';
 import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_view_model.dart';
@@ -460,4 +461,9 @@ final scheduleVideoCallLaterPageViewModelProvider =
 ///video call view model
 final videoCallViewModelProvider = ChangeNotifierProvider.autoDispose<VideoCallPageViewModel>(
   (ref) => VideoCallPageViewModel(),
+);
+
+///intial IdWise page view model
+final idWiseIntialPageViewModel = ChangeNotifierProvider.autoDispose<IdWiseIntialPageViewModel>(
+  (ref) => IdWiseIntialPageViewModel(),
 );

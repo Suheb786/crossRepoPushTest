@@ -1573,6 +1573,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Get My Credit Card"),
         "getProfileInfoError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "getReadyToScanYourId": MessageLookupByLibrary.simpleMessage(
+            "Get ready to scan your ID\n and take a Selfie"),
         "getStatesError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getTimeSlotsError": MessageLookupByLibrary.simpleMessage(
