@@ -11,7 +11,6 @@ import 'package:neo_bank/feature/account_registration/account_registration_page.
 import 'package:neo_bank/feature/change_device_flow/otp_for_change_device/otp_for_change_device_confirmation_page.dart';
 import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_page.dart';
 import 'package:neo_bank/feature/login/login_page_model.dart';
-import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -247,20 +246,19 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                   CheckKYCData();
 
                               if (kycData.type?.isNotEmpty ?? false) {
-                                if (kycData.type == 'MobileOTP') {
+                                if (kycData.type == 'IDCardC' || kycData.type == 'SelfiCheck') {
+                                  Navigator.pushNamedAndRemoveUntil(
+                                    context,
+                                    RoutePaths.IdWiseIntialPage,
+                                    (route) => false,
+                                  );
+                                } else {
                                   Navigator.pushNamedAndRemoveUntil(
                                       context, RoutePaths.AccountRegistration, (route) => false,
                                       arguments: AccountRegistrationParams(
                                           kycData: kycData,
                                           mobileCode: loginData!.data!.mobileCode!,
                                           mobileNumber: loginData.data!.mobile!));
-                                } else {
-                                  Navigator.pushNamedAndRemoveUntil(
-                                      context, RoutePaths.Registration, (route) => false,
-                                      arguments: RegisterPageParams(
-                                        applicationId: model.applicationId,
-                                        kycData: kycData,
-                                      ));
                                 }
                               } else {
                                 Navigator.of(context).pushNamedAndRemoveUntil(

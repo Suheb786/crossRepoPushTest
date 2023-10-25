@@ -4,7 +4,6 @@ import 'package:domain/usecase/account/verify_mobile_otp_usecase.dart';
 import 'package:domain/usecase/user/change_my_number_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:domain/usecase/user/register_prospect_usecase.dart';
-import 'package:domain/usecase/user/update_journey_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
@@ -25,7 +24,6 @@ class ValidateOtpViewModel extends BasePageViewModel {
   final GetTokenUseCase _getTokenUseCase;
   final SendMobileOTPUsecase _sendMobileOTPUsecase;
   final RegisterProspectUseCase _registerProspectUseCase;
-  final UpdateJourneyUseCase _updateJourneyUseCase;
 
   final ChangeMyNumberUseCase _changeMyNumberUseCase;
 
@@ -115,22 +113,8 @@ class ValidateOtpViewModel extends BasePageViewModel {
 
   Stream<Resource<User>> get registerUserStream => _registerUserResponse.stream;
 
-  ///update journey request subject holder
-  PublishSubject<UpdateJourneyUseCaseParams> _updateJourneyRequest = PublishSubject();
-
-  ///update journey response subject holder
-  PublishSubject<Resource<bool>> _updateJourneyResponse = PublishSubject();
-
-  Stream<Resource<bool>> get updateJourneyStream => _updateJourneyResponse.stream;
-
-  ValidateOtpViewModel(
-      this._verifyOtpUseCase,
-      this._getTokenUseCase,
-      this._changeMyNumberUseCase,
-      this._sendMobileOTPUsecase,
-      this._onboardingVerifyMobileOtpUsecase,
-      this._registerProspectUseCase,
-      this._updateJourneyUseCase) {
+  ValidateOtpViewModel(this._verifyOtpUseCase, this._getTokenUseCase, this._changeMyNumberUseCase,
+      this._sendMobileOTPUsecase, this._onboardingVerifyMobileOtpUsecase, this._registerProspectUseCase) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value, createCall: () => _verifyOtpUseCase.execute(params: value))
           .asFlow()
@@ -207,18 +191,6 @@ class ValidateOtpViewModel extends BasePageViewModel {
         }
       });
     });
-
-    _updateJourneyRequest.listen((value) {
-      RequestManager(value, createCall: () => _updateJourneyUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _updateJourneyResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showToastWithError(event.appError!);
-        }
-      });
-    });
   }
 
   void validateOtp() {
@@ -247,15 +219,6 @@ class ValidateOtpViewModel extends BasePageViewModel {
   void verifyMobileOtp({required String? OTPCode, required String? MobileNo}) {
     _verifyMobileOtpRequest
         .safeAdd(OnboardingVerifyMobileOtpUsecaseParams(OTPCode: OTPCode, MobileNo: MobileNo));
-  }
-
-  void udpateJourney(
-      {required String? userID,
-      required String? refID,
-      required String? journeyID,
-      required String? status}) {
-    _updateJourneyRequest.safeAdd(
-        UpdateJourneyUseCaseParams(userID: userID, refID: refID, journeyID: journeyID, status: status));
   }
 
   void registerUser(

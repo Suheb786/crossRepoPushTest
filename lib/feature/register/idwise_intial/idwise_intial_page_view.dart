@@ -1,3 +1,4 @@
+import 'package:data/helper/id_wise_helper.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -88,7 +89,7 @@ class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel>
                                                         : Theme.of(context).colorScheme.secondary,
                                                     border: Border.all(
                                                         color:
-                                                            Theme.of(context).colorScheme.onInverseSurface)),
+                                                        Theme.of(context).colorScheme.onInverseSurface)),
                                                 child: InkWell(
                                                   onTap: () {
                                                     model.checkBoxToggle(!value);
@@ -120,7 +121,22 @@ class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel>
                                       return AppPrimaryButton(
                                         isDisabled: !value!,
                                         padding: EdgeInsetsDirectional.only(top: 16.h, end: 12.w),
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          IdWiseHelper idWiseHelper = IdWiseHelper();
+                                          idWiseHelper.initializeIdWise();
+                                          var status =
+                                              await idWiseHelper.startVerification('en', '123456789');
+                                          debugPrint("STATUS : ${status.keys.first}");
+                                          debugPrint("TEXT :  ${status.values.first}");
+
+                                          if (status.keys.first == IDWiseStatus.COMPLETED) {
+                                            /* model.udpateJourney(
+                                                userID: data.data?.id,
+                                                refID: data.data?.id,
+                                                journeyID: "652d04e0af84d86ae1c146e5",
+                                                status: "");*/
+                                          }
+                                        },
                                       );
                                     },
                                   ),

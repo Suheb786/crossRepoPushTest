@@ -465,5 +465,5 @@ final videoCallViewModelProvider = ChangeNotifierProvider.autoDispose<VideoCallP
 
 ///intial IdWise page view model
 final idWiseIntialPageViewModel = ChangeNotifierProvider.autoDispose<IdWiseIntialPageViewModel>(
-  (ref) => IdWiseIntialPageViewModel(),
+  (ref) => IdWiseIntialPageViewModel(ref.read(updateJourneyUseCaseProvider)),
 );
