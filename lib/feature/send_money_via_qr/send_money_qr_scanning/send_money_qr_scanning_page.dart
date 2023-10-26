@@ -41,6 +41,17 @@ class SendMoneyQRScanningPageState
     );
     super.onModelReady(model);
   }
+
+  @override
+  Future<bool> onBackPressed(SendMoneyQRScanningPageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(sendMoneyQrScanningViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }
 
 class SendMoneyQRScanningArguments {

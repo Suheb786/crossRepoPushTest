@@ -79,6 +79,12 @@ class CreditCardVideoKycPageState
     }
     super.didChangeAppLifecycleState(state);
   }
+
+  @override
+  Future<bool> onBackPressed(CreditCardVideoKycViewModel model, {param}) async {
+    // model.leaveAgoraChannel();
+    return false;
+  }
 }
 
 class CreditCardVideKycCredentials {

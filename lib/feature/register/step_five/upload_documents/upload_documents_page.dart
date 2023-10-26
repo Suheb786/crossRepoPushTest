@@ -25,4 +25,9 @@ class UploadDocumentsPageState extends BaseStatefulPage<UploadDocumentsPageViewM
   Widget buildView(BuildContext context, UploadDocumentsPageViewModel model) {
     return UploadDocumentsPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(UploadDocumentsPageViewModel model, {param}) async {
+    return false;
+  }
 }

@@ -36,5 +36,10 @@ class CreatePinPageState extends BaseStatefulPage<CreatePinPageViewModel, Create
   }
 
   @override
+  Future<bool> onBackPressed(CreatePinPageViewModel model, {param}) async {
+    return false;
+  }
+
+  @override
   bool get wantKeepAlive => true;
 }

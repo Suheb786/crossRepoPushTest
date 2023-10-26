@@ -7,11 +7,9 @@ import 'package:rxdart/rxdart.dart';
 import '../../../base/base_page_view_model.dart';
 
 class PurchaseEVoucherWithoutRegionPageViewModel extends BasePageViewModel {
-  final PurchaseEVoucherWithoutRegionPageArgument argument;
+  late PurchaseEVoucherWithoutRegionPageArgument argument;
 
-  PurchaseEVoucherWithoutRegionPageViewModel(
-    this.argument,
-  );
+  PurchaseEVoucherWithoutRegionPageViewModel();
 
   final SwiperController pageController = SwiperController();
 

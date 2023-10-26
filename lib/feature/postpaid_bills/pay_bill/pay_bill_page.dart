@@ -33,4 +33,16 @@ class PayBillPageState extends BaseStatefulPage<PayBillPageViewModel, PayBillPag
     return AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light, child: PayBillPageView(provideBase()));
   }
+
+  @override
+  Future<bool> onBackPressed(PayBillPageViewModel model, {param}) async {
+    var parentModel =
+        ProviderScope.containerOf(context).read(payBillPageViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

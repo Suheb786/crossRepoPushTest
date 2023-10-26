@@ -98,10 +98,15 @@ class PageDetail extends StatelessWidget {
         stream: model.getSettlementAmountStream,
         onData: (d) {
           if (d.status == Status.SUCCESS) {
-            Navigator.pushNamed(context, RoutePaths.PurchaseEVoucherWithoutRegionPage,
-                arguments: PurchaseEVoucherWithoutRegionPageArgument(
-                  settlementAmount: d.data?.content ?? 0.0,
-                  selectedItem: model.argument.selectedVoucherItem,
+            Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  settings: const RouteSettings(name: RoutePaths.PurchaseEVoucherWithoutRegionPage),
+                  builder: (BuildContext context) => PurchaseEVoucherWithoutRegionPage(
+                      argument: PurchaseEVoucherWithoutRegionPageArgument(
+                    settlementAmount: d.data?.content ?? 0.0,
+                    selectedItem: model.argument.selectedVoucherItem,
+                  )),
                 ));
           }
         },
@@ -222,10 +227,15 @@ class PurchaseNowBtn extends StatelessWidget {
         isDisabled: false,
         onPressed: () {
           if (model.argument.selectedVoucherItem.currency == AppConstantsUtils.jodCurrency) {
-            Navigator.pushNamed(context, RoutePaths.PurchaseEVoucherWithoutRegionPage,
-                arguments: PurchaseEVoucherWithoutRegionPageArgument(
-                  settlementAmount: (model.argument.selectedVoucherItem.fromValue.toDouble()),
-                  selectedItem: model.argument.selectedVoucherItem,
+            Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  settings: const RouteSettings(name: RoutePaths.PurchaseEVoucherWithoutRegionPage),
+                  builder: (BuildContext context) => PurchaseEVoucherWithoutRegionPage(
+                      argument: PurchaseEVoucherWithoutRegionPageArgument(
+                    settlementAmount: (model.argument.selectedVoucherItem.fromValue.toDouble()),
+                    selectedItem: model.argument.selectedVoucherItem,
+                  )),
                 ));
           } else {
             model.getSettlementAmmount(

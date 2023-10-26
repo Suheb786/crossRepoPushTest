@@ -61,4 +61,15 @@ class QRScanOTPPageState extends BaseStatefulPage<QRScanOTPPageViewModel, QRScan
     super.dispose();
     cancel();
   }
+
+  @override
+  Future<bool> onBackPressed(QRScanOTPPageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(sendMoneyQrScanningViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

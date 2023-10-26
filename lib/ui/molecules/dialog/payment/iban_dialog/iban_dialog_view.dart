@@ -11,8 +11,9 @@ import 'package:neo_bank/utils/string_utils.dart';
 class IbanDialogView extends StatelessWidget {
   final Function? onDismissed;
   final Function(String, String)? onSelected;
+  final bool onWillPop;
 
-  const IbanDialogView({this.onDismissed, this.onSelected});
+  const IbanDialogView({this.onDismissed, this.onSelected, this.onWillPop = true});
 
   ProviderBase providerBase() {
     return ibanDialogViewModelProvider;
@@ -20,54 +21,60 @@ class IbanDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget<IbanDialogViewModel>(
-        builder: (context, model, child) {
-          return Dialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-            insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36),
-            backgroundColor: Colors.transparent,
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.circular(16)),
-                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      S.of(context).ibanNotBlink,
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 20),
-                    ),
-                    Padding(
-                        padding: EdgeInsets.only(top: 24),
-                        child: Text(S.of(context).ibanOutsideBlink,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14))),
-                    Padding(
-                      padding: EdgeInsets.only(top: 48),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(16),
-                          height: 57,
-                          width: 57,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyLarge!.color!),
-                          child:
-                              AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
-                        ),
+    return WillPopScope(
+      onWillPop: () async => onWillPop,
+      child: BaseWidget<IbanDialogViewModel>(
+          builder: (context, model, child) {
+            return Dialog(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+              insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36),
+              backgroundColor: Colors.transparent,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.secondary,
+                      borderRadius: BorderRadius.circular(16)),
+                  padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        S.of(context).ibanNotBlink,
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 20),
                       ),
-                    )
-                  ],
+                      Padding(
+                          padding: EdgeInsets.only(top: 24),
+                          child: Text(S.of(context).ibanOutsideBlink,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14))),
+                      Padding(
+                        padding: EdgeInsets.only(top: 48),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(16),
+                            height: 57,
+                            width: 57,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyLarge!.color!),
+                            child:
+                                AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-          );
-        },
-        providerBase: providerBase());
+            );
+          },
+          providerBase: providerBase()),
+    );
   }
 }

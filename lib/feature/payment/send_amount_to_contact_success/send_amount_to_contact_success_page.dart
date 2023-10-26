@@ -6,6 +6,9 @@ import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amount_to_contact_success_page_view.dart';
 import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amount_to_contact_success_view_model.dart';
 
+import '../../../di/dashboard/dashboard_modules.dart';
+import '../../../main/navigation/route_paths.dart';
+
 class SendAmountToContactSuccessPage extends BasePage<SendAmountToContactSuccessViewModel> {
   final TransferSuccessContent arguments;
 
@@ -30,6 +33,13 @@ class SendAmountToContactSuccessPageState
   @override
   Widget buildView(BuildContext context, SendAmountToContactSuccessViewModel model) {
     return SendAmountToContactSuccessPageView(provideBase());
+  }
+
+  @override
+  Future<bool> onBackPressed(SendAmountToContactSuccessViewModel model, {param}) {
+    Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+    ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+    return super.onBackPressed(model);
   }
 }
 

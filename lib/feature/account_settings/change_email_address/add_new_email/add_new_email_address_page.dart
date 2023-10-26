@@ -10,8 +10,8 @@ class AddNewEmailAddressPage extends BasePage<AddNewEmailAddressPageViewModel> {
   AddNewEmailAddressPageState createState() => AddNewEmailAddressPageState();
 }
 
-class AddNewEmailAddressPageState
-    extends BaseStatefulPage<AddNewEmailAddressPageViewModel, AddNewEmailAddressPage>
+class AddNewEmailAddressPageState extends BaseStatefulPage<
+        AddNewEmailAddressPageViewModel, AddNewEmailAddressPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   AddNewEmailAddressPageState() : super(subscribeVisibilityEvents: true);
 
@@ -32,8 +32,22 @@ class AddNewEmailAddressPageState
   }
 
   @override
-  Widget buildView(BuildContext context, AddNewEmailAddressPageViewModel model) {
+  Widget buildView(
+      BuildContext context, AddNewEmailAddressPageViewModel model) {
     return AddNewEmailAddressPageView(provideBase());
+  }
+
+  @override
+  Future<bool> onBackPressed(AddNewEmailAddressPageViewModel model,
+      {param}) async {
+    var parentModel = ProviderScope.containerOf(context)
+        .read(changeEmailAddressViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
   }
 
   @override

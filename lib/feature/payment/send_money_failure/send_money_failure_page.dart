@@ -5,6 +5,8 @@ import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_page_view.dart';
 import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_view_model.dart';
 
+import '../../../main/navigation/route_paths.dart';
+
 class SendMoneyFailurePage extends BasePage<SendMoneyFailureViewModel> {
   final SendMoneyFailurePageArgument sendMoneyFailurePageArgument;
 
@@ -28,6 +30,12 @@ class SendMoneyFailurePageState extends BaseStatefulPage<SendMoneyFailureViewMod
   @override
   Widget buildView(BuildContext context, SendMoneyFailureViewModel model) {
     return SendMoneyFailurePageView(provideBase());
+  }
+
+  @override
+  Future<bool> onBackPressed(SendMoneyFailureViewModel model, {param}) {
+    Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+    return super.onBackPressed(model);
   }
 }
 

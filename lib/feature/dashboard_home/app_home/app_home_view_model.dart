@@ -41,6 +41,7 @@ import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/widgets/my_account_page_widget.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
 import 'package:neo_bank/feature/offer_campaign/offer/offer_for_you_page.dart';
+import 'package:neo_bank/feature/rj/rj_book_flight/rj_book_flight_page.dart';
 import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/ui/molecules/card/apply_credit_card_widget.dart';
@@ -65,6 +66,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../generated/l10n.dart';
+import '../../../main/navigation/route_paths.dart';
 import '../account_transaction/account_transaction_page.dart';
 import '../card_transaction/card_transaction_page.dart';
 
@@ -1290,10 +1292,6 @@ class AppHomeViewModel extends BasePageViewModel {
   /// SETTINGS PAGE ANIMATIONS AND TRANSITIONS....
   showSettingPage(bool value, {bool updateDashboard = false, int currentStep = 0}) {
     if (value) {
-      Future.delayed(
-        const Duration(milliseconds: 300),
-        () {},
-      );
       animateForwardSettingsPage();
     } else {
       selectedDebitCard = selectedCreditCard = null;
@@ -1424,7 +1422,15 @@ class AppHomeViewModel extends BasePageViewModel {
   goToOfferForYouPage(BuildContext context) {
     translateSettingsUpController.forward();
     scaleAnimationController.forward();
-    Navigator.of(context).push(CustomRoute.swipeUpRoute(OfferForYouPage()));
+    Navigator.of(context)
+        .push(CustomRoute.swipeUpRoute(OfferForYouPage(), routeName: RoutePaths.OfferForYouPage));
+  }
+
+  goToRJPage(BuildContext context) {
+    translateSettingsUpController.forward();
+    scaleAnimationController.forward();
+    Navigator.of(context)
+        .push(CustomRoute.swipeUpRoute(RjFlightBookingPage(), routeName: RoutePaths.RjFlightBookingPage));
   }
 
   animateForwardTransactionPage() {

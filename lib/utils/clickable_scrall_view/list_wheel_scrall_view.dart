@@ -121,6 +121,8 @@ class _ClickableListWheelScrollViewState extends State<ClickableListWheelScrollV
     final clickOffset = _getClickedOffset();
     final indexOffset = (clickOffset / (widget.itemHeight)).floor();
     final newIndex = currentIndex + indexOffset;
+    // print("clickOffset --- ${clickOffset}");
+    // print("widget.itemHeight --- ${widget.itemHeight}");
 
     if (newIndex < 0 || newIndex >= widget.itemCount) {
       return -1;

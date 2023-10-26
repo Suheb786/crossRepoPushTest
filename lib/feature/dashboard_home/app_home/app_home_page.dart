@@ -19,7 +19,8 @@ class AppHomePage extends BasePage<AppHomeViewModel> {
   AppHomePageState createState() => AppHomePageState();
 }
 
-class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> with AutomaticKeepAliveClientMixin, WidgetsBindingObserver, TickerProviderStateMixin {
+class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
+    with AutomaticKeepAliveClientMixin, WidgetsBindingObserver, TickerProviderStateMixin {
   @override
   ProviderBase provideBase() {
     return appHomeViewModelProvider;
@@ -146,7 +147,8 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> w
         children: [
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.08 : 0.06) - 4),
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.08 : 0.06) - 4),
               child: AppHomePageViewNew(
                 provideBase(),
               ),
@@ -157,11 +159,15 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> w
               initialData: DashboardAnimatedPage.NULL,
               dataBuilder: (context, switchedPage) {
                 return AnimatedCrossFade(
-                  crossFadeState: (switchedPage != DashboardAnimatedPage.NULL) ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                  crossFadeState: (switchedPage != DashboardAnimatedPage.NULL)
+                      ? CrossFadeState.showSecond
+                      : CrossFadeState.showFirst,
                   duration: Duration(milliseconds: 500),
                   secondChild: const SizedBox(),
                   firstChild: Padding(
-                    padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * (DeviceSizeHelper.isBigDevice ? 0.036 : 0.02)),
+                    padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height *
+                            (DeviceSizeHelper.isBigDevice ? 0.036 : 0.02)),
                     child: BottomBarWidget(
                       onHomeTap: () {
                         if (switchedPage == DashboardAnimatedPage.NULL) {
@@ -189,6 +195,26 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> w
         ],
       ),
     );
+  }
+
+  @override
+  Future<bool> onBackPressed(AppHomeViewModel model, {param}) async {
+    if (model.pageSwitchSubject.value != DashboardAnimatedPage.NULL) {
+      if (model.pageSwitchSubject.value == DashboardAnimatedPage.PAYBACK) {
+        model.goToPayBackView(false);
+        return false;
+      } else if (model.pageSwitchSubject.value == DashboardAnimatedPage.SETTINGS) {
+        model.showSettingPage(false);
+        return false;
+      } else if (model.pageSwitchSubject.value == DashboardAnimatedPage.ACT_SETTING) {
+        model.showHideAccountSettings(false);
+        return false;
+      } else if (model.pageSwitchSubject.value == DashboardAnimatedPage.SUB_ACT_SETTING) {
+        model.showHideSubAccountSettings(false);
+        return false;
+      } else if (model.pageSwitchSubject.value == DashboardAnimatedPage.OFFER) {}
+    }
+    return super.onBackPressed(model);
   }
 
   @override
