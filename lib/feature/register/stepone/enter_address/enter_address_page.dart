@@ -25,4 +25,9 @@ class EnterAddressPageState extends BaseStatefulPage<EnterAddressViewModel, Ente
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).primaryColor;
   }
+
+  @override
+  Future<bool> onBackPressed(EnterAddressViewModel model, {param}) async {
+    return false;
+  }
 }

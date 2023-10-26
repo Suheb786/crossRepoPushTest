@@ -45,4 +45,9 @@ class TaxationDetailsPageState extends BaseStatefulPage<TaxationDetailsPageViewM
 
   @override
   bool get wantKeepAlive => true;
+
+  @override
+  Future<bool> onBackPressed(TaxationDetailsPageViewModel model, {param}) async {
+    return false;
+  }
 }

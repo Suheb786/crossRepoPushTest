@@ -205,7 +205,7 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                             }, onDismissed: () {
                               Navigator.pop(context);
                               model.freezeCardStatus(false);
-                            });
+                            }, onWillPop: false);
                           }
                         },
                         dataBuilder: (context, snapshot) {

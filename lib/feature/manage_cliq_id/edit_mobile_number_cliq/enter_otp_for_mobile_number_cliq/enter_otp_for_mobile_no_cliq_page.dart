@@ -7,6 +7,8 @@ import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/enter_ot
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/enter_otp_for_mobile_number_cliq/enter_otp_for_mobile_no_cliq_page_view_model.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
+import '../edit_mobile_no_cliq_page_view_model.dart';
+
 class EnterOtpForMobileNumberCliqPage extends BasePage<EnterOtpForMobileNumberCliqPageViewModel> {
   @override
   EnterOtpForMobileNumberCliqPageState createState() => EnterOtpForMobileNumberCliqPageState();
@@ -61,5 +63,16 @@ class EnterOtpForMobileNumberCliqPageState
   void dispose() {
     super.dispose();
     cancel();
+  }
+
+  @override
+  Future<bool> onBackPressed(EnterOtpForMobileNumberCliqPageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(editMobileNoViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
   }
 }

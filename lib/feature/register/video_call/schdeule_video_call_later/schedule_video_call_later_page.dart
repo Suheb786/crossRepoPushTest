@@ -26,4 +26,15 @@ class ScheduleVideoCallLaterPageState
   Widget buildView(BuildContext context, ScheduleVideoCallLaterPageViewModel model) {
     return ScheduleVideoCallLaterPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(ScheduleVideoCallLaterPageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(videoCallViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

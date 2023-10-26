@@ -23,6 +23,12 @@ class BillPaymentsTransactionPageState
   }
 
   @override
+  Future<bool> onBackPressed(BillPaymentsTransactionViewModel model, {param}) {
+    ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animateBackToMainPage();
+    return super.onBackPressed(model);
+  }
+
+  @override
   Widget buildView(BuildContext context, BillPaymentsTransactionViewModel model) {
     return BillPaymentsTransactionPageView(provideBase());
   }

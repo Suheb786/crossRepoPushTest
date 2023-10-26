@@ -45,6 +45,15 @@ class PrePaidBillsSuccessPageState
     }
     super.didChangeDependencies();
   }
+
+  @override
+  Future<bool> onBackPressed(PrePaidBillsSuccessPageViewModel model, {param}) {
+    Navigator.of(context)
+      ..pop()
+      ..pop()
+      ..pop(true);
+    return super.onBackPressed(model);
+  }
 }
 
 class PrePaidBillsSuccessPageArguments {

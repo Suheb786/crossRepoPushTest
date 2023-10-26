@@ -10,7 +10,8 @@ class SetCreditLimitPage extends BasePage<SetCreditLimitViewModel> {
   SetCreditLimitPageState createState() => SetCreditLimitPageState();
 }
 
-class SetCreditLimitPageState extends BaseStatefulPage<SetCreditLimitViewModel, SetCreditLimitPage> {
+class SetCreditLimitPageState
+    extends BaseStatefulPage<SetCreditLimitViewModel, SetCreditLimitPage> {
   @override
   ProviderBase provideBase() {
     return setCreditLimitViewModelProvider;
@@ -24,5 +25,17 @@ class SetCreditLimitPageState extends BaseStatefulPage<SetCreditLimitViewModel, 
   @override
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).primaryColor;
+  }
+
+  @override
+  Future<bool> onBackPressed(SetCreditLimitViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context)
+        .read(applyCreditCardHomeViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
   }
 }

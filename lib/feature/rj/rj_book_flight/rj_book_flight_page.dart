@@ -143,6 +143,7 @@ class RjFlightBookingStatefulPage extends BaseStatefulPage<RjFlightBookingViewMo
                 top: 0.h,
                 child: InkWell(
                   onTap: () {
+                    model.animateBackToDashboard(context);
                     Navigator.pop(context);
                   },
                   child: Container(
@@ -166,6 +167,12 @@ class RjFlightBookingStatefulPage extends BaseStatefulPage<RjFlightBookingViewMo
         ),
       ],
     );
+  }
+
+  @override
+  Future<bool> onBackPressed(RjFlightBookingViewModel model, {param}) {
+    model.animateBackToDashboard(context);
+    return super.onBackPressed(model);
   }
 
   @override

@@ -15,8 +15,10 @@ class BlockCountryDialogView extends StatelessWidget {
   final Function(String)? onSelected;
   final String? title;
   final CountryData countryData;
+  final bool onWillPop;
 
-  const BlockCountryDialogView({required this.countryData, this.onDismissed, this.onSelected, this.title});
+  const BlockCountryDialogView(
+      {required this.countryData, this.onDismissed, this.onSelected, this.title, this.onWillPop = true});
 
   ProviderBase providerBase() {
     return blockCountryDialogViewModelProvider;
@@ -24,116 +26,120 @@ class BlockCountryDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget<BlockCountryDialogModel>(
-        builder: (context, model, child) {
-          return Dialog(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-              insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
-              child: GestureDetector(
-                onVerticalDragEnd: (details) {
-                  if (details.primaryVelocity! > 0) {
-                    onDismissed?.call();
-                  }
-                },
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 32.0),
-                      child: Center(
-                        child: Text(
-                          title!,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont, fontSize: 20, fontWeight: FontWeight.w600),
+    return WillPopScope(
+      onWillPop: () async => onWillPop,
+      child: BaseWidget<BlockCountryDialogModel>(
+          builder: (context, model, child) {
+            return Dialog(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+                insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+                child: GestureDetector(
+                  onVerticalDragEnd: (details) {
+                    if (details.primaryVelocity! > 0) {
+                      onDismissed?.call();
+                    }
+                  },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 32.0),
+                        child: Center(
+                          child: Text(
+                            title!,
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont, fontSize: 20, fontWeight: FontWeight.w600),
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 24,
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                      margin: EdgeInsets.symmetric(horizontal: 24),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(width: 1, color: AppColor.white_gray),
+                      SizedBox(
+                        height: 24,
                       ),
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 32,
-                            width: 32,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Theme.of(context).primaryColorDark,
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                        margin: EdgeInsets.symmetric(horizontal: 24),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(width: 1, color: AppColor.white_gray),
+                        ),
+                        child: Row(
+                          children: [
+                            Container(
+                              height: 32,
+                              width: 32,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Theme.of(context).primaryColorDark,
+                              ),
+                              child: AppSvg.asset(
+                                "${AssetUtils.flags}${countryData.isoCode3?.toLowerCase() ?? ""}.svg",
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                            child: AppSvg.asset(
-                              "${AssetUtils.flags}${countryData.isoCode3?.toLowerCase() ?? ""}.svg",
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 16.0),
-                              child: Text(
-                                countryData.countryName ?? "",
-                                softWrap: true,
-                                maxLines: 2,
-                                style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                child: Text(
+                                  countryData.countryName ?? "",
+                                  softWrap: true,
+                                  maxLines: 2,
+                                  style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 24),
-                      child: Text(
-                        S.of(context).blockThisCountryDesc,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Theme.of(context).inputDecorationTheme.focusedBorder!.borderSide.color),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Container(
-                        margin: EdgeInsets.only(top: 32),
-                        padding: EdgeInsets.all(16),
-                        height: 57,
-                        width: 57,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyLarge!.color!),
-                        child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0, bottom: 16),
-                      child: Center(
-                        child: Text(
-                          S.of(context).swipeDownToCancel,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                              color: AppColor.dark_gray_1),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ));
-        },
-        providerBase: providerBase());
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24),
+                        child: Text(
+                          S.of(context).blockThisCountryDesc,
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: Theme.of(context).inputDecorationTheme.focusedBorder!.borderSide.color),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: Container(
+                          margin: EdgeInsets.only(top: 32),
+                          padding: EdgeInsets.all(16),
+                          height: 57,
+                          width: 57,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyLarge!.color!),
+                          child:
+                              AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0, bottom: 16),
+                        child: Center(
+                          child: Text(
+                            S.of(context).swipeDownToCancel,
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400,
+                                color: AppColor.dark_gray_1),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ));
+          },
+          providerBase: providerBase()),
+    );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/activity/activity_modules.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_otp/return_payment_otp_page_view.dart';
@@ -59,5 +60,17 @@ class ReturnPaymentOtpPageState extends BaseStatefulPage<ReturnPaymentOtpPageVie
   void dispose() {
     super.dispose();
     cancel();
+  }
+
+  @override
+  Future<bool> onBackPressed(ReturnPaymentOtpPageViewModel model, {param}) async{
+    var parentModel = ProviderScope.containerOf(context)
+        .read(returnPaymentTransactionSliderPageViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
   }
 }

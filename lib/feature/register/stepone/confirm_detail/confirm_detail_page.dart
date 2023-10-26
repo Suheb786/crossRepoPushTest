@@ -25,4 +25,9 @@ class ConfirmDetailPageState extends BaseStatefulPage<ConfirmDetailViewModel, Co
   Widget buildView(BuildContext context, ConfirmDetailViewModel model) {
     return ConfirmDetailView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(ConfirmDetailViewModel model, {param}) async {
+    return false;
+  }
 }

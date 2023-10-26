@@ -13,6 +13,7 @@ class EfawateerLandingDialogView extends StatelessWidget {
   final String? image;
   final String title;
   final Widget descriptionWidget;
+  final bool onWillPop;
 
   const EfawateerLandingDialogView(
       {this.onDismissed,
@@ -20,27 +21,28 @@ class EfawateerLandingDialogView extends StatelessWidget {
       required this.image,
       required this.title,
       required this.descriptionWidget,
-      this.isSwipeToCancel = true});
+      this.isSwipeToCancel = true,
+      this.onWillPop = true});
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: AlignmentDirectional.bottomCenter,
-      child: Container(
-        margin: EdgeInsets.only(bottom: 56.h),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Dialog(
-                insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, top: 204.h),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-                child: Stack(
-                  clipBehavior: Clip.none,
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    WillPopScope(
-                      onWillPop: () async => false,
-                      child: Container(
+    return WillPopScope(
+      onWillPop: () async => onWillPop,
+      child: Align(
+        alignment: AlignmentDirectional.bottomCenter,
+        child: Container(
+          margin: EdgeInsets.only(bottom: 56.h),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Dialog(
+                  insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, top: 204.h),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      Container(
                           child: SingleChildScrollView(
                         physics: ClampingScrollPhysics(),
                         child: Column(
@@ -90,38 +92,38 @@ class EfawateerLandingDialogView extends StatelessWidget {
                           ],
                         ),
                       )),
-                    ),
-                    Positioned(
-                      bottom: -24.h,
-                      child: InkWell(
-                        onTap: () {
-                          onDismissed?.call();
-                        },
-                        child: Container(
-                            height: 48.h,
-                            width: 48.h,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Theme.of(context).colorScheme.onBackground),
-                                shape: BoxShape.circle,
-                                color: Theme.of(context).colorScheme.secondary),
-                            child: Image.asset(
-                              AssetUtils.close_bold,
-                              scale: 3.5,
-                            )),
-                      ),
-                    )
-                  ],
-                )),
-            GestureDetector(
-              onTap: () {
-                onDismissed?.call();
-              },
-              child: Container(
-                height: 24.h,
-                color: Colors.transparent,
-              ),
-            )
-          ],
+                      Positioned(
+                        bottom: -24.h,
+                        child: InkWell(
+                          onTap: () {
+                            onDismissed?.call();
+                          },
+                          child: Container(
+                              height: 48.h,
+                              width: 48.h,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Theme.of(context).colorScheme.onBackground),
+                                  shape: BoxShape.circle,
+                                  color: Theme.of(context).colorScheme.secondary),
+                              child: Image.asset(
+                                AssetUtils.close_bold,
+                                scale: 3.5,
+                              )),
+                        ),
+                      )
+                    ],
+                  )),
+              GestureDetector(
+                onTap: () {
+                  onDismissed?.call();
+                },
+                child: Container(
+                  height: 24.h,
+                  color: Colors.transparent,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
