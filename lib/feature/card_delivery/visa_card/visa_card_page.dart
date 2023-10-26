@@ -29,14 +29,7 @@ class VisaCardPageState
   }
 
   @override
-  Future<bool> onBackPressed(VisaCardPageViewModel model, {param}) async {
-    var parentModel =
-        ProviderScope.containerOf(context).read(cardDeliveryViewModelProvider);
-    if (parentModel.appSwiperController.page != 0) {
-      parentModel.previousPage();
-      return false;
-    } else {
-      return super.onBackPressed(model);
-    }
+  Future<bool> onBackPressed(VisaCardPageViewModel model, {param}) async{
+    return false;
   }
 }

@@ -37,14 +37,7 @@ class CreatePinPageState extends BaseStatefulPage<CreatePinPageViewModel, Create
 
   @override
   Future<bool> onBackPressed(CreatePinPageViewModel model, {param}) async {
-    var parentModel =
-    ProviderScope.containerOf(context).read(cardDeliveryViewModelProvider);
-    if (parentModel.appSwiperController.page != 0) {
-      parentModel.previousPage();
-      return false;
-    } else {
-      return super.onBackPressed(model);
-    }
+    return false;
   }
 
   @override
