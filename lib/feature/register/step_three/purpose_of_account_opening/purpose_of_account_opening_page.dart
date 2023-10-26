@@ -29,12 +29,6 @@ class PurposeOfAccountOpeningPageState
 
   @override
   Future<bool> onBackPressed(PurposeOfAccountOpeningPageViewModel model, {param}) async {
-    var parentModel = ProviderScope.containerOf(context).read(registerStepThreeViewModelProvider);
-    if (parentModel.appSwiperController.page != 0) {
-      parentModel.previousPage();
-      return false;
-    } else {
-      return super.onBackPressed(model);
-    }
+    return false;
   }
 }

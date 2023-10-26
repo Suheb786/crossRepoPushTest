@@ -48,12 +48,6 @@ class TaxationDetailsPageState extends BaseStatefulPage<TaxationDetailsPageViewM
 
   @override
   Future<bool> onBackPressed(TaxationDetailsPageViewModel model, {param}) async {
-    var parentModel = ProviderScope.containerOf(context).read(registerStepFourViewModelProvider);
-    if (parentModel.appSwiperController.page != 0) {
-      parentModel.previousPage();
-      return false;
-    } else {
-      return super.onBackPressed(model);
-    }
+    return false;
   }
 }

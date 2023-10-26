@@ -28,12 +28,6 @@ class ProfileDetailsPageState extends BaseStatefulPage<ProfileDetailsPageViewMod
 
   @override
   Future<bool> onBackPressed(ProfileDetailsPageViewModel model, {param}) async {
-    var parentModel = ProviderScope.containerOf(context).read(registerStepOneViewModelProvider);
-    if (parentModel.appSwiperController.page != 0) {
-      parentModel.previousPage();
-      return false;
-    } else {
-      return super.onBackPressed(model);
-    }
+    return false;
   }
 }

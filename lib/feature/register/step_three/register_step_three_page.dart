@@ -28,12 +28,6 @@ class RegisterStepThreePageState extends BaseStatefulPage<RegisterStepThreeViewM
 
   @override
   Future<bool> onBackPressed(RegisterStepThreeViewModel model, {param}) async {
-    var parentModel = ProviderScope.containerOf(context).read(registerStepThreeViewModelProvider);
-    if (parentModel.appSwiperController.page != 0) {
-      parentModel.previousPage();
-      return false;
-    } else {
-      return super.onBackPressed(model);
-    }
+    return false;
   }
 }
