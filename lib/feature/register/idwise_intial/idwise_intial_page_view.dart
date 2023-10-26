@@ -45,6 +45,7 @@ class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel>
                     child: Scrollbar(
                       thumbVisibility: true,
                       thickness: 4.w,
+                      controller: model.scrollController,
                       radius: Radius.circular(4),
                       child: FadingEdgeScrollView.fromSingleChildScrollView(
                         gradientFractionOnEnd: 0.3,
@@ -88,7 +89,7 @@ class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel>
                                                         : Theme.of(context).colorScheme.secondary,
                                                     border: Border.all(
                                                         color:
-                                                            Theme.of(context).colorScheme.onInverseSurface)),
+                                                        Theme.of(context).colorScheme.onInverseSurface)),
                                                 child: InkWell(
                                                   onTap: () {
                                                     model.checkBoxToggle(!value);
@@ -120,7 +121,9 @@ class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel>
                                       return AppPrimaryButton(
                                         isDisabled: !value!,
                                         padding: EdgeInsetsDirectional.only(top: 16.h, end: 12.w),
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          model.getCurrentUser();
+                                        },
                                       );
                                     },
                                   ),

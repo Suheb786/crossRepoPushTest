@@ -33,7 +33,7 @@ class IdWiseHelper {
     platformChannel.invokeMethod('initialize', {"clientKey": clientId, "theme": "LIGHT"});
   }
 
-  Future<Map<IDWiseStatus, String>> startVerification(String lang) async {
+  Future<Map<IDWiseStatus, String>> startVerification(String lang, String referenceNumber) async {
     Completer<Map<IDWiseStatus, String>> completer = Completer();
 
     platformChannel.setMethodCallHandler((handler) async {
@@ -69,7 +69,7 @@ class IdWiseHelper {
 
     platformChannel.invokeMethod('startJourney', {
       "journeyDefinitionId": journeyDefinitionId,
-      "referenceNo": null, //Put your reference number here
+      "referenceNo": referenceNumber, //Put your reference number here
       "locale": lang
     });
 
