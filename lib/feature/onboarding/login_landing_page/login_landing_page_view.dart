@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:data/helper/id_wise_helper.dart';
 import 'package:data/helper/shared_preference_helper.dart';
 import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/constants/error_types.dart';
@@ -12,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/onboarding/onboarding_module.dart';
-import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
 import 'package:neo_bank/feature/onboarding/login_landing_page/login_landing_page_view_model.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -336,19 +334,24 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                                   initialData: Resource.none(),
                                   onData: (data) {
                                     if (data.status == Status.SUCCESS) {
-                                      CheckKYCData kycData = data.data?.content?.kycData?.firstWhere(
-                                              (element) => element.status ?? false,
+                                      /* CheckKYCData kycData = (data.data?.content?.kycData?.firstWhere(
+                                              (element) => (element.status ?? false),
                                               orElse: () => CheckKYCData()) ??
+                                          CheckKYCData());
+*/
+                                      CheckKYCData kycData = data.data?.content?.kycData
+                                              ?.where((element) => element.type != "MobileOTP")
+                                              .firstWhere((element) => (element.status ?? false),
+                                                  orElse: () => CheckKYCData()) ??
                                           CheckKYCData();
 
                                       if (kycData.type?.isNotEmpty ?? false) {
-                                        if (kycData.type == 'MobileOTP') {
+                                        if (kycData.type == 'IDCardC' || kycData.type == 'SelfiCheck') {
                                           Navigator.pushNamedAndRemoveUntil(
-                                              context, RoutePaths.AccountRegistration, (route) => false,
-                                              arguments: AccountRegistrationParams(
-                                                  kycData: kycData,
-                                                  mobileCode: userData?.data?.mobileCode ?? '',
-                                                  mobileNumber: userData?.data?.mobile ?? ''));
+                                            context,
+                                            RoutePaths.IdWiseIntialPage,
+                                            (route) => false,
+                                          );
                                         } else {
                                           Navigator.pushNamedAndRemoveUntil(
                                               context, RoutePaths.Registration, (route) => false,

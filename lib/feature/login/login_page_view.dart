@@ -240,9 +240,15 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                           initialData: Resource.none(),
                           onData: (data) {
                             if (data.status == Status.SUCCESS) {
-                              CheckKYCData kycData = data.data?.content?.kycData?.firstWhere(
+                              /* CheckKYCData kycData = data.data?.content?.kycData?.firstWhere(
                                       (element) => element.status ?? false,
                                       orElse: () => CheckKYCData()) ??
+                                  CheckKYCData();*/
+
+                              CheckKYCData kycData = data.data?.content?.kycData
+                                      ?.where((element) => element.type != "MobileOTP")
+                                      .firstWhere((element) => (element.status ?? false),
+                                          orElse: () => CheckKYCData()) ??
                                   CheckKYCData();
 
                               if (kycData.type?.isNotEmpty ?? false) {
