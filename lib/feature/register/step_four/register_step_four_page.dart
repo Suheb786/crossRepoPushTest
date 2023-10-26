@@ -48,12 +48,6 @@ class RegisterStepFourPageState extends BaseStatefulPage<RegisterStepFourViewMod
 
   @override
   Future<bool> onBackPressed(RegisterStepFourViewModel model, {param}) async {
-    var parentModel = ProviderScope.containerOf(context).read(registerStepFourViewModelProvider);
-    if (parentModel.appSwiperController.page != 0) {
-      parentModel.previousPage();
-      return false;
-    } else {
-      return super.onBackPressed(model);
-    }
+    return false;
   }
 }

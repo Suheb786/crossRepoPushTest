@@ -28,12 +28,6 @@ class RegisterStepTwoPageState extends BaseStatefulPage<RegisterStepTwoViewModel
 
   @override
   Future<bool> onBackPressed(RegisterStepTwoViewModel model, {param}) async {
-    var parentModel = ProviderScope.containerOf(context).read(registerStepTwoViewModelProvider);
-    if (parentModel.appSwiperController.page != 0) {
-      parentModel.previousPage();
-      return false;
-    } else {
-      return super.onBackPressed(model);
-    }
+    return false;
   }
 }

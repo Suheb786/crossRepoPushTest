@@ -65,8 +65,12 @@ class AccountRegistrationPageState
   Future<bool> onBackPressed(AccountRegistrationPageViewModel model, {param}) async {
     var parentModel = ProviderScope.containerOf(context).read(accountRegistrationViewModelProvider);
     if (parentModel.appSwiperController.page != 0) {
-      parentModel.previousPage();
-      return false;
+      if (parentModel.appSwiperController.page! > 1) {
+        return false;
+      } else {
+        parentModel.previousPage();
+        return false;
+      }
     } else {
       return super.onBackPressed(model);
     }

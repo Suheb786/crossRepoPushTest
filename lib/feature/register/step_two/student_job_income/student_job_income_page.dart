@@ -29,12 +29,6 @@ class StudentJobIncomePageState
 
   @override
   Future<bool> onBackPressed(StudentJobIncomePageViewModel model, {param}) async {
-    var parentModel = ProviderScope.containerOf(context).read(registerStepTwoViewModelProvider);
-    if (parentModel.appSwiperController.page != 0) {
-      parentModel.previousPage();
-      return false;
-    } else {
-      return super.onBackPressed(model);
-    }
+    return false;
   }
 }
