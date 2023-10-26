@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -580,41 +581,41 @@ class S {
     );
   }
 
-  /// `EMPLOYER NAME`
-  String get employerName {
+  /// `Company’s Name`
+  String get companyName {
     return Intl.message(
-      'EMPLOYER NAME',
-      name: 'employerName',
+      'Company’s Name',
+      name: 'companyName',
       desc: '',
       args: [],
     );
   }
 
-  /// `EMPLOYER COUNTRY`
-  String get employerCountry {
+  /// `Company’s Country`
+  String get companyCountry {
     return Intl.message(
-      'EMPLOYER COUNTRY',
-      name: 'employerCountry',
+      'Company’s Country',
+      name: 'companyCountry',
       desc: '',
       args: [],
     );
   }
 
-  /// `EMPLOYER CITY`
-  String get employerCity {
+  /// `Company’s City`
+  String get companyCity {
     return Intl.message(
-      'EMPLOYER CITY',
-      name: 'employerCity',
+      'Company’s City',
+      name: 'companyCity',
       desc: '',
       args: [],
     );
   }
 
-  /// `EMPLOYER CONTACT`
-  String get employerContact {
+  /// `Company’s Phone Number`
+  String get companyPhoneNumber {
     return Intl.message(
-      'EMPLOYER CONTACT',
-      name: 'employerContact',
+      'Company’s Phone Number',
+      name: 'companyPhoneNumber',
       desc: '',
       args: [],
     );
@@ -4360,10 +4361,10 @@ class S {
     );
   }
 
-  /// `You don't have any contacts yet. Your Blink contacts can be saved while sending money.`
+  /// `Add your favorite contacts here for easier and faster transfers. You can do that by clicking on “Manage Contacts” from the “More” button below.`
   String get addSendContact {
     return Intl.message(
-      'You don\'t have any contacts yet. Your Blink contacts can be saved while sending money.',
+      'Add your favorite contacts here for easier and faster transfers. You can do that by clicking on “Manage Contacts” from the “More” button below.',
       name: 'addSendContact',
       desc: '',
       args: [],
