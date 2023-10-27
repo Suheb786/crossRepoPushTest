@@ -48,8 +48,8 @@ class CreateAccountUseCaseParams extends Params {
   CreateAccountUseCaseParams({
     required this.customerInformation,
     required this.accountDetails,
-    this.cif,
-    this.isSubAccount,
+    this.cif = '',
+    this.isSubAccount = false,
   });
 
   @override
