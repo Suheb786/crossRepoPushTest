@@ -9,6 +9,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_progress.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/employer_country_list_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -24,6 +25,7 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../../../app_scollable_list_view_widget.dart';
 
+// ignore: must_be_immutable
 class CountryDialogView extends StatelessWidget {
   final Function? onDismissed;
   final Function(CountryData)? onSelected;
@@ -45,163 +47,164 @@ class CountryDialogView extends StatelessWidget {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
               insetPadding: EdgeInsets.only(
                   left: 24.0.w, right: 24.0.w, bottom: 36.0.h, top: _keyboardVisible ? 36.0.h : 204.0.h),
-              child: GestureDetector(
-                onVerticalDragEnd: (details) {
-                  if (details.primaryVelocity! > 0) {
-                    onDismissed?.call();
-                  }
-                },
-                // onVerticalDragEnd: (details) {
-                //   if (details.primaryVelocity!.isNegative) {
-                //     onDismissed?.call();
-                //   }
-                // },
-                child: AppStreamBuilder<int>(
-                  stream: model!.currentIndexStream,
-                  initialData: 0,
-                  dataBuilder: (context, currentIndex) {
-                    return AppStreamBuilder<Resource<List<CountryData>>>(
-                      stream: model.getCountryListStream,
-                      initialData: Resource.none(),
-                      dataBuilder: (context, data) {
-                        return AppKeyBoardHide(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(top: 32.0.h),
-                                child: Center(
-                                  child: Text(
-                                    title!,
-                                    style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        color: Theme.of(context).indicatorColor,
-                                        fontSize: 14.0.t,
-                                        fontWeight: FontWeight.w600),
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                clipBehavior: Clip.none,
+                children: [
+                  AppKeyBoardHide(
+                    child: AppStreamBuilder<int>(
+                      stream: model!.currentIndexStream,
+                      initialData: 0,
+                      dataBuilder: (context, currentIndex) {
+                        return AppStreamBuilder<Resource<List<CountryData>>>(
+                          stream: model.getCountryListStream,
+                          initialData: Resource.none(),
+                          dataBuilder: (context, data) {
+                            return AppKeyBoardHide(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 32.0.h),
+                                    child: Center(
+                                      child: Text(
+                                        title!,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            color: Theme.of(context).indicatorColor,
+                                            fontSize: 14.0.t,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 32.0.h),
-                                child: AppTextField(
-                                  labelText: '',
-                                  controller: model.countrySearchController,
-                                  textFieldBorderColor: AppColor.gray_1,
-                                  hintTextColor: AppColor.gray_2,
-                                  textColor: AppColor.black,
-                                  hintText: S.of(context).searchCountry,
-                                  containerPadding:
-                                      EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 10.0.h),
-                                  onChanged: (value) {
-                                    model.searchCountry(value);
-                                  },
-                                  suffixIcon: (value, data) {
-                                    return InkWell(
-                                      onTap: () async {},
-                                      child: Container(
-                                          height: 16.0.h,
-                                          width: 16.0.w,
-                                          padding: EdgeInsets.all(6),
-                                          child: AppSvg.asset(AssetUtils.search,
-                                              color: Theme.of(context).primaryColorDark)),
-                                    );
-                                  },
-                                ),
-                              ),
-                              data!.status == Status.SUCCESS
-                                  ? Expanded(
-                                      child: data.data!.length > 0
-                                          ? Stack(
-                                              alignment: Alignment.center,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsets.symmetric(horizontal: 16.0.w),
-                                                  child: Container(
-                                                    height: 64.0.h,
-                                                    width: double.infinity,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(16),
-                                                      color: AppColor.vividYellow,
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 32.0.h),
+                                    child: AppTextField(
+                                      labelText: '',
+                                      controller: model.countrySearchController,
+                                      textFieldBorderColor: AppColor.gray_1,
+                                      hintTextColor: AppColor.gray_2,
+                                      textColor: AppColor.black,
+                                      hintText: S.of(context).searchCountry,
+                                      containerPadding:
+                                          EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 10.0.h),
+                                      onChanged: (value) {
+                                        model.searchCountry(value);
+                                      },
+                                      suffixIcon: (value, data) {
+                                        return InkWell(
+                                          onTap: () async {},
+                                          child: Container(
+                                              height: 16.0.h,
+                                              width: 16.0.w,
+                                              padding: EdgeInsets.all(6),
+                                              child: AppSvg.asset(AssetUtils.search,
+                                                  color: Theme.of(context).primaryColorDark)),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  data!.status == Status.SUCCESS
+                                      ? Expanded(
+                                          child: data.data!.length > 0
+                                              ? Stack(
+                                                  alignment: Alignment.center,
+                                                  children: [
+                                                    Padding(
+                                                      padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+                                                      child: Container(
+                                                        height: 64.0.h,
+                                                        width: double.infinity,
+                                                        decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.circular(16),
+                                                          color: AppColor.vividYellow,
+                                                        ),
+                                                      ),
                                                     ),
-                                                  ),
-                                                ),
-                                                AppScrollableListViewWidget(
-                                                  key: ValueKey(data.data!.length),
-                                                  child: ClickableListWheelScrollView(
-                                                    scrollController: model.scrollController,
-                                                    itemHeight: 72.0.h,
-                                                    itemCount: data.data!.length,
-                                                    onItemTapCallback: (index) {
-                                                      model.selectCountry(index);
-                                                    },
-                                                    child: ListWheelScrollView.useDelegate(
-                                                        controller: model.scrollController,
-                                                        itemExtent: 72.0.h,
-                                                        onSelectedItemChanged: (int index) {
+                                                    AppScrollableListViewWidget(
+                                                      key: ValueKey(data.data!.length),
+                                                      child: ClickableListWheelScrollView(
+                                                        scrollController: model.scrollController,
+                                                        itemHeight: 72.0.h,
+                                                        itemCount: data.data!.length,
+                                                        onItemTapCallback: (index) {
                                                           model.selectCountry(index);
                                                         },
-                                                        physics: FixedExtentScrollPhysics(),
-                                                        perspective: 0.0000000001,
-                                                        childDelegate: ListWheelChildBuilderDelegate(
-                                                            childCount: data.data!.length,
-                                                            builder: (BuildContext context, int index) {
-                                                              return EmployerCountryListWidget(
-                                                                item: data.data![index],
-                                                              );
-                                                            })),
+                                                        child: ListWheelScrollView.useDelegate(
+                                                            controller: model.scrollController,
+                                                            itemExtent: 72.0.h,
+                                                            onSelectedItemChanged: (int index) {
+                                                              model.selectCountry(index);
+                                                            },
+                                                            physics: FixedExtentScrollPhysics(),
+                                                            perspective: 0.0000000001,
+                                                            childDelegate: ListWheelChildBuilderDelegate(
+                                                                childCount: data.data!.length,
+                                                                builder: (BuildContext context, int index) {
+                                                                  return EmployerCountryListWidget(
+                                                                    item: data.data![index],
+                                                                  );
+                                                                })),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              : Center(
+                                                  child: Text(
+                                                    S.of(context).noCountriesFound,
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontSize: 14.0.t,
+                                                        fontWeight: FontWeight.w400,
+                                                        color: Theme.of(context).primaryColorDark),
                                                   ),
-                                                ),
-                                              ],
-                                            )
-                                          : Center(
-                                              child: NoDataWidget(
-                                                errorMessage: S.of(context).noCountriesFound,
-                                              ),
-                                            ))
-                                  : Expanded(
-                                      child: Container(),
-                                    ),
-                              InkWell(
-                                onTap: () {
-                                  onSelected!.call(model.selectedCountry!);
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 16.0.h),
-                                  height: 57.0.h,
-                                  width: 57.0.w,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                  child: AppSvg.asset(AssetUtils.tick,
-                                      color: Theme.of(context).colorScheme.secondary),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 8.0.h, bottom: 16.0.h),
-                                child: Center(
-                                  child: InkWell(
-                                    onTap: () {
-                                      //onDismissed?.call();
-                                    },
-                                    child: Text(
-                                      S.of(context).swipeDownToCancel,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          fontSize: 10.0.t,
-                                          fontWeight: FontWeight.w400,
-                                          color: AppColor.dark_gray_1),
+                                                ))
+                                      : Expanded(
+                                          child: Container(),
+                                        ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.only(start: 20.w, end: 20.w),
+                                    child: AppPrimaryButton(
+                                      // isDisabled: isValid!,
+                                      isDisabled: false,
+
+                                      onPressed: () {
+                                        onSelected!.call(model.selectedCountry!);
+                                      },
+
+                                      text: S.of(context).confirm,
                                     ),
                                   ),
-                                ),
+                                  SizedBox(height: 40.h),
+                                ],
                               ),
-                            ],
-                          ),
+                            );
+                          },
                         );
                       },
-                    );
-                  },
-                ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: -24.h,
+                    child: InkWell(
+                      onTap: () {
+                        onDismissed?.call();
+                      },
+                      child: Container(
+                          height: 48.h,
+                          width: 48.h,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Theme.of(context).colorScheme.onBackground),
+                              shape: BoxShape.circle,
+                              color: Theme.of(context).colorScheme.secondary),
+                          child: Image.asset(
+                            AssetUtils.close_bold,
+                            scale: 3.5,
+                          )),
+                    ),
+                  ),
+                ],
               ));
         },
         onModelReady: (model) {
