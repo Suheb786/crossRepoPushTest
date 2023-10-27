@@ -1926,5 +1926,9 @@
   "selfieMismatchedDescription": "Seems that your selfie does not match with your ID card. Please reach out to Blink Engagement Team for further assitance.",
   "registrationStopped": "Registration stopped",
   "registrationStoppedDescription": "Unfortunately, you did not meet minimum age required to open an account with us. You may try again when you turn 18.",
-  "getReadyToScanYourId": "Get ready to scan your ID\n and take a Selfie"
+  "getReadyToScanYourId": "Get ready to scan your ID\n and take a Selfie",
+  "makeSureYouAreInbrightPlace": "Make sure you are in a bright place to take a selfie",
+  "ensureToHaveNationalId": "Please ensure to have your National ID ready",
+  "byContinuingYouAgree": "By continuing you agree to the",
+  "privacyPolicy": "Privacy Policy"
 }

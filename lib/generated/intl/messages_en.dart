@@ -502,6 +502,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "buyVoucherTitle": MessageLookupByLibrary.simpleMessage(
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula"),
         "buyVouchers": MessageLookupByLibrary.simpleMessage("Buy E-vouchers"),
+        "byContinuingYouAgree": MessageLookupByLibrary.simpleMessage(
+            "By continuing you agree to the"),
         "cabinClass": MessageLookupByLibrary.simpleMessage("Cabin Class"),
         "callDisconnected": MessageLookupByLibrary.simpleMessage(
             "Your call was disconnected. Please try again."),
@@ -1126,6 +1128,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please select your preferred communication. Your call or chat may be monitored or recorded to ensure the quality of service."),
         "engagementTeamGettingReady": MessageLookupByLibrary.simpleMessage(
             "Our Engagement Team\nis getting ready"),
+        "ensureToHaveNationalId": MessageLookupByLibrary.simpleMessage(
+            "Please ensure to have your National ID ready"),
         "enterAddressHeader": MessageLookupByLibrary.simpleMessage(
             "Where do you\ncurrently live?"),
         "enterBillDetails":
@@ -2049,6 +2053,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
         "makeSureItsAnnualNotMonthly": MessageLookupByLibrary.simpleMessage(
             " income? Make sure it’s not your monthly income to get your credit card right away."),
+        "makeSureYouAreInbrightPlace": MessageLookupByLibrary.simpleMessage(
+            "Make sure you are in a bright place to take a selfie"),
         "makeSureYourFaceFitsTheFrame": MessageLookupByLibrary.simpleMessage(
             "Make sure your eyes are level\nand well-opened."),
         "maleAgent": MessageLookupByLibrary.simpleMessage("Male Agent"),
@@ -2517,6 +2523,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "primaryNotComplete":
             MessageLookupByLibrary.simpleMessage("primary not complete"),
+        "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "proceedToLogin": MessageLookupByLibrary.simpleMessage(
             "Proceed to the login page and use your\nnew password to login."),
         "processLoanError": MessageLookupByLibrary.simpleMessage(

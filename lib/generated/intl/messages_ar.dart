@@ -490,6 +490,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "businessType": MessageLookupByLibrary.simpleMessage("نوع العمل"),
         "buyVouchers":
             MessageLookupByLibrary.simpleMessage("شراء القسائم الإلكترونية"),
+        "byContinuingYouAgree": MessageLookupByLibrary.simpleMessage(
+            "By continuing you agree to the"),
         "cabinClass": MessageLookupByLibrary.simpleMessage("الدرجة"),
         "callDisconnected": MessageLookupByLibrary.simpleMessage(
             "لقد تم انقطاع الاتصال، يرجى المحاولة مرة اخرى"),
@@ -1097,6 +1099,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "الرجاء اختيار طريقة التواصل المفضلة. رح يتم مراقبة أو تسجيل مكالمتك أو محادثتك لضمان الجودة."),
         "engagementTeamGettingReady":
             MessageLookupByLibrary.simpleMessage("فريقنا مستعد لخدمتك"),
+        "ensureToHaveNationalId": MessageLookupByLibrary.simpleMessage(
+            "Please ensure to have your National ID ready"),
         "enterAddressHeader":
             MessageLookupByLibrary.simpleMessage("وين ساكن حالياً؟"),
         "enterBillDetails":
@@ -2001,6 +2005,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("مصدر الدخل الرئيسي"),
         "makeSureItsAnnualNotMonthly": MessageLookupByLibrary.simpleMessage(
             " تأكد إنك ما دخّلت الدخل الشهري بالغلط لتحصل على بطاقتك الائتمانية."),
+        "makeSureYouAreInbrightPlace": MessageLookupByLibrary.simpleMessage(
+            "Make sure you are in a bright place to take a selfie"),
         "makeSureYourFaceFitsTheFrame": MessageLookupByLibrary.simpleMessage(
             "تأكد من إنك بتطلع على الكاميرا وفاتح عيونك منيح!"),
         "maleAgent": MessageLookupByLibrary.simpleMessage("موظف ذكر"),
@@ -2451,6 +2457,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-148)"),
         "primaryNotComplete":
             MessageLookupByLibrary.simpleMessage("خطوة أساسية غير مكتملة"),
+        "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "proceedToLogin": MessageLookupByLibrary.simpleMessage(
             "الاستمرار لصفحة تسجيل الدخول واستخدام كلمة المرور الجديدة"),
         "processLoanError": MessageLookupByLibrary.simpleMessage(
