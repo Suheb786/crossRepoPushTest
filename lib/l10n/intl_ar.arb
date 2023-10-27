@@ -1899,5 +1899,9 @@
   "validatingYourSelfie": "Validating your selfie",
   "unableVerifyYourID": "Unable verify your ID",
   "unableVerifyYourIDDescription": "Seems that we are unable to verify your\nNational ID. Please try again later.",
-  "getReadyToScanYourId": "Get ready to scan your ID\n and take a Selfie"
+  "getReadyToScanYourId": "Get ready to scan your ID\n and take a Selfie",
+  "makeSureYouAreInbrightPlace": "Make sure you are in a bright place to take a selfie",
+  "ensureToHaveNationalId": "Please ensure to have your National ID ready",
+  "byContinuingYouAgree": "By continuing you agree to the",
+  "privacyPolicy": "Privacy Policy"
 }

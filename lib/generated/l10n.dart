@@ -18969,6 +18969,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Make sure you are in a bright place to take a selfie`
+  String get makeSureYouAreInbrightPlace {
+    return Intl.message(
+      'Make sure you are in a bright place to take a selfie',
+      name: 'makeSureYouAreInbrightPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please ensure to have your National ID ready`
+  String get ensureToHaveNationalId {
+    return Intl.message(
+      'Please ensure to have your National ID ready',
+      name: 'ensureToHaveNationalId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `By continuing you agree to the`
+  String get byContinuingYouAgree {
+    return Intl.message(
+      'By continuing you agree to the',
+      name: 'byContinuingYouAgree',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy Policy`
+  String get privacyPolicy {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'privacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

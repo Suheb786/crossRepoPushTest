@@ -190,7 +190,6 @@ class AssetUtils {
   static const String BookNow = svg + "book_now.svg";
   static const String WalkingLady = svg + "walking_lady.svg";
 
-
   ///Cliq
   static const String walletIcon = svg + "wallet.svg";
   static const String warningIcon = svg + "warning.svg";
@@ -251,4 +250,8 @@ class AssetUtils {
 
   ///Offers
   static const String forYou = svg + "for_you.svg";
+
+  ///IdWise
+  static const String BRIGHTNESS = drawable + "bright.png";
+  static const String CAPTURE = drawable + "capture.png";
 }
