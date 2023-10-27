@@ -17320,16 +17320,6 @@ class S {
     );
   }
 
-  /// `URL`
-  String get url {
-    return Intl.message(
-      'URL',
-      name: 'url',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Contact nickname has been updated`
   String get nickNameUpdated {
     return Intl.message(
@@ -17810,10 +17800,10 @@ class S {
     );
   }
 
-  /// `You have insufficient balance in your account`
+  /// `Oops! Transaction failed; you have insufficient balance in your account.`
   String get notEnoughAmountToPurchase {
     return Intl.message(
-      'You have insufficient balance in your account',
+      'Oops! Transaction failed; you have insufficient balance in your account.',
       name: 'notEnoughAmountToPurchase',
       desc: '',
       args: [],
@@ -18790,6 +18780,36 @@ class S {
     );
   }
 
+  /// `Your account has been closed successfully.`
+  String get accountSuccessfullyClosed {
+    return Intl.message(
+      'Your account has been closed successfully.',
+      name: 'accountSuccessfullyClosed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile Image deleted.`
+  String get profileImageDeleted {
+    return Intl.message(
+      'Profile Image deleted.',
+      name: 'profileImageDeleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! This recipient is already saved in your Blink contacts.`
+  String get receipientAlreadySaved {
+    return Intl.message(
+      'Oops! This recipient is already saved in your Blink contacts.',
+      name: 'receipientAlreadySaved',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Enter your email and \ncreate your password`
   String get enterEmailAndPassword {
     return Intl.message(
@@ -18935,6 +18955,16 @@ class S {
     return Intl.message(
       'Unfortunately, you did not meet minimum age required to open an account with us. You may try again when you turn 18.',
       name: 'registrationStoppedDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get ready to scan your ID\n and take a Selfie`
+  String get getReadyToScanYourId {
+    return Intl.message(
+      'Get ready to scan your ID\n and take a Selfie',
+      name: 'getReadyToScanYourId',
       desc: '',
       args: [],
     );

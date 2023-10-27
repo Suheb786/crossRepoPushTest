@@ -115,6 +115,7 @@ import 'package:neo_bank/feature/prepaid_bill/how_much_like__to_pay_prepaid_bill
 import 'package:neo_bank/feature/prepaid_bill/pay_my_prepaid_bills/pay_my_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/feature/register/check_scheduled_videocall/check_scheduled_videocall_page.dart';
+import 'package:neo_bank/feature/register/idwise_intial/idwise_intial_page.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
@@ -210,6 +211,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => NonJordanianRegistrationPage(),
             settings: RouteSettings(name: RoutePaths.NonJordanianRegister));
+
+      case RoutePaths.IdWiseIntialPage:
+        return CupertinoPageRoute(
+            builder: (context) => IdWiseIntialPage(),
+            settings: RouteSettings(name: RoutePaths.IdWiseIntialPage));
 
       case RoutePaths.Dashboard:
         return CupertinoPageRoute(

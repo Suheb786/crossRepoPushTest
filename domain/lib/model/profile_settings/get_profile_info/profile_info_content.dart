@@ -5,12 +5,14 @@ class ProfileInfoContent {
       this.biometric,
       this.profileImage,
       this.fullName,
-      this.mobileCode});
+      this.mobileCode,
+      this.localProfileImageDB});
 
   String? email;
   String? mobileNumber;
   String? fullName;
   bool? biometric;
   dynamic profileImage;
+  dynamic localProfileImageDB;
   String? mobileCode;
 }

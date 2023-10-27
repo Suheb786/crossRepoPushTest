@@ -169,4 +169,6 @@ class RoutePaths {
   static const String OfferForYouPage = "offerForYouPage";
   static const String OfferDetailPage = "OfferDetailPage";
   static const String RJBookingFailurePage = "/RJBookingFailurePage";
+  static const String IdWiseIntialPage = "/IdWiseIntialPage";
+
 }

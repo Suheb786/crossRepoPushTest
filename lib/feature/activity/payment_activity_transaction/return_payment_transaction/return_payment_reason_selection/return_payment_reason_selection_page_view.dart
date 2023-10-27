@@ -159,11 +159,10 @@ class ReturnPaymentReasonSelectionPageView
                                                           child: Text(
                                                             S.of(context).back,
                                                             style: TextStyle(
-                                                              color: AppColor.black,
-                                                              fontSize: 10.t,
+                                                              color: AppColor.brightBlue,
+                                                              fontSize: 14.t,
                                                               letterSpacing: 1.0,
-                                                              fontFamily: StringUtils.appFont,
-                                                              fontWeight: FontWeight.w400,
+                                                              fontWeight: FontWeight.w600,
                                                             ),
                                                           ),
                                                         ),

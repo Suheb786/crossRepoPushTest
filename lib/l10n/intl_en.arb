@@ -1754,7 +1754,6 @@
   "bookingUnsuccessDescription": "We're sorry, but we're unable to complete your flight booking at this time due toan error. Please try again later.",
   "dormantAccountCCFailedTitle": "Unfortunately, your credit card application has failed!",
   "returned": "returned",
-  "url": "URL",
   "nickNameUpdated": "Contact nickname has been updated",
   "creditContactlessLimitExceeded": "Contactless payment limit exceeded.",
   "favouriteContactLimitExceeded": "Oops! You can only select up to 9 favourite contacts",
@@ -1803,7 +1802,7 @@
   "dormantAccountPhysicalCardReq": "Oops! You cannot request your physical card as your account is inactive. Call us on 06-5200100 to activate your account.",
   "yourAccountInactive": "Your account is inactive",
   "callToActivate": "Call us on 06-5200100 to activate your account and get your debit card.",
-  "notEnoughAmountToPurchase": "You have insufficient balance in your account",
+  "notEnoughAmountToPurchase": "Oops! Transaction failed; you have insufficient balance in your account.",
   "validUntil": "Valid Until",
   "currentAccount": "Current Account",
   "copied": "Copied",
@@ -1909,6 +1908,9 @@
   "belowTwoYears": "Below 2 years",
   "payFromRJ": "Pay from",
   "yourAccountBalanceSuccessFullyUpdated": "Your account balance is successfully updated.",
+  "accountSuccessfullyClosed": "Your account has been closed successfully.",
+  "profileImageDeleted": "Profile Image deleted.",
+  "receipientAlreadySaved": "Oops! This recipient is already saved in your Blink contacts.",
   "enterEmailAndPassword": "Enter your email and \ncreate your password",
   "changeMyEmail": "Change My Email",
   "processingIDWiseStatus": "Processing...",
@@ -1923,5 +1925,6 @@
   "selfieMismatched": "Selfie mismatched",
   "selfieMismatchedDescription": "Seems that your selfie does not match with your ID card. Please reach out to Blink Engagement Team for further assitance.",
   "registrationStopped": "Registration stopped",
-  "registrationStoppedDescription": "Unfortunately, you did not meet minimum age required to open an account with us. You may try again when you turn 18."
+  "registrationStoppedDescription": "Unfortunately, you did not meet minimum age required to open an account with us. You may try again when you turn 18.",
+  "getReadyToScanYourId": "Get ready to scan your ID\n and take a Selfie"
 }

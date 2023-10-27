@@ -9,6 +9,7 @@ class AccountTransactionPage extends BasePage<AccountTransactionViewModel> {
   final AccountTransactionPageArgument account;
 
   AccountTransactionPage(this.account);
+
   @override
   AccountTransactionPageState createState() => AccountTransactionPageState();
 }

@@ -18,8 +18,9 @@ import '../../../../ui/molecules/textfield/app_textfield.dart';
 
 class MyAccountPageViewWidget extends StatefulWidget {
   Account account;
+  int myIndex;
 
-  MyAccountPageViewWidget(this.account);
+  MyAccountPageViewWidget(this.account, {required this.myIndex});
 
   @override
   State<MyAccountPageViewWidget> createState() => _MyAccountPageViewWidgetState();
@@ -45,59 +46,69 @@ class _MyAccountPageViewWidgetState extends State<MyAccountPageViewWidget> {
   @override
   Widget build(BuildContext context) {
     accountTextController.text = widget.account.nickName ?? "";
-    return AppKeyBoardHide(
-      child: Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          elevation: 2,
-          color: Theme.of(context).primaryColorDark,
-          margin: EdgeInsetsDirectional.zero,
-          shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
+    return AppStreamBuilder<int>(
+        stream: ProviderScope.containerOf(context).read(appHomeViewModelProvider).currentStep,
+        initialData: 0,
+        dataBuilder: (context, myyCurrentStep) {
+          return AnimatedOpacity(
+            opacity: myyCurrentStep == widget.myIndex ? 1 : 0.5,
+            duration: const Duration(milliseconds: 400),
+            child: AppKeyBoardHide(
+              child: Card(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  elevation: 2,
+                  color: Theme.of(context).primaryColorDark,
+                  margin: EdgeInsetsDirectional.zero,
+                  shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: AppStreamBuilder<List>(
+                          stream:
+                              ProviderScope.containerOf(context).read(appHomeViewModelProvider).pageStream,
+                          initialData: [Container()],
+                          dataBuilder: (context, pagesList) {
+                            return Stack(
+                              fit: StackFit.expand,
+                              alignment: AlignmentDirectional.centerStart,
+                              children: [
+                                Positioned(
+                                  child: topWidget(context),
+                                  top: 0,
+                                ),
+                                Positioned(
+                                  child: bottomWidget(context),
+                                  bottom: 0,
+                                  left: StringUtils.isDirectionRTL(context) ? 0 : null,
+                                  right: StringUtils.isDirectionRTL(context) ? null : 0,
+                                ),
+                                Positioned.fill(
+                                  child: Align(
+                                    alignment: AlignmentDirectional.centerStart,
+                                    child: middleWidget(context),
+                                  ),
+                                ),
+                                Positioned.fill(
+                                  child: Align(
+                                    alignment: Alignment.topRight,
+                                    child: Image.asset(
+                                      AssetUtils.zigzagRed,
+                                      height: 180.h,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
+                          }),
+                    ),
+                  )),
             ),
-            child: Directionality(
-              textDirection: TextDirection.ltr,
-              child: AppStreamBuilder<List>(
-                  stream: ProviderScope.containerOf(context).read(appHomeViewModelProvider).pageStream,
-                  initialData: [Container()],
-                  dataBuilder: (context, pagesList) {
-                    return Stack(
-                      fit: StackFit.expand,
-                      alignment: AlignmentDirectional.centerStart,
-                      children: [
-                        Positioned(
-                          child: topWidget(context),
-                          top: 0,
-                        ),
-                        Positioned(
-                          child: bottomWidget(context),
-                          bottom: 0,
-                          left: StringUtils.isDirectionRTL(context) ? 0 : null,
-                          right: StringUtils.isDirectionRTL(context) ? null : 0,
-                        ),
-                        Positioned.fill(
-                          child: Align(
-                            alignment: AlignmentDirectional.centerStart,
-                            child: middleWidget(context),
-                          ),
-                        ),
-                        Positioned.fill(
-                          child: Align(
-                            alignment: Alignment.topRight,
-                            child: Image.asset(
-                              AssetUtils.zigzagRed,
-                              height: 180.h,
-                            ),
-                          ),
-                        ),
-                      ],
-                    );
-                  }),
-            ),
-          )),
-    );
+          );
+        });
   }
 
   topWidget(BuildContext context) {

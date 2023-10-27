@@ -19,46 +19,6 @@ class CliqIdListPage extends BasePage<CliqIdListPageViewModel> {
 }
 
 class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, CliqIdListPage> {
-  /*@override
-  PreferredSizeWidget? buildAppbar() {
-    return PreferredSize(
-      preferredSize: Size(double.maxFinite, 85.h),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: EdgeInsetsDirectional.only(start: 18.0.w),
-            child: Container(
-              width: 28.w,
-            ),
-          ),
-          Text(
-            S.of(context).manageCliqId,
-            style: TextStyle(
-              fontSize: 14.t,
-              fontWeight: FontWeight.w600,
-              color: Theme.of(context).colorScheme.secondary,
-              fontFamily: StringUtils.appFont,
-            ),
-          ),
-          InkWell(
-            onTap: () async {
-              Navigator.pushNamed(context, RoutePaths.CreateCliqId);
-
-              ///LOG EVENT TO FIREBASE
-              await FireBaseLogUtil.fireBaseLog(
-                  "navigation_alias_creation", {"navigated_alias_creation": true});
-            },
-            child: Padding(
-              padding: EdgeInsetsDirectional.only(end: 24.0.w),
-              child: Icon(Icons.add, color: Theme.of(context).colorScheme.secondary),
-            ),
-          ),
-        ],
-      ),
-    );
-  }*/
-
   @override
   Widget buildView(BuildContext context, CliqIdListPageViewModel model) {
     return Column(
@@ -76,7 +36,10 @@ class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, Cliq
                   S.of(context).manageCliqId,
                   textAlign: TextAlign.center,
                   softWrap: false,
-                  style: TextStyle(fontSize: 14.t, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+                  style: TextStyle(
+                      fontSize: 14.t,
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).colorScheme.secondary),
                 ),
               ),
               PositionedDirectional(
@@ -89,7 +52,8 @@ class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, Cliq
                       Navigator.pushNamed(context, RoutePaths.CreateCliqId);
 
                       ///LOG EVENT TO FIREBASE
-                      await FireBaseLogUtil.fireBaseLog("navigation_alias_creation", {"navigated_alias_creation": true});
+                      await FireBaseLogUtil.fireBaseLog(
+                          "navigation_alias_creation", {"navigated_alias_creation": true});
                     },
                     child: Icon(
                       Icons.add,
@@ -108,7 +72,10 @@ class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, Cliq
               Container(
                 margin: EdgeInsetsDirectional.only(top: 24.h),
                 padding: EdgeInsets.only(top: 47.h),
-                decoration: BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor, borderRadius: BorderRadius.only(topLeft: Radius.circular(16.w), topRight: Radius.circular(16.w))),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    borderRadius:
+                        BorderRadius.only(topLeft: Radius.circular(16.w), topRight: Radius.circular(16.w))),
                 child: CliqIdListPageView(provideBase()),
               ),
               Positioned(
@@ -126,7 +93,10 @@ class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, Cliq
                         shape: BoxShape.circle,
                         color: Colors.white,
                         border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
-                        boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))]),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black26, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))
+                        ]),
                     child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue),
                   ),
                 ),
@@ -145,7 +115,6 @@ class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, Cliq
 
   @override
   void onModelReady(CliqIdListPageViewModel model) {
-    //  model.getAlias(true);
     super.onModelReady(model);
   }
 

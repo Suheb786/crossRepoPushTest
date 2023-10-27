@@ -137,7 +137,7 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                                   },
                                   itemCount: snapshot.data!.length),
                             )
-                          : NoDataWidget(),
+                          : Center(child: NoDataWidget()),
                     ),
                   ],
                 ),

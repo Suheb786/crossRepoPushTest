@@ -1,7 +1,12 @@
+import 'dart:typed_data';
+
+import 'package:data/entity/local/base/image_utils.dart';
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
+import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/account_setting/get_profile_info/get_profile_info_usecase.dart';
 import 'package:domain/usecase/dashboard/refer_dynamic_link_usecase.dart';
+import 'package:domain/usecase/user/get_current_user_usecase.dart';
 import 'package:domain/usecase/user/logout_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,6 +22,25 @@ import 'package:rxdart/rxdart.dart';
 class SettingsDialogViewModel extends BasePageViewModel {
   final LogoutUseCase _logoutUseCase;
   final GetProfileInfoUseCase _getProfileInfoUseCase;
+
+  /// data for secure storage
+  final GetCurrentUserUseCase _getCurrentUserUseCase;
+
+  final PublishSubject<GetCurrentUserUseCaseParams> _currentUserRequestSubject = PublishSubject();
+
+  final PublishSubject<Resource<User>> _currentUserResponseSubject = PublishSubject();
+
+  Stream<Resource<User>> get currentUser => _currentUserResponseSubject.stream;
+
+  void getCurrentUser() {
+    _currentUserRequestSubject.add(GetCurrentUserUseCaseParams());
+  }
+
+  /// for showing image to card
+
+  final BehaviorSubject<Uint8List> _showProfileImageResponseSubject = BehaviorSubject();
+
+  Stream<Uint8List> get showProfileImage => _showProfileImageResponseSubject.stream;
 
   ///--------------- current page index response ----------------------///
   PublishSubject<int> _currentStep = PublishSubject();
@@ -89,7 +113,8 @@ class SettingsDialogViewModel extends BasePageViewModel {
 
   ///------------------initial onclick-----------------------///
 
-  SettingsDialogViewModel(this._logoutUseCase, this._getProfileInfoUseCase, this._referDynamicLinkUseCase) {
+  SettingsDialogViewModel(this._logoutUseCase, this._getProfileInfoUseCase, this._referDynamicLinkUseCase,
+      this._getCurrentUserUseCase) {
     _logoutRequest.listen((value) {
       RequestManager(value, createCall: () => _logoutUseCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
@@ -113,6 +138,9 @@ class SettingsDialogViewModel extends BasePageViewModel {
           updateOnClickValue(false);
         } else if (event.status == Status.SUCCESS) {
           updateOnClickValue(true);
+          Uint8List localProfileImageDB =
+              ImageUtils.dataFromBase64String(event.data?.content?.localProfileImageDB);
+          _showProfileImageResponseSubject.safeAdd(localProfileImageDB);
           _textResponse.safeAdd(event.data!.content!.fullName!);
         }
       });
@@ -130,7 +158,27 @@ class SettingsDialogViewModel extends BasePageViewModel {
       });
     });
 
-    getProfileDetails();
+    _currentUserRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _getCurrentUserUseCase.execute(params: value);
+      }).asFlow().listen((event) async {
+        _currentUserResponseSubject.add(event);
+        if (event.status == Status.SUCCESS) {
+          updateOnClickValue(true);
+          Uint8List localProfileImageDB =
+              ImageUtils.dataFromBase64String(event.data?.localProfileImageDB ?? '');
+          _showProfileImageResponseSubject.safeAdd(localProfileImageDB);
+          _textResponse.safeAdd(event.data?.profileName);
+          if (event.data?.isProfileApiCall == null || event.data?.isProfileApiCall == false) {
+            getProfileDetails();
+          }
+        } else if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+          updateOnClickValue(false);
+        }
+      });
+    });
+    getCurrentUser();
   }
 
   void updateShowPages({required BuildContext context, required List<PagesWidget> pages}) {
