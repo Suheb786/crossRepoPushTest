@@ -55,8 +55,8 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
               onLoadStop: (controller, url) async {
                 debugPrint('-----onload stop ---->${url}');
                 debugPrint('-----onload path ---->${url?.path}');
-                if ((url?.path ?? '').toLowerCase().contains(AppConstantsUtils.RJRouteLink)) {
-                  String referenceNumber = url?.queryParameters['customerReferece'] ?? '';
+                if ((url?.path ?? '').toLowerCase().contains(AppConstantsUtils.RJRouteLink.toLowerCase())) {
+                  String referenceNumber = url?.queryParameters['customerReference'] ?? '';
                   Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
                       arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
                 }
