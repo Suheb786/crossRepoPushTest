@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -194,22 +193,28 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("What’s your\nmobile number?"),
         "addMoney": MessageLookupByLibrary.simpleMessage("Add money"),
         "addNickName": MessageLookupByLibrary.simpleMessage("Add nickname"),
-        "addOtherCardToAppleWallet": MessageLookupByLibrary.simpleMessage("Add other card to\nApple Wallet?"),
-        "addOtherCardToAppleWalletDialogDescription": MessageLookupByLibrary.simpleMessage(
-            "Would you like to add your other card to your Apple Wallet, now? You can always do it from your Card Settings, at any time you like."),
-        "addRecipientToContact":
-            MessageLookupByLibrary.simpleMessage("Add this recipient to your Blink contacts"),
+        "addOtherCardToAppleWallet": MessageLookupByLibrary.simpleMessage(
+            "Add other card to\nApple Wallet?"),
+        "addOtherCardToAppleWalletDialogDescription":
+            MessageLookupByLibrary.simpleMessage(
+                "Would you like to add your other card to your Apple Wallet, now? You can always do it from your Card Settings, at any time you like."),
+        "addRecipientToContact": MessageLookupByLibrary.simpleMessage(
+            "Add this recipient to your Blink contacts"),
         "addRequestMoney": MessageLookupByLibrary.simpleMessage(
             "You don\'t have any contacts yet. Your Blink contacts can be saved while requesting money."),
         "addSendContact": MessageLookupByLibrary.simpleMessage(
             "Add your favorite contacts here for easier and faster transfers. You can do that by clicking on “Manage Contacts” from the “More” button below."),
-        "addThisBillToSaveList": MessageLookupByLibrary.simpleMessage("Add this bill to your saved list"),
-        "addToApplePay": MessageLookupByLibrary.simpleMessage("ADD TO APPLE PAY"),
+        "addThisBillToSaveList": MessageLookupByLibrary.simpleMessage(
+            "Add this bill to your saved list"),
+        "addToApplePay":
+            MessageLookupByLibrary.simpleMessage("ADD TO APPLE PAY"),
         "addedTo": MessageLookupByLibrary.simpleMessage("Added to"),
-        "addingContactsDesc":
-            MessageLookupByLibrary.simpleMessage("You will be able to add contacts to your list soon."),
-        "additionIncomeSource": MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
-        "additionalIncome": MessageLookupByLibrary.simpleMessage("Additional Income"),
+        "addingContactsDesc": MessageLookupByLibrary.simpleMessage(
+            "You will be able to add contacts to your list soon."),
+        "additionIncomeSource":
+            MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
+        "additionalIncome":
+            MessageLookupByLibrary.simpleMessage("Additional Income"),
         "additionalIncomeList": m0,
         "additionalIncomePopUpDesc1":
             MessageLookupByLibrary.simpleMessage("Make sure you enter your "),
@@ -689,26 +694,32 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops, the return payment service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100."),
         "cliqSendPaymentOffline": MessageLookupByLibrary.simpleMessage(
             "Oops, sending payments over Cliq is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100."),
-        "cliqTransactions": MessageLookupByLibrary.simpleMessage("CliQ Transactions"),
+        "cliqTransactions":
+            MessageLookupByLibrary.simpleMessage("CliQ Transactions"),
         "cliqType": MessageLookupByLibrary.simpleMessage("CLIQ Type"),
-        "closeDateIssueMessage":
-            MessageLookupByLibrary.simpleMessage("Payment cannot be completed because the bill is closed."),
-        "closeSubAccount": MessageLookupByLibrary.simpleMessage("Close Sub Account"),
-        "closeSubAccountDescription":
-            MessageLookupByLibrary.simpleMessage("Are you sure you want to close this sub account?"),
+        "closeDateIssueMessage": MessageLookupByLibrary.simpleMessage(
+            "Payment cannot be completed because the bill is closed."),
+        "closeSubAccount":
+            MessageLookupByLibrary.simpleMessage("Close Sub Account"),
+        "closeSubAccountDescription": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to close this sub account?"),
         "companyCity": MessageLookupByLibrary.simpleMessage("Company’s City"),
-        "companyCountry": MessageLookupByLibrary.simpleMessage("Company’s Country"),
+        "companyCountry":
+            MessageLookupByLibrary.simpleMessage("Company’s Country"),
         "companyName": MessageLookupByLibrary.simpleMessage("Company’s Name"),
-        "companyPhoneNumber": MessageLookupByLibrary.simpleMessage("Company’s Phone Number"),
-        "completeTaxReportInfo":
-            MessageLookupByLibrary.simpleMessage("Complete your tax report information below"),
+        "companyPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("Company’s Phone Number"),
+        "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
+            "Complete your tax report information below"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
-        "confirmDelete": MessageLookupByLibrary.simpleMessage("Confirm Delete?"),
+        "confirmDelete":
+            MessageLookupByLibrary.simpleMessage("Confirm Delete?"),
         "confirmDeliveryError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "confirmDetailsConfirmation":
-            MessageLookupByLibrary.simpleMessage("I confirm and agree that all my ID details are correct"),
-        "confirmDetailsHeader": MessageLookupByLibrary.simpleMessage("Please confirm your\ndetails below"),
+        "confirmDetailsConfirmation": MessageLookupByLibrary.simpleMessage(
+            "I confirm and agree that all my ID details are correct"),
+        "confirmDetailsHeader": MessageLookupByLibrary.simpleMessage(
+            "Please confirm your\ndetails below"),
         "confirmInfoTC": MessageLookupByLibrary.simpleMessage(
             "I confirm that information provided is accurate and I hereby acknowledge that I have read, understood, and accepted Blink’s General "),
         "confirmNewPin":

@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -192,20 +191,28 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("شو رقم موبايلك؟"),
         "addMoney": MessageLookupByLibrary.simpleMessage("إضافة أموال"),
         "addNickName": MessageLookupByLibrary.simpleMessage("إضافة اسم مستعار"),
-        "addOtherCardToAppleWallet": MessageLookupByLibrary.simpleMessage("أضف بطاقة اخرى لأبل باي؟"),
-        "addOtherCardToAppleWalletDialogDescription": MessageLookupByLibrary.simpleMessage(
-            "هل ترغب باضافة بطاقاتك الأخرى لمحفظة أبل التابعة لك؟ بامكانك في أي وقت إضافة أي من بطاقاتك من خلال خدمة اعدادات البطاقة."),
-        "addRecipientToContact": MessageLookupByLibrary.simpleMessage("إضافة إلى قائمة أصدقائي"),
+        "addOtherCardToAppleWallet":
+            MessageLookupByLibrary.simpleMessage("أضف بطاقة اخرى لأبل باي؟"),
+        "addOtherCardToAppleWalletDialogDescription":
+            MessageLookupByLibrary.simpleMessage(
+                "هل ترغب باضافة بطاقاتك الأخرى لمحفظة أبل التابعة لك؟ بامكانك في أي وقت إضافة أي من بطاقاتك من خلال خدمة اعدادات البطاقة."),
+        "addRecipientToContact":
+            MessageLookupByLibrary.simpleMessage("إضافة إلى قائمة أصدقائي"),
         "addRequestMoney": MessageLookupByLibrary.simpleMessage(
             "ما عندك معارف. رح يتم حفظ قائمة المعارف بمجرد ما تبعثلهم طلب الأموال."),
         "addSendContact": MessageLookupByLibrary.simpleMessage(
             "أضف أصدقائك المفضلين إلى الشاشة لحتى تحول بطريقة أسهل وأسرع. اضغط على “المزيد” ومن ثم اختر “أصدقائي”. "),
-        "addThisBillToSaveList": MessageLookupByLibrary.simpleMessage("اضافة الفاتورة للفواتير المخزنة"),
-        "addToApplePay": MessageLookupByLibrary.simpleMessage("أضافة بطاقة بلينك لأبل باي"),
+        "addThisBillToSaveList": MessageLookupByLibrary.simpleMessage(
+            "اضافة الفاتورة للفواتير المخزنة"),
+        "addToApplePay":
+            MessageLookupByLibrary.simpleMessage("أضافة بطاقة بلينك لأبل باي"),
         "addedTo": MessageLookupByLibrary.simpleMessage("اضيفت الى"),
-        "addingContactsDesc": MessageLookupByLibrary.simpleMessage("رح تقدر تضيف المعارف لقائمتك قريباً."),
-        "additionIncomeSource": MessageLookupByLibrary.simpleMessage("دخل إضافي"),
-        "additionalIncome": MessageLookupByLibrary.simpleMessage("الدخل الإضافي"),
+        "addingContactsDesc": MessageLookupByLibrary.simpleMessage(
+            "رح تقدر تضيف المعارف لقائمتك قريباً."),
+        "additionIncomeSource":
+            MessageLookupByLibrary.simpleMessage("دخل إضافي"),
+        "additionalIncome":
+            MessageLookupByLibrary.simpleMessage("الدخل الإضافي"),
         "additionalIncomeList": m0,
         "additionalIncomePopUpDesc1":
             MessageLookupByLibrary.simpleMessage("تأكد من إنك دخّلت "),
@@ -673,25 +680,31 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفوًا، إرسال الحوالات عبر خدمة  Cliq غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بنا على 06-5200100"),
         "cliqSendPaymentOffline": MessageLookupByLibrary.simpleMessage(
             "عفوًا، إرسال الحوالات عبر خدمة  Cliq غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بنا على 06-5200100"),
-        "cliqTransactions": MessageLookupByLibrary.simpleMessage("الحركات السابقة"),
+        "cliqTransactions":
+            MessageLookupByLibrary.simpleMessage("الحركات السابقة"),
         "cliqType": MessageLookupByLibrary.simpleMessage("نوع CLIQ"),
-        "closeDateIssueMessage":
-            MessageLookupByLibrary.simpleMessage("تم رفض دفع الفاتوره بسبب انتهاء صلاحية الفاتورة"),
+        "closeDateIssueMessage": MessageLookupByLibrary.simpleMessage(
+            "تم رفض دفع الفاتوره بسبب انتهاء صلاحية الفاتورة"),
         "closeSubAccount": MessageLookupByLibrary.simpleMessage("إغلاق الحساب"),
-        "closeSubAccountDescription":
-            MessageLookupByLibrary.simpleMessage("هل أنت متأكد من عملية إغلاق الحساب؟"),
-        "companyCity": MessageLookupByLibrary.simpleMessage("المدينة الموجودة فيها الشركة"),
-        "companyCountry": MessageLookupByLibrary.simpleMessage("البلد الموجودة فيها الشركة"),
+        "closeSubAccountDescription": MessageLookupByLibrary.simpleMessage(
+            "هل أنت متأكد من عملية إغلاق الحساب؟"),
+        "companyCity": MessageLookupByLibrary.simpleMessage(
+            "المدينة الموجودة فيها الشركة"),
+        "companyCountry":
+            MessageLookupByLibrary.simpleMessage("البلد الموجودة فيها الشركة"),
         "companyName": MessageLookupByLibrary.simpleMessage("اسم الشركة"),
-        "companyPhoneNumber": MessageLookupByLibrary.simpleMessage("رقم هاتف الشركة"),
-        "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage("أكمل معلومات تقريرك الضريبي التالية:"),
+        "companyPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("رقم هاتف الشركة"),
+        "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
+            "أكمل معلومات تقريرك الضريبي التالية:"),
         "confirm": MessageLookupByLibrary.simpleMessage("تم"),
         "confirmDelete": MessageLookupByLibrary.simpleMessage("تأكيد الحذف؟"),
-        "confirmDeliveryError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "confirmDetailsConfirmation":
-            MessageLookupByLibrary.simpleMessage("أؤكد وأوافق على صحة جميع معلومات هويتي الشخصية"),
-        "confirmDetailsHeader": MessageLookupByLibrary.simpleMessage("الرجاء تأكيد معلوماتك التالية"),
+        "confirmDeliveryError": MessageLookupByLibrary.simpleMessage(
+            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "confirmDetailsConfirmation": MessageLookupByLibrary.simpleMessage(
+            "أؤكد وأوافق على صحة جميع معلومات هويتي الشخصية"),
+        "confirmDetailsHeader": MessageLookupByLibrary.simpleMessage(
+            "الرجاء تأكيد معلوماتك التالية"),
         "confirmInfoTC": MessageLookupByLibrary.simpleMessage(
             "أؤكد على أن المعلومات المزوّدة مني صحيحة وأقر بأنني قرأت وفهمت ووافقت على الشروط والأحكام العامة لـ Blink"),
         "confirmNewPin": MessageLookupByLibrary.simpleMessage(
