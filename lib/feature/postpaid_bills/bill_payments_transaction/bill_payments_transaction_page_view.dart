@@ -16,6 +16,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../di/payment/payment_modules.dart';
+import '../../../ui/no_data_widget.dart';
 
 class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTransactionViewModel> {
   BillPaymentsTransactionPageView(ProviderBase model) : super(model);
@@ -36,7 +37,11 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                       alignment: Alignment.center,
                       child: Text(
                         S.of(context).billsHistory,
-                        style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary, fontWeight: FontWeight.w600, fontSize: 14.0.t),
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14.0.t),
                       ),
                     ),
                   ),
@@ -51,7 +56,10 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                     padding: EdgeInsetsDirectional.only(top: 24.0.h),
                     child: Container(
                       height: double.infinity,
-                      decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16))),
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.secondary,
+                          borderRadius:
+                              BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16))),
                       child: Padding(
                         padding: EdgeInsetsDirectional.only(top: 24.0.h),
                         child: Column(
@@ -77,7 +85,10 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                                         }
                                       },
                                       suffixIcon: (value, data) {
-                                        return Padding(padding: EdgeInsetsDirectional.only(start: 19.0.w), child: AppSvg.asset(AssetUtils.search, height: 16.0.h, width: 16.0.w));
+                                        return Padding(
+                                            padding: EdgeInsetsDirectional.only(start: 19.0.w),
+                                            child: AppSvg.asset(AssetUtils.search,
+                                                height: 16.0.h, width: 16.0.w));
                                       },
                                     ),
                                   ),
@@ -99,7 +110,8 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                                   return Visibility(
                                     visible: textList!.length > 0,
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.only(top: 21.0.h, start: 24.0.w, end: 24.0.w),
+                                      padding:
+                                          EdgeInsetsDirectional.only(top: 21.0.h, start: 24.0.w, end: 24.0.w),
                                       child: Container(
                                         height: 40.0.h,
                                         child: ListView.builder(
@@ -108,18 +120,22 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                                           scrollDirection: Axis.horizontal,
                                           itemBuilder: (context, index) {
                                             return Padding(
-                                              padding: EdgeInsetsDirectional.only(start: index == 0 ? 0 : 9.0.w),
+                                              padding:
+                                                  EdgeInsetsDirectional.only(start: index == 0 ? 0 : 9.0.w),
                                               child: Container(
                                                 decoration: BoxDecoration(
                                                   color: Theme.of(context).primaryColorDark,
                                                   borderRadius: BorderRadius.circular(100),
                                                 ),
-                                                padding: EdgeInsets.symmetric(horizontal: 9.0.w, vertical: 2.0.h),
+                                                padding:
+                                                    EdgeInsets.symmetric(horizontal: 9.0.w, vertical: 2.0.h),
                                                 child: Row(
                                                   children: [
                                                     Text(
                                                       textList[index],
-                                                      style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).colorScheme.secondary),
+                                                      style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
+                                                          color: Theme.of(context).colorScheme.secondary),
                                                     ),
                                                     Padding(
                                                       padding: EdgeInsetsDirectional.only(start: 9.0.w),
@@ -130,7 +146,8 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                                                           model.hasMoreData = true;
                                                           model.updateSearchList(index);
                                                         },
-                                                        child: AppSvg.asset(AssetUtils.close, color: Theme.of(context).colorScheme.secondary),
+                                                        child: AppSvg.asset(AssetUtils.close,
+                                                            color: Theme.of(context).colorScheme.secondary),
                                                       ),
                                                     )
                                                   ],
@@ -150,23 +167,29 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                                   return Expanded(
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.0.w),
-                                      child: transaction != null && transaction.data != null && transaction.data!.billPaymentsTransactionData!.length > 0
+                                      child: transaction != null &&
+                                              transaction.data != null &&
+                                              transaction.data!.billPaymentsTransactionData!.length > 0
                                           ? SingleChildScrollView(
                                               controller: model.scrollController,
                                               physics: AlwaysScrollableScrollPhysics(),
                                               child: ListView.builder(
                                                 itemBuilder: (context, index) {
                                                   return BillPaymentsTransactionWidget(
-                                                    billPaymentsTransactionData: transaction.data!.billPaymentsTransactionData![index],
+                                                    billPaymentsTransactionData:
+                                                        transaction.data!.billPaymentsTransactionData![index],
                                                   );
                                                 },
                                                 shrinkWrap: true,
-                                                itemCount: transaction.data!.billPaymentsTransactionData!.length,
+                                                itemCount:
+                                                    transaction.data!.billPaymentsTransactionData!.length,
                                                 physics: NeverScrollableScrollPhysics(),
                                               ),
                                             )
                                           : Center(
-                                              child: Text(S.of(context).noTransactionToDisplay),
+                                              child: NoDataWidget(
+                                                errorMessage: S.of(context).noTransactionToDisplay,
+                                              ),
                                             ),
                                     ),
                                   );
@@ -180,7 +203,9 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                     top: 0,
                     child: InkWell(
                       onTap: () {
-                        ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animateBackToMainPage();
+                        ProviderScope.containerOf(context)
+                            .read(paymentHomeViewModelProvider)
+                            .animateBackToMainPage();
                         Navigator.pop(context);
                       },
                       child: Container(
@@ -191,7 +216,13 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                             shape: BoxShape.circle,
                             color: Colors.white,
                             border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1),
-                            boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 5, spreadRadius: 0.1, offset: Offset(0, 4))]),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black26,
+                                  blurRadius: 5,
+                                  spreadRadius: 0.1,
+                                  offset: Offset(0, 4))
+                            ]),
                         child: AppSvg.asset(AssetUtils.down, color: AppColor.light_acccent_blue),
                       ),
                     ),

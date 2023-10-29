@@ -580,41 +580,41 @@ class S {
     );
   }
 
-  /// `EMPLOYER NAME`
-  String get employerName {
+  /// `Company’s Name`
+  String get companyName {
     return Intl.message(
-      'EMPLOYER NAME',
-      name: 'employerName',
+      'Company’s Name',
+      name: 'companyName',
       desc: '',
       args: [],
     );
   }
 
-  /// `EMPLOYER COUNTRY`
-  String get employerCountry {
+  /// `Company’s Country`
+  String get companyCountry {
     return Intl.message(
-      'EMPLOYER COUNTRY',
-      name: 'employerCountry',
+      'Company’s Country',
+      name: 'companyCountry',
       desc: '',
       args: [],
     );
   }
 
-  /// `EMPLOYER CITY`
-  String get employerCity {
+  /// `Company’s City`
+  String get companyCity {
     return Intl.message(
-      'EMPLOYER CITY',
-      name: 'employerCity',
+      'Company’s City',
+      name: 'companyCity',
       desc: '',
       args: [],
     );
   }
 
-  /// `EMPLOYER CONTACT`
-  String get employerContact {
+  /// `Company’s Phone Number`
+  String get companyPhoneNumber {
     return Intl.message(
-      'EMPLOYER CONTACT',
-      name: 'employerContact',
+      'Company’s Phone Number',
+      name: 'companyPhoneNumber',
       desc: '',
       args: [],
     );
@@ -4360,10 +4360,10 @@ class S {
     );
   }
 
-  /// `You don't have any contacts yet. Your Blink contacts can be saved while sending money.`
+  /// `Add your favorite contacts here for easier and faster transfers. You can do that by clicking on “Manage Contacts” from the “More” button below.`
   String get addSendContact {
     return Intl.message(
-      'You don\'t have any contacts yet. Your Blink contacts can be saved while sending money.',
+      'Add your favorite contacts here for easier and faster transfers. You can do that by clicking on “Manage Contacts” from the “More” button below.',
       name: 'addSendContact',
       desc: '',
       args: [],
@@ -14560,46 +14560,6 @@ class S {
     );
   }
 
-  /// `AMM`
-  String get aMM {
-    return Intl.message(
-      'AMM',
-      name: 'aMM',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `NRT`
-  String get nRT {
-    return Intl.message(
-      'NRT',
-      name: 'nRT',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Jordan`
-  String get jordan {
-    return Intl.message(
-      'Jordan',
-      name: 'jordan',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Japan`
-  String get japan {
-    return Intl.message(
-      'Japan',
-      name: 'japan',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Depart On`
   String get departOnForPurchasePage {
     return Intl.message(
@@ -14630,36 +14590,6 @@ class S {
     );
   }
 
-  /// `31 Jul 2022 `
-  String get purchaseDummyDate {
-    return Intl.message(
-      '31 Jul 2022 ',
-      name: 'purchaseDummyDate',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `- 3:30PM`
-  String get purchaseDummyTime {
-    return Intl.message(
-      '- 3:30PM',
-      name: 'purchaseDummyTime',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `984893922`
-  String get refNoDummyData {
-    return Intl.message(
-      '984893922',
-      name: 'refNoDummyData',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `to Booking Summary`
   String get toBookingSummary {
     return Intl.message(
@@ -14675,16 +14605,6 @@ class S {
     return Intl.message(
       'Total Amount',
       name: 'totalAmount',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `659.570`
-  String get dummyAmount {
-    return Intl.message(
-      '659.570',
-      name: 'dummyAmount',
       desc: '',
       args: [],
     );
@@ -14730,10 +14650,10 @@ class S {
     );
   }
 
-  /// `How would you like to\nmake the payment`
+  /// `Proceed with your payment`
   String get howYouLikeToPayment {
     return Intl.message(
-      'How would you like to\nmake the payment',
+      'Proceed with your payment',
       name: 'howYouLikeToPayment',
       desc: '',
       args: [],
@@ -14775,16 +14695,6 @@ class S {
     return Intl.message(
       'Are you sure you want to cancel your booking? You’ll have to start over again if you cancel.',
       name: 'cancelBookingDetail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Amman, Jordan (AMM)\nto Tokyo, Japan (NRT) \n31 Jul 2022 - 3:30PM`
-  String get departDescription {
-    return Intl.message(
-      'Amman, Jordan (AMM)\nto Tokyo, Japan (NRT) \n31 Jul 2022 - 3:30PM',
-      name: 'departDescription',
       desc: '',
       args: [],
     );
@@ -17350,10 +17260,10 @@ class S {
     );
   }
 
-  /// ` BookingConfirmed!`
+  /// ` Booking Confirmed!`
   String get bookingConfirmed {
     return Intl.message(
-      ' BookingConfirmed!',
+      ' Booking Confirmed!',
       name: 'bookingConfirmed',
       desc: '',
       args: [],
@@ -17405,16 +17315,6 @@ class S {
     return Intl.message(
       'returned',
       name: 'returned',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `URL`
-  String get url {
-    return Intl.message(
-      'URL',
-      name: 'url',
       desc: '',
       args: [],
     );
@@ -17900,10 +17800,10 @@ class S {
     );
   }
 
-  /// `You have insufficient balance in your account`
+  /// `Oops! Transaction failed; you have insufficient balance in your account.`
   String get notEnoughAmountToPurchase {
     return Intl.message(
-      'You have insufficient balance in your account',
+      'Oops! Transaction failed; you have insufficient balance in your account.',
       name: 'notEnoughAmountToPurchase',
       desc: '',
       args: [],
@@ -18747,6 +18647,186 @@ class S {
       name: 'endsOn',
       desc: '',
       args: [String],
+    );
+  }
+
+  /// `Fare`
+  String get fare {
+    return Intl.message(
+      'Fare',
+      name: 'fare',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Taxes & Fees`
+  String get taxesAndFee {
+    return Intl.message(
+      'Taxes & Fees',
+      name: 'taxesAndFee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirmation URL`
+  String get confirmationURL {
+    return Intl.message(
+      'Confirmation URL',
+      name: 'confirmationURL',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Economy`
+  String get economy {
+    return Intl.message(
+      'Economy',
+      name: 'economy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Business`
+  String get business {
+    return Intl.message(
+      'Business',
+      name: 'business',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Adult`
+  String get adult {
+    return Intl.message(
+      'Adult',
+      name: 'adult',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `16 years +`
+  String get sixTeenYearsPlus {
+    return Intl.message(
+      '16 years +',
+      name: 'sixTeenYearsPlus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Youth`
+  String get youth {
+    return Intl.message(
+      'Youth',
+      name: 'youth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `13 to 16 years`
+  String get threeToSixteenYears {
+    return Intl.message(
+      '13 to 16 years',
+      name: 'threeToSixteenYears',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Children`
+  String get children {
+    return Intl.message(
+      'Children',
+      name: 'children',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `2 to 12 years`
+  String get twoToTwelve {
+    return Intl.message(
+      '2 to 12 years',
+      name: 'twoToTwelve',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Infant`
+  String get infant {
+    return Intl.message(
+      'Infant',
+      name: 'infant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Below 2 years`
+  String get belowTwoYears {
+    return Intl.message(
+      'Below 2 years',
+      name: 'belowTwoYears',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay from`
+  String get payFromRJ {
+    return Intl.message(
+      'Pay from',
+      name: 'payFromRJ',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account balance is successfully updated.`
+  String get yourAccountBalanceSuccessFullyUpdated {
+    return Intl.message(
+      'Your account balance is successfully updated.',
+      name: 'yourAccountBalanceSuccessFullyUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account has been closed successfully.`
+  String get accountSuccessfullyClosed {
+    return Intl.message(
+      'Your account has been closed successfully.',
+      name: 'accountSuccessfullyClosed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile Image deleted.`
+  String get profileImageDeleted {
+    return Intl.message(
+      'Profile Image deleted.',
+      name: 'profileImageDeleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! This recipient is already saved in your Blink contacts.`
+  String get receipientAlreadySaved {
+    return Intl.message(
+      'Oops! This recipient is already saved in your Blink contacts.',
+      name: 'receipientAlreadySaved',
+      desc: '',
+      args: [],
     );
   }
 }

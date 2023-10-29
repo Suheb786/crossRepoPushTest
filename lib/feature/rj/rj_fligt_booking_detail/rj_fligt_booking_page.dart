@@ -7,6 +7,10 @@ import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_flight_detail_pag
 
 class RjFlightBookingDetailPage extends BasePage<RjFlightBookingDetailPageViewModel> {
 
+final RJFlightDetailsPageArguments arguments;
+
+  RjFlightBookingDetailPage(this.arguments);
+
 
   @override
   RjFlightBookingDetailPageState createState() => RjFlightBookingDetailPageState();
@@ -21,13 +25,24 @@ class RjFlightBookingDetailPageState
 
   @override
   void onModelReady(RjFlightBookingDetailPageViewModel model) {
-    // model.arguments = widget.arguments;
+    model.arguments = widget.arguments;
     super.onModelReady(model);
   }
 
   @override
   Widget buildView(BuildContext context, RjFlightBookingDetailPageViewModel model) {
     return RjFlightBookingDetailPageView(provideBase());
+  }
+
+  @override
+  Future<bool> onBackPressed(RjFlightBookingDetailPageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(rjFlightBookingDetailViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
   }
 }
 

@@ -1,4 +1,3 @@
-import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:domain/model/country/state_list/state_city_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,10 +12,13 @@ import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/list_scroll_w
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/clickable_scrall_view/list_wheel_scrall_view.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../../../no_data_widget.dart';
 
 class StateCityDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -25,9 +27,15 @@ class StateCityDialogView extends StatelessWidget {
   final String? title;
   final List<StateCityData>? stateCityData;
   bool _keyboardVisible = false;
+  final bool onWillPop;
 
   StateCityDialogView(
-      {this.onDismissed, this.onSelected, this.stateCityTypeEnum, this.title, this.stateCityData});
+      {this.onDismissed,
+      this.onSelected,
+      this.stateCityTypeEnum,
+      this.title,
+      this.stateCityData,
+      this.onWillPop = true});
 
   ProviderBase providerBase() {
     return stateCityDialogViewModelProvider;
@@ -36,169 +44,166 @@ class StateCityDialogView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
-    return BaseWidget<StateCityDialogViewModel>(
-        builder: (context, model, child) {
-          return Dialog(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-              insetPadding: EdgeInsets.only(
-                  left: 24.w, right: 24.w, bottom: 36.h, top: _keyboardVisible ? 36.h : 204.h),
-              child: GestureDetector(
-                onVerticalDragEnd: (details) {
-                  if (details.primaryVelocity! > 0) {
-                    onDismissed?.call();
-                  }
-                },
-                child: AppStreamBuilder<int>(
-                  stream: model!.currentIndexStream,
-                  initialData: 0,
-                  dataBuilder: (context, currentIndex) {
-                    return AppStreamBuilder<Resource<List<StateCityData>>>(
-                        stream: model.stateCityResponseStream,
-                        initialData: Resource.none(),
-                        dataBuilder: (context, stateCityResponse) {
-                          return Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(top: 32.0.h),
-                                child: Center(
-                                  child: Text(
-                                    title!,
-                                    style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 14.t,
-                                        fontWeight: FontWeight.w600),
+    return WillPopScope(
+      onWillPop: () async => onWillPop,
+      child: BaseWidget<StateCityDialogViewModel>(
+          builder: (context, model, child) {
+            return Dialog(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+                insetPadding: EdgeInsets.only(
+                    left: 24.w, right: 24.w, bottom: 36.h, top: _keyboardVisible ? 36.h : 204.h),
+                child: GestureDetector(
+                  onVerticalDragEnd: (details) {
+                    if (details.primaryVelocity! > 0) {
+                      onDismissed?.call();
+                    }
+                  },
+                  child: AppStreamBuilder<int>(
+                    stream: model!.currentIndexStream,
+                    initialData: 0,
+                    dataBuilder: (context, currentIndex) {
+                      return AppStreamBuilder<Resource<List<StateCityData>>>(
+                          stream: model.stateCityResponseStream,
+                          initialData: Resource.none(),
+                          dataBuilder: (context, stateCityResponse) {
+                            return Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(top: 32.0.h),
+                                  child: Center(
+                                    child: Text(
+                                      title!,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 14.t,
+                                          fontWeight: FontWeight.w600),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
-                                child: AppTextField(
-                                  labelText: '',
-                                  controller: model.controller,
-                                  textFieldBorderColor: AppColor.gray_1,
-                                  hintTextColor: AppColor.gray_2,
-                                  textColor: AppColor.black,
-                                  containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-                                  hintText: getHintText(stateCityTypeEnum, context),
-                                  onChanged: (value) {
-                                    model.searchStateCity(value, stateCityTypeEnum!);
-                                  },
-                                  suffixIcon: (value, data) {
-                                    return InkWell(
-                                      onTap: () async {},
-                                      child: Container(
-                                          height: 16.h,
-                                          width: 16.w,
-                                          padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 6.h),
-                                          child: AppSvg.asset(AssetUtils.search)),
-                                    );
-                                  },
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
+                                  child: AppTextField(
+                                    labelText: '',
+                                    controller: model.controller,
+                                    textFieldBorderColor: AppColor.gray_1,
+                                    hintTextColor: AppColor.gray_2,
+                                    textColor: AppColor.black,
+                                    containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                                    hintText: getHintText(stateCityTypeEnum, context),
+                                    onChanged: (value) {
+                                      model.searchStateCity(value, stateCityTypeEnum!);
+                                    },
+                                    suffixIcon: (value, data) {
+                                      return InkWell(
+                                        onTap: () async {},
+                                        child: Container(
+                                            height: 16.h,
+                                            width: 16.w,
+                                            padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 6.h),
+                                            child: AppSvg.asset(AssetUtils.search)),
+                                      );
+                                    },
+                                  ),
                                 ),
-                              ),
-                              Expanded(
-                                  child: stateCityResponse!.data!.length > 0
-                                      ? Stack(
-                                          alignment: Alignment.center,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(horizontal: 16.0.w),
-                                              child: Container(
-                                                height: 64.h,
-                                                width: double.infinity,
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(16.w),
-                                                  color: AppColor.vividYellow,
+                                Expanded(
+                                    child: stateCityResponse!.data!.length > 0
+                                        ? Stack(
+                                            alignment: Alignment.center,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+                                                child: Container(
+                                                  height: 64.h,
+                                                  width: double.infinity,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(16.w),
+                                                    color: AppColor.vividYellow,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            AppScrollableListViewWidget(
-                                              key: ValueKey(stateCityResponse.data!.length),
-                                              child: ClickableListWheelScrollView(
-                                                scrollController: model.scrollController,
-                                                itemHeight: 64.h,
-                                                itemCount: stateCityResponse.data!.length,
-                                                onItemTapCallback: (index) {
-                                                  model.selectCountry(index);
-                                                },
-                                                child: ListWheelScrollView.useDelegate(
-                                                    controller: model.scrollController,
-                                                    itemExtent: 64.h,
-                                                    onSelectedItemChanged: (int index) {
-                                                      model.selectCountry(index);
-                                                    },
-                                                    physics: FixedExtentScrollPhysics(),
-                                                    perspective: 0.0000000001,
-                                                    childDelegate: ListWheelChildBuilderDelegate(
-                                                        childCount: stateCityResponse.data!.length,
-                                                        builder: (BuildContext context, int index) {
-                                                          return ListScrollWheelListWidget(
-                                                            label: stateCityTypeEnum == StateCityTypeEnum.CITY
-                                                                ? stateCityResponse.data![index].cityName!
-                                                                : stateCityResponse.data![index].stateName!,
-                                                            textColor:
-                                                                stateCityResponse.data![index].isSelected
-                                                                    ? Theme.of(context).primaryColorDark
-                                                                    : AppColor.dark_gray_1,
-                                                            widgetColor: Colors.transparent,
-                                                          );
-                                                        })),
+                                              AppScrollableListViewWidget(
+                                                key: ValueKey(stateCityResponse.data!.length),
+                                                child: ClickableListWheelScrollView(
+                                                  scrollController: model.scrollController,
+                                                  itemHeight: 64.h,
+                                                  itemCount: stateCityResponse.data!.length,
+                                                  onItemTapCallback: (index) {
+                                                    model.selectCountry(index);
+                                                  },
+                                                  child: ListWheelScrollView.useDelegate(
+                                                      controller: model.scrollController,
+                                                      itemExtent: 64.h,
+                                                      onSelectedItemChanged: (int index) {
+                                                        model.selectCountry(index);
+                                                      },
+                                                      physics: FixedExtentScrollPhysics(),
+                                                      perspective: 0.0000000001,
+                                                      childDelegate: ListWheelChildBuilderDelegate(
+                                                          childCount: stateCityResponse.data!.length,
+                                                          builder: (BuildContext context, int index) {
+                                                            return ListScrollWheelListWidget(
+                                                              label: stateCityTypeEnum ==
+                                                                      StateCityTypeEnum.CITY
+                                                                  ? stateCityResponse.data![index].cityName!
+                                                                  : stateCityResponse.data![index].stateName!,
+                                                              textColor:
+                                                                  stateCityResponse.data![index].isSelected
+                                                                      ? Theme.of(context).primaryColorDark
+                                                                      : AppColor.dark_gray_1,
+                                                              widgetColor: Colors.transparent,
+                                                            );
+                                                          })),
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        )
-                                      : Center(
-                                          child: Text(
-                                            S.of(context).noDataFound,
-                                            style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                fontSize: 14.t,
-                                                fontWeight: FontWeight.w400,
-                                                color: Theme.of(context).primaryColorDark),
-                                          ),
-                                        )),
-                              InkWell(
-                                onTap: () {
-                                  onSelected!.call(model.selectedState);
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-                                  height: 57.h,
-                                  width: 57.w,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                  child: AppSvg.asset(AssetUtils.tick,
-                                      color: Theme.of(context).colorScheme.secondary),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 8.0.h, bottom: 16.h),
-                                child: Center(
-                                  child: Text(
-                                    S.of(context).swipeDownToCancel,
-                                    style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 10.t,
-                                        fontWeight: FontWeight.w400,
-                                        color: AppColor.dark_gray_1),
+                                            ],
+                                          )
+                                        : Center(
+                                            child: NoDataWidget(),
+                                          )),
+                                InkWell(
+                                  onTap: () {
+                                    onSelected!.call(model.selectedState);
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                                    height: 57.h,
+                                    width: 57.w,
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Theme.of(context).textTheme.bodyLarge!.color!),
+                                    child: AppSvg.asset(AssetUtils.tick,
+                                        color: Theme.of(context).colorScheme.secondary),
                                   ),
                                 ),
-                              ),
-                            ],
-                          );
-                        });
-                  },
-                ),
-              ));
-        },
-        onModelReady: (model) {
-          if (model.stateCityDataList.isEmpty) {
-            model.setData(stateCityData!);
-          }
-        },
-        providerBase: providerBase());
+                                Padding(
+                                  padding: EdgeInsets.only(top: 8.0.h, bottom: 16.h),
+                                  child: Center(
+                                    child: Text(
+                                      S.of(context).swipeDownToCancel,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 10.t,
+                                          fontWeight: FontWeight.w400,
+                                          color: AppColor.dark_gray_1),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
+                          });
+                    },
+                  ),
+                ));
+          },
+          onModelReady: (model) {
+            if (model.stateCityDataList.isEmpty) {
+              model.setData(stateCityData!);
+            }
+          },
+          providerBase: providerBase()),
+    );
   }
 
   getHintText(StateCityTypeEnum? stateCityTypeEnum, BuildContext context) {

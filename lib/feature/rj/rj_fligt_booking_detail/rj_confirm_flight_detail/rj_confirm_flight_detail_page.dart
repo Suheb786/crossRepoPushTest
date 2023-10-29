@@ -22,13 +22,13 @@ class RjConfirmFlightDetailPageState
 
   @override
   void onModelReady(RjConfirmFlightDetailViewModel model) {
-    // model.getFlightDetails(
-    //     referenceNumber: ProviderScope.containerOf(context)
-    //             .read(rjFlightBookingDetailViewModelProvider)
-    //             .arguments
-    //             ?.referenceNumber ??
-    //         '');
-    // super.onModelReady(model);
+    super.onModelReady(model);
+    model.getFlightDetails(
+        referenceNumber: ProviderScope.containerOf(context)
+                .read(rjFlightBookingDetailViewModelProvider)
+                .arguments
+                ?.referenceNumber ??
+            '');
   }
 
   @override
@@ -49,4 +49,15 @@ class RjConfirmFlightDetailPageState
 
   @override
   bool get wantKeepAlive => true;
+
+  @override
+  Future<bool> onBackPressed(RjConfirmFlightDetailViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(rjFlightBookingDetailViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

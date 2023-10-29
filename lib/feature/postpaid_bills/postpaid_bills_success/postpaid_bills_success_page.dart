@@ -31,6 +31,14 @@ class PostPaidBillsSuccessPageState
   Widget buildView(BuildContext context, PostPaidBillsSuccessPageViewModel model) {
     return PostPaidBillsSuccessPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(PostPaidBillsSuccessPageViewModel model, {param}) {
+    Navigator.of(context)
+      ..pop()
+      ..pop(true);
+    return super.onBackPressed(model);
+  }
 }
 
 class PostPaidBillsSuccessPageArguments {

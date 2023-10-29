@@ -1,11 +1,15 @@
 import 'dart:io';
 import 'dart:math' as math;
+import 'dart:typed_data';
 
 import 'package:data/helper/antelop_helper.dart';
+import 'package:data/helper/encrypt_decrypt_promo_code.dart';
+import 'package:data/helper/key_helper.dart';
 import 'package:domain/constants/enum/evoucher_landing_page_navigation_type_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
+import 'package:domain/model/user/user.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -75,11 +79,10 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
               }
             },
             dataBuilder: (context, data) {
-              return AppStreamBuilder<Resource<ProfileInfoResponse>>(
-                  stream: model.getProfileInfoStream,
+              return AppStreamBuilder<Resource<User>>(
+                  stream: model.currentUser,
                   initialData: Resource.none(),
-                  onData: (profileData) {
-                    /// Main List
+                  onData: (currentUserData) async {
                     var currentPages = [
                       ///Bill payments
                       PagesWidget(
@@ -118,13 +121,15 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                                         ?.borderSide
                                         .color),
                               ), onSelected: () async {
-                            String userPromoCode = ProviderScope.containerOf(context)
+                                String userPromoCode = ProviderScope.containerOf(context)
                                     .read(appHomeViewModelProvider)
                                     .dashboardDataContent
                                     .userPromoCode ??
                                 "";
+                            String encryptPromoCode = EncryptDecryptPromoCode.encryptReferLink(
+                                plainText: userPromoCode, keyString: KeyHelper.DECRYPTION_KEY);
 
-                            model.getReferCode(userPromoCode: userPromoCode);
+                            model.getReferCode(userPromoCode: encryptPromoCode);
 
                             Navigator.pop(context);
                           }, onDismissed: () {
@@ -220,8 +225,8 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                           mKey: 'SettingsMenuWidget',
                           title: S.of(context).profileSettings,
                           image: AssetUtils.dummyProfile,
-                          dynamicChild: (profileData.data?.content?.profileImage == null ||
-                                  profileData.data?.content?.profileImage.isEmpty)
+                          dynamicChild: (currentUserData.data?.localProfileImageDB == null ||
+                                  currentUserData.data?.localProfileImageDB?.isEmpty)
                               ? Center(
                                   child: Container(
                                     child: AppStreamBuilder<int>(
@@ -257,13 +262,20 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                                         }),
                                   ),
                                 )
-                              : CircleAvatar(
-                                  radius: 48,
-                                  backgroundImage: Image.memory(
-                                    profileData.data!.content!.profileImage!,
-                                    fit: BoxFit.cover,
-                                  ).image,
-                                ),
+                              : AppStreamBuilder<Uint8List>(
+                                  stream: model.showProfileImage,
+                                  initialData: Uint8List(0),
+                                  dataBuilder: (context, image) {
+                                    return (image != null && (image).isNotEmpty)
+                                        ? CircleAvatar(
+                                            radius: 48,
+                                            backgroundImage: Image.memory(
+                                              image,
+                                              fit: BoxFit.cover,
+                                            ).image,
+                                          )
+                                        : Container();
+                                  }),
                         ),
                       ),
 
@@ -282,112 +294,336 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                       ),
                     ];
                     model.updateShowPages(context: context, pages: currentPages);
+
+                    /// Main List
                   },
-                  dataBuilder: (context, profileData) {
-                    return AppStreamBuilder<Resource<String>>(
+                  dataBuilder: (context, userData) {
+                    return AppStreamBuilder<Resource<ProfileInfoResponse>>(
+                        stream: model.getProfileInfoStream,
                         initialData: Resource.none(),
-                        stream: model.referDynamicLinkStream,
-                        onData: (data) async {
-                          if (data.status == Status.SUCCESS) {
-                            if (data.data != null) {
-                              await Share.share(S.of(context).shareReferDescription(data.data ?? ''),
-                                  subject: S.of(context).referralLink);
-                            }
-                          }
-                        },
-                        dataBuilder: (context, snapshot) {
-                          return AppStreamBuilder<int>(
-                              stream: model.currentStep,
-                              initialData: 0,
-                              dataBuilder: (context, currentValue) {
-                                return Dialog(
-                                  elevation: 0.0,
-                                  insetPadding: EdgeInsets.zero,
-                                  backgroundColor: Theme.of(context).primaryColorDark.withOpacity(0.4),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Container(
-                                        height: 180.h,
-                                        child: PageView.builder(
-                                          itemCount: (model.showPages).length,
-                                          controller: pageController,
-                                          physics: const ClampingScrollPhysics(),
-                                          onPageChanged: (int value) {
-                                            model.updatePage(value);
-                                          },
-                                          itemBuilder: (context, index) {
-                                            return AnimatedBuilder(
-                                              animation: pageController,
-                                              builder: (context, child) {
-                                                double value = 0;
+                        onData: (profileData) {
+                          /// Main List
+                          var currentPages = [
+                            ///Bill payments
+                            PagesWidget(
+                                key: 'BILL_PAYMENTS',
+                                onTap: () async {
+                                  ///LOG EVENT TO FIREBASE
+                                  await FirebaseAnalytics.instance.logEvent(
+                                      name: "payments_opened", parameters: {"is_payment_opened": "true"});
+                                  Navigator.pop(context);
+                                  Navigator.pushNamed(context, RoutePaths.PaymentHome,
+                                      arguments: NavigationType.DASHBOARD);
+                                },
+                                child: SettingsMenuWidget(
+                                  model: model,
+                                  title: S.of(context).billsAndPayments,
+                                  image: AssetUtils.sendMoneyIcon,
+                                  mKey: 'BILL_PAYMENTS',
+                                )),
 
-                                                ///Y coordinate
-                                                double translateValue = 0;
+                            ///Refer a friend
+                            PagesWidget(
+                              onTap: () {
+                                InformationDialog.show(context,
+                                    image: AssetUtils.referIcon,
+                                    title: S.of(context).referFriend,
+                                    btnTitle: S.of(context).invite,
+                                    descriptionWidget: Text(
+                                      S.of(context).referFriendDescription("100"),
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 14.t,
+                                          fontWeight: FontWeight.w400,
+                                          color: Theme.of(context)
+                                              .inputDecorationTheme
+                                              .focusedBorder
+                                              ?.borderSide
+                                              .color),
+                                    ), onSelected: () async {
+                                      String userPromoCode = ProviderScope.containerOf(context)
+                                          .read(appHomeViewModelProvider)
+                                          .dashboardDataContent
+                                          .userPromoCode ??
+                                      "";
 
-                                                ///Checking pageController is ready to use
-                                                if (pageController.position.hasContentDimensions) {
-                                                  ///For current page value = 0, so rotation and translation value is zero
-                                                  double indexFinal = index.toDouble();
-                                                  value = indexFinal - (pageController.page ?? 0);
-                                                  value = (value * 0.01);
+                                  String encryptPromoCode = EncryptDecryptPromoCode.encryptReferLink(
+                                      plainText: userPromoCode, keyString: KeyHelper.DECRYPTION_KEY);
 
-                                                  if (value.abs() >= 0.02) {
-                                                    translateValue = value.abs() * 500;
-                                                  } else if (value.abs() >= 0.018) {
-                                                    translateValue = value.abs() * 460;
-                                                  } else if (value.abs() >= 0.016) {
-                                                    translateValue = value.abs() * 420;
-                                                  } else if (value.abs() >= 0.014) {
-                                                    translateValue = value.abs() * 380;
-                                                  } else if (value.abs() >= 0.012) {
-                                                    translateValue = value.abs() * 340;
-                                                  } else {
-                                                    translateValue = value.abs() * 300;
-                                                  }
-                                                }
-                                                return Transform.rotate(
-                                                  angle: StringUtils.isDirectionRTL(context)
-                                                      ? (math.pi * -value)
-                                                      : (math.pi * value),
-                                                  child: Transform.translate(
-                                                    offset: Offset(0, translateValue),
-                                                    child: _cards(index, model, model.showPages[index],
-                                                        currentValue ?? -1),
-                                                  ),
-                                                );
-                                              },
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 30.h,
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Container(
-                                          padding: EdgeInsets.all(15),
-                                          height: 80.w,
-                                          width: 80.w,
-                                          decoration: BoxDecoration(
-                                            color: Theme.of(context).colorScheme.secondary,
-                                            border: Border.all(
-                                                color: Theme.of(context).primaryColorDark, width: 12),
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: AppSvg.asset(AssetUtils.close,
-                                              color: Theme.of(context).textTheme.bodyLarge?.color),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 24.0.h,
-                                      ),
-                                    ],
-                                  ),
+                                  model.getReferCode(userPromoCode: encryptPromoCode);
+
+                                  Navigator.pop(context);
+                                }, onDismissed: () {
+                                  Navigator.pop(context);
+                                });
+                              },
+                              key: 'REFER_A_FRIEND',
+                              child: SettingsMenuWidget(
+                                model: model,
+                                title: S.of(context).referFriend,
+                                image: AssetUtils.referIcon,
+                                mKey: 'REFER_A_FRIEND',
+                              ),
+                            ),
+
+                            ///Offers
+                            PagesWidget(
+                              onTap: () {
+                                Navigator.pop(context);
+                                Navigator.of(context).push(CustomRoute.swipeUpRoute(OfferForYouPage()));
+                              },
+                              key: 'OFFERS',
+                              child: SettingsMenuWidget(
+                                model: model,
+                                title: S.of(context).forYou,
+                                image: AssetUtils.forYou,
+                                mKey: 'OFFERS',
+                              ),
+                            ),
+
+                            ///Manage Contacts
+                            PagesWidget(
+                              onTap: () {
+                                Navigator.pop(context);
+                                Navigator.of(context).push(CustomRoute.swipeUpRoute(
+                                    BeneficiaryContactListPage(navigationType: NavigationType.SEND_MONEY)));
+                              },
+                              key: 'MANAGE_CONTACTS',
+                              child: SettingsMenuWidget(
+                                model: model,
+                                mKey: 'MANAGE_CONTACTS',
+                                title: S.of(context).manageContactsSettings,
+                                image: AssetUtils.contacts,
+                              ),
+                            ),
+
+                            ///CLIQ
+                            PagesWidget(
+                              onTap: () {
+                                Navigator.pop(context);
+                                Navigator.of(context).push(CustomRoute.swipeUpRoute(CliqIdListPage(),
+                                    routeName: RoutePaths.CliqIdList));
+                              },
+                              key: 'CLIQ',
+                              child: SettingsMenuWidget(
+                                model: model,
+                                mKey: 'CLIQ',
+                                image: AssetUtils.cliqLogoSvg,
+                                title: S.of(context).manageCliqIdRoute,
+                              ),
+                            ),
+
+                            ///E-VOUCHERS
+                            PagesWidget(
+                              onTap: () {
+                                Navigator.pop(context);
+                                Navigator.of(context).push(
+                                  CustomRoute.swipeUpRoute(
+                                      EvoucherPage(EvoucherPageArguments(
+                                          EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING)),
+                                      routeName: RoutePaths.Evoucher),
                                 );
+                              },
+                              key: 'E-VOUCHERS',
+                              child: SettingsMenuWidget(
+                                model: model,
+                                title: S.of(context).eVouchers,
+                                image: AssetUtils.e_voucher,
+                                mKey: 'E-VOUCHERS',
+                              ),
+                            ),
+
+                            ///Profile settings
+                            PagesWidget(
+                              onTap: () {
+                                Navigator.pop(context);
+                                Navigator.of(context).push(CustomRoute.swipeUpRoute(AccountSettingPage(),
+                                    routeName: RoutePaths.AccountSetting));
+                              },
+                              key: 'SettingsMenuWidget',
+                              child: SettingsMenuWidget(
+                                model: model,
+                                mKey: 'SettingsMenuWidget',
+                                title: S.of(context).profileSettings,
+                                image: AssetUtils.dummyProfile,
+                                dynamicChild: (profileData.data?.content?.localProfileImageDB == null ||
+                                        profileData.data?.content?.localProfileImageDB.isEmpty)
+                                    ? Center(
+                                        child: Container(
+                                          child: AppStreamBuilder<int>(
+                                              stream: model.menuTappedIndexStream,
+                                              initialData: -1,
+                                              dataBuilder: (context, tappedMenuIndex) {
+                                                return AppStreamBuilder<int>(
+                                                    stream: model.currentStep,
+                                                    initialData: 0,
+                                                    dataBuilder: (context, currentValue) {
+                                                      return AppStreamBuilder<String>(
+                                                          stream: model.textStream,
+                                                          initialData: "",
+                                                          dataBuilder: (context, text) {
+                                                            return Text(
+                                                              StringUtils.getFirstInitials(text),
+                                                              style: TextStyle(
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontWeight: FontWeight.w700,
+                                                                  fontSize: 18.0.t,
+                                                                  color: (currentValue == tappedMenuIndex &&
+                                                                          "SettingsMenuWidget" ==
+                                                                              model.getKeyByIndex(
+                                                                                  tappedMenuIndex ?? -1))
+                                                                      ? Theme.of(context)
+                                                                          .colorScheme
+                                                                          .secondary
+                                                                      : Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyLarge!
+                                                                          .color!),
+                                                            );
+                                                          });
+                                                    });
+                                              }),
+                                        ),
+                                      )
+                                    : AppStreamBuilder<Uint8List>(
+                                        stream: model.showProfileImage,
+                                        initialData: Uint8List(0),
+                                        dataBuilder: (context, image) {
+                                          return (image != null && (image).isNotEmpty)
+                                              ? CircleAvatar(
+                                                  radius: 48,
+                                                  backgroundImage: Image.memory(
+                                                    image,
+                                                    fit: BoxFit.cover,
+                                                  ).image,
+                                                )
+                                              : Container();
+                                        }),
+                              ),
+                            ),
+
+                            ///logout
+                            PagesWidget(
+                              onTap: () {
+                                model.logout();
+                              },
+                              key: 'LOGOUT',
+                              child: SettingsMenuWidget(
+                                model: model,
+                                image: AssetUtils.logout,
+                                title: S.of(context).logout,
+                                mKey: 'LOGOUT',
+                              ),
+                            ),
+                          ];
+                          model.updateShowPages(context: context, pages: currentPages);
+                        },
+                        dataBuilder: (context, profileData) {
+                          return AppStreamBuilder<Resource<String>>(
+                              initialData: Resource.none(),
+                              stream: model.referDynamicLinkStream,
+                              onData: (data) async {
+                                if (data.status == Status.SUCCESS) {
+                                  if (data.data != null) {
+                                    await Share.share(S.of(context).shareReferDescription(data.data ?? ''),
+                                        subject: S.of(context).referralLink);
+                                  }
+                                }
+                              },
+                              dataBuilder: (context, snapshot) {
+                                return AppStreamBuilder<int>(
+                                    stream: model.currentStep,
+                                    initialData: 0,
+                                    dataBuilder: (context, currentValue) {
+                                      return Dialog(
+                                        elevation: 0.0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Theme.of(context).primaryColorDark.withOpacity(0.4),
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            Container(
+                                              height: 180.h,
+                                              child: PageView.builder(
+                                                itemCount: (model.showPages).length,
+                                                controller: pageController,
+                                                physics: const ClampingScrollPhysics(),
+                                                onPageChanged: (int value) {
+                                                  model.updatePage(value);
+                                                },
+                                                itemBuilder: (context, index) {
+                                                  return AnimatedBuilder(
+                                                    animation: pageController,
+                                                    builder: (context, child) {
+                                                      double value = 0;
+
+                                                      ///Y coordinate
+                                                      double translateValue = 0;
+
+                                                      ///Checking pageController is ready to use
+                                                      if (pageController.position.hasContentDimensions) {
+                                                        ///For current page value = 0, so rotation and translation value is zero
+                                                        double indexFinal = index.toDouble();
+                                                        value = indexFinal - (pageController.page ?? 0);
+                                                        value = (value * 0.01);
+
+                                                        if (value.abs() >= 0.02) {
+                                                          translateValue = value.abs() * 500;
+                                                        } else if (value.abs() >= 0.018) {
+                                                          translateValue = value.abs() * 460;
+                                                        } else if (value.abs() >= 0.016) {
+                                                          translateValue = value.abs() * 420;
+                                                        } else if (value.abs() >= 0.014) {
+                                                          translateValue = value.abs() * 380;
+                                                        } else if (value.abs() >= 0.012) {
+                                                          translateValue = value.abs() * 340;
+                                                        } else {
+                                                          translateValue = value.abs() * 300;
+                                                        }
+                                                      }
+                                                      return Transform.rotate(
+                                                        angle: StringUtils.isDirectionRTL(context)
+                                                            ? (math.pi * -value)
+                                                            : (math.pi * value),
+                                                        child: Transform.translate(
+                                                          offset: Offset(0, translateValue),
+                                                          child: _cards(index, model, model.showPages[index],
+                                                              currentValue ?? -1),
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 30.h,
+                                            ),
+                                            InkWell(
+                                              onTap: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Container(
+                                                padding: EdgeInsets.all(15),
+                                                height: 80.w,
+                                                width: 80.w,
+                                                decoration: BoxDecoration(
+                                                  color: Theme.of(context).colorScheme.secondary,
+                                                  border: Border.all(
+                                                      color: Theme.of(context).primaryColorDark, width: 12),
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: AppSvg.asset(AssetUtils.close,
+                                                    color: Theme.of(context).textTheme.bodyLarge?.color),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 24.0.h,
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    });
                               });
                         });
                   });

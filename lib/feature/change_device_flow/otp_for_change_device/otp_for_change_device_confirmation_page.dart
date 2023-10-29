@@ -67,6 +67,11 @@ class OtpForChangeDeviceConfirmationPageState
     super.dispose();
     cancel();
   }
+
+  @override
+  Future<bool> onBackPressed(OtpForChangeDeviceConfirmationPageViewModel model, {param}) async {
+    return false;
+  }
 }
 
 class OtpForChangeDeviceConfirmationPageArguments {

@@ -67,4 +67,15 @@ class RjOtpValidatePageState extends BaseStatefulPage<RjOtpValidateViewModel, Rj
     super.dispose();
     cancel();
   }
+
+  @override
+  Future<bool> onBackPressed(RjOtpValidateViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(rjFlightBookingDetailViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
+
 import '../../../../di/rj/rj_modules.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../main/navigation/route_paths.dart';
@@ -176,6 +177,7 @@ class _RJBookingWidgetViewState extends State<RJBookingWidgetView> {
                     return GestureDetector(
                       onTap: () {
                         /// selection cabin class based on index
+                        print('Index----111----${index}');
                         model.selectedCabinClass(index);
                       },
                       child: Container(

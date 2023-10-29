@@ -62,4 +62,18 @@ class EnterCodeForChangeMobileNumberPageState
     super.dispose();
     cancel();
   }
+
+  @override
+  Future<bool> onBackPressed(EnterCodeForChangeMobileNumberPageViewModel model,
+      {param}) async {
+    var parentModel = ProviderScope.containerOf(context)
+        .read(changeMobileNumberViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
+
 }

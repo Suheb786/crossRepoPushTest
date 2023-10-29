@@ -26,4 +26,9 @@ class ReviewApplicationPageState
   Widget buildView(BuildContext context, ReviewApplicationPageViewModel model) {
     return ReviewApplicationPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(ReviewApplicationPageViewModel model, {param}) async {
+    return false;
+  }
 }

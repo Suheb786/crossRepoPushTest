@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:data/helper/dynamic_link.dart';
+import 'package:data/helper/encrypt_decrypt_promo_code.dart';
+import 'package:data/helper/key_helper.dart';
 import 'package:data/helper/secure_storage_helper.dart';
 import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
@@ -13,6 +15,7 @@ import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
 import 'package:domain/usecase/user/check_bio_metric_support_use_case.dart';
 import 'package:domain/usecase/user/check_version_update_usecase.dart';
 import 'package:domain/usecase/user/get_current_user_usecase.dart';
+import 'package:encrypt/encrypt.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -242,6 +245,7 @@ class LoginLandingPageViewModel extends BasePageViewModel {
         }
       });
     });
+
     initDynamicLink();
   }
 
@@ -263,8 +267,12 @@ class LoginLandingPageViewModel extends BasePageViewModel {
     String promoCode = '';
     if (uri.path.isNotEmpty && uri.path.contains("/refer") && uri.queryParameters.isNotEmpty) {
       promoCode = uri.queryParameters['userPromoCode']?.replaceAll(' ', '+') ?? '';
-      AppConstantsUtils.userPromoCode = promoCode;
-      debugPrint("userPromoCode from link--> $promoCode");
+
+      String decryptPromoCode = EncryptDecryptPromoCode.decryptReferLink(
+          encryptedData: Encrypted.fromBase16(promoCode), keyString: KeyHelper.DECRYPTION_KEY);
+
+      AppConstantsUtils.userPromoCode = decryptPromoCode;
+      debugPrint("userPromoCode from link--> $decryptPromoCode");
     } else {
       debugPrint("No UserPromoCode-->");
     }

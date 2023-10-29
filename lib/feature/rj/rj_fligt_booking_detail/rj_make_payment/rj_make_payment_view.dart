@@ -1,4 +1,7 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -42,207 +45,186 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                         ProviderScope.containerOf(context)
                             .read(rjFlightBookingDetailViewModelProvider)
                             .nextPage();
+                        ProviderScope.containerOf(context)
+                            .read(rjOtpValidateViewModelProvider)
+                            .otpController
+                            .clear();
                       }
                     },
                     dataBuilder: (BuildContext context, data) {
-                      return GestureDetector(
-                        /*  onHorizontalDragEnd: (details) {
-                                if (ProviderScope.containerOf(context)
-                                        .read(rjFlightBookingDetailViewModelProvider)
-                                        .appSwiperController
-                                        .page ==
-                                    1.0) {
-                                  FocusScope.of(context).unfocus();
-
-                                  if (StringUtils.isDirectionRTL(context)) {
-                                    if (details.primaryVelocity!.isNegative) {
-                                      ProviderScope.containerOf(context)
-                                          .read(rjFlightBookingDetailViewModelProvider)
-                                          .previousPage();
-                                    } else {
-                                      // model.rjOtpValidate();
-                                    }
-                                  } else {
-                                    if (details.primaryVelocity!.isNegative) {
-                                      // model.rjOtpValidate();
-                                    } else {
-                                      ProviderScope.containerOf(context)
-                                          .read(rjFlightBookingDetailViewModelProvider)
-                                          .previousPage();
-                                    }
-                                  }
-                                }
-                              }, */
-                        child: Card(
-                          margin: EdgeInsets.zero,
-                          child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                              child: Column(
-                                children: [
-                                  Align(
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: Text(
-                                      S.of(context).payFrom,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: Theme.of(context).colorScheme.surfaceVariant,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 14.t),
-                                    ),
+                      return Card(
+                        margin: EdgeInsets.zero,
+                        child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+                            child: Column(
+                              children: [
+                                Align(
+                                  alignment: AlignmentDirectional.topStart,
+                                  child: Text(
+                                    S.of(context).payFromRJ,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: Theme.of(context).colorScheme.surfaceVariant,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 14.t),
                                   ),
-                                  Visibility(
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.only(top: 16.0.h),
-                                      child: AppStreamBuilder<Account>(
-                                          initialData: ProviderScope.containerOf(context)
-                                              .read(appHomeViewModelProvider)
-                                              .getMainAccount(),
-                                          stream: model.selectedFromAccountStream,
-                                          dataBuilder: (context, selectedFromAccount) {
-                                            // model.validateAmount(ProviderScope.containerOf(context)
-                                            //     .read(appHomeViewModelProvider)
-                                            //     .getMainAccountAvailableBalance());
-                                            // model.validateAmount();
-                                            return InkWell(
-                                              onTap: () {
-                                                SelectAccountListDialog.show(
-                                                  context,
-                                                  title: S.current.payFrom,
-                                                  accountList: ProviderScope.containerOf(context)
-                                                      .read(appHomeViewModelProvider)
-                                                      .getAllMyAccounts(),
-                                                  onDismissed: () => Navigator.pop(context),
-                                                  onConfirm: (value) {
-                                                    Navigator.pop(context);
-
-                                                    model.addFromAccountData(selectedAccount: value);
-                                                  },
-                                                );
-                                              },
-                                              child: Container(
-                                                width: MediaQuery.of(context).size.width,
-                                                padding: EdgeInsetsDirectional.all(16.h),
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(8),
-                                                  border: Border.all(
-                                                      width: 1,
-                                                      color: (Theme.of(context)
-                                                          .inputDecorationTheme
-                                                          .enabledBorder!
-                                                          .borderSide
-                                                          .color)),
-                                                ),
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                  children: [
-                                                    Expanded(
-                                                      flex: 7,
-                                                      child: Column(
-                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                        children: [
-                                                          Text(
-                                                            S.current.payFrom,
-                                                            style: TextStyle(
-                                                                fontFamily: StringUtils.appFont,
-                                                                fontSize: 10.0.t,
-                                                                color: Theme.of(context).primaryColorDark,
-                                                                fontWeight: FontWeight.w400),
-                                                          ),
-                                                          SizedBox(height: 8.h),
-                                                          Text(
-                                                            selectedFromAccount?.accountTitle ?? "",
-                                                            style: TextStyle(
-                                                                fontFamily: StringUtils.appFont,
-                                                                fontSize: 14.0.t,
-                                                                color: Theme.of(context).colorScheme.shadow,
-                                                                fontWeight: FontWeight.w600),
-                                                          ),
-                                                          SizedBox(height: 4.h),
-                                                          Text(
-                                                            selectedFromAccount?.accountNo ?? "",
-                                                            style: TextStyle(
-                                                                fontFamily: StringUtils.appFont,
-                                                                fontSize: 12.0.t,
-                                                                color:
-                                                                    Theme.of(context).colorScheme.surfaceTint,
-                                                                fontWeight: FontWeight.w600),
-                                                          ),
-                                                          SizedBox(height: 16.h),
-                                                          Text(
-                                                            selectedFromAccount?.availableBalance ?? "",
-                                                            style: TextStyle(
-                                                                fontFamily: StringUtils.appFont,
-                                                                fontSize: 14.0.t,
-                                                                color: Theme.of(context).colorScheme.shadow,
-                                                                fontWeight: FontWeight.w600),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      child: Container(
-                                                          height: 16.h,
-                                                          width: 16.w,
-                                                          padding: EdgeInsets.symmetric(horizontal: 7.w),
-                                                          child: AppSvg.asset(AssetUtils.downArrow,
-                                                              color: Theme.of(context).primaryColorDark)),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            );
-                                          }),
-                                    ),
-                                  ),
-                                  Spacer(),
-                                  Column(
-                                    children: [
-                                      SizedBox(
-                                        height: 20.h,
-                                      ),
-                                      AppStreamBuilder<bool>(
-                                        initialData: false,
-                                        stream: model.showButtonSubjectStream,
-                                        dataBuilder: (BuildContext context, data) {
-                                          return AppPrimaryButton(
-                                            text: S.of(context).next,
-                                            isDisabled: !data!,
-                                            onPressed: () {
-                                              // model.rjOtpValidate();
-                                              ProviderScope.containerOf(context)
-                                                  .read(rjFlightBookingDetailViewModelProvider)
-                                                  .nextPage();
-                                            },
-                                          );
+                                ),
+                                Visibility(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.only(top: 16.0.h),
+                                    child: AppStreamBuilder<Account>(
+                                        initialData: ProviderScope.containerOf(context)
+                                            .read(appHomeViewModelProvider)
+                                            .dashboardDataContent
+                                            .account!,
+                                        stream: model.selectedFromAccountStream,
+                                        onData: (value) {
+                                          // model.addFromAccountData(selectedAccount: value);
                                         },
-                                      ),
-                                      SizedBox(
-                                        height: 31.h,
-                                      ),
-                                      Visibility(
-                                        visible: true,
-                                        child: InkWell(
-                                          onTap: () {
-                                            ProviderScope.containerOf(context)
-                                                .read(rjFlightBookingDetailViewModelProvider)
-                                                .previousPage();
-                                          },
-                                          child: Text(
-                                            S.of(context).back,
-                                            style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              color: Theme.of(context).colorScheme.onSecondaryContainer,
-                                              fontSize: 14.t,
-                                              fontWeight: FontWeight.w600,
+                                        dataBuilder: (context, selectedFromAccount) {
+                                          return InkWell(
+                                            onTap: () {
+                                              SelectAccountListDialog.show(
+                                                context,
+                                                title: S.current.payFromRJ,
+                                                accountList: ProviderScope.containerOf(context)
+                                                    .read(appHomeViewModelProvider)
+                                                    .getAllMyAccounts(),
+                                                onDismissed: () => Navigator.pop(context),
+                                                onConfirm: (value) {
+                                                  model.selectedAccount = value;
+                                                  model.addFromAccountData(account: value);
+                                                  Navigator.pop(context);
+                                                },
+                                              );
+                                            },
+                                            child: Container(
+                                              width: MediaQuery.of(context).size.width,
+                                              padding: EdgeInsetsDirectional.all(16.h),
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(8),
+                                                border: Border.all(
+                                                    width: 1,
+                                                    color: (Theme.of(context)
+                                                        .inputDecorationTheme
+                                                        .enabledBorder!
+                                                        .borderSide
+                                                        .color)),
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                children: [
+                                                  Expanded(
+                                                    flex: 7,
+                                                    child: Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+                                                        Text(
+                                                          S.current.payFromRJ.toUpperCase(),
+                                                          style: TextStyle(
+                                                              fontFamily: StringUtils.appFont,
+                                                              fontSize: 10.0.t,
+                                                              color: Theme.of(context).primaryColorDark,
+                                                              fontWeight: FontWeight.w400),
+                                                        ),
+                                                        SizedBox(height: 8.h),
+                                                        Text(
+                                                          "${(selectedFromAccount?.isSubAccount ?? false) ? "${selectedFromAccount?.nickName == null ? S.of(context).subAccount : "${S.of(context).subAccount} - ${selectedFromAccount?.nickName}"}" : "${selectedFromAccount?.nickName == null ? S.of(context).mainAccount : "${S.of(context).mainAccount} - ${selectedFromAccount?.nickName}"}"}",
+                                                          style: TextStyle(
+                                                              fontFamily: StringUtils.appFont,
+                                                              fontSize: 14.0.t,
+                                                              color: Theme.of(context).colorScheme.shadow,
+                                                              fontWeight: FontWeight.w600),
+                                                        ),
+                                                        SizedBox(height: 4.h),
+                                                        Text(
+                                                          selectedFromAccount?.accountNo ?? "",
+                                                          style: TextStyle(
+                                                              fontFamily: StringUtils.appFont,
+                                                              fontSize: 12.0.t,
+                                                              color:
+                                                                  Theme.of(context).colorScheme.surfaceTint,
+                                                              fontWeight: FontWeight.w600),
+                                                        ),
+                                                        SizedBox(height: 16.h),
+                                                        Text(
+                                                          StringUtils.formatBalance(
+                                                                  selectedFromAccount?.availableBalance ??
+                                                                      '0.00') +
+                                                              " " +
+                                                              S.of(context).JOD,
+                                                          style: TextStyle(
+                                                              fontFamily: StringUtils.appFont,
+                                                              fontSize: 14.0.t,
+                                                              color: Theme.of(context).colorScheme.shadow,
+                                                              fontWeight: FontWeight.w600),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Container(
+                                                        height: 16.h,
+                                                        width: 16.w,
+                                                        padding: EdgeInsets.symmetric(horizontal: 7.w),
+                                                        child: AppSvg.asset(AssetUtils.downArrow,
+                                                            color: Theme.of(context).primaryColorDark)),
+                                                  )
+                                                ],
+                                              ),
                                             ),
-                                          ),
+                                          );
+                                        }),
+                                  ),
+                                ),
+                                Spacer(),
+                                Column(
+                                  children: [
+                                    SizedBox(
+                                      height: 20.h,
+                                    ),
+                                    AppPrimaryButton(
+                                      text: S.of(context).next,
+                                      onPressed: () {
+                                        if (double.parse(model.selectedAccount?.availableBalance ?? '0.0') <
+                                            double.parse(ProviderScope.containerOf(context)
+                                                    .read(rjConfirmFlightBookingViewModelProvider)
+                                                    .flightDetailResponse
+                                                    .flightDetailContent
+                                                    ?.paymentAmount ??
+                                                '0.0')) {
+                                          model.showToastWithError(AppError(
+                                              cause: Exception(),
+                                              error: ErrorInfo(message: ''),
+                                              type: ErrorType.NO_BALANCE_ACCOUNT));
+                                        } else {
+                                          model.rjOtpValidate();
+                                        }
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: 31.h,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        ProviderScope.containerOf(context)
+                                            .read(rjFlightBookingDetailViewModelProvider)
+                                            .previousPage();
+                                      },
+                                      child: Text(
+                                        S.of(context).back,
+                                        style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: Theme.of(context).colorScheme.onSecondaryContainer,
+                                          fontSize: 14.t,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ],
-                              )),
-                        ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )),
                       );
                     }));
           }),

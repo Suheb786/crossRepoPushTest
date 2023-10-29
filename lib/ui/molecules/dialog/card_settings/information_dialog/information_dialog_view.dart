@@ -18,6 +18,7 @@ class InformationDialogView extends StatelessWidget {
   final double? imageHight;
   final double? imageWidth;
   final String? doneImage;
+  final bool onWillPop;
 
   InformationDialogView(
       {this.onDismissed,
@@ -29,28 +30,29 @@ class InformationDialogView extends StatelessWidget {
       this.isSwipeToCancel = true,
       this.imageHight = 40,
       this.imageWidth = 40,
+      this.onWillPop = true,
       this.doneImage});
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: AlignmentDirectional.bottomCenter,
-      child: Container(
-        margin: EdgeInsets.only(bottom: 56.h),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Dialog(
-                alignment: Alignment.bottomCenter,
-                insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, top: 56.h),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-                child: Stack(
+    return WillPopScope(
+      onWillPop: () async => onWillPop,
+      child: Align(
+        alignment: AlignmentDirectional.bottomCenter,
+        child: Container(
+          margin: EdgeInsets.only(bottom: 56.h),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Dialog(
                   alignment: Alignment.bottomCenter,
-                  clipBehavior: Clip.none,
-                  children: [
-                    WillPopScope(
-                      onWillPop: () async => false,
-                      child: Container(
+                  insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, top: 56.h),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    clipBehavior: Clip.none,
+                    children: [
+                      Container(
                           padding: EdgeInsets.symmetric(horizontal: 24.0.w),
                           child: SingleChildScrollView(
                             physics: ClampingScrollPhysics(),
@@ -85,48 +87,64 @@ class InformationDialogView extends StatelessWidget {
                                   child: descriptionWidget,
                                 ),
                                 SizedBox(height: 30.h),
-                                AppPrimaryButton(
-                                  onPressed: () {
-                                    onSelected?.call();
-                                  },
-                                  text: btnTitle ?? S.of(context).confirm,
-                                ),
+                                doneImage != null
+                                    ? InkWell(
+                                        onTap: () {
+                                          onSelected!.call();
+                                        },
+                                        child: Container(
+                                          padding: EdgeInsets.all(16),
+                                          height: 57.h,
+                                          width: 57.w,
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Theme.of(context).textTheme.bodyLarge!.color!),
+                                          child: AppSvg.asset(doneImage!,
+                                              color: Theme.of(context).colorScheme.secondary),
+                                        ),
+                                      )
+                                    : AppPrimaryButton(
+                                        onPressed: () {
+                                          onSelected?.call();
+                                        },
+                                        text: btnTitle ?? S.of(context).confirm,
+                                      ),
                                 SizedBox(height: 42.h),
                               ],
                             ),
                           )),
-                    ),
-                    Positioned(
-                      bottom: -24.h,
-                      child: InkWell(
-                        onTap: () {
-                          onDismissed?.call();
-                        },
-                        child: Container(
-                            height: 48.h,
-                            width: 48.h,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Theme.of(context).colorScheme.onBackground),
-                                shape: BoxShape.circle,
-                                color: Theme.of(context).colorScheme.secondary),
-                            child: Image.asset(
-                              AssetUtils.close_bold,
-                              scale: 3.5,
-                            )),
-                      ),
-                    )
-                  ],
-                )),
-            GestureDetector(
-              onTap: () {
-                onDismissed?.call();
-              },
-              child: Container(
-                height: 24.h,
-                color: Colors.transparent,
-              ),
-            )
-          ],
+                      Positioned(
+                        bottom: -24.h,
+                        child: InkWell(
+                          onTap: () {
+                            onDismissed?.call();
+                          },
+                          child: Container(
+                              height: 48.h,
+                              width: 48.h,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Theme.of(context).colorScheme.onBackground),
+                                  shape: BoxShape.circle,
+                                  color: Theme.of(context).colorScheme.secondary),
+                              child: Image.asset(
+                                AssetUtils.close_bold,
+                                scale: 3.5,
+                              )),
+                        ),
+                      )
+                    ],
+                  )),
+              GestureDetector(
+                onTap: () {
+                  onDismissed?.call();
+                },
+                child: Container(
+                  height: 24.h,
+                  color: Colors.transparent,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

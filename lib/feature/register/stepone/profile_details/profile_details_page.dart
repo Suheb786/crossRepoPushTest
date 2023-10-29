@@ -25,4 +25,9 @@ class ProfileDetailsPageState extends BaseStatefulPage<ProfileDetailsPageViewMod
   Widget buildView(BuildContext context, ProfileDetailsPageViewModel model) {
     return ProfileDetailsPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(ProfileDetailsPageViewModel model, {param}) async {
+    return false;
+  }
 }

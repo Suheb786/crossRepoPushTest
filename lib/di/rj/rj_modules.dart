@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/rj/rj_usecase_modules.dart';
 import 'package:neo_bank/feature/rj/rj_book_flight/passenger/passenger_view_%20model.dart';
+import 'package:neo_bank/feature/rj/rj_booking_confirmed_in_app_web_view/rj_booking_confirmed_in_app_web_view_page.dart';
 import 'package:neo_bank/feature/rj/rj_booking_in_app_web_view/rj_booking_page_view_model.dart';
+import 'package:neo_bank/feature/rj/rj_booking_purchase/rj_booking_purchase_page.dart';
 import 'package:neo_bank/feature/rj/rj_booking_purchase/rj_booking_purchase_page_view_model.dart';
 import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_confirm_flight_detail/rj_confirm_fight_detail_view_model.dart';
 import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_flight_booking_detail_page_view_model.dart';
@@ -44,8 +46,8 @@ final rjBookingPageViewModelProvider =
 );
 
 final rjBookingPurchasePageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<RjBookingPurchasePageViewModel >(
-  (ref, ) => RjBookingPurchasePageViewModel(),
+    ChangeNotifierProvider.autoDispose.family<RjBookingPurchasePageViewModel, RjBookingPurchasePageArgument>(
+  (ref, args) => RjBookingPurchasePageViewModel(args),
 );
 
 final rjFlightBookingDetailViewModelProvider =
@@ -81,7 +83,7 @@ final rjOtpValidateViewModelProvider = ChangeNotifierProvider.autoDispose<RjOtpV
 );
 
 ///[rjBookingConfirmedInAppWebViewPageViewModel] provider
-final rjBookingConfirmedInAppWebViewPageViewModel =
-    ChangeNotifierProvider.autoDispose<RJBookingConfirmedInAppWebViewPageViewModel>(
-  (ref) => RJBookingConfirmedInAppWebViewPageViewModel(),
+final rjBookingConfirmedInAppWebViewPageViewModel = ChangeNotifierProvider.autoDispose
+    .family<RJBookingConfirmedInAppWebViewPageViewModel, RJBookingConfirmedInAppWebViewPageArguments>(
+  (ref, args) => RJBookingConfirmedInAppWebViewPageViewModel(args),
 );

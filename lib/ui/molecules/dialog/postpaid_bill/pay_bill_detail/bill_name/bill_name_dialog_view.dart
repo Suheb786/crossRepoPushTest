@@ -1,4 +1,3 @@
-import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:domain/model/bill_payments/get_biller_lookup_list/biller_details.dart';
 import 'package:domain/model/bill_payments/get_biller_lookup_list/get_biller_lookup_list.dart';
 import 'package:flutter/material.dart';
@@ -14,12 +13,14 @@ import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/clickable_scrall_view/list_wheel_scrall_view.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../../../no_data_widget.dart';
 import 'bill_name_dialog_view_model.dart';
 
 class PayBillDialogView extends StatelessWidget {
@@ -28,8 +29,10 @@ class PayBillDialogView extends StatelessWidget {
   final String? title;
   bool _keyboardVisible = false;
   final List<BillerDetailsList>? billerDetailsList;
+  final bool onWillPop;
 
-  PayBillDialogView({this.onDismissed, this.onSelected, this.title, this.billerDetailsList});
+  PayBillDialogView(
+      {this.onDismissed, this.onSelected, this.title, this.billerDetailsList, this.onWillPop = true});
 
   ProviderBase providerBase() {
     return payBillDialogViewModelProvider;
@@ -38,83 +41,86 @@ class PayBillDialogView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
-    return BaseWidget<PayBillDialogViewModel>(
-        onModelReady: (model) {
-          model.loadingStream.listen((value) {
-            if (value) {
-              AppProgress(context);
-            } else {
-              Navigator.pop(context);
-            }
-          });
-          model.billerDetailsList = this.billerDetailsList!;
-        },
-        builder: (context, model, child) {
-          return AppStreamBuilder<Resource<GetBillerLookUpList>>(
-            stream: model!.getBillerLookupStream,
-            initialData: Resource.none(),
-            onData: (value) {
-              if (value.status == Status.SUCCESS) {}
-            },
-            dataBuilder: (context, snapshot) {
-              return Dialog(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-                  insetPadding: EdgeInsets.only(
-                      left: 24.w, right: 24.w, bottom: 56.h, top: _keyboardVisible ? 36.h : 204.h),
-                  child: Stack(
-                    alignment: Alignment.bottomCenter,
-                    clipBehavior: Clip.none,
-                    children: [
-                      AppStreamBuilder<int>(
-                        stream: model.currentIndexStream,
-                        initialData: 0,
-                        dataBuilder: (BuildContext context, index) {
-                          return AppStreamBuilder<List<BillerDetailsList>>(
-                            stream: model.searchBillNameStream,
-                            initialData: model.billerDetailsList,
-                            dataBuilder: (BuildContext context, billList) {
-                              return AppKeyBoardHide(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                                  children: [
-                                    ///title
-                                    _titleWidget(),
-                                    _searchWidget(model, context, billList),
-                                    _billerListWidget(model, context, billList),
-                                    _tickWidget(context, billList, index),
-                                  ],
-                                ),
-                              );
-                            },
-                          );
-                        },
-                      ),
-                      Positioned(
-                        bottom: -24.h,
-                        child: InkWell(
-                          onTap: () {
-                            onDismissed?.call();
+    return WillPopScope(
+      onWillPop: () async => onWillPop,
+      child: BaseWidget<PayBillDialogViewModel>(
+          onModelReady: (model) {
+            model.loadingStream.listen((value) {
+              if (value) {
+                AppProgress(context);
+              } else {
+                Navigator.pop(context);
+              }
+            });
+            model.billerDetailsList = this.billerDetailsList!;
+          },
+          builder: (context, model, child) {
+            return AppStreamBuilder<Resource<GetBillerLookUpList>>(
+              stream: model!.getBillerLookupStream,
+              initialData: Resource.none(),
+              onData: (value) {
+                if (value.status == Status.SUCCESS) {}
+              },
+              dataBuilder: (context, snapshot) {
+                return Dialog(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+                    insetPadding: EdgeInsets.only(
+                        left: 24.w, right: 24.w, bottom: 56.h, top: _keyboardVisible ? 36.h : 204.h),
+                    child: Stack(
+                      alignment: Alignment.bottomCenter,
+                      clipBehavior: Clip.none,
+                      children: [
+                        AppStreamBuilder<int>(
+                          stream: model.currentIndexStream,
+                          initialData: 0,
+                          dataBuilder: (BuildContext context, index) {
+                            return AppStreamBuilder<List<BillerDetailsList>>(
+                              stream: model.searchBillNameStream,
+                              initialData: model.billerDetailsList,
+                              dataBuilder: (BuildContext context, billList) {
+                                return AppKeyBoardHide(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                                    children: [
+                                      ///title
+                                      _titleWidget(),
+                                      _searchWidget(model, context, billList),
+                                      _billerListWidget(model, context, billList),
+                                      _tickWidget(context, billList, index),
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
                           },
-                          child: Container(
-                              height: 48.h,
-                              width: 48.h,
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Theme.of(context).colorScheme.onBackground),
-                                  shape: BoxShape.circle,
-                                  color: Theme.of(context).colorScheme.secondary),
-                              child: Image.asset(
-                                AssetUtils.close_bold,
-                                scale: 3.5,
-                              )),
                         ),
-                      )
-                    ],
-                  ));
-            },
-          );
-        },
-        providerBase: providerBase());
+                        Positioned(
+                          bottom: -24.h,
+                          child: InkWell(
+                            onTap: () {
+                              onDismissed?.call();
+                            },
+                            child: Container(
+                                height: 48.h,
+                                width: 48.h,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Theme.of(context).colorScheme.onBackground),
+                                    shape: BoxShape.circle,
+                                    color: Theme.of(context).colorScheme.secondary),
+                                child: Image.asset(
+                                  AssetUtils.close_bold,
+                                  scale: 3.5,
+                                )),
+                          ),
+                        )
+                      ],
+                    ));
+              },
+            );
+          },
+          providerBase: providerBase()),
+    );
   }
 
   _titleWidget() {
@@ -234,9 +240,7 @@ class PayBillDialogView extends StatelessWidget {
           ))
         : Expanded(
             child: Center(
-              child: Container(
-                child: Text(S.of(context).noDataFound),
-              ),
+              child: NoDataWidget(),
             ),
           );
   }

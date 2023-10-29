@@ -45,4 +45,9 @@ class RegisterStepFourPageState extends BaseStatefulPage<RegisterStepFourViewMod
   Widget buildView(BuildContext context, RegisterStepFourViewModel model) {
     return RegisterStepFourPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(RegisterStepFourViewModel model, {param}) async {
+    return false;
+  }
 }

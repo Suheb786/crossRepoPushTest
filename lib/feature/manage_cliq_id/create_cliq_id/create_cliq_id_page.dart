@@ -10,7 +10,8 @@ class CreateCliqIdPage extends BasePage<CreateCliqIdPageViewModel> {
   CreateCliqIdPageState createState() => CreateCliqIdPageState();
 }
 
-class CreateCliqIdPageState extends BaseStatefulPage<CreateCliqIdPageViewModel, CreateCliqIdPage> {
+class CreateCliqIdPageState
+    extends BaseStatefulPage<CreateCliqIdPageViewModel, CreateCliqIdPage> {
   @override
   ProviderBase provideBase() {
     return createCliqIdViewModelProvider;
@@ -19,5 +20,17 @@ class CreateCliqIdPageState extends BaseStatefulPage<CreateCliqIdPageViewModel, 
   @override
   Widget buildView(BuildContext context, CreateCliqIdPageViewModel model) {
     return CreateCliqIdPageView(provideBase());
+  }
+
+  @override
+  Future<bool> onBackPressed(CreateCliqIdPageViewModel model, {param}) async {
+    var parentModel =
+        ProviderScope.containerOf(context).read(createCliqIdViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
   }
 }

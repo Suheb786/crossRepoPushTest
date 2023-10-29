@@ -13,6 +13,7 @@ import 'package:domain/usecase/evouchers/get_voucher_details_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/model/transaction_period.dart';
+import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/evouchers_filter_dialog_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -25,7 +26,6 @@ class EvoucherViewModel extends BasePageViewModel {
   ValueNotifier<bool> categoriesDisplayToggleNotifier =
       ValueNotifier(true); // default true as showing categories
 
-  List<VoucherCategories> categoriesList = [];
   EVoucherCategoriesUseCase eVoucherCategoriesUseCase;
   EVoucherHistoryUseCase eVoucherHistoryUseCase;
   EVoucherItemFilterUseCase eVoucherItemFilterUseCase;
@@ -62,12 +62,38 @@ class EvoucherViewModel extends BasePageViewModel {
 
   Stream<Resource<GetVoucherDetails>> get getvoucherDetiailsStream => _getvoucherDetailsResponse.stream;
 
-  BehaviorSubject<Resource<List<VoucherCategories>>> voucherCategoriesResponseSubject = BehaviorSubject();
+  ///----------------------------- Voucher Category list ------------------------------------///
+  FilterSelectedData? filterSelectData;
+  List<VoucherCategories> categoriesList = [];
+
+  List<VoucherCategories> searchList = [];
 
   BehaviorSubject<EVoucherCategoriesUseCaseParams> _voucherCategoriesRequestSubject = BehaviorSubject();
 
+  BehaviorSubject<Resource<List<VoucherCategories>>> voucherCategoriesResponseSubject = BehaviorSubject();
+
+  BehaviorSubject<Resource<List<VoucherCategories>>> filterCategoriesResponseSubject = BehaviorSubject();
+
   Stream<Resource<List<VoucherCategories>>> get voucherCategoriesResponseStream =>
-      voucherCategoriesResponseSubject.stream;
+      filterCategoriesResponseSubject.stream;
+
+  getVoucherCategories() {
+    _voucherCategoriesRequestSubject.safeAdd(EVoucherCategoriesUseCaseParams());
+  }
+
+  searchCategory({required String searchText}) {
+    searchList.clear();
+    if (searchText.isNotEmpty) {
+      searchList = categoriesList
+          .where((element) => element.categoryName.toLowerCase().contains(searchText.toLowerCase()))
+          .toList();
+      filterCategoriesResponseSubject.safeAdd(Resource.success(data: searchList));
+    } else {
+      filterCategoriesResponseSubject.safeAdd(Resource.success(data: categoriesList));
+    }
+  }
+
+  ///----------------------------- Voucher Category list ------------------------------------///
 
   BehaviorSubject<EVoucherHistoryUseCaseParams> _voucherHistoryRequestSubject = BehaviorSubject();
   BehaviorSubject<Resource<List<VouchersByDate>>> _voucherHistoryResponseSubject = BehaviorSubject();
@@ -192,15 +218,12 @@ class EvoucherViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         }
         if (event.status == Status.SUCCESS) {
+          filterCategoriesResponseSubject.safeAdd(event);
           categoriesList = event.data ?? [];
           getVoucherHistory(pageNo: pageNo, rangeOfMonths: filterDay);
         }
       });
     });
-  }
-
-  getVoucherCategories() {
-    _voucherCategoriesRequestSubject.safeAdd(EVoucherCategoriesUseCaseParams());
   }
 
   /// ------------- voucher History  -------------------------------------------
@@ -342,17 +365,17 @@ class EvoucherViewModel extends BasePageViewModel {
   }
 
   void toggleSearch(bool focus) {
-    if (buyVoucherSearchController.text.trim().isEmpty) {
+    if ((buyVoucherSearchController.text.trim().isEmpty && categoriesDisplayToggleNotifier.value) ||
+        (buyVoucherSearchController.text.isEmpty && filterList.isEmpty)) {
       categoriesDisplayToggleNotifier.value = true;
       voucherCategoriesResponseSubject.safeAdd(Resource.success(data: categoriesList));
     } else {
-      /// call search api...
       if (!focus) {
         getVoucherItemFilter(
-            category: "",
-            region: '',
-            maxValue: 0.0,
-            minValue: 0.0,
+            category: filterSelectData?.categryId ?? '',
+            region: filterSelectData?.region ?? '',
+            maxValue: double.parse(filterSelectData?.maxValue ?? '0'),
+            minValue: double.parse(filterSelectData?.minValue ?? '0'),
             searchText: buyVoucherSearchController.text);
       }
     }

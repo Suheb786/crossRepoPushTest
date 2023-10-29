@@ -24,9 +24,13 @@ class TimeUtils {
   }
 
   static String getFormattedDate(String date) {
-    DateTime dateTime = DateTime.parse(date).toLocal();
-    final DateFormat formatter = DateFormat('d MMMM y');
-    return formatter.format(dateTime);
+    try {
+      DateTime dateTime = DateTime.parse(date).toLocal();
+      final DateFormat formatter = DateFormat('d MMMM y');
+      return formatter.format(dateTime);
+    } catch (e) {
+      return '-';
+    }
   }
 
   static String getFormattedDateTime(String date) {
@@ -121,26 +125,34 @@ class TimeUtils {
   }
 
   static String getFormattedTimeForTransaction(String date) {
-    DateTime dateTime = DateTime.parse(date).toLocal();
-    final DateFormat formatter = DateFormat('HH:mm a');
-    return formatter.format(dateTime);
+    try {
+      DateTime dateTime = DateTime.parse(date).toLocal();
+      final DateFormat formatter = DateFormat('HH:mm a');
+      return formatter.format(dateTime);
+    } catch (e) {
+      return '-';
+    }
   }
 
   static String getFormattedDateForCreditCard(String date) {
-    DateTime dateTime = DateTime.parse(date).toLocal();
-    final DateFormat formatter = DateFormat('d MMM y');
-    return formatter.format(dateTime);
+    try {
+      DateTime dateTime = DateTime.parse(date).toLocal();
+      final DateFormat formatter = DateFormat('d MMM y');
+      return formatter.format(dateTime);
+    } catch (e) {
+      return '-';
+    }
   }
 
   static String getFormattedDateForRJ(DateTime date) {
     DateTime dateTime = DateTime.parse(date.toString()).toLocal();
-    final DateFormat formatter = DateFormat('yyyyMMdd');
+    final DateFormat formatter = DateFormat('yyyyMMdd', 'en');
     return formatter.format(dateTime);
   }
 
   static String getFormattedDateForRTP(String date) {
     DateTime dateTime = DateTime.parse(date).toLocal();
-    final DateFormat formatter = DateFormat('dd MMMM');
+    final DateFormat formatter = DateFormat('dd MMMM', 'en');
     return formatter.format(dateTime);
   }
 

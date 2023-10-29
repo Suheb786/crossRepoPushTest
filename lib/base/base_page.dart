@@ -92,7 +92,9 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
         onModelReady: _onBaseModelReady,
         builder: (BuildContext context, VM? model, Widget? child) {
           return WillPopScope(
-            onWillPop: () async => false,
+            onWillPop: () {
+              return onBackPressed(model!);
+            },
             child: Scaffold(
               key: _scaffoldKey,
               backgroundColor: scaffoldBackgroundColor(),
@@ -222,7 +224,7 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
     onModelReady(model);
   }
 
-  Future<bool> onBackPressed({dynamic param}) {
+  Future<bool> onBackPressed(VM model, {dynamic param}) {
     return _onWillPop(param);
   }
 

@@ -9,6 +9,7 @@ class AccountTransactionPage extends BasePage<AccountTransactionViewModel> {
   final AccountTransactionPageArgument account;
 
   AccountTransactionPage(this.account);
+
   @override
   AccountTransactionPageState createState() => AccountTransactionPageState();
 }
@@ -30,6 +31,12 @@ class AccountTransactionPageState
     return AccountTransactionPageView(
       provideBase(),
     );
+  }
+
+  @override
+  Future<bool> onBackPressed(AccountTransactionViewModel model, {param}) {
+    model.animateBackToDashboard(context);
+    return super.onBackPressed(model);
   }
 }
 

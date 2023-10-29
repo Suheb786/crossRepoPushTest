@@ -32,4 +32,15 @@ class CreateNewPasswordPageState
   Widget buildView(BuildContext context, CreateNewPasswordPageViewModel model) {
     return CreateNewPasswordPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(CreateNewPasswordPageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

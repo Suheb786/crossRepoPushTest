@@ -1,4 +1,3 @@
-import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:domain/model/e_voucher/voucher_region_by_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,6 +8,7 @@ import 'package:neo_bank/ui/molecules/app_scollable_list_view_widget.dart';
 import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/list_scroll_wheel_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/clickable_scrall_view/list_wheel_scrall_view.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -22,10 +22,12 @@ class RegionFilterDialogView extends StatelessWidget {
   final List<VoucherRegionByCategories> regionByCategoriesList;
   final String title;
   final bool isFromPurchaseFlow;
+  final bool onWillPop;
 
   const RegionFilterDialogView(
       {this.onDismissed,
       this.onSelected,
+      this.onWillPop = true,
       required this.title,
       required this.regionByCategoriesList,
       required this.isFromPurchaseFlow});
@@ -36,17 +38,17 @@ class RegionFilterDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget<RegionFilterDialogViewModel>(
-        onModelReady: (RegionFilterDialogViewModel model) {
-          model.addRegionsData(regions: regionByCategoriesList, isFromPurchase: isFromPurchaseFlow);
-        },
-        builder: (context, model, child) {
-          return Dialog(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-              insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
-              child: WillPopScope(
-                onWillPop: () async => false,
-                child:Stack(
+    return WillPopScope(
+      onWillPop: () async => onWillPop,
+      child: BaseWidget<RegionFilterDialogViewModel>(
+          onModelReady: (RegionFilterDialogViewModel model) {
+            model.addRegionsData(regions: regionByCategoriesList, isFromPurchase: isFromPurchaseFlow);
+          },
+          builder: (context, model, child) {
+            return Dialog(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+                insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
+                child: Stack(
                   alignment: Alignment.bottomCenter,
                   clipBehavior: Clip.none,
                   children: [
@@ -150,9 +152,9 @@ class RegionFilterDialogView extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
-              ));
-        },
-        providerBase: providerBase());
+                ));
+          },
+          providerBase: providerBase()),
+    );
   }
 }

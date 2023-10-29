@@ -115,10 +115,11 @@ final addMoneyOptionSelectorViewModelProvider =
 
 ///settings dialog view model
 final settingsDialogViewModelProvider = ChangeNotifierProvider.autoDispose<SettingsDialogViewModel>(
-  (ref) => SettingsDialogViewModel(
+      (ref) => SettingsDialogViewModel(
     ref.read(logoutUseCaseProvider),
     ref.read(getProfileInfoUseCaseProvider),
     ref.read(referDynamicLinkUseCaseProvider),
+    ref.read(currentUserUseCaseProvider),
   ),
 );
 final referDynamicLinkUseCaseProvider = Provider.autoDispose<ReferDynamicLinkUseCase>(

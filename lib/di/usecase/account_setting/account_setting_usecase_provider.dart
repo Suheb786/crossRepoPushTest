@@ -46,12 +46,12 @@ final myDocumentUseCaseProvider = Provider.autoDispose<MyDocumentsUseCase>(
 
 ///[GetProfileInfoUseCase] provider
 final getProfileInfoUseCaseProvider = Provider.autoDispose<GetProfileInfoUseCase>(
-  (ref) => GetProfileInfoUseCase(ref.read(accountSettingRepositoryProvider)),
+  (ref) => GetProfileInfoUseCase(ref.read(accountSettingRepositoryProvider), ref.read(userRepoProvider)),
 );
 
 ///[UploadProfileImageUseCase] provider
 final uploadProfileImageUseCaseProvider = Provider.autoDispose<UploadProfileImageUseCase>(
-  (ref) => UploadProfileImageUseCase(ref.read(accountSettingRepositoryProvider)),
+      (ref) => UploadProfileImageUseCase(ref.read(accountSettingRepositoryProvider)),
 );
 
 ///[DeleteProfileImageUseCase] provider

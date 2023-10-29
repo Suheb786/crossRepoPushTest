@@ -20,6 +20,7 @@ class RTPConfirmationDialogView extends StatelessWidget {
   final Widget description;
   final bool showDescription;
   final bool isAmountVisible;
+  final bool onWillPop;
   final String currency;
   final Widget actionWidget;
 
@@ -27,6 +28,7 @@ class RTPConfirmationDialogView extends StatelessWidget {
       {this.onDismiss,
       this.onAccepted,
       this.onRejected,
+      this.onWillPop = true,
       required this.currency,
       required this.isAmountVisible,
       required this.actionWidget,
@@ -40,16 +42,16 @@ class RTPConfirmationDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-        insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-        child: Stack(
-          clipBehavior: Clip.none,
-          alignment: Alignment.bottomCenter,
-          children: [
-            WillPopScope(
-              onWillPop: () async => false,
-              child: Container(
+    return WillPopScope(
+      onWillPop: () async => onWillPop,
+      child: Dialog(
+          insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+          child: Stack(
+            clipBehavior: Clip.none,
+            alignment: Alignment.bottomCenter,
+            children: [
+              Container(
                 padding: EdgeInsets.symmetric(horizontal: 24.0.w),
                 child: SingleChildScrollView(
                   physics: ClampingScrollPhysics(),
@@ -134,27 +136,27 @@ class RTPConfirmationDialogView extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            Positioned(
-              bottom: -24.h,
-              child: InkWell(
-                onTap: () {
-                  onDismiss?.call();
-                },
-                child: Container(
-                    height: 48.h,
-                    width: 48.h,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Theme.of(context).colorScheme.onBackground),
-                        shape: BoxShape.circle,
-                        color: Theme.of(context).colorScheme.secondary),
-                    child: Image.asset(
-                      AssetUtils.close_bold,
-                      scale: 3.5,
-                    )),
-              ),
-            )
-          ],
-        ));
+              Positioned(
+                bottom: -24.h,
+                child: InkWell(
+                  onTap: () {
+                    onDismiss?.call();
+                  },
+                  child: Container(
+                      height: 48.h,
+                      width: 48.h,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Theme.of(context).colorScheme.onBackground),
+                          shape: BoxShape.circle,
+                          color: Theme.of(context).colorScheme.secondary),
+                      child: Image.asset(
+                        AssetUtils.close_bold,
+                        scale: 3.5,
+                      )),
+                ),
+              )
+            ],
+          )),
+    );
   }
 }

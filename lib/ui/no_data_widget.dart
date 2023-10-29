@@ -21,12 +21,13 @@ class _NoDataWidgetState extends State<NoDataWidget> {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
       children: [
         Container(
           height: 96.h,
           width: 96.h,
           decoration: BoxDecoration(
-            border: Border.all(width: 0.5, color: AppColor.gray1),
+            border: Border.all(width: 0.5, color: Theme.of(context).inputDecorationTheme.hintStyle!.color!),
             shape: BoxShape.circle,
           ),
           alignment: Alignment.center,

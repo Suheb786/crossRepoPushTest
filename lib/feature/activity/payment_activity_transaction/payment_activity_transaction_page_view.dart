@@ -22,6 +22,7 @@ import 'package:neo_bank/ui/molecules/dialog/Inward_RTP/RTP_confirmation_dialog/
 import 'package:neo_bank/ui/molecules/dialog/payment/payment_activity_filter_dialog/payment_activity_filter_dialog.dart';
 import 'package:neo_bank/ui/molecules/payment/payment_activity_transacton_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/ui/no_data_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/firebase_log_util.dart';
@@ -111,6 +112,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                             ),
                                             child: AppSvg.asset(
                                               AssetUtils.dropDown,
+                                              color: Theme.of(context).colorScheme.surfaceTint,
                                             ),
                                           )
                                         ],
@@ -152,7 +154,10 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional.only(start: 12.0.w),
-                                              child: AppSvg.asset(AssetUtils.dropDown),
+                                              child: AppSvg.asset(
+                                                AssetUtils.dropDown,
+                                                color: Theme.of(context).colorScheme.surfaceTint,
+                                              ),
                                             )
                                           ],
                                         ),
@@ -1432,12 +1437,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                       requestActivity.data!.paymentActivityContent!.length,
                                                 )
                                               : Center(
-                                                  child: Center(
-                                                    child: Text(
-                                                      S.of(context).noRTPActivityToDisplay,
-                                                      style: TextStyle(
-                                                          color: Theme.of(context).primaryColorDark),
-                                                    ),
+                                                  child: NoDataWidget(
+                                                    errorMessage: S.of(context).noRTPActivityToDisplay,
                                                   ),
                                                 );
 

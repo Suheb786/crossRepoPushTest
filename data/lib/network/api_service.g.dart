@@ -4587,7 +4587,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/RJ/GetDestinations',
+              'http://10.6.13.2:2186/RJAPI/api/RJ/GetDestinations',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4617,7 +4617,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/RJ/GetOneWayLink',
+              'http://10.6.13.2:2186/RJAPI/api/RJ/GetOneWayLink',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4647,7 +4647,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/RJ/GetRoundTripLink',
+              'http://10.6.13.2:2186/RJAPI/api/RJ/GetRoundTripLink',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4677,7 +4677,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/RJ/MakeTicketPayment',
+              'http://10.6.13.2:2186/RJAPI/api/RJ/MakeTicketPayment',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4692,7 +4692,7 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getFlightDetails(
+  Future<HttpResponse<FlightDetailsResponseEntity>> getFlightDetails(
       GetFlightDetailsRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -4700,14 +4700,14 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
+        _setStreamType<HttpResponse<FlightDetailsResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/RJ/GetFlightDetails',
+              'http://10.6.13.2:2186/RJAPI/api/RJ/GetFlightDetails',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -4716,7 +4716,7 @@ class _ApiService implements ApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = ResponseEntity.fromJson(_result.data!);
+    final value = FlightDetailsResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -4737,7 +4737,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/RJ/MakeTicketPaymentOtp',
+              'http://10.6.13.2:2186/RJAPI/api/RJ/MakeTicketPaymentOtp',
               queryParameters: queryParameters,
               data: _data,
             )

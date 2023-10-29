@@ -5,10 +5,13 @@ import 'package:domain/usecase/rj/get_destination_usecase.dart';
 import 'package:domain/usecase/rj/get_one_way_trip_link_usecase.dart';
 import 'package:domain/usecase/rj/get_two_way_trip_link_usecase.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../base/base_page_view_model.dart';
+import '../../../di/dashboard/dashboard_modules.dart';
 import '../../../utils/asset_utils.dart';
 import '../../../utils/request_manager.dart';
 import '../../../utils/resource.dart';
@@ -23,7 +26,7 @@ class RjFlightBookingViewModel extends BasePageViewModel {
   ///----------------Get Destination--------------///
   PublishSubject<GetDestinationUseCaseParams> _getDestinationRequest = PublishSubject();
 
-  PublishSubject<Resource<DestinationResponse>> _getDestinationResponse = PublishSubject();
+  BehaviorSubject<Resource<DestinationResponse>> _getDestinationResponse = BehaviorSubject();
 
   Stream<Resource<DestinationResponse>> get getDestinationStream => _getDestinationResponse.stream;
 
@@ -50,9 +53,9 @@ class RjFlightBookingViewModel extends BasePageViewModel {
         youths: '${passengerList[1].count}',
         infants: '${passengerList[3].count}',
         childs: '${passengerList[2].count}',
-        promoCode: 'BLINK-ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-        customerRef: 'CUST12345678901234567890',
-        cabin: _selectedCabinClassSubject == 0 ? 'E' : 'B'));
+        promoCode: '',
+        customerRef: '',
+        cabin: _selectedCabinClassSubject.value == 0 ? 'E' : 'B'));
   }
 
   ///----------------Get One Way Link--------------///
@@ -77,9 +80,9 @@ class RjFlightBookingViewModel extends BasePageViewModel {
         youths: '${passengerList[1].count}',
         infants: '${passengerList[3].count}',
         childs: '${passengerList[2].count}',
-        promoCode: 'BLINK-ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-        customerRef: 'CUST12345678901234567890',
-        cabin: _selectedCabinClassSubject == 0 ? 'E' : 'B'));
+        promoCode: '',
+        customerRef: '',
+        cabin: _selectedCabinClassSubject.value == 0 ? 'E' : 'B'));
   }
 
   ///----------------Get Two Way Link--------------///
@@ -102,10 +105,10 @@ class RjFlightBookingViewModel extends BasePageViewModel {
 
   DateTime initialDate = DateTime.now();
   List<Passenger> passengerList = [
-    Passenger('Adult', '16 years +'),
-    Passenger('Youth', '13 to 16 years'),
-    Passenger('Children', '2 to 12 years'),
-    Passenger('Infant', 'Below 2 years'),
+    Passenger(S.current.adult, S.current.sixTeenYearsPlus),
+    Passenger(S.current.youth, S.current.threeToSixteenYears),
+    Passenger(S.current.children, S.current.twoToTwelve),
+    Passenger(S.current.infant, S.current.belowTwoYears),
   ];
 
   /// ------------- tabChange listener -----------------------
@@ -169,7 +172,7 @@ class RjFlightBookingViewModel extends BasePageViewModel {
     _selectedTabSubject.add(selectedTabIndex);
   }
 
-  BehaviorSubject<int> _selectedCabinClassSubject = BehaviorSubject();
+  BehaviorSubject<int> _selectedCabinClassSubject = BehaviorSubject.seeded(0);
 
   Stream<int> get selectedCabinClassSubjectStream => _selectedCabinClassSubject.stream;
 
@@ -223,16 +226,24 @@ class RjFlightBookingViewModel extends BasePageViewModel {
   ];
 
   List<CabinClassOption> cabinClassOptionList = [
-    CabinClassOption('Economy', AssetUtils.EconomySeat),
-    CabinClassOption('Business', AssetUtils.BusinessSeat)
+    CabinClassOption(S.current.economy, AssetUtils.EconomySeat),
+    CabinClassOption(S.current.business, AssetUtils.BusinessSeat)
   ];
 
   void getTripLink(BuildContext context) {
-    if (_selectedTabSubject.value == 0) {
+    if (tabChangeNotifier.value == 0) {
       getOneWayLink(context);
     } else {
       getTwoWayLink(context);
     }
+  }
+
+  void animateBackToDashboard(BuildContext context) {
+    final dashboardProvider = ProviderScope.containerOf(context).read(
+      appHomeViewModelProvider,
+    );
+
+    dashboardProvider.animateReverseTransactionPage();
   }
 }
 

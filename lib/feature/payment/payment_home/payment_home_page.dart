@@ -35,7 +35,7 @@ class PaymentHomePageState extends BaseStatefulPage<PaymentHomeViewModel, Paymen
 
   @override
   bool? resizeToAvoidBottomInset() {
-    return true;
+    return false;
   }
 
   @override
@@ -69,6 +69,15 @@ class PaymentHomePageState extends BaseStatefulPage<PaymentHomeViewModel, Paymen
   @override
   Widget buildView(BuildContext context, PaymentHomeViewModel model) {
     return PaymentHomePageView(provideBase(), widget.navigationType);
+  }
+
+  @override
+  Future<bool> onBackPressed(PaymentHomeViewModel model, {param}) async {
+    if (model.pageSwitchSubject.value != AnimatedPage.NULL) {
+      model.animatePage(AnimatedPage.NULL);
+      return false;
+    }
+    return super.onBackPressed(model);
   }
 
   @override

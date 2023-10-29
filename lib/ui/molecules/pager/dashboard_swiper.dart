@@ -107,12 +107,8 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
                   angle: (math.pi * (StringUtils.isDirectionRTL(context) ? -1 : 1) * value),
                   child: Transform.translate(
                     offset: Offset(0, value.abs() * 500),
-                    child: AnimatedOpacity(
-                      opacity: index == widget.currentStep ? 1 : 0.5,
-                      duration: const Duration(milliseconds: 400),
                       child: child!,
                     ),
-                  ),
                 );
               },
             ),

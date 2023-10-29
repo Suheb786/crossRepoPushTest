@@ -33,12 +33,12 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  Navigator.pushNamed(context, RoutePaths.RjFlightBookingPurchasePage,
-                      arguments: RjBookingPurchasePageArgument(1111111));
+                  Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingPurchasePage,
+                      arguments: RjBookingPurchasePageArgument(
+                          flightDetailResponse: ProviderScope.containerOf(context)
+                              .read(rjConfirmFlightBookingViewModelProvider)
+                              .flightDetailResponse));
                 }
-                //Todo remove from code
-                Navigator.pushNamed(context, RoutePaths.RjFlightBookingPurchasePage,
-                    arguments: RjBookingPurchasePageArgument(1111111));
               },
               dataBuilder: (context, data) {
                 return ShakeAnimatedWidget(
@@ -46,185 +46,119 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                   duration: Duration(milliseconds: 100),
                   shakeAngle: Rotation.deg(z: 1),
                   curve: Curves.easeInOutSine,
-                  child: GestureDetector(
-                    /*    onHorizontalDragEnd: (details) {
-                      if (ProviderScope.containerOf(context)
-                              .read(rjFlightBookingDetailViewModelProvider)
-                              .appSwiperController
-                              .page ==
-                          2.0) {
-                        FocusScope.of(context).unfocus();
-
-                        if (StringUtils.isDirectionRTL(context)) {
-                          if (details.primaryVelocity!.isNegative) {
-                            ProviderScope.containerOf(context)
-                                .read(rjFlightBookingDetailViewModelProvider)
-                                .previousPage();
-                          } else {
-                            model.makeTicketPayment(
-                              accountNo: ProviderScope.containerOf(context)
-                                      .read(rjMakePaymentViewModelProvider)
-                                      .selectedCard
-                                      ?.cardNo ??
-                                  '',
-                              otpCode: model.otpController.text,
-                              referenceNumber: ProviderScope.containerOf(context)
-                                      .read(rjFlightBookingDetailViewModelProvider)
-                                      .arguments
-                                      ?.referenceNumber ??
-                                  '',
-                              amount: ProviderScope.containerOf(context)
-                                      .read(rjMakePaymentViewModelProvider)
-                                      .selectedCard
-                                      ?.amt
-                                      .toString() ??
-                                  '',
-                            );
-                          }
-                        } else {
-                          if (details.primaryVelocity!.isNegative) {
-                            model.makeTicketPayment(
-                              accountNo: ProviderScope.containerOf(context)
-                                      .read(rjMakePaymentViewModelProvider)
-                                      .selectedCard
-                                      ?.cardNo ??
-                                  '',
-                              otpCode: model.otpController.text,
-                              referenceNumber: ProviderScope.containerOf(context)
-                                      .read(rjFlightBookingDetailViewModelProvider)
-                                      .arguments
-                                      ?.referenceNumber ??
-                                  '',
-                              amount: ProviderScope.containerOf(context)
-                                      .read(rjMakePaymentViewModelProvider)
-                                      .selectedCard
-                                      ?.amt
-                                      .toString() ??
-                                  '',
-                            );
-                          } else {
-                            ProviderScope.containerOf(context)
-                                .read(rjFlightBookingDetailViewModelProvider)
-                                .previousPage();
-                          }
-                        }
-                      }
-                    }, */
-                    child: Card(
-                      margin: EdgeInsets.zero,
-                      child: Container(
-                          padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SingleChildScrollView(
-                                physics: ClampingScrollPhysics(),
-                                child: Column(
-                                  children: [
-                                    AppOtpFields(
-                                      length: 6,
-                                      controller: model.otpController,
-                                      onChanged: (val) {
-                                        if (val.length == 6) model.validate(val);
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Column(
+                  child: Card(
+                    margin: EdgeInsets.zero,
+                    child: Container(
+                        padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SingleChildScrollView(
+                              physics: ClampingScrollPhysics(),
+                              child: Column(
                                 children: [
-                                  CountdownTimer(
-                                    controller: model.countDownController,
-                                    onEnd: () {},
-                                    endTime: model.endTime,
-                                    textStyle: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 16.t,
-                                        color: Theme.of(context).textTheme.bodyMedium!.color!),
-                                    widgetBuilder: (context, currentTimeRemaining) {
-                                      return currentTimeRemaining == null
-                                          ? TextButton(
-                                              onPressed: () {
-                                                model.rjOtpValidate();
-                                              },
-                                              child: Text(
-                                                S.of(context).resendCode,
-                                                style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    fontSize: 14.t,
-                                                    color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                              ))
-                                          : Text(
-                                              S.of(context).resendIn(
-                                                  '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                  AppOtpFields(
+                                    length: 6,
+                                    controller: model.otpController,
+                                    onChanged: (val) {
+                                      model.validate(val);
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: [
+                                CountdownTimer(
+                                  controller: model.countDownController,
+                                  onEnd: () {},
+                                  endTime: model.endTime,
+                                  textStyle: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 16.t,
+                                      color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                  widgetBuilder: (context, currentTimeRemaining) {
+                                    return currentTimeRemaining == null
+                                        ? TextButton(
+                                            onPressed: () {
+                                              model.rjOtpValidate();
+                                            },
+                                            child: Text(
+                                              S.of(context).resendCode,
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   fontSize: 14.t,
                                                   color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                            );
-                                    },
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 16.0.h),
-                                    child: AppStreamBuilder<bool>(
-                                        stream: model.showButtonStream,
-                                        // initialData: false,
-                                        initialData: true,
-                                        dataBuilder: (context, isValid) {
-                                          return AppPrimaryButton(
-                                            text: S.of(context).next,
-                                            isDisabled: !isValid!,
-                                            onPressed: () {
-                                              model.makeTicketPayment(
-                                                accountNo: ProviderScope.containerOf(context)
-                                                        .read(rjMakePaymentViewModelProvider)
-                                                        .selectedCard
-                                                        ?.cardNo ??
-                                                    '',
-                                                otpCode: model.otpController.text,
-                                                referenceNumber: ProviderScope.containerOf(context)
-                                                        .read(rjFlightBookingDetailViewModelProvider)
-                                                        .arguments
-                                                        ?.referenceNumber ??
-                                                    '',
-                                                amount: ProviderScope.containerOf(context)
-                                                        .read(rjMakePaymentViewModelProvider)
-                                                        .selectedCard
-                                                        ?.amt
-                                                        .toString() ??
-                                                    '',
-                                              );
-                                            },
+                                            ))
+                                        : Text(
+                                            S.of(context).resendIn(
+                                                '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                fontSize: 14.t,
+                                                color: Theme.of(context).textTheme.bodyLarge!.color!),
                                           );
-                                        }),
-                                  ),
-                                  SizedBox(
-                                    height: 31.h,
-                                  ),
-                                  Visibility(
-                                    visible: true,
-                                    child: InkWell(
-                                      onTap: () {
-                                        ProviderScope.containerOf(context)
-                                            .read(rjFlightBookingDetailViewModelProvider)
-                                            .previousPage();
-                                      },
-                                      child: Text(
-                                        S.of(context).back,
-                                        style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: Theme.of(context).colorScheme.onSecondaryContainer,
-                                          fontSize: 14.t,
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                  },
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 16.0.h),
+                                  child: AppStreamBuilder<bool>(
+                                      stream: model.showButtonStream,
+                                      initialData: false,
+                                      dataBuilder: (context, isValid) {
+                                        return AppPrimaryButton(
+                                          text: S.of(context).next,
+                                          isDisabled: !(isValid ?? false),
+                                          onPressed: () {
+                                            model.makeTicketPayment(
+                                              accountNo: ProviderScope.containerOf(context)
+                                                      .read(rjMakePaymentViewModelProvider)
+                                                      .selectedAccount
+                                                      ?.accountNo ??
+                                                  '',
+                                              otpCode: model.otpController.text,
+                                              referenceNumber: ProviderScope.containerOf(context)
+                                                      .read(rjFlightBookingDetailViewModelProvider)
+                                                      .arguments
+                                                      ?.referenceNumber ??
+                                                  '',
+                                              amount: ProviderScope.containerOf(context)
+                                                      .read(rjConfirmFlightBookingViewModelProvider)
+                                                      .flightDetailResponse
+                                                      .flightDetailContent
+                                                      ?.paymentAmount ??
+                                                  '',
+                                            );
+                                          },
+                                        );
+                                      }),
+                                ),
+                                SizedBox(
+                                  height: 31.h,
+                                ),
+                                Visibility(
+                                  visible: true,
+                                  child: InkWell(
+                                    onTap: () {
+                                      ProviderScope.containerOf(context)
+                                          .read(rjFlightBookingDetailViewModelProvider)
+                                          .previousPage();
+                                    },
+                                    child: Text(
+                                      S.of(context).back,
+                                      style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: Theme.of(context).colorScheme.onSecondaryContainer,
+                                        fontSize: 14.t,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                   ),
-                                ],
-                              ),
-                            ],
-                          )),
-                    ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        )),
                   ),
                 );
               });

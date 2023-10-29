@@ -26,4 +26,9 @@ class PurposeOfAccountOpeningPageState
   Widget buildView(BuildContext context, PurposeOfAccountOpeningPageViewModel model) {
     return PurposeOfAccountOpeningPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(PurposeOfAccountOpeningPageViewModel model, {param}) async {
+    return false;
+  }
 }

@@ -1,4 +1,3 @@
-import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
@@ -10,6 +9,7 @@ import 'package:neo_bank/ui/molecules/dialog/card_settings/cancellation_reason_d
 import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/list_scroll_wheel_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/clickable_scrall_view/list_wheel_scrall_view.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -19,8 +19,10 @@ class CancellationReasonDialogView extends StatelessWidget {
   final Function(String)? onSelected;
   final String? title;
   final List<String> reasons;
+  final bool onWillPop;
 
-  const CancellationReasonDialogView({required this.reasons, this.onDismissed, this.onSelected, this.title});
+  const CancellationReasonDialogView(
+      {required this.reasons, this.onDismissed, this.onSelected, this.title, this.onWillPop = true});
 
   ProviderBase providerBase() {
     return cancelReasonCardDialogViewModelProvider;
@@ -28,13 +30,13 @@ class CancellationReasonDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget<CancellationReasonDialogModel>(
-        builder: (context, model, child) {
-          return Dialog(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-              insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
-              child: WillPopScope(
-                onWillPop: () async => false,
+    return WillPopScope(
+      onWillPop: () async => onWillPop,
+      child: BaseWidget<CancellationReasonDialogModel>(
+          builder: (context, model, child) {
+            return Dialog(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+                insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
                 child: Stack(
                   alignment: Alignment.bottomCenter,
                   clipBehavior: Clip.none,
@@ -139,9 +141,9 @@ class CancellationReasonDialogView extends StatelessWidget {
                       ),
                     )
                   ],
-                ),
-              ));
-        },
-        providerBase: providerBase());
+                ));
+          },
+          providerBase: providerBase()),
+    );
   }
 }
