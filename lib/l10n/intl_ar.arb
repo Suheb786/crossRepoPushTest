@@ -1859,9 +1859,8 @@
   "newRequest": "طلب دفع جديد",
   "chooseTheAccountToPay": "اختر الحساب الي بدك تدفع منه",
   "readyToUseSuccess": "جاهز للاستخدام",
-  "referralLink": "رابط الدعوة",
   "timeOutText1": "You are being timed-out due to inactivity, your session will expire in ",
-  "timeOutText2": "from now. Select continue to extend your session."
+  "timeOutText2": "from now. Select continue to extend your session.",
   "ourAgentsAreOccupied": "فريقنا مشغول حاليا بمساعدة أصدقائك في بلينك",
   "ourAgentsAreOccupiedDescription": "شكرا لانتظارك! فريقنا مشغول حاليا بمساعدة أصدقائك في بلينك. يرجى الاتصال معنا لاحقا أو دردش معنا من خلال التطبيق أو تواصل معنا على الرقم 5200100-06.",
   "lostConnection": "الشبكة ضعيفة",
