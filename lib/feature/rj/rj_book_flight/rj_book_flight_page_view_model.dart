@@ -160,18 +160,6 @@ class RjFlightBookingViewModel extends BasePageViewModel {
     getDestination();
   }
 
-  /// selectedTab
-
-  BehaviorSubject<int> _selectedTabSubject = BehaviorSubject.seeded(0);
-
-  Stream<int> get selectedTabStream => _selectedTabSubject.stream;
-
-  /// selection of tab based on index
-  void selectedTab(int selectedTabIndex) {
-    selectedReturnOnDateController.clear();
-    _selectedTabSubject.add(selectedTabIndex);
-  }
-
   BehaviorSubject<int> _selectedCabinClassSubject = BehaviorSubject.seeded(0);
 
   Stream<int> get selectedCabinClassSubjectStream => _selectedCabinClassSubject.stream;
@@ -191,7 +179,8 @@ class RjFlightBookingViewModel extends BasePageViewModel {
 
   bool isValid() {
     bool valid = false;
-    if (_selectedTabSubject.value == 0) {
+    bool isPassengerEmpty = false;
+    if (tabChangeNotifier.value == 0) {
       if (toController.text.isNotEmpty && selectedDepartOnDateController.text.isNotEmpty) {
         valid = true;
       }
@@ -206,10 +195,10 @@ class RjFlightBookingViewModel extends BasePageViewModel {
         passengerType++;
       }
     });
-    valid = passengerType != passengerList.length;
+    isPassengerEmpty = passengerType != passengerList.length;
 
-    _allFieldValidatorSubject.safeAdd(valid);
-    return valid;
+    _allFieldValidatorSubject.safeAdd(valid && isPassengerEmpty);
+    return valid && isPassengerEmpty;
   }
 
   ///-------------Field validation-------------///

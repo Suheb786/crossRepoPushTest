@@ -38,11 +38,14 @@ class RjFlightBookingStatefulPage extends BaseStatefulPage<RjFlightBookingViewMo
 
   @override
   void onModelReady(RjFlightBookingViewModel model) {
-
     if (!_tabController.hasListeners) {
       _tabController.addListener(() {
-        if (model.tabChangeNotifier.value != _tabController.index)
+        if (model.tabChangeNotifier.value != _tabController.index) {
+          model.selectedReturnOnDateController.clear();
+          model.selectedDepartOnDateController.clear();
+          model.toController.clear();
           model.tabChangeNotifier.value = _tabController.index;
+        }
       });
 
       model.switchTabStream.listen((event) {
