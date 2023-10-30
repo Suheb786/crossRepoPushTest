@@ -81,10 +81,10 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
               initialData: false,
               onData: (passwordData) {
                 if (passwordData) {
-                  Future.delayed(Duration(milliseconds: 2000), () {
+                 /* Future.delayed(Duration(milliseconds: 2000), () {
                     Navigator.pushNamedAndRemoveUntil(context, RoutePaths.Registration, (route) => false,
                         arguments: RegisterPageParams());
-                  });
+                  });*/
                 }
               },
               dataBuilder: (context, data) {
@@ -93,6 +93,20 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                   isActivated: data!,
                 );
               }),
+          Spacer(),
+          Row(children: [
+            AppSvg.asset(AssetUtils.info, color: Theme.of(context).colorScheme.secondary),
+            Flexible(
+              child: Text(
+                S.of(context).donotLeavePage,
+                style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 12.t,
+                    color: Theme.of(context).colorScheme.secondary),
+              ),
+            ),
+          ])
         ],
       ),
     );

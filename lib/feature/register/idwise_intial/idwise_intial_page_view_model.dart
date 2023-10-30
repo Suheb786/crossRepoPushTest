@@ -1,4 +1,3 @@
-import 'package:data/helper/id_wise_helper.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/user/get_current_user_usecase.dart';
 import 'package:domain/usecase/user/update_journey_usecase.dart';
@@ -89,14 +88,16 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
   }
 
   Future<void> openIdwise(User data) async {
-    IdWiseHelper idWiseHelper = IdWiseHelper();
+    /*IdWiseHelper idWiseHelper = IdWiseHelper();
     idWiseHelper.initializeIdWise();
     var status = await idWiseHelper.startVerification('en', '123456789');
     debugPrint("STATUS : ${status.keys.first}");
     debugPrint("TEXT :  ${status.values.first}");
 
     if (status.keys.first == IDWiseStatus.COMPLETED) {
-      udpateJourney(userID: data.id, refID: data.id, journeyID: "652d04e0af84d86ae1c146e5", status: "");
-    }
+      udpateJourney(userID: data.id, refID: data.id, journeyID: status.values.first, status: "");
+    }*/
+
+    udpateJourney(userID: data.id, refID: data.id, journeyID: "example", status: "");
   }
 }

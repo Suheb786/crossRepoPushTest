@@ -952,27 +952,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "doYouHaveAdditionalSourceOfIncome":
             MessageLookupByLibrary.simpleMessage(
                 "Do you have additional\nsource of income"),
-        "doYouHaveAnyOtherNationality": MessageLookupByLibrary.simpleMessage(
-            "Do you have any other nationality?"),
-        "doYouHaveTinAvailable": MessageLookupByLibrary.simpleMessage(
-            "Do you have TIN No available?"),
-        "doYouReallyWantToDelete": MessageLookupByLibrary.simpleMessage(
-            "Do you really want to delete"),
+        "doYouHaveAnyOtherNationality": MessageLookupByLibrary.simpleMessage("Do you have any other nationality?"),
+        "doYouHaveTinAvailable": MessageLookupByLibrary.simpleMessage("Do you have TIN No available?"),
+        "doYouReallyWantToDelete": MessageLookupByLibrary.simpleMessage("Do you really want to delete"),
         "dob": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
         "dobHint": MessageLookupByLibrary.simpleMessage("DD/MM/YYYY"),
         "documentsNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-081)"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
-        "dontNeedMyCardAnymore": MessageLookupByLibrary.simpleMessage(
-            "I don\'t need my card anymore"),
-        "dormantAccountCCFailedTitle": MessageLookupByLibrary.simpleMessage(
-            "Unfortunately, your credit card application has failed!"),
+        "donotLeavePage": MessageLookupByLibrary.simpleMessage(
+            "Please do not leave the page. You will be automatically redirected once it’s done."),
+        "dontNeedMyCardAnymore": MessageLookupByLibrary.simpleMessage("I don\'t need my card anymore"),
+        "dormantAccountCCFailedTitle":
+            MessageLookupByLibrary.simpleMessage("Unfortunately, your credit card application has failed!"),
         "dormantAccountPhysicalCardReq": MessageLookupByLibrary.simpleMessage(
             "Oops! You cannot request your physical card as your account is inactive. Call us on 06-5200100 to activate your account."),
         "dormantAccountTransactionFailed": MessageLookupByLibrary.simpleMessage(
             "Oops! Transaction failed; your account is inactive. Call us on 06-5200100 to activate your account."),
-        "downloadStatement":
-            MessageLookupByLibrary.simpleMessage("Download Statement"),
+        "downloadStatement": MessageLookupByLibrary.simpleMessage("Download Statement"),
         "dragMap": MessageLookupByLibrary.simpleMessage(
             "Drag & move the map to adjust the location"),
         "due": MessageLookupByLibrary.simpleMessage("Due"),

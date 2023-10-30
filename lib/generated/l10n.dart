@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -19005,6 +19006,16 @@ class S {
     return Intl.message(
       'Privacy Policy',
       name: 'privacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please do not leave the page. You will be automatically redirected once it’s done.`
+  String get donotLeavePage {
+    return Intl.message(
+      'Please do not leave the page. You will be automatically redirected once it’s done.',
+      name: 'donotLeavePage',
       desc: '',
       args: [],
     );
