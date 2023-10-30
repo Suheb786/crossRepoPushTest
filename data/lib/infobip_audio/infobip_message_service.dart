@@ -154,14 +154,17 @@ class InfobipMessageService {
       emails: userData.emails,
       phones: userData.phones,
     );
-    await InfobipMobilemessaging.saveUser(user).onError((error, stackTrace) {
-      debugPrint('Error Type Save User ------>${error}');
-    });
+
     await InfobipMobilemessaging.personalize(
             PersonalizeContext(forceDepersonalize: true, userIdentity: userIdentity))
         .onError((error, stackTrace) {
       debugPrint('Error Type Personalize ------>${error}');
     });
+
+    await InfobipMobilemessaging.saveUser(user).onError((error, stackTrace) {
+      debugPrint('Error Type Save User ------>${error}');
+    });
+
     return true;
   }
 }

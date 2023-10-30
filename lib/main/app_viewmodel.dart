@@ -348,6 +348,7 @@ class AppViewModel extends BaseViewModel {
 
     sessionEndStreamSubscription = sessionEndStream?.stream.listen((event) {
       if (event) {
+        SecureStorageHelper.instance.clearToken();
         AppConstantsUtils.resetCacheLists();
 
         if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
