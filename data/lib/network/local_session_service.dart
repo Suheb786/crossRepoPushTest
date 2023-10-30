@@ -40,7 +40,7 @@ class LocalSessionService {
       debugPrint("---------------------------Session End Warning   -----------------------------");
       debugPrint("------------------------------------------------------------------------------");
       _stopwatch.reset();
-      if (!sessionStreamSubject.value) warningStreamSubject.add(true);
+      if (!warningStreamSubject.value) warningStreamSubject.add(true);
     });
     _stopwatch.stop();
 

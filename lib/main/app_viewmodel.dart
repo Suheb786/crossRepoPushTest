@@ -321,8 +321,6 @@ class AppViewModel extends BaseViewModel {
   StreamSubscription<bool>? sessionEndStreamSubscription;
 
   startSessionWarningStream() {
-    sessionEndStream?.close();
-    sessionWarningStream?.close();
     sessionWarningStreamSubscription?.cancel();
     sessionEndStreamSubscription?.cancel();
 
@@ -417,6 +415,9 @@ class AppViewModel extends BaseViewModel {
     _isolate?.kill();
     _getTokenWithLoaderRequest.close();
     _getTokenRequest.close();
+    sessionEndStreamSubscription?.cancel();
+    sessionWarningStreamSubscription?.cancel();
+
     super.dispose();
   }
 
