@@ -86,6 +86,7 @@ dependencies:
   syncfusion_flutter_pdfviewer: any
   cached_network_image: ^3.2.3
   html: ^0.15.4
+  jumping_dot: ^0.0.6
 
 
 dependency_overrides:

@@ -29,6 +29,7 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) => UserEntity(
       accountNumber: json['accountNumber'] as String?,
       newDevice: json['newDevice'] as bool? ?? false,
       applePay: json['applepay'] as bool?,
+      idWiseRefId: json['idWiseRefId'] as String?,
     );
 
 Map<String, dynamic> _$UserEntityToJson(UserEntity instance) =>
@@ -55,4 +56,5 @@ Map<String, dynamic> _$UserEntityToJson(UserEntity instance) =>
       'cif': instance.cif,
       'accountNumber': instance.accountNumber,
       'applepay': instance.applePay,
+      'idWiseRefId': instance.idWiseRefId,
     };

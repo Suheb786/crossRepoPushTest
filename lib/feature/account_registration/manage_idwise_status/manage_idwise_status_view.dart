@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:jumping_dot/jumping_dot.dart';
 import 'package:neo_bank/feature/account_registration/manage_idwise_status/manage_idwise_status_model.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:riverpod/src/framework.dart';
 
 import '../../../base/base_page.dart';
 import '../../../generated/l10n.dart';
-import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/account/idwise_processing_status_widget.dart';
 import '../../../ui/molecules/app_svg.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../utils/asset_utils.dart';
 import '../../../utils/color_utils.dart';
 import '../../../utils/string_utils.dart';
-import '../../register/register_page.dart';
 
 class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewModel> {
   ManageIDWiseStatusView(ProviderBase providerBase) : super(providerBase);
@@ -52,13 +51,25 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
           SizedBox(
             height: 56.h,
           ),
-          Text(
-            S.of(context).processingIDWiseStatus,
-            style: TextStyle(
-                fontFamily: StringUtils.appFont,
-                fontWeight: FontWeight.w500,
-                fontSize: 24.t,
-                color: Theme.of(context).colorScheme.secondary),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                S.of(context).processingIDWiseStatus,
+                style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 24.t,
+                    color: Theme.of(context).colorScheme.secondary),
+              ),
+              JumpingDots(
+                color: AppColor.white,
+                radius: 4,
+                numberOfDots: 3,
+                verticalOffset: -5,
+                animationDuration: Duration(milliseconds: 500),
+              ),
+            ],
           ),
           SizedBox(
             height: 16.h,
@@ -81,7 +92,7 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
               initialData: false,
               onData: (passwordData) {
                 if (passwordData) {
-                 /* Future.delayed(Duration(milliseconds: 2000), () {
+                  /* Future.delayed(Duration(milliseconds: 2000), () {
                     Navigator.pushNamedAndRemoveUntil(context, RoutePaths.Registration, (route) => false,
                         arguments: RegisterPageParams());
                   });*/
@@ -94,37 +105,31 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                 );
               }),
           Spacer(),
-          Row(children: [
-            AppSvg.asset(AssetUtils.info, color: Theme.of(context).colorScheme.secondary),
-            Flexible(
-              child: Text(
-                S.of(context).donotLeavePage,
-                style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12.t,
-                    color: Theme.of(context).colorScheme.secondary),
-              ),
-            ),
-          ])
+          Container(
+            padding: EdgeInsets.only(left: 24.w,right: 24.w,bottom: 24.h),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  AppSvg.asset(AssetUtils.info, color: Theme.of(context).colorScheme.secondary, width: 24.w),
+                  SizedBox(
+                    width: 14,
+                  ),
+                  Flexible(
+                    child: Text(
+                      S.current.donotLeavePage,
+                      maxLines: 2,
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14.t,
+                          color: Theme.of(context).colorScheme.secondary),
+                    ),
+                  ),
+                ]),
+          )
         ],
       ),
     );
   }
 }
-
-/*
-NationalIDStatusDialog.show(context,
-isSwipeToCancel: false,
-image:  AssetUtils.infoBlack,
-title: S.current.unableVerifyYourID,
-descriptionWidget: Text(
-S.current.unableVerifyYourIDDescription,
-style: TextStyle(
-fontFamily: StringUtils.appFont,
-fontSize: 14.t,
-fontWeight: FontWeight.w400),
-),
-onDismissed: () {}, onSelected: () {
-Navigator.pop(context);
-});*/

@@ -30,18 +30,17 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
         onData: (data) {
           if (data.status == Status.SUCCESS) {
             CheckKYCData kycData = data.data?.content?.kycData
-                    ?.firstWhere((element) => element.status ?? false, orElse: () => CheckKYCData()) ??
+                    ?.where((element) => element.type != "MobileOTP")
+                    .firstWhere((element) => (element.status ?? false), orElse: () => CheckKYCData()) ??
                 CheckKYCData();
 
             if (kycData.type?.isNotEmpty ?? false) {
-              if (kycData.type == 'MobileOTP') {
-                Navigator.pushReplacementNamed(context, RoutePaths.AccountRegistration,
-                    arguments: AccountRegistrationParams(
-                        kycData: kycData,
-                        mobileCode:
-                            ProviderScope.containerOf(context).read(loginViewModelProvider).mobileCode,
-                        mobileNumber:
-                            ProviderScope.containerOf(context).read(loginViewModelProvider).mobileNumber));
+              if (kycData.type == 'IDCardC' || kycData.type == 'SelfiCheck') {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  RoutePaths.IdWiseIntialPage,
+                      (route) => false,
+                );
               } else {
                 Navigator.pushReplacementNamed(context, RoutePaths.Registration,
                     arguments: RegisterPageParams(

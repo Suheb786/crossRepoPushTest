@@ -1894,7 +1894,7 @@
   "registrationStopped": "Registration stopped",
   "registrationStoppedDescription": "Unfortunately, you did not meet minimum age required to open an account with us. You may try again when you turn 18.",
   "enterYourMobileNumber": "Enter your mobile number",
-  "processingIDWiseStatus": "Processing...",
+  "processingIDWiseStatus": "Processing",
   "verifyingYourNationalID": "Verifying your National ID",
   "validatingYourSelfie": "Validating your selfie",
   "unableVerifyYourID": "Unable verify your ID",
@@ -1904,5 +1904,5 @@
   "ensureToHaveNationalId": "Please ensure to have your National ID ready",
   "byContinuingYouAgree": "By continuing you agree to the",
   "privacyPolicy": "Privacy Policy",
-  "donotLeavePage": "Please do not leave the page. You will be automatically redirected once it’s done."
+  "donotLeavePage": "Please do not leave the page. You will be\nautomatically redirected once it’s done."
 }

@@ -1913,7 +1913,7 @@
   "receipientAlreadySaved": "Oops! This recipient is already saved in your Blink contacts.",
   "enterEmailAndPassword": "Enter your email and \ncreate your password",
   "changeMyEmail": "Change My Email",
-  "processingIDWiseStatus": "Processing...",
+  "processingIDWiseStatus": "Processing",
   "verifyingYourNationalID": "Verifying your National ID",
   "validatingYourSelfie": "Validating your selfie",
   "unableVerifyYourID": "Unable verify your ID",
@@ -1931,5 +1931,5 @@
   "ensureToHaveNationalId": "Please ensure to have your National ID ready",
   "byContinuingYouAgree": "By continuing you agree to the",
   "privacyPolicy": "Privacy Policy",
-  "donotLeavePage": "Please do not leave the page. You will be automatically redirected once it’s done."
+  "donotLeavePage": "Please do not leave the page. You will be\nautomatically redirected once it’s done."
 }

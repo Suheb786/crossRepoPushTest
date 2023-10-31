@@ -25,7 +25,7 @@ class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel>
         onData: (data) async {
           if (data.status == Status.SUCCESS) {
             Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
-                arguments: ManageIDWiseStatusParams(journeyId: "example"));
+                arguments: ManageIDWiseStatusParams(journeyId: model.journeyId));
           }
         },
         dataBuilder: (context, snapshot) {
