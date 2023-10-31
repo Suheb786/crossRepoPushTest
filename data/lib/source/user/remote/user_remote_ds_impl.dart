@@ -485,9 +485,9 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> processJourney({required ProcessJourneyUseCaseParams params}) async {
+  Future<HttpResponse<ResponseEntity>> updateIdWiseStatus({required UpdateIDWiseStatusUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.processJourney(ProcessJourneyRequestEntity(
+    return _apiService.updateIdWiseStatus(ProcessJourneyRequestEntity(
       refID: params.refID,
       journeyID: params.journeyID,
       baseClass: baseData.toJson(),

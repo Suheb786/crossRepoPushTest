@@ -642,8 +642,8 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> processJourney({required ProcessJourneyUseCaseParams params}) async {
-    final result = await safeApiCall(_remoteDS.processJourney(params: params));
+  Future<Either<NetworkError, bool>> updateIdWiseStatus({required UpdateIDWiseStatusUseCaseParams params}) async {
+    final result = await safeApiCall(_remoteDS.updateIdWiseStatus(params: params));
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
 }

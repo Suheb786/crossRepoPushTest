@@ -194,7 +194,7 @@ abstract class UserRepository {
 
   Future<Either<NetworkError, bool>> updateJourney({required UpdateJourneyUseCaseParams params});
 
-  Future<Either<NetworkError, bool>> processJourney({required ProcessJourneyUseCaseParams params});
+  Future<Either<NetworkError, bool>> updateIdWiseStatus({required UpdateIDWiseStatusUseCaseParams params});
 
 
 }

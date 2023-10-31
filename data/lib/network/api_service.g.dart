@@ -6782,7 +6782,7 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> processJourney(
+  Future<HttpResponse<ResponseEntity>> updateIdWiseStatus(
       ProcessJourneyRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

@@ -160,7 +160,7 @@ abstract class UserRemoteDS {
 
   Future<HttpResponse<ResponseEntity>> updateJourney({required UpdateJourneyUseCaseParams params});
 
-  Future<HttpResponse<ResponseEntity>> processJourney({required ProcessJourneyUseCaseParams params});
+  Future<HttpResponse<ResponseEntity>> updateIdWiseStatus({required UpdateIDWiseStatusUseCaseParams params});
 }
 
 abstract class UserLocalDS {

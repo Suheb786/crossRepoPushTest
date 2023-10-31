@@ -1258,5 +1258,5 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> updateJourney(@Body() UpdateJourneyRequestEntity request);
 
   @POST("${NetworkProperties.BASE_ONBOARDING_URL}/UpdateIDWiseStatus")
-  Future<HttpResponse<ResponseEntity>> processJourney(@Body() ProcessJourneyRequestEntity request);
+  Future<HttpResponse<ResponseEntity>> updateIdWiseStatus(@Body() ProcessJourneyRequestEntity request);
 }

@@ -5,22 +5,22 @@ import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class ProcessJourneyUseCase extends BaseUseCase<NetworkError, ProcessJourneyUseCaseParams, bool> {
+class UpdateIDWiseStatusUseCase extends BaseUseCase<NetworkError, UpdateIDWiseStatusUseCaseParams, bool> {
   final UserRepository _repository;
 
-  ProcessJourneyUseCase(this._repository);
+  UpdateIDWiseStatusUseCase(this._repository);
 
   @override
   Future<Either<NetworkError, bool>> execute({required params}) {
-    return _repository.processJourney(params: params);
+    return _repository.updateIdWiseStatus(params: params);
   }
 }
 
-class ProcessJourneyUseCaseParams extends Params {
+class UpdateIDWiseStatusUseCaseParams extends Params {
   final String? refID;
   final String? journeyID;
 
-  ProcessJourneyUseCaseParams({
+  UpdateIDWiseStatusUseCaseParams({
     required this.refID,
     required this.journeyID,
   });
