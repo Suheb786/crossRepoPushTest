@@ -263,6 +263,7 @@ import 'package:data/entity/remote/upload_document/save_upload_document_request_
 import 'package:data/entity/remote/upload_document/save_upload_document_response_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_response_entity.dart';
+import 'package:data/entity/remote/user/account_registration/process_journey_via_mobile/process_journey_via_mobile_request_Entity.dart';
 import 'package:data/entity/remote/user/account_registration/update_journey_request_entity.dart';
 import 'package:data/entity/remote/user/biometric_login/get_cipher_response_entity.dart';
 import 'package:data/entity/remote/user/change_my_number/change_my_number_request_entity.dart';
@@ -1259,4 +1260,8 @@ abstract class ApiService {
 
   @POST("${NetworkProperties.BASE_ONBOARDING_URL}/UpdateIDWiseStatus")
   Future<HttpResponse<ResponseEntity>> updateIdWiseStatus(@Body() ProcessJourneyRequestEntity request);
+
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/ProcessJourneyViaMobile")
+  Future<HttpResponse<ResponseEntity>> processJourneyViaMobile(
+      @Body() ProcessJourneyViaMobileRequestEntity request);
 }

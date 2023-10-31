@@ -94,7 +94,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/auth/loginV6',
+              '/auth/loginV5',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -184,7 +184,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/auth/RegisterV6',
+              '/auth/RegisterV5',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -6782,8 +6782,8 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> updateIdWiseStatus(
-      ProcessJourneyRequestEntity request) async {
+  Future<HttpResponse<ResponseEntity>> processJourneyViaMobile(
+      ProcessJourneyViaMobileRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -6797,7 +6797,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/Onboarding/api/Onboarding/UpdateIDWiseStatus',
+              'http://10.6.13.2:2186/Onboarding/api/Onboarding/ProcessJourneyViaMobile',
               queryParameters: queryParameters,
               data: _data,
             )

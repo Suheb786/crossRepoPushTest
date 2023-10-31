@@ -32,6 +32,7 @@ import 'package:domain/usecase/user/process_journey_usecase.dart';
 import 'package:retrofit/dio.dart';
 import 'package:domain/usecase/user/update_journey_usecase.dart';
 import '../../entity/remote/base/base_response.dart';
+import 'package:domain/usecase/user/process_journey_via_mobile_usecase.dart';
 
 abstract class UserRemoteDS {
   Future<HttpResponse<BaseResponse>> verifyEmailOTP({required String email, required String otpCode});
@@ -161,6 +162,9 @@ abstract class UserRemoteDS {
   Future<HttpResponse<ResponseEntity>> updateJourney({required UpdateJourneyUseCaseParams params});
 
   Future<HttpResponse<ResponseEntity>> updateIdWiseStatus({required UpdateIDWiseStatusUseCaseParams params});
+
+  Future<HttpResponse<ResponseEntity>> processJourneyViaMobile(
+      {required ProcessJourneyViaMobileUseCaseParams params});
 }
 
 abstract class UserLocalDS {

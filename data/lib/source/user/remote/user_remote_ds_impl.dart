@@ -8,6 +8,7 @@ import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/base/base_response.dart';
 import 'package:data/entity/remote/user/account_registration/process_journey_request_entity.dart';
+import 'package:data/entity/remote/user/account_registration/process_journey_via_mobile/process_journey_via_mobile_request_Entity.dart';
 import 'package:data/entity/remote/user/account_registration/send_email_otp_request.dart';
 import 'package:data/entity/remote/user/account_registration/update_journey_request_entity.dart';
 import 'package:data/entity/remote/user/additional_income.dart';
@@ -69,6 +70,7 @@ import 'package:domain/model/user/confirm_application_data_get/job_detail_info.d
 import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/user/process_journey_usecase.dart';
+import 'package:domain/usecase/user/process_journey_via_mobile_usecase.dart';
 import 'package:domain/usecase/user/update_journey_usecase.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -492,5 +494,17 @@ class UserRemoteDSImpl extends UserRemoteDS {
       journeyID: params.journeyID,
       baseClass: baseData.toJson(),
     ));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> processJourneyViaMobile(
+      {required ProcessJourneyViaMobileUseCaseParams params}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.processJourneyViaMobile(
+      ProcessJourneyViaMobileRequestEntity(
+        JourneyId: params.JourneyId,
+        ReferenceID: params.ReferenceID,
+      ),
+    );
   }
 }
