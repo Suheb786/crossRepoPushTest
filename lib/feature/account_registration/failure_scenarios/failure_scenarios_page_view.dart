@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/account_registration/failure_scenarios/failure_scenarios_page_view_model.dart';
-import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
+import 'package:neo_bank/ui/molecules/button/app_secondary_button.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../generated/l10n.dart';
@@ -56,7 +56,7 @@ class OnboardingFailureScenariosPageView extends BasePageViewWidget<OnboardingFa
                   Padding(
                       padding: EdgeInsetsDirectional.only(top: 47.h, start: 24.w),
                       child: Text(
-                        model.getTitle(model.argument.scenarios),
+                        model.argument.title,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
@@ -67,7 +67,7 @@ class OnboardingFailureScenariosPageView extends BasePageViewWidget<OnboardingFa
                   Padding(
                     padding: EdgeInsetsDirectional.only(top: 24.h, start: 24.w, end: 24.w),
                     child: Text(
-                      model.getDescription(model.argument.scenarios),
+                      model.argument.description,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
@@ -82,12 +82,11 @@ class OnboardingFailureScenariosPageView extends BasePageViewWidget<OnboardingFa
           ),
           Padding(
             padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w, vertical: 56.0.h),
-            child: AppPrimaryButton(
+            child: AppSecondaryButton(
               onPressed: () {
                 Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding, (route) => false);
               },
               text: S.current.okay,
-              textColor: Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue,
             ),
           )
         ],

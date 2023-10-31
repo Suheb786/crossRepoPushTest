@@ -7,7 +7,7 @@ import 'package:riverpod/src/framework.dart';
 import '../../../di/account_registration/account_registration_modules.dart';
 
 class OnboardingFailurScenariosPage extends BasePage<OnboardingFailureScenariosPageViewModel> {
-   OnboardingFailureScenarioArgument argument  ;
+  OnboardingFailureScenarioArgument argument;
 
   // final OnboardingFailureScenarioEnum scenarios;
 
@@ -38,14 +38,9 @@ class OnboardingErrorScenariosPageState
   }
 }
 
-enum OnboardingFailureScenarioEnum {
-  INELIGIBLE_IDENTITY,
-  SELFIE_MISMATCHED,
-  REGISTRATION_STOPPED,
-}
-
 class OnboardingFailureScenarioArgument {
-  final OnboardingFailureScenarioEnum scenarios;
+  final String title;
+  final String description;
 
-  OnboardingFailureScenarioArgument({this.scenarios = OnboardingFailureScenarioEnum.INELIGIBLE_IDENTITY});
+  OnboardingFailureScenarioArgument({required this.title, required this.description});
 }

@@ -1,4 +1,5 @@
 import 'package:data/helper/id_wise_helper.dart';
+import 'package:domain/model/user/update_journey/update_journey.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/user/get_current_user_usecase.dart';
 import 'package:domain/usecase/user/update_journey_usecase.dart';
@@ -35,9 +36,9 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
   PublishSubject<UpdateJourneyUseCaseParams> _updateJourneyRequest = PublishSubject();
 
   ///update journey response subject holder
-  PublishSubject<Resource<bool>> _updateJourneyResponse = PublishSubject();
+  PublishSubject<Resource<UpdateJourney>> _updateJourneyResponse = PublishSubject();
 
-  Stream<Resource<bool>> get updateJourneyStream => _updateJourneyResponse.stream;
+  Stream<Resource<UpdateJourney>> get updateJourneyStream => _updateJourneyResponse.stream;
 
   final PublishSubject<GetCurrentUserUseCaseParams> _currentUserRequestSubject = PublishSubject();
 
@@ -104,7 +105,7 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
       udpateJourney(userID: data.id, refID: data.idWiseRefId, journeyID: status.values.first, status: "");
     }
 
-   // journeyId = "6540ce59359b5b6ee8b8d156";
-   // udpateJourney(userID: data.id, refID: data.idWiseRefId, journeyID: "6540ce59359b5b6ee8b8d156", status: "");
+    //journeyId = "6540ce59359b5b6ee8b8d156";
+    //udpateJourney(userID: data.id, refID: data.idWiseRefId, journeyID: "6540ce59359b5b6ee8b8d156", status: "");
   }
 }

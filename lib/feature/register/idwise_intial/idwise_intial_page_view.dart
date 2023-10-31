@@ -1,3 +1,4 @@
+import 'package:domain/model/user/update_journey/update_journey.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -11,7 +12,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../utils/resource.dart';
-import '../../../utils/status.dart';
+import '../../account_registration/failure_scenarios/failure_scenarios_page.dart';
 import '../../account_registration/manage_idwise_status/manage_idwise_status_page.dart';
 
 class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel> {
@@ -19,11 +20,20 @@ class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel>
 
   @override
   Widget build(BuildContext context, IdWiseIntialPageViewModel model) {
-    return AppStreamBuilder<Resource<bool>>(
+    return AppStreamBuilder<Resource<UpdateJourney>>(
         stream: model.updateJourneyStream,
         initialData: Resource.none(),
-        onData: (data) async {
-          if (data.status == Status.SUCCESS) {
+        onData: (updateJourney) async {
+          if (!updateJourney.data!.documentStatus) {
+            Navigator.pushReplacementNamed(context, RoutePaths.OnboardingFailurScenariosPage,
+                arguments: OnboardingFailureScenarioArgument(
+                    title: updateJourney.data!.documentTitle,
+                    description: updateJourney.data!.documentDetail));
+          } else if (!updateJourney.data!.selfieStatus) {
+            Navigator.pushReplacementNamed(context, RoutePaths.OnboardingFailurScenariosPage,
+                arguments: OnboardingFailureScenarioArgument(
+                    title: updateJourney.data!.selfieTitle, description: updateJourney.data!.selfieDetail));
+          } else {
             Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
                 arguments: ManageIDWiseStatusParams(journeyId: model.journeyId));
           }

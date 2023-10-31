@@ -6752,7 +6752,7 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> updateJourney(
+  Future<HttpResponse<UpdateJourneyResponseEntity>> updateJourney(
       UpdateJourneyRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -6760,7 +6760,7 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
+        _setStreamType<HttpResponse<UpdateJourneyResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -6776,7 +6776,7 @@ class _ApiService implements ApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = ResponseEntity.fromJson(_result.data!);
+    final value = UpdateJourneyResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

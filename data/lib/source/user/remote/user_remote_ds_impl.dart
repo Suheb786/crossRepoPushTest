@@ -74,6 +74,7 @@ import 'package:domain/usecase/user/process_journey_via_mobile_usecase.dart';
 import 'package:domain/usecase/user/update_journey_usecase.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../../entity/remote/user/account_registration/update_journey/update_journey_response_entity.dart';
 import '../../../entity/remote/user/account_registration/verify_email_otp_request.dart';
 
 class UserRemoteDSImpl extends UserRemoteDS {
@@ -475,7 +476,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> updateJourney({required UpdateJourneyUseCaseParams params}) async {
+  Future<HttpResponse<UpdateJourneyResponseEntity>> updateJourney({required UpdateJourneyUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.updateJourney(UpdateJourneyRequestEntity(
       userID: params.userID,
