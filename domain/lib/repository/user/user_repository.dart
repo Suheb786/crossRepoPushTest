@@ -24,6 +24,7 @@ import 'package:domain/model/user/save_profile_status_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/model/user/status/customer_status.dart';
 import 'package:domain/model/user/user.dart';
+import 'package:domain/usecase/user/process_journey_via_mobile_usecase.dart';
 import 'package:domain/usecase/user/update_journey_usecase.dart';
 
 abstract class UserRepository {
@@ -191,4 +192,6 @@ abstract class UserRepository {
   /// clear wallet id
   Future<Either<DatabaseError, bool>> clearWalletId();
   Future<Either<NetworkError, bool>> updateJourney({required UpdateJourneyUseCaseParams params});
+  Future<Either<NetworkError, bool>> processJourneyViaMobile(
+      {required ProcessJourneyViaMobileUseCaseParams params});
 }

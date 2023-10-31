@@ -24,6 +24,7 @@ import 'package:domain/usecase/user/home_address_dialog_usecase.dart';
 import 'package:domain/usecase/user/id_verification_info_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:domain/usecase/user/logout_usecase.dart';
+import 'package:domain/usecase/user/process_journey_via_mobile_usecase.dart';
 import 'package:domain/usecase/user/product_selector_usecase.dart';
 import 'package:domain/usecase/user/profile_details_usecase.dart';
 import 'package:domain/usecase/user/register_prospect_usecase.dart';
@@ -193,3 +194,6 @@ final saveDataUserUseCaseProvider =
 
 final updateJourneyUseCaseProvider =
     Provider.autoDispose<UpdateJourneyUseCase>((ref) => UpdateJourneyUseCase(ref.read(userRepoProvider)));
+
+final processJourneyViaMobileUseCaseProvider = Provider.autoDispose<ProcessJourneyViaMobileUseCase>(
+    (ref) => ProcessJourneyViaMobileUseCase(ref.read(userRepoProvider)));
