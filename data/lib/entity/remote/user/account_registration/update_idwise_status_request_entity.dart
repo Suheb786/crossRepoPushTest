@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
-part 'process_journey_request_entity.g.dart';
+part 'update_idwise_status_request_entity.g.dart';
 
 @JsonSerializable()
-class ProcessJourneyRequestEntity {
+class UpdateIDWiseStatusRequestEntity {
   @JsonKey(name: 'RefID')
   String? refID;
   @JsonKey(name: 'JourneyID')
@@ -11,14 +11,14 @@ class ProcessJourneyRequestEntity {
   @JsonKey(name: 'BaseClass')
   Map<String, dynamic>? baseClass;
 
-  ProcessJourneyRequestEntity({
+  UpdateIDWiseStatusRequestEntity({
     required this.refID,
     required this.journeyID,
     required this.baseClass,
   });
 
-  factory ProcessJourneyRequestEntity.fromJson(Map<String, dynamic> json) =>
-      _$ProcessJourneyRequestEntityFromJson(json);
+  factory UpdateIDWiseStatusRequestEntity.fromJson(Map<String, dynamic> json) =>
+      _$UpdateIDWiseStatusRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ProcessJourneyRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$UpdateIDWiseStatusRequestEntityToJson(this);
 }

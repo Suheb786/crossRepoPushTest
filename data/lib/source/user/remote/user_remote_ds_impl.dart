@@ -7,7 +7,7 @@ import 'package:data/entity/remote/accountsettings/verify_change_email_request.d
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/base/base_response.dart';
-import 'package:data/entity/remote/user/account_registration/process_journey_request_entity.dart';
+import 'package:data/entity/remote/user/account_registration/update_idwise_status_request_entity.dart';
 import 'package:data/entity/remote/user/account_registration/process_journey_via_mobile/process_journey_via_mobile_request_Entity.dart';
 import 'package:data/entity/remote/user/account_registration/send_email_otp_request.dart';
 import 'package:data/entity/remote/user/account_registration/update_journey_request_entity.dart';
@@ -489,7 +489,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
   @override
   Future<HttpResponse<ResponseEntity>> updateIdWiseStatus({required UpdateIDWiseStatusUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.updateIdWiseStatus(ProcessJourneyRequestEntity(
+    return _apiService.updateIdWiseStatus(UpdateIDWiseStatusRequestEntity(
       refID: params.refID,
       journeyID: params.journeyID,
       baseClass: baseData.toJson(),

@@ -326,7 +326,7 @@ import '../entity/remote/sub_account/close_sub_account/close_sub_account_request
 import '../entity/remote/sub_account/transfer_account/response/account_to_account_transfer_response_entity.dart';
 import '../entity/remote/sub_account/transfer_account/transfer_account_request_entity.dart';
 import '../entity/remote/sub_account/update_nick_name/update_nick_name_request_entity.dart';
-import '../entity/remote/user/account_registration/process_journey_request_entity.dart';
+import '../entity/remote/user/account_registration/update_idwise_status_request_entity.dart';
 import '../entity/remote/user/account_registration/send_email_otp_request.dart';
 import '../entity/remote/user/account_registration/verify_email_otp_request.dart';
 
@@ -1259,7 +1259,7 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> updateJourney(@Body() UpdateJourneyRequestEntity request);
 
   @POST("${NetworkProperties.BASE_ONBOARDING_URL}/UpdateIDWiseStatus")
-  Future<HttpResponse<ResponseEntity>> updateIdWiseStatus(@Body() ProcessJourneyRequestEntity request);
+  Future<HttpResponse<ResponseEntity>> updateIdWiseStatus(@Body() UpdateIDWiseStatusRequestEntity request);
 
   @POST("${NetworkProperties.BASE_ONBOARDING_URL}/ProcessJourneyViaMobile")
   Future<HttpResponse<ResponseEntity>> processJourneyViaMobile(
