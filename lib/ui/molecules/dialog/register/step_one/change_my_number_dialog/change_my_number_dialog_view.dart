@@ -28,10 +28,14 @@ class ChangeMyNumberDialogView extends StatelessWidget {
   bool _keyboardVisible = false;
   final List<CountryData> countryDataList;
   final Function()? showError;
+  final bool onWillPop;
 
   ChangeMyNumberDialogView(
-      {this.onDismissed, this.onSelected, required this.countryDataList, this.showError});
-
+      {this.onDismissed,
+      this.onSelected,
+      required this.countryDataList,
+      this.showError,
+      this.onWillPop = true});
   ProviderBase providerBase() {
     return changeMyNumberDialogViewModelProvider;
   }
@@ -39,172 +43,175 @@ class ChangeMyNumberDialogView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
-    return BaseWidget<ChangeMyNumberDialogViewModel>(
-        builder: (context, model, child) {
-          return Dialog(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-              insetPadding:
-                  EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36, top: _keyboardVisible ? 36.h : 204.h),
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                clipBehavior: Clip.none,
-                children: [
-                  AppKeyBoardHide(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          AppStreamBuilder<CountryData>(
-                            initialData: CountryData(),
-                            stream: model!.getSelectedCountryStream,
-                            dataBuilder: (context, selectedCountry) {
-                              return AppTextField(
-                                labelText: S.of(context).mobileNumber.toUpperCase(),
-                                hintText: S.of(context).mobileNumberHint,
-                                inputType: TextInputType.phone,
-                                inputAction: TextInputAction.done,
-                                inputFormatters: [
-                                  LengthLimitingTextInputFormatter(model.countryData.mobileMax),
-                                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                                ],
-                                controller: model.mobileNumberController,
-                                key: model.mobileNumberKey,
-                                onChanged: (value) {},
-                                prefixIcon: () {
-                                  return InkWell(
-                                    onTap: () {
-                                      MobileNumberDialog.show(context,
-                                          title: S.of(context).mobileNumber,
-                                          selectedCountryData: model.countryData, onSelected: (data) {
-                                        Navigator.pop(context);
-                                        model.countryData = data;
-                                        model.setSelectedCountry(data);
-                                      }, onDismissed: () {
-                                        Navigator.pop(context);
-                                      }, countryDataList: countryDataList);
-                                    },
-                                    child: Padding(
-                                      padding: EdgeInsets.only(top: 8.0.h),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: <Widget>[
-                                          Container(
-                                            height: 16,
-                                            width: 16,
-                                            decoration: BoxDecoration(
-                                              color: Theme.of(context).primaryColorDark,
-                                              shape: BoxShape.circle,
+    return WillPopScope(
+      onWillPop: () async => onWillPop,
+      child: BaseWidget<ChangeMyNumberDialogViewModel>(
+          builder: (context, model, child) {
+            return Dialog(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+                insetPadding:
+                    EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36, top: _keyboardVisible ? 36.h : 204.h),
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  clipBehavior: Clip.none,
+                  children: [
+                    AppKeyBoardHide(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            AppStreamBuilder<CountryData>(
+                              initialData: CountryData(),
+                              stream: model!.getSelectedCountryStream,
+                              dataBuilder: (context, selectedCountry) {
+                                return AppTextField(
+                                  labelText: S.of(context).mobileNumber.toUpperCase(),
+                                  hintText: S.of(context).mobileNumberHint,
+                                  inputType: TextInputType.phone,
+                                  inputAction: TextInputAction.done,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(model.countryData.mobileMax),
+                                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                  ],
+                                  controller: model.mobileNumberController,
+                                  key: model.mobileNumberKey,
+                                  onChanged: (value) {},
+                                  prefixIcon: () {
+                                    return InkWell(
+                                      onTap: () {
+                                        MobileNumberDialog.show(context,
+                                            title: S.of(context).mobileNumber,
+                                            selectedCountryData: model.countryData, onSelected: (data) {
+                                          Navigator.pop(context);
+                                          model.countryData = data;
+                                          model.setSelectedCountry(data);
+                                        }, onDismissed: () {
+                                          Navigator.pop(context);
+                                        }, countryDataList: countryDataList);
+                                      },
+                                      child: Padding(
+                                        padding: EdgeInsets.only(top: 8.0.h),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            Container(
+                                              height: 16,
+                                              width: 16,
+                                              decoration: BoxDecoration(
+                                                color: Theme.of(context).primaryColorDark,
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: AppSvg.asset(selectedCountry!.isoCode3 != null
+                                                  ? "${AssetUtils.flags}${selectedCountry.isoCode3?.toLowerCase()}.svg"
+                                                  : "assets/flags/jor.svg"),
                                             ),
-                                            child: AppSvg.asset(selectedCountry!.isoCode3 != null
-                                                ? "${AssetUtils.flags}${selectedCountry.isoCode3?.toLowerCase()}.svg"
-                                                : "assets/flags/jor.svg"),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(horizontal: 8.0.w),
-                                            child: Directionality(
-                                              textDirection: TextDirection.ltr,
-                                              child: Text(
-                                                selectedCountry.phoneCode!.isNotEmpty
-                                                    ? '+${selectedCountry.phoneCode!}'
-                                                    : "",
-                                                style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: Theme.of(context).indicatorColor,
-                                                  fontSize: 14.t,
-                                                  fontWeight: FontWeight.w600,
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+                                              child: Directionality(
+                                                textDirection: TextDirection.ltr,
+                                                child: Text(
+                                                  selectedCountry.phoneCode!.isNotEmpty
+                                                      ? '+${selectedCountry.phoneCode!}'
+                                                      : "",
+                                                  style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
+                                                    color: Theme.of(context).indicatorColor,
+                                                    fontSize: 14.t,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                          Container(
-                                              height: 16.h,
-                                              width: 16.w,
-                                              margin: EdgeInsetsDirectional.only(end: 8.w),
-                                              child: AppSvg.asset(
-                                                AssetUtils.downArrow,
-                                                color: Theme.of(context).indicatorColor,
-                                              ))
-                                        ],
+                                            Container(
+                                                height: 16.h,
+                                                width: 16.w,
+                                                margin: EdgeInsetsDirectional.only(end: 8.w),
+                                                child: AppSvg.asset(
+                                                  AssetUtils.downArrow,
+                                                  color: Theme.of(context).indicatorColor,
+                                                ))
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                          ),
-                          SizedBox(
-                            height: 16.h,
-                          ),
-                          Spacer(),
-                          AppStreamBuilder<bool>(
-                              initialData: false,
-                              stream: model.showButtonStream,
-                              dataBuilder: (context, isValid) {
-                                return AppPrimaryButton(
-                                  isDisabled: isValid!,
-                                  onPressed: () {
-                                    if (model.mobileNumberController.text.isEmpty ||
-                                        model.mobileNumberController.text.length <
-                                            model.countryData.mobileMin!) {
-                                      model.showToastWithError(AppError(
-                                          cause: Exception(),
-                                          error: ErrorInfo(message: ''),
-                                          type: ErrorType.INVALID_MOBILE));
-                                    } else {
-                                      onSelected?.call(model.countryData, model.mobileNumberController.text);
-                                    }
+                                    );
                                   },
-                                  text: S.of(context).confirm,
                                 );
-                              }),
-                          SizedBox(height: 14.h),
-                        ],
+                              },
+                            ),
+                            SizedBox(
+                              height: 16.h,
+                            ),
+                            Spacer(),
+                            AppStreamBuilder<bool>(
+                                initialData: false,
+                                stream: model.showButtonStream,
+                                dataBuilder: (context, isValid) {
+                                  return AppPrimaryButton(
+                                    isDisabled: isValid!,
+                                    onPressed: () {
+                                      if (model.mobileNumberController.text.isEmpty ||
+                                          model.mobileNumberController.text.length <
+                                              model.countryData.mobileMin!) {
+                                        model.showToastWithError(AppError(
+                                            cause: Exception(),
+                                            error: ErrorInfo(message: ''),
+                                            type: ErrorType.INVALID_MOBILE));
+                                      } else {
+                                        onSelected?.call(model.countryData, model.mobileNumberController.text);
+                                      }
+                                    },
+                                    text: S.of(context).confirm,
+                                  );
+                                }),
+                            SizedBox(height: 14.h),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Positioned(
-                    bottom: -24.h,
-                    child: InkWell(
-                      onTap: () {
-                        onDismissed?.call();
-                      },
-                      child: Container(
-                          height: 48.h,
-                          width: 48.h,
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Theme.of(context).colorScheme.onBackground),
-                              shape: BoxShape.circle,
-                              color: Theme.of(context).colorScheme.secondary),
-                          child: Image.asset(
-                            AssetUtils.close_bold,
-                            scale: 3.5,
-                          )),
+                    Positioned(
+                      bottom: -24.h,
+                      child: InkWell(
+                        onTap: () {
+                          onDismissed?.call();
+                        },
+                        child: Container(
+                            height: 48.h,
+                            width: 48.h,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Theme.of(context).colorScheme.onBackground),
+                                shape: BoxShape.circle,
+                                color: Theme.of(context).colorScheme.secondary),
+                            child: Image.asset(
+                              AssetUtils.close_bold,
+                              scale: 3.5,
+                            )),
+                      ),
                     ),
-                  ),
-                ],
-              ));
-        },
-        onModelReady: (model) {
-          if (!model.initialDataSet) {
-            if (countryDataList.length > 0) {
-              model.countryData = countryDataList.firstWhere((element) => element.isoCode3 == 'JOR',
-                  orElse: () => countryDataList.first);
-              model.setSelectedCountry(model.countryData);
-              model.initialDataSet = true;
+                  ],
+                ));
+          },
+          onModelReady: (model) {
+            if (!model.initialDataSet) {
+              if (countryDataList.length > 0) {
+                model.countryData = countryDataList.firstWhere((element) => element.isoCode3 == 'JOR',
+                    orElse: () => countryDataList.first);
+                model.setSelectedCountry(model.countryData);
+                model.initialDataSet = true;
+              }
             }
-          }
-          model.error.listen((event) {
-            _showTopError(
-                ErrorParser.getLocalisedStringError(
-                  error: event,
-                  localisedHelper: S.of(context),
-                ),
-                context);
-          });
-        },
-        providerBase: providerBase());
+            model.error.listen((event) {
+              _showTopError(
+                  ErrorParser.getLocalisedStringError(
+                    error: event,
+                    localisedHelper: S.of(context),
+                  ),
+                  context);
+            });
+          },
+          providerBase: providerBase()),
+    );
   }
 
   _showTopError(String message, BuildContext context) {
