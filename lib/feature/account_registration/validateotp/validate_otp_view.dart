@@ -163,6 +163,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                                   ),
                                                 ),
                                               )),
+                                              SizedBox(height: 20.h),
                                               AppStreamBuilder<Resource<bool>>(
                                                   stream: model.sendMobileOTPResponseStream,
                                                   initialData: Resource.none(),
