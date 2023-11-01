@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jumping_dot/jumping_dot.dart';
-import 'package:neo_bank/feature/account_registration/manage_idwise_status/manage_idwise_status_model.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:riverpod/src/framework.dart';
 
@@ -12,6 +11,7 @@ import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../utils/asset_utils.dart';
 import '../../../utils/color_utils.dart';
 import '../../../utils/string_utils.dart';
+import 'manage_idwise_status_model.dart';
 
 class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewModel> {
   ManageIDWiseStatusView(ProviderBase providerBase) : super(providerBase);

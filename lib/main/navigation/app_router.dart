@@ -152,11 +152,11 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/camera_capture/camera_capture_page.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 
-import '../../feature/account_registration/failure_scenarios/failure_scenarios_page.dart';
-import '../../feature/account_registration/manage_idwise_status/manage_idwise_status_page.dart';
 import '../../feature/evoucher/evoucher/evoucher_page.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page.dart';
 import '../../feature/help_center/error_screen/help_center_error_page.dart';
+import '../../feature/register/failure_scenarios/failure_scenarios_page.dart';
+import '../../feature/register/manage_idwise_status/manage_idwise_status_page.dart';
 import '../../feature/rj/rj_book_flight/rj_book_flight_page.dart';
 import '../../feature/rj/rj_booking_confirmed_in_app_web_view/rj_booking_confirmed_in_app_web_view_page.dart';
 import '../../feature/rj/rj_booking_fail/rj_booking_fail_page.dart';

@@ -12,8 +12,8 @@ import 'package:neo_bank/utils/string_utils.dart';
 import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../utils/resource.dart';
-import '../../account_registration/failure_scenarios/failure_scenarios_page.dart';
-import '../../account_registration/manage_idwise_status/manage_idwise_status_page.dart';
+import '../failure_scenarios/failure_scenarios_page.dart';
+import '../manage_idwise_status/manage_idwise_status_page.dart';
 
 class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel> {
   IdWiseIntialPageView(ProviderBase model) : super(model);

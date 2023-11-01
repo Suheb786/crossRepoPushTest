@@ -1,16 +1,23 @@
+import 'dart:io';
+
+import 'package:data/helper/antelop_helper.dart';
+import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/account_registration/failure_scenarios/failure_scenarios_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/button/app_secondary_button.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../generated/l10n.dart';
 import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/app_svg.dart';
+import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
+import '../../../utils/app_constants.dart';
 import '../../../utils/asset_utils.dart';
-import '../../../utils/color_utils.dart';
+import '../../../utils/resource.dart';
+import '../../../utils/status.dart';
 import '../../../utils/string_utils.dart';
+import 'failure_scenarios_page_view_model.dart';
 
 class OnboardingFailureScenariosPageView extends BasePageViewWidget<OnboardingFailureScenariosPageViewModel> {
   OnboardingFailureScenariosPageView({
@@ -80,14 +87,29 @@ class OnboardingFailureScenariosPageView extends BasePageViewWidget<OnboardingFa
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w, vertical: 56.0.h),
-            child: AppSecondaryButton(
-              onPressed: () {
+          AppStreamBuilder<Resource<LogoutResponse>>(
+            stream: model.logoutStream,
+            initialData: Resource.none(),
+            onData: (response) {
+              if (response.status == Status.SUCCESS) {
+                AppConstantsUtils.resetCacheLists();
+                if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+                  AntelopHelper.walletDisconnect();
+                }
                 Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding, (route) => false);
-              },
-              text: S.current.okay,
-            ),
+              }
+            },
+            dataBuilder: (context, snapshot) {
+              return Padding(
+                padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w, vertical: 56.0.h),
+                child: AppSecondaryButton(
+                  onPressed: () {
+                    model.logout();
+                  },
+                  text: S.current.okay,
+                ),
+              );
+            },
           )
         ],
       ),

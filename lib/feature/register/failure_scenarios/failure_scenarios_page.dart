@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/account_registration/failure_scenarios/failure_scenarios_page_view.dart';
-import 'package:neo_bank/feature/account_registration/failure_scenarios/failure_scenarios_page_view_model.dart';
 import 'package:riverpod/src/framework.dart';
 
 import '../../../di/account_registration/account_registration_modules.dart';
+import 'failure_scenarios_page_view.dart';
+import 'failure_scenarios_page_view_model.dart';
+
 
 class OnboardingFailurScenariosPage extends BasePage<OnboardingFailureScenariosPageViewModel> {
   OnboardingFailureScenarioArgument argument;
@@ -12,6 +13,7 @@ class OnboardingFailurScenariosPage extends BasePage<OnboardingFailureScenariosP
   // final OnboardingFailureScenarioEnum scenarios;
 
   OnboardingFailurScenariosPage(this.argument);
+
   @override
   State<StatefulWidget> createState() {
     return OnboardingErrorScenariosPageState();
@@ -29,12 +31,18 @@ class OnboardingErrorScenariosPageState
 
   @override
   ProviderBase provideBase() {
-    return onboardingErrorScenariosPageViewModel.call(widget.argument);
+    return onboardingErrorScenariosPageViewModel;
   }
 
   @override
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).primaryColor;
+  }
+
+  @override
+  void onModelReady(OnboardingFailureScenariosPageViewModel model) {
+    model.argument = widget.argument;
+    super.onModelReady(model);
   }
 }
 
