@@ -54,8 +54,7 @@ class RJBookingConfirmedInAppWebViewPageView
                         mixedContentMode: AndroidMixedContentMode.MIXED_CONTENT_NEVER_ALLOW,
                       ),
                       ios: IOSInAppWebViewOptions(
-                        allowsInlineMediaPlayback: true,
-                      ),
+                          allowsInlineMediaPlayback: true, isFraudulentWebsiteWarningEnabled: true),
                       crossPlatform: InAppWebViewOptions(
                         useShouldOverrideUrlLoading: true,
                         javaScriptEnabled: true,

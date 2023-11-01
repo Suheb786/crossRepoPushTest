@@ -10,7 +10,8 @@ class VisaCardPage extends BasePage<VisaCardPageViewModel> {
   VisaCardPageState createState() => VisaCardPageState();
 }
 
-class VisaCardPageState extends BaseStatefulPage<VisaCardPageViewModel, VisaCardPage>
+class VisaCardPageState
+    extends BaseStatefulPage<VisaCardPageViewModel, VisaCardPage>
     with TickerProviderStateMixin {
   @override
   ProviderBase provideBase() {
@@ -25,5 +26,10 @@ class VisaCardPageState extends BaseStatefulPage<VisaCardPageViewModel, VisaCard
   @override
   Widget buildView(BuildContext context, VisaCardPageViewModel model) {
     return VisaCardPageView(provideBase());
+  }
+
+  @override
+  Future<bool> onBackPressed(VisaCardPageViewModel model, {param}) async{
+    return false;
   }
 }

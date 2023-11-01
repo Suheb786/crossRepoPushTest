@@ -72,5 +72,14 @@ class PaymentHomePageState extends BaseStatefulPage<PaymentHomeViewModel, Paymen
   }
 
   @override
+  Future<bool> onBackPressed(PaymentHomeViewModel model, {param}) async {
+    if (model.pageSwitchSubject.value != AnimatedPage.NULL) {
+      model.animatePage(AnimatedPage.NULL);
+      return false;
+    }
+    return super.onBackPressed(model);
+  }
+
+  @override
   bool get wantKeepAlive => true;
 }

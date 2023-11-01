@@ -9,8 +9,8 @@ part of 'process_journey_via_mobile_request_Entity.dart';
 ProcessJourneyViaMobileRequestEntity
     _$ProcessJourneyViaMobileRequestEntityFromJson(Map<String, dynamic> json) =>
         ProcessJourneyViaMobileRequestEntity(
-          JourneyId: json['journeyId'] as String,
-          ReferenceID: json['refID'] as String,
+          JourneyId: json['journeyId'] as String? ?? '',
+          ReferenceID: json['refID'] as String? ?? '',
         );
 
 Map<String, dynamic> _$ProcessJourneyViaMobileRequestEntityToJson(

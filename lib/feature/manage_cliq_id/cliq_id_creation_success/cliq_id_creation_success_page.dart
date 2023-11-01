@@ -30,6 +30,13 @@ class CliqIdCreationSuccessPageState
   Widget buildView(BuildContext context, CliqIdCreationSuccessPageViewModel model) {
     return CliqIdCreationSuccessPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(CliqIdCreationSuccessPageViewModel model, {param}) async {
+    ProviderScope.containerOf(context).read(cliqIdListViewModelProvider).getAlias(true);
+    Navigator.pop(context);
+    return false;
+  }
 }
 
 class CliqIdCreationSuccessPageArguments {

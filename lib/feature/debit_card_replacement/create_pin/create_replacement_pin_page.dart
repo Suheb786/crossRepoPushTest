@@ -5,13 +5,15 @@ import 'package:neo_bank/di/debit_card_replacement/debit_card_replacement_module
 import 'package:neo_bank/feature/debit_card_replacement/create_pin/create_replacement_pin_page_view.dart';
 import 'package:neo_bank/feature/debit_card_replacement/create_pin/create_replacement_pin_page_view_model.dart';
 
-class CreateReplacementPinPage extends BasePage<CreateReplacementPinPageViewModel> {
+class CreateReplacementPinPage
+    extends BasePage<CreateReplacementPinPageViewModel> {
   @override
-  CreateReplacementPinPageState createState() => CreateReplacementPinPageState();
+  CreateReplacementPinPageState createState() =>
+      CreateReplacementPinPageState();
 }
 
-class CreateReplacementPinPageState
-    extends BaseStatefulPage<CreateReplacementPinPageViewModel, CreateReplacementPinPage>
+class CreateReplacementPinPageState extends BaseStatefulPage<
+        CreateReplacementPinPageViewModel, CreateReplacementPinPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   CreateReplacementPinPageState() : super(subscribeVisibilityEvents: true);
 
@@ -32,10 +34,24 @@ class CreateReplacementPinPageState
   }
 
   @override
-  Widget buildView(BuildContext context, CreateReplacementPinPageViewModel model) {
+  Widget buildView(
+      BuildContext context, CreateReplacementPinPageViewModel model) {
     return CreateReplacementPinPageView(provideBase());
   }
 
   @override
   bool get wantKeepAlive => true;
+
+  @override
+  Future<bool> onBackPressed(CreateReplacementPinPageViewModel model,
+      {param}) async {
+    var parentModel = ProviderScope.containerOf(context)
+        .read(debitCardReplacementViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

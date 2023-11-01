@@ -37,4 +37,16 @@ class RequestFromNewRecipientPageState
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).canvasColor;
   }
+
+  @override
+  Future<bool> onBackPressed(RequestFromNewRecipientViewModel model, {param}) async {
+    var parentModel =
+        ProviderScope.containerOf(context).read(requestPaymentFromNewRecipientViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

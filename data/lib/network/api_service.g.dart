@@ -94,7 +94,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/auth/loginV5',
+              '/auth/loginV6',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -184,7 +184,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/auth/RegisterV5',
+              '/auth/RegisterV6',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -6752,8 +6752,38 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> updateJourney(
+  Future<HttpResponse<UpdateJourneyResponseEntity>> updateJourney(
       UpdateJourneyRequestEntity request) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<UpdateJourneyResponseEntity>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'http://10.6.13.2:2186/Onboarding/api/Onboarding/UpdateJourney',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = UpdateJourneyResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> updateIdWiseStatus(
+      UpdateIDWiseStatusRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -6767,7 +6797,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/Onboarding/api/Onboarding/UpdateJourney',
+              'http://10.6.13.2:2186/Onboarding/api/Onboarding/UpdateIDWiseStatus',
               queryParameters: queryParameters,
               data: _data,
             )

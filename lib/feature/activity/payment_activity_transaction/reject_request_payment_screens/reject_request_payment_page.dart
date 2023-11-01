@@ -5,17 +5,19 @@ import 'package:neo_bank/di/activity/activity_modules.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/reject_request_payment_screens/reject_request_payment_page_view.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/reject_request_payment_screens/reject_request_payment_page_view_model.dart';
 
-class RejectRequestPaymentPage extends BasePage<RejectRequestPaymentPageViewModel> {
+class RejectRequestPaymentPage
+    extends BasePage<RejectRequestPaymentPageViewModel> {
   final RejectRequestPaymentPageArgument argument;
 
   RejectRequestPaymentPage(this.argument);
 
   @override
-  RejectRequestPaymentPageState createState() => RejectRequestPaymentPageState();
+  RejectRequestPaymentPageState createState() =>
+      RejectRequestPaymentPageState();
 }
 
-class RejectRequestPaymentPageState
-    extends BaseStatefulPage<RejectRequestPaymentPageViewModel, RejectRequestPaymentPage> {
+class RejectRequestPaymentPageState extends BaseStatefulPage<
+    RejectRequestPaymentPageViewModel, RejectRequestPaymentPage> {
   @override
   ProviderBase provideBase() {
     return rejectRequestPaymentPageViewModelProvider;
@@ -28,8 +30,22 @@ class RejectRequestPaymentPageState
   }
 
   @override
-  Widget buildView(BuildContext context, RejectRequestPaymentPageViewModel model) {
+  Widget buildView(
+      BuildContext context, RejectRequestPaymentPageViewModel model) {
     return RejectRequestPaymentPageView(provideBase());
+  }
+
+  @override
+  Future<bool> onBackPressed(RejectRequestPaymentPageViewModel model,
+      {param}) async {
+    var parentModel = ProviderScope.containerOf(context)
+        .read(rejectRequestPaymentPageViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
   }
 }
 

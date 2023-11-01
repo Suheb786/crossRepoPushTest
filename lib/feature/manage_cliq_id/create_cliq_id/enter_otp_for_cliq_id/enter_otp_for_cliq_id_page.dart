@@ -12,8 +12,8 @@ class EnterOtpForCliqIdPage extends BasePage<EnterOtpForCliqIdPageViewModel> {
   EnterOtpForCliqIdPageState createState() => EnterOtpForCliqIdPageState();
 }
 
-class EnterOtpForCliqIdPageState
-    extends BaseStatefulPage<EnterOtpForCliqIdPageViewModel, EnterOtpForCliqIdPage>
+class EnterOtpForCliqIdPageState extends BaseStatefulPage<
+        EnterOtpForCliqIdPageViewModel, EnterOtpForCliqIdPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin, CodeAutoFill {
   EnterOtpForCliqIdPageState() : super(subscribeVisibilityEvents: true);
 
@@ -30,7 +30,8 @@ class EnterOtpForCliqIdPageState
 
   @override
   void onModelReady(EnterOtpForCliqIdPageViewModel model) {
-    model.countDownController = CountdownTimerController(endTime: model.endTime);
+    model.countDownController =
+        CountdownTimerController(endTime: model.endTime);
   }
 
   @override
@@ -55,6 +56,19 @@ class EnterOtpForCliqIdPageState
   @override
   void codeUpdated() {
     getViewModel().otpController.text = code!;
+  }
+
+  @override
+  Future<bool> onBackPressed(EnterOtpForCliqIdPageViewModel model,
+      {param}) async {
+    var parentModel =
+        ProviderScope.containerOf(context).read(createCliqIdViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
   }
 
   @override

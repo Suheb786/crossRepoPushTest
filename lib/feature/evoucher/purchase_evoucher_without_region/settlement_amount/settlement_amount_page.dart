@@ -47,4 +47,15 @@ class SettlementAccountPageState
   Widget buildView(BuildContext context, SettlementAmountPageViewModel model) {
     return SettlementAmountPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(SettlementAmountPageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(purchaseEVoucherWithoutRegionPageViewModel);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

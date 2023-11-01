@@ -128,29 +128,29 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                             SizedBox(
                                               height: 16.h,
                                             ),
-                                            RjConfirmFlightDetailDepartAndReturnWidget(
-                                                title: S.of(context).returnTitle,
-                                                titleDescription: flightDetails?.data?.flightDetailContent
-                                                        ?.flightDetails?[1].origin ??
-                                                    '',
-                                                toDescription: flightDetails?.data?.flightDetailContent
-                                                        ?.flightDetails?[1].destination ??
-                                                    '',
-                                                date: (flightDetails?.data?.flightDetailContent?.flightDetails?[1].flightDate ?? '')
-                                                        .isNotEmpty
-                                                    ? TimeUtils.getFormattedDate(flightDetails
-                                                            ?.data
-                                                            ?.flightDetailContent
-                                                            ?.flightDetails?[1]
-                                                            .flightDate ??
-                                                        '')
-                                                    : '-',
-                                                time: (flightDetails?.data?.flightDetailContent
-                                                                ?.flightDetails?[1].flightDate ??
-                                                            '')
-                                                        .isNotEmpty
-                                                    ? ' - ${TimeUtils.getFormattedTimeForTransaction(flightDetails?.data?.flightDetailContent?.flightDetails?[1].flightDate ?? '')}'
-                                                    : '-'),
+                                            (flightDetails?.data?.flightDetailContent?.flightDetails ?? []).length > 1
+                                                ? RjConfirmFlightDetailDepartAndReturnWidget(
+                                                    title: S.of(context).returnTitle,
+                                                    titleDescription: flightDetails?.data?.flightDetailContent
+                                                            ?.flightDetails?[1].origin ??
+                                                        '',
+                                                    toDescription: flightDetails?.data?.flightDetailContent
+                                                            ?.flightDetails?[1].destination ??
+                                                        '',
+                                                    date:
+                                                        (flightDetails?.data?.flightDetailContent?.flightDetails?[1].flightDate ?? '').isNotEmpty
+                                                            ? TimeUtils.getFormattedDate(flightDetails
+                                                                    ?.data
+                                                                    ?.flightDetailContent
+                                                                    ?.flightDetails?[1]
+                                                                    .flightDate ??
+                                                                '')
+                                                            : '-',
+                                                    time: (flightDetails?.data?.flightDetailContent?.flightDetails?[1].flightDate ?? '')
+                                                            .isNotEmpty
+                                                        ? ' - ${TimeUtils.getFormattedTimeForTransaction(flightDetails?.data?.flightDetailContent?.flightDetails?[1].flightDate ?? '')}'
+                                                        : '-')
+                                                : Container(),
                                           ],
                                         ),
                                       ),

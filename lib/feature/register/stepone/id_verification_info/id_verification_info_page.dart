@@ -26,4 +26,9 @@ class IdVerificationInfoPageState
   Widget buildView(BuildContext context, IdVerificationInfoViewModel model) {
     return IdVerificationInfoView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(IdVerificationInfoViewModel model, {param}) async {
+    return false;
+  }
 }

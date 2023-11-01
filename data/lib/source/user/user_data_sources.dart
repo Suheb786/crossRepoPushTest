@@ -28,10 +28,13 @@ import 'package:domain/model/user/confirm_application_data_get/fatca_crs_info.da
 import 'package:domain/model/user/confirm_application_data_get/job_detail_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
 import 'package:domain/model/user/user.dart';
+import 'package:domain/usecase/user/process_journey_usecase.dart';
 import 'package:retrofit/dio.dart';
 import 'package:domain/usecase/user/update_journey_usecase.dart';
 import '../../entity/remote/base/base_response.dart';
 import 'package:domain/usecase/user/process_journey_via_mobile_usecase.dart';
+
+import '../../entity/remote/user/account_registration/update_journey/update_journey_response_entity.dart';
 
 abstract class UserRemoteDS {
   Future<HttpResponse<BaseResponse>> verifyEmailOTP({required String email, required String otpCode});
@@ -157,7 +160,11 @@ abstract class UserRemoteDS {
   Future<HttpResponse<ResponseEntity>> changeMyNumber({String mobileNo, String mobileCode});
 
   Future<HttpResponse<CurrentVersionResponseEntity>> checkVersionUpdate({String? clear});
-  Future<HttpResponse<ResponseEntity>> updateJourney({required UpdateJourneyUseCaseParams params});
+
+  Future<HttpResponse<UpdateJourneyResponseEntity>> updateJourney({required UpdateJourneyUseCaseParams params});
+
+  Future<HttpResponse<ResponseEntity>> updateIdWiseStatus({required UpdateIDWiseStatusUseCaseParams params});
+
   Future<HttpResponse<ResponseEntity>> processJourneyViaMobile(
       {required ProcessJourneyViaMobileUseCaseParams params});
 }

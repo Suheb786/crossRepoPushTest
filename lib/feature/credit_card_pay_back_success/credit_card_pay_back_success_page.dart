@@ -5,6 +5,9 @@ import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/credit_card_pay_back_success/credit_card_pay_back_success_page_view.dart';
 import 'package:neo_bank/feature/credit_card_pay_back_success/credit_card_pay_back_success_page_view_model.dart';
 
+import '../../di/dashboard/dashboard_modules.dart';
+import '../../main/navigation/route_paths.dart';
+
 class CreditCardPayBackSuccessPage extends BasePage<CreditCardPayBackSuccessViewModel> {
   final CreditCardPayBackSuccessArguments _creditCardPayBackSuccessArguments;
 
@@ -29,6 +32,13 @@ class CreditCardPayBackSuccessPageState
   @override
   Widget buildView(BuildContext context, CreditCardPayBackSuccessViewModel model) {
     return CreditCardPayBackSuccessPageView(provideBase());
+  }
+
+  @override
+  Future<bool> onBackPressed(CreditCardPayBackSuccessViewModel model, {param}) {
+    Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+    ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+    return super.onBackPressed(model);
   }
 }
 

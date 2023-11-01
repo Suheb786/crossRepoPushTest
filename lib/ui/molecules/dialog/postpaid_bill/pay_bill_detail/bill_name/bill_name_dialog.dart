@@ -15,7 +15,7 @@ class PayBillDialog {
     required List<BillerDetailsList> billerDetailsList,
   }) {
     AppDialog.show(mContext,
-        isDismissible: false,
+        isDismissible: true,
         builder: (context) => PayBillDialogView(
             onDismissed: onDismissed,
             onSelected: onSelected,

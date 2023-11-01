@@ -197,7 +197,6 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                               alignment: Alignment.center,
                               child: Text(
                                 S.of(context).addSendContact,
-                                maxLines: 3,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontFamily: StringUtils.appFont,

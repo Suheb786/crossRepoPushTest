@@ -49,4 +49,16 @@ class EnterOtpPageState extends BaseStatefulPage<EnterOtpViewModel, EnterOtpPage
     super.dispose();
     cancel();
   }
+
+  @override
+  Future<bool> onBackPressed(EnterOtpViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context)
+        .read(paymentToNewRecipientViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

@@ -32,8 +32,10 @@ import 'package:domain/model/user/save_job_details_response.dart';
 import 'package:domain/model/user/save_profile_status_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/model/user/status/customer_status.dart';
+import 'package:domain/model/user/update_journey/update_journey.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/repository/user/user_repository.dart';
+import 'package:domain/usecase/user/process_journey_usecase.dart';
 import 'package:domain/usecase/user/process_journey_via_mobile_usecase.dart';
 import 'package:domain/usecase/user/update_journey_usecase.dart';
 
@@ -636,8 +638,14 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> updateJourney({required UpdateJourneyUseCaseParams params}) async {
+  Future<Either<NetworkError, UpdateJourney>> updateJourney({required UpdateJourneyUseCaseParams params}) async {
     final result = await safeApiCall(_remoteDS.updateJourney(params: params));
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> updateIdWiseStatus({required UpdateIDWiseStatusUseCaseParams params}) async {
+    final result = await safeApiCall(_remoteDS.updateIdWiseStatus(params: params));
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
 

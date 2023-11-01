@@ -20,4 +20,9 @@ class CardDeliveryPageState extends BaseStatefulPage<CardDeliveryPageViewModel, 
   Widget buildView(BuildContext context, CardDeliveryPageViewModel model) {
     return CardDeliveryPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(CardDeliveryPageViewModel model, {param}) async{
+   return false;
+  }
 }

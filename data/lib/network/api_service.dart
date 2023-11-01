@@ -326,7 +326,9 @@ import '../entity/remote/sub_account/close_sub_account/close_sub_account_request
 import '../entity/remote/sub_account/transfer_account/response/account_to_account_transfer_response_entity.dart';
 import '../entity/remote/sub_account/transfer_account/transfer_account_request_entity.dart';
 import '../entity/remote/sub_account/update_nick_name/update_nick_name_request_entity.dart';
+import '../entity/remote/user/account_registration/update_idwise_status_request_entity.dart';
 import '../entity/remote/user/account_registration/send_email_otp_request.dart';
+import '../entity/remote/user/account_registration/update_journey/update_journey_response_entity.dart';
 import '../entity/remote/user/account_registration/verify_email_otp_request.dart';
 
 part 'api_service.g.dart';
@@ -345,7 +347,7 @@ abstract class ApiService {
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
       @Body() CheckUserNameMobileRequest checkUserNameMobileRequest);
 
-  @POST("/auth/loginV5")
+  @POST("/auth/loginV6")
   Future<HttpResponse<LoginResponseEntity>> loginUser(@Body() LoginUserRequest loginUserRequest);
 
   @POST("${NetworkProperties.BASE_ONBOARDING_URL}/SendEmailOtp")
@@ -354,7 +356,7 @@ abstract class ApiService {
   @POST("${NetworkProperties.BASE_ONBOARDING_URL}/VerifyEmailOtp")
   Future<HttpResponse<BaseResponse>> verifyEmailOTP(@Body() VerifyEmailOTPRequest sendEmailOTPRequest);
 
-  @POST("/auth/RegisterV5")
+  @POST("/auth/RegisterV6")
   Future<HttpResponse<RegisterResponseEntity>> registerProspectUser(
       @Body() RegisterProspectUserRequest registerProspectUserRequest);
 
@@ -1255,7 +1257,10 @@ abstract class ApiService {
       @Body() OnboardingVerifyMobileOtpRequestEntity request);
 
   @POST("${NetworkProperties.BASE_ONBOARDING_URL}/UpdateJourney")
-  Future<HttpResponse<ResponseEntity>> updateJourney(@Body() UpdateJourneyRequestEntity request);
+  Future<HttpResponse<UpdateJourneyResponseEntity>> updateJourney(@Body() UpdateJourneyRequestEntity request);
+
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/UpdateIDWiseStatus")
+  Future<HttpResponse<ResponseEntity>> updateIdWiseStatus(@Body() UpdateIDWiseStatusRequestEntity request);
 
   @POST("${NetworkProperties.BASE_ONBOARDING_URL}/ProcessJourneyViaMobile")
   Future<HttpResponse<ResponseEntity>> processJourneyViaMobile(
