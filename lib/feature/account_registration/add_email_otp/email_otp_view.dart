@@ -94,6 +94,7 @@ class EmailOtpPageView extends BasePageViewWidget<EmailOtpViewModel> {
                                     ),
                                   ),
                                 )),
+                                SizedBox(height: 20.h),
                                 CountdownTimer(
                                   controller: model.countDownController,
                                   onEnd: () {},

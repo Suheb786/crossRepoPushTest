@@ -25,7 +25,7 @@ class ValidateOtpViewModel extends BasePageViewModel {
   final SendMobileOTPUsecase _sendMobileOTPUsecase;
   final RegisterProspectUseCase _registerProspectUseCase;
 
-  final ChangeMyNumberUseCase _changeMyNumberUseCase;
+  // final ChangeMyNumberUseCase _changeMyNumberUseCase;
 
   ///otp controller
   TextEditingController otpController = TextEditingController();
@@ -82,15 +82,6 @@ class ValidateOtpViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get getTokenStream => _getTokenResponse.stream;
 
-  ///change my number request subject holder
-  PublishSubject<ChangeMyNumberUseCaseParams> _changeMyNumberRequest = PublishSubject();
-
-  ///change my number response holder
-  PublishSubject<Resource<bool>> _changeMyNumberResponse = PublishSubject();
-
-  ///change my number stream
-  Stream<Resource<bool>> get changeMyNumberStream => _changeMyNumberResponse.stream;
-
   ///-------send Mobile Otp--------->
   PublishSubject<SendMobileOTPUsecaseParams> _sendMobileOTPRequest = PublishSubject();
 
@@ -113,8 +104,8 @@ class ValidateOtpViewModel extends BasePageViewModel {
 
   Stream<Resource<User>> get registerUserStream => _registerUserResponse.stream;
 
-  ValidateOtpViewModel(this._verifyOtpUseCase, this._getTokenUseCase, this._changeMyNumberUseCase,
-      this._sendMobileOTPUsecase, this._onboardingVerifyMobileOtpUsecase, this._registerProspectUseCase) {
+  ValidateOtpViewModel(this._verifyOtpUseCase, this._getTokenUseCase, this._sendMobileOTPUsecase,
+      this._onboardingVerifyMobileOtpUsecase, this._registerProspectUseCase) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value, createCall: () => _verifyOtpUseCase.execute(params: value))
           .asFlow()
@@ -143,17 +134,6 @@ class ValidateOtpViewModel extends BasePageViewModel {
       });
     });
 
-    _changeMyNumberRequest.listen((value) {
-      RequestManager(value, createCall: () => _changeMyNumberUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _changeMyNumberResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showToastWithError(event.appError!);
-        }
-      });
-    });
     _registerUserRequest.listen((value) {
       RequestManager(value, createCall: () => _registerProspectUseCase.execute(params: value))
           .asFlow()
@@ -199,11 +179,6 @@ class ValidateOtpViewModel extends BasePageViewModel {
 
   void resendOtp() {
     _getTokenRequest.safeAdd(GetTokenUseCaseParams());
-  }
-
-  void changeMyNumber(String mobileNo, String countryCode) {
-    _changeMyNumberRequest
-        .safeAdd(ChangeMyNumberUseCaseParams(mobileNumber: mobileNo, countryCode: '00$countryCode'));
   }
 
   void sendMobileOtp(BuildContext context) {

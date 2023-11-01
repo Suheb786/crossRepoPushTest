@@ -87,6 +87,7 @@ class AddEmailPageView extends BasePageViewWidget<AddEmailViewModel> {
                                       if (data.status == Status.ERROR) {
                                         if (data.appError!.type == ErrorType.EMAIL_ALREADY_EXIST) {
                                           model.isEmailExist = 1;
+                                          model.emailKey.currentState!.isValid = false;
                                         }
                                         model.showToastWithError(data.appError!);
                                         model.showErrorState();
@@ -125,24 +126,21 @@ class AddEmailPageView extends BasePageViewWidget<AddEmailViewModel> {
                                       return InkWell(
                                         onTap: () {
                                           model.passwordKey.currentState!.secureText =
-                                          !model.passwordKey.currentState!.secureText;
+                                              !model.passwordKey.currentState!.secureText;
                                         },
                                         child: model.passwordKey.currentState!.secureText
                                             ? Container(
-                                          width: 16.w,
-                                          height: 16.h,
-                                          padding: EdgeInsets.all(4),
-                                          child: AppSvg.asset(AssetUtils.eye,
-                                              color: Theme.of(context)
-                                                  .inputDecorationTheme
-                                                  .labelStyle!
-                                                  .color),
-                                        )
+                                                width: 16.w,
+                                                height: 16.h,
+                                                padding: EdgeInsets.all(4),
+                                                child: AppSvg.asset(
+                                                  AssetUtils.eye,
+                                                  color: Theme.of(context).colorScheme.surfaceTint,
+                                                ))
                                             : Icon(
-                                          Icons.visibility_off,
-                                          color:
-                                          Theme.of(context).inputDecorationTheme.labelStyle!.color,
-                                        ),
+                                                Icons.visibility_off,
+                                                color: Theme.of(context).colorScheme.surfaceTint,
+                                              ),
                                       );
                                     },
                                   ),
@@ -187,24 +185,21 @@ class AddEmailPageView extends BasePageViewWidget<AddEmailViewModel> {
                                       return InkWell(
                                         onTap: () {
                                           model.confirmPasswordKey.currentState!.secureText =
-                                          !model.confirmPasswordKey.currentState!.secureText;
+                                              !model.confirmPasswordKey.currentState!.secureText;
                                         },
                                         child: model.confirmPasswordKey.currentState!.secureText
                                             ? Container(
-                                          width: 16.w,
-                                          height: 16.h,
-                                          padding: EdgeInsets.all(4),
-                                          child: AppSvg.asset(AssetUtils.eye,
-                                              color: Theme.of(context)
-                                                  .inputDecorationTheme
-                                                  .labelStyle!
-                                                  .color),
-                                        )
+                                                width: 16.w,
+                                                height: 16.h,
+                                                padding: EdgeInsets.all(4),
+                                                child: AppSvg.asset(
+                                                  AssetUtils.eye,
+                                                  color: Theme.of(context).colorScheme.surfaceTint,
+                                                ))
                                             : Icon(
-                                          Icons.visibility_off,
-                                          color:
-                                          Theme.of(context).inputDecorationTheme.labelStyle!.color,
-                                        ),
+                                                Icons.visibility_off,
+                                                color: Theme.of(context).colorScheme.surfaceTint,
+                                              ),
                                       );
                                     },
                                   ),

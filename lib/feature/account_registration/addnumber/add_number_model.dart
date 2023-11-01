@@ -38,6 +38,8 @@ class AddNumberViewModel extends BasePageViewModel {
 
   PublishSubject<Resource<bool>> _sendMobileOTPResponse = PublishSubject();
 
+  Stream<Resource<bool>> get sendMobileOTPStream => _sendMobileOTPResponse.stream;
+
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 

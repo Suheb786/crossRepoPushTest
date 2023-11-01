@@ -90,6 +90,7 @@ class AddEmailViewModel extends BasePageViewModel {
         updateLoader();
         if (event.status == Status.ERROR) {
           showErrorState();
+          getError(event);
         }
       });
     });
