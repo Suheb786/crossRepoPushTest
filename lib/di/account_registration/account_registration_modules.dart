@@ -9,9 +9,8 @@ import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_m
 
 import '../../feature/account_registration/add_email/add_email_model.dart';
 import '../../feature/account_registration/add_email_otp/email_otp_model.dart';
-import '../../feature/account_registration/failure_scenarios/failure_scenarios_page.dart';
-import '../../feature/account_registration/failure_scenarios/failure_scenarios_page_view_model.dart';
-import '../../feature/account_registration/manage_idwise_status/manage_idwise_status_model.dart';
+import '../../feature/register/failure_scenarios/failure_scenarios_page_view_model.dart';
+import '../../feature/register/manage_idwise_status/manage_idwise_status_model.dart';
 import '../usecase/account/account_usecase_provider.dart';
 
 ///account registration view model provider
@@ -59,7 +58,7 @@ final emailOtpViewModelProvider = ChangeNotifierProvider.autoDispose<EmailOtpVie
 final manageIDWiseStatusViewModel =
     ChangeNotifierProvider.autoDispose<ManageIDWiseStatusViewModel>((ref) => ManageIDWiseStatusViewModel());
 
-final onboardingErrorScenariosPageViewModel = ChangeNotifierProvider.autoDispose
-    .family<OnboardingFailureScenariosPageViewModel, OnboardingFailureScenarioArgument>(
-  (ref, arg) => OnboardingFailureScenariosPageViewModel(argument: arg),
+final onboardingErrorScenariosPageViewModel =
+    ChangeNotifierProvider.autoDispose<OnboardingFailureScenariosPageViewModel>(
+  (ref) => OnboardingFailureScenariosPageViewModel(ref.read(logoutUseCaseProvider)),
 );

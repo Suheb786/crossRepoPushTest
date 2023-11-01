@@ -10,8 +10,8 @@ class AddNewMobileNumberPage extends BasePage<AddNewMobileNumberPageViewModel> {
   AddNewMobileNumberPageState createState() => AddNewMobileNumberPageState();
 }
 
-class AddNewMobileNumberPageState
-    extends BaseStatefulPage<AddNewMobileNumberPageViewModel, AddNewMobileNumberPage>
+class AddNewMobileNumberPageState extends BaseStatefulPage<
+        AddNewMobileNumberPageViewModel, AddNewMobileNumberPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   AddNewMobileNumberPageState() : super(subscribeVisibilityEvents: true);
 
@@ -32,8 +32,22 @@ class AddNewMobileNumberPageState
   }
 
   @override
-  Widget buildView(BuildContext context, AddNewMobileNumberPageViewModel model) {
+  Widget buildView(
+      BuildContext context, AddNewMobileNumberPageViewModel model) {
     return AddNewMobileNumberPageView(provideBase());
+  }
+
+  @override
+  Future<bool> onBackPressed(AddNewMobileNumberPageViewModel model,
+      {param}) async {
+    var parentModel = ProviderScope.containerOf(context)
+        .read(changeMobileNumberViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
   }
 
   @override

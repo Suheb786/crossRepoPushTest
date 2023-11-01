@@ -25,4 +25,9 @@ class RegisterStepOnePageState extends BaseStatefulPage<RegisterStepOneViewModel
   Widget buildView(BuildContext context, RegisterStepOneViewModel model) {
     return RegisterStepOnePageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(RegisterStepOneViewModel model, {param}) async {
+    return false;
+  }
 }

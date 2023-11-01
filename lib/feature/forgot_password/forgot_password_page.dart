@@ -20,4 +20,15 @@ class ForgotPasswordPageState extends BaseStatefulPage<ForgotPasswordPageViewMod
   Widget buildView(BuildContext context, ForgotPasswordPageViewModel model) {
     return ForgotPasswordPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(ForgotPasswordPageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

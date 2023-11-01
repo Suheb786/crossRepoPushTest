@@ -217,7 +217,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                           height: 16.h,
                         ),
                         AppTextField(
-                          labelText: S.of(context).employerName,
+                          labelText: S.of(context).employerNameSmall,
                           hintText: S.of(context).pleaseEnter,
                           controller: model.employerNameController,
                           inputType: TextInputType.text,
@@ -231,7 +231,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                           height: 16.h,
                         ),
                         AppTextField(
-                          labelText: S.of(context).employerCountry,
+                          labelText: S.of(context).employerCountrySmall,
                           hintText: S.of(context).pleaseSelect,
                           controller: model.employerCountryController,
                           readOnly: true,
@@ -267,7 +267,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                             stream: model.getCitiesByCountryResponseStream,
                             dataBuilder: (context, cityList) {
                               return AppTextField(
-                                labelText: S.of(context).employerCity,
+                                labelText: S.of(context).employerCitySmall,
                                 hintText: S.of(context).pleaseSelect,
                                 controller: model.employerCityController,
                                 readOnly: true,
@@ -312,7 +312,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                           height: 16.h,
                         ),
                         AppTextField(
-                          labelText: S.of(context).employerContact,
+                          labelText: S.of(context).employerContactSmall,
                           hintText: S.of(context).pleaseEnter,
                           inputType: TextInputType.phone,
                           inputAction: TextInputAction.done,

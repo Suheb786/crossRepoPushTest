@@ -5,11 +5,13 @@ import 'package:domain/usecase/rj/get_destination_usecase.dart';
 import 'package:domain/usecase/rj/get_one_way_trip_link_usecase.dart';
 import 'package:domain/usecase/rj/get_two_way_trip_link_usecase.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../base/base_page_view_model.dart';
+import '../../../di/dashboard/dashboard_modules.dart';
 import '../../../utils/asset_utils.dart';
 import '../../../utils/request_manager.dart';
 import '../../../utils/resource.dart';
@@ -158,18 +160,6 @@ class RjFlightBookingViewModel extends BasePageViewModel {
     getDestination();
   }
 
-  /// selectedTab
-
-  BehaviorSubject<int> _selectedTabSubject = BehaviorSubject.seeded(0);
-
-  Stream<int> get selectedTabStream => _selectedTabSubject.stream;
-
-  /// selection of tab based on index
-  void selectedTab(int selectedTabIndex) {
-    selectedReturnOnDateController.clear();
-    _selectedTabSubject.add(selectedTabIndex);
-  }
-
   BehaviorSubject<int> _selectedCabinClassSubject = BehaviorSubject.seeded(0);
 
   Stream<int> get selectedCabinClassSubjectStream => _selectedCabinClassSubject.stream;
@@ -189,7 +179,8 @@ class RjFlightBookingViewModel extends BasePageViewModel {
 
   bool isValid() {
     bool valid = false;
-    if (_selectedTabSubject.value == 0) {
+    bool isPassengerEmpty = false;
+    if (tabChangeNotifier.value == 0) {
       if (toController.text.isNotEmpty && selectedDepartOnDateController.text.isNotEmpty) {
         valid = true;
       }
@@ -204,10 +195,10 @@ class RjFlightBookingViewModel extends BasePageViewModel {
         passengerType++;
       }
     });
-    valid = passengerType != passengerList.length;
+    isPassengerEmpty = passengerType != passengerList.length;
 
-    _allFieldValidatorSubject.safeAdd(valid);
-    return valid;
+    _allFieldValidatorSubject.safeAdd(valid && isPassengerEmpty);
+    return valid && isPassengerEmpty;
   }
 
   ///-------------Field validation-------------///
@@ -234,6 +225,14 @@ class RjFlightBookingViewModel extends BasePageViewModel {
     } else {
       getTwoWayLink(context);
     }
+  }
+
+  void animateBackToDashboard(BuildContext context) {
+    final dashboardProvider = ProviderScope.containerOf(context).read(
+      appHomeViewModelProvider,
+    );
+
+    dashboardProvider.animateReverseTransactionPage();
   }
 }
 

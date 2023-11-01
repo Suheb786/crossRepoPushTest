@@ -1,11 +1,14 @@
 import 'package:data/helper/id_wise_helper.dart';
+import 'package:domain/model/user/update_journey/update_journey.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/user/get_current_user_usecase.dart';
 import 'package:domain/usecase/user/update_journey_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:rxdart/subjects.dart';
 
 import '../../../utils/request_manager.dart';
@@ -15,6 +18,7 @@ import '../../../utils/status.dart';
 class IdWiseIntialPageViewModel extends BasePageViewModel {
   final UpdateJourneyUseCase _updateJourneyUseCase;
   final GetCurrentUserUseCase _getCurrentUserUseCase;
+  String journeyId = '';
 
   ScrollController scrollController = ScrollController();
 
@@ -32,9 +36,9 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
   PublishSubject<UpdateJourneyUseCaseParams> _updateJourneyRequest = PublishSubject();
 
   ///update journey response subject holder
-  PublishSubject<Resource<bool>> _updateJourneyResponse = PublishSubject();
+  PublishSubject<Resource<UpdateJourney>> _updateJourneyResponse = PublishSubject();
 
-  Stream<Resource<bool>> get updateJourneyStream => _updateJourneyResponse.stream;
+  Stream<Resource<UpdateJourney>> get updateJourneyStream => _updateJourneyResponse.stream;
 
   final PublishSubject<GetCurrentUserUseCaseParams> _currentUserRequestSubject = PublishSubject();
 
@@ -89,14 +93,19 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
   }
 
   Future<void> openIdwise(User data) async {
-    IdWiseHelper idWiseHelper = IdWiseHelper();
+    /*IdWiseHelper idWiseHelper = IdWiseHelper();
     idWiseHelper.initializeIdWise();
-    var status = await idWiseHelper.startVerification('en', '123456789');
+    var status = await idWiseHelper.startVerification(Localizations.localeOf(appLevelKey.currentState!.context).languageCode, data.idWiseRefId ?? '');
+
     debugPrint("STATUS : ${status.keys.first}");
     debugPrint("TEXT :  ${status.values.first}");
 
     if (status.keys.first == IDWiseStatus.COMPLETED) {
-      udpateJourney(userID: data.id, refID: data.id, journeyID: "652d04e0af84d86ae1c146e5", status: "");
-    }
+      journeyId = status.values.first;
+      udpateJourney(userID: data.id, refID: data.idWiseRefId, journeyID: status.values.first, status: "");
+    }*/
+
+    journeyId = "6540ce59359b5b6ee8b8d156";
+    udpateJourney(userID: data.id, refID: data.idWiseRefId, journeyID: "6540ce59359b5b6ee8b8d156", status: "");
   }
 }

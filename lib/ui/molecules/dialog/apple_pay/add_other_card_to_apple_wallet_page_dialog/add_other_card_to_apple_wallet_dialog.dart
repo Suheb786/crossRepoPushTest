@@ -14,7 +14,7 @@ class AddOtherCardToAppleWalletDialog {
       required String title,
       required Widget descriptionWidget}) {
     AppDialog.show(mContext,
-        isDismissible: false,
+        isDismissible: true,
         builder: (context) => AddOtherCardToAppleWalletDialogView(
             onDismissed: onDismissed,
             onSelected: onSelected,

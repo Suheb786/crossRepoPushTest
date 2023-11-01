@@ -22,6 +22,7 @@ class CliqInformationDialogView extends StatelessWidget {
   final String title;
   final String description;
   final String subDescription;
+  final bool onWillPop;
 
   const CliqInformationDialogView(
       {this.onDismissed,
@@ -30,7 +31,8 @@ class CliqInformationDialogView extends StatelessWidget {
       required this.title,
       required this.description,
       required this.subDescription,
-      this.isSwipeToCancel = true});
+      this.isSwipeToCancel = true,
+      this.onWillPop = true});
 
   ProviderBase providerBase() {
     return cliqInformationDialogViewModelProvider;
@@ -38,19 +40,19 @@ class CliqInformationDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget<CliqInformationDialogViewModel>(
-      providerBase: providerBase(),
-      builder: (BuildContext context, model, child) {
-        return Dialog(
-            insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-            child: Stack(
-              alignment: Alignment.bottomCenter,
-              clipBehavior: Clip.none,
-              children: [
-                WillPopScope(
-                  onWillPop: () async => false,
-                  child: Container(
+    return WillPopScope(
+      onWillPop: () async => onWillPop,
+      child: BaseWidget<CliqInformationDialogViewModel>(
+        providerBase: providerBase(),
+        builder: (BuildContext context, model, child) {
+          return Dialog(
+              insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                clipBehavior: Clip.none,
+                children: [
+                  Container(
                       padding: EdgeInsets.symmetric(horizontal: 24.0.w),
                       child: SingleChildScrollView(
                         physics: ClampingScrollPhysics(),
@@ -120,35 +122,35 @@ class CliqInformationDialogView extends StatelessWidget {
                           ],
                         ),
                       )),
-                ),
-                AppStreamBuilder<bool>(
-                  stream: model.selectedStream,
-                  initialData: false,
-                  dataBuilder: (BuildContext context, data) {
-                    return Positioned(
-                      bottom: -24.h,
-                      child: InkWell(
-                        onTap: () {
-                          onDismissed?.call();
-                        },
-                        child: Container(
-                            height: 48.h,
-                            width: 48.h,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Theme.of(context).colorScheme.onBackground),
-                                shape: BoxShape.circle,
-                                color: Theme.of(context).colorScheme.secondary),
-                            child: Image.asset(
-                              AssetUtils.close_bold,
-                              scale: 3.5,
-                            )),
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ));
-      },
+                  AppStreamBuilder<bool>(
+                    stream: model.selectedStream,
+                    initialData: false,
+                    dataBuilder: (BuildContext context, data) {
+                      return Positioned(
+                        bottom: -24.h,
+                        child: InkWell(
+                          onTap: () {
+                            onDismissed?.call();
+                          },
+                          child: Container(
+                              height: 48.h,
+                              width: 48.h,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Theme.of(context).colorScheme.onBackground),
+                                  shape: BoxShape.circle,
+                                  color: Theme.of(context).colorScheme.secondary),
+                              child: Image.asset(
+                                AssetUtils.close_bold,
+                                scale: 3.5,
+                              )),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ));
+        },
+      ),
     );
   }
 }

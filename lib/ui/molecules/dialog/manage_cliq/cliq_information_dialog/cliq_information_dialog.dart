@@ -15,7 +15,7 @@ class CliqInformationDialog {
       required String description,
       required String subDescription}) {
     AppDialog.show(mContext,
-        isDismissible: false,
+        isDismissible: true,
         builder: (context) => CliqInformationDialogView(
               onDismissed: onDismissed,
               onSelected: onSelected,

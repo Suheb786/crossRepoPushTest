@@ -25,4 +25,9 @@ class RegisterStepThreePageState extends BaseStatefulPage<RegisterStepThreeViewM
   Widget buildView(BuildContext context, RegisterStepThreeViewModel model) {
     return RegisterStepThreePageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(RegisterStepThreeViewModel model, {param}) async {
+    return false;
+  }
 }

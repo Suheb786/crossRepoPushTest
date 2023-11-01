@@ -3,6 +3,8 @@ import 'dart:math' as math;
 import 'dart:typed_data';
 
 import 'package:data/helper/antelop_helper.dart';
+import 'package:data/helper/encrypt_decrypt_promo_code.dart';
+import 'package:data/helper/key_helper.dart';
 import 'package:domain/constants/enum/evoucher_landing_page_navigation_type_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
@@ -119,13 +121,15 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                                         ?.borderSide
                                         .color),
                               ), onSelected: () async {
-                            String userPromoCode = ProviderScope.containerOf(context)
+                                String userPromoCode = ProviderScope.containerOf(context)
                                     .read(appHomeViewModelProvider)
                                     .dashboardDataContent
                                     .userPromoCode ??
                                 "";
+                            String encryptPromoCode = EncryptDecryptPromoCode.encryptReferLink(
+                                plainText: userPromoCode, keyString: KeyHelper.DECRYPTION_KEY);
 
-                            model.getReferCode(userPromoCode: userPromoCode);
+                            model.getReferCode(userPromoCode: encryptPromoCode);
 
                             Navigator.pop(context);
                           }, onDismissed: () {
@@ -337,13 +341,16 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                                               ?.borderSide
                                               .color),
                                     ), onSelected: () async {
-                                  String userPromoCode = ProviderScope.containerOf(context)
+                                      String userPromoCode = ProviderScope.containerOf(context)
                                           .read(appHomeViewModelProvider)
                                           .dashboardDataContent
                                           .userPromoCode ??
                                       "";
 
-                                  model.getReferCode(userPromoCode: userPromoCode);
+                                  String encryptPromoCode = EncryptDecryptPromoCode.encryptReferLink(
+                                      plainText: userPromoCode, keyString: KeyHelper.DECRYPTION_KEY);
+
+                                  model.getReferCode(userPromoCode: encryptPromoCode);
 
                                   Navigator.pop(context);
                                 }, onDismissed: () {

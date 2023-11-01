@@ -29,13 +29,6 @@ class RegisterPageState extends BaseStatefulPage<RegisterViewModel, RegisterPage
     super.onModelReady(model);
     if (widget.arguments.kycData != null) {
       switch (widget.arguments.kycData?.type ?? "") {
-        case "IDCardC":
-        case "SelfiCheck":
-          Future.delayed(Duration(microseconds: 100), () {
-            model.navigateToPage(0);
-          });
-
-          break;
         case "CountryResidence":
           Future.delayed(Duration(microseconds: 100), () {
             model.navigateToPage(0);

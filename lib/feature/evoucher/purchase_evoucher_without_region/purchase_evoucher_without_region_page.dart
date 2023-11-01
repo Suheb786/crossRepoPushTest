@@ -27,7 +27,24 @@ class PurchaseEVoucherWithoutRegionPageState
 
   @override
   ProviderBase provideBase() {
-    return purchaseEVoucherWithoutRegionPageViewModel.call(widget.argument);
+    return purchaseEVoucherWithoutRegionPageViewModel;
+  }
+
+  @override
+  void onModelReady(PurchaseEVoucherWithoutRegionPageViewModel model) {
+    model.argument = widget.argument;
+    super.onModelReady(model);
+  }
+
+  @override
+  Future<bool> onBackPressed(PurchaseEVoucherWithoutRegionPageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(purchaseEVoucherWithoutRegionPageViewModel);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
   }
 }
 

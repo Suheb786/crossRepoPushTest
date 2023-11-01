@@ -39,4 +39,16 @@ class ConfirmBillPaymentAmountPageState
 
   @override
   bool get wantKeepAlive => true;
+
+  @override
+  Future<bool> onBackPressed(ConfirmBillPaymentAmountPageViewModel model, {param}) async {
+    var parentModel =
+    ProviderScope.containerOf(context).read(payBillPageViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

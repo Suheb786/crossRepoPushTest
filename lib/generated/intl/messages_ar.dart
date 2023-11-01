@@ -202,7 +202,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addRequestMoney": MessageLookupByLibrary.simpleMessage(
             "ما عندك معارف. رح يتم حفظ قائمة المعارف بمجرد ما تبعثلهم طلب الأموال."),
         "addSendContact": MessageLookupByLibrary.simpleMessage(
-            "ما عندك معارف لسه. رح يتم حفظ المعارف على Blink لما تحوّللهم الأموال."),
+            "أضف أصدقائك المفضلين إلى الشاشة لحتى تحول بطريقة أسهل وأسرع. اضغط على “المزيد” ومن ثم اختر “أصدقائي”. "),
         "addThisBillToSaveList": MessageLookupByLibrary.simpleMessage(
             "اضافة الفاتورة للفواتير المخزنة"),
         "addToApplePay":
@@ -693,6 +693,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "closeSubAccount": MessageLookupByLibrary.simpleMessage("إغلاق الحساب"),
         "closeSubAccountDescription": MessageLookupByLibrary.simpleMessage(
             "هل أنت متأكد من عملية إغلاق الحساب؟"),
+        "companyCity": MessageLookupByLibrary.simpleMessage(
+            "المدينة الموجودة فيها الشركة"),
+        "companyCountry":
+            MessageLookupByLibrary.simpleMessage("البلد الموجودة فيها الشركة"),
+        "companyName": MessageLookupByLibrary.simpleMessage("اسم الشركة"),
+        "companyPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("رقم هاتف الشركة"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "أكمل معلومات تقريرك الضريبي التالية:"),
         "confirm": MessageLookupByLibrary.simpleMessage("تم"),
@@ -941,6 +948,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "documentsNotFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-081)"),
         "done": MessageLookupByLibrary.simpleMessage("تم"),
+        "donotLeavePage": MessageLookupByLibrary.simpleMessage(
+            "Please do not leave the page. You will be\nautomatically redirected once it’s done."),
         "dontNeedMyCardAnymore":
             MessageLookupByLibrary.simpleMessage("بطلت محتاج بطاقتي "),
         "dormantAccountCCFailedTitle": MessageLookupByLibrary.simpleMessage(
@@ -988,21 +997,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم تحديث إيميلك بنجاح"),
         "emailAlreadyExist": MessageLookupByLibrary.simpleMessage(
             "الإيميل مستخدم من قبل، الرجاء إدخال إيميل جديد أو حاول تسجّل دخولك من خلال هاد الإيميل."),
-        "employerCity":
-            MessageLookupByLibrary.simpleMessage("عنوان الوظيفة- المدينة"),
         "employerCitySmall":
             MessageLookupByLibrary.simpleMessage("مدينة المؤسسة"),
-        "employerContact":
-            MessageLookupByLibrary.simpleMessage("رقم هاتف المؤسسة"),
         "employerContactSmall":
             MessageLookupByLibrary.simpleMessage("رقم هاتف المؤسسة"),
-        "employerCountry":
-            MessageLookupByLibrary.simpleMessage("عنوان الوظيفة- البلد"),
         "employerCountrySmall":
             MessageLookupByLibrary.simpleMessage("دولة المؤسسة"),
         "employerIdNumber":
             MessageLookupByLibrary.simpleMessage("رقم تعريف المؤسسة"),
-        "employerName": MessageLookupByLibrary.simpleMessage("اسم المؤسسة"),
         "employerNameSmall":
             MessageLookupByLibrary.simpleMessage("اسم المؤسسة"),
         "employerPhoneNo": MessageLookupByLibrary.simpleMessage("رقم المؤسسة"),
@@ -2468,7 +2470,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "processing": MessageLookupByLibrary.simpleMessage("المعالجة"),
         "processingIDWiseStatus":
-            MessageLookupByLibrary.simpleMessage("Processing..."),
+            MessageLookupByLibrary.simpleMessage("Processing"),
         "productSelectorHeader":
             MessageLookupByLibrary.simpleMessage("ممتاز! تعرّف على عروض Blink"),
         "profileDetailsQ1": MessageLookupByLibrary.simpleMessage("متزوج؟"),

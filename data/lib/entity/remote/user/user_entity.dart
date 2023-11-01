@@ -50,6 +50,8 @@ class UserEntity implements BaseLayerDataTransformer<UserEntity, User> {
   final String? accountNumber;
   @JsonKey(name: "applepay")
   final bool? applePay;
+  @JsonKey(name: "idWiseRefId")
+  final String? idWiseRefId;
 
   factory UserEntity.fromJson(Map<String, dynamic> json) => _$UserEntityFromJson(json);
 
@@ -75,7 +77,8 @@ class UserEntity implements BaseLayerDataTransformer<UserEntity, User> {
       this.cif,
       this.accountNumber,
       this.newDevice = false,
-      this.applePay});
+      this.applePay,
+      this.idWiseRefId});
 
   Map<String, dynamic> toJson() => _$UserEntityToJson(this);
 
@@ -98,6 +101,7 @@ class UserEntity implements BaseLayerDataTransformer<UserEntity, User> {
         accountNumber: this.accountNumber ?? "",
         applicationId: this.applicationId ?? '',
         newDevice: this.newDevice ?? false,
-        applePay: this.applePay ?? false);
+        applePay: this.applePay ?? false,
+        idWiseRefId: this.idWiseRefId ?? "");
   }
 }

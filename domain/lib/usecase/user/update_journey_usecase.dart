@@ -5,13 +5,15 @@ import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class UpdateJourneyUseCase extends BaseUseCase<NetworkError, UpdateJourneyUseCaseParams, bool> {
+import '../../model/user/update_journey/update_journey.dart';
+
+class UpdateJourneyUseCase extends BaseUseCase<NetworkError, UpdateJourneyUseCaseParams, UpdateJourney> {
   final UserRepository _repository;
 
   UpdateJourneyUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute({required params}) {
+  Future<Either<NetworkError, UpdateJourney>> execute({required params}) {
     return _repository.updateJourney(params: params);
   }
 }

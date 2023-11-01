@@ -7,6 +7,9 @@ import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_mobile_number_success/dc_change_mobile_number_success_page_view.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_mobile_number_success/dc_change_mobile_number_success_view_model.dart';
 
+import '../../../di/dashboard/dashboard_modules.dart';
+import '../../../main/navigation/route_paths.dart';
+
 class DcChangeMobileNumberSuccessPage extends BasePage<DcChangeMobileNumberSuccessViewModel> {
   final DCChangeLinkedMobileNumberArguments _arguments;
 
@@ -33,5 +36,12 @@ class DcChangeMobileNumberSuccessPageState
   @override
   Widget buildView(BuildContext context, DcChangeMobileNumberSuccessViewModel model) {
     return DcChangeMobileNumberSuccessPageView(provideBase(), widget._arguments);
+  }
+
+  @override
+  Future<bool> onBackPressed(DcChangeMobileNumberSuccessViewModel model, {param}) {
+    Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+    ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+    return super.onBackPressed(model);
   }
 }

@@ -31,4 +31,9 @@ class AgentSelectionPageState extends BaseStatefulPage<AgentSelectionViewModel, 
   Widget buildView(BuildContext context, AgentSelectionViewModel model) {
     return AgentSelectionView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(AgentSelectionViewModel model, {param}) async {
+    return false;
+  }
 }

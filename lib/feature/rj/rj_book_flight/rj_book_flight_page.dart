@@ -38,11 +38,14 @@ class RjFlightBookingStatefulPage extends BaseStatefulPage<RjFlightBookingViewMo
 
   @override
   void onModelReady(RjFlightBookingViewModel model) {
-
     if (!_tabController.hasListeners) {
       _tabController.addListener(() {
-        if (model.tabChangeNotifier.value != _tabController.index)
+        if (model.tabChangeNotifier.value != _tabController.index) {
+          model.selectedReturnOnDateController.clear();
+          model.selectedDepartOnDateController.clear();
+          model.toController.clear();
           model.tabChangeNotifier.value = _tabController.index;
+        }
       });
 
       model.switchTabStream.listen((event) {
@@ -143,6 +146,7 @@ class RjFlightBookingStatefulPage extends BaseStatefulPage<RjFlightBookingViewMo
                 top: 0.h,
                 child: InkWell(
                   onTap: () {
+                    model.animateBackToDashboard(context);
                     Navigator.pop(context);
                   },
                   child: Container(
@@ -166,6 +170,12 @@ class RjFlightBookingStatefulPage extends BaseStatefulPage<RjFlightBookingViewMo
         ),
       ],
     );
+  }
+
+  @override
+  Future<bool> onBackPressed(RjFlightBookingViewModel model, {param}) {
+    model.animateBackToDashboard(context);
+    return super.onBackPressed(model);
   }
 
   @override

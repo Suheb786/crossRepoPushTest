@@ -7,13 +7,15 @@ import 'package:neo_bank/feature/activity/payment_activity_transaction/reject_re
 import 'package:neo_bank/feature/activity/payment_activity_transaction/reject_request_payment_screens/reject_request_payment_otp_screen/reject_request_payment_page_view_model.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-class RejectRequestPaymentOtpPage extends BasePage<RejectRequestPaymentOtpPageViewModel> {
+class RejectRequestPaymentOtpPage
+    extends BasePage<RejectRequestPaymentOtpPageViewModel> {
   @override
-  RejectRequestPaymentOtpPageState createState() => RejectRequestPaymentOtpPageState();
+  RejectRequestPaymentOtpPageState createState() =>
+      RejectRequestPaymentOtpPageState();
 }
 
-class RejectRequestPaymentOtpPageState
-    extends BaseStatefulPage<RejectRequestPaymentOtpPageViewModel, RejectRequestPaymentOtpPage>
+class RejectRequestPaymentOtpPageState extends BaseStatefulPage<
+        RejectRequestPaymentOtpPageViewModel, RejectRequestPaymentOtpPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin, CodeAutoFill {
   RejectRequestPaymentOtpPageState() : super(subscribeVisibilityEvents: true);
 
@@ -30,7 +32,8 @@ class RejectRequestPaymentOtpPageState
 
   @override
   void onModelReady(RejectRequestPaymentOtpPageViewModel model) {
-    model.countDownController = CountdownTimerController(endTime: model.endTime);
+    model.countDownController =
+        CountdownTimerController(endTime: model.endTime);
     super.onModelReady(model);
   }
 
@@ -40,7 +43,8 @@ class RejectRequestPaymentOtpPageState
   }
 
   @override
-  Widget buildView(BuildContext context, RejectRequestPaymentOtpPageViewModel model) {
+  Widget buildView(
+      BuildContext context, RejectRequestPaymentOtpPageViewModel model) {
     return RejectRequestPaymentOtpPageView(provideBase());
   }
 
@@ -62,5 +66,18 @@ class RejectRequestPaymentOtpPageState
   void dispose() {
     super.dispose();
     cancel();
+  }
+
+  @override
+  Future<bool> onBackPressed(RejectRequestPaymentOtpPageViewModel model,
+      {param}) async{
+    var parentModel = ProviderScope.containerOf(context)
+        .read(rejectRequestPaymentPageViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
   }
 }

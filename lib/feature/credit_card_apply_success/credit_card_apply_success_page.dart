@@ -5,6 +5,9 @@ import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
 import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page_view.dart';
 import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page_view_model.dart';
 
+import '../../di/dashboard/dashboard_modules.dart';
+import '../../main/navigation/route_paths.dart';
+
 class CreditCardApplySuccessPage extends BasePage<CreditCardApplySuccessPageViewModel> {
   final CreditCardApplySuccessArguments _creditCardApplySuccessArguments;
 
@@ -24,6 +27,13 @@ class CreditCardApplySuccessPageState
   @override
   Widget buildView(BuildContext context, CreditCardApplySuccessPageViewModel model) {
     return CreditCardApplySuccessPageView(provideBase());
+  }
+
+  @override
+  Future<bool> onBackPressed(CreditCardApplySuccessPageViewModel model, {param}) {
+    Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+    ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+    return super.onBackPressed(model);
   }
 }
 
