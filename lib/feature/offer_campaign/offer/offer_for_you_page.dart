@@ -105,4 +105,10 @@ class OfferForYouPageState extends BaseStatefulPage<OfferForYouPageViewModel, Of
       ],
     );
   }
+
+  @override
+  Future<bool> onBackPressed(OfferForYouPageViewModel model, {param}) {
+    model.animateBackToDashboard(context);
+    return super.onBackPressed(model);
+  }
 }

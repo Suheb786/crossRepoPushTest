@@ -6,6 +6,9 @@ import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_un
 import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_unblock_pin_success_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 
+import '../../../di/dashboard/dashboard_modules.dart';
+import '../../../main/navigation/route_paths.dart';
+
 class CardPinUnBlockSuccessPage extends BasePage<CardPinUnBlockSuccessPageViewModel> {
   final ManageCardPinArguments manageCardPinArguments;
 
@@ -25,6 +28,18 @@ class CardPinUnBlockSuccessPageState
   @override
   Widget buildView(BuildContext context, CardPinUnBlockSuccessPageViewModel model) {
     return CardPinUnBlockSuccessPageView(provideBase());
+  }
+
+  @override
+  Future<bool> onBackPressed(CardPinUnBlockSuccessPageViewModel model, {param}) {
+    Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+    ProviderScope.containerOf(context)
+        .read(appHomeViewModelProvider)
+        .showSettingPage(false);
+    ProviderScope.containerOf(context)
+        .read(appHomeViewModelProvider)
+        .getDashboardData();
+    return super.onBackPressed(model);
   }
 }
 

@@ -204,7 +204,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addRequestMoney": MessageLookupByLibrary.simpleMessage(
             "You don\'t have any contacts yet. Your Blink contacts can be saved while requesting money."),
         "addSendContact": MessageLookupByLibrary.simpleMessage(
-            "You don\'t have any contacts yet. Your Blink contacts can be saved while sending money."),
+            "Add your favorite contacts here for easier and faster transfers. You can do that by clicking on “Manage Contacts” from the “More” button below."),
         "addThisBillToSaveList": MessageLookupByLibrary.simpleMessage(
             "Add this bill to your saved list"),
         "addToApplePay":
@@ -708,6 +708,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Close Sub Account"),
         "closeSubAccountDescription": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to close this sub account?"),
+        "companyCity": MessageLookupByLibrary.simpleMessage("Company’s City"),
+        "companyCountry":
+            MessageLookupByLibrary.simpleMessage("Company’s Country"),
+        "companyName": MessageLookupByLibrary.simpleMessage("Company’s Name"),
+        "companyPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("Company’s Phone Number"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "Complete your tax report information below"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
@@ -1016,20 +1022,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your email address has been updated successfully"),
         "emailAlreadyExist": MessageLookupByLibrary.simpleMessage(
             "The email you have entered already exists, please enter another email or try to login using this email if you have already tried to register previously."),
-        "employerCity": MessageLookupByLibrary.simpleMessage("EMPLOYER CITY"),
         "employerCitySmall":
             MessageLookupByLibrary.simpleMessage("Employer City"),
-        "employerContact":
-            MessageLookupByLibrary.simpleMessage("EMPLOYER CONTACT"),
         "employerContactSmall":
             MessageLookupByLibrary.simpleMessage("Employer Contact"),
-        "employerCountry":
-            MessageLookupByLibrary.simpleMessage("EMPLOYER COUNTRY"),
         "employerCountrySmall":
             MessageLookupByLibrary.simpleMessage("Employer Country"),
         "employerIdNumber": MessageLookupByLibrary.simpleMessage(
             "EMPLOYER IDENTIFICATION NUMBER"),
-        "employerName": MessageLookupByLibrary.simpleMessage("EMPLOYER NAME"),
         "employerNameSmall":
             MessageLookupByLibrary.simpleMessage("Employer Name"),
         "employerPhoneNo":

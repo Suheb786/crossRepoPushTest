@@ -26,4 +26,9 @@ class ScheduleVideoCallPageState
   Widget buildView(BuildContext context, ScheduleVideoCallPageViewModel model) {
     return ScheduleVideoCallPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(ScheduleVideoCallPageViewModel model, {param}) async {
+    return false;
+  }
 }

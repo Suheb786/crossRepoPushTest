@@ -8,7 +8,7 @@ class EvoucherDialog {
 
   static show(BuildContext mContext, {Function? onDismissed, Function? onSelected, bool? isSwipeToCancel}) {
     AppDialog.show(mContext,
-        isDismissible: false,
+        isDismissible: true,
         builder: (context) => EvoucherLandingDialogView(
               onDismissed: onDismissed,
               onSelected: onSelected,

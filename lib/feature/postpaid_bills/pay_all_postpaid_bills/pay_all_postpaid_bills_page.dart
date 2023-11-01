@@ -33,6 +33,12 @@ class PayAllPostPaidBillsPageState
     return AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light, child: PayAllPostPaidBillsPageView(provideBase()));
   }
+
+  @override
+  Future<bool> onBackPressed(PayAllPostPaidBillsPageViewModel model, {param}) {
+    ProviderScope.containerOf(context).read(paymentHomeViewModelProvider).animateBackToMainPage();
+    return super.onBackPressed(model);
+  }
 }
 
 class PayAllPostPaidBillsPageArguments {

@@ -21,4 +21,15 @@ class EditMobileNoCliqPageState
   Widget buildView(BuildContext context, EditMobileNoCliqPageViewModel model) {
     return EditMobileNoCliqPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(EditMobileNoCliqPageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(editMobileNoViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

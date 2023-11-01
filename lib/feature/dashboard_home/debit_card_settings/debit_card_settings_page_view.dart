@@ -221,7 +221,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                             }, onDismissed: () {
                               Navigator.pop(context);
                               model.updateFreezeStatus(false);
-                            });
+                            }, onWillPop: false);
                           }
                         },
                         dataBuilder: (context, snapshot) {

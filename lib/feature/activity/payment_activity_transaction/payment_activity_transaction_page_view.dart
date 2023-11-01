@@ -112,6 +112,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                             ),
                                             child: AppSvg.asset(
                                               AssetUtils.dropDown,
+                                              color: Theme.of(context).colorScheme.surfaceTint,
                                             ),
                                           )
                                         ],
@@ -153,7 +154,10 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional.only(start: 12.0.w),
-                                              child: AppSvg.asset(AssetUtils.dropDown),
+                                              child: AppSvg.asset(
+                                                AssetUtils.dropDown,
+                                                color: Theme.of(context).colorScheme.surfaceTint,
+                                              ),
                                             )
                                           ],
                                         ),

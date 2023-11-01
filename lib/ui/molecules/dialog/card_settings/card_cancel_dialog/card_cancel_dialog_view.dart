@@ -24,9 +24,15 @@ class CardCancelDialogView extends StatelessWidget {
   final Function? onDismissed;
   final List<String> reasons;
   final bool? isPrimaryDebitCard;
+  final bool onWillPop;
 
   CardCancelDialogView(
-      {required this.reasons, this.onSelected, this.onDismissed, this.onError, this.isPrimaryDebitCard});
+      {required this.reasons,
+      this.onSelected,
+      this.onDismissed,
+      this.onError,
+      this.isPrimaryDebitCard,
+      this.onWillPop = true});
 
   ProviderBase providerBase() {
     return cancelCardDialogViewModelProvider;
@@ -34,167 +40,170 @@ class CardCancelDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget<CardCancelDialogViewModel>(
-      providerBase: providerBase(),
-      builder: (context, model, child) => Dialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-        insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 170.h),
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          clipBehavior: Clip.none,
-          children: [
-            Container(
-              child: SingleChildScrollView(
-                physics: NeverScrollableScrollPhysics(),
-                child: Column(
-                  children: [
-                    SizedBox(height: 34.h),
-                    AppSvg.asset(
-                      AssetUtils.cardCancelIcon,
-                      height: 42.h,
-                      width: 46.w,
-                    ),
-                    SizedBox(height: 15.h),
-                    Text(
-                      S.of(context).cancelTheCard,
-                      style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        fontSize: 20.t,
-                        fontWeight: FontWeight.w600,
+    return WillPopScope(
+      onWillPop: () async => onWillPop,
+      child: BaseWidget<CardCancelDialogViewModel>(
+        providerBase: providerBase(),
+        builder: (context, model, child) => Dialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+          insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 170.h),
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                child: SingleChildScrollView(
+                  physics: NeverScrollableScrollPhysics(),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 34.h),
+                      AppSvg.asset(
+                        AssetUtils.cardCancelIcon,
+                        height: 42.h,
+                        width: 46.w,
                       ),
-                    ),
-                    SizedBox(height: 35.h),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 24.0.w),
-                      child: InkWell(
-                          onTap: () {
-                            CancellationReasonDialog.show(
-                              context,
-                              title: S.of(context).reasonOfCancellation,
-                              onDismissed: () {
-                                Navigator.pop(context);
-                              },
-                              onSelected: (value) {
-                                model!.reasonCancellationController.text = value;
-                                Navigator.pop(context);
-                              },
-                              reasons: reasons,
-                            );
-                          },
-                          child: AppTextField(
-                            labelText: S.of(context).reasonOfCancellation.toUpperCase(),
-                            hintText: S.of(context).pleaseSelect,
-                            readOnly: true,
-                            key: model!.reasonKey,
-                            controller: model.reasonCancellationController,
-                            autoFocus: false,
-                            onPressed: () {
-                              CancellationReasonDialog.show(context,
-                                  onDismissed: () {
-                                    Navigator.pop(context);
-                                    Future.delayed(Duration(milliseconds: 100), () {
-                                      FocusManager.instance.primaryFocus?.unfocus();
-                                    });
-                                  },
-                                  title: S.of(context).reasonOfCancellation,
-                                  reasons: reasons,
-                                  onSelected: (value) {
-                                    Navigator.pop(context);
-                                    model.reasonCancellationController.text = value;
-                                  });
-                            },
-                            suffixIcon: (isChecked, value) {
-                              return Container(
-                                width: 16.w,
-                                height: 16.h,
-                                padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
-                                child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1),
-                              );
-                            },
-                          )),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
-                      child: Text(
-                        S.of(context).cancelCardDesc,
+                      SizedBox(height: 15.h),
+                      Text(
+                        S.of(context).cancelTheCard,
                         style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          color: Theme.of(context).colorScheme.error,
-                          height: 1.5,
-                          fontSize: 14.t,
-                          fontWeight: FontWeight.w500,
+                          fontSize: 20.t,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
-                    ),
-                    Visibility(
-                      visible: isPrimaryDebitCard ?? true,
-                      child: Padding(
+                      SizedBox(height: 35.h),
+                      Padding(
                         padding: EdgeInsets.symmetric(horizontal: 24.0.w),
-                        child: AppStreamBuilder<bool>(
-                          stream: model.declarationSelectedStream,
-                          initialData: false,
-                          dataBuilder: (context, isSelected) {
-                            model.isSelected = isSelected!;
-                            return TermsAndConditionWidget(
-                              isSelected: isSelected,
-                              title1: S.of(context).requestNewCardImmediately,
-                              onTap: () {
-                                model.updateDeclarationSelection(!(isSelected));
+                        child: InkWell(
+                            onTap: () {
+                              CancellationReasonDialog.show(
+                                context,
+                                title: S.of(context).reasonOfCancellation,
+                                onDismissed: () {
+                                  Navigator.pop(context);
+                                },
+                                onSelected: (value) {
+                                  model!.reasonCancellationController.text = value;
+                                  Navigator.pop(context);
+                                },
+                                reasons: reasons,
+                              );
+                            },
+                            child: AppTextField(
+                              labelText: S.of(context).reasonOfCancellation.toUpperCase(),
+                              hintText: S.of(context).pleaseSelect,
+                              readOnly: true,
+                              key: model!.reasonKey,
+                              controller: model.reasonCancellationController,
+                              autoFocus: false,
+                              onPressed: () {
+                                CancellationReasonDialog.show(context,
+                                    onDismissed: () {
+                                      Navigator.pop(context);
+                                      Future.delayed(Duration(milliseconds: 100), () {
+                                        FocusManager.instance.primaryFocus?.unfocus();
+                                      });
+                                    },
+                                    title: S.of(context).reasonOfCancellation,
+                                    reasons: reasons,
+                                    onSelected: (value) {
+                                      Navigator.pop(context);
+                                      model.reasonCancellationController.text = value;
+                                    });
                               },
-                            );
-                          },
+                              suffixIcon: (isChecked, value) {
+                                return Container(
+                                  width: 16.w,
+                                  height: 16.h,
+                                  padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
+                                  child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1),
+                                );
+                              },
+                            )),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+                        child: Text(
+                          S.of(context).cancelCardDesc,
+                          style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            color: Theme.of(context).colorScheme.error,
+                            height: 1.5,
+                            fontSize: 14.t,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 24.h,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 42.h),
-                      child: AppPrimaryButton(
-                        onPressed: () {
-                          if (isPrimaryDebitCard ?? true) {
-                            if (model.reasonCancellationController.text.isEmpty) {
-                              model.reasonKey.currentState!.isValid = false;
-                              onError?.call(AppError(
-                                error: ErrorInfo(message: ''),
-                                type: ErrorType.SELECT_CANCELATION_REASON,
-                                cause: Exception(),
-                              ));
-                            } else {
-                              onSelected?.call(model.reasonCancellationController.text, model.isSelected);
-                            }
-                          } else {
-                            onSelected?.call(model.reasonCancellationController.text, false);
-                          }
-                        },
-                        text: S.of(context).confirm,
+                      Visibility(
+                        visible: isPrimaryDebitCard ?? true,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+                          child: AppStreamBuilder<bool>(
+                            stream: model.declarationSelectedStream,
+                            initialData: false,
+                            dataBuilder: (context, isSelected) {
+                              model.isSelected = isSelected!;
+                              return TermsAndConditionWidget(
+                                isSelected: isSelected,
+                                title1: S.of(context).requestNewCardImmediately,
+                                onTap: () {
+                                  model.updateDeclarationSelection(!(isSelected));
+                                },
+                              );
+                            },
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        height: 24.h,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 42.h),
+                        child: AppPrimaryButton(
+                          onPressed: () {
+                            if (isPrimaryDebitCard ?? true) {
+                              if (model.reasonCancellationController.text.isEmpty) {
+                                model.reasonKey.currentState!.isValid = false;
+                                onError?.call(AppError(
+                                  error: ErrorInfo(message: ''),
+                                  type: ErrorType.SELECT_CANCELATION_REASON,
+                                  cause: Exception(),
+                                ));
+                              } else {
+                                onSelected?.call(model.reasonCancellationController.text, model.isSelected);
+                              }
+                            } else {
+                              onSelected?.call(model.reasonCancellationController.text, false);
+                            }
+                          },
+                          text: S.of(context).confirm,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Positioned(
-              bottom: -24.h,
-              child: InkWell(
-                onTap: () {
-                  onDismissed?.call();
-                },
-                child: Container(
-                    height: 48.h,
-                    width: 48.h,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Theme.of(context).colorScheme.onBackground),
-                        shape: BoxShape.circle,
-                        color: Theme.of(context).colorScheme.secondary),
-                    child: Image.asset(
-                      AssetUtils.close_bold,
-                      scale: 3.5,
-                    )),
-              ),
-            )
-          ],
+              Positioned(
+                bottom: -24.h,
+                child: InkWell(
+                  onTap: () {
+                    onDismissed?.call();
+                  },
+                  child: Container(
+                      height: 48.h,
+                      width: 48.h,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Theme.of(context).colorScheme.onBackground),
+                          shape: BoxShape.circle,
+                          color: Theme.of(context).colorScheme.secondary),
+                      child: Image.asset(
+                        AssetUtils.close_bold,
+                        scale: 3.5,
+                      )),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

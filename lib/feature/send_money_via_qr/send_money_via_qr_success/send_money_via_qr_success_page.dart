@@ -5,6 +5,9 @@ import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_via_qr_success/send_money_via_qr_success_page_view.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_via_qr_success/send_money_via_qr_success_page_view_model.dart';
 
+import '../../../di/dashboard/dashboard_modules.dart';
+import '../../../main/navigation/route_paths.dart';
+
 class SendMoneyViaQrSuccessPage extends BasePage<SendMoneyViaQrSuccessPageViewModel> {
   final SendMoneyViaQRSuccessPageArguments arguments;
 
@@ -29,6 +32,13 @@ class SendMoneyViaQrSuccessPageState
   @override
   Widget buildView(BuildContext context, SendMoneyViaQrSuccessPageViewModel model) {
     return SendMoneyViaQrSuccessPageView(provideBase());
+  }
+
+  @override
+  Future<bool> onBackPressed(SendMoneyViaQrSuccessPageViewModel model, {param}) {
+    Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+    ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+    return super.onBackPressed(model);
   }
 }
 

@@ -25,4 +25,15 @@ class VideoCallPageState extends BaseStatefulPage<VideoCallPageViewModel, VideoC
   Widget buildView(BuildContext context, VideoCallPageViewModel model) {
     return VideoCallPagePageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(VideoCallPageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(videoCallViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

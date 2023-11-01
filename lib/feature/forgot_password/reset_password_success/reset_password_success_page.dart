@@ -5,6 +5,8 @@ import 'package:neo_bank/di/forgot_password/forgot_password_modules.dart';
 import 'package:neo_bank/feature/forgot_password/reset_password_success/reset_password_success_page_view.dart';
 import 'package:neo_bank/feature/forgot_password/reset_password_success/reset_password_success_view_model.dart';
 
+import '../../../main/navigation/route_paths.dart';
+
 class ResetPasswordSuccessPage extends BasePage<ResetPasswordSuccessViewModel> {
   @override
   ResetPasswordSuccessPageState createState() => ResetPasswordSuccessPageState();
@@ -25,5 +27,11 @@ class ResetPasswordSuccessPageState
   @override
   Widget buildView(BuildContext context, ResetPasswordSuccessViewModel model) {
     return ResetPasswordSuccessPageView(provideBase());
+  }
+
+  @override
+  Future<bool> onBackPressed(ResetPasswordSuccessViewModel model, {param}) {
+    Navigator.popUntil(context, ModalRoute.withName(RoutePaths.Login));
+    return super.onBackPressed(model);
   }
 }

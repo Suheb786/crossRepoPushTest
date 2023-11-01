@@ -20,7 +20,7 @@ class RTPConfirmationDialog {
       required Widget listOfDetails,
       required bool showDescription}) {
     AppDialog.show(mContext,
-        isDismissible: false,
+        isDismissible: true,
         builder: (context) => RTPConfirmationDialogView(
               actionWidget: actionWidget,
               description: description,

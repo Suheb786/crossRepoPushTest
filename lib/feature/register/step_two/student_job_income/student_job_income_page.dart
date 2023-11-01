@@ -26,4 +26,9 @@ class StudentJobIncomePageState
   Widget buildView(BuildContext context, StudentJobIncomePageViewModel model) {
     return StudentJobIncomePageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(StudentJobIncomePageViewModel model, {param}) async {
+    return false;
+  }
 }

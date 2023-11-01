@@ -25,4 +25,9 @@ class RegisterStepTwoPageState extends BaseStatefulPage<RegisterStepTwoViewModel
   Widget buildView(BuildContext context, RegisterStepTwoViewModel model) {
     return RegisterStepTwoPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(RegisterStepTwoViewModel model, {param}) async {
+    return false;
+  }
 }

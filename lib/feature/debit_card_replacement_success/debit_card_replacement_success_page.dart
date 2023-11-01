@@ -6,6 +6,9 @@ import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_p
 import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page_view.dart';
 import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page_view_model.dart';
 
+import '../../di/dashboard/dashboard_modules.dart';
+import '../../main/navigation/route_paths.dart';
+
 class DebitCardReplacementSuccessPage extends BasePage<DebitCardReplacementSuccessPageViewModel> {
   final DebitCardReplacementSuccessPageArgs _debitCardReplacementArguments;
 
@@ -25,6 +28,24 @@ class DebitCardReplacementSuccessPageState
   @override
   Widget buildView(BuildContext context, DebitCardReplacementSuccessPageViewModel model) {
     return DebitCardReplacementSuccessPageView(provideBase());
+  }
+
+  @override
+  Future<bool> onBackPressed(DebitCardReplacementSuccessPageViewModel model, {param}) {
+    if (model.debitCardReplacementArguments.type == DebitReplacementEnum.Normal) {
+      Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+      ProviderScope.containerOf(context)
+          .read(appHomeViewModelProvider)
+          .showSettingPage(false);
+      ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+    } else {
+      Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+      ProviderScope.containerOf(context)
+          .read(appHomeViewModelProvider)
+          .showSettingPage(false);
+      ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+    }
+    return super.onBackPressed(model);
   }
 }
 

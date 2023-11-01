@@ -13,7 +13,7 @@ class AccountSelectionDialog {
       required List<Account> accountList,
       bool showBalance = true}) {
     AppDialog.show(mContext,
-        isDismissible: false,
+        isDismissible: true,
         builder: (context) => AccountSelectionDialogView(
             showBalances: showBalance,
             onDismissed: onDismissed,

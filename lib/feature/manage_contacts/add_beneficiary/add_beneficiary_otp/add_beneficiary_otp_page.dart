@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
 import 'package:riverpod/src/framework.dart';
@@ -54,6 +55,17 @@ class AddBeneficiaryOTPPageState
   @override
   void codeUpdated() {
     getViewModel().otpController.text = code!;
+  }
+
+  @override
+  Future<bool> onBackPressed(AddBeneficiaryotpPageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(addBeneficiaryViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
   }
 
   @override

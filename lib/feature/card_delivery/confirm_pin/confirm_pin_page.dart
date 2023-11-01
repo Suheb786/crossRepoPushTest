@@ -25,4 +25,9 @@ class ConfirmPinPageState extends BaseStatefulPage<ConfirmPinPageViewModel, Conf
   Widget buildView(BuildContext context, ConfirmPinPageViewModel model) {
     return ConfirmPinPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(ConfirmPinPageViewModel model, {param}) async {
+    return false;
+  }
 }

@@ -10,7 +10,7 @@ class SelectServiceDialog {
   static show(BuildContext mContext, List<BillerService> billerService, String billerCodeString,
       {Function? onDismissed, required Function(BillerService) onSelected, String? title}) {
     AppDialog.show(mContext,
-        isDismissible: false,
+        isDismissible: true,
         builder: (context) => SelectServiceDialogView(
             onDismissed: onDismissed, onSelected: onSelected, title: title, billerService: billerService));
   }
