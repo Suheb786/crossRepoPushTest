@@ -313,6 +313,9 @@ class AppViewModel extends BaseViewModel {
     });
 
     initAppFlyerSDK();
+    Future.delayed(Duration(milliseconds: 10), () {
+      startSessionWarningStream();
+    });
   }
 
   BehaviorSubject<bool>? sessionWarningStream;

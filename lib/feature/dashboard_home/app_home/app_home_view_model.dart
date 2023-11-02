@@ -593,7 +593,7 @@ class AppHomeViewModel extends BasePageViewModel {
     });
 
     getDashboardData();
-    ProviderScope.containerOf(appLevelKey.currentContext!).read(appViewModel).startSessionWarningStream();
+
   }
 
   BehaviorSubject<Resource<bool>> _updateNickNameResponse = BehaviorSubject();

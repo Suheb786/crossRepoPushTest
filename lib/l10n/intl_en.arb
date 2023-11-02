@@ -867,7 +867,7 @@
   "callScheduled": "Call scheduled!",
   "callScheduledNote": "Your account will be processed after the video call is completed.",
   "preferredDateSmall": "Preferred Date",
-  "sessionTimeout": "Session Timeout.",
+  "sessionTimeout": "Session timeout.",
   "errorModelNotCorrect": "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-model)",
   "unauthorize": "Oops! We are unable to authorize you. User might not be registered or something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-u)",
   "enterValidUserName": "You have entered an invalid username. Please try again.",
@@ -1891,8 +1891,7 @@
   "chooseTheAccountToPay": "Choose the account you\nwant to pay from",
   "readyToUseSuccess": "success",
   "referralLink": "Referral link",
-  "timeOutText1": "You are being timed-out due to inactivity, your session will expire in ",
-  "timeOutText2": "from now. Select continue to extend your session.",
+  "timeOutText1": "You have been timed-out due to account inactivity. You will be automatically logged out in ",
   "daysLeft": "{String} days left",
   "endsOn": "Ends on {String}",
   "fare": "Fare",
@@ -1912,5 +1911,7 @@
   "yourAccountBalanceSuccessFullyUpdated": "Your account balance is successfully updated.",
   "accountSuccessfullyClosed": "Your account has been closed successfully.",
   "profileImageDeleted": "Profile Image deleted.",
-  "receipientAlreadySaved": "Oops! This recipient is already saved in your Blink contacts."
+  "receipientAlreadySaved": "Oops! This recipient is already saved in your Blink contacts.",
+  "pleaseContinueToStayLoggedIn" : "Please continue to stay logged in.",
+  "continueText" : "Continue"
 }

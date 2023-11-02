@@ -25,4 +25,15 @@ class NotifyPageState extends BaseStatefulPage<NotifyPageViewModel, NotifyPage> 
   Widget buildView(BuildContext context, NotifyPageViewModel model) {
     return NotifyPageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(NotifyPageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(nonJordanianRegistrationViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

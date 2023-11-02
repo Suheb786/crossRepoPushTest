@@ -1,3 +1,4 @@
+import 'package:data/helper/secure_storage_helper.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,6 +14,8 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../utils/app_constants.dart';
 
 class CheckScheduledVideoCallPageView extends BasePageViewWidget<CheckScheduledVideoCallPageViewModel> {
   CheckScheduledVideoCallPageView(ProviderBase model) : super(model);
@@ -47,6 +50,8 @@ class CheckScheduledVideoCallPageView extends BasePageViewWidget<CheckScheduledV
                         initialData: Resource.none(),
                         onData: (response) {
                           if (response.status == Status.SUCCESS) {
+                            SecureStorageHelper.instance.clearToken();
+                            AppConstantsUtils.resetCacheLists();
                             Navigator.popUntil(context, ModalRoute.withName(RoutePaths.OnBoarding));
                           }
                         },

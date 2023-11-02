@@ -26,4 +26,15 @@ class NonJordanianRegistrationPageState
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).primaryColor;
   }
+
+  @override
+  Future<bool> onBackPressed(NonJordanianRegisterPageViewModel model, {param}) async {
+    var parentModel = ProviderScope.containerOf(context).read(nonJordanianRegistrationViewModelProvider);
+    if (parentModel.appSwiperController.page != 0) {
+      parentModel.previousPage();
+      return false;
+    } else {
+      return super.onBackPressed(model);
+    }
+  }
 }

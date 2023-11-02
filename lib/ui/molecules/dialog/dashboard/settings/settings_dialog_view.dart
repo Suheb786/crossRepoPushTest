@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:data/helper/antelop_helper.dart';
 import 'package:data/helper/encrypt_decrypt_promo_code.dart';
 import 'package:data/helper/key_helper.dart';
+import 'package:data/helper/secure_storage_helper.dart';
 import 'package:domain/constants/enum/evoucher_landing_page_navigation_type_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
@@ -72,6 +73,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
             onData: (response) {
               if (response.status == Status.SUCCESS) {
                 AppConstantsUtils.resetCacheLists();
+                SecureStorageHelper.instance.clearToken();
                 if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
                   AntelopHelper.walletDisconnect();
                 }
@@ -647,6 +649,8 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                   localisedHelper: S.of(context),
                 ),
                 context);
+            SecureStorageHelper.instance.clearToken();
+            AppConstantsUtils.resetCacheLists();
             Navigator.pushNamedAndRemoveUntil(
                 context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
           } else {

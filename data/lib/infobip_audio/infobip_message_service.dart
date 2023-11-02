@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:data/helper/key_helper.dart';
 import 'package:domain/constants/enum/infobip_utils_enum.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' as services;
 import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:infobip_mobilemessaging/models/configuration.dart';
 import 'package:infobip_mobilemessaging/models/installation.dart';
@@ -157,14 +158,98 @@ class InfobipMessageService {
 
     await InfobipMobilemessaging.personalize(
             PersonalizeContext(forceDepersonalize: true, userIdentity: userIdentity))
-        .onError((error, stackTrace) {
+        .onError((error, stackTrace) async {
+      switch ((error as services.PlatformException).code) {
+        case 'PHONE_INVALID':
+          {
+            //the phone provided was not recognized as a valid one
+
+            var userIdentityWithoutPhone = UserIdentity(
+              externalUserId: userData.externalUserId,
+              emails: userData.emails,
+              phones: [],
+            );
+
+            await InfobipMobilemessaging.personalize(
+                PersonalizeContext(forceDepersonalize: true, userIdentity: userIdentityWithoutPhone));
+          }
+          break;
+        case 'EMAIL_INVALID':
+          {
+            //the email provided was not recognized as a valid one
+
+            var userIdentityWithoutEmail = UserIdentity(
+              externalUserId: userData.externalUserId,
+              emails: [],
+              phones: userData.phones,
+            );
+
+            await InfobipMobilemessaging.personalize(
+                PersonalizeContext(forceDepersonalize: true, userIdentity: userIdentityWithoutEmail));
+          }
+          break;
+        case 'AMBIGUOUS_PERSONALIZE_CANDIDATES':
+          {
+            //several People profiles satisfy supplied user identity, check at Customer Portal
+          }
+          break;
+        default:
+          {
+            debugPrint('MobileMessaging: error is $error');
+          }
+      }
       debugPrint('Error Type Personalize ------>${error}');
     });
 
-    await InfobipMobilemessaging.saveUser(user).onError((error, stackTrace) {
+    await InfobipMobilemessaging.saveUser(user).onError((error, stackTrace) async {
       debugPrint('Error Type Save User ------>${error}');
+      switch ((error as services.PlatformException).code) {
+        case 'PHONE_INVALID':
+          {
+            //the phone provided was not recognized as a valid one
+
+            var userWithoutPhone = UserData(
+              firstName: userData.firstName,
+              lastName: userData.lastName,
+              emails: userData.emails,
+              gender: Gender.Male,
+              phones: [],
+              customAttributes: userData.customAttributes ?? {},
+              externalUserId: userData.externalUserId,
+            );
+
+            await InfobipMobilemessaging.saveUser(userWithoutPhone);
+          }
+          break;
+        case 'EMAIL_INVALID':
+          {
+            //the email provided was not recognized as a valid one
+            var userWithoutEmail = UserData(
+              firstName: userData.firstName,
+              lastName: userData.lastName,
+              emails: [],
+              gender: Gender.Male,
+              phones: userData.phones,
+              customAttributes: userData.customAttributes ?? {},
+              externalUserId: userData.externalUserId,
+            );
+
+            await InfobipMobilemessaging.saveUser(userWithoutEmail);
+          }
+          break;
+        case 'AMBIGUOUS_PERSONALIZE_CANDIDATES':
+          {
+            //several People profiles satisfy supplied user identity, check at Customer Portal
+          }
+          break;
+        default:
+          {
+            debugPrint('MobileMessaging: error is $error');
+          }
+      }
     });
 
     return true;
   }
 }
+// safe watch down ask to amta with invalid phone number
