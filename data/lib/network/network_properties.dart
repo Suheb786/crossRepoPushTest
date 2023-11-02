@@ -1,4 +1,8 @@
 class NetworkProperties {
+  /// TIME OUT...
+  static Duration MAIN_TIMEOUT = Duration(minutes: 3);
+  static Duration WARNING_TIMEOUT = Duration(minutes: 1);
+
   /// UAT(RELEASE) CONFIGURATION FOR CHANNEL & ROUTER API
   // static const String BASE_CHANNEL_URL =
   //     "https://MobWeb-uat.theblink.com:2821/api";
@@ -14,12 +18,12 @@ class NetworkProperties {
   static const String BASE_OFFER_CAMPAIGN_URL = "http://10.6.13.2:2186/Offers/api";
 
   /// DEV CONFIGURATION FOR CHANNEL & ROUTER API (GCM)
-  // static const String BASE_CHANNEL_URL = "http://10.6.13.2:8190/api";
-  // static const String BASE_ROUTER_URL = "https://10.6.13.1:2186/api";
-  // static const String BASE_BENEFICIARY_URL = "http://10.6.13.2:8190/contactcenter/api";
-  // static const String BASE_EV0UCHER_URL = "http://10.6.13.2:8190/Voucher/api";
-  // static const String BASE_RJ_URL = "http://10.6.13.2:8190/RJAPI/api";
-  // static const String BASE_OFFER_CAMPAIGN_URL = "http://10.6.13.2:8190/Offers/api";
+// static const String BASE_CHANNEL_URL = "http://10.6.13.2:8190/api";
+// static const String BASE_ROUTER_URL = "https://10.6.13.1:2186/api";
+// static const String BASE_BENEFICIARY_URL = "http://10.6.13.2:8190/contactcenter/api";
+// static const String BASE_EV0UCHER_URL = "http://10.6.13.2:8190/Voucher/api";
+// static const String BASE_RJ_URL = "http://10.6.13.2:8190/RJAPI/api";
+// static const String BASE_OFFER_CAMPAIGN_URL = "http://10.6.13.2:8190/Offers/api";
 
   ///VAPT / PREPROD CONFIGURATION (UAT 1 )
 // static const String BASE_CHANNEL_URL = "https://mobwebuat1.theblink.com:3443/api";

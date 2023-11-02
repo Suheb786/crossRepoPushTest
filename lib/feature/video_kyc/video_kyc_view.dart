@@ -16,6 +16,8 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:data/helper/secure_storage_helper.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 
 class VideoKycPageView extends BasePageViewWidget<VideoKycViewModel> {
   VideoKycPageView(ProviderBase model) : super(model);
@@ -69,6 +71,8 @@ class VideoKycPageView extends BasePageViewWidget<VideoKycViewModel> {
                 initialData: Resource.none(),
                 onData: (response) {
                   if (response.status == Status.SUCCESS) {
+                    SecureStorageHelper.instance.clearToken();
+                    AppConstantsUtils.resetCacheLists();
                     Navigator.pushNamedAndRemoveUntil(
                         context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
                   }

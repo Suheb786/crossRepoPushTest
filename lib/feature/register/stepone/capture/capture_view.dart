@@ -13,6 +13,8 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+import 'package:data/helper/secure_storage_helper.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 
 class CaptureView extends BasePageViewWidget<CaptureViewModel> {
   CaptureView(ProviderBase model) : super(model);
@@ -36,6 +38,8 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                   model.showToastWithError(isImageUploaded.appError!);
                   model.cameraController!.resumePreview();
                   if (isImageUploaded.appError?.type == ErrorType.ID_VERIFICATION_FAILED) {
+                    SecureStorageHelper.instance.clearToken();
+                    AppConstantsUtils.resetCacheLists();
                     Navigator.pushNamedAndRemoveUntil(
                         context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
                   }

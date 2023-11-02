@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:data/helper/encypt_decrypt_helper.dart';
 import 'package:data/helper/secure_storage_helper.dart';
 import 'package:data/network/api_service.dart';
+import 'package:data/network/local_session_service.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/constants/app_constants.dart';
@@ -15,7 +18,9 @@ class ApiInterceptor extends InterceptorsWrapper {
   late Set<String> verifiedURLs = {};
   Future<String>? secure = Future.value('');
 
-  ApiInterceptor(this._previousDio) {
+  LocalSessionService _localSessionService;
+
+  ApiInterceptor(this._previousDio, this._localSessionService) {
     Dio newDio = Dio(_previousDio.options);
     newDio.interceptors.add(_previousDio.interceptors.first);
     apiService = ApiService(newDio, baseUrl: NetworkProperties.BASE_CHANNEL_URL);
@@ -65,6 +70,7 @@ class ApiInterceptor extends InterceptorsWrapper {
     if (err.response!.statusCode == 401) {
       authToken = '';
       SecureStorageHelper.instance.clearToken();
+      _localSessionService.stopTimer();
       return super.onError(err, handler);
     }
     if (err.response!.data != null) {
@@ -73,6 +79,7 @@ class ApiInterceptor extends InterceptorsWrapper {
         if ((err.response!.data as Map<String, dynamic>)['response']['token'] != 'Error') {
           authToken = (err.response!.data as Map<String, dynamic>)['response']['token'] ?? '';
           SecureStorageHelper.instance.storeTokenId(token: authToken);
+          _localSessionService.startTimer();
         }
       }
     }
@@ -84,11 +91,13 @@ class ApiInterceptor extends InterceptorsWrapper {
     if (response.statusCode == 401) {
       authToken = '';
       SecureStorageHelper.instance.clearToken();
+      _localSessionService.stopTimer();
       return super.onResponse(response, handler);
     }
     if (response.realUri.path.contains('logout')) {
       authToken = '';
       SecureStorageHelper.instance.clearToken();
+      _localSessionService.stopTimer();
       return super.onResponse(response, handler);
     }
     if (response.statusCode == 200) {
@@ -98,6 +107,7 @@ class ApiInterceptor extends InterceptorsWrapper {
             authToken = (response.data as Map<String, dynamic>)['response']['token'] ?? '';
             print('authToken11----->$authToken');
             SecureStorageHelper.instance.storeTokenId(token: authToken);
+            _localSessionService.startTimer();
           }
         }
       }

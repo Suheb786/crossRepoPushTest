@@ -30,6 +30,8 @@ import 'package:infobipplugin/infobipplugin.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:riverpod/riverpod.dart';
 
+import '../network/local_session_service.dart';
+
 final localAuthenticationProvider = Provider<LocalAuthentication>(
   (ref) => LocalAuthentication(),
 );
@@ -40,8 +42,13 @@ final bioMetricSourceProvider = Provider<BioMetricService>(
   ),
 );
 
+final localSessionService = Provider<LocalSessionService>(
+  (ref) => LocalSessionService(),
+);
+
 var userLocalDSProvider = Provider<UserLocalDS>(
-  (ref) => UserLocalDSImpl(ref.read(bioMetricSourceProvider), ref.read(secureStorageProvider)),
+  (ref) => UserLocalDSImpl(
+      ref.read(bioMetricSourceProvider), ref.read(secureStorageProvider), ref.read(localSessionService)),
 );
 
 var countryLocalDataProvider = Provider<CountryLocalDs>(

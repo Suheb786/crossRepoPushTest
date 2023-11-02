@@ -49,6 +49,7 @@ dependencies:
   app_links: ^3.4.3
   shared_preferences: ^2.2.1
   pointycastle: ^3.7.3
+  rxdart: any
 
 dev_dependencies:
   flutter_test:
