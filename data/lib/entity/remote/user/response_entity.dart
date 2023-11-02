@@ -1,3 +1,4 @@
+import 'package:data/entity/remote/error/error_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'response_entity.g.dart';
@@ -16,8 +17,11 @@ class ResponseEntity {
   final String? exceptionMessage;
   @JsonKey(name: "id")
   final String? id;
+  @JsonKey(name: "error")
+  final ErrorEntity? error;
 
-  ResponseEntity({this.code, this.content, this.exceptionMessage, this.message, this.token, this.id});
+  ResponseEntity(
+      {this.code, this.content, this.exceptionMessage, this.message, this.token, this.id, this.error});
 
   factory ResponseEntity.fromJson(Map<String, dynamic> json) => _$ResponseEntityFromJson(json);
 

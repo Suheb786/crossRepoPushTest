@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:focus_detector/focus_detector.dart';
 
 import 'measure_size.dart';
 

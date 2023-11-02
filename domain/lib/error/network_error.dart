@@ -1,4 +1,5 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/api_error_model.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/base_error.dart';
 import 'package:domain/model/base/error_info.dart';
@@ -10,8 +11,12 @@ class NetworkError extends BaseError {
       String errorCode = "",
       String message = "",
       required Exception cause,
-      String description = ""})
-      : super(error: ErrorInfo(code: httpError, message: errorCode, description: description), cause: cause);
+      String description = "",
+      APIErrorModel? apiErrorModel})
+      : super(
+            error: ErrorInfo(
+                code: httpError, message: errorCode, description: description, apiErrorModel: apiErrorModel),
+            cause: cause);
 
   @override
   String getFriendlyMessage() {
@@ -57,7 +62,7 @@ class NetworkError extends BaseError {
         return AppError(cause: cause, error: error, type: ErrorType.GET_CALL_DURATION_ERROR);
 
       default:
-        debugPrint("I AM EXECUTED with error code ${error.message}");
+        debugPrint("I AM EXECUTED with error code ${error.message.length}");
         switch (error.message) {
           case "Err-SN1":
             return AppError(cause: cause, error: error, type: ErrorType.MOBILE_ALREADY_EXIST);
@@ -1469,6 +1474,9 @@ class NetworkError extends BaseError {
           case "err-601":
             return AppError(
                 cause: cause, error: error, type: ErrorType.OOPS_YOU_HAVE_EXCEEDED_YOUR_DAILY_TRANSFER_LIMIT);
+
+          case "":
+            return AppError(cause: cause, error: error, type: ErrorType.NO_ERROR_CODE);
 
           default:
             return AppError(cause: cause, error: error, type: ErrorType.NETWORK);

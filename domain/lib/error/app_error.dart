@@ -6,6 +6,7 @@ class AppError implements Exception {
   ErrorInfo error;
   Exception cause;
 
+
   AppError({
     required this.cause,
     required this.error,
