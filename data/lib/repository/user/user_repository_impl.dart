@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:blinkid_flutter/types.dart';
 import 'package:dartz/dartz.dart';
 import 'package:data/db/exception/app_local_exception.dart';
@@ -5,6 +8,7 @@ import 'package:data/db/safe_db_call.dart';
 import 'package:data/entity/local/base/crypto_util.dart';
 import 'package:data/helper/key_helper.dart';
 import 'package:data/helper/string_converter.dart';
+import 'package:data/network/network_properties.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/user/user_data_sources.dart';
 import 'package:domain/error/base_error.dart';
@@ -34,6 +38,7 @@ import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/model/user/status/customer_status.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/repository/user/user_repository.dart';
+import 'package:flutter/cupertino.dart';
 
 /// user repository management class
 class UserRepositoryImpl extends UserRepository {
@@ -602,6 +607,13 @@ class UserRepositoryImpl extends UserRepository {
         response = r.data.transform();
         var decryptedData = decryptAESCryptoJS(
             encryptedContent: response.content ?? '', decryptionKey: KeyHelper.DECRYPTION_KEY);
+
+        NetworkProperties.MAIN_TIMEOUT = Duration(
+            minutes: int.tryParse(json.decode(decryptedData)["dynamicObject"]['TokenTimeOut'] ?? "3") ?? 3);
+        NetworkProperties.WARNING_TIMEOUT = NetworkProperties.MAIN_TIMEOUT - Duration(minutes: 1);
+
+        debugPrint("NetworkProperties.MAIN_TIMEOUT -- ${NetworkProperties.MAIN_TIMEOUT}");
+        debugPrint("NetworkProperties.WARNING_TIMEOUT -- ${NetworkProperties.WARNING_TIMEOUT}");
       }
       return Right(r.isSuccessful());
     });
