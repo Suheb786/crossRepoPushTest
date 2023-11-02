@@ -95,6 +95,7 @@ class RJBookingSuccessPageView extends BasePageViewWidget<RJBookingSuccessPageVi
                     text: S.of(context).backToDashboard,
                     onPressed: () {
                       Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+                      model.animateBackToDashboard(context);
                       ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
                     },
                     activeBackgroundColor: Theme.of(context).colorScheme.secondary,

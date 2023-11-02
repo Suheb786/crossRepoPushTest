@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,9 +10,6 @@ import '../../../di/rj/rj_modules.dart';
 import '../../../main/navigation/route_paths.dart';
 
 class RJBookingSuccessPage extends BasePage<RJBookingSuccessPageViewModel> {
-  // final RJBookingSuccessPageArguments rjBookingSuccessPageArguments;
-
-  // RJBookingSuccessPage(this.rjBookingSuccessPageArguments);
   @override
   State<StatefulWidget> createState() => RJBookingSuccessPageState();
 }
@@ -33,6 +29,7 @@ class RJBookingSuccessPageState
   @override
   Future<bool> onBackPressed(RJBookingSuccessPageViewModel model, {param}) {
     Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+    model.animateBackToDashboard(context);
     ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
     return super.onBackPressed(model);
   }
