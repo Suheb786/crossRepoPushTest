@@ -2,7 +2,6 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/feature/sub_account/transfer/transfer_success/transfer_success_page_view.dart';
 import 'package:neo_bank/feature/sub_account/transfer/transfer_success/transfer_success_page_view_model.dart';
-import 'package:riverpod/src/framework.dart';
 
 import '../../../../base/base_page.dart';
 import '../../../../di/dashboard/dashboard_modules.dart';
