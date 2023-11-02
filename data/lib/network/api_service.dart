@@ -326,7 +326,9 @@ import '../entity/remote/sub_account/close_sub_account/close_sub_account_request
 import '../entity/remote/sub_account/transfer_account/response/account_to_account_transfer_response_entity.dart';
 import '../entity/remote/sub_account/transfer_account/transfer_account_request_entity.dart';
 import '../entity/remote/sub_account/update_nick_name/update_nick_name_request_entity.dart';
-import '../entity/remote/user/account_registration/update_idwise_status_request_entity.dart';
+import '../entity/remote/user/account_registration/check_journey_status/check_journey_status_response_entity.dart';
+import '../entity/remote/user/account_registration/process_journey_via_mobile/process_journey_via_mobile_response_entity.dart';
+import '../entity/remote/user/account_registration/check_journey_status/check_journey_status_request_entity.dart';
 import '../entity/remote/user/account_registration/send_email_otp_request.dart';
 import '../entity/remote/user/account_registration/update_journey/update_journey_response_entity.dart';
 import '../entity/remote/user/account_registration/verify_email_otp_request.dart';
@@ -1259,10 +1261,10 @@ abstract class ApiService {
   @POST("${NetworkProperties.BASE_ONBOARDING_URL}/UpdateJourney")
   Future<HttpResponse<UpdateJourneyResponseEntity>> updateJourney(@Body() UpdateJourneyRequestEntity request);
 
-  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/UpdateIDWiseStatus")
-  Future<HttpResponse<ResponseEntity>> updateIdWiseStatus(@Body() UpdateIDWiseStatusRequestEntity request);
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/CheckJourneryStatus")
+  Future<HttpResponse<CheckJourneyStatusResponseEntity>> checkJourneyStatus(@Body() CheckJourneyStatusRequestEntity request);
 
   @POST("${NetworkProperties.BASE_ONBOARDING_URL}/ProcessJourneyViaMobile")
-  Future<HttpResponse<ResponseEntity>> processJourneyViaMobile(
+  Future<HttpResponse<ProcessJourneViaMobileResponseEntity>> processJourneyViaMobile(
       @Body() ProcessJourneyViaMobileRequestEntity request);
 }

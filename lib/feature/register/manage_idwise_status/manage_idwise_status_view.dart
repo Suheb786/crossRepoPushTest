@@ -1,3 +1,5 @@
+import 'package:domain/model/user/check_journey_status/check_journey_status.dart';
+import 'package:domain/model/user/process_journey_via_mobile/process_journey.dart';
 import 'package:flutter/material.dart';
 import 'package:jumping_dot/jumping_dot.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -10,6 +12,8 @@ import '../../../ui/molecules/app_svg.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../utils/asset_utils.dart';
 import '../../../utils/color_utils.dart';
+import '../../../utils/resource.dart';
+import '../../../utils/status.dart';
 import '../../../utils/string_utils.dart';
 import 'manage_idwise_status_model.dart';
 
@@ -74,39 +78,37 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
           SizedBox(
             height: 16.h,
           ),
-          AppStreamBuilder<bool>(
-              stream: model.verifyNationalIDStream,
-              initialData: false,
-              onData: (passwordData) {},
-              dataBuilder: (context, data) {
+          AppStreamBuilder<Resource<ProcessJourney>>(
+              initialData: Resource.none(),
+              stream: model.processJourneyViaMobileStream,
+              dataBuilder: (context, snapshot) {
                 return IDWiseProcessingStatusWidget(
                   label: S.of(context).verifyingYourNationalID,
-                  isActivated: data!,
+                  isActivated: snapshot?.data?.isAllowPooling ?? false,
                 );
               }),
           SizedBox(
             height: 16.h,
           ),
-          AppStreamBuilder<bool>(
-              stream: model.verifySelfieStream,
-              initialData: false,
-              onData: (passwordData) {
-                if (passwordData) {
-                  /* Future.delayed(Duration(milliseconds: 2000), () {
-                    Navigator.pushNamedAndRemoveUntil(context, RoutePaths.Registration, (route) => false,
-                        arguments: RegisterPageParams());
-                  });*/
+          AppStreamBuilder<Resource<CheckJourneyStatus>>(
+              initialData: Resource.none(),
+              stream: model.checkJourneyStatusStream,
+              onData: (value) {
+                if(value.status == Status.SUCCESS){
+                  if(!value.data!.keepPooling){
+
+                  }
                 }
               },
-              dataBuilder: (context, data) {
+              dataBuilder: (context, snapshot) {
                 return IDWiseProcessingStatusWidget(
                   label: S.of(context).validatingYourSelfie,
-                  isActivated: data!,
+                  isActivated: !(snapshot?.data?.keepPooling ?? true),
                 );
               }),
           Spacer(),
           Container(
-            padding: EdgeInsets.only(left: 24.w,right: 24.w,bottom: 24.h),
+            padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 24.h),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,

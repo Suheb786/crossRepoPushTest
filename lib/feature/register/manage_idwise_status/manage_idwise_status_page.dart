@@ -26,10 +26,17 @@ class ManageIDWiseStatusPageState
   ProviderBase provideBase() {
     return manageIDWiseStatusViewModel;
   }
+
+  @override
+  void onModelReady(ManageIDWiseStatusViewModel model) {
+    model.arguments = widget._arguments;
+    super.onModelReady(model);
+  }
 }
 
 class ManageIDWiseStatusParams {
   final String? journeyId;
+  final String? referenceNumber;
 
-  ManageIDWiseStatusParams({this.journeyId});
+  ManageIDWiseStatusParams({this.journeyId, this.referenceNumber});
 }

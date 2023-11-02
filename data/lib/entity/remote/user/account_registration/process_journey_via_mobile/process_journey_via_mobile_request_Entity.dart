@@ -9,14 +9,21 @@ class ProcessJourneyViaMobileRequestEntity {
   )
   final String? JourneyId;
   @JsonKey(
-    name: "refID", // this Param need confirm from Backend
+    name: "ReferenceId", // this Param need confirm from Backend
     defaultValue: "",
   )
   final String? ReferenceID;
+  @JsonKey(name: "GetToken")
+  final bool? getToken;
+
+  @JsonKey(name: "BaseClass")
+  final Map<String, dynamic> baseData;
 
   ProcessJourneyViaMobileRequestEntity({
     required this.JourneyId,
     required this.ReferenceID,
+    required this.getToken,
+    required this.baseData
   });
 
   factory ProcessJourneyViaMobileRequestEntity.fromJson(Map<String, dynamic> json) =>

@@ -7,7 +7,7 @@ import 'package:data/entity/remote/accountsettings/verify_change_email_request.d
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/base/base_response.dart';
-import 'package:data/entity/remote/user/account_registration/update_idwise_status_request_entity.dart';
+import 'package:data/entity/remote/user/account_registration/check_journey_status/check_journey_status_request_entity.dart';
 import 'package:data/entity/remote/user/account_registration/process_journey_via_mobile/process_journey_via_mobile_request_Entity.dart';
 import 'package:data/entity/remote/user/account_registration/send_email_otp_request.dart';
 import 'package:data/entity/remote/user/account_registration/update_journey_request_entity.dart';
@@ -69,11 +69,13 @@ import 'package:domain/model/user/confirm_application_data_get/fatca_crs_info.da
 import 'package:domain/model/user/confirm_application_data_get/job_detail_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
 import 'package:domain/model/user/user.dart';
-import 'package:domain/usecase/user/process_journey_usecase.dart';
+import 'package:domain/usecase/user/check_journey_status_usecase.dart';
 import 'package:domain/usecase/user/process_journey_via_mobile_usecase.dart';
 import 'package:domain/usecase/user/update_journey_usecase.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../../entity/remote/user/account_registration/check_journey_status/check_journey_status_response_entity.dart';
+import '../../../entity/remote/user/account_registration/process_journey_via_mobile/process_journey_via_mobile_response_entity.dart';
 import '../../../entity/remote/user/account_registration/update_journey/update_journey_response_entity.dart';
 import '../../../entity/remote/user/account_registration/verify_email_otp_request.dart';
 
@@ -476,7 +478,8 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<UpdateJourneyResponseEntity>> updateJourney({required UpdateJourneyUseCaseParams params}) async {
+  Future<HttpResponse<UpdateJourneyResponseEntity>> updateJourney(
+      {required UpdateJourneyUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.updateJourney(UpdateJourneyRequestEntity(
       userID: params.userID,
@@ -488,24 +491,27 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> updateIdWiseStatus({required UpdateIDWiseStatusUseCaseParams params}) async {
+  Future<HttpResponse<CheckJourneyStatusResponseEntity>> updateIdWiseStatus(
+      {required CheckJourneyStatusUseCaseUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.updateIdWiseStatus(UpdateIDWiseStatusRequestEntity(
-      refID: params.refID,
-      journeyID: params.journeyID,
-      baseClass: baseData.toJson(),
+    return _apiService.checkJourneyStatus(CheckJourneyStatusRequestEntity(
+      referenceId: params.referenceId,
+      journeyId: params.journeyId,
+      baseData: baseData.toJson(),
+      getToken: true,
     ));
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> processJourneyViaMobile(
+  Future<HttpResponse<ProcessJourneViaMobileResponseEntity>> processJourneyViaMobile(
       {required ProcessJourneyViaMobileUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.processJourneyViaMobile(
       ProcessJourneyViaMobileRequestEntity(
-        JourneyId: params.JourneyId,
-        ReferenceID: params.ReferenceID,
-      ),
+          JourneyId: params.journeyId,
+          ReferenceID: params.referenceID,
+          baseData: baseData.toJson(),
+          getToken: true),
     );
   }
 }

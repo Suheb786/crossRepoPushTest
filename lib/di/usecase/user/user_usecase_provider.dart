@@ -7,6 +7,7 @@ import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
 import 'package:domain/usecase/user/change_my_number_usecase.dart';
 import 'package:domain/usecase/user/check_bio_metric_support_use_case.dart';
 import 'package:domain/usecase/user/check_customer_status_usecase.dart';
+import 'package:domain/usecase/user/check_journey_status_usecase.dart';
 import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
 import 'package:domain/usecase/user/check_username_usecase.dart';
 import 'package:domain/usecase/user/check_version_update_usecase.dart';
@@ -197,3 +198,6 @@ final updateJourneyUseCaseProvider =
 
 final processJourneyViaMobileUseCaseProvider = Provider.autoDispose<ProcessJourneyViaMobileUseCase>(
     (ref) => ProcessJourneyViaMobileUseCase(ref.read(userRepoProvider)));
+
+final checkJourneyStatusUseCaseProvider = Provider.autoDispose<CheckJourneyStatusUseCase>(
+    (ref) => CheckJourneyStatusUseCase(ref.read(userRepoProvider)));

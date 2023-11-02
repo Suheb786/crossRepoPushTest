@@ -7,12 +7,12 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../utils/resource.dart';
-import '../failure_scenarios/failure_scenarios_page.dart';
 import '../manage_idwise_status/manage_idwise_status_page.dart';
 
 class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel> {
@@ -24,7 +24,13 @@ class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel>
         stream: model.updateJourneyStream,
         initialData: Resource.none(),
         onData: (updateJourney) async {
-          if (!updateJourney.data!.documentStatus) {
+          if(updateJourney.status == Status.SUCCESS){
+            Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
+                arguments: ManageIDWiseStatusParams(
+                    journeyId: model.journeyId, referenceNumber: model.referenceNumber));
+          }
+
+          /* if (!updateJourney.data!.documentStatus) {
             Navigator.pushReplacementNamed(context, RoutePaths.OnboardingFailurScenariosPage,
                 arguments: OnboardingFailureScenarioArgument(
                     title: updateJourney.data!.documentTitle,
@@ -36,7 +42,7 @@ class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel>
           } else {
             Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
                 arguments: ManageIDWiseStatusParams(journeyId: model.journeyId));
-          }
+          }*/
         },
         dataBuilder: (context, snapshot) {
           return Container(
