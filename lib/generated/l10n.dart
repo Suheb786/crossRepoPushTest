@@ -19070,11 +19070,21 @@ class S {
     );
   }
 
-  /// `Please bare with us,\nwe are processing\nyour information`
+  /// `Please bare with us,we are processing`
   String get bareWithUsProcessing {
     return Intl.message(
-      'Please bare with us,\nwe are processing\nyour information',
+      'Please bare with us,we are processing',
       name: 'bareWithUsProcessing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `your information`
+  String get yourInformation {
+    return Intl.message(
+      'your information',
+      name: 'yourInformation',
       desc: '',
       args: [],
     );

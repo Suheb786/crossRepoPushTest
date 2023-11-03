@@ -48,7 +48,7 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
                     arguments: ManageIDWiseStatusParams(
                         isAhwalCheckPassed: kycData.type == 'AhwalCheck',
                         isFaceMatchScorePassed: kycData.type == 'ProcessSelfieImage',
-                        journeyId: ''));
+                        journeyId: model.arguments.journeyId));
               } else {
                 Navigator.pushReplacementNamed(context, RoutePaths.Registration,
                     arguments: RegisterPageParams(

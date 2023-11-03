@@ -523,7 +523,7 @@ class AppRouter {
 
       case RoutePaths.ChangeDeviceSuccess:
         return CupertinoPageRoute(
-            builder: (context) => ChangeDeviceSuccessPage(),
+            builder: (context) => ChangeDeviceSuccessPage(settings.arguments as ChangeDeviceParams),
             settings: RouteSettings(name: RoutePaths.ChangeDeviceSuccess));
 
       case RoutePaths.SupplementaryDebitCardSuccess:

@@ -7,6 +7,8 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
+import 'change_device_success_page.dart';
+
 class ChangeDeviceSuccessPageViewModel extends BasePageViewModel {
   final CheckKYCStatusUseCase _kycStatusUseCase;
 
@@ -18,6 +20,8 @@ class ChangeDeviceSuccessPageViewModel extends BasePageViewModel {
 
   ///kyc status response stream
   Stream<Resource<CheckKycResponse>> get kycStatusStream => _kycStatusResponse.stream;
+
+  late ChangeDeviceParams arguments;
 
   ChangeDeviceSuccessPageViewModel(this._kycStatusUseCase) {
     _kycStatusRequest.listen((value) {

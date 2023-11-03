@@ -1910,5 +1910,6 @@
   "continueText": "Continue",
   "tryAgain": "Try again",
   "logOutTryLater": "Log out and try again later",
-  "bareWithUsProcessing": "Please bare with us,\nwe are processing\nyour information"
+  "bareWithUsProcessing": "Please bare with us,we are processing",
+  "yourInformation": "your information"
 }

@@ -112,7 +112,7 @@ class OtpForChangeDeviceConfirmationPageView
                             model.clearWallet();
                             model.antelopSdkInitialize();
                           }
-                          Navigator.pushReplacementNamed(context, RoutePaths.ChangeDeviceSuccess);
+                          Navigator.pushReplacementNamed(context, RoutePaths.ChangeDeviceSuccess,arguments: model.arguments.journeyId);
                         } else if (data.status == Status.ERROR) {
                           model.showToastWithError(data.appError!);
                         }

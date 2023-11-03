@@ -67,12 +67,29 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                       SizedBox(
                         height: 56.h,
                       ),
-                      Center(
-                        child: Stack(
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 48.w),
+                        child: Flexible(
+                          child: Text(
+                            S.of(context).bareWithUsProcessing,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 24.t,
+                                color: Theme.of(context).colorScheme.secondary),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 48.w),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Flexible(
                               child: Text(
-                                S.of(context).bareWithUsProcessing + "        ",
+                                S.of(context).yourInformation,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
@@ -81,9 +98,8 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                                     color: Theme.of(context).colorScheme.secondary),
                               ),
                             ),
-                            PositionedDirectional(
-                              bottom: 10,
-                              end: 0,
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 8),
                               child: JumpingDots(
                                 color: AppColor.white,
                                 radius: 4,
