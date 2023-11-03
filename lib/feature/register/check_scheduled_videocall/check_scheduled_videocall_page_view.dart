@@ -44,6 +44,8 @@ class CheckScheduledVideoCallPageView extends BasePageViewWidget<CheckScheduledV
                       initialData: Resource.none(),
                       onData: (response) {
                         if (response.status == Status.SUCCESS) {
+                          SecureStorageHelper.instance.clearToken();
+                          AppConstantsUtils.resetCacheLists();
                           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.OnBoarding));
                         }
                       },

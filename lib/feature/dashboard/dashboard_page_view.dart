@@ -182,6 +182,8 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
               initialData: Resource.none(),
               onData: (response) {
                 if (response.status == Status.SUCCESS) {
+                  SecureStorageHelper.instance.clearToken();
+                  AppConstantsUtils.resetCacheLists();
                   Navigator.pushNamedAndRemoveUntil(
                       context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
                 }

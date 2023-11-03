@@ -8490,10 +8490,10 @@ class S {
     );
   }
 
-  /// `Session Timeout.`
+  /// `Session timeout.`
   String get sessionTimeout {
     return Intl.message(
-      'Session Timeout.',
+      'Session timeout.',
       name: 'sessionTimeout',
       desc: '',
       args: [],
@@ -18610,6 +18610,16 @@ class S {
     );
   }
 
+  /// `You have been timed-out due to account inactivity. You will be automatically logged out in `
+  String get timeOutText1 {
+    return Intl.message(
+      'You have been timed-out due to account inactivity. You will be automatically logged out in ',
+      name: 'timeOutText1',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{String} days left`
   String daysLeft(Object String) {
     return Intl.message(
@@ -18805,6 +18815,26 @@ class S {
     return Intl.message(
       'Oops! This recipient is already saved in your Blink contacts.',
       name: 'receipientAlreadySaved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please continue to stay logged in.`
+  String get pleaseContinueToStayLoggedIn {
+    return Intl.message(
+      'Please continue to stay logged in.',
+      name: 'pleaseContinueToStayLoggedIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get continueText {
+    return Intl.message(
+      'Continue',
+      name: 'continueText',
       desc: '',
       args: [],
     );
