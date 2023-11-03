@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -887,7 +886,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Depart on date should not be greater than return date"),
         "dateOfBirth": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
         "dateOfBirthSmall":
-            MessageLookupByLibrary.simpleMessage("Date of Birth"),
+            MessageLookupByLibrary.simpleMessage("Date Of Birth"),
         "daysLeft": m1,
         "dcEnterOtpHeader":
             MessageLookupByLibrary.simpleMessage("Enter 6-digit OTP sent to"),
@@ -1431,6 +1430,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Invalid Expiry Date"),
         "expiryDateHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Expiry Date"),
+        "expiryDateS": MessageLookupByLibrary.simpleMessage("Expiry Date"),
         "expiryDateSmall": MessageLookupByLibrary.simpleMessage("Expiry Date"),
         "explainReason": MessageLookupByLibrary.simpleMessage("EXPLAIN REASON"),
         "explanation": MessageLookupByLibrary.simpleMessage("EXPLANATION"),
@@ -1954,8 +1954,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "isRequesting": MessageLookupByLibrary.simpleMessage(" is Requesting"),
         "isoNationalityNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-087)"),
-        "issuingDate": MessageLookupByLibrary.simpleMessage("Issuing date"),
-        "issuingPlace": MessageLookupByLibrary.simpleMessage("Issuing place"),
+        "issuingDate": MessageLookupByLibrary.simpleMessage("Issuing Date"),
+        "issuingPlace": MessageLookupByLibrary.simpleMessage("Issuing Place"),
         "issuingSuppCreditCard": MessageLookupByLibrary.simpleMessage(
             "Issuing your supplementary credit card"),
         "issuingYourCreditCard":
@@ -1976,7 +1976,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "last_60_days": MessageLookupByLibrary.simpleMessage("Last 60 days"),
         "last_90_days": MessageLookupByLibrary.simpleMessage("Last 90 days"),
         "legalDocumentNo":
-            MessageLookupByLibrary.simpleMessage("LEGAL DOCUMENT NO."),
+            MessageLookupByLibrary.simpleMessage("Legal Document No."),
         "lessThanPrimary": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-153)"),
         "letsCreateNewCliqId": MessageLookupByLibrary.simpleMessage(
@@ -2136,7 +2136,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "monthlyIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Monthly Income"),
         "more": MessageLookupByLibrary.simpleMessage("MORE"),
-        "motherName": MessageLookupByLibrary.simpleMessage("MOTHER’S NAME"),
+        "motherName": MessageLookupByLibrary.simpleMessage("Mother\'s Name"),
         "motherNameHint":
             MessageLookupByLibrary.simpleMessage("Please enter mother\'s name"),
         "mothersBirthplace":
@@ -2160,11 +2160,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Spotify Monthly Subscription"),
         "myVouchers": MessageLookupByLibrary.simpleMessage("My Vouchers"),
         "name": MessageLookupByLibrary.simpleMessage("NAME AS PER ID"),
-        "nameAsPerID": MessageLookupByLibrary.simpleMessage("Name as per ID"),
+        "nameAsPerID": MessageLookupByLibrary.simpleMessage("Name As Per ID"),
         "nameAsPerIncomeTaxReturn": MessageLookupByLibrary.simpleMessage(
             "NAME AS PER INCOME TAX RETURN"),
         "nameHint": MessageLookupByLibrary.simpleMessage("Please Enter Name"),
         "nameOfBeneficiary": MessageLookupByLibrary.simpleMessage("Name"),
+        "nationalID": MessageLookupByLibrary.simpleMessage("National ID"),
         "nationalId":
             MessageLookupByLibrary.simpleMessage("NATIONAL ID NUMBER"),
         "nationality": MessageLookupByLibrary.simpleMessage("NATIONALITY"),
@@ -2443,7 +2444,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pinDoesNotMatch":
             MessageLookupByLibrary.simpleMessage("Pin does not match"),
         "pinRequired": MessageLookupByLibrary.simpleMessage("Pin Required"),
-        "placeOfBirth": MessageLookupByLibrary.simpleMessage("Place of birth"),
+        "placeOfBirth": MessageLookupByLibrary.simpleMessage("Place Of Birth"),
         "placeholderIdNull":
             MessageLookupByLibrary.simpleMessage("PlaceHolder Id is null"),
         "platformNotFound": MessageLookupByLibrary.simpleMessage(

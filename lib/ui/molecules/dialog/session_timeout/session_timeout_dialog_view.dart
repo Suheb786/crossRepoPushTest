@@ -89,7 +89,6 @@ class SessionTimeoutDialogView extends StatelessWidget {
                             ),
                             onEnd: () {},
                             widgetBuilder: (context, currentTimeRemaining) {
-                              print("remaining timer --- ${currentTimeRemaining?.sec ?? "00"}");
                               return currentTimeRemaining == null
                                   ? Padding(
                                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
