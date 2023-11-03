@@ -1,4 +1,3 @@
-import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/user/check_journey_status/check_journey_status.dart';
 import 'package:domain/model/user/process_journey_via_mobile/process_journey.dart';
@@ -6,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jumping_dot/jumping_dot.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
-import 'package:riverpod/src/framework.dart';
-
 import '../../../base/base_page.dart';
 import '../../../di/login/login_module.dart';
 import '../../../generated/l10n.dart';
