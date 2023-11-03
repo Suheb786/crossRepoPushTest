@@ -95,7 +95,8 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
   Future<void> openIdwise(User data) async {
     /*IdWiseHelper idWiseHelper = IdWiseHelper();
     idWiseHelper.initializeIdWise();
-    var status = await idWiseHelper.startVerification(Localizations.localeOf(appLevelKey.currentState!.context).languageCode, data.idWiseRefId ?? '');
+    var status = await idWiseHelper.startVerification(
+        Localizations.localeOf(appLevelKey.currentState!.context).languageCode, data.idWiseRefId ?? '');
 
     debugPrint("STATUS : ${status.keys.first}");
     debugPrint("TEXT :  ${status.values.first}");
@@ -104,11 +105,9 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
       referenceNumber = data.idWiseRefId!;
       journeyId = status.values.first;
       udpateJourney(userID: data.id, refID: data.idWiseRefId, journeyID: status.values.first, status: "");
-    } else if (status.keys.first == IDWiseStatus.ERROR) {
-
-    }*/
-   referenceNumber = data.idWiseRefId ?? '';
-   journeyId = "65423170f0ae36ab6f7ef75a";
-   udpateJourney(userID: data.id, refID: data.idWiseRefId, journeyID: journeyId, status: "");
+    } else if (status.keys.first == IDWiseStatus.ERROR) {}*/
+    // referenceNumber = data.idWiseRefId ?? '';
+    journeyId = "65423170f0ae36ab6f7ef75a";
+    udpateJourney(userID: data.id, refID: data.idWiseRefId, journeyID: journeyId, status: "");
   }
 }

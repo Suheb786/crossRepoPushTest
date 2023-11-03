@@ -1,3 +1,4 @@
+import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:riverpod/src/framework.dart';
 
@@ -35,8 +36,7 @@ class ManageIDWiseStatusPageState
 }
 
 class ManageIDWiseStatusParams {
-  final String? journeyId;
-  final String? referenceNumber;
+  CheckKYCData checkKYCData;
 
-  ManageIDWiseStatusParams({this.journeyId, this.referenceNumber});
+  ManageIDWiseStatusParams({required this.checkKYCData});
 }

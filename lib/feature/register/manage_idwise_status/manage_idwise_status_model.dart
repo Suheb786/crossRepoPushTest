@@ -1,6 +1,9 @@
+import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/user/check_journey_status/check_journey_status.dart';
 import 'package:domain/model/user/process_journey_via_mobile/process_journey.dart';
+import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/user/check_journey_status_usecase.dart';
+import 'package:domain/usecase/user/get_current_user_usecase.dart';
 import 'package:domain/usecase/user/process_journey_via_mobile_usecase.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
@@ -14,7 +17,7 @@ import 'manage_idwise_status_page.dart';
 class ManageIDWiseStatusViewModel extends BasePageViewModel {
   final ProcessJourneyViaMobileUseCase _processJourneyViaMobileUseCase;
   final CheckJourneyStatusUseCase _checkJourneyStatusUseCase;
-
+  final GetCurrentUserUseCase _getCurrentUserUseCase;
   late ManageIDWiseStatusParams arguments;
 
   ///--------------------------process journey via mobile--------------------------
@@ -32,7 +35,14 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
 
   Stream<Resource<CheckJourneyStatus>> get checkJourneyStatusStream => _checkJourneyStatusResponse.stream;
 
-  ManageIDWiseStatusViewModel(this._processJourneyViaMobileUseCase, this._checkJourneyStatusUseCase) {
+  //----------------------get current user -------------------------------
+
+  final PublishSubject<GetCurrentUserUseCaseParams> _currentUserRequestSubject = PublishSubject();
+
+  late User user;
+
+  ManageIDWiseStatusViewModel(
+      this._processJourneyViaMobileUseCase, this._checkJourneyStatusUseCase, this._getCurrentUserUseCase) {
     _processJourneyViaMobileRequest.listen((value) {
       RequestManager(value, createCall: () => _processJourneyViaMobileUseCase.execute(params: value))
           .asFlow()
@@ -42,7 +52,7 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           if (event.data!.isAllowPooling) {
-            checkJourneyStatus(journeyId: arguments.journeyId, referenceId: arguments.referenceNumber);
+            checkJourneyStatus(journeyId: '', referenceId: user.idWiseRefId);
           }
         }
       });
@@ -56,19 +66,29 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          if(event.data!.keepPooling){
-            Future.delayed(
-                Duration(seconds: 3),
-                    () => {
-                  checkJourneyStatus(journeyId: arguments.journeyId, referenceId: arguments.referenceNumber)
-                });
+          if (event.data!.keepPooling) {
+            Future.delayed(Duration(seconds: 3),
+                () => {checkJourneyStatus(journeyId: '', referenceId: user.idWiseRefId)});
           }
         }
       });
     });
 
-    Future.delayed(Duration(milliseconds: 700),
-        () => {processJourneyViaMobile(refID: arguments.referenceNumber, journeyID: arguments.journeyId)});
+    _currentUserRequestSubject.listen((value) {
+      RequestManager(value, createCall: () => _getCurrentUserUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) async {
+        if (event.status == Status.SUCCESS) {
+          user = event.data!;
+
+          if(arguments.checkKYCData.type == null || arguments.checkKYCData.type == 'AhwalCheck'){
+            processJourneyViaMobile(refID: user.idWiseRefId, journeyID: '');
+          } else if (arguments.checkKYCData.type == 'FaceMatchScore'){
+            checkJourneyStatus(journeyId: '',referenceId: user.idWiseRefId);
+          }
+        }
+      });
+    });
   }
 
   void checkJourneyStatus({required String? journeyId, required String? referenceId}) {

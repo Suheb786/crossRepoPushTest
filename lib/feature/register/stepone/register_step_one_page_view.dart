@@ -51,8 +51,6 @@ class RegisterStepOnePageView extends BasePageViewWidget<RegisterStepOneViewMode
                   child: Text(
                     StepTextHelper.registrationFirstStepTextHelper(
                       currentStep ?? 0,
-                      S.of(context).idVerificationInfoHeader,
-                      S.of(context).pleaseConfirmYourIDDetailsBelow,
                       S.of(context).whereDoYouCurrentlyLive,
                       S.of(context).tellUsAboutYourProfile,
                     ),

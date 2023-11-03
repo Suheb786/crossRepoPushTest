@@ -385,7 +385,7 @@ abstract class ApiService {
   Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>> saveResidenceInformation(
       @Body() SaveResidenceInformationRequest saveResidenceInformationRequest);
 
-  @POST("/kyc/getstatusV1")
+  @POST("/kyc/getstatusV2")
   Future<HttpResponse<CheckKycStatusResponseEntity>> checkKYCStatus(
       @Body() KYCStatusRequest kycStatusRequest);
 

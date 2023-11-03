@@ -34,7 +34,7 @@ class RegisterPageState extends BaseStatefulPage<RegisterViewModel, RegisterPage
             model.navigateToPage(0);
           });
           Future.delayed(Duration(microseconds: 100), () {
-            ProviderScope.containerOf(context).read(registerStepOneViewModelProvider).moveToPage(2);
+            ProviderScope.containerOf(context).read(registerStepOneViewModelProvider).moveToPage(0);
           });
           break;
 
