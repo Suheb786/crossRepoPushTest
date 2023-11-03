@@ -1,12 +1,17 @@
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/user/check_journey_status/check_journey_status.dart';
 import 'package:domain/model/user/process_journey_via_mobile/process_journey.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jumping_dot/jumping_dot.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:riverpod/src/framework.dart';
 
 import '../../../base/base_page.dart';
+import '../../../di/login/login_module.dart';
 import '../../../generated/l10n.dart';
+import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/account/idwise_processing_status_widget.dart';
 import '../../../ui/molecules/app_svg.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
@@ -15,6 +20,7 @@ import '../../../utils/color_utils.dart';
 import '../../../utils/resource.dart';
 import '../../../utils/status.dart';
 import '../../../utils/string_utils.dart';
+import '../register_page.dart';
 import 'manage_idwise_status_model.dart';
 
 class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewModel> {
@@ -98,7 +104,9 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                           dataBuilder: (context, snapshot) {
                             return IDWiseProcessingStatusWidget(
                               label: S.of(context).verifyingYourNationalID,
-                              isActivated: snapshot?.data?.isAllowPooling ?? false,
+                              isActivated: model.arguments.isAhwalCheckPassed
+                                  ? true
+                                  : snapshot?.data?.isAllowPooling ?? false,
                             );
                           }),
                       SizedBox(
@@ -109,7 +117,17 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                           stream: model.checkJourneyStatusStream,
                           onData: (value) {
                             if (value.status == Status.SUCCESS) {
-                              if (!value.data!.keepPooling) {}
+                              if (!value.data!.keepPooling) {
+                                Navigator.pushReplacementNamed(context, RoutePaths.Registration,
+                                    arguments: RegisterPageParams(
+                                        kycData: CheckKYCData(type: 'CountryResidence'),
+                                        applicationId: ProviderScope.containerOf(context)
+                                            .read(loginViewModelProvider)
+                                            .applicationId));
+                              }
+                            } else if (value.status == Status.ERROR) {
+                              if (value.appError!.error.code == "IDWISE-001") {
+                              } else {}
                             }
                           },
                           dataBuilder: (context, snapshot) {

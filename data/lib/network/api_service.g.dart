@@ -398,7 +398,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/kyc/getstatusV1',
+              '/kyc/getstatusV2',
               queryParameters: queryParameters,
               data: _data,
             )

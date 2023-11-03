@@ -16,7 +16,7 @@ class StepTextHelper {
     }
   }
 
-  static String registrationFirstStepTextHelper(
+  static String accountCreatationTextHelper(
       int index, String step1, String step2, String step3, String step4) {
     switch (index) {
       case 0:
@@ -27,6 +27,18 @@ class StepTextHelper {
         return step3;
       case 3:
         return step4;
+      default:
+        return step2;
+    }
+  }
+
+  static String registrationFirstStepTextHelper(
+      int index, String step1, String step2) {
+    switch (index) {
+      case 0:
+        return step1;
+      case 1:
+        return step2;
       default:
         return step2;
     }

@@ -1,8 +1,10 @@
+import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/user/update_journey/update_journey.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/idwise_intial/idwise_intial_page_view_model.dart';
+import 'package:neo_bank/feature/register/manage_idwise_status/manage_idwise_status_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
@@ -14,7 +16,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../utils/resource.dart';
-import '../manage_idwise_status/manage_idwise_status_page.dart';
+import '../failure_scenarios/failure_scenarios_page.dart';
 
 class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel> {
   IdWiseIntialPageView(ProviderBase model) : super(model);
@@ -26,24 +28,23 @@ class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel>
         initialData: Resource.none(),
         onData: (updateJourney) async {
           if (updateJourney.status == Status.SUCCESS) {
-            Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
-                arguments: ManageIDWiseStatusParams(
-                    journeyId: model.journeyId, referenceNumber: model.referenceNumber));
+            if (!updateJourney.data!.documentStatus) {
+              Navigator.pushReplacementNamed(context, RoutePaths.OnboardingFailurScenariosPage,
+                  arguments: OnboardingFailureScenarioArgument(
+                      title: updateJourney.data!.documentTitle,
+                      description: updateJourney.data!.documentDetail));
+            } else if (!updateJourney.data!.selfieStatus) {
+              Navigator.pushReplacementNamed(context, RoutePaths.OnboardingFailurScenariosPage,
+                  arguments: OnboardingFailureScenarioArgument(
+                      title: updateJourney.data!.selfieTitle, description: updateJourney.data!.selfieDetail));
+            } else {
+              Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
+                  arguments: ManageIDWiseStatusParams(
+                      isAhwalCheckPassed: false,
+                      isFaceMatchScorePassed: false,
+                      journeyId: model.journeyId));
+            }
           }
-
-          /* if (!updateJourney.data!.documentStatus) {
-            Navigator.pushReplacementNamed(context, RoutePaths.OnboardingFailurScenariosPage,
-                arguments: OnboardingFailureScenarioArgument(
-                    title: updateJourney.data!.documentTitle,
-                    description: updateJourney.data!.documentDetail));
-          } else if (!updateJourney.data!.selfieStatus) {
-            Navigator.pushReplacementNamed(context, RoutePaths.OnboardingFailurScenariosPage,
-                arguments: OnboardingFailureScenarioArgument(
-                    title: updateJourney.data!.selfieTitle, description: updateJourney.data!.selfieDetail));
-          } else {
-            Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
-                arguments: ManageIDWiseStatusParams(journeyId: model.journeyId));
-          }*/
         },
         dataBuilder: (context, snapshot) {
           return Container(

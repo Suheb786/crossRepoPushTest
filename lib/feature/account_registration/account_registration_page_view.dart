@@ -95,7 +95,7 @@ class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistration
                         direction: Direction.vertical,
                         offset: 0.5,
                         child: Text(
-                          StepTextHelper.registrationFirstStepTextHelper(
+                          StepTextHelper.accountCreatationTextHelper(
                             currentStep ?? 0,
                             S.of(context).enterEmailAndPassword,
                             S.of(context).enterOtpHeader,

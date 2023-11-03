@@ -56,7 +56,7 @@ final emailOtpViewModelProvider = ChangeNotifierProvider.autoDispose<EmailOtpVie
 );
 
 final manageIDWiseStatusViewModel = ChangeNotifierProvider.autoDispose<ManageIDWiseStatusViewModel>(
-    (ref) => ManageIDWiseStatusViewModel(ref.read(processJourneyViaMobileUseCaseProvider),ref.read(checkJourneyStatusUseCaseProvider)));
+    (ref) => ManageIDWiseStatusViewModel(ref.read(processJourneyViaMobileUseCaseProvider),ref.read(checkJourneyStatusUseCaseProvider),ref.read(currentUserUseCaseProvider)));
 
 final onboardingErrorScenariosPageViewModel =
     ChangeNotifierProvider.autoDispose<OnboardingFailureScenariosPageViewModel>(

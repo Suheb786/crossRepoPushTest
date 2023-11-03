@@ -14,36 +14,32 @@ class IDWiseProcessingStatusWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 48.0.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      padding: EdgeInsets.symmetric(horizontal: 78.0.w),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              isActivated
-                  ? AppSvg.asset(AssetUtils.bold_check_icon,
-                      color: Theme.of(context).colorScheme.secondary, fit: BoxFit.contain)
-                  : Container(
-                      height: 24.0.h,
-                      width: 24.0.w,
-                    ),
-              SizedBox(
-                width: 16.0.w,
-              ),
-              Flexible(
-                child: Text(
-                  label,
-                  style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      fontSize: isActivated ? 16.0.t : 14.0.t,
-                      fontWeight: isActivated ? FontWeight.w800 : FontWeight.w600,
-                      color: isActivated
-                          ? Theme.of(context).colorScheme.secondary
-                          : Theme.of(context).colorScheme.secondary.withOpacity(0.3)),
-                  textAlign: TextAlign.center,
+          isActivated
+              ? AppSvg.asset(AssetUtils.bold_check_icon, color: Theme.of(context).colorScheme.secondary)
+              : Container(
+                  height: 24.0.h,
+                  width: 24.0.w,
                 ),
-              )
-            ],
+          SizedBox(
+            width: 16.0.w,
+          ),
+          Flexible(
+            child: Text(
+              label,
+              style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  fontSize: isActivated ? 16.0.t : 14.0.t,
+                  fontWeight: isActivated ? FontWeight.w800 : FontWeight.w600,
+                  color: isActivated
+                      ? Theme.of(context).colorScheme.secondary
+                      : Theme.of(context).colorScheme.secondary.withOpacity(0.3)),
+              textAlign: TextAlign.center,
+            ),
           )
         ],
       ),

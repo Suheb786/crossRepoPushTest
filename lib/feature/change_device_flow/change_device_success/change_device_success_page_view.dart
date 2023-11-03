@@ -19,6 +19,8 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../register/manage_idwise_status/manage_idwise_status_page.dart';
+
 class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccessPageViewModel> {
   ChangeDeviceSuccessPageView(ProviderBase model) : super(model);
 
@@ -35,12 +37,18 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
                 CheckKYCData();
 
             if (kycData.type?.isNotEmpty ?? false) {
-              if (kycData.type == 'IDCardC' || kycData.type == 'SelfiCheck') {
+              if (kycData.type == 'IDWISE') {
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   RoutePaths.IdWiseIntialPage,
-                      (route) => false,
+                  (route) => false,
                 );
+              } else if (kycData.type == 'AhwalCheck' || kycData.type == 'ProcessSelfieImage') {
+                Navigator.pushNamedAndRemoveUntil(context, RoutePaths.ManageIDWiseStatus, (route) => false,
+                    arguments: ManageIDWiseStatusParams(
+                        isAhwalCheckPassed: kycData.type == 'AhwalCheck',
+                        isFaceMatchScorePassed: kycData.type == 'ProcessSelfieImage',
+                        journeyId: ''));
               } else {
                 Navigator.pushReplacementNamed(context, RoutePaths.Registration,
                     arguments: RegisterPageParams(

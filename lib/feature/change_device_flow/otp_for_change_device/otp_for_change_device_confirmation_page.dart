@@ -77,6 +77,7 @@ class OtpForChangeDeviceConfirmationPageState
 class OtpForChangeDeviceConfirmationPageArguments {
   final String mobileCode;
   final String mobileNumber;
+  final String journeyId;
 
-  OtpForChangeDeviceConfirmationPageArguments({required this.mobileCode, required this.mobileNumber});
+  OtpForChangeDeviceConfirmationPageArguments({required this.mobileCode, required this.mobileNumber,required this.journeyId});
 }

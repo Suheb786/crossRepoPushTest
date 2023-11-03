@@ -28,6 +28,7 @@ class User {
   dynamic localProfileImageDB;
   bool? isProfileApiCall;
   String? idWiseRefId;
+  String? journeyId;
 
   User(
       {this.token,
@@ -58,7 +59,8 @@ class User {
       this.isApplePayPopUpClicked,
       this.localProfileImageDB,
       this.isProfileApiCall,
-      this.idWiseRefId});
+      this.idWiseRefId,
+      this.journeyId});
 
   String get profileName => "${firstName ?? ""} ${lastName ?? ""}";
 
@@ -90,11 +92,10 @@ class User {
       isApplePayPopUpClicked: json["isApplePayPopUpClicked"],
       localProfileImageDB: json["localProfileImageDB"],
       isProfileApiCall: json["isProfileApiCall"],
-      idWiseRefId:json["idWiseRefId"]
-  );
+      idWiseRefId: json["idWiseRefId"],
+      journeyId: json["journeyId"]);
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "token": token,
         "id": id,
         "firstName": firstName,
@@ -122,6 +123,7 @@ class User {
         "isApplePayPopUpClicked": isApplePayPopUpClicked,
         "localProfileImageDB": localProfileImageDB,
         "isProfileApiCall": isProfileApiCall,
-        "idWiseRefId":idWiseRefId
+        "idWiseRefId": idWiseRefId,
+        "journeyId": journeyId
       };
 }
