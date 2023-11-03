@@ -1859,6 +1859,7 @@
   "newRequest": "طلب دفع جديد",
   "chooseTheAccountToPay": "اختر الحساب الي بدك تدفع منه",
   "readyToUseSuccess": "جاهز للاستخدام",
+  "timeOutText1": "You have been timed-out due to account inactivity. You will be automatically logged out in ",
   "ourAgentsAreOccupied": "فريقنا مشغول حاليا بمساعدة أصدقائك في بلينك",
   "ourAgentsAreOccupiedDescription": "شكرا لانتظارك! فريقنا مشغول حاليا بمساعدة أصدقائك في بلينك. يرجى الاتصال معنا لاحقا أو دردش معنا من خلال التطبيق أو تواصل معنا على الرقم 5200100-06.",
   "lostConnection": "الشبكة ضعيفة",
@@ -1883,7 +1884,6 @@
   "yourAccountBalanceSuccessFullyUpdated": "تم تحديث رصيد حسابك بنجاح",
   "accountSuccessfullyClosed": "لقد تم إغلاق الحساب بنجاح.",
   "profileImageDeleted": "تم حذف صورة الملف الشخصي.",
-  "receipientAlreadySaved": "عفوا! هذا المستفيد موجود في قائمة أصدقائك",
   "enterEmailAndPassword": "Enter your email and create your password",
   "changeMyEmail": "Change My Email",
   "okay": "Okay",
@@ -1904,5 +1904,8 @@
   "ensureToHaveNationalId": "Please ensure to have your National ID ready",
   "byContinuingYouAgree": "By continuing you agree to the",
   "privacyPolicy": "Privacy Policy",
-  "donotLeavePage": "Please do not leave the page. You will be\nautomatically redirected once it’s done."
+  "donotLeavePage": "Please do not leave the page. You will be\nautomatically redirected once it’s done.",
+  "receipientAlreadySaved": "عفوا! هذا المستفيد موجود في قائمة أصدقائك",
+  "pleaseContinueToStayLoggedIn": "Please continue to stay logged in.",
+  "continueText" : "Continue"
 }

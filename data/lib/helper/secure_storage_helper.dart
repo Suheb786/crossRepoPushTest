@@ -85,6 +85,7 @@ class SecureStorageHelper {
         secureUser.isApplePayPopUpClicked = user.isApplePayPopUpClicked ?? secureUser.isApplePayPopUpClicked;
         secureUser.localProfileImageDB = user.localProfileImageDB ?? secureUser.localProfileImageDB;
         secureUser.isProfileApiCall = user.isProfileApiCall ?? secureUser.isProfileApiCall;
+        secureUser.idWiseRefId = user.idWiseRefId ?? secureUser.idWiseRefId;
 
         await _storage.write(key: USER, value: json.encode(secureUser.toJson()));
       } else {

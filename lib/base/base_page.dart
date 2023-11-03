@@ -7,8 +7,10 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:focus_detector/focus_detector.dart';
+import 'package:intl/intl.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/base/base_widget.dart';
+import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_progress.dart';
@@ -62,17 +64,13 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
   }
 
   Widget stateBuild(BuildContext context) {
-    return subscribeVisibilityEvents
-        ? FocusDetector(
-            onFocusLost: () => onFocusLost(),
-            onFocusGained: () => onFocusGained(),
-            onVisibilityLost: () => onVisibilityLost(),
-            onVisibilityGained: () => onVisibilityGained(),
-            onForegroundLost: () => onForegroundLost(),
-            onForegroundGained: () => onForegroundGained(),
-            child: _getLayout(),
-          )
-        : _getLayout();
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      child: _getLayout(),
+      onTap: () => ProviderScope.containerOf(context).read(appViewModel).userActivityDetected(),
+      onPanDown: (details) => ProviderScope.containerOf(context).read(appViewModel).userActivityDetected(),
+      onScaleStart: (details) => ProviderScope.containerOf(context).read(appViewModel).userActivityDetected(),
+    );
   }
 
   /// Returns viewModel of the screen
@@ -180,11 +178,10 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
             AntelopHelper.walletDisconnect();
           }
           Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding, (route) => false);
-          // if (ProviderScope.containerOf(context).read(appViewModel) != null) {
-          //   ProviderScope.containerOf(context)
-          //       .read(appViewModel)
-          //       .stopRefreshToken();
-          // }
+        } else if (event.type == ErrorType.NO_ERROR_CODE) {
+          showTopError(Intl.defaultLocale == 'ar'
+              ? event.error.apiErrorModel?.messageAr ?? ''
+              : event.error.apiErrorModel?.messageEn ?? '');
         } else {
           showTopError(ErrorParser.getLocalisedStringError(
             error: event,
@@ -195,12 +192,6 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
     });
 
     bool isLoading = false;
-
-    model.errorStringStream.listen((event) {
-      if (mounted) {
-        showTopError(event);
-      }
-    });
 
     model.toast.listen((message) {
       showShortToast(message);

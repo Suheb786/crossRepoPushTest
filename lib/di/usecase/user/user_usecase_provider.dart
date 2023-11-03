@@ -7,6 +7,7 @@ import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
 import 'package:domain/usecase/user/change_my_number_usecase.dart';
 import 'package:domain/usecase/user/check_bio_metric_support_use_case.dart';
 import 'package:domain/usecase/user/check_customer_status_usecase.dart';
+import 'package:domain/usecase/user/check_journey_status_usecase.dart';
 import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
 import 'package:domain/usecase/user/check_username_usecase.dart';
 import 'package:domain/usecase/user/check_version_update_usecase.dart';
@@ -33,6 +34,7 @@ import 'package:domain/usecase/user/scan_user_document_usecase.dart';
 import 'package:domain/usecase/user/update_journey_usecase.dart';
 import 'package:domain/usecase/user/upload_selfie_image_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
+import 'package:domain/usecase/user/local_session_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[LoginUseCase] provider
@@ -197,3 +199,10 @@ final updateJourneyUseCaseProvider =
 
 final processJourneyViaMobileUseCaseProvider = Provider.autoDispose<ProcessJourneyViaMobileUseCase>(
     (ref) => ProcessJourneyViaMobileUseCase(ref.read(userRepoProvider)));
+
+final checkJourneyStatusUseCaseProvider = Provider.autoDispose<CheckJourneyStatusUseCase>(
+    (ref) => CheckJourneyStatusUseCase(ref.read(userRepoProvider)));
+
+///save user usecase
+final localSessionUseCaseProvider =
+    Provider.autoDispose<LocalSessionUseCase>((ref) => LocalSessionUseCase(ref.read(userRepoProvider)));

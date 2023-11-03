@@ -22,6 +22,6 @@ class UpdateJourneyResponseEntity
 
   @override
   UpdateJourney transform() {
-    return UpdateJourneyEntity.fromJson(response?.content["content"] as Map<String, dynamic>).transform();
+    return UpdateJourneyEntity.fromJson(response?.content as Map<String, dynamic>).transform();
   }
 }

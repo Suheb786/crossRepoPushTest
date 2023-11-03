@@ -6782,22 +6782,22 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> updateIdWiseStatus(
-      UpdateIDWiseStatusRequestEntity request) async {
+  Future<HttpResponse<CheckJourneyStatusResponseEntity>> checkJourneyStatus(
+      CheckJourneyStatusRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
+        _setStreamType<HttpResponse<CheckJourneyStatusResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'http://10.6.13.2:2186/Onboarding/api/Onboarding/UpdateIDWiseStatus',
+              'http://10.6.13.2:2186/Onboarding/api/Onboarding/CheckJourneryStatus',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -6806,37 +6806,39 @@ class _ApiService implements ApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = ResponseEntity.fromJson(_result.data!);
+    final value = CheckJourneyStatusResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> processJourneyViaMobile(
-      ProcessJourneyViaMobileRequestEntity request) async {
+  Future<HttpResponse<ProcessJourneViaMobileResponseEntity>>
+      processJourneyViaMobile(
+          ProcessJourneyViaMobileRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(Options(
+        _setStreamType<HttpResponse<ProcessJourneViaMobileResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              'http://10.6.13.2:2186/Onboarding/api/Onboarding/ProcessJourneyViaMobile',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ResponseEntity.fromJson(_result.data!);
+                .compose(
+                  _dio.options,
+                  'http://10.6.13.2:2186/Onboarding/api/Onboarding/ProcessJourneyViaMobile',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(
+                    baseUrl: _combineBaseUrls(
+                  _dio.options.baseUrl,
+                  baseUrl,
+                ))));
+    final value = ProcessJourneViaMobileResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

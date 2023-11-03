@@ -1,6 +1,9 @@
 import 'package:domain/model/rj/get_flight_detail/flight_detail_response.dart';
 import 'package:domain/usecase/rj/get_flight_details_usecase.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -38,6 +41,14 @@ class RjConfirmFlightDetailViewModel extends BasePageViewModel {
         }
       });
     });
+  }
+
+  void animateBackToDashboard(BuildContext context) {
+    final dashboardProvider = ProviderScope.containerOf(context).read(
+      appHomeViewModelProvider,
+    );
+
+    dashboardProvider.animateReverseTransactionPage();
   }
 
   @override

@@ -262,58 +262,60 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                         ],
                       ),
                     ),
-                    Visibility(
-                      visible: model.arguments.flightDetailResponse.flightDetailContent?.flightType ==
-                          FlightTypeEnum.RoundTrip,
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 16.h),
-                        child: Row(
-                          children: [
-                            Text(
-                              S.of(context).returnOnForPurchasePage,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).primaryColorDark,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12.t),
+                    (model.arguments.flightDetailResponse.flightDetailContent?.flightDetails ?? []).length > 1
+                        ? Visibility(
+                            visible: model.arguments.flightDetailResponse.flightDetailContent?.flightType ==
+                                FlightTypeEnum.RoundTrip,
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 16.h),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    S.of(context).returnOnForPurchasePage,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: Theme.of(context).primaryColorDark,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12.t),
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    (model.arguments.flightDetailResponse.flightDetailContent
+                                                    ?.flightDetails?[1].flightDate ??
+                                                '')
+                                            .isNotEmpty
+                                        ? TimeUtils.getFormattedDateForCreditCard(model
+                                                .arguments
+                                                .flightDetailResponse
+                                                .flightDetailContent
+                                                ?.flightDetails?[1]
+                                                .flightDate ??
+                                            '')
+                                        : '-',
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: Theme.of(context).primaryColorDark,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12.t),
+                                  ),
+                                  Text(
+                                    (model.arguments.flightDetailResponse.flightDetailContent
+                                                    ?.flightDetails?[1].flightDate ??
+                                                '')
+                                            .isNotEmpty
+                                        ? ' - ${TimeUtils.getFormattedTimeForTransaction(model.arguments.flightDetailResponse.flightDetailContent?.flightDetails?[1].flightDate ?? '')}'
+                                        : '-',
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: Theme.of(context).colorScheme.inversePrimary,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12.t),
+                                  ),
+                                ],
+                              ),
                             ),
-                            Spacer(),
-                            Text(
-                              (model.arguments.flightDetailResponse.flightDetailContent?.flightDetails?[1]
-                                              .flightDate ??
-                                          '')
-                                      .isNotEmpty
-                                  ? TimeUtils.getFormattedDateForCreditCard(model
-                                          .arguments
-                                          .flightDetailResponse
-                                          .flightDetailContent
-                                          ?.flightDetails?[1]
-                                          .flightDate ??
-                                      '')
-                                  : '-',
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).primaryColorDark,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12.t),
-                            ),
-                            Text(
-                              (model.arguments.flightDetailResponse.flightDetailContent?.flightDetails?[1]
-                                              .flightDate ??
-                                          '')
-                                      .isNotEmpty
-                                  ? ' - ${TimeUtils.getFormattedTimeForTransaction(model.arguments.flightDetailResponse.flightDetailContent?.flightDetails?[1].flightDate ?? '')}'
-                                  : '-',
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).colorScheme.inversePrimary,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12.t),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                          )
+                        : Container(),
                     Padding(
                       padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 16.h),
                       child: Row(

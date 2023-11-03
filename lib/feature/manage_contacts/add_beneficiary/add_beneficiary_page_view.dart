@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,8 +16,7 @@ import 'add_beneficiary_otp/add_beneficiary_otp_page.dart';
 import 'add_beneficiary_page_view_model.dart';
 import 'add_contacts_form/add_beneficiary_form_page.dart';
 
-class AddBeneficiaryPageView
-    extends BasePageViewWidget<AddBeneficiaryPageViewModel> {
+class AddBeneficiaryPageView extends BasePageViewWidget<AddBeneficiaryPageViewModel> {
   AddBeneficiaryPageView(ProviderBase model) : super(model);
 
   final List<Widget> pages = [
@@ -42,27 +39,17 @@ class AddBeneficiaryPageView
                   position: currentPage ?? 0,
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      activeSize:
-                          Size(MediaQuery.of(context).size.width / 2.4, 5),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      activeSize: Size(MediaQuery.of(context).size.width / 2.4, 5),
                       size: Size(MediaQuery.of(context).size.width / 2.4, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
-                      activeShape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      activeColor: model.arguments.navigationType ==
-                              NavigationType.SEND_MONEY
+                      activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      activeColor: model.arguments.navigationType == NavigationType.SEND_MONEY
                           ? Theme.of(context).colorScheme.secondary
                           : Theme.of(context).colorScheme.shadow,
-                      color: model.arguments.navigationType ==
-                              NavigationType.SEND_MONEY
-                          ? Theme.of(context)
-                              .primaryColorLight
-                              .withOpacity(0.3)
-                          : Theme.of(context)
-                              .colorScheme
-                              .onInverseSurface
-                              .withOpacity(0.3)),
+                      color: model.arguments.navigationType == NavigationType.SEND_MONEY
+                          ? Theme.of(context).primaryColorLight.withOpacity(0.3)
+                          : Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.3)),
                 );
               }),
           SizedBox(height: 36.0.h),
@@ -77,8 +64,7 @@ class AddBeneficiaryPageView
                       S.current.addContact.toUpperCase(),
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          color: model.arguments.navigationType ==
-                                  NavigationType.SEND_MONEY
+                          color: model.arguments.navigationType == NavigationType.SEND_MONEY
                               ? Theme.of(context).colorScheme.secondary
                               : Theme.of(context).colorScheme.shadow,
                           fontSize: 10,
@@ -101,8 +87,7 @@ class AddBeneficiaryPageView
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            color: model.arguments.navigationType ==
-                                    NavigationType.SEND_MONEY
+                            color: model.arguments.navigationType == NavigationType.SEND_MONEY
                                 ? Theme.of(context).colorScheme.secondary
                                 : Theme.of(context).colorScheme.shadow,
                             fontSize: 20,
@@ -127,11 +112,8 @@ class AddBeneficiaryPageView
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  color: model.arguments.navigationType ==
-                                          NavigationType.SEND_MONEY
-                                      ? Theme.of(context)
-                                          .colorScheme
-                                          .secondary
+                                  color: model.arguments.navigationType == NavigationType.SEND_MONEY
+                                      ? Theme.of(context).colorScheme.secondary
                                       : Theme.of(context).colorScheme.shadow,
                                   fontSize: 20.t,
                                   fontWeight: FontWeight.w600),

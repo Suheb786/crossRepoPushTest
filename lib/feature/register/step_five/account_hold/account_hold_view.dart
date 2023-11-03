@@ -1,3 +1,4 @@
+import 'package:data/helper/secure_storage_helper.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,6 +15,8 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
+
+import '../../../../utils/app_constants.dart';
 
 class AccountHoldView extends BasePageViewWidget<AccountHoldViewModel> {
   AccountHoldView(ProviderBase model) : super(model);
@@ -34,6 +37,8 @@ class AccountHoldView extends BasePageViewWidget<AccountHoldViewModel> {
                 initialData: Resource.none(),
                 onData: (response) {
                   if (response.status == Status.SUCCESS) {
+                    SecureStorageHelper.instance.clearToken();
+                    AppConstantsUtils.resetCacheLists();
                     Navigator.pushNamedAndRemoveUntil(
                         context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
                   }

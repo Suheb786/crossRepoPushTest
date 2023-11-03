@@ -6,11 +6,10 @@ import 'package:domain/usecase/user/update_journey_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
-import 'package:neo_bank/utils/string_utils.dart';
 import 'package:rxdart/subjects.dart';
 
+import '../../../main/app_viewmodel.dart';
 import '../../../utils/request_manager.dart';
 import '../../../utils/resource.dart';
 import '../../../utils/status.dart';
@@ -19,6 +18,7 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
   final UpdateJourneyUseCase _updateJourneyUseCase;
   final GetCurrentUserUseCase _getCurrentUserUseCase;
   String journeyId = '';
+  String referenceNumber = '';
 
   ScrollController scrollController = ScrollController();
 
@@ -101,11 +101,14 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
     debugPrint("TEXT :  ${status.values.first}");
 
     if (status.keys.first == IDWiseStatus.COMPLETED) {
+      referenceNumber = data.idWiseRefId!;
       journeyId = status.values.first;
       udpateJourney(userID: data.id, refID: data.idWiseRefId, journeyID: status.values.first, status: "");
-    }*/
+    } else if (status.keys.first == IDWiseStatus.ERROR) {
 
-    journeyId = "6540ce59359b5b6ee8b8d156";
-    udpateJourney(userID: data.id, refID: data.idWiseRefId, journeyID: "6540ce59359b5b6ee8b8d156", status: "");
+    }*/
+   referenceNumber = data.idWiseRefId ?? '';
+   journeyId = "65423170f0ae36ab6f7ef75a";
+   udpateJourney(userID: data.id, refID: data.idWiseRefId, journeyID: journeyId, status: "");
   }
 }

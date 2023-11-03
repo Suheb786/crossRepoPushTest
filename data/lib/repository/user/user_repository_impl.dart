@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:blinkid_flutter/types.dart';
 import 'package:dartz/dartz.dart';
 import 'package:data/db/exception/app_local_exception.dart';
@@ -5,6 +8,7 @@ import 'package:data/db/safe_db_call.dart';
 import 'package:data/entity/local/base/crypto_util.dart';
 import 'package:data/helper/key_helper.dart';
 import 'package:data/helper/string_converter.dart';
+import 'package:data/network/network_properties.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/user/user_data_sources.dart';
 import 'package:domain/error/base_error.dart';
@@ -15,6 +19,7 @@ import 'package:domain/model/current_version/current_version_response.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/biometric_login/android_login_response.dart';
 import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
+import 'package:domain/model/user/check_journey_status/check_journey_status.dart';
 import 'package:domain/model/user/check_username.dart';
 import 'package:domain/model/user/confirm_application_data_get/account_purpose_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/country_residence_info.dart';
@@ -25,6 +30,7 @@ import 'package:domain/model/user/confirm_application_data_get/profile_status_in
 import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
 import 'package:domain/model/user/get_combo_values/get_combo_values_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
+import 'package:domain/model/user/process_journey_via_mobile/process_journey.dart';
 import 'package:domain/model/user/register_interest/register_interest_response.dart';
 import 'package:domain/model/user/save_country_residence_info_response.dart';
 import 'package:domain/model/user/save_id_info_response.dart';
@@ -35,9 +41,10 @@ import 'package:domain/model/user/status/customer_status.dart';
 import 'package:domain/model/user/update_journey/update_journey.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/repository/user/user_repository.dart';
-import 'package:domain/usecase/user/process_journey_usecase.dart';
+import 'package:domain/usecase/user/check_journey_status_usecase.dart';
 import 'package:domain/usecase/user/process_journey_via_mobile_usecase.dart';
 import 'package:domain/usecase/user/update_journey_usecase.dart';
+import 'package:flutter/cupertino.dart';
 
 /// user repository management class
 class UserRepositoryImpl extends UserRepository {
@@ -606,6 +613,13 @@ class UserRepositoryImpl extends UserRepository {
         response = r.data.transform();
         var decryptedData = decryptAESCryptoJS(
             encryptedContent: response.content ?? '', decryptionKey: KeyHelper.DECRYPTION_KEY);
+
+        NetworkProperties.MAIN_TIMEOUT = Duration(
+            minutes: int.tryParse(json.decode(decryptedData)["dynamicObject"]['TokenTimeOut'] ?? "3") ?? 3);
+        NetworkProperties.WARNING_TIMEOUT = NetworkProperties.MAIN_TIMEOUT - Duration(minutes: 1);
+
+        debugPrint("NetworkProperties.MAIN_TIMEOUT -- ${NetworkProperties.MAIN_TIMEOUT}");
+        debugPrint("NetworkProperties.WARNING_TIMEOUT -- ${NetworkProperties.WARNING_TIMEOUT}");
       }
       return Right(r.isSuccessful());
     });
@@ -644,15 +658,31 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> updateIdWiseStatus({required UpdateIDWiseStatusUseCaseParams params}) async {
+  Future<Either<NetworkError, CheckJourneyStatus>> updateIdWiseStatus({required CheckJourneyStatusUseCaseUseCaseParams params}) async {
     final result = await safeApiCall(_remoteDS.updateIdWiseStatus(params: params));
-    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
   }
 
   @override
-  Future<Either<NetworkError, bool>> processJourneyViaMobile(
+  Future<Either<NetworkError, ProcessJourney>> processJourneyViaMobile(
       {required ProcessJourneyViaMobileUseCaseParams params}) async {
     final result = await safeApiCall(_remoteDS.processJourneyViaMobile(params: params));
-    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
+  }
+
+  @override
+  Future<Either<BaseError, bool>> startLocalSession() {
+    return Future.value(Right(_localDS.startLocalSession()));
+  }
+
+  @override
+  Future<Either<BaseError, bool>> endLocalSession() {
+    return Future.value(Right(_localDS.endLocalSession()));
+  }
+
+  @override
+  Future<Either<BaseError, bool>> getLocalSessionWarning(
+      Function() onSessionEndWarning, Function() onSessionTimeOut) {
+    return Future.value(Right(_localDS.getLocalSessionWarning(onSessionEndWarning, onSessionTimeOut)));
   }
 }

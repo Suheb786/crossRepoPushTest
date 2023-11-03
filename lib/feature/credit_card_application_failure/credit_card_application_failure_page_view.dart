@@ -1,3 +1,4 @@
+import 'package:data/helper/secure_storage_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -11,6 +12,8 @@ import 'package:neo_bank/ui/molecules/button/app_secondary_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../utils/app_constants.dart';
 
 class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCardApplicationFailureViewModel> {
   CreditCardApplicationFailurePageView(ProviderBase model) : super(model);
@@ -92,6 +95,8 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
                   Navigator.pushNamed(context, RoutePaths.AppHome);
                 } else if (model.creditCardApplicationFailureArguments.creditFailureState ==
                     CreditFailureState.FATCA) {
+                  SecureStorageHelper.instance.clearToken();
+                  AppConstantsUtils.resetCacheLists();
                   Navigator.pushNamedAndRemoveUntil(
                       context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
                 }

@@ -11,11 +11,14 @@ import 'package:domain/error/local_error.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:flutter/material.dart';
 
+import '../../../network/local_session_service.dart';
+
 class UserLocalDSImpl extends UserLocalDS {
   final BioMetricService _bioMetricService;
   final SecureStorageHelper _secureStorageHelper;
+  final LocalSessionService _localSessionService;
 
-  UserLocalDSImpl(this._bioMetricService, this._secureStorageHelper);
+  UserLocalDSImpl(this._bioMetricService, this._secureStorageHelper, this._localSessionService);
 
   @override
   Future<User> getCurrentUser() async {
@@ -188,5 +191,20 @@ class UserLocalDSImpl extends UserLocalDS {
   @override
   Future<bool> clearWalletId() async {
     return await _secureStorageHelper.clearWalletId();
+  }
+
+  @override
+  bool endLocalSession() {
+    return _localSessionService.stopTimer();
+  }
+
+  @override
+  bool getLocalSessionWarning(Function() onSessionEndWarning, Function() onSessionTimeOut) {
+    return _localSessionService.startTimer();
+  }
+
+  @override
+  bool startLocalSession() {
+    return _localSessionService.startTimer();
   }
 }

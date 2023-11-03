@@ -1,23 +1,38 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:isolate';
 
+import 'package:data/di/local_module.dart';
+import 'package:data/helper/antelop_helper.dart';
+import 'package:data/helper/secure_storage_helper.dart';
 import 'package:domain/constants/app_constants_domain.dart';
 import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/usecase/app_flyer/init_app_flyer_sdk.dart';
 import 'package:domain/usecase/app_flyer/log_app_flyers_events.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
+import 'package:domain/usecase/user/local_session_usecase.dart';
 
 //import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_view_model.dart';
+import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
+import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sms_autofill/sms_autofill.dart';
+
+import '../ui/molecules/app_progress.dart';
+import '../ui/molecules/dialog/session_timeout/session_timeout_dailog.dart';
+import 'navigation/route_paths.dart';
 
 GlobalKey<NavigatorState> appLevelKey = GlobalKey(debugLabel: 'app-key');
 
@@ -210,8 +225,11 @@ class AppViewModel extends BaseViewModel {
   final GetTokenUseCase _getTokenUseCase;
   final InitAppFlyerSDKUseCase _initAppFlyerSDKUseCase;
   final LogAppFlyerSDKEventsUseCase _logAppFlyerSDKEventsUseCase;
+  final LocalSessionUseCase _localSessionUseCase;
 
   static PublishSubject<GetTokenUseCaseParams> _getTokenRequest = PublishSubject();
+
+  PublishSubject<GetTokenUseCaseParams> _getTokenWithLoaderRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _initInfobipMessageResponseSubject = PublishSubject();
 
@@ -245,7 +263,8 @@ class AppViewModel extends BaseViewModel {
   }
 
   ///---------------log app flyers events------------------///
-  AppViewModel(this._getTokenUseCase, this._initAppFlyerSDKUseCase, this._logAppFlyerSDKEventsUseCase) {
+  AppViewModel(this._getTokenUseCase, this._initAppFlyerSDKUseCase, this._logAppFlyerSDKEventsUseCase,
+      this._localSessionUseCase) {
     _getTokenRequest.listen((value) {
       RequestManager(value, createCall: () => _getTokenUseCase.execute(params: value))
           .asFlow()
@@ -254,6 +273,19 @@ class AppViewModel extends BaseViewModel {
           //print("error");
         }
         _getTokenResponse.safeAdd(event);
+      });
+    });
+
+    /// For the session timeout...
+    _getTokenWithLoaderRequest.listen((value) {
+      RequestManager(value, createCall: () => _getTokenUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        if (event.status == Status.SUCCESS || event.status == Status.ERROR) {
+          Navigator.pop(appLevelKey.currentContext!);
+        } else if (event.status == Status.LOADING) {
+          AppProgress(appLevelKey.currentContext!);
+        }
       });
     });
 
@@ -281,6 +313,54 @@ class AppViewModel extends BaseViewModel {
     });
 
     initAppFlyerSDK();
+    Future.delayed(Duration(milliseconds: 10), () {
+      startSessionWarningStream();
+    });
+  }
+
+  BehaviorSubject<bool>? sessionWarningStream;
+  StreamSubscription<bool>? sessionWarningStreamSubscription;
+  BehaviorSubject<bool>? sessionEndStream;
+  StreamSubscription<bool>? sessionEndStreamSubscription;
+
+  startSessionWarningStream() {
+    sessionWarningStreamSubscription?.cancel();
+    sessionEndStreamSubscription?.cancel();
+
+    sessionWarningStream = ProviderScope.containerOf(appLevelKey.currentState!.context)
+        .read(localSessionService)
+        .warningStreamSubject;
+
+    sessionWarningStreamSubscription = sessionWarningStream?.stream.listen((event) {
+      if (event) {
+        SessionTimeoutDialog.show(
+          appLevelKey.currentState!.context,
+          title: S.of(appLevelKey.currentState!.context).activity,
+          onSelected: () {
+            /// continue button call api to restart timer...
+            _callGetTokenWithLoader();
+            Navigator.pop(appLevelKey.currentState!.context);
+          },
+        );
+      }
+    });
+
+    sessionEndStream = ProviderScope.containerOf(appLevelKey.currentState!.context)
+        .read(localSessionService)
+        .sessionStreamSubject;
+
+    sessionEndStreamSubscription = sessionEndStream?.stream.listen((event) {
+      if (event) {
+        SecureStorageHelper.instance.clearToken();
+        AppConstantsUtils.resetCacheLists();
+
+        if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+          AntelopHelper.walletDisconnect();
+        }
+        Navigator.pushNamedAndRemoveUntil(
+            appLevelKey.currentContext!, RoutePaths.OnBoarding, (route) => false);
+      }
+    });
   }
 
   void getToken() async {
@@ -313,6 +393,17 @@ class AppViewModel extends BaseViewModel {
     _getTokenRequest.add(GetTokenUseCaseParams());
   }
 
+  void _callGetTokenWithLoader() {
+    _getTokenWithLoaderRequest.add(GetTokenUseCaseParams());
+  }
+
+  Future<void> userActivityDetected() async {
+    String? token = await SecureStorageHelper.instance.getToken();
+    if (token != null) {
+      ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).startTimer();
+    }
+  }
+
   ThemeData toggleTheme() {
     if (appTheme == AppTheme.dark) {
       _appTheme = AppTheme.light;
@@ -326,6 +417,11 @@ class AppViewModel extends BaseViewModel {
   void dispose() {
     _receivePort.close();
     _isolate?.kill();
+    _getTokenWithLoaderRequest.close();
+    _getTokenRequest.close();
+    sessionEndStreamSubscription?.cancel();
+    sessionWarningStreamSubscription?.cancel();
+
     super.dispose();
   }
 

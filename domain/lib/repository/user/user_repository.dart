@@ -24,10 +24,12 @@ import 'package:domain/model/user/save_profile_status_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/model/user/status/customer_status.dart';
 import 'package:domain/model/user/user.dart';
-import 'package:domain/usecase/user/process_journey_usecase.dart';
+import 'package:domain/usecase/user/check_journey_status_usecase.dart';
 import 'package:domain/usecase/user/process_journey_via_mobile_usecase.dart';
 import 'package:domain/usecase/user/update_journey_usecase.dart';
 
+import '../../model/user/check_journey_status/check_journey_status.dart';
+import '../../model/user/process_journey_via_mobile/process_journey.dart';
 import '../../model/user/update_journey/update_journey.dart';
 
 abstract class UserRepository {
@@ -192,14 +194,20 @@ abstract class UserRepository {
 
   Future<Either<NetworkError, bool>> checkVersionUpdate({String? clear});
 
+  Future<Either<BaseError, bool>> startLocalSession();
+
+  Future<Either<BaseError, bool>> endLocalSession();
+
+  Future<Either<BaseError, bool>> getLocalSessionWarning(Function() onSessionEndWarning,Function() onSessionTimeOut);
+
   /// clear wallet id
   Future<Either<DatabaseError, bool>> clearWalletId();
 
   Future<Either<NetworkError, UpdateJourney>> updateJourney({required UpdateJourneyUseCaseParams params});
 
-  Future<Either<NetworkError, bool>> updateIdWiseStatus({required UpdateIDWiseStatusUseCaseParams params});
+  Future<Either<NetworkError, CheckJourneyStatus>> updateIdWiseStatus({required CheckJourneyStatusUseCaseUseCaseParams params});
 
 
-  Future<Either<NetworkError, bool>> processJourneyViaMobile(
+  Future<Either<NetworkError, ProcessJourney>> processJourneyViaMobile(
       {required ProcessJourneyViaMobileUseCaseParams params});
 }

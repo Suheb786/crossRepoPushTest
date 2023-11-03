@@ -21,24 +21,25 @@ class IDWiseProcessingStatusWidget extends StatelessWidget {
           Row(
             children: [
               isActivated
-                  ? AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary)
+                  ? AppSvg.asset(AssetUtils.check, color: Theme.of(context).colorScheme.secondary)
                   : Container(
                       height: 24.0.h,
                       width: 24.0.w,
                     ),
               SizedBox(
-                width: 16.0.w,
+                width: 8.0.w,
               ),
               Flexible(
                 child: Text(
                   label,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      fontSize: 14.0.t,
-                      fontWeight: FontWeight.w600,
+                      fontSize: isActivated ? 16.0.t : 14.0.t,
+                      fontWeight: isActivated ? FontWeight.w800 : FontWeight.w600,
                       color: isActivated
                           ? Theme.of(context).colorScheme.secondary
                           : Theme.of(context).colorScheme.secondary.withOpacity(0.3)),
+                  textAlign: TextAlign.center,
                 ),
               )
             ],

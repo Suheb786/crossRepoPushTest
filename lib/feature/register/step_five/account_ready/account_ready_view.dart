@@ -1,3 +1,4 @@
+import 'package:data/helper/secure_storage_helper.dart';
 import 'package:domain/model/bank_smart/get_account_details_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,8 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 
 import '../../../../ui/molecules/button/app_primary_button.dart';
+
+import '../../../../utils/app_constants.dart';
 
 class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
   AccountReadyView(ProviderBase model) : super(model);
@@ -67,6 +70,8 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                                   initialData: Resource.none(),
                                   onData: (response) {
                                     if (response.status == Status.SUCCESS) {
+                                      SecureStorageHelper.instance.clearToken();
+                                      AppConstantsUtils.resetCacheLists();
                                       Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
                                           ModalRoute.withName(RoutePaths.Splash));
                                     }
