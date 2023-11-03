@@ -9,8 +9,12 @@ class AndroidLoginContentEntity
     implements BaseLayerDataTransformer<AndroidLoginContentEntity, AndroidLoginContent> {
   @JsonKey(name: "applepay")
   final bool? applepay;
+  @JsonKey(name: "journeyRefId")
+  final String? journeyRefId;
+  @JsonKey(name: "journeyId")
+  final String? journeyId;
 
-  AndroidLoginContentEntity({this.applepay});
+  AndroidLoginContentEntity({this.applepay, this.journeyId, this.journeyRefId});
 
   factory AndroidLoginContentEntity.fromJson(Map<String, dynamic> json) =>
       _$AndroidLoginContentEntityFromJson(json);
@@ -24,6 +28,9 @@ class AndroidLoginContentEntity
 
   @override
   AndroidLoginContent transform() {
-    return AndroidLoginContent(applepay: this.applepay ?? false);
+    return AndroidLoginContent(
+        applepay: this.applepay ?? false,
+        journeyId: this.journeyId ?? '',
+        journeyRefId: this.journeyRefId ?? '');
   }
 }

@@ -82,11 +82,6 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                   initialData: Resource.none(),
                                   onData: (userStatus) {
                                     if (userStatus.status == Status.SUCCESS) {
-                                      // ProviderScope.containerOf(context)
-                                      //         .read(
-                                      //             registerStepFiveViewModelProvider)
-                                      //         .secondNextScreen =
-                                      //     userStatus.data!.secondNextPage!;
                                       switch (userStatus.data!.nextPage) {
                                         case CustomerStatusEnum.HOLD:
                                           Navigator.pushReplacementNamed(context, RoutePaths.AccountHold,
@@ -206,6 +201,15 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                                 visible: false,
                                                                 child: SizedBox(height: 32.h),
                                                               ),
+
+                                                              ///Id card details
+                                                              // ReviewApplicationEditableItem(
+                                                              //   title: S.of(context).residentCountrySmall,
+                                                              //   controller: model.residentCountryController,
+                                                              //   initialValue:
+                                                              //       model.residentCountryController.text,
+                                                              //   textInputType: TextInputType.text,
+                                                              // ),
 
                                                               ///address details
                                                               ReviewApplicationEditableItem(

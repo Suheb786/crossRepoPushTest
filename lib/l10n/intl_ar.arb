@@ -1886,5 +1886,7 @@
   "profileImageDeleted": "تم حذف صورة الملف الشخصي.",
   "receipientAlreadySaved": "عفوا! هذا المستفيد موجود في قائمة أصدقائك",
   "pleaseContinueToStayLoggedIn": "Please continue to stay logged in.",
-  "continueText" : "Continue"
+  "continueText" : "Continue",
+  "nationalID": "National ID",
+  "expiryDateS": "تاريخ الانتهاء"
 }

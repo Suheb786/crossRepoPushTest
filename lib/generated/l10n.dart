@@ -2670,10 +2670,10 @@ class S {
     );
   }
 
-  /// `MOTHER’S NAME`
+  /// `Mother's Name`
   String get motherName {
     return Intl.message(
-      'MOTHER’S NAME',
+      'Mother\'s Name',
       name: 'motherName',
       desc: '',
       args: [],
@@ -2840,10 +2840,10 @@ class S {
     );
   }
 
-  /// `Name as per ID`
+  /// `Name As Per ID`
   String get nameAsPerID {
     return Intl.message(
-      'Name as per ID',
+      'Name As Per ID',
       name: 'nameAsPerID',
       desc: '',
       args: [],
@@ -2860,10 +2860,10 @@ class S {
     );
   }
 
-  /// `Date of Birth`
+  /// `Date Of Birth`
   String get dateOfBirthSmall {
     return Intl.message(
-      'Date of Birth',
+      'Date Of Birth',
       name: 'dateOfBirthSmall',
       desc: '',
       args: [],
@@ -3780,40 +3780,40 @@ class S {
     );
   }
 
-  /// `Place of birth`
+  /// `Place Of Birth`
   String get placeOfBirth {
     return Intl.message(
-      'Place of birth',
+      'Place Of Birth',
       name: 'placeOfBirth',
       desc: '',
       args: [],
     );
   }
 
-  /// `LEGAL DOCUMENT NO.`
+  /// `Legal Document No.`
   String get legalDocumentNo {
     return Intl.message(
-      'LEGAL DOCUMENT NO.',
+      'Legal Document No.',
       name: 'legalDocumentNo',
       desc: '',
       args: [],
     );
   }
 
-  /// `Issuing date`
+  /// `Issuing Date`
   String get issuingDate {
     return Intl.message(
-      'Issuing date',
+      'Issuing Date',
       name: 'issuingDate',
       desc: '',
       args: [],
     );
   }
 
-  /// `Issuing place`
+  /// `Issuing Place`
   String get issuingPlace {
     return Intl.message(
-      'Issuing place',
+      'Issuing Place',
       name: 'issuingPlace',
       desc: '',
       args: [],
@@ -18835,6 +18835,26 @@ class S {
     return Intl.message(
       'Continue',
       name: 'continueText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `National ID`
+  String get nationalID {
+    return Intl.message(
+      'National ID',
+      name: 'nationalID',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expiry Date`
+  String get expiryDateS {
+    return Intl.message(
+      'Expiry Date',
+      name: 'expiryDateS',
       desc: '',
       args: [],
     );

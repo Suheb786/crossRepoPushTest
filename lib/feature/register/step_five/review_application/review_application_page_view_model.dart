@@ -320,6 +320,17 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
   }
 
   ///controllers
+  ///id card controllers
+  TextEditingController idCardNameController = TextEditingController();
+  TextEditingController idCardNationalIDController = TextEditingController();
+  TextEditingController idCardDOBController = TextEditingController();
+  TextEditingController idCardPlaceOfBirthController = TextEditingController();
+  TextEditingController idCardGenderController = TextEditingController();
+  TextEditingController idCardMotherNameController = TextEditingController();
+  TextEditingController idCardLegalDocumentNoController = TextEditingController();
+  TextEditingController idCardIssuingDateController = TextEditingController();
+  TextEditingController idCardExpiryDateController = TextEditingController();
+  TextEditingController idCardIssuingPlaceController = TextEditingController();
 
   ///Controllers for address
   TextEditingController residentCountryController = TextEditingController();

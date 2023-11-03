@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
-
 import 'package:blinkid_flutter/types.dart';
 import 'package:dartz/dartz.dart';
 import 'package:data/db/exception/app_local_exception.dart';
