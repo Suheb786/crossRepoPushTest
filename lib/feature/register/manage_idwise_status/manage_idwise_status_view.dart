@@ -94,10 +94,8 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
               initialData: Resource.none(),
               stream: model.checkJourneyStatusStream,
               onData: (value) {
-                if(value.status == Status.SUCCESS){
-                  if(!value.data!.keepPooling){
-
-                  }
+                if (value.status == Status.SUCCESS) {
+                  if (!value.data!.keepPooling) {}
                 }
               },
               dataBuilder: (context, snapshot) {

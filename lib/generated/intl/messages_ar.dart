@@ -1972,6 +1972,8 @@ class MessageLookup extends MessageLookupByLibrary {
             " تطبيق بلنك غير متاح في منطقتك الجغرافية."),
         "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
             "خدمة تحديد المواقع معطلة. الرجاء تفعيلها على Blink"),
+        "logOutTryLater":
+            MessageLookupByLibrary.simpleMessage("Log out and try again later"),
         "login": MessageLookupByLibrary.simpleMessage("الدخول "),
         "loginNotAllowed": MessageLookupByLibrary.simpleMessage(
             "الرمز منتهي الصلاحية، غير مصرح بتسجيل الدخول"),
@@ -3114,6 +3116,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("السفر و التنقل"),
         "treatyClaimRate": MessageLookupByLibrary.simpleMessage(
             "معدل مطالبة الاتفاق الضريبي (%)"),
+        "tryAgain": MessageLookupByLibrary.simpleMessage("Try again"),
         "tryAgainLater": MessageLookupByLibrary.simpleMessage(
             "في مشكلة بدفعتك، حاول كمان مرة. إذا بدك مساعدة، تواصل معنا."),
         "twoToTwelve": MessageLookupByLibrary.simpleMessage("من 2 إلى 12 سنة"),

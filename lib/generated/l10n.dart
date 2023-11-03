@@ -19049,6 +19049,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Try again`
+  String get tryAgain {
+    return Intl.message(
+      'Try again',
+      name: 'tryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log out and try again later`
+  String get logOutTryLater {
+    return Intl.message(
+      'Log out and try again later',
+      name: 'logOutTryLater',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

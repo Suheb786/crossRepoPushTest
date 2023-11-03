@@ -1,4 +1,4 @@
-import 'package:data/helper/id_wise_helper.dart';
+
 import 'package:domain/model/user/update_journey/update_journey.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/user/get_current_user_usecase.dart';
@@ -9,7 +9,6 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/subjects.dart';
 
-import '../../../main/app_viewmodel.dart';
 import '../../../utils/request_manager.dart';
 import '../../../utils/resource.dart';
 import '../../../utils/status.dart';
@@ -24,13 +23,7 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
 
   ///checkBox Subject
   BehaviorSubject<bool> isChecked = BehaviorSubject();
-
   Stream<bool> get checkBoxStream => isChecked.stream;
-
-  //button Subject
-  BehaviorSubject<bool> isButtonVisible = BehaviorSubject();
-
-  Stream<bool> get buttonStream => isButtonVisible.stream;
 
   ///update journey request subject holder
   PublishSubject<UpdateJourneyUseCaseParams> _updateJourneyRequest = PublishSubject();
@@ -46,13 +39,6 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
 
   void checkBoxToggle(bool value) {
     isChecked.safeAdd(value);
-    buttonVisibilty(value);
-  }
-
-  void buttonVisibilty(bool value) {
-    if (isChecked.value == value) {
-      isButtonVisible.safeAdd(value);
-    }
   }
 
   IdWiseIntialPageViewModel(this._updateJourneyUseCase, this._getCurrentUserUseCase) {
@@ -107,8 +93,8 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
     } else if (status.keys.first == IDWiseStatus.ERROR) {
 
     }*/
-   referenceNumber = data.idWiseRefId ?? '';
-   journeyId = "65423170f0ae36ab6f7ef75a";
-   udpateJourney(userID: data.id, refID: data.idWiseRefId, journeyID: journeyId, status: "");
+    referenceNumber = data.idWiseRefId ?? '';
+    journeyId = "65423170f0ae36ab6f7ef75a";
+    udpateJourney(userID: data.id, refID: data.idWiseRefId, journeyID: journeyId, status: "");
   }
 }

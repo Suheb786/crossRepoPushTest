@@ -21,7 +21,7 @@ class IDWiseProcessingStatusWidget extends StatelessWidget {
           Row(
             children: [
               isActivated
-                  ? AppSvg.asset(AssetUtils.check, color: Theme.of(context).colorScheme.secondary)
+                  ? AppSvg.asset(AssetUtils.bold_check_icon, color: Theme.of(context).colorScheme.secondary)
                   : Container(
                       height: 24.0.h,
                       width: 24.0.w,
