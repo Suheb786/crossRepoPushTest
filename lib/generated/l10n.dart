@@ -19069,6 +19069,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Please bare with us,\nwe are processing\nyour information`
+  String get bareWithUsProcessing {
+    return Intl.message(
+      'Please bare with us,\nwe are processing\nyour information',
+      name: 'bareWithUsProcessing',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

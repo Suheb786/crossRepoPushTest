@@ -395,6 +395,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("العودة إلى التسجيل"),
         "bankName": MessageLookupByLibrary.simpleMessage("اسم البنك"),
         "banks": MessageLookupByLibrary.simpleMessage("البنوك"),
+        "bareWithUsProcessing": MessageLookupByLibrary.simpleMessage(
+            "Please bare with us,\nwe are processing\nyour information"),
         "belowTwoYears": MessageLookupByLibrary.simpleMessage("من 0 إلى 2 سنة"),
         "beneficialOwnerIsAResidenceOf":
             MessageLookupByLibrary.simpleMessage("صاحب الحساب المنتفع مقيم في"),

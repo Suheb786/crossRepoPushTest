@@ -399,6 +399,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Back to Registration"),
         "bankName": MessageLookupByLibrary.simpleMessage("BANK NAME"),
         "banks": MessageLookupByLibrary.simpleMessage("Banks"),
+        "bareWithUsProcessing": MessageLookupByLibrary.simpleMessage(
+            "Please bare with us,\nwe are processing\nyour information"),
         "belowTwoYears": MessageLookupByLibrary.simpleMessage("Below 2 years"),
         "beneficialOwnerIsAResidenceOf": MessageLookupByLibrary.simpleMessage(
             "Beneficial owner is a resident of"),
