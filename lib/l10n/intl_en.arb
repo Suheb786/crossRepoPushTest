@@ -1912,8 +1912,8 @@
   "accountSuccessfullyClosed": "Your account has been closed successfully.",
   "profileImageDeleted": "Profile Image deleted.",
   "receipientAlreadySaved": "Oops! This recipient is already saved in your Blink contacts.",
-  "pleaseContinueToStayLoggedIn" : "Please continue to stay logged in.",
-  "continueText" : "Continue",
+  "pleaseContinueToStayLoggedIn": "Please continue to stay logged in.",
+  "continueText": "Continue",
   "enterEmailAndPassword": "Enter your email and \ncreate your password",
   "changeMyEmail": "Change My Email",
   "processingIDWiseStatus": "Processing",
@@ -1934,5 +1934,8 @@
   "ensureToHaveNationalId": "Please ensure to have your National ID ready",
   "byContinuingYouAgree": "By continuing you agree to the",
   "privacyPolicy": "Privacy Policy",
-  "donotLeavePage": "Please do not leave the page. You will be\nautomatically redirected once it’s done."
+  "donotLeavePage": "Please do not leave the page. You will be\nautomatically redirected once it’s done.",
+  "tryAgain": "Try again",
+  "logOutTryLater": "Log out and try again later",
+  "bareWithUsProcessing": "Please bare with us,\nwe are processing\nyour information"
 }
