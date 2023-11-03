@@ -83,11 +83,6 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                   initialData: Resource.none(),
                                   onData: (userStatus) {
                                     if (userStatus.status == Status.SUCCESS) {
-                                      // ProviderScope.containerOf(context)
-                                      //         .read(
-                                      //             registerStepFiveViewModelProvider)
-                                      //         .secondNextScreen =
-                                      //     userStatus.data!.secondNextPage!;
                                       switch (userStatus.data!.nextPage) {
                                         case CustomerStatusEnum.HOLD:
                                           Navigator.pushReplacementNamed(context, RoutePaths.AccountHold,
@@ -188,6 +183,52 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                               child: SizedBox(height: 32.h),
                                                             ),
 
+                                                              ///Id card details
+                                                              // ReviewApplicationEditableItem(
+                                                              //   title: S.of(context).residentCountrySmall,
+                                                              //   controller: model.residentCountryController,
+                                                              //   initialValue:
+                                                              //       model.residentCountryController.text,
+                                                              //   textInputType: TextInputType.text,
+                                                              // ),
+
+                                                              ///address details
+                                                              ReviewApplicationEditableItem(
+                                                                title: S.of(context).residentCountrySmall,
+                                                                controller: model.residentCountryController,
+                                                                initialValue:
+                                                                    model.residentCountryController.text,
+                                                                textInputType: TextInputType.text,
+                                                              ),
+                                                              ReviewApplicationEditableItem(
+                                                                title: S.of(context).buildingNameNo,
+                                                                controller: model.buildingNameOrNoController,
+                                                                initialValue:
+                                                                    model.buildingNameOrNoController.text,
+                                                                textInputType: TextInputType.text,
+                                                              ),
+                                                              ReviewApplicationEditableItem(
+                                                                title: S.of(context).streetAddressSmall,
+                                                                controller: model.streetAddressController,
+                                                                initialValue:
+                                                                    model.streetAddressController.text,
+                                                                textInputType: TextInputType.text,
+                                                              ),
+                                                              Visibility(
+                                                                visible: false,
+                                                                child: ReviewApplicationEditableItem(
+                                                                  title: S.of(context).areaSmall,
+                                                                  controller: model.districtController,
+                                                                  initialValue: model.districtController.text,
+                                                                  textInputType: TextInputType.text,
+                                                                ),
+                                                              ),
+                                                              ReviewApplicationEditableItem(
+                                                                title: S.of(context).citySmall,
+                                                                controller: model.cityController,
+                                                                initialValue: model.cityController.text,
+                                                                textInputType: TextInputType.text,
+                                                              ),
                                                             ///address details
                                                             ReviewApplicationEditableItem(
                                                               title: S.of(context).residentCountrySmall,
