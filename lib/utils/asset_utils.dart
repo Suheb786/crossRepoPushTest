@@ -122,6 +122,7 @@ class AssetUtils {
   static const String editNickName = svg + "edit_nickname.svg";
   static const String e_voucher = svg + "e_voucher.svg";
   static const String infoBlack = svg + "info_black.svg";
+  static const String bold_check_icon = svg + "bold_check_icon.svg";
 
   /// DRAWABLES
   static const String line = drawable + "line.png";

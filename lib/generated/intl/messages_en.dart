@@ -399,6 +399,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Back to Registration"),
         "bankName": MessageLookupByLibrary.simpleMessage("BANK NAME"),
         "banks": MessageLookupByLibrary.simpleMessage("Banks"),
+        "bareWithUsProcessing": MessageLookupByLibrary.simpleMessage(
+            "Please bare with us,\nwe are processing\nyour information"),
         "belowTwoYears": MessageLookupByLibrary.simpleMessage("Below 2 years"),
         "beneficialOwnerIsAResidenceOf": MessageLookupByLibrary.simpleMessage(
             "Beneficial owner is a resident of"),
@@ -2018,6 +2020,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your location is restricted from using this app."),
         "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
             "Location services are disabled. Please allow access to Blink"),
+        "logOutTryLater":
+            MessageLookupByLibrary.simpleMessage("Log out and try again later"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "loginNotAllowed": MessageLookupByLibrary.simpleMessage(
             "YOur Token is Expired, Login is Not Allowed"),
@@ -3205,6 +3209,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Travel and Transportation"),
         "treatyClaimRate": MessageLookupByLibrary.simpleMessage(
             "treaty identified to Claim Rate (%)"),
+        "tryAgain": MessageLookupByLibrary.simpleMessage("Try again"),
         "tryAgainLater": MessageLookupByLibrary.simpleMessage(
             "There was an issue with your payment, please try again. If you need help, contact Blink Engagement Team."),
         "twoToTwelve": MessageLookupByLibrary.simpleMessage("2 to 12 years"),

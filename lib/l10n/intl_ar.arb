@@ -1907,5 +1907,8 @@
   "donotLeavePage": "Please do not leave the page. You will be\nautomatically redirected once it’s done.",
   "receipientAlreadySaved": "عفوا! هذا المستفيد موجود في قائمة أصدقائك",
   "pleaseContinueToStayLoggedIn": "Please continue to stay logged in.",
-  "continueText" : "Continue"
+  "continueText": "Continue",
+  "tryAgain": "Try again",
+  "logOutTryLater": "Log out and try again later",
+  "bareWithUsProcessing": "Please bare with us,\nwe are processing\nyour information"
 }

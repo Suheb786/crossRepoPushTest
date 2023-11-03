@@ -29,85 +29,90 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
   Widget build(BuildContext context, model) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 24.w),
-      child: SingleChildScrollView(
-        physics: ClampingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.w),
-                  child: Stack(
-                    clipBehavior: Clip.none,
-                    alignment: AlignmentDirectional.bottomCenter,
-                    children: [
-                      AppSvg.asset(AssetUtils.dashboardSwiggle, matchTextDirection: true),
-                      PositionedDirectional(
-                        start: 120.w,
-                        child: Text(
-                          S.of(context).helloE,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              fontSize: 32.t,
-                              fontWeight: FontWeight.w600,
-                              color: Theme.of(context).colorScheme.secondary),
-                        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  alignment: AlignmentDirectional.bottomCenter,
+                  children: [
+                    AppSvg.asset(AssetUtils.dashboardSwiggle, matchTextDirection: true),
+                    PositionedDirectional(
+                      start: 120.w,
+                      child: Text(
+                        S.of(context).helloE,
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            fontSize: 32.t,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).colorScheme.secondary),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
+              ),
+              SizedBox(
+                height: 40.h,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                child: Text(
+                  S.of(context).successfullyCreatedLoginAccount,
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      fontSize: 20.t,
+                      fontWeight: FontWeight.w500,
+                      color: Theme.of(context).colorScheme.secondary),
+                ),
+              ),
+              SizedBox(
+                height: 24.h,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+                child: InformationText(
+                  image: AssetUtils.informationSave,
+                  title: S.of(context).informationSave,
+                  containerColor: Theme.of(context).colorScheme.secondary,
+                  textColor: Theme.of(context).colorScheme.secondary,
+                ),
+              ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              //   child: InformationText(
+              //     image: AssetUtils.lock,
+              //     title: S.of(context).saveEarningsDigitally,
+              //     containerColor: Theme.of(context).colorScheme.secondary,
+              //     textColor: Theme.of(context).colorScheme.secondary,
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 16,
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              //   child: InformationText(
+              //     image: AssetUtils.transactionHistory,
+              //     containerColor: Theme.of(context).colorScheme.secondary,
+              //     title: S.of(context).sendMoneyToFriendAndFamily,
+              //     textColor: Theme.of(context).colorScheme.secondary,
+              //   ),
+              // ),
+            ],
+          ),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
                 SizedBox(
-                  height: 40.h,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.w),
-                  child: Text(
-                    S.of(context).successfullyCreatedLoginAccount,
-                    style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        fontSize: 20.t,
-                        fontWeight: FontWeight.w500,
-                        color: Theme.of(context).colorScheme.secondary),
-                  ),
-                ),
-                SizedBox(
-                  height: 24.h,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.0.w),
-                  child: InformationText(
-                    image: AssetUtils.informationSave,
-                    title: S.of(context).informationSave,
-                    containerColor: Theme.of(context).colorScheme.secondary,
-                    textColor: Theme.of(context).colorScheme.secondary,
-                  ),
-                ),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                //   child: InformationText(
-                //     image: AssetUtils.lock,
-                //     title: S.of(context).saveEarningsDigitally,
-                //     containerColor: Theme.of(context).colorScheme.secondary,
-                //     textColor: Theme.of(context).colorScheme.secondary,
-                //   ),
-                // ),
-                // SizedBox(
-                //   height: 16,
-                // ),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                //   child: InformationText(
-                //     image: AssetUtils.transactionHistory,
-                //     containerColor: Theme.of(context).colorScheme.secondary,
-                //     title: S.of(context).sendMoneyToFriendAndFamily,
-                //     textColor: Theme.of(context).colorScheme.secondary,
-                //   ),
-                // ),
-                SizedBox(
-                  height: 92.h,
+                  height: 120.h,
                 ),
                 AppPrimaryButton(
                   padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -116,8 +121,8 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                     /*  Navigator.pushNamedAndRemoveUntil(context, RoutePaths.Registration, (route) => false,
                 arguments: RegisterPageParams()); */
                   },
-                  activeBackgroundColor: Theme.of(context).dialogBackgroundColor,
-                  textColor: Theme.of(context).primaryColorDark,
+                  activeBackgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
+                  textColor: Theme.of(context).colorScheme.secondary,
                 ),
                 AppStreamBuilder<Resource<bool>>(
                   stream: model.enableBiometricStream,
@@ -171,47 +176,45 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                       },
                     );
                   },
+                ),
+                SizedBox(
+                  height: 24.h,
+                ),
+                AppStreamBuilder<Resource<LogoutResponse>>(
+                  stream: model.logoutStream,
+                  initialData: Resource.none(),
+                  onData: (response) {
+                    if (response.status == Status.SUCCESS) {
+                      SecureStorageHelper.instance.clearToken();
+                      AppConstantsUtils.resetCacheLists();
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
+                    }
+                  },
+                  dataBuilder: (context, data) {
+                    return Padding(
+                      padding: EdgeInsets.only(bottom: 56.0.h),
+                      child: InkWell(
+                        onTap: () {
+                          model.logout();
+                        },
+                        child: Text(
+                          S.of(context).logoutAndContinueLater,
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 14.t,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 1,
+                              color: Theme.of(context).colorScheme.secondary),
+                        ),
+                      ),
+                    );
+                  },
                 )
               ],
             ),
-            SizedBox(
-              height: 76.h,
-            ),
-            AppStreamBuilder<Resource<LogoutResponse>>(
-              stream: model.logoutStream,
-              initialData: Resource.none(),
-              onData: (response) {
-                if (response.status == Status.SUCCESS) {
-                  SecureStorageHelper.instance.clearToken();
-                  AppConstantsUtils.resetCacheLists();
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
-                }
-              },
-              dataBuilder: (context, data) {
-                return Center(
-                  child: Padding(
-                    padding: EdgeInsets.only(bottom: 36.0.h),
-                    child: InkWell(
-                      onTap: () {
-                        model.logout();
-                      },
-                      child: Text(
-                        S.of(context).logoutAndContinueLater,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontSize: 14.t,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 1,
-                            color: Theme.of(context).colorScheme.secondary),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            )
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

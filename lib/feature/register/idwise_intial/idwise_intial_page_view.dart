@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/idwise_intial/idwise_intial_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -24,7 +25,7 @@ class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel>
         stream: model.updateJourneyStream,
         initialData: Resource.none(),
         onData: (updateJourney) async {
-          if(updateJourney.status == Status.SUCCESS){
+          if (updateJourney.status == Status.SUCCESS) {
             Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
                 arguments: ManageIDWiseStatusParams(
                     journeyId: model.journeyId, referenceNumber: model.referenceNumber));
@@ -137,38 +138,68 @@ class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel>
                             ),
                             Column(
                               children: [
-                                AppPrimaryButton(
-                                  onPressed: () async {
-                                    model.getCurrentUser();
-                                  },
-                                ),
-                                SizedBox(height: 16.h),
-                                Text(
-                                  S.current.byContinuingYouAgree,
-                                  textAlign: TextAlign.start,
-                                  softWrap: true,
-                                  style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    color: Theme.of(context).colorScheme.surfaceTint,
-                                    fontSize: 14.t,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(height: 3.h),
-                                InkWell(
-                                  onTap: () {},
-                                  child: Text(
-                                    S.current.privacyPolicy,
-                                    textAlign: TextAlign.start,
-                                    softWrap: true,
-                                    style: TextStyle(
-                                      fontFamily: StringUtils.appFont,
-                                      color: Theme.of(context).colorScheme.onSecondaryContainer,
-                                      fontSize: 14.t,
-                                      fontWeight: FontWeight.w600,
+                                Row(
+                                  children: [
+                                    AppStreamBuilder<bool>(
+                                        initialData: false,
+                                        stream: model.checkBoxStream,
+                                        dataBuilder: (context, isChecked) {
+                                          return InkWell(
+                                            onTap: () {
+                                              model.checkBoxToggle(!isChecked!);
+                                            },
+                                            child: Container(
+                                              height: 40.h,
+                                              width: 40.h,
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(100),
+                                                  color: isChecked!
+                                                      ? Theme.of(context).canvasColor
+                                                      : Theme.of(context).colorScheme.secondary,
+                                                  border: Border.all(
+                                                      color: isChecked
+                                                          ? Theme.of(context).colorScheme.onPrimaryContainer
+                                                          : Theme.of(context).colorScheme.inversePrimary)),
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: isChecked
+                                                    ? AppSvg.asset(
+                                                        AssetUtils.check,
+                                                        color: Theme.of(context).primaryColorDark,
+                                                      )
+                                                    : SizedBox(),
+                                              ),
+                                            ),
+                                          );
+                                        }),
+                                    SizedBox(width: 16.w),
+                                    Flexible(
+                                      child: Text(
+                                        S.current.termsAndConditions,
+                                        textAlign: TextAlign.start,
+                                        softWrap: true,
+                                        style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: Theme.of(context).primaryColorDark,
+                                          fontSize: 12.t,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
+                                SizedBox(height: 24.h),
+                                AppStreamBuilder<bool>(
+                                    initialData: false,
+                                    stream: model.checkBoxStream,
+                                    dataBuilder: (context, snapshot) {
+                                      return AppPrimaryButton(
+                                        onPressed: () async {
+                                          model.getCurrentUser();
+                                        },
+                                        isDisabled: !snapshot!,
+                                      );
+                                    }),
                               ],
                             ),
                           ],
