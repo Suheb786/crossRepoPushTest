@@ -14,6 +14,9 @@ ResponseEntity _$ResponseEntityFromJson(Map<String, dynamic> json) =>
       message: json['message'] as String?,
       token: json['token'] as String?,
       id: json['id'] as String?,
+      error: json['error'] == null
+          ? null
+          : ErrorEntity.fromJson(json['error'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ResponseEntityToJson(ResponseEntity instance) =>
@@ -24,4 +27,5 @@ Map<String, dynamic> _$ResponseEntityToJson(ResponseEntity instance) =>
       'content': instance.content,
       'exceptionMessage': instance.exceptionMessage,
       'id': instance.id,
+      'error': instance.error,
     };

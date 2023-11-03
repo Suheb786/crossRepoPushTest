@@ -36,6 +36,7 @@ import 'package:domain/usecase/sub_account/update_nick_name_sub_account_usecase.
 import 'package:domain/usecase/user/get_current_user_usecase.dart';
 import 'package:domain/usecase/user/save_user_data_usecase.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/widgets/my_account_page_widget.dart';
@@ -65,6 +66,7 @@ import 'package:neo_bank/utils/screen_size_utils.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../../di/app/app_modules.dart';
 import '../../../generated/l10n.dart';
 import '../../../main/navigation/route_paths.dart';
 import '../account_transaction/account_transaction_page.dart';
@@ -591,6 +593,7 @@ class AppHomeViewModel extends BasePageViewModel {
     });
 
     getDashboardData();
+
   }
 
   BehaviorSubject<Resource<bool>> _updateNickNameResponse = BehaviorSubject();

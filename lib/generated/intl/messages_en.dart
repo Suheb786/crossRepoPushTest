@@ -766,6 +766,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "A supplementary card with the same details already exists. Please check and try again."),
         "contactlessError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-095)"),
+        "continueText": MessageLookupByLibrary.simpleMessage("Continue"),
         "controlMyExpensesInOtherWays": MessageLookupByLibrary.simpleMessage(
             "I\'m trying to control my expenses in other ways"),
         "convertBalanceToInstalments": MessageLookupByLibrary.simpleMessage(
@@ -2453,6 +2454,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please confirm your\nflight details"),
         "pleaseConfirmYourIDDetailsBelow": MessageLookupByLibrary.simpleMessage(
             "Now let\'s confirm your\nID details"),
+        "pleaseContinueToStayLoggedIn": MessageLookupByLibrary.simpleMessage(
+            "Please continue to stay logged in."),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
         "pleaseEnterAValidaccountMobileNoAlias":
             MessageLookupByLibrary.simpleMessage(
@@ -2937,7 +2940,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Service is not available"),
         "services": MessageLookupByLibrary.simpleMessage("Services"),
         "sessionTimeout":
-            MessageLookupByLibrary.simpleMessage("Session Timeout."),
+            MessageLookupByLibrary.simpleMessage("Session timeout."),
         "setAsCliqDefaultAccount": MessageLookupByLibrary.simpleMessage(
             "Set as CliQ default account?"),
         "setAsDefault": MessageLookupByLibrary.simpleMessage("Set as Default"),
@@ -3128,6 +3131,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "time": MessageLookupByLibrary.simpleMessage("Time"),
         "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage(
             "It’s time for a quick\nvideo call"),
+        "timeOutText1": MessageLookupByLibrary.simpleMessage(
+            "You have been timed-out due to account inactivity. You will be automatically logged out in "),
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),
         "to": MessageLookupByLibrary.simpleMessage("to"),
         "toBookingSummary":

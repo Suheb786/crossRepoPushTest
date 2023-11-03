@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -51,6 +53,11 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
                 return PermissionRequestResponse(
                     resources: resource, action: PermissionRequestResponseAction.GRANT);
               },
+              gestureRecognizers: [
+                new Factory<OneSequenceGestureRecognizer>(
+                      () => new EagerGestureRecognizer(),
+                ),
+              ].toSet(),
               onLoadStart: (controller, url) {},
               onLoadStop: (controller, url) async {
                 debugPrint('-----onload stop ---->${url}');

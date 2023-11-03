@@ -748,6 +748,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "البطاقة التابعة غير موجودة. تأكد وحاول كمان مرة."),
         "contactlessError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-095)"),
+        "continueText": MessageLookupByLibrary.simpleMessage("Continue"),
         "controlMyExpensesInOtherWays": MessageLookupByLibrary.simpleMessage(
             "عم بحاول أتحكّم بمصاريفي بطرق أخرى"),
         "convertBalanceToInstalments":
@@ -2391,6 +2392,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أكّد على تفاصيل الحجز "),
         "pleaseConfirmYourIDDetailsBelow":
             MessageLookupByLibrary.simpleMessage("خلينا نأكد على معلوماتك"),
+        "pleaseContinueToStayLoggedIn": MessageLookupByLibrary.simpleMessage(
+            "Please continue to stay logged in."),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("الرجاء إدخال"),
         "pleaseEnterAValidaccountMobileNoAlias":
             MessageLookupByLibrary.simpleMessage(
@@ -3042,6 +3045,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "time": MessageLookupByLibrary.simpleMessage("وقت"),
         "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage(
             "صار الوقت لمكالمة فيديو  سريعة"),
+        "timeOutText1": MessageLookupByLibrary.simpleMessage(
+            "You have been timed-out due to account inactivity. You will be automatically logged out in "),
         "tinNo": MessageLookupByLibrary.simpleMessage("رقم التعريف الضريبي"),
         "to": MessageLookupByLibrary.simpleMessage("إلى"),
         "toBookingSummary":

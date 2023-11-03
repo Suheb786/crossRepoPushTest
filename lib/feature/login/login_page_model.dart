@@ -135,10 +135,10 @@ class LoginViewModel extends BasePageViewModel {
       });
     });
 
-    /* if (kDebugMode) {
-      emailController.text = "";
-      passwordController.text = "";
-    }*/
+    if (kDebugMode) {
+      emailController.text = "wahaj9@g.com";
+      passwordController.text = "Wahaj@123";
+    }
   }
 
   @override

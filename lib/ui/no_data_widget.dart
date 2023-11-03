@@ -3,7 +3,6 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../generated/l10n.dart';
 import '../utils/asset_utils.dart';
-import '../utils/color_utils.dart';
 import 'molecules/app_svg.dart';
 
 class NoDataWidget extends StatefulWidget {

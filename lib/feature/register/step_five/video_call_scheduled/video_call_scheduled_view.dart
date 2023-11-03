@@ -1,3 +1,5 @@
+import 'package:data/helper/secure_storage_helper.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -34,6 +36,8 @@ class VideoCallScheduledView extends BasePageViewWidget<VideoCallScheduledViewMo
                 initialData: Resource.none(),
                 onData: (response) {
                   if (response.status == Status.SUCCESS) {
+                    SecureStorageHelper.instance.clearToken();
+                    AppConstantsUtils.resetCacheLists();
                     Navigator.pushNamedAndRemoveUntil(
                         context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
                   }

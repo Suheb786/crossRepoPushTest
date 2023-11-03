@@ -270,6 +270,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                           Navigator.of(context)
                                             ..pop()
                                             ..pop();
+                                          model.animateBackToDashboard(context);
                                         },
                                         descriptionWidget: Text(
                                           S.current.cancelBookingDetail,

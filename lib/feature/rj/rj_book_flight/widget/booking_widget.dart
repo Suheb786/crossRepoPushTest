@@ -177,7 +177,6 @@ class _RJBookingWidgetViewState extends State<RJBookingWidgetView> {
                     return GestureDetector(
                       onTap: () {
                         /// selection cabin class based on index
-                        print('Index----111----${index}');
                         model.selectedCabinClass(index);
                       },
                       child: Container(

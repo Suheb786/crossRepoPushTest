@@ -34,6 +34,7 @@ import 'package:domain/usecase/user/scan_user_document_usecase.dart';
 import 'package:domain/usecase/user/update_journey_usecase.dart';
 import 'package:domain/usecase/user/upload_selfie_image_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
+import 'package:domain/usecase/user/local_session_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[LoginUseCase] provider
@@ -201,3 +202,7 @@ final processJourneyViaMobileUseCaseProvider = Provider.autoDispose<ProcessJourn
 
 final checkJourneyStatusUseCaseProvider = Provider.autoDispose<CheckJourneyStatusUseCase>(
     (ref) => CheckJourneyStatusUseCase(ref.read(userRepoProvider)));
+
+///save user usecase
+final localSessionUseCaseProvider =
+    Provider.autoDispose<LocalSessionUseCase>((ref) => LocalSessionUseCase(ref.read(userRepoProvider)));

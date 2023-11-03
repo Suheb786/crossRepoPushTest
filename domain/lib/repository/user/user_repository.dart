@@ -194,6 +194,12 @@ abstract class UserRepository {
 
   Future<Either<NetworkError, bool>> checkVersionUpdate({String? clear});
 
+  Future<Either<BaseError, bool>> startLocalSession();
+
+  Future<Either<BaseError, bool>> endLocalSession();
+
+  Future<Either<BaseError, bool>> getLocalSessionWarning(Function() onSessionEndWarning,Function() onSessionTimeOut);
+
   /// clear wallet id
   Future<Either<DatabaseError, bool>> clearWalletId();
 
