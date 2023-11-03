@@ -80,7 +80,7 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
   }
 
   Future<void> openIdwise(User data) async {
-    /*IdWiseHelper idWiseHelper = IdWiseHelper();
+    IdWiseHelper idWiseHelper = IdWiseHelper();
     idWiseHelper.initializeIdWise();
     var status = await idWiseHelper.startVerification(
         Localizations.localeOf(appLevelKey.currentState!.context).languageCode, data.idWiseRefId ?? '');
@@ -94,8 +94,8 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
       udpateJourney(userID: data.id, refID: data.idWiseRefId, journeyID: status.values.first, status: "");
     } else if (status.keys.first == IDWiseStatus.ERROR) {
 
-    }*/
-    journeyId = "6544ea77a1b0c7ee26fb2143";
-    udpateJourney(userID: data.id, refID: data.idWiseRefId, journeyID: journeyId, status: "");
+    }
+    //journeyId = data.journeyId!;
+    //udpateJourney(userID: data.id, refID: data.idWiseRefId, journeyID: data.journeyId, status: "");
   }
 }

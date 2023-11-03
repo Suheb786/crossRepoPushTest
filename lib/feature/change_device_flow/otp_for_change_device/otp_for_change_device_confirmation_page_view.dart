@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/change_device_flow/change_device_success/change_device_success_page.dart';
 import 'package:neo_bank/feature/change_device_flow/otp_for_change_device/otp_for_change_device_confirmation_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -112,7 +113,7 @@ class OtpForChangeDeviceConfirmationPageView
                             model.clearWallet();
                             model.antelopSdkInitialize();
                           }
-                          Navigator.pushReplacementNamed(context, RoutePaths.ChangeDeviceSuccess,arguments: model.arguments.journeyId);
+                          Navigator.pushReplacementNamed(context, RoutePaths.ChangeDeviceSuccess,arguments: ChangeDeviceParams(journeyId: model.arguments.journeyId));
                         } else if (data.status == Status.ERROR) {
                           model.showToastWithError(data.appError!);
                         }

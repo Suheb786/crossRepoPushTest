@@ -487,6 +487,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
       journeyID: params.journeyID,
       status: params.status,
       baseClass: baseData.toJson(),
+      getToken: true,
     ));
   }
 

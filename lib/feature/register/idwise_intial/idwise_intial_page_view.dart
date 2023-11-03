@@ -28,13 +28,12 @@ class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel>
         initialData: Resource.none(),
         onData: (updateJourney) async {
           if (updateJourney.status == Status.SUCCESS) {
-            Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
+             /* Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
                 arguments: ManageIDWiseStatusParams(
-                    isAhwalCheckPassed: false,
-                    isFaceMatchScorePassed: false,
-                    journeyId: model.journeyId));
-
-            /*if (!updateJourney.data!.documentStatus) {
+                    isAhwalCheckPassed: true,
+                    isFaceMatchScorePassed: true,
+                    journeyId: model.journeyId));*/
+            if (!updateJourney.data!.documentStatus) {
               Navigator.pushReplacementNamed(context, RoutePaths.OnboardingFailurScenariosPage,
                   arguments: OnboardingFailureScenarioArgument(
                       title: updateJourney.data!.documentTitle,
@@ -46,10 +45,10 @@ class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel>
             } else {
               Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
                   arguments: ManageIDWiseStatusParams(
-                      isAhwalCheckPassed: false,
-                      isFaceMatchScorePassed: false,
+                      isAhwalCheckPassed: true,
+                      isFaceMatchScorePassed: true,
                       journeyId: model.journeyId));
-            }*/
+            }
           }
         },
         dataBuilder: (context, snapshot) {

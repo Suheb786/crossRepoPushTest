@@ -66,16 +66,14 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 48.w),
-                        child: Flexible(
-                          child: Text(
-                            S.of(context).bareWithUsProcessing,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 24.t,
-                                color: Theme.of(context).colorScheme.secondary),
-                          ),
+                        child: Text(
+                          S.of(context).bareWithUsProcessing,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 24.t,
+                              color: Theme.of(context).colorScheme.secondary),
                         ),
                       ),
                       Padding(
@@ -117,7 +115,7 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                           dataBuilder: (context, snapshot) {
                             return IDWiseProcessingStatusWidget(
                               label: S.of(context).verifyingYourNationalID,
-                              isActivated: model.arguments.isAhwalCheckPassed
+                              isActivated: !model.arguments.isAhwalCheckPassed
                                   ? true
                                   : snapshot?.data?.isAllowPooling ?? false,
                             );
@@ -146,6 +144,7 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                           dataBuilder: (context, snapshot) {
                             return IDWiseProcessingStatusWidget(
                               label: S.of(context).validatingYourSelfie,
+                              isAhwalPassed : model.isAllowPooling,
                               isActivated: !(snapshot?.data?.keepPooling ?? true),
                             );
                           }),

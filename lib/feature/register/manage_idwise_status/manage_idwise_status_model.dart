@@ -40,6 +40,7 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
   final PublishSubject<GetCurrentUserUseCaseParams> _currentUserRequestSubject = PublishSubject();
 
   late User user;
+  bool isAllowPooling = false;
 
   ManageIDWiseStatusViewModel(
       this._processJourneyViaMobileUseCase, this._checkJourneyStatusUseCase, this._getCurrentUserUseCase) {
@@ -52,7 +53,8 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           if (event.data!.isAllowPooling) {
-            checkJourneyStatus(journeyId: '', referenceId: user.idWiseRefId);
+            isAllowPooling = event.data!.isAllowPooling;
+            checkJourneyStatus(journeyId: arguments.journeyId != '' ? arguments.journeyId : user.journeyId, referenceId: user.idWiseRefId);
           }
         }
       });
@@ -68,7 +70,7 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
         } else if (event.status == Status.SUCCESS) {
           if (event.data!.keepPooling) {
             Future.delayed(Duration(seconds: 3),
-                () => {checkJourneyStatus(journeyId: '', referenceId: user.idWiseRefId)});
+                () => {checkJourneyStatus(journeyId: arguments.journeyId != '' ? arguments.journeyId : user.journeyId, referenceId: user.idWiseRefId)});
           }
         }
       });
@@ -81,15 +83,13 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
         if (event.status == Status.SUCCESS) {
           user = event.data!;
 
-          if (!arguments.isAhwalCheckPassed) {
+          if (arguments.isAhwalCheckPassed) {
             processJourneyViaMobile(
                 refID: user.idWiseRefId,
-                journeyID:
-                    (user.journeyId == null || user.journeyId == '') ? arguments.journeyId : user.journeyId);
-          } else if (!arguments.isFaceMatchScorePassed) {
+                journeyID: arguments.journeyId != '' ? arguments.journeyId : user.journeyId);
+          } else if (arguments.isFaceMatchScorePassed) {
             checkJourneyStatus(
-                journeyId:
-                    (user.journeyId == null || user.journeyId == '') ? arguments.journeyId : user.journeyId,
+                journeyId: arguments.journeyId != '' ? arguments.journeyId : user.journeyId,
                 referenceId: user.idWiseRefId);
           }
         }
