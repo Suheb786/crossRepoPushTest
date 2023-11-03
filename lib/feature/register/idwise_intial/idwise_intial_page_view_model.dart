@@ -97,9 +97,5 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
     referenceNumber = data.idWiseRefId ?? '';
     journeyId = "65423170f0ae36ab6f7ef75a";
     udpateJourney(userID: data.id, refID: data.idWiseRefId, journeyID: journeyId, status: "");
-    } else if (status.keys.first == IDWiseStatus.ERROR) {}*/
-    // referenceNumber = data.idWiseRefId ?? '';
-    journeyId = "65423170f0ae36ab6f7ef75a";
-    udpateJourney(userID: data.id, refID: data.idWiseRefId, journeyID: journeyId, status: "");
   }
 }

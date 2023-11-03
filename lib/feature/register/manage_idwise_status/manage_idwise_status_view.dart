@@ -104,7 +104,9 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                           dataBuilder: (context, snapshot) {
                             return IDWiseProcessingStatusWidget(
                               label: S.of(context).verifyingYourNationalID,
-                              isActivated: snapshot?.data?.isAllowPooling ?? false,
+                              isActivated: model.arguments.checkKYCData.type == 'FaceMatchScore'
+                                  ? true
+                                  : snapshot?.data?.isAllowPooling ?? false,
                             );
                           }),
                       SizedBox(
@@ -115,7 +117,17 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                           stream: model.checkJourneyStatusStream,
                           onData: (value) {
                             if (value.status == Status.SUCCESS) {
-                              if (!value.data!.keepPooling) {}
+                              if (!value.data!.keepPooling) {
+                                Navigator.pushReplacementNamed(context, RoutePaths.Registration,
+                                    arguments: RegisterPageParams(
+                                        kycData: CheckKYCData(type: 'CountryResidence'),
+                                        applicationId: ProviderScope.containerOf(context)
+                                            .read(loginViewModelProvider)
+                                            .applicationId));
+                              }
+                            } else if (value.status == Status.ERROR) {
+                              if (value.appError!.error.code == "IDWISE-001") {
+                              } else {}
                             }
                           },
                           dataBuilder: (context, snapshot) {
