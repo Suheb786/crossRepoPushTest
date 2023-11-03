@@ -104,7 +104,7 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                           dataBuilder: (context, snapshot) {
                             return IDWiseProcessingStatusWidget(
                               label: S.of(context).verifyingYourNationalID,
-                              isActivated: model.arguments.checkKYCData.type == 'FaceMatchScore'
+                              isActivated: model.arguments.isAhwalCheckPassed
                                   ? true
                                   : snapshot?.data?.isAllowPooling ?? false,
                             );

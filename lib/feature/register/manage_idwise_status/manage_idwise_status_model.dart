@@ -81,14 +81,26 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
         if (event.status == Status.SUCCESS) {
           user = event.data!;
 
-          if(arguments.checkKYCData.type == null || arguments.checkKYCData.type == 'AhwalCheck'){
-            processJourneyViaMobile(refID: user.idWiseRefId, journeyID: '');
-          } else if (arguments.checkKYCData.type == 'FaceMatchScore'){
-            checkJourneyStatus(journeyId: '',referenceId: user.idWiseRefId);
+          if (!arguments.isAhwalCheckPassed) {
+            processJourneyViaMobile(
+                refID: user.idWiseRefId,
+                journeyID:
+                    (user.journeyId == null || user.journeyId == '') ? arguments.journeyId : user.journeyId);
+          } else if (!arguments.isFaceMatchScorePassed) {
+            checkJourneyStatus(
+                journeyId:
+                    (user.journeyId == null || user.journeyId == '') ? arguments.journeyId : user.journeyId,
+                referenceId: user.idWiseRefId);
           }
         }
       });
     });
+
+    getCurrentUser();
+  }
+
+  void getCurrentUser() {
+    _currentUserRequestSubject.add(GetCurrentUserUseCaseParams());
   }
 
   void checkJourneyStatus({required String? journeyId, required String? referenceId}) {

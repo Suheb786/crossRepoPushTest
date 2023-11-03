@@ -34,6 +34,7 @@ class LoginViewModel extends BasePageViewModel {
   String mobileNumber = '';
   String mobileCode = '';
   String applicationId = '';
+  late User user;
 
   PublishSubject<LoginUseCaseParams> _loginRequest = PublishSubject();
 

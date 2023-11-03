@@ -354,13 +354,12 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                                             RoutePaths.IdWiseIntialPage,
                                             (route) => false,
                                           );
-                                        } else if (kycData.type == 'AhwalCheck' || kycData.type == 'FaceMatchScore') {
-                                          Navigator.pushNamedAndRemoveUntil(
-                                              context,
-                                              RoutePaths.ManageIDWiseStatus,
-                                                  (route) => false,
-                                            arguments: ManageIDWiseStatusParams(checkKYCData: kycData)
-                                          );
+                                        } else if (kycData.type == 'AhwalCheck' || kycData.type == 'ProcessSelfieImage') {
+                                          Navigator.pushNamedAndRemoveUntil(context, RoutePaths.ManageIDWiseStatus, (route) => false,
+                                              arguments: ManageIDWiseStatusParams(
+                                                  isAhwalCheckPassed: kycData.type == 'AhwalCheck',
+                                                  isFaceMatchScorePassed: kycData.type == 'ProcessSelfieImage',
+                                                  journeyId: ''));
                                         } else {
                                           Navigator.pushNamedAndRemoveUntil(
                                               context, RoutePaths.Registration, (route) => false,

@@ -166,7 +166,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                       Navigator.pushNamedAndRemoveUntil(
                           context, RoutePaths.OTPForChangeDevice, (route) => false,
                           arguments: OtpForChangeDeviceConfirmationPageArguments(
-                              mobileCode: model.mobileCode, mobileNumber: model.mobileNumber));
+                              mobileCode: model.mobileCode, mobileNumber: model.mobileNumber,journeyId: model.user.journeyId!));
                     }
                   },
                   dataBuilder: (context, otpForChangeDevice) {
@@ -179,6 +179,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                           model.mobileCode = data.data!.mobileCode!;
                           model.applicationId = data.data!.applicationId!;
                           model.saveUserData();
+                          model.user = data.data!;
                           AppConstantsUtils.isApplePayFeatureEnabled = data.data?.applePay ?? false;
 
                           ///new device flow check
@@ -260,13 +261,12 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                     RoutePaths.IdWiseIntialPage,
                                     (route) => false,
                                   );
-                                } else if (kycData.type == 'AhwalCheck' || kycData.type == 'FaceMatchScore') {
-                                  Navigator.pushNamedAndRemoveUntil(
-                                      context,
-                                      RoutePaths.ManageIDWiseStatus,
-                                          (route) => false,
-                                    arguments: ManageIDWiseStatusParams(checkKYCData: kycData)
-                                  );
+                                } else if (kycData.type == 'AhwalCheck' || kycData.type == 'ProcessSelfieImage') {
+                                  Navigator.pushNamedAndRemoveUntil(context, RoutePaths.ManageIDWiseStatus, (route) => false,
+                                      arguments: ManageIDWiseStatusParams(
+                                          isAhwalCheckPassed: kycData.type == 'AhwalCheck',
+                                          isFaceMatchScorePassed: kycData.type == 'ProcessSelfieImage',
+                                          journeyId: model.user.journeyId!));
                                 } else {
                                   Navigator.pushNamedAndRemoveUntil(
                                       context, RoutePaths.Registration, (route) => false,

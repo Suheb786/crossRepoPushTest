@@ -34,3 +34,8 @@ class ChangeDeviceSuccessPageState
     return super.onBackPressed(model);
   }
 }
+
+class ChangeDeviceParams{
+  String journeyId;
+  ChangeDeviceParams({required this.journeyId});
+}

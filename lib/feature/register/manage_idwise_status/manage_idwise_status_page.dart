@@ -36,7 +36,12 @@ class ManageIDWiseStatusPageState
 }
 
 class ManageIDWiseStatusParams {
-  CheckKYCData checkKYCData;
+  bool isAhwalCheckPassed;
+  bool isFaceMatchScorePassed;
+  String journeyId;
 
-  ManageIDWiseStatusParams({required this.checkKYCData});
+  ManageIDWiseStatusParams(
+      {required this.isAhwalCheckPassed,
+      required this.isFaceMatchScorePassed,
+      required this.journeyId});
 }
