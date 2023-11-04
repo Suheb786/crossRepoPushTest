@@ -9,6 +9,7 @@ import 'package:domain/model/user/confirm_application_data_get/country_residence
 import 'package:domain/model/user/confirm_application_data_get/fatca_crs_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/get_confirm_application_data_content.dart';
 import 'package:domain/model/user/confirm_application_data_get/get_confirm_application_data_response.dart';
+import 'package:domain/model/user/confirm_application_data_get/id_card_details_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/job_detail_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
 import 'package:domain/model/user/status/customer_status.dart';
@@ -119,6 +120,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
   JobDetailInfo jobDetailInfo = JobDetailInfo();
   AccountPurposeInfo accountPurposeInfo = AccountPurposeInfo();
   FatcaCrsInfo fatcaCrsInfo = FatcaCrsInfo();
+  IdCardDetailsInfo idCardDetailsInfo = IdCardDetailsInfo();
 
   ReviewApplicationPageViewModel(
       this._reviewAppUseCase,
@@ -391,6 +393,29 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     jobDetailInfo = getConfirmApplicationDataContent.jobDetailInfo!;
     fatcaCrsInfo = getConfirmApplicationDataContent.fatcaCrsInfo!;
     accountPurposeInfo = getConfirmApplicationDataContent.accountPurposeInfo!;
+    idCardDetailsInfo = getConfirmApplicationDataContent.idCardDetailsInfo!;
+
+    ///id card
+    idCardNameController.text = Intl.getCurrentLocale() == 'en'
+        ? idCardDetailsInfo.fullNameEn ?? ''
+        : idCardDetailsInfo.fullNameAr ?? '';
+
+    idCardNationalIDController.text = idCardDetailsInfo.nationalID ?? '';
+
+    idCardDOBController.text = idCardDetailsInfo.dateOfBirth ?? '';
+    idCardPlaceOfBirthController.text = Intl.getCurrentLocale() == 'en'
+        ? idCardDetailsInfo.placeOfBirthEn ?? ''
+        : idCardDetailsInfo.placeOfBirthAr ?? '';
+    idCardGenderController.text = idCardDetailsInfo.gender ?? '';
+    idCardLegalDocumentNoController.text = idCardDetailsInfo.documentNo ?? '';
+    idCardIssuingDateController.text = idCardDetailsInfo.issuingDate ?? '';
+    idCardMotherNameController.text = Intl.getCurrentLocale() == 'en'
+        ? idCardDetailsInfo.motherNameEn ?? ''
+        : idCardDetailsInfo.motherNameAr ?? '';
+    idCardIssuingPlaceController.text = Intl.getCurrentLocale() == 'en'
+        ? idCardDetailsInfo.issuingPlace ?? ''
+        : idCardDetailsInfo.issuingPlace ?? '';
+    idCardExpiryDateController.text = idCardDetailsInfo.expiryDate ?? '';
 
     ///address
     residentCountryController.text = Intl.getCurrentLocale() == 'en'
