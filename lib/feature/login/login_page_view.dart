@@ -166,7 +166,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                       Navigator.pushNamedAndRemoveUntil(
                           context, RoutePaths.OTPForChangeDevice, (route) => false,
                           arguments: OtpForChangeDeviceConfirmationPageArguments(
-                              mobileCode: model.mobileCode, mobileNumber: model.mobileNumber,journeyId: model.user.journeyId!));
+                              mobileCode: model.mobileCode,
+                              mobileNumber: model.mobileNumber,
+                              journeyId: model.user.journeyId!));
                     }
                   },
                   dataBuilder: (context, otpForChangeDevice) {
@@ -243,15 +245,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                           initialData: Resource.none(),
                           onData: (data) {
                             if (data.status == Status.SUCCESS) {
-                              /* CheckKYCData kycData = data.data?.content?.kycData?.firstWhere(
+                              CheckKYCData kycData = data.data?.content?.kycData?.firstWhere(
                                       (element) => element.status ?? false,
                                       orElse: () => CheckKYCData()) ??
-                                  CheckKYCData();*/
-
-                              CheckKYCData kycData = data.data?.content?.kycData
-                                      ?.where((element) => element.type != "MobileOTP")
-                                      .firstWhere((element) => (element.status ?? false),
-                                          orElse: () => CheckKYCData()) ??
                                   CheckKYCData();
 
                               if (kycData.type?.isNotEmpty ?? false) {
@@ -261,12 +257,14 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                     RoutePaths.IdWiseIntialPage,
                                     (route) => false,
                                   );
-                                } else if (kycData.type == 'AhwalCheck' || kycData.type == 'ProcessSelfieImage') {
-                                  Navigator.pushNamedAndRemoveUntil(context, RoutePaths.ManageIDWiseStatus, (route) => false,
+                                } else if (kycData.type == 'AhwalCheck' ||
+                                    kycData.type == 'ProcessSelfieImage') {
+                                  Navigator.pushNamedAndRemoveUntil(
+                                      context, RoutePaths.ManageIDWiseStatus, (route) => false,
                                       arguments: ManageIDWiseStatusParams(
                                           isAhwalCheckPassed: kycData.type == 'AhwalCheck',
                                           isFaceMatchScorePassed: kycData.type == 'ProcessSelfieImage',
-                                          journeyId: model.user.journeyId!));
+                                          journeyId: model.user.journeyId ?? ''));
                                 } else {
                                   Navigator.pushNamedAndRemoveUntil(
                                       context, RoutePaths.Registration, (route) => false,

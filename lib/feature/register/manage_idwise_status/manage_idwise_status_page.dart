@@ -41,7 +41,5 @@ class ManageIDWiseStatusParams {
   String journeyId;
 
   ManageIDWiseStatusParams(
-      {required this.isAhwalCheckPassed,
-      required this.isFaceMatchScorePassed,
-      required this.journeyId});
+      {required this.isAhwalCheckPassed, required this.isFaceMatchScorePassed, required this.journeyId});
 }

@@ -41,6 +41,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                   initialData: Resource.none(),
                   onData: (data) async {
                     if (data.status == Status.SUCCESS) {
+                      model.saveUserData();
                       ProviderScope.containerOf(context)
                           .read(accountRegistrationViewModelProvider)
                           .updateMobileNumber(MobileNumberParams(
@@ -98,7 +99,6 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                             initialData: Resource.none(),
                             onData: (data) async {
                               if (data.status == Status.SUCCESS) {
-                                model.saveUserData();
                                 model.verifyMobileOtp(
                                     OTPCode: model.otpController.text,
                                     MobileNo: ProviderScope.containerOf(context)

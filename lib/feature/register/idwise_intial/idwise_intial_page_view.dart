@@ -28,26 +28,20 @@ class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel>
         initialData: Resource.none(),
         onData: (updateJourney) async {
           if (updateJourney.status == Status.SUCCESS) {
-             /* Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
-                arguments: ManageIDWiseStatusParams(
-                    isAhwalCheckPassed: true,
-                    isFaceMatchScorePassed: true,
-                    journeyId: model.journeyId));*/
-            if (!updateJourney.data!.documentStatus) {
+            if (!(updateJourney.data?.documentStatus ?? false)) {
               Navigator.pushReplacementNamed(context, RoutePaths.OnboardingFailurScenariosPage,
                   arguments: OnboardingFailureScenarioArgument(
-                      title: updateJourney.data!.documentTitle,
-                      description: updateJourney.data!.documentDetail));
-            } else if (!updateJourney.data!.selfieStatus) {
+                      title: updateJourney.data?.documentTitle ?? '',
+                      description: updateJourney.data?.documentDetail ?? ''));
+            } else if (!(updateJourney.data?.selfieStatus ?? false)) {
               Navigator.pushReplacementNamed(context, RoutePaths.OnboardingFailurScenariosPage,
                   arguments: OnboardingFailureScenarioArgument(
-                      title: updateJourney.data!.selfieTitle, description: updateJourney.data!.selfieDetail));
+                      title: updateJourney.data?.selfieTitle ?? '',
+                      description: updateJourney.data?.selfieDetail ?? ''));
             } else {
               Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
                   arguments: ManageIDWiseStatusParams(
-                      isAhwalCheckPassed: true,
-                      isFaceMatchScorePassed: true,
-                      journeyId: model.journeyId));
+                      isAhwalCheckPassed: true, isFaceMatchScorePassed: true, journeyId: model.journeyId));
             }
           }
         },

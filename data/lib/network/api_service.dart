@@ -442,7 +442,7 @@ abstract class ApiService {
       @Body() SaveUploadDocumentRequestEntity saveUploadDocumentRequestEntity);
 
   ///get confirm application data
-  @POST("/AdditionalDoc/ConfirmApplicationDataGetV2")
+  @POST("/AdditionalDoc/ConfirmApplicationDataGetV3")
   Future<HttpResponse<GetConfirmApplicationDataResponseEntity>> confirmApplicationDataGet(
       @Body() ConfirmApplicationDataGetRequestEntity confirmApplicationDataGetRequestEntity);
 

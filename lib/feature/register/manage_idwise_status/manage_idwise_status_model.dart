@@ -101,10 +101,10 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
           if (arguments.isAhwalCheckPassed) {
             processJourneyViaMobile(
                 refID: user.idWiseRefId,
-                journeyID: arguments.journeyId != '' ? arguments.journeyId : user.journeyId);
+                journeyID: arguments.journeyId.isNotEmpty ? arguments.journeyId : user.journeyId);
           } else if (arguments.isFaceMatchScorePassed) {
             checkJourneyStatus(
-                journeyId: arguments.journeyId != '' ? arguments.journeyId : user.journeyId,
+                journeyId: arguments.journeyId.isNotEmpty ? arguments.journeyId : user.journeyId,
                 referenceId: user.idWiseRefId);
           }
         }
