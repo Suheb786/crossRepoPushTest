@@ -112,6 +112,16 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                       AppStreamBuilder<Resource<ProcessJourney>>(
                           initialData: Resource.none(),
                           stream: model.processJourneyViaMobileStream,
+                          onData: (value) {
+                            if (value.status == Status.ERROR) {
+                              //TODO need to handle error
+                              if (value.appError!.error.code == "IDWISE-001") {
+                                    //OversightDialog
+                              } else {
+
+                              }
+                            }
+                          },
                           dataBuilder: (context, snapshot) {
                             return IDWiseProcessingStatusWidget(
                               label: S.of(context).verifyingYourNationalID,
@@ -137,8 +147,12 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                                             .applicationId));
                               }
                             } else if (value.status == Status.ERROR) {
+                              //TODO need to handle error
                               if (value.appError!.error.code == "IDWISE-001") {
-                              } else {}
+
+                              } else {
+
+                              }
                             }
                           },
                           dataBuilder: (context, snapshot) {

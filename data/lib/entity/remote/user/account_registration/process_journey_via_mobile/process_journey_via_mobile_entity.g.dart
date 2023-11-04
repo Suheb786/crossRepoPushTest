@@ -12,6 +12,7 @@ ProcessJourneyViaMobileEntity _$ProcessJourneyViaMobileEntityFromJson(
       reason: json['reason'] as String?,
       isAllowPooling: json['isAllowPooling'] as bool?,
       idWiseError: json['idWiseError'] as String?,
+      journeyInProcess: json['JourneyInProcess'] as bool?,
     );
 
 Map<String, dynamic> _$ProcessJourneyViaMobileEntityToJson(
@@ -20,4 +21,5 @@ Map<String, dynamic> _$ProcessJourneyViaMobileEntityToJson(
       'reason': instance.reason,
       'isAllowPooling': instance.isAllowPooling,
       'idWiseError': instance.idWiseError,
+      'JourneyInProcess': instance.journeyInProcess,
     };

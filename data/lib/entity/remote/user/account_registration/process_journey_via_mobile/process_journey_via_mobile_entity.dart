@@ -16,7 +16,10 @@ class ProcessJourneyViaMobileEntity
   @JsonKey(name: 'idWiseError')
   final String? idWiseError;
 
-  ProcessJourneyViaMobileEntity({this.reason, this.isAllowPooling, this.idWiseError});
+  @JsonKey(name: 'JourneyInProcess')
+  final bool? journeyInProcess;
+
+  ProcessJourneyViaMobileEntity({this.reason, this.isAllowPooling, this.idWiseError,this.journeyInProcess});
 
   factory ProcessJourneyViaMobileEntity.fromJson(Map<String, dynamic> json) =>
       _$ProcessJourneyViaMobileEntityFromJson(json);
@@ -26,6 +29,6 @@ class ProcessJourneyViaMobileEntity
   @override
   ProcessJourney transform() {
     return ProcessJourney(
-        reason: reason ?? '', isAllowPooling: isAllowPooling ?? false, idWiseError: idWiseError ?? '');
+        reason: reason ?? '', isAllowPooling: isAllowPooling ?? false, idWiseError: idWiseError ?? '',journeyInProcess : journeyInProcess ?? false);
   }
 }

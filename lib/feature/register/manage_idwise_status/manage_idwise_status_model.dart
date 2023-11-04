@@ -52,7 +52,15 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          if (event.data!.isAllowPooling) {
+          if (event.data!.journeyInProcess) {
+            Future.delayed(
+                Duration(seconds: 3),
+                () => {
+                      processJourneyViaMobile(
+                          refID: user.idWiseRefId,
+                          journeyID: arguments.journeyId != '' ? arguments.journeyId : user.journeyId)
+                    });
+          } else if (event.data!.isAllowPooling) {
             isAllowPooling = event.data!.isAllowPooling;
             checkJourneyStatus(
                 journeyId: arguments.journeyId != '' ? arguments.journeyId : user.journeyId,
