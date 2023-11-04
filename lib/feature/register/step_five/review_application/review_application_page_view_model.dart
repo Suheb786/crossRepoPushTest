@@ -28,6 +28,7 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/time_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ReviewApplicationPageViewModel extends BasePageViewModel {
@@ -235,68 +236,9 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     _reviewAppRequest.safeAdd(ReviewApplicationUseCaseParams(
         declarationSelected: _declarationSelected.value,
         countryResidenceInfo: countryResidenceInfo,
-        // countryResidenceInfo: CountryResidenceInfo(
-        //     userId: countryResidenceInfo.userId,
-        //     residantCountry: countryResidenceInfo.residantCountry,
-        //     cityId: countryResidenceInfo.cityId,
-        //     stateId: countryResidenceInfo.stateId,
-        //     buildingName: buildingNameOrNoController.text,
-        //     streetName: streetAddressController.text,
-        //     area: districtController.text,
-        //     city: cityController.text,
-        //     perResidantCountry: countryResidenceInfo.perResidantCountry,
-        //     perCity: countryResidenceInfo.perCity,
-        //     residentCountryName: residentCountryController.text,
-        //     perResidentCountryName: residentPermanentCountryController.text,
-        //     perResidentCityName: residentPermanentCityController.text,
-        //     isActive: countryResidenceInfo.isActive,
-        //     createdOn: countryResidenceInfo.createdOn,
-        //     id: countryResidenceInfo.id),
-        profileStatusInfo:
-            profileStatusInfo /*ProfileStatusInfo(
-            id: profileStatusInfo.id,
-            createdOn: profileStatusInfo.createdOn,
-            isActive: profileStatusInfo.isActive,
-            userId: profileStatusInfo.userId,
-            employmentStatus: employmentStatusController.text,
-            specialPerson: profileStatusInfo.specialPerson,
-            married: profileStatusInfo.married,
-            natureSp: specialNeedsPersonController.text,
-            spauseName: spouseNameController.text)*/
-        ,
-        accountPurposeInfo:
-            accountPurposeInfo /*AccountPurposeInfo(
-            userId: accountPurposeInfo.userId,
-            isActive: accountPurposeInfo.isActive,
-            createdOn: accountPurposeInfo.createdOn,
-            id: accountPurposeInfo.id,
-            isOther: accountPurposeInfo.isOther,
-            isBillPayment: accountPurposeInfo.isBillPayment,
-            isTransfer: accountPurposeInfo.isTransfer,
-            isCashDeposit: accountPurposeInfo.isCashDeposit,
-            monthlyTransaction: double.parse(expectedMonthlyTransactionsController.text),
-            anualTransaction: double.parse(expectedAnnualTransactionsController.text),
-            purpose: purposeOfAccountOpeningController.text)*/
-        ,
-        jobDetailInfo:
-            jobDetailInfo /*JobDetailInfo(
-            additionalIncomeInfo: jobDetailInfo.additionalIncomeInfo,
-            jobDetailContentInfo: JobDetailContentInfo(
-                id: jobDetailInfo.jobDetailContentInfo!.id,
-                createdOn: jobDetailInfo.jobDetailContentInfo!.createdOn,
-                isActive: jobDetailInfo.jobDetailContentInfo!.isActive,
-                userId: jobDetailInfo.jobDetailContentInfo!.userId,
-
-                ///change to occupation
-                profession: occupationController.text,
-                mainSource: jobDetailInfo.jobDetailContentInfo!.mainSource,
-                employeeName: employerNameController.text,
-                employerCountry: employerCountryController.text,
-                employerCity: employerCityController.text,
-                employerContact: employerContactController.text,
-                additionalIncome: jobDetailInfo.jobDetailContentInfo!.additionalIncome,
-                annualIncome: mainAnnualIncomeController.text))*/
-        ,
+        profileStatusInfo: profileStatusInfo,
+        accountPurposeInfo: accountPurposeInfo,
+        jobDetailInfo: jobDetailInfo,
         fatcaCrsInfo: fatcaCrsInfo));
   }
 
@@ -366,27 +308,6 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
   TextEditingController expectedMonthlyTransactionsController = TextEditingController();
   TextEditingController expectedAnnualTransactionsController = TextEditingController();
 
-  // void updateTextFieldData() {
-  //   residentCountryController.text = 'Jordan';
-  //   homeAddressController.text = 'Queen Rania Al-Abdullah';
-  //   streetAddressController.text = 'Sweilah';
-  //   buildingNameOrNoController.text = 'W Amman';
-  //   residentPermanentAddressCountryController.text = 'Bahrain';
-  //   residentPermanentAddressCityController.text = 'Sweilah';
-  //   spouseNameController.text = 'Ameena Rasheed';
-  //   specialNeedsPersonController.text = 'Movement';
-  //   employmentStatusController.text = 'Full-Time Employee';
-  //   occupationController.text = 'Senior Executive';
-  //   mainAnnualIncomeController.text = '60,000';
-  //   employerNameController.text = 'Jordan Insurance Company';
-  //   employerCountryController.text = 'Jordan';
-  //   employerCityController.text = 'Amman';
-  //   employerContactController.text = '+962 79 333 8080';
-  //   purposeOfAccountOpeningController.text = 'Salary';
-  //   expectedMonthlyTransactionsController.text = '12,000';
-  //   expectedAnnualTransactionsController.text = '102,000';
-  // }
-
   void updateTextFieldData(GetConfirmApplicationDataContent getConfirmApplicationDataContent) {
     countryResidenceInfo = getConfirmApplicationDataContent.countryResidenceInfo!;
     profileStatusInfo = getConfirmApplicationDataContent.profileStatusInfo!;
@@ -397,25 +318,31 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
 
     ///id card
     idCardNameController.text = Intl.getCurrentLocale() == 'en'
-        ? idCardDetailsInfo.fullNameEn ?? ''
-        : idCardDetailsInfo.fullNameAr ?? '';
+        ? idCardDetailsInfo.fullNameEn ?? '-'
+        : idCardDetailsInfo.fullNameAr ?? '-';
 
     idCardNationalIDController.text = idCardDetailsInfo.nationalID ?? '';
 
-    idCardDOBController.text = idCardDetailsInfo.dateOfBirth ?? '';
+    idCardDOBController.text = (idCardDetailsInfo.dateOfBirth ?? '').isNotEmpty
+        ? TimeUtils.getFormattedDOBIdwise(idCardDetailsInfo.dateOfBirth ?? '')
+        : '';
     idCardPlaceOfBirthController.text = Intl.getCurrentLocale() == 'en'
-        ? idCardDetailsInfo.placeOfBirthEn ?? ''
-        : idCardDetailsInfo.placeOfBirthAr ?? '';
-    idCardGenderController.text = idCardDetailsInfo.gender ?? '';
-    idCardLegalDocumentNoController.text = idCardDetailsInfo.documentNo ?? '';
-    idCardIssuingDateController.text = idCardDetailsInfo.issuingDate ?? '';
+        ? idCardDetailsInfo.placeOfBirthEn ?? '-'
+        : idCardDetailsInfo.placeOfBirthAr ?? '-';
+    idCardGenderController.text = idCardDetailsInfo.gender ?? '-';
+    idCardLegalDocumentNoController.text = idCardDetailsInfo.documentNo ?? '-';
+    idCardIssuingDateController.text = (idCardDetailsInfo.issuingDate ?? '').isNotEmpty
+        ? TimeUtils.convertDateTimeToDate(idCardDetailsInfo.issuingDate ?? '')
+        : '';
     idCardMotherNameController.text = Intl.getCurrentLocale() == 'en'
-        ? idCardDetailsInfo.motherNameEn ?? ''
-        : idCardDetailsInfo.motherNameAr ?? '';
+        ? idCardDetailsInfo.motherNameEn ?? '-'
+        : idCardDetailsInfo.motherNameAr ?? '-';
     idCardIssuingPlaceController.text = Intl.getCurrentLocale() == 'en'
-        ? idCardDetailsInfo.issuingPlace ?? ''
-        : idCardDetailsInfo.issuingPlace ?? '';
-    idCardExpiryDateController.text = idCardDetailsInfo.expiryDate ?? '';
+        ? idCardDetailsInfo.issuingPlace ?? '-'
+        : idCardDetailsInfo.issuingPlace ?? '-';
+    idCardExpiryDateController.text = (idCardDetailsInfo.expiryDate ?? '').isNotEmpty
+        ? TimeUtils.convertDateTimeToDate(idCardDetailsInfo.expiryDate ?? '')
+        : '-';
 
     ///address
     residentCountryController.text = Intl.getCurrentLocale() == 'en'

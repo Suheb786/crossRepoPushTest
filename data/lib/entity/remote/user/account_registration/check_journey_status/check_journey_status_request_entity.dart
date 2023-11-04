@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 part 'check_journey_status_request_entity.g.dart';
 
 @JsonSerializable()

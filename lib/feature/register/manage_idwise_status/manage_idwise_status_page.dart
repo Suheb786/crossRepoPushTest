@@ -1,4 +1,3 @@
-import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:riverpod/src/framework.dart';
 

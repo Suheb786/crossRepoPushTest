@@ -37,12 +37,6 @@ class ValidateOtpPageState extends BaseStatefulPage<ValidateOtpViewModel, Valida
     return Colors.transparent;
   }
 
-  // @override
-  // void onFocusLost() {
-  //   getViewModel().countDownController.disposeTimer();
-  //   super.onFocusLost();
-  // }
-
   @override
   Widget buildView(BuildContext context, ValidateOtpViewModel model) {
     return ValidateOtpPageView(provideBase());

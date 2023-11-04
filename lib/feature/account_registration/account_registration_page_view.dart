@@ -18,16 +18,7 @@ import 'add_email/add_email_page.dart';
 import 'add_email_otp/email_otp_page.dart';
 
 class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistrationPageViewModel> {
-  final pages = [
-    // CountrySelectionPage(),
-    //CreatePasswordPage(),
-    AddEmailPage(),
-    EmailOtpPage(),
-    AddNumberPage(),
-    //CreatePasswordPage(),
-    ValidateOtpPage(),
-    BaseCardPage()
-  ];
+  final pages = [AddEmailPage(), EmailOtpPage(), AddNumberPage(), ValidateOtpPage(), BaseCardPage()];
 
   AccountRegistrationPageView(ProviderBase model) : super(model);
 

@@ -7,7 +7,6 @@ import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w8/fatca_u
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/date_picker.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -17,7 +16,6 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
-import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 class FatcaUSRelevantW8PageView extends BasePageViewWidget<FatcaUSRelevantW8PageViewModel> {

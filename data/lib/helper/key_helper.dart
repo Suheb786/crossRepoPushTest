@@ -8,6 +8,7 @@ class KeyHelper {
 
   ///current version PE decryption key
   static String DECRYPTION_KEY = "1a2b3c4d5e6f7a8b";
+
   //static String DECRYPTION_KEY = "Htyr3IvDoAhXLg0o";
 
   ///microblink keys
@@ -31,6 +32,10 @@ class KeyHelper {
   static String DevDynamicLinkPrefix = 'https://blinkcbt.page.link';
   static String UATDynamicLinkPrefix = '';
 
+  ///IDWise Keys
+  static String ID_Wise_Client_ID = '';
+  static String ID_Journey_Client_ID = '';
+
   static setKeyValues(String content) {
     var mapContent = Map<String, dynamic>();
     mapContent = jsonDecode(content);
@@ -44,6 +49,8 @@ class KeyHelper {
     INFOBIP_APPLICATION_ID = mapContent['dynamicObject']?['InfobipApplicationId'] ?? '';
     INFOBIP_BASE_URL = mapContent['dynamicObject']?['InfobipBaseUrl'] ?? '';
     CREDIT_CARD_PIN_BLOCK_KEY = mapContent['dynamicObject']?['creditCardPinBlockKey'] ?? '';
+    ID_Wise_Client_ID = mapContent['dynamicObject']?['IDWisecClientId'] ?? '';
+    ID_Journey_Client_ID = mapContent['dynamicObject']?['IDWiseJourneyDefinitionId'] ?? '';
     InfobipUtilsConstants.FIREBASE_API_KEY = mapContent['dynamicObject']['FIREBASE_API_KEY'];
     InfobipUtilsConstants.FIREBASE_APPLICATION_ID = mapContent['dynamicObject']['FIREBASE_APPLICATION_ID'];
     InfobipUtilsConstants.FIREBASE_PROJECT_ID = mapContent['dynamicObject']['FIREBASE_PROJECT_ID'];

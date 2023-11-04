@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/login/login_module.dart';
-import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
 import 'package:neo_bank/feature/change_device_flow/change_device_success/change_device_success_page_view_model.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/generated/l10n.dart';

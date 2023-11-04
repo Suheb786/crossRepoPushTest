@@ -1,4 +1,3 @@
-import 'package:data/network/utils/get_error.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/country/country.dart';
 import 'package:domain/model/country/country_list/country_data.dart';

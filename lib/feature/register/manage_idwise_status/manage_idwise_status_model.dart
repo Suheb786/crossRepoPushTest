@@ -1,4 +1,3 @@
-import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/user/check_journey_status/check_journey_status.dart';
 import 'package:domain/model/user/process_journey_via_mobile/process_journey.dart';
 import 'package:domain/model/user/user.dart';

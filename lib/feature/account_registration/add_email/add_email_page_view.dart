@@ -41,7 +41,6 @@ class AddEmailPageView extends BasePageViewWidget<AddEmailViewModel> {
                 stream: model.createPasswordStream,
                 initialData: Resource.none(),
                 onData: (passwordData) {
-                  print("data.status ${passwordData.status}");
                   if (passwordData.status == Status.SUCCESS) {
                     var event = {
                       "definitionId": "UserEvents",
@@ -59,13 +58,13 @@ class AddEmailPageView extends BasePageViewWidget<AddEmailViewModel> {
                     ProviderScope.containerOf(context).read(emailOtpViewModelProvider).updateTimer();
                   } else if (passwordData.status == Status.ERROR) {
                     if (passwordData.appError!.type == ErrorType.PASSWORD_MISMATCH) {
-                      model.passwordKey.currentState!.isValid = false;
-                      model.confirmPasswordKey.currentState!.isValid = false;
-                    } else if (passwordData.appError!.type == ErrorType.EMPTY_PASSWORD) {
-                      model.passwordKey.currentState!.isValid = false;
-                    } else if (passwordData.appError!.type == ErrorType.EMPTY_CONFIRM_PASSWORD) {
-                      model.confirmPasswordKey.currentState!.isValid = false;
-                    } else if (passwordData.appError!.type == ErrorType.PASSWORD_NOT_MEET_CRITERIA) {}
+                      model.passwordKey.currentState?.isValid = false;
+                      model.confirmPasswordKey.currentState?.isValid = false;
+                    } else if (passwordData.appError?.type == ErrorType.EMPTY_PASSWORD) {
+                      model.passwordKey.currentState?.isValid = false;
+                    } else if (passwordData.appError?.type == ErrorType.EMPTY_CONFIRM_PASSWORD) {
+                      model.confirmPasswordKey.currentState?.isValid = false;
+                    } else if (passwordData.appError?.type == ErrorType.PASSWORD_NOT_MEET_CRITERIA) {}
                     model.showToastWithError(passwordData.appError!);
                   }
                 },

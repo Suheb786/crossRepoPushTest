@@ -1,4 +1,3 @@
-import 'package:domain/model/e_voucher/get_voucher_details.dart';
 import 'package:domain/model/user/update_journey/update_journey.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';

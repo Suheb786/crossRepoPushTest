@@ -1,4 +1,3 @@
-import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/user/update_journey/update_journey.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
