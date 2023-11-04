@@ -154,7 +154,7 @@ class AddEmailViewModel extends BasePageViewModel {
       hasSymbol: hasSymbol,
       containsDigit: containsDigit,
       isEmailExist: isEmailExist,
-      emailAddress: emailController.text,
+      emailAddress: emailController.text.trim(),
     ));
   }
 
