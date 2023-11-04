@@ -75,7 +75,6 @@ import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/create_cliq_id_pa
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_cliq_id_mobile_no/edit_cliq_id_mobile_no_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/otp_for_edit_alias_and_mobile_no/otp_for_edit_alias_mobile_no_page.dart';
-import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/edit_mobile_no_cliq_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/link_account/link_account_page.dart';
 import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary_page.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contact_details/beneficiary_contact_details_page.dart';
@@ -616,11 +615,6 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => EditAliasPage(settings.arguments as EditAliasPageArguments),
             settings: RouteSettings(name: RoutePaths.EditAlias));
-
-      case RoutePaths.EditMobileNoCliq:
-        return CupertinoPageRoute(
-            builder: (context) => EditMobileNoCliqPage(),
-            settings: RouteSettings(name: RoutePaths.EditMobileNoCliq));
 
       case RoutePaths.ChangeCountryRestriction:
         return CupertinoPageRoute(

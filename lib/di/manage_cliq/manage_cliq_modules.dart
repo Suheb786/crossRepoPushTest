@@ -16,9 +16,6 @@ import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_cliq_id_mobile_n
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_cliq_id_mobile_no/edit_cliq_id_mobile_no_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/otp_for_edit_alias_and_mobile_no/otp_for_edit_alias_mobile_no_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/otp_for_edit_alias_and_mobile_no/otp_for_edit_alias_mobile_no_page_view_model.dart';
-import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/add_new_mobile_cliq/add_new_mobile_no_cliq_page_view_model.dart';
-import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/edit_mobile_no_cliq_page_view_model.dart';
-import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/enter_otp_for_mobile_number_cliq/enter_otp_for_mobile_no_cliq_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/link_account/link_account_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/link_account/link_account_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/manage_cliq/cliq_information_dialog/cliq_information_dialog_view_model.dart';
@@ -83,26 +80,6 @@ final editCliqIDMobileNoPageViewModelProvider = ChangeNotifierProvider.autoDispo
     .family<EditCliqIDMobileNoPageViewModel, EditCliqIDMobileNoPageArguments>(
   (ref, args) => EditCliqIDMobileNoPageViewModel(
       ref.read(editCliqMobileNoValidationUseCaseProvider), ref.read(editCliqOtpUseCaseProvider), args),
-);
-
-///edit mobile number cliq
-final editMobileNoViewModelProvider = ChangeNotifierProvider.autoDispose<EditMobileNoCliqPageViewModel>(
-  (ref) => EditMobileNoCliqPageViewModel(),
-);
-
-/// add new mobile no cliq
-final addNewMobileNumberCliqViewModelProvider =
-    ChangeNotifierProvider.autoDispose<AddNewMobileNumberCliqPageViewModel>(
-  (ref) => AddNewMobileNumberCliqPageViewModel(
-      ref.read(addNewMobileNumberCliqUseCaseProvider), ref.read(getAllowedCodeCountriesListUseCaseProvider)),
-);
-
-/// enter otp for mobile no cliq
-final enterOtpForMobileNoCliqViewModelProvider =
-    ChangeNotifierProvider.autoDispose<EnterOtpForMobileNumberCliqPageViewModel>(
-  (ref) => EnterOtpForMobileNumberCliqPageViewModel(
-    ref.read(enterOtpForMobileNumberCliqUseCaseProvider),
-  ),
 );
 
 final linkAccountDialogViewModelProvider = ChangeNotifierProvider.autoDispose<LinkAccountDialogViewModel>(
