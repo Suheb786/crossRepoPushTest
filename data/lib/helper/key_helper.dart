@@ -60,5 +60,7 @@ class KeyHelper {
     debugPrint('Infobip baseurl--->${INFOBIP_BASE_URL}');
     debugPrint('infobip application code --->${INFOBIP_APPLICATION_CODE}');
     debugPrint('Application id--->${InfobipUtilsConstants.FIREBASE_APPLICATION_ID}');
+    debugPrint('ID_Wise_Client_ID--->${ID_Wise_Client_ID}');
+    debugPrint('ID_Journey_Client_ID--->${ID_Journey_Client_ID}');
   }
 }

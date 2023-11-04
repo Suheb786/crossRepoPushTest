@@ -48,10 +48,8 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         _processJourneyViaMobileResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {
-          if (event.data!.journeyInProcess) {
+        if (event.status == Status.SUCCESS) {
+          if (event.data?.journeyInProcess ?? false) {
             Future.delayed(
                 Duration(seconds: 3),
                 () => {
@@ -59,8 +57,8 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
                           refID: user.idWiseRefId,
                           journeyID: arguments.journeyId != '' ? arguments.journeyId : user.journeyId)
                     });
-          } else if (event.data!.isAllowPooling) {
-            isAllowPooling = event.data!.isAllowPooling;
+          } else if (event.data?.isAllowPooling ?? false) {
+            isAllowPooling = event.data?.isAllowPooling ?? false;
             checkJourneyStatus(
                 journeyId: arguments.journeyId != '' ? arguments.journeyId : user.journeyId,
                 referenceId: user.idWiseRefId);
@@ -74,10 +72,8 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         _checkJourneyStatusResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {
-          if (event.data!.keepPooling) {
+        if (event.status == Status.SUCCESS) {
+          if (event.data?.keepPooling ?? false) {
             Future.delayed(
                 Duration(seconds: 3),
                 () => {
@@ -112,6 +108,7 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
 
     getCurrentUser();
   }
+
 
   void getCurrentUser() {
     _currentUserRequestSubject.add(GetCurrentUserUseCaseParams());

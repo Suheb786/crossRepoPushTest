@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:data/helper/key_helper.dart' as KeyHelper;
 
 enum IDWiseStatus {
   COMPLETED,
@@ -24,13 +25,9 @@ class IdWiseHelper {
   static const methodChannelName = "com.codebaseneo.neo_bank/idwise";
   static const platformChannel = MethodChannel(methodChannelName);
 
-  final clientId =
-      "QmFzaWMgWkdKbU5qZ3dNMkl0Tm1ZNVlTMDBOVEJrTFRrMk16RXRPVGs0WWpZMFptVTROekZpT2t4Sk4xTjNPR3hoUm5wNGFqUk5NbWRZVVVSek1rNWFhRlJDU0dObU9XTlhTakIwZGpaWlVWVT0=";
-
-  final journeyDefinitionId = "dbf6803b-6f9a-450d-9631-998b64fe871b";
 
   void initializeIdWise() {
-    platformChannel.invokeMethod('initialize', {"clientKey": clientId, "theme": "LIGHT"});
+    platformChannel.invokeMethod('initialize', {"clientKey": KeyHelper.KeyHelper.ID_Wise_Client_ID, "theme": "LIGHT"});
   }
 
   Future<Map<IDWiseStatus, String>> startVerification(String lang, String referenceNumber) async {
@@ -68,7 +65,7 @@ class IdWiseHelper {
     });
 
     platformChannel.invokeMethod('startJourney', {
-      "journeyDefinitionId": journeyDefinitionId,
+      "journeyDefinitionId": KeyHelper.KeyHelper.ID_Journey_Client_ID,
       "referenceNo": referenceNumber, //Put your reference number here
       "locale": lang
     });
