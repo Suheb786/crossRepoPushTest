@@ -11,6 +11,7 @@ import '../../../generated/l10n.dart';
 import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/account/idwise_processing_status_widget.dart';
 import '../../../ui/molecules/app_svg.dart';
+import '../../../ui/molecules/dialog/oversight_dialog/oversight_dialog.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../utils/asset_utils.dart';
 import '../../../utils/color_utils.dart';
@@ -116,10 +117,25 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                             if (value.status == Status.ERROR) {
                               //TODO need to handle error
                               if (value.appError!.error.code == "IDWISE-001") {
-                                    //OversightDialog
-                              } else {
-
-                              }
+                                OversightDialog.show(
+                                  context,
+                                  title: S.of(context).unableVerifyYourID,
+                                  onPrimaryButton: () {},
+                                  onSecodaryButton: () {},
+                                  descriptionWidget: Text(
+                                    S.of(context).unableVerifyYourIDDescription,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: Theme.of(context)
+                                            .inputDecorationTheme
+                                            .focusedBorder!
+                                            .borderSide
+                                            .color,
+                                        fontSize: 14.0.t,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                );
+                              } else {}
                             }
                           },
                           dataBuilder: (context, snapshot) {
@@ -149,10 +165,7 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                             } else if (value.status == Status.ERROR) {
                               //TODO need to handle error
                               if (value.appError!.error.code == "IDWISE-001") {
-
-                              } else {
-
-                              }
+                              } else {}
                             }
                           },
                           dataBuilder: (context, snapshot) {
