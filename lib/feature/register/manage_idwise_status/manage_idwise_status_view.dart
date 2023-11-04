@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:data/helper/antelop_helper.dart';
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/user/check_journey_status/check_journey_status.dart';
 import 'package:domain/model/user/process_journey_via_mobile/process_journey.dart';
@@ -13,11 +17,13 @@ import '../../../ui/molecules/account/idwise_processing_status_widget.dart';
 import '../../../ui/molecules/app_svg.dart';
 import '../../../ui/molecules/dialog/oversight_dialog/oversight_dialog.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
+import '../../../utils/app_constants.dart';
 import '../../../utils/asset_utils.dart';
 import '../../../utils/color_utils.dart';
 import '../../../utils/resource.dart';
 import '../../../utils/status.dart';
 import '../../../utils/string_utils.dart';
+import '../failure_scenarios/failure_scenarios_page.dart';
 import '../register_page.dart';
 import 'manage_idwise_status_model.dart';
 
@@ -115,27 +121,53 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                           stream: model.processJourneyViaMobileStream,
                           onData: (value) {
                             if (value.status == Status.ERROR) {
-                              //TODO need to handle error
-                              if (value.appError!.error.code == "IDWISE-001") {
-                                OversightDialog.show(
-                                  context,
-                                  title: S.of(context).unableVerifyYourID,
-                                  onPrimaryButton: () {},
-                                  onSecodaryButton: () {},
-                                  descriptionWidget: Text(
-                                    S.of(context).unableVerifyYourIDDescription,
-                                    style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        color: Theme.of(context)
-                                            .inputDecorationTheme
-                                            .focusedBorder!
-                                            .borderSide
-                                            .color,
-                                        fontSize: 14.0.t,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                );
-                              } else {}
+                              if (value.appError?.type == ErrorType.NO_ERROR_CODE) {
+                                if (value.appError?.error.apiErrorModel?.code == "err-323") {
+                                  OversightDialog.show(
+                                    context,
+                                    title: S.of(context).unableVerifyYourID,
+                                    onPrimaryButton: () {
+                                      model.processJourneyViaMobile(
+                                          refID: model.user.idWiseRefId,
+                                          journeyID: model.arguments.journeyId.isNotEmpty
+                                              ? model.arguments.journeyId
+                                              : model.user.journeyId);
+                                    },
+                                    onSecodaryButton: () {
+                                      AppConstantsUtils.resetCacheLists();
+                                      if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+                                        AntelopHelper.walletDisconnect();
+                                      }
+                                      Navigator.pushNamedAndRemoveUntil(
+                                          context, RoutePaths.OnBoarding, (route) => false);
+                                    },
+                                    descriptionWidget: Text(
+                                      S.of(context).unableVerifyYourIDDescription,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: Theme.of(context)
+                                              .inputDecorationTheme
+                                              .focusedBorder!
+                                              .borderSide
+                                              .color,
+                                          fontSize: 14.0.t,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                  );
+                                } else {
+                                  Navigator.pushReplacementNamed(
+                                      context, RoutePaths.OnboardingFailurScenariosPage,
+                                      arguments: OnboardingFailureScenarioArgument(
+                                          title: StringUtils.isDirectionRTL(context)
+                                              ? value.appError?.error.apiErrorModel?.titleAr ?? ''
+                                              : value.appError?.error.apiErrorModel?.titleEn ?? '',
+                                          description: StringUtils.isDirectionRTL(context)
+                                              ? value.appError?.error.apiErrorModel?.messageAr ?? ''
+                                              : value.appError?.error.apiErrorModel?.messageEn ?? ''));
+                                }
+                              } else {
+                                model.showToastWithError(value.appError!);
+                              }
                             }
                           },
                           dataBuilder: (context, snapshot) {
@@ -163,9 +195,19 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                                             .applicationId));
                               }
                             } else if (value.status == Status.ERROR) {
-                              //TODO need to handle error
-                              if (value.appError!.error.code == "IDWISE-001") {
-                              } else {}
+                              if (value.appError?.type == ErrorType.NO_ERROR_CODE) {
+                                Navigator.pushReplacementNamed(
+                                    context, RoutePaths.OnboardingFailurScenariosPage,
+                                    arguments: OnboardingFailureScenarioArgument(
+                                        title: StringUtils.isDirectionRTL(context)
+                                            ? value.appError?.error.apiErrorModel?.titleAr ?? ''
+                                            : value.appError?.error.apiErrorModel?.titleEn ?? '',
+                                        description: StringUtils.isDirectionRTL(context)
+                                            ? value.appError?.error.apiErrorModel?.messageAr ?? ''
+                                            : value.appError?.error.apiErrorModel?.messageEn ?? ''));
+                              } else {
+                                model.showToastWithError(value.appError!);
+                              }
                             }
                           },
                           dataBuilder: (context, snapshot) {

@@ -25,35 +25,6 @@ class AccountRegistrationPageState
   @override
   void onModelReady(AccountRegistrationPageViewModel model) {
     super.onModelReady(model);
-    if (widget._arguments.kycData != null) {
-      switch (widget._arguments.kycData?.type ?? "") {
-        case "MobileOTP":
-          ProviderScope.containerOf(context).read(accountRegistrationViewModelProvider).updateMobileNumber(
-              MobileNumberParams(
-                  mobileCode: widget._arguments.mobileCode, mobileNumber: widget._arguments.mobileNumber));
-          ProviderScope.containerOf(context).read(addNumberViewModelProvider).getAllowedCountryCode();
-          // ProviderScope.containerOf(context)
-          //     .read(validateOtpViewModelProvider)
-          //     .initiateSmsListener();
-          Future.delayed(Duration(microseconds: 500), () {
-            model.moveToPage(2);
-          });
-          break;
-
-        default:
-          Future.delayed(Duration(microseconds: 100), () {
-            model.navigateToPage(0);
-            ProviderScope.containerOf(context).read(addNumberViewModelProvider).getAllowedCountryCode();
-          });
-
-          break;
-      }
-    } else {
-      /*Future.delayed(Duration(microseconds: 100), () {
-        model.navigateToPage(0);
-        ProviderScope.containerOf(context).read(addNumberViewModelProvider).getAllowedCountryCode();
-      });*/
-    }
   }
 
   @override

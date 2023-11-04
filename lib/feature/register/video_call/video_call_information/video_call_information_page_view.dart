@@ -11,6 +11,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -51,96 +52,80 @@ class VideoCallInformationPageView extends BasePageViewWidget<VideoCallInformati
                     duration: Duration(milliseconds: 100),
                     shakeAngle: Rotation.deg(z: 1),
                     curve: Curves.easeInOutSine,
-                    child: GestureDetector(
-                      onHorizontalDragEnd: (details) async {
-                        if (ProviderScope.containerOf(context)
-                                .read(videoCallViewModelProvider)
-                                .appSwiperController
-                                .page ==
-                            0.0) {
-                          if (StringUtils.isDirectionRTL(context)) {
-                            if (!details.primaryVelocity!.isNegative) {
-                              checkPermission(context);
-                            }
-                          } else {
-                            if (details.primaryVelocity!.isNegative) {
-                              checkPermission(context);
-                            }
-                          }
-                        }
-                      },
-                      child: Card(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        elevation: 2,
-                        color: Theme.of(context).cardTheme.copyWith(color: AppColor.white).color,
-                        margin: EdgeInsets.zero,
-                        shadowColor: AppColor.black.withOpacity(0.32),
-                        child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Expanded(
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 35.0.h, bottom: 24.h),
-                                          child: Container(
-                                            height: 78.h,
-                                            width: 78.w,
-                                            padding:
-                                                EdgeInsets.symmetric(horizontal: 25.07.w, vertical: 22.29.h),
-                                            decoration: BoxDecoration(
-                                              color: AppColor.vividYellow,
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: AppSvg.asset(AssetUtils.maleAgent,
-                                                color: Theme.of(context).primaryColorDark),
+                    child: Card(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      elevation: 2,
+                      color: Theme.of(context).cardTheme.copyWith(color: AppColor.white).color,
+                      margin: EdgeInsets.zero,
+                      shadowColor: AppColor.black.withOpacity(0.32),
+                      child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 35.0.h, bottom: 24.h),
+                                        child: Container(
+                                          height: 78.h,
+                                          width: 78.w,
+                                          padding:
+                                              EdgeInsets.symmetric(horizontal: 25.07.w, vertical: 22.29.h),
+                                          decoration: BoxDecoration(
+                                            color: AppColor.vividYellow,
+                                            shape: BoxShape.circle,
                                           ),
-                                        ),
-                                        Text(
-                                          S.of(context).videoCallInfoDescription,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontSize: 20.t,
-                                              fontWeight: FontWeight.w600,
+                                          child: AppSvg.asset(AssetUtils.maleAgent,
                                               color: Theme.of(context).primaryColorDark),
                                         ),
-                                        SizedBox(
-                                          height: 43.h,
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            Future.delayed(Duration(milliseconds: 500), () {
-                                              ProviderScope.containerOf(context)
-                                                  .read(videoCallViewModelProvider)
-                                                  .moveToPage(2);
-                                              // .move(2, animation: false);
-                                            });
-                                          },
-                                          child: Text(S.of(context).scheduleLater,
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: Theme.of(context).textTheme.bodyLarge!.color!,
-                                                  fontSize: 14.t,
-                                                  fontWeight: FontWeight.w600)),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                      Text(
+                                        S.of(context).videoCallInfoDescription,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontSize: 20.t,
+                                            fontWeight: FontWeight.w600,
+                                            color: Theme.of(context).primaryColorDark),
+                                      ),
+                                      SizedBox(
+                                        height: 43.h,
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          Future.delayed(Duration(milliseconds: 500), () {
+                                            ProviderScope.containerOf(context)
+                                                .read(videoCallViewModelProvider)
+                                                .moveToPage(2);
+                                            // .move(2, animation: false);
+                                          });
+                                        },
+                                        child: Text(S.of(context).scheduleLater,
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                color: Theme.of(context).textTheme.bodyLarge!.color!,
+                                                fontSize: 14.t,
+                                                fontWeight: FontWeight.w600)),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 8.0.h),
-                                  child: AnimatedButton(
-                                    buttonText: S.of(context).swipeToProceed,
-                                  ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 8.0.h),
+                                child: AppPrimaryButton(
+                                  text: S.of(context).next,
+                                  onPressed: () {
+                                    checkPermission(context);
+                                  },
                                 ),
-                              ],
-                            )),
-                      ),
+                              ),
+                            ],
+                          )),
                     ),
                   ),
                 ),
