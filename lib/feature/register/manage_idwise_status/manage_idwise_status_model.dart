@@ -52,9 +52,19 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          if (event.data!.isAllowPooling) {
+          if (event.data!.journeyInProcess) {
+            Future.delayed(
+                Duration(seconds: 3),
+                () => {
+                      processJourneyViaMobile(
+                          refID: user.idWiseRefId,
+                          journeyID: arguments.journeyId != '' ? arguments.journeyId : user.journeyId)
+                    });
+          } else if (event.data!.isAllowPooling) {
             isAllowPooling = event.data!.isAllowPooling;
-            checkJourneyStatus(journeyId: arguments.journeyId != '' ? arguments.journeyId : user.journeyId, referenceId: user.idWiseRefId);
+            checkJourneyStatus(
+                journeyId: arguments.journeyId != '' ? arguments.journeyId : user.journeyId,
+                referenceId: user.idWiseRefId);
           }
         }
       });
@@ -69,8 +79,13 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           if (event.data!.keepPooling) {
-            Future.delayed(Duration(seconds: 3),
-                () => {checkJourneyStatus(journeyId: arguments.journeyId != '' ? arguments.journeyId : user.journeyId, referenceId: user.idWiseRefId)});
+            Future.delayed(
+                Duration(seconds: 3),
+                () => {
+                      checkJourneyStatus(
+                          journeyId: arguments.journeyId != '' ? arguments.journeyId : user.journeyId,
+                          referenceId: user.idWiseRefId)
+                    });
           }
         }
       });
