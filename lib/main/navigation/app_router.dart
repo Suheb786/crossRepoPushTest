@@ -75,7 +75,6 @@ import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/create_cliq_id_pa
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_cliq_id_mobile_no/edit_cliq_id_mobile_no_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/otp_for_edit_alias_and_mobile_no/otp_for_edit_alias_mobile_no_page.dart';
-import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/edit_mobile_no_cliq_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/link_account/link_account_page.dart';
 import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary_page.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contact_details/beneficiary_contact_details_page.dart';
@@ -115,6 +114,7 @@ import 'package:neo_bank/feature/prepaid_bill/how_much_like__to_pay_prepaid_bill
 import 'package:neo_bank/feature/prepaid_bill/pay_my_prepaid_bills/pay_my_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/feature/register/check_scheduled_videocall/check_scheduled_videocall_page.dart';
+import 'package:neo_bank/feature/register/idwise_intial/idwise_intial_page.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
@@ -154,6 +154,8 @@ import 'package:neo_bank/utils/navgition_type.dart';
 import '../../feature/evoucher/evoucher/evoucher_page.dart';
 import '../../feature/evoucher/purchase_evoucher_without_region/purchase_evoucher_without_region_page.dart';
 import '../../feature/help_center/error_screen/help_center_error_page.dart';
+import '../../feature/register/failure_scenarios/failure_scenarios_page.dart';
+import '../../feature/register/manage_idwise_status/manage_idwise_status_page.dart';
 import '../../feature/rj/rj_book_flight/rj_book_flight_page.dart';
 import '../../feature/rj/rj_booking_confirmed_in_app_web_view/rj_booking_confirmed_in_app_web_view_page.dart';
 import '../../feature/rj/rj_booking_fail/rj_booking_fail_page.dart';
@@ -199,10 +201,20 @@ class AppRouter {
             builder: (context) => AccountRegistrationPage(settings.arguments as AccountRegistrationParams),
             settings: RouteSettings(name: RoutePaths.AccountRegistration));
 
+      case RoutePaths.ManageIDWiseStatus:
+        return CupertinoPageRoute(
+            builder: (context) => ManageIDWiseStatusPage(settings.arguments as ManageIDWiseStatusParams),
+            settings: RouteSettings(name: RoutePaths.ManageIDWiseStatus));
+
       case RoutePaths.NonJordanianRegister:
         return CupertinoPageRoute(
             builder: (context) => NonJordanianRegistrationPage(),
             settings: RouteSettings(name: RoutePaths.NonJordanianRegister));
+
+      case RoutePaths.IdWiseIntialPage:
+        return CupertinoPageRoute(
+            builder: (context) => IdWiseIntialPage(),
+            settings: RouteSettings(name: RoutePaths.IdWiseIntialPage));
 
       case RoutePaths.Dashboard:
         return CupertinoPageRoute(
@@ -510,7 +522,7 @@ class AppRouter {
 
       case RoutePaths.ChangeDeviceSuccess:
         return CupertinoPageRoute(
-            builder: (context) => ChangeDeviceSuccessPage(),
+            builder: (context) => ChangeDeviceSuccessPage(settings.arguments as ChangeDeviceParams),
             settings: RouteSettings(name: RoutePaths.ChangeDeviceSuccess));
 
       case RoutePaths.SupplementaryDebitCardSuccess:
@@ -603,11 +615,6 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => EditAliasPage(settings.arguments as EditAliasPageArguments),
             settings: RouteSettings(name: RoutePaths.EditAlias));
-
-      case RoutePaths.EditMobileNoCliq:
-        return CupertinoPageRoute(
-            builder: (context) => EditMobileNoCliqPage(),
-            settings: RouteSettings(name: RoutePaths.EditMobileNoCliq));
 
       case RoutePaths.ChangeCountryRestriction:
         return CupertinoPageRoute(
@@ -989,6 +996,12 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => RJBookingFailurePage(),
             settings: RouteSettings(name: RoutePaths.RJBookingFailurePage));
+
+      case RoutePaths.OnboardingFailurScenariosPage:
+        return CupertinoPageRoute(
+            builder: (context) =>
+                OnboardingFailurScenariosPage(settings.arguments as OnboardingFailureScenarioArgument),
+            settings: RouteSettings(name: RoutePaths.OnboardingFailurScenariosPage));
 
       default:
         return CupertinoPageRoute(

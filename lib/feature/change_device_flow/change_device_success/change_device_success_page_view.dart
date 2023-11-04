@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/login/login_module.dart';
-import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
 import 'package:neo_bank/feature/change_device_flow/change_device_success/change_device_success_page_view_model.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -19,6 +18,8 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../register/manage_idwise_status/manage_idwise_status_page.dart';
+
 class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccessPageViewModel> {
   ChangeDeviceSuccessPageView(ProviderBase model) : super(model);
 
@@ -30,18 +31,23 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
         onData: (data) {
           if (data.status == Status.SUCCESS) {
             CheckKYCData kycData = data.data?.content?.kycData
-                    ?.firstWhere((element) => element.status ?? false, orElse: () => CheckKYCData()) ??
+                    ?.where((element) => element.type != "MobileOTP")
+                    .firstWhere((element) => (element.status ?? false), orElse: () => CheckKYCData()) ??
                 CheckKYCData();
 
             if (kycData.type?.isNotEmpty ?? false) {
-              if (kycData.type == 'MobileOTP') {
-                Navigator.pushReplacementNamed(context, RoutePaths.AccountRegistration,
-                    arguments: AccountRegistrationParams(
-                        kycData: kycData,
-                        mobileCode:
-                            ProviderScope.containerOf(context).read(loginViewModelProvider).mobileCode,
-                        mobileNumber:
-                            ProviderScope.containerOf(context).read(loginViewModelProvider).mobileNumber));
+              if (kycData.type == 'IDWISE') {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  RoutePaths.IdWiseIntialPage,
+                  (route) => false,
+                );
+              } else if (kycData.type == 'AhwalCheck' || kycData.type == 'ProcessSelfieImage') {
+                Navigator.pushNamedAndRemoveUntil(context, RoutePaths.ManageIDWiseStatus, (route) => false,
+                    arguments: ManageIDWiseStatusParams(
+                        isAhwalCheckPassed: kycData.type == 'AhwalCheck',
+                        isFaceMatchScorePassed: kycData.type == 'ProcessSelfieImage',
+                        journeyId: model.arguments.journeyId));
               } else {
                 Navigator.pushReplacementNamed(context, RoutePaths.Registration,
                     arguments: RegisterPageParams(

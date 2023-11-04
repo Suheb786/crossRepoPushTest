@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -398,6 +399,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Back to Registration"),
         "bankName": MessageLookupByLibrary.simpleMessage("BANK NAME"),
         "banks": MessageLookupByLibrary.simpleMessage("Banks"),
+        "bareWithUsProcessing": MessageLookupByLibrary.simpleMessage(
+            "Please bare with us,we are processing"),
         "belowTwoYears": MessageLookupByLibrary.simpleMessage("Below 2 years"),
         "beneficialOwnerIsAResidenceOf": MessageLookupByLibrary.simpleMessage(
             "Beneficial owner is a resident of"),
@@ -501,6 +504,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "buyVoucherTitle": MessageLookupByLibrary.simpleMessage(
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula"),
         "buyVouchers": MessageLookupByLibrary.simpleMessage("Buy E-vouchers"),
+        "byContinuingYouAgree": MessageLookupByLibrary.simpleMessage(
+            "By continuing you agree to the"),
         "cabinClass": MessageLookupByLibrary.simpleMessage("Cabin Class"),
         "callDisconnected": MessageLookupByLibrary.simpleMessage(
             "Your call was disconnected. Please try again."),
@@ -621,6 +626,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("CHANGE MOBILE NUMBER"),
         "changeMobileNumberInfo": MessageLookupByLibrary.simpleMessage(
             "Changing the mobile number is only for notification relating to this card. If you wish to change the mobile number relating to account, please go to Profile Settings."),
+        "changeMyEmail":
+            MessageLookupByLibrary.simpleMessage("Change My Email"),
         "changeMyNumber":
             MessageLookupByLibrary.simpleMessage("Change My Number"),
         "changePassword":
@@ -965,6 +972,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "documentsNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-081)"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
+        "donotLeavePage": MessageLookupByLibrary.simpleMessage(
+            "Please do not leave the page. You will be\nautomatically redirected once it’s done."),
         "dontNeedMyCardAnymore": MessageLookupByLibrary.simpleMessage(
             "I don\'t need my card anymore"),
         "dormantAccountCCFailedTitle": MessageLookupByLibrary.simpleMessage(
@@ -1124,6 +1133,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please select your preferred communication. Your call or chat may be monitored or recorded to ensure the quality of service."),
         "engagementTeamGettingReady": MessageLookupByLibrary.simpleMessage(
             "Our Engagement Team\nis getting ready"),
+        "ensureToHaveNationalId": MessageLookupByLibrary.simpleMessage(
+            "Please ensure to have your National ID ready"),
         "enterAddressHeader": MessageLookupByLibrary.simpleMessage(
             "Where do you\ncurrently live?"),
         "enterBillDetails":
@@ -1134,6 +1145,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Confirm password field cannot be empty"),
         "enterDetails": MessageLookupByLibrary.simpleMessage(
             "Please enter missing information."),
+        "enterEmailAndPassword": MessageLookupByLibrary.simpleMessage(
+            "Enter your email and \ncreate your password"),
         "enterIdNumberToResetPassword": MessageLookupByLibrary.simpleMessage(
             "Enter below details to reset your password"),
         "enterLoginDetails":
@@ -1174,6 +1187,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "You have entered an invalid username. Please try again."),
         "enterYourEmailAndMobile": MessageLookupByLibrary.simpleMessage(
             "Enter your email and\nmobile number"),
+        "enterYourMobileNumber":
+            MessageLookupByLibrary.simpleMessage("Enter your mobile number"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "errorAddingUserName": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
@@ -1568,6 +1583,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Get My Credit Card"),
         "getProfileInfoError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "getReadyToScanYourId": MessageLookupByLibrary.simpleMessage(
+            "Get ready to scan your ID\n and take a Selfie"),
         "getStatesError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getTimeSlotsError": MessageLookupByLibrary.simpleMessage(
@@ -1691,6 +1708,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "incomeDetails": MessageLookupByLibrary.simpleMessage("INCOME DETAILS"),
         "increaseCreditLimit":
             MessageLookupByLibrary.simpleMessage("Increase credit limit"),
+        "ineligibleIdentity":
+            MessageLookupByLibrary.simpleMessage("Ineligible identity"),
+        "ineligibleIdentityDescription": MessageLookupByLibrary.simpleMessage(
+            "Seems that you are ineligible to continue the registration. Please reach out to Blink Engagement Team for further assistance."),
         "infant": MessageLookupByLibrary.simpleMessage("Infant"),
         "infobipInitError": MessageLookupByLibrary.simpleMessage(
             "Error occurred while Initialization"),
@@ -2000,6 +2021,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your location is restricted from using this app."),
         "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
             "Location services are disabled. Please allow access to Blink"),
+        "logOutTryLater":
+            MessageLookupByLibrary.simpleMessage("Log out and try again later"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "loginNotAllowed": MessageLookupByLibrary.simpleMessage(
             "YOur Token is Expired, Login is Not Allowed"),
@@ -2038,6 +2061,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
         "makeSureItsAnnualNotMonthly": MessageLookupByLibrary.simpleMessage(
             " income? Make sure it’s not your monthly income to get your credit card right away."),
+        "makeSureYouAreInbrightPlace": MessageLookupByLibrary.simpleMessage(
+            "Make sure you are in a bright place to take a selfie"),
         "makeSureYourFaceFitsTheFrame": MessageLookupByLibrary.simpleMessage(
             "Make sure your eyes are level\nand well-opened."),
         "maleAgent": MessageLookupByLibrary.simpleMessage("Male Agent"),
@@ -2271,6 +2296,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ofTheBank": MessageLookupByLibrary.simpleMessage("of the bank."),
         "offersCategory":
             MessageLookupByLibrary.simpleMessage("Offers Category"),
+        "okay": MessageLookupByLibrary.simpleMessage("Okay"),
         "onIdFit": MessageLookupByLibrary.simpleMessage(
             "Once fit, your ID will be scanned automatically"),
         "oneFinalStop":
@@ -2508,6 +2534,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "primaryNotComplete":
             MessageLookupByLibrary.simpleMessage("primary not complete"),
+        "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "proceedToLogin": MessageLookupByLibrary.simpleMessage(
             "Proceed to the login page and use your\nnew password to login."),
         "processLoanError": MessageLookupByLibrary.simpleMessage(
@@ -2517,6 +2544,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "processLoanValuesError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "processing": MessageLookupByLibrary.simpleMessage("Processing"),
+        "processingIDWiseStatus":
+            MessageLookupByLibrary.simpleMessage("Processing"),
         "processingVoucher":
             MessageLookupByLibrary.simpleMessage("Processing voucher"),
         "productSelectorHeader": MessageLookupByLibrary.simpleMessage(
@@ -2646,6 +2675,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Error while registering user to vkey"),
         "registrationProcessError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
+        "registrationStopped":
+            MessageLookupByLibrary.simpleMessage("Registration stopped"),
+        "registrationStoppedDescription": MessageLookupByLibrary.simpleMessage(
+            "Unfortunately, you did not meet minimum age required to open an account with us. You may try again when you turn 18."),
         "reject": MessageLookupByLibrary.simpleMessage("Reject"),
         "rejectRequest": MessageLookupByLibrary.simpleMessage("Reject Request"),
         "rejected": MessageLookupByLibrary.simpleMessage("Rejected"),
@@ -2886,6 +2919,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "selfieCheck": MessageLookupByLibrary.simpleMessage("Selfie Check!"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
+        "selfieMismatched":
+            MessageLookupByLibrary.simpleMessage("Selfie mismatched"),
+        "selfieMismatchedDescription": MessageLookupByLibrary.simpleMessage(
+            "Seems that your selfie does not match with your ID card. Please reach out to Blink Engagement Team for further assitance."),
         "sendAndRequestFavouriteContacts": MessageLookupByLibrary.simpleMessage(
             "Send and request with ease up to 9 favourite contacts. Would you like to add this contact to your favourite?"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("Send Money"),
@@ -3174,6 +3211,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Travel and Transportation"),
         "treatyClaimRate": MessageLookupByLibrary.simpleMessage(
             "treaty identified to Claim Rate (%)"),
+        "tryAgain": MessageLookupByLibrary.simpleMessage("Try again"),
         "tryAgainLater": MessageLookupByLibrary.simpleMessage(
             "There was an issue with your payment, please try again. If you need help, contact Blink Engagement Team."),
         "twoToTwelve": MessageLookupByLibrary.simpleMessage("2 to 12 years"),
@@ -3194,6 +3232,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error has occurred and we are unable to proceed with the transaction"),
         "unableToVerifyIDCard": MessageLookupByLibrary.simpleMessage(
             "Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777."),
+        "unableVerifyYourID":
+            MessageLookupByLibrary.simpleMessage("Unable verify your ID"),
+        "unableVerifyYourIDDescription": MessageLookupByLibrary.simpleMessage(
+            "Seems that we are unable to verify your\nNational ID. Please try again later."),
         "unauthorize": MessageLookupByLibrary.simpleMessage(
             "Oops! We are unable to authorize you. User might not be registered or something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-u)"),
         "unavailable": MessageLookupByLibrary.simpleMessage("Unavailable"),
@@ -3265,6 +3307,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "vKeyTransactionFailed":
             MessageLookupByLibrary.simpleMessage("Vkey transaction failed"),
         "validUntil": MessageLookupByLibrary.simpleMessage("Valid Until"),
+        "validatingYourSelfie":
+            MessageLookupByLibrary.simpleMessage("Validating your selfie"),
         "value": MessageLookupByLibrary.simpleMessage("VALUE"),
         "verificationCallEnded": MessageLookupByLibrary.simpleMessage(
             "Verification call\nhas ended"),
@@ -3296,6 +3340,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "verifyViaVideoCallCC": MessageLookupByLibrary.simpleMessage(
             "You can call us between 10:00am and 6:00pm to complete your application. We may ask for proof of occupation, kindly have it ready. "),
+        "verifyingYourNationalID":
+            MessageLookupByLibrary.simpleMessage("Verifying your National ID"),
         "videoCall": MessageLookupByLibrary.simpleMessage("VIDEO CALL"),
         "videoCallDueNow": MessageLookupByLibrary.simpleMessage(
             "Your video call is due now. Swipe to initiate the call when you’re ready."),
@@ -3466,6 +3512,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourFreeVirtualDebitCardHasBeenIssued":
             MessageLookupByLibrary.simpleMessage(
                 "Your free virtual debit card has been issued, and the physical one is on its way."),
+        "yourInformation":
+            MessageLookupByLibrary.simpleMessage("your information"),
         "yourNowSetWithApplePay": MessageLookupByLibrary.simpleMessage(
             "Your card is now set up with Apple Pay."),
         "yourSignature": MessageLookupByLibrary.simpleMessage("Your Signature"),

@@ -17,6 +17,7 @@ import 'package:domain/model/current_version/current_version_response.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/biometric_login/android_login_response.dart';
 import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
+import 'package:domain/model/user/check_journey_status/check_journey_status.dart';
 import 'package:domain/model/user/check_username.dart';
 import 'package:domain/model/user/confirm_application_data_get/account_purpose_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/country_residence_info.dart';
@@ -27,6 +28,7 @@ import 'package:domain/model/user/confirm_application_data_get/profile_status_in
 import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
 import 'package:domain/model/user/get_combo_values/get_combo_values_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
+import 'package:domain/model/user/process_journey_via_mobile/process_journey.dart';
 import 'package:domain/model/user/register_interest/register_interest_response.dart';
 import 'package:domain/model/user/save_country_residence_info_response.dart';
 import 'package:domain/model/user/save_id_info_response.dart';
@@ -34,8 +36,12 @@ import 'package:domain/model/user/save_job_details_response.dart';
 import 'package:domain/model/user/save_profile_status_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/model/user/status/customer_status.dart';
+import 'package:domain/model/user/update_journey/update_journey.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/repository/user/user_repository.dart';
+import 'package:domain/usecase/user/check_journey_status_usecase.dart';
+import 'package:domain/usecase/user/process_journey_via_mobile_usecase.dart';
+import 'package:domain/usecase/user/update_journey_usecase.dart';
 import 'package:flutter/cupertino.dart';
 
 /// user repository management class
@@ -621,6 +627,45 @@ class UserRepositoryImpl extends UserRepository {
   Future<Either<DatabaseError, bool>> clearWalletId() async {
     final cleared = await safeDbCall(_localDS.clearWalletId());
     return cleared.fold((l) => Left(l), (r) => Right(r));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> sendEmailOTP({required String email, required String password}) async {
+    final result = await safeApiCall(
+      _remoteDS.sendEmailOTP(email: email, password: password),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> verifyEmailOTP({required String email, required String otpCode}) async {
+    final result = await safeApiCall(_remoteDS.verifyEmailOTP(email: email, otpCode: otpCode));
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, UpdateJourney>> updateJourney({required UpdateJourneyUseCaseParams params}) async {
+    final result = await safeApiCall(_remoteDS.updateJourney(params: params));
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
+  }
+
+  @override
+  Future<Either<NetworkError, CheckJourneyStatus>> updateIdWiseStatus({required CheckJourneyStatusUseCaseUseCaseParams params}) async {
+    final result = await safeApiCall(_remoteDS.updateIdWiseStatus(params: params));
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
+  }
+
+  @override
+  Future<Either<NetworkError, ProcessJourney>> processJourneyViaMobile(
+      {required ProcessJourneyViaMobileUseCaseParams params}) async {
+    final result = await safeApiCall(_remoteDS.processJourneyViaMobile(params: params));
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
   }
 
   @override

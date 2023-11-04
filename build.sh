@@ -1,36 +1,20 @@
- cd domain
-
- /Users/apple/Documents/flutter-2.8.1/bin/flutter clean
-
- /Users/apple/Documents/flutter-2.8.1/bin/flutter pub get
-
+ cd /Users/apple/Documents/Dhaiyur/neobank/domain || exit
+ fvm flutter clean
+ fvm flutter pub get
  cd ..
-
- cd data
-
- /Users/apple/Documents/flutter-2.8.1/bin/flutter clean
-
- /Users/apple/Documents/flutter-2.8.1/bin/flutter pub get
-
- /Users/apple/Documents/flutter-2.8.1/bin/flutter pub run build_runner build --delete-conflicting-outputs
-
+ cd data || exit
+ fvm flutter clean
+ fvm flutter pub get
+ fvm flutter pub run build_runner build --delete-conflicting-outputs
  cd ..
-
- cd infobip_rtc_flutter
-
- /Users/apple/Documents/flutter-2.8.1/bin/flutter clean
-
- /Users/apple/Documents/flutter-2.8.1/bin/flutter pub get
-
+ cd infobip_rtc_flutter || exit
+ fvm flutter clean
+ fvm flutter pub get
  cd ..
-
- /Users/apple/Documents/flutter-2.8.1/bin/flutter clean
-
- /Users/apple/Documents/flutter-2.8.1/bin/flutter pub get
-
- /Users/apple/Documents/flutter-2.8.1/bin/flutter run --debug
-
-# /Users/apple/Documents/flutter-2.8.1/bin/flutter build apk --release
+ fvm flutter clean
+ fvm flutter pub get
+ fvm flutter run --debug
+# fvm flutter build apk --release
 
 
 

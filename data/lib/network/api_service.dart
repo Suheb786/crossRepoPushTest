@@ -263,6 +263,8 @@ import 'package:data/entity/remote/upload_document/save_upload_document_request_
 import 'package:data/entity/remote/upload_document/save_upload_document_response_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_response_entity.dart';
+import 'package:data/entity/remote/user/account_registration/process_journey_via_mobile/process_journey_via_mobile_request_Entity.dart';
+import 'package:data/entity/remote/user/account_registration/update_journey_request_entity.dart';
 import 'package:data/entity/remote/user/biometric_login/get_cipher_response_entity.dart';
 import 'package:data/entity/remote/user/change_my_number/change_my_number_request_entity.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
@@ -309,6 +311,8 @@ import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../entity/remote/account/onboarding_mobile_otp_request_entity.dart';
+import '../entity/remote/account/verify_mobile_otp_request_entity.dart';
 import '../entity/remote/contact/add_beneficiary_response_entity.dart';
 import '../entity/remote/contact/remove_avatar_request.dart';
 import '../entity/remote/contact/send_otp_add_beneficiary_data_response_entity.dart';
@@ -322,6 +326,12 @@ import '../entity/remote/sub_account/close_sub_account/close_sub_account_request
 import '../entity/remote/sub_account/transfer_account/response/account_to_account_transfer_response_entity.dart';
 import '../entity/remote/sub_account/transfer_account/transfer_account_request_entity.dart';
 import '../entity/remote/sub_account/update_nick_name/update_nick_name_request_entity.dart';
+import '../entity/remote/user/account_registration/check_journey_status/check_journey_status_response_entity.dart';
+import '../entity/remote/user/account_registration/process_journey_via_mobile/process_journey_via_mobile_response_entity.dart';
+import '../entity/remote/user/account_registration/check_journey_status/check_journey_status_request_entity.dart';
+import '../entity/remote/user/account_registration/send_email_otp_request.dart';
+import '../entity/remote/user/account_registration/update_journey/update_journey_response_entity.dart';
+import '../entity/remote/user/account_registration/verify_email_otp_request.dart';
 
 part 'api_service.g.dart';
 
@@ -339,10 +349,16 @@ abstract class ApiService {
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
       @Body() CheckUserNameMobileRequest checkUserNameMobileRequest);
 
-  @POST("/auth/loginV5")
+  @POST("/auth/loginV6")
   Future<HttpResponse<LoginResponseEntity>> loginUser(@Body() LoginUserRequest loginUserRequest);
 
-  @POST("/auth/RegisterV5")
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/SendEmailOtp")
+  Future<HttpResponse<BaseResponse>> sendEmailOTP(@Body() SendEmailOTPRequest sendEmailOTPRequest);
+
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/VerifyEmailOtp")
+  Future<HttpResponse<BaseResponse>> verifyEmailOTP(@Body() VerifyEmailOTPRequest sendEmailOTPRequest);
+
+  @POST("/auth/RegisterV6")
   Future<HttpResponse<RegisterResponseEntity>> registerProspectUser(
       @Body() RegisterProspectUserRequest registerProspectUserRequest);
 
@@ -369,7 +385,7 @@ abstract class ApiService {
   Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>> saveResidenceInformation(
       @Body() SaveResidenceInformationRequest saveResidenceInformationRequest);
 
-  @POST("/kyc/getstatusV1")
+  @POST("/kyc/getstatusV2")
   Future<HttpResponse<CheckKycStatusResponseEntity>> checkKYCStatus(
       @Body() KYCStatusRequest kycStatusRequest);
 
@@ -426,7 +442,7 @@ abstract class ApiService {
       @Body() SaveUploadDocumentRequestEntity saveUploadDocumentRequestEntity);
 
   ///get confirm application data
-  @POST("/AdditionalDoc/ConfirmApplicationDataGetV2")
+  @POST("/AdditionalDoc/ConfirmApplicationDataGetV3")
   Future<HttpResponse<GetConfirmApplicationDataResponseEntity>> confirmApplicationDataGet(
       @Body() ConfirmApplicationDataGetRequestEntity confirmApplicationDataGetRequestEntity);
 
@@ -1234,4 +1250,21 @@ abstract class ApiService {
   @POST("${NetworkProperties.BASE_OFFER_CAMPAIGN_URL}/Offers/GetOfferCategories")
   Future<HttpResponse<OffersCategoriesResponseEntity>> getOfferCategories(
       @Body() OffersCategoriesRequestEntity request);
+
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/SendMobileOtp")
+  Future<HttpResponse<ResponseEntity>> sendMobileOTP(@Body() OnboardingSendMobileOTPRequestEntity request);
+
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/VerifyMobileOtp")
+  Future<HttpResponse<ResponseEntity>> verifyMobileOTP(
+      @Body() OnboardingVerifyMobileOtpRequestEntity request);
+
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/UpdateJourney")
+  Future<HttpResponse<UpdateJourneyResponseEntity>> updateJourney(@Body() UpdateJourneyRequestEntity request);
+
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/CheckJourneryStatus")
+  Future<HttpResponse<CheckJourneyStatusResponseEntity>> checkJourneyStatus(@Body() CheckJourneyStatusRequestEntity request);
+
+  @POST("${NetworkProperties.BASE_ONBOARDING_URL}/ProcessJourneyViaMobile")
+  Future<HttpResponse<ProcessJourneViaMobileResponseEntity>> processJourneyViaMobile(
+      @Body() ProcessJourneyViaMobileRequestEntity request);
 }

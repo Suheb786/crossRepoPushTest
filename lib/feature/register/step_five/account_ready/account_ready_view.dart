@@ -11,14 +11,14 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/account_ready/account_details.dart';
 import 'package:neo_bank/ui/molecules/account_ready/account_ready_header.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
-import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../../ui/molecules/button/app_primary_button.dart';
 
 import '../../../../utils/app_constants.dart';
 
@@ -147,32 +147,23 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                           ],
                         ),
                       ),
-                      Visibility(
-                        visible: !model.arguments.isDocumentUploaded,
-                        child: Column(
-                          children: [
-                            AnimatedButton(
-                              buttonText: S.of(context).swipeToProceed,
-                              textColor: Theme.of(context).colorScheme.secondary,
-                              borderColor: Theme.of(context).colorScheme.secondary,
+                      Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+                            child: AppPrimaryButton(
+                              text: S.of(context).next,
+                              onPressed: () {
+                                if (!model.arguments.isDocumentUploaded) {
+                                  Navigator.pushReplacementNamed(context, RoutePaths.CardDelivery);
+                                }
+                              },
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 14.0.h),
-                              child: Text(
-                                S.of(context).cardDelivery,
-                                style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).colorScheme.secondary,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 32.h,
-                            )
-                          ],
-                        ),
+                          ),
+                          SizedBox(
+                            height: 32.h,
+                          )
+                        ],
                       )
                     ],
                   );

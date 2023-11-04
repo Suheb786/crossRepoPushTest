@@ -7,11 +7,9 @@ import 'package:domain/model/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
 import 'package:neo_bank/feature/change_device_flow/otp_for_change_device/otp_for_change_device_confirmation_page.dart';
 import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_page.dart';
 import 'package:neo_bank/feature/login/login_page_model.dart';
-import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -27,6 +25,9 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+
+import '../register/manage_idwise_status/manage_idwise_status_page.dart';
+import '../register/register_page.dart';
 
 class LoginPageView extends BasePageViewWidget<LoginViewModel> {
   LoginPageView(ProviderBase model) : super(model);
@@ -165,7 +166,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                       Navigator.pushNamedAndRemoveUntil(
                           context, RoutePaths.OTPForChangeDevice, (route) => false,
                           arguments: OtpForChangeDeviceConfirmationPageArguments(
-                              mobileCode: model.mobileCode, mobileNumber: model.mobileNumber));
+                              mobileCode: model.mobileCode,
+                              mobileNumber: model.mobileNumber,
+                              journeyId: model.user.journeyId!));
                     }
                   },
                   dataBuilder: (context, otpForChangeDevice) {
@@ -178,6 +181,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                           model.mobileCode = data.data!.mobileCode!;
                           model.applicationId = data.data!.applicationId!;
                           model.saveUserData();
+                          model.user = data.data!;
                           AppConstantsUtils.isApplePayFeatureEnabled = data.data?.applePay ?? false;
 
                           ///new device flow check
@@ -247,19 +251,26 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                   CheckKYCData();
 
                               if (kycData.type?.isNotEmpty ?? false) {
-                                if (kycData.type == 'MobileOTP') {
+                                if (kycData.type == 'IDWISE') {
                                   Navigator.pushNamedAndRemoveUntil(
-                                      context, RoutePaths.AccountRegistration, (route) => false,
-                                      arguments: AccountRegistrationParams(
-                                          kycData: kycData,
-                                          mobileCode: loginData!.data!.mobileCode!,
-                                          mobileNumber: loginData.data!.mobile!));
+                                    context,
+                                    RoutePaths.IdWiseIntialPage,
+                                    (route) => false,
+                                  );
+                                } else if (kycData.type == 'AhwalCheck' ||
+                                    kycData.type == 'ProcessSelfieImage') {
+                                  Navigator.pushNamedAndRemoveUntil(
+                                      context, RoutePaths.ManageIDWiseStatus, (route) => false,
+                                      arguments: ManageIDWiseStatusParams(
+                                          isAhwalCheckPassed: kycData.type == 'AhwalCheck',
+                                          isFaceMatchScorePassed: kycData.type == 'ProcessSelfieImage',
+                                          journeyId: model.user.journeyId ?? ''));
                                 } else {
                                   Navigator.pushNamedAndRemoveUntil(
                                       context, RoutePaths.Registration, (route) => false,
                                       arguments: RegisterPageParams(
-                                        applicationId: model.applicationId,
                                         kycData: kycData,
+                                        applicationId: model.applicationId,
                                       ));
                                 }
                               } else {

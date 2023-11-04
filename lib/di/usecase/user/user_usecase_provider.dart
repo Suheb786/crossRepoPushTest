@@ -7,6 +7,7 @@ import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
 import 'package:domain/usecase/user/change_my_number_usecase.dart';
 import 'package:domain/usecase/user/check_bio_metric_support_use_case.dart';
 import 'package:domain/usecase/user/check_customer_status_usecase.dart';
+import 'package:domain/usecase/user/check_journey_status_usecase.dart';
 import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
 import 'package:domain/usecase/user/check_username_usecase.dart';
 import 'package:domain/usecase/user/check_version_update_usecase.dart';
@@ -24,11 +25,13 @@ import 'package:domain/usecase/user/home_address_dialog_usecase.dart';
 import 'package:domain/usecase/user/id_verification_info_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:domain/usecase/user/logout_usecase.dart';
+import 'package:domain/usecase/user/process_journey_via_mobile_usecase.dart';
 import 'package:domain/usecase/user/product_selector_usecase.dart';
 import 'package:domain/usecase/user/profile_details_usecase.dart';
 import 'package:domain/usecase/user/register_prospect_usecase.dart';
 import 'package:domain/usecase/user/save_user_data_usecase.dart';
 import 'package:domain/usecase/user/scan_user_document_usecase.dart';
+import 'package:domain/usecase/user/update_journey_usecase.dart';
 import 'package:domain/usecase/user/upload_selfie_image_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:domain/usecase/user/local_session_usecase.dart';
@@ -190,6 +193,15 @@ final checkVersionUpdateUseCaseProvider = Provider.autoDispose<CheckVersionUpdat
 ///save user usecase
 final saveDataUserUseCaseProvider =
     Provider.autoDispose<SaveUserDataUseCase>((ref) => SaveUserDataUseCase(ref.read(userRepoProvider)));
+
+final updateJourneyUseCaseProvider =
+    Provider.autoDispose<UpdateJourneyUseCase>((ref) => UpdateJourneyUseCase(ref.read(userRepoProvider)));
+
+final processJourneyViaMobileUseCaseProvider = Provider.autoDispose<ProcessJourneyViaMobileUseCase>(
+    (ref) => ProcessJourneyViaMobileUseCase(ref.read(userRepoProvider)));
+
+final checkJourneyStatusUseCaseProvider = Provider.autoDispose<CheckJourneyStatusUseCase>(
+    (ref) => CheckJourneyStatusUseCase(ref.read(userRepoProvider)));
 
 ///save user usecase
 final localSessionUseCaseProvider =

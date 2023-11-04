@@ -1,9 +1,14 @@
-import 'package:domain/usecase/user/change_my_number_usecase.dart';
+import 'package:domain/model/user/user.dart';
+import 'package:domain/usecase/account/send_mobile_otp_usecase.dart';
+import 'package:domain/usecase/account/verify_mobile_otp_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
+import 'package:domain/usecase/user/register_prospect_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -14,10 +19,12 @@ import 'package:sms_autofill/sms_autofill.dart';
 
 class ValidateOtpViewModel extends BasePageViewModel {
   final VerifyOtpUseCase _verifyOtpUseCase;
-
+  final OnboardingVerifyMobileOtpUsecase _onboardingVerifyMobileOtpUsecase;
   final GetTokenUseCase _getTokenUseCase;
+  final SendMobileOTPUsecase _sendMobileOTPUsecase;
+  final RegisterProspectUseCase _registerProspectUseCase;
 
-  final ChangeMyNumberUseCase _changeMyNumberUseCase;
+  // final ChangeMyNumberUseCase _changeMyNumberUseCase;
 
   ///otp controller
   TextEditingController otpController = TextEditingController();
@@ -36,9 +43,14 @@ class ValidateOtpViewModel extends BasePageViewModel {
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
 
-  void updateTime() {
+  void updateTimer() {
+    endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+    notifyListeners();
+  }
+
+  void resendOTP(BuildContext context) {
     otpController.clear();
-    resendOtp();
+    sendMobileOtp(context);
   }
 
   ///verify otp request subject holder
@@ -69,16 +81,30 @@ class ValidateOtpViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get getTokenStream => _getTokenResponse.stream;
 
-  ///change my number request subject holder
-  PublishSubject<ChangeMyNumberUseCaseParams> _changeMyNumberRequest = PublishSubject();
+  ///-------send Mobile Otp--------->
+  PublishSubject<SendMobileOTPUsecaseParams> _sendMobileOTPRequest = PublishSubject();
 
-  ///change my number response holder
-  PublishSubject<Resource<bool>> _changeMyNumberResponse = PublishSubject();
+  PublishSubject<Resource<bool>> _sendMobileOTPResponse = PublishSubject();
 
-  ///change my number stream
-  Stream<Resource<bool>> get changeMyNumberStream => _changeMyNumberResponse.stream;
+  Stream<Resource<bool>> get sendMobileOTPResponseStream => _sendMobileOTPResponse.stream;
 
-  ValidateOtpViewModel(this._verifyOtpUseCase, this._getTokenUseCase, this._changeMyNumberUseCase) {
+  ///-------verify Mobile Otp--------->
+  PublishSubject<OnboardingVerifyMobileOtpUsecaseParams> _verifyMobileOtpRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _verifyMobileOtpResponse = PublishSubject();
+
+  Stream<Resource<bool>> get verifyMobileOtpResponseStream => _verifyMobileOtpResponse.stream;
+
+  ///Register user request subject holder
+  PublishSubject<RegisterProspectUseCaseParams> _registerUserRequest = PublishSubject();
+
+  /// Register user response subject holder
+  PublishSubject<Resource<User>> _registerUserResponse = PublishSubject();
+
+  Stream<Resource<User>> get registerUserStream => _registerUserResponse.stream;
+
+  ValidateOtpViewModel(this._verifyOtpUseCase, this._getTokenUseCase, this._sendMobileOTPUsecase,
+      this._onboardingVerifyMobileOtpUsecase, this._registerProspectUseCase) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value, createCall: () => _verifyOtpUseCase.execute(params: value))
           .asFlow()
@@ -107,12 +133,38 @@ class ValidateOtpViewModel extends BasePageViewModel {
       });
     });
 
-    _changeMyNumberRequest.listen((value) {
-      RequestManager(value, createCall: () => _changeMyNumberUseCase.execute(params: value))
+    _registerUserRequest.listen((value) {
+      RequestManager(value, createCall: () => _registerProspectUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
-        _changeMyNumberResponse.safeAdd(event);
+        _registerUserResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _sendMobileOTPRequest.listen((value) {
+      RequestManager(value, createCall: () => _sendMobileOTPUsecase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _sendMobileOTPResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          updateTimer();
+          listenForSmsCode();
+        }
+      });
+    });
+    _verifyMobileOtpRequest.listen((value) {
+      RequestManager(value, createCall: () => _onboardingVerifyMobileOtpUsecase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _verifyMobileOtpResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         }
@@ -128,9 +180,38 @@ class ValidateOtpViewModel extends BasePageViewModel {
     _getTokenRequest.safeAdd(GetTokenUseCaseParams());
   }
 
-  void changeMyNumber(String mobileNo, String countryCode) {
-    _changeMyNumberRequest
-        .safeAdd(ChangeMyNumberUseCaseParams(mobileNumber: mobileNo, countryCode: '00$countryCode'));
+  void sendMobileOtp(BuildContext context) {
+    _sendMobileOTPRequest.safeAdd(SendMobileOTPUsecaseParams(
+      GetToken: true,
+      MobileNumber:
+          ProviderScope.containerOf(context).read(addNumberViewModelProvider).mobileNumberController.text,
+      MobileCode:
+          ProviderScope.containerOf(context).read(addNumberViewModelProvider).countryData.phoneCode ?? "",
+    ));
+  }
+
+  void verifyMobileOtp({required String? OTPCode, required String? MobileNo}) {
+    _verifyMobileOtpRequest
+        .safeAdd(OnboardingVerifyMobileOtpUsecaseParams(OTPCode: OTPCode, MobileNo: MobileNo));
+  }
+
+  void registerUser(
+      {String? email,
+      String? phone,
+      String? country,
+      String? mobileCode,
+      String? referralCode,
+      String? password,
+      String? confirmPassword}) {
+    _registerUserRequest.safeAdd(RegisterProspectUseCaseParams(
+        email: email,
+        countryName: country,
+        mobileNumber: phone,
+        mobileCode: '00$mobileCode',
+        userName: email,
+        referralCode: referralCode,
+        password: password,
+        confirmPassword: confirmPassword));
   }
 
   void validate(String value) {
@@ -148,29 +229,6 @@ class ValidateOtpViewModel extends BasePageViewModel {
       _errorDetectorSubject.safeAdd(false);
     });
   }
-
-  // Future<void> initiateSmsListener() async {
-  //   String? incomingMsg = "Message";
-  //   try {
-  //     incomingMsg = await AltSmsAutofill().listenForSms;
-  //   } on PlatformException {
-  //     incomingMsg = 'Failed to get Sms.';
-  //   }
-  //
-  //   ///SMS Sample: Your phone verification code is 625742.
-  //   _incomingSms = incomingMsg!;
-  //   print("====>Message: ${_incomingSms}");
-  //   print(
-  //       "${_incomingSms[32] + _incomingSms[33] + _incomingSms[34] + _incomingSms[35] + _incomingSms[36] + _incomingSms[37]}");
-  //   otpController.text = _incomingSms[32] +
-  //       _incomingSms[33] +
-  //       _incomingSms[34] +
-  //       _incomingSms[35] +
-  //       _incomingSms[36] +
-  //       _incomingSms[37];
-  //
-  //   notifyListeners();
-  // }
 
   listenForSmsCode() async {
     SmsAutoFill().listenForCode();

@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -394,6 +395,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("العودة إلى التسجيل"),
         "bankName": MessageLookupByLibrary.simpleMessage("اسم البنك"),
         "banks": MessageLookupByLibrary.simpleMessage("البنوك"),
+        "bareWithUsProcessing": MessageLookupByLibrary.simpleMessage(
+            "Please bare with us,we are processing"),
         "belowTwoYears": MessageLookupByLibrary.simpleMessage("من 0 إلى 2 سنة"),
         "beneficialOwnerIsAResidenceOf":
             MessageLookupByLibrary.simpleMessage("صاحب الحساب المنتفع مقيم في"),
@@ -489,6 +492,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "businessType": MessageLookupByLibrary.simpleMessage("نوع العمل"),
         "buyVouchers":
             MessageLookupByLibrary.simpleMessage("شراء القسائم الإلكترونية"),
+        "byContinuingYouAgree": MessageLookupByLibrary.simpleMessage(
+            "By continuing you agree to the"),
         "cabinClass": MessageLookupByLibrary.simpleMessage("الدرجة"),
         "callDisconnected": MessageLookupByLibrary.simpleMessage(
             "لقد تم انقطاع الاتصال، يرجى المحاولة مرة اخرى"),
@@ -606,6 +611,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل"),
         "changeMobileNumberInfo": MessageLookupByLibrary.simpleMessage(
             "رح يتم تغيير الرقم فقط للاشعارات المتعلقة بالبطاقة. بتقدرى تغيّر الرقم المرتبط بالحساب من خلال إعدادات الحساب."),
+        "changeMyEmail":
+            MessageLookupByLibrary.simpleMessage("Change My Email"),
         "changeMyNumber": MessageLookupByLibrary.simpleMessage("تغيير رقمي"),
         "changePassword":
             MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
@@ -944,6 +951,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "documentsNotFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-081)"),
         "done": MessageLookupByLibrary.simpleMessage("تم"),
+        "donotLeavePage": MessageLookupByLibrary.simpleMessage(
+            "Please do not leave the page. You will be\nautomatically redirected once it’s done."),
         "dontNeedMyCardAnymore":
             MessageLookupByLibrary.simpleMessage("بطلت محتاج بطاقتي "),
         "dormantAccountCCFailedTitle": MessageLookupByLibrary.simpleMessage(
@@ -1095,6 +1104,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "الرجاء اختيار طريقة التواصل المفضلة. رح يتم مراقبة أو تسجيل مكالمتك أو محادثتك لضمان الجودة."),
         "engagementTeamGettingReady":
             MessageLookupByLibrary.simpleMessage("فريقنا مستعد لخدمتك"),
+        "ensureToHaveNationalId": MessageLookupByLibrary.simpleMessage(
+            "Please ensure to have your National ID ready"),
         "enterAddressHeader":
             MessageLookupByLibrary.simpleMessage("وين ساكن حالياً؟"),
         "enterBillDetails":
@@ -1105,6 +1116,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "لا يمكن أن يكون حقل تأكيد كلمة المرور فارغًا"),
         "enterDetails":
             MessageLookupByLibrary.simpleMessage("أدخل المعلومات الناقصة"),
+        "enterEmailAndPassword": MessageLookupByLibrary.simpleMessage(
+            "Enter your email and create your password"),
         "enterIdNumberToResetPassword": MessageLookupByLibrary.simpleMessage(
             "أدخل المعلومات التالية لإعادة تعيين كلمة المرور"),
         "enterLoginDetails":
@@ -1145,6 +1158,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "خطأ في اسم المستخدم. حاول مرة ثانية. "),
         "enterYourEmailAndMobile":
             MessageLookupByLibrary.simpleMessage("أدخل إيميلك ورقم موبايلك"),
+        "enterYourMobileNumber":
+            MessageLookupByLibrary.simpleMessage("Enter your mobile number"),
         "error": MessageLookupByLibrary.simpleMessage("خطأ"),
         "errorAddingUserName": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
@@ -1531,6 +1546,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "الحصول على بطاقتي الائتمانية"),
         "getProfileInfoError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "getReadyToScanYourId": MessageLookupByLibrary.simpleMessage(
+            "Get ready to scan your ID\n and take a Selfie"),
         "getStatesError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "getTimeSlotsError": MessageLookupByLibrary.simpleMessage(
@@ -1651,6 +1668,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "incomeDetails": MessageLookupByLibrary.simpleMessage("معلومات الدخل"),
         "increaseCreditLimit":
             MessageLookupByLibrary.simpleMessage("رفع سقف الائتمان"),
+        "ineligibleIdentity":
+            MessageLookupByLibrary.simpleMessage("Ineligible identity"),
+        "ineligibleIdentityDescription": MessageLookupByLibrary.simpleMessage(
+            "Seems that you are ineligible to continue the registration. Please reach out to Blink Engagement Team for further assistance."),
         "infant": MessageLookupByLibrary.simpleMessage("الرضع"),
         "infobipInitError":
             MessageLookupByLibrary.simpleMessage("خطأ خلال التجهيز للمكالمة"),
@@ -1954,6 +1975,8 @@ class MessageLookup extends MessageLookupByLibrary {
             " تطبيق بلنك غير متاح في منطقتك الجغرافية."),
         "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
             "خدمة تحديد المواقع معطلة. الرجاء تفعيلها على Blink"),
+        "logOutTryLater":
+            MessageLookupByLibrary.simpleMessage("Log out and try again later"),
         "login": MessageLookupByLibrary.simpleMessage("الدخول "),
         "loginNotAllowed": MessageLookupByLibrary.simpleMessage(
             "الرمز منتهي الصلاحية، غير مصرح بتسجيل الدخول"),
@@ -1990,6 +2013,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("مصدر الدخل الرئيسي"),
         "makeSureItsAnnualNotMonthly": MessageLookupByLibrary.simpleMessage(
             " تأكد إنك ما دخّلت الدخل الشهري بالغلط لتحصل على بطاقتك الائتمانية."),
+        "makeSureYouAreInbrightPlace": MessageLookupByLibrary.simpleMessage(
+            "Make sure you are in a bright place to take a selfie"),
         "makeSureYourFaceFitsTheFrame": MessageLookupByLibrary.simpleMessage(
             "تأكد من إنك بتطلع على الكاميرا وفاتح عيونك منيح!"),
         "maleAgent": MessageLookupByLibrary.simpleMessage("موظف ذكر"),
@@ -2212,6 +2237,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "occupationSmall": MessageLookupByLibrary.simpleMessage("الوظيفة"),
         "ofTheBank": MessageLookupByLibrary.simpleMessage("من البنك"),
         "offersCategory": MessageLookupByLibrary.simpleMessage("فئة العروض"),
+        "okay": MessageLookupByLibrary.simpleMessage("Okay"),
         "onIdFit": MessageLookupByLibrary.simpleMessage(
             "رح يتم مسح الهوية تلقائياً لما تحطها داخل المستطيل"),
         "oneFinalStop": MessageLookupByLibrary.simpleMessage("خطوة أخيرة..."),
@@ -2442,6 +2468,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-148)"),
         "primaryNotComplete":
             MessageLookupByLibrary.simpleMessage("خطوة أساسية غير مكتملة"),
+        "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "proceedToLogin": MessageLookupByLibrary.simpleMessage(
             "الاستمرار لصفحة تسجيل الدخول واستخدام كلمة المرور الجديدة"),
         "processLoanError": MessageLookupByLibrary.simpleMessage(
@@ -2451,6 +2478,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "processLoanValuesError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "processing": MessageLookupByLibrary.simpleMessage("المعالجة"),
+        "processingIDWiseStatus":
+            MessageLookupByLibrary.simpleMessage("Processing"),
         "productSelectorHeader":
             MessageLookupByLibrary.simpleMessage("ممتاز! تعرّف على عروض Blink"),
         "profileDetailsQ1": MessageLookupByLibrary.simpleMessage("متزوج؟"),
@@ -2570,6 +2599,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خطأ خلال تسجيل المستخدم"),
         "registrationProcessError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-002)"),
+        "registrationStopped":
+            MessageLookupByLibrary.simpleMessage("Registration stopped"),
+        "registrationStoppedDescription": MessageLookupByLibrary.simpleMessage(
+            "Unfortunately, you did not meet minimum age required to open an account with us. You may try again when you turn 18."),
         "reject": MessageLookupByLibrary.simpleMessage("رفض"),
         "rejectRequest": MessageLookupByLibrary.simpleMessage("رفض الطلب"),
         "rejected": MessageLookupByLibrary.simpleMessage("مرفوضة"),
@@ -2801,6 +2834,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "selfieCheck": MessageLookupByLibrary.simpleMessage("صورة سيلفي"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-015)"),
+        "selfieMismatched":
+            MessageLookupByLibrary.simpleMessage("Selfie mismatched"),
+        "selfieMismatchedDescription": MessageLookupByLibrary.simpleMessage(
+            "Seems that your selfie does not match with your ID card. Please reach out to Blink Engagement Team for further assitance."),
         "sendAndRequestFavouriteContacts": MessageLookupByLibrary.simpleMessage(
             "أرسل وطلب ما يصل إلى 9 جهات اتصال مفضلة بسهولة. هل ترغب في إضافة جهة الاتصال هذه إلى المفضلة لديك؟"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("تحويل أموال"),
@@ -3083,6 +3120,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("السفر و التنقل"),
         "treatyClaimRate": MessageLookupByLibrary.simpleMessage(
             "معدل مطالبة الاتفاق الضريبي (%)"),
+        "tryAgain": MessageLookupByLibrary.simpleMessage("Try again"),
         "tryAgainLater": MessageLookupByLibrary.simpleMessage(
             "في مشكلة بدفعتك، حاول كمان مرة. إذا بدك مساعدة، تواصل معنا."),
         "twoToTwelve": MessageLookupByLibrary.simpleMessage("من 2 إلى 12 سنة"),
@@ -3104,6 +3142,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "خطأ! الحركة غير ممكنة حالياً."),
         "unableToVerifyIDCard": MessageLookupByLibrary.simpleMessage(
             "عملينا العزيز، ما قدرنا نتحقق من رقم هويتك الشخصية. حاول امسح الهوية كمان مرة أو تواصل مع مركز خدمات الزبائن على 06-5200100"),
+        "unableVerifyYourID":
+            MessageLookupByLibrary.simpleMessage("Unable verify your ID"),
+        "unableVerifyYourIDDescription": MessageLookupByLibrary.simpleMessage(
+            "Seems that we are unable to verify your\nNational ID. Please try again later."),
         "unauthorize": MessageLookupByLibrary.simpleMessage(
             "عفواً! مش قادرين نتعرف عليك. المشترك غير مسجل او صار خلل. حاول كمان مرة بعدين أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06   (Err-u)"),
         "unavailable": MessageLookupByLibrary.simpleMessage("غير متوفر"),
@@ -3172,6 +3214,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "vKeyTransactionFailed":
             MessageLookupByLibrary.simpleMessage("فشل حركة Vkey"),
         "validUntil": MessageLookupByLibrary.simpleMessage("صالح حتى"),
+        "validatingYourSelfie":
+            MessageLookupByLibrary.simpleMessage("Validating your selfie"),
         "value": MessageLookupByLibrary.simpleMessage("القيمة"),
         "verificationCallEnded":
             MessageLookupByLibrary.simpleMessage("انتهت مكالمة التحقق"),
@@ -3204,6 +3248,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "verifyViaVideoCallCC": MessageLookupByLibrary.simpleMessage(
             "تواصل معنا لتستكمل الطلب بين الساعة ١٠:٠٠ص و ٦:٠٠م. ممكن نطلب إثبات عمل،  يا ريت يكون معك عند الاتصال."),
+        "verifyingYourNationalID":
+            MessageLookupByLibrary.simpleMessage("Verifying your National ID"),
         "videoCall": MessageLookupByLibrary.simpleMessage("مكالمة فيديو"),
         "videoCallDueNow": MessageLookupByLibrary.simpleMessage(
             "صار وقت مكالمة الفيديو. اسحب الشاشة لتبدأ المكالمة لما تكون جاهز."),
@@ -3370,6 +3416,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourFreeVirtualDebitCardHasBeenIssued":
             MessageLookupByLibrary.simpleMessage(
                 "تم إصدار بطاقة الدفع المباشر الافتراضية، وبطاقتك الفعلية بطريقها إلك."),
+        "yourInformation":
+            MessageLookupByLibrary.simpleMessage("your information"),
         "yourNowSetWithApplePay": MessageLookupByLibrary.simpleMessage(
             "تم تفعيل بطاقتك على خدمة أبل باي"),
         "yourSignature": MessageLookupByLibrary.simpleMessage("توقيعك"),

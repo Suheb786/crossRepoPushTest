@@ -121,6 +121,8 @@ class AssetUtils {
   static const String blueStar = svg + "blue_star.svg";
   static const String editNickName = svg + "edit_nickname.svg";
   static const String e_voucher = svg + "e_voucher.svg";
+  static const String infoBlack = svg + "info_black.svg";
+  static const String bold_check_icon = svg + "bold_check_icon.svg";
 
   /// DRAWABLES
   static const String line = drawable + "line.png";
@@ -189,7 +191,6 @@ class AssetUtils {
   static const String BookNow = svg + "book_now.svg";
   static const String WalkingLady = svg + "walking_lady.svg";
 
-
   ///Cliq
   static const String walletIcon = svg + "wallet.svg";
   static const String warningIcon = svg + "warning.svg";
@@ -250,4 +251,8 @@ class AssetUtils {
 
   ///Offers
   static const String forYou = svg + "for_you.svg";
+
+  ///IdWise
+  static const String BRIGHTNESS = drawable + "bright.png";
+  static const String CAPTURE = drawable + "capture.png";
 }

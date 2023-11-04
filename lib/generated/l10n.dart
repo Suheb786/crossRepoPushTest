@@ -18840,6 +18840,256 @@ class S {
     );
   }
 
+  /// `Enter your email and \ncreate your password`
+  String get enterEmailAndPassword {
+    return Intl.message(
+      'Enter your email and \ncreate your password',
+      name: 'enterEmailAndPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change My Email`
+  String get changeMyEmail {
+    return Intl.message(
+      'Change My Email',
+      name: 'changeMyEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Processing`
+  String get processingIDWiseStatus {
+    return Intl.message(
+      'Processing',
+      name: 'processingIDWiseStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verifying your National ID`
+  String get verifyingYourNationalID {
+    return Intl.message(
+      'Verifying your National ID',
+      name: 'verifyingYourNationalID',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Validating your selfie`
+  String get validatingYourSelfie {
+    return Intl.message(
+      'Validating your selfie',
+      name: 'validatingYourSelfie',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unable verify your ID`
+  String get unableVerifyYourID {
+    return Intl.message(
+      'Unable verify your ID',
+      name: 'unableVerifyYourID',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Seems that we are unable to verify your\nNational ID. Please try again later.`
+  String get unableVerifyYourIDDescription {
+    return Intl.message(
+      'Seems that we are unable to verify your\nNational ID. Please try again later.',
+      name: 'unableVerifyYourIDDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your mobile number`
+  String get enterYourMobileNumber {
+    return Intl.message(
+      'Enter your mobile number',
+      name: 'enterYourMobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Okay`
+  String get okay {
+    return Intl.message(
+      'Okay',
+      name: 'okay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ineligible identity`
+  String get ineligibleIdentity {
+    return Intl.message(
+      'Ineligible identity',
+      name: 'ineligibleIdentity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Seems that you are ineligible to continue the registration. Please reach out to Blink Engagement Team for further assistance.`
+  String get ineligibleIdentityDescription {
+    return Intl.message(
+      'Seems that you are ineligible to continue the registration. Please reach out to Blink Engagement Team for further assistance.',
+      name: 'ineligibleIdentityDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Selfie mismatched`
+  String get selfieMismatched {
+    return Intl.message(
+      'Selfie mismatched',
+      name: 'selfieMismatched',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Seems that your selfie does not match with your ID card. Please reach out to Blink Engagement Team for further assitance.`
+  String get selfieMismatchedDescription {
+    return Intl.message(
+      'Seems that your selfie does not match with your ID card. Please reach out to Blink Engagement Team for further assitance.',
+      name: 'selfieMismatchedDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registration stopped`
+  String get registrationStopped {
+    return Intl.message(
+      'Registration stopped',
+      name: 'registrationStopped',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unfortunately, you did not meet minimum age required to open an account with us. You may try again when you turn 18.`
+  String get registrationStoppedDescription {
+    return Intl.message(
+      'Unfortunately, you did not meet minimum age required to open an account with us. You may try again when you turn 18.',
+      name: 'registrationStoppedDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get ready to scan your ID\n and take a Selfie`
+  String get getReadyToScanYourId {
+    return Intl.message(
+      'Get ready to scan your ID\n and take a Selfie',
+      name: 'getReadyToScanYourId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Make sure you are in a bright place to take a selfie`
+  String get makeSureYouAreInbrightPlace {
+    return Intl.message(
+      'Make sure you are in a bright place to take a selfie',
+      name: 'makeSureYouAreInbrightPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please ensure to have your National ID ready`
+  String get ensureToHaveNationalId {
+    return Intl.message(
+      'Please ensure to have your National ID ready',
+      name: 'ensureToHaveNationalId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `By continuing you agree to the`
+  String get byContinuingYouAgree {
+    return Intl.message(
+      'By continuing you agree to the',
+      name: 'byContinuingYouAgree',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy Policy`
+  String get privacyPolicy {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'privacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please do not leave the page. You will be\nautomatically redirected once it’s done.`
+  String get donotLeavePage {
+    return Intl.message(
+      'Please do not leave the page. You will be\nautomatically redirected once it’s done.',
+      name: 'donotLeavePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try again`
+  String get tryAgain {
+    return Intl.message(
+      'Try again',
+      name: 'tryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log out and try again later`
+  String get logOutTryLater {
+    return Intl.message(
+      'Log out and try again later',
+      name: 'logOutTryLater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please bare with us,we are processing`
+  String get bareWithUsProcessing {
+    return Intl.message(
+      'Please bare with us,we are processing',
+      name: 'bareWithUsProcessing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `your information`
+  String get yourInformation {
+    return Intl.message(
+      'your information',
+      name: 'yourInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `National ID`
   String get nationalID {
     return Intl.message(
