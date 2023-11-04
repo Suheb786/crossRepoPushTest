@@ -1,4 +1,7 @@
 import 'package:data/helper/id_wise_helper.dart';
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/user/update_journey/update_journey.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/user/get_current_user_usecase.dart';
@@ -24,6 +27,7 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
 
   ///checkBox Subject
   BehaviorSubject<bool> isChecked = BehaviorSubject();
+
   Stream<bool> get checkBoxStream => isChecked.stream;
 
   ///update journey request subject holder
@@ -84,16 +88,13 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
     idWiseHelper.initializeIdWise();
     var status = await idWiseHelper.startVerification(
         Localizations.localeOf(appLevelKey.currentState!.context).languageCode, data.idWiseRefId ?? '');
-
-    debugPrint("STATUS : ${status.keys.first}");
-    debugPrint("TEXT :  ${status.values.first}");
-
     if (status.keys.first == IDWiseStatus.COMPLETED) {
-      referenceNumber = data.idWiseRefId!;
+      referenceNumber = data.idWiseRefId ?? '';
       journeyId = status.values.first;
       udpateJourney(userID: data.id, refID: data.idWiseRefId, journeyID: status.values.first, status: "");
     } else if (status.keys.first == IDWiseStatus.ERROR) {
-
+      showToastWithError(
+          AppError(cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.NETWORK));
     }
   }
 }

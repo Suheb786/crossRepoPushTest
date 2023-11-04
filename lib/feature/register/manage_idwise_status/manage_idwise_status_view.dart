@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:data/helper/antelop_helper.dart';
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/user/check_journey_status/check_journey_status.dart';
 import 'package:domain/model/user/process_journey_via_mobile/process_journey.dart';
@@ -11,12 +15,15 @@ import '../../../generated/l10n.dart';
 import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/account/idwise_processing_status_widget.dart';
 import '../../../ui/molecules/app_svg.dart';
+import '../../../ui/molecules/dialog/oversight_dialog/oversight_dialog.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
+import '../../../utils/app_constants.dart';
 import '../../../utils/asset_utils.dart';
 import '../../../utils/color_utils.dart';
 import '../../../utils/resource.dart';
 import '../../../utils/status.dart';
 import '../../../utils/string_utils.dart';
+import '../failure_scenarios/failure_scenarios_page.dart';
 import '../register_page.dart';
 import 'manage_idwise_status_model.dart';
 
@@ -64,12 +71,27 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                       SizedBox(
                         height: 56.h,
                       ),
-                      Center(
-                        child: Stack(
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 48.w),
+                        child: Text(
+                          S.of(context).bareWithUsProcessing,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 24.t,
+                              color: Theme.of(context).colorScheme.secondary),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 48.w),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Flexible(
                               child: Text(
-                                S.of(context).bareWithUsProcessing + "        ",
+                                S.of(context).yourInformation,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
@@ -78,9 +100,8 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                                     color: Theme.of(context).colorScheme.secondary),
                               ),
                             ),
-                            PositionedDirectional(
-                              bottom: 10,
-                              end: 0,
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 8),
                               child: JumpingDots(
                                 color: AppColor.white,
                                 radius: 4,
@@ -98,10 +119,61 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                       AppStreamBuilder<Resource<ProcessJourney>>(
                           initialData: Resource.none(),
                           stream: model.processJourneyViaMobileStream,
+                          onData: (value) {
+                            if (value.status == Status.ERROR) {
+                              if (value.appError?.type == ErrorType.NO_ERROR_CODE) {
+                                if (value.appError?.error.apiErrorModel?.code == "err-323") {
+                                  OversightDialog.show(
+                                    context,
+                                    title: S.of(context).unableVerifyYourID,
+                                    onPrimaryButton: () {
+                                      model.processJourneyViaMobile(
+                                          refID: model.user.idWiseRefId,
+                                          journeyID: model.arguments.journeyId.isNotEmpty
+                                              ? model.arguments.journeyId
+                                              : model.user.journeyId);
+                                    },
+                                    onSecodaryButton: () {
+                                      AppConstantsUtils.resetCacheLists();
+                                      if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+                                        AntelopHelper.walletDisconnect();
+                                      }
+                                      Navigator.pushNamedAndRemoveUntil(
+                                          context, RoutePaths.OnBoarding, (route) => false);
+                                    },
+                                    descriptionWidget: Text(
+                                      S.of(context).unableVerifyYourIDDescription,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: Theme.of(context)
+                                              .inputDecorationTheme
+                                              .focusedBorder!
+                                              .borderSide
+                                              .color,
+                                          fontSize: 14.0.t,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                  );
+                                } else {
+                                  Navigator.pushReplacementNamed(
+                                      context, RoutePaths.OnboardingFailurScenariosPage,
+                                      arguments: OnboardingFailureScenarioArgument(
+                                          title: StringUtils.isDirectionRTL(context)
+                                              ? value.appError?.error.apiErrorModel?.titleAr ?? ''
+                                              : value.appError?.error.apiErrorModel?.titleEn ?? '',
+                                          description: StringUtils.isDirectionRTL(context)
+                                              ? value.appError?.error.apiErrorModel?.messageAr ?? ''
+                                              : value.appError?.error.apiErrorModel?.messageEn ?? ''));
+                                }
+                              } else {
+                                model.showToastWithError(value.appError!);
+                              }
+                            }
+                          },
                           dataBuilder: (context, snapshot) {
                             return IDWiseProcessingStatusWidget(
                               label: S.of(context).verifyingYourNationalID,
-                              isActivated: model.arguments.isAhwalCheckPassed
+                              isActivated: !model.arguments.isAhwalCheckPassed
                                   ? true
                                   : snapshot?.data?.isAllowPooling ?? false,
                             );
@@ -123,13 +195,25 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                                             .applicationId));
                               }
                             } else if (value.status == Status.ERROR) {
-                              if (value.appError!.error.code == "IDWISE-001") {
-                              } else {}
+                              if (value.appError?.type == ErrorType.NO_ERROR_CODE) {
+                                Navigator.pushReplacementNamed(
+                                    context, RoutePaths.OnboardingFailurScenariosPage,
+                                    arguments: OnboardingFailureScenarioArgument(
+                                        title: StringUtils.isDirectionRTL(context)
+                                            ? value.appError?.error.apiErrorModel?.titleAr ?? ''
+                                            : value.appError?.error.apiErrorModel?.titleEn ?? '',
+                                        description: StringUtils.isDirectionRTL(context)
+                                            ? value.appError?.error.apiErrorModel?.messageAr ?? ''
+                                            : value.appError?.error.apiErrorModel?.messageEn ?? ''));
+                              } else {
+                                model.showToastWithError(value.appError!);
+                              }
                             }
                           },
                           dataBuilder: (context, snapshot) {
                             return IDWiseProcessingStatusWidget(
                               label: S.of(context).validatingYourSelfie,
+                              isAhwalPassed: model.isAllowPooling,
                               isActivated: !(snapshot?.data?.keepPooling ?? true),
                             );
                           }),

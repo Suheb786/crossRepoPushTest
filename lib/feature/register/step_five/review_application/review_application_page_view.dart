@@ -253,6 +253,14 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                               textInputType: TextInputType.text,
                                                             ),
 
+                                                            Padding(
+                                                              padding: EdgeInsets.symmetric(vertical: 24.0.h),
+                                                              child: Container(
+                                                                height: 1,
+                                                                color: AppColor.white_gray,
+                                                              ),
+                                                            ),
+
                                                             ///address details
                                                             ReviewApplicationEditableItem(
                                                               title: S.of(context).residentCountrySmall,

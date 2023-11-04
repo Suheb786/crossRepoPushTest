@@ -11,6 +11,8 @@ class UpdateJourneyRequestEntity {
   String? journeyID;
   @JsonKey(name: 'Status')
   String? status;
+  @JsonKey(name: "GetToken")
+  final bool? getToken;
   @JsonKey(name: 'BaseClass')
   Map<String, dynamic>? baseClass;
 
@@ -20,6 +22,7 @@ class UpdateJourneyRequestEntity {
     required this.journeyID,
     required this.status,
     required this.baseClass,
+    required this.getToken
   });
 
   factory UpdateJourneyRequestEntity.fromJson(Map<String, dynamic> json) =>

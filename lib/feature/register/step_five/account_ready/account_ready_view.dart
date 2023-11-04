@@ -149,14 +149,16 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                       ),
                       Column(
                         children: [
-                          AppPrimaryButton(
-                            text: S.of(context).next,
-                            isDisabled: !model.arguments.isDocumentUploaded,
-                            onPressed: () {
-                              if (!model.arguments.isDocumentUploaded) {
-                                Navigator.pushReplacementNamed(context, RoutePaths.CardDelivery);
-                              }
-                            },
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+                            child: AppPrimaryButton(
+                              text: S.of(context).next,
+                              onPressed: () {
+                                if (!model.arguments.isDocumentUploaded) {
+                                  Navigator.pushReplacementNamed(context, RoutePaths.CardDelivery);
+                                }
+                              },
+                            ),
                           ),
                           SizedBox(
                             height: 32.h,

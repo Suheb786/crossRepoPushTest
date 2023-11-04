@@ -7,8 +7,9 @@ import 'package:neo_bank/utils/string_utils.dart';
 class IDWiseProcessingStatusWidget extends StatelessWidget {
   final String label;
   final bool isActivated;
+  final bool isAhwalPassed;
 
-  const IDWiseProcessingStatusWidget({Key? key, required this.label, this.isActivated = false})
+  const IDWiseProcessingStatusWidget({Key? key, required this.label, this.isActivated = false,this.isAhwalPassed=true})
       : super(key: key);
 
   @override
@@ -33,9 +34,9 @@ class IDWiseProcessingStatusWidget extends StatelessWidget {
               label,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
-                  fontSize: isActivated ? 16.0.t : 14.0.t,
-                  fontWeight: isActivated ? FontWeight.w800 : FontWeight.w600,
-                  color: isActivated
+                  fontSize: isAhwalPassed ? 15.0.t : 14.0.t,
+                  fontWeight: isAhwalPassed ? FontWeight.w800 : FontWeight.w600,
+                  color: isAhwalPassed
                       ? Theme.of(context).colorScheme.secondary
                       : Theme.of(context).colorScheme.secondary.withOpacity(0.3)),
               textAlign: TextAlign.center,

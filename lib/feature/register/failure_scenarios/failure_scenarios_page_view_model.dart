@@ -12,7 +12,7 @@ import 'failure_scenarios_page.dart';
 class OnboardingFailureScenariosPageViewModel extends BasePageViewModel {
   final LogoutUseCase _logoutUseCase;
 
-  late final OnboardingFailureScenarioArgument argument;
+  late OnboardingFailureScenarioArgument argument;
 
   ///---------------logout response ------------------------///
   PublishSubject<LogoutUseCaseParams> _logoutRequest = PublishSubject();

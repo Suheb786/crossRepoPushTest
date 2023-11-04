@@ -56,7 +56,6 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                       stream: model.registerNumberStream,
                       initialData: Resource.none(),
                       onData: (data) {
-                        print("data.status ${data.status}");
                         if (data.status == Status.SUCCESS) {
                           var event = {
                             "definitionId": "UserEvents",
@@ -85,7 +84,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                       if (data.status == Status.SUCCESS) {
                                         ProviderScope.containerOf(context)
                                             .read(accountRegistrationViewModelProvider)
-                                            .countryDataList = data.data!.contentData!.countryData!;
+                                            .countryDataList = data.data?.contentData?.countryData ?? [];
                                       }
                                     },
                                     stream: model.getAllowedCountryStream,
@@ -99,9 +98,9 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                             stream: model.checkUserMobileStream,
                                             onData: (data) {
                                               if (data.status == Status.ERROR) {
-                                                if (data.appError!.type == ErrorType.MOBILE_ALREADY_EXIST) {
+                                                if (data.appError?.type == ErrorType.MOBILE_ALREADY_EXIST) {
                                                   model.isMobileNoExist = 1;
-                                                  model.mobileNumberKey.currentState!.isValid = false;
+                                                  model.mobileNumberKey.currentState?.isValid = false;
                                                 }
                                                 model.showToastWithError(data.appError!);
                                                 model.showErrorState();
@@ -109,16 +108,13 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                 ProviderScope.containerOf(context)
                                                     .read(accountRegistrationViewModelProvider)
                                                     .updateMobileNumber(MobileNumberParams(
-                                                        mobileCode: model.countryData.phoneCode!,
+                                                        mobileCode: model.countryData.phoneCode ?? '',
                                                         mobileNumber: model.mobileNumberController.text));
                                               }
                                             },
                                             dataBuilder: (context, data) {
-                                              debugPrint(
-                                                  'model.countryData.mobileMax--${model.countryData.mobileMax}');
                                               return Focus(
                                                 onFocusChange: (hasFocus) {
-                                                  debugPrint('hasFocus--> ${hasFocus}');
                                                   model.validateMobile();
                                                 },
                                                 child: AppTextField(
@@ -146,12 +142,12 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                           Navigator.pop(context);
                                                           model.countryData = data;
                                                           model.setSelectedCountry(data);
-                                                          print('selectedData---->${data.phoneCode}');
                                                         }, onDismissed: () {
                                                           Navigator.pop(context);
                                                         },
                                                             countryDataList:
-                                                                country!.data!.contentData!.countryData);
+                                                                country?.data?.contentData?.countryData ??
+                                                                    []);
                                                       },
                                                       child: Padding(
                                                         padding: EdgeInsets.only(top: 8.0.h),
@@ -165,9 +161,9 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                                 color: Theme.of(context).primaryColorDark,
                                                                 shape: BoxShape.circle,
                                                               ),
-                                                              child: AppSvg.asset(selectedCountry!.isoCode3 !=
+                                                              child: AppSvg.asset(selectedCountry?.isoCode3 !=
                                                                       null
-                                                                  ? "${AssetUtils.flags}${selectedCountry.isoCode3?.toLowerCase()}.svg"
+                                                                  ? "${AssetUtils.flags}${selectedCountry?.isoCode3?.toLowerCase()}.svg"
                                                                   : "assets/flags/jor.svg"),
                                                             ),
                                                             Padding(
@@ -176,8 +172,9 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                               child: Directionality(
                                                                 textDirection: TextDirection.ltr,
                                                                 child: Text(
-                                                                  selectedCountry.phoneCode!.isNotEmpty
-                                                                      ? '+${selectedCountry.phoneCode!}'
+                                                                  (selectedCountry?.phoneCode ?? '')
+                                                                          .isNotEmpty
+                                                                      ? '+${selectedCountry?.phoneCode ?? ''}'
                                                                       : "",
                                                                   style: TextStyle(
                                                                     color: Theme.of(context).indicatorColor,
@@ -218,7 +215,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                             initialData: false,
                                             dataBuilder: (context, isValid) {
                                               return AppPrimaryButton(
-                                                isDisabled: !isValid!,
+                                                isDisabled: !(isValid ?? false),
                                                 text: S.of(context).next,
                                                 onPressed: () {
                                                   model.validateNumber();

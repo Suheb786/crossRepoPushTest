@@ -5,7 +5,6 @@ import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
-import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
 import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -41,18 +40,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                   initialData: Resource.none(),
                   onData: (data) async {
                     if (data.status == Status.SUCCESS) {
-                      ProviderScope.containerOf(context)
-                          .read(accountRegistrationViewModelProvider)
-                          .updateMobileNumber(MobileNumberParams(
-                              mobileCode: ProviderScope.containerOf(context)
-                                  .read(addNumberViewModelProvider)
-                                  .countryData
-                                  .phoneCode!,
-                              mobileNumber: ProviderScope.containerOf(context)
-                                  .read(addNumberViewModelProvider)
-                                  .mobileNumberController
-                                  .text));
-
+                      model.saveUserData();
                       Navigator.pushReplacementNamed(context, RoutePaths.Dashboard);
                     }
                   },
@@ -98,7 +86,6 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                             initialData: Resource.none(),
                             onData: (data) async {
                               if (data.status == Status.SUCCESS) {
-                                model.saveUserData();
                                 model.verifyMobileOtp(
                                     OTPCode: model.otpController.text,
                                     MobileNo: ProviderScope.containerOf(context)
@@ -137,26 +124,12 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                                         .read(accountRegistrationViewModelProvider)
                                                         .previousPage();
                                                     model.otpController.clear();
-
-                                                    /// we are not showing dialog to change mobile no. instead we redirect user on back page, most probabily this code should be removed
-
-                                                    /*   ChangeMyNumberDialog.show(context,
-                                                        countryList: ProviderScope.containerOf(context)
-                                                            .read(accountRegistrationViewModelProvider)
-                                                            .countryDataList, onDismissed: () {
-                                                      Navigator.pop(context);
-                                                    }, onSelected: (country, mobileNo) {
-                                                      model.mobileNumberParams = MobileNumberParams(
-                                                          mobileNumber: mobileNo, mobileCode: country.phoneCode!);
-                                                      Navigator.pop(context);
-                                                      model.changeMyNumber(mobileNo, country.phoneCode!);
-                                                    }); */
                                                   },
                                                   child: Text(
                                                     S.of(context).changeMyNumber,
                                                     style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
-                                                      color: Theme.of(context).textTheme.bodyLarge!.color!,
+                                                      color: Theme.of(context).textTheme.bodyLarge?.color,
                                                       fontSize: 14.t,
                                                       fontWeight: FontWeight.w600,
                                                     ),
@@ -176,7 +149,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                                           fontFamily: StringUtils.appFont,
                                                           fontSize: 16.t,
                                                           color:
-                                                              Theme.of(context).textTheme.bodyMedium!.color!),
+                                                              Theme.of(context).textTheme.bodyMedium?.color),
                                                       widgetBuilder: (context, currentTimeRemaining) {
                                                         return currentTimeRemaining == null
                                                             ? TextButton(
@@ -193,8 +166,8 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                                                       fontSize: 14.t,
                                                                       color: Theme.of(context)
                                                                           .textTheme
-                                                                          .bodyLarge!
-                                                                          .color!),
+                                                                          .bodyLarge
+                                                                          ?.color),
                                                                 ))
                                                             : Padding(
                                                                 padding: const EdgeInsets.all(10.0),
@@ -206,8 +179,8 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                                                       fontSize: 14.t,
                                                                       color: Theme.of(context)
                                                                           .textTheme
-                                                                          .bodyLarge!
-                                                                          .color!),
+                                                                          .bodyLarge
+                                                                          ?.color),
                                                                 ),
                                                               );
                                                       },
@@ -226,7 +199,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                                   dataBuilder: (context, isValid) {
                                                     return AppPrimaryButton(
                                                       text: S.of(context).next,
-                                                      isDisabled: !isValid!,
+                                                      isDisabled: !(isValid ?? false),
                                                       onPressed: () {
                                                         model.validateOtp();
                                                       },

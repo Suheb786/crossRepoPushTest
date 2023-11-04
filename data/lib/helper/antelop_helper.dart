@@ -89,14 +89,14 @@ class AntelopHelper {
     try {
       debugPrint("wallet logout");
       var data = await platform.invokeMethod('walletLogout');
-    } on PlatformException catch (e) {}
+    } on PlatformException {}
   }
 
   static Future<void> walletDisconnect() async {
     try {
       debugPrint("-- Wallet Disconnect Called --");
       var data = await platform.invokeMethod('walletDisconnect');
-    } on PlatformException catch (e) {
+    } on PlatformException {
       debugPrint("-- Wallet Disconnect Exception --");
     }
   }

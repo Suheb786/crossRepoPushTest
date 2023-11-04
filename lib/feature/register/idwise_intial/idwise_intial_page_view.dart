@@ -1,4 +1,3 @@
-import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/user/update_journey/update_journey.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,21 +27,20 @@ class IdWiseIntialPageView extends BasePageViewWidget<IdWiseIntialPageViewModel>
         initialData: Resource.none(),
         onData: (updateJourney) async {
           if (updateJourney.status == Status.SUCCESS) {
-            if (!updateJourney.data!.documentStatus) {
+            if (!(updateJourney.data?.documentStatus ?? false)) {
               Navigator.pushReplacementNamed(context, RoutePaths.OnboardingFailurScenariosPage,
                   arguments: OnboardingFailureScenarioArgument(
-                      title: updateJourney.data!.documentTitle,
-                      description: updateJourney.data!.documentDetail));
-            } else if (!updateJourney.data!.selfieStatus) {
+                      title: updateJourney.data?.documentTitle ?? '',
+                      description: updateJourney.data?.documentDetail ?? ''));
+            } else if (!(updateJourney.data?.selfieStatus ?? false)) {
               Navigator.pushReplacementNamed(context, RoutePaths.OnboardingFailurScenariosPage,
                   arguments: OnboardingFailureScenarioArgument(
-                      title: updateJourney.data!.selfieTitle, description: updateJourney.data!.selfieDetail));
+                      title: updateJourney.data?.selfieTitle ?? '',
+                      description: updateJourney.data?.selfieDetail ?? ''));
             } else {
               Navigator.pushReplacementNamed(context, RoutePaths.ManageIDWiseStatus,
                   arguments: ManageIDWiseStatusParams(
-                      isAhwalCheckPassed: false,
-                      isFaceMatchScorePassed: false,
-                      journeyId: model.journeyId));
+                      isAhwalCheckPassed: true, isFaceMatchScorePassed: true, journeyId: model.journeyId));
             }
           }
         },

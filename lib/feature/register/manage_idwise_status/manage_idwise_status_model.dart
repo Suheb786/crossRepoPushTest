@@ -1,4 +1,3 @@
-import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/user/check_journey_status/check_journey_status.dart';
 import 'package:domain/model/user/process_journey_via_mobile/process_journey.dart';
 import 'package:domain/model/user/user.dart';
@@ -40,6 +39,7 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
   final PublishSubject<GetCurrentUserUseCaseParams> _currentUserRequestSubject = PublishSubject();
 
   late User user;
+  bool isAllowPooling = false;
 
   ManageIDWiseStatusViewModel(
       this._processJourneyViaMobileUseCase, this._checkJourneyStatusUseCase, this._getCurrentUserUseCase) {
@@ -48,11 +48,20 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         _processJourneyViaMobileResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {
-          if (event.data!.isAllowPooling) {
-            checkJourneyStatus(journeyId: '', referenceId: user.idWiseRefId);
+        if (event.status == Status.SUCCESS) {
+          if (event.data?.journeyInProcess ?? false) {
+            Future.delayed(
+                Duration(seconds: 3),
+                () => {
+                      processJourneyViaMobile(
+                          refID: user.idWiseRefId,
+                          journeyID: arguments.journeyId != '' ? arguments.journeyId : user.journeyId)
+                    });
+          } else if (event.data?.isAllowPooling ?? false) {
+            isAllowPooling = event.data?.isAllowPooling ?? false;
+            checkJourneyStatus(
+                journeyId: arguments.journeyId != '' ? arguments.journeyId : user.journeyId,
+                referenceId: user.idWiseRefId);
           }
         }
       });
@@ -63,12 +72,15 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         _checkJourneyStatusResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {
-          if (event.data!.keepPooling) {
-            Future.delayed(Duration(seconds: 3),
-                () => {checkJourneyStatus(journeyId: '', referenceId: user.idWiseRefId)});
+        if (event.status == Status.SUCCESS) {
+          if (event.data?.keepPooling ?? false) {
+            Future.delayed(
+                Duration(seconds: 3),
+                () => {
+                      checkJourneyStatus(
+                          journeyId: arguments.journeyId != '' ? arguments.journeyId : user.journeyId,
+                          referenceId: user.idWiseRefId)
+                    });
           }
         }
       });
@@ -81,15 +93,13 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
         if (event.status == Status.SUCCESS) {
           user = event.data!;
 
-          if (!arguments.isAhwalCheckPassed) {
+          if (arguments.isAhwalCheckPassed) {
             processJourneyViaMobile(
                 refID: user.idWiseRefId,
-                journeyID:
-                    (user.journeyId == null || user.journeyId == '') ? arguments.journeyId : user.journeyId);
-          } else if (!arguments.isFaceMatchScorePassed) {
+                journeyID: arguments.journeyId.isNotEmpty ? arguments.journeyId : user.journeyId);
+          } else if (arguments.isFaceMatchScorePassed) {
             checkJourneyStatus(
-                journeyId:
-                    (user.journeyId == null || user.journeyId == '') ? arguments.journeyId : user.journeyId,
+                journeyId: arguments.journeyId.isNotEmpty ? arguments.journeyId : user.journeyId,
                 referenceId: user.idWiseRefId);
           }
         }
@@ -98,6 +108,7 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
 
     getCurrentUser();
   }
+
 
   void getCurrentUser() {
     _currentUserRequestSubject.add(GetCurrentUserUseCaseParams());

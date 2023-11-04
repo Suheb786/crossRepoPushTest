@@ -39,7 +39,6 @@ import 'package:neo_bank/feature/register/step_two/student_job_income/student_jo
 import 'package:neo_bank/feature/register/stepone/capture/capture_model.dart';
 import 'package:neo_bank/feature/register/stepone/confirm_detail/confirm_detail_model.dart';
 import 'package:neo_bank/feature/register/stepone/enter_address/enter_address_model.dart';
-import 'package:neo_bank/feature/register/stepone/id_verification_info/id_verification_info_model.dart';
 import 'package:neo_bank/feature/register/stepone/profile_details/profile_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
 import 'package:neo_bank/feature/register/upload_document_later/document_upload_later_page/document_upload_later_page_view_model.dart';
@@ -75,16 +74,6 @@ final registerViewModelProvider = ChangeNotifierProvider.autoDispose<RegisterVie
 final registerStepOneViewModelProvider = ChangeNotifierProvider.autoDispose<RegisterStepOneViewModel>(
   (ref) => RegisterStepOneViewModel(),
 );
-
-///[IdVerificationInfoViewModel] provider
-final idVerificationInfoViewModelProvider =
-    ChangeNotifierProvider.autoDispose<IdVerificationInfoViewModel>((ref) => IdVerificationInfoViewModel(
-          ref.read(idVerificationInfoUseCaseProvider),
-          ref.read(scanUserDocumentUseCaseProvider),
-          ref.read(getAhwalDetailsUseCaseProvider),
-          ref.read(confirmDetailUseCaseProvider),
-          ref.read(fetchAllowedIssuersUseCaseProvider),
-        ));
 
 ///[CaptureViewModel] provider
 final captureViewModelProvider = ChangeNotifierProvider.autoDispose<CaptureViewModel>(

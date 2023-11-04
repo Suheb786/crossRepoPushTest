@@ -14,6 +14,7 @@ UpdateJourneyRequestEntity _$UpdateJourneyRequestEntityFromJson(
       journeyID: json['JourneyID'] as String?,
       status: json['Status'] as String?,
       baseClass: json['BaseClass'] as Map<String, dynamic>?,
+      getToken: json['GetToken'] as bool?,
     );
 
 Map<String, dynamic> _$UpdateJourneyRequestEntityToJson(
@@ -23,5 +24,6 @@ Map<String, dynamic> _$UpdateJourneyRequestEntityToJson(
       'RefID': instance.refID,
       'JourneyID': instance.journeyID,
       'Status': instance.status,
+      'GetToken': instance.getToken,
       'BaseClass': instance.baseClass,
     };

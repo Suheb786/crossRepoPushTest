@@ -18,16 +18,7 @@ import 'add_email/add_email_page.dart';
 import 'add_email_otp/email_otp_page.dart';
 
 class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistrationPageViewModel> {
-  final pages = [
-    // CountrySelectionPage(),
-    //CreatePasswordPage(),
-    AddEmailPage(),
-    EmailOtpPage(),
-    AddNumberPage(),
-    //CreatePasswordPage(),
-    ValidateOtpPage(),
-    BaseCardPage()
-  ];
+  final pages = [AddEmailPage(), EmailOtpPage(), AddNumberPage(), ValidateOtpPage(), BaseCardPage()];
 
   AccountRegistrationPageView(ProviderBase model) : super(model);
 
@@ -50,8 +41,8 @@ class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistration
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                      activeSize: Size(MediaQuery.of(context).size.width / 4.7, 5),
-                      size: Size(MediaQuery.of(context).size.width / 4.7, 5),
+                      activeSize: Size(MediaQuery.of(context).size.width / 4.8, 5),
+                      size: Size(MediaQuery.of(context).size.width / 4.8, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
                       activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       activeColor: Theme.of(context).colorScheme.secondary,

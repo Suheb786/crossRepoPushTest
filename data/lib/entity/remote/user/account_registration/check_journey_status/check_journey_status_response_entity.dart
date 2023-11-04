@@ -1,6 +1,4 @@
-import 'package:data/entity/remote/user/account_registration/process_journey_via_mobile/process_journey_via_mobile_entity.dart';
 import 'package:domain/model/user/check_journey_status/check_journey_status.dart';
-import 'package:domain/model/user/process_journey_via_mobile/process_journey.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
 

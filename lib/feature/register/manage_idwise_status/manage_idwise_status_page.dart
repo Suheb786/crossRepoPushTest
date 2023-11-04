@@ -1,4 +1,3 @@
-import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:riverpod/src/framework.dart';
 
@@ -41,7 +40,5 @@ class ManageIDWiseStatusParams {
   String journeyId;
 
   ManageIDWiseStatusParams(
-      {required this.isAhwalCheckPassed,
-      required this.isFaceMatchScorePassed,
-      required this.journeyId});
+      {required this.isAhwalCheckPassed, required this.isFaceMatchScorePassed, required this.journeyId});
 }

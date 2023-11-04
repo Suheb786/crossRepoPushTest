@@ -14,6 +14,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/date_picker.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_five/schedule_call_time_dialog/schedule_call_time_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -143,166 +144,149 @@ class ScheduleVideoCallLaterPageView extends BasePageViewWidget<ScheduleVideoCal
                                           // }
                                         },
                                         dataBuilder: (context, response) {
-                                          return GestureDetector(
-                                            onHorizontalDragEnd: (details) {
-                                              if (ProviderScope.containerOf(context)
-                                                      .read(videoCallViewModelProvider)
-                                                      .appSwiperController
-                                                      .page ==
-                                                  2.0) {
-                                                FocusScope.of(context).unfocus();
-                                                if (StringUtils.isDirectionRTL(context)) {
-                                                  if (!details.primaryVelocity!.isNegative) {
-                                                    model.validateScheduleVideoCallDetails();
-                                                  } else {
-                                                    Future.delayed(Duration(milliseconds: 500), () {
-                                                      ProviderScope.containerOf(context)
-                                                          .read(videoCallViewModelProvider)
-                                                          .moveToPage(0);
-                                                      // .move(0,
-                                                      //     animation: false);
-                                                    });
-                                                  }
-                                                } else {
-                                                  if (details.primaryVelocity!.isNegative) {
-                                                    model.validateScheduleVideoCallDetails();
-                                                  } else {
-                                                    Future.delayed(Duration(milliseconds: 500), () {
-                                                      ProviderScope.containerOf(context)
-                                                          .read(videoCallViewModelProvider)
-                                                          .moveToPage(0);
-                                                      // .move(0,
-                                                      //     animation: false);
-                                                    });
-                                                  }
-                                                }
-                                              }
-                                            },
-                                            child: Card(
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(16)),
-                                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                                              elevation: 2,
-                                              color: Theme.of(context)
-                                                  .cardTheme
-                                                  .copyWith(color: AppColor.white)
-                                                  .color,
-                                              margin: EdgeInsets.zero,
-                                              shadowColor:
-                                                  Theme.of(context).primaryColorDark.withOpacity(0.32),
-                                              child: Padding(
-                                                  padding:
-                                                      EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                                                  child: Column(
-                                                    children: [
-                                                      Expanded(
-                                                        child: SingleChildScrollView(
-                                                          physics: ClampingScrollPhysics(),
-                                                          child: Column(
-                                                            children: [
-                                                              AppTextField(
-                                                                labelText: S.of(context).preferredDate,
-                                                                hintText: S.of(context).pleaseSelect,
-                                                                controller: model.preferredDateController,
-                                                                readOnly: true,
-                                                                key: model.preferredDateKey,
-                                                                onPressed: () {
-                                                                  DatePicker.show(context,
-                                                                      initialDate: model.initialDate,
-                                                                      onSelected: (date) {
-                                                                    model.preferredDateController.text =
-                                                                        TimeUtils.getFormattedDOB(
-                                                                            date.toString());
-                                                                    model.initialDate = date;
-                                                                    model.isValid();
-                                                                    model.fetchAvailableTimeSlots(TimeUtils
-                                                                        .getFormattedDateForCheckPassword(
-                                                                            date.toString()));
-                                                                  }, onCancelled: () {
-                                                                    Navigator.pop(context);
-                                                                  }, title: S.of(context).preferredDate);
-                                                                },
-                                                                suffixIcon: (value, data) {
-                                                                  return Container(
-                                                                      height: 16.h,
-                                                                      width: 16.w,
-                                                                      padding: EdgeInsets.symmetric(
-                                                                          horizontal: 7.w),
-                                                                      child: AppSvg.asset(AssetUtils.calendar,
-                                                                          color: Theme.of(context)
-                                                                              .primaryColorDark));
-                                                                },
-                                                              ),
-                                                              SizedBox(
-                                                                height: 16.h,
-                                                              ),
-                                                              AppStreamBuilder<
-                                                                  Resource<List<AvailableTimeSlots>>>(
-                                                                stream: model.availableTimeSlots,
-                                                                initialData: Resource.none(),
-                                                                dataBuilder: (context, slots) {
-                                                                  return AppTextField(
-                                                                    labelText: S.of(context).preferredTime,
-                                                                    hintText: S.of(context).pleaseSelect,
-                                                                    controller: model.preferredTimeController,
-                                                                    readOnly: true,
-                                                                    key: model.preferredTimeKey,
-                                                                    onPressed: () {
-                                                                      ScheduleCallTimeDialog.show(context,
-                                                                          title: S
-                                                                              .of(context)
-                                                                              .preferredTimeSmall,
-                                                                          data: slots!.data ?? [],
-                                                                          onSelected: (time) {
-                                                                        Navigator.pop(context);
-                                                                        model.preferredTimeController.text =
-                                                                            time.slot ?? "";
-                                                                        model.isValid();
-                                                                      }, onDismissed: () {
-                                                                        Navigator.pop(context);
-                                                                      });
-                                                                    },
-                                                                    suffixIcon: (value, data) {
-                                                                      return Container(
-                                                                          height: 16.h,
-                                                                          width: 16.w,
-                                                                          padding: EdgeInsetsDirectional.only(
-                                                                              end: 8.w),
-                                                                          child: AppSvg.asset(
-                                                                              AssetUtils.downArrow,
-                                                                              color: AppColor.dark_gray_1));
-                                                                    },
-                                                                  );
-                                                                },
-                                                              ),
-                                                              SizedBox(
-                                                                height:
-                                                                    MediaQuery.of(context).viewInsets.bottom,
-                                                              ),
-                                                            ],
-                                                          ),
+                                          return Card(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(16)),
+                                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                                            elevation: 2,
+                                            color: Theme.of(context)
+                                                .cardTheme
+                                                .copyWith(color: AppColor.white)
+                                                .color,
+                                            margin: EdgeInsets.zero,
+                                            shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
+                                            child: Padding(
+                                                padding:
+                                                    EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+                                                child: Column(
+                                                  children: [
+                                                    Expanded(
+                                                      child: SingleChildScrollView(
+                                                        physics: ClampingScrollPhysics(),
+                                                        child: Column(
+                                                          children: [
+                                                            AppTextField(
+                                                              labelText: S.of(context).preferredDate,
+                                                              hintText: S.of(context).pleaseSelect,
+                                                              controller: model.preferredDateController,
+                                                              readOnly: true,
+                                                              key: model.preferredDateKey,
+                                                              onPressed: () {
+                                                                DatePicker.show(context,
+                                                                    initialDate: model.initialDate,
+                                                                    onSelected: (date) {
+                                                                  model.preferredDateController.text =
+                                                                      TimeUtils.getFormattedDOB(
+                                                                          date.toString());
+                                                                  model.initialDate = date;
+                                                                  model.isValid();
+                                                                  model.fetchAvailableTimeSlots(TimeUtils
+                                                                      .getFormattedDateForCheckPassword(
+                                                                          date.toString()));
+                                                                }, onCancelled: () {
+                                                                  Navigator.pop(context);
+                                                                }, title: S.of(context).preferredDate);
+                                                              },
+                                                              suffixIcon: (value, data) {
+                                                                return Container(
+                                                                    height: 16.h,
+                                                                    width: 16.w,
+                                                                    padding:
+                                                                        EdgeInsets.symmetric(horizontal: 7.w),
+                                                                    child: AppSvg.asset(AssetUtils.calendar,
+                                                                        color: Theme.of(context)
+                                                                            .primaryColorDark));
+                                                              },
+                                                            ),
+                                                            SizedBox(
+                                                              height: 16.h,
+                                                            ),
+                                                            AppStreamBuilder<
+                                                                Resource<List<AvailableTimeSlots>>>(
+                                                              stream: model.availableTimeSlots,
+                                                              initialData: Resource.none(),
+                                                              dataBuilder: (context, slots) {
+                                                                return AppTextField(
+                                                                  labelText: S.of(context).preferredTime,
+                                                                  hintText: S.of(context).pleaseSelect,
+                                                                  controller: model.preferredTimeController,
+                                                                  readOnly: true,
+                                                                  key: model.preferredTimeKey,
+                                                                  onPressed: () {
+                                                                    ScheduleCallTimeDialog.show(context,
+                                                                        title:
+                                                                            S.of(context).preferredTimeSmall,
+                                                                        data: slots!.data ?? [],
+                                                                        onSelected: (time) {
+                                                                      Navigator.pop(context);
+                                                                      model.preferredTimeController.text =
+                                                                          time.slot ?? "";
+                                                                      model.isValid();
+                                                                    }, onDismissed: () {
+                                                                      Navigator.pop(context);
+                                                                    });
+                                                                  },
+                                                                  suffixIcon: (value, data) {
+                                                                    return Container(
+                                                                        height: 16.h,
+                                                                        width: 16.w,
+                                                                        padding: EdgeInsetsDirectional.only(
+                                                                            end: 8.w),
+                                                                        child: AppSvg.asset(
+                                                                            AssetUtils.downArrow,
+                                                                            color: AppColor.dark_gray_1));
+                                                                  },
+                                                                );
+                                                              },
+                                                            ),
+                                                            SizedBox(
+                                                              height:
+                                                                  MediaQuery.of(context).viewInsets.bottom,
+                                                            ),
+                                                          ],
                                                         ),
                                                       ),
-                                                      Center(
-                                                        child: Padding(
-                                                          padding: EdgeInsets.only(top: 8.h),
-                                                          child: AppStreamBuilder<bool>(
-                                                              stream: model.allFieldValidatorStream,
-                                                              initialData: false,
-                                                              dataBuilder: (context, isValid) {
-                                                                return (isValid!)
-                                                                    ? AnimatedButton(
-                                                                        buttonText:
-                                                                            S.of(context).swipeToProceed,
-                                                                        buttonHeight: 50,
-                                                                      )
-                                                                    : Container();
-                                                              }),
+                                                    ),
+                                                    Center(
+                                                      child: Padding(
+                                                        padding: EdgeInsets.only(top: 8.h),
+                                                        child: AppStreamBuilder<bool>(
+                                                            stream: model.allFieldValidatorStream,
+                                                            initialData: false,
+                                                            dataBuilder: (context, isValid) {
+                                                              return AppPrimaryButton(
+                                                                text: S.of(context).next,
+                                                                isDisabled: !(isValid ?? false),
+                                                                onPressed: () {
+                                                                  model.validateScheduleVideoCallDetails();
+                                                                },
+                                                              );
+                                                            }),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 16.h,
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        Future.delayed(Duration(milliseconds: 500), () {
+                                                          ProviderScope.containerOf(context)
+                                                              .read(videoCallViewModelProvider)
+                                                              .moveToPage(0);
+                                                        });
+                                                      },
+                                                      child: Text(
+                                                        S.current.back,
+                                                        style: TextStyle(
+                                                          color: AppColor.brightBlue,
+                                                          fontSize: 14.t,
+                                                          letterSpacing: 1.0,
+                                                          fontWeight: FontWeight.w600,
                                                         ),
-                                                      )
-                                                    ],
-                                                  )),
-                                            ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )),
                                           );
                                         },
                                       );

@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -395,7 +396,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "bankName": MessageLookupByLibrary.simpleMessage("اسم البنك"),
         "banks": MessageLookupByLibrary.simpleMessage("البنوك"),
         "bareWithUsProcessing": MessageLookupByLibrary.simpleMessage(
-            "Please bare with us,\nwe are processing\nyour information"),
+            "Please bare with us,we are processing"),
         "belowTwoYears": MessageLookupByLibrary.simpleMessage("من 0 إلى 2 سنة"),
         "beneficialOwnerIsAResidenceOf":
             MessageLookupByLibrary.simpleMessage("صاحب الحساب المنتفع مقيم في"),
@@ -3415,6 +3416,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourFreeVirtualDebitCardHasBeenIssued":
             MessageLookupByLibrary.simpleMessage(
                 "تم إصدار بطاقة الدفع المباشر الافتراضية، وبطاقتك الفعلية بطريقها إلك."),
+        "yourInformation":
+            MessageLookupByLibrary.simpleMessage("your information"),
         "yourNowSetWithApplePay": MessageLookupByLibrary.simpleMessage(
             "تم تفعيل بطاقتك على خدمة أبل باي"),
         "yourSignature": MessageLookupByLibrary.simpleMessage("توقيعك"),

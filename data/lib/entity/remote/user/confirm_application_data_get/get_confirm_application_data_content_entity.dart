@@ -1,12 +1,14 @@
 import 'package:data/entity/remote/user/confirm_application_data_get/account_purpose_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/country_residence_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/fatca_crs_entity.dart';
+import 'package:data/entity/remote/user/confirm_application_data_get/id_card_details_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/job_detail_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/profile_status_entity.dart';
 import 'package:domain/model/user/confirm_application_data_get/account_purpose_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/country_residence_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/fatca_crs_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/get_confirm_application_data_content.dart';
+import 'package:domain/model/user/confirm_application_data_get/id_card_details_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/job_detail_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
@@ -28,9 +30,16 @@ class GetConfirmApplicationDataContentEntity
   final AccountPurposeEntity? accountPurpose;
   @JsonKey(name: "fatcaCrs")
   final FatcaCrsEntity? fatcaCrs;
+  @JsonKey(name: "personDetails")
+  final IdCardDetailsEntity? idCardDetailsEntity;
 
   GetConfirmApplicationDataContentEntity(
-      {this.profileStatus, this.countryResidence, this.jobDetail, this.accountPurpose, this.fatcaCrs});
+      {this.profileStatus,
+      this.countryResidence,
+      this.jobDetail,
+      this.accountPurpose,
+      this.fatcaCrs,
+      this.idCardDetailsEntity});
 
   factory GetConfirmApplicationDataContentEntity.fromJson(Map<String, dynamic> json) =>
       _$GetConfirmApplicationDataContentEntityFromJson(json);
@@ -56,7 +65,8 @@ class GetConfirmApplicationDataContentEntity
             this.countryResidence != null ? this.countryResidence!.transform() : CountryResidenceInfo(),
         fatcaCrsInfo: this.fatcaCrs != null ? this.fatcaCrs!.transform() : FatcaCrsInfo(),
         jobDetailInfo: this.jobDetail != null ? this.jobDetail!.transform() : JobDetailInfo(),
-        profileStatusInfo:
-            this.profileStatus != null ? this.profileStatus!.transform() : ProfileStatusInfo());
+        profileStatusInfo: this.profileStatus != null ? this.profileStatus!.transform() : ProfileStatusInfo(),
+        idCardDetailsInfo:
+            this.idCardDetailsEntity != null ? this.idCardDetailsEntity!.transform() : IdCardDetailsInfo());
   }
 }

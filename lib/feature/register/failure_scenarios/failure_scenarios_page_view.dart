@@ -106,7 +106,7 @@ class OnboardingFailureScenariosPageView extends BasePageViewWidget<OnboardingFa
                   onPressed: () {
                     model.logout();
                   },
-                  text: S.current.okay,
+                  text: S.current.logout,
                 ),
               );
             },

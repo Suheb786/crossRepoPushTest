@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -399,7 +400,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "bankName": MessageLookupByLibrary.simpleMessage("BANK NAME"),
         "banks": MessageLookupByLibrary.simpleMessage("Banks"),
         "bareWithUsProcessing": MessageLookupByLibrary.simpleMessage(
-            "Please bare with us,\nwe are processing\nyour information"),
+            "Please bare with us,we are processing"),
         "belowTwoYears": MessageLookupByLibrary.simpleMessage("Below 2 years"),
         "beneficialOwnerIsAResidenceOf": MessageLookupByLibrary.simpleMessage(
             "Beneficial owner is a resident of"),
@@ -3511,6 +3512,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourFreeVirtualDebitCardHasBeenIssued":
             MessageLookupByLibrary.simpleMessage(
                 "Your free virtual debit card has been issued, and the physical one is on its way."),
+        "yourInformation":
+            MessageLookupByLibrary.simpleMessage("your information"),
         "yourNowSetWithApplePay": MessageLookupByLibrary.simpleMessage(
             "Your card is now set up with Apple Pay."),
         "yourSignature": MessageLookupByLibrary.simpleMessage("Your Signature"),

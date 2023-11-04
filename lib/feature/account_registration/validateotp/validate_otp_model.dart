@@ -1,7 +1,6 @@
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/account/send_mobile_otp_usecase.dart';
 import 'package:domain/usecase/account/verify_mobile_otp_usecase.dart';
-import 'package:domain/usecase/user/change_my_number_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:domain/usecase/user/register_prospect_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
