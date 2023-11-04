@@ -144,7 +144,7 @@ class ManageIDWiseStatusView extends BasePageViewWidget<ManageIDWiseStatusViewMo
                           dataBuilder: (context, snapshot) {
                             return IDWiseProcessingStatusWidget(
                               label: S.of(context).validatingYourSelfie,
-                              isAhwalPassed : model.isAllowPooling,
+                              isAhwalPassed: model.isAllowPooling,
                               isActivated: !(snapshot?.data?.keepPooling ?? true),
                             );
                           }),
