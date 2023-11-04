@@ -32,7 +32,8 @@ class NetworkProperties {
 // static const String BASE_BENEFICIARY_URL = "https://mobwebuat1.theblink.com:3443/contactcenter/api";
 // static const String BASE_EV0UCHER_URL = "https://mobwebuat1.theblink.com:3443/Voucher/api";
 // static const String BASE_OFFER_CAMPAIGN_URL = "https://mobwebuat1.theblink.com:3443/Offers/api";
-//static const String BASE_RJ_URL = "https://mobwebuat1.theblink.com:3443/RJAPI/api";
+// static const String BASE_RJ_URL = "https://mobwebuat1.theblink.com:3443/RJAPI/api";
+// static const String BASE_ONBOARDING_URL = "https://mobwebuat1.theblink.com:3443/Onboarding/api/Onboarding";
 
   ///VAPT / PREPROD CONFIGURATION (UAT 2 )
 // static const String BASE_CHANNEL_URL = "https://mobwebuat2.theblink.com:4443/api";
@@ -41,6 +42,7 @@ class NetworkProperties {
 // static const String BASE_EV0UCHER_URL = "https://mobwebuat2.theblink.com:4443/Voucher/api";
 // static const String BASE_OFFER_CAMPAIGN_URL = "https://mobwebuat2.theblink.com:4443/Offers/api";
 //static const String BASE_RJ_URL = "https://mobwebuat2.theblink.com:4443/RJAPI/api";
+//static const String BASE_ONBOARDING_URL = "https://mobwebuat2.theblink.com:4443/Onboarding/api/Onboarding";
 
   ///PROD CONFIGURATION
 // static const String BASE_ROUTER_URL = "https://rout.theblink.com:5443/api";
@@ -49,4 +51,5 @@ class NetworkProperties {
 // static const String BASE_EV0UCHER_URL = "https://mobweb.theblink.com:5443/Voucher/api";
 // static const String BASE_OFFER_CAMPAIGN_URL = "https://mobweb.theblink.com:5443/Offers/api";
 // static const String BASE_RJ_URL = "https://mobweb.theblink.com:5443/Offers/api";
+//static const String BASE_ONBOARDING_URL = "https://mobweb.theblink.com:5443/Onboarding/api/Onboarding";
 }
