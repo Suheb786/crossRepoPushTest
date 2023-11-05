@@ -1,3 +1,4 @@
+import 'package:data/di/local_module.dart';
 import 'package:data/helper/secure_storage_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,6 +7,7 @@ import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_page.dart';
 import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/app_secondary_button.dart';
@@ -96,6 +98,7 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
                 } else if (model.creditCardApplicationFailureArguments.creditFailureState ==
                     CreditFailureState.FATCA) {
                   SecureStorageHelper.instance.clearToken();
+                  ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).stopTimer();
                   AppConstantsUtils.resetCacheLists();
                   Navigator.pushNamedAndRemoveUntil(
                       context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));

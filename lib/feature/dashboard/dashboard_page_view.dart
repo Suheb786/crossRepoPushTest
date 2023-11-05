@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:data/di/local_module.dart';
 import 'package:data/helper/secure_storage_helper.dart';
 import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
@@ -9,6 +10,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page_view_model.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -195,6 +197,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                 onData: (response) {
                   if (response.status == Status.SUCCESS) {
                     SecureStorageHelper.instance.clearToken();
+                    ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).stopTimer();
                     AppConstantsUtils.resetCacheLists();
                     Navigator.pushNamedAndRemoveUntil(
                         context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));

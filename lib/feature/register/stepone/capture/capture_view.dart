@@ -1,10 +1,12 @@
 import 'package:camera/camera.dart';
+import 'package:data/di/local_module.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/stepone/capture/capture_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -39,6 +41,7 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                   model.cameraController!.resumePreview();
                   if (isImageUploaded.appError?.type == ErrorType.ID_VERIFICATION_FAILED) {
                     SecureStorageHelper.instance.clearToken();
+                    ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).stopTimer();
                     AppConstantsUtils.resetCacheLists();
                     Navigator.pushNamedAndRemoveUntil(
                         context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));

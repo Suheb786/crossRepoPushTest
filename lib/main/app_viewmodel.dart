@@ -353,7 +353,7 @@ class AppViewModel extends BaseViewModel {
       if (event) {
         SecureStorageHelper.instance.clearToken();
         AppConstantsUtils.resetCacheLists();
-
+        ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).stopTimer();
         if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
           AntelopHelper.walletDisconnect();
         }
