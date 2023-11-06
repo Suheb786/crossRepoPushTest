@@ -6,6 +6,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../di/app/app_modules.dart';
 import '../../../utils/color_utils.dart';
 import 'rj_booking_page_view.dart';
 import 'rj_booking_page_view_model.dart';
@@ -26,7 +27,10 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
   }
 
   @override
-  void onModelReady(RjBookingPageViewModel model) {}
+  void onModelReady(RjBookingPageViewModel model) {
+    ProviderScope.containerOf(context).read(appViewModel).getToken();
+    super.onModelReady(model);
+  }
 
   @override
   bool extendBodyBehindAppBar() {

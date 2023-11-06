@@ -9,6 +9,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
+import '../../../di/app/app_modules.dart';
 import '../../../main/navigation/route_paths.dart';
 import 'rj_booking_page_view_model.dart';
 
@@ -64,6 +65,7 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
                 debugPrint('-----onload path ---->${url?.path}');
                 if ((url?.path ?? '').toLowerCase().contains(AppConstantsUtils.RJRouteLink.toLowerCase())) {
                   String referenceNumber = url?.queryParameters['customerReference'] ?? '';
+                  ProviderScope.containerOf(context).read(appViewModel).stopRefreshToken();
                   Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
                       arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
                 }
