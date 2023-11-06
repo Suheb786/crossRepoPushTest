@@ -13,14 +13,18 @@ class AndroidLoginUseCase extends BaseUseCase<BaseError, AndroidLoginUseCasePara
 
   @override
   Future<Either<BaseError, AndroidLoginResponse>> execute({required AndroidLoginUseCaseParams params}) async {
-    return userRepository.androidLogin(cipher: params.cipher);
-
-    // return Future.value(
-    //   (await userRepository.androidLogin(cipher: params.cipher))
-    //       .fold((l) => Left(l), (user) async {
-    //     return userRepository.saveUser(user);
-    //   }),
-    // );
+    return Future.value(
+      (await userRepository.androidLogin(cipher: params.cipher)).fold((l) => Left(l),
+          (loginSuccessContent) async {
+        return (await userRepository.getCurrentUser()).fold((l) => Left(l), (user) async {
+          user.journeyId = loginSuccessContent.androidLoginContent.journeyId;
+          user.idWiseRefId = loginSuccessContent.androidLoginContent.journeyRefId;
+          return (await userRepository.saveUser(user)).fold((l) => Left(l), (r) {
+            return Right(loginSuccessContent);
+          });
+        });
+      }),
+    );
   }
 }
 

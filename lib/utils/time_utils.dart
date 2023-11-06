@@ -90,6 +90,15 @@ class TimeUtils {
     return formatter.format(dateTime);
   }
 
+  static String getFormattedDOBIdwise(String date) {
+    try {
+      final DateTime dateTime = DateFormat('M/dd/yyyy HH:mm:ss', 'en').parse(date).toLocal();
+      return DateFormat('dd/MM/y').format(dateTime);
+    } catch (e) {
+      return '-';
+    }
+  }
+
   static String getFormattedMMMYYYY(String date) {
     final DateTime dateTime = DateFormat('MM/yyyy', 'en_US').parse(date).toLocal();
     return DateFormat('MMM yyyy').format(dateTime);
@@ -157,8 +166,12 @@ class TimeUtils {
   }
 
   static String convertDateTimeToDate(String date) {
-    final DateTime dateTime = DateFormat('yyyy-MM-ddTHH:mm:ss', 'en').parse(date).toLocal();
-    return DateFormat('dd MMMM yyyy').format(dateTime);
+    try {
+      final DateTime dateTime = DateFormat('yyyy-MM-ddTHH:mm:ss', 'en').parse(date).toLocal();
+      return DateFormat('dd MMMM yyyy').format(dateTime);
+    } catch (e) {
+      return '-';
+    }
   }
 
   static String convertDateTimeToDateMonth(String date) {

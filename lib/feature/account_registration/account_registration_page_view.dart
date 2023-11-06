@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
 import 'package:neo_bank/feature/account_registration/addnumber/add_number_page.dart';
-import 'package:neo_bank/feature/account_registration/createPassword/create_password_page.dart';
 import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_page.dart';
 import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -15,14 +14,11 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
+import 'add_email/add_email_page.dart';
+import 'add_email_otp/email_otp_page.dart';
+
 class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistrationPageViewModel> {
-  final pages = [
-    // CountrySelectionPage(),
-    AddNumberPage(),
-    CreatePasswordPage(),
-    ValidateOtpPage(),
-    BaseCardPage()
-  ];
+  final pages = [AddEmailPage(), EmailOtpPage(), AddNumberPage(), ValidateOtpPage(), BaseCardPage()];
 
   AccountRegistrationPageView(ProviderBase model) : super(model);
 
@@ -45,8 +41,8 @@ class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistration
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                      activeSize: Size(MediaQuery.of(context).size.width / 3.7, 5),
-                      size: Size(MediaQuery.of(context).size.width / 3.7, 5),
+                      activeSize: Size(MediaQuery.of(context).size.width / 4.8, 5),
+                      size: Size(MediaQuery.of(context).size.width / 4.8, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
                       activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       activeColor: Theme.of(context).colorScheme.secondary,
@@ -74,7 +70,14 @@ class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistration
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.only(
-                          top: 8.0.h, bottom: currentStep == 2 ? 0 : 32.h, start: 24.w, end: 24.w),
+                          top: 8.0.h,
+                          bottom: currentStep == 1
+                              ? 0
+                              : currentStep == 3
+                                  ? 0
+                                  : 32.h,
+                          start: 24.w,
+                          end: 24.w),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),
@@ -83,10 +86,11 @@ class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistration
                         direction: Direction.vertical,
                         offset: 0.5,
                         child: Text(
-                          StepTextHelper.accountRegistrationTextHelper(
+                          StepTextHelper.accountCreatationTextHelper(
                             currentStep ?? 0,
-                            S.of(context).enterYourEmailAndMobile,
-                            S.of(context).createPasswordHeader,
+                            S.of(context).enterEmailAndPassword,
+                            S.of(context).enterOtpHeader,
+                            S.of(context).enterYourMobileNumber,
                             S.of(context).enterOtpHeader,
                           ),
                           textAlign: TextAlign.center,
@@ -103,7 +107,7 @@ class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistration
                         initialData: MobileNumberParams(),
                         dataBuilder: (context, mobileNumber) {
                           return Visibility(
-                            visible: currentStep == 2,
+                            visible: currentStep == 3,
                             child: Padding(
                               padding: EdgeInsets.only(bottom: 32.h),
                               child: ShowUpAnimation(
@@ -117,6 +121,36 @@ class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistration
                                   child: Text(
                                     "${mobileNumber!.mobileCode.isNotEmpty ? (mobileNumber.mobileCode.contains('00') ? mobileNumber.mobileCode.replaceAll('00', '+') : '+${mobileNumber.mobileCode}') : '-'} "
                                     "${mobileNumber.mobileNumber}",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: Theme.of(context).colorScheme.secondary,
+                                        fontSize: 20.t,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
+                    AppStreamBuilder<String>(
+                        stream: model.emailStream,
+                        initialData: '',
+                        dataBuilder: (context, email) {
+                          return Visibility(
+                            visible: currentStep == 1,
+                            child: Padding(
+                              padding: EdgeInsets.only(bottom: 32.h),
+                              child: ShowUpAnimation(
+                                delayStart: Duration(milliseconds: 500),
+                                animationDuration: Duration(milliseconds: 750),
+                                curve: Curves.bounceIn,
+                                direction: Direction.vertical,
+                                offset: 0.5,
+                                child: Directionality(
+                                  textDirection: TextDirection.ltr,
+                                  child: Text(
+                                    email!,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,

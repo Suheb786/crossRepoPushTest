@@ -12,6 +12,8 @@ import 'package:domain/model/account/doc_status_response.dart';
 import 'package:domain/model/account/request_call_status.dart';
 import 'package:domain/model/account/video_kyc_status.dart';
 import 'package:domain/repository/account/account_repository.dart';
+import 'package:domain/usecase/account/send_mobile_otp_usecase.dart';
+import 'package:domain/usecase/account/verify_mobile_otp_usecase.dart';
 
 class AccountRepositoryImpl extends AccountRepository {
   final AccountRemoteDS _accountRemoteDS;
@@ -126,5 +128,22 @@ class AccountRepositoryImpl extends AccountRepository {
       _accountRemoteDS.getCallStatus(session),
     );
     return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> sendMobileOTP({required SendMobileOTPUsecaseParams params}) async {
+    final result = await safeApiCall(
+      _accountRemoteDS.sendMobileOTP(params: params),
+    );
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> verifyMobileOTP(
+      {required OnboardingVerifyMobileOtpUsecaseParams params}) async {
+    final result = await safeApiCall(
+      _accountRemoteDS.verifyMobileOTP(params: params),
+    );
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
 }

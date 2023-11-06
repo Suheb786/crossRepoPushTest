@@ -7,6 +7,7 @@ class RoutePaths {
   static const String AccountReady = '/accountReady';
   static const String NotifySuccess = '/notifySuccess';
   static const String AccountRegistration = '/accountRegistration';
+  static const String ManageIDWiseStatus = '/manageIDWiseStatus';
   static const String NonJordanianRegister = '/nonJordanianRegister';
   static const String Dashboard = '/dashboard';
   static const String AddMoneyOptionSelector = '/addMoneyOptionSelector';
@@ -88,7 +89,6 @@ class RoutePaths {
   static const String CreateCliqId = "/createCliqId";
   static const String CliqIdCreationSuccess = "/cliqIdCreationSuccess";
   static const String EditAlias = "/editAlias";
-  static const String EditMobileNoCliq = "/editMobileNoCliq";
   static const String ChangeCountryRestriction = "/changeCountryRestriction";
   static const String ManageCreditSettlement = "/manageCreditSettlement";
   static const String ChangeCardPayment = "/changeCardPayment";
@@ -158,6 +158,7 @@ class RoutePaths {
   static const String AddContactIBANotpPage = "/addContactIbanOTPPage";
   static const String RjFlightBookingPage = "/rjFlightBookingPage";
   static const String BeneficiaryTransactionHistoryList = "beneficiaryTransactionHistoryListPage";
+  static const String OnboardingFailurScenariosPage = "onboardingFailurScenariosPage";
   static const String RJBookingSuccessPage = "rjBookingSuccessPage";
   static const String RJBookingConfirmedInAppWebViewPage = "rjBookingConfirmedInAppWebViewPage";
   static const String SelectTransferPage = "/SelectTransferPage";
@@ -167,4 +168,6 @@ class RoutePaths {
   static const String OfferForYouPage = "offerForYouPage";
   static const String OfferDetailPage = "OfferDetailPage";
   static const String RJBookingFailurePage = "/RJBookingFailurePage";
+  static const String IdWiseIntialPage = "/IdWiseIntialPage";
+
 }

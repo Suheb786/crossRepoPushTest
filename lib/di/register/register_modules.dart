@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/account/account_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/account_registration/account_regisration_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/bank_smart/bank_smart_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/country/country_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/fatca_crs/fatca_crs_usecase_provider.dart';
@@ -7,6 +8,7 @@ import 'package:neo_bank/di/usecase/id_card/id_card_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/register/register_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
+import 'package:neo_bank/feature/register/idwise_intial/idwise_intial_page_view_model.dart';
 import 'package:neo_bank/feature/register/register_page_model.dart';
 import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_view_model.dart';
@@ -37,7 +39,6 @@ import 'package:neo_bank/feature/register/step_two/student_job_income/student_jo
 import 'package:neo_bank/feature/register/stepone/capture/capture_model.dart';
 import 'package:neo_bank/feature/register/stepone/confirm_detail/confirm_detail_model.dart';
 import 'package:neo_bank/feature/register/stepone/enter_address/enter_address_model.dart';
-import 'package:neo_bank/feature/register/stepone/id_verification_info/id_verification_info_model.dart';
 import 'package:neo_bank/feature/register/stepone/profile_details/profile_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
 import 'package:neo_bank/feature/register/upload_document_later/document_upload_later_page/document_upload_later_page_view_model.dart';
@@ -64,6 +65,8 @@ import 'package:neo_bank/ui/molecules/profile/profile_item_view_model.dart';
 import 'package:neo_bank/ui/molecules/register/taxation_switch_widget/taxation_switch_widget.dart';
 import 'package:neo_bank/ui/molecules/register/taxation_switch_widget/taxation_switch_widget_model.dart';
 
+import '../../ui/molecules/dialog/register/step_one/change_my_email_dialog/change_my_email_dialog_view_model.dart';
+
 final registerViewModelProvider = ChangeNotifierProvider.autoDispose<RegisterViewModel>(
   (ref) => RegisterViewModel(),
 );
@@ -71,16 +74,6 @@ final registerViewModelProvider = ChangeNotifierProvider.autoDispose<RegisterVie
 final registerStepOneViewModelProvider = ChangeNotifierProvider.autoDispose<RegisterStepOneViewModel>(
   (ref) => RegisterStepOneViewModel(),
 );
-
-///[IdVerificationInfoViewModel] provider
-final idVerificationInfoViewModelProvider =
-    ChangeNotifierProvider.autoDispose<IdVerificationInfoViewModel>((ref) => IdVerificationInfoViewModel(
-          ref.read(idVerificationInfoUseCaseProvider),
-          ref.read(scanUserDocumentUseCaseProvider),
-          ref.read(getAhwalDetailsUseCaseProvider),
-          ref.read(confirmDetailUseCaseProvider),
-          ref.read(fetchAllowedIssuersUseCaseProvider),
-        ));
 
 ///[CaptureViewModel] provider
 final captureViewModelProvider = ChangeNotifierProvider.autoDispose<CaptureViewModel>(
@@ -396,7 +389,15 @@ final videoCallScheduledViewModelProvider = ChangeNotifierProvider.autoDispose
 ///changeMy number dialog view model provider
 final changeMyNumberDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<ChangeMyNumberDialogViewModel>(
-        (ref) => ChangeMyNumberDialogViewModel());
+  (ref) => ChangeMyNumberDialogViewModel(
+      ref.read(checkUserNameMobileUseCaseProvider),
+      ref.read(registerNumberUseCaseProvider),
+      ref.read(getAllowedCodeCountriesListUseCaseProvider),
+      ref.read(sendMobileOTPUsecaseProvider)),
+);
+
+final changeMyEmailDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ChangeMyEmailDialogViewModel>((ref) => ChangeMyEmailDialogViewModel());
 
 ///upload documents later page
 final uploadDocumentsLaterPageViewModelProvider =
@@ -449,4 +450,10 @@ final scheduleVideoCallLaterPageViewModelProvider =
 ///video call view model
 final videoCallViewModelProvider = ChangeNotifierProvider.autoDispose<VideoCallPageViewModel>(
   (ref) => VideoCallPageViewModel(),
+);
+
+///intial IdWise page view model
+final idWiseIntialPageViewModel = ChangeNotifierProvider.autoDispose<IdWiseIntialPageViewModel>(
+  (ref) =>
+      IdWiseIntialPageViewModel(ref.read(updateJourneyUseCaseProvider), ref.read(currentUserUseCaseProvider)),
 );

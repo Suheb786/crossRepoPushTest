@@ -34,6 +34,7 @@ class LoginViewModel extends BasePageViewModel {
   String mobileNumber = '';
   String mobileCode = '';
   String applicationId = '';
+  late User user;
 
   PublishSubject<LoginUseCaseParams> _loginRequest = PublishSubject();
 
@@ -137,8 +138,8 @@ class LoginViewModel extends BasePageViewModel {
     });
 
     if (kDebugMode) {
-      emailController.text = "r@g.com";
-      passwordController.text = "Test@123";
+      emailController.text = "dhaiyur51@gmail.com";
+      passwordController.text = "Asdf@123";
     }
   }
 

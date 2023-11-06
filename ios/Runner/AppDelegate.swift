@@ -4,12 +4,14 @@ import UserNotifications
 import MobileMessaging
 import FirebaseCore
 import AntelopSDK
+import IDWise
 
 @available(iOS 13.4, *)
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate, WalletProvisioningProtocol, WalletManagerProtocol, FlutterStreamHandler {
     
     var cardsArr = [String: DigitalCard]()
+    var journeyID: String = ""
     
     func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         print("onListen")
@@ -425,6 +427,9 @@ import AntelopSDK
     var digicalCard: DigitalCardServiceStatus!
     var eventSink: FlutterEventSink?
     
+    let methodChannelName = "com.codebaseneo.neo_bank/idwise"
+    var idWiseChannel: FlutterMethodChannel? = nil
+    
     override func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -493,6 +498,71 @@ import AntelopSDK
             }
         })
         
+        let idWiseController : FlutterViewController = window?.rootViewController as! FlutterViewController
+        let idWisechannel = FlutterMethodChannel(name: methodChannelName,
+                                                  binaryMessenger: controller.binaryMessenger)
+        
+         
+        self.idWiseChannel = idWisechannel
+        
+        idWiseChannel?.setMethodCallHandler({ [self]
+            (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
+            
+            switch call.method {
+            case "initialize":
+                // receiving arguments from Dart side and consuming here
+                
+                var clientKey: String = "" // should not be empty
+                var sdkTheme: IDWiseSDKTheme = IDWiseSDKTheme.systemDefault
+                if let parameteres = call.arguments as? [String:Any] {
+                    if let clientkey = parameteres["clientKey"] as? String {
+                        clientKey = clientkey
+                    }
+                    if let theme = parameteres["theme"] as? String {
+                        if theme == "LIGHT" {
+                            sdkTheme = IDWiseSDKTheme.light
+                        } else if theme == "DARK" {
+                            sdkTheme = IDWiseSDKTheme.dark
+                        } else  {
+                            sdkTheme = IDWiseSDKTheme.systemDefault
+                        }
+                    }
+                  
+                }
+                IDWise.initialize(clientKey: clientKey,theme: sdkTheme) { error in
+                    result("got some error")
+                    if let err = error {
+                        idWiseChannel?.invokeMethod(
+                          "onError",
+                          arguments: ["errorCode": err.code,"message": err.message] as [String : Any])
+                    }
+                }
+
+            case "startJourney":
+                // receiving arguments from Dart side and consuming here
+
+                var referenceNo: String = "" // optional parameter
+                var locale: String = "en"
+                var journeyDefinitionId = ""
+                if let parameteres = call.arguments as? [String:Any] {
+                    if let refNo = parameteres["referenceNo"] as? String {
+                        referenceNo = refNo
+                    }
+                    if let loc = parameteres["locale"] as? String {
+                        locale = loc
+                    }
+                    if let journeyDefId = parameteres["journeyDefinitionId"] as? String {
+                        journeyDefinitionId = journeyDefId
+                    }
+                }
+                IDWise.startJourney(journeyDefinitionId: journeyDefinitionId,referenceNumber: referenceNo,locale: locale, journeyDelegate: self)
+                result("successfully started journey")
+            default:
+                result(FlutterMethodNotImplemented)
+            }
+            
+        })
+    
         AntelopAppDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         FirebaseApp.configure()
 //       MobileMessagingPluginApplicationDelegate.install()
@@ -500,21 +570,6 @@ import AntelopSDK
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
-    //    func checkPassRequest(){
-    //        guard let configuration = PKAddPaymentPassRequestConfiguration(encryptionScheme: .ECC_V2) else {
-    //                    // error
-    //                    return
-    //                }
-    //
-    //            // you need at least one of the 2, cardholderName or lastDigits
-    //                configuration.cardholderName = "Test name"
-    //                configuration.primaryAccountSuffix = lastDigits
-    //
-    //        guard let viewController = PKAddPaymentPassViewController(requestConfiguration: configuration, delegate: self) else {
-    //    // if PKAddPaymentPassViewController is nil there, most probably an entitlement issue, check the logs
-    //            return
-    //        }
-    //    }
     
     func registerForFirebaseNotification(application : UIApplication){
         //    Messaging.messaging().delegate     = self;
@@ -574,4 +629,42 @@ extension Collection where Iterator.Element == [String: Any] {
         }
         return "[]"
     }
+}
+
+
+extension AppDelegate:IDWiseSDKJourneyDelegate {
+    func onJourneyResumed(journeyID: String) {
+        idWiseChannel?.invokeMethod(
+                    "onJourneyResumed",
+                    arguments: journeyID)
+    }
+    
+    
+    func onError(error : IDWiseSDKError) {
+        idWiseChannel?.invokeMethod(
+                    "onError",
+                    arguments: ["errorCode": error.code,"message": error.message] as [String : Any])
+    }
+    
+    func JourneyStarted(journeyID: String) {
+        self.journeyID = ""
+        self.journeyID = journeyID
+        idWiseChannel?.invokeMethod(
+                    "onJourneyStarted",
+                    arguments: journeyID)
+    }
+    
+    func JourneyFinished() {
+
+        idWiseChannel?.invokeMethod(
+                    "onJourneyFinished",
+                    arguments: self.journeyID)
+    }
+    
+    func JourneyCancelled() {
+        idWiseChannel?.invokeMethod(
+                    "onJourneyCancelled",
+                    arguments: self.journeyID)
+    }
+   
 }

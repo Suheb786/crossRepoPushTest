@@ -12,6 +12,10 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import '../../../utils/app_constants.dart';
 
 class ChangeDeviceSuccessPage extends BasePage<ChangeDeviceSuccessPageViewModel> {
+  final ChangeDeviceParams arguments;
+
+  ChangeDeviceSuccessPage(this.arguments);
+
   @override
   ChangeDeviceSuccessPageState createState() => ChangeDeviceSuccessPageState();
 }
@@ -29,6 +33,12 @@ class ChangeDeviceSuccessPageState
   }
 
   @override
+  void onModelReady(ChangeDeviceSuccessPageViewModel model) {
+    model.arguments = widget.arguments;
+    super.onModelReady(model);
+  }
+
+  @override
   Future<bool> onBackPressed(ChangeDeviceSuccessPageViewModel model, {param}) {
     SecureStorageHelper.instance.clearToken();
     ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).stopTimer();
@@ -36,4 +46,9 @@ class ChangeDeviceSuccessPageState
     Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding, (route) => false);
     return super.onBackPressed(model);
   }
+}
+
+class ChangeDeviceParams {
+  String journeyId;
+  ChangeDeviceParams({required this.journeyId});
 }

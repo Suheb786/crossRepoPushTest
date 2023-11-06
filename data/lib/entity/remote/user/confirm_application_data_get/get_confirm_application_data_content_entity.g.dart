@@ -30,6 +30,10 @@ GetConfirmApplicationDataContentEntity
               ? null
               : FatcaCrsEntity.fromJson(
                   json['fatcaCrs'] as Map<String, dynamic>),
+          idCardDetailsEntity: json['personDetails'] == null
+              ? null
+              : IdCardDetailsEntity.fromJson(
+                  json['personDetails'] as Map<String, dynamic>),
         );
 
 Map<String, dynamic> _$GetConfirmApplicationDataContentEntityToJson(
@@ -40,4 +44,5 @@ Map<String, dynamic> _$GetConfirmApplicationDataContentEntityToJson(
       'jobDetail': instance.jobDetail,
       'accountPurpose': instance.accountPurpose,
       'fatcaCrs': instance.fatcaCrs,
+      'personDetails': instance.idCardDetailsEntity,
     };

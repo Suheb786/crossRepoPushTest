@@ -58,7 +58,7 @@ extension EmploymentStatusEnumExt on String {
       case "ربة منزل":
         return EmploymentStatusEnum.HOUSEWIFE;
       default:
-        return EmploymentStatusEnum.NONE;
+        return EmploymentStatusEnum.OTHER;
     }
   }
 }

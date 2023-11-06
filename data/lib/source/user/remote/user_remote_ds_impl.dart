@@ -5,6 +5,11 @@ import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/local/base/image_utils.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
+import 'package:data/entity/remote/base/base_response.dart';
+import 'package:data/entity/remote/user/account_registration/check_journey_status/check_journey_status_request_entity.dart';
+import 'package:data/entity/remote/user/account_registration/process_journey_via_mobile/process_journey_via_mobile_request_Entity.dart';
+import 'package:data/entity/remote/user/account_registration/send_email_otp_request.dart';
+import 'package:data/entity/remote/user/account_registration/update_journey_request_entity.dart';
 import 'package:data/entity/remote/user/additional_income.dart';
 import 'package:data/entity/remote/user/biometric_login/get_cipher_response_entity.dart';
 import 'package:data/entity/remote/user/change_my_number/change_my_number_request_entity.dart';
@@ -63,7 +68,15 @@ import 'package:domain/model/user/confirm_application_data_get/fatca_crs_info.da
 import 'package:domain/model/user/confirm_application_data_get/job_detail_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
 import 'package:domain/model/user/user.dart';
+import 'package:domain/usecase/user/check_journey_status_usecase.dart';
+import 'package:domain/usecase/user/process_journey_via_mobile_usecase.dart';
+import 'package:domain/usecase/user/update_journey_usecase.dart';
 import 'package:retrofit/retrofit.dart';
+
+import '../../../entity/remote/user/account_registration/check_journey_status/check_journey_status_response_entity.dart';
+import '../../../entity/remote/user/account_registration/process_journey_via_mobile/process_journey_via_mobile_response_entity.dart';
+import '../../../entity/remote/user/account_registration/update_journey/update_journey_response_entity.dart';
+import '../../../entity/remote/user/account_registration/verify_email_otp_request.dart';
 
 class UserRemoteDSImpl extends UserRemoteDS {
   final ApiService _apiService;
@@ -401,11 +414,9 @@ class UserRemoteDSImpl extends UserRemoteDS {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     User? user = await _userLocalDS.getCurrentUser();
     String userId = '';
-    if (user != null) {
-      userId = user.id ?? '';
-      // print('user private key--->${user.privatePEM}');
-      //userId = await decryptData(content: cipher, publicKey: user.publicPEM, privateKey: user.privatePEM);
-    }
+    userId = user.id ?? '';
+    // print('user private key--->${user.privatePEM}');
+    //userId = await decryptData(content: cipher, publicKey: user.publicPEM, privateKey: user.privatePEM);
 
     return _apiService.androidLogin(AndroidLoginRequestEntity(
       uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
@@ -442,5 +453,65 @@ class UserRemoteDSImpl extends UserRemoteDS {
       version: baseData.appVersion,
       baseData: baseData.toJson(),
     ));
+  }
+
+  @override
+  Future<HttpResponse<BaseResponse>> sendEmailOTP({required String email, required String password}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.sendEmailOTP(SendEmailOTPRequest(
+      getToken: true,
+      email: email,
+      password: password,
+      baseData: baseData.toJson(),
+    ));
+  }
+
+  @override
+  Future<HttpResponse<BaseResponse>> verifyEmailOTP({required String email, required String otpCode}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.verifyEmailOTP(VerifyEmailOTPRequest(
+      email: email,
+      otpCode: otpCode,
+      baseData: baseData.toJson(),
+    ));
+  }
+
+  @override
+  Future<HttpResponse<UpdateJourneyResponseEntity>> updateJourney(
+      {required UpdateJourneyUseCaseParams params}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.updateJourney(UpdateJourneyRequestEntity(
+      userID: params.userID,
+      refID: params.refID,
+      journeyID: params.journeyID,
+      status: params.status,
+      baseClass: baseData.toJson(),
+      getToken: true,
+    ));
+  }
+
+  @override
+  Future<HttpResponse<CheckJourneyStatusResponseEntity>> updateIdWiseStatus(
+      {required CheckJourneyStatusUseCaseUseCaseParams params}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.checkJourneyStatus(CheckJourneyStatusRequestEntity(
+      referenceId: params.referenceId,
+      journeyId: params.journeyId,
+      baseData: baseData.toJson(),
+      getToken: true,
+    ));
+  }
+
+  @override
+  Future<HttpResponse<ProcessJourneViaMobileResponseEntity>> processJourneyViaMobile(
+      {required ProcessJourneyViaMobileUseCaseParams params}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.processJourneyViaMobile(
+      ProcessJourneyViaMobileRequestEntity(
+          JourneyId: params.journeyId,
+          ReferenceID: params.referenceID,
+          baseData: baseData.toJson(),
+          getToken: true),
+    );
   }
 }

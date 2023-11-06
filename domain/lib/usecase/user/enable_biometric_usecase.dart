@@ -17,9 +17,6 @@ class EnableBiometricUseCase extends BaseUseCase<BaseError, EnableBiometricUseCa
         return (await _repository.getCurrentUser()).fold((l) => Left(l), (user) async {
           user.isBiometricEnabled = true;
           return (await _repository.saveUser(user)).fold((l) => Left(l), (r) {
-            print('save user--->${r.isBiometricEnabled}');
-            print('save user--->${r.id}');
-            print('save user--->${r.privatePEM}');
             return Right(isSuccess);
           });
         });

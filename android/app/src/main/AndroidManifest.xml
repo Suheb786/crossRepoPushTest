@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.codebaseneo.neo_bank">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -52,7 +53,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Blink"
         android:largeHeap="true"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="false"
+        tools:replace="android:usesCleartextTraffic">
 
         <activity
             android:name=".MainActivity"

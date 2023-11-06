@@ -13,7 +13,6 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/date_picker.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -25,6 +24,8 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
+
+import '../../../../ui/molecules/button/app_primary_button.dart';
 
 class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
   ConfirmDetailView(ProviderBase model) : super(model);
@@ -476,13 +477,36 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         initialData: false,
                                         dataBuilder: (context, isValid) {
                                           return Padding(
-                                            padding: EdgeInsets.only(top: 26.0.h),
-                                            child: Visibility(
-                                              visible: isValid!,
-                                              child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
+                                            padding: EdgeInsets.only(top: 26.0.h, bottom: 16.h),
+                                            child: AppPrimaryButton(
+                                              isDisabled: !isValid!,
+                                              text: S.of(context).next,
+                                              onPressed: () {
+                                                if (ProviderScope.containerOf(context)
+                                                        .read(registerStepOneViewModelProvider)
+                                                        .appSwiperController
+                                                        .page ==
+                                                    1.0) {
+                                                  FocusScope.of(context).unfocus();
+                                                  model.confirmDetail();
+                                                }
+                                              },
                                             ),
                                           );
-                                        })
+                                        }),
+                                    Center(
+                                      child: InkWell(
+                                        onTap: () {},
+                                        child: Text(
+                                          S.current.back,
+                                          style: TextStyle(
+                                            color: AppColor.brightBlue,
+                                            fontSize: 14.t,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),

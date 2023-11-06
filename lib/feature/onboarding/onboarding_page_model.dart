@@ -3,7 +3,6 @@ import 'package:data/helper/secure_storage_helper.dart';
 import 'package:data/network/local_session_service.dart';
 import 'package:domain/usecase/user/check_version_update_usecase.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
