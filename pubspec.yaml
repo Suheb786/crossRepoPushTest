@@ -87,9 +87,9 @@ dependencies:
   cached_network_image: ^3.2.3
   html: ^0.15.4
   encrypt: ^5.0.3
+  flutter_inappwebview: ^5.8.0
 
 dependency_overrides:
-  flutter_inappwebview: ^5.7.2+3
   win32: ^5.0.7
 
 dev_dependencies:

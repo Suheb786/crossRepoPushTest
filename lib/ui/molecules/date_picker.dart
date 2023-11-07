@@ -24,7 +24,9 @@ class DatePicker {
             .then((value) {
             value != null ? onSelected?.call(value) : () {};
           })
-        : DatePickerBottomSheet.show(context, firstDate: firstDate, onDateSelected: (date) {
+        : DatePickerBottomSheet.show(context, firstDate: firstDate ?? DateTime(1900),
+            /*lastDate: lastDate ?? DateTime(2100)*/
+            onDateSelected: (date) {
             onSelected?.call(date);
             Navigator.pop(context);
           }, onCancel: () {

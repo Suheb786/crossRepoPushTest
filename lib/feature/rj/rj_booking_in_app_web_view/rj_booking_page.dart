@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/di/rj/rj_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -24,9 +25,6 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
   ProviderBase provideBase() {
     return rjBookingPageViewModelProvider.call(widget.rjBookingPageArguments);
   }
-
-  @override
-  void onModelReady(RjBookingPageViewModel model) {}
 
   @override
   bool extendBodyBehindAppBar() {
@@ -64,8 +62,8 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
                 padding: EdgeInsetsDirectional.only(end: 12.w),
                 child: InkWell(
                     child: Container(
-                      height: 25.h,
-                      width: 25.h,
+                      height: 25.w,
+                      width: 25.w,
                       decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.onPrimaryContainer,
                           borderRadius: BorderRadius.circular(100),
@@ -86,6 +84,7 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
                       ),
                     ),
                     onTap: () {
+                      ProviderScope.containerOf(context).read(appViewModel).stopRefreshToken();
                       Navigator.pop(context);
                     }),
               ),

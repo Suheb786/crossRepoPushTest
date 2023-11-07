@@ -31,10 +31,17 @@ class KeyHelper {
   static String DevDynamicLinkPrefix = 'https://blinkcbt.page.link';
   static String UATDynamicLinkPrefix = '';
 
+  ///Timeout
+  static String API_RETRY_TIMEOUT = '3';
+
   static setKeyValues(String content) {
     var mapContent = Map<String, dynamic>();
+
     mapContent = jsonDecode(content);
-    debugPrint('mapContent--->$mapContent');
+    // mapContent['dynamicObject'].keys.forEach((element) {
+    //   print('Keys---->$element');
+    // });
+    // debugPrint('mapContent--->$mapContent');
     CARD_DECRYPTION_KEY = mapContent['dynamicObject']['CardKey'];
     PIN_BLOCK_KEY = mapContent['dynamicObject']['PinblockKey'];
     ANDROID_BLINK_ID = mapContent['dynamicObject']['AndroidKey'];
@@ -44,6 +51,7 @@ class KeyHelper {
     INFOBIP_APPLICATION_ID = mapContent['dynamicObject']?['InfobipApplicationId'] ?? '';
     INFOBIP_BASE_URL = mapContent['dynamicObject']?['InfobipBaseUrl'] ?? '';
     CREDIT_CARD_PIN_BLOCK_KEY = mapContent['dynamicObject']?['creditCardPinBlockKey'] ?? '';
+    API_RETRY_TIMEOUT = mapContent['dynamicObject']?['ApiRetry'] ?? '3';
     InfobipUtilsConstants.FIREBASE_API_KEY = mapContent['dynamicObject']['FIREBASE_API_KEY'];
     InfobipUtilsConstants.FIREBASE_APPLICATION_ID = mapContent['dynamicObject']['FIREBASE_APPLICATION_ID'];
     InfobipUtilsConstants.FIREBASE_PROJECT_ID = mapContent['dynamicObject']['FIREBASE_PROJECT_ID'];

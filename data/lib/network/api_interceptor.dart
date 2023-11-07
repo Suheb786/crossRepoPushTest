@@ -23,9 +23,7 @@ class ApiInterceptor extends InterceptorsWrapper {
 
   @override
   Future onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
-    if (authToken.isEmpty) {
-      authToken = (await SecureStorageHelper.instance.getToken()) ?? '';
-    }
+    authToken = (await SecureStorageHelper.instance.getToken()) ?? '';
     options.headers.putIfAbsent("Authorization", () => "Bearer $authToken");
 
     if (options.uri.path.toLowerCase().contains("login")) {

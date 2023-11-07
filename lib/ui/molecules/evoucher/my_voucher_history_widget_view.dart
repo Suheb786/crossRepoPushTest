@@ -91,7 +91,7 @@ class MyVoucherHistoryWidget extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "- " + data.lineItems.first.value.toString(),
+                        "- " + (data.lineItems.first.value??0).toStringAsFixed(3),
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             color: Theme.of(context).colorScheme.scrim,

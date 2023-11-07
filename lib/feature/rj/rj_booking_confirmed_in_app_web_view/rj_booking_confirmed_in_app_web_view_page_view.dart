@@ -35,7 +35,7 @@ class RJBookingConfirmedInAppWebViewPageView
                   color: Theme.of(context).colorScheme.secondary,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 30.h),
+                  padding: EdgeInsets.only(top: 0.h),
                   child: InAppWebView(
                     initialUrlRequest: URLRequest(url: Uri.parse(model.arguments.url)),
                     onWebViewCreated: (controller) {},
@@ -46,8 +46,9 @@ class RJBookingConfirmedInAppWebViewPageView
                     initialOptions: InAppWebViewGroupOptions(
                       android: AndroidInAppWebViewOptions(
                         useHybridComposition: true,
-                        clearSessionCache: true,
-                        cacheMode: AndroidCacheMode.LOAD_NO_CACHE,
+                        safeBrowsingEnabled: true,
+                        clearSessionCache: false,
+                        cacheMode: AndroidCacheMode.LOAD_DEFAULT,
                         allowFileAccess: false,
                         allowContentAccess: false,
                         geolocationEnabled: false,
@@ -56,15 +57,25 @@ class RJBookingConfirmedInAppWebViewPageView
                       ios: IOSInAppWebViewOptions(
                           allowsInlineMediaPlayback: true, isFraudulentWebsiteWarningEnabled: true),
                       crossPlatform: InAppWebViewOptions(
-                        useShouldOverrideUrlLoading: true,
-                        javaScriptEnabled: true,
-                        useOnLoadResource: true,
-                        clearCache: true,
-                      ),
+                          useShouldOverrideUrlLoading: true,
+                          javaScriptEnabled: true,
+                          useOnLoadResource: true,
+                          clearCache: false,
+                          allowUniversalAccessFromFileURLs: false,
+                          cacheEnabled: true,
+                          allowFileAccessFromFileURLs: false,
+                          useShouldInterceptAjaxRequest: false),
                     ),
                     androidOnPermissionRequest: (controller, origin, resource) async {
                       return PermissionRequestResponse(
                           resources: resource, action: PermissionRequestResponseAction.GRANT);
+                    },
+                    shouldOverrideUrlLoading: (controller, navigation) async {
+                      if (navigation.request.url?.scheme == "https") {
+                        return NavigationActionPolicy.ALLOW;
+                      } else {
+                        return NavigationActionPolicy.CANCEL;
+                      }
                     },
                     onLoadStart: (controller, url) async {},
                     onLoadStop: (controller, url) {},
