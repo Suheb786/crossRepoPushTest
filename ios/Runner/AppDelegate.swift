@@ -4,7 +4,7 @@ import UserNotifications
 import MobileMessaging
 import FirebaseCore
 import AntelopSDK
-import IDWise
+import IDWiseSDK
 
 @available(iOS 13.4, *)
 @UIApplicationMain

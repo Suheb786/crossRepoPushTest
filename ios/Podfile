@@ -36,7 +36,7 @@ target 'Runner' do
   pod 'InfobipRTC','2.2.1'
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 
-  pod 'IDWise', '4.1.6'
+  pod 'IDWise', '4.3.4'
 end
 
 post_install do |installer|
