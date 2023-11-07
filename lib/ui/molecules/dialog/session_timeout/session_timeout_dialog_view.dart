@@ -94,7 +94,7 @@ class SessionTimeoutDialogView extends StatelessWidget {
                                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                                       child: Center(
                                         child: Text(
-                                          "${S.of(context).timeOutText1} 00:00 seconds. ${S.of(context).pleaseContinueToStayLoggedIn}",
+                                          "${S.of(context).timeOutText1} 00:00 seconds, ${S.of(context).pleaseContinueToStayLoggedIn}",
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                             color: Theme.of(context).indicatorColor,

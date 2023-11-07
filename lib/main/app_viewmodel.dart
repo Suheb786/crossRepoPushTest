@@ -3,11 +3,11 @@ import 'dart:io';
 import 'dart:isolate';
 
 import 'package:data/di/local_module.dart';
-import 'package:data/helper/antelop_helper.dart';
-import 'package:data/helper/secure_storage_helper.dart';
 import 'package:data/di/network_module.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
+import 'package:data/helper/antelop_helper.dart';
 import 'package:data/helper/key_helper.dart' as key;
+import 'package:data/helper/secure_storage_helper.dart';
 import 'package:domain/constants/app_constants_domain.dart';
 import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/usecase/app_flyer/init_app_flyer_sdk.dart';
@@ -15,7 +15,6 @@ import 'package:domain/usecase/app_flyer/log_app_flyers_events.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:domain/usecase/user/local_session_usecase.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_view_model.dart';
@@ -222,6 +221,7 @@ class AppViewModel extends BaseViewModel {
   late ReceivePort _receivePort;
   Isolate? _isolate;
 
+  final GetTokenUseCase _getTokenUseCase;
   final InitAppFlyerSDKUseCase _initAppFlyerSDKUseCase;
   final LogAppFlyerSDKEventsUseCase _logAppFlyerSDKEventsUseCase;
   final LocalSessionUseCase _localSessionUseCase;
@@ -263,11 +263,8 @@ class AppViewModel extends BaseViewModel {
   ///
   BehaviorSubject<int> logTokenRefreshEventSubject = BehaviorSubject.seeded(0);
 
-  AppViewModel(
-    this._initAppFlyerSDKUseCase,
-    this._logAppFlyerSDKEventsUseCase,
-      this._localSessionUseCase
-  ) {
+  AppViewModel(this._initAppFlyerSDKUseCase, this._logAppFlyerSDKEventsUseCase, this._localSessionUseCase,
+      this._getTokenUseCase) {
     /// For the session timeout...
     _getTokenWithLoaderRequest.listen((value) {
       RequestManager(value, createCall: () => _getTokenUseCase.execute(params: value))

@@ -67,7 +67,7 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
               },
               gestureRecognizers: [
                 new Factory<OneSequenceGestureRecognizer>(
-                      () => new EagerGestureRecognizer(),
+                  () => new EagerGestureRecognizer(),
                 ),
               ].toSet(),
               onLoadStart: (controller, url) {},

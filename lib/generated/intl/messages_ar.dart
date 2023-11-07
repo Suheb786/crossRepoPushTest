@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -2399,7 +2398,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseConfirmYourIDDetailsBelow":
             MessageLookupByLibrary.simpleMessage("خلينا نأكد على معلوماتك"),
         "pleaseContinueToStayLoggedIn": MessageLookupByLibrary.simpleMessage(
-            "Please continue to stay logged in."),
+            "اذا حابب تكمل اضغط على “استمرار"),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("الرجاء إدخال"),
         "pleaseEnterAValidaccountMobileNoAlias":
             MessageLookupByLibrary.simpleMessage(
@@ -2860,7 +2859,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "serviceIsNotavaliable":
             MessageLookupByLibrary.simpleMessage("الخدمة غير متوفرة حاليا"),
         "services": MessageLookupByLibrary.simpleMessage("الخدمات"),
-        "sessionTimeout": MessageLookupByLibrary.simpleMessage("انتهت الجلسة"),
+        "sessionTimeout":
+            MessageLookupByLibrary.simpleMessage("انتهى وقت الجلسة "),
         "setAsCliqDefaultAccount":
             MessageLookupByLibrary.simpleMessage("تحديد كحساب أساسي"),
         "setAsDefault":
@@ -3052,7 +3052,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage(
             "صار الوقت لمكالمة فيديو  سريعة"),
         "timeOutText1": MessageLookupByLibrary.simpleMessage(
-            "You have been timed-out due to account inactivity. You will be automatically logged out in "),
+            " انتهى وقت الجلسة، رح تطلع من التطبيق بشكل تلقائي بعد "),
         "tinNo": MessageLookupByLibrary.simpleMessage("رقم التعريف الضريبي"),
         "to": MessageLookupByLibrary.simpleMessage("إلى"),
         "toBookingSummary":
