@@ -8,10 +8,9 @@ class SessionTimeoutDialog {
   static show(
     BuildContext mContext, {
     Function? onSelected,
-    required String title,
   }) {
     AppDialog.show(mContext,
         isDismissible: false,
-        builder: (context) => SessionTimeoutDialogView(onSelected: onSelected, title: title));
+        builder: (context) => SessionTimeoutDialogView(onSelected: onSelected));
   }
 }
