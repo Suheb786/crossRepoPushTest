@@ -242,6 +242,10 @@ class ValidateOtpViewModel extends BasePageViewModel {
     countDownController.disposeTimer();
     _showButtonSubject.close();
     _otpSubject.close();
+    _registerUserResponse.close();
+    _registerUserRequest.close();
+    _verifyMobileOtpResponse.close();
+    _verifyMobileOtpRequest.close();
     super.dispose();
   }
 }

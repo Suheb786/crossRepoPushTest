@@ -40,8 +40,6 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
 
   final PublishSubject<GetCurrentUserUseCaseParams> _currentUserRequestSubject = PublishSubject();
 
-  final PublishSubject<Resource<User>> _currentUserResponseSubject = PublishSubject();
-
   void checkBoxToggle(bool value) {
     isChecked.safeAdd(value);
   }
@@ -95,5 +93,13 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
       showToastWithError(
           AppError(cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.NETWORK));
     }
+  }
+
+  @override
+  void dispose() {
+    _updateJourneyRequest.close();
+    _updateJourneyResponse.close();
+    _currentUserRequestSubject.close();
+    super.dispose();
   }
 }

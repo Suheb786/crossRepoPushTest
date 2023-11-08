@@ -912,10 +912,10 @@ packages:
     dependency: transitive
     description:
       name: infobip_mobilemessaging
-      sha256: f1bd7061f97fd6140a7d82fafc23d039ab465573130ffaa833714c4ab8757f30
+      sha256: "3cae0f9a331b115433d09b08aa7a7bd154b6a9599de02c130ffa49b45bc83ac1"
       url: "https://pub.dev"
     source: hosted
-    version: "1.4.0"
+    version: "2.0.0"
   infobipplugin:
     dependency: transitive
     description:
