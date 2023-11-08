@@ -97,31 +97,12 @@ class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewMode
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  padding: EdgeInsets.symmetric(horizontal: 24.w,vertical: 24.w),
                   child: AppPrimaryButton(
-                    text: S.of(context).swipeToProceed,
+                    text: S.of(context).backToLogin,
                     onPressed: () {
                       Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding, (route) => false);
                     },
-                  ),
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    bottom: 32.h,
-                  ),
-                  child: Center(
-                    child: Text(
-                      S.of(context).toWelcomePage,
-                      style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).colorScheme.secondary,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12.t,
-                      ),
-                    ),
                   ),
                 ),
               ],
