@@ -8,7 +8,6 @@ import 'package:neo_bank/feature/forgot_password/add_id_number_for_reset_passwor
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/date_picker.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';

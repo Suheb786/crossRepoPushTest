@@ -8,11 +8,11 @@ import 'package:domain/usecase/user/get_current_user_usecase.dart';
 import 'package:domain/usecase/user/update_journey_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/subjects.dart';
 
-import '../../../main/app_viewmodel.dart';
 import '../../../utils/request_manager.dart';
 import '../../../utils/resource.dart';
 import '../../../utils/status.dart';
@@ -86,8 +86,7 @@ class IdWiseIntialPageViewModel extends BasePageViewModel {
   Future<void> openIdwise(User data) async {
     IdWiseHelper idWiseHelper = IdWiseHelper();
     idWiseHelper.initializeIdWise();
-    var status = await idWiseHelper.startVerification(
-        Localizations.localeOf(appLevelKey.currentState!.context).languageCode, data.idWiseRefId ?? '');
+    var status = await idWiseHelper.startVerification(Intl.getCurrentLocale(), data.idWiseRefId ?? '');
     if (status.keys.first == IDWiseStatus.COMPLETED) {
       referenceNumber = data.idWiseRefId ?? '';
       journeyId = status.values.first;

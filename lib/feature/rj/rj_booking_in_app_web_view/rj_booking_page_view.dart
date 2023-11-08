@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_fligt_booking_page.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/app_constants.dart';
@@ -28,7 +29,7 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
             color: Theme.of(context).colorScheme.secondary,
           ),
           Padding(
-            padding: EdgeInsets.only(top: 30.h),
+            padding: EdgeInsets.only(top: 5.h),
             child: InAppWebView(
               initialUrlRequest: URLRequest(url: Uri.parse(model.rjBookingPageArguments.url ?? '')),
               onWebViewCreated: (controller) {
@@ -41,14 +42,25 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
               initialOptions: InAppWebViewGroupOptions(
                 android: AndroidInAppWebViewOptions(
                   useHybridComposition: true,
-                  clearSessionCache: true,
-                  cacheMode: AndroidCacheMode.LOAD_NO_CACHE,
+                  safeBrowsingEnabled: true,
+                  clearSessionCache: false,
+                  cacheMode: AndroidCacheMode.LOAD_DEFAULT,
+                  allowFileAccess: false,
+                  allowContentAccess: false,
+                  geolocationEnabled: false,
+                  mixedContentMode: AndroidMixedContentMode.MIXED_CONTENT_NEVER_ALLOW,
                 ),
-                ios: IOSInAppWebViewOptions(allowsInlineMediaPlayback: true),
+                ios: IOSInAppWebViewOptions(
+                    allowsInlineMediaPlayback: true, isFraudulentWebsiteWarningEnabled: true),
                 crossPlatform: InAppWebViewOptions(
-                  useShouldOverrideUrlLoading: true,
-                  javaScriptEnabled: true,
-                ),
+                    useShouldOverrideUrlLoading: true,
+                    javaScriptEnabled: true,
+                    useOnLoadResource: true,
+                    clearCache: false,
+                    allowUniversalAccessFromFileURLs: false,
+                    cacheEnabled: true,
+                    allowFileAccessFromFileURLs: false,
+                    useShouldInterceptAjaxRequest: false),
               ),
               androidOnPermissionRequest: (controller, origin, resource) async {
                 return PermissionRequestResponse(
@@ -56,13 +68,11 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
               },
               gestureRecognizers: [
                 new Factory<OneSequenceGestureRecognizer>(
-                      () => new EagerGestureRecognizer(),
+                  () => new EagerGestureRecognizer(),
                 ),
               ].toSet(),
               onLoadStart: (controller, url) {},
               onLoadStop: (controller, url) async {
-                debugPrint('-----onload stop ---->${url}');
-                debugPrint('-----onload path ---->${url?.path}');
                 if ((url?.path ?? '').toLowerCase().contains(AppConstantsUtils.RJRouteLink.toLowerCase())) {
                   String referenceNumber = url?.queryParameters['customerReference'] ?? '';
                   ProviderScope.containerOf(context).read(appViewModel).stopRefreshToken();

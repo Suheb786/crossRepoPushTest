@@ -42,7 +42,7 @@ class _DatePickerBottomSheetViewState extends State<DatePickerBottomSheetView> {
           height: MediaQuery.of(context).copyWith().size.height / 3.5,
           child: CupertinoDatePicker(
             initialDateTime: widget.initialDate,
-            minimumDate: widget.firstDate ?? DateTime(1900),
+            // minimumDate: widget.firstDate ?? DateTime(1900),
             mode: CupertinoDatePickerMode.date,
             onDateTimeChanged: (DateTime newdate) {
               selectedDateTime = newdate;

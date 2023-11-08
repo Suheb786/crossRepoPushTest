@@ -8490,10 +8490,10 @@ class S {
     );
   }
 
-  /// `Session timeout.`
+  /// `Session Timeout`
   String get sessionTimeout {
     return Intl.message(
-      'Session timeout.',
+      'Session Timeout',
       name: 'sessionTimeout',
       desc: '',
       args: [],
@@ -18610,10 +18610,10 @@ class S {
     );
   }
 
-  /// `You have been timed-out due to account inactivity. You will be automatically logged out in `
+  /// `You have been timed-out due to app inactivity. You will be automatically logged out in `
   String get timeOutText1 {
     return Intl.message(
-      'You have been timed-out due to account inactivity. You will be automatically logged out in ',
+      'You have been timed-out due to app inactivity. You will be automatically logged out in ',
       name: 'timeOutText1',
       desc: '',
       args: [],
@@ -18820,10 +18820,10 @@ class S {
     );
   }
 
-  /// `Please continue to stay logged in.`
+  /// `please continue to stay logged in.`
   String get pleaseContinueToStayLoggedIn {
     return Intl.message(
-      'Please continue to stay logged in.',
+      'please continue to stay logged in.',
       name: 'pleaseContinueToStayLoggedIn',
       desc: '',
       args: [],

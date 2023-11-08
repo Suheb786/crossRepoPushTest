@@ -260,7 +260,7 @@ PODS:
     - Alamofire (~> 4.7)
     - CryptoSwift
     - Flutter
-  - IBGoogleWebRTC (1.0.37785)
+  - IBGoogleWebRTC (1.0.40201)
   - IDWise (4.3.4)
   - image_cropper (0.0.4):
     - Flutter
@@ -276,7 +276,7 @@ PODS:
     - Flutter
   - InfobipRTC (2.2.1):
     - IBGoogleWebRTC (~> 1.0.37785)
-  - IOSSecuritySuite (1.9.9)
+  - IOSSecuritySuite (1.9.10)
   - iris_method_channel (0.0.1):
     - Flutter
   - local_auth_ios (0.0.1):
@@ -308,9 +308,9 @@ PODS:
     - Flutter
     - MTBBarcodeScanner
   - SAMKeychain (1.5.3)
-  - SDWebImage (5.18.2):
-    - SDWebImage/Core (= 5.18.2)
-  - SDWebImage/Core (5.18.2)
+  - SDWebImage (5.18.3):
+    - SDWebImage/Core (= 5.18.3)
+  - SDWebImage/Core (5.18.3)
   - share_plus (0.0.1):
     - Flutter
   - shared_preferences_foundation (0.0.1):
@@ -539,14 +539,14 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 54dee9d48d14580407f8f5fbf2f496e92437a2f2
   GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
   http_certificate_pinning: 23157eae20c5887e49372b3cbe7a1d5863eb9bad
-  IBGoogleWebRTC: 38846dd4c2ac0c14f9307252daab367e566b8632
+  IBGoogleWebRTC: 84ca42adac08102c79aea4276c15fe229dd5cd17
   IDWise: 38d0b8e7959516e8e5588ac65a3911479c656c19
   image_cropper: a3291c624a953049bc6a02e1f8c8ceb162a24b25
   image_picker_ios: 4a8aadfbb6dc30ad5141a2ce3832af9214a705b5
   infobip_mobilemessaging: ac180491feee95a7c4ac9e21a3c42538dbe0f18c
   infobipplugin: 320207eea037ff88b2e5bbf7f5d7f38d01bcbce9
   InfobipRTC: a5f7c41a8d8d866c7ebea4bd61b3be045bc92613
-  IOSSecuritySuite: 72c55371aafe586196c325a8348319c36d385ce4
+  IOSSecuritySuite: e764318117aabd1f894cbdfc5ac013a59352953d
   iris_method_channel: 0617c689164d8154c020c50f63ca79f92b8a7b9d
   local_auth_ios: c6cf091ded637a88f24f86a8875d8b0f526e2605
   MobileMessaging: 1775558cdce47d209ae3eca222786ec237ae2927
@@ -561,7 +561,7 @@ SPEC CHECKSUMS:
   PromisesSwift: 28dca69a9c40779916ac2d6985a0192a5cb4a265
   qr_code_scanner: bb67d64904c3b9658ada8c402e8b4d406d5d796e
   SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
-  SDWebImage: c0de394d7cf7f9838aed1fd6bb6037654a4572e4
+  SDWebImage: 96e0c18ef14010b7485210e92fac888587ebb958
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
   shared_preferences_foundation: e2dae3258e06f44cc55f49d42024fd8dd03c590c
   sms_autofill: c461043483362c3f1709ee76eaae6eb570b31686

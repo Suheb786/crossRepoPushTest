@@ -1,20 +1,36 @@
- cd /Users/apple/Documents/Dhaiyur/neobank/domain || exit
- fvm flutter clean
- fvm flutter pub get
+ cd domain
+
+ fvm clean
+
+ fvm pub get
+
  cd ..
- cd data || exit
- fvm flutter clean
- fvm flutter pub get
- fvm flutter pub run build_runner build --delete-conflicting-outputs
+
+ cd data
+
+ fvm clean
+
+ fvm pub get
+
+ fvm pub run build_runner build --delete-conflicting-outputs
+
  cd ..
- cd infobip_rtc_flutter || exit
- fvm flutter clean
- fvm flutter pub get
+
+ cd infobip_rtc_flutter
+
+ fvm clean
+
+ fvm pub get
+
  cd ..
- fvm flutter clean
- fvm flutter pub get
- fvm flutter run --debug
-# fvm flutter build apk --release
+
+ fvm clean
+
+ fvm pub get
+
+# fvm run --debug
+
+# fvm build apk --release
 
 
 
