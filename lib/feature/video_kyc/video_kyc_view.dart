@@ -1,4 +1,5 @@
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
+import 'package:data/di/local_module.dart';
 import 'package:domain/constants/enum/video_kyc_status_enum.dart';
 import 'package:domain/model/account/video_kyc_status.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
@@ -8,6 +9,7 @@ import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/feature/video_kyc/video_kyc_model.dart';
+import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -72,6 +74,7 @@ class VideoKycPageView extends BasePageViewWidget<VideoKycViewModel> {
                 onData: (response) {
                   if (response.status == Status.SUCCESS) {
                     SecureStorageHelper.instance.clearToken();
+                    ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).stopTimer();
                     AppConstantsUtils.resetCacheLists();
                     Navigator.pushNamedAndRemoveUntil(
                         context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));

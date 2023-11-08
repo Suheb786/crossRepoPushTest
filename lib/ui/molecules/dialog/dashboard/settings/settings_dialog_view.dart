@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math' as math;
 import 'dart:typed_data';
 
+import 'package:data/di/local_module.dart';
 import 'package:data/helper/antelop_helper.dart';
 import 'package:data/helper/encrypt_decrypt_promo_code.dart';
 import 'package:data/helper/key_helper.dart';
@@ -20,6 +21,7 @@ import 'package:neo_bank/feature/evoucher/evoucher/evoucher_page.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contacts_list/beneficiary_contacts_list_page.dart';
 import 'package:neo_bank/feature/offer_campaign/offer/offer_for_you_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_progress.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -74,6 +76,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
               if (response.status == Status.SUCCESS) {
                 AppConstantsUtils.resetCacheLists();
                 SecureStorageHelper.instance.clearToken();
+                ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).stopTimer();
                 if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
                   AntelopHelper.walletDisconnect();
                 }
@@ -651,6 +654,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                 context);
             SecureStorageHelper.instance.clearToken();
             AppConstantsUtils.resetCacheLists();
+            ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).stopTimer();
             Navigator.pushNamedAndRemoveUntil(
                 context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
           } else {

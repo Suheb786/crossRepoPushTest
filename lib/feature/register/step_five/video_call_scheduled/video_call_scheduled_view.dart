@@ -1,4 +1,6 @@
+import 'package:data/di/local_module.dart';
 import 'package:data/helper/secure_storage_helper.dart';
+import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +39,7 @@ class VideoCallScheduledView extends BasePageViewWidget<VideoCallScheduledViewMo
                 onData: (response) {
                   if (response.status == Status.SUCCESS) {
                     SecureStorageHelper.instance.clearToken();
+                    ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).stopTimer();
                     AppConstantsUtils.resetCacheLists();
                     Navigator.pushNamedAndRemoveUntil(
                         context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));

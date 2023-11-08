@@ -1,3 +1,4 @@
+import 'package:data/di/local_module.dart';
 import 'package:data/helper/secure_storage_helper.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/account_ready/account_details.dart';
 import 'package:neo_bank/ui/molecules/account_ready/account_ready_header.dart';
@@ -38,6 +40,7 @@ class AccountHoldView extends BasePageViewWidget<AccountHoldViewModel> {
                 onData: (response) {
                   if (response.status == Status.SUCCESS) {
                     SecureStorageHelper.instance.clearToken();
+                    ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).stopTimer();
                     AppConstantsUtils.resetCacheLists();
                     Navigator.pushNamedAndRemoveUntil(
                         context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));

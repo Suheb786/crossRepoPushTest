@@ -1,11 +1,16 @@
+import 'package:data/di/local_module.dart';
 import 'package:data/helper/secure_storage_helper.dart';
+import 'package:data/network/local_session_service.dart';
 import 'package:domain/usecase/user/check_version_update_usecase.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:rxdart/rxdart.dart';
+
+import '../../main/app_viewmodel.dart';
 
 class OnBoardingViewModel extends BasePageViewModel {
   final CheckVersionUpdateUseCase _checkVersionUpdateUseCase;
@@ -28,6 +33,7 @@ class OnBoardingViewModel extends BasePageViewModel {
     });
     //checkVersionUpdate();
     SecureStorageHelper.instance.clearToken();
+    ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).stopTimer();
   }
 
   void checkVersionUpdate({String? clear}) {
