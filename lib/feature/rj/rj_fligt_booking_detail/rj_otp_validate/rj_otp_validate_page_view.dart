@@ -33,7 +33,7 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingPurchasePage,
+                  Navigator.pushNamed(context, RoutePaths.RjFlightBookingPurchasePage,
                       arguments: RjBookingPurchasePageArgument(
                           flightDetailResponse: ProviderScope.containerOf(context)
                               .read(rjConfirmFlightBookingViewModelProvider)

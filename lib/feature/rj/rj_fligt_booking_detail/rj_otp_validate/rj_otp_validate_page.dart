@@ -75,7 +75,7 @@ class RjOtpValidatePageState extends BaseStatefulPage<RjOtpValidateViewModel, Rj
       parentModel.previousPage();
       return false;
     } else {
-      return super.onBackPressed(model);
+      return false;
     }
   }
 }

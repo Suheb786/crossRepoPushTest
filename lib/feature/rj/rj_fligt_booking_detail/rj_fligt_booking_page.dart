@@ -6,11 +6,9 @@ import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_flight_booking_de
 import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_flight_detail_page_view.dart';
 
 class RjFlightBookingDetailPage extends BasePage<RjFlightBookingDetailPageViewModel> {
-
-final RJFlightDetailsPageArguments arguments;
+  final RJFlightDetailsPageArguments arguments;
 
   RjFlightBookingDetailPage(this.arguments);
-
 
   @override
   RjFlightBookingDetailPageState createState() => RjFlightBookingDetailPageState();
@@ -41,7 +39,7 @@ class RjFlightBookingDetailPageState
       parentModel.previousPage();
       return false;
     } else {
-      return super.onBackPressed(model);
+      return false;
     }
   }
 }

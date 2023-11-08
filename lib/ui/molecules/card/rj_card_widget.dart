@@ -74,7 +74,7 @@ class RjCardWidget extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left: 20.0),
+                            padding: EdgeInsetsDirectional.only(start: 20.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -86,7 +86,7 @@ class RjCardWidget extends StatelessWidget {
                           Spacer(),
                           Container(
                             alignment: Alignment.bottomRight,
-                            padding: EdgeInsets.only(right: 4.0),
+                            padding: EdgeInsetsDirectional.only(end: 4.0),
                             child: Image.asset(
                               AssetUtils.AirplaneTail,
                               height: 118.h,

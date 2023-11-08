@@ -7,7 +7,10 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../main/navigation/route_paths.dart';
+import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../utils/color_utils.dart';
+import '../rj_booking_success/rj_booking_success_page.dart';
 import 'rj_booking_page_view.dart';
 import 'rj_booking_page_view_model.dart';
 
@@ -23,7 +26,15 @@ class RjBookingPage extends BasePage<RjBookingPageViewModel> {
 class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBookingPage> {
   @override
   ProviderBase provideBase() {
-    return rjBookingPageViewModelProvider.call(widget.rjBookingPageArguments);
+    return rjBookingPageViewModelProvider;
+  }
+
+  @override
+  void onModelReady(RjBookingPageViewModel model) {
+    if (model.rjBookingPageArguments == null) {
+      model.rjBookingPageArguments = widget.rjBookingPageArguments;
+    }
+    super.onModelReady(model);
   }
 
   @override
@@ -33,30 +44,34 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
 
   @override
   PreferredSizeWidget? buildAppbar() {
+    RjBookingPageViewModel model = ProviderScope.containerOf(context).read(rjBookingPageViewModelProvider);
     return PreferredSize(
-      preferredSize: Size(double.maxFinite, 90),
+      preferredSize: Size(double.maxFinite, 85.h),
       child: Container(
         color: Theme.of(context).colorScheme.onPrimaryContainer,
         child: Padding(
-          padding: EdgeInsetsDirectional.only(top: 57.0.h, bottom: 30.0.h),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
+          padding: EdgeInsetsDirectional.only(top: 52.0.h, bottom: 20.0.h),
+          child: Stack(
+            alignment: AlignmentDirectional.centerEnd,
             children: [
-              SizedBox(
-                width: 50.w,
-              ),
               Align(
-                alignment: Alignment.center,
-                child: Text(
-                  S.current.bookYourFlight,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
-                      fontFamily: StringUtils.appFont,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14.t),
-                ),
+                alignment: AlignmentDirectional.center,
+                child: AppStreamBuilder<bool>(
+                    stream: model.navigationToFlightBookingDetailStream,
+                    initialData: false,
+                    dataBuilder: (context, data) {
+                      return Text(
+                        model.isNavigationOnConfirmationView()
+                            ? S.current.bookingConfirmation
+                            : S.current.bookYourFlight,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontFamily: StringUtils.appFont,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14.t),
+                      );
+                    }),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.only(end: 12.w),
@@ -74,18 +89,29 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
                                 blurRadius: 2.56,
                                 offset: Offset(0, 1.30))
                           ]),
-                      child: Center(
-                        child: Icon(
-                          Icons.clear,
-                          color: Theme.of(context).colorScheme.secondary,
-                          size: 16,
-                          weight: 1.5,
-                        ),
-                      ),
+                      child: AppStreamBuilder<bool>(
+                          stream: model.navigationToFlightBookingDetailStream,
+                          initialData: false,
+                          dataBuilder: (context, data) {
+                            return Center(
+                              child: Icon(
+                                model.isNavigationOnConfirmationView() ? Icons.check : Icons.clear,
+                                color: Theme.of(context).colorScheme.secondary,
+                                size: 16,
+                                weight: 1.5,
+                              ),
+                            );
+                          }),
                     ),
                     onTap: () {
-                      ProviderScope.containerOf(context).read(appViewModel).stopRefreshToken();
-                      Navigator.pop(context);
+                      if (model.isNavigationOnConfirmationView()) {
+                        Navigator.pushReplacementNamed(context, RoutePaths.RJBookingSuccessPage,
+                            arguments: RJBookingSuccessPageArguments(
+                                rjBookingSuccessState: RJBookingSuccessState.BOOKING_SUCCESS));
+                      } else {
+                        ProviderScope.containerOf(context).read(appViewModel).stopRefreshToken();
+                        Navigator.pop(context);
+                      }
                     }),
               ),
             ],
@@ -103,6 +129,11 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
   @override
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).colorScheme.onSurface;
+  }
+
+  @override
+  Future<bool> onBackPressed(RjBookingPageViewModel model, {param}) async {
+    return false;
   }
 }
 

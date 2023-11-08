@@ -1,36 +1,36 @@
  cd domain
 
- /Users/apple/Documents/flutter-2.8.1/bin/flutter clean
+ fvm  clean
 
- /Users/apple/Documents/flutter-2.8.1/bin/flutter pub get
+ fvm  pub get
 
  cd ..
 
  cd data
 
- /Users/apple/Documents/flutter-2.8.1/bin/flutter clean
+ fvm  clean
 
- /Users/apple/Documents/flutter-2.8.1/bin/flutter pub get
+ fvm  pub get
 
- /Users/apple/Documents/flutter-2.8.1/bin/flutter pub run build_runner build --delete-conflicting-outputs
+ fvm  pub run build_runner build --delete-conflicting-outputs
 
  cd ..
 
  cd infobip_rtc_flutter
 
- /Users/apple/Documents/flutter-2.8.1/bin/flutter clean
+ fvm  clean
 
- /Users/apple/Documents/flutter-2.8.1/bin/flutter pub get
+ fvm  pub get
 
  cd ..
 
- /Users/apple/Documents/flutter-2.8.1/bin/flutter clean
+ fvm  clean
 
- /Users/apple/Documents/flutter-2.8.1/bin/flutter pub get
+ fvm  pub get
 
- /Users/apple/Documents/flutter-2.8.1/bin/flutter run --debug
+# fvm  run --debug
 
-# /Users/apple/Documents/flutter-2.8.1/bin/flutter build apk --release
+# fvm  build apk --release
 
 
 
