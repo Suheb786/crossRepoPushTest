@@ -308,9 +308,7 @@ class AppViewModel extends BaseViewModel {
     });
 
     initAppFlyerSDK();
-    Future.delayed(Duration(milliseconds: 200), () {
-      startSessionWarningStream();
-    });
+
   }
 
   BehaviorSubject<bool>? sessionWarningStream;
@@ -318,29 +316,29 @@ class AppViewModel extends BaseViewModel {
   BehaviorSubject<bool>? sessionEndStream;
   StreamSubscription<bool>? sessionEndStreamSubscription;
 
-  startSessionWarningStream() {
+  startSessionWarningStream(BuildContext context) {
     sessionWarningStreamSubscription?.cancel();
     sessionEndStreamSubscription?.cancel();
 
-    sessionWarningStream = ProviderScope.containerOf(appLevelKey.currentState!.context)
+    sessionWarningStream = ProviderScope.containerOf(context)
         .read(localSessionService)
         .warningStreamSubject;
 
     sessionWarningStreamSubscription = sessionWarningStream?.stream.listen((event) {
       if (event) {
         SessionTimeoutDialog.show(
-          appLevelKey.currentState!.context,
-          title: S.of(appLevelKey.currentState!.context).activity,
+          context,
+          title: S.of(context).activity,
           onSelected: () {
             /// continue button call api to restart timer...
             _callGetTokenWithLoader();
-            Navigator.pop(appLevelKey.currentState!.context);
+            Navigator.pop(context);
           },
         );
       }
     });
 
-    sessionEndStream = ProviderScope.containerOf(appLevelKey.currentState!.context)
+    sessionEndStream = ProviderScope.containerOf(context)
         .read(localSessionService)
         .sessionStreamSubject;
 
@@ -348,7 +346,7 @@ class AppViewModel extends BaseViewModel {
       if (event) {
         SecureStorageHelper.instance.clearToken();
         AppConstantsUtils.resetCacheLists();
-        ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).stopTimer();
+        ProviderScope.containerOf(context).read(localSessionService).stopTimer();
         if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
           AntelopHelper.walletDisconnect();
         }
