@@ -300,7 +300,9 @@ class AppViewModel extends BaseViewModel {
     });
 
     initAppFlyerSDK();
-
+    Future.delayed(Duration(seconds: 1), () {
+      startSessionWarningStream(appLevelKey.currentContext!);
+    });
   }
 
   BehaviorSubject<bool>? sessionWarningStream;
@@ -312,15 +314,12 @@ class AppViewModel extends BaseViewModel {
     sessionWarningStreamSubscription?.cancel();
     sessionEndStreamSubscription?.cancel();
 
-    sessionWarningStream = ProviderScope.containerOf(context)
-        .read(localSessionService)
-        .warningStreamSubject;
+    sessionWarningStream = ProviderScope.containerOf(context).read(localSessionService).warningStreamSubject;
 
     sessionWarningStreamSubscription = sessionWarningStream?.stream.listen((event) {
       if (event) {
         SessionTimeoutDialog.show(
           context,
-          title: S.of(context).activity,
           onSelected: () {
             /// continue button call api to restart timer...
             _callGetTokenWithLoader();
@@ -330,9 +329,7 @@ class AppViewModel extends BaseViewModel {
       }
     });
 
-    sessionEndStream = ProviderScope.containerOf(context)
-        .read(localSessionService)
-        .sessionStreamSubject;
+    sessionEndStream = ProviderScope.containerOf(context).read(localSessionService).sessionStreamSubject;
 
     sessionEndStreamSubscription = sessionEndStream?.stream.listen((event) {
       if (event) {
