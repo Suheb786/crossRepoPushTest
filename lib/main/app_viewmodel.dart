@@ -3,7 +3,10 @@ import 'dart:io';
 import 'dart:isolate';
 
 import 'package:data/di/local_module.dart';
+import 'package:data/di/network_module.dart';
+import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/helper/antelop_helper.dart';
+import 'package:data/helper/key_helper.dart' as key;
 import 'package:data/helper/secure_storage_helper.dart';
 import 'package:domain/constants/app_constants_domain.dart';
 import 'package:domain/constants/enum/language_enum.dart';
@@ -12,6 +15,7 @@ import 'package:domain/usecase/app_flyer/log_app_flyers_events.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:domain/usecase/user/local_session_usecase.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -228,10 +232,6 @@ class AppViewModel extends BaseViewModel {
 
   PublishSubject<Resource<bool>> _initInfobipMessageResponseSubject = PublishSubject();
 
-  static PublishSubject<Resource<bool>> _getTokenResponse = PublishSubject();
-
-  Stream<Resource<bool>> get getTokenStream => _getTokenResponse.stream;
-
   Stream<Resource<bool>> get initInfobipMessageResponseStream => _initInfobipMessageResponseSubject.stream;
 
   ///---------------init app flyers------------------///
@@ -258,19 +258,13 @@ class AppViewModel extends BaseViewModel {
   }
 
   ///---------------log app flyers events------------------///
-  AppViewModel(this._getTokenUseCase, this._initAppFlyerSDKUseCase, this._logAppFlyerSDKEventsUseCase,
-      this._localSessionUseCase) {
-    _getTokenRequest.listen((value) {
-      RequestManager(value, createCall: () => _getTokenUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        if (event.status == Status.ERROR) {
-          //print("error");
-        }
-        _getTokenResponse.safeAdd(event);
-      });
-    });
 
+  ///---------------log token refresh events------------------///
+  ///
+  BehaviorSubject<int> logTokenRefreshEventSubject = BehaviorSubject.seeded(0);
+
+  AppViewModel(this._initAppFlyerSDKUseCase, this._logAppFlyerSDKEventsUseCase, this._localSessionUseCase,
+      this._getTokenUseCase) {
     /// For the session timeout...
     _getTokenWithLoaderRequest.listen((value) {
       RequestManager(value, createCall: () => _getTokenUseCase.execute(params: value))
@@ -301,9 +295,7 @@ class AppViewModel extends BaseViewModel {
         return _logAppFlyerSDKEventsUseCase.execute(params: value);
       }).asFlow().listen((event) {
         _logSDKFlyerEventsResponseSubject.safeAdd(event);
-        if (event.status == Status.SUCCESS) {
-          debugPrint('-----EVENT LOGGED------');
-        }
+        if (event.status == Status.SUCCESS) {}
       });
     });
 
@@ -363,29 +355,43 @@ class AppViewModel extends BaseViewModel {
       return;
     }
     _receivePort = ReceivePort();
-    _isolate = await Isolate.spawn(_getTokenCallBack, _receivePort.sendPort);
-    _receivePort.listen(_handleMessage, onDone: () {});
+    var rootToken = RootIsolateToken.instance!;
+    _isolate = await Isolate.spawn(_getTokenCallBack, {'token': rootToken, 'port': _receivePort.sendPort});
+
+    _receivePort.listen((dynamic message) {
+      if (message != null && message is GetTokenResponseEntity) {
+        if (logTokenRefreshEventSubject.value < int.parse(key.KeyHelper.API_RETRY_TIMEOUT) - 1) {
+          logTokenRefreshEventSubject.safeAdd(logTokenRefreshEventSubject.value + 1);
+        } else {
+          stopRefreshToken();
+        }
+      }
+    });
   }
 
-  void _handleMessage(dynamic data) {
-    _callGetToken();
-  }
+  static Timer? _timer;
 
-  static void _getTokenCallBack(SendPort sendPort) async {
-    Timer.periodic(Duration(minutes: 2), (Timer t) {
-      sendPort.send('Send');
+  static void _getTokenCallBack(Map<String, dynamic> v) async {
+    BackgroundIsolateBinaryMessenger.ensureInitialized(v['token']);
+    _timer = Timer.periodic(Duration(minutes: 2), (Timer t) {
+      ProviderContainer().read(apiServiceProvider).getToken().then((value) {
+        v['port'].send(value.data);
+      });
     });
   }
 
   void stopRefreshToken() {
-    if (_isolate != null) {
-      _isolate!.kill(priority: 0);
-      _isolate = null;
+    try {
+      if (_isolate != null) {
+        _isolate!.kill(priority: 0);
+        _isolate = null;
+        _timer?.cancel();
+        _receivePort.close();
+        logTokenRefreshEventSubject.safeAdd(0);
+      }
+    } catch (e) {
+      debugPrint('-----stopRefreshToken error------>${e.toString()}');
     }
-  }
-
-  void _callGetToken() {
-    _getTokenRequest.add(GetTokenUseCaseParams());
   }
 
   void _callGetTokenWithLoader() {
@@ -417,6 +423,8 @@ class AppViewModel extends BaseViewModel {
     sessionEndStreamSubscription?.cancel();
     sessionWarningStreamSubscription?.cancel();
 
+    _timer?.cancel();
+    _timer = null;
     super.dispose();
   }
 

@@ -69,8 +69,8 @@ class RJBookingConfirmedInAppWebViewPageState extends BaseStatefulPage<
                 padding: EdgeInsetsDirectional.only(end: 12.w),
                 child: InkWell(
                     child: Container(
-                      height: 25.h,
-                      width: 25.h,
+                      height: 25.w,
+                      width: 25.w,
                       decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.onPrimaryContainer,
                           borderRadius: BorderRadius.circular(100),

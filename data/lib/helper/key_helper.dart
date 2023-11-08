@@ -36,10 +36,17 @@ class KeyHelper {
   static String ID_Wise_Client_ID = '';
   static String ID_Journey_Client_ID = '';
 
+  ///Timeout
+  static String API_RETRY_TIMEOUT = '3';
+
   static setKeyValues(String content) {
     var mapContent = Map<String, dynamic>();
+
     mapContent = jsonDecode(content);
-    debugPrint('mapContent--->$mapContent');
+    // mapContent['dynamicObject'].keys.forEach((element) {
+    //   print('Keys---->$element');
+    // });
+    // debugPrint('mapContent--->$mapContent');
     CARD_DECRYPTION_KEY = mapContent['dynamicObject']['CardKey'];
     PIN_BLOCK_KEY = mapContent['dynamicObject']['PinblockKey'];
     ANDROID_BLINK_ID = mapContent['dynamicObject']['AndroidKey'];
@@ -51,6 +58,7 @@ class KeyHelper {
     CREDIT_CARD_PIN_BLOCK_KEY = mapContent['dynamicObject']?['creditCardPinBlockKey'] ?? '';
     ID_Wise_Client_ID = mapContent['dynamicObject']?['IDWisecClientId'] ?? '';
     ID_Journey_Client_ID = mapContent['dynamicObject']?['IDWiseJourneyDefinitionId'] ?? '';
+    API_RETRY_TIMEOUT = mapContent['dynamicObject']?['ApiRetry'] ?? '3';
     InfobipUtilsConstants.FIREBASE_API_KEY = mapContent['dynamicObject']['FIREBASE_API_KEY'];
     InfobipUtilsConstants.FIREBASE_APPLICATION_ID = mapContent['dynamicObject']['FIREBASE_APPLICATION_ID'];
     InfobipUtilsConstants.FIREBASE_PROJECT_ID = mapContent['dynamicObject']['FIREBASE_PROJECT_ID'];

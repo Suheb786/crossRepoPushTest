@@ -56,7 +56,7 @@ class FlightDetailsContentEntity
   FlightDetailContent transform() {
     return FlightDetailContent(
         cancellationUrl: this.cancellationUrl ?? '',
-        confirmationUrl: this.cancellationUrl ?? '',
+        confirmationUrl: this.confirmationUrl ?? '',
         customerReference: this.customerReference ?? '',
         paymentAmount: (this.paymentAmount ?? 0.0).toStringAsFixed(3),
         requestReference: this.requestReference ?? '',
