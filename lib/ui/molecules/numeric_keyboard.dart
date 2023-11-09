@@ -75,21 +75,25 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
               _calcButton('9'),
             ],
           ),
-          ButtonBar(
-            alignment: widget.mainAxisAlignment,
-            children: <Widget>[
-              InkWell(
-                  borderRadius: BorderRadius.circular(45),
-                  onTap: widget.leftButtonFn,
-                  child: Container(
-                      alignment: Alignment.center, width: 50.0.w, height: 50.0.h, child: widget.leftIcon)),
-              _calcButton('0'),
-              InkWell(
-                  borderRadius: BorderRadius.circular(45),
-                  onTap: widget.rightButtonFn,
-                  child: Container(
-                      alignment: Alignment.center, width: 50.0.w, height: 50.0.h, child: widget.rightWidget))
-            ],
+          Directionality(
+            textDirection:
+            StringUtils.isDirectionRTL(context) ? TextDirection.rtl : TextDirection.ltr,
+            child: ButtonBar(
+              alignment: widget.mainAxisAlignment,
+              children: <Widget>[
+                InkWell(
+                    borderRadius: BorderRadius.circular(45),
+                    onTap: widget.leftButtonFn,
+                    child: Container(
+                        alignment: Alignment.center, width: 50.0.w, height: 50.0.h, child: widget.leftIcon)),
+                _calcButton('0'),
+                InkWell(
+                    borderRadius: BorderRadius.circular(45),
+                    onTap: widget.rightButtonFn,
+                    child: Container(
+                        alignment: Alignment.center, width: 50.0.w, height: 50.0.h, child: widget.rightWidget))
+              ],
+            ),
           ),
         ],
       ),
