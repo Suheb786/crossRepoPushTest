@@ -90,8 +90,11 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
                 InkWell(
                     borderRadius: BorderRadius.circular(45),
                     onTap: widget.rightButtonFn,
-                    child: Container(
-                        alignment: Alignment.center, width: 50.0.w, height: 50.0.h, child: widget.rightWidget))
+                    child: RotatedBox(
+                      quarterTurns:   StringUtils.isDirectionRTL(context) ? 2 : 0,
+                      child: Container(
+                          alignment: Alignment.center, width: 50.0.w, height: 50.0.h, child: widget.rightWidget),
+                    ))
               ],
             ),
           ),

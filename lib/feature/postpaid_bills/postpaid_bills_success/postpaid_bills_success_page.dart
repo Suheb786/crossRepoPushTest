@@ -36,7 +36,7 @@ class PostPaidBillsSuccessPageState
   @override
   Future<bool> onBackPressed(PostPaidBillsSuccessPageViewModel model, {param}) {
     Navigator.of(context)
-      ..pop()
+      ..pop()..pop()
       ..pop(true);
     ProviderScope.containerOf(context)
         .read(appHomeViewModelProvider).getDashboardData();
