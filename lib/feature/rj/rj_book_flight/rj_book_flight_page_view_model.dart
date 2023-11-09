@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../base/base_page_view_model.dart';
@@ -45,7 +46,7 @@ class RjFlightBookingViewModel extends BasePageViewModel {
 
   void getOneWayLink(BuildContext context) {
     _getOneWayLinkRequest.safeAdd(GetOneWayTripLinkUseCaseParams(
-        language: 'EN',
+        language: StringUtils.isDirectionRTL(context) ? 'AR' : 'EN',
         org: "AMM",
         des: selectedDestination.code,
         date1: TimeUtils.getFormattedDateForRJ(departOnDate),
@@ -69,7 +70,7 @@ class RjFlightBookingViewModel extends BasePageViewModel {
 
   void getTwoWayLink(BuildContext context) {
     _getTwoWayLinkRequest.safeAdd(GetTwoWayTripLinkUseCaseParams(
-        language: 'EN',
+        language: StringUtils.isDirectionRTL(context) ? 'AR' : 'EN',
         org: "AMM",
         des: selectedDestination.code,
         toDate: TimeUtils.getFormattedDateForRJ(departOnDate),

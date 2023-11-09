@@ -5,10 +5,8 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/activity/activity_modules.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_transaction_slider_page_view.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_transaction_slider_page_view_model.dart';
-import 'package:riverpod/src/framework.dart';
 
-class ReturnPaymentTransactionSliderPage
-    extends BasePage<ReturnPaymentTransactionSliderPageViewModel> {
+class ReturnPaymentTransactionSliderPage extends BasePage<ReturnPaymentTransactionSliderPageViewModel> {
   final ReturnPaymentTransactionSliderPageArgument returnPaymentArgument;
 
   ReturnPaymentTransactionSliderPage(this.returnPaymentArgument);
@@ -20,11 +18,9 @@ class ReturnPaymentTransactionSliderPage
 }
 
 class ReturnPaymentTransactionSliderState extends BaseStatefulPage<
-    ReturnPaymentTransactionSliderPageViewModel,
-    ReturnPaymentTransactionSliderPage> {
+    ReturnPaymentTransactionSliderPageViewModel, ReturnPaymentTransactionSliderPage> {
   @override
-  Widget buildView(
-      BuildContext context, ReturnPaymentTransactionSliderPageViewModel model) {
+  Widget buildView(BuildContext context, ReturnPaymentTransactionSliderPageViewModel model) {
     return ReturnPaymentTransactionSliderPageView(provideBase());
   }
 
@@ -40,10 +36,9 @@ class ReturnPaymentTransactionSliderState extends BaseStatefulPage<
   }
 
   @override
-  Future<bool> onBackPressed(ReturnPaymentTransactionSliderPageViewModel model,
-      {param}) async {
-    var parentModel = ProviderScope.containerOf(context)
-        .read(returnPaymentTransactionSliderPageViewModelProvider);
+  Future<bool> onBackPressed(ReturnPaymentTransactionSliderPageViewModel model, {param}) async {
+    var parentModel =
+        ProviderScope.containerOf(context).read(returnPaymentTransactionSliderPageViewModelProvider);
     if (parentModel.appSwiperController.page != 0) {
       parentModel.previousPage();
       return false;

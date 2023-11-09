@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
-import 'package:riverpod/src/framework.dart';
 
 import '../../../utils/navgition_type.dart';
 import 'add_beneficiary_page_view.dart';

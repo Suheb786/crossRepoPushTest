@@ -3,7 +3,6 @@ import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
-import 'package:riverpod/src/framework.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 import 'add_beneficiary_otp_page_view.dart';
