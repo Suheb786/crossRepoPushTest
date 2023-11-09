@@ -1440,7 +1440,7 @@
   "newBill": "New Bill",
   "billName": "Bill Name",
   "billerName": "Biller name",
-  "billsAndPayments": "Bills & Payments",
+  "billsAndPayments": "Bills &\n Payments",
   "services": "Services",
   "referenceNo": "Reference No.",
   "tapAmtToEdit": "Tap amount to edit",
@@ -1870,7 +1870,7 @@
   "backToHistory": "Back to History",
   "insufficientBalanceSubAccount": "Oops! Transaction failed; you have insufficient balance in your account.",
   "forYou": "For You",
-  "referFriend": "Refer A Friend",
+  "referFriend": "Refer A\nFriend",
   "referFriendDescription": "Invite your friends and family to enjoy the Blink experience. Start earning up to {referFriendDescription} JOD. The more you refer, the more you earn.",
   "@referFriendDescription": {
     "description": "referFriendDescription",

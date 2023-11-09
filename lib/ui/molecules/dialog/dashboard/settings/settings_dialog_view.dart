@@ -76,7 +76,9 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
               if (response.status == Status.SUCCESS) {
                 AppConstantsUtils.resetCacheLists();
                 SecureStorageHelper.instance.clearToken();
-                ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).stopTimer();
+                ProviderScope.containerOf(appLevelKey.currentState!.context)
+                    .read(localSessionService)
+                    .stopTimer();
                 if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
                   AntelopHelper.walletDisconnect();
                 }
@@ -126,7 +128,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                                         ?.borderSide
                                         .color),
                               ), onSelected: () async {
-                                String userPromoCode = ProviderScope.containerOf(context)
+                            String userPromoCode = ProviderScope.containerOf(context)
                                     .read(appHomeViewModelProvider)
                                     .dashboardDataContent
                                     .userPromoCode ??
@@ -165,6 +167,26 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                         ),
                       ),
 
+                      ///E-VOUCHERS
+                      PagesWidget(
+                        onTap: () {
+                          Navigator.pop(context);
+                          Navigator.of(context).push(
+                            CustomRoute.swipeUpRoute(
+                                EvoucherPage(EvoucherPageArguments(
+                                    EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING)),
+                                routeName: RoutePaths.Evoucher),
+                          );
+                        },
+                        key: 'E-VOUCHERS',
+                        child: SettingsMenuWidget(
+                          model: model,
+                          title: S.of(context).eVouchers,
+                          image: AssetUtils.e_voucher,
+                          mKey: 'E-VOUCHERS',
+                        ),
+                      ),
+
                       ///Manage Contacts
                       PagesWidget(
                         onTap: () {
@@ -194,26 +216,6 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                           mKey: 'CLIQ',
                           image: AssetUtils.cliqLogoSvg,
                           title: S.of(context).manageCliqIdRoute,
-                        ),
-                      ),
-
-                      ///E-VOUCHERS
-                      PagesWidget(
-                        onTap: () {
-                          Navigator.pop(context);
-                          Navigator.of(context).push(
-                            CustomRoute.swipeUpRoute(
-                                EvoucherPage(EvoucherPageArguments(
-                                    EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING)),
-                                routeName: RoutePaths.Evoucher),
-                          );
-                        },
-                        key: 'E-VOUCHERS',
-                        child: SettingsMenuWidget(
-                          model: model,
-                          title: S.of(context).eVouchers,
-                          image: AssetUtils.e_voucher,
-                          mKey: 'E-VOUCHERS',
                         ),
                       ),
 
@@ -346,7 +348,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                                               ?.borderSide
                                               .color),
                                     ), onSelected: () async {
-                                      String userPromoCode = ProviderScope.containerOf(context)
+                                  String userPromoCode = ProviderScope.containerOf(context)
                                           .read(appHomeViewModelProvider)
                                           .dashboardDataContent
                                           .userPromoCode ??
@@ -386,6 +388,26 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                               ),
                             ),
 
+                            ///E-VOUCHERS
+                            PagesWidget(
+                              onTap: () {
+                                Navigator.pop(context);
+                                Navigator.of(context).push(
+                                  CustomRoute.swipeUpRoute(
+                                      EvoucherPage(EvoucherPageArguments(
+                                          EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING)),
+                                      routeName: RoutePaths.Evoucher),
+                                );
+                              },
+                              key: 'E-VOUCHERS',
+                              child: SettingsMenuWidget(
+                                model: model,
+                                title: S.of(context).eVouchers,
+                                image: AssetUtils.e_voucher,
+                                mKey: 'E-VOUCHERS',
+                              ),
+                            ),
+
                             ///Manage Contacts
                             PagesWidget(
                               onTap: () {
@@ -415,26 +437,6 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                                 mKey: 'CLIQ',
                                 image: AssetUtils.cliqLogoSvg,
                                 title: S.of(context).manageCliqIdRoute,
-                              ),
-                            ),
-
-                            ///E-VOUCHERS
-                            PagesWidget(
-                              onTap: () {
-                                Navigator.pop(context);
-                                Navigator.of(context).push(
-                                  CustomRoute.swipeUpRoute(
-                                      EvoucherPage(EvoucherPageArguments(
-                                          EvoucherLandingPageNavigationType.NORMAL_EVOUCHER_LANDING)),
-                                      routeName: RoutePaths.Evoucher),
-                                );
-                              },
-                              key: 'E-VOUCHERS',
-                              child: SettingsMenuWidget(
-                                model: model,
-                                title: S.of(context).eVouchers,
-                                image: AssetUtils.e_voucher,
-                                mKey: 'E-VOUCHERS',
                               ),
                             ),
 
@@ -540,6 +542,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                                     stream: model.currentStep,
                                     initialData: 0,
                                     dataBuilder: (context, currentValue) {
+                                      int itemCount = model.showPages.length;
                                       return Dialog(
                                         elevation: 0.0,
                                         insetPadding: EdgeInsets.zero,
@@ -548,61 +551,23 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                                           mainAxisAlignment: MainAxisAlignment.end,
                                           children: [
                                             Container(
-                                              height: 180.h,
-                                              child: PageView.builder(
-                                                itemCount: (model.showPages).length,
-                                                controller: pageController,
-                                                physics: const ClampingScrollPhysics(),
-                                                onPageChanged: (int value) {
-                                                  model.updatePage(value);
-                                                },
-                                                itemBuilder: (context, index) {
-                                                  return AnimatedBuilder(
-                                                    animation: pageController,
-                                                    builder: (context, child) {
-                                                      double value = 0;
-
-                                                      ///Y coordinate
-                                                      double translateValue = 0;
-
-                                                      ///Checking pageController is ready to use
-                                                      if (pageController.position.hasContentDimensions) {
-                                                        ///For current page value = 0, so rotation and translation value is zero
-                                                        double indexFinal = index.toDouble();
-                                                        value = indexFinal - (pageController.page ?? 0);
-                                                        value = (value * 0.01);
-
-                                                        if (value.abs() >= 0.02) {
-                                                          translateValue = value.abs() * 500;
-                                                        } else if (value.abs() >= 0.018) {
-                                                          translateValue = value.abs() * 460;
-                                                        } else if (value.abs() >= 0.016) {
-                                                          translateValue = value.abs() * 420;
-                                                        } else if (value.abs() >= 0.014) {
-                                                          translateValue = value.abs() * 380;
-                                                        } else if (value.abs() >= 0.012) {
-                                                          translateValue = value.abs() * 340;
-                                                        } else {
-                                                          translateValue = value.abs() * 300;
-                                                        }
-                                                      }
-                                                      return Transform.rotate(
-                                                        angle: StringUtils.isDirectionRTL(context)
-                                                            ? (math.pi * -value)
-                                                            : (math.pi * value),
-                                                        child: Transform.translate(
-                                                          offset: Offset(0, translateValue),
-                                                          child: _cards(index, model, model.showPages[index],
-                                                              currentValue ?? -1),
-                                                        ),
-                                                      );
-                                                    },
-                                                  );
-                                                },
+                                              height: itemCount <= 6 ? 350.h : 540.h,
+                                              width: double.maxFinite,
+                                              child: SingleChildScrollView(
+                                                physics: BouncingScrollPhysics(),
+                                                child: Wrap(
+                                                  runSpacing: 8.h,
+                                                  spacing: 8.w,
+                                                  alignment: WrapAlignment.center,
+                                                  children: List.generate(itemCount, (index) {
+                                                    return Container(
+                                                      height: 147.h,
+                                                      child: _cards(index, model, model.showPages[index],
+                                                          currentValue ?? -1),
+                                                    );
+                                                  }),
+                                                ),
                                               ),
-                                            ),
-                                            SizedBox(
-                                              height: 30.h,
                                             ),
                                             InkWell(
                                               onTap: () {
@@ -610,12 +575,12 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                                               },
                                               child: Container(
                                                 padding: EdgeInsets.all(15),
-                                                height: 80.w,
-                                                width: 80.w,
+                                                height: 56.w,
+                                                width: 56.w,
                                                 decoration: BoxDecoration(
                                                   color: Theme.of(context).colorScheme.secondary,
-                                                  border: Border.all(
-                                                      color: Theme.of(context).primaryColorDark, width: 12),
+                                                  // border: Border.all(
+                                                  //     color: Theme.of(context).primaryColorDark, width: 12),
                                                   shape: BoxShape.circle,
                                                 ),
                                                 child: AppSvg.asset(AssetUtils.close,
@@ -654,7 +619,9 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                 context);
             SecureStorageHelper.instance.clearToken();
             AppConstantsUtils.resetCacheLists();
-            ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).stopTimer();
+            ProviderScope.containerOf(appLevelKey.currentState!.context)
+                .read(localSessionService)
+                .stopTimer();
             Navigator.pushNamedAndRemoveUntil(
                 context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
           } else {
