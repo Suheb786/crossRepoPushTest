@@ -2461,7 +2461,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseConfirmYourIDDetailsBelow": MessageLookupByLibrary.simpleMessage(
             "Now let\'s confirm your\nID details"),
         "pleaseContinueToStayLoggedIn": MessageLookupByLibrary.simpleMessage(
-            "Please continue to stay logged in."),
+            "please continue to stay logged in."),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
         "pleaseEnterAValidaccountMobileNoAlias":
             MessageLookupByLibrary.simpleMessage(
@@ -2946,7 +2946,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Service is not available"),
         "services": MessageLookupByLibrary.simpleMessage("Services"),
         "sessionTimeout":
-            MessageLookupByLibrary.simpleMessage("Session timeout."),
+            MessageLookupByLibrary.simpleMessage("Session Timeout"),
         "setAsCliqDefaultAccount": MessageLookupByLibrary.simpleMessage(
             "Set as CliQ default account?"),
         "setAsDefault": MessageLookupByLibrary.simpleMessage("Set as Default"),
@@ -3138,7 +3138,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage(
             "It’s time for a quick\nvideo call"),
         "timeOutText1": MessageLookupByLibrary.simpleMessage(
-            "You have been timed-out due to account inactivity. You will be automatically logged out in "),
+            "You have been timed-out due to app inactivity. You will be automatically logged out in "),
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),
         "to": MessageLookupByLibrary.simpleMessage("to"),
         "toBookingSummary":

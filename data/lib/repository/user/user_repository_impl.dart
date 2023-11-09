@@ -611,13 +611,6 @@ class UserRepositoryImpl extends UserRepository {
         response = r.data.transform();
         var decryptedData = decryptAESCryptoJS(
             encryptedContent: response.content ?? '', decryptionKey: KeyHelper.DECRYPTION_KEY);
-
-        NetworkProperties.MAIN_TIMEOUT = Duration(
-            minutes: int.tryParse(json.decode(decryptedData)["dynamicObject"]['TokenTimeOut'] ?? "3") ?? 3);
-        NetworkProperties.WARNING_TIMEOUT = NetworkProperties.MAIN_TIMEOUT - Duration(minutes: 1);
-
-        debugPrint("NetworkProperties.MAIN_TIMEOUT -- ${NetworkProperties.MAIN_TIMEOUT}");
-        debugPrint("NetworkProperties.WARNING_TIMEOUT -- ${NetworkProperties.WARNING_TIMEOUT}");
       }
       return Right(r.isSuccessful());
     });
@@ -650,13 +643,15 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, UpdateJourney>> updateJourney({required UpdateJourneyUseCaseParams params}) async {
+  Future<Either<NetworkError, UpdateJourney>> updateJourney(
+      {required UpdateJourneyUseCaseParams params}) async {
     final result = await safeApiCall(_remoteDS.updateJourney(params: params));
     return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
   }
 
   @override
-  Future<Either<NetworkError, CheckJourneyStatus>> updateIdWiseStatus({required CheckJourneyStatusUseCaseUseCaseParams params}) async {
+  Future<Either<NetworkError, CheckJourneyStatus>> updateIdWiseStatus(
+      {required CheckJourneyStatusUseCaseUseCaseParams params}) async {
     final result = await safeApiCall(_remoteDS.updateIdWiseStatus(params: params));
     return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
   }

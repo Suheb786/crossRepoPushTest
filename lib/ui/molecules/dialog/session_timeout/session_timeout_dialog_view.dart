@@ -18,11 +18,9 @@ import '../../button/app_primary_button.dart';
 
 class SessionTimeoutDialogView extends StatelessWidget {
   final Function? onSelected;
-  final String title;
 
   const SessionTimeoutDialogView({
     this.onSelected,
-    required this.title,
   });
 
   ProviderBase providerBase() {
@@ -94,7 +92,7 @@ class SessionTimeoutDialogView extends StatelessWidget {
                                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                                       child: Center(
                                         child: Text(
-                                          "${S.of(context).timeOutText1} 00:00 seconds. ${S.of(context).pleaseContinueToStayLoggedIn}",
+                                          "${S.of(context).timeOutText1} 00:00 seconds, ${S.of(context).pleaseContinueToStayLoggedIn}",
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                             color: Theme.of(context).indicatorColor,
@@ -119,7 +117,7 @@ class SessionTimeoutDialogView extends StatelessWidget {
                                                 TextSpan(
                                                   text:
                                                       "${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}. "
-                                                          "",
+                                                      "",
                                                   style: TextStyle(
                                                     color: Theme.of(context).indicatorColor,
                                                     fontSize: 14.t,

@@ -126,4 +126,14 @@ class ManageIDWiseStatusViewModel extends BasePageViewModel {
     _processJourneyViaMobileRequest
         .safeAdd(ProcessJourneyViaMobileUseCaseParams(journeyId: journeyID, referenceID: refID));
   }
+
+  @override
+  void dispose() {
+    _processJourneyViaMobileRequest.close();
+    _processJourneyViaMobileResponse.close();
+    _checkJourneyStatusRequest.close();
+    _checkJourneyStatusResponse.close();
+    _currentUserRequestSubject.close();
+    super.dispose();
+  }
 }

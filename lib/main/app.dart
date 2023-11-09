@@ -21,6 +21,8 @@ class App extends ConsumerWidget {
       onModelReady: (model) {
         _appViewModel = ref.watch(appViewModel);
         model.getAppSignature();
+        // Future.delayed(Duration(milliseconds: 200), () {
+        // });
       },
       builder: (context, appModel, child) {
         return ThemeProvider(

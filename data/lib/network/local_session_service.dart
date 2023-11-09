@@ -1,9 +1,8 @@
 import 'dart:async';
 
+import 'package:data/helper/key_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
-
-import 'network_properties.dart';
 
 class LocalSessionService {
   Timer? _warningTimer;
@@ -28,14 +27,14 @@ class LocalSessionService {
       if (sessionStreamSubject.value) sessionStreamSubject.add(false);
     }
 
-    _sessionTimer = Timer(NetworkProperties.MAIN_TIMEOUT, () {
+    _sessionTimer = Timer(KeyHelper.MAIN_TIMEOUT, () {
       debugPrint("------------------------------------------------------------------------------");
       debugPrint("--------------------------- Session Ended         ----------------------------");
       debugPrint("------------------------------------------------------------------------------");
       _stopwatch.stop();
       if (!sessionStreamSubject.value) sessionStreamSubject.add(true);
     });
-    _warningTimer = Timer(NetworkProperties.WARNING_TIMEOUT, () {
+    _warningTimer = Timer(KeyHelper.WARNING_TIMEOUT, () {
       debugPrint("------------------------------------------------------------------------------");
       debugPrint("---------------------------Session End Warning   -----------------------------");
       debugPrint("------------------------------------------------------------------------------");

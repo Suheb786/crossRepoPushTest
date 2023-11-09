@@ -164,6 +164,8 @@ class AddEmailViewModel extends BasePageViewModel {
     _emailInputStream.close();
     _checkUserNameRequest.close();
     _checkUserNameResponse.close();
+    _createPasswordResponse.close();
+    _createPasswordRequest.close();
     super.dispose();
   }
 }

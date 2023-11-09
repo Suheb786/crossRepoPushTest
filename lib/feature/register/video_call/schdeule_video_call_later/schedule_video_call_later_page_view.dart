@@ -13,7 +13,6 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/date_picker.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_five/schedule_call_time_dialog/schedule_call_time_dialog.dart';
@@ -24,7 +23,6 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
-import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 class ScheduleVideoCallLaterPageView extends BasePageViewWidget<ScheduleVideoCallLaterPageViewModel> {
