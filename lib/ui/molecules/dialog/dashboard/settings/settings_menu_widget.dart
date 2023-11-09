@@ -34,8 +34,7 @@ class SettingsMenuWidget extends StatelessWidget {
               dataBuilder: (context, currentStep) {
                 return Container(
                   height: 174.0.h,
-                  width: 112.0.w,
-                  margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 20),
+                  width: 102.0.w,
                   decoration: BoxDecoration(
                       color: (/*currentStep == tappedMenuIndex &&*/
                               mKey == model.getKeyByIndex(tappedMenuIndex ?? -1))
@@ -47,8 +46,8 @@ class SettingsMenuWidget extends StatelessWidget {
                     children: [
                       Container(
                           height: 64.0.h,
-                          width: 64.0.w,
-                          padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                          width: 64.0.h,
+                          // padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
                           margin: EdgeInsets.only(top: 22.h),
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
@@ -58,11 +57,11 @@ class SettingsMenuWidget extends StatelessWidget {
                               : AppSvg.asset(image,
                                   width: 24,
                                   height: 24,
+                                  fit: BoxFit.scaleDown,
                                   color: (/*currentStep == tappedMenuIndex &&*/
                                           mKey == model.getKeyByIndex(tappedMenuIndex ?? -1))
                                       ? Theme.of(context).colorScheme.secondary
                                       : Theme.of(context).textTheme.bodyLarge!.color!)),
-
                       Spacer(),
                       Text(
                         title,

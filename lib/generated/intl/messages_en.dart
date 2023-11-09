@@ -427,7 +427,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "billingNumberReachedItsMaxTrx": MessageLookupByLibrary.simpleMessage(
             "Billing Number Reached Its Max Trx"),
         "billsAndPayments":
-            MessageLookupByLibrary.simpleMessage("Bills & Payments"),
+            MessageLookupByLibrary.simpleMessage("Bills &\n Payments"),
         "billsHistory": MessageLookupByLibrary.simpleMessage("Bills History"),
         "biometricLogin":
             MessageLookupByLibrary.simpleMessage("Biometric Login"),
@@ -2657,7 +2657,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "refNo": MessageLookupByLibrary.simpleMessage("Ref No."),
         "refNumber": MessageLookupByLibrary.simpleMessage("984893922"),
         "refTitle": MessageLookupByLibrary.simpleMessage("Ref No."),
-        "referFriend": MessageLookupByLibrary.simpleMessage("Refer A Friend"),
+        "referFriend": MessageLookupByLibrary.simpleMessage("Refer A\nFriend"),
         "referFriendDescription": m10,
         "referenceNo": MessageLookupByLibrary.simpleMessage("Reference No."),
         "referenceNumber":

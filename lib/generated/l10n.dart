@@ -14180,10 +14180,10 @@ class S {
     );
   }
 
-  /// `Bills & Payments`
+  /// `Bills &\n Payments`
   String get billsAndPayments {
     return Intl.message(
-      'Bills & Payments',
+      'Bills &\n Payments',
       name: 'billsAndPayments',
       desc: '',
       args: [],
@@ -18480,10 +18480,10 @@ class S {
     );
   }
 
-  /// `Refer A Friend`
+  /// `Refer A\nFriend`
   String get referFriend {
     return Intl.message(
-      'Refer A Friend',
+      'Refer A\nFriend',
       name: 'referFriend',
       desc: '',
       args: [],
