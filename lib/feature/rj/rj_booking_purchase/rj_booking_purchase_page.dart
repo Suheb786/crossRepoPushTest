@@ -31,6 +31,11 @@ class RjBookingPurchasePageState
   Widget buildView(BuildContext context, RjBookingPurchasePageViewModel model) {
     return RjBookingPurchasePageView(provideBase());
   }
+
+  @override
+  Future<bool> onBackPressed(RjBookingPurchasePageViewModel model, {param}) async {
+    return false;
+  }
 }
 
 class RjBookingPurchasePageArgument {

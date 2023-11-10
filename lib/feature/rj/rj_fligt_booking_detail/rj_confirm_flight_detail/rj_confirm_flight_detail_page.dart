@@ -57,7 +57,7 @@ class RjConfirmFlightDetailPageState
       parentModel.previousPage();
       return false;
     } else {
-      return super.onBackPressed(model);
+      return false;
     }
   }
 }

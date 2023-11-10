@@ -30,9 +30,9 @@ class ReturnPaymentReasonSelectionPageState
   }
 
   @override
-  Future<bool> onBackPressed(ReturnPaymentReasonSelectionPageViewModel model, {param}) async{
-    var parentModel = ProviderScope.containerOf(context)
-        .read(returnPaymentTransactionSliderPageViewModelProvider);
+  Future<bool> onBackPressed(ReturnPaymentReasonSelectionPageViewModel model, {param}) async {
+    var parentModel =
+        ProviderScope.containerOf(context).read(returnPaymentTransactionSliderPageViewModelProvider);
     if (parentModel.appSwiperController.page != 0) {
       parentModel.previousPage();
       return false;

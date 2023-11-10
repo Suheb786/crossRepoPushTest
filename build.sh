@@ -1,36 +1,36 @@
  cd domain
 
- fvm clean
+ fvm  clean
 
- fvm pub get
+ fvm  pub get
 
  cd ..
 
  cd data
 
- fvm clean
+ fvm  clean
 
- fvm pub get
+ fvm  pub get
 
- fvm pub run build_runner build --delete-conflicting-outputs
+ fvm  pub run build_runner build --delete-conflicting-outputs
 
  cd ..
 
  cd infobip_rtc_flutter
 
- fvm clean
+ fvm  clean
 
- fvm pub get
+ fvm  pub get
 
  cd ..
 
- fvm clean
+ fvm  clean
 
- fvm pub get
+ fvm  pub get
 
-# fvm run --debug
+# fvm  run --debug
 
-# fvm build apk --release
+# fvm  build apk --release
 
 
 

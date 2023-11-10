@@ -8,6 +8,7 @@ import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/rj/rj_modules.dart';
 import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_confirm_flight_detail/rj_confirm_fight_detail_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
@@ -163,62 +164,62 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                 SizedBox(
                                   height: 16.h,
                                 ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      S.of(context).fare,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: Theme.of(context).primaryColorDark,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12.t),
-                                    ),
-                                    Spacer(),
-                                    Text(
-                                      '-',
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: Theme.of(context).primaryColorDark,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12.t),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 16.h,
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      S.of(context).taxesAndFee,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: Theme.of(context).primaryColorDark,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12.t),
-                                    ),
-                                    Spacer(),
-                                    Text(
-                                      ' - ',
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: Theme.of(context).primaryColorDark,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12.t),
-                                    ),
-                                    Text(
-                                      S.of(context).JOD,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: Theme.of(context).primaryColorDark,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12.t),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 16.h,
-                                ),
+                                // Row(
+                                //   children: [
+                                //     Text(
+                                //       S.of(context).fare,
+                                //       style: TextStyle(
+                                //           fontFamily: StringUtils.appFont,
+                                //           color: Theme.of(context).primaryColorDark,
+                                //           fontWeight: FontWeight.w400,
+                                //           fontSize: 12.t),
+                                //     ),
+                                //     Spacer(),
+                                //     Text(
+                                //       '-',
+                                //       style: TextStyle(
+                                //           fontFamily: StringUtils.appFont,
+                                //           color: Theme.of(context).primaryColorDark,
+                                //           fontWeight: FontWeight.w600,
+                                //           fontSize: 12.t),
+                                //     )
+                                //   ],
+                                // ),
+                                // SizedBox(
+                                //   height: 16.h,
+                                // ),
+                                // Row(
+                                //   children: [
+                                //     Text(
+                                //       S.of(context).taxesAndFee,
+                                //       style: TextStyle(
+                                //           fontFamily: StringUtils.appFont,
+                                //           color: Theme.of(context).primaryColorDark,
+                                //           fontWeight: FontWeight.w400,
+                                //           fontSize: 12.t),
+                                //     ),
+                                //     Spacer(),
+                                //     Text(
+                                //       ' - ',
+                                //       style: TextStyle(
+                                //           fontFamily: StringUtils.appFont,
+                                //           color: Theme.of(context).primaryColorDark,
+                                //           fontWeight: FontWeight.w600,
+                                //           fontSize: 12.t),
+                                //     ),
+                                //     Text(
+                                //       S.of(context).JOD,
+                                //       style: TextStyle(
+                                //           fontFamily: StringUtils.appFont,
+                                //           color: Theme.of(context).primaryColorDark,
+                                //           fontWeight: FontWeight.w600,
+                                //           fontSize: 12.t),
+                                //     )
+                                //   ],
+                                // ),
+                                // SizedBox(
+                                //   height: 16.h,
+                                // ),
                                 Row(
                                   children: [
                                     Text(
@@ -267,9 +268,8 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                         isSwipeToCancel: true,
                                         image: AssetUtils.cancelFlightIcon,
                                         onSelected: () {
-                                          Navigator.of(context)
-                                            ..pop()
-                                            ..pop();
+                                          // Navigator.of(context).pop();
+                                          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
                                           model.animateBackToDashboard(context);
                                         },
                                         descriptionWidget: Text(

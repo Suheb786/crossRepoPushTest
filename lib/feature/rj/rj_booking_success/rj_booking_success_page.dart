@@ -27,11 +27,11 @@ class RJBookingSuccessPageState
   }
 
   @override
-  Future<bool> onBackPressed(RJBookingSuccessPageViewModel model, {param}) {
+  Future<bool> onBackPressed(RJBookingSuccessPageViewModel model, {param}) async {
     Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
     model.animateBackToDashboard(context);
     ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
-    return super.onBackPressed(model);
+    return false;
   }
 }
 

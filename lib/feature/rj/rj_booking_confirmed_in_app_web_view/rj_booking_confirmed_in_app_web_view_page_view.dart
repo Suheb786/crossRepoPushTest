@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/di/usecase/payment/payment_usecase_provider.dart';
 import 'package:neo_bank/feature/rj/rj_booking_confirmed_in_app_web_view/rj_booking_confirmed_in_app_web_view_page_view_model.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:share_plus/share_plus.dart';
@@ -48,8 +49,8 @@ class RJBookingConfirmedInAppWebViewPageView
                       android: AndroidInAppWebViewOptions(
                         useHybridComposition: true,
                         safeBrowsingEnabled: true,
-                        clearSessionCache: false,
-                        cacheMode: AndroidCacheMode.LOAD_DEFAULT,
+                        clearSessionCache: true,
+                        cacheMode: AndroidCacheMode.LOAD_NO_CACHE,
                         allowFileAccess: false,
                         allowContentAccess: false,
                         geolocationEnabled: false,
@@ -61,7 +62,7 @@ class RJBookingConfirmedInAppWebViewPageView
                           useShouldOverrideUrlLoading: true,
                           javaScriptEnabled: true,
                           useOnLoadResource: true,
-                          clearCache: false,
+                          clearCache: true,
                           allowUniversalAccessFromFileURLs: false,
                           cacheEnabled: true,
                           allowFileAccessFromFileURLs: false,

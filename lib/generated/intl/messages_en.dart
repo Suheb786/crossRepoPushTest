@@ -2813,7 +2813,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "returnOnForPurchasePage":
             MessageLookupByLibrary.simpleMessage("Return On"),
         "returnPayment": MessageLookupByLibrary.simpleMessage("Return Payment"),
-        "returnTitle": MessageLookupByLibrary.simpleMessage("Return"),
+        "returnTitle": MessageLookupByLibrary.simpleMessage("Round"),
         "returned": MessageLookupByLibrary.simpleMessage("returned"),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
@@ -3133,7 +3133,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "thisAliasAlreadyExists": MessageLookupByLibrary.simpleMessage(
             "This alias already exists, please use another one."),
         "threeToSixteenYears":
-            MessageLookupByLibrary.simpleMessage("13 to 16 years"),
+            MessageLookupByLibrary.simpleMessage("12 to 16 years"),
         "time": MessageLookupByLibrary.simpleMessage("Time"),
         "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage(
             "It’s time for a quick\nvideo call"),

@@ -2734,7 +2734,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "خطأ خلال استرداد تفاصيل التعليمات الثابتة. حاول كمان مرة "),
         "returnOn": MessageLookupByLibrary.simpleMessage("عودة"),
         "returnPayment": MessageLookupByLibrary.simpleMessage("أرجاع دفعة"),
-        "returnTitle": MessageLookupByLibrary.simpleMessage("العودة"),
+        "returnTitle": MessageLookupByLibrary.simpleMessage("ذهاب وعودة"),
         "returned": MessageLookupByLibrary.simpleMessage("ارجع"),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("مراجعة الطلب"),
@@ -3048,7 +3048,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "thisAliasAlreadyExists": MessageLookupByLibrary.simpleMessage(
             "هذا الاسم مستخدم، اختار اسم مستعار آخر"),
         "threeToSixteenYears":
-            MessageLookupByLibrary.simpleMessage("من 13 إلى 16 سنة"),
+            MessageLookupByLibrary.simpleMessage("من 12 إلى 16 سنة"),
         "time": MessageLookupByLibrary.simpleMessage("وقت"),
         "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage(
             "صار الوقت لمكالمة فيديو  سريعة"),

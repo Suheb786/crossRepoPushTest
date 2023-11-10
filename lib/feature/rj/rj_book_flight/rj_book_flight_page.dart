@@ -48,9 +48,7 @@ class RjFlightBookingStatefulPage extends BaseStatefulPage<RjFlightBookingViewMo
         }
       });
 
-      model.switchTabStream.listen((event) {
-        // model.switchTab(_tabController, event);
-      });
+      model.switchTabStream.listen((event) {});
     }
 
     super.onModelReady(model);

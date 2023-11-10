@@ -2,10 +2,8 @@ import 'package:domain/constants/enum/flight_type_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/rj/rj_booking_confirmed_in_app_web_view/rj_booking_confirmed_in_app_web_view_page.dart';
 import 'package:neo_bank/feature/rj/rj_booking_purchase/rj_booking_purchase_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -194,30 +192,30 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                       color: Theme.of(context).colorScheme.onTertiary,
                       height: 1,
                     ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 16.h),
-                      child: Row(
-                        children: [
-                          Text(
-                            S.of(context).cabinClass,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).primaryColorDark,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12.t),
-                          ),
-                          Spacer(),
-                          Text(
-                            '-',
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).primaryColorDark,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 12.t),
-                          ),
-                        ],
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 16.h),
+                    //   child: Row(
+                    //     children: [
+                    //       Text(
+                    //         S.of(context).cabinClass,
+                    //         style: TextStyle(
+                    //             fontFamily: StringUtils.appFont,
+                    //             color: Theme.of(context).primaryColorDark,
+                    //             fontWeight: FontWeight.w400,
+                    //             fontSize: 12.t),
+                    //       ),
+                    //       Spacer(),
+                    //       Text(
+                    //         '-',
+                    //         style: TextStyle(
+                    //             fontFamily: StringUtils.appFont,
+                    //             color: Theme.of(context).primaryColorDark,
+                    //             fontWeight: FontWeight.w600,
+                    //             fontSize: 12.t),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
                     Padding(
                       padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 16.h),
                       child: Row(
@@ -388,10 +386,9 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                 child: AppPrimaryButton(
                   text: S.of(context).done,
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, RoutePaths.RJBookingConfirmedInAppWebViewPage,
-                        arguments: RJBookingConfirmedInAppWebViewPageArguments(
-                            url: model.arguments.flightDetailResponse.flightDetailContent?.confirmationUrl ??
-                                ''));
+                    Navigator.of(context)
+                      ..pop()
+                      ..pop(model.arguments.flightDetailResponse.flightDetailContent?.confirmationUrl ?? '');
                   },
                   activeBackgroundColor: Theme.of(context).colorScheme.secondary,
                   textColor: Theme.of(context).colorScheme.onSecondaryContainer,

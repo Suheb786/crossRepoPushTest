@@ -62,9 +62,9 @@ class ReturnPaymentOtpPageState extends BaseStatefulPage<ReturnPaymentOtpPageVie
   }
 
   @override
-  Future<bool> onBackPressed(ReturnPaymentOtpPageViewModel model, {param}) async{
-    var parentModel = ProviderScope.containerOf(context)
-        .read(returnPaymentTransactionSliderPageViewModelProvider);
+  Future<bool> onBackPressed(ReturnPaymentOtpPageViewModel model, {param}) async {
+    var parentModel =
+        ProviderScope.containerOf(context).read(returnPaymentTransactionSliderPageViewModelProvider);
     if (parentModel.appSwiperController.page != 0) {
       parentModel.previousPage();
       return false;

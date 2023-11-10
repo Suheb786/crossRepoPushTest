@@ -45,7 +45,7 @@ class RjMakePaymentPageState extends BaseStatefulPage<RjMakePaymentViewModel, Rj
       parentModel.previousPage();
       return false;
     } else {
-      return super.onBackPressed(model);
+      return false;
     }
   }
 }
