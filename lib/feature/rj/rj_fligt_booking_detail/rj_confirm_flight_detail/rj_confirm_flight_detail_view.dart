@@ -164,62 +164,62 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                 SizedBox(
                                   height: 16.h,
                                 ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      S.of(context).fare,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: Theme.of(context).primaryColorDark,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12.t),
-                                    ),
-                                    Spacer(),
-                                    Text(
-                                      '-',
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: Theme.of(context).primaryColorDark,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12.t),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 16.h,
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      S.of(context).taxesAndFee,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: Theme.of(context).primaryColorDark,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12.t),
-                                    ),
-                                    Spacer(),
-                                    Text(
-                                      ' - ',
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: Theme.of(context).primaryColorDark,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12.t),
-                                    ),
-                                    Text(
-                                      S.of(context).JOD,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: Theme.of(context).primaryColorDark,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12.t),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 16.h,
-                                ),
+                                // Row(
+                                //   children: [
+                                //     Text(
+                                //       S.of(context).fare,
+                                //       style: TextStyle(
+                                //           fontFamily: StringUtils.appFont,
+                                //           color: Theme.of(context).primaryColorDark,
+                                //           fontWeight: FontWeight.w400,
+                                //           fontSize: 12.t),
+                                //     ),
+                                //     Spacer(),
+                                //     Text(
+                                //       '-',
+                                //       style: TextStyle(
+                                //           fontFamily: StringUtils.appFont,
+                                //           color: Theme.of(context).primaryColorDark,
+                                //           fontWeight: FontWeight.w600,
+                                //           fontSize: 12.t),
+                                //     )
+                                //   ],
+                                // ),
+                                // SizedBox(
+                                //   height: 16.h,
+                                // ),
+                                // Row(
+                                //   children: [
+                                //     Text(
+                                //       S.of(context).taxesAndFee,
+                                //       style: TextStyle(
+                                //           fontFamily: StringUtils.appFont,
+                                //           color: Theme.of(context).primaryColorDark,
+                                //           fontWeight: FontWeight.w400,
+                                //           fontSize: 12.t),
+                                //     ),
+                                //     Spacer(),
+                                //     Text(
+                                //       ' - ',
+                                //       style: TextStyle(
+                                //           fontFamily: StringUtils.appFont,
+                                //           color: Theme.of(context).primaryColorDark,
+                                //           fontWeight: FontWeight.w600,
+                                //           fontSize: 12.t),
+                                //     ),
+                                //     Text(
+                                //       S.of(context).JOD,
+                                //       style: TextStyle(
+                                //           fontFamily: StringUtils.appFont,
+                                //           color: Theme.of(context).primaryColorDark,
+                                //           fontWeight: FontWeight.w600,
+                                //           fontSize: 12.t),
+                                //     )
+                                //   ],
+                                // ),
+                                // SizedBox(
+                                //   height: 16.h,
+                                // ),
                                 Row(
                                   children: [
                                     Text(

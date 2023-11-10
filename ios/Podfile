@@ -50,6 +50,31 @@ post_install do |installer|
             'PERMISSION_MICROPHONE=1',
 
           ]
+
+          if target.name  == "infobipplugin"
+                all_filerefs = installer.pods_project.files
+                all_filerefs.each do |fileref|
+                   if fileref.path.end_with? "WebRTC.xcframework"
+                    build_phase = target.frameworks_build_phase
+                    unless build_phase.files_references.include?(fileref)
+                      build_phase.add_file_reference(fileref)
+                    end
+                   end
+                end
+              end
+
+          if target.name  == "infobipplugin"
+                all_filerefs = installer.pods_project.files
+                all_filerefs.each do |fileref|
+                   if fileref.path.end_with? "InfobipRTC.xcframework"
+                    build_phase = target.frameworks_build_phase
+                    unless build_phase.files_references.include?(fileref)
+                      build_phase.add_file_reference(fileref)
+                    end
+                   end
+                end
+              end
+
         if config.build_settings['WRAPPER_EXTENSION'] == 'bundle'
            config.build_settings['DEVELOPMENT_TEAM'] = '235F45XS77'
 

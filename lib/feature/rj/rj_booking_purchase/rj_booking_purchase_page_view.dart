@@ -192,30 +192,30 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                       color: Theme.of(context).colorScheme.onTertiary,
                       height: 1,
                     ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 16.h),
-                      child: Row(
-                        children: [
-                          Text(
-                            S.of(context).cabinClass,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).primaryColorDark,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12.t),
-                          ),
-                          Spacer(),
-                          Text(
-                            '-',
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).primaryColorDark,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 12.t),
-                          ),
-                        ],
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 16.h),
+                    //   child: Row(
+                    //     children: [
+                    //       Text(
+                    //         S.of(context).cabinClass,
+                    //         style: TextStyle(
+                    //             fontFamily: StringUtils.appFont,
+                    //             color: Theme.of(context).primaryColorDark,
+                    //             fontWeight: FontWeight.w400,
+                    //             fontSize: 12.t),
+                    //       ),
+                    //       Spacer(),
+                    //       Text(
+                    //         '-',
+                    //         style: TextStyle(
+                    //             fontFamily: StringUtils.appFont,
+                    //             color: Theme.of(context).primaryColorDark,
+                    //             fontWeight: FontWeight.w600,
+                    //             fontSize: 12.t),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
                     Padding(
                       padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 16.h),
                       child: Row(

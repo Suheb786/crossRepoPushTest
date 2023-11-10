@@ -128,7 +128,8 @@ class EncryptDecryptHelper {
   }
 
   static String _encryptRequestData(String data, String key) {
-    Uint8List dataBytes = Uint8List.fromList(data.codeUnits);
+    List<int> utfEncodedData = utf8.encode(data);
+    Uint8List dataBytes = Uint8List.fromList(utfEncodedData);
     Uint8List keyBytes = Uint8List.fromList(key.codeUnits);
     KeyParameter keyParameter = KeyParameter(keyBytes);
     final cbcCipher = AESEngine()..init(true, keyParameter);

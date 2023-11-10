@@ -210,11 +210,6 @@ class RjFlightBookingViewModel extends BasePageViewModel {
     super.dispose();
   }
 
-  List<RjBookingFlightTabOption> rjBookingFlightTabOptionList = [
-    RjBookingFlightTabOption('One-Way'),
-    RjBookingFlightTabOption('Return')
-  ];
-
   List<CabinClassOption> cabinClassOptionList = [
     CabinClassOption(S.current.economy, AssetUtils.EconomySeat),
     CabinClassOption(S.current.business, AssetUtils.BusinessSeat)

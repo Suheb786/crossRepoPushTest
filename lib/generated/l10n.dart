@@ -14620,10 +14620,10 @@ class S {
     );
   }
 
-  /// `Return`
+  /// `Round`
   String get returnTitle {
     return Intl.message(
-      'Return',
+      'Round',
       name: 'returnTitle',
       desc: '',
       args: [],
@@ -18710,10 +18710,10 @@ class S {
     );
   }
 
-  /// `13 to 16 years`
+  /// `12 to 16 years`
   String get threeToSixteenYears {
     return Intl.message(
-      '13 to 16 years',
+      '12 to 16 years',
       name: 'threeToSixteenYears',
       desc: '',
       args: [],
