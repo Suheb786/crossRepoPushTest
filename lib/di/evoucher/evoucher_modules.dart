@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/evouchers/evoucher_usecase.dart';
-import 'package:neo_bank/feature/evoucher/enter_code_evoucher_puchase/enter_code_evoucher_puchase_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/evoucher/evoucher_view_model.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page_view_model.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_detail/evoucher_detail_page_view_model.dart';
@@ -110,9 +109,5 @@ final shareVoucherViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<ShareVoucherPageViewModel, ShareVoucherPageArgument>(
         (ref, arg) => ShareVoucherPageViewModel(arg));
 
-///enter code evoucher purchase view model
-final enterCodeEVoucherPurchaseViewModelProvider =
-    ChangeNotifierProvider.autoDispose<EnterCodeEVoucherPurchasePageViewModel>(
-        (ref) => EnterCodeEVoucherPurchasePageViewModel(ref.read(enterCodeEVoucherPurchaseUseCaseProvider)));
 final cameraCapturePageViewModelProvider =
     ChangeNotifierProvider.autoDispose<CameraCapturePageViewModel>((ref) => CameraCapturePageViewModel());

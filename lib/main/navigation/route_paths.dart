@@ -26,7 +26,6 @@ class RoutePaths {
   static const String MyDocuments = '/myDocuments';
   static const String BeneficiaryContactsList = '/beneficiaryContactsList';
   static const String PaymentHome = '/paymentHome';
-  static const String ActivityHome = '/activityHome';
   static const String SendMoneyFailure = "/sendMoneyFailure";
   static const String RequestAmountFromContact = "/requestAmountFromContact";
   static const String SendAmountToContact = "/sendAmountToContactPage";
@@ -112,10 +111,8 @@ class RoutePaths {
   static const String PurchaseEVoucherWithoutRegionPage = "/purchaseEVoucherWithoutRegionPage";
   static const String SelectRegionAmountPage = "/selectRegionAmountPage";
   static const String PurchaseByDenominationAmountPage = "/purchaseByDenominationAmountPage";
-  static const String EnterCodeEVoucherPurchase = "/enterCodeEVoucherPurchase";
   static const String SelectedCardForApplePayPage = "/selectedCardForApplePayPage";
   static const String ApplePaySuccessAndErrorPage = "/applePaySuccessAndErrorPage";
-  static const String applePayLauncherPage = "/ApplePayLauncherPage";
   static const String PaySelectedBillsPostPaidBillsPage = "/paySelectedBillsPostPaidBillsPage";
   static const String PayAllPostPaidBillsPage = "/payAllPostPaidBillsPage";
   static const String LauncherPage = "/launcherPage";

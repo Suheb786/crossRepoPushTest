@@ -21,8 +21,8 @@ import 'package:domain/usecase/user/get_cipher_usecase.dart';
 import 'package:domain/usecase/user/get_combo_values_usecase.dart';
 import 'package:domain/usecase/user/get_current_user_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
-import 'package:domain/usecase/user/home_address_dialog_usecase.dart';
 import 'package:domain/usecase/user/id_verification_info_usecase.dart';
+import 'package:domain/usecase/user/local_session_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:domain/usecase/user/logout_usecase.dart';
 import 'package:domain/usecase/user/process_journey_via_mobile_usecase.dart';
@@ -34,7 +34,6 @@ import 'package:domain/usecase/user/scan_user_document_usecase.dart';
 import 'package:domain/usecase/user/update_journey_usecase.dart';
 import 'package:domain/usecase/user/upload_selfie_image_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
-import 'package:domain/usecase/user/local_session_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[LoginUseCase] provider
@@ -70,13 +69,6 @@ final confirmDetailUseCaseProvider = Provider.autoDispose<ConfirmDetailUseCase>(
 ///[EnterAddressUseCase] provider
 final enterAddressUseCaseProvider = Provider.autoDispose<EnterAddressUseCase>(
   (ref) => EnterAddressUseCase(ref.read(userRepoProvider)),
-);
-
-///[HomeAddressDialogUseCase] provider
-final homeAddressDialogUseCaseProvider = Provider.autoDispose<HomeAddressDialogUseCase>(
-  (ref) => HomeAddressDialogUseCase(
-    ref.read(homeAddressDialogRepositoryProvider),
-  ),
 );
 
 ///[ProductSelectorUseCase] provider

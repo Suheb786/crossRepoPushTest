@@ -29,7 +29,6 @@ import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_t
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_view_model.dart';
-import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_payment_account/change_card_payment_account_page_view_model.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_settlement_percentage/change_card_settlement_percentage_page_view_model.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/manage_credit_settlement_page_view_model.dart';
@@ -79,12 +78,6 @@ final filterTransactionDialogViewModelProvier =
     ChangeNotifierProvider.autoDispose<FilterTransactionDialogViewModel>(
         (ref) => FilterTransactionDialogViewModel());
 
-final myAccountViewModelProvider = ChangeNotifierProvider.autoDispose<MyAccountViewModel>(
-  (ref) => MyAccountViewModel(
-    ref.read(updateNickNameSubAccountUseCaseProvider),
-  ),
-);
-
 final debitCardVerificationSuccessViewModelProvider =
     ChangeNotifierProvider.autoDispose<DebitCardVerificationSuccessViewModel>(
   (ref) => DebitCardVerificationSuccessViewModel(),
@@ -115,7 +108,7 @@ final addMoneyOptionSelectorViewModelProvider =
 
 ///settings dialog view model
 final settingsDialogViewModelProvider = ChangeNotifierProvider.autoDispose<SettingsDialogViewModel>(
-      (ref) => SettingsDialogViewModel(
+  (ref) => SettingsDialogViewModel(
     ref.read(logoutUseCaseProvider),
     ref.read(getProfileInfoUseCaseProvider),
     ref.read(referDynamicLinkUseCaseProvider),

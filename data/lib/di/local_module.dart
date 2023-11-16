@@ -10,12 +10,8 @@ import 'package:data/source/app_flyer_source/app_flyer_datasource.dart';
 import 'package:data/source/app_flyer_source/remote/app_flyer_datasource_impl.dart';
 import 'package:data/source/card_processing/card_processing_data_source.dart';
 import 'package:data/source/card_processing/local/card_processing_local_ds_impl.dart';
-import 'package:data/source/country/country_datasource.dart';
-import 'package:data/source/country/local/country_local_ds_impl.dart';
 import 'package:data/source/dynamic_link/dynamic_link_datasource.dart';
 import 'package:data/source/dynamic_link/remote/dynamic_link_datasource_impl.dart';
-import 'package:data/source/enter_address/home_address_dialog_ds.dart';
-import 'package:data/source/enter_address/local/home_address_dialog_data_source_impl.dart';
 import 'package:data/source/infobip_audio/infobip_audio_datasource.dart';
 import 'package:data/source/infobip_audio/infobip_message_datasource.dart';
 import 'package:data/source/infobip_audio/local/infobip_audio_local_datasource_implementation.dart';
@@ -51,16 +47,10 @@ var userLocalDSProvider = Provider<UserLocalDS>(
       ref.read(bioMetricSourceProvider), ref.read(secureStorageProvider), ref.read(localSessionService)),
 );
 
-var countryLocalDataProvider = Provider<CountryLocalDs>(
-  (ref) => CountryLocalDsImpl(),
-);
-
 var uploadDocumentDataSourceProvider = Provider<UploadDocumentLocalDS>((ref) => UploadDocumentLocalDSImpl());
 
 ///Card Processing data source
 var cardProcessingDataSourceProvider = Provider<CardProcessingLocalDs>((ref) => CardProcessingLocalDsImpl());
-
-var homeAddressDialogDataSourceProvider = Provider<HomeAddressDialogDS>((ref) => HomeAddressDialogDSImpl());
 
 var deviceInfoHelperProvider = Provider<DeviceInfoHelper>((ref) => DeviceInfoHelper());
 

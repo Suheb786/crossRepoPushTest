@@ -7,7 +7,6 @@ import 'package:neo_bank/feature/account_settings/change_email_address/change_em
 import 'package:neo_bank/feature/account_settings/change_mobile_number/change_mobile_number_page.dart';
 import 'package:neo_bank/feature/account_settings/change_password/change_password_page.dart';
 import 'package:neo_bank/feature/account_settings/my_documents/my_documents_page.dart';
-import 'package:neo_bank/feature/activity/activity_home/activity_home_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity/payment_activity_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/accept_request_money_otp_screen/accept_request_money_otp_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/credit_confirmation/credit_confirmation_page.dart';
@@ -16,7 +15,6 @@ import 'package:neo_bank/feature/activity/payment_activity_transaction/reject_re
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_transaction_slider_page.dart';
 import 'package:neo_bank/feature/apple_pay/apple_pay_success/apple_pay_success_and_error_page.dart';
 import 'package:neo_bank/feature/apple_pay/selected_card_for_apple_pay/selected_card_for_apple_pay_page.dart';
-import 'package:neo_bank/feature/apple_pay_luncher_screen/apple_pay_launcher_page.dart';
 import 'package:neo_bank/feature/apply_credit_card_home/apply_credit_card_home_page.dart';
 import 'package:neo_bank/feature/blink_credit_card/blink_credit_card_page.dart';
 import 'package:neo_bank/feature/card_delivery/card_delivery_page.dart';
@@ -54,7 +52,6 @@ import 'package:neo_bank/feature/dc_setting_card_delivery/dc_setting_card_delive
 import 'package:neo_bank/feature/dc_setting_card_delivery/dc_setting_card_ready/dc_setting_card_ready_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page.dart';
-import 'package:neo_bank/feature/evoucher/enter_code_evoucher_puchase/enter_code_evoucher_puchase_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_detail/evoucher_detail_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_by_denomination_amount/purchase_by_denomination_amount_page.dart';
@@ -313,10 +310,6 @@ class AppRouter {
 
       case RoutePaths.PaymentHome:
         return CustomRoute.createRoute(PaymentHomePage(navigationType: settings.arguments as NavigationType));
-
-      case RoutePaths.ActivityHome:
-        return CupertinoPageRoute(
-            builder: (context) => ActivityHomePage(), settings: RouteSettings(name: RoutePaths.ActivityHome));
 
       case RoutePaths.SendMoneyFailure:
         return CupertinoPageRoute(
@@ -716,11 +709,6 @@ class AppRouter {
             builder: (context) => ShareVoucherPage(settings.arguments as ShareVoucherPageArgument),
             settings: RouteSettings(name: RoutePaths.ShareVoucher));
 
-      case RoutePaths.EnterCodeEVoucherPurchase:
-        return CupertinoPageRoute(
-            builder: (context) => EnterCodeEVoucherPurchasePage(),
-            settings: RouteSettings(name: RoutePaths.EnterCodeEVoucherPurchase));
-
       case RoutePaths.SelectRegionAmountPage:
         return CupertinoPageRoute(
             builder: (context) =>
@@ -745,11 +733,6 @@ class AppRouter {
             builder: (context) =>
                 ApplePaySuccessAndErrorPage(settings.arguments as ApplePaySuccessAndErrorPageArguments),
             settings: RouteSettings(name: RoutePaths.ApplePaySuccessAndErrorPage));
-
-      case RoutePaths.applePayLauncherPage:
-        return CupertinoPageRoute(
-            builder: (context) => ApplePayLauncherPage(),
-            settings: RouteSettings(name: RoutePaths.applePayLauncherPage));
 
       case RoutePaths.PaySelectedBillsPostPaidBillsPage:
         return CupertinoPageRoute(

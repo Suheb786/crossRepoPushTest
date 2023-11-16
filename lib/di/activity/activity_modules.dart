@@ -1,8 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/activity/activity_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/manage_cliq_id/manage_cliq_id_usecase.dart';
-import 'package:neo_bank/feature/activity/activity_home/activity_home_view_model.dart';
-import 'package:neo_bank/feature/activity/notification/notification_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity/payment_activity_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/accept_request_money_otp_screen/accept_request_money_otp_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/accept_request_money_otp_screen/accept_request_money_otp_page_view_model.dart';
@@ -20,17 +18,6 @@ import 'package:neo_bank/feature/activity/payment_activity_transaction/return_pa
 import 'package:neo_bank/ui/molecules/dialog/reject_reason_inward_request/reject_reason_inward_request_dialog_view_model.dart';
 
 import '../../ui/molecules/dialog/account_selection/account_selection_dialog_model.dart';
-
-final notificationViewModelProvider = ChangeNotifierProvider.autoDispose<NotificationViewModel>(
-  (ref) => NotificationViewModel(),
-);
-
-final activityHomeViewModelProvider = ChangeNotifierProvider.autoDispose<ActivityHomeViewModel>(
-  (ref) => ActivityHomeViewModel(
-    ref.read(notificationUseCaseProvider),
-    ref.read(requestMoneyActivityUseCaseProvider),
-  ),
-);
 
 final paymentActivityViewModelProvider = ChangeNotifierProvider.autoDispose<PaymentActivityViewModel>(
   (ref) => PaymentActivityViewModel(),

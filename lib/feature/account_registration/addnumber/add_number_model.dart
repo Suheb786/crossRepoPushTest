@@ -4,7 +4,6 @@ import 'package:domain/model/country/country_list/country_data.dart';
 import 'package:domain/model/country/get_allowed_code/allowed_country_list_response.dart';
 import 'package:domain/model/user/check_username.dart';
 import 'package:domain/usecase/account/send_mobile_otp_usecase.dart';
-import 'package:domain/usecase/country/fetch_country_by_code_usecase.dart';
 import 'package:domain/usecase/country/get_allowed_code_country_list_usecase.dart';
 import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
 import 'package:domain/usecase/user/register_number_usecase.dart';
@@ -19,7 +18,6 @@ import 'package:rxdart/rxdart.dart';
 
 class AddNumberViewModel extends BasePageViewModel {
   final RegisterNumberUseCase _registerNumberUseCase;
-  final FetchCountryByCodeUseCase _fetchCountryByCodeUseCase;
   final CheckUserNameMobileUseCase _checkUserNameMobileUseCase;
   final GetAllowedCodeCountryListUseCase _allowedCodeCountryListUseCase;
   final SendMobileOTPUsecase _sendMobileOTPUsecase;
@@ -44,13 +42,6 @@ class AddNumberViewModel extends BasePageViewModel {
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
-
-  ///COUNTRY
-  PublishSubject<FetchCountryByCodeUseCaseParams> _fetchCountryRequest = PublishSubject();
-
-  BehaviorSubject<Resource<Country>> _fetchCountryResponse = BehaviorSubject();
-
-  Stream<Resource<Country>> get countryByCode => _fetchCountryResponse.stream;
 
   PublishSubject<Resource<CheckUsername>> _checkUserNameResponse = PublishSubject();
 
@@ -89,8 +80,8 @@ class AddNumberViewModel extends BasePageViewModel {
   ///get allowed code country response stream
   Stream<CountryData> get getSelectedCountryStream => _selectedCountryResponse.stream;
 
-  AddNumberViewModel(this._registerNumberUseCase, this._fetchCountryByCodeUseCase,
-      this._checkUserNameMobileUseCase, this._allowedCodeCountryListUseCase, this._sendMobileOTPUsecase) {
+  AddNumberViewModel(this._registerNumberUseCase, this._checkUserNameMobileUseCase,
+      this._allowedCodeCountryListUseCase, this._sendMobileOTPUsecase) {
     _registerNumberRequest.listen((value) {
       RequestManager(value, createCall: () => _registerNumberUseCase.execute(params: value))
           .asFlow()
@@ -100,18 +91,6 @@ class AddNumberViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           getError(event);
           showErrorState();
-        }
-      });
-    });
-
-    _fetchCountryRequest.listen((value) {
-      RequestManager(value, createCall: () => _fetchCountryByCodeUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        _fetchCountryResponse.safeAdd(event);
-        updateLoader();
-        if (event.status == Status.SUCCESS) {
-          selectedCountry = event.data!;
         }
       });
     });
@@ -170,12 +149,6 @@ class AddNumberViewModel extends BasePageViewModel {
         }
       });
     });
-
-    // getAllowedCountryCode();
-  }
-
-  void fetchCountryByCode(BuildContext context, String code) {
-    _fetchCountryRequest.safeAdd(FetchCountryByCodeUseCaseParams(context: context, countryCode: code));
   }
 
   void getError(Resource<bool> event) {
@@ -234,8 +207,6 @@ class AddNumberViewModel extends BasePageViewModel {
     _registerNumberRequest.close();
     _registerNumberResponse.close();
     _showButtonSubject.close();
-    _fetchCountryRequest.close();
-    _fetchCountryResponse.close();
     _checkUserNameResponse.close();
     _phoneInputStream.close();
     _checkUserMobileRequest.close();

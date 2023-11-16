@@ -15,7 +15,6 @@ import 'package:data/repository/dashboard/dashboard_repository_impl.dart';
 import 'package:data/repository/device_change/device_change_repository_impl.dart';
 import 'package:data/repository/dynamic_link/dynamic_link_repository_impl.dart';
 import 'package:data/repository/e_voucher/e_voucher_repository_impl.dart';
-import 'package:data/repository/enter_address/home_address_dialog_repository_impl.dart';
 import 'package:data/repository/fatca_crs/fatca_crs_repository_impl.dart';
 import 'package:data/repository/forget_password/forget_password_repository_impl.dart';
 import 'package:data/repository/id_card/id_card_repository_impl.dart';
@@ -47,7 +46,6 @@ import 'package:domain/repository/country/country_repository.dart';
 import 'package:domain/repository/dashboard/dashboard_repository.dart';
 import 'package:domain/repository/dynamic_link/dynamic_link_repository.dart';
 import 'package:domain/repository/e_voucher/e_voucher_repository.dart';
-import 'package:domain/repository/enter_address/home_address_dialog_repository.dart';
 import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
 import 'package:domain/repository/forget_password/forget_password_repository.dart';
 import 'package:domain/repository/help_center/help_canter.dart';
@@ -79,8 +77,7 @@ var userRepoProvider = Provider<UserRepository>(
 
 /// inject [CountryRepository] provider
 var countryRepoProvider = Provider<CountryRepository>(
-  (ref) =>
-      CountryRepositoryImpl(ref.read(countryLocalDataProvider), ref.read(countryRemoteDataSourceProvider)),
+  (ref) => CountryRepositoryImpl(ref.read(countryRemoteDataSourceProvider)),
 );
 
 var registerRepoProvider = Provider<RegisterRepository>(
@@ -98,9 +95,6 @@ var registerStepFourRepoProvider = Provider<RegisterStepFourRepository>(
 var uploadDocumentRepositoryProvider = Provider<UploadDocumentRepository>((ref) =>
     UploadDocumentRepositoryImpl(
         ref.read(uploadDocumentDataSourceProvider), ref.read(uploadDocumentRemoteDataSourceProvider)));
-
-var homeAddressDialogRepositoryProvider = Provider<HomeAddressDialogRepository>(
-    (ref) => HomeAddressDialogRepositoryImpl(ref.read(homeAddressDialogDataSourceProvider)));
 
 /// inject [KYCRepository] provider
 var kycRepositoryProvider = Provider<KYCRepository>((ref) => KYCRepositoryImpl(ref.read(kycRemoteDS)));

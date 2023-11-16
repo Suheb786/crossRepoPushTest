@@ -21,7 +21,6 @@ final accountRegistrationViewModelProvider =
 final addNumberViewModelProvider = ChangeNotifierProvider.autoDispose<AddNumberViewModel>(
   (ref) => AddNumberViewModel(
       ref.read(registerNumberUseCaseProvider),
-      ref.read(fetchCountryByCodeUseCaseProvider),
       ref.read(checkUserNameMobileUseCaseProvider),
       ref.read(getAllowedCodeCountriesListUseCaseProvider),
       ref.read(sendMobileOTPUsecaseProvider)),
@@ -48,8 +47,9 @@ final emailOtpViewModelProvider = ChangeNotifierProvider.autoDispose<EmailOtpVie
       EmailOtpViewModel(ref.read(verifyEmailOtpUseCaseProvider), ref.read(resendEmailOTPUseCaseProvider)),
 );
 
-final manageIDWiseStatusViewModel = ChangeNotifierProvider.autoDispose<ManageIDWiseStatusViewModel>(
-    (ref) => ManageIDWiseStatusViewModel(ref.read(processJourneyViaMobileUseCaseProvider),ref.read(checkJourneyStatusUseCaseProvider),ref.read(currentUserUseCaseProvider)));
+final manageIDWiseStatusViewModel = ChangeNotifierProvider.autoDispose<ManageIDWiseStatusViewModel>((ref) =>
+    ManageIDWiseStatusViewModel(ref.read(processJourneyViaMobileUseCaseProvider),
+        ref.read(checkJourneyStatusUseCaseProvider), ref.read(currentUserUseCaseProvider)));
 
 final onboardingErrorScenariosPageViewModel =
     ChangeNotifierProvider.autoDispose<OnboardingFailureScenariosPageViewModel>(
