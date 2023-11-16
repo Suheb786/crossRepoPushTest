@@ -35,7 +35,6 @@ import 'package:neo_bank/feature/register/step_three/register_step_three_page_vi
 import 'package:neo_bank/feature/register/step_two/job_and_income/job_and_income_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_two/register_step_two_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_two/student_job_income/student_job_income_page_view_model.dart';
-import 'package:neo_bank/feature/register/stepone/capture/capture_model.dart';
 import 'package:neo_bank/feature/register/stepone/enter_address/enter_address_model.dart';
 import 'package:neo_bank/feature/register/stepone/profile_details/profile_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
@@ -72,10 +71,6 @@ final registerViewModelProvider = ChangeNotifierProvider.autoDispose<RegisterVie
 final registerStepOneViewModelProvider = ChangeNotifierProvider.autoDispose<RegisterStepOneViewModel>(
   (ref) => RegisterStepOneViewModel(),
 );
-
-///[CaptureViewModel] provider
-final captureViewModelProvider = ChangeNotifierProvider.autoDispose<CaptureViewModel>(
-    (ref) => CaptureViewModel(ref.read(uploadSelfieImageUseCaseProvider)));
 
 ///[EnterAddressViewModel] provider
 final enterAddressViewModelProvider = ChangeNotifierProvider.autoDispose<EnterAddressViewModel>((ref) =>

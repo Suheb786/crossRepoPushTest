@@ -7,7 +7,7 @@ import 'package:data/di/network_module.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/helper/antelop_helper.dart';
 import 'package:data/helper/key_helper.dart' as key;
-import 'package:data/helper/secure_storage_helper.dart';
+import 'package:data/network/api_interceptor.dart';
 import 'package:domain/constants/app_constants_domain.dart';
 import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/usecase/app_flyer/init_app_flyer_sdk.dart';
@@ -332,7 +332,7 @@ class AppViewModel extends BaseViewModel {
 
     sessionEndStreamSubscription = sessionEndStream?.stream.listen((event) {
       if (event) {
-        SecureStorageHelper.instance.clearToken();
+        authToken = '';
         AppConstantsUtils.resetCacheLists();
         ProviderScope.containerOf(context).read(localSessionService).stopTimer();
         if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
@@ -393,8 +393,8 @@ class AppViewModel extends BaseViewModel {
   }
 
   Future<void> userActivityDetected() async {
-    String? token = await SecureStorageHelper.instance.getToken();
-    if (token != null) {
+    String? token = authToken;
+    if (token.isNotEmpty) {
       ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).startTimer();
     }
   }

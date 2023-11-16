@@ -1,4 +1,4 @@
-import 'package:data/helper/secure_storage_helper.dart';
+import 'package:data/network/api_interceptor.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -44,7 +44,7 @@ class CheckScheduledVideoCallPageView extends BasePageViewWidget<CheckScheduledV
                       initialData: Resource.none(),
                       onData: (response) {
                         if (response.status == Status.SUCCESS) {
-                          SecureStorageHelper.instance.clearToken();
+                          authToken = '';
                           AppConstantsUtils.resetCacheLists();
                           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.OnBoarding));
                         }

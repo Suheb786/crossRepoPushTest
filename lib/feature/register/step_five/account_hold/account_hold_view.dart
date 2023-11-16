@@ -1,5 +1,5 @@
 import 'package:data/di/local_module.dart';
-import 'package:data/helper/secure_storage_helper.dart';
+import 'package:data/network/api_interceptor.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -39,8 +39,10 @@ class AccountHoldView extends BasePageViewWidget<AccountHoldViewModel> {
                 initialData: Resource.none(),
                 onData: (response) {
                   if (response.status == Status.SUCCESS) {
-                    SecureStorageHelper.instance.clearToken();
-                    ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).stopTimer();
+                    authToken = '';
+                    ProviderScope.containerOf(appLevelKey.currentState!.context)
+                        .read(localSessionService)
+                        .stopTimer();
                     AppConstantsUtils.resetCacheLists();
                     Navigator.pushNamedAndRemoveUntil(
                         context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));

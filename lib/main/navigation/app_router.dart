@@ -119,7 +119,6 @@ import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
 import 'package:neo_bank/feature/register/step_five/video_call_scheduled/video_call_scheduled_page.dart';
-import 'package:neo_bank/feature/register/stepone/capture/capture_page.dart';
 import 'package:neo_bank/feature/register/upload_document_later/upload_document_later_page.dart';
 import 'package:neo_bank/feature/register/video_call/video_call_page.dart';
 import 'package:neo_bank/feature/renew_credit_card/renew_credit_card_page.dart';
@@ -226,10 +225,6 @@ class AppRouter {
       case RoutePaths.AppHome:
         return CupertinoPageRoute(
             builder: (context) => AppHomePage(), settings: RouteSettings(name: RoutePaths.AppHome));
-
-      case RoutePaths.Capture:
-        return CupertinoPageRoute(
-            builder: (context) => CapturePage(), settings: RouteSettings(name: RoutePaths.Capture));
 
       case RoutePaths.ExemptPayeeCode:
         return CupertinoPageRoute(

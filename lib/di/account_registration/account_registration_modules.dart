@@ -4,7 +4,6 @@ import 'package:neo_bank/di/usecase/country/country_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
 import 'package:neo_bank/feature/account_registration/addnumber/add_number_model.dart';
-import 'package:neo_bank/feature/account_registration/countryselection/country_selection_model.dart';
 import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_model.dart';
 
 import '../../feature/account_registration/add_email/add_email_model.dart';
@@ -17,12 +16,6 @@ import '../usecase/account/account_usecase_provider.dart';
 final accountRegistrationViewModelProvider =
     ChangeNotifierProvider.autoDispose<AccountRegistrationPageViewModel>(
   (ref) => AccountRegistrationPageViewModel(),
-);
-
-final countrySelectionViewModelProvider = ChangeNotifierProvider.autoDispose<CountrySelectionViewModel>(
-  (ref) => CountrySelectionViewModel(
-    ref.read(fetchCountriesUseCaseProvider),
-  ),
 );
 
 final addNumberViewModelProvider = ChangeNotifierProvider.autoDispose<AddNumberViewModel>(

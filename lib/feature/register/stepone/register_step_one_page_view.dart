@@ -15,11 +15,7 @@ import 'package:show_up_animation/show_up_animation.dart';
 class RegisterStepOnePageView extends BasePageViewWidget<RegisterStepOneViewModel> {
   RegisterStepOnePageView(ProviderBase model) : super(model);
 
-  final pages = [
-    /*IdVerificationInfoPage(), ConfirmDetailPage(),*/
-    EnterAddressPage(),
-    ProfileDetailsPage()
-  ];
+  final pages = [EnterAddressPage(), ProfileDetailsPage()];
 
   @override
   Widget build(BuildContext context, model) {

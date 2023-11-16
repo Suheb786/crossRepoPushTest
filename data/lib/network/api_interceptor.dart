@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:data/helper/encypt_decrypt_helper.dart';
-import 'package:data/helper/secure_storage_helper.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/network/local_session_service.dart';
 import 'package:data/network/network_properties.dart';
@@ -10,10 +9,11 @@ import 'package:domain/constants/app_constants.dart';
 import 'package:domain/constants/app_constants_domain.dart';
 import 'package:flutter/material.dart';
 
+String authToken = "";
+
 class ApiInterceptor extends InterceptorsWrapper {
   final Dio _previousDio;
   late ApiService apiService;
-  String authToken = "";
 
   late Set<String> verifiedURLs = {};
   Future<String>? secure = Future.value('');
@@ -28,7 +28,6 @@ class ApiInterceptor extends InterceptorsWrapper {
 
   @override
   Future onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
-    authToken = (await SecureStorageHelper.instance.getToken()) ?? '';
     options.headers.putIfAbsent("Authorization", () => "Bearer $authToken");
 
     if (options.uri.path.toLowerCase().contains("login")) {
@@ -58,7 +57,6 @@ class ApiInterceptor extends InterceptorsWrapper {
   void onError(DioError err, ErrorInterceptorHandler handler) {
     if (err.response!.statusCode == 401) {
       authToken = '';
-      SecureStorageHelper.instance.clearToken();
       _localSessionService.stopTimer();
       return super.onError(err, handler);
     }
@@ -67,7 +65,6 @@ class ApiInterceptor extends InterceptorsWrapper {
           false) {
         if ((err.response!.data as Map<String, dynamic>)['response']['token'] != 'Error') {
           authToken = (err.response!.data as Map<String, dynamic>)['response']['token'] ?? '';
-          SecureStorageHelper.instance.storeTokenId(token: authToken);
           _localSessionService.startTimer();
         }
       }
@@ -79,13 +76,11 @@ class ApiInterceptor extends InterceptorsWrapper {
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     if (response.statusCode == 401) {
       authToken = '';
-      SecureStorageHelper.instance.clearToken();
       _localSessionService.stopTimer();
       return super.onResponse(response, handler);
     }
     if (response.realUri.path.contains('logout')) {
       authToken = '';
-      SecureStorageHelper.instance.clearToken();
       _localSessionService.stopTimer();
       return super.onResponse(response, handler);
     }
@@ -94,7 +89,6 @@ class ApiInterceptor extends InterceptorsWrapper {
         if (((response.data as Map<String, dynamic>)['response']['token'] as String?)?.isNotEmpty ?? false) {
           if ((response.data as Map<String, dynamic>)['response']['token'] != 'Error') {
             authToken = (response.data as Map<String, dynamic>)['response']['token'] ?? '';
-            SecureStorageHelper.instance.storeTokenId(token: authToken);
             _localSessionService.startTimer();
           }
         }

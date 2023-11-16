@@ -1,5 +1,5 @@
 import 'package:data/di/local_module.dart';
-import 'package:data/helper/secure_storage_helper.dart';
+import 'package:data/network/api_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -97,8 +97,10 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
                   Navigator.pushNamed(context, RoutePaths.AppHome);
                 } else if (model.creditCardApplicationFailureArguments.creditFailureState ==
                     CreditFailureState.FATCA) {
-                  SecureStorageHelper.instance.clearToken();
-                  ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).stopTimer();
+                  authToken = '';
+                  ProviderScope.containerOf(appLevelKey.currentState!.context)
+                      .read(localSessionService)
+                      .stopTimer();
                   AppConstantsUtils.resetCacheLists();
                   Navigator.pushNamedAndRemoveUntil(
                       context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));

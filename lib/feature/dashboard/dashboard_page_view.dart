@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:data/helper/secure_storage_helper.dart';
+import 'package:data/network/api_interceptor.dart';
 import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:flutter/material.dart';
@@ -185,7 +185,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                   initialData: Resource.none(),
                   onData: (response) {
                     if (response.status == Status.SUCCESS) {
-                      SecureStorageHelper.instance.clearToken();
+                      authToken = '';
                       AppConstantsUtils.resetCacheLists();
                       Navigator.pushNamedAndRemoveUntil(
                           context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));

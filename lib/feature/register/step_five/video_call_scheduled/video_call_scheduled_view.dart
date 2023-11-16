@@ -1,18 +1,18 @@
 import 'package:data/di/local_module.dart';
-import 'package:data/helper/secure_storage_helper.dart';
-import 'package:neo_bank/main/app_viewmodel.dart';
-import 'package:neo_bank/utils/app_constants.dart';
+import 'package:data/network/api_interceptor.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/step_five/video_call_scheduled/video_call_scheduled_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/account_ready/account_details.dart';
 import 'package:neo_bank/ui/molecules/account_ready/account_ready_header.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -38,8 +38,10 @@ class VideoCallScheduledView extends BasePageViewWidget<VideoCallScheduledViewMo
                 initialData: Resource.none(),
                 onData: (response) {
                   if (response.status == Status.SUCCESS) {
-                    SecureStorageHelper.instance.clearToken();
-                    ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).stopTimer();
+                    authToken = '';
+                    ProviderScope.containerOf(appLevelKey.currentState!.context)
+                        .read(localSessionService)
+                        .stopTimer();
                     AppConstantsUtils.resetCacheLists();
                     Navigator.pushNamedAndRemoveUntil(
                         context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));

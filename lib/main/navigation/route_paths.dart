@@ -12,7 +12,6 @@ class RoutePaths {
   static const String Dashboard = '/dashboard';
   static const String AddMoneyOptionSelector = '/addMoneyOptionSelector';
   static const String AppHome = "/appHome";
-  static const String Capture = '/capture';
   static const String ExemptPayeeCode = '/exemptPayeeCode';
   static const String ExemptionFromFatcaReportingCode = '/exemptionFromFatcaReportingCode';
   static const String UsTaxPayerIdentificationNo = '/usTaxPayerIdentificationNo';

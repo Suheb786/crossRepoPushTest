@@ -1,4 +1,4 @@
-import 'package:data/helper/secure_storage_helper.dart';
+import 'package:data/network/api_interceptor.dart';
 import 'package:domain/model/bank_smart/get_account_details_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +61,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                                 initialData: Resource.none(),
                                 onData: (response) {
                                   if (response.status == Status.SUCCESS) {
-                                    SecureStorageHelper.instance.clearToken();
+                                    authToken = '';
                                     AppConstantsUtils.resetCacheLists();
                                     Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
                                         ModalRoute.withName(RoutePaths.Splash));
@@ -115,8 +115,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                           ),
                           Container(
                             decoration: BoxDecoration(
-                                color: Theme.of(context).cardColor,
-                                borderRadius: BorderRadius.circular(16)),
+                                color: Theme.of(context).cardColor, borderRadius: BorderRadius.circular(16)),
                             margin: EdgeInsets.symmetric(horizontal: 24.w),
                             padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                             child: Column(

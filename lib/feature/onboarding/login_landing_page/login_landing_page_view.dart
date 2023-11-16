@@ -322,7 +322,7 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                                   AppConstantsUtils.isApplePayFeatureEnabled =
                                       data.data?.androidLoginContent.applepay ?? false;
                                   AppConstantsUtils.isBiometricDialogShown = false;
-
+                                  print('RIM NO---->${data.data?.androidLoginContent.rimNo ?? ''}');
                                   if (Platform.isIOS &&
                                       AppConstantsUtils.isApplePayFeatureEnabled &&
                                       (data.data?.androidLoginContent.rimNo ?? '').isNotEmpty) {

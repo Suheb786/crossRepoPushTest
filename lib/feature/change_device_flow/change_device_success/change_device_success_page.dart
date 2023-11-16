@@ -1,5 +1,5 @@
 import 'package:data/di/local_module.dart';
-import 'package:data/helper/secure_storage_helper.dart';
+import 'package:data/network/api_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -40,7 +40,7 @@ class ChangeDeviceSuccessPageState
 
   @override
   Future<bool> onBackPressed(ChangeDeviceSuccessPageViewModel model, {param}) {
-    SecureStorageHelper.instance.clearToken();
+    authToken = '';
     ProviderScope.containerOf(appLevelKey.currentState!.context).read(localSessionService).stopTimer();
     AppConstantsUtils.resetCacheLists();
     Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding, (route) => false);
@@ -50,5 +50,6 @@ class ChangeDeviceSuccessPageState
 
 class ChangeDeviceParams {
   String journeyId;
+
   ChangeDeviceParams({required this.journeyId});
 }

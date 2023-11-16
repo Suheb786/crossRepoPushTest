@@ -1,4 +1,3 @@
-import 'package:neo_bank/utils/clickable_scrall_view/list_wheel_scrall_view.dart';
 import 'package:domain/model/country/country_list/country_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,6 +13,7 @@ import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/employer_coun
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/clickable_scrall_view/list_wheel_scrall_view.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -33,7 +33,7 @@ class CountryDialogView extends StatelessWidget {
   final bool onWillPop;
 
   CountryDialogView({this.onDismissed, this.onSelected, this.title, this.onWillPop = true});
-  
+
   ProviderBase providerBase() {
     return employerCountryDialogViwModelProvider;
   }

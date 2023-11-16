@@ -12,6 +12,7 @@ AndroidLoginContentEntity _$AndroidLoginContentEntityFromJson(
       applepay: json['applepay'] as bool?,
       journeyId: json['journeyId'] as String?,
       journeyRefId: json['journeyRefId'] as String?,
+      rimNo: json['rimNo'] as String?,
     );
 
 Map<String, dynamic> _$AndroidLoginContentEntityToJson(
@@ -20,4 +21,5 @@ Map<String, dynamic> _$AndroidLoginContentEntityToJson(
       'applepay': instance.applepay,
       'journeyRefId': instance.journeyRefId,
       'journeyId': instance.journeyId,
+      'rimNo': instance.rimNo,
     };
