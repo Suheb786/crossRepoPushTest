@@ -198,7 +198,7 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                                   onTap: () {
                                     if (userData?.status == Status.SUCCESS) {
                                       if (userData?.data?.isBiometricEnabled ?? false) {
-                                        model.isBiometricDialogShown = true;
+                                        AppConstantsUtils.isBiometricDialogShown = true;
                                         model.checkBiometric();
                                       } else {
                                         InformationDialog.show(context,
@@ -321,7 +321,7 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                                 if (data.status == Status.SUCCESS) {
                                   AppConstantsUtils.isApplePayFeatureEnabled =
                                       data.data?.androidLoginContent.applepay ?? false;
-                                  model.isBiometricDialogShown = false;
+                                  AppConstantsUtils.isBiometricDialogShown = false;
 
                                   if (Platform.isIOS &&
                                       AppConstantsUtils.isApplePayFeatureEnabled &&

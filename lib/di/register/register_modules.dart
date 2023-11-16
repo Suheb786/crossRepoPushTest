@@ -4,7 +4,6 @@ import 'package:neo_bank/di/usecase/account_registration/account_regisration_use
 import 'package:neo_bank/di/usecase/bank_smart/bank_smart_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/country/country_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/fatca_crs/fatca_crs_usecase_provider.dart';
-import 'package:neo_bank/di/usecase/id_card/id_card_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/register/register_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
@@ -37,7 +36,6 @@ import 'package:neo_bank/feature/register/step_two/job_and_income/job_and_income
 import 'package:neo_bank/feature/register/step_two/register_step_two_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_two/student_job_income/student_job_income_page_view_model.dart';
 import 'package:neo_bank/feature/register/stepone/capture/capture_model.dart';
-import 'package:neo_bank/feature/register/stepone/confirm_detail/confirm_detail_model.dart';
 import 'package:neo_bank/feature/register/stepone/enter_address/enter_address_model.dart';
 import 'package:neo_bank/feature/register/stepone/profile_details/profile_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
@@ -78,15 +76,6 @@ final registerStepOneViewModelProvider = ChangeNotifierProvider.autoDispose<Regi
 ///[CaptureViewModel] provider
 final captureViewModelProvider = ChangeNotifierProvider.autoDispose<CaptureViewModel>(
     (ref) => CaptureViewModel(ref.read(uploadSelfieImageUseCaseProvider)));
-
-///[ConfirmDetailViewModel] provider
-final confirmDetailViewModelProvider = ChangeNotifierProvider.autoDispose<ConfirmDetailViewModel>((ref) =>
-    ConfirmDetailViewModel(
-        ref.read(confirmDetailUseCaseProvider),
-        ref.read(scanUserDocumentUseCaseProvider),
-        ref.read(getAhwalDetailsUseCaseProvider),
-        ref.read(fetchAllowedIssuersUseCaseProvider),
-        ref.read(getCountriesListUseCaseProvider)));
 
 ///[EnterAddressViewModel] provider
 final enterAddressViewModelProvider = ChangeNotifierProvider.autoDispose<EnterAddressViewModel>((ref) =>

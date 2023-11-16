@@ -11,10 +11,6 @@ class KeyHelper {
 
   //static String DECRYPTION_KEY = "Htyr3IvDoAhXLg0o";
 
-  ///microblink keys
-  static String ANDROID_BLINK_ID = "";
-  static String IOS_BLINK_ID = "";
-
   ///card keys
   static String CARD_DECRYPTION_KEY = "";
   static String PIN_BLOCK_KEY = "";
@@ -51,8 +47,6 @@ class KeyHelper {
     // debugPrint('mapContent--->$mapContent');
     CARD_DECRYPTION_KEY = mapContent['dynamicObject']['CardKey'];
     PIN_BLOCK_KEY = mapContent['dynamicObject']['PinblockKey'];
-    ANDROID_BLINK_ID = mapContent['dynamicObject']['AndroidKey'];
-    IOS_BLINK_ID = mapContent['dynamicObject']['IOSKey'];
     INFOBIP_APP_KEY = mapContent['dynamicObject']['AppKey'];
     INFOBIP_APPLICATION_CODE = mapContent['dynamicObject']['ApplicationCode'];
     INFOBIP_APPLICATION_ID = mapContent['dynamicObject']?['InfobipApplicationId'] ?? '';

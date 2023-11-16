@@ -9,6 +9,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/login/login_module.dart';
 import 'package:neo_bank/feature/onboarding/login_landing_page/login_landing_page_view.dart';
 import 'package:neo_bank/feature/onboarding/login_landing_page/login_landing_page_view_model.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 
 class LoginLandingPage extends BasePage<LoginLandingPageViewModel> {
   @override
@@ -31,7 +32,7 @@ class LoginLandingPageState extends BaseStatefulPage<LoginLandingPageViewModel, 
   @override
   Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
     if (state == AppLifecycleState.resumed) {
-      if (!(getViewModel().isBiometricDialogShown)) {
+      if (!(AppConstantsUtils.isBiometricDialogShown)) {
         var value = await SharedPreferenceHelper.getValue();
         if (value) {
           await SecureStorageHelper.instance.clearUserData();

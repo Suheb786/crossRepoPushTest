@@ -42,9 +42,6 @@ PODS:
   - AppsFlyerFramework (6.12.2):
     - AppsFlyerFramework/Main (= 6.12.2)
   - AppsFlyerFramework/Main (6.12.2)
-  - blinkid_flutter (6.1.1):
-    - Flutter
-    - PPBlinkID (~> 6.1.2)
   - camera_avfoundation (0.0.1):
     - Flutter
   - CryptoSwift (1.8.0)
@@ -302,7 +299,6 @@ PODS:
     - FlutterMacOS
   - permission_handler_apple (9.1.1):
     - Flutter
-  - PPBlinkID (6.1.2)
   - PromisesObjC (2.3.1)
   - PromisesSwift (2.3.1):
     - PromisesObjC (= 2.3.1)
@@ -337,7 +333,6 @@ DEPENDENCIES:
   - agora_rtc_engine (from `.symlinks/plugins/agora_rtc_engine/ios`)
   - app_links (from `.symlinks/plugins/app_links/ios`)
   - appsflyer_sdk (from `.symlinks/plugins/appsflyer_sdk/ios`)
-  - blinkid_flutter (from `.symlinks/plugins/blinkid_flutter/ios`)
   - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
@@ -410,7 +405,6 @@ SPEC REPOS:
     - MTBBarcodeScanner
     - nanopb
     - OrderedSet
-    - PPBlinkID
     - PromisesObjC
     - PromisesSwift
     - SAMKeychain
@@ -426,8 +420,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/app_links/ios"
   appsflyer_sdk:
     :path: ".symlinks/plugins/appsflyer_sdk/ios"
-  blinkid_flutter:
-    :path: ".symlinks/plugins/blinkid_flutter/ios"
   camera_avfoundation:
     :path: ".symlinks/plugins/camera_avfoundation/ios"
   device_info_plus:
@@ -505,7 +497,6 @@ SPEC CHECKSUMS:
   app_links: 5ef33d0d295a89d9d16bb81b0e3b0d5f70d6c875
   appsflyer_sdk: beae2edc91c51ca92cad637534b45b22ff35d287
   AppsFlyerFramework: 6eb4d89d2eb9a6632317f1055b359d9fd85fd5ff
-  blinkid_flutter: d4cb7f6a93a741132b1359b2e50f527811cf2775
   camera_avfoundation: 3125e8cd1a4387f6f31c6c63abb8a55892a9eeeb
   CryptoSwift: 52aaf3fce7337552863b1d952e408085f0e65030
   device_info_plus: 7545d84d8d1b896cb16a4ff98c19f07ec4b298ea
@@ -560,7 +551,6 @@ SPEC CHECKSUMS:
   package_info_plus: fd030dabf36271f146f1f3beacd48f564b0f17f7
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
   permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
-  PPBlinkID: c757baa64ed024141380a9a87048321215de9964
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   PromisesSwift: 28dca69a9c40779916ac2d6985a0192a5cb4a265
   qr_code_scanner: bb67d64904c3b9658ada8c402e8b4d406d5d796e
@@ -577,6 +567,6 @@ SPEC CHECKSUMS:
   url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
   wakelock_plus: 8b09852c8876491e4b6d179e17dfe2a0b5f60d47
 
-PODFILE CHECKSUM: c6fd5197c40b28b9ed7a41eb5967b329a2837c45
+PODFILE CHECKSUM: 0321712b20768f17ace2e4e65dc9e3ade2c7679b
 
 COCOAPODS: 1.14.2

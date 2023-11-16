@@ -167,8 +167,6 @@ class LoginLandingPageViewModel extends BasePageViewModel {
 
   /// ----------------------Register Infobip Service-------------///
 
-  bool isBiometricDialogShown = false;
-
   LoginLandingPageViewModel(
       this._kycStatusUseCase,
       this._androidLoginUseCase,

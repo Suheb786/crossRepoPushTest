@@ -1,4 +1,3 @@
-import 'package:data/di/local_module.dart';
 import 'package:data/helper/secure_storage_helper.dart';
 import 'package:domain/model/bank_smart/get_account_details_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
@@ -8,7 +7,6 @@ import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/account_ready/account_details.dart';
 import 'package:neo_bank/ui/molecules/account_ready/account_ready_header.dart';
@@ -21,7 +19,6 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 
 import '../../../../ui/molecules/button/app_primary_button.dart';
-
 import '../../../../utils/app_constants.dart';
 
 class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {

@@ -1,5 +1,3 @@
-import 'package:blinkid_flutter/recognizers/blink_id_multi_side_recognizer.dart';
-import 'package:dartz/dartz.dart';
 import 'package:data/entity/remote/user/biometric_login/get_cipher_response_entity.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm_application_data_response_entity.dart';
@@ -20,7 +18,6 @@ import 'package:data/entity/remote/user/save_job_details_response_entity.dart';
 import 'package:data/entity/remote/user/save_profile_status_response_entity.dart';
 import 'package:data/entity/remote/user/status/customer_status_response_entity.dart';
 import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
-import 'package:domain/error/local_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/confirm_application_data_get/account_purpose_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/country_residence_info.dart';
@@ -29,11 +26,11 @@ import 'package:domain/model/user/confirm_application_data_get/job_detail_info.d
 import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/user/check_journey_status_usecase.dart';
-import 'package:retrofit/dio.dart';
-import 'package:domain/usecase/user/update_journey_usecase.dart';
-import '../../entity/remote/base/base_response.dart';
 import 'package:domain/usecase/user/process_journey_via_mobile_usecase.dart';
+import 'package:domain/usecase/user/update_journey_usecase.dart';
+import 'package:retrofit/dio.dart';
 
+import '../../entity/remote/base/base_response.dart';
 import '../../entity/remote/user/account_registration/check_journey_status/check_journey_status_response_entity.dart';
 import '../../entity/remote/user/account_registration/process_journey_via_mobile/process_journey_via_mobile_response_entity.dart';
 import '../../entity/remote/user/account_registration/update_journey/update_journey_response_entity.dart';
@@ -179,8 +176,6 @@ abstract class UserLocalDS {
   Future<bool> removeUser();
 
   Future<bool> saveCurrentUser(User user);
-
-  Future<Either<LocalError, BlinkIdMultiSideRecognizerResult>> scanUserDocument();
 
   Future<bool> checkBioMetricSupport();
 

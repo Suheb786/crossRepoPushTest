@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/base_error.dart';
 import 'package:domain/error/database_error.dart';
-import 'package:domain/error/local_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/biometric_login/android_login_response.dart';
@@ -21,7 +20,6 @@ import 'package:domain/model/user/save_country_residence_info_response.dart';
 import 'package:domain/model/user/save_id_info_response.dart';
 import 'package:domain/model/user/save_job_details_response.dart';
 import 'package:domain/model/user/save_profile_status_response.dart';
-import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/model/user/status/customer_status.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/user/check_journey_status_usecase.dart';
@@ -145,9 +143,6 @@ abstract class UserRepository {
       String? mainSource,
       List<AdditionalIncomeType>? additionalIncomeType});
 
-  /// Scan User Document
-  Future<Either<LocalError, ScannedDocumentInformation>> scanUserDocument();
-
   ///get token
   Future<Either<NetworkError, bool>> getToken();
 
@@ -198,15 +193,16 @@ abstract class UserRepository {
 
   Future<Either<BaseError, bool>> endLocalSession();
 
-  Future<Either<BaseError, bool>> getLocalSessionWarning(Function() onSessionEndWarning,Function() onSessionTimeOut);
+  Future<Either<BaseError, bool>> getLocalSessionWarning(
+      Function() onSessionEndWarning, Function() onSessionTimeOut);
 
   /// clear wallet id
   Future<Either<DatabaseError, bool>> clearWalletId();
 
   Future<Either<NetworkError, UpdateJourney>> updateJourney({required UpdateJourneyUseCaseParams params});
 
-  Future<Either<NetworkError, CheckJourneyStatus>> updateIdWiseStatus({required CheckJourneyStatusUseCaseUseCaseParams params});
-
+  Future<Either<NetworkError, CheckJourneyStatus>> updateIdWiseStatus(
+      {required CheckJourneyStatusUseCaseUseCaseParams params});
 
   Future<Either<NetworkError, ProcessJourney>> processJourneyViaMobile(
       {required ProcessJourneyViaMobileUseCaseParams params});

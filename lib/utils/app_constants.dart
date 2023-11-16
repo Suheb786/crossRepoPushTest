@@ -76,4 +76,6 @@ class AppConstantsUtils {
   static String jodCurrency = 'JOD';
   static String usdCurrency = 'USD';
   static String userPromoCode = "";
+
+  static bool isBiometricDialogShown = false;
 }

@@ -15,7 +15,8 @@ class ScanUserDocumentUseCase
   @override
   Future<Either<LocalError, ScannedDocumentInformation>> execute(
       {required ScanUserDocumentUseCaseParams params}) {
-    return _userRepository.scanUserDocument();
+    ///TODO: Check when feature is enabled
+    return Future.value(Right(ScannedDocumentInformation()));
   }
 }
 
