@@ -51,15 +51,6 @@ class ApiInterceptor extends InterceptorsWrapper {
 
     debugPrint('headers auth token------>${options.headers}');
 
-    ///PIN BLOCK TEST
-
-    String encryptedCard = EncryptDecryptHelper.encryptCard(cardNo: '4082230006238493');
-    print('encryptedCard------>$encryptedCard');
-
-    String pinBlock =
-        EncryptDecryptHelper.generateBlockPinForCreditCard(cardNo: '4082230006238493', pinCode: '5678');
-    debugPrint('pinBlock------>$pinBlock');
-
     return handler.next(options);
   }
 
@@ -103,7 +94,6 @@ class ApiInterceptor extends InterceptorsWrapper {
         if (((response.data as Map<String, dynamic>)['response']['token'] as String?)?.isNotEmpty ?? false) {
           if ((response.data as Map<String, dynamic>)['response']['token'] != 'Error') {
             authToken = (response.data as Map<String, dynamic>)['response']['token'] ?? '';
-            print('authToken11----->$authToken');
             SecureStorageHelper.instance.storeTokenId(token: authToken);
             _localSessionService.startTimer();
           }

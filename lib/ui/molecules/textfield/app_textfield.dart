@@ -188,6 +188,7 @@ class AppTextFieldState extends State<AppTextField> {
                             )
                           : SizedBox.shrink(),
                       TextFormField(
+                        magnifierConfiguration: TextMagnifierConfiguration.disabled,
                         focusNode: _focusNode,
                         maxLength: widget.maxLength,
                         textAlign: widget.textAlign,

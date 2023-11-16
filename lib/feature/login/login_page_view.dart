@@ -166,6 +166,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                       Navigator.pushNamedAndRemoveUntil(
                           context, RoutePaths.OTPForChangeDevice, (route) => false,
                           arguments: OtpForChangeDeviceConfirmationPageArguments(
+                              rimNo: model.rimNo,
                               mobileCode: model.mobileCode,
                               mobileNumber: model.mobileNumber,
                               journeyId: model.user.journeyId!));
@@ -177,9 +178,10 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
-                          model.mobileNumber = data.data!.mobile!;
-                          model.mobileCode = data.data!.mobileCode!;
-                          model.applicationId = data.data!.applicationId!;
+                          model.mobileNumber = data.data?.mobile ?? '';
+                          model.mobileCode = data.data?.mobileCode ?? '';
+                          model.applicationId = data.data?.applicationId ?? '';
+                          model.rimNo = data.data?.cifNumber ?? '';
                           model.saveUserData();
                           model.user = data.data!;
                           AppConstantsUtils.isApplePayFeatureEnabled = data.data?.applePay ?? false;
@@ -207,7 +209,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                               model.sendOtpTokenMobile();
                             });
                           } else {
-                            if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+                            if (Platform.isIOS &&
+                                AppConstantsUtils.isApplePayFeatureEnabled &&
+                                (data.data?.cifNumber ?? '').isNotEmpty) {
                               model.antelopSdkInitialize();
                             }
                             model.checkKycStatus();

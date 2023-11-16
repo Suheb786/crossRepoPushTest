@@ -108,12 +108,15 @@ class OtpForChangeDeviceConfirmationPageView
                         if (data.status == Status.SUCCESS) {
                           model.depersonalizeUserData();
 
-                          if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+                          if (Platform.isIOS &&
+                              AppConstantsUtils.isApplePayFeatureEnabled &&
+                              model.arguments.rimNo.isNotEmpty) {
                             AntelopHelper.walletLogout();
                             model.clearWallet();
                             model.antelopSdkInitialize();
                           }
-                          Navigator.pushReplacementNamed(context, RoutePaths.ChangeDeviceSuccess,arguments: ChangeDeviceParams(journeyId: model.arguments.journeyId));
+                          Navigator.pushReplacementNamed(context, RoutePaths.ChangeDeviceSuccess,
+                              arguments: ChangeDeviceParams(journeyId: model.arguments.journeyId));
                         } else if (data.status == Status.ERROR) {
                           model.showToastWithError(data.appError!);
                         }

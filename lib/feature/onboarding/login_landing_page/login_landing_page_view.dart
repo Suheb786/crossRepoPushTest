@@ -323,7 +323,9 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                                       data.data?.androidLoginContent.applepay ?? false;
                                   model.isBiometricDialogShown = false;
 
-                                  if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+                                  if (Platform.isIOS &&
+                                      AppConstantsUtils.isApplePayFeatureEnabled &&
+                                      (data.data?.androidLoginContent.rimNo ?? '').isNotEmpty) {
                                     model.antelopSdkInitialize();
                                   }
                                   model.saveUserData();
@@ -354,11 +356,14 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                                             RoutePaths.IdWiseIntialPage,
                                             (route) => false,
                                           );
-                                        } else if (kycData.type == 'AhwalCheck' || kycData.type == 'ProcessSelfieImage') {
-                                          Navigator.pushNamedAndRemoveUntil(context, RoutePaths.ManageIDWiseStatus, (route) => false,
+                                        } else if (kycData.type == 'AhwalCheck' ||
+                                            kycData.type == 'ProcessSelfieImage') {
+                                          Navigator.pushNamedAndRemoveUntil(
+                                              context, RoutePaths.ManageIDWiseStatus, (route) => false,
                                               arguments: ManageIDWiseStatusParams(
                                                   isAhwalCheckPassed: kycData.type == 'AhwalCheck',
-                                                  isFaceMatchScorePassed: kycData.type == 'ProcessSelfieImage',
+                                                  isFaceMatchScorePassed:
+                                                      kycData.type == 'ProcessSelfieImage',
                                                   journeyId: ''));
                                         } else {
                                           Navigator.pushNamedAndRemoveUntil(

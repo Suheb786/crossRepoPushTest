@@ -13,8 +13,10 @@ class AndroidLoginContentEntity
   final String? journeyRefId;
   @JsonKey(name: "journeyId")
   final String? journeyId;
+  @JsonKey(name: "rimNo")
+  final String? rimNo;
 
-  AndroidLoginContentEntity({this.applepay, this.journeyId, this.journeyRefId});
+  AndroidLoginContentEntity({this.applepay, this.journeyId, this.journeyRefId, this.rimNo});
 
   factory AndroidLoginContentEntity.fromJson(Map<String, dynamic> json) =>
       _$AndroidLoginContentEntityFromJson(json);
@@ -31,6 +33,7 @@ class AndroidLoginContentEntity
     return AndroidLoginContent(
         applepay: this.applepay ?? false,
         journeyId: this.journeyId ?? '',
-        journeyRefId: this.journeyRefId ?? '');
+        journeyRefId: this.journeyRefId ?? '',
+        rimNo: this.rimNo ?? '');
   }
 }
