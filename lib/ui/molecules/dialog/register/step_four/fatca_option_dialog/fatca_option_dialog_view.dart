@@ -5,6 +5,7 @@ import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/fatca_option_dialog/fatca_option_dialog_viewmodel.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/fatca_option_dialog/fatca_option_item_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -56,160 +57,156 @@ class FatcaOptionDialogView extends StatelessWidget {
           return Dialog(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
               insetPadding: EdgeInsets.only(
-                  left: 24.w, right: 24.w, bottom: 36.h, top: _keyboardVisible ? 36.h : 204.h),
-              child: GestureDetector(
-                onVerticalDragEnd: (details) {
-                  if (details.primaryVelocity! > 0) {
-                    onDismissed?.call();
-                  }
-                },
-                child: AppStreamBuilder<int>(
-                  stream: model!.currentIndexStream,
-                  initialData: 0,
-                  dataBuilder: (context, currentIndex) {
-                    return AppStreamBuilder<Resource<List<AdditionalDataDropDownData>>>(
-                      stream: model.optionalDataStream,
-                      initialData: Resource.none(),
-                      dataBuilder: (context, data) {
-                        return Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(top: 32.0.h),
-                              child: Center(
-                                child: Text(
-                                  StringUtils.isDirectionRTL(context) ? titleAr ?? '' : title!,
-                                  style: TextStyle(
-                                      fontFamily: StringUtils.appFont,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600),
+                  left: 24.w, right: 24.w, bottom: 56.h, top: _keyboardVisible ? 36.h : 204.h),
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                clipBehavior: Clip.none,
+                children: [
+                  AppStreamBuilder<int>(
+                    stream: model!.currentIndexStream,
+                    initialData: 0,
+                    dataBuilder: (context, currentIndex) {
+                      return AppStreamBuilder<Resource<List<AdditionalDataDropDownData>>>(
+                        stream: model.optionalDataStream,
+                        initialData: Resource.none(),
+                        dataBuilder: (context, data) {
+                          return Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(top: 32.0.h),
+                                child: Center(
+                                  child: Text(
+                                    StringUtils.isDirectionRTL(context) ? titleAr ?? '' : title!,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Visibility(
-                              visible: title == 'TAX COUNTRY' ? true : false,
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
-                                child: AppTextField(
-                                  labelText: '',
-                                  controller: model.mobileNumberSearchController,
-                                  textFieldBorderColor: AppColor.gray_1,
-                                  hintTextColor: AppColor.gray_2,
-                                  textColor: Theme.of(context).primaryColorDark,
-                                  hintText: S.of(context).searchCountry,
-                                  containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-                                  onChanged: (value) {
-                                    model.searchMobileNumber(value);
-                                  },
-                                  suffixIcon: (value, data) {
-                                    return InkWell(
-                                      onTap: () async {},
-                                      child: Container(
-                                          height: 16.h,
-                                          width: 16.w,
-                                          padding: EdgeInsets.symmetric(horizontal: 6.0.w, vertical: 6.h),
-                                          child: AppSvg.asset(AssetUtils.search,
-                                              color: Theme.of(context).primaryColorDark)),
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: data!.data!.length > 0
-                                  ? Stack(
-                                      alignment: Alignment.center,
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(horizontal: 16.0.w),
-                                          child: Container(
-                                            height: 64.h,
-                                            width: double.infinity,
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(16.w),
-                                              color: AppColor.vividYellow,
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          height: MediaQuery.of(context).size.height / 2.5,
-                                          child: AppScrollableListViewWidget(
-                                            key: ValueKey(data.data!.length),
-                                            child: ClickableListWheelScrollView(
-                                              scrollController: model.scrollController,
-                                              itemHeight: 64.h,
-                                              itemCount: data.data!.length,
-                                              onItemTapCallback: (index) {
-                                                model.selectMobileNumber(index);
-                                              },
-                                              child: ListWheelScrollView.useDelegate(
-                                                  controller: model.scrollController,
-                                                  itemExtent: 64.h,
-                                                  onSelectedItemChanged: (int index) {
-                                                    model.selectMobileNumber(index);
-                                                  },
-                                                  physics: FixedExtentScrollPhysics(),
-                                                  perspective: 0.0000000001,
-                                                  childDelegate: ListWheelChildBuilderDelegate(
-                                                      childCount: data.data!.length,
-                                                      builder: (BuildContext context, int index) {
-                                                        return FatcaOptionItemWidget(
-                                                          item: data.data![index],
-                                                          showFlag: title == 'TAX COUNTRY',
-                                                        );
-                                                      })),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  : Center(
-                                      child: NoDataWidget(),
-                                    ),
-                            ),
-                            Container(
-                              color: AppColor.white.withOpacity(0),
-                              child: Column(
-                                children: <Widget>[
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                      onSelected!.call(model.selectedOptionData!);
+                              Visibility(
+                                visible: title == 'TAX COUNTRY' ? true : false,
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
+                                  child: AppTextField(
+                                    labelText: '',
+                                    controller: model.mobileNumberSearchController,
+                                    textFieldBorderColor: AppColor.gray_1,
+                                    hintTextColor: AppColor.gray_2,
+                                    textColor: Theme.of(context).primaryColorDark,
+                                    hintText: S.of(context).searchCountry,
+                                    containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                                    onChanged: (value) {
+                                      model.searchMobileNumber(value);
                                     },
-                                    child: Container(
-                                      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-                                      height: 57.h,
-                                      width: 57.w,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Theme.of(context).textTheme.bodyLarge!.color!),
-                                      child: AppSvg.asset(AssetUtils.tick,
-                                          color: Theme.of(context).colorScheme.secondary),
-                                    ),
+                                    suffixIcon: (value, data) {
+                                      return InkWell(
+                                        onTap: () async {},
+                                        child: Container(
+                                            height: 16.h,
+                                            width: 16.w,
+                                            padding: EdgeInsets.symmetric(horizontal: 6.0.w, vertical: 6.h),
+                                            child: AppSvg.asset(AssetUtils.search,
+                                                color: Theme.of(context).primaryColorDark)),
+                                      );
+                                    },
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 8.0.h, bottom: 16.h),
-                                    child: Center(
-                                      child: Text(
-                                        S.of(context).swipeDownToCancel,
-                                        style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            fontSize: 10.t,
-                                            fontWeight: FontWeight.w400,
-                                            color: AppColor.dark_gray_1),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
-                            ),
-                          ],
-                        );
+                              Expanded(
+                                child: data!.data!.length > 0
+                                    ? Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+                                            child: Container(
+                                              height: 64.h,
+                                              width: double.infinity,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(16.w),
+                                                color: AppColor.vividYellow,
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            height: MediaQuery.of(context).size.height / 2.5,
+                                            child: AppScrollableListViewWidget(
+                                              key: ValueKey(data.data!.length),
+                                              child: ClickableListWheelScrollView(
+                                                scrollController: model.scrollController,
+                                                itemHeight: 64.h,
+                                                itemCount: data.data!.length,
+                                                onItemTapCallback: (index) {
+                                                  model.selectMobileNumber(index);
+                                                },
+                                                child: ListWheelScrollView.useDelegate(
+                                                    controller: model.scrollController,
+                                                    itemExtent: 64.h,
+                                                    onSelectedItemChanged: (int index) {
+                                                      model.selectMobileNumber(index);
+                                                    },
+                                                    physics: FixedExtentScrollPhysics(),
+                                                    perspective: 0.0000000001,
+                                                    childDelegate: ListWheelChildBuilderDelegate(
+                                                        childCount: data.data!.length,
+                                                        builder: (BuildContext context, int index) {
+                                                          return FatcaOptionItemWidget(
+                                                            item: data.data![index],
+                                                            showFlag: title == 'TAX COUNTRY',
+                                                          );
+                                                        })),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    : Center(
+                                        child: NoDataWidget(),
+                                      ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.only(start: 20.w, end: 20.w),
+                                child: AppPrimaryButton(
+                                  // isDisabled: isValid!,
+                                  isDisabled: false,
+
+                                  onPressed: () {
+                                    onSelected!.call(model.selectedOptionData!);
+                                  },
+
+                                  text: S.of(context).confirm,
+                                ),
+                              ),
+                              SizedBox(height: 40.h),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  Positioned(
+                    bottom: -24.h,
+                    child: InkWell(
+                      onTap: () {
+                        onDismissed?.call();
                       },
-                    );
-                  },
-                ),
+                      child: Container(
+                          height: 48.h,
+                          width: 48.h,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Theme.of(context).colorScheme.onBackground),
+                              shape: BoxShape.circle,
+                              color: Theme.of(context).colorScheme.secondary),
+                          child: Image.asset(
+                            AssetUtils.close_bold,
+                            scale: 3.5,
+                          )),
+                    ),
+                  ),
+                ],
               ));
         },
       ),

@@ -48,7 +48,7 @@ class CountryDialogView extends StatelessWidget {
             return Dialog(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
                 insetPadding: EdgeInsets.only(
-                    left: 24.0.w, right: 24.0.w, bottom: 36.0.h, top: _keyboardVisible ? 36.0.h : 204.0.h),
+                    left: 24.0.w, right: 24.0.w, bottom: 56.0.h, top: _keyboardVisible ? 36.0.h : 204.0.h),
                 child: Stack(
                   alignment: Alignment.bottomCenter,
                   clipBehavior: Clip.none,

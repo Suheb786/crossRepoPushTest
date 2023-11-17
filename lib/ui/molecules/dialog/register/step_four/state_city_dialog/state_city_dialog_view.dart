@@ -20,7 +20,6 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-
 class StateCityDialogView extends StatelessWidget {
   final Function? onDismissed;
   final Function(StateCityData)? onSelected;
@@ -52,7 +51,7 @@ class StateCityDialogView extends StatelessWidget {
             return Dialog(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
                 insetPadding: EdgeInsets.only(
-                    left: 24.w, right: 24.w, bottom: 36.h, top: _keyboardVisible ? 36.h : 204.h),
+                    left: 24.w, right: 24.w, bottom: 56.h, top: _keyboardVisible ? 36.h : 204.h),
                 child: Stack(
                   alignment: Alignment.bottomCenter,
                   clipBehavior: Clip.none,
