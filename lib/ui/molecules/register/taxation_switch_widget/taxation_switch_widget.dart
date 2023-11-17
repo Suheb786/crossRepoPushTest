@@ -192,7 +192,7 @@ class FatcaDropDownField extends StatelessWidget {
               }, onSelected: (value) {
                 model?.controller.text = value.name!;
                 onSelect?.call(value);
-                // Navigator.pop(context);
+                Navigator.pop(context);
               }, fatcaOptionData: data.additionalDropDownData ?? []);
             },
             suffixIcon: (value, data) {

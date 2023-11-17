@@ -44,7 +44,7 @@ class ScheduleCallTimeDialogView extends StatelessWidget {
         builder: (context, model, child) {
           return Dialog(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-              insetPadding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 36.h),
+              insetPadding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 56.h),
               child: Stack(
                 alignment: Alignment.bottomCenter,
                 clipBehavior: Clip.none,

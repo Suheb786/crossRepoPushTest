@@ -46,7 +46,7 @@ class _YearMonthDialogViewState extends State<YearMonthDialogView> {
           builder: (context, model, child) {
             return Dialog(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-                insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+                insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 56, top: 204),
                 child: AppStreamBuilder<Resource<List<String>>>(
                   stream: model!.getListStream,
                   initialData: Resource.none(),

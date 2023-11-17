@@ -34,7 +34,7 @@ class RelationshipWithPEPDialogView extends StatelessWidget {
           builder: (context, model, child) {
             return Dialog(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-                insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+                insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 56, top: 204),
                 child: Stack(
                   alignment: Alignment.bottomCenter,
                   clipBehavior: Clip.none,

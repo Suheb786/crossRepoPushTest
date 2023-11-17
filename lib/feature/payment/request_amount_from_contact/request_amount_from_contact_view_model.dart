@@ -103,8 +103,10 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
 
   void getAccountByAlias() {
     _getAccountByAliasRequest.safeAdd(GetAccountByAliasUseCaseParams(
-      fromAccount: selectedAccount.accountNo,
-        value: beneficiary?.identifier ?? '', currency: "JOD", beneficiaryId: beneficiary?.id ?? ''));
+        fromAccount: selectedAccount.accountNo,
+        value: beneficiary?.identifier ?? '',
+        currency: "JOD",
+        beneficiaryId: beneficiary?.id ?? ''));
   }
 
   List<String> myList = [];
@@ -172,7 +174,7 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
         dbtrBic: getAccountByAliasResult != null
             ? getAccountByAliasResult!.getAccountByAliasContent!.bic ?? ""
             : "",
-        dbtrAcct: beneficiary!.accountNo ?? "",
+        dbtrAcct: beneficiary!.iban ?? "",
         dbtrName: beneficiary!.fullName ?? "",
         type: beneficiary!.purposeType ?? "",
         limit: purposeDetail == null ? beneficiary!.limit : purposeDetail!.limit,
