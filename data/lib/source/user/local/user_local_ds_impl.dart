@@ -61,11 +61,6 @@ class UserLocalDSImpl extends UserLocalDS {
   }
 
   @override
-  Future<bool> clearWalletId() async {
-    return await _secureStorageHelper.clearWalletId();
-  }
-
-  @override
   bool endLocalSession() {
     return _localSessionService.stopTimer();
   }

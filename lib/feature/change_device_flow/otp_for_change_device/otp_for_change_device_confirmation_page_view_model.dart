@@ -1,4 +1,3 @@
-import 'package:domain/usecase/apple_pay/clear_wallet_id_usecase.dart';
 import 'package:domain/usecase/device_change/resend_otp_device_change_usecase.dart';
 import 'package:domain/usecase/device_change/verify_device_change_otp_usecase.dart';
 import 'package:domain/usecase/infobip_audio/depersonalize_user_usecase.dart';
@@ -17,7 +16,6 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
   final OtpForChangeDeviceConfirmationPageArguments arguments;
   final VerifyDeviceChangeOtpUseCase _verifyDeviceChangeOtpUseCase;
   final ResendOtpDeviceChangeUseCase _resendOtpDeviceChangeUseCase;
-  final ClearWalletIdUseCase _clearWalletIdUseCase;
 
   ///countdown controller
   late CountdownTimerController countDownController;
@@ -57,26 +55,8 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
 
   PublishSubject<Resource<bool>> _depersonalizeUserResponseSubject = PublishSubject();
 
-  ///-------------------------clear wallet usecase----------------------///
-
-  PublishSubject<ClearWalletIdUseCaseParams> _clearWalletRequest = PublishSubject();
-
-  PublishSubject<Resource<bool>> _clearWalletResponse = PublishSubject();
-
-  Stream<Resource<bool>> get clearWalletStream => _clearWalletResponse.stream;
-
-  void clearWallet() {
-    _clearWalletRequest.safeAdd(ClearWalletIdUseCaseParams());
-  }
-
-  ///-------------------------clear wallet usecase----------------------///
-
-  OtpForChangeDeviceConfirmationPageViewModel(
-      this._verifyDeviceChangeOtpUseCase,
-      this._resendOtpDeviceChangeUseCase,
-      this._depersonalizeUserUseCase,
-      this._clearWalletIdUseCase,
-      this.arguments) {
+  OtpForChangeDeviceConfirmationPageViewModel(this._verifyDeviceChangeOtpUseCase,
+      this._resendOtpDeviceChangeUseCase, this._depersonalizeUserUseCase, this.arguments) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value, createCall: () => _verifyDeviceChangeOtpUseCase.execute(params: value))
           .asFlow()
@@ -113,14 +93,6 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
           saveUserData();
         }
         _depersonalizeUserResponseSubject.safeAdd(event);
-      });
-    });
-
-    _clearWalletRequest.listen((value) {
-      RequestManager(value, createCall: () {
-        return _clearWalletIdUseCase.execute(params: value);
-      }).asFlow().listen((event) {
-        _clearWalletResponse.safeAdd(event);
       });
     });
   }

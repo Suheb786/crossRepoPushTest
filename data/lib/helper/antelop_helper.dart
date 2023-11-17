@@ -7,6 +7,7 @@ import 'package:data/entity/remote/apple_pay/enroll_card_request_entity.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/helper/secure_storage_helper.dart';
+import 'package:data/helper/shared_preference_helper.dart';
 import 'package:data/network/api_service.dart';
 import 'package:domain/constants/app_constants.dart';
 import 'package:domain/model/apple_pay/get_all_card_data.dart';
@@ -56,7 +57,7 @@ class AntelopHelper {
   }
 
   getWalletId() async {
-    var id = await SecureStorageHelper.instance.getWalletId();
+    var id = await SharedPreferenceHelper.getWalletId();
     if ((id ?? '').isNotEmpty) {
       debugPrint('Wallet Id from secure Storage---->$id');
       antelopWalletId = id ?? '';
@@ -269,7 +270,7 @@ class AntelopHelper {
         antelopWalletId = walletData["walletId"].toString();
 
         ///saving wallet id
-        await SecureStorageHelper.instance.saveWalletId(walletId: walletData["walletId"].toString());
+        await SharedPreferenceHelper.saveWalletId(walletId: walletData["walletId"].toString());
 
         /// TODO getCards from Antelop and call API
 

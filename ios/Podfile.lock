@@ -34,8 +34,6 @@ PODS:
   - AgoraRtcEngine_iOS/VirtualBackground (4.2.2)
   - AgoraRtcEngine_iOS/VQA (4.2.2)
   - Alamofire (4.9.1)
-  - app_links (0.0.1):
-    - Flutter
   - appsflyer_sdk (6.8.0):
     - AppsFlyerFramework (= 6.12.2)
     - Flutter
@@ -198,8 +196,6 @@ PODS:
     - IOSSecuritySuite
   - flutter_secure_storage (6.0.0):
     - Flutter
-  - flutter_sim_country_code (0.0.1):
-    - Flutter
   - flutter_udid (0.0.1):
     - Flutter
     - SAMKeychain
@@ -209,8 +205,6 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
-  - geocoding_ios (1.0.5):
-    - Flutter
   - GoogleAppMeasurement (10.15.0):
     - GoogleAppMeasurement/AdIdSupport (= 10.15.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
@@ -331,7 +325,6 @@ PODS:
 
 DEPENDENCIES:
   - agora_rtc_engine (from `.symlinks/plugins/agora_rtc_engine/ios`)
-  - app_links (from `.symlinks/plugins/app_links/ios`)
   - appsflyer_sdk (from `.symlinks/plugins/appsflyer_sdk/ios`)
   - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
@@ -345,10 +338,8 @@ DEPENDENCIES:
   - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
   - flutter_jailbreak_detection (from `.symlinks/plugins/flutter_jailbreak_detection/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
-  - flutter_sim_country_code (from `.symlinks/plugins/flutter_sim_country_code/ios`)
   - flutter_udid (from `.symlinks/plugins/flutter_udid/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
-  - geocoding_ios (from `.symlinks/plugins/geocoding_ios/ios`)
   - http_certificate_pinning (from `.symlinks/plugins/http_certificate_pinning/ios`)
   - IDWise (= 4.3.4)
   - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
@@ -416,8 +407,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   agora_rtc_engine:
     :path: ".symlinks/plugins/agora_rtc_engine/ios"
-  app_links:
-    :path: ".symlinks/plugins/app_links/ios"
   appsflyer_sdk:
     :path: ".symlinks/plugins/appsflyer_sdk/ios"
   camera_avfoundation:
@@ -444,14 +433,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_jailbreak_detection/ios"
   flutter_secure_storage:
     :path: ".symlinks/plugins/flutter_secure_storage/ios"
-  flutter_sim_country_code:
-    :path: ".symlinks/plugins/flutter_sim_country_code/ios"
   flutter_udid:
     :path: ".symlinks/plugins/flutter_udid/ios"
   fluttertoast:
     :path: ".symlinks/plugins/fluttertoast/ios"
-  geocoding_ios:
-    :path: ".symlinks/plugins/geocoding_ios/ios"
   http_certificate_pinning:
     :path: ".symlinks/plugins/http_certificate_pinning/ios"
   image_cropper:
@@ -494,7 +479,6 @@ SPEC CHECKSUMS:
   AgoraIrisRTC_iOS: 7e71322c06db6c29ceaf89a964fb8b2700a75001
   AgoraRtcEngine_iOS: c510de329cd905daff3f01fa4c872ea6d5eaee23
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  app_links: 5ef33d0d295a89d9d16bb81b0e3b0d5f70d6c875
   appsflyer_sdk: beae2edc91c51ca92cad637534b45b22ff35d287
   AppsFlyerFramework: 6eb4d89d2eb9a6632317f1055b359d9fd85fd5ff
   camera_avfoundation: 3125e8cd1a4387f6f31c6c63abb8a55892a9eeeb
@@ -525,11 +509,9 @@ SPEC CHECKSUMS:
   flutter_inappwebview: 3d32228f1304635e7c028b0d4252937730bbc6cf
   flutter_jailbreak_detection: c5bf66ff6c0c4230769b6ba0bd63eb6ac4148a76
   flutter_secure_storage: 23fc622d89d073675f2eaa109381aefbcf5a49be
-  flutter_sim_country_code: 364e91e71f067cdec1dd1228eb4d1f13ab1a54e5
   flutter_udid: 0848809dbed4c055175747ae6a45a8b4f6771e1c
   fluttertoast: 31b00dabfa7fb7bacd9e7dbee580d7a2ff4bf265
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  geocoding_ios: a389ea40f6f548de6e63006a2e31bf66ff80769a
   GoogleAppMeasurement: 722db6550d1e6d552b08398b69a975ac61039338
   GoogleDataTransport: 54dee9d48d14580407f8f5fbf2f496e92437a2f2
   GoogleUtilities: 202e7a9f5128accd11160fb9c19612de1911aa19
