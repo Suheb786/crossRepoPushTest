@@ -3,12 +3,14 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../generated/l10n.dart';
+
 @immutable
 class AppPrimaryButton extends StatelessWidget {
   AppPrimaryButton({
     Key? key,
     required this.onPressed,
-    this.text = 'Next',
+    this.text,
     this.width = double.infinity,
     this.isDisabled = false,
     this.textColor,
@@ -18,7 +20,7 @@ class AppPrimaryButton extends StatelessWidget {
   }) : super(key: key);
 
   final VoidCallback? onPressed;
-  final String text;
+  final String? text;
   final double width;
   final Color? textColor;
   final bool isDisabled;
@@ -53,7 +55,7 @@ class AppPrimaryButton extends StatelessWidget {
           ),
           onPressed: !isDisabled ? onPressed : null,
           child: Text(
-            text,
+            text ?? S.of(context).next,
             style: TextStyle(
                 fontFamily: StringUtils.appFont,
                 fontSize: 14.t,

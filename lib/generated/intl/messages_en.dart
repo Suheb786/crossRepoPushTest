@@ -1707,10 +1707,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "incomeDetails": MessageLookupByLibrary.simpleMessage("INCOME DETAILS"),
         "increaseCreditLimit":
             MessageLookupByLibrary.simpleMessage("Increase credit limit"),
-        "ineligibleIdentity":
-            MessageLookupByLibrary.simpleMessage("Ineligible identity"),
-        "ineligibleIdentityDescription": MessageLookupByLibrary.simpleMessage(
-            "Seems that you are ineligible to continue the registration. Please reach out to Blink Engagement Team for further assistance."),
         "infant": MessageLookupByLibrary.simpleMessage("Infant"),
         "infobipInitError": MessageLookupByLibrary.simpleMessage(
             "Error occurred while Initialization"),
@@ -2295,7 +2291,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "ofTheBank": MessageLookupByLibrary.simpleMessage("of the bank."),
         "offersCategory":
             MessageLookupByLibrary.simpleMessage("Offers Category"),
-        "okay": MessageLookupByLibrary.simpleMessage("Okay"),
         "onIdFit": MessageLookupByLibrary.simpleMessage(
             "Once fit, your ID will be scanned automatically"),
         "oneFinalStop":
@@ -2543,8 +2538,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "processLoanValuesError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "processing": MessageLookupByLibrary.simpleMessage("Processing"),
-        "processingIDWiseStatus":
-            MessageLookupByLibrary.simpleMessage("Processing"),
         "processingVoucher":
             MessageLookupByLibrary.simpleMessage("Processing voucher"),
         "productSelectorHeader": MessageLookupByLibrary.simpleMessage(
@@ -2674,10 +2667,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Error while registering user to vkey"),
         "registrationProcessError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
-        "registrationStopped":
-            MessageLookupByLibrary.simpleMessage("Registration stopped"),
-        "registrationStoppedDescription": MessageLookupByLibrary.simpleMessage(
-            "Unfortunately, you did not meet minimum age required to open an account with us. You may try again when you turn 18."),
         "reject": MessageLookupByLibrary.simpleMessage("Reject"),
         "rejectRequest": MessageLookupByLibrary.simpleMessage("Reject Request"),
         "rejected": MessageLookupByLibrary.simpleMessage("Rejected"),
@@ -2918,10 +2907,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "selfieCheck": MessageLookupByLibrary.simpleMessage("Selfie Check!"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
-        "selfieMismatched":
-            MessageLookupByLibrary.simpleMessage("Selfie mismatched"),
-        "selfieMismatchedDescription": MessageLookupByLibrary.simpleMessage(
-            "Seems that your selfie does not match with your ID card. Please reach out to Blink Engagement Team for further assitance."),
         "sendAndRequestFavouriteContacts": MessageLookupByLibrary.simpleMessage(
             "Send and request with ease up to 9 favourite contacts. Would you like to add this contact to your favourite?"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("Send Money"),

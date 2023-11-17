@@ -115,11 +115,10 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                   height: 120.h,
                 ),
                 AppPrimaryButton(
+                  text: S.of(context).next,
                   padding: EdgeInsets.symmetric(horizontal: 24.w),
                   onPressed: () {
                     Navigator.pushNamed(context, RoutePaths.IdWiseIntialPage);
-                    /*  Navigator.pushNamedAndRemoveUntil(context, RoutePaths.Registration, (route) => false,
-                arguments: RegisterPageParams()); */
                   },
                   activeBackgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
                   textColor: Theme.of(context).colorScheme.secondary,

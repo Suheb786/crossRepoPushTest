@@ -1,4 +1,3 @@
-import 'package:neo_bank/utils/clickable_scrall_view/list_wheel_scrall_view.dart';
 import 'package:domain/model/account/available_time_slots.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,11 +11,11 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_five/schedule_call_ti
 import 'package:neo_bank/ui/molecules/dialog/register/step_five/schedule_call_time_dialog/schedule_call_time_item_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/clickable_scrall_view/list_wheel_scrall_view.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-
 
 class ScheduleCallTimeDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -44,7 +43,7 @@ class ScheduleCallTimeDialogView extends StatelessWidget {
         builder: (context, model, child) {
           return Dialog(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-              insetPadding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 56.h),
+              insetPadding: EdgeInsets.only(left: 24.0.w, right: 24.0.w, bottom: 56.0.h, top: 204.0.h),
               child: Stack(
                 alignment: Alignment.bottomCenter,
                 clipBehavior: Clip.none,

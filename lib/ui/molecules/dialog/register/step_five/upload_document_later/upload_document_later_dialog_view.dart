@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
-
 import 'package:neo_bank/ui/molecules/button/app_primary_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -63,15 +61,12 @@ class UploadDocumentLaterDialogView extends StatelessWidget {
                             ])),
                       ),
 
-                      Padding(
-                        padding: EdgeInsetsDirectional.only(start: 20.w, end: 20.w),
-                        child: AppPrimaryButton(
-                          isDisabled: false,
-                          onPressed: () {
-                            onSelected!.call();
-                          },
-                          text: S.of(context).confirm,
-                        ),
+                      AppPrimaryButton(
+                        isDisabled: false,
+                        onPressed: () {
+                          onSelected!.call();
+                        },
+                        text: S.of(context).confirm,
                       ),
                       SizedBox(height: 40.h),
 
