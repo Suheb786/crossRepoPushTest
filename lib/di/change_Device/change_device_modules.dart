@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:neo_bank/di/usecase/apple_pay/apple_pay_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/device_change/device_change_usecase.dart';
 import 'package:neo_bank/di/usecase/help_center/help_center_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/kyc/kyc_usecase_provider.dart';
@@ -13,7 +12,6 @@ final otpForChangeDeviceViewModelProvider = ChangeNotifierProvider.autoDispose
             ref.read(verifyDeviceChangeOtpUseCaseProvider),
             ref.read(resendOtpDeviceChangeUseCaseProvider),
             ref.read(depersonalizeUserUseCaseProvider),
-            ref.read(clearWalletIdUseCaseProvider),
             args));
 
 final changeDeviceSuccessViewModelProvider =

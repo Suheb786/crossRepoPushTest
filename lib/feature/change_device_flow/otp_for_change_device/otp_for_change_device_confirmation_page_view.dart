@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:data/helper/antelop_helper.dart';
+import 'package:data/helper/shared_preference_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -104,15 +105,15 @@ class OtpForChangeDeviceConfirmationPageView
                     child: AppStreamBuilder<Resource<bool>>(
                       stream: model.verifyOtpStream,
                       initialData: Resource.none(),
-                      onData: (data) {
+                      onData: (data) async {
                         if (data.status == Status.SUCCESS) {
                           model.depersonalizeUserData();
 
                           if (Platform.isIOS &&
                               AppConstantsUtils.isApplePayFeatureEnabled &&
                               model.arguments.rimNo.isNotEmpty) {
+                            bool isCleared = await SharedPreferenceHelper.clearWalletId();
                             AntelopHelper.walletLogout();
-                            model.clearWallet();
                             model.antelopSdkInitialize();
                           }
                           Navigator.pushReplacementNamed(context, RoutePaths.ChangeDeviceSuccess,

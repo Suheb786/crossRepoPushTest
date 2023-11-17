@@ -196,9 +196,6 @@ abstract class UserRepository {
   Future<Either<BaseError, bool>> getLocalSessionWarning(
       Function() onSessionEndWarning, Function() onSessionTimeOut);
 
-  /// clear wallet id
-  Future<Either<DatabaseError, bool>> clearWalletId();
-
   Future<Either<NetworkError, UpdateJourney>> updateJourney({required UpdateJourneyUseCaseParams params});
 
   Future<Either<NetworkError, CheckJourneyStatus>> updateIdWiseStatus(
