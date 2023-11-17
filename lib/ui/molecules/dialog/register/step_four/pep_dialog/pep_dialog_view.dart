@@ -21,7 +21,7 @@ class PEPDialogView extends StatelessWidget {
       onWillPop: () async => onWillPop,
       child: Dialog(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-          insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 204.h),
+          insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 0.h, top: 254.h),
           child: Stack(
             alignment: Alignment.bottomCenter,
             clipBehavior: Clip.none,
@@ -62,18 +62,15 @@ class PEPDialogView extends StatelessWidget {
                               )
                             ])),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.only(start: 20.w, end: 20.w),
-                        child: AppPrimaryButton(
-                          // isDisabled: isValid!,
-                          isDisabled: false,
+                      AppPrimaryButton(
+                        // isDisabled: isValid!,
+                        isDisabled: false,
 
-                          onPressed: () {
-                            onSelected?.call();
-                          },
+                        onPressed: () {
+                          onSelected?.call();
+                        },
 
-                          text: S.of(context).confirm,
-                        ),
+                        text: S.of(context).confirm,
                       ),
                     ],
                   ),
