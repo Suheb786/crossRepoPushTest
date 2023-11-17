@@ -68,6 +68,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                   textFieldFocusBorderColor: Theme.of(context).primaryColorDark,
                   labelText: S.of(context).emailAddress,
                   hintText: S.of(context).pleaseEnter,
+                  autofillHints: [AutofillHints.email],
                   key: model.emailKey,
                   controller: model.emailController,
                   inputType: TextInputType.emailAddress,
@@ -84,6 +85,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                   labelText: S.of(context).password,
                   hintText: S.of(context).pleaseEnter,
                   key: model.passwordKey,
+                  autofillHints: [AutofillHints.password],
                   controller: model.passwordController,
                   inputAction: TextInputAction.done,
                   onSaved: (value) {
